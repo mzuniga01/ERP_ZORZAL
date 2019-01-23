@@ -106,52 +106,6 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbSolicitudEfectivo> tbSolicitudEfectivo { get; set; }
         public virtual DbSet<tbEntrada> tbEntrada { get; set; }
     
-        public virtual ObjectResult<UDP_Gral_tbBanco_Insert_Result> UDP_Gral_tbBanco_Insert(string ban_Nombre, string ban_NombreContacto, string ban_TelefonoContacto)
-        {
-            var ban_NombreParameter = ban_Nombre != null ?
-                new ObjectParameter("ban_Nombre", ban_Nombre) :
-                new ObjectParameter("ban_Nombre", typeof(string));
-    
-            var ban_NombreContactoParameter = ban_NombreContacto != null ?
-                new ObjectParameter("ban_NombreContacto", ban_NombreContacto) :
-                new ObjectParameter("ban_NombreContacto", typeof(string));
-    
-            var ban_TelefonoContactoParameter = ban_TelefonoContacto != null ?
-                new ObjectParameter("ban_TelefonoContacto", ban_TelefonoContacto) :
-                new ObjectParameter("ban_TelefonoContacto", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbBanco_Insert_Result>("UDP_Gral_tbBanco_Insert", ban_NombreParameter, ban_NombreContactoParameter, ban_TelefonoContactoParameter);
-        }
-    
-        public virtual ObjectResult<UDP_Gral_tbBanco_Update_Result> UDP_Gral_tbBanco_Update(Nullable<short> ban_Id, string ban_Nombre, string ban_NombreContacto, string ban_TelefonoContacto, Nullable<int> ban_UsuarioCrea, Nullable<System.DateTime> ban_FechaCrea)
-        {
-            var ban_IdParameter = ban_Id.HasValue ?
-                new ObjectParameter("ban_Id", ban_Id) :
-                new ObjectParameter("ban_Id", typeof(short));
-    
-            var ban_NombreParameter = ban_Nombre != null ?
-                new ObjectParameter("ban_Nombre", ban_Nombre) :
-                new ObjectParameter("ban_Nombre", typeof(string));
-    
-            var ban_NombreContactoParameter = ban_NombreContacto != null ?
-                new ObjectParameter("ban_NombreContacto", ban_NombreContacto) :
-                new ObjectParameter("ban_NombreContacto", typeof(string));
-    
-            var ban_TelefonoContactoParameter = ban_TelefonoContacto != null ?
-                new ObjectParameter("ban_TelefonoContacto", ban_TelefonoContacto) :
-                new ObjectParameter("ban_TelefonoContacto", typeof(string));
-    
-            var ban_UsuarioCreaParameter = ban_UsuarioCrea.HasValue ?
-                new ObjectParameter("ban_UsuarioCrea", ban_UsuarioCrea) :
-                new ObjectParameter("ban_UsuarioCrea", typeof(int));
-    
-            var ban_FechaCreaParameter = ban_FechaCrea.HasValue ?
-                new ObjectParameter("ban_FechaCrea", ban_FechaCrea) :
-                new ObjectParameter("ban_FechaCrea", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbBanco_Update_Result>("UDP_Gral_tbBanco_Update", ban_IdParameter, ban_NombreParameter, ban_NombreContactoParameter, ban_TelefonoContactoParameter, ban_UsuarioCreaParameter, ban_FechaCreaParameter);
-        }
-    
         public virtual ObjectResult<UDP_Gral_tbDenominacion_Insert_Result> UDP_Gral_tbDenominacion_Insert(string deno_Descripcion, Nullable<byte> deno_Tipo, Nullable<decimal> deno_valor, Nullable<short> mnda_Id)
         {
             var deno_DescripcionParameter = deno_Descripcion != null ?
@@ -222,84 +176,6 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("cja_FechaCrea", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbCaja_Update_Result>("UDP_Vent_tbCaja_Update", cja_IdParameter, cja_DescripcionParameter, suc_IdParameter, cja_UsuarioCreaParameter, cja_FechaCreaParameter);
-        }
-    
-        public virtual ObjectResult<UDP_Gral_tbCuentasBanco_Insert_Result> UDP_Gral_tbCuentasBanco_Insert(Nullable<short> ban_Id, Nullable<short> mnda_Id, Nullable<byte> bcta_TipoCuenta, Nullable<decimal> bcta_TotalCredito, Nullable<decimal> bcta_TotalDebito, Nullable<System.DateTime> bcta_FechaApertura, string bcta_Numero)
-        {
-            var ban_IdParameter = ban_Id.HasValue ?
-                new ObjectParameter("ban_Id", ban_Id) :
-                new ObjectParameter("ban_Id", typeof(short));
-    
-            var mnda_IdParameter = mnda_Id.HasValue ?
-                new ObjectParameter("mnda_Id", mnda_Id) :
-                new ObjectParameter("mnda_Id", typeof(short));
-    
-            var bcta_TipoCuentaParameter = bcta_TipoCuenta.HasValue ?
-                new ObjectParameter("bcta_TipoCuenta", bcta_TipoCuenta) :
-                new ObjectParameter("bcta_TipoCuenta", typeof(byte));
-    
-            var bcta_TotalCreditoParameter = bcta_TotalCredito.HasValue ?
-                new ObjectParameter("bcta_TotalCredito", bcta_TotalCredito) :
-                new ObjectParameter("bcta_TotalCredito", typeof(decimal));
-    
-            var bcta_TotalDebitoParameter = bcta_TotalDebito.HasValue ?
-                new ObjectParameter("bcta_TotalDebito", bcta_TotalDebito) :
-                new ObjectParameter("bcta_TotalDebito", typeof(decimal));
-    
-            var bcta_FechaAperturaParameter = bcta_FechaApertura.HasValue ?
-                new ObjectParameter("bcta_FechaApertura", bcta_FechaApertura) :
-                new ObjectParameter("bcta_FechaApertura", typeof(System.DateTime));
-    
-            var bcta_NumeroParameter = bcta_Numero != null ?
-                new ObjectParameter("bcta_Numero", bcta_Numero) :
-                new ObjectParameter("bcta_Numero", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbCuentasBanco_Insert_Result>("UDP_Gral_tbCuentasBanco_Insert", ban_IdParameter, mnda_IdParameter, bcta_TipoCuentaParameter, bcta_TotalCreditoParameter, bcta_TotalDebitoParameter, bcta_FechaAperturaParameter, bcta_NumeroParameter);
-        }
-    
-        public virtual ObjectResult<UDP_Gral_tbCuentasBanco_Update_Result> UDP_Gral_tbCuentasBanco_Update(Nullable<short> bcta_Id, Nullable<short> ban_Id, Nullable<short> mnda_Id, Nullable<byte> bcta_TipoCuenta, Nullable<decimal> bcta_TotalCredito, Nullable<decimal> bcta_TotalDebito, Nullable<System.DateTime> bcta_FechaApertura, string bcta_Numero, Nullable<int> bcta_UsuarioCrea, Nullable<System.DateTime> bcta_FechaCrea)
-        {
-            var bcta_IdParameter = bcta_Id.HasValue ?
-                new ObjectParameter("bcta_Id", bcta_Id) :
-                new ObjectParameter("bcta_Id", typeof(short));
-    
-            var ban_IdParameter = ban_Id.HasValue ?
-                new ObjectParameter("ban_Id", ban_Id) :
-                new ObjectParameter("ban_Id", typeof(short));
-    
-            var mnda_IdParameter = mnda_Id.HasValue ?
-                new ObjectParameter("mnda_Id", mnda_Id) :
-                new ObjectParameter("mnda_Id", typeof(short));
-    
-            var bcta_TipoCuentaParameter = bcta_TipoCuenta.HasValue ?
-                new ObjectParameter("bcta_TipoCuenta", bcta_TipoCuenta) :
-                new ObjectParameter("bcta_TipoCuenta", typeof(byte));
-    
-            var bcta_TotalCreditoParameter = bcta_TotalCredito.HasValue ?
-                new ObjectParameter("bcta_TotalCredito", bcta_TotalCredito) :
-                new ObjectParameter("bcta_TotalCredito", typeof(decimal));
-    
-            var bcta_TotalDebitoParameter = bcta_TotalDebito.HasValue ?
-                new ObjectParameter("bcta_TotalDebito", bcta_TotalDebito) :
-                new ObjectParameter("bcta_TotalDebito", typeof(decimal));
-    
-            var bcta_FechaAperturaParameter = bcta_FechaApertura.HasValue ?
-                new ObjectParameter("bcta_FechaApertura", bcta_FechaApertura) :
-                new ObjectParameter("bcta_FechaApertura", typeof(System.DateTime));
-    
-            var bcta_NumeroParameter = bcta_Numero != null ?
-                new ObjectParameter("bcta_Numero", bcta_Numero) :
-                new ObjectParameter("bcta_Numero", typeof(string));
-    
-            var bcta_UsuarioCreaParameter = bcta_UsuarioCrea.HasValue ?
-                new ObjectParameter("bcta_UsuarioCrea", bcta_UsuarioCrea) :
-                new ObjectParameter("bcta_UsuarioCrea", typeof(int));
-    
-            var bcta_FechaCreaParameter = bcta_FechaCrea.HasValue ?
-                new ObjectParameter("bcta_FechaCrea", bcta_FechaCrea) :
-                new ObjectParameter("bcta_FechaCrea", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbCuentasBanco_Update_Result>("UDP_Gral_tbCuentasBanco_Update", bcta_IdParameter, ban_IdParameter, mnda_IdParameter, bcta_TipoCuentaParameter, bcta_TotalCreditoParameter, bcta_TotalDebitoParameter, bcta_FechaAperturaParameter, bcta_NumeroParameter, bcta_UsuarioCreaParameter, bcta_FechaCreaParameter);
         }
     
         public virtual ObjectResult<UDP_Gral_tbActividadEconomica_Insert_Result> UDP_Gral_tbActividadEconomica_Insert(string acte_Descripcion)
@@ -821,228 +697,6 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("CodDepartamento", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetMunicipios1_Result>("spGetMunicipios1", codDepartamentoParameter);
-        }
-    
-        public virtual ObjectResult<UDP_Vent_tbCliente_Insert_Result> UDP_Vent_tbCliente_Insert(Nullable<byte> tpi_Id, string clte_Identificacion, Nullable<bool> clte_EsPersonaNatural, string clte_Nombres, string clte_Apellidos, Nullable<System.DateTime> clte_FechaNacimiento, string clte_Nacionalidad, string clte_Sexo, string clte_Telefono, string clte_NombreComercial, string clte_RazonSocial, string clte_ContactoNombre, string clte_ContactoEmail, string clte_ContactoTelefono, Nullable<System.DateTime> clte_FechaConstitucion, string mun_Codigo, string clte_Direccion, string clte_CorreoElectronico, Nullable<bool> clte_EsActivo, string clte_RazonInactivo, Nullable<bool> clte_ConCredito, Nullable<bool> clte_EsMinorista, string clte_Observaciones, Nullable<decimal> clte_MontoCredito, Nullable<int> clte_DiasCredito)
-        {
-            var tpi_IdParameter = tpi_Id.HasValue ?
-                new ObjectParameter("tpi_Id", tpi_Id) :
-                new ObjectParameter("tpi_Id", typeof(byte));
-    
-            var clte_IdentificacionParameter = clte_Identificacion != null ?
-                new ObjectParameter("clte_Identificacion", clte_Identificacion) :
-                new ObjectParameter("clte_Identificacion", typeof(string));
-    
-            var clte_EsPersonaNaturalParameter = clte_EsPersonaNatural.HasValue ?
-                new ObjectParameter("clte_EsPersonaNatural", clte_EsPersonaNatural) :
-                new ObjectParameter("clte_EsPersonaNatural", typeof(bool));
-    
-            var clte_NombresParameter = clte_Nombres != null ?
-                new ObjectParameter("clte_Nombres", clte_Nombres) :
-                new ObjectParameter("clte_Nombres", typeof(string));
-    
-            var clte_ApellidosParameter = clte_Apellidos != null ?
-                new ObjectParameter("clte_Apellidos", clte_Apellidos) :
-                new ObjectParameter("clte_Apellidos", typeof(string));
-    
-            var clte_FechaNacimientoParameter = clte_FechaNacimiento.HasValue ?
-                new ObjectParameter("clte_FechaNacimiento", clte_FechaNacimiento) :
-                new ObjectParameter("clte_FechaNacimiento", typeof(System.DateTime));
-    
-            var clte_NacionalidadParameter = clte_Nacionalidad != null ?
-                new ObjectParameter("clte_Nacionalidad", clte_Nacionalidad) :
-                new ObjectParameter("clte_Nacionalidad", typeof(string));
-    
-            var clte_SexoParameter = clte_Sexo != null ?
-                new ObjectParameter("clte_Sexo", clte_Sexo) :
-                new ObjectParameter("clte_Sexo", typeof(string));
-    
-            var clte_TelefonoParameter = clte_Telefono != null ?
-                new ObjectParameter("clte_Telefono", clte_Telefono) :
-                new ObjectParameter("clte_Telefono", typeof(string));
-    
-            var clte_NombreComercialParameter = clte_NombreComercial != null ?
-                new ObjectParameter("clte_NombreComercial", clte_NombreComercial) :
-                new ObjectParameter("clte_NombreComercial", typeof(string));
-    
-            var clte_RazonSocialParameter = clte_RazonSocial != null ?
-                new ObjectParameter("clte_RazonSocial", clte_RazonSocial) :
-                new ObjectParameter("clte_RazonSocial", typeof(string));
-    
-            var clte_ContactoNombreParameter = clte_ContactoNombre != null ?
-                new ObjectParameter("clte_ContactoNombre", clte_ContactoNombre) :
-                new ObjectParameter("clte_ContactoNombre", typeof(string));
-    
-            var clte_ContactoEmailParameter = clte_ContactoEmail != null ?
-                new ObjectParameter("clte_ContactoEmail", clte_ContactoEmail) :
-                new ObjectParameter("clte_ContactoEmail", typeof(string));
-    
-            var clte_ContactoTelefonoParameter = clte_ContactoTelefono != null ?
-                new ObjectParameter("clte_ContactoTelefono", clte_ContactoTelefono) :
-                new ObjectParameter("clte_ContactoTelefono", typeof(string));
-    
-            var clte_FechaConstitucionParameter = clte_FechaConstitucion.HasValue ?
-                new ObjectParameter("clte_FechaConstitucion", clte_FechaConstitucion) :
-                new ObjectParameter("clte_FechaConstitucion", typeof(System.DateTime));
-    
-            var mun_CodigoParameter = mun_Codigo != null ?
-                new ObjectParameter("mun_Codigo", mun_Codigo) :
-                new ObjectParameter("mun_Codigo", typeof(string));
-    
-            var clte_DireccionParameter = clte_Direccion != null ?
-                new ObjectParameter("clte_Direccion", clte_Direccion) :
-                new ObjectParameter("clte_Direccion", typeof(string));
-    
-            var clte_CorreoElectronicoParameter = clte_CorreoElectronico != null ?
-                new ObjectParameter("clte_CorreoElectronico", clte_CorreoElectronico) :
-                new ObjectParameter("clte_CorreoElectronico", typeof(string));
-    
-            var clte_EsActivoParameter = clte_EsActivo.HasValue ?
-                new ObjectParameter("clte_EsActivo", clte_EsActivo) :
-                new ObjectParameter("clte_EsActivo", typeof(bool));
-    
-            var clte_RazonInactivoParameter = clte_RazonInactivo != null ?
-                new ObjectParameter("clte_RazonInactivo", clte_RazonInactivo) :
-                new ObjectParameter("clte_RazonInactivo", typeof(string));
-    
-            var clte_ConCreditoParameter = clte_ConCredito.HasValue ?
-                new ObjectParameter("clte_ConCredito", clte_ConCredito) :
-                new ObjectParameter("clte_ConCredito", typeof(bool));
-    
-            var clte_EsMinoristaParameter = clte_EsMinorista.HasValue ?
-                new ObjectParameter("clte_EsMinorista", clte_EsMinorista) :
-                new ObjectParameter("clte_EsMinorista", typeof(bool));
-    
-            var clte_ObservacionesParameter = clte_Observaciones != null ?
-                new ObjectParameter("clte_Observaciones", clte_Observaciones) :
-                new ObjectParameter("clte_Observaciones", typeof(string));
-    
-            var clte_MontoCreditoParameter = clte_MontoCredito.HasValue ?
-                new ObjectParameter("clte_MontoCredito", clte_MontoCredito) :
-                new ObjectParameter("clte_MontoCredito", typeof(decimal));
-    
-            var clte_DiasCreditoParameter = clte_DiasCredito.HasValue ?
-                new ObjectParameter("clte_DiasCredito", clte_DiasCredito) :
-                new ObjectParameter("clte_DiasCredito", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbCliente_Insert_Result>("UDP_Vent_tbCliente_Insert", tpi_IdParameter, clte_IdentificacionParameter, clte_EsPersonaNaturalParameter, clte_NombresParameter, clte_ApellidosParameter, clte_FechaNacimientoParameter, clte_NacionalidadParameter, clte_SexoParameter, clte_TelefonoParameter, clte_NombreComercialParameter, clte_RazonSocialParameter, clte_ContactoNombreParameter, clte_ContactoEmailParameter, clte_ContactoTelefonoParameter, clte_FechaConstitucionParameter, mun_CodigoParameter, clte_DireccionParameter, clte_CorreoElectronicoParameter, clte_EsActivoParameter, clte_RazonInactivoParameter, clte_ConCreditoParameter, clte_EsMinoristaParameter, clte_ObservacionesParameter, clte_MontoCreditoParameter, clte_DiasCreditoParameter);
-        }
-    
-        public virtual ObjectResult<UDP_Vent_tbCliente_Update_Result> UDP_Vent_tbCliente_Update(Nullable<int> clte_Id, Nullable<int> tpi_Id, string clte_Identificacion, Nullable<bool> clte_EsPersonaNatural, string clte_Nombres, string clte_Apellidos, Nullable<System.DateTime> clte_FechaNacimiento, string clte_Nacionalidad, string clte_Sexo, string clte_Telefono, string clte_NombreComercial, string clte_RazonSocial, string clte_ContactoNombre, string clte_ContactoEmail, string clte_ContactoTelefono, Nullable<System.DateTime> clte_FechaConstitucion, string mun_Codigo, string clte_Direccion, string clte_CorreoElectronico, Nullable<bool> clte_EsActivo, string clte_RazonInactivo, Nullable<bool> clte_ConCredito, Nullable<bool> clte_EsMinorista, string clte_Observaciones, Nullable<int> clte_UsuarioCrea, Nullable<System.DateTime> clte_FechaCrea, Nullable<decimal> clte_MontoCredito, Nullable<int> clte_DiasCredito)
-        {
-            var clte_IdParameter = clte_Id.HasValue ?
-                new ObjectParameter("clte_Id", clte_Id) :
-                new ObjectParameter("clte_Id", typeof(int));
-    
-            var tpi_IdParameter = tpi_Id.HasValue ?
-                new ObjectParameter("tpi_Id", tpi_Id) :
-                new ObjectParameter("tpi_Id", typeof(int));
-    
-            var clte_IdentificacionParameter = clte_Identificacion != null ?
-                new ObjectParameter("clte_Identificacion", clte_Identificacion) :
-                new ObjectParameter("clte_Identificacion", typeof(string));
-    
-            var clte_EsPersonaNaturalParameter = clte_EsPersonaNatural.HasValue ?
-                new ObjectParameter("clte_EsPersonaNatural", clte_EsPersonaNatural) :
-                new ObjectParameter("clte_EsPersonaNatural", typeof(bool));
-    
-            var clte_NombresParameter = clte_Nombres != null ?
-                new ObjectParameter("clte_Nombres", clte_Nombres) :
-                new ObjectParameter("clte_Nombres", typeof(string));
-    
-            var clte_ApellidosParameter = clte_Apellidos != null ?
-                new ObjectParameter("clte_Apellidos", clte_Apellidos) :
-                new ObjectParameter("clte_Apellidos", typeof(string));
-    
-            var clte_FechaNacimientoParameter = clte_FechaNacimiento.HasValue ?
-                new ObjectParameter("clte_FechaNacimiento", clte_FechaNacimiento) :
-                new ObjectParameter("clte_FechaNacimiento", typeof(System.DateTime));
-    
-            var clte_NacionalidadParameter = clte_Nacionalidad != null ?
-                new ObjectParameter("clte_Nacionalidad", clte_Nacionalidad) :
-                new ObjectParameter("clte_Nacionalidad", typeof(string));
-    
-            var clte_SexoParameter = clte_Sexo != null ?
-                new ObjectParameter("clte_Sexo", clte_Sexo) :
-                new ObjectParameter("clte_Sexo", typeof(string));
-    
-            var clte_TelefonoParameter = clte_Telefono != null ?
-                new ObjectParameter("clte_Telefono", clte_Telefono) :
-                new ObjectParameter("clte_Telefono", typeof(string));
-    
-            var clte_NombreComercialParameter = clte_NombreComercial != null ?
-                new ObjectParameter("clte_NombreComercial", clte_NombreComercial) :
-                new ObjectParameter("clte_NombreComercial", typeof(string));
-    
-            var clte_RazonSocialParameter = clte_RazonSocial != null ?
-                new ObjectParameter("clte_RazonSocial", clte_RazonSocial) :
-                new ObjectParameter("clte_RazonSocial", typeof(string));
-    
-            var clte_ContactoNombreParameter = clte_ContactoNombre != null ?
-                new ObjectParameter("clte_ContactoNombre", clte_ContactoNombre) :
-                new ObjectParameter("clte_ContactoNombre", typeof(string));
-    
-            var clte_ContactoEmailParameter = clte_ContactoEmail != null ?
-                new ObjectParameter("clte_ContactoEmail", clte_ContactoEmail) :
-                new ObjectParameter("clte_ContactoEmail", typeof(string));
-    
-            var clte_ContactoTelefonoParameter = clte_ContactoTelefono != null ?
-                new ObjectParameter("clte_ContactoTelefono", clte_ContactoTelefono) :
-                new ObjectParameter("clte_ContactoTelefono", typeof(string));
-    
-            var clte_FechaConstitucionParameter = clte_FechaConstitucion.HasValue ?
-                new ObjectParameter("clte_FechaConstitucion", clte_FechaConstitucion) :
-                new ObjectParameter("clte_FechaConstitucion", typeof(System.DateTime));
-    
-            var mun_CodigoParameter = mun_Codigo != null ?
-                new ObjectParameter("mun_Codigo", mun_Codigo) :
-                new ObjectParameter("mun_Codigo", typeof(string));
-    
-            var clte_DireccionParameter = clte_Direccion != null ?
-                new ObjectParameter("clte_Direccion", clte_Direccion) :
-                new ObjectParameter("clte_Direccion", typeof(string));
-    
-            var clte_CorreoElectronicoParameter = clte_CorreoElectronico != null ?
-                new ObjectParameter("clte_CorreoElectronico", clte_CorreoElectronico) :
-                new ObjectParameter("clte_CorreoElectronico", typeof(string));
-    
-            var clte_EsActivoParameter = clte_EsActivo.HasValue ?
-                new ObjectParameter("clte_EsActivo", clte_EsActivo) :
-                new ObjectParameter("clte_EsActivo", typeof(bool));
-    
-            var clte_RazonInactivoParameter = clte_RazonInactivo != null ?
-                new ObjectParameter("clte_RazonInactivo", clte_RazonInactivo) :
-                new ObjectParameter("clte_RazonInactivo", typeof(string));
-    
-            var clte_ConCreditoParameter = clte_ConCredito.HasValue ?
-                new ObjectParameter("clte_ConCredito", clte_ConCredito) :
-                new ObjectParameter("clte_ConCredito", typeof(bool));
-    
-            var clte_EsMinoristaParameter = clte_EsMinorista.HasValue ?
-                new ObjectParameter("clte_EsMinorista", clte_EsMinorista) :
-                new ObjectParameter("clte_EsMinorista", typeof(bool));
-    
-            var clte_ObservacionesParameter = clte_Observaciones != null ?
-                new ObjectParameter("clte_Observaciones", clte_Observaciones) :
-                new ObjectParameter("clte_Observaciones", typeof(string));
-    
-            var clte_UsuarioCreaParameter = clte_UsuarioCrea.HasValue ?
-                new ObjectParameter("clte_UsuarioCrea", clte_UsuarioCrea) :
-                new ObjectParameter("clte_UsuarioCrea", typeof(int));
-    
-            var clte_FechaCreaParameter = clte_FechaCrea.HasValue ?
-                new ObjectParameter("clte_FechaCrea", clte_FechaCrea) :
-                new ObjectParameter("clte_FechaCrea", typeof(System.DateTime));
-    
-            var clte_MontoCreditoParameter = clte_MontoCredito.HasValue ?
-                new ObjectParameter("clte_MontoCredito", clte_MontoCredito) :
-                new ObjectParameter("clte_MontoCredito", typeof(decimal));
-    
-            var clte_DiasCreditoParameter = clte_DiasCredito.HasValue ?
-                new ObjectParameter("clte_DiasCredito", clte_DiasCredito) :
-                new ObjectParameter("clte_DiasCredito", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbCliente_Update_Result>("UDP_Vent_tbCliente_Update", clte_IdParameter, tpi_IdParameter, clte_IdentificacionParameter, clte_EsPersonaNaturalParameter, clte_NombresParameter, clte_ApellidosParameter, clte_FechaNacimientoParameter, clte_NacionalidadParameter, clte_SexoParameter, clte_TelefonoParameter, clte_NombreComercialParameter, clte_RazonSocialParameter, clte_ContactoNombreParameter, clte_ContactoEmailParameter, clte_ContactoTelefonoParameter, clte_FechaConstitucionParameter, mun_CodigoParameter, clte_DireccionParameter, clte_CorreoElectronicoParameter, clte_EsActivoParameter, clte_RazonInactivoParameter, clte_ConCreditoParameter, clte_EsMinoristaParameter, clte_ObservacionesParameter, clte_UsuarioCreaParameter, clte_FechaCreaParameter, clte_MontoCreditoParameter, clte_DiasCreditoParameter);
         }
     
         public virtual ObjectResult<UDP_Vent_tbPedidoDetalle_Update_Result> UDP_Vent_tbPedidoDetalle_Update(Nullable<int> ped_Id, string prod_Codigo, Nullable<decimal> pedd_Cantidad, Nullable<decimal> pedd_CantidadFacturada, Nullable<int> pedd_UsuarioCrea, Nullable<System.DateTime> pedd_FechaCrea)
@@ -4751,39 +4405,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetDetallePedido_Result>("sp_GetDetallePedido", ped_IdParameter);
         }
     
-        public virtual ObjectResult<UDP_Vent_tbMovimientoCaja_Apertura_Insert_Result> UDP_Vent_tbMovimientoCaja_Apertura_Insert(Nullable<short> cja_Id, Nullable<System.DateTime> mocja_FechaApertura, Nullable<int> mocja_UsuarioApertura, Nullable<System.DateTime> mocja_FechaArqueo, Nullable<int> mocja_UsuarioArquea, Nullable<System.DateTime> mocja_FechaAceptacion, Nullable<int> mocja_UsuarioAceptacion)
-        {
-            var cja_IdParameter = cja_Id.HasValue ?
-                new ObjectParameter("cja_Id", cja_Id) :
-                new ObjectParameter("cja_Id", typeof(short));
-    
-            var mocja_FechaAperturaParameter = mocja_FechaApertura.HasValue ?
-                new ObjectParameter("mocja_FechaApertura", mocja_FechaApertura) :
-                new ObjectParameter("mocja_FechaApertura", typeof(System.DateTime));
-    
-            var mocja_UsuarioAperturaParameter = mocja_UsuarioApertura.HasValue ?
-                new ObjectParameter("mocja_UsuarioApertura", mocja_UsuarioApertura) :
-                new ObjectParameter("mocja_UsuarioApertura", typeof(int));
-    
-            var mocja_FechaArqueoParameter = mocja_FechaArqueo.HasValue ?
-                new ObjectParameter("mocja_FechaArqueo", mocja_FechaArqueo) :
-                new ObjectParameter("mocja_FechaArqueo", typeof(System.DateTime));
-    
-            var mocja_UsuarioArqueaParameter = mocja_UsuarioArquea.HasValue ?
-                new ObjectParameter("mocja_UsuarioArquea", mocja_UsuarioArquea) :
-                new ObjectParameter("mocja_UsuarioArquea", typeof(int));
-    
-            var mocja_FechaAceptacionParameter = mocja_FechaAceptacion.HasValue ?
-                new ObjectParameter("mocja_FechaAceptacion", mocja_FechaAceptacion) :
-                new ObjectParameter("mocja_FechaAceptacion", typeof(System.DateTime));
-    
-            var mocja_UsuarioAceptacionParameter = mocja_UsuarioAceptacion.HasValue ?
-                new ObjectParameter("mocja_UsuarioAceptacion", mocja_UsuarioAceptacion) :
-                new ObjectParameter("mocja_UsuarioAceptacion", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbMovimientoCaja_Apertura_Insert_Result>("UDP_Vent_tbMovimientoCaja_Apertura_Insert", cja_IdParameter, mocja_FechaAperturaParameter, mocja_UsuarioAperturaParameter, mocja_FechaArqueoParameter, mocja_UsuarioArqueaParameter, mocja_FechaAceptacionParameter, mocja_UsuarioAceptacionParameter);
-        }
-    
         public virtual ObjectResult<SDP_Vent_tbPedidoDetalle_tbPedido_Select_Result> SDP_Vent_tbPedidoDetalle_tbPedido_Select(Nullable<int> ped_Id)
         {
             var ped_IdParameter = ped_Id.HasValue ?
@@ -4821,52 +4442,6 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("IDCLIENTE", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente_Result>("UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente", iDSUCURSALParameter, cODIGOBARRASParameter, iDCLIENTEParameter);
-        }
-    
-        public virtual ObjectResult<UDP_Vent_tbSolicitudEfectivo_Apertura_Insert_Result> UDP_Vent_tbSolicitudEfectivo_Apertura_Insert(Nullable<int> mocja_Id, Nullable<bool> solef_EsApertura, Nullable<short> mnda_Id, Nullable<bool> solef_EsAnulada)
-        {
-            var mocja_IdParameter = mocja_Id.HasValue ?
-                new ObjectParameter("mocja_Id", mocja_Id) :
-                new ObjectParameter("mocja_Id", typeof(int));
-    
-            var solef_EsAperturaParameter = solef_EsApertura.HasValue ?
-                new ObjectParameter("solef_EsApertura", solef_EsApertura) :
-                new ObjectParameter("solef_EsApertura", typeof(bool));
-    
-            var mnda_IdParameter = mnda_Id.HasValue ?
-                new ObjectParameter("mnda_Id", mnda_Id) :
-                new ObjectParameter("mnda_Id", typeof(short));
-    
-            var solef_EsAnuladaParameter = solef_EsAnulada.HasValue ?
-                new ObjectParameter("solef_EsAnulada", solef_EsAnulada) :
-                new ObjectParameter("solef_EsAnulada", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbSolicitudEfectivo_Apertura_Insert_Result>("UDP_Vent_tbSolicitudEfectivo_Apertura_Insert", mocja_IdParameter, solef_EsAperturaParameter, mnda_IdParameter, solef_EsAnuladaParameter);
-        }
-    
-        public virtual ObjectResult<UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert_Result> UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert(Nullable<int> solef_Id, Nullable<short> deno_Id, Nullable<short> soled_CantidadSolicitada, Nullable<short> soled_CantidadEntregada, Nullable<decimal> soled_MontoEntregado)
-        {
-            var solef_IdParameter = solef_Id.HasValue ?
-                new ObjectParameter("solef_Id", solef_Id) :
-                new ObjectParameter("solef_Id", typeof(int));
-    
-            var deno_IdParameter = deno_Id.HasValue ?
-                new ObjectParameter("deno_Id", deno_Id) :
-                new ObjectParameter("deno_Id", typeof(short));
-    
-            var soled_CantidadSolicitadaParameter = soled_CantidadSolicitada.HasValue ?
-                new ObjectParameter("soled_CantidadSolicitada", soled_CantidadSolicitada) :
-                new ObjectParameter("soled_CantidadSolicitada", typeof(short));
-    
-            var soled_CantidadEntregadaParameter = soled_CantidadEntregada.HasValue ?
-                new ObjectParameter("soled_CantidadEntregada", soled_CantidadEntregada) :
-                new ObjectParameter("soled_CantidadEntregada", typeof(short));
-    
-            var soled_MontoEntregadoParameter = soled_MontoEntregado.HasValue ?
-                new ObjectParameter("soled_MontoEntregado", soled_MontoEntregado) :
-                new ObjectParameter("soled_MontoEntregado", typeof(decimal));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert_Result>("UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert", solef_IdParameter, deno_IdParameter, soled_CantidadSolicitadaParameter, soled_CantidadEntregadaParameter, soled_MontoEntregadoParameter);
         }
     
         public virtual ObjectResult<UDP_Vent_tbFactura_GetDetalle_Result> UDP_Vent_tbFactura_GetDetalle(Nullable<long> fACTURA_ID)
@@ -5322,6 +4897,480 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("IDSOLICITUD", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbSolicitudEfectivoDetalle_Detalle_Result1>("UDP_Vent_tbSolicitudEfectivoDetalle_Detalle", iDSOLICITUDParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Gral_tbBanco_Insert_Result> UDP_Gral_tbBanco_Insert(string ban_Nombre, string ban_NombreContacto, string ban_TelefonoContacto)
+        {
+            var ban_NombreParameter = ban_Nombre != null ?
+                new ObjectParameter("ban_Nombre", ban_Nombre) :
+                new ObjectParameter("ban_Nombre", typeof(string));
+    
+            var ban_NombreContactoParameter = ban_NombreContacto != null ?
+                new ObjectParameter("ban_NombreContacto", ban_NombreContacto) :
+                new ObjectParameter("ban_NombreContacto", typeof(string));
+    
+            var ban_TelefonoContactoParameter = ban_TelefonoContacto != null ?
+                new ObjectParameter("ban_TelefonoContacto", ban_TelefonoContacto) :
+                new ObjectParameter("ban_TelefonoContacto", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbBanco_Insert_Result>("UDP_Gral_tbBanco_Insert", ban_NombreParameter, ban_NombreContactoParameter, ban_TelefonoContactoParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Gral_tbBanco_Update_Result> UDP_Gral_tbBanco_Update(Nullable<short> ban_Id, string ban_Nombre, string ban_NombreContacto, string ban_TelefonoContacto, Nullable<int> ban_UsuarioCrea, Nullable<System.DateTime> ban_FechaCrea)
+        {
+            var ban_IdParameter = ban_Id.HasValue ?
+                new ObjectParameter("ban_Id", ban_Id) :
+                new ObjectParameter("ban_Id", typeof(short));
+    
+            var ban_NombreParameter = ban_Nombre != null ?
+                new ObjectParameter("ban_Nombre", ban_Nombre) :
+                new ObjectParameter("ban_Nombre", typeof(string));
+    
+            var ban_NombreContactoParameter = ban_NombreContacto != null ?
+                new ObjectParameter("ban_NombreContacto", ban_NombreContacto) :
+                new ObjectParameter("ban_NombreContacto", typeof(string));
+    
+            var ban_TelefonoContactoParameter = ban_TelefonoContacto != null ?
+                new ObjectParameter("ban_TelefonoContacto", ban_TelefonoContacto) :
+                new ObjectParameter("ban_TelefonoContacto", typeof(string));
+    
+            var ban_UsuarioCreaParameter = ban_UsuarioCrea.HasValue ?
+                new ObjectParameter("ban_UsuarioCrea", ban_UsuarioCrea) :
+                new ObjectParameter("ban_UsuarioCrea", typeof(int));
+    
+            var ban_FechaCreaParameter = ban_FechaCrea.HasValue ?
+                new ObjectParameter("ban_FechaCrea", ban_FechaCrea) :
+                new ObjectParameter("ban_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbBanco_Update_Result>("UDP_Gral_tbBanco_Update", ban_IdParameter, ban_NombreParameter, ban_NombreContactoParameter, ban_TelefonoContactoParameter, ban_UsuarioCreaParameter, ban_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Gral_tbCuentasBanco_Insert_Result> UDP_Gral_tbCuentasBanco_Insert(Nullable<short> ban_Id, Nullable<short> mnda_Id, Nullable<byte> bcta_TipoCuenta, Nullable<decimal> bcta_TotalCredito, Nullable<decimal> bcta_TotalDebito, Nullable<System.DateTime> bcta_FechaApertura, string bcta_Numero)
+        {
+            var ban_IdParameter = ban_Id.HasValue ?
+                new ObjectParameter("ban_Id", ban_Id) :
+                new ObjectParameter("ban_Id", typeof(short));
+    
+            var mnda_IdParameter = mnda_Id.HasValue ?
+                new ObjectParameter("mnda_Id", mnda_Id) :
+                new ObjectParameter("mnda_Id", typeof(short));
+    
+            var bcta_TipoCuentaParameter = bcta_TipoCuenta.HasValue ?
+                new ObjectParameter("bcta_TipoCuenta", bcta_TipoCuenta) :
+                new ObjectParameter("bcta_TipoCuenta", typeof(byte));
+    
+            var bcta_TotalCreditoParameter = bcta_TotalCredito.HasValue ?
+                new ObjectParameter("bcta_TotalCredito", bcta_TotalCredito) :
+                new ObjectParameter("bcta_TotalCredito", typeof(decimal));
+    
+            var bcta_TotalDebitoParameter = bcta_TotalDebito.HasValue ?
+                new ObjectParameter("bcta_TotalDebito", bcta_TotalDebito) :
+                new ObjectParameter("bcta_TotalDebito", typeof(decimal));
+    
+            var bcta_FechaAperturaParameter = bcta_FechaApertura.HasValue ?
+                new ObjectParameter("bcta_FechaApertura", bcta_FechaApertura) :
+                new ObjectParameter("bcta_FechaApertura", typeof(System.DateTime));
+    
+            var bcta_NumeroParameter = bcta_Numero != null ?
+                new ObjectParameter("bcta_Numero", bcta_Numero) :
+                new ObjectParameter("bcta_Numero", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbCuentasBanco_Insert_Result>("UDP_Gral_tbCuentasBanco_Insert", ban_IdParameter, mnda_IdParameter, bcta_TipoCuentaParameter, bcta_TotalCreditoParameter, bcta_TotalDebitoParameter, bcta_FechaAperturaParameter, bcta_NumeroParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Gral_tbCuentasBanco_Update_Result> UDP_Gral_tbCuentasBanco_Update(Nullable<short> bcta_Id, Nullable<short> ban_Id, Nullable<short> mnda_Id, Nullable<byte> bcta_TipoCuenta, Nullable<decimal> bcta_TotalCredito, Nullable<decimal> bcta_TotalDebito, Nullable<System.DateTime> bcta_FechaApertura, string bcta_Numero, Nullable<int> bcta_UsuarioCrea, Nullable<System.DateTime> bcta_FechaCrea)
+        {
+            var bcta_IdParameter = bcta_Id.HasValue ?
+                new ObjectParameter("bcta_Id", bcta_Id) :
+                new ObjectParameter("bcta_Id", typeof(short));
+    
+            var ban_IdParameter = ban_Id.HasValue ?
+                new ObjectParameter("ban_Id", ban_Id) :
+                new ObjectParameter("ban_Id", typeof(short));
+    
+            var mnda_IdParameter = mnda_Id.HasValue ?
+                new ObjectParameter("mnda_Id", mnda_Id) :
+                new ObjectParameter("mnda_Id", typeof(short));
+    
+            var bcta_TipoCuentaParameter = bcta_TipoCuenta.HasValue ?
+                new ObjectParameter("bcta_TipoCuenta", bcta_TipoCuenta) :
+                new ObjectParameter("bcta_TipoCuenta", typeof(byte));
+    
+            var bcta_TotalCreditoParameter = bcta_TotalCredito.HasValue ?
+                new ObjectParameter("bcta_TotalCredito", bcta_TotalCredito) :
+                new ObjectParameter("bcta_TotalCredito", typeof(decimal));
+    
+            var bcta_TotalDebitoParameter = bcta_TotalDebito.HasValue ?
+                new ObjectParameter("bcta_TotalDebito", bcta_TotalDebito) :
+                new ObjectParameter("bcta_TotalDebito", typeof(decimal));
+    
+            var bcta_FechaAperturaParameter = bcta_FechaApertura.HasValue ?
+                new ObjectParameter("bcta_FechaApertura", bcta_FechaApertura) :
+                new ObjectParameter("bcta_FechaApertura", typeof(System.DateTime));
+    
+            var bcta_NumeroParameter = bcta_Numero != null ?
+                new ObjectParameter("bcta_Numero", bcta_Numero) :
+                new ObjectParameter("bcta_Numero", typeof(string));
+    
+            var bcta_UsuarioCreaParameter = bcta_UsuarioCrea.HasValue ?
+                new ObjectParameter("bcta_UsuarioCrea", bcta_UsuarioCrea) :
+                new ObjectParameter("bcta_UsuarioCrea", typeof(int));
+    
+            var bcta_FechaCreaParameter = bcta_FechaCrea.HasValue ?
+                new ObjectParameter("bcta_FechaCrea", bcta_FechaCrea) :
+                new ObjectParameter("bcta_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbCuentasBanco_Update_Result>("UDP_Gral_tbCuentasBanco_Update", bcta_IdParameter, ban_IdParameter, mnda_IdParameter, bcta_TipoCuentaParameter, bcta_TotalCreditoParameter, bcta_TotalDebitoParameter, bcta_FechaAperturaParameter, bcta_NumeroParameter, bcta_UsuarioCreaParameter, bcta_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbMovimientoCaja_Apertura_Insert_Result> UDP_Vent_tbMovimientoCaja_Apertura_Insert(Nullable<short> cja_Id, Nullable<System.DateTime> mocja_FechaApertura, Nullable<int> mocja_UsuarioApertura, Nullable<System.DateTime> mocja_FechaArqueo, Nullable<int> mocja_UsuarioArquea, Nullable<System.DateTime> mocja_FechaAceptacion, Nullable<int> mocja_UsuarioAceptacion)
+        {
+            var cja_IdParameter = cja_Id.HasValue ?
+                new ObjectParameter("cja_Id", cja_Id) :
+                new ObjectParameter("cja_Id", typeof(short));
+    
+            var mocja_FechaAperturaParameter = mocja_FechaApertura.HasValue ?
+                new ObjectParameter("mocja_FechaApertura", mocja_FechaApertura) :
+                new ObjectParameter("mocja_FechaApertura", typeof(System.DateTime));
+    
+            var mocja_UsuarioAperturaParameter = mocja_UsuarioApertura.HasValue ?
+                new ObjectParameter("mocja_UsuarioApertura", mocja_UsuarioApertura) :
+                new ObjectParameter("mocja_UsuarioApertura", typeof(int));
+    
+            var mocja_FechaArqueoParameter = mocja_FechaArqueo.HasValue ?
+                new ObjectParameter("mocja_FechaArqueo", mocja_FechaArqueo) :
+                new ObjectParameter("mocja_FechaArqueo", typeof(System.DateTime));
+    
+            var mocja_UsuarioArqueaParameter = mocja_UsuarioArquea.HasValue ?
+                new ObjectParameter("mocja_UsuarioArquea", mocja_UsuarioArquea) :
+                new ObjectParameter("mocja_UsuarioArquea", typeof(int));
+    
+            var mocja_FechaAceptacionParameter = mocja_FechaAceptacion.HasValue ?
+                new ObjectParameter("mocja_FechaAceptacion", mocja_FechaAceptacion) :
+                new ObjectParameter("mocja_FechaAceptacion", typeof(System.DateTime));
+    
+            var mocja_UsuarioAceptacionParameter = mocja_UsuarioAceptacion.HasValue ?
+                new ObjectParameter("mocja_UsuarioAceptacion", mocja_UsuarioAceptacion) :
+                new ObjectParameter("mocja_UsuarioAceptacion", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbMovimientoCaja_Apertura_Insert_Result>("UDP_Vent_tbMovimientoCaja_Apertura_Insert", cja_IdParameter, mocja_FechaAperturaParameter, mocja_UsuarioAperturaParameter, mocja_FechaArqueoParameter, mocja_UsuarioArqueaParameter, mocja_FechaAceptacionParameter, mocja_UsuarioAceptacionParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Vent_tbSolicitudEfectivo_Update_Entrega(Nullable<int> solef_Id, Nullable<int> mocja_Id, Nullable<bool> solef_EsApertura, Nullable<System.DateTime> solef_FechaEntrega, Nullable<int> solef_UsuarioEntrega, Nullable<short> mnda_Id, Nullable<bool> solef_EsAnulada, Nullable<int> solef_UsuarioCrea, Nullable<System.DateTime> solef_FechaCrea)
+        {
+            var solef_IdParameter = solef_Id.HasValue ?
+                new ObjectParameter("solef_Id", solef_Id) :
+                new ObjectParameter("solef_Id", typeof(int));
+    
+            var mocja_IdParameter = mocja_Id.HasValue ?
+                new ObjectParameter("mocja_Id", mocja_Id) :
+                new ObjectParameter("mocja_Id", typeof(int));
+    
+            var solef_EsAperturaParameter = solef_EsApertura.HasValue ?
+                new ObjectParameter("solef_EsApertura", solef_EsApertura) :
+                new ObjectParameter("solef_EsApertura", typeof(bool));
+    
+            var solef_FechaEntregaParameter = solef_FechaEntrega.HasValue ?
+                new ObjectParameter("solef_FechaEntrega", solef_FechaEntrega) :
+                new ObjectParameter("solef_FechaEntrega", typeof(System.DateTime));
+    
+            var solef_UsuarioEntregaParameter = solef_UsuarioEntrega.HasValue ?
+                new ObjectParameter("solef_UsuarioEntrega", solef_UsuarioEntrega) :
+                new ObjectParameter("solef_UsuarioEntrega", typeof(int));
+    
+            var mnda_IdParameter = mnda_Id.HasValue ?
+                new ObjectParameter("mnda_Id", mnda_Id) :
+                new ObjectParameter("mnda_Id", typeof(short));
+    
+            var solef_EsAnuladaParameter = solef_EsAnulada.HasValue ?
+                new ObjectParameter("solef_EsAnulada", solef_EsAnulada) :
+                new ObjectParameter("solef_EsAnulada", typeof(bool));
+    
+            var solef_UsuarioCreaParameter = solef_UsuarioCrea.HasValue ?
+                new ObjectParameter("solef_UsuarioCrea", solef_UsuarioCrea) :
+                new ObjectParameter("solef_UsuarioCrea", typeof(int));
+    
+            var solef_FechaCreaParameter = solef_FechaCrea.HasValue ?
+                new ObjectParameter("solef_FechaCrea", solef_FechaCrea) :
+                new ObjectParameter("solef_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Vent_tbSolicitudEfectivo_Update_Entrega", solef_IdParameter, mocja_IdParameter, solef_EsAperturaParameter, solef_FechaEntregaParameter, solef_UsuarioEntregaParameter, mnda_IdParameter, solef_EsAnuladaParameter, solef_UsuarioCreaParameter, solef_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert_Result> UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert(Nullable<int> solef_Id, Nullable<short> deno_Id, Nullable<short> soled_CantidadSolicitada, Nullable<short> soled_CantidadEntregada, Nullable<decimal> soled_MontoEntregado)
+        {
+            var solef_IdParameter = solef_Id.HasValue ?
+                new ObjectParameter("solef_Id", solef_Id) :
+                new ObjectParameter("solef_Id", typeof(int));
+    
+            var deno_IdParameter = deno_Id.HasValue ?
+                new ObjectParameter("deno_Id", deno_Id) :
+                new ObjectParameter("deno_Id", typeof(short));
+    
+            var soled_CantidadSolicitadaParameter = soled_CantidadSolicitada.HasValue ?
+                new ObjectParameter("soled_CantidadSolicitada", soled_CantidadSolicitada) :
+                new ObjectParameter("soled_CantidadSolicitada", typeof(short));
+    
+            var soled_CantidadEntregadaParameter = soled_CantidadEntregada.HasValue ?
+                new ObjectParameter("soled_CantidadEntregada", soled_CantidadEntregada) :
+                new ObjectParameter("soled_CantidadEntregada", typeof(short));
+    
+            var soled_MontoEntregadoParameter = soled_MontoEntregado.HasValue ?
+                new ObjectParameter("soled_MontoEntregado", soled_MontoEntregado) :
+                new ObjectParameter("soled_MontoEntregado", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert_Result>("UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert", solef_IdParameter, deno_IdParameter, soled_CantidadSolicitadaParameter, soled_CantidadEntregadaParameter, soled_MontoEntregadoParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbSolicitudEfectivo_Apertura_Insert_Result> UDP_Vent_tbSolicitudEfectivo_Apertura_Insert(Nullable<int> mocja_Id, Nullable<bool> solef_EsApertura, Nullable<short> mnda_Id, Nullable<bool> solef_EsAnulada)
+        {
+            var mocja_IdParameter = mocja_Id.HasValue ?
+                new ObjectParameter("mocja_Id", mocja_Id) :
+                new ObjectParameter("mocja_Id", typeof(int));
+    
+            var solef_EsAperturaParameter = solef_EsApertura.HasValue ?
+                new ObjectParameter("solef_EsApertura", solef_EsApertura) :
+                new ObjectParameter("solef_EsApertura", typeof(bool));
+    
+            var mnda_IdParameter = mnda_Id.HasValue ?
+                new ObjectParameter("mnda_Id", mnda_Id) :
+                new ObjectParameter("mnda_Id", typeof(short));
+    
+            var solef_EsAnuladaParameter = solef_EsAnulada.HasValue ?
+                new ObjectParameter("solef_EsAnulada", solef_EsAnulada) :
+                new ObjectParameter("solef_EsAnulada", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbSolicitudEfectivo_Apertura_Insert_Result>("UDP_Vent_tbSolicitudEfectivo_Apertura_Insert", mocja_IdParameter, solef_EsAperturaParameter, mnda_IdParameter, solef_EsAnuladaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbCliente_Insert_Result> UDP_Vent_tbCliente_Insert(Nullable<byte> tpi_Id, string clte_Identificacion, Nullable<bool> clte_EsPersonaNatural, string clte_Nombres, string clte_Apellidos, Nullable<System.DateTime> clte_FechaNacimiento, string clte_Nacionalidad, string clte_Sexo, string clte_Telefono, string clte_NombreComercial, string clte_RazonSocial, string clte_ContactoNombre, string clte_ContactoEmail, string clte_ContactoTelefono, Nullable<System.DateTime> clte_FechaConstitucion, string mun_Codigo, string clte_Direccion, string clte_CorreoElectronico, Nullable<bool> clte_EsActivo, string clte_RazonInactivo, Nullable<bool> clte_ConCredito, Nullable<bool> clte_EsMinorista, string clte_Observaciones, Nullable<decimal> clte_MontoCredito, Nullable<int> clte_DiasCredito, Nullable<bool> clte_Exonerado)
+        {
+            var tpi_IdParameter = tpi_Id.HasValue ?
+                new ObjectParameter("tpi_Id", tpi_Id) :
+                new ObjectParameter("tpi_Id", typeof(byte));
+    
+            var clte_IdentificacionParameter = clte_Identificacion != null ?
+                new ObjectParameter("clte_Identificacion", clte_Identificacion) :
+                new ObjectParameter("clte_Identificacion", typeof(string));
+    
+            var clte_EsPersonaNaturalParameter = clte_EsPersonaNatural.HasValue ?
+                new ObjectParameter("clte_EsPersonaNatural", clte_EsPersonaNatural) :
+                new ObjectParameter("clte_EsPersonaNatural", typeof(bool));
+    
+            var clte_NombresParameter = clte_Nombres != null ?
+                new ObjectParameter("clte_Nombres", clte_Nombres) :
+                new ObjectParameter("clte_Nombres", typeof(string));
+    
+            var clte_ApellidosParameter = clte_Apellidos != null ?
+                new ObjectParameter("clte_Apellidos", clte_Apellidos) :
+                new ObjectParameter("clte_Apellidos", typeof(string));
+    
+            var clte_FechaNacimientoParameter = clte_FechaNacimiento.HasValue ?
+                new ObjectParameter("clte_FechaNacimiento", clte_FechaNacimiento) :
+                new ObjectParameter("clte_FechaNacimiento", typeof(System.DateTime));
+    
+            var clte_NacionalidadParameter = clte_Nacionalidad != null ?
+                new ObjectParameter("clte_Nacionalidad", clte_Nacionalidad) :
+                new ObjectParameter("clte_Nacionalidad", typeof(string));
+    
+            var clte_SexoParameter = clte_Sexo != null ?
+                new ObjectParameter("clte_Sexo", clte_Sexo) :
+                new ObjectParameter("clte_Sexo", typeof(string));
+    
+            var clte_TelefonoParameter = clte_Telefono != null ?
+                new ObjectParameter("clte_Telefono", clte_Telefono) :
+                new ObjectParameter("clte_Telefono", typeof(string));
+    
+            var clte_NombreComercialParameter = clte_NombreComercial != null ?
+                new ObjectParameter("clte_NombreComercial", clte_NombreComercial) :
+                new ObjectParameter("clte_NombreComercial", typeof(string));
+    
+            var clte_RazonSocialParameter = clte_RazonSocial != null ?
+                new ObjectParameter("clte_RazonSocial", clte_RazonSocial) :
+                new ObjectParameter("clte_RazonSocial", typeof(string));
+    
+            var clte_ContactoNombreParameter = clte_ContactoNombre != null ?
+                new ObjectParameter("clte_ContactoNombre", clte_ContactoNombre) :
+                new ObjectParameter("clte_ContactoNombre", typeof(string));
+    
+            var clte_ContactoEmailParameter = clte_ContactoEmail != null ?
+                new ObjectParameter("clte_ContactoEmail", clte_ContactoEmail) :
+                new ObjectParameter("clte_ContactoEmail", typeof(string));
+    
+            var clte_ContactoTelefonoParameter = clte_ContactoTelefono != null ?
+                new ObjectParameter("clte_ContactoTelefono", clte_ContactoTelefono) :
+                new ObjectParameter("clte_ContactoTelefono", typeof(string));
+    
+            var clte_FechaConstitucionParameter = clte_FechaConstitucion.HasValue ?
+                new ObjectParameter("clte_FechaConstitucion", clte_FechaConstitucion) :
+                new ObjectParameter("clte_FechaConstitucion", typeof(System.DateTime));
+    
+            var mun_CodigoParameter = mun_Codigo != null ?
+                new ObjectParameter("mun_Codigo", mun_Codigo) :
+                new ObjectParameter("mun_Codigo", typeof(string));
+    
+            var clte_DireccionParameter = clte_Direccion != null ?
+                new ObjectParameter("clte_Direccion", clte_Direccion) :
+                new ObjectParameter("clte_Direccion", typeof(string));
+    
+            var clte_CorreoElectronicoParameter = clte_CorreoElectronico != null ?
+                new ObjectParameter("clte_CorreoElectronico", clte_CorreoElectronico) :
+                new ObjectParameter("clte_CorreoElectronico", typeof(string));
+    
+            var clte_EsActivoParameter = clte_EsActivo.HasValue ?
+                new ObjectParameter("clte_EsActivo", clte_EsActivo) :
+                new ObjectParameter("clte_EsActivo", typeof(bool));
+    
+            var clte_RazonInactivoParameter = clte_RazonInactivo != null ?
+                new ObjectParameter("clte_RazonInactivo", clte_RazonInactivo) :
+                new ObjectParameter("clte_RazonInactivo", typeof(string));
+    
+            var clte_ConCreditoParameter = clte_ConCredito.HasValue ?
+                new ObjectParameter("clte_ConCredito", clte_ConCredito) :
+                new ObjectParameter("clte_ConCredito", typeof(bool));
+    
+            var clte_EsMinoristaParameter = clte_EsMinorista.HasValue ?
+                new ObjectParameter("clte_EsMinorista", clte_EsMinorista) :
+                new ObjectParameter("clte_EsMinorista", typeof(bool));
+    
+            var clte_ObservacionesParameter = clte_Observaciones != null ?
+                new ObjectParameter("clte_Observaciones", clte_Observaciones) :
+                new ObjectParameter("clte_Observaciones", typeof(string));
+    
+            var clte_MontoCreditoParameter = clte_MontoCredito.HasValue ?
+                new ObjectParameter("clte_MontoCredito", clte_MontoCredito) :
+                new ObjectParameter("clte_MontoCredito", typeof(decimal));
+    
+            var clte_DiasCreditoParameter = clte_DiasCredito.HasValue ?
+                new ObjectParameter("clte_DiasCredito", clte_DiasCredito) :
+                new ObjectParameter("clte_DiasCredito", typeof(int));
+    
+            var clte_ExoneradoParameter = clte_Exonerado.HasValue ?
+                new ObjectParameter("clte_Exonerado", clte_Exonerado) :
+                new ObjectParameter("clte_Exonerado", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbCliente_Insert_Result>("UDP_Vent_tbCliente_Insert", tpi_IdParameter, clte_IdentificacionParameter, clte_EsPersonaNaturalParameter, clte_NombresParameter, clte_ApellidosParameter, clte_FechaNacimientoParameter, clte_NacionalidadParameter, clte_SexoParameter, clte_TelefonoParameter, clte_NombreComercialParameter, clte_RazonSocialParameter, clte_ContactoNombreParameter, clte_ContactoEmailParameter, clte_ContactoTelefonoParameter, clte_FechaConstitucionParameter, mun_CodigoParameter, clte_DireccionParameter, clte_CorreoElectronicoParameter, clte_EsActivoParameter, clte_RazonInactivoParameter, clte_ConCreditoParameter, clte_EsMinoristaParameter, clte_ObservacionesParameter, clte_MontoCreditoParameter, clte_DiasCreditoParameter, clte_ExoneradoParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbCliente_Update_Result> UDP_Vent_tbCliente_Update(Nullable<int> clte_Id, Nullable<int> tpi_Id, string clte_Identificacion, Nullable<bool> clte_EsPersonaNatural, string clte_Nombres, string clte_Apellidos, Nullable<System.DateTime> clte_FechaNacimiento, string clte_Nacionalidad, string clte_Sexo, string clte_Telefono, string clte_NombreComercial, string clte_RazonSocial, string clte_ContactoNombre, string clte_ContactoEmail, string clte_ContactoTelefono, Nullable<System.DateTime> clte_FechaConstitucion, string mun_Codigo, string clte_Direccion, string clte_CorreoElectronico, Nullable<bool> clte_EsActivo, string clte_RazonInactivo, Nullable<bool> clte_ConCredito, Nullable<bool> clte_EsMinorista, string clte_Observaciones, Nullable<int> clte_UsuarioCrea, Nullable<System.DateTime> clte_FechaCrea, Nullable<decimal> clte_MontoCredito, Nullable<int> clte_DiasCredito, Nullable<bool> clte_Exonerado)
+        {
+            var clte_IdParameter = clte_Id.HasValue ?
+                new ObjectParameter("clte_Id", clte_Id) :
+                new ObjectParameter("clte_Id", typeof(int));
+    
+            var tpi_IdParameter = tpi_Id.HasValue ?
+                new ObjectParameter("tpi_Id", tpi_Id) :
+                new ObjectParameter("tpi_Id", typeof(int));
+    
+            var clte_IdentificacionParameter = clte_Identificacion != null ?
+                new ObjectParameter("clte_Identificacion", clte_Identificacion) :
+                new ObjectParameter("clte_Identificacion", typeof(string));
+    
+            var clte_EsPersonaNaturalParameter = clte_EsPersonaNatural.HasValue ?
+                new ObjectParameter("clte_EsPersonaNatural", clte_EsPersonaNatural) :
+                new ObjectParameter("clte_EsPersonaNatural", typeof(bool));
+    
+            var clte_NombresParameter = clte_Nombres != null ?
+                new ObjectParameter("clte_Nombres", clte_Nombres) :
+                new ObjectParameter("clte_Nombres", typeof(string));
+    
+            var clte_ApellidosParameter = clte_Apellidos != null ?
+                new ObjectParameter("clte_Apellidos", clte_Apellidos) :
+                new ObjectParameter("clte_Apellidos", typeof(string));
+    
+            var clte_FechaNacimientoParameter = clte_FechaNacimiento.HasValue ?
+                new ObjectParameter("clte_FechaNacimiento", clte_FechaNacimiento) :
+                new ObjectParameter("clte_FechaNacimiento", typeof(System.DateTime));
+    
+            var clte_NacionalidadParameter = clte_Nacionalidad != null ?
+                new ObjectParameter("clte_Nacionalidad", clte_Nacionalidad) :
+                new ObjectParameter("clte_Nacionalidad", typeof(string));
+    
+            var clte_SexoParameter = clte_Sexo != null ?
+                new ObjectParameter("clte_Sexo", clte_Sexo) :
+                new ObjectParameter("clte_Sexo", typeof(string));
+    
+            var clte_TelefonoParameter = clte_Telefono != null ?
+                new ObjectParameter("clte_Telefono", clte_Telefono) :
+                new ObjectParameter("clte_Telefono", typeof(string));
+    
+            var clte_NombreComercialParameter = clte_NombreComercial != null ?
+                new ObjectParameter("clte_NombreComercial", clte_NombreComercial) :
+                new ObjectParameter("clte_NombreComercial", typeof(string));
+    
+            var clte_RazonSocialParameter = clte_RazonSocial != null ?
+                new ObjectParameter("clte_RazonSocial", clte_RazonSocial) :
+                new ObjectParameter("clte_RazonSocial", typeof(string));
+    
+            var clte_ContactoNombreParameter = clte_ContactoNombre != null ?
+                new ObjectParameter("clte_ContactoNombre", clte_ContactoNombre) :
+                new ObjectParameter("clte_ContactoNombre", typeof(string));
+    
+            var clte_ContactoEmailParameter = clte_ContactoEmail != null ?
+                new ObjectParameter("clte_ContactoEmail", clte_ContactoEmail) :
+                new ObjectParameter("clte_ContactoEmail", typeof(string));
+    
+            var clte_ContactoTelefonoParameter = clte_ContactoTelefono != null ?
+                new ObjectParameter("clte_ContactoTelefono", clte_ContactoTelefono) :
+                new ObjectParameter("clte_ContactoTelefono", typeof(string));
+    
+            var clte_FechaConstitucionParameter = clte_FechaConstitucion.HasValue ?
+                new ObjectParameter("clte_FechaConstitucion", clte_FechaConstitucion) :
+                new ObjectParameter("clte_FechaConstitucion", typeof(System.DateTime));
+    
+            var mun_CodigoParameter = mun_Codigo != null ?
+                new ObjectParameter("mun_Codigo", mun_Codigo) :
+                new ObjectParameter("mun_Codigo", typeof(string));
+    
+            var clte_DireccionParameter = clte_Direccion != null ?
+                new ObjectParameter("clte_Direccion", clte_Direccion) :
+                new ObjectParameter("clte_Direccion", typeof(string));
+    
+            var clte_CorreoElectronicoParameter = clte_CorreoElectronico != null ?
+                new ObjectParameter("clte_CorreoElectronico", clte_CorreoElectronico) :
+                new ObjectParameter("clte_CorreoElectronico", typeof(string));
+    
+            var clte_EsActivoParameter = clte_EsActivo.HasValue ?
+                new ObjectParameter("clte_EsActivo", clte_EsActivo) :
+                new ObjectParameter("clte_EsActivo", typeof(bool));
+    
+            var clte_RazonInactivoParameter = clte_RazonInactivo != null ?
+                new ObjectParameter("clte_RazonInactivo", clte_RazonInactivo) :
+                new ObjectParameter("clte_RazonInactivo", typeof(string));
+    
+            var clte_ConCreditoParameter = clte_ConCredito.HasValue ?
+                new ObjectParameter("clte_ConCredito", clte_ConCredito) :
+                new ObjectParameter("clte_ConCredito", typeof(bool));
+    
+            var clte_EsMinoristaParameter = clte_EsMinorista.HasValue ?
+                new ObjectParameter("clte_EsMinorista", clte_EsMinorista) :
+                new ObjectParameter("clte_EsMinorista", typeof(bool));
+    
+            var clte_ObservacionesParameter = clte_Observaciones != null ?
+                new ObjectParameter("clte_Observaciones", clte_Observaciones) :
+                new ObjectParameter("clte_Observaciones", typeof(string));
+    
+            var clte_UsuarioCreaParameter = clte_UsuarioCrea.HasValue ?
+                new ObjectParameter("clte_UsuarioCrea", clte_UsuarioCrea) :
+                new ObjectParameter("clte_UsuarioCrea", typeof(int));
+    
+            var clte_FechaCreaParameter = clte_FechaCrea.HasValue ?
+                new ObjectParameter("clte_FechaCrea", clte_FechaCrea) :
+                new ObjectParameter("clte_FechaCrea", typeof(System.DateTime));
+    
+            var clte_MontoCreditoParameter = clte_MontoCredito.HasValue ?
+                new ObjectParameter("clte_MontoCredito", clte_MontoCredito) :
+                new ObjectParameter("clte_MontoCredito", typeof(decimal));
+    
+            var clte_DiasCreditoParameter = clte_DiasCredito.HasValue ?
+                new ObjectParameter("clte_DiasCredito", clte_DiasCredito) :
+                new ObjectParameter("clte_DiasCredito", typeof(int));
+    
+            var clte_ExoneradoParameter = clte_Exonerado.HasValue ?
+                new ObjectParameter("clte_Exonerado", clte_Exonerado) :
+                new ObjectParameter("clte_Exonerado", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbCliente_Update_Result>("UDP_Vent_tbCliente_Update", clte_IdParameter, tpi_IdParameter, clte_IdentificacionParameter, clte_EsPersonaNaturalParameter, clte_NombresParameter, clte_ApellidosParameter, clte_FechaNacimientoParameter, clte_NacionalidadParameter, clte_SexoParameter, clte_TelefonoParameter, clte_NombreComercialParameter, clte_RazonSocialParameter, clte_ContactoNombreParameter, clte_ContactoEmailParameter, clte_ContactoTelefonoParameter, clte_FechaConstitucionParameter, mun_CodigoParameter, clte_DireccionParameter, clte_CorreoElectronicoParameter, clte_EsActivoParameter, clte_RazonInactivoParameter, clte_ConCreditoParameter, clte_EsMinoristaParameter, clte_ObservacionesParameter, clte_UsuarioCreaParameter, clte_FechaCreaParameter, clte_MontoCreditoParameter, clte_DiasCreditoParameter, clte_ExoneradoParameter);
         }
     }
 }

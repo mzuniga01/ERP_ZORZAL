@@ -238,7 +238,7 @@ namespace ERP_GMEDINA.Controllers
                 {
                     string MensajeError = "";
                     IEnumerable<object> list = null;
-                    list = db.UDP_Vent_tbCliente_Insert(tbCliente.tpi_Id, 
+                    list = db.UDP_Vent_tbCliente_Insert(tbCliente.tpi_Id,
                                                         tbCliente.clte_Identificacion,
                                                         tbCliente.clte_EsPersonaNatural,
                                                         tbCliente.clte_Nombres,
@@ -262,7 +262,8 @@ namespace ERP_GMEDINA.Controllers
                                                         tbCliente.clte_EsMinorista,
                                                         tbCliente.clte_Observaciones,
                                                         tbCliente.clte_MontoCredito,
-                                                        tbCliente.clte_DiasCredito);
+                                                        tbCliente.clte_DiasCredito,
+                                                        tbCliente.clte_Exonerado);
                     foreach (UDP_Vent_tbCliente_Insert_Result cliente in list)
                         MensajeError = cliente.MensajeError;
                     if (MensajeError == "-1")
@@ -397,7 +398,8 @@ namespace ERP_GMEDINA.Controllers
                                                         tbCliente.clte_UsuarioCrea,
                                                         tbCliente.clte_FechaCrea,
                                                         tbCliente.clte_MontoCredito,
-                                                        tbCliente.clte_DiasCredito);
+                                                        tbCliente.clte_DiasCredito,
+                                                        tbCliente.clte_Exonerado);
                     foreach (UDP_Vent_tbCliente_Update_Result cliente in list)
                         MensajeError = cliente.MensajeError;
                     if (MensajeError == "-1")

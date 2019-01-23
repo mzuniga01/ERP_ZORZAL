@@ -1148,6 +1148,7 @@
     <Content Include="Scripts\app\AnularPedido.js" />
     <Content Include="Scripts\app\Apertura.js" />
     <Content Include="Scripts\app\AperturaDetalle.js" />
+    <Content Include="Scripts\app\AperturaSolicitudEfectivo.js" />
     <Content Include="Scripts\app\AperturaSolicitudEfectivoDetalle.js" />
     <Content Include="Scripts\app\ArqueoCaja.js" />
     <Content Include="Scripts\app\AutorizarDescuento.js" />

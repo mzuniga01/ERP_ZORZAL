@@ -62,7 +62,7 @@ namespace ERP_ZORZAL.Controllers
                 try
                 {
                     //////////Aqui va la lista//////////////
-                    var MensajeError = 0;
+                    var MensajeError = "";
                     IEnumerable<object> list = null;
                     list = db.UDP_Gral_tbCuentasBanco_Insert(
                         tbCuentasBanco.ban_Id,
@@ -74,7 +74,7 @@ namespace ERP_ZORZAL.Controllers
                         tbCuentasBanco.bcta_Numero);
                     foreach (UDP_Gral_tbCuentasBanco_Insert_Result cuentasbanco in list)
                     MensajeError = cuentasbanco.MensajeError;
-                    if (MensajeError == -1)
+                    if (MensajeError == "-1")
                     {
                         ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
                         return View(tbCuentasBanco);
@@ -132,7 +132,7 @@ namespace ERP_ZORZAL.Controllers
             try
                 {
                     //////////Aqui va la lista//////////////
-                    var MensajeError = 0;
+                    var MensajeError = "";
                     IEnumerable<object> list = null;
                     list = db.UDP_Gral_tbCuentasBanco_Update(
                         CuentasBanco.bcta_Id,
@@ -147,7 +147,7 @@ namespace ERP_ZORZAL.Controllers
                         CuentasBanco.bcta_FechaCrea);
                     foreach (UDP_Gral_tbCuentasBanco_Update_Result cuentasbanco in list)
                     MensajeError = cuentasbanco.MensajeError;
-                    if (MensajeError == -1)
+                    if (MensajeError == "-1")
                     {
                         ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
                         return View(CuentasBanco);

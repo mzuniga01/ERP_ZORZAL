@@ -544,7 +544,8 @@
     <Property Name="clte_UsuarioModifica" Type="int" />
     <Property Name="clte_FechaModifica" Type="datetime" />
     <Property Name="clte_MontoCredito" Type="decimal" Precision="10" Scale="2" />
-    <Property Name="clte_DiasCredito" Type="int" />
+    <Property Name="clte_DiasCredito" Type="int" Nullable="false" />
+    <Property Name="clte_Exonerado" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="tbCuponDescuento">
     <Key>
@@ -3624,6 +3625,18 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Vent_tbMunicipio_tbCliente_mun_Codigo">
+    <End Role="tbMunicipio" Type="Self.tbMunicipio" Multiplicity="1" />
+    <End Role="tbCliente" Type="Self.tbCliente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbMunicipio">
+        <PropertyRef Name="mun_Codigo" />
+      </Principal>
+      <Dependent Role="tbCliente">
+        <PropertyRef Name="mun_Codigo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Vent_tbMunicipio_tbSucursal_mun_Codigo">
     <End Role="tbMunicipio" Type="Self.tbMunicipio" Multiplicity="1" />
     <End Role="tbSucursal" Type="Self.tbSucursal" Multiplicity="*" />
@@ -3888,6 +3901,18 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Vent_tbTipoIdentificacion_tbCliente_tpi_Id">
+    <End Role="tbTipoIdentificacion" Type="Self.tbTipoIdentificacion" Multiplicity="1" />
+    <End Role="tbCliente" Type="Self.tbCliente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbTipoIdentificacion">
+        <PropertyRef Name="tpi_Id" />
+      </Principal>
+      <Dependent Role="tbCliente">
+        <PropertyRef Name="tpi_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Vent_tbTipoPago_tbPago_tpa_Id">
     <End Role="tbTipoPago" Type="Self.tbTipoPago" Multiplicity="1" />
     <End Role="tbPago" Type="Self.tbPago" Multiplicity="*" />
@@ -3909,6 +3934,30 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
       </Principal>
       <Dependent Role="tbPagosArqueo">
         <PropertyRef Name="tpa_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vent_tbUsuario_tbCliente_usu_Id_Crea">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="tbCliente" Type="Self.tbCliente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbCliente">
+        <PropertyRef Name="clte_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vent_tbUsuario_tbCliente_usu_Id_Modifica">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbCliente" Type="Self.tbCliente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbCliente">
+        <PropertyRef Name="clte_UsuarioModifica" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -4776,6 +4825,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <Parameter Name="clte_Observaciones" Type="nvarchar" Mode="In" />
     <Parameter Name="clte_MontoCredito" Type="decimal" Mode="In" />
     <Parameter Name="clte_DiasCredito" Type="int" Mode="In" />
+    <Parameter Name="clte_Exonerado" Type="bit" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbCliente_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="clte_Id" Type="int" Mode="In" />
@@ -4806,6 +4856,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <Parameter Name="clte_FechaCrea" Type="datetime" Mode="In" />
     <Parameter Name="clte_MontoCredito" Type="decimal" Mode="In" />
     <Parameter Name="clte_DiasCredito" Type="int" Mode="In" />
+    <Parameter Name="clte_Exonerado" Type="bit" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbCuponDescuento_Anulado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="cdto_ID" Type="int" Mode="In" />
@@ -5324,6 +5375,17 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <Parameter Name="solef_Id" Type="int" Mode="In" />
     <Parameter Name="mocja_Id" Type="int" Mode="In" />
     <Parameter Name="solef_EsApertura" Type="bit" Mode="In" />
+    <Parameter Name="mnda_Id" Type="smallint" Mode="In" />
+    <Parameter Name="solef_EsAnulada" Type="bit" Mode="In" />
+    <Parameter Name="solef_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="solef_FechaCrea" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="UDP_Vent_tbSolicitudEfectivo_Update_Entrega" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="solef_Id" Type="int" Mode="In" />
+    <Parameter Name="mocja_Id" Type="int" Mode="In" />
+    <Parameter Name="solef_EsApertura" Type="bit" Mode="In" />
+    <Parameter Name="solef_FechaEntrega" Type="datetime" Mode="In" />
+    <Parameter Name="solef_UsuarioEntrega" Type="int" Mode="In" />
     <Parameter Name="mnda_Id" Type="smallint" Mode="In" />
     <Parameter Name="solef_EsAnulada" Type="bit" Mode="In" />
     <Parameter Name="solef_UsuarioCrea" Type="int" Mode="In" />
@@ -6431,6 +6493,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
       <End Role="tbMovimientoCaja" EntitySet="tbMovimientoCaja" />
       <End Role="tbSolicitudEfectivo" EntitySet="tbSolicitudEfectivo" />
     </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbMunicipio_tbCliente_mun_Codigo" Association="Self.FK_Vent_tbMunicipio_tbCliente_mun_Codigo">
+      <End Role="tbMunicipio" EntitySet="tbMunicipio" />
+      <End Role="tbCliente" EntitySet="tbCliente" />
+    </AssociationSet>
     <AssociationSet Name="FK_Vent_tbMunicipio_tbSucursal_mun_Codigo" Association="Self.FK_Vent_tbMunicipio_tbSucursal_mun_Codigo">
       <End Role="tbMunicipio" EntitySet="tbMunicipio" />
       <End Role="tbSucursal" EntitySet="tbSucursal" />
@@ -6519,6 +6585,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
       <End Role="tbSucursal" EntitySet="tbSucursal" />
       <End Role="tbPedido" EntitySet="tbPedido" />
     </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbTipoIdentificacion_tbCliente_tpi_Id" Association="Self.FK_Vent_tbTipoIdentificacion_tbCliente_tpi_Id">
+      <End Role="tbTipoIdentificacion" EntitySet="tbTipoIdentificacion" />
+      <End Role="tbCliente" EntitySet="tbCliente" />
+    </AssociationSet>
     <AssociationSet Name="FK_Vent_tbTipoPago_tbPago_tpa_Id" Association="Self.FK_Vent_tbTipoPago_tbPago_tpa_Id">
       <End Role="tbTipoPago" EntitySet="tbTipoPago" />
       <End Role="tbPago" EntitySet="tbPago" />
@@ -6526,6 +6596,14 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <AssociationSet Name="FK_Vent_tbTipoPago_tbPagosArqueo_tpa_Id" Association="Self.FK_Vent_tbTipoPago_tbPagosArqueo_tpa_Id">
       <End Role="tbTipoPago" EntitySet="tbTipoPago" />
       <End Role="tbPagosArqueo" EntitySet="tbPagosArqueo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbUsuario_tbCliente_usu_Id_Crea" Association="Self.FK_Vent_tbUsuario_tbCliente_usu_Id_Crea">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbCliente" EntitySet="tbCliente" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbUsuario_tbCliente_usu_Id_Modifica" Association="Self.FK_Vent_tbUsuario_tbCliente_usu_Id_Modifica">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbCliente" EntitySet="tbCliente" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

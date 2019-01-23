@@ -8,13 +8,14 @@ using System.Web;
 using System.Web.Mvc;
 using ERP_GMEDINA.Models;
 using System.Transactions;
-
+//ESTE ES//
 namespace ERP_GMEDINA.Controllers
 {
     public class MovimientoCajaController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
 
+        /////////INICIO APERTURA/////////
         // GET: /MovimientoCaja/
         public ActionResult Index()
         {
@@ -57,26 +58,30 @@ namespace ERP_GMEDINA.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CreateApertura([Bind(Include = "mocja_Id,cja_Id,mocja_FechaApetura,mocja_UsuarioApertura,mocja_UsuarioCrea,mocja_FechaCrea")] tbMovimientoCaja tbMovimientoCaja)
         {
-
-            tbMovimientoCaja.mocja_UsuarioArquea = 1;
-            tbMovimientoCaja.mocja_UsuarioAceptacion = 1;
+            tbSolicitudEfectivo tbSolicitudEfectivo = new tbSolicitudEfectivo();
+            /////////REMOVE////////
             ModelState.Remove("mocja_UsuarioApertura");
             ModelState.Remove("mocja_UsuarioArquea");
+            ModelState.Remove("mocja_FechaArqueo");
+            ModelState.Remove("mocja_FechaAceptacion");
             ModelState.Remove("mocja_UsuarioAceptacion");
-
-            tbSolicitudEfectivo SolicitudEfectivo = new tbSolicitudEfectivo();
-            SolicitudEfectivo.solef_EsApertura = true;
-            SolicitudEfectivo.solef_EsAnulada = false;
+            /////////VAR//////////
+            tbMovimientoCaja.mocja_UsuarioArquea = 1;
+            tbMovimientoCaja.mocja_UsuarioAceptacion = 1;
+            bool solef_EsApertura = true;
+            bool solef_EsAnulada = false;
+            tbMovimientoCaja.mocja_FechaApertura = DateTime.Now;
+            ///////////VAR SESSION//////////
             var list = (List<tbSolicitudEfectivoDetalle>)Session["SolicitudEfectivo"];
-            //tbCaja caja = new tbCaja();
-            //ModelState.Remove("mocja_FechaModifica");
-
-            var MensajeError = 0;
-            var MensajeErrorSolicitud = 0;
+            short moneda = (short)Session["SolicitudEfectivoMoneda"];
+            string MensajeError = "";
+            string MensajeErrorSolicitud = "";
+            string MensajeErrorSolicitudDetalle = "";
+            //////////LISTAS///////////////
             IEnumerable<object> listMovimientoCaja = null;
             IEnumerable<object> listSolicitudEfectivo = null;
             IEnumerable<object> listSolicitudEfectivoDetalle = null;
-            tbMovimientoCaja.mocja_FechaApertura = DateTime.Now;
+
             if (ModelState.IsValid)
             {
                 try
@@ -94,76 +99,72 @@ namespace ERP_GMEDINA.Controllers
                         foreach (UDP_Vent_tbMovimientoCaja_Apertura_Insert_Result apertura in listMovimientoCaja)
 
                             MensajeError = apertura.MensajeError;
-                        if (MensajeError == -1)
+                        if (MensajeError == "-1")
                         {
                             ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
                             return View(tbMovimientoCaja);
                         }
                         else
                         {
-                            if (MensajeError > 0)
-                            {
-                                foreach (tbSolicitudEfectivo efectivo in listSolicitudEfectivo)
-                                {
-                                    listSolicitudEfectivo = db.UDP_Vent_tbSolicitudEfectivo_Apertura_Insert(
-                                            efectivo.mocja_Id,
-                                            efectivo.solef_EsApertura,
-                                            efectivo.mnda_Id,
-                                            efectivo.solef_EsAnulada
-                                            );
-                                    foreach (UDP_Vent_tbSolicitudEfectivo_Apertura_Insert_Result SPpuntoemisiondet in listSolicitudEfectivo)
-                                    {
-                                        MensajeErrorSolicitud = SPpuntoemisiondet.MensajeError;
-                                        if (MensajeError == -1)
-                                        {
-                                            ModelState.AddModelError("", "No se pudo agregar el registro detalle");
-                                            return View(tbMovimientoCaja);
-                                        }
-                                    }
-                                }
-                            }
-                            ///////////Solicitud Efectivo Detalle////////////////////
-                            if (MensajeError > 0)
-                            {
-                                if (list != null)
-                                {
-                                    if (list.Count != 0)
-                                    {
-                                        foreach (tbSolicitudEfectivoDetalle efectivodetalle in list)
-                                        {
+                            listSolicitudEfectivo = db.UDP_Vent_tbSolicitudEfectivo_Apertura_Insert(
+                                    Convert.ToInt32(MensajeError),
+                                    solef_EsApertura,
+                                    moneda,
+                                    solef_EsAnulada
 
-                                            efectivodetalle.soled_Id = MensajeError;
-                                            listSolicitudEfectivoDetalle = db.UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert(
-                                               efectivodetalle.solef_Id,
-                                               efectivodetalle.deno_Id,
-                                               efectivodetalle.soled_CantidadSolicitada,
-                                               efectivodetalle.soled_CantidadEntregada,
-                                               efectivodetalle.soled_MontoEntregado
-                                                );
-                                            foreach (UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert_Result SPpuntoemisiondet in listSolicitudEfectivo)
+                                    );
+                            foreach (UDP_Vent_tbSolicitudEfectivo_Apertura_Insert_Result SolicitudEfectivoMon in listSolicitudEfectivo)
+                                //{
+                                MensajeErrorSolicitud = SolicitudEfectivoMon.MensajeError;
+                            if (MensajeErrorSolicitud == "-1")
+                            {
+                                ModelState.AddModelError("", "No se pudo agregar el registro detalle");
+                                return View(tbMovimientoCaja);
+                            }
+                            else
+                            { ///////////Solicitud Efectivo Detalle////////////////////
+                                if (MensajeErrorSolicitudDetalle != "-1")
+                                {
+                                    if (list != null)
+                                    {
+                                        if (list.Count != 0)
+                                        {
+                                            foreach (tbSolicitudEfectivoDetalle efectivodetalle in list)
                                             {
-                                                MensajeErrorSolicitud = SPpuntoemisiondet.MensajeError;
-                                                if (MensajeError == -1)
+
+                                                efectivodetalle.soled_Id = Convert.ToInt32(MensajeError);
+                                                listSolicitudEfectivoDetalle = db.UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert(
+                                                   efectivodetalle.soled_Id,
+                                                   efectivodetalle.deno_Id,
+                                                   efectivodetalle.soled_CantidadSolicitada,
+                                                   efectivodetalle.soled_CantidadEntregada,
+                                                   efectivodetalle.soled_MontoEntregado
+                                                    );
+                                                foreach (UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert_Result SolicitudEfectivoDet in listSolicitudEfectivo)
                                                 {
-                                                    ModelState.AddModelError("", "No se pudo agregar el registro detalle");
-                                                    return View(tbMovimientoCaja);
+                                                    MensajeErrorSolicitudDetalle = SolicitudEfectivoDet.MensajeError;
+                                                    if (MensajeErrorSolicitudDetalle == "-1")
+                                                    {
+                                                        ModelState.AddModelError("", "No se pudo agregar el registro detalle");
+                                                        return View(tbMovimientoCaja);
+                                                    }
                                                 }
                                             }
                                         }
                                     }
                                 }
-                            }
+                                else
+                                {
+                                    ModelState.AddModelError("", "No se pudo agregar el registro");
+                                    return View(tbMovimientoCaja);
+                                }
 
-                            else
-                            {
-                                ModelState.AddModelError("", "No se pudo agregar el registro");
-                                return View(tbMovimientoCaja);
                             }
+                            //}
+                            Tran.Complete();
+                            return RedirectToAction("Index");
                         }
-                        Tran.Complete();
-                        return RedirectToAction("Index");
                     }
-
                 }
                 catch (Exception Ex)
                 {
@@ -172,7 +173,7 @@ namespace ERP_GMEDINA.Controllers
                     ///Sucursal
                     ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "suc_Descripcion");
                     ///Moneda
-                    ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre", SolicitudEfectivo.mnda_Id);
+                    ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre", tbSolicitudEfectivo.mnda_Id);
 
                     //ViewBag.MovimientoCaja = db.tbMovimientoCaja.ToList();
                     Ex.Message.ToString();
@@ -185,12 +186,12 @@ namespace ERP_GMEDINA.Controllers
             //Caja
             ViewBag.cja_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion", tbMovimientoCaja.cja_Id);
             ///Moneda
-            ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre", SolicitudEfectivo.mnda_Id);
+            ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre", tbSolicitudEfectivo.mnda_Id);
             //ViewBag.MovimientoCaja = db.tbMovimientoCaja.ToList();
             return View(tbMovimientoCaja);
         }
 
-
+        ///Variable de Sesion 1
         [HttpPost]
         public JsonResult SaveSolicitudEfectivoDetalle(tbSolicitudEfectivoDetalle SolicitudEfectivoDet)
         {
@@ -208,6 +209,18 @@ namespace ERP_GMEDINA.Controllers
             }
             return Json("Exito", JsonRequestBehavior.AllowGet);
         }
+
+        /////Variable de Sesion 2
+        [HttpPost]
+        public JsonResult SaveSolicitudEfectivoMoneda(tbSolicitudEfectivo SolicitudEfectivoMon)
+        {
+            Session["SolicitudEfectivoMoneda"] = SolicitudEfectivoMon.mnda_Id;
+            var Datos = Session["SolicitudEfectivoMoneda"];
+            return Json("Exito", JsonRequestBehavior.AllowGet);
+        }
+
+
+        ////////////TERMINO APERTURA////////////
 
 
 

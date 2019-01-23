@@ -749,7 +749,8 @@ namespace ERP_GMEDINA.Controllers
                                                         tbCliente.clte_EsMinorista,
                                                         tbCliente.clte_Observaciones,
                                                         tbCliente.clte_MontoCredito,
-                                                        tbCliente.clte_DiasCredito);
+                                                        tbCliente.clte_DiasCredito,
+                                                        tbCliente.clte_Exonerado);
                     foreach (UDP_Vent_tbCliente_Insert_Result cliente in list)
                         MensajeError = cliente.MensajeError;
                     if (MensajeError == "-1")
