@@ -30,7 +30,7 @@
 
                             @Html.LabelFor(model => model.prod_Codigo, new { @class = "control-label required col-md-1" })
                             <div class="col-md-3">
-                                <input id="prod_CodigoEdit" type="text" class="form-control" readonly />
+                                <input id="prod_CodigoEdit" type="text" class="form-control"  />
                                 <div id="validationCodigoProductoCreate">
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.prod_Codigo)</p>
                                 </div>
@@ -55,7 +55,7 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.factd_Cantidad, new { @class = "control-label required col-md-1" })
                             <div class="col-md-3">
-                                <input id="factd_CantidadEdit" type="text" class="form-control" readonly />
+                                <input id="factd_CantidadEdit" type="text" class="form-control"  />
                                 <div id="validationCantidadProductoCreate">
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.factd_Cantidad)</p>
                                 </div>

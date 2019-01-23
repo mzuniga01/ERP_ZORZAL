@@ -409,6 +409,7 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo", tbFactura.suc_Id);
             ViewBag.Cliente = db.tbCliente.ToList();
             ViewBag.Producto = db.tbProducto.ToList();
+            Session["FacturaEdit"] = null;
             return View(tbFactura);
         }
 
@@ -419,56 +420,111 @@ namespace ERP_GMEDINA.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "fact_Id,fact_Codigo,fact_Fecha,esfac_Id,cja_Id,suc_Id,clte_Id,pemi_NumeroCAI,fact_AlCredito,fact_DiasCredito,fact_PorcentajeDescuento,fact_Vendedor,clte_Identificacion,clte_Nombres,fact_UsuarioCrea,fact_FechaCrea,fact_UsuarioModifica,fact_FechaModifica,tbUsuario,tbUsuario1")] tbFactura tbFactura)
         {
+            var listEdit = (List<tbFacturaDetalle>)Session["FacturaEdit"];
+            string MensajeError = "";
+            var MensajeErrorDetalle = "";
+            IEnumerable<object> listFactura = null;
+            IEnumerable<object> listFacturaDetalle = null;
+           
             if (ModelState.IsValid)
             {
                 try
                 {
-                    string MensajeError = "";
-                    IEnumerable<object> list = null;
-                    list = db.UDP_Vent_tbFactura_Update(
-                        tbFactura.fact_Id,
-                        tbFactura.fact_Codigo,
-                        tbFactura.fact_Fecha,
-                        tbFactura.esfac_Id,
-                        tbFactura.clte_Id,
-                        tbFactura.pemi_NumeroCAI,
-                        tbFactura.fact_AlCredito,
-                        tbFactura.fact_DiasCredito,
-                        tbFactura.fact_PorcentajeDescuento,
-                        tbFactura.fact_Vendedor,
-                        tbFactura.clte_Identificacion,
-                        tbFactura.clte_Nombres,
-                        tbFactura.fact_IdentidadTE,
-                        tbFactura.fact_NombresTE,
-                        tbFactura.fact_FechaNacimientoTE,
-                        tbFactura.fact_UsuarioAutoriza,
-                        tbFactura.fact_FechaAutoriza,
-                        tbFactura.fact_EsAnulada,
-                        tbFactura.fact_RazonAnulado,
-                        tbFactura.fact_UsuarioCrea,
-                        tbFactura.fact_FechaCrea);
-                    foreach (UDP_Vent_tbFactura_Update_Result Factura in list)
-                        MensajeError = Factura.MensajeError;
-                    if (MensajeError == "-1")
+                    using (TransactionScope Tran = new TransactionScope())
                     {
 
-                    }
-                    else
-                    {
+                        listFactura = db.UDP_Vent_tbFactura_Update(
+                                                tbFactura.fact_Id,
+                                                tbFactura.fact_Codigo,
+                                                tbFactura.fact_Fecha,
+                                                tbFactura.esfac_Id = 1,
+                                                tbFactura.clte_Id,
+                                                tbFactura.pemi_NumeroCAI,
+                                                tbFactura.fact_AlCredito,
+                                                tbFactura.fact_DiasCredito,
+                                                tbFactura.fact_PorcentajeDescuento,
+                                                tbFactura.fact_Vendedor,
+                                                tbFactura.clte_Identificacion,
+                                                tbFactura.clte_Nombres,
+                                                tbFactura.fact_IdentidadTE,
+                                                tbFactura.fact_NombresTE,
+                                                tbFactura.fact_FechaNacimientoTE,
+                                                tbFactura.fact_UsuarioAutoriza,
+                                                tbFactura.fact_FechaAutoriza,
+                                                tbFactura.fact_EsAnulada,
+                                                tbFactura.fact_RazonAnulado,
+                                                tbFactura.fact_UsuarioCrea,
+                                                tbFactura.fact_FechaCrea);
+                        foreach (UDP_Vent_tbFactura_Update_Result Factura in listFactura)
+                            MensajeError = Factura.MensajeError;
+                        if (MensajeError == "-1")
+                        {
+                            ModelState.AddModelError("", "No se pudo agregar el registro");
+                            return View(tbFactura);
+                        }
+                        else
+                        {
+                            if (MensajeError != "-1")
+                            {
+                                if (listEdit != null)
+                                {
+                                    if (listEdit.Count != 0)
+                                    {
+                                        foreach (tbFacturaDetalle Detalle in listEdit)
+                                        {
+                                            var FacturaD_Id = Convert.ToInt64(MensajeError);
+                                            Detalle.fact_Id = FacturaD_Id;
+                                            listFacturaDetalle = db.UDP_Vent_tbFacturaDetalle_Insert(
+                                                Detalle.fact_Id,
+                                                Detalle.prod_Codigo,
+                                                Detalle.factd_Cantidad,
+                                                Detalle.factd_MontoDescuento,
+                                                Detalle.factd_PorcentajeDescuento,
+                                                Detalle.factd_Impuesto,
+                                                Detalle.factd_PrecioUnitario
+                                                );
+                                            foreach (UDP_Vent_tbFacturaDetalle_Insert_Result SPfacturadet in listFacturaDetalle)
+                                            {
+                                                MensajeErrorDetalle = SPfacturadet.MensajeError;
+                                                if (MensajeError.StartsWith("-1"))
+                                                {
+                                                    ModelState.AddModelError("", "No se pudo agregar el registro detalle");
+                                                    return View(tbFactura);
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                ModelState.AddModelError("", "No se pudo agregar el registro");
+                                return View(tbFactura);
+                            }
+
+                        }
+                        Tran.Complete();
                         return RedirectToAction("Index");
                     }
                 }
                 catch (Exception Ex)
                 {
                     ModelState.AddModelError("", "No se pudo agregar el registros" + Ex.Message.ToString());
-                    ViewBag.cja_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion");
-                    ViewBag.esfac_Id = new SelectList(db.tbEstadoFactura, "esfac_Id", "esfac_Descripcion");
-                    ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo");
-                    ViewBag.Producto = db.tbProducto.ToList();
+                    ViewBag.fact_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbFactura.fact_UsuarioCrea);
+                    ViewBag.fact_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbFactura.fact_UsuarioModifica);
+                    ViewBag.cja_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion", tbFactura.cja_Id);
+                    ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_Identificacion", tbFactura.clte_Id);
+                    ViewBag.esfac_Id = new SelectList(db.tbEstadoFactura, "esfac_Id", "esfac_Descripcion", tbFactura.esfac_Id);
+                    ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo", tbFactura.suc_Id);
+                    ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre");
+                    ViewBag.clte_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+                    ViewBag.clte_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+                    ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre");
+                    ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion");
                     ViewBag.Cliente = db.tbCliente.ToList();
+                    ViewBag.Producto = db.tbProducto.ToList();
                 }
 
-                return RedirectToAction("Index");
             }
             ViewBag.fact_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbFactura.fact_UsuarioCrea);
             ViewBag.fact_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbFactura.fact_UsuarioModifica);
@@ -516,6 +572,25 @@ namespace ERP_GMEDINA.Controllers
             }
             base.Dispose(disposing);
         }
+
+        [HttpPost]
+        public JsonResult SaveFacturaDetalleEdit(tbFacturaDetalle FacturaDetalleEdit)
+        {
+            List<tbFacturaDetalle> sessionFacturaDetalle = new List<tbFacturaDetalle>();
+            var listEdit = (List<tbFacturaDetalle>)Session["FacturaEdit"];
+            if (listEdit == null)
+            {
+                sessionFacturaDetalle.Add(FacturaDetalleEdit);
+                Session["FacturaEdit"] = sessionFacturaDetalle;
+            }
+            else
+            {
+                listEdit.Add(FacturaDetalleEdit);
+                Session["FacturaEdit"] = listEdit;
+            }
+            return Json("Exito", JsonRequestBehavior.AllowGet);
+        }
+
 
         [HttpPost]
         public JsonResult SaveFacturaDetalle(tbFacturaDetalle FacturaDetalleC)

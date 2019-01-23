@@ -22,12 +22,10 @@
     }
 
     @@media (min-width: 1200px) {
-   .modal-xlg {
-      width: 85%; 
-   }
-
-}
-
+        .modal-xlg {
+            width: 85%;
+        }
+    }
 </style>
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
@@ -40,8 +38,6 @@
     </div>
 </div>
 
-
-
 <div class="wrapper wrapper-content">
     <div class="row">
         <div class="col-lg-12">
@@ -51,7 +47,7 @@
                 </div>
                 <div class="ibox-content">
 
-                    @using (Html.BeginForm())
+                    @using (Html.BeginForm("Edit", "Factura", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
 
@@ -178,75 +174,91 @@
                                     @Html.ValidationMessageFor(model => model.fact_EsAnulada)
                                 </div>
                             </div>
-
-                            <div class="form-group">
-                                <div class="col-md-offset-8 col-md-10">
-                                    <input id="btnSave" type="submit" value="Guardar" class="btn btn-primary btn-sm" />
-                                    <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal">
-                                        Anular
-                                    </button>
-                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white btn-sm" })
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="tabs-container">
+                                        <ul class="nav nav-tabs">
+                                            <li class="active"><a data-toggle="tab" href="#tab-1">Detalle factura</a></li>
+                                            <li><a data-toggle="tab" href="#tab-2">Estado</a></li>
+                                        </ul>
+                                        <div class="tab-content">
+                                            <div id="tab-1" class="tab-pane active">
+                                                <div class="panel-body">
+                                                    <div class="ibox-content">
+                                                        @Html.Partial("_IndexFacturaDetalle", Model.tbFacturaDetalle)
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="tab-2" class="tab-pane">
+                                                <div class="panel-body">
+                                                    <div class="ibox-title">
+                                                        <div class="ibox-tools">
+                                                        </div>
+                                                    </div>
+                                                    @*@Html.Partial("_IndexFacturaHistorica", (List<tbFacturaHistorica>)ViewBag.FacturaHistorica)*@
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="ibox float-e-margins">
+                                        <div class="ibox-title">
+                                            <div class="title-action">
+                                                <h5>Agregar Productos</h5>
+                                                <button type="button" class="btn btn-primary btn-sm" data-toggle="collapse" data-target="#AgregarDetalle">Nuevo</button>
+                                            </div>
+                                        </div>
+                                        <div class="ibox-content collapse" id="AgregarDetalle">
+                                            @Html.Partial("_CreateFacturaDetalleModal", new tbFacturaDetalle())
+                                            <div class="form-group">
+                                            </div>
+                                            <br />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <div class="col-md-12 text-center">
+                                            <input id="btnSave" type="submit" value="Guardar" class="btn btn-primary btn-sm" />
+                                            <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal">
+                                                Anular
+                                            </button>
+                                            @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white btn-sm" })
+                                        </div>
+                                    </div>
+                                    <br />
+                                </div>
+                            </div>
+                            
                         </div>
                     }
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="tabs-container">
-                                <ul class="nav nav-tabs">
-                                    <li class="active"><a data-toggle="tab" href="#tab-1">Detalle factura</a></li>
-                                    <li><a data-toggle="tab" href="#tab-2">Estado</a></li>
-                                </ul>
-                                <div class="tab-content">
-                                    <div id="tab-1" class="tab-pane active">
-                                        <div class="panel-body">
-                                            <div class="ibox-title">
-                                                <div class="col-md-offset-11">
-                                                    <button id="AddProducto" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalAgregarDetalle"><span>Nuevo</span></button>
-                                                </div>
-                                            </div>
-                                           <div class="ibox-content">
-                                                @Html.Partial("_IndexFacturaDetalle", Model.tbFacturaDetalle)
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="tab-2" class="tab-pane">
-                                        <div class="panel-body">
-                                            <div class="ibox-title">
-                                                <div class="ibox-tools">
-                                                </div>
-                                            </div>
-                                            @*@Html.Partial("_IndexFacturaHistorica", (List<tbFacturaHistorica>)ViewBag.FacturaHistorica)*@
-                                        </div>
-                                    </div>
-                                    <div class="ibox-content">
-                                        <table class="table table-striped">
-                                            <tr>
-                                                <th>Acción</th>
-                                                <th>Usuario</th>
-                                                <th>Fecha</th>
-                                            </tr>
-                                            <tr>
-                                                <td>Creado</td>
-                                                <td>
-                                                    @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                                                    @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
-                                                </td>
-                                                <td>@Html.DisplayFor(model => model.fact_FechaCrea)</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Modificado</td>
-                                                <td>
-                                                    @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
-                                                    @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
-                                                </td>
-                                                <td>@Html.DisplayFor(model => model.fact_FechaModifica)</td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="ibox-content">
+                        <table class="table table-striped">
+                            <tr>
+                                <th>Acción</th>
+                                <th>Usuario</th>
+                                <th>Fecha</th>
+                            </tr>
+                            <tr>
+                                <td>Creado</td>
+                                <td>
+                                    @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                                    @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                                </td>
+                                <td>@Html.DisplayFor(model => model.fact_FechaCrea)</td>
+                            </tr>
+                            <tr>
+                                <td>Modificado</td>
+                                <td>
+                                    @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                                    @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                                </td>
+                                <td>@Html.DisplayFor(model => model.fact_FechaModifica)</td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -275,25 +287,9 @@
         </div>
     </div>
 </div>
-<div>
-    <div class="modal fade" id="ModalAgregarDetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog modal-xlg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel">Agregar Producto</h4>
-                </div>
-                <div class="modal-body" id="frmEditarMunicipios">
-                    @Html.Partial("_CreateFacturaDetalleModal", new tbFacturaDetalle())
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
 <script src="~/Scripts/jquery-3.3.1.js"></script>
-<script src="~/Scripts/app/FacturaDetalle.js"></script>
+<script src="~/Scripts/app/FacturaDetalleEdit.js"></script>
 <script src="~/Scripts/app/ProductoFactura.js"></script>
 <script src="~/Scripts/app/Datepicker.js"></script>
 <script src="~/Scripts/app/Credito.js"></script>
