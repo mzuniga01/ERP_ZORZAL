@@ -2438,6 +2438,10 @@
       <Parameter Name="clte_DiasCredito" Mode="In" Type="Int32" />
       <Parameter Name="clte_Exonerado" Mode="In" Type="Boolean" />
     </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbDevolucion_Filtrado_CodProducto" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDevolucion_Filtrado_CodProducto_Result)">
+      <Parameter Name="IDFACTURA" Mode="In" Type="Int32" />
+      <Parameter Name="CODIGOPRODUCTO" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -7415,5 +7419,14 @@
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbDevolucionDetalle_Update_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbDevolucion_Filtrado_CodProducto_Result">
+    <Property Type="String" Name="DESCRIPCIONPRODUCTO" Nullable="true" MaxLength="100" />
+    <Property Type="Decimal" Name="DESCUENTOPRODUCTO" Nullable="true" Precision="10" Scale="2" />
+    <Property Type="String" Name="CODIGOPRODUCTO" Nullable="true" MaxLength="15" />
+    <Property Type="Decimal" Name="IMPUESTOPRODUCTO" Nullable="true" Precision="5" Scale="2" />
+    <Property Type="Decimal" Name="PRECIOUNITARIO" Nullable="true" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="CANTIDADFACTURA" Nullable="true" Precision="5" Scale="2" />
+    <Property Type="Boolean" Name="EXISTE" Nullable="true" />
   </ComplexType>
 </Schema>

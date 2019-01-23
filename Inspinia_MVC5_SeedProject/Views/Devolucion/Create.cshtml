@@ -245,3 +245,60 @@
 
     </script>
 }
+<script>
+    $("#prod_Codigo").on("keypress keyup blur", function (event) {
+            var Value = $(this).val();
+            if (Value == '') {
+                $('#prod_Codigo').val('');
+                $('#tbProducto_prod_Descripcion').val('');
+                $('#CantidadFacturada').val(0.00);
+                $('#Impuesto').val(0.00);
+                $('#Descuento').val(0.00),
+                $("#PrecioUnitario").val(0.00)
+            }
+        });
+        var contador = 0;
+        $(document).keypress(function (e) {
+            console.log("si entraprod")
+            console.log('Si entraooo', e.target.id);
+            var IDInput = e.target.id;
+            if (e.which == 13) {
+                if (IDInput == 'prod_Codigo') {
+                    ///
+                    $(function () {
+                        var IDFactura = $('#fact_Id').val();
+                        var CodProducto = $('#prod_Codigo').val();
+                        $.ajax({
+                            type: 'POST',
+                            url: '/Factura/BuscarCodigoProducto',
+                            data: JSON.stringify({ IDFactura: IDFactura, CodProducto: CodProducto }),
+                            contentType: 'application/json;',
+                            dataType: 'json',
+
+                        }).done(function (data) {
+                            if (data.length > 0) {
+                                $.each(data, function (key, val) {
+                                    if (val.EXISTE) {
+                                        console.log('each')
+                                        data_producto = val.CODIGOPRODUCTO;
+                                        data_descripcion = val.DESCRIPCIONPRODUCTO;
+                                        data_cantidad = val.CANTIDADFACTURA;
+                                        data_impuesto = val.IMPUESTOPRODUCTO;
+                                        data_descuento = val.DESCUENTOPRODUCTO;
+                                        data_precio = val.PRECIOUNITARIO;
+                                        $('#prod_Codigo').val(data_producto);
+                                        $('#tbProducto_prod_Descripcion').val(data_descripcion);
+                                        $('#CantidadFacturada').val(data_cantidad);
+                                        $('#Impuesto').val(data_impuesto);
+                                        $('#Descuento').val(data_descuento);
+                                        $('#PrecioUnitario').val(data_precio);
+
+                                    }
+                                })
+                            }
+                        })
+                     })
+                    }
+                }
+            })
+</script>
