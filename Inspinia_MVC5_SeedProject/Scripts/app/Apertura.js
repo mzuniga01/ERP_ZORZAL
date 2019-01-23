@@ -16,11 +16,10 @@ $('#mnda_Id').on("change", function () {
                  $('tbody tr:not(.' + value + ')', $tabla).hide();
                  $('#SuntotalCreate').val('');
                  $('#MontoInicial').val('');
-                 //$('#Total').val('');
                  document.getElementById('Total').innerHTML = '';
              }
              else {
-                 // Se ha seleccionado All
+                 // Se ha seleccionado todo
                  $('#DenominacionDetalle > tbody').empty();
                  $('tbody tr', $tabla).show();
              }
@@ -50,8 +49,7 @@ function GetDenominacion() {
                     copiar += "<td id = 'ValorCreate'>" + val.deno_valor + "</td>";
                     copiar += "<td id = 'SuntotalCreate'></td>";
                     copiar += "<td id = 'deno_Id' hidden>" + val.deno_Id + "</td>";
-                    copiar += "<td id = 'mnda_Id' hidden>" + val.mnda_Id + "</td>";
-                    //copiar += "<td>" + '<button id="removeDenominacion" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
+                    copiar += "<td id = 'mnda_Id' hidden>" + val.mnda_Id + "</td>";                 
                     copiar += "</tr>";
                     $('#DenominacionDetalle').append(copiar);
 
@@ -75,8 +73,6 @@ $(document).on("change", "#DenominacionDetalle tbody tr td input#name", function
     var Cantidad = $(this).val();
     var ValorDenominacion = $(this).parents("tr").find("td")[2].innerHTML;
     var Subtotal = parseFloat(Cantidad * ValorDenominacion);
-    
-    //row.find("td:eq(3)").val(isNaN(Subtotal) ? "" : Subtotal.toFixed(2));
     $(this).parents("tr").find("td")[3].innerHTML = Subtotal;
     if (Subtotal != 0) {
         MontoInicial += Subtotal;
@@ -85,7 +81,6 @@ $(document).on("change", "#DenominacionDetalle tbody tr td input#name", function
     {
         MontoInicial = 0;
         $("#DenominacionDetalle tbody tr").each(function (index) {
-            //console.log('1', $(this).children("td:eq(3)").html());
             Monto = $(this).children("td:eq(3)").html();
             if (Monto != '')
             {
@@ -96,13 +91,10 @@ $(document).on("change", "#DenominacionDetalle tbody tr td input#name", function
     }
     var totalfinal = document.getElementById("Total").innerHTML = parseFloat(MontoInicial);
     $("#Monto").val(parseFloat(MontoInicial));
-     //document.getElementById("Monto").innerHTML = parseFloat(MontoInicial);
-
-
-    //console.log('MontoInicial', MontoInicial);
-    //console.log('Subtotal', Subtotal);
-    //console.log('Total', Total);
-    //console.log('totalfinal', totalfinal);
+    console.log('MontoInicial', MontoInicial);
+    console.log('Subtotal', Subtotal);
+    console.log('Total', Total);
+    console.log('totalfinal', totalfinal);
    
 });
 

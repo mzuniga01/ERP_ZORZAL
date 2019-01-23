@@ -1,6 +1,5 @@
 ﻿var contador = 0;
 $('#guardar').click(function () {
-    //var cajaid = $('#cja_Id').val();
     //////////////////////////////////////
     var denoID = $('#deno_Id').text();
     var cantidadsolicitada = $('#name').val();
@@ -38,10 +37,10 @@ $('#guardar').click(function () {
 
 function GetSolicitudEfectivo() {
     var solicitudefectivodetalle = {
-        deno_Id: $(this).parents("tr").find("td")[4].innerHTML,
+        deno_Id: $('#deno_Id').text(),
         soled_CantidadSolicitada: $('#name').val(),
         soled_CantidadEntregada: $('#name').val(),
-        soled_MontoEntregado: $('#Monto').val(),
+        soled_MontoEntregado: $('#SuntotalCreate').text(),
         soled_Id: contador
     }
     return solicitudefectivodetalle

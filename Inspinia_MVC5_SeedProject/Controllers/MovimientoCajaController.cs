@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using ERP_GMEDINA.Models;
 using System.Transactions;
-//ESTE ES//
+//movimiento//
 namespace ERP_GMEDINA.Controllers
 {
     public class MovimientoCajaController : Controller
@@ -114,7 +114,6 @@ namespace ERP_GMEDINA.Controllers
 
                                     );
                             foreach (UDP_Vent_tbSolicitudEfectivo_Apertura_Insert_Result SolicitudEfectivoMon in listSolicitudEfectivo)
-                                //{
                                 MensajeErrorSolicitud = SolicitudEfectivoMon.MensajeError;
                             if (MensajeErrorSolicitud == "-1")
                             {
@@ -122,7 +121,8 @@ namespace ERP_GMEDINA.Controllers
                                 return View(tbMovimientoCaja);
                             }
                             else
-                            { ///////////Solicitud Efectivo Detalle////////////////////
+                            { 
+                                ///////////Solicitud Efectivo Detalle////////////////////
                                 if (MensajeErrorSolicitudDetalle != "-1")
                                 {
                                     if (list != null)
@@ -132,15 +132,16 @@ namespace ERP_GMEDINA.Controllers
                                             foreach (tbSolicitudEfectivoDetalle efectivodetalle in list)
                                             {
 
-                                                efectivodetalle.soled_Id = Convert.ToInt32(MensajeError);
+                                                var SolicitudDetalle = Convert.ToInt32(MensajeErrorSolicitud);
+                                                efectivodetalle.solef_Id = SolicitudDetalle;
                                                 listSolicitudEfectivoDetalle = db.UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert(
-                                                   efectivodetalle.soled_Id,
+                                                  Convert.ToInt32(MensajeErrorSolicitud),
                                                    efectivodetalle.deno_Id,
                                                    efectivodetalle.soled_CantidadSolicitada,
                                                    efectivodetalle.soled_CantidadEntregada,
                                                    efectivodetalle.soled_MontoEntregado
                                                     );
-                                                foreach (UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert_Result SolicitudEfectivoDet in listSolicitudEfectivo)
+                                                foreach (UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert_Result SolicitudEfectivoDet in listSolicitudEfectivoDetalle)
                                                 {
                                                     MensajeErrorSolicitudDetalle = SolicitudEfectivoDet.MensajeError;
                                                     if (MensajeErrorSolicitudDetalle == "-1")
@@ -160,7 +161,6 @@ namespace ERP_GMEDINA.Controllers
                                 }
 
                             }
-                            //}
                             Tran.Complete();
                             return RedirectToAction("Index");
                         }
@@ -177,7 +177,7 @@ namespace ERP_GMEDINA.Controllers
 
                     //ViewBag.MovimientoCaja = db.tbMovimientoCaja.ToList();
                     Ex.Message.ToString();
-                    ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                    ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador." + Ex.Message);
                     return View(tbMovimientoCaja);
                 }
             }
