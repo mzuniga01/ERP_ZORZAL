@@ -557,6 +557,9 @@
     <Compile Include="Models\tbSucursal.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\tbTipoDevolucion.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tbTipoEntrada.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>

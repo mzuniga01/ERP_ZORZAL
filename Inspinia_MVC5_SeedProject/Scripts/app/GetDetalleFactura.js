@@ -29,10 +29,28 @@ function GetDetalle() {
               copiar += "<td id = 'TotalProductoCreate' align='right'>" + Subtotal + "</td>";
               copiar += "</tr>";
               $('#tblDetalleFactura').append(copiar);
-              document.getElementById("TotalDescuento").innerHTML = parseFloat(Descuento) ;
-              document.getElementById("Subtotal").innerHTML = parseFloat(GranSubtotal);
-              document.getElementById("isv").innerHTML = parseFloat(ImpuestoTotal);
-              document.getElementById("total").innerHTML = parseFloat(Total);
+              total_col1 = 0
+              SubtotalD = 0;
+              GranImpuesto = 0;
+              GranTotal = 0;
+              $("#tblDetalleFactura tbody tr").each(function (index) {
+                  DescuentoDD = $(this).children("td:eq(5)").html();
+                  Cantidad = $(this).children("td:eq(2)").html();
+                  ImpuestoD = $(this).children("td:eq(4)").html();
+                  ValorUnitario = $(this).children("td:eq(3)").html();
+                  PorcentajeImpuesto = parseFloat(ImpuestoD / 100);
+                  if (ValorUnitario != '') {
+                      total_col1 += parseFloat($(this).find('td').eq(5).text());
+                      ValorUnitario = parseFloat(ValorUnitario);
+                      SubtotalD += Cantidad * ValorUnitario;
+                      GranImpuesto += (Cantidad * ValorUnitario) * PorcentajeImpuesto;
+                      GranTotal += Cantidad * ValorUnitario + (Cantidad * ValorUnitario) * PorcentajeImpuesto;
+                  }
+              });
+              document.getElementById("TotalDescuento").innerHTML = parseFloat(total_col1);
+              document.getElementById("Subtotal").innerHTML = parseFloat(SubtotalD);
+              document.getElementById("isv").innerHTML = parseFloat(GranImpuesto);
+              document.getElementById("total").innerHTML = parseFloat(GranTotal);
           });         
 
   })

@@ -53,14 +53,17 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbEstadoInventarioFisico> tbEstadoInventarioFisico { get; set; }
         public virtual DbSet<tbEstadoMovimiento> tbEstadoMovimiento { get; set; }
         public virtual DbSet<tbInventarioFisicoDetalle> tbInventarioFisicoDetalle { get; set; }
+        public virtual DbSet<tbProducto> tbProducto { get; set; }
         public virtual DbSet<tbProductoCategoria> tbProductoCategoria { get; set; }
         public virtual DbSet<tbProductoSubcategoria> tbProductoSubcategoria { get; set; }
         public virtual DbSet<tbProveedor> tbProveedor { get; set; }
         public virtual DbSet<tbSalida> tbSalida { get; set; }
         public virtual DbSet<tbSalidaDetalle> tbSalidaDetalle { get; set; }
+        public virtual DbSet<tbTipoDevolucion> tbTipoDevolucion { get; set; }
         public virtual DbSet<tbTipoEntrada> tbTipoEntrada { get; set; }
         public virtual DbSet<tbTipoSalida> tbTipoSalida { get; set; }
         public virtual DbSet<tbCaja> tbCaja { get; set; }
+        public virtual DbSet<tbCliente> tbCliente { get; set; }
         public virtual DbSet<tbCuponDescuento> tbCuponDescuento { get; set; }
         public virtual DbSet<tbDenominacionArqueo> tbDenominacionArqueo { get; set; }
         public virtual DbSet<tbDevolucion> tbDevolucion { get; set; }
@@ -102,8 +105,6 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<UDV_Vent_Busqueda_Factura> UDV_Vent_Busqueda_Factura { get; set; }
         public virtual DbSet<UDV_Vent_FacturaPuntoEmision1> UDV_Vent_FacturaPuntoEmision1 { get; set; }
         public virtual DbSet<V_Vent_FacturaPago> V_Vent_FacturaPago { get; set; }
-        public virtual DbSet<tbProducto> tbProducto { get; set; }
-        public virtual DbSet<tbCliente> tbCliente { get; set; }
     
         public virtual ObjectResult<UDP_Gral_tbBanco_Insert_Result> UDP_Gral_tbBanco_Insert(string ban_Nombre, string ban_NombreContacto, string ban_TelefonoContacto)
         {
@@ -2313,13 +2314,17 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Inv_tbBodega_Update", bod_IdParameter, bod_NombreParameter, bod_ResponsableBodegaParameter, bod_DireccionParameter, bod_CorreoParameter, bod_TelefonoParameter, mun_CodigoParameter, bod_UsuarioCreaParameter, bod_FechacreaParameter);
         }
     
-        public virtual ObjectResult<string> UDP_Inv_tbBodega_Update_Estado(Nullable<int> bod_Id)
+        public virtual ObjectResult<string> UDP_Inv_tbBodega_Update_Estado(Nullable<int> bod_Id, Nullable<byte> bod_EsActiva)
         {
             var bod_IdParameter = bod_Id.HasValue ?
                 new ObjectParameter("bod_Id", bod_Id) :
                 new ObjectParameter("bod_Id", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Inv_tbBodega_Update_Estado", bod_IdParameter);
+            var bod_EsActivaParameter = bod_EsActiva.HasValue ?
+                new ObjectParameter("bod_EsActiva", bod_EsActiva) :
+                new ObjectParameter("bod_EsActiva", typeof(byte));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Inv_tbBodega_Update_Estado", bod_IdParameter, bod_EsActivaParameter);
         }
     
         public virtual ObjectResult<string> UDP_Inv_tbBodegaDetalle_Insert(string prod_Codigo, Nullable<int> bod_Id, Nullable<decimal> bodd_CantidadMinima, Nullable<decimal> bodd_CantidadMaxima, Nullable<decimal> bodd_PuntoReorden, Nullable<decimal> bodd_Costo, Nullable<decimal> bodd_CostoPromedio)
