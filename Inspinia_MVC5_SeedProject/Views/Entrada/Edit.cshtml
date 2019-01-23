@@ -156,7 +156,8 @@
                             <div class="form-group">
                                 <label class="control-label col-md-2">Razón Devolucion<span style="color:red">*</span></label>
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.ent_RazonDevolucion)
+                                    @Html.DropDownListFor(model => model.ent_RazonDevolucion, (SelectList)ViewBag.tdev_Id, new { @class = "form-control" })
+                                    @*@Html.EditorFor(model => model.ent_RazonDevolucion)*@
                                     @Html.ValidationMessageFor(model => model.ent_RazonDevolucion)
                                 </div>
                                 <label class="control-label col-md-2">Código Factura<span style="color:red">*</span></label>
@@ -171,7 +172,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-2">Bodega Destino<span style="color:red">*</span></label>
                                 <div class="col-md-4">
-                                    @Html.DropDownListFor(model => model.bod_Id, (SelectList)ViewBag.ent_BodegaDestino, new { @class = "form-control" })
+                                    @Html.DropDownListFor(model => model.ent_BodegaDestino, (SelectList)ViewBag.bbod_Id, new { @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.bod_Id)
                                 </div>
                             </div>
@@ -201,6 +202,10 @@
                                     {
                                         <input type="submit" value="Guardar" disabled class="btn btn-primary" />
                                         <input type="button" class="btn btn-danger" disabled value="Anular" />
+                                    }
+                                    else if (Model.estm_Id == 1)
+                                    {
+                                        <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalImprimir" value="Imprimir" />
                                     }
                                     else
                                     {

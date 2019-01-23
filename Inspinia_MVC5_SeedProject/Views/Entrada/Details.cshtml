@@ -135,7 +135,7 @@
                                 </dt>
 
                                     <dd>
-                                        @Html.DisplayFor(model => model.ent_RazonDevolucion)
+                                        @Html.DisplayFor(model => model.tbTipoDevolucion.tdev_Descripcion)
                                     </dd>
                                     <dt>
                                         @Html.DisplayNameFor(model => model.fact_Id)
@@ -161,69 +161,6 @@
                             }
                             
                         </dl>
-
-                        @*@Html.HiddenFor(model => model.ent_FacturaCompra)
-                            @Html.HiddenFor(model => model.ent_FechaCompra)
-                            @Html.HiddenFor(model => model.fact_Id)
-                            @Html.HiddenFor(model => model.prov_Id)
-                            @Html.HiddenFor(model => model.ent_RazonDevolucion)
-                            @Html.HiddenFor(model => model.fact_Id)
-                            @Html.HiddenFor(model => model.bod_Id)*@
-
-                        @*<dl class="form-horizontal" name="compra" id="CamposCompra" style="display:none">
-                                <dt>
-                                    @Html.DisplayNameFor(model => model.ent_FacturaCompra)
-                                </dt>
-
-                                <dd>
-                                    @Html.DisplayFor(model => model.ent_FacturaCompra)
-                                </dd>
-
-                                <dt>
-                                    @Html.DisplayNameFor(model => model.ent_FechaCompra)
-                                </dt>
-
-                                <dd>
-                                    @Html.DisplayFor(model => model.ent_FechaCompra)
-                                </dd>
-
-                                <dt>
-                                    @Html.DisplayNameFor(model => model.fact_Id)
-                                </dt>
-
-                                <dd>
-                                    @Html.DisplayFor(model => model.fact_Id)
-                                </dd>
-                            </dl>
-                            <dl class="form-horizontal" name="compra" id="CamposDevoluciones" style="display:none">
-                                <dt>
-                                    @Html.DisplayNameFor(model => model.ent_RazonDevolucion)
-                                </dt>
-
-                                <dd>
-                                    @Html.DisplayFor(model => model.ent_RazonDevolucion)
-                                </dd>
-                                <dt>
-                                    @Html.DisplayNameFor(model => model.fact_Id)
-                                </dt>
-
-                                <dd>
-                                    @Html.DisplayFor(model => model.fact_Id)
-                                </dd>
-                            </dl>
-                            <dl lass="form-horizontal" name="compra" id="CamposTraslado" style="display:none">
-                                <dt>
-                                    @Html.DisplayNameFor(model => model.ent_BodegaDestino)
-                                </dt>
-
-                                <dd>
-                                    @Html.DisplayFor(model => model.ent_BodegaDestino)
-                                </dd>
-                            </dl>*@
-
-
-
-
 
                         <div class="form-group">
                             @Html.ActionLink("Editar", "Edit", new { id = Model.ent_Id }, new { @class = "btn btn-primary" })

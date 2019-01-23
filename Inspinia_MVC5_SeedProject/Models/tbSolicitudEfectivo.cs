@@ -31,6 +31,7 @@ namespace ERP_GMEDINA.Models
         public System.DateTime solef_FechaCrea { get; set; }
         public Nullable<int> solef_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> solef_FechaModifica { get; set; }
+        public string RazonAnulado { get; set; }
     
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbUsuario tbUsuario1 { get; set; }

@@ -6,9 +6,9 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
-                <div class="ibox-title">
+                @*<div class="ibox-title">
                     <h5>Detalle Entrada</h5>
-                </div>
+                </div>*@
                 <div class="ibox-content">
                     <dl class="dl-horizontal">
                         @*<dt>
@@ -35,13 +35,13 @@
                             @Html.DisplayFor(model => model.prod_Codigo)
                         </dd>
 
-                        <dt>
+                        @*<dt>
                             Unidad Medida
                         </dt>
 
                         <dd>
                             @Html.DisplayFor(model => model.tbProducto.tbUnidadMedida.uni_Descripcion)
-                        </dd>
+                        </dd>*@
                         <dt>
                             Cantidad
                         </dt>
@@ -50,7 +50,7 @@
                             @Html.DisplayFor(model => model.entd_Cantidad)
                         </dd>
 
-                        <dt>
+                        @*<dt>
                             Creado Por:
                         </dt>
 
@@ -80,10 +80,10 @@
 
                         <dd>
                             @Html.DisplayFor(model => model.entd_FechaModifica)
-                        </dd>
+                        </dd>*@
                     </dl>
-                    @Html.ActionLink("Editar", "Edit", new { id = Model.entd_Id }, new { @class = "btn btn-primary" })
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    @*@Html.ActionLink("Editar", "Edit", new { id = Model.entd_Id }, new { @class = "btn btn-primary" })*@
+                    @*<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>*@
                 </div>
             </div>
         </div>

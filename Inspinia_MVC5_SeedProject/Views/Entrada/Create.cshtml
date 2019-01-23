@@ -124,7 +124,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-2">Bodega Destino<span style="color:red">*</span></label>
                                     <div class="col-md-4">
-                                        @Html.DropDownList("ent_BodegaDestino", (IEnumerable<SelectListItem>)ViewBag.bod_Id, new { @class = "form-control" })
+                                        @Html.DropDownList("ent_BodegaDestino", (IEnumerable<SelectListItem>)ViewBag.bod_Id, "Seleccione", new { @class = "form-control" })
 
                                         <div class="col-md-10">
                                             <p style="color:red">@Html.ValidationMessageFor(model => model.ent_BodegaDestino)</p>
@@ -140,8 +140,8 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-2">Razon Devolucion<span style="color:red">*</span></label>
                                     <div class="col-md-4">
-                                        @Html.EditorFor(model => model.ent_RazonDevolucion)
-
+                                        @Html.DropDownList("ent_RazonDevolucion", (IEnumerable<SelectListItem>)ViewBag.ent_RazonDevolucion, "Seleccione", new { @class = "form-control" })
+                                        @*@Html.EditorFor(model => model.ent_RazonDevolucion)*@
                                         <div class="col-md-10">
                                             <p style="color:red">@Html.ValidationMessageFor(model => model.ent_RazonDevolucion)</p>
                                         </div>
