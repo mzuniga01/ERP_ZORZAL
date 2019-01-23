@@ -78,8 +78,8 @@ namespace ERP_GMEDINA.Models
         [Display(Name = "Razon Inactivación")]        
         public string prod_Razon_Inactivacion { get; set; }
 
-        [Display(Name = "Precio")]    
-        public Nullable<int> listp_Id { get; set; }
+        //[Display(Name = "Precio")]    
+        //public Nullable<int> listp_Id { get; set; }
 
         [Display(Name = "Codigo de Barras")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]

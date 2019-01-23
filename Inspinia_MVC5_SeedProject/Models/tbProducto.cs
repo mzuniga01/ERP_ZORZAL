@@ -41,7 +41,6 @@ namespace ERP_GMEDINA.Models
         public Nullable<System.DateTime> prod_FechaModifica { get; set; }
         public bool prod_EsActivo { get; set; }
         public string prod_Razon_Inactivacion { get; set; }
-        public Nullable<int> listp_Id { get; set; }
         public string prod_CodigoBarras { get; set; }
         public Nullable<int> prod_Correlativo { get; set; }
     
@@ -57,7 +56,6 @@ namespace ERP_GMEDINA.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbDevolucionDetalle> tbDevolucionDetalle { get; set; }
         public virtual tbProductoSubcategoria tbProductoSubcategoria { get; set; }
-        public virtual tbListaPrecio tbListaPrecio { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbSalidaDetalle> tbSalidaDetalle { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

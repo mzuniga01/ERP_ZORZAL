@@ -111,8 +111,8 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.prod_Codigo = new SelectList(db.tbProducto, "prod_Codigo", "prod_Descripcion");
             ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion");
             ViewBag.bod_Idd = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
-            
-            ViewBag.Producto = db.tbProducto.ToList();
+
+            ViewBag.Producto = db.SDP_Inv_tbProducto_Select().ToList();
             Session["CrearDetalleEntrada"] =null;
             return View(tbEntrada);
         }
@@ -484,7 +484,7 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.ent_BodegaDestino = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbEntrada.ent_BodegaDestino);
             ViewBag.prod_Codigo = new SelectList(db.tbProducto, "prod_Codigo", "prod_Descripcion");
             ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion");
-            ViewBag.Producto = db.tbProducto.ToList();
+            ViewBag.Producto = db.SDP_Inv_tbProducto_Select().ToList();
 
             if (ModelState.IsValid)
             {
@@ -568,7 +568,7 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.ent_BodegaDestino = new SelectList(db.tbBodega, "bod_Id", "bod_ResponsableBodega", tbEntrada.ent_BodegaDestino);
             ViewBag.prod_Codigo = new SelectList(db.tbProducto, "prod_Codigo", "prod_Descripcion");
             ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion");
-            ViewBag.Producto = db.tbProducto.ToList();
+            ViewBag.Producto = db.SDP_Inv_tbProducto_Select().ToList();
             return View(tbEntrada);
         }
 
