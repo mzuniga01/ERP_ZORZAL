@@ -110,8 +110,8 @@ namespace ERP_ZORZAL.Controllers
 
         {
             var list = (List<tbDevolucionDetalle>)Session["Devolucion"];
-            var MensajeError = 0;
-            var MensajeErrorDetalle = 0;
+            var MensajeError = "";
+            var MensajeErrorDetalle = "";
             IEnumerable<object> listDevolucion = null;
             IEnumerable<object> listDevolucionDetalle = null;
             tbDevolucionDetalle cDevolucionDetalle = new tbDevolucionDetalle();
@@ -128,14 +128,14 @@ namespace ERP_ZORZAL.Controllers
                             tbDevolucion.dev_Estado);
                         foreach (UDP_Vent_tbDevolucion_Insert_Result DevolucionL in listDevolucion)
                             MensajeError = DevolucionL.MensajeError;
-                        if (MensajeError == -1)
+                        if (MensajeError == "-1")
                         {
                             ModelState.AddModelError("", "No se pudo agregar el registro");
                             return View(tbDevolucion);
                         }
                         else
                         {
-                            if (MensajeError > 0)
+                            if (MensajeError != "-1")
                             {
                                 if (list != null)
                                 {
@@ -143,7 +143,7 @@ namespace ERP_ZORZAL.Controllers
                                     {
                                         foreach (tbDevolucionDetalle Detalle in list)
                                         {
-                                            Detalle.dev_Id = MensajeError;
+                                            Detalle.dev_Id = Convert.ToInt32(MensajeError);
                                             listDevolucionDetalle = db.UDP_Vent_tbDevolucionDetalle_Insert(
                                                 Detalle.dev_Id,
                                                 Detalle.prod_Codigo,
@@ -153,7 +153,7 @@ namespace ERP_ZORZAL.Controllers
                                             foreach (UDP_Vent_tbDevolucionDetalle_Insert_Result SPDevolucionDetalleDet in listDevolucionDetalle)
                                             {
                                                 MensajeErrorDetalle = SPDevolucionDetalleDet.MensajeError;
-                                                if (MensajeError == -1)
+                                                if (MensajeError == "-1")
                                                 {
                                                     ModelState.AddModelError("", "No se pudo agregar el registro detalle");
                                                     return View(tbDevolucion);
@@ -234,7 +234,7 @@ namespace ERP_ZORZAL.Controllers
         {
             try
             {
-                var MensajeError = 0;
+                var MensajeError = "";
                 IEnumerable<object> list = null;
                 list = db.UDP_Vent_tbDevolucionDetalle_Update(EditDevolucionDetalle.devd_Id,
                     EditDevolucionDetalle.dev_Id,
@@ -246,7 +246,7 @@ namespace ERP_ZORZAL.Controllers
                     EditDevolucionDetalle.devd_FechaCrea);
                 foreach (UDP_Vent_tbDevolucionDetalle_Update_Result DevolucionDetalle in list)
                     MensajeError = DevolucionDetalle.MensajeError;
-                if (MensajeError == -1)
+                if (MensajeError == "-1")
                 {
                     ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
                     return PartialView("_EditarDetalleDevolucion");
@@ -305,6 +305,13 @@ namespace ERP_ZORZAL.Controllers
         public JsonResult AnularDevolucion(int CodDevolucion, bool Estado)
         {
             var list = db.UDP_Vent_tbDevolucion_Estado(CodDevolucion, Estado).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult BuscarCodigoProducto(string CodFactura, string CodProducto)
+        {
+            var list = db.UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente(IDSucursal, CodBarra, IDCliente).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 

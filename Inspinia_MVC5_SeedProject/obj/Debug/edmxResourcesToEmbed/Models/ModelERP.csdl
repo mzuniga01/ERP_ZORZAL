@@ -2355,7 +2355,7 @@
       <Parameter Name="mocja_FechaAceptacion" Mode="In" Type="DateTime" />
       <Parameter Name="mocja_UsuarioAceptacion" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbSolicitudEfectivo_Update_Entrega" ReturnType="Collection(String)">
+    <FunctionImport Name="UDP_Vent_tbSolicitudEfectivo_Update_Entrega" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivo_Update_Entrega_Result)">
       <Parameter Name="solef_Id" Mode="In" Type="Int32" />
       <Parameter Name="mocja_Id" Mode="In" Type="Int32" />
       <Parameter Name="solef_EsApertura" Mode="In" Type="Boolean" />
@@ -2515,12 +2515,6 @@
   <ComplexType Name="UDP_Vent_tbExoneracion_Insert_Result">
     <Property Type="Int32" Name="MensajeError" Nullable="false" />
   </ComplexType>
-  <ComplexType Name="UDP_Vent_tbDevolucion_Insert_Result">
-    <Property Type="Int32" Name="MensajeError" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbDevolucionDetalle_Insert_Result">
-    <Property Type="Int32" Name="MensajeError" Nullable="false" />
-  </ComplexType>
   <ComplexType Name="UDP_Vent_tbTipoPago_Update_Result">
     <Property Type="Int16" Name="MensajeError" Nullable="false" />
   </ComplexType>
@@ -2567,12 +2561,6 @@
     <Property Type="String" Name="clte_NombreComercial" Nullable="false" MaxLength="50" />
     <Property Type="String" Name="clte_Telefono" Nullable="false" MaxLength="25" />
     <Property Type="String" Name="clte_ContactoTelefono" Nullable="false" MaxLength="25" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbDevolucionDetalle_Update_Result">
-    <Property Type="Int32" Name="MensajeError" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbDevolucion_Update_Result">
-    <Property Type="Int32" Name="MensajeError" Nullable="false" />
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbPedidoDetalle_Insert_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
@@ -7411,6 +7399,21 @@
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbCliente_Update_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbSolicitudEfectivo_Update_Entrega_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbDevolucion_Insert_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbDevolucion_Update_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbDevolucionDetalle_Insert_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbDevolucionDetalle_Update_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
 </Schema>

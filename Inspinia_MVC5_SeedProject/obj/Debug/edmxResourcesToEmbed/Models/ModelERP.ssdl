@@ -4910,6 +4910,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <Parameter Name="dev_Id" Type="int" Mode="In" />
     <Parameter Name="dev_Estado" Type="bit" Mode="In" />
   </Function>
+  <Function Name="UDP_Vent_tbDevolucion_Filtrado_CodProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="IDFACTURA" Type="int" Mode="In" />
+    <Parameter Name="CODIGOPRODUCTO" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="UDP_Vent_tbDevolucion_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="fact_Id" Type="bigint" Mode="In" />
     <Parameter Name="cja_Id" Type="smallint" Mode="In" />
