@@ -27,6 +27,7 @@ namespace ERP_GMEDINA.Models
         public Nullable<int> solef_UsuarioEntrega { get; set; }
         public short mnda_Id { get; set; }
         public bool solef_EsAnulada { get; set; }
+        public string RazonAnulado { get; set; }
         public int solef_UsuarioCrea { get; set; }
         public System.DateTime solef_FechaCrea { get; set; }
         public Nullable<int> solef_UsuarioModifica { get; set; }

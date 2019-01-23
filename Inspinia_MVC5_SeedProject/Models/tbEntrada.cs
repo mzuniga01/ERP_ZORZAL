@@ -29,7 +29,7 @@ namespace ERP_GMEDINA.Models
         public string ent_FacturaCompra { get; set; }
         public Nullable<System.DateTime> ent_FechaCompra { get; set; }
         public Nullable<int> fact_Id { get; set; }
-        public string ent_RazonDevolucion { get; set; }
+        public Nullable<int> ent_RazonDevolucion { get; set; }
         public Nullable<int> ent_BodegaDestino { get; set; }
         public byte tent_Id { get; set; }
         public Nullable<bool> entd_EsAnulada { get; set; }
@@ -47,6 +47,7 @@ namespace ERP_GMEDINA.Models
         public virtual tbEstadoMovimiento tbEstadoMovimiento { get; set; }
         public virtual tbProveedor tbProveedor { get; set; }
         public virtual tbSalida tbSalida { get; set; }
+        public virtual tbTipoDevolucion tbTipoDevolucion { get; set; }
         public virtual tbTipoEntrada tbTipoEntrada { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbEntradaDetalle> tbEntradaDetalle { get; set; }

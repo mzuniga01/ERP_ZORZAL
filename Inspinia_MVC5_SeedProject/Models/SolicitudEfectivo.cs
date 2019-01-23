@@ -38,6 +38,10 @@ namespace ERP_GMEDINA.Models
         public bool solef_EsAnulada { get; set; }
         [Display(Name = "Usuario Creación")]
         //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+
+        public string RazonAnulado { get; set; }
+        [Display(Name = "Razon Anulada")]
+
         public int solef_UsuarioCrea { get; set; }
         [Display(Name = "Fecha Creación")]
         //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
