@@ -89,10 +89,15 @@
                         <dt>
                             @Html.DisplayNameFor(model => model.cdto_Redimido)
                         </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.cdto_Redimido)
-                        </dd>
+                        @if(Model.cdto_Redimido == true)
+                        {
+                            <dd>Si</dd>
+                        }
+                        else
+                        {
+                            <dd> No</dd>
+                        }
+                        
                         <dt>
                             @Html.DisplayNameFor(model => model.cdto_FechaEmision)
                         </dt>

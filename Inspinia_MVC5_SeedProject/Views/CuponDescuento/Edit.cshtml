@@ -65,7 +65,7 @@
                                 @Html.LabelFor(model => model.cdto_PorcentajeDescuento, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                      @Html.EditorFor(model => model.cdto_PorcentajeDescuento, new { htmlAttributes = new { @type="number", @class = "form-control", @style = "text-align:right", @min = "0", @onkeypress = "if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" } })
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_PorcentajeDescuento)</p>
+                                    <p id="smsCantidad" style="color:red">@Html.ValidationMessageFor(model => model.cdto_PorcentajeDescuento)</p>
                                 </div>
                             </div>
 
@@ -97,8 +97,16 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.cdto_Redimido, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.cdto_Redimido, new { htmlAttributes = new { @readonly = "readonly", disabled = "disabled" } })
-                                    @Html.ValidationMessageFor(model => model.cdto_Redimido)
+                                    @if (Model.cdto_Redimido == false)
+                                    {
+                                        <label class="control-label">No</label>
+                                        @Html.ValidationMessageFor(model => model.cdto_Redimido)
+                                    }
+                                    else
+                                    {
+                                        <label class="control-label">Si</label>
+                                        @Html.ValidationMessageFor(model => model.cdto_Redimido)
+                                    }
                                 </div>
                             </div>
 
@@ -222,13 +230,19 @@
         });
         
         //--------------------Digitar Datos--------------------------------
+        $(document).ready(function () {
+            $('#cdto_MaximoMontoDescuento').attr('readonly', 'readonly');
+            $('#cdto_MontoDescuento').attr('readonly', 'readonly');
+            $('#cdto_CantidadCompraMinima').attr('readonly', 'readonly');
+        });
+
         $('#cdto_PorcentajeDescuento').focusout(function () {
             var Porcentaje = $('#cdto_PorcentajeDescuento').val();
 
             if (Porcentaje >= 1) {
                 $('#cdto_PorcentajeDescuento').removeAttr("readonly").val();
                 $('#cdto_MaximoMontoDescuento').removeAttr("readonly").val();
-                $('#cdto_MontoDescuento').attr('readonly', 'readonly').val('0.00').unbind("click");
+                $('#cdto_MontoDescuento').attr('readonly', 'readonly').val('0.00').on("click", function () { $("#cdto_MontoDescuento").off("click"); });
                 $('#cdto_CantidadCompraMinima').attr('readonly', 'readonly').val('0.00');
                 $('#cdto_MaximoMontoDescuento').focusout(function () {
                     $('#cdto_FechaEmision').focus();
@@ -240,9 +254,21 @@
                 $('#cdto_MaximoMontoDescuento').attr('readonly', 'readonly').val('0.00');
                 $("#cdto_MontoDescuento").removeAttr("readonly").focus().val();
                 $('#cdto_CantidadCompraMinima').removeAttr("readonly").val();
-
-            }
+            } 
             
+        });
+
+        $("#cdto_PorcentajeDescuento").blur(function () {
+            valido = document.getElementById('smsCantidad');
+            var Porcen = $('#cdto_PorcentajeDescuento').val();
+            if (parseFloat(Porcen) < 0 || parseFloat(Porcen) > 100) {
+                $('#cdto_PorcentajeDescuento').val("");
+                $('#cdto_PorcentajeDescuento').focus();
+                valido.innerText = "El valor debe ser entre 0 a 100";
+            }
+            else {
+                valido.innerText = "";
+            }
         });
 
         $('#cdto_MaximoMontoDescuento').blur(function () {

@@ -53,7 +53,6 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbEstadoInventarioFisico> tbEstadoInventarioFisico { get; set; }
         public virtual DbSet<tbEstadoMovimiento> tbEstadoMovimiento { get; set; }
         public virtual DbSet<tbInventarioFisicoDetalle> tbInventarioFisicoDetalle { get; set; }
-        public virtual DbSet<tbProducto> tbProducto { get; set; }
         public virtual DbSet<tbProductoCategoria> tbProductoCategoria { get; set; }
         public virtual DbSet<tbProductoSubcategoria> tbProductoSubcategoria { get; set; }
         public virtual DbSet<tbProveedor> tbProveedor { get; set; }
@@ -62,7 +61,6 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbTipoEntrada> tbTipoEntrada { get; set; }
         public virtual DbSet<tbTipoSalida> tbTipoSalida { get; set; }
         public virtual DbSet<tbCaja> tbCaja { get; set; }
-        public virtual DbSet<tbCliente> tbCliente { get; set; }
         public virtual DbSet<tbCuponDescuento> tbCuponDescuento { get; set; }
         public virtual DbSet<tbDenominacionArqueo> tbDenominacionArqueo { get; set; }
         public virtual DbSet<tbDevolucion> tbDevolucion { get; set; }
@@ -104,6 +102,8 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<UDV_Vent_Busqueda_Factura> UDV_Vent_Busqueda_Factura { get; set; }
         public virtual DbSet<UDV_Vent_FacturaPuntoEmision1> UDV_Vent_FacturaPuntoEmision1 { get; set; }
         public virtual DbSet<V_Vent_FacturaPago> V_Vent_FacturaPago { get; set; }
+        public virtual DbSet<tbProducto> tbProducto { get; set; }
+        public virtual DbSet<tbCliente> tbCliente { get; set; }
     
         public virtual ObjectResult<UDP_Gral_tbBanco_Insert_Result> UDP_Gral_tbBanco_Insert(string ban_Nombre, string ban_NombreContacto, string ban_TelefonoContacto)
         {
@@ -767,116 +767,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbDocumentoFiscal_Update_Result>("UDP_Vent_tbDocumentoFiscal_Update", dfisc_IdParameter, dfisc_DescripcionParameter, dfisc_UsuarioCreaParameter, dfisc_FechaCreaParameter);
         }
     
-        public virtual ObjectResult<UDP_Vent_tbCuponDescuento_Insert_Result> UDP_Vent_tbCuponDescuento_Insert(Nullable<int> suc_Id, Nullable<System.DateTime> cdto_FechaEmision, Nullable<System.DateTime> cdto_FechaVencimiento, Nullable<decimal> cdto_PorcentajeDescuento, Nullable<decimal> cdto_MontoDescuento, Nullable<decimal> cdto_MaximoMontoDescuento, Nullable<decimal> cdto_CantidadCompraMinima, Nullable<bool> cdto_Redimido, Nullable<System.DateTime> cdto_FechaRedencion, Nullable<bool> cdto_Anulado, Nullable<bool> cdto_EsImpreso)
-        {
-            var suc_IdParameter = suc_Id.HasValue ?
-                new ObjectParameter("suc_Id", suc_Id) :
-                new ObjectParameter("suc_Id", typeof(int));
-    
-            var cdto_FechaEmisionParameter = cdto_FechaEmision.HasValue ?
-                new ObjectParameter("cdto_FechaEmision", cdto_FechaEmision) :
-                new ObjectParameter("cdto_FechaEmision", typeof(System.DateTime));
-    
-            var cdto_FechaVencimientoParameter = cdto_FechaVencimiento.HasValue ?
-                new ObjectParameter("cdto_FechaVencimiento", cdto_FechaVencimiento) :
-                new ObjectParameter("cdto_FechaVencimiento", typeof(System.DateTime));
-    
-            var cdto_PorcentajeDescuentoParameter = cdto_PorcentajeDescuento.HasValue ?
-                new ObjectParameter("cdto_PorcentajeDescuento", cdto_PorcentajeDescuento) :
-                new ObjectParameter("cdto_PorcentajeDescuento", typeof(decimal));
-    
-            var cdto_MontoDescuentoParameter = cdto_MontoDescuento.HasValue ?
-                new ObjectParameter("cdto_MontoDescuento", cdto_MontoDescuento) :
-                new ObjectParameter("cdto_MontoDescuento", typeof(decimal));
-    
-            var cdto_MaximoMontoDescuentoParameter = cdto_MaximoMontoDescuento.HasValue ?
-                new ObjectParameter("cdto_MaximoMontoDescuento", cdto_MaximoMontoDescuento) :
-                new ObjectParameter("cdto_MaximoMontoDescuento", typeof(decimal));
-    
-            var cdto_CantidadCompraMinimaParameter = cdto_CantidadCompraMinima.HasValue ?
-                new ObjectParameter("cdto_CantidadCompraMinima", cdto_CantidadCompraMinima) :
-                new ObjectParameter("cdto_CantidadCompraMinima", typeof(decimal));
-    
-            var cdto_RedimidoParameter = cdto_Redimido.HasValue ?
-                new ObjectParameter("cdto_Redimido", cdto_Redimido) :
-                new ObjectParameter("cdto_Redimido", typeof(bool));
-    
-            var cdto_FechaRedencionParameter = cdto_FechaRedencion.HasValue ?
-                new ObjectParameter("cdto_FechaRedencion", cdto_FechaRedencion) :
-                new ObjectParameter("cdto_FechaRedencion", typeof(System.DateTime));
-    
-            var cdto_AnuladoParameter = cdto_Anulado.HasValue ?
-                new ObjectParameter("cdto_Anulado", cdto_Anulado) :
-                new ObjectParameter("cdto_Anulado", typeof(bool));
-    
-            var cdto_EsImpresoParameter = cdto_EsImpreso.HasValue ?
-                new ObjectParameter("cdto_EsImpreso", cdto_EsImpreso) :
-                new ObjectParameter("cdto_EsImpreso", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbCuponDescuento_Insert_Result>("UDP_Vent_tbCuponDescuento_Insert", suc_IdParameter, cdto_FechaEmisionParameter, cdto_FechaVencimientoParameter, cdto_PorcentajeDescuentoParameter, cdto_MontoDescuentoParameter, cdto_MaximoMontoDescuentoParameter, cdto_CantidadCompraMinimaParameter, cdto_RedimidoParameter, cdto_FechaRedencionParameter, cdto_AnuladoParameter, cdto_EsImpresoParameter);
-        }
-    
-        public virtual ObjectResult<UDP_Vent_tbCuponDescuento_Update_Result> UDP_Vent_tbCuponDescuento_Update(Nullable<int> cdto_ID, Nullable<int> suc_Id, Nullable<System.DateTime> cdto_FechaEmision, Nullable<System.DateTime> cdto_FechaVencimiento, Nullable<decimal> cdto_PorcentajeDescuento, Nullable<decimal> cdto_MontoDescuento, Nullable<decimal> cdto_MaximoMontoDescuento, Nullable<decimal> cdto_CantidadCompraMinima, Nullable<bool> cdto_Redimido, Nullable<System.DateTime> cdto_FechaRedencion, Nullable<bool> cdto_Anulado, Nullable<bool> cdto_EsImpreso, Nullable<int> cdto_UsuarioCrea, Nullable<System.DateTime> cdto_FechaCrea)
-        {
-            var cdto_IDParameter = cdto_ID.HasValue ?
-                new ObjectParameter("cdto_ID", cdto_ID) :
-                new ObjectParameter("cdto_ID", typeof(int));
-    
-            var suc_IdParameter = suc_Id.HasValue ?
-                new ObjectParameter("suc_Id", suc_Id) :
-                new ObjectParameter("suc_Id", typeof(int));
-    
-            var cdto_FechaEmisionParameter = cdto_FechaEmision.HasValue ?
-                new ObjectParameter("cdto_FechaEmision", cdto_FechaEmision) :
-                new ObjectParameter("cdto_FechaEmision", typeof(System.DateTime));
-    
-            var cdto_FechaVencimientoParameter = cdto_FechaVencimiento.HasValue ?
-                new ObjectParameter("cdto_FechaVencimiento", cdto_FechaVencimiento) :
-                new ObjectParameter("cdto_FechaVencimiento", typeof(System.DateTime));
-    
-            var cdto_PorcentajeDescuentoParameter = cdto_PorcentajeDescuento.HasValue ?
-                new ObjectParameter("cdto_PorcentajeDescuento", cdto_PorcentajeDescuento) :
-                new ObjectParameter("cdto_PorcentajeDescuento", typeof(decimal));
-    
-            var cdto_MontoDescuentoParameter = cdto_MontoDescuento.HasValue ?
-                new ObjectParameter("cdto_MontoDescuento", cdto_MontoDescuento) :
-                new ObjectParameter("cdto_MontoDescuento", typeof(decimal));
-    
-            var cdto_MaximoMontoDescuentoParameter = cdto_MaximoMontoDescuento.HasValue ?
-                new ObjectParameter("cdto_MaximoMontoDescuento", cdto_MaximoMontoDescuento) :
-                new ObjectParameter("cdto_MaximoMontoDescuento", typeof(decimal));
-    
-            var cdto_CantidadCompraMinimaParameter = cdto_CantidadCompraMinima.HasValue ?
-                new ObjectParameter("cdto_CantidadCompraMinima", cdto_CantidadCompraMinima) :
-                new ObjectParameter("cdto_CantidadCompraMinima", typeof(decimal));
-    
-            var cdto_RedimidoParameter = cdto_Redimido.HasValue ?
-                new ObjectParameter("cdto_Redimido", cdto_Redimido) :
-                new ObjectParameter("cdto_Redimido", typeof(bool));
-    
-            var cdto_FechaRedencionParameter = cdto_FechaRedencion.HasValue ?
-                new ObjectParameter("cdto_FechaRedencion", cdto_FechaRedencion) :
-                new ObjectParameter("cdto_FechaRedencion", typeof(System.DateTime));
-    
-            var cdto_AnuladoParameter = cdto_Anulado.HasValue ?
-                new ObjectParameter("cdto_Anulado", cdto_Anulado) :
-                new ObjectParameter("cdto_Anulado", typeof(bool));
-    
-            var cdto_EsImpresoParameter = cdto_EsImpreso.HasValue ?
-                new ObjectParameter("cdto_EsImpreso", cdto_EsImpreso) :
-                new ObjectParameter("cdto_EsImpreso", typeof(bool));
-    
-            var cdto_UsuarioCreaParameter = cdto_UsuarioCrea.HasValue ?
-                new ObjectParameter("cdto_UsuarioCrea", cdto_UsuarioCrea) :
-                new ObjectParameter("cdto_UsuarioCrea", typeof(int));
-    
-            var cdto_FechaCreaParameter = cdto_FechaCrea.HasValue ?
-                new ObjectParameter("cdto_FechaCrea", cdto_FechaCrea) :
-                new ObjectParameter("cdto_FechaCrea", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbCuponDescuento_Update_Result>("UDP_Vent_tbCuponDescuento_Update", cdto_IDParameter, suc_IdParameter, cdto_FechaEmisionParameter, cdto_FechaVencimientoParameter, cdto_PorcentajeDescuentoParameter, cdto_MontoDescuentoParameter, cdto_MaximoMontoDescuentoParameter, cdto_CantidadCompraMinimaParameter, cdto_RedimidoParameter, cdto_FechaRedencionParameter, cdto_AnuladoParameter, cdto_EsImpresoParameter, cdto_UsuarioCreaParameter, cdto_FechaCreaParameter);
-        }
-    
         public virtual ObjectResult<UDP_Vent_tbExoneracion_Update_Result> UDP_Vent_tbExoneracion_Update(Nullable<int> exo_Id, string exo_Documento, Nullable<bool> exo_ExoneracionActiva, Nullable<System.DateTime> exo_FechaInicialVigencia, Nullable<System.DateTime> exo_FechaIFinalVigencia, Nullable<int> clte_Id, Nullable<int> exo_UsuarioCrea, Nullable<System.DateTime> exo_FechaCrea)
         {
             var exo_IdParameter = exo_Id.HasValue ?
@@ -1264,124 +1154,6 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("clte_RazonInactivo", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("UDP_Vent_tbCliente_Estado", clte_IdParameter, clte_EsActivoParameter, clte_RazonInactivoParameter);
-        }
-    
-        public virtual ObjectResult<UDP_Vent_tbNotaCredito_Insert_Result> UDP_Vent_tbNotaCredito_Insert(string nocre_Codigo, Nullable<int> dev_Id, Nullable<int> clte_Id, Nullable<int> suc_Id, Nullable<short> cja_Id, Nullable<bool> nocre_Anulado, Nullable<System.DateTime> nocre_FechaEmision, string nocre_MotivoEmision, Nullable<decimal> nocre_Monto, Nullable<bool> nocre_Redimido, Nullable<System.DateTime> nocre_FechaRedimido, Nullable<bool> nocre_EsImpreso)
-        {
-            var nocre_CodigoParameter = nocre_Codigo != null ?
-                new ObjectParameter("nocre_Codigo", nocre_Codigo) :
-                new ObjectParameter("nocre_Codigo", typeof(string));
-    
-            var dev_IdParameter = dev_Id.HasValue ?
-                new ObjectParameter("dev_Id", dev_Id) :
-                new ObjectParameter("dev_Id", typeof(int));
-    
-            var clte_IdParameter = clte_Id.HasValue ?
-                new ObjectParameter("clte_Id", clte_Id) :
-                new ObjectParameter("clte_Id", typeof(int));
-    
-            var suc_IdParameter = suc_Id.HasValue ?
-                new ObjectParameter("suc_Id", suc_Id) :
-                new ObjectParameter("suc_Id", typeof(int));
-    
-            var cja_IdParameter = cja_Id.HasValue ?
-                new ObjectParameter("cja_Id", cja_Id) :
-                new ObjectParameter("cja_Id", typeof(short));
-    
-            var nocre_AnuladoParameter = nocre_Anulado.HasValue ?
-                new ObjectParameter("nocre_Anulado", nocre_Anulado) :
-                new ObjectParameter("nocre_Anulado", typeof(bool));
-    
-            var nocre_FechaEmisionParameter = nocre_FechaEmision.HasValue ?
-                new ObjectParameter("nocre_FechaEmision", nocre_FechaEmision) :
-                new ObjectParameter("nocre_FechaEmision", typeof(System.DateTime));
-    
-            var nocre_MotivoEmisionParameter = nocre_MotivoEmision != null ?
-                new ObjectParameter("nocre_MotivoEmision", nocre_MotivoEmision) :
-                new ObjectParameter("nocre_MotivoEmision", typeof(string));
-    
-            var nocre_MontoParameter = nocre_Monto.HasValue ?
-                new ObjectParameter("nocre_Monto", nocre_Monto) :
-                new ObjectParameter("nocre_Monto", typeof(decimal));
-    
-            var nocre_RedimidoParameter = nocre_Redimido.HasValue ?
-                new ObjectParameter("nocre_Redimido", nocre_Redimido) :
-                new ObjectParameter("nocre_Redimido", typeof(bool));
-    
-            var nocre_FechaRedimidoParameter = nocre_FechaRedimido.HasValue ?
-                new ObjectParameter("nocre_FechaRedimido", nocre_FechaRedimido) :
-                new ObjectParameter("nocre_FechaRedimido", typeof(System.DateTime));
-    
-            var nocre_EsImpresoParameter = nocre_EsImpreso.HasValue ?
-                new ObjectParameter("nocre_EsImpreso", nocre_EsImpreso) :
-                new ObjectParameter("nocre_EsImpreso", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbNotaCredito_Insert_Result>("UDP_Vent_tbNotaCredito_Insert", nocre_CodigoParameter, dev_IdParameter, clte_IdParameter, suc_IdParameter, cja_IdParameter, nocre_AnuladoParameter, nocre_FechaEmisionParameter, nocre_MotivoEmisionParameter, nocre_MontoParameter, nocre_RedimidoParameter, nocre_FechaRedimidoParameter, nocre_EsImpresoParameter);
-        }
-    
-        public virtual ObjectResult<UDP_Vent_tbNotaCredito_Update_Result> UDP_Vent_tbNotaCredito_Update(Nullable<short> nocre_Id, string nocre_Codigo, Nullable<int> dev_Id, Nullable<int> clte_Id, Nullable<int> suc_Id, Nullable<short> cja_Id, Nullable<bool> nocre_Anulado, Nullable<System.DateTime> nocre_FechaEmision, string nocre_MotivoEmision, Nullable<decimal> nocre_Monto, Nullable<bool> nocre_Redimido, Nullable<System.DateTime> nocre_FechaRedimido, Nullable<bool> nocre_EsImpreso, Nullable<int> nocre_UsuarioCrea, Nullable<System.DateTime> nocre_FechaCrea)
-        {
-            var nocre_IdParameter = nocre_Id.HasValue ?
-                new ObjectParameter("nocre_Id", nocre_Id) :
-                new ObjectParameter("nocre_Id", typeof(short));
-    
-            var nocre_CodigoParameter = nocre_Codigo != null ?
-                new ObjectParameter("nocre_Codigo", nocre_Codigo) :
-                new ObjectParameter("nocre_Codigo", typeof(string));
-    
-            var dev_IdParameter = dev_Id.HasValue ?
-                new ObjectParameter("dev_Id", dev_Id) :
-                new ObjectParameter("dev_Id", typeof(int));
-    
-            var clte_IdParameter = clte_Id.HasValue ?
-                new ObjectParameter("clte_Id", clte_Id) :
-                new ObjectParameter("clte_Id", typeof(int));
-    
-            var suc_IdParameter = suc_Id.HasValue ?
-                new ObjectParameter("suc_Id", suc_Id) :
-                new ObjectParameter("suc_Id", typeof(int));
-    
-            var cja_IdParameter = cja_Id.HasValue ?
-                new ObjectParameter("cja_Id", cja_Id) :
-                new ObjectParameter("cja_Id", typeof(short));
-    
-            var nocre_AnuladoParameter = nocre_Anulado.HasValue ?
-                new ObjectParameter("nocre_Anulado", nocre_Anulado) :
-                new ObjectParameter("nocre_Anulado", typeof(bool));
-    
-            var nocre_FechaEmisionParameter = nocre_FechaEmision.HasValue ?
-                new ObjectParameter("nocre_FechaEmision", nocre_FechaEmision) :
-                new ObjectParameter("nocre_FechaEmision", typeof(System.DateTime));
-    
-            var nocre_MotivoEmisionParameter = nocre_MotivoEmision != null ?
-                new ObjectParameter("nocre_MotivoEmision", nocre_MotivoEmision) :
-                new ObjectParameter("nocre_MotivoEmision", typeof(string));
-    
-            var nocre_MontoParameter = nocre_Monto.HasValue ?
-                new ObjectParameter("nocre_Monto", nocre_Monto) :
-                new ObjectParameter("nocre_Monto", typeof(decimal));
-    
-            var nocre_RedimidoParameter = nocre_Redimido.HasValue ?
-                new ObjectParameter("nocre_Redimido", nocre_Redimido) :
-                new ObjectParameter("nocre_Redimido", typeof(bool));
-    
-            var nocre_FechaRedimidoParameter = nocre_FechaRedimido.HasValue ?
-                new ObjectParameter("nocre_FechaRedimido", nocre_FechaRedimido) :
-                new ObjectParameter("nocre_FechaRedimido", typeof(System.DateTime));
-    
-            var nocre_EsImpresoParameter = nocre_EsImpreso.HasValue ?
-                new ObjectParameter("nocre_EsImpreso", nocre_EsImpreso) :
-                new ObjectParameter("nocre_EsImpreso", typeof(bool));
-    
-            var nocre_UsuarioCreaParameter = nocre_UsuarioCrea.HasValue ?
-                new ObjectParameter("nocre_UsuarioCrea", nocre_UsuarioCrea) :
-                new ObjectParameter("nocre_UsuarioCrea", typeof(int));
-    
-            var nocre_FechaCreaParameter = nocre_FechaCrea.HasValue ?
-                new ObjectParameter("nocre_FechaCrea", nocre_FechaCrea) :
-                new ObjectParameter("nocre_FechaCrea", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbNotaCredito_Update_Result>("UDP_Vent_tbNotaCredito_Update", nocre_IdParameter, nocre_CodigoParameter, dev_IdParameter, clte_IdParameter, suc_IdParameter, cja_IdParameter, nocre_AnuladoParameter, nocre_FechaEmisionParameter, nocre_MotivoEmisionParameter, nocre_MontoParameter, nocre_RedimidoParameter, nocre_FechaRedimidoParameter, nocre_EsImpresoParameter, nocre_UsuarioCreaParameter, nocre_FechaCreaParameter);
         }
     
         public virtual ObjectResult<UDP_Vent_tbEstadoFactura_Insert_Result> UDP_Vent_tbEstadoFactura_Insert(string esfac_Descripcion)
@@ -2541,17 +2313,13 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Inv_tbBodega_Update", bod_IdParameter, bod_NombreParameter, bod_ResponsableBodegaParameter, bod_DireccionParameter, bod_CorreoParameter, bod_TelefonoParameter, mun_CodigoParameter, bod_UsuarioCreaParameter, bod_FechacreaParameter);
         }
     
-        public virtual ObjectResult<string> UDP_Inv_tbBodega_Update_Estado(Nullable<int> bod_Id, Nullable<byte> bod_EsActiva)
+        public virtual ObjectResult<string> UDP_Inv_tbBodega_Update_Estado(Nullable<int> bod_Id)
         {
             var bod_IdParameter = bod_Id.HasValue ?
                 new ObjectParameter("bod_Id", bod_Id) :
                 new ObjectParameter("bod_Id", typeof(int));
     
-            var bod_EsActivaParameter = bod_EsActiva.HasValue ?
-                new ObjectParameter("bod_EsActiva", bod_EsActiva) :
-                new ObjectParameter("bod_EsActiva", typeof(byte));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Inv_tbBodega_Update_Estado", bod_IdParameter, bod_EsActivaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Inv_tbBodega_Update_Estado", bod_IdParameter);
         }
     
         public virtual ObjectResult<string> UDP_Inv_tbBodegaDetalle_Insert(string prod_Codigo, Nullable<int> bod_Id, Nullable<decimal> bodd_CantidadMinima, Nullable<decimal> bodd_CantidadMaxima, Nullable<decimal> bodd_PuntoReorden, Nullable<decimal> bodd_Costo, Nullable<decimal> bodd_CostoPromedio)
@@ -3705,19 +3473,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbSolicitudCredito_Aprobar_Result>("UDP_Vent_tbSolicitudCredito_Aprobar", cred_IdParameter, escre_IdParameter, cred_FechaAprobacionParameter, cred_MontoSolicitadoParameter, cred_MontoAprobadoParameter, cred_DiasSolicitadoParameter, cred_DiasAprobadoParameter, cred_UsuarioCreaParameter, cred_FechaCreaParameter, cred_UsuarioModificaParameter, cred_FechaModificaParameter);
         }
     
-        public virtual ObjectResult<UDP_Vent_tbCuponDescuento_Anulado_Result> UDP_Vent_tbCuponDescuento_Anulado(Nullable<int> cdto_ID, Nullable<bool> cdto_Anulado)
-        {
-            var cdto_IDParameter = cdto_ID.HasValue ?
-                new ObjectParameter("cdto_ID", cdto_ID) :
-                new ObjectParameter("cdto_ID", typeof(int));
-    
-            var cdto_AnuladoParameter = cdto_Anulado.HasValue ?
-                new ObjectParameter("cdto_Anulado", cdto_Anulado) :
-                new ObjectParameter("cdto_Anulado", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbCuponDescuento_Anulado_Result>("UDP_Vent_tbCuponDescuento_Anulado", cdto_IDParameter, cdto_AnuladoParameter);
-        }
-    
         public virtual ObjectResult<Nullable<int>> UDP_Vent_tbDevolucion_Estado(Nullable<int> dev_Id, Nullable<bool> dev_Estado)
         {
             var dev_IdParameter = dev_Id.HasValue ?
@@ -4259,19 +4014,6 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("IDPRODUCTO", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("UDP_Vent_tbFactura_BuscarListaPrecio", iDCLIENTEParameter, iDPRODUCTOParameter);
-        }
-    
-        public virtual ObjectResult<Nullable<short>> UDP_Vent_tbNotaCredito_Anulado(Nullable<short> nocre_Id, Nullable<bool> nocre_Anulado)
-        {
-            var nocre_IdParameter = nocre_Id.HasValue ?
-                new ObjectParameter("nocre_Id", nocre_Id) :
-                new ObjectParameter("nocre_Id", typeof(short));
-    
-            var nocre_AnuladoParameter = nocre_Anulado.HasValue ?
-                new ObjectParameter("nocre_Anulado", nocre_Anulado) :
-                new ObjectParameter("nocre_Anulado", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<short>>("UDP_Vent_tbNotaCredito_Anulado", nocre_IdParameter, nocre_AnuladoParameter);
         }
     
         public virtual ObjectResult<UDP_Vent_tbSolicitudEfectivoDetalle_Select_Result> UDP_Vent_tbSolicitudEfectivoDetalle_Select()
@@ -5321,6 +5063,260 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("IDSOLICITUD", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbSolicitudEfectivoDetalle_Detalle_Result1>("UDP_Vent_tbSolicitudEfectivoDetalle_Detalle", iDSOLICITUDParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbCuponDescuento_Anulado_Result> UDP_Vent_tbCuponDescuento_Anulado(Nullable<int> cdto_ID, Nullable<bool> cdto_Anulado)
+        {
+            var cdto_IDParameter = cdto_ID.HasValue ?
+                new ObjectParameter("cdto_ID", cdto_ID) :
+                new ObjectParameter("cdto_ID", typeof(int));
+    
+            var cdto_AnuladoParameter = cdto_Anulado.HasValue ?
+                new ObjectParameter("cdto_Anulado", cdto_Anulado) :
+                new ObjectParameter("cdto_Anulado", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbCuponDescuento_Anulado_Result>("UDP_Vent_tbCuponDescuento_Anulado", cdto_IDParameter, cdto_AnuladoParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbCuponDescuento_Insert_Result> UDP_Vent_tbCuponDescuento_Insert(Nullable<int> suc_Id, Nullable<System.DateTime> cdto_FechaEmision, Nullable<System.DateTime> cdto_FechaVencimiento, Nullable<decimal> cdto_PorcentajeDescuento, Nullable<decimal> cdto_MontoDescuento, Nullable<decimal> cdto_MaximoMontoDescuento, Nullable<decimal> cdto_CantidadCompraMinima, Nullable<bool> cdto_Redimido, Nullable<System.DateTime> cdto_FechaRedencion, Nullable<bool> cdto_Anulado, Nullable<bool> cdto_EsImpreso)
+        {
+            var suc_IdParameter = suc_Id.HasValue ?
+                new ObjectParameter("suc_Id", suc_Id) :
+                new ObjectParameter("suc_Id", typeof(int));
+    
+            var cdto_FechaEmisionParameter = cdto_FechaEmision.HasValue ?
+                new ObjectParameter("cdto_FechaEmision", cdto_FechaEmision) :
+                new ObjectParameter("cdto_FechaEmision", typeof(System.DateTime));
+    
+            var cdto_FechaVencimientoParameter = cdto_FechaVencimiento.HasValue ?
+                new ObjectParameter("cdto_FechaVencimiento", cdto_FechaVencimiento) :
+                new ObjectParameter("cdto_FechaVencimiento", typeof(System.DateTime));
+    
+            var cdto_PorcentajeDescuentoParameter = cdto_PorcentajeDescuento.HasValue ?
+                new ObjectParameter("cdto_PorcentajeDescuento", cdto_PorcentajeDescuento) :
+                new ObjectParameter("cdto_PorcentajeDescuento", typeof(decimal));
+    
+            var cdto_MontoDescuentoParameter = cdto_MontoDescuento.HasValue ?
+                new ObjectParameter("cdto_MontoDescuento", cdto_MontoDescuento) :
+                new ObjectParameter("cdto_MontoDescuento", typeof(decimal));
+    
+            var cdto_MaximoMontoDescuentoParameter = cdto_MaximoMontoDescuento.HasValue ?
+                new ObjectParameter("cdto_MaximoMontoDescuento", cdto_MaximoMontoDescuento) :
+                new ObjectParameter("cdto_MaximoMontoDescuento", typeof(decimal));
+    
+            var cdto_CantidadCompraMinimaParameter = cdto_CantidadCompraMinima.HasValue ?
+                new ObjectParameter("cdto_CantidadCompraMinima", cdto_CantidadCompraMinima) :
+                new ObjectParameter("cdto_CantidadCompraMinima", typeof(decimal));
+    
+            var cdto_RedimidoParameter = cdto_Redimido.HasValue ?
+                new ObjectParameter("cdto_Redimido", cdto_Redimido) :
+                new ObjectParameter("cdto_Redimido", typeof(bool));
+    
+            var cdto_FechaRedencionParameter = cdto_FechaRedencion.HasValue ?
+                new ObjectParameter("cdto_FechaRedencion", cdto_FechaRedencion) :
+                new ObjectParameter("cdto_FechaRedencion", typeof(System.DateTime));
+    
+            var cdto_AnuladoParameter = cdto_Anulado.HasValue ?
+                new ObjectParameter("cdto_Anulado", cdto_Anulado) :
+                new ObjectParameter("cdto_Anulado", typeof(bool));
+    
+            var cdto_EsImpresoParameter = cdto_EsImpreso.HasValue ?
+                new ObjectParameter("cdto_EsImpreso", cdto_EsImpreso) :
+                new ObjectParameter("cdto_EsImpreso", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbCuponDescuento_Insert_Result>("UDP_Vent_tbCuponDescuento_Insert", suc_IdParameter, cdto_FechaEmisionParameter, cdto_FechaVencimientoParameter, cdto_PorcentajeDescuentoParameter, cdto_MontoDescuentoParameter, cdto_MaximoMontoDescuentoParameter, cdto_CantidadCompraMinimaParameter, cdto_RedimidoParameter, cdto_FechaRedencionParameter, cdto_AnuladoParameter, cdto_EsImpresoParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbCuponDescuento_Update_Result> UDP_Vent_tbCuponDescuento_Update(Nullable<int> cdto_ID, Nullable<int> suc_Id, Nullable<System.DateTime> cdto_FechaEmision, Nullable<System.DateTime> cdto_FechaVencimiento, Nullable<decimal> cdto_PorcentajeDescuento, Nullable<decimal> cdto_MontoDescuento, Nullable<decimal> cdto_MaximoMontoDescuento, Nullable<decimal> cdto_CantidadCompraMinima, Nullable<bool> cdto_Redimido, Nullable<System.DateTime> cdto_FechaRedencion, Nullable<bool> cdto_Anulado, Nullable<bool> cdto_EsImpreso, Nullable<int> cdto_UsuarioCrea, Nullable<System.DateTime> cdto_FechaCrea)
+        {
+            var cdto_IDParameter = cdto_ID.HasValue ?
+                new ObjectParameter("cdto_ID", cdto_ID) :
+                new ObjectParameter("cdto_ID", typeof(int));
+    
+            var suc_IdParameter = suc_Id.HasValue ?
+                new ObjectParameter("suc_Id", suc_Id) :
+                new ObjectParameter("suc_Id", typeof(int));
+    
+            var cdto_FechaEmisionParameter = cdto_FechaEmision.HasValue ?
+                new ObjectParameter("cdto_FechaEmision", cdto_FechaEmision) :
+                new ObjectParameter("cdto_FechaEmision", typeof(System.DateTime));
+    
+            var cdto_FechaVencimientoParameter = cdto_FechaVencimiento.HasValue ?
+                new ObjectParameter("cdto_FechaVencimiento", cdto_FechaVencimiento) :
+                new ObjectParameter("cdto_FechaVencimiento", typeof(System.DateTime));
+    
+            var cdto_PorcentajeDescuentoParameter = cdto_PorcentajeDescuento.HasValue ?
+                new ObjectParameter("cdto_PorcentajeDescuento", cdto_PorcentajeDescuento) :
+                new ObjectParameter("cdto_PorcentajeDescuento", typeof(decimal));
+    
+            var cdto_MontoDescuentoParameter = cdto_MontoDescuento.HasValue ?
+                new ObjectParameter("cdto_MontoDescuento", cdto_MontoDescuento) :
+                new ObjectParameter("cdto_MontoDescuento", typeof(decimal));
+    
+            var cdto_MaximoMontoDescuentoParameter = cdto_MaximoMontoDescuento.HasValue ?
+                new ObjectParameter("cdto_MaximoMontoDescuento", cdto_MaximoMontoDescuento) :
+                new ObjectParameter("cdto_MaximoMontoDescuento", typeof(decimal));
+    
+            var cdto_CantidadCompraMinimaParameter = cdto_CantidadCompraMinima.HasValue ?
+                new ObjectParameter("cdto_CantidadCompraMinima", cdto_CantidadCompraMinima) :
+                new ObjectParameter("cdto_CantidadCompraMinima", typeof(decimal));
+    
+            var cdto_RedimidoParameter = cdto_Redimido.HasValue ?
+                new ObjectParameter("cdto_Redimido", cdto_Redimido) :
+                new ObjectParameter("cdto_Redimido", typeof(bool));
+    
+            var cdto_FechaRedencionParameter = cdto_FechaRedencion.HasValue ?
+                new ObjectParameter("cdto_FechaRedencion", cdto_FechaRedencion) :
+                new ObjectParameter("cdto_FechaRedencion", typeof(System.DateTime));
+    
+            var cdto_AnuladoParameter = cdto_Anulado.HasValue ?
+                new ObjectParameter("cdto_Anulado", cdto_Anulado) :
+                new ObjectParameter("cdto_Anulado", typeof(bool));
+    
+            var cdto_EsImpresoParameter = cdto_EsImpreso.HasValue ?
+                new ObjectParameter("cdto_EsImpreso", cdto_EsImpreso) :
+                new ObjectParameter("cdto_EsImpreso", typeof(bool));
+    
+            var cdto_UsuarioCreaParameter = cdto_UsuarioCrea.HasValue ?
+                new ObjectParameter("cdto_UsuarioCrea", cdto_UsuarioCrea) :
+                new ObjectParameter("cdto_UsuarioCrea", typeof(int));
+    
+            var cdto_FechaCreaParameter = cdto_FechaCrea.HasValue ?
+                new ObjectParameter("cdto_FechaCrea", cdto_FechaCrea) :
+                new ObjectParameter("cdto_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbCuponDescuento_Update_Result>("UDP_Vent_tbCuponDescuento_Update", cdto_IDParameter, suc_IdParameter, cdto_FechaEmisionParameter, cdto_FechaVencimientoParameter, cdto_PorcentajeDescuentoParameter, cdto_MontoDescuentoParameter, cdto_MaximoMontoDescuentoParameter, cdto_CantidadCompraMinimaParameter, cdto_RedimidoParameter, cdto_FechaRedencionParameter, cdto_AnuladoParameter, cdto_EsImpresoParameter, cdto_UsuarioCreaParameter, cdto_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbNotaCredito_Anulado_Result> UDP_Vent_tbNotaCredito_Anulado(Nullable<short> nocre_Id, Nullable<bool> nocre_Anulado)
+        {
+            var nocre_IdParameter = nocre_Id.HasValue ?
+                new ObjectParameter("nocre_Id", nocre_Id) :
+                new ObjectParameter("nocre_Id", typeof(short));
+    
+            var nocre_AnuladoParameter = nocre_Anulado.HasValue ?
+                new ObjectParameter("nocre_Anulado", nocre_Anulado) :
+                new ObjectParameter("nocre_Anulado", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbNotaCredito_Anulado_Result>("UDP_Vent_tbNotaCredito_Anulado", nocre_IdParameter, nocre_AnuladoParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbNotaCredito_Insert_Result> UDP_Vent_tbNotaCredito_Insert(string nocre_Codigo, Nullable<int> dev_Id, Nullable<int> clte_Id, Nullable<int> suc_Id, Nullable<short> cja_Id, Nullable<bool> nocre_Anulado, Nullable<System.DateTime> nocre_FechaEmision, string nocre_MotivoEmision, Nullable<decimal> nocre_Monto, Nullable<bool> nocre_Redimido, Nullable<System.DateTime> nocre_FechaRedimido, Nullable<bool> nocre_EsImpreso)
+        {
+            var nocre_CodigoParameter = nocre_Codigo != null ?
+                new ObjectParameter("nocre_Codigo", nocre_Codigo) :
+                new ObjectParameter("nocre_Codigo", typeof(string));
+    
+            var dev_IdParameter = dev_Id.HasValue ?
+                new ObjectParameter("dev_Id", dev_Id) :
+                new ObjectParameter("dev_Id", typeof(int));
+    
+            var clte_IdParameter = clte_Id.HasValue ?
+                new ObjectParameter("clte_Id", clte_Id) :
+                new ObjectParameter("clte_Id", typeof(int));
+    
+            var suc_IdParameter = suc_Id.HasValue ?
+                new ObjectParameter("suc_Id", suc_Id) :
+                new ObjectParameter("suc_Id", typeof(int));
+    
+            var cja_IdParameter = cja_Id.HasValue ?
+                new ObjectParameter("cja_Id", cja_Id) :
+                new ObjectParameter("cja_Id", typeof(short));
+    
+            var nocre_AnuladoParameter = nocre_Anulado.HasValue ?
+                new ObjectParameter("nocre_Anulado", nocre_Anulado) :
+                new ObjectParameter("nocre_Anulado", typeof(bool));
+    
+            var nocre_FechaEmisionParameter = nocre_FechaEmision.HasValue ?
+                new ObjectParameter("nocre_FechaEmision", nocre_FechaEmision) :
+                new ObjectParameter("nocre_FechaEmision", typeof(System.DateTime));
+    
+            var nocre_MotivoEmisionParameter = nocre_MotivoEmision != null ?
+                new ObjectParameter("nocre_MotivoEmision", nocre_MotivoEmision) :
+                new ObjectParameter("nocre_MotivoEmision", typeof(string));
+    
+            var nocre_MontoParameter = nocre_Monto.HasValue ?
+                new ObjectParameter("nocre_Monto", nocre_Monto) :
+                new ObjectParameter("nocre_Monto", typeof(decimal));
+    
+            var nocre_RedimidoParameter = nocre_Redimido.HasValue ?
+                new ObjectParameter("nocre_Redimido", nocre_Redimido) :
+                new ObjectParameter("nocre_Redimido", typeof(bool));
+    
+            var nocre_FechaRedimidoParameter = nocre_FechaRedimido.HasValue ?
+                new ObjectParameter("nocre_FechaRedimido", nocre_FechaRedimido) :
+                new ObjectParameter("nocre_FechaRedimido", typeof(System.DateTime));
+    
+            var nocre_EsImpresoParameter = nocre_EsImpreso.HasValue ?
+                new ObjectParameter("nocre_EsImpreso", nocre_EsImpreso) :
+                new ObjectParameter("nocre_EsImpreso", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbNotaCredito_Insert_Result>("UDP_Vent_tbNotaCredito_Insert", nocre_CodigoParameter, dev_IdParameter, clte_IdParameter, suc_IdParameter, cja_IdParameter, nocre_AnuladoParameter, nocre_FechaEmisionParameter, nocre_MotivoEmisionParameter, nocre_MontoParameter, nocre_RedimidoParameter, nocre_FechaRedimidoParameter, nocre_EsImpresoParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbNotaCredito_Update_Result> UDP_Vent_tbNotaCredito_Update(Nullable<short> nocre_Id, string nocre_Codigo, Nullable<int> dev_Id, Nullable<int> clte_Id, Nullable<int> suc_Id, Nullable<short> cja_Id, Nullable<bool> nocre_Anulado, Nullable<System.DateTime> nocre_FechaEmision, string nocre_MotivoEmision, Nullable<decimal> nocre_Monto, Nullable<bool> nocre_Redimido, Nullable<System.DateTime> nocre_FechaRedimido, Nullable<bool> nocre_EsImpreso, Nullable<int> nocre_UsuarioCrea, Nullable<System.DateTime> nocre_FechaCrea)
+        {
+            var nocre_IdParameter = nocre_Id.HasValue ?
+                new ObjectParameter("nocre_Id", nocre_Id) :
+                new ObjectParameter("nocre_Id", typeof(short));
+    
+            var nocre_CodigoParameter = nocre_Codigo != null ?
+                new ObjectParameter("nocre_Codigo", nocre_Codigo) :
+                new ObjectParameter("nocre_Codigo", typeof(string));
+    
+            var dev_IdParameter = dev_Id.HasValue ?
+                new ObjectParameter("dev_Id", dev_Id) :
+                new ObjectParameter("dev_Id", typeof(int));
+    
+            var clte_IdParameter = clte_Id.HasValue ?
+                new ObjectParameter("clte_Id", clte_Id) :
+                new ObjectParameter("clte_Id", typeof(int));
+    
+            var suc_IdParameter = suc_Id.HasValue ?
+                new ObjectParameter("suc_Id", suc_Id) :
+                new ObjectParameter("suc_Id", typeof(int));
+    
+            var cja_IdParameter = cja_Id.HasValue ?
+                new ObjectParameter("cja_Id", cja_Id) :
+                new ObjectParameter("cja_Id", typeof(short));
+    
+            var nocre_AnuladoParameter = nocre_Anulado.HasValue ?
+                new ObjectParameter("nocre_Anulado", nocre_Anulado) :
+                new ObjectParameter("nocre_Anulado", typeof(bool));
+    
+            var nocre_FechaEmisionParameter = nocre_FechaEmision.HasValue ?
+                new ObjectParameter("nocre_FechaEmision", nocre_FechaEmision) :
+                new ObjectParameter("nocre_FechaEmision", typeof(System.DateTime));
+    
+            var nocre_MotivoEmisionParameter = nocre_MotivoEmision != null ?
+                new ObjectParameter("nocre_MotivoEmision", nocre_MotivoEmision) :
+                new ObjectParameter("nocre_MotivoEmision", typeof(string));
+    
+            var nocre_MontoParameter = nocre_Monto.HasValue ?
+                new ObjectParameter("nocre_Monto", nocre_Monto) :
+                new ObjectParameter("nocre_Monto", typeof(decimal));
+    
+            var nocre_RedimidoParameter = nocre_Redimido.HasValue ?
+                new ObjectParameter("nocre_Redimido", nocre_Redimido) :
+                new ObjectParameter("nocre_Redimido", typeof(bool));
+    
+            var nocre_FechaRedimidoParameter = nocre_FechaRedimido.HasValue ?
+                new ObjectParameter("nocre_FechaRedimido", nocre_FechaRedimido) :
+                new ObjectParameter("nocre_FechaRedimido", typeof(System.DateTime));
+    
+            var nocre_EsImpresoParameter = nocre_EsImpreso.HasValue ?
+                new ObjectParameter("nocre_EsImpreso", nocre_EsImpreso) :
+                new ObjectParameter("nocre_EsImpreso", typeof(bool));
+    
+            var nocre_UsuarioCreaParameter = nocre_UsuarioCrea.HasValue ?
+                new ObjectParameter("nocre_UsuarioCrea", nocre_UsuarioCrea) :
+                new ObjectParameter("nocre_UsuarioCrea", typeof(int));
+    
+            var nocre_FechaCreaParameter = nocre_FechaCrea.HasValue ?
+                new ObjectParameter("nocre_FechaCrea", nocre_FechaCrea) :
+                new ObjectParameter("nocre_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbNotaCredito_Update_Result>("UDP_Vent_tbNotaCredito_Update", nocre_IdParameter, nocre_CodigoParameter, dev_IdParameter, clte_IdParameter, suc_IdParameter, cja_IdParameter, nocre_AnuladoParameter, nocre_FechaEmisionParameter, nocre_MotivoEmisionParameter, nocre_MontoParameter, nocre_RedimidoParameter, nocre_FechaRedimidoParameter, nocre_EsImpresoParameter, nocre_UsuarioCreaParameter, nocre_FechaCreaParameter);
         }
     }
 }

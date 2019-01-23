@@ -76,7 +76,7 @@ namespace ERP_ZORZAL.Controllers
             {
                 try
                 {
-                    var MensajeError = 0;
+                    var MensajeError = "";
                     IEnumerable<object> list = null;
                     list = db.UDP_Vent_tbNotaCredito_Insert(tbNotaCredito.nocre_Codigo, 
                                                             tbNotaCredito.dev_Id, 
@@ -92,7 +92,7 @@ namespace ERP_ZORZAL.Controllers
                                                             tbNotaCredito.nocre_EsImpreso);
                     foreach (UDP_Vent_tbNotaCredito_Insert_Result NotaCredito in list)
                         MensajeError = NotaCredito.MensajeError;
-                    if (MensajeError == -1)
+                    if (MensajeError != "-1")
                     {
                         ModelState.AddModelError("", "No se pudo Insertar el registro, favor contacte al administrador.");
                         return View(tbNotaCredito);
@@ -151,7 +151,7 @@ namespace ERP_ZORZAL.Controllers
             {
                 try
                 {
-                    var MensajeError = 0;
+                    var MensajeError = "";
                     IEnumerable<object> list = null;
                     list = db.UDP_Vent_tbNotaCredito_Update(tbNotaCredito.nocre_Id, tbNotaCredito.nocre_Codigo, 
                         tbNotaCredito.dev_Id, tbNotaCredito.clte_Id, tbNotaCredito.suc_Id, tbNotaCredito.cja_Id, tbNotaCredito.nocre_Anulado,
@@ -159,8 +159,8 @@ namespace ERP_ZORZAL.Controllers
                         tbNotaCredito.nocre_Redimido, tbNotaCredito.nocre_FechaRedimido, tbNotaCredito.nocre_EsImpreso,
                         tbNotaCredito.nocre_UsuarioCrea, tbNotaCredito.nocre_FechaCrea);
                     foreach (UDP_Vent_tbNotaCredito_Update_Result NotaCredito in list)
-                        MensajeError = NotaCredito.MensajeError;
-                    if (MensajeError == -1)
+                        MensajeError = Convert.ToString(NotaCredito.MensajeError);
+                    if (MensajeError != "-1")
                     {
                         ModelState.AddModelError("", "No se pudo Editar el registro, favor contacte al administrador.");
                         return View(tbNotaCredito);
@@ -220,11 +220,11 @@ namespace ERP_ZORZAL.Controllers
             var list = db.UDP_Vent_tbNotaCredito_Anulado(nocreId, Anulado).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
-        [HttpPost]
-        public JsonResult GetCodigoNotaCredito(int CodSucursal, short CodCaja)
-        {
-            var list = db.UDP_Vent_tbNotaCredito_CodigoNotaCredito(CodSucursal, CodCaja).ToString();
-            return Json(list, JsonRequestBehavior.AllowGet);
-        }
+        //[HttpPost]
+        //public JsonResult GetCodigoNotaCredito(int CodSucursal, short CodCaja)
+        //{
+        //    var list = db.UDP_Vent_tbNotaCredito_CodigoNotaCredito(CodSucursal, CodCaja).ToString();
+        //    return Json(list, JsonRequestBehavior.AllowGet);
+        //}
     }
 }

@@ -388,7 +388,6 @@
     <Property Name="prod_FechaModifica" Type="datetime" />
     <Property Name="prod_EsActivo" Type="bit" Nullable="false" />
     <Property Name="prod_Razon_Inactivacion" Type="varchar" MaxLength="150" />
-    <Property Name="listp_Id" Type="int" />
     <Property Name="prod_CodigoBarras" Type="varchar" MaxLength="15" Nullable="false" />
     <Property Name="prod_Correlativo" Type="int" />
   </EntityType>
@@ -2605,30 +2604,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Inv_tbEntrada_ent_BodegaDestino">
-    <End Role="tbBodega" Type="Self.tbBodega" Multiplicity="0..1" />
-    <End Role="tbEntrada" Type="Self.tbEntrada" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbBodega">
-        <PropertyRef Name="bod_Id" />
-      </Principal>
-      <Dependent Role="tbEntrada">
-        <PropertyRef Name="ent_BodegaDestino" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Inv_tbEntrada_ent_UsuarioModifica">
-    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
-    <End Role="tbEntrada" Type="Self.tbEntrada" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbUsuario">
-        <PropertyRef Name="usu_Id" />
-      </Principal>
-      <Dependent Role="tbEntrada">
-        <PropertyRef Name="ent_UsuarioModifica" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Inv_tbEntrada_pcat_UsuarioCrea">
     <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
     <End Role="tbProductoCategoria" Type="Self.tbProductoCategoria" Multiplicity="*" />
@@ -2638,78 +2613,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
       </Principal>
       <Dependent Role="tbProductoCategoria">
         <PropertyRef Name="pcat_UsuarioCrea" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Inv_tbEntrada_tbBodega_bod_Id">
-    <End Role="tbBodega" Type="Self.tbBodega" Multiplicity="1" />
-    <End Role="tbEntrada" Type="Self.tbEntrada" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbBodega">
-        <PropertyRef Name="bod_Id" />
-      </Principal>
-      <Dependent Role="tbEntrada">
-        <PropertyRef Name="bod_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Inv_tbEntrada_tbEstadoMovimiento_estm_Id">
-    <End Role="tbEstadoMovimiento" Type="Self.tbEstadoMovimiento" Multiplicity="1" />
-    <End Role="tbEntrada" Type="Self.tbEntrada" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbEstadoMovimiento">
-        <PropertyRef Name="estm_Id" />
-      </Principal>
-      <Dependent Role="tbEntrada">
-        <PropertyRef Name="estm_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Inv_tbEntrada_tbProveedor_prov_Id">
-    <End Role="tbProveedor" Type="Self.tbProveedor" Multiplicity="1" />
-    <End Role="tbEntrada" Type="Self.tbEntrada" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbProveedor">
-        <PropertyRef Name="prov_Id" />
-      </Principal>
-      <Dependent Role="tbEntrada">
-        <PropertyRef Name="prov_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Inv_tbEntrada_tbSalida_fact_Id">
-    <End Role="tbSalida" Type="Self.tbSalida" Multiplicity="1" />
-    <End Role="tbEntrada" Type="Self.tbEntrada" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbSalida">
-        <PropertyRef Name="sal_Id" />
-      </Principal>
-      <Dependent Role="tbEntrada">
-        <PropertyRef Name="ent_SalidaOrigen" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Inv_tbEntrada_tbTiposEntrada_tent_Id">
-    <End Role="tbTipoEntrada" Type="Self.tbTipoEntrada" Multiplicity="1" />
-    <End Role="tbEntrada" Type="Self.tbEntrada" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbTipoEntrada">
-        <PropertyRef Name="tent_Id" />
-      </Principal>
-      <Dependent Role="tbEntrada">
-        <PropertyRef Name="tent_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Inv_tbEntrada_tbUsuario_ent_UsuarioCrea">
-    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
-    <End Role="tbEntrada" Type="Self.tbEntrada" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbUsuario">
-        <PropertyRef Name="usu_Id" />
-      </Principal>
-      <Dependent Role="tbEntrada">
-        <PropertyRef Name="ent_UsuarioCrea" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -2938,18 +2841,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
       </Principal>
       <Dependent Role="tbProducto">
         <PropertyRef Name="prod_UsuarioCrea" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Inv_tbProducto_Vent_tbListaPrecio_listp_Id">
-    <End Role="tbListaPrecio" Type="Self.tbListaPrecio" Multiplicity="0..1" />
-    <End Role="tbProducto" Type="Self.tbProducto" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbListaPrecio">
-        <PropertyRef Name="listp_Id" />
-      </Principal>
-      <Dependent Role="tbProducto">
-        <PropertyRef Name="listp_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -4385,7 +4276,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
   </Function>
   <Function Name="UDP_Inv_tbBodega_Update_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="bod_Id" Type="int" Mode="In" />
-    <Parameter Name="bod_EsActiva" Type="tinyint" Mode="In" />
   </Function>
   <Function Name="UDP_Inv_tbBodegaDetalle_CantidadExistente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="bod_Id" Type="int" Mode="In" />
@@ -6107,41 +5997,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbBox" EntitySet="tbBox" />
     </AssociationSet>
-    <AssociationSet Name="FK_Inv_tbEntrada_ent_BodegaDestino" Association="Self.FK_Inv_tbEntrada_ent_BodegaDestino">
-      <End Role="tbBodega" EntitySet="tbBodega" />
-      <End Role="tbEntrada" EntitySet="tbEntrada" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Inv_tbEntrada_ent_UsuarioModifica" Association="Self.FK_Inv_tbEntrada_ent_UsuarioModifica">
-      <End Role="tbUsuario" EntitySet="tbUsuario" />
-      <End Role="tbEntrada" EntitySet="tbEntrada" />
-    </AssociationSet>
     <AssociationSet Name="FK_Inv_tbEntrada_pcat_UsuarioCrea" Association="Self.FK_Inv_tbEntrada_pcat_UsuarioCrea">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbProductoCategoria" EntitySet="tbProductoCategoria" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Inv_tbEntrada_tbBodega_bod_Id" Association="Self.FK_Inv_tbEntrada_tbBodega_bod_Id">
-      <End Role="tbBodega" EntitySet="tbBodega" />
-      <End Role="tbEntrada" EntitySet="tbEntrada" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Inv_tbEntrada_tbEstadoMovimiento_estm_Id" Association="Self.FK_Inv_tbEntrada_tbEstadoMovimiento_estm_Id">
-      <End Role="tbEstadoMovimiento" EntitySet="tbEstadoMovimiento" />
-      <End Role="tbEntrada" EntitySet="tbEntrada" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Inv_tbEntrada_tbProveedor_prov_Id" Association="Self.FK_Inv_tbEntrada_tbProveedor_prov_Id">
-      <End Role="tbProveedor" EntitySet="tbProveedor" />
-      <End Role="tbEntrada" EntitySet="tbEntrada" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Inv_tbEntrada_tbSalida_fact_Id" Association="Self.FK_Inv_tbEntrada_tbSalida_fact_Id">
-      <End Role="tbSalida" EntitySet="tbSalida" />
-      <End Role="tbEntrada" EntitySet="tbEntrada" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Inv_tbEntrada_tbTiposEntrada_tent_Id" Association="Self.FK_Inv_tbEntrada_tbTiposEntrada_tent_Id">
-      <End Role="tbTipoEntrada" EntitySet="tbTipoEntrada" />
-      <End Role="tbEntrada" EntitySet="tbEntrada" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Inv_tbEntrada_tbUsuario_ent_UsuarioCrea" Association="Self.FK_Inv_tbEntrada_tbUsuario_ent_UsuarioCrea">
-      <End Role="tbUsuario" EntitySet="tbUsuario" />
-      <End Role="tbEntrada" EntitySet="tbEntrada" />
     </AssociationSet>
     <AssociationSet Name="FK_Inv_tbEntradaDetalle_tbEntrada_ent_Id" Association="Self.FK_Inv_tbEntradaDetalle_tbEntrada_ent_Id">
       <End Role="tbEntrada" EntitySet="tbEntrada" />
@@ -6217,10 +6075,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     </AssociationSet>
     <AssociationSet Name="FK_Inv_tbProducto_tbUsuario_prod_UsuarioCrea" Association="Self.FK_Inv_tbProducto_tbUsuario_prod_UsuarioCrea">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
-      <End Role="tbProducto" EntitySet="tbProducto" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Inv_tbProducto_Vent_tbListaPrecio_listp_Id" Association="Self.FK_Inv_tbProducto_Vent_tbListaPrecio_listp_Id">
-      <End Role="tbListaPrecio" EntitySet="tbListaPrecio" />
       <End Role="tbProducto" EntitySet="tbProducto" />
     </AssociationSet>
     <AssociationSet Name="FK_Inv_tbProductoCategoria_pcat_UsuarioCrea" Association="Self.FK_Inv_tbProductoCategoria_pcat_UsuarioCrea">

@@ -51,7 +51,7 @@
                                 <div class="col-md-4">
                                    <input type="text" id="cdto_PorcentajeDescuentoH" name="cdto_PorcentajeDescuentoH" class="form-control validanumericos" style="text-align:right" />
                                     <input type="hidden" id="cdto_PorcentajeDescuento" name="cdto_PorcentajeDescuento" />
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_PorcentajeDescuento)</p>
+                                    <p id="smsCantidad" style="color:red">@Html.ValidationMessageFor(model => model.cdto_PorcentajeDescuento)</p>
                                 </div>
                             </div>
 
@@ -185,7 +185,25 @@
 
 
         //--------------------Digitar Datos--------------------------------
+        $(document).ready(function () {
+            $('#cdto_MaximoMontoDescuentoH').attr('readonly', 'readonly');
+            $('#cdto_MontoDescuentoH').attr('readonly', 'readonly');
+            $('#cdto_CantidadCompraMinimaH').attr('readonly', 'readonly');
+        });
+
         $('#cdto_PorcentajeDescuentoH').focusout(function () {
+            $("#cdto_PorcentajeDescuentoH").blur(function () {
+                valido = document.getElementById('smsCantidad');
+                var Porcen1 = $('#cdto_PorcentajeDescuento').val();
+                if (parseFloat(Porcen1) < 0 || parseFloat(Porcen1) > 100) {
+                    $('#cdto_PorcentajeDescuentoH').val("");
+                    $('#cdto_PorcentajeDescuentoH').focus();
+                    valido.innerText = "El valor debe ser entre 0 a 100";
+                }
+                else {
+                    valido.innerText = "";
+                }
+            });
             if ($('#cdto_PorcentajeDescuentoH').val() == "" || $('#cdto_PorcentajeDescuentoH').val() == 0 || $('#cdto_PorcentajeDescuentoH').val() <= 0) {
                 $('#cdto_PorcentajeDescuentoH').val('0.00')
                 $('#cdto_PorcentajeDescuento').val('0.00')

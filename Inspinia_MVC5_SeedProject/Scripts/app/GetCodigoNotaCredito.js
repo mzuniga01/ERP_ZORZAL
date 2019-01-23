@@ -1,9 +1,9 @@
 ﻿$(document).ready(function () {
-    GetNumeroFact(1, 4)
-    $("#suc_Id").val(1);
-    $("#cja_Id").val(4);
+    GetCodigoNotaCredito(7, 8)
+    $("#suc_Id").val(7);
+    $("#cja_Id").val(8);
 })
-function GetNumeroFact(CodSucursal, CodCaja) {
+function GetCodigoNotaCredito(CodSucursal, CodCaja) {
     //var CodSucursal = $('#suc_Id').val();
     //var CodCaja = $('#cja_Id').val();   
 
@@ -17,13 +17,15 @@ function GetNumeroFact(CodSucursal, CodCaja) {
     .done(function (data) {
         if (data.length > 0) {
             var Mensaje = data;
+            console.log(Mensaje)
             if (Mensaje == -1) {
                 alert("El Numero CAI no tiene numeracion")
                 var url = $("#RedirectTo").val();
                 location.href = url;
             }
             else {
-                $('#nocre_Codigo').val(data);
+                $('#nocre_Codigo').val(data[0]['CODNOTACREDITO']);
+                console.log('#nocre_Codigo')
             }
             //$.each(data, function (key, val) {
 

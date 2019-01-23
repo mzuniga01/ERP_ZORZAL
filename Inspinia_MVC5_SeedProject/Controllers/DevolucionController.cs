@@ -366,7 +366,7 @@ namespace ERP_ZORZAL.Controllers
             {
                 try
                 {
-                    var MensajeError = 0;
+                    var MensajeError = "";
                     IEnumerable<object> list = null;
                     list = db.UDP_Vent_tbNotaCredito_Insert(tbNotaCredito.nocre_Codigo, 
                                                             tbNotaCredito.dev_Id, 
@@ -381,8 +381,8 @@ namespace ERP_ZORZAL.Controllers
                                                             tbNotaCredito.nocre_FechaRedimido, 
                                                             tbNotaCredito.nocre_EsImpreso);
                     foreach (UDP_Vent_tbNotaCredito_Insert_Result NotaCredito in list)
-                        MensajeError = NotaCredito.MensajeError;
-                    if (MensajeError == -1)
+                        MensajeError = Convert.ToString(NotaCredito.MensajeError);
+                    if (MensajeError != "-1")
                     {
                         ModelState.AddModelError("", "No se pudo Insertar el registro, favor contacte al administrador.");
                         return View(tbNotaCredito);

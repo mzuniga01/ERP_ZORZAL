@@ -51,7 +51,7 @@ namespace ERP_GMEDINA.Controllers
             {
                 try
                 {
-                    var MensajeError = 0;
+                    var MensajeError = "";
                     IEnumerable<object> list = null;
                     list = db.UDP_Vent_tbCuponDescuento_Insert(tbCuponDescuento.suc_Id, tbCuponDescuento.cdto_FechaEmision, 
                                                      tbCuponDescuento.cdto_FechaVencimiento, tbCuponDescuento.cdto_PorcentajeDescuento,
@@ -60,7 +60,7 @@ namespace ERP_GMEDINA.Controllers
                                                      tbCuponDescuento.cdto_Redimido, tbCuponDescuento.cdto_FechaRedencion, tbCuponDescuento.cdto_Anulado,tbCuponDescuento.cdto_EsImpreso );
                     foreach (UDP_Vent_tbCuponDescuento_Insert_Result CuponDescuento in list)
                         MensajeError = CuponDescuento.MensajeError;
-                    if (MensajeError == -1)
+                    if (MensajeError == "-1")
                     {
                     }
                     else
@@ -101,7 +101,7 @@ namespace ERP_GMEDINA.Controllers
             {
                 try
                 {
-                    var MensajeError = 0;
+                    var MensajeError = "";
                     IEnumerable<object> list = null;
                     list = db.UDP_Vent_tbCuponDescuento_Update(tbCuponDescuento.cdto_ID,
                         tbCuponDescuento.suc_Id, 
@@ -119,7 +119,7 @@ namespace ERP_GMEDINA.Controllers
                         tbCuponDescuento.cdto_FechaCrea);
                     foreach (UDP_Vent_tbCuponDescuento_Update_Result CuponDescuento in list)
                         MensajeError = CuponDescuento.MensajeError;
-                    if (MensajeError == -1)
+                    if (MensajeError == "-1")
                     {
                     }
                     else
