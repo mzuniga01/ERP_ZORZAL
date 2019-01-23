@@ -92,7 +92,9 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.mnda_Id, new { @class = "control-label col-md-2" })
                                 <div class="col-md-3">
-                                    @Html.DropDownList("mnda_Id", @*String.Empty*@null, "Seleccione la Moneda", new { @class = "form-control" })
+                                    @Html.DropDownList("mnda_Id", @*String.Empty*@ null, "Seleccione la Moneda", new { @class = "form-control" })                                  
+                                  
+           
                                     @Html.ValidationMessageFor(model => model.mnda_Id, "", new { style = "Color:red" })
                                 </div>
 
@@ -143,12 +145,56 @@
                                     <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#Anular">
                                         Anular
                                     </button>
-                                    <div class="col-md-offset-10">
+                                    @*<div class="col-md-offset-10">
                                         <button id="AñadirDenominacion" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalAgregarDetalle" data-backdrop="static" data-keyboard="false"><span>Agregar Denominación</span></button>
+                                    </div>*@
+                                </div>
+                            </div>
+                            
+                            @Html.Partial("_IndexEditSolicitudEfectivoDetalle", Model.tbSolicitudEfectivoDetalle)
+
+
+                            <h4 style="color:dodgerblue">Solcitar Denominación</h4>
+
+                            <div class="table table-responsive">
+                                <table class="table table-bordered" id="example1">
+
+                                    <thead>
+
+                                        <tr>
+
+                                            <th>
+                                                Denominación
+                                            </th>
+                                            <th>
+                                                Cantidad Solicitada
+                                            </th>
+                                            <th>
+                                                Monto Solicitado
+                                            </th>
+                                            <th>
+                                                Cantidad Entregada
+                                            </th>
+                                            <th>
+                                                Monto Entregado
+                                            </th>
+
+
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+
+                                </table>
+                                <div class="form-group">
+                                    <div class="col-md-offset-5 col-md-5">
+                                        <input type="submit" value="Solicitar" id="guardar" class="btn btn-primary" />
+
                                     </div>
                                 </div>
                             </div>
-                            @Html.Partial("_IndexEditSolicitudEfectivoDetalle", Model.tbSolicitudEfectivoDetalle)
+
+
+
                         </div>
                     }
 
@@ -181,13 +227,15 @@
                 </table>
             </div>
 
+
+
         </div>
     </div>
 </div>
 
 
 @*------------------------Modal Agreagar Detalle-------------------- *@
-<div>
+@*<div>
     <div class="modal fade" id="ModalAgregarDetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog modal-lg " role="document">
             <div class="modal-content">
@@ -199,15 +247,15 @@
                 </div>
                 <div class="modal-body" id="frmEditarMunicipios">
                     <div>
-                        @*@Html.Partial("_IndexEditSolicitudEfectivoDetalle", Model.tbSolicitudEfectivoDetalle)*@
+                        @Html.Partial("_IndexEditSolicitudEfectivoDetalle", Model.tbSolicitudEfectivoDetalle)
                         @Html.Partial("_AddDetalle", Model.tbMoneda.tbDenominacion)
                     </div>
-                    @*@Html.Partial("_CreateSolicitudEfectivoDetalle", new tbSolicitudEfectivoDetalle())*@
+                    @Html.Partial("_CreateSolicitudEfectivoDetalle", new tbSolicitudEfectivoDetalle())
                 </div>
             </div>
         </div>
     </div>
-</div>
+</div>*@
 
 
 @* -------------------Modal Anular---------------- *@
