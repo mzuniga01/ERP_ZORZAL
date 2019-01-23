@@ -443,7 +443,8 @@ namespace ERP_ZORZAL.Controllers
         {
             try
             {
-                var MensajeError = 0;
+                //var MensajeError = 0;
+                string MensajeError = "";
                 IEnumerable<object> list = null;
                 list = db.UDP_Vent_tbPedidoDetalle_Update(
                             EditPedidoDetalle.pedd_Id,
@@ -456,7 +457,7 @@ namespace ERP_ZORZAL.Controllers
 
                 foreach (UDP_Vent_tbPuntoEmisionDetalle_Update_Result PedidoDetalle in list)
                     MensajeError = PedidoDetalle.MensajeError;
-                if (MensajeError == -1)
+                if (MensajeError == "-1")
                 {
                     ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
                     return PartialView("_PedidoDetalleEditar");

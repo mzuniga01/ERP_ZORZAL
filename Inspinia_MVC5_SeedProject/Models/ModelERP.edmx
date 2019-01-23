@@ -437,6 +437,7 @@
           <Property Name="prov_FechaCrea" Type="datetime" Nullable="false" />
           <Property Name="prov_UsuarioModifica" Type="int" />
           <Property Name="prov_FechaModifica" Type="datetime" />
+          <Property Name="prov_RTN" Type="nvarchar" MaxLength="14" />
         </EntityType>
         <EntityType Name="tbSalida">
           <Key>
@@ -9052,12 +9053,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
         <ComplexType Name="UDP_Gral_tbDenominacion_Update_Result">
           <Property Type="Int16" Name="MensajeError" Nullable="false" />
         </ComplexType>
-        <ComplexType Name="UDP_Vent_tbPuntoEmision_Insert_Result">
-          <Property Type="Int32" Name="MensajeError" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="UDP_Vent_tbPuntoEmisionDetalle_Insert_Result">
-          <Property Type="Int32" Name="MensajeError" Nullable="false" />
-        </ComplexType>
         <ComplexType Name="UDP_Vent_tbEstadoSolicitudCredito_Update_Result">
           <Property Type="Byte" Name="MensajeError" Nullable="false" />
         </ComplexType>
@@ -9112,17 +9107,11 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
         <ComplexType Name="UDP_Vent_tbPedido_Update_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="4000" />
         </ComplexType>
-        <ComplexType Name="UDP_Vent_tbPuntoEmision_Update_Result">
-          <Property Type="Int32" Name="MensajeError" Nullable="false" />
-        </ComplexType>
         <ComplexType Name="UDP_Vent_tbNotaCredito_Insert_Result">
           <Property Type="Int16" Name="MensajeError" Nullable="false" />
         </ComplexType>
         <ComplexType Name="UDP_Vent_tbNotaCredito_Update_Result">
           <Property Type="Int16" Name="MensajeError" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="UDP_Vent_tbPuntoEmisionDetalle_Update_Result">
-          <Property Type="Int32" Name="MensajeError" Nullable="false" />
         </ComplexType>
         <ComplexType Name="UDP_Vent_tbEstadoFactura_Insert_Result">
           <Property Type="Byte" Name="MensajeError" Nullable="false" />
@@ -10263,6 +10252,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Inv_tbProveedor_prov_UsuarioCrea" FromRole="tbProveedor" ToRole="tbUsuario" />
           <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Inv_tbProveedor_prov_UsuarioModifica" FromRole="tbProveedor" ToRole="tbUsuario" />
           <NavigationProperty Name="tbEntrada" Relationship="ERP_ZORZALModel.FK_Inv_tbEntrada_tbProveedor_prov_Id" FromRole="tbProveedor" ToRole="tbEntrada" />
+          <Property Name="prov_RTN" Type="String" MaxLength="14" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tbSalida">
           <Key>
@@ -13903,6 +13893,18 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
         <ComplexType Name="UDP_Vent_tbCliente_Update_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
+        <ComplexType Name="UDP_Vent_tbPuntoEmision_Insert_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbPuntoEmision_Update_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbPuntoEmisionDetalle_Insert_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbPuntoEmisionDetalle_Update_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -15444,6 +15446,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <EntitySetMapping Name="tbProveedor">
             <EntityTypeMapping TypeName="ERP_ZORZALModel.tbProveedor">
               <MappingFragment StoreEntitySet="tbProveedor">
+                <ScalarProperty Name="prov_RTN" ColumnName="prov_RTN" />
                 <ScalarProperty Name="prov_FechaModifica" ColumnName="prov_FechaModifica" />
                 <ScalarProperty Name="prov_UsuarioModifica" ColumnName="prov_UsuarioModifica" />
                 <ScalarProperty Name="prov_FechaCrea" ColumnName="prov_FechaCrea" />

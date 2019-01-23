@@ -2496,12 +2496,6 @@
   <ComplexType Name="UDP_Gral_tbDenominacion_Update_Result">
     <Property Type="Int16" Name="MensajeError" Nullable="false" />
   </ComplexType>
-  <ComplexType Name="UDP_Vent_tbPuntoEmision_Insert_Result">
-    <Property Type="Int32" Name="MensajeError" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbPuntoEmisionDetalle_Insert_Result">
-    <Property Type="Int32" Name="MensajeError" Nullable="false" />
-  </ComplexType>
   <ComplexType Name="UDP_Vent_tbEstadoSolicitudCredito_Update_Result">
     <Property Type="Byte" Name="MensajeError" Nullable="false" />
   </ComplexType>
@@ -2556,17 +2550,11 @@
   <ComplexType Name="UDP_Vent_tbPedido_Update_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="4000" />
   </ComplexType>
-  <ComplexType Name="UDP_Vent_tbPuntoEmision_Update_Result">
-    <Property Type="Int32" Name="MensajeError" Nullable="false" />
-  </ComplexType>
   <ComplexType Name="UDP_Vent_tbNotaCredito_Insert_Result">
     <Property Type="Int16" Name="MensajeError" Nullable="false" />
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbNotaCredito_Update_Result">
     <Property Type="Int16" Name="MensajeError" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbPuntoEmisionDetalle_Update_Result">
-    <Property Type="Int32" Name="MensajeError" Nullable="false" />
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbEstadoFactura_Insert_Result">
     <Property Type="Byte" Name="MensajeError" Nullable="false" />
@@ -3707,6 +3695,7 @@
     <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Inv_tbProveedor_prov_UsuarioCrea" FromRole="tbProveedor" ToRole="tbUsuario" />
     <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Inv_tbProveedor_prov_UsuarioModifica" FromRole="tbProveedor" ToRole="tbUsuario" />
     <NavigationProperty Name="tbEntrada" Relationship="ERP_ZORZALModel.FK_Inv_tbEntrada_tbProveedor_prov_Id" FromRole="tbProveedor" ToRole="tbEntrada" />
+    <Property Name="prov_RTN" Type="String" MaxLength="14" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="tbSalida">
     <Key>
@@ -7345,6 +7334,18 @@
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbCliente_Update_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbPuntoEmision_Insert_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbPuntoEmision_Update_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbPuntoEmisionDetalle_Insert_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbPuntoEmisionDetalle_Update_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
 </Schema>

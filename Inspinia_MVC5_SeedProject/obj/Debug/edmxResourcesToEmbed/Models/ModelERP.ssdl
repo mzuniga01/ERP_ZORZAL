@@ -432,6 +432,7 @@
     <Property Name="prov_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="prov_UsuarioModifica" Type="int" />
     <Property Name="prov_FechaModifica" Type="datetime" />
+    <Property Name="prov_RTN" Type="nvarchar" MaxLength="14" />
   </EntityType>
   <EntityType Name="tbSalida">
     <Key>

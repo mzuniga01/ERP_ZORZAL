@@ -1534,6 +1534,7 @@
     <EntitySetMapping Name="tbProveedor">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbProveedor">
         <MappingFragment StoreEntitySet="tbProveedor">
+          <ScalarProperty Name="prov_RTN" ColumnName="prov_RTN" />
           <ScalarProperty Name="prov_FechaModifica" ColumnName="prov_FechaModifica" />
           <ScalarProperty Name="prov_UsuarioModifica" ColumnName="prov_UsuarioModifica" />
           <ScalarProperty Name="prov_FechaCrea" ColumnName="prov_FechaCrea" />

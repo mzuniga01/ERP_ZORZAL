@@ -65,8 +65,8 @@ namespace ERP_ZORZAL.Controllers
         public ActionResult Create([Bind(Include="pemi_NumeroCAI,tbUsuario,tbUsuario1")] tbPuntoEmision tbPuntoEmision)
         {
             var list = (List<tbPuntoEmisionDetalle>)Session["PuntoEmision"];
-            var MensajeError = 0;
-            var MensajeErrorDetalle = 0;
+            string MensajeError = "";
+            var MensajeErrorDetalle = "";
             IEnumerable<object> listPuntoEmision = null;
             IEnumerable<object> listPuntoEmisionDetalle = null;
             tbPuntoEmisionDetalle cPuntoEmisionDetalle = new tbPuntoEmisionDetalle();
@@ -87,14 +87,14 @@ namespace ERP_ZORZAL.Controllers
                             );
                         foreach (UDP_Vent_tbPuntoEmision_Insert_Result PuntoEmisionL in listPuntoEmision)
                         MensajeError = PuntoEmisionL.MensajeError;
-                        if (MensajeError == -1)
+                        if (MensajeError == "-1")
                         {
                             ModelState.AddModelError("", "No se pudo agregar el registro");
                             return View(tbPuntoEmision);
                         }
                         else
                         {
-                            if (MensajeError > 0)
+                            if (MensajeError != "-1")
                             {
                                 if (list != null)
                                 {
@@ -102,7 +102,9 @@ namespace ERP_ZORZAL.Controllers
                                     {
                                         foreach (tbPuntoEmisionDetalle Detalle in list)
                                         {
-                                            Detalle.pemi_Id = MensajeError;
+                                            var PuntoEmisionDetalle = Convert.ToInt32(MensajeError);
+                                            Detalle.pemi_Id = PuntoEmisionDetalle;
+
                                             listPuntoEmisionDetalle = db.UDP_Vent_tbPuntoEmisionDetalle_Insert(
                                                 Detalle.pemi_Id,
                                                 Detalle.dfisc_Id,
@@ -114,7 +116,7 @@ namespace ERP_ZORZAL.Controllers
                                             foreach (UDP_Vent_tbPuntoEmisionDetalle_Insert_Result SPpuntoemisiondet in listPuntoEmisionDetalle)
                                             {
                                                 MensajeErrorDetalle = SPpuntoemisiondet.MensajeError;
-                                                if (MensajeError == -1)
+                                                if (MensajeError.StartsWith("-1"))
                                                 {
                                                     ModelState.AddModelError("", "No se pudo agregar el registro detalle");
                                                     return View(tbPuntoEmision);
@@ -186,7 +188,7 @@ namespace ERP_ZORZAL.Controllers
             {
                 try
                 {
-                        var MensajeError = 0;
+                        string MensajeError = "";
                         IEnumerable<object> list = null;
                         list = db.UDP_Vent_tbPuntoEmision_Update(
                             PuntoEmision.pemi_Id,
@@ -195,7 +197,7 @@ namespace ERP_ZORZAL.Controllers
                             PuntoEmision.pemi_FechaCrea);
                         foreach (UDP_Vent_tbPuntoEmision_Update_Result puntoemision in list)
                             MensajeError = puntoemision.MensajeError;
-                        if (MensajeError == -1)
+                        if (MensajeError == "-1")
                         {
                             ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
                             return View(PuntoEmision);
@@ -289,7 +291,7 @@ namespace ERP_ZORZAL.Controllers
             
             try
                 {
-                        var MensajeError = 0;
+                        string MensajeError = "";
                         IEnumerable<object> list = null;
                         list = db.UDP_Vent_tbPuntoEmisionDetalle_Update(
                                     EditPuntoEmisionDetalle.pemid_Id,
@@ -303,7 +305,7 @@ namespace ERP_ZORZAL.Controllers
                         foreach (UDP_Vent_tbPuntoEmisionDetalle_Update_Result puntoemisiondetalle in list)
                             MensajeError = puntoemisiondetalle.MensajeError;
                             MensajeEdit = "El registro se guardó exitosamente";
-                        if (MensajeError == -1)
+                        if (MensajeError == "-1")
                         {
                             MensajeEdit = "No se pudo actualizar el registro, favor contacte al administrador.";
                             ModelState.AddModelError("", MensajeEdit);
@@ -325,7 +327,7 @@ namespace ERP_ZORZAL.Controllers
 
             try
             {
-                var MensajeError = 0;
+                string MensajeError = "";
                 IEnumerable<object> list = null;
                 list = db.UDP_Vent_tbPuntoEmisionDetalle_Insert(
                             CreatePuntoEmisionDetalle.pemi_Id,
@@ -337,7 +339,7 @@ namespace ERP_ZORZAL.Controllers
                 foreach (UDP_Vent_tbPuntoEmisionDetalle_Insert_Result puntoemisiondetalle in list)
                     MensajeError = puntoemisiondetalle.MensajeError;
                     Msj = "El registro se guardo exitosamente";
-                if (MensajeError == -1)
+                if (MensajeError == "-1")
                 {
                     Msj = "No se pudo actualizar el registro, favor contacte al administrador.";
                     ModelState.AddModelError("", Msj);
