@@ -7843,7 +7843,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <FunctionImport Name="SDP_Vent_tbPedidoDetalle_tbPedido_Select" ReturnType="Collection(ERP_ZORZALModel.SDP_Vent_tbPedidoDetalle_tbPedido_Select_Result)">
           <Parameter Name="ped_Id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Vent_tbNotaCredito_CodigoNotaCredito">
+          <FunctionImport Name="UDP_Vent_tbNotaCredito_CodigoNotaCredito" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbNotaCredito_CodigoNotaCredito_Result)">
             <Parameter Name="IDSucursal" Mode="In" Type="Int32" />
             <Parameter Name="IDCAJA" Mode="In" Type="Int16" />
           </FunctionImport>
@@ -9056,6 +9056,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="clte_MontoCredito" Mode="In" Type="Decimal" />
             <Parameter Name="clte_DiasCredito" Mode="In" Type="Int32" />
             <Parameter Name="clte_Exonerado" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbDevolucion_Filtrado_CodProducto" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDevolucion_Filtrado_CodProducto_Result)">
+            <Parameter Name="IDFACTURA" Mode="In" Type="Int32" />
+            <Parameter Name="CODIGOPRODUCTO" Mode="In" Type="String" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
@@ -14035,6 +14039,15 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
         <ComplexType Name="UDP_Vent_tbDevolucionDetalle_Update_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
+        <ComplexType Name="UDP_Vent_tbDevolucion_Filtrado_CodProducto_Result">
+          <Property Type="String" Name="DESCRIPCIONPRODUCTO" Nullable="true" MaxLength="100" />
+          <Property Type="Decimal" Name="DESCUENTOPRODUCTO" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="String" Name="CODIGOPRODUCTO" Nullable="true" MaxLength="15" />
+          <Property Type="Decimal" Name="IMPUESTOPRODUCTO" Nullable="true" Precision="5" Scale="2" />
+          <Property Type="Decimal" Name="PRECIOUNITARIO" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="CANTIDADFACTURA" Nullable="true" Precision="5" Scale="2" />
+          <Property Type="Boolean" Name="EXISTE" Nullable="true" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -14996,6 +15009,12 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbNotaCredito_CodigoNotaCredito" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbNotaCredito_CodigoNotaCredito">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbNotaCredito_CodigoNotaCredito_Result">
+                <ScalarProperty Name="CODNOTACREDITO" ColumnName="CODNOTACREDITO" />
+                <ScalarProperty Name="CAI" ColumnName="CAI" />
+              </ComplexTypeMapping>
+            </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente">
             <ResultMapping>
@@ -16412,6 +16431,19 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbCliente_Update_Result">
                 <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbDevolucion_Filtrado_CodProducto" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbDevolucion_Filtrado_CodProducto" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbDevolucion_Filtrado_CodProducto_Result">
+                <ScalarProperty Name="DESCRIPCIONPRODUCTO" ColumnName="DESCRIPCIONPRODUCTO" />
+                <ScalarProperty Name="DESCUENTOPRODUCTO" ColumnName="DESCUENTOPRODUCTO" />
+                <ScalarProperty Name="CODIGOPRODUCTO" ColumnName="CODIGOPRODUCTO" />
+                <ScalarProperty Name="IMPUESTOPRODUCTO" ColumnName="IMPUESTOPRODUCTO" />
+                <ScalarProperty Name="PRECIOUNITARIO" ColumnName="PRECIOUNITARIO" />
+                <ScalarProperty Name="CANTIDADFACTURA" ColumnName="CANTIDADFACTURA" />
+                <ScalarProperty Name="EXISTE" ColumnName="EXISTE" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

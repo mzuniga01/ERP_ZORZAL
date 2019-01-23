@@ -220,11 +220,11 @@ namespace ERP_ZORZAL.Controllers
             var list = db.UDP_Vent_tbNotaCredito_Anulado(nocreId, Anulado).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
-        //[HttpPost]
-        //public JsonResult GetCodigoNotaCredito(int CodSucursal, short CodCaja)
-        //{
-        //    var list = db.UDP_Vent_tbNotaCredito_CodigoNotaCredito(CodSucursal, CodCaja).ToString();
-        //    return Json(list, JsonRequestBehavior.AllowGet);
-        //}
+        [HttpPost]
+        public JsonResult GetCodigoNotaCredito(int CodSucursal, short CodCaja)
+        {
+            var list = db.UDP_Vent_tbNotaCredito_CodigoNotaCredito(CodSucursal, CodCaja).ToArray();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
     }
 }

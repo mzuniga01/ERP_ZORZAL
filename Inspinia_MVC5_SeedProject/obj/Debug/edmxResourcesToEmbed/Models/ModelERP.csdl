@@ -1224,7 +1224,7 @@
     <FunctionImport Name="SDP_Vent_tbPedidoDetalle_tbPedido_Select" ReturnType="Collection(ERP_ZORZALModel.SDP_Vent_tbPedidoDetalle_tbPedido_Select_Result)">
       <Parameter Name="ped_Id" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbNotaCredito_CodigoNotaCredito">
+    <FunctionImport Name="UDP_Vent_tbNotaCredito_CodigoNotaCredito" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbNotaCredito_CodigoNotaCredito_Result)">
       <Parameter Name="IDSucursal" Mode="In" Type="Int32" />
       <Parameter Name="IDCAJA" Mode="In" Type="Int16" />
     </FunctionImport>

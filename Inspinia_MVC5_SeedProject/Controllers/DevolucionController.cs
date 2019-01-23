@@ -308,12 +308,12 @@ namespace ERP_ZORZAL.Controllers
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
-        //[HttpPost]
-        //public ActionResult BuscarCodigoProducto(string CodFactura, string CodProducto)
-        //{
-        //    var list = db.UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente(IDSucursal, CodBarra, IDCliente).ToList();
-        //    return Json(list, JsonRequestBehavior.AllowGet);
-        //}
+        [HttpPost]
+        public ActionResult BuscarCodigoProducto(int CodFactura, string CodProducto)
+        {
+            var list = db.UDP_Vent_tbDevolucion_Filtrado_CodProducto(CodFactura, CodProducto).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
 
         [HttpPost]
         public JsonResult FiltrarModal(string CodCliente)

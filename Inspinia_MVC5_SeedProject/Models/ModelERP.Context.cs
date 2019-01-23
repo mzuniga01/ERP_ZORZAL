@@ -4414,7 +4414,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_Vent_tbPedidoDetalle_tbPedido_Select_Result>("SDP_Vent_tbPedidoDetalle_tbPedido_Select", ped_IdParameter);
         }
     
-        public virtual int UDP_Vent_tbNotaCredito_CodigoNotaCredito(Nullable<int> iDSucursal, Nullable<short> iDCAJA)
+        public virtual ObjectResult<UDP_Vent_tbNotaCredito_CodigoNotaCredito_Result> UDP_Vent_tbNotaCredito_CodigoNotaCredito(Nullable<int> iDSucursal, Nullable<short> iDCAJA)
         {
             var iDSucursalParameter = iDSucursal.HasValue ?
                 new ObjectParameter("IDSucursal", iDSucursal) :
@@ -4424,7 +4424,7 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("IDCAJA", iDCAJA) :
                 new ObjectParameter("IDCAJA", typeof(short));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_Vent_tbNotaCredito_CodigoNotaCredito", iDSucursalParameter, iDCAJAParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbNotaCredito_CodigoNotaCredito_Result>("UDP_Vent_tbNotaCredito_CodigoNotaCredito", iDSucursalParameter, iDCAJAParameter);
         }
     
         public virtual ObjectResult<UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente_Result> UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente(Nullable<int> iDSUCURSAL, string cODIGOBARRAS, Nullable<int> iDCLIENTE)
@@ -5371,6 +5371,19 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("clte_Exonerado", typeof(bool));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbCliente_Update_Result>("UDP_Vent_tbCliente_Update", clte_IdParameter, tpi_IdParameter, clte_IdentificacionParameter, clte_EsPersonaNaturalParameter, clte_NombresParameter, clte_ApellidosParameter, clte_FechaNacimientoParameter, clte_NacionalidadParameter, clte_SexoParameter, clte_TelefonoParameter, clte_NombreComercialParameter, clte_RazonSocialParameter, clte_ContactoNombreParameter, clte_ContactoEmailParameter, clte_ContactoTelefonoParameter, clte_FechaConstitucionParameter, mun_CodigoParameter, clte_DireccionParameter, clte_CorreoElectronicoParameter, clte_EsActivoParameter, clte_RazonInactivoParameter, clte_ConCreditoParameter, clte_EsMinoristaParameter, clte_ObservacionesParameter, clte_UsuarioCreaParameter, clte_FechaCreaParameter, clte_MontoCreditoParameter, clte_DiasCreditoParameter, clte_ExoneradoParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbDevolucion_Filtrado_CodProducto_Result> UDP_Vent_tbDevolucion_Filtrado_CodProducto(Nullable<int> iDFACTURA, string cODIGOPRODUCTO)
+        {
+            var iDFACTURAParameter = iDFACTURA.HasValue ?
+                new ObjectParameter("IDFACTURA", iDFACTURA) :
+                new ObjectParameter("IDFACTURA", typeof(int));
+    
+            var cODIGOPRODUCTOParameter = cODIGOPRODUCTO != null ?
+                new ObjectParameter("CODIGOPRODUCTO", cODIGOPRODUCTO) :
+                new ObjectParameter("CODIGOPRODUCTO", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbDevolucion_Filtrado_CodProducto_Result>("UDP_Vent_tbDevolucion_Filtrado_CodProducto", iDFACTURAParameter, cODIGOPRODUCTOParameter);
         }
     }
 }
