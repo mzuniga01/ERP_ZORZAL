@@ -217,6 +217,7 @@ namespace ERP_ZORZAL.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             tbDevolucion tbDevolucion = db.tbDevolucion.Find(id);
+            tbDevolucionDetalle tbDevolucionDetalle = new tbDevolucionDetalle();
             if (tbDevolucion == null)
             {
                 return HttpNotFound();
@@ -225,6 +226,12 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.dev_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbDevolucion.dev_UsuarioModifica);
             ViewBag.cja_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion", tbDevolucion.cja_Id);
             ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo", tbDevolucion.fact_Id);
+
+            Session["ID"] = tbDevolucion.dev_Id;
+            Session["FECHA"] = tbDevolucion.dev_Fecha;
+            Session["RTNCLIENTE"] = tbDevolucion.tbFactura.clte_Identificacion;
+            Session["NOMBRE"] = tbDevolucion.tbFactura.clte_Nombres;
+            Session["MONTO"] = tbDevolucionDetalle.devd_Monto;
             return View(tbDevolucion);
         }
 
@@ -356,11 +363,53 @@ namespace ERP_ZORZAL.Controllers
             //return Json(list);
         }
 
+        public ActionResult EmitirNotaCredito(tbDevolucion Devolucion)
+        {
+            Session["IDDEVOLUCION"] = Session["ID"];
+            Session["FECHADEV"] = Session["FECHA"];
+            Session["RTN"] = Session["RTNCLIENTE"];
+            Session["NOMBRECLIENTE"] = Session["NOMBRE"];
+            Session["MONTODEV"] = Session["MONTO"];
+            return RedirectToAction("CreateNotaCredito", "Devolucion");
+        }
+
+
         public ActionResult CreateNotaCredito()
         {
+            if (Session["IDDEVOLUCION"] == null)
+            {
+                ViewBag.IdDev = 0;
+                ViewBag.fechaDev = "";
+                ViewBag.Identificacion = "";
+                ViewBag.Nombres = "";
+                ViewBag.montodev = 0;
+                Session["PEDIDO"] = 0;
+            }
+            else
+            {
+                int? id = (int)Session["IDDEVOLUCION"];
+                ViewBag.IdDev = id;
+                DateTime? fechad = (DateTime)Session["FECHADEV"];
+                ViewBag.fechaDev = fechad;
+                string identificacion = (string)Session["RTN"];
+                ViewBag.Identificacion = identificacion;
+                string nombres = (string)Session["NOMBRECLIENTE"];
+                ViewBag.Nombres = nombres;
+                //int montod = (Int32)Session["MONTODEV"];
+                //ViewBag.montodev = montod;
+            }
+
             ViewBag.dev_Id = new SelectList(db.tbDevolucion, "dev_Id", "dev_Id");
             ViewBag.Devolucion = db.tbDevolucionDetalle.ToList();
             ViewBag.Cliente = db.tbCliente.ToList();
+
+          
+            Session["IDDEVOLUCION"] = null;
+            Session["FECHADEV"] = null;
+            Session["RTN"] = null;
+            Session["NOMBRECLIENTE"] = null;
+            Session["MONTODEV"] = null;
+
             return View();
         }
 
@@ -368,7 +417,7 @@ namespace ERP_ZORZAL.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CreateNotaCredito([Bind(Include = "nocre_Id,nocre_Codigo,dev_Id,clte_Id,suc_Id,nocre_Anulado,nocre_FechaEmision,nocre_MotivoEmision,nocre_Monto,,nocre_Redimido,nocre_FechaRedimido,nocre_EsImpreso,nocre_UsuarioCrea,nocre_FechaCrea,nocre_UsuarioModifica,nocre_FechaModifica")] tbNotaCredito tbNotaCredito)
         {
-            if (ModelState.IsValid)
+                if (ModelState.IsValid)
 
             {
                 try

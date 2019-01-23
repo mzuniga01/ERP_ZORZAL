@@ -50,40 +50,21 @@
                                 </div>
                             </div>
 
-                            @*Check box*@
-                            <div class="form-group">
-                                <label class = "control-label col-md-2">Por Devolución</label>
-                                <div class="col-md-1">
-                                    <input type="radio" id="radioBtnDev" name="devolucion" click="check()" checked/>
-                                </div>
-                                <label class="control-label col-md-2">Otros</label>
-                                <div class="col-md-1">
-                                    <input type="radio" id="radioBtn" name="otros" click="check()"/>
-                                </div>
-                            </div>
-
-                            @*FIN Check box*@
 
                             <div class="form-group" id="divDevolucion">
                                 @Html.LabelFor(model => model.dev_Id, "Devolución", new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.dev_Id, new { htmlAttributes = new { @readonly = "readonly" } })
+                                    <input id="dev_Id" type="text" name="dev_Id" value="@ViewBag.IdDev" class="form-control " readonly />
                                     <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.dev_Id)</span></p>
                                 </div>
-                                <div class="col-md-">
-                                    <button type="button" id="buscarDev" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarDevolucion"><span class="glyphicon glyphicon-search"></span></button>
-                                </div>
-                            </div>
+                               </div>
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.tbCliente.clte_Identificacion, "Identificación Cliente", new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.tbCliente.clte_Identificacion, new { htmlAttributes = new { @readonly="readonly"} })
+                                    <input id="tbCliente_clte_Identificacion" type="text" name="tbCliente_clte_Identificacion" value="@ViewBag.Identificacion" class="form-control " readonly />
+                                    @*@Html.EditorFor(model => model.tbCliente.clte_Identificacion, new { htmlAttributes = new { @readonly="readonly"} })*@
                                     <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.tbCliente.clte_Identificacion)</span></p>
-                                </div>
-
-                                <div class="col-md-">
-                                    <button type="button" disabled id="cltesearch" class="btn btn-primary"  data-toggle="modal" data-target="#ModalAgregarCliente"><span class="glyphicon glyphicon-search"></span></button>
                                 </div>
                             </div>
 
