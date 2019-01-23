@@ -66,7 +66,7 @@ namespace ERP_ZORZAL.Controllers
                 {
                     IEnumerable<object> List = null;
                     var MsjError = "";
-                    List = db.UDP_Inv_tbProveedor_Insert(tbProveedor.prov_Nombre,tbProveedor.prov_NombreContacto,tbProveedor.prov_Direccion,tbProveedor.prov_Email,tbProveedor.prov_Telefono);
+                    List = db.UDP_Inv_tbProveedor_Insert(tbProveedor.prov_Nombre,tbProveedor.prov_NombreContacto,tbProveedor.prov_Direccion,tbProveedor.prov_Email,tbProveedor.prov_Telefono,tbProveedor.prov_RTN);
                     foreach (UDP_Inv_tbProveedor_Insert_Result Proveedor in List)
                         MsjError = Proveedor.MensajeError;
 

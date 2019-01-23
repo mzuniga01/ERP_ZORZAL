@@ -691,6 +691,9 @@
     <Compile Include="Models\UDP_Inv_tbInventarioFisico_Insert_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UDP_Inv_tbInventarioFisico_ListaProductos_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UDP_Inv_tbInventarioFisico_Update_Estado_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>

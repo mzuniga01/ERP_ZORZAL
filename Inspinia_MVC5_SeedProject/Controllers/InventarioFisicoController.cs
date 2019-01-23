@@ -70,6 +70,13 @@ namespace Inspinia_MVC5_SeedProject.Controllers
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
+        public JsonResult ProductosBodega(tbBodegaDetalle productos)
+        {
+            var list = db.UDP_Inv_tbInventarioFisico_ListaProductos(productos.bod_Id).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
         // GET: /InventarioFisico/Create
         public ActionResult Create()
         {
@@ -219,8 +226,8 @@ namespace Inspinia_MVC5_SeedProject.Controllers
                 Session["tbInventarioFisicoDetalle"] = sessionInventarioFisicoDetalle;
             }
             else
-            { 
-                    list.Add(invfd);
+            {
+                list.Add(invfd);
                     Session["tbInventarioFisicoDetalle"] = list;
             }
             return Json("Exito", JsonRequestBehavior.AllowGet);
@@ -293,25 +300,24 @@ namespace Inspinia_MVC5_SeedProject.Controllers
                                                                                                invd.invfd_CantidadSistema,
                                                                                                invd.uni_Id);
                                         foreach (UDP_Inv_tbInventarioFisicoDetalle_Insert_Result inv_detalle in Detalle)
-                                            MsjError = inv_detalle.MensajeError;
+                                        //    MsjError = inv_detalle.MensajeError;
 
-                                        if (MsjError == "-1")
+                                        //if (MsjError == "-1")
                                         {
                                             ModelState.AddModelError("", "No se Actualizó el Registro");
-                                            ViewBag.bodegas = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbInventarioFisico.bod_Id);
-                                            this.listas();
-                                            return View(tbInventarioFisico);
-                                        }
-                                        else
-                                        {
-                                            _Tran.Complete();
-                                            return RedirectToAction("Index");
+                                        //    ViewBag.bodegas = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbInventarioFisico.bod_Id);
+                                        //    this.listas();
+                                        //    return View(tbInventarioFisico);
+                                        //}
+                                        //else
+                                        //{
+                                        //    _Tran.Complete();
+                                        //    return RedirectToAction("Index");
                                         }
                                     }
                                 }
                             }
-
-                            else
+                            //else
                             {
                                 _Tran.Complete();
                                 return RedirectToAction("Index");

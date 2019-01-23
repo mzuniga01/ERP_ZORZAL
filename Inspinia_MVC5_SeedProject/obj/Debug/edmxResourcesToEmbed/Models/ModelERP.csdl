@@ -166,6 +166,7 @@
       <Parameter Name="prov_Direccion" Mode="In" Type="String" />
       <Parameter Name="prov_Email" Mode="In" Type="String" />
       <Parameter Name="prov_Telefono" Mode="In" Type="String" />
+      <Parameter Name="prov_RTN" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="UDP_Inv_tbProveedor_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProveedor_Update_Result)">
       <Parameter Name="prov_Id" Mode="In" Type="Int32" />
@@ -1581,6 +1582,9 @@
       <End Role="tbEntrada" EntitySet="tbEntrada" />
       <End Role="tbEntradaDetalle" EntitySet="tbEntradaDetalle" />
     </AssociationSet>
+    <FunctionImport Name="UDP_Inv_tbInventarioFisico_ListaProductos" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbInventarioFisico_ListaProductos_Result)">
+      <Parameter Name="bod_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -2773,7 +2777,7 @@
     <Property Name="clte_UsuarioModifica" Type="Int32" />
     <Property Name="clte_FechaModifica" Type="DateTime" Precision="3" />
     <Property Name="clte_MontoCredito" Type="Decimal" Precision="10" Scale="2" />
-    <Property Name="clte_DiasCredito" Type="Int32" />
+    <Property Name="clte_DiasCredito" Type="Int32" Nullable="false" />
     <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Vent_tbUsuario_tbCliente_usu_Id_Crea" FromRole="tbCliente" ToRole="tbUsuario" />
     <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Vent_tbUsuario_tbCliente_usu_Id_Modifica" FromRole="tbCliente" ToRole="tbUsuario" />
     <NavigationProperty Name="tbMunicipio" Relationship="ERP_ZORZALModel.FK_Vent_tbMunicipio_tbCliente_mun_Codigo" FromRole="tbCliente" ToRole="tbMunicipio" />
@@ -2784,6 +2788,7 @@
     <NavigationProperty Name="tbPedido" Relationship="ERP_ZORZALModel.FK_Vent_tbCliente_tbPedido_clte_id" FromRole="tbCliente" ToRole="tbPedido" />
     <NavigationProperty Name="tbNotaCredito" Relationship="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbCliente_clte_Id" FromRole="tbCliente" ToRole="tbNotaCredito" />
     <NavigationProperty Name="tbSolicitudCredito" Relationship="ERP_ZORZALModel.FK_Vent_tbSolicitudCredito_tbCliente_clte_Id" FromRole="tbCliente" ToRole="tbSolicitudCredito" />
+    <Property Name="clte_Exonerado" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="tbCuponDescuento">
     <Key>
@@ -6158,5 +6163,13 @@
   </ComplexType>
   <ComplexType Name="UDP_Inv_tbEntrada_Update_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Inv_tbInventarioFisico_ListaProductos_Result">
+    <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="prod_Descripcion" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="prod_Marca" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="prod_CodigoBarras" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="prod_Modelo" Nullable="false" MaxLength="25" />
+    <Property Type="Int32" Name="uni_Id" Nullable="false" />
   </ComplexType>
 </Schema>

@@ -20,16 +20,16 @@
                 </div>
                 <div class="ibox-content">
 
-                    <table class="table table-striped" >
+                    <table class="table table-striped" id="InvDetalle">
                             <tr>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.prod_Codigo)
+                                    @Html.DisplayNameFor(model => model.tbProducto.prod_CodigoBarras)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.tbProducto.prod_Descripcion)
+                                    Descripcion del Producto
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.tbUnidadMedida.uni_Descripcion)
+                                   Unidad de Medida
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.invfd_CantidadSistema)
@@ -46,7 +46,7 @@
                             {
                                 <tr>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.prod_Codigo)
+                                        @Html.DisplayFor(modelItem => item.tbProducto.prod_CodigoBarras)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)

@@ -669,7 +669,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbEstadoMovimiento_Update_Result>("UDP_Inv_tbEstadoMovimiento_Update", estm_IdParameter, estm_DescripcionParameter, estm_UsuarioCreaParameter, estm_FechaCreaParameter);
         }
     
-        public virtual ObjectResult<UDP_Inv_tbProveedor_Insert_Result> UDP_Inv_tbProveedor_Insert(string prov_Nombre, string prov_NombreContacto, string prov_Direccion, string prov_Email, string prov_Telefono)
+        public virtual ObjectResult<UDP_Inv_tbProveedor_Insert_Result> UDP_Inv_tbProveedor_Insert(string prov_Nombre, string prov_NombreContacto, string prov_Direccion, string prov_Email, string prov_Telefono, string prov_RTN)
         {
             var prov_NombreParameter = prov_Nombre != null ?
                 new ObjectParameter("prov_Nombre", prov_Nombre) :
@@ -691,7 +691,11 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("prov_Telefono", prov_Telefono) :
                 new ObjectParameter("prov_Telefono", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbProveedor_Insert_Result>("UDP_Inv_tbProveedor_Insert", prov_NombreParameter, prov_NombreContactoParameter, prov_DireccionParameter, prov_EmailParameter, prov_TelefonoParameter);
+            var prov_RTNParameter = prov_RTN != null ?
+                new ObjectParameter("prov_RTN", prov_RTN) :
+                new ObjectParameter("prov_RTN", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbProveedor_Insert_Result>("UDP_Inv_tbProveedor_Insert", prov_NombreParameter, prov_NombreContactoParameter, prov_DireccionParameter, prov_EmailParameter, prov_TelefonoParameter, prov_RTNParameter);
         }
     
         public virtual ObjectResult<UDP_Inv_tbProveedor_Update_Result> UDP_Inv_tbProveedor_Update(Nullable<int> prov_Id, string prov_Nombre, string prov_NombreContacto, string prov_Direccion, string prov_Email, string prov_Telefono, Nullable<int> prov_UsuarioCrea, Nullable<System.DateTime> prov_FechaCrea)
@@ -2310,6 +2314,15 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("ent_FechaCrea", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbEntrada_Update_Result>("UDP_Inv_tbEntrada_Update", ent_IdParameter, ent_NumeroFormatoParameter, ent_FechaElaboracionParameter, bod_IdParameter, prov_IdParameter, ent_FacturaCompraParameter, ent_FechaCompraParameter, fact_IdParameter, ent_RazonDevolucionParameter, ent_BodegaDestinoParameter, tent_IdParameter, ent_UsuarioCreaParameter, ent_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Inv_tbInventarioFisico_ListaProductos_Result> UDP_Inv_tbInventarioFisico_ListaProductos(Nullable<int> bod_Id)
+        {
+            var bod_IdParameter = bod_Id.HasValue ?
+                new ObjectParameter("bod_Id", bod_Id) :
+                new ObjectParameter("bod_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbInventarioFisico_ListaProductos_Result>("UDP_Inv_tbInventarioFisico_ListaProductos", bod_IdParameter);
         }
     }
 }

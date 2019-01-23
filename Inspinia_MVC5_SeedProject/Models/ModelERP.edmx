@@ -549,7 +549,8 @@
           <Property Name="clte_UsuarioModifica" Type="int" />
           <Property Name="clte_FechaModifica" Type="datetime" />
           <Property Name="clte_MontoCredito" Type="decimal" Precision="10" Scale="2" />
-          <Property Name="clte_DiasCredito" Type="int" />
+          <Property Name="clte_DiasCredito" Type="int" Nullable="false" />
+          <Property Name="clte_Exonerado" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="tbCuponDescuento">
           <Key>
@@ -3308,6 +3309,18 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Vent_tbMunicipio_tbCliente_mun_Codigo">
+          <End Role="tbMunicipio" Type="Self.tbMunicipio" Multiplicity="1" />
+          <End Role="tbCliente" Type="Self.tbCliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbMunicipio">
+              <PropertyRef Name="mun_Codigo" />
+            </Principal>
+            <Dependent Role="tbCliente">
+              <PropertyRef Name="mun_Codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Vent_tbMunicipio_tbSucursal_mun_Codigo">
           <End Role="tbMunicipio" Type="Self.tbMunicipio" Multiplicity="1" />
           <End Role="tbSucursal" Type="Self.tbSucursal" Multiplicity="*" />
@@ -3572,6 +3585,18 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Vent_tbTipoIdentificacion_tbCliente_tpi_Id">
+          <End Role="tbTipoIdentificacion" Type="Self.tbTipoIdentificacion" Multiplicity="1" />
+          <End Role="tbCliente" Type="Self.tbCliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbTipoIdentificacion">
+              <PropertyRef Name="tpi_Id" />
+            </Principal>
+            <Dependent Role="tbCliente">
+              <PropertyRef Name="tpi_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Vent_tbTipoPago_tbPago_tpa_Id">
           <End Role="tbTipoPago" Type="Self.tbTipoPago" Multiplicity="1" />
           <End Role="tbPago" Type="Self.tbPago" Multiplicity="*" />
@@ -3593,6 +3618,30 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
             </Principal>
             <Dependent Role="tbPagosArqueo">
               <PropertyRef Name="tpa_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vent_tbUsuario_tbCliente_usu_Id_Crea">
+          <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+          <End Role="tbCliente" Type="Self.tbCliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbCliente">
+              <PropertyRef Name="clte_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vent_tbUsuario_tbCliente_usu_Id_Modifica">
+          <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+          <End Role="tbCliente" Type="Self.tbCliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbCliente">
+              <PropertyRef Name="clte_UsuarioModifica" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -4025,6 +4074,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
           <Parameter Name="estif_Id" Type="tinyint" Mode="In" />
           <Parameter Name="invf_FechaInventario" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="UDP_Inv_tbInventarioFisico_ListaProductos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+          <Parameter Name="bod_Id" Type="int" Mode="In" />
+        </Function>
         <Function Name="UDP_Inv_tbInventarioFisico_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="invf_Id" Type="int" Mode="In" />
           <Parameter Name="invf_Descripcion" Type="varchar" Mode="In" />
@@ -4125,6 +4177,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
           <Parameter Name="prov_Direccion" Type="varchar" Mode="In" />
           <Parameter Name="prov_Email" Type="nvarchar" Mode="In" />
           <Parameter Name="prov_Telefono" Type="nvarchar" Mode="In" />
+          <Parameter Name="prov_RTN" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="UDP_Inv_tbProveedor_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="prov_Id" Type="int" Mode="In" />
@@ -5070,6 +5123,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
             <End Role="tbMovimientoCaja" EntitySet="tbMovimientoCaja" />
             <End Role="tbSolicitudEfectivo" EntitySet="tbSolicitudEfectivo" />
           </AssociationSet>
+          <AssociationSet Name="FK_Vent_tbMunicipio_tbCliente_mun_Codigo" Association="Self.FK_Vent_tbMunicipio_tbCliente_mun_Codigo">
+            <End Role="tbMunicipio" EntitySet="tbMunicipio" />
+            <End Role="tbCliente" EntitySet="tbCliente" />
+          </AssociationSet>
           <AssociationSet Name="FK_Vent_tbMunicipio_tbSucursal_mun_Codigo" Association="Self.FK_Vent_tbMunicipio_tbSucursal_mun_Codigo">
             <End Role="tbMunicipio" EntitySet="tbMunicipio" />
             <End Role="tbSucursal" EntitySet="tbSucursal" />
@@ -5158,6 +5215,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
             <End Role="tbSucursal" EntitySet="tbSucursal" />
             <End Role="tbPedido" EntitySet="tbPedido" />
           </AssociationSet>
+          <AssociationSet Name="FK_Vent_tbTipoIdentificacion_tbCliente_tpi_Id" Association="Self.FK_Vent_tbTipoIdentificacion_tbCliente_tpi_Id">
+            <End Role="tbTipoIdentificacion" EntitySet="tbTipoIdentificacion" />
+            <End Role="tbCliente" EntitySet="tbCliente" />
+          </AssociationSet>
           <AssociationSet Name="FK_Vent_tbTipoPago_tbPago_tpa_Id" Association="Self.FK_Vent_tbTipoPago_tbPago_tpa_Id">
             <End Role="tbTipoPago" EntitySet="tbTipoPago" />
             <End Role="tbPago" EntitySet="tbPago" />
@@ -5165,6 +5226,14 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
           <AssociationSet Name="FK_Vent_tbTipoPago_tbPagosArqueo_tpa_Id" Association="Self.FK_Vent_tbTipoPago_tbPagosArqueo_tpa_Id">
             <End Role="tbTipoPago" EntitySet="tbTipoPago" />
             <End Role="tbPagosArqueo" EntitySet="tbPagosArqueo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vent_tbUsuario_tbCliente_usu_Id_Crea" Association="Self.FK_Vent_tbUsuario_tbCliente_usu_Id_Crea">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbCliente" EntitySet="tbCliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vent_tbUsuario_tbCliente_usu_Id_Modifica" Association="Self.FK_Vent_tbUsuario_tbCliente_usu_Id_Modifica">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbCliente" EntitySet="tbCliente" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -5337,6 +5406,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
             <Parameter Name="prov_Direccion" Mode="In" Type="String" />
             <Parameter Name="prov_Email" Mode="In" Type="String" />
             <Parameter Name="prov_Telefono" Mode="In" Type="String" />
+            <Parameter Name="prov_RTN" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="UDP_Inv_tbProveedor_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProveedor_Update_Result)">
             <Parameter Name="prov_Id" Mode="In" Type="Int32" />
@@ -6752,6 +6822,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
             <End Role="tbEntrada" EntitySet="tbEntrada" />
             <End Role="tbEntradaDetalle" EntitySet="tbEntradaDetalle" />
           </AssociationSet>
+          <FunctionImport Name="UDP_Inv_tbInventarioFisico_ListaProductos" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbInventarioFisico_ListaProductos_Result)">
+            <Parameter Name="bod_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
           <Key>
@@ -7944,7 +8017,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
           <Property Name="clte_UsuarioModifica" Type="Int32" />
           <Property Name="clte_FechaModifica" Type="DateTime" Precision="3" />
           <Property Name="clte_MontoCredito" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="clte_DiasCredito" Type="Int32" />
+          <Property Name="clte_DiasCredito" Type="Int32" Nullable="false" />
           <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Vent_tbUsuario_tbCliente_usu_Id_Crea" FromRole="tbCliente" ToRole="tbUsuario" />
           <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Vent_tbUsuario_tbCliente_usu_Id_Modifica" FromRole="tbCliente" ToRole="tbUsuario" />
           <NavigationProperty Name="tbMunicipio" Relationship="ERP_ZORZALModel.FK_Vent_tbMunicipio_tbCliente_mun_Codigo" FromRole="tbCliente" ToRole="tbMunicipio" />
@@ -7955,6 +8028,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
           <NavigationProperty Name="tbPedido" Relationship="ERP_ZORZALModel.FK_Vent_tbCliente_tbPedido_clte_id" FromRole="tbCliente" ToRole="tbPedido" />
           <NavigationProperty Name="tbNotaCredito" Relationship="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbCliente_clte_Id" FromRole="tbCliente" ToRole="tbNotaCredito" />
           <NavigationProperty Name="tbSolicitudCredito" Relationship="ERP_ZORZALModel.FK_Vent_tbSolicitudCredito_tbCliente_clte_Id" FromRole="tbCliente" ToRole="tbSolicitudCredito" />
+          <Property Name="clte_Exonerado" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="tbCuponDescuento">
           <Key>
@@ -11330,6 +11404,14 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
         <ComplexType Name="UDP_Inv_tbEntrada_Update_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
+        <ComplexType Name="UDP_Inv_tbInventarioFisico_ListaProductos_Result">
+          <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="prod_Descripcion" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="prod_Marca" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="prod_CodigoBarras" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="prod_Modelo" Nullable="false" MaxLength="25" />
+          <Property Type="Int32" Name="uni_Id" Nullable="false" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -12619,6 +12701,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
           <EntitySetMapping Name="tbCliente">
             <EntityTypeMapping TypeName="ERP_ZORZALModel.tbCliente">
               <MappingFragment StoreEntitySet="tbCliente">
+                <ScalarProperty Name="clte_Exonerado" ColumnName="clte_Exonerado" />
                 <ScalarProperty Name="clte_DiasCredito" ColumnName="clte_DiasCredito" />
                 <ScalarProperty Name="clte_MontoCredito" ColumnName="clte_MontoCredito" />
                 <ScalarProperty Name="clte_FechaModifica" ColumnName="clte_FechaModifica" />
@@ -13278,6 +13361,18 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbInventarioFisico_ListaProductos" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbInventarioFisico_ListaProductos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbInventarioFisico_ListaProductos_Result">
+                <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+                <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
+                <ScalarProperty Name="prod_Marca" ColumnName="prod_Marca" />
+                <ScalarProperty Name="prod_CodigoBarras" ColumnName="prod_CodigoBarras" />
+                <ScalarProperty Name="prod_Modelo" ColumnName="prod_Modelo" />
+                <ScalarProperty Name="uni_Id" ColumnName="uni_Id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

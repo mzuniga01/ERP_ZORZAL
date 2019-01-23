@@ -5,6 +5,7 @@ var contador = 0;
 $('#AgregarInvFisicoDetalle').click(function () {
     var producto = $("#prod_Codigo").val();
     var barras = $("#prod_CodigoBarras").val();
+    var Descripcion = $("#prod_Descripcion").val();
     var UnidadMedida = $("#uni_Id").val();
     var uni = $('#uni_Ids').val();
     var cantidadfisica = $("#invfd_Cantidad").val();
@@ -39,6 +40,7 @@ $('#AgregarInvFisicoDetalle').click(function () {
         contador = contador + 1;
         copiar = "<tr data-id=" + contador + ">";
         copiar += "<td id = 'producto'>" + $('#prod_CodigoBarras').val() + "</td>";
+        copiar += "<td id = 'Descripcion'>" + $('#prod_Descripcion').val() + "</td>";
         copiar += "<td id = 'UnidadMedida'>" + $('#uni_Id').val() + "</td>";
         copiar += "<td id = 'cantidadfisica'>" + $('#invfd_Cantidad').val() + "</td>";
         copiar += "<td id = 'cantidadsistema'>" + $('#invfd_CantidadSistema').val() + "</td>";
@@ -57,7 +59,6 @@ $('#AgregarInvFisicoDetalle').click(function () {
             data: JSON.stringify({ invfd: InventarioFisicoDetalle }),
         })
         .done(function (data) {
-        
             $('#prod_CodigoBarras').val('');
             $('#invfd_CantidadSistema').val('');
             $('#prod_Descripcion').val('');
@@ -300,10 +301,10 @@ $("#submit").click(function () {
 
 //Encargado de Bodega
 $(document).change("#bod_Id", function () {
-    var responsable = $('#bod_Id').val();
-    console.log(responsable);
     GetResponsableBodega();
+    $("#BuscarProducto tr>td").remove();
 });
+
 
 function GetResponsableBodega() {
     var invf_responsable = $('#bod_Id').val();
@@ -350,16 +351,11 @@ function seleccionar(prod_Codigo) {
                 if (data.length > 0) {
                     $('#invfd_CantidadSistema').val(val.bodd_CantidadExistente);
                 } else {
-                    $("#dialog").dialog({
-                        modal: true
-                          
-                        
-                    });
                     $('#prod_CodigoBarras').val('');
                     $('#invfd_CantidadSistema').val('');
                     $('#prod_Descripcion').val('');
                     $('#uni_Id').val('');
-                    $('#invfd_Cantidad').val(1);
+                    $('#invfd_Cantidad').val('1');
                 }
             });
             $('#invfd_CantidadSistema').trigger("chosen:updated");
@@ -369,15 +365,11 @@ function seleccionar(prod_Codigo) {
             if (data.length > 0) {
                 $('#invfd_CantidadSistema').val(val.bodd_CantidadExistente);
             } else {
-                $("#dialog").dialog({
-                    modal: true
-                      
-                });
                 $('#prod_CodigoBarras').val('');
                 $('#invfd_CantidadSistema').val('');
                 $('#prod_Descripcion').val('');
                 $('#uni_Id').val('');
-                $('#invfd_Cantidad').val(1);
+                $('#invfd_Cantidad').val('1');
             }
        
         }
@@ -393,10 +385,143 @@ function GetCantidadExistente() {
 }
 
 
+//Productos Por Bodega
+$(document).change("#bod_Id", function () {
+    productos();
+});
+
+function productos() {
+    var bodega = $("#bod_Id").val();
+    var guardar = {
+        bod_Id: bodega
+    };
+    $.ajax({
+        url: "/InventarioFisico/ProductosBodega",
+        method: "POST",
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({ productos: guardar }),
+    }).done(function (data) {
+        $.each(data, function (i, copiar) {
+            i = "<tr tr data-id=" + copiar.prod_Codigo + " , tr data-content=" + copiar.prod_Descripcion + " tr data-delay=" + copiar.prod_CodigoBarras + " , tr data-keyboard=" + copiar.prod_Modelo + " , tr data-container=" + copiar.uni_Id + " >";
+            i += "<td id ='prod_Codigo' hidden='hidden'>" + copiar.prod_Codigo + "</td>";
+            i += "<td id = 'prod_Descripcion'>" + copiar.prod_Descripcion + "</td>";
+            i += "<td id = 'prod_Marca'>" + copiar.prod_Marca + "</td>";
+            i += "<td id = 'prod_CodigoBarras'>" + copiar.prod_CodigoBarras + "</td>";
+            i += "<td id = 'prod_Modelo'>" + copiar.prod_Modelo + "</td>";
+            i += "<td id = 'uni_Id'>" + copiar.uni_Id + "</td>";
+            i += "<td>" + "<button class='btn btn-primary btn-xs' value=" + copiar.prod_Codigo +" id='seleccionar' data-dismiss='modal'>Seleccionar</button>" + "</td>" 
+            i += "</tr>";
+            $('#BuscarProducto').append(i);
+                
+
+        })
+    });
+    }
 
 
+//Productos Por Bodega en editar
+
+$("#Detalle").click(function () {
+    productos();
+});
+
+function productos() {
+    var bodega = $("#bod_Id").val();
+    var guardar = {
+        bod_Id: bodega
+    };
+    $.ajax({
+        url: "/InventarioFisico/ProductosBodega",
+        method: "POST",
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({ productos: guardar }),
+    }).done(function (data) {
+        $.each(data, function (i, copiar) {
+            i = "<tr tr data-id=" + copiar.prod_Codigo + " , tr data-content=" + copiar.prod_Descripcion + " tr data-delay=" + copiar.prod_CodigoBarras + " , tr data-keyboard=" + copiar.prod_Modelo + " , tr data-container=" + copiar.uni_Id + " >";
+            i += "<td id ='prod_Codigo' hidden='hidden'>" + copiar.prod_Codigo + "</td>";
+            i += "<td id = 'prod_Descripcion'>" + copiar.prod_Descripcion + "</td>";
+            i += "<td id = 'prod_Marca'>" + copiar.prod_Marca + "</td>";
+            i += "<td id = 'prod_CodigoBarras'>" + copiar.prod_CodigoBarras + "</td>";
+            i += "<td id = 'prod_Modelo'>" + copiar.prod_Modelo + "</td>";
+            i += "<td id = 'uni_Id'>" + copiar.uni_Id + "</td>";
+            i += "<td>" + "<button class='btn btn-primary btn-xs' value=" + copiar.prod_Codigo + " id='seleccionar' data-dismiss='modal'>Seleccionar</button>" + "</td>"
+            i += "</tr>";
+            $('#BuscarProducto').append(i);
 
 
+        })
+    });
+}
+
+
+//Agregar Detalle
+$('#AgregarNuevoDetalle').click(function () {
+    var producto = $("#prod_Codigo").val();
+    var barras = $("#prod_CodigoBarras").val();
+    var Descripcion = $("#prod_Descripcion").val();
+    var UnidadMedida = $("#uni_Id").val();
+    var uni = $('#uni_Ids').val();
+    var cantidadfisica = $("#invfd_Cantidad").val();
+    var cantidadsistema = $("#invfd_CantidadSistema").val();
+
+    if (barras == '') {
+        $('#MessageError').text('');
+        $('#errorproducto').text('');
+        $('#errorcantidadfisica').text('');
+        $('#errorcantidadsistema').text('');
+        $('#validationproducto').after('<ul id="errorproducto" class="validation-summary-errors text-danger">Campo Producto Requerido</ul>');
+    }
+    else if (cantidadfisica == '') {
+        $('#MessageError').text('');
+        $('#errorproducto').text('');
+        $('#errorcantidadfisica').text('');
+        $('#errorcantidadsistema').text('');
+        $('#validationCantidadFisica').after('<ul id="errorcantidadfisica" class="validation-summary-errors text-danger">Campo Cantidad Requerido</ul>');
+    }
+    else if (cantidadsistema == '') {
+        $('#MessageError').text('');
+        $('#errorproducto').text('');
+        $('#errorcantidadfisica').text('');
+        $('#errorcantidadsistema').text('');
+        $('#validationCantidadSistema').after('<ul id="errorcantidadsistema" class="validation-summary-errors text-danger">Campo Cantidad Sistema Requerido</ul>');
+
+    } else {
+        //Rellenar la tabla 
+        contador = contador + 1;
+        copiar = "<tr data-id=" + contador + ">";
+        copiar += "<td id = 'producto'>" + $('#prod_CodigoBarras').val() + "</td>";
+        copiar += "<td id = 'Descripcion'>" + $('#prod_Descripcion').val() + "</td>";
+        copiar += "<td id = 'UnidadMedida'>" + $('#uni_Id').val() + "</td>";
+        copiar += "<td id = 'cantidadfisica'>" + $('#invfd_CantidadSistema').val() + "</td>";
+        copiar += "<td id = 'cantidadsistema'>" + $('#invfd_Cantidad').val() + "</td>";
+        copiar += "</tr>";
+        $('#InvDetalle').append(copiar);
+
+        //ajax para el controlador
+        var InventarioFisicoDetalle = GetInventarioFisicoDetalle();
+        $.ajax({
+            url: "/InventarioFisico/GuardarInventarioDetalle",
+            method: "POST",
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ invfd: InventarioFisicoDetalle }),
+        })
+        .done(function (data) {
+            $('#prod_CodigoBarras').val('');
+            $('#invfd_CantidadSistema').val('');
+            $('#prod_Descripcion').val('');
+            $('#uni_Id').val('');
+
+            $('#MessageError').text('');
+            $('#errorproducto').text('');
+            $('#errorcantidadfisica').text('');
+            $('#errorcantidadsistema').text('');
+        });
+    }
+
+})
 
 //$("#seleccionar").click("#bod_Id", function () {
 //    console.log("Hola");

@@ -14,19 +14,19 @@
 <table class="table table-striped">
     <tr>
         <th>
+            Descripcion del Producto
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbProducto.prod_CodigoBarras)
+        </th>
+        <th>
+            Unidad de Medida
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.invfd_Cantidad)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.invfd_CantidadSistema)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tbUnidadMedida.uni_Descripcion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tbProducto.prod_Codigo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tbProducto.prod_Descripcion)
         </th>
         <th>
            Sobrante/Faltante
@@ -37,19 +37,19 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.invfd_Cantidad)
+            @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.invfd_CantidadSistema)
+            @Html.DisplayFor(modelItem => item.tbProducto.prod_CodigoBarras)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.tbUnidadMedida.uni_Descripcion)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.tbProducto.prod_Codigo)
+            @Html.DisplayFor(modelItem => item.invfd_Cantidad)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
+            @Html.DisplayFor(modelItem => item.invfd_CantidadSistema)
         </td>
         @{ 
             decimal Suma = (decimal)item.invfd_Cantidad - (decimal)item.invfd_CantidadSistema;
