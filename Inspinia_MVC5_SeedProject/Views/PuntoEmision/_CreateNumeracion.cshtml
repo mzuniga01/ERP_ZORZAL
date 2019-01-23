@@ -15,7 +15,7 @@
                           
                             @Html.LabelFor(model => model.pemid_FechaLimite, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                 @Html.EditorFor(model => model.pemid_FechaLimite, "{0:MM/dd/yyyy}", new { htmlAttributes = new { @autocomplete = "off" ,@readonly="readonly" } })
+                                 @Html.EditorFor(model => model.pemid_FechaLimite, "{0:MM/dd/yyyy}", new { htmlAttributes = new { @autocomplete = "off" } })
                                 <div id="validacionFechaLimiteCreate">
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.pemid_FechaLimite)</p>
                                 </div>

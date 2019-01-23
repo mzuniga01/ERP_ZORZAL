@@ -7,8 +7,6 @@ $(document).on("change", "#EntregaEfectivo tbody tr td input#CantidadE", functio
     var Subtotal = parseFloat(Cantidad * ValorDenominacion);
     //Monto Entregado
     $(this).parents("tr").find("td")[6].innerHTML = Subtotal;
-    console.log('Subtotal', Subtotal);
-    console.log('Monto Entregado', MontoEntregado);
     if (Subtotal != 0) {
         MontoEntregado += parseFloat(Subtotal);
     }
@@ -47,11 +45,3 @@ $(document).on("change", "#EntregaEfectivo tbody tr td input#CantidadE", functio
 //    document.getElementById("#soled_MontoEntregado").innerHTML = parseFloat(MontoEntregado);
 //});
 
-//$(document).change(function () {
-//    $("#EntregaEfectivo tbody tr").each(function () {
-//        //Id PuntoEmisionDetalle
-//        var ID = $(this).children("td:eq(1)").text();
-//        console.log(ID);
-
-//    });
-//});

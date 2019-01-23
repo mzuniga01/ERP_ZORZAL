@@ -5056,7 +5056,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbMovimientoCaja_Apertura_Insert_Result>("UDP_Vent_tbMovimientoCaja_Apertura_Insert", cja_IdParameter, mocja_FechaAperturaParameter, mocja_UsuarioAperturaParameter, mocja_FechaArqueoParameter, mocja_UsuarioArqueaParameter, mocja_FechaAceptacionParameter, mocja_UsuarioAceptacionParameter);
         }
     
-        public virtual ObjectResult<string> UDP_Vent_tbSolicitudEfectivo_Update_Entrega(Nullable<int> solef_Id, Nullable<int> mocja_Id, Nullable<bool> solef_EsApertura, Nullable<System.DateTime> solef_FechaEntrega, Nullable<int> solef_UsuarioEntrega, Nullable<short> mnda_Id, Nullable<bool> solef_EsAnulada, Nullable<int> solef_UsuarioCrea, Nullable<System.DateTime> solef_FechaCrea)
+        public virtual ObjectResult<UDP_Vent_tbSolicitudEfectivo_Update_Entrega_Result> UDP_Vent_tbSolicitudEfectivo_Update_Entrega(Nullable<int> solef_Id, Nullable<int> mocja_Id, Nullable<bool> solef_EsApertura, Nullable<System.DateTime> solef_FechaEntrega, Nullable<int> solef_UsuarioEntrega, Nullable<short> mnda_Id, Nullable<bool> solef_EsAnulada, Nullable<int> solef_UsuarioCrea, Nullable<System.DateTime> solef_FechaCrea)
         {
             var solef_IdParameter = solef_Id.HasValue ?
                 new ObjectParameter("solef_Id", solef_Id) :
@@ -5094,7 +5094,7 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("solef_FechaCrea", solef_FechaCrea) :
                 new ObjectParameter("solef_FechaCrea", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Vent_tbSolicitudEfectivo_Update_Entrega", solef_IdParameter, mocja_IdParameter, solef_EsAperturaParameter, solef_FechaEntregaParameter, solef_UsuarioEntregaParameter, mnda_IdParameter, solef_EsAnuladaParameter, solef_UsuarioCreaParameter, solef_FechaCreaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbSolicitudEfectivo_Update_Entrega_Result>("UDP_Vent_tbSolicitudEfectivo_Update_Entrega", solef_IdParameter, mocja_IdParameter, solef_EsAperturaParameter, solef_FechaEntregaParameter, solef_UsuarioEntregaParameter, mnda_IdParameter, solef_EsAnuladaParameter, solef_UsuarioCreaParameter, solef_FechaCreaParameter);
         }
     
         public virtual ObjectResult<UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert_Result> UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert(Nullable<int> solef_Id, Nullable<short> deno_Id, Nullable<short> soled_CantidadSolicitada, Nullable<short> soled_CantidadEntregada, Nullable<decimal> soled_MontoEntregado)

@@ -4915,6 +4915,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Parameter Name="dev_Id" Type="int" Mode="In" />
           <Parameter Name="dev_Estado" Type="bit" Mode="In" />
         </Function>
+        <Function Name="UDP_Vent_tbDevolucion_Filtrado_CodProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="IDFACTURA" Type="int" Mode="In" />
+          <Parameter Name="CODIGOPRODUCTO" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="UDP_Vent_tbDevolucion_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="fact_Id" Type="bigint" Mode="In" />
           <Parameter Name="cja_Id" Type="smallint" Mode="In" />
@@ -8970,7 +8974,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="mocja_FechaAceptacion" Mode="In" Type="DateTime" />
             <Parameter Name="mocja_UsuarioAceptacion" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Vent_tbSolicitudEfectivo_Update_Entrega" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Vent_tbSolicitudEfectivo_Update_Entrega" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivo_Update_Entrega_Result)">
             <Parameter Name="solef_Id" Mode="In" Type="Int32" />
             <Parameter Name="mocja_Id" Mode="In" Type="Int32" />
             <Parameter Name="solef_EsApertura" Mode="In" Type="Boolean" />
@@ -14028,6 +14032,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
         <ComplexType Name="UDP_Vent_tbCliente_Update_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
+        <ComplexType Name="UDP_Vent_tbSolicitudEfectivo_Update_Entrega_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -16373,7 +16380,13 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudEfectivo_Update_Entrega" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudEfectivo_Update_Entrega" />
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudEfectivo_Update_Entrega" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudEfectivo_Update_Entrega" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivo_Update_Entrega_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert" >
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert_Result">
