@@ -1,6 +1,8 @@
 ﻿@model IEnumerable<ERP_GMEDINA.Models.tbSalidaDetalle>
 @using ERP_GMEDINA.Models
-
+@{ 
+    tbSalidaDetalle SalidaDetalle = new tbSalidaDetalle();
+}
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
@@ -31,42 +33,40 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                                <tr tr data-id="@item.prod_Codigo" , tr data-content="@item.tbProducto.prod_Descripcion" , tr data-container="@item.tbProducto.tbProductoSubcategoria.pscat_Descripcion" , tr data-keyboard="@item.tbProducto.tbUnidadMedida.uni_Descripcion" , tr data-pcat="@item.tbProducto.tbProductoSubcategoria.tbProductoCategoria.pcat_Nombre">
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.tbProducto.prod_Marca)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.tbProducto.prod_Modelo)
-                                    </td>
-                                    <th>
-                                        @Html.DisplayFor(modelItem => item.sal_Cantidad)
-                                    </th>
-                                    <td>
-                                        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#Editar_@item.sald_Id">
-                                            Editar
-                                        </button>
-                                    </td>
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="Editar_@item.sald_Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Editar Salida Detalle</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div id="EditarProductoSalidaDetalle" class="modal-body">
-                                                    @Html.Partial("_EditProductoSalidaDetalle", new ERP_GMEDINA.Models.tbSalidaDetalle() { sald_Id = item.sald_Id, sal_Cantidad = item.sal_Cantidad, prod_Codigo = item.prod_Codigo, sal_Id = item.sal_Id})
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </tr>
-                                
+                            <tr tr data-id="@item.prod_Codigo" , tr data-content="@item.tbProducto.prod_Descripcion" , tr data-container="@item.tbProducto.tbProductoSubcategoria.pscat_Descripcion" , tr data-keyboard="@item.tbProducto.tbUnidadMedida.uni_Descripcion" , tr data-pcat="@item.tbProducto.tbProductoSubcategoria.tbProductoCategoria.pcat_Nombre">
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tbProducto.prod_Marca)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tbProducto.prod_Modelo)
+                                </td>
+                                <th>
+                                    @Html.DisplayFor(modelItem => item.sald_Cantidad)
+                                </th>
+                                <td>
+                                    <button type="button" class="btn btn-white btn-xs" onclick="EditSalidaDetalles('@item.sald_Id')">Editar</button>
+                                </td>
+                                <!-- Modal -->
+                                @*<div class="modal fade" id="Editar_@item.sald_Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Editar Salida Detalle</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div id="EditarProductoSalidaDetalle" class="modal-body">
+                        @Html.Partial("_EditProductoSalidaDetalle", new ERP_GMEDINA.Models.tbSalidaDetalle() { sald_Id = item.sald_Id, sald_Cantidad = item.sald_Cantidad, prod_Codigo = item.prod_Codigo, sal_Id = item.sal_Id})
+                    </div>
+                </div>
+            </div>
+        </div>*@
+                            </tr>
+
                             }
                         </tbody>
                     </table>
@@ -76,3 +76,61 @@
     </div>
 </div>
 
+<div class="modal fade" id="EditSalidaDetalle">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h4 id="ModalTitle">Editar Salida Detalle</h4>
+            </div>
+            <div class="modal-body">
+                <form id="form">
+                    <fieldset id="SubmitForm">
+                        <div class="form-horizontal">
+                            <label id="MsjError">
+                            </label>
+                            <input type="hidden" id="sald_Id_SD" name="sald_Id" class="form-control" />
+                            <div class="form-group">
+                                @Html.LabelFor(m => SalidaDetalle.prod_Codigo, new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-10">
+                                    <input type="text" id="prod_Codigo_SD" name="prod_Codigo" class="form-control" />
+                                    @Html.ValidationMessageFor(m => SalidaDetalle.prod_Codigo)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(m => SalidaDetalle.tbProducto.prod_Descripcion, new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-10">
+                                    <input type="text" id="prod_Descripcion_SD" name="prod_Descripcion" class="form-control" />
+                                    @Html.ValidationMessageFor(m => SalidaDetalle.tbProducto.prod_Descripcion)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => SalidaDetalle.sald_Cantidad, new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-10">
+                                    <input type="text" id="sald_Cantidad_SD" name="sald_Cantidad" class="form-control" />
+                                    @Html.ValidationMessageFor(m => SalidaDetalle.sald_Cantidad)
+                                </div>
+                            </div>
+
+
+
+
+
+                            <input type="hidden" id="sald_FechaCrea_SD" name="sald_FechaCrea" />
+                            <input type="hidden" id="sald_UsuarioCrea_SD" name="sald_UsuarioCrea" />
+
+
+                            <div class="form-group">
+                                <div class="col-md-12 text-center">
+                                    <button class="btn btn-primary" type="button" id="BtnsubmitMunicipio" tabindex="10"> Guardar </button>
+                                    <button type="button" class="btn btn-white" data-dismiss="modal" aria-label="Close">Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -49,6 +49,44 @@ $(document).on("click", "#Table_BuscarProducto tbody tr td button#seleccionar", 
 });
 //
 
+//Agregar detalle por medio de codigo de Barra
+
+$(function () {
+    $('#prod_CodigoBarras').keydown(function (e) {
+        if (e.keyCode == 13) {
+            $("#seleccionar").focus().click();
+
+            $(document).on("click", "#Table_BuscarProducto tbody tr td button#seleccionar", function () {
+                prod_CodigoBarrasItem = $(this).closest('tr').data('html');
+                idItem = $(this).closest('tr').data('id');
+                contentItem = $(this).closest('tr').data('content');
+                uni_IdtItem = $(this).closest('tr').data('keyboard');
+                psubctItem = $(this).closest('tr').data('container');
+                pcatItem = $(this).closest('tr').data('pcat');
+                $("#prod_CodigoBarras").val(prod_CodigoBarrasItem);
+                $("#prod_Codigo").val(idItem);
+                $("#prod_Descripcion").val(contentItem);
+                $("#uni_Id").val(uni_IdtItem);
+                $("#pscat_Id").val(psubctItem);
+                $("#pcat_Id").val(pcatItem);
+                $("#sald_Cantidad").focus();
+                //$("#cod").val(idItem);
+
+            });
+            console.log('prueba');
+            $("#prod_CodigoBarras").val(prod_CodigoBarrasItem);
+            $("#prod_Codigo").val(idItem);
+            $("#prod_Descripcion").val(contentItem);
+            $("#uni_Id").val(uni_IdtItem);
+            $("#pscat_Id").val(psubctItem);
+            $("#pcat_Id").val(pcatItem);
+            $("#sald_Cantidad").focus();
+            return false;
+        }
+    });
+});
+
+
 //Tabla del Detalle
 $(document).ready(function () {
     $('#tblSalidaDetalle1').DataTable(
@@ -98,7 +136,7 @@ $(function () {
 
 function GetSalidaDetalle() {
     var SalidaDetalle = {
-        bodd_Id: $('#bodd_Id').val(),
+        prod_Codigo: $('#prod_Codigo').val(),
         sal_Cantidad: $('#sal_Cantidad').val(),
         sald_UsuarioCrea: contador
     };
@@ -158,10 +196,10 @@ $('#AgregarSalidaDetalle').click(function () {
                     $('#prod_Codigo').val('');
                     $('#prod_Descripcion').val('');
                 $('#pscat_Id').val(''); 
-                $('#sal_Cantidad').val(''); 
                 $('#uni_Id').val(''); 
                 $('#pcat_Id').val(''); 
-                
+
+                $('#sal_Cantidad').val('0.00');
                     $('#MessageError').text('');
                     $('#NombreError').text('');
                     console.log('Hola');
@@ -188,3 +226,120 @@ $(document).on("click", "#tblSalidaDetalle tbody tr td button#removeSalidaDetall
     });
 });
 
+
+
+
+function EditSalidaDetalles(sald_Id) {
+    $.ajax({
+        url: "/Salida/getSalidaDetalle",
+        method: "POST",
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({ sald_Id: sald_Id }),
+
+    })
+        .done(function (data) {
+            console.log(data);
+            if (data.length > 0) {
+                $.each(data, function (i, item) {
+                    $("#sald_Id_SD").val(item.sald_Id);
+                    $("#prod_Codigo_SD").val(item.prod_Codigo);
+                    $("#sal_Cantidad_SD").val(item.sal_Cantidad);
+                    $("#prod_Descripcion_SD").val(item.prod_Descripcion);
+                    //$("#pedd_FechaCrea_Ped").val(item.pedd_FechaCrea);
+                    $("#EditSalidaDetalle").modal();
+                })
+            }
+        })
+}
+
+
+$("#BtnsubmitMunicipio").click(function () {
+    var sal_id = $('#sald_Id').val();
+    var data = $("#SubmitForm").serializeArray();
+    $.ajax({
+        type: "Post",
+        url: "/Salida/EditSalidaDetalle",
+        data: data,
+        success: function (result) {
+            if (result == '-1')
+                $("#MsjError").text("No se pudo actualizar el registro, contacte al administrador");
+            else
+                window.location.href = '/Salida/Edit/' + sal_id;
+        }
+        
+    });
+})
+
+
+
+function GetNewSalidaDetalle() {
+    var SalidaDetalle = {
+        sal_Id : $('#sal_Id').val(),
+        prod_Codigo: $('#prod_Codigo').val(),
+        sal_Cantidad: $('#sal_Cantidad').val(),
+        sald_UsuarioCrea: contador
+    };
+    return SalidaDetalle;
+}
+
+
+$('#btnCreateSalidaDetalle').click(function () {
+    var Cod_Producto = $('#prod_Codigo').val();
+    var Producto = $('#prod_Descripcion').val();
+    var Unidad_Medida = $('#pscat_Id').val();
+    var Cantidad = $('#sal_Cantidad').val();
+    var sal_Id = $('#sal_Id').val();
+
+    if (Producto == '') {
+        $('#MessageError').text('');
+        $('#CodigoError').text('');
+        $('#NombreError').text('');
+        $('#ValidationCodigoCreate').after('<ul id="CodigoError" class="validation-summary-errors text-danger">Campo Producto Requerido</ul>');
+    }
+    else if (Unidad_Medida == '') {
+        $('#MessageError').text('');
+        $('#CodigoError').text('');
+        $('#NombreError').text('');
+        $('#ValidationNombreCreate').after('<ul id="NombreError" class="validation-summary-errors text-danger">Unidad Medida Requerido</ul>');
+    }
+    else if (Cantidad == '') {
+        $('#MessageError').text('');
+        $('#CodigoError').text('');
+        $('#NombreError').text('');
+        $('#sal_Cantidad').after('<ul id="NombreError" class="validation-summary-errors text-danger">Cantidad Requerido</ul>');
+    }
+
+    else {
+        var tbSalidaDetalle = GetNewSalidaDetalle();
+        $.ajax({
+            url: "/Salida/SaveNewDatail",
+            method: "POST",
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ SalidaDetalle: tbSalidaDetalle }),
+        })
+        done(function (data) {
+            if (data == 'El registro se guardo exitosamente') {
+                location.reload();
+                swal("El registro se almacenó exitosamente!", "", "success");
+            }
+            else {
+                location.reload();
+                swal("El registro  no se almacenó!", "", "error");
+            }
+        });
+
+        var PuntoEmisionDetalle = GetPuntoEmisionDetalle();
+        $.ajax({
+            url: "/PuntoEmision/SaveCreateNumeracion",
+            method: "POST",
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ CreatePuntoEmisionDetalle: PuntoEmisionDetalle }),
+            success: function (data) {
+            }
+        })
+    }
+
+});

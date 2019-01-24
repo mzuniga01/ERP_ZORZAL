@@ -12,15 +12,22 @@
                 <div class="ibox-content">
                     <div class="form-horizontal">
                         <div class="form-group">
+                            @Html.LabelFor(model => model.tbProducto.prod_CodigoBarras, "Codigo de Barra", new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                <input type="text" id="prod_CodigoBarras" placeholder="" class="form-control" />
+                                <div id="validationprod_CodigoBarras">
+                                    @Html.ValidationMessageFor(model => model.tbProducto.prod_Codigo)
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarProducto"><span class="glyphicon glyphicon-search"></span></button>
+                            </div>
                             @Html.LabelFor(model => model.prod_Codigo, "Producto", new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
                                 <input type="text" id="prod_Codigo" placeholder="" class="form-control" />
                                 <div id="validationcodigoproducto">
                                     @Html.ValidationMessageFor(model => model.prod_Codigo)
                                 </div>
-                            </div>
-                            <div class="col-md-1">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarProducto"><span class="glyphicon glyphicon-search"></span></button>
                             </div>
                         </div>
                         <div class="form-group">
@@ -36,11 +43,11 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            @Html.LabelFor(model => model.sal_Cantidad, "Cantidad", new { @class = "control-label col-md-2" })
+                            @Html.LabelFor(model => model.sald_Cantidad, "Cantidad", new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                @Html.EditorFor(model => model.sal_Cantidad, new { HtmlAttribute = new { name = "sal_Cantidad" } })
+                                @Html.EditorFor(model => model.sald_Cantidad, new { HtmlAttribute = new { name = "sald_Cantidad" } })
                                 <div id="validationcantidad">
-                                    @Html.ValidationMessageFor(model => model.sal_Cantidad)
+                                    @Html.ValidationMessageFor(model => model.sald_Cantidad)
                                 </div>
                             </div>
                             @Html.LabelFor(model => model.tbProducto.tbProductoSubcategoria.tbProductoCategoria, "Categoria", new { @class = "control-label col-md-2" })

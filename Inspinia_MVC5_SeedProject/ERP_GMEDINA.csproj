@@ -1451,6 +1451,7 @@
     <Content Include="Views\TipoDevolucion\Edit.cshtml" />
     <Content Include="Views\TipoDevolucion\Index.cshtml" />
     <Content Include="Views\Box\_CreateSalidaDetalle.cshtml" />
+    <Content Include="Views\Salida\_CreateEditSalidaDetalle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
