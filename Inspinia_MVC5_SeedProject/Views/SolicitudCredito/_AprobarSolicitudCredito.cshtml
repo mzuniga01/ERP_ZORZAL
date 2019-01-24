@@ -1,9 +1,12 @@
 ﻿@model ERP_GMEDINA.Models.tbSolicitudCredito
-@using (Ajax.BeginForm("UpdateSolicitudCredito", "SolicitudCredito", new AjaxOptions() { HttpMethod = "POST", UpdateTargetId = "EditSolicitudCredito" }))
+@using (Ajax.BeginForm("UpdateSolicitudCredito", "SolicitudCredito", new AjaxOptions {
+    HttpMethod = "POST",
+    UpdateTargetId = "EditSolicitudCredito"
+}))
 {
-    @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
+        <div class="form-horizontal">
 
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.cred_Id)

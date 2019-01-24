@@ -1459,21 +1459,6 @@
       <Parameter Name="cred_MontoSolicitado" Mode="In" Type="Decimal" />
       <Parameter Name="cred_DiasSolicitado" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbSolicitudCredito_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudCredito_Update_Result)">
-      <Parameter Name="cred_Id" Mode="In" Type="Int32" />
-      <Parameter Name="clte_Id" Mode="In" Type="Int32" />
-      <Parameter Name="escre_Id" Mode="In" Type="Byte" />
-      <Parameter Name="cred_FechaSolicitud" Mode="In" Type="DateTime" />
-      <Parameter Name="cred_FechaAprobacion" Mode="In" Type="DateTime" />
-      <Parameter Name="cred_MontoSolicitado" Mode="In" Type="Decimal" />
-      <Parameter Name="cred_MontoAprobado" Mode="In" Type="Decimal" />
-      <Parameter Name="cred_DiasSolicitado" Mode="In" Type="Int32" />
-      <Parameter Name="cred_DiasAprobado" Mode="In" Type="Int32" />
-      <Parameter Name="cred_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="cred_FechaCrea" Mode="In" Type="DateTime" />
-      <Parameter Name="cred_UsuarioModifica" Mode="In" Type="Int32" />
-      <Parameter Name="cred_FechaModifica" Mode="In" Type="DateTime" />
-    </FunctionImport>
     <EntitySet Name="tbAccesoRol" EntityType="ERP_ZORZALModel.tbAccesoRol" />
     <EntitySet Name="tbObjeto" EntityType="ERP_ZORZALModel.tbObjeto" />
     <EntitySet Name="tbRol" EntityType="ERP_ZORZALModel.tbRol" />
@@ -2436,6 +2421,21 @@
       <End Role="tbSolicitudEfectivo" EntitySet="tbSolicitudEfectivo" />
       <End Role="tbSolicitudEfectivoDetalle" EntitySet="tbSolicitudEfectivoDetalle" />
     </AssociationSet>
+    <FunctionImport Name="UDP_Vent_tbSolicitudCredito_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudCredito_Update_Result)">
+      <Parameter Name="cred_Id" Mode="In" Type="Int32" />
+      <Parameter Name="clte_Id" Mode="In" Type="Int32" />
+      <Parameter Name="escre_Id" Mode="In" Type="Byte" />
+      <Parameter Name="cred_FechaSolicitud" Mode="In" Type="DateTime" />
+      <Parameter Name="cred_FechaAprobacion" Mode="In" Type="DateTime" />
+      <Parameter Name="cred_MontoSolicitado" Mode="In" Type="Decimal" />
+      <Parameter Name="cred_MontoAprobado" Mode="In" Type="Decimal" />
+      <Parameter Name="cred_DiasSolicitado" Mode="In" Type="Int32" />
+      <Parameter Name="cred_DiasAprobado" Mode="In" Type="Int32" />
+      <Parameter Name="cred_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="cred_FechaCrea" Mode="In" Type="DateTime" />
+      <Parameter Name="cred_UsuarioModifica" Mode="In" Type="Int32" />
+      <Parameter Name="cred_FechaModifica" Mode="In" Type="DateTime" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -3068,9 +3068,6 @@
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbSolicitudCredito_Insert_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbSolicitudCredito_Update_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
   <EntityType Name="tbAccesoRol">
@@ -7452,4 +7449,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <ComplexType Name="UDP_Vent_tbSolicitudCredito_Update_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
 </Schema>
