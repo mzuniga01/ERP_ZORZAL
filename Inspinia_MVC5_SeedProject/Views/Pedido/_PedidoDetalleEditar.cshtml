@@ -1,7 +1,7 @@
 ﻿@model ERP_GMEDINA.Models.tbPedidoDetalle
 @using ERP_GMEDINA.Models
 
-@using (Ajax.BeginForm("UpdatePedidoDetalle", "Pedido", new AjaxOptions() { HttpMethod = "POST", UpdateTargetId = "" }))
+@using (Ajax.BeginForm("UpdatePedidoDetalle", "Pedido", new AjaxOptions() { HttpMethod = "POST", UpdateTargetId = "EditPedidoDetalle" }))
 {
     <div class="wrapper wrapper-content animated fadeInRight">
         <div class="row">
@@ -11,8 +11,7 @@
                         @Html.AntiForgeryToken()
                         <div class="form-horizontal">
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                            @Html.HiddenFor(model => model.pedd_Id)
-                            @Html.HiddenFor(model => model.pedd_Id)
+                            @Html.HiddenFor(model => model.ped_Id)
                             @Html.HiddenFor(model => model.pedd_UsuarioCrea)
                             @Html.HiddenFor(model => model.pedd_FechaCrea)
                             @Html.HiddenFor(model => model.pedd_UsuarioModifica)

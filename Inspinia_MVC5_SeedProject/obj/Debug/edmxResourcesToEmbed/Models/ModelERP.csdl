@@ -139,14 +139,6 @@
     <FunctionImport Name="spGetMunicipios1" ReturnType="Collection(ERP_ZORZALModel.spGetMunicipios1_Result)">
       <Parameter Name="CodDepartamento" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbPedidoDetalle_Update">
-      <Parameter Name="pedd_Id" Mode="In" Type="Int32" />
-      <Parameter Name="prod_Codigo" Mode="In" Type="String" />
-      <Parameter Name="pedd_Cantidad" Mode="In" Type="Decimal" />
-      <Parameter Name="pedd_CantidadFacturada" Mode="In" Type="Decimal" />
-      <Parameter Name="pedd_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="pedd_FechaCrea" Mode="In" Type="DateTime" />
-    </FunctionImport>
     <FunctionImport Name="spGetDenominacion" ReturnType="Collection(Decimal)">
       <Parameter Name="IdDenominacion" Mode="In" Type="Int32" />
     </FunctionImport>
@@ -196,7 +188,7 @@
       <Parameter Name="devd_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="devd_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbPedidoDetalle_Insert">
+    <FunctionImport Name="UDP_Vent_tbPedidoDetalle_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPedidoDetalle_Insert_Result)">
       <Parameter Name="ped_Id" Mode="In" Type="Int32" />
       <Parameter Name="prod_Codigo" Mode="In" Type="String" />
       <Parameter Name="pedd_Cantidad" Mode="In" Type="Decimal" />
@@ -512,7 +504,7 @@
       <Parameter Name="ent_FacturaCompra" Mode="In" Type="String" />
       <Parameter Name="ent_FechaCompra" Mode="In" Type="DateTime" />
       <Parameter Name="fact_Id" Mode="In" Type="Int32" />
-      <Parameter Name="ent_RazonDevolucion" Mode="In" Type="Int32" />
+      <Parameter Name="ent_RazonDevolucion" Mode="In" Type="String" />
       <Parameter Name="ent_BodegaDestino" Mode="In" Type="Int32" />
       <Parameter Name="tent_Id" Mode="In" Type="Byte" />
     </FunctionImport>
@@ -1430,19 +1422,6 @@
       <Parameter Name="ped_RazonAnulado" Mode="In" Type="String" />
       <Parameter Name="ped_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="ped_FechaCrea" Mode="In" Type="DateTime" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbSolicitudCredito_Aprobar" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudCredito_Aprobar_Result)">
-      <Parameter Name="cred_Id" Mode="In" Type="Int32" />
-      <Parameter Name="escre_Id" Mode="In" Type="Byte" />
-      <Parameter Name="cred_FechaAprobacion" Mode="In" Type="DateTime" />
-      <Parameter Name="cred_MontoSolicitado" Mode="In" Type="Decimal" />
-      <Parameter Name="cred_MontoAprobado" Mode="In" Type="Decimal" />
-      <Parameter Name="cred_DiasSolicitado" Mode="In" Type="Int32" />
-      <Parameter Name="cred_DiasAprobado" Mode="In" Type="Int32" />
-      <Parameter Name="cred_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="cred_FechaCrea" Mode="In" Type="DateTime" />
-      <Parameter Name="cred_UsuarioModifica" Mode="In" Type="Int32" />
-      <Parameter Name="cred_FechaModifica" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbSolicitudCredito_Denegar" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudCredito_Denegar_Result)">
       <Parameter Name="cred_Id" Mode="In" Type="Int32" />
@@ -2436,6 +2415,30 @@
       <Parameter Name="cred_UsuarioModifica" Mode="In" Type="Int32" />
       <Parameter Name="cred_FechaModifica" Mode="In" Type="DateTime" />
     </FunctionImport>
+    <FunctionImport Name="SDP_tbPedidoDetalle_Select" ReturnType="Collection(ERP_ZORZALModel.SDP_tbPedidoDetalle_Select_Result)">
+      <Parameter Name="pedd_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbPedidoDetalle_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPedidoDetalle_Update_Result)">
+      <Parameter Name="pedd_Id" Mode="In" Type="Int32" />
+      <Parameter Name="prod_Codigo" Mode="In" Type="String" />
+      <Parameter Name="pedd_Cantidad" Mode="In" Type="Decimal" />
+      <Parameter Name="pedd_CantidadFacturada" Mode="In" Type="Decimal" />
+      <Parameter Name="pedd_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="pedd_FechaCrea" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbSolicitudCredito_Aprobar" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudCredito_Aprobar_Result)">
+      <Parameter Name="cred_Id" Mode="In" Type="Int32" />
+      <Parameter Name="escre_Id" Mode="In" Type="Byte" />
+      <Parameter Name="cred_FechaAprobacion" Mode="In" Type="DateTime" />
+      <Parameter Name="cred_MontoSolicitado" Mode="In" Type="Decimal" />
+      <Parameter Name="cred_MontoAprobado" Mode="In" Type="Decimal" />
+      <Parameter Name="cred_DiasSolicitado" Mode="In" Type="Int32" />
+      <Parameter Name="cred_DiasAprobado" Mode="In" Type="Int32" />
+      <Parameter Name="cred_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="cred_FechaCrea" Mode="In" Type="DateTime" />
+      <Parameter Name="cred_UsuarioModifica" Mode="In" Type="Int32" />
+      <Parameter Name="cred_FechaModifica" Mode="In" Type="DateTime" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -3056,9 +3059,6 @@
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbPedido_Update_Result2">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbSolicitudCredito_Aprobar_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbSolicitudCredito_Denegar_Result">
@@ -7450,6 +7450,26 @@
     </ReferentialConstraint>
   </Association>
   <ComplexType Name="UDP_Vent_tbSolicitudCredito_Update_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="SDP_tbPedidoDetalle_Select_Result">
+    <Property Type="Int32" Name="pedd_Id" Nullable="false" />
+    <Property Type="Int32" Name="ped_Id" Nullable="false" />
+    <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
+    <Property Type="Decimal" Name="pedd_Cantidad" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="pedd_CantidadFacturada" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Int32" Name="pedd_UsuarioCrea" Nullable="false" />
+    <Property Type="DateTime" Name="pedd_FechaCrea" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="pedd_UsuarioModifica" Nullable="true" />
+    <Property Type="DateTime" Name="pedd_FechaModifica" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbPedidoDetalle_Update_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbPedidoDetalle_Insert_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbSolicitudCredito_Aprobar_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
 </Schema>

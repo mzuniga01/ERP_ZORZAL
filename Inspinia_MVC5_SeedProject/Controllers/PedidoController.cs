@@ -107,7 +107,7 @@ namespace ERP_ZORZAL.Controllers
             string MensajeError = "";
             var MensajeErrorDetalle = "";
             IEnumerable<object> listPedido = null;
-            IEnumerable<object> listPedidoDetalle = null;
+            IEnumerable<object> listPedidoDetalles = null;
             if (ModelState.IsValid)
             {
                 try
@@ -143,15 +143,14 @@ namespace ERP_ZORZAL.Controllers
                                             var pedds_Id = Convert.ToInt32(MensajeError);
                                             PedDetalle.ped_Id = pedds_Id;
 
-                                            //PedDetalle.ped_Id = pedds_Id;
-                                            //listPedidoDetalle = db.UDP_Vent_tbPedidoDetalle_Insert(
-                                            //    PedDetalle.ped_Id,
-                                            //    PedDetalle.prod_Codigo,
-                                            //    PedDetalle.pedd_Cantidad,
-                                            //    PedDetalle.pedd_CantidadFacturada);
-                                            //foreach (UDP_Vent_tbPedidoDetalle_Insert_Result SPpedidodetalle in listPedidoDetalle)
+                                            PedDetalle.ped_Id = pedds_Id;
+                                            listPedidoDetalles = db.UDP_Vent_tbPedidoDetalle_Insert(PedDetalle.ped_Id,
+                                                PedDetalle.prod_Codigo,
+                                                PedDetalle.pedd_Cantidad,
+                                                PedDetalle.pedd_CantidadFacturada);
+                                            foreach (UDP_Vent_tbPedidoDetalle_Insert_Result SPpedidodetalle in listPedidoDetalles)
                                             {
-                                                //MensajeErrorDetalle = SPpedidodetalle.MensajeError;
+                                                MensajeErrorDetalle = SPpedidodetalle.MensajeError;
                                                 if (MensajeError == "-1")
                                                 {
                                                     ModelState.AddModelError("", "No se pudo agregar el registro detalle");
@@ -232,6 +231,21 @@ namespace ERP_ZORZAL.Controllers
         }
 
 
+        
+        [HttpPost]
+        public JsonResult getPedidoDetalle  (int pedd_Id)
+        {
+            IEnumerable<object> list = null;
+            try
+            {
+                list = db.SDP_tbPedidoDetalle_Select(pedd_Id).ToList();
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+            }
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
 
         // GET: /Pedido/Edit/5
         public ActionResult EditPedido(int? id)
@@ -444,18 +458,19 @@ namespace ERP_ZORZAL.Controllers
             try
             {
                 //var MensajeError = 0;
+
                 string MensajeError = "";
                 IEnumerable<object> list = null;
-                //list = db.UDP_Vent_tbPedidoDetalle_Update(
-                //            EditPedidoDetalle.pedd_Id,
-                //            EditPedidoDetalle.prod_Codigo,
-                //            EditPedidoDetalle.pedd_Cantidad,
-                //            EditPedidoDetalle.pedd_CantidadFacturada,
-                //            EditPedidoDetalle.pedd_UsuarioCrea,
-                //            EditPedidoDetalle.pedd_FechaCrea
-                //    );
+                tbPedidoDetalle PedidoDetails = db.tbPedidoDetalle.Find(EditPedidoDetalle.pedd_Id);
+                list = db.UDP_Vent_tbPedidoDetalle_Update(
+                            EditPedidoDetalle.pedd_Id,
+                            EditPedidoDetalle.prod_Codigo,
+                            EditPedidoDetalle.pedd_Cantidad,
+                            EditPedidoDetalle.pedd_CantidadFacturada,
+                            EditPedidoDetalle.pedd_UsuarioCrea,
+                            PedidoDetails.pedd_FechaCrea);
 
-                foreach (UDP_Vent_tbPuntoEmisionDetalle_Update_Result PedidoDetalle in list)
+                foreach (UDP_Vent_tbPedidoDetalle_Update_Result PedidoDetalle in list)
                     MensajeError = PedidoDetalle.MensajeError;
                 if (MensajeError == "-1")
                 {
@@ -464,7 +479,7 @@ namespace ERP_ZORZAL.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Edit" , "Pedido", EditPedidoDetalle.ped_Id);
                 }
             }
             catch (Exception Ex)
@@ -474,11 +489,6 @@ namespace ERP_ZORZAL.Controllers
                 return PartialView("_PedidoDetalleEditar", EditPedidoDetalle);
             }
         }
-
-
-
-
-
 
         [HttpPost]
         public JsonResult GetDetallePedido(int pedido)

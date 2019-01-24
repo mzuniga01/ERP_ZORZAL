@@ -1,6 +1,10 @@
 ﻿@model ERP_GMEDINA.Models.tbPedido
 @using ERP_GMEDINA.Models
 
+
+
+
+
 @{
     ViewBag.Title = "Pedidos";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -40,6 +44,7 @@
             @Html.ValidationSummary(true)
             @Html.HiddenFor(model => model.ped_Id)
             @Html.HiddenFor(model => model.suc_Id)
+            @Html.HiddenFor(model => model.clte_Id)
             @Html.HiddenFor(model => model.clte_Id)
             @Html.Hidden("RedirectTo", Url.Action("Index", "Pedido"))
             
@@ -230,6 +235,11 @@
     </div>
 </div>
 }
+
+<!-- Edit Municipio Modal-->
+
+
+
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 
 

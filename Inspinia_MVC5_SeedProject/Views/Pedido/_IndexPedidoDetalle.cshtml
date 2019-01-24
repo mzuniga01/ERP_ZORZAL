@@ -1,8 +1,14 @@
 ﻿@model IEnumerable<ERP_GMEDINA.Models.tbPedidoDetalle>
+@using ERP_GMEDINA.Models 
+
+@{     tbPedidoDetalle PedDetalle = new tbPedidoDetalle(); }
+
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
+
+    
 
                 <div class="ibox-tools">
                     <div class="col-md-offset-11">
@@ -10,6 +16,7 @@
                     </div>
                 </div>
                 <div class="ibox-content">
+
 
                     <table class="table table-striped" id="PedidoDetalle">
                         <thead>
@@ -53,26 +60,9 @@
                                     </td>
 
                                     <td>
-                                        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#Editar_@item.pedd_Id">
-                                            Editar
-                                        </button>
+                                        <button type="button" class="btn btn-white btn-xs"  onclick="EditPedidoDetalles('@item.pedd_Id')">Editar</button>
                                     </td>
                                 </tr>
-                                <div class="modal fade" id="Editar_@item.pedd_Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Editar  Pedido Detalle</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div id="EditarSolicitudEfectivoDetalle" class="modal-body">
-                                                @Html.Partial("_PedidoDetalleEditar", new ERP_GMEDINA.Models.tbPedidoDetalle() { pedd_Id = item.pedd_Id, ped_Id = item.ped_Id, prod_Codigo = item.prod_Codigo, pedd_Cantidad = item.pedd_Cantidad, pedd_CantidadFacturada = item.pedd_CantidadFacturada, pedd_UsuarioCrea = item.pedd_UsuarioCrea, pedd_FechaCrea = item.pedd_FechaCrea, pedd_UsuarioModifica = item.pedd_UsuarioModifica, pedd_FechaModifica = item.pedd_FechaModifica })
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             }
                         </tbody>
                     </table>
@@ -81,7 +71,65 @@
         </div>
     </div>
 </div>
-<script src="~/Scripts/jquery-3.3.1.js"></script>
+
+<div class="modal fade" id="EditPedidoDetalle">
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h4 id="ModalTitle">Editar Pedido Detalle</h4>
+            </div>
+            <div class="modal-body">
+                <form id="form">
+                    <fieldset id="SubmitForm">
+                        <div class="form-horizontal">
+                            <label id="MsjError">
+                            </label>
+                            <div class="form-group">
+                                @Html.LabelFor(m => PedDetalle.pedd_Id, new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-10">
+                                    <input type="text" id="pedd_Id_Ped" name="pedd_Id" class="form-control" />
+                                    @Html.ValidationMessageFor(m => PedDetalle.pedd_Id)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => PedDetalle.prod_Codigo, new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-10">
+                                    <input type="text" id="prod_Codigo_Ped" name="prod_Codigo" class="form-control" />
+                                    @Html.ValidationMessageFor(m => PedDetalle.prod_Codigo)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(m => PedDetalle.pedd_Cantidad, new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-10">
+                                    <input type="text" id="pedd_Cantidad_Ped" name="pedd_Cantidad" class="form-control" />
+                                    @Html.ValidationMessageFor(m => PedDetalle.pedd_Cantidad)
+                                </div>
+                            </div>
+
+
+                           
+
+                            <input type="hidden" id="pedd_FechaCrea_Ped" name="pedd_FechaCrea"/>    
+                            <input type="hidden" id="pedd_UsuarioCrea_Ped" name="pedd_UsuarioCrea" />
+
+
+                            <div class="form-group">
+                                <div class="col-md-12 text-center">
+                                    <button class="btn btn-primary" type="button" id="BtnsubmitMunicipio" tabindex="10"> Guardar </button>
+                                    <button type="button" class="btn btn-white" data-dismiss="modal" aria-label="Close">Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/app/SaveDetallePedido.js"></script>
 
 
 <div class="modal fade" id="ModalAgregarDetalle" tabindex="-1" role="dialog" aria-labelledby="DetalleNumeracion" aria-hidden="true">
@@ -99,3 +147,5 @@
         </div>
     </div>
 </div>
+
+

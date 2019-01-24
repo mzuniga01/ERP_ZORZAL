@@ -314,6 +314,7 @@ namespace ERP_ZORZAL.Controllers
                 ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
                 return PartialView("_AprobarSolicitudCredito", EditSolicitudCredito);
             }
+            return View();
         }
         [HttpPost]
         public JsonResult DenegarSolCredito(int credID, byte Denegado)
