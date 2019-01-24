@@ -356,7 +356,7 @@ namespace ERP_GMEDINA.Controllers
                 IEnumerable<object> list = null;
                 list = db.UDP_Vent_tbListadoPrecioDetalle_Insert(
                                               PrecioDetalle.listp_Id,
-                                              PrecioDetalle.prod_Codigo,
+                                              PrecioDetalle.tbProducto.prod_Codigo,
                                               PrecioDetalle.lispd_PrecioMayorista,
                                               PrecioDetalle.lispd_PrecioMinorista,
                                               PrecioDetalle.lispd_DescCaja,

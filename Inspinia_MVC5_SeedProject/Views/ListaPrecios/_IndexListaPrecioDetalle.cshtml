@@ -93,7 +93,7 @@
 
                             </tr>
                             <!-- Modal -->
-                                <div class="modal fade" id="Editar_@item.lispd_Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                @*<div class="modal fade" id="Editar_@item.lispd_Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -107,7 +107,51 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>*@
+
+
+
+                            <!-- Edit Municipio Modal-->
+                            @*<div class="modal fade" id="EditMunicipioModal">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <a href="#" class="close" data-dismiss="modal">&times;</a>
+                                            <h4 id="ModalTitle">Editar Municipio</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form id="form">
+                                                <fieldset id="SubmitForm">
+                                                    <div class="form-horizontal">
+                                                        <label id="MsjError">
+                                                        </label>
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(m => tbProducto.prod_Codigo, new { @class = "control-label col-sm-2" })
+                                                            <div class="col-sm-10">
+                                                                <input type="text" id="mun_CodigoEdit_" name="mun_Codigo" class="form-control" />
+                                                                @Html.ValidationMessageFor(m => Municipio.mun_Codigo)
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(m => Municipio.mun_Nombre, new { @class = "control-label col-sm-2" })
+                                                            <div class="col-sm-10">
+                                                                <input type="text" id="mun_NombreEdit_" name="mun_Nombre" class="form-control" />
+                                                                @Html.ValidationMessageFor(m => Municipio.mun_Nombre)
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <div class="col-md-12 text-center">
+                                                                <button class="btn btn-primary" type="button" id="BtnsubmitMunicipio" tabindex="10"> Guardar </button>
+                                                                <button type="button" class="btn btn-white" data-dismiss="modal" aria-label="Close">Cancelar</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
+                            </div>*@
 
                         }
                     </tbody>
