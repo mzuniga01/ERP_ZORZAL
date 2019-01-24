@@ -1,39 +1,38 @@
-﻿$("#btnGuardarEntregaEfectivo").click(function () {
-    var IdSolicitud = $('#solef_Id').val();
-    console.log("IdSolicitud:", IdSolicitud);
+﻿$(document).on("change", "#EntregaEfectivo tbody tr td input#CantidadE", function () {
+    var IdSolicitud = $(this).parents("tr").find("td")[0].innerHTML;
+    console.log("IdSolicitud: ", IdSolicitud);
 
-    $("#EntregaEfectivo tbody tr ").each(function (index) {
-        var IdSolicitudDetalle = $(this).children("td:eq(1)").text();
-        console.log("IdSolicitudDetalle:", IdSolicitudDetalle);
+    var IdSolicitudDetalle = $(this).parents("tr").find("td")[1].innerHTML;
+    console.log("IdSolicitudDetalle:", IdSolicitudDetalle);
 
-        //var cantidad = $(this).parents("tr").find('#CantidadE').val();
-        //var cantidad = $("input[name*='CantidadE']").val();
-        //var cantidad = $('.CantidadE').val();
-        //console.log("Cantidad:", cantidad);
+    var CantidadSolicitada = $(this).parents("tr").find("td")[4].innerHTML;
+    console.log("CantidadSolicitada:", CantidadSolicitada);
 
-        var Monto = $(this).children("td:eq(6)").html();
-        console.log('Monto:', Monto);
-    });
+    var CantidadEntregada = $(this).val();
+    console.log('CantidadEntregada: ', CantidadEntregada);
 
-    $("#EntregaEfectivo tbody tr td input#CantidadE").each(function (index) {
-        //$("#EntregaEfectivo tbody tr ").find(':input').each(function () {
-        var Cantidad = $(this).val();
-        console.log("Cantidad:", Cantidad);
-    });
+    var Monto = $(this).parents("tr").find("td")[6].innerHTML;
+    console.log('Monto Entregado:', Monto);
 
-    var GetEfectivoDetalle = {
-        solef_Id: IdSolicitud,
-        soled_Id: IdSolicitudDetalle,
-        soled_CantidadEntregada: Cantidad,
-        soled_MontoEntregado: Monto
-    };
+    var denoID = $(this).parents("tr").find("td")[7].innerHTML;
+    console.log('denoID: ', denoID);
+
+    var UsuarioCrea = $(this).parents("tr").find("td")[8].innerHTML;
+    console.log('UsuarioCrea: ', UsuarioCrea);
+
+    var FechaCrea = $(this).parents("tr").find("td")[9].innerHTML;
+    console.log('FechaCrea: ', FechaCrea);
+
+    console.log('----------------------------');
+
+    var SolicitudEfectivoDetalle = GetEntregaEfectivoDetalle();
 
     $.ajax({
         url: "/SolicitudEfectivo/SaveEditSolicitudEfectivoDetalle",
         method: "POST",
         dataType: 'json',
         contentType: "application/json; charset=utf-8",
-        data: JSON.stringify({ EdiEntregaEfectivoDetalle: GetEfectivoDetalle }),
+        data: JSON.stringify({ tbSolicitudEfectivoDetalle: SolicitudEfectivoDetalle }),
         success: function (data) {
         }
     })
@@ -47,4 +46,19 @@
             swal("El registro  no se editó!", "", "error");
         }
     });
+
+    function GetEntregaEfectivoDetalle() {
+        var EntregaEfectivoDetalle = {
+            soled_Id: IdSolicitudDetalle,
+            deno_Id: denoID,
+            soled_CantidadSolicitada: CantidadSolicitada,
+            soled_CantidadEntregada: CantidadEntregada,
+            soled_MontoEntregado: Monto,
+            soled_UsuarioCrea: UsuarioCrea,
+            soled_FechaCrea: FechaCrea
+
+        }
+        return EntregaEfectivoDetalle
+    };
+
 });

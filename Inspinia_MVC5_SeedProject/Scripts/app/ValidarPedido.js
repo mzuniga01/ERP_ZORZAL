@@ -66,7 +66,7 @@ function Validar() {
                                 document.getElementById("Subtotal").innerHTML = parseFloat(SubtotalD);
                                 document.getElementById("isv").innerHTML = parseFloat(GranImpuesto);
                                 document.getElementById("total").innerHTML = parseFloat(GranTotal);
-
+                                $("#TotalProductoEncabezado").val(GranTotal)
                                
 
 

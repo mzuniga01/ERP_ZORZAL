@@ -26,11 +26,14 @@
                                     @Html.DisplayNameFor(model => model.soled_CantidadSolicitada)
                                 </th>
                                 <th>
-                                   Cantidad Entregada
+                                    Cantidad Entregada
                                 </th>
                                 <th>
-                                   Monto Entregado
+                                    Monto Entregado
                                 </th>
+                                <th hidden>Id Denominacion</th>
+                                <th hidden>Usuario Crea</th>
+                                <th hidden>Fecha Crea</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -54,14 +57,19 @@
                                     </td>
                                     <td>
                                         <input type="number" min="0" class="form-control" size="2" id="CantidadE" name="CantidadE">
-                                        
+
                                     </td>
-                                    <td id="Prueba">
-                                    </td>
+                                    <td id="Prueba"></td>
+                                    <td hidden>@Html.DisplayFor(modelItem => item.deno_Id)</td>
+                                    <td hidden>@Html.DisplayFor(modelItem => item.soled_UsuarioCrea)</td>
+                                    <td hidden>@Html.DisplayFor(modelItem => item.soled_FechaCrea)</td>
                                 </tr>
 
                             }
+
+                            }
                         </tbody>
+
                             <tfoot>
                                 <tr>
                                     <td hidden></td>
