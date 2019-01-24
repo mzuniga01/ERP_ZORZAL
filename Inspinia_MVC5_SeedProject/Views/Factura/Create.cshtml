@@ -80,8 +80,8 @@
                                 </div>
                                 <label class="control-label col-md-2">Consumidor Final</label>
                                 <div class="col-md-4">
-                                    <input id="consumidorFinal" type="checkbox" class="check-box" />
-                                </div>
+                                    <input id="consumidorFinal" type="checkbox" class="check-box" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#ConsuFinal" />
+                               </div>
                             </div>
 
                             <div id="DatosCliente" name="DatosCliente" class="form-group">
@@ -302,7 +302,51 @@
     </div>
 </div>
 
+<div>
+    <div class="modal fade" id="ConsuFinal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="uncheck2()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Datos Consumidor Final</h4>
+                </div>
+                <div class="modal-body" id="frmConsumidor">
+                    <div class="ibox-content">
+                        <div class="form-horizontal">
+                            <form>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Nombre</label>
+                                    <div class="col-md-7">
+                                        <input id="NombresConsumidor" type="text" value="" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Teléfono</label>
+                                    <div class="col-md-7">
+                                        <input id="TelefonoConsumidor" type="text" value="" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Correo</label>
+                                    <div class="col-md-7">
+                                        <input id="CorreoConsumidor" type="text" value="" class="form-control"  />
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-primary btn-sm" type="button" id="AgregarConsumidorFinal">Guardar</button>
+                                    <button type="button" class="btn btn-white btn-sm" data-dismiss="modal" onclick="uncheck3()">Cancelar</button>
+                                </div>
+                            </form>
+                        </div>
 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/FacturaDetalle.js"></script>
@@ -318,6 +362,16 @@
 <script>
     document.getElementById("esfac_Id").disabled = true;
     // Open Modal Edad
+    function myFunction() {
+        var checkBox = document.getElementById("consumidorFinal");
+        if (checkBox.checked == true) {
+            $('#ConsuFinal').modal('show');
+        }
+    }
+    function uncheck3() {
+        document.getElementById("consumidorFinal").checked = false;
+    }
+
     function myFunction() {
         var checkBox = document.getElementById("MostrarTerceraEdad");
         if (checkBox.checked == true) {

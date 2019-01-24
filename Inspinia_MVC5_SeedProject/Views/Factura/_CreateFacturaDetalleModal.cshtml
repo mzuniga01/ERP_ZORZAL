@@ -16,7 +16,7 @@
                             </div>
                             @Html.LabelFor(model => model.tbProducto.prod_Descripcion, new { @class = "control-label col-md-1" })
                             <div class="col-md-5">
-                                <input id="tbProducto_prod_DescripcionEdit" type="text" class="form-control" readonly />
+                                @Html.EditorFor(model => model.tbProducto.prod_Descripcion, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly", } })
                                 <div id="validationDescripcionProductoCreate">
                                     @Html.ValidationMessageFor(model => model.tbProducto.prod_Descripcion)
                                 </div>
@@ -30,7 +30,7 @@
 
                             @Html.LabelFor(model => model.prod_Codigo, new { @class = "control-label required col-md-1" })
                             <div class="col-md-3">
-                                <input id="prod_CodigoEdit" type="text" class="form-control"  />
+                                @Html.EditorFor(model => model.prod_Codigo, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control" } })
                                 <div id="validationCodigoProductoCreate">
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.prod_Codigo)</p>
                                 </div>
@@ -38,12 +38,12 @@
 
                             @Html.LabelFor(model => model.factd_PorcentajeDescuento, new { @class = "col-md-1 col-md-offset-1" })
                             <div class="col-md-2">
-                                <input id="factd_PorcentajeDescuentoEdit" type="text" class="form-control" readonly />
+                                @Html.EditorFor(model => model.factd_PorcentajeDescuento, new { htmlAttributes = new { @Value = "", onKeyPress = "return soloNumeros(event)", @autocomplete = "off" } })
                                 <p style="color:red">@Html.ValidationMessageFor(model => model.factd_PorcentajeDescuento)</p>
                             </div>
                             @Html.LabelFor(model => model.factd_MontoDescuento, new { @class = "col-md-1" })
                             <div class="col-md-2">
-                                <input id="factd_MontoDescuentoEdit" type="text" class="form-control" readonly />
+                                @Html.EditorFor(model => model.factd_MontoDescuento, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @Value = "", @onkeyup = "format(this)", @autocomplete = "off" } })
                                 <div id="validationMontoDescuentoCreate">
                                     @Html.ValidationMessageFor(model => model.factd_MontoDescuento)
                                 </div>
@@ -55,14 +55,14 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.factd_Cantidad, new { @class = "control-label required col-md-1" })
                             <div class="col-md-3">
-                                <input id="factd_CantidadEdit" type="text" class="form-control"  />
+                                @Html.EditorFor(model => model.factd_Cantidad, new { htmlAttributes = new { @Value = "", onKeyPress = "return soloNumeros(event)", onKeyUp = "pierdeFoco(this)", @autocomplete = "off" } })
                                 <div id="validationCantidadProductoCreate">
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.factd_Cantidad)</p>
                                 </div>
                             </div>
                             @Html.LabelFor(model => model.factd_Impuesto, "% Impuesto", new { @class = "control-label col-md-2" })
                             <div class="col-md-2">
-                                <input id="factd_ImpuestoEdit" type="text" class="form-control" readonly />
+                                @Html.EditorFor(model => model.factd_Impuesto, new { htmlAttributes = new { @Value = "", @autocomplete = "off", @class = "form-control", @readonly = "readonly" } })
                                 <div id="validationImpuestoProductoCreate">
                                     @Html.ValidationMessageFor(model => model.factd_Impuesto)
                                 </div>
@@ -75,18 +75,18 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.factd_PrecioUnitario, new { @class = "control-label col-md-1" })
                             <div class="col-md-3">
-                                <input id="PrecioUnitarioEdit" type="text" class="form-control" readonly />
+                                @Html.EditorFor(model => model.factd_PrecioUnitario, new { htmlAttributes = new { @class = "form-control", @Value = "", @autocomplete = "off", @readonly = "readonly" } })
                                 <div id="validationPrecioUnitarioCreate">
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.factd_PrecioUnitario)</p>
                                 </div>
                             </div>
                             <label class="control-label col-md-2">Subtotal</label>
                             <div class="col-md-2">
-                                <input id="SubtotalProductoEdit" type="text" class="form-control" readonly />
+                                <input id="SubtotalProducto" type="text" class="form-control" readonly />
                             </div>
                             <label class="control-label col-md-1">Total</label>
                             <div class="col-md-2">
-                                <input id="TotalProductoEdit" type="text" value="" class="form-control" readonly />
+                                <input id="TotalProducto" type="text" value="" class="form-control" readonly />
                             </div>
                         </div>
                     </div>
