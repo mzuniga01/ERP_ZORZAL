@@ -19,50 +19,50 @@
         @Html.HiddenFor(model => model.sald_Id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.tbBodegaDetalle.tbProducto.prod_Descripcion, "prod_Descripcion", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.tbProducto.prod_Descripcion, "prod_Descripcion", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.tbBodegaDetalle.tbProducto.prod_Descripcion, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @id = "DescripcionEdit" } })
-                @Html.ValidationMessageFor(model => model.tbBodegaDetalle.tbProducto.prod_Codigo)
+                @Html.EditorFor(model => model.tbProducto.prod_Descripcion, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @id = "DescripcionEdit" } })
+                @Html.ValidationMessageFor(model => model.tbProducto.prod_Codigo)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.tbBodegaDetalle.tbProducto.prod_Marca, "prod_Marca", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.tbProducto.prod_Marca, "prod_Marca", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.tbBodegaDetalle.tbProducto.prod_Marca, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @id = "MarcaEdit" } })
-                @Html.ValidationMessageFor(model => model.tbBodegaDetalle.tbProducto.prod_Marca)
+                @Html.EditorFor(model => model.tbProducto.prod_Marca, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @id = "MarcaEdit" } })
+                @Html.ValidationMessageFor(model => model.tbProducto.prod_Marca)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.tbBodegaDetalle.tbProducto.prod_Modelo, "prod_Modelo", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.tbProducto.prod_Modelo, "prod_Modelo", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.tbBodegaDetalle.tbProducto.prod_Modelo, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @id = "ModeloEdit" } })
-                @Html.ValidationMessageFor(model => model.tbBodegaDetalle.tbProducto.prod_Modelo)
+                @Html.EditorFor(model => model.tbProducto.prod_Modelo, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @id = "ModeloEdit" } })
+                @Html.ValidationMessageFor(model => model.tbProducto.prod_Modelo)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.tbBodegaDetalle.tbProducto.prod_Talla, "prod_Talla", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.tbProducto.prod_Talla, "prod_Talla", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.tbBodegaDetalle.tbProducto.prod_Talla, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @id = "TallaEdit" } })
-                @Html.ValidationMessageFor(model => model.tbBodegaDetalle.tbProducto.prod_Talla)
+                @Html.EditorFor(model => model.tbProducto.prod_Talla, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @id = "TallaEdit" } })
+                @Html.ValidationMessageFor(model => model.tbProducto.prod_Talla)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.tbBodegaDetalle.tbProducto.prod_Color, "prod_Color", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.tbProducto.prod_Color, "prod_Color", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.tbBodegaDetalle.tbProducto.prod_Color, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @id = "ColorEdit" } })
-                @Html.ValidationMessageFor(model => model.tbBodegaDetalle.tbProducto.prod_Color)
+                @Html.EditorFor(model => model.tbProducto.prod_Color, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @id = "ColorEdit" } })
+                @Html.ValidationMessageFor(model => model.tbProducto.prod_Color)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.tbBodegaDetalle.tbProducto.tbUnidadMedida.uni_Descripcion, "uni_Descripcion", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.tbProducto.tbUnidadMedida.uni_Descripcion, "uni_Descripcion", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.tbBodegaDetalle.tbProducto.tbUnidadMedida.uni_Descripcion, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @id = "DescripcionEdit" } })
-                @Html.ValidationMessageFor(model => model.tbBodegaDetalle.tbProducto.tbUnidadMedida.uni_Descripcion)
+                @Html.EditorFor(model => model.tbProducto.tbUnidadMedida.uni_Descripcion, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @id = "DescripcionEdit" } })
+                @Html.ValidationMessageFor(model => model.tbProducto.tbUnidadMedida.uni_Descripcion)
             </div>
         </div>
 

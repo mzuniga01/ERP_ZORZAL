@@ -27,7 +27,7 @@
                 </div>
                 <div class="ibox-content">
 
-                    @using (Html.BeginForm("Edit", "Caja", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    @using (Html.BeginForm("Edit", "Box", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
 
@@ -69,7 +69,7 @@
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
                                     <input type="submit" value="Guardar" class="btn btn-primary" />
-                                    @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-white" })
+                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                                 </div>
                             </div>
                             <div class="row">
@@ -83,6 +83,7 @@
                                         </div>
                                         <div class="ibox-content collapse" id="CreateProducto">
                                             @Html.Partial("_ListSalidaDetalle", Model.tbSalidaDetalle, new ViewDataDictionary(new { clave = Model.box_Codigo }))
+
                                         </div>
                                     </div>
                                 </div>

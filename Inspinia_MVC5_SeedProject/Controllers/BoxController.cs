@@ -100,7 +100,7 @@ namespace ERP_ZORZAL.Controllers
                                             listSalidaDetalle = db.UDP_Inv_tbSalidaDetalle_Insert(
                                                 Sal,
                                                 Detalle.prod_Codigo,
-                                                Detalle.sal_Cantidad,
+                                                Detalle.sald_Cantidad,
                                                 tbBox.box_Codigo
                                                 );
                                             foreach (UDP_Inv_tbSalidaDetalle_Insert_Result spDetalle in listSalidaDetalle)
@@ -208,42 +208,7 @@ namespace ERP_ZORZAL.Controllers
             return View(tbBox);
         }
 
-        //public JsonResult UpdateSalidaDetalle(tbSalidaDetalle ACTUALIZAR_tbSalidaDetalle)
-        //{
-        //    string Msj = "";
-        //    try
-        //    {
-        //        tbBox vBox = db.tbBox.Find(ACTUALIZAR_tbSalidaDetalle.box_Codigo);
-        //        IEnumerable<object> list = null;
-        //            list = db.UDP_Inv_tbSalidaDetalle_Update(ACTUALIZAR_tbSalidaDetalle.sald_Id,
-        //                                                ACTUALIZAR_tbSalidaDetalle.sal_Id,
-        //                                                 ACTUALIZAR_tbSalidaDetalle.bodd_Id,
-        //                                                 ACTUALIZAR_tbSalidaDetalle.sal_Cantidad,
-        //                                                 vBox.box_UsuarioCrea,
-        //                                                 vBox.box_FechaCrea
-        //                                                 );
-        //        foreach (UDP_Inv_tbSalidaDetalle_Update_Result Isd in list)
-        //            Msj = Isd.MensajeError;
-
-        //        if (Msj.Substring(0, 2) == "-1")
-        //        {
-        //            ModelState.AddModelError("", "No se Actualizo el registro");
-
-
-        //        }
-        //        else
-        //        {
-        //            //return View("Edit/" + bod_Id);
-        //            return Json("Index");
-        //        }
-        //    }
-        //    catch (Exception Ex)
-        //    {
-        //        Ex.Message.ToString();
-        //        ModelState.AddModelError("", "No se Actualizo el registro");
-        //    }
-        //    return Json("Index");
-        //}
+      
         
         // GET: /Box/Delete/5
         public ActionResult Delete(string id)
@@ -317,7 +282,7 @@ namespace ERP_ZORZAL.Controllers
                 list = db.UDP_Inv_tbSalidaDetalle_Update(EditarSalidaDetalle.sald_Id,
                                                          EditarSalidaDetalle.sald_Id, 
                                                          EditarSalidaDetalle.prod_Codigo,
-                                                        EditarSalidaDetalle.sal_Cantidad, 
+                                                        EditarSalidaDetalle.sald_Cantidad, 
                                                         EditarSalidaDetalle.box_Codigo);
                 foreach (UDP_Inv_tbSalidaDetalle_Update_Result salida in list)
                     Msj = salida.MensajeError;
@@ -349,36 +314,80 @@ namespace ERP_ZORZAL.Controllers
             }
             return Json("", JsonRequestBehavior.AllowGet);
         }
-        //public ActionResult EliminarModal(int sal_Id)
-        //{
-        //    try
-        //    {
-        //        tbSalidaDetalle obj = db.tbSalidaDetalle.Find(sal_Id);
-        //        IEnumerable<object> list = null;
-        //        var MsjError = ""; list = db.UDP_Gral_tbMunicipio_Delete(sal_Id);
-        //        foreach (UDP_Gral_tbMunicipio_Delete_Result mun in list)
-        //            MsjError = mun.MensajeError;
-        //        if (MsjError.StartsWith("-1The DELETE statement conflicted with the REFERENCE constraint"))
-        //        {
-        //            TempData["smserror"] = " No se puede eliminar el dato porque tiene dependencia."; ViewBag.smserror = TempData["smserror"];
-        //            ModelState.AddModelError("", "No se puede borrar el registro");
-        //            return RedirectToAction("Edit/" + dep_Codigo);
-        //        }
-        //        else
-        //        {
-        //            return RedirectToAction("Edit/" + dep_Codigo);
-        //        }
-        //    }
-        //    catch (Exception Ex)
-        //    {
-        //        Ex.Message.ToString();
-        //        ModelState.AddModelError("", "No se Actualizo el registro");
-        //        return RedirectToAction("Edit/" + dep_Codigo);
-        //    }
+
+        public ActionResult EliminarProductoSubCategoria(int? id)
+        {
+            try
+            {
+                tbSalidaDetalle obj = db.tbSalidaDetalle.Find(id);
+                IEnumerable<object> list = null;
+                var MsjError = "";
+                list = db.UDP_Inv_tbSalidaDetalle_Delete(id);
+                foreach (UDP_Inv_tbSalidaDetalle_Delete_Result obje in list)
+                    MsjError = obje.MensajeError;
+
+                if (MsjError == "-1")
+                {
+                    ModelState.AddModelError("", "No se puede borrar el registro");
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                ModelState.AddModelError("", "No se puede borrar el registro");
+                return RedirectToAction("Index");
+            }
+
 
             //return RedirectToAction("Index");
+
         }
 
+
+
+        public JsonResult GuardarSalidaDetalle(tbSalidaDetalle GuardarSalidas)
+        {
+            {
+                string MsjError = "";
+
+                try
+                {
+                    IEnumerable<object> list = null;
+                    list = db.UDP_Inv_tbSalidaDetalle_Insert(GuardarSalidas.sal_Id,
+                                                            GuardarSalidas.prod_Codigo,
+                                                            GuardarSalidas.sald_Cantidad,
+                                                            GuardarSalidas.box_Codigo);
+
+
+                    foreach (UDP_Inv_tbSalidaDetalle_Insert_Result sal in list)
+                        MsjError = (sal.MensajeError);
+
+                    if (MsjError.Substring(0, 1) == "-1")
+                    {
+
+                        ModelState.AddModelError("", "No se Guardo el Registro");
+                    }
+                    else
+                    {
+                        return Json("Index");
+                    }
+
+                }
+                catch (Exception Ex)
+                {
+                    Ex.Message.ToString();
+                    ModelState.AddModelError("", "No se Guardo el registro");
+                }
+                return Json("Index");
+            }
+        }
     }
-//}
+}
+
+
 

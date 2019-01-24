@@ -58,11 +58,11 @@
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.sal_Cantidad, "Cantidad", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.sald_Cantidad, "Cantidad", new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.sal_Cantidad)
+                @Html.EditorFor(model => model.sald_Cantidad)
                 <div id="validationcantidad">
-                    @Html.ValidationMessageFor(model => model.sal_Cantidad)
+                    @Html.ValidationMessageFor(model => model.sald_Cantidad)
                 </div>
             </div>
             @Html.LabelFor(model => model.tbProducto.tbProductoSubcategoria.tbProductoCategoria, "Categoria", new { @class = "control-label col-md-2" })

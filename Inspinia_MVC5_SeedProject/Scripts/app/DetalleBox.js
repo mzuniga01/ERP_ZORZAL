@@ -147,3 +147,112 @@ $(document).on("click", "#tbSalidaDetalle tbody tr td button#removeSalidaDetalle
             }
         });
     })
+
+    //$('#btnNuevoCreate').click(function () {
+    //    var SaldDescripcionModal = $('#DescripcionCreate').val();
+    //    var SaldMarcaModal = $('#MarcaCreate').val();
+    //    var SaldModeloModal = $('#ModeloCreate').val();
+    //    var SaldTallaModal = $('#TallaCreate').val();
+    //    var SaldColorModal = $('#ColorCreate').val();
+    //    var SaldDescripcionUnidadModal = $('#Descripcion_uniCreate').val();
+    //    var SaldCantidad = $('#Cantidad').val();
+
+    //    console.log(SaldDescripcionModal);
+    //    console.log(SaldMarcaModal);
+    //    console.log(SaldModeloModal);
+    //    console.log(SaldTallaModal);
+    //    console.log(SaldColorModal);
+    //    console.log(SaldDescripcionUnidadModal);
+    //    console.log(SaldCantidad);
+
+
+    //    if (SaldDescripcionModal == '') {
+    //        $('#DescripcionCreate').text('');
+    //        $('#errorCodigo').text('');
+    //        $('#errorNombre').text('');
+    //        $('#ValidationNombre').after('<ul id="errorNombre" class="validation-summary-errors text-danger">Campo Descripcion de producto Requerido</ul>');
+
+    //    }
+
+    //    else if (SaldMarcaModal == '') {
+    //        $('#MarcaCreate').text('');
+    //        $('#errorCodigo').text('');
+    //        $('#errorNombre').text('');
+    //        $('#ValidationCodigoUpdate').after('<ul id="errorCodigo" class="validation-summary-errors text-danger">Campo Marca de producto Requerido</ul>');
+
+
+    //    }
+
+    //    else if (SaldModeloModal == '') {
+    //        $('#ModeloCreate').text('');
+    //        $('#errorCodigo').text('');
+    //        $('#errorNombre').text('');
+    //        $('#ValidationCodigoUpdate').after('<ul id="errorCodigo" class="validation-summary-errors text-danger">Campo Modelo de producto Requerido</ul>');
+
+    //    }
+    //    else if (SaldTallaModal == '') {
+    //        $('#TallaCreate').text('');
+    //        $('#errorCodigo').text('');
+    //        $('#errorNombre').text('');
+    //        $('#ValidationCodigoUpdate').after('<ul id="errorCodigo" class="validation-summary-errors text-danger">Campo Talla de producto Requerido</ul>');
+
+    //    }
+    //    else if (SaldColorModal == '') {
+    //        $('#ColorCreate').text('');
+    //        $('#errorCodigo').text('');
+    //        $('#errorNombre').text('');
+    //        $('#ValidationCodigoUpdate').after('<ul id="errorCodigo" class="validation-summary-errors text-danger">Campo Color de producto Requerido</ul>');
+
+    //    }
+    //    else if (SaldDescripcionUnidadModal == '') {
+    //        $('#Descripcion_uniCreate').text('');
+    //        $('#errorCodigo').text('');
+    //        $('#errorNombre').text('');
+    //        $('#ValidationCodigoUpdate').after('<ul id="errorCodigo" class="validation-summary-errors text-danger">Campo Unidad de medida de producto Requerido</ul>');
+
+    //    }
+
+    //    else if (SaldCantidad == '') {
+    //        $('#Cantidad').text('');
+    //        $('#errorCodigo').text('');
+    //        $('#errorNombre').text('');
+    //        $('#ValidationCodigoUpdate').after('<ul id="errorCodigo" class="validation-summary-errors text-danger">Campo Cantidad de producto Requerido</ul>');
+
+    //    }
+
+
+
+    //    else {
+    //        var tbSalidaDetalle = GetSalidaDetalle();
+    //        $.ajax({
+    //            url: "/Box/GuardarSalidaDetalle",
+    //            method: "POST",
+    //            dataType: 'json',
+    //            contentType: "application/json; charset=utf-8",
+    //            data: JSON.stringify({ GuardarSalidas: tbSalidaDetalle }),
+
+    //        })
+    //        .done(function (data) {
+    //            if (data == '') {
+    //                $('#ValidationNombreUpdate').after('<ul id="ValidationNombreUpdate" class="validation-summary-errors text-danger">No se pudo actualizar el registro, contacte con el administrador</ul>');
+    //            }
+    //            else {
+    //                window.location.href = '/Box/Index';
+    //            }
+    //        })
+    //    }
+    //});
+
+
+    //function GetSalidaDetalle() {
+    //    var SalidaDetalle = {
+    //        prod_Descripcion: $('#DescripcionCreate').val(),
+    //        prod_Marca: $('#MarcaCreate').val(),
+    //        prod_Modelo: $('#ModeloCreate').val(),
+    //        prod_Talla: $('#TallaCreate').val(),
+    //        prod_Color: $('#ColorCreate').val(),
+    //        uni_Descripcion: $('#Descripcion_uniCreate').val(),
+    //        sal_Cantidad: $('#Cantidad').val()
+    //    };
+    //    return SalidaDetalle;
+    //}

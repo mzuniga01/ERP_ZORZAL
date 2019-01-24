@@ -22,8 +22,8 @@ namespace ERP_GMEDINA.Models
         public string uni_Descripcion { get; set; }
         public string pcat_Nombre { get; set; }
         public string pscat_Descripcion { get; set; }
-        public decimal sal_Cantidad { get; set; }
         public string box_Codigo { get; set; }
         public string prod_CodigoBarras { get; set; }
+        public decimal sald_Cantidad { get; set; }
     }
 }

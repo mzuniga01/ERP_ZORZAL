@@ -294,7 +294,13 @@
     <Compile Include="Models\SDP_Inv_tbProducto_Select_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SDP_Inv_tbSalidaDetalle_Edit_Select_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SDP_Inv_tbSalidaDetalle_Select_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SDP_Inv_tbSalidaDetalle_Select_Result1.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SDP_tbEmpleado_Select_Result.cs">
@@ -591,6 +597,9 @@
     <Compile Include="Models\UDP_Acce_tbUsuario_Insert_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UDP_Acce_tbUsuario_PasswordRestore_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UDP_Acce_tbUsuario_PasswordUpdate_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -661,6 +670,9 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Inv_tbBodega_Update_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Inv_tbBox_Delete_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Inv_tbBox_Insert_Result.cs">
@@ -756,9 +768,7 @@
     <Compile Include="Models\UDP_Inv_tbProveedor_Update_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\UDP_Inv_tbSalidaDetalleD_Delete_Result.cs">
-      <DependentUpon>ModelERP.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\UDP_Inv_tbSalidaDetalleD_Delete_Result.cs" />
     <Compile Include="Models\UDP_Inv_tbSalidaDetalle_Delete_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -1225,6 +1235,8 @@
     <Content Include="Scripts\plugins\metisMenu\metisMenu.min.js" />
     <Content Include="Scripts\plugins\pace\pace.min.js" />
     <Content Include="Scripts\plugins\slimscroll\jquery.slimscroll.min.js" />
+    <Content Include="Scripts\Salida.js" />
+    <Content Include="Scripts\SalidaDetalle.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1438,6 +1450,7 @@
     <Content Include="Views\TipoDevolucion\Details.cshtml" />
     <Content Include="Views\TipoDevolucion\Edit.cshtml" />
     <Content Include="Views\TipoDevolucion\Index.cshtml" />
+    <Content Include="Views\Box\_CreateSalidaDetalle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

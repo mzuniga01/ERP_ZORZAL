@@ -17,7 +17,7 @@ namespace ERP_GMEDINA.Models
         public int sald_Id { get; set; }
         public int sal_Id { get; set; }
         public string prod_Codigo { get; set; }
-        public decimal sal_Cantidad { get; set; }
+        public decimal sald_Cantidad { get; set; }
         public string box_Codigo { get; set; }
         public int sald_UsuarioCrea { get; set; }
         public System.DateTime sald_FechaCrea { get; set; }

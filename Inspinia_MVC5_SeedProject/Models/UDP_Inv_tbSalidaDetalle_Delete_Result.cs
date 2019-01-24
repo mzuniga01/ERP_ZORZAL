@@ -13,6 +13,6 @@ namespace ERP_GMEDINA.Models
     
     public partial class UDP_Inv_tbSalidaDetalle_Delete_Result
     {
-        public int sald_Id { get; set; }
+        public string MensajeError { get; set; }
     }
 }
