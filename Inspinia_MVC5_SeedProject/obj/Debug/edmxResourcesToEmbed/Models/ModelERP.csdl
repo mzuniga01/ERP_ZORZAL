@@ -753,13 +753,13 @@
     <FunctionImport Name="UDP_Vent_tbMovimientoCaja_Update" ReturnType="Collection(Int32)">
       <Parameter Name="mocja_Id" Mode="In" Type="Int32" />
       <Parameter Name="cja_Id" Mode="In" Type="Int16" />
-      <Parameter Name="mocja_FechaApertura" Mode="In" Type="DateTime" />
+      <Parameter Name="mocja_UsuarioApertura" Mode="In" Type="Int32" />
       <Parameter Name="mocja_FechaArqueo" Mode="In" Type="DateTime" />
+      <Parameter Name="mocja_UsuarioArquea" Mode="In" Type="Int32" />
       <Parameter Name="mocja_FechaAceptacion" Mode="In" Type="DateTime" />
+      <Parameter Name="mocja_UsuarioAceptacion" Mode="In" Type="Int32" />
       <Parameter Name="mocja_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="mocja_FechaCrea" Mode="In" Type="DateTime" />
-      <Parameter Name="mocja_UsuarioModifica" Mode="In" Type="Int32" />
-      <Parameter Name="mocja_FechaModifica" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="GetBusquedaFactura">
       <Parameter Name="cliente" Mode="In" Type="String" />
@@ -1225,19 +1225,6 @@
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbSolicitudEfectivoDetalle_Detalle" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivoDetalle_Detalle_Result1)">
       <Parameter Name="IDSOLICITUD" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Gral_tbBanco_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbBanco_Insert_Result)">
-      <Parameter Name="ban_Nombre" Mode="In" Type="String" />
-      <Parameter Name="ban_NombreContacto" Mode="In" Type="String" />
-      <Parameter Name="ban_TelefonoContacto" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Gral_tbBanco_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbBanco_Update_Result)">
-      <Parameter Name="ban_Id" Mode="In" Type="Int16" />
-      <Parameter Name="ban_Nombre" Mode="In" Type="String" />
-      <Parameter Name="ban_NombreContacto" Mode="In" Type="String" />
-      <Parameter Name="ban_TelefonoContacto" Mode="In" Type="String" />
-      <Parameter Name="ban_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="ban_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="UDP_Gral_tbCuentasBanco_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbCuentasBanco_Insert_Result)">
       <Parameter Name="ban_Id" Mode="In" Type="Int16" />
@@ -2439,6 +2426,39 @@
       <Parameter Name="pedd_Cantidad" Mode="In" Type="Decimal" />
       <Parameter Name="pedd_CantidadFacturada" Mode="In" Type="Decimal" />
     </FunctionImport>
+    <EntitySet Name="tbBitacoraErrores" EntityType="ERP_ZORZALModel.tbBitacoraErrores" />
+    <AssociationSet Name="FK_Acce_tbBitacoraErrores_bite_Usuario" Association="ERP_ZORZALModel.FK_Acce_tbBitacoraErrores_bite_Usuario">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbBitacoraErrores" EntitySet="tbBitacoraErrores" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Acce_tbBitacoraErrores_obj_Id" Association="ERP_ZORZALModel.FK_Acce_tbBitacoraErrores_obj_Id">
+      <End Role="tbObjeto" EntitySet="tbObjeto" />
+      <End Role="tbBitacoraErrores" EntitySet="tbBitacoraErrores" />
+    </AssociationSet>
+    <FunctionImport Name="UDP_Gral_tbBanco_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbBanco_Insert_Result)">
+      <Parameter Name="ban_Nombre" Mode="In" Type="String" />
+      <Parameter Name="ban_NombreContacto" Mode="In" Type="String" />
+      <Parameter Name="ban_TelefonoContacto" Mode="In" Type="String" />
+      <Parameter Name="ban_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="ban_FechaCrea" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Gral_tbBanco_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbBanco_Update_Result)">
+      <Parameter Name="ban_Id" Mode="In" Type="Int16" />
+      <Parameter Name="ban_Nombre" Mode="In" Type="String" />
+      <Parameter Name="ban_NombreContacto" Mode="In" Type="String" />
+      <Parameter Name="ban_TelefonoContacto" Mode="In" Type="String" />
+      <Parameter Name="ban_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="ban_FechaCrea" Mode="In" Type="DateTime" />
+      <Parameter Name="ban_UsuarioModifica" Mode="In" Type="Int32" />
+      <Parameter Name="ban_FechaModifica" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Acce_tbBitacoraErrores_Insert" ReturnType="Collection(String)">
+      <Parameter Name="obj_Id" Mode="In" Type="Int32" />
+      <Parameter Name="bite_Usuario" Mode="In" Type="Int32" />
+      <Parameter Name="bite_Fecha" Mode="In" Type="DateTime" />
+      <Parameter Name="bite_MensajeError" Mode="In" Type="String" />
+      <Parameter Name="bite_Accion" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -2983,12 +3003,6 @@
     <Property Type="String" Name="DenoDescripcion" Nullable="false" MaxLength="50" />
     <Property Type="Decimal" Name="valor" Nullable="false" Precision="10" Scale="2" />
   </ComplexType>
-  <ComplexType Name="UDP_Gral_tbBanco_Insert_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="UDP_Gral_tbBanco_Update_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
   <ComplexType Name="UDP_Gral_tbCuentasBanco_Insert_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
@@ -3101,6 +3115,7 @@
     <NavigationProperty Name="tbAccesoRol" Relationship="ERP_ZORZALModel.FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id" FromRole="tbObjeto" ToRole="tbAccesoRol" />
     <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbObjeto_obj_UsuarioModifica" FromRole="tbObjeto" ToRole="tbUsuario" />
     <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbObjeto_tbUsuario_obj_UsuarioCrea" FromRole="tbObjeto" ToRole="tbUsuario" />
+    <NavigationProperty Name="tbBitacoraErrores" Relationship="ERP_ZORZALModel.FK_Acce_tbBitacoraErrores_obj_Id" FromRole="tbObjeto" ToRole="tbBitacoraErrores" />
   </EntityType>
   <EntityType Name="tbRol">
     <Key>
@@ -3280,6 +3295,7 @@
     <NavigationProperty Name="tbPuntoEmisionDetalle1" Relationship="ERP_ZORZALModel.FK_Vent_tbPuntoEmisionDetalle_tbUsuario_usu_Id_Modifica" FromRole="tbUsuario" ToRole="tbPuntoEmisionDetalle" />
     <NavigationProperty Name="tbCliente" Relationship="ERP_ZORZALModel.FK_Vent_tbUsuario_tbCliente_usu_Id_Crea" FromRole="tbUsuario" ToRole="tbCliente" />
     <NavigationProperty Name="tbCliente1" Relationship="ERP_ZORZALModel.FK_Vent_tbUsuario_tbCliente_usu_Id_Modifica" FromRole="tbUsuario" ToRole="tbCliente" />
+    <NavigationProperty Name="tbBitacoraErrores" Relationship="ERP_ZORZALModel.FK_Acce_tbBitacoraErrores_bite_Usuario" FromRole="tbUsuario" ToRole="tbBitacoraErrores" />
   </EntityType>
   <EntityType Name="tbActividadEconomica">
     <Key>
@@ -7471,5 +7487,51 @@
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbPedidoDetalle_Insert_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <EntityType Name="tbBitacoraErrores">
+    <Key>
+      <PropertyRef Name="bite_Id" />
+    </Key>
+    <Property Name="bite_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="obj_Id" Type="Int32" />
+    <Property Name="bite_Usuario" Type="Int32" />
+    <Property Name="bite_Fecha" Type="DateTime" Precision="3" />
+    <Property Name="bite_MensajeError" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbBitacoraErrores_bite_Usuario" FromRole="tbBitacoraErrores" ToRole="tbUsuario" />
+    <NavigationProperty Name="tbObjeto" Relationship="ERP_ZORZALModel.FK_Acce_tbBitacoraErrores_obj_Id" FromRole="tbBitacoraErrores" ToRole="tbObjeto" />
+    <Property Name="bite_Accion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_Acce_tbBitacoraErrores_bite_Usuario">
+    <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
+    <End Type="ERP_ZORZALModel.tbBitacoraErrores" Role="tbBitacoraErrores" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbBitacoraErrores">
+        <PropertyRef Name="bite_Usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Acce_tbBitacoraErrores_obj_Id">
+    <End Type="ERP_ZORZALModel.tbObjeto" Role="tbObjeto" Multiplicity="0..1" />
+    <End Type="ERP_ZORZALModel.tbBitacoraErrores" Role="tbBitacoraErrores" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbObjeto">
+        <PropertyRef Name="obj_Id" />
+      </Principal>
+      <Dependent Role="tbBitacoraErrores">
+        <PropertyRef Name="obj_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="UDP_Acce_tbBitacoraErrores_Insert_Result">
+    <Property Type="String" Name="Column1" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Gral_tbBanco_Insert_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="Max" />
+  </ComplexType>
+  <ComplexType Name="UDP_Gral_tbBanco_Update_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="Max" />
   </ComplexType>
 </Schema>

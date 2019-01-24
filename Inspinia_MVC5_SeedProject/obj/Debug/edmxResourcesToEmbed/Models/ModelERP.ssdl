@@ -12,6 +12,17 @@
     <Property Name="acrol_UsuarioModifica" Type="int" />
     <Property Name="acrol_FechaModifica" Type="datetime" />
   </EntityType>
+  <EntityType Name="tbBitacoraErrores">
+    <Key>
+      <PropertyRef Name="bite_Id" />
+    </Key>
+    <Property Name="bite_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="obj_Id" Type="int" />
+    <Property Name="bite_Usuario" Type="int" />
+    <Property Name="bite_Fecha" Type="datetime" />
+    <Property Name="bite_MensajeError" Type="varchar(max)" />
+    <Property Name="bite_Accion" Type="varchar" MaxLength="50" />
+  </EntityType>
   <EntityType Name="tbObjeto">
     <Key>
       <PropertyRef Name="obj_Id" />
@@ -1390,6 +1401,30 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
       </Principal>
       <Dependent Role="tbAccesoRol">
         <PropertyRef Name="acrol_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Acce_tbBitacoraErrores_bite_Usuario">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbBitacoraErrores" Type="Self.tbBitacoraErrores" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbBitacoraErrores">
+        <PropertyRef Name="bite_Usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Acce_tbBitacoraErrores_obj_Id">
+    <End Role="tbObjeto" Type="Self.tbObjeto" Multiplicity="0..1" />
+    <End Role="tbBitacoraErrores" Type="Self.tbBitacoraErrores" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbObjeto">
+        <PropertyRef Name="obj_Id" />
+      </Principal>
+      <Dependent Role="tbBitacoraErrores">
+        <PropertyRef Name="obj_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -4024,6 +4059,13 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <Parameter Name="acrol_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="acrol_FechaCrea" Type="datetime" Mode="In" />
   </Function>
+  <Function Name="UDP_Acce_tbBitacoraErrores_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
+    <Parameter Name="obj_Id" Type="int" Mode="In" />
+    <Parameter Name="bite_Usuario" Type="int" Mode="In" />
+    <Parameter Name="bite_Fecha" Type="datetime" Mode="In" />
+    <Parameter Name="bite_MensajeError" Type="varchar(max)" Mode="In" />
+    <Parameter Name="bite_Accion" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="UDP_Acce_tbObjeto_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
     <Parameter Name="obj_Pantalla" Type="nvarchar" Mode="In" />
     <Parameter Name="obj_Referencia" Type="varchar" Mode="In" />
@@ -4176,6 +4218,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <Parameter Name="ban_Nombre" Type="nvarchar" Mode="In" />
     <Parameter Name="ban_NombreContacto" Type="nvarchar" Mode="In" />
     <Parameter Name="ban_TelefonoContacto" Type="nvarchar" Mode="In" />
+    <Parameter Name="ban_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="ban_FechaCrea" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Gral_tbBanco_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
     <Parameter Name="ban_Id" Type="smallint" Mode="In" />
@@ -4184,6 +4228,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <Parameter Name="ban_TelefonoContacto" Type="nvarchar" Mode="In" />
     <Parameter Name="ban_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="ban_FechaCrea" Type="datetime" Mode="In" />
+    <Parameter Name="ban_UsuarioModifica" Type="int" Mode="In" />
+    <Parameter Name="ban_FechaModifica" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Gral_tbCuentasBanco_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
     <Parameter Name="ban_Id" Type="smallint" Mode="In" />
@@ -5174,13 +5220,13 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
   <Function Name="UDP_Vent_tbMovimientoCaja_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="mocja_Id" Type="int" Mode="In" />
     <Parameter Name="cja_Id" Type="smallint" Mode="In" />
-    <Parameter Name="mocja_FechaApertura" Type="datetime" Mode="In" />
+    <Parameter Name="mocja_UsuarioApertura" Type="int" Mode="In" />
     <Parameter Name="mocja_FechaArqueo" Type="datetime" Mode="In" />
+    <Parameter Name="mocja_UsuarioArquea" Type="int" Mode="In" />
     <Parameter Name="mocja_FechaAceptacion" Type="datetime" Mode="In" />
+    <Parameter Name="mocja_UsuarioAceptacion" Type="int" Mode="In" />
     <Parameter Name="mocja_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="mocja_FechaCrea" Type="datetime" Mode="In" />
-    <Parameter Name="mocja_UsuarioModifica" Type="int" Mode="In" />
-    <Parameter Name="mocja_FechaModifica" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbNotaCredito_Anulado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="nocre_Id" Type="smallint" Mode="In" />
@@ -5479,6 +5525,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
   </Function>
   <EntityContainer Name="ERP_ZORZALModelStoreContainer">
     <EntitySet Name="tbAccesoRol" EntityType="Self.tbAccesoRol" Schema="Acce" store:Type="Tables" />
+    <EntitySet Name="tbBitacoraErrores" EntityType="Self.tbBitacoraErrores" Schema="Acce" store:Type="Tables" />
     <EntitySet Name="tbObjeto" EntityType="Self.tbObjeto" Schema="Acce" store:Type="Tables" />
     <EntitySet Name="tbRol" EntityType="Self.tbRol" Schema="Acce" store:Type="Tables" />
     <EntitySet Name="tbRolesUsuario" EntityType="Self.tbRolesUsuario" Schema="Acce" store:Type="Tables" />
@@ -5768,6 +5815,14 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <AssociationSet Name="FK_Acce_tbAccesoRol_tbUsuario_acrol_UsuarioCrea" Association="Self.FK_Acce_tbAccesoRol_tbUsuario_acrol_UsuarioCrea">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbAccesoRol" EntitySet="tbAccesoRol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Acce_tbBitacoraErrores_bite_Usuario" Association="Self.FK_Acce_tbBitacoraErrores_bite_Usuario">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbBitacoraErrores" EntitySet="tbBitacoraErrores" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Acce_tbBitacoraErrores_obj_Id" Association="Self.FK_Acce_tbBitacoraErrores_obj_Id">
+      <End Role="tbObjeto" EntitySet="tbObjeto" />
+      <End Role="tbBitacoraErrores" EntitySet="tbBitacoraErrores" />
     </AssociationSet>
     <AssociationSet Name="FK_Acce_tbObjeto_obj_UsuarioModifica" Association="Self.FK_Acce_tbObjeto_obj_UsuarioModifica">
       <End Role="tbUsuario" EntitySet="tbUsuario" />

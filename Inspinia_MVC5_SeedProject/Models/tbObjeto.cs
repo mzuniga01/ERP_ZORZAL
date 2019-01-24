@@ -18,6 +18,7 @@ namespace ERP_GMEDINA.Models
         public tbObjeto()
         {
             this.tbAccesoRol = new HashSet<tbAccesoRol>();
+            this.tbBitacoraErrores = new HashSet<tbBitacoraErrores>();
         }
     
         public int obj_Id { get; set; }
@@ -33,5 +34,7 @@ namespace ERP_GMEDINA.Models
         public virtual ICollection<tbAccesoRol> tbAccesoRol { get; set; }
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbUsuario tbUsuario1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbBitacoraErrores> tbBitacoraErrores { get; set; }
     }
 }

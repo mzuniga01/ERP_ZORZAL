@@ -106,6 +106,7 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<UDV_Vent_Busqueda_Factura> UDV_Vent_Busqueda_Factura { get; set; }
         public virtual DbSet<UDV_Vent_FacturaPuntoEmision1> UDV_Vent_FacturaPuntoEmision1 { get; set; }
         public virtual DbSet<V_Vent_FacturaPago> V_Vent_FacturaPago { get; set; }
+        public virtual DbSet<tbBitacoraErrores> tbBitacoraErrores { get; set; }
     
         public virtual ObjectResult<UDP_Gral_tbDenominacion_Insert_Result> UDP_Gral_tbDenominacion_Insert(string deno_Descripcion, Nullable<byte> deno_Tipo, Nullable<decimal> deno_valor, Nullable<short> mnda_Id)
         {
@@ -2766,7 +2767,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<byte>>("UDP_Vent_tbFacturaHistorica_Update", facth_IdParameter, facth_FechaParameter);
         }
     
-        public virtual ObjectResult<Nullable<int>> UDP_Vent_tbMovimientoCaja_Update(Nullable<int> mocja_Id, Nullable<short> cja_Id, Nullable<System.DateTime> mocja_FechaApertura, Nullable<System.DateTime> mocja_FechaArqueo, Nullable<System.DateTime> mocja_FechaAceptacion, Nullable<int> mocja_UsuarioCrea, Nullable<System.DateTime> mocja_FechaCrea, Nullable<int> mocja_UsuarioModifica, Nullable<System.DateTime> mocja_FechaModifica)
+        public virtual ObjectResult<Nullable<int>> UDP_Vent_tbMovimientoCaja_Update(Nullable<int> mocja_Id, Nullable<short> cja_Id, Nullable<int> mocja_UsuarioApertura, Nullable<System.DateTime> mocja_FechaArqueo, Nullable<int> mocja_UsuarioArquea, Nullable<System.DateTime> mocja_FechaAceptacion, Nullable<int> mocja_UsuarioAceptacion, Nullable<int> mocja_UsuarioCrea, Nullable<System.DateTime> mocja_FechaCrea)
         {
             var mocja_IdParameter = mocja_Id.HasValue ?
                 new ObjectParameter("mocja_Id", mocja_Id) :
@@ -2776,17 +2777,25 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("cja_Id", cja_Id) :
                 new ObjectParameter("cja_Id", typeof(short));
     
-            var mocja_FechaAperturaParameter = mocja_FechaApertura.HasValue ?
-                new ObjectParameter("mocja_FechaApertura", mocja_FechaApertura) :
-                new ObjectParameter("mocja_FechaApertura", typeof(System.DateTime));
+            var mocja_UsuarioAperturaParameter = mocja_UsuarioApertura.HasValue ?
+                new ObjectParameter("mocja_UsuarioApertura", mocja_UsuarioApertura) :
+                new ObjectParameter("mocja_UsuarioApertura", typeof(int));
     
             var mocja_FechaArqueoParameter = mocja_FechaArqueo.HasValue ?
                 new ObjectParameter("mocja_FechaArqueo", mocja_FechaArqueo) :
                 new ObjectParameter("mocja_FechaArqueo", typeof(System.DateTime));
     
+            var mocja_UsuarioArqueaParameter = mocja_UsuarioArquea.HasValue ?
+                new ObjectParameter("mocja_UsuarioArquea", mocja_UsuarioArquea) :
+                new ObjectParameter("mocja_UsuarioArquea", typeof(int));
+    
             var mocja_FechaAceptacionParameter = mocja_FechaAceptacion.HasValue ?
                 new ObjectParameter("mocja_FechaAceptacion", mocja_FechaAceptacion) :
                 new ObjectParameter("mocja_FechaAceptacion", typeof(System.DateTime));
+    
+            var mocja_UsuarioAceptacionParameter = mocja_UsuarioAceptacion.HasValue ?
+                new ObjectParameter("mocja_UsuarioAceptacion", mocja_UsuarioAceptacion) :
+                new ObjectParameter("mocja_UsuarioAceptacion", typeof(int));
     
             var mocja_UsuarioCreaParameter = mocja_UsuarioCrea.HasValue ?
                 new ObjectParameter("mocja_UsuarioCrea", mocja_UsuarioCrea) :
@@ -2796,15 +2805,7 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("mocja_FechaCrea", mocja_FechaCrea) :
                 new ObjectParameter("mocja_FechaCrea", typeof(System.DateTime));
     
-            var mocja_UsuarioModificaParameter = mocja_UsuarioModifica.HasValue ?
-                new ObjectParameter("mocja_UsuarioModifica", mocja_UsuarioModifica) :
-                new ObjectParameter("mocja_UsuarioModifica", typeof(int));
-    
-            var mocja_FechaModificaParameter = mocja_FechaModifica.HasValue ?
-                new ObjectParameter("mocja_FechaModifica", mocja_FechaModifica) :
-                new ObjectParameter("mocja_FechaModifica", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("UDP_Vent_tbMovimientoCaja_Update", mocja_IdParameter, cja_IdParameter, mocja_FechaAperturaParameter, mocja_FechaArqueoParameter, mocja_FechaAceptacionParameter, mocja_UsuarioCreaParameter, mocja_FechaCreaParameter, mocja_UsuarioModificaParameter, mocja_FechaModificaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("UDP_Vent_tbMovimientoCaja_Update", mocja_IdParameter, cja_IdParameter, mocja_UsuarioAperturaParameter, mocja_FechaArqueoParameter, mocja_UsuarioArqueaParameter, mocja_FechaAceptacionParameter, mocja_UsuarioAceptacionParameter, mocja_UsuarioCreaParameter, mocja_FechaCreaParameter);
         }
     
         public virtual int GetBusquedaFactura(string cliente, string fecha, string caja)
@@ -4439,52 +4440,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbSolicitudEfectivoDetalle_Detalle_Result1>("UDP_Vent_tbSolicitudEfectivoDetalle_Detalle", iDSOLICITUDParameter);
         }
     
-        public virtual ObjectResult<UDP_Gral_tbBanco_Insert_Result> UDP_Gral_tbBanco_Insert(string ban_Nombre, string ban_NombreContacto, string ban_TelefonoContacto)
-        {
-            var ban_NombreParameter = ban_Nombre != null ?
-                new ObjectParameter("ban_Nombre", ban_Nombre) :
-                new ObjectParameter("ban_Nombre", typeof(string));
-    
-            var ban_NombreContactoParameter = ban_NombreContacto != null ?
-                new ObjectParameter("ban_NombreContacto", ban_NombreContacto) :
-                new ObjectParameter("ban_NombreContacto", typeof(string));
-    
-            var ban_TelefonoContactoParameter = ban_TelefonoContacto != null ?
-                new ObjectParameter("ban_TelefonoContacto", ban_TelefonoContacto) :
-                new ObjectParameter("ban_TelefonoContacto", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbBanco_Insert_Result>("UDP_Gral_tbBanco_Insert", ban_NombreParameter, ban_NombreContactoParameter, ban_TelefonoContactoParameter);
-        }
-    
-        public virtual ObjectResult<UDP_Gral_tbBanco_Update_Result> UDP_Gral_tbBanco_Update(Nullable<short> ban_Id, string ban_Nombre, string ban_NombreContacto, string ban_TelefonoContacto, Nullable<int> ban_UsuarioCrea, Nullable<System.DateTime> ban_FechaCrea)
-        {
-            var ban_IdParameter = ban_Id.HasValue ?
-                new ObjectParameter("ban_Id", ban_Id) :
-                new ObjectParameter("ban_Id", typeof(short));
-    
-            var ban_NombreParameter = ban_Nombre != null ?
-                new ObjectParameter("ban_Nombre", ban_Nombre) :
-                new ObjectParameter("ban_Nombre", typeof(string));
-    
-            var ban_NombreContactoParameter = ban_NombreContacto != null ?
-                new ObjectParameter("ban_NombreContacto", ban_NombreContacto) :
-                new ObjectParameter("ban_NombreContacto", typeof(string));
-    
-            var ban_TelefonoContactoParameter = ban_TelefonoContacto != null ?
-                new ObjectParameter("ban_TelefonoContacto", ban_TelefonoContacto) :
-                new ObjectParameter("ban_TelefonoContacto", typeof(string));
-    
-            var ban_UsuarioCreaParameter = ban_UsuarioCrea.HasValue ?
-                new ObjectParameter("ban_UsuarioCrea", ban_UsuarioCrea) :
-                new ObjectParameter("ban_UsuarioCrea", typeof(int));
-    
-            var ban_FechaCreaParameter = ban_FechaCrea.HasValue ?
-                new ObjectParameter("ban_FechaCrea", ban_FechaCrea) :
-                new ObjectParameter("ban_FechaCrea", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbBanco_Update_Result>("UDP_Gral_tbBanco_Update", ban_IdParameter, ban_NombreParameter, ban_NombreContactoParameter, ban_TelefonoContactoParameter, ban_UsuarioCreaParameter, ban_FechaCreaParameter);
-        }
-    
         public virtual ObjectResult<UDP_Gral_tbCuentasBanco_Insert_Result> UDP_Gral_tbCuentasBanco_Insert(Nullable<short> ban_Id, Nullable<short> mnda_Id, Nullable<byte> bcta_TipoCuenta, Nullable<decimal> bcta_TotalCredito, Nullable<decimal> bcta_TotalDebito, Nullable<System.DateTime> bcta_FechaApertura, string bcta_Numero)
         {
             var ban_IdParameter = ban_Id.HasValue ?
@@ -5357,6 +5312,93 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("pedd_CantidadFacturada", typeof(decimal));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbPedidoDetalle_Insert_Result>("UDP_Vent_tbPedidoDetalle_Insert", ped_IdParameter, prod_CodigoParameter, pedd_CantidadParameter, pedd_CantidadFacturadaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Gral_tbBanco_Insert_Result> UDP_Gral_tbBanco_Insert(string ban_Nombre, string ban_NombreContacto, string ban_TelefonoContacto, Nullable<int> ban_UsuarioCrea, Nullable<System.DateTime> ban_FechaCrea)
+        {
+            var ban_NombreParameter = ban_Nombre != null ?
+                new ObjectParameter("ban_Nombre", ban_Nombre) :
+                new ObjectParameter("ban_Nombre", typeof(string));
+    
+            var ban_NombreContactoParameter = ban_NombreContacto != null ?
+                new ObjectParameter("ban_NombreContacto", ban_NombreContacto) :
+                new ObjectParameter("ban_NombreContacto", typeof(string));
+    
+            var ban_TelefonoContactoParameter = ban_TelefonoContacto != null ?
+                new ObjectParameter("ban_TelefonoContacto", ban_TelefonoContacto) :
+                new ObjectParameter("ban_TelefonoContacto", typeof(string));
+    
+            var ban_UsuarioCreaParameter = ban_UsuarioCrea.HasValue ?
+                new ObjectParameter("ban_UsuarioCrea", ban_UsuarioCrea) :
+                new ObjectParameter("ban_UsuarioCrea", typeof(int));
+    
+            var ban_FechaCreaParameter = ban_FechaCrea.HasValue ?
+                new ObjectParameter("ban_FechaCrea", ban_FechaCrea) :
+                new ObjectParameter("ban_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbBanco_Insert_Result>("UDP_Gral_tbBanco_Insert", ban_NombreParameter, ban_NombreContactoParameter, ban_TelefonoContactoParameter, ban_UsuarioCreaParameter, ban_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Gral_tbBanco_Update_Result> UDP_Gral_tbBanco_Update(Nullable<short> ban_Id, string ban_Nombre, string ban_NombreContacto, string ban_TelefonoContacto, Nullable<int> ban_UsuarioCrea, Nullable<System.DateTime> ban_FechaCrea, Nullable<int> ban_UsuarioModifica, Nullable<System.DateTime> ban_FechaModifica)
+        {
+            var ban_IdParameter = ban_Id.HasValue ?
+                new ObjectParameter("ban_Id", ban_Id) :
+                new ObjectParameter("ban_Id", typeof(short));
+    
+            var ban_NombreParameter = ban_Nombre != null ?
+                new ObjectParameter("ban_Nombre", ban_Nombre) :
+                new ObjectParameter("ban_Nombre", typeof(string));
+    
+            var ban_NombreContactoParameter = ban_NombreContacto != null ?
+                new ObjectParameter("ban_NombreContacto", ban_NombreContacto) :
+                new ObjectParameter("ban_NombreContacto", typeof(string));
+    
+            var ban_TelefonoContactoParameter = ban_TelefonoContacto != null ?
+                new ObjectParameter("ban_TelefonoContacto", ban_TelefonoContacto) :
+                new ObjectParameter("ban_TelefonoContacto", typeof(string));
+    
+            var ban_UsuarioCreaParameter = ban_UsuarioCrea.HasValue ?
+                new ObjectParameter("ban_UsuarioCrea", ban_UsuarioCrea) :
+                new ObjectParameter("ban_UsuarioCrea", typeof(int));
+    
+            var ban_FechaCreaParameter = ban_FechaCrea.HasValue ?
+                new ObjectParameter("ban_FechaCrea", ban_FechaCrea) :
+                new ObjectParameter("ban_FechaCrea", typeof(System.DateTime));
+    
+            var ban_UsuarioModificaParameter = ban_UsuarioModifica.HasValue ?
+                new ObjectParameter("ban_UsuarioModifica", ban_UsuarioModifica) :
+                new ObjectParameter("ban_UsuarioModifica", typeof(int));
+    
+            var ban_FechaModificaParameter = ban_FechaModifica.HasValue ?
+                new ObjectParameter("ban_FechaModifica", ban_FechaModifica) :
+                new ObjectParameter("ban_FechaModifica", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbBanco_Update_Result>("UDP_Gral_tbBanco_Update", ban_IdParameter, ban_NombreParameter, ban_NombreContactoParameter, ban_TelefonoContactoParameter, ban_UsuarioCreaParameter, ban_FechaCreaParameter, ban_UsuarioModificaParameter, ban_FechaModificaParameter);
+        }
+    
+        public virtual ObjectResult<string> UDP_Acce_tbBitacoraErrores_Insert(Nullable<int> obj_Id, Nullable<int> bite_Usuario, Nullable<System.DateTime> bite_Fecha, string bite_MensajeError, string bite_Accion)
+        {
+            var obj_IdParameter = obj_Id.HasValue ?
+                new ObjectParameter("obj_Id", obj_Id) :
+                new ObjectParameter("obj_Id", typeof(int));
+    
+            var bite_UsuarioParameter = bite_Usuario.HasValue ?
+                new ObjectParameter("bite_Usuario", bite_Usuario) :
+                new ObjectParameter("bite_Usuario", typeof(int));
+    
+            var bite_FechaParameter = bite_Fecha.HasValue ?
+                new ObjectParameter("bite_Fecha", bite_Fecha) :
+                new ObjectParameter("bite_Fecha", typeof(System.DateTime));
+    
+            var bite_MensajeErrorParameter = bite_MensajeError != null ?
+                new ObjectParameter("bite_MensajeError", bite_MensajeError) :
+                new ObjectParameter("bite_MensajeError", typeof(string));
+    
+            var bite_AccionParameter = bite_Accion != null ?
+                new ObjectParameter("bite_Accion", bite_Accion) :
+                new ObjectParameter("bite_Accion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Acce_tbBitacoraErrores_Insert", obj_IdParameter, bite_UsuarioParameter, bite_FechaParameter, bite_MensajeErrorParameter, bite_AccionParameter);
         }
     }
 }

@@ -110,5 +110,28 @@ namespace ERP_GMEDINA.Models
             }
             return user;            
         }
+
+        public DateTime DatetimeNow()
+        {
+            DateTime dt = DateTimeOffset.UtcNow.ToOffset(TimeSpan.FromHours(-6)).DateTime;
+            return dt;
+        }
+
+        public void InsertBitacoraErrores(string sPantalla, string biteMensajeError, string biteAccion)
+        {
+            IEnumerable<object> List = null;
+            int objID = 0;
+            try
+            {
+                var BuscarList = db.tbObjeto.Where(x => x.obj_Referencia == sPantalla);
+                foreach (tbObjeto Obj in BuscarList)
+                    objID = Obj.obj_Id;
+                List = db.UDP_Acce_tbBitacoraErrores_Insert(objID, GetUser(), DatetimeNow(), biteMensajeError, biteAccion);
+            }
+            catch(Exception Ex)
+            {
+                Ex.Message.ToString();
+            }
+        }
     }
 }

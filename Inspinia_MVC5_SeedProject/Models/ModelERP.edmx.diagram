@@ -299,6 +299,9 @@
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbPuntoEmision_tbSucursal_pemi_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbPuntoEmisionDetalle_tbPuntoEmision_pemi_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbSolicitudEfectivo_tbSolicitudEfectivoDetalle_solef_Id" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbBitacoraErrores" Width="1.5" PointX="15.75" PointY="117.125" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Acce_tbBitacoraErrores_bite_Usuario" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Acce_tbBitacoraErrores_obj_Id" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

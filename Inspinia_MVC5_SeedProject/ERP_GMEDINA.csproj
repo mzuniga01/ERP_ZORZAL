@@ -401,6 +401,9 @@
     <Compile Include="Models\tbBanco.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\tbBitacoraErrores.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tbBodega.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -587,6 +590,9 @@
     <Compile Include="Models\TipoPagos.cs" />
     <Compile Include="Models\TiposIdenticacion.cs" />
     <Compile Include="Models\UDP_Acce_Login_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Acce_tbBitacoraErrores_Insert_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Gral_tbActividadEconomica_Insert_Result.cs">
