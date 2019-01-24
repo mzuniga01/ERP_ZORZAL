@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using ERP_GMEDINA.Models;
 using System.Transactions;
-//movimiento//
+//ESTE//
 namespace ERP_GMEDINA.Controllers
 {
     public class MovimientoCajaController : Controller
@@ -121,7 +121,7 @@ namespace ERP_GMEDINA.Controllers
                                 return View(tbMovimientoCaja);
                             }
                             else
-                            { 
+                            {
                                 ///////////Solicitud Efectivo Detalle////////////////////
                                 if (MensajeErrorSolicitudDetalle != "-1")
                                 {
