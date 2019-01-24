@@ -18,6 +18,7 @@ namespace ERP_GMEDINA.Models
         public tbFactura()
         {
             this.tbSalida = new HashSet<tbSalida>();
+            this.DatosConsumidorFinal = new HashSet<DatosConsumidorFinal>();
             this.tbDevolucion = new HashSet<tbDevolucion>();
             this.tbFacturaHistorica = new HashSet<tbFacturaHistorica>();
             this.tbPago = new HashSet<tbPago>();
@@ -56,6 +57,8 @@ namespace ERP_GMEDINA.Models
         public virtual tbUsuario tbUsuario2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbSalida> tbSalida { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DatosConsumidorFinal> DatosConsumidorFinal { get; set; }
         public virtual tbCaja tbCaja { get; set; }
         public virtual tbCliente tbCliente { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

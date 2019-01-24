@@ -34,12 +34,14 @@ namespace ERP_GMEDINA.Models
         public string emp_Puesto { get; set; }
         public System.DateTime emp_FechaIngreso { get; set; }
         public string emp_Direccion { get; set; }
-        public string emp_Observaciones { get; set; }
+        public string emp_RazonInactivacion { get; set; }
         public int emp_UsuarioCrea { get; set; }
         public System.DateTime emp_FechaCrea { get; set; }
         public Nullable<int> emp_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> emp_FechaModifica { get; set; }
         public bool emp_Estado { get; set; }
+        public string emp_RazonSalida { get; set; }
+        public Nullable<System.DateTime> emp_FechaDeSalida { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbUsuario> tbUsuario { get; set; }

@@ -254,6 +254,9 @@
     <Compile Include="Models\cUtilities.cs" />
     <Compile Include="Models\cVistaClientes.cs" />
     <Compile Include="Models\cVistaFactura.cs" />
+    <Compile Include="Models\DatosConsumidorFinal.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Denominacion.cs" />
     <Compile Include="Models\DenominacionArqueos.cs" />
     <Compile Include="Models\EstadoFactura.cs" />
@@ -1188,6 +1191,7 @@
     <Content Include="Scripts\app\EntregaEfectivo.js" />
     <Content Include="Scripts\app\Factura.js" />
     <Content Include="Scripts\app\FacturaDetalle.js" />
+    <Content Include="Scripts\app\FacturaDetalleEdit.js" />
     <Content Include="Scripts\app\FacturaDevolucion.js" />
     <Content Include="Scripts\app\FacturaPagar.js" />
     <Content Include="Scripts\app\fechaExoneracion.js" />

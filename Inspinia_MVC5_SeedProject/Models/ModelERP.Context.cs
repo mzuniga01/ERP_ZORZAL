@@ -48,6 +48,7 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbBodega> tbBodega { get; set; }
         public virtual DbSet<tbBodegaDetalle> tbBodegaDetalle { get; set; }
         public virtual DbSet<tbBox> tbBox { get; set; }
+        public virtual DbSet<tbEntrada> tbEntrada { get; set; }
         public virtual DbSet<tbEntradaDetalle> tbEntradaDetalle { get; set; }
         public virtual DbSet<tbEstadoInventarioFisico> tbEstadoInventarioFisico { get; set; }
         public virtual DbSet<tbEstadoMovimiento> tbEstadoMovimiento { get; set; }
@@ -61,6 +62,7 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbTipoDevolucion> tbTipoDevolucion { get; set; }
         public virtual DbSet<tbTipoEntrada> tbTipoEntrada { get; set; }
         public virtual DbSet<tbTipoSalida> tbTipoSalida { get; set; }
+        public virtual DbSet<DatosConsumidorFinal> DatosConsumidorFinal { get; set; }
         public virtual DbSet<tbCaja> tbCaja { get; set; }
         public virtual DbSet<tbCliente> tbCliente { get; set; }
         public virtual DbSet<tbCuponDescuento> tbCuponDescuento { get; set; }
@@ -86,6 +88,7 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbPuntoEmision> tbPuntoEmision { get; set; }
         public virtual DbSet<tbPuntoEmisionDetalle> tbPuntoEmisionDetalle { get; set; }
         public virtual DbSet<tbSolicitudCredito> tbSolicitudCredito { get; set; }
+        public virtual DbSet<tbSolicitudEfectivo> tbSolicitudEfectivo { get; set; }
         public virtual DbSet<tbSolicitudEfectivoDetalle> tbSolicitudEfectivoDetalle { get; set; }
         public virtual DbSet<tbSucursal> tbSucursal { get; set; }
         public virtual DbSet<tbTipoPago> tbTipoPago { get; set; }
@@ -103,8 +106,6 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<UDV_Vent_Busqueda_Factura> UDV_Vent_Busqueda_Factura { get; set; }
         public virtual DbSet<UDV_Vent_FacturaPuntoEmision1> UDV_Vent_FacturaPuntoEmision1 { get; set; }
         public virtual DbSet<V_Vent_FacturaPago> V_Vent_FacturaPago { get; set; }
-        public virtual DbSet<tbSolicitudEfectivo> tbSolicitudEfectivo { get; set; }
-        public virtual DbSet<tbEntrada> tbEntrada { get; set; }
     
         public virtual ObjectResult<UDP_Gral_tbDenominacion_Insert_Result> UDP_Gral_tbDenominacion_Insert(string deno_Descripcion, Nullable<byte> deno_Tipo, Nullable<decimal> deno_valor, Nullable<short> mnda_Id)
         {
@@ -1547,7 +1548,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Gral_tbEmpleados_Insert", emp_NombresParameter, emp_ApellidosParameter, emp_SexoParameter, emp_FechaNacimientoParameter, tpi_IdParameter, emp_IdentificacionParameter, emp_TelefonoParameter, emp_CorreoelectronicoParameter, emp_TipoSangreParameter, emp_PuestoParameter, emp_FechaIngresoParameter, emp_DireccionParameter, emp_ObservacionesParameter);
         }
     
-        public virtual ObjectResult<string> UDP_Gral_tbEmpleados_Update(Nullable<short> emp_Id, string emp_Nombres, string emp_Apellidos, string emp_Sexo, Nullable<System.DateTime> emp_FechaNacimiento, Nullable<byte> tpi_Id, string emp_Identificacion, string emp_Telefono, string emp_Correoelectronico, string emp_TipoSangre, string emp_Puesto, Nullable<System.DateTime> emp_FechaIngreso, string emp_Direccion, string emp_Observaciones, Nullable<int> emp_UsuarioCrea, Nullable<System.DateTime> emp_FechaCrea)
+        public virtual ObjectResult<string> UDP_Gral_tbEmpleados_Update(Nullable<short> emp_Id, string emp_Nombres, string emp_Apellidos, string emp_Sexo, Nullable<System.DateTime> emp_FechaNacimiento, Nullable<byte> tpi_Id, string emp_Identificacion, string emp_Telefono, string emp_Correoelectronico, string emp_TipoSangre, string emp_Puesto, Nullable<System.DateTime> emp_FechaIngreso, string emp_Direccion, string emp_RazonInactivacion, Nullable<int> emp_UsuarioCrea, Nullable<System.DateTime> emp_FechaCrea, string emp_RazonSalida, Nullable<System.DateTime> emp_fechaSalida)
         {
             var emp_IdParameter = emp_Id.HasValue ?
                 new ObjectParameter("emp_Id", emp_Id) :
@@ -1601,9 +1602,9 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("emp_Direccion", emp_Direccion) :
                 new ObjectParameter("emp_Direccion", typeof(string));
     
-            var emp_ObservacionesParameter = emp_Observaciones != null ?
-                new ObjectParameter("emp_Observaciones", emp_Observaciones) :
-                new ObjectParameter("emp_Observaciones", typeof(string));
+            var emp_RazonInactivacionParameter = emp_RazonInactivacion != null ?
+                new ObjectParameter("emp_RazonInactivacion", emp_RazonInactivacion) :
+                new ObjectParameter("emp_RazonInactivacion", typeof(string));
     
             var emp_UsuarioCreaParameter = emp_UsuarioCrea.HasValue ?
                 new ObjectParameter("emp_UsuarioCrea", emp_UsuarioCrea) :
@@ -1613,7 +1614,15 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("emp_FechaCrea", emp_FechaCrea) :
                 new ObjectParameter("emp_FechaCrea", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Gral_tbEmpleados_Update", emp_IdParameter, emp_NombresParameter, emp_ApellidosParameter, emp_SexoParameter, emp_FechaNacimientoParameter, tpi_IdParameter, emp_IdentificacionParameter, emp_TelefonoParameter, emp_CorreoelectronicoParameter, emp_TipoSangreParameter, emp_PuestoParameter, emp_FechaIngresoParameter, emp_DireccionParameter, emp_ObservacionesParameter, emp_UsuarioCreaParameter, emp_FechaCreaParameter);
+            var emp_RazonSalidaParameter = emp_RazonSalida != null ?
+                new ObjectParameter("emp_RazonSalida", emp_RazonSalida) :
+                new ObjectParameter("emp_RazonSalida", typeof(string));
+    
+            var emp_fechaSalidaParameter = emp_fechaSalida.HasValue ?
+                new ObjectParameter("emp_fechaSalida", emp_fechaSalida) :
+                new ObjectParameter("emp_fechaSalida", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Gral_tbEmpleados_Update", emp_IdParameter, emp_NombresParameter, emp_ApellidosParameter, emp_SexoParameter, emp_FechaNacimientoParameter, tpi_IdParameter, emp_IdentificacionParameter, emp_TelefonoParameter, emp_CorreoelectronicoParameter, emp_TipoSangreParameter, emp_PuestoParameter, emp_FechaIngresoParameter, emp_DireccionParameter, emp_RazonInactivacionParameter, emp_UsuarioCreaParameter, emp_FechaCreaParameter, emp_RazonSalidaParameter, emp_fechaSalidaParameter);
         }
     
         public virtual int UDP_Gral_tbMunicipio_Delete(string mun_Codigo)
@@ -2615,7 +2624,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Inv_tbProductoSubCategoria_Update_Estado", pscat_IdParameter, pscat_EsActivaParameter);
         }
     
-        public virtual ObjectResult<string> UDP_Inv_tbProveedor_Insert(string prov_Nombre, string prov_NombreContacto, string prov_Direccion, string prov_Email, string prov_Telefono)
+        public virtual ObjectResult<string> UDP_Inv_tbProveedor_Insert(string prov_Nombre, string prov_NombreContacto, string prov_Direccion, string prov_Email, string prov_Telefono, string prov_RTN)
         {
             var prov_NombreParameter = prov_Nombre != null ?
                 new ObjectParameter("prov_Nombre", prov_Nombre) :
@@ -2637,7 +2646,11 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("prov_Telefono", prov_Telefono) :
                 new ObjectParameter("prov_Telefono", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Inv_tbProveedor_Insert", prov_NombreParameter, prov_NombreContactoParameter, prov_DireccionParameter, prov_EmailParameter, prov_TelefonoParameter);
+            var prov_RTNParameter = prov_RTN != null ?
+                new ObjectParameter("prov_RTN", prov_RTN) :
+                new ObjectParameter("prov_RTN", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Inv_tbProveedor_Insert", prov_NombreParameter, prov_NombreContactoParameter, prov_DireccionParameter, prov_EmailParameter, prov_TelefonoParameter, prov_RTNParameter);
         }
     
         public virtual ObjectResult<string> UDP_Inv_tbProveedor_Update(Nullable<int> prov_Id, string prov_Nombre, string prov_NombreContacto, string prov_Direccion, string prov_Email, string prov_Telefono, Nullable<int> prov_UsuarioCrea, Nullable<System.DateTime> prov_FechaCrea)

@@ -19,8 +19,8 @@ namespace ERP_GMEDINA.Models
         {
             this.tbCuentasBanco = new HashSet<tbCuentasBanco>();
             this.tbDenominacion = new HashSet<tbDenominacion>();
-            this.tbParametro = new HashSet<tbParametro>();
             this.tbSolicitudEfectivo = new HashSet<tbSolicitudEfectivo>();
+            this.tbParametro = new HashSet<tbParametro>();
         }
     
         public short mnda_Id { get; set; }
@@ -38,8 +38,8 @@ namespace ERP_GMEDINA.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbDenominacion> tbDenominacion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbParametro> tbParametro { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbSolicitudEfectivo> tbSolicitudEfectivo { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbParametro> tbParametro { get; set; }
     }
 }
