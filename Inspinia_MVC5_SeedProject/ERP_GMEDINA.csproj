@@ -829,6 +829,9 @@
     <Compile Include="Models\UDP_Vent_tbSolicitudCredito_Insert_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UDP_Vent_tbSolicitudCredito_Update_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
