@@ -54,8 +54,8 @@ $(document).on("click", "#tbCliente tbody tr td button#seleccionar", function ()
     nuevaCadena = Persona1.trim();
     ConCredito1 = ConCredito.trim();
     $("#IDCliente").val(idItem);
-    $("#cliente_Identificacion").val(rtnItem);
-    $("#cliente_Nombres").val(nombreItem);
+    $("#cliente_Identificacionxx").val(rtnItem);
+    $("#cliente_Nombresxx").val(nombreItem);
     $("#tpi_Id").val(tpid);
     $("#clte_Fecha").val(Fecha);
     $('#ModalAgregarCliente').modal('hide');
@@ -104,12 +104,12 @@ $(document).on("click", "#tbCliente tbody tr td button#seleccionar", function ()
     }
 });
 
-$("#cliente_Identificacion").on("keypress keyup blur", function (event) {
-    var Identificacion = $('#cliente_Identificacion').val();
+$("#cliente_Identificacionx").on("keypress keyup blur", function (event) {
+    var Identificacion = $('#cliente_Identificacionxx').val();
     if (Identificacion == '') {
         $('#TerceraEdad').show();
         $('#Alcredito').show();
-        $('#cliente_Nombres').val('');
+        $('#cliente_Nombresxx').val('');
         document.getElementById("MostrarTerceraEdad").disabled = false;
         $("#fact_AlCredito").prop("checked", false);
 
@@ -150,7 +150,7 @@ $('#consumidorFinal').change(function () {
 
     }
     else {
-        document.getElementById("cliente_Identificacion").disabled = false;
+        document.getElementById("cliente_Identificacionxx").disabled = false;
         $('#ocultar').show();
         $('#Alcredito').show();
         $('#IDCliente').val('');

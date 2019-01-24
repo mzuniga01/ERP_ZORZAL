@@ -25,9 +25,13 @@ function Validar() {
                   data: JSON.stringify({ CodPedido: CodPedido }),
               })
                         .done(function (data) {
+                            
                             $.each(data, function (key, val) {
-                                Descuento=0.00
-                                Subtotal = (val.pedd_Cantidad * val.lispd_PrecioMayorista)+((val.pscat_ISV/100)*val.lispd_PrecioMayorista);
+                                Descuento = 0;
+                                ImpuestoTotal = ((val.pscat_ISV / 100) * val.lispd_PrecioMayorista) * val.pedd_Cantidad;
+                                Subtotal = ((val.pedd_Cantidad * val.lispd_PrecioMayorista) + ImpuestoTotal);
+                                GranSubtotal = (val.pedd_Cantidad * val.lispd_PrecioMayorista);
+                                Total = (GranSubtotal + ImpuestoTotal) - Descuento;
                                 contador = contador + 1;
                                 copiar = "<tr data-id=" + contador + ">";
                                 copiar += "<td id = 'prod_CodigoCreate'>" + val.prod_Codigo + "</td>";
@@ -40,50 +44,30 @@ function Validar() {
                                 copiar += "<td>" + '<button id="removeFacturaDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
                                 copiar += "</tr>";
                                 $('#tblDetalleFactura').append(copiar);
-                                //Descuento 
-                                //var Descuento = $(this).parents("tr").find("td")[5].innerHTML;
-                                //console.log(Descuento)
-                                //var TotalDescuento = parseFloat(document.getElementById("TotalDescuento").innerHTML);
+                                total_col1 = 0
+                                SubtotalD = 0;
+                                GranImpuesto = 0;
+                                GranTotal = 0;
+                                $("#tblDetalleFactura tbody tr").each(function (index) {
+                                    DescuentoDD = $(this).children("td:eq(5)").html();
+                                    Cantidad = $(this).children("td:eq(2)").html();
+                                    ImpuestoD = $(this).children("td:eq(4)").html();
+                                    ValorUnitario = $(this).children("td:eq(3)").html();
+                                    PorcentajeImpuesto = parseFloat(ImpuestoD / 100);
+                                    if (ValorUnitario != '') {
+                                        total_col1 += parseFloat($(this).find('td').eq(5).text());
+                                        ValorUnitario = parseFloat(ValorUnitario);
+                                        SubtotalD += Cantidad * ValorUnitario;
+                                        GranImpuesto += (Cantidad * ValorUnitario) * PorcentajeImpuesto;
+                                        GranTotal += Cantidad * ValorUnitario + (Cantidad * ValorUnitario) * PorcentajeImpuesto;
+                                    }
+                                });
+                                document.getElementById("TotalDescuento").innerHTML = parseFloat(total_col1);
+                                document.getElementById("Subtotal").innerHTML = parseFloat(SubtotalD);
+                                document.getElementById("isv").innerHTML = parseFloat(GranImpuesto);
+                                document.getElementById("total").innerHTML = parseFloat(GranTotal);
 
-                                //if (document.getElementById("TotalDescuento").innerHTML == '') {
-                                //    totalProducto = $('#factd_MontoDescuento').val();
-                                //    document.getElementById("TotalDescuento").innerHTML = parseFloat(totalProducto);
-                                //}
-                                //else {
-                                //    document.getElementById("TotalDescuento").innerHTML = parseFloat(TotalDescuento) + parseFloat(Descuento);
-                                //}
-
-                                ////Subtotal 
-                                ////var totalProducto = $(this).parents("tr").find("td")[6].innerHTML;
-                                //document.getElementById('Subtotal').value = document.getElementById('row').cells[6].innerHTML;
-                                //console.log(totalProducto)
-                                //var subtotal = parseFloat(document.getElementById("Subtotal").innerHTML);
-
-                                //if (document.getElementById("Subtotal").innerHTML == '') {
-                                //    document.getElementById('Subtotal').value = document.getElementById('row' + id).cells[6].innerHTML;
-                                //    document.getElementById("Subtotal").innerHTML = parseFloat(totalProducto);
-                                //}
-                                //else {
-                                //    document.getElementById("Subtotal").innerHTML = parseFloat(subtotal) + parseFloat(totalProducto);
-                                //}
-                                ////Impuesto
-                                //var totalProducto = document.getElementById("TotalProducto").value;
-                                //var impuesto = parseFloat(document.getElementById("factd_Impuesto").value.replace(',', '.'));
-                                //var impuestotal = parseFloat(document.getElementById("isv").innerHTML);
-                                //var porcentaje = parseFloat(impuesto / 100);
-                                //var impuestos = (totalProducto * porcentaje);
-
-                                //if (document.getElementById("isv").innerHTML == '') {
-                                //    impuesto = document.getElementById("factd_Impuesto").value;
-                                //    document.getElementById("isv").innerHTML = parseFloat(impuestos);
-                                //}
-                                //else {
-                                //    document.getElementById("isv").innerHTML = parseFloat(impuestotal) + parseFloat(impuestos);
-                                //}
-
-                                ////Grantotal
-                                // document.getElementById("total").innerHTML = parseFloat(subtotal) + parseFloat(totalProducto) + parseFloat(impuestotal) + parseFloat(impuestos);
-                                
+                               
 
 
                                 var FacturaDetalle = GetFacturaDetalle();
@@ -122,20 +106,6 @@ function Validar() {
           console.log("No traigo absolutamente nada")
       }
 
-      //    if (data.length > 0) {
-      //        $('#mun_Codigo').empty();
-      //        $('#mun_Codigo').append("<option value=''>Seleccione Municipio</option>");
-      //        $.each(data, function (key, val) {
-      //            $('#mun_Codigo').append("<option value=" + val.mun_Codigo + ">" + val.mun_Nombre + "</option>");
-      //        });
-      //        console.log(mun_Codigo)
-      //        $('#mun_Codigo').trigger("chosen:updated");
-      //    }
-      //    else {
-      //        $('#mun_Codigo').empty();
-      //        $('#mun_Codigo').append("<option value=''>Seleccione Municipio</option>");
-      //    }
-      //});
 
   })
 }

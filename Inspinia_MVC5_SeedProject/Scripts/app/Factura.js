@@ -1,16 +1,16 @@
 ﻿$("#consumidorFinal").change(function () {
     if (this.checked) {
         //Do stuff     
-        $("#cliente_Identificacion").val('99999999999999');
-        $("#cliente_Nombres").val('CONSUMIDOR FINAL');
+        $("#cliente_Identificacionxx").val('99999999999999');
+        $("#cliente_Nombresxx").val('CONSUMIDOR FINAL');
         valido = document.getElementById('label_identificacion');
         valido.innerText = "RTN/Identificación";
         document.getElementById("fact_AlCredito").disabled = true;
         document.getElementById("fact_AutorizarDescuento").disabled = true;
     }
     else {
-        $("#cliente_Nombres").val('');
-        $("#cliente_Identificacion").val('');
+        $("#cliente_Nombresxx").val('');
+        $("#cliente_Identificacionxx").val('');
         $("#IDCliente").val('');
         document.getElementById("MostrarTerceraEdad").disabled = false;
         $("#MostrarTerceraEdad").prop("checked", false);
@@ -25,14 +25,14 @@
 $("#consumidorFinal").ready(function () {
     if (this.checked) {
         //Do stuff     
-        $("#cliente_Identificacion").val('99999999999999');
-        $("#cliente_Nombres").val('CONSUMIDOR FINAL');
+        $("#cliente_Identificacionxx").val('99999999999999');
+        $("#cliente_Nombresxx").val('CONSUMIDOR FINAL');
         document.getElementById("fact_AlCredito").disabled = true;
         document.getElementById("fact_AutorizarDescuento").disabled = true;
     }
     else {
-        $("#cliente_Nombres").val('');
-        $("#cliente_Identificacion").val('');
+        $("#cliente_Nombresxx").val('');
+        $("#cliente_Identificacionxx").val('');
         $("#IDCliente").val('');
         document.getElementById("fact_AlCredito").disabled = false;
         document.getElementById("fact_AutorizarDescuento").disabled = false;

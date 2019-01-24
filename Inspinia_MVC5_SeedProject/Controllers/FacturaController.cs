@@ -848,7 +848,7 @@ namespace ERP_GMEDINA.Controllers
                     }
                     else
                     {
-                        Session["IDCLIENTE"] = MensajeError;
+                        Session["IDCLIENTE"] =MensajeError;
                         Session["IDENTIFICACION"] =tbCliente.clte_Identificacion;
                         if (tbCliente.clte_EsPersonaNatural)
                         {
