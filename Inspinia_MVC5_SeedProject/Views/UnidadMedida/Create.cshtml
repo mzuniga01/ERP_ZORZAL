@@ -30,12 +30,13 @@
                         @Html.AntiForgeryToken()
 
                         <div class="form-horizontal">
-                            @Html.ValidationSummary(true)
+                            @*@Html.ValidationSummary(true)*@
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.uni_Descripcion, new { @class = "control-label col-md-2" })
                                 <div class="col-md-5">
                                     @Html.EditorFor(model => model.uni_Descripcion)
+                                    <span style="color:red">@Html.ValidationSummary(true)</span>
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.uni_Descripcion)</p>
                                  </div>
                             </div>

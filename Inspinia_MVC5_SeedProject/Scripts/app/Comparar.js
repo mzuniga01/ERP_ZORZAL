@@ -13,7 +13,8 @@
             }
 
             else {
-                if (usu_Password !== bar) {
+                if (bar !== usu_Password) {
+                    bar
                     $('#msg').removeClass('text-success').addClass('text-danger').text('Las contraseñas no coinciden');
                     $('#Cambiarpass').prop('disabled', true);
                 }

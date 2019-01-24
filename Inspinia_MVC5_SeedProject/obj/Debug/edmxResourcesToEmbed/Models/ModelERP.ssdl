@@ -3796,7 +3796,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
     <Parameter Name="usu_EsActivo" Type="bit" Mode="In" />
     <Parameter Name="usu_RazonInactivo" Type="varchar" Mode="In" />
     <Parameter Name="usu_EsAdministrador" Type="bit" Mode="In" />
-    <Parameter Name="usu_SesionesValidas" Type="tinyint" Mode="In" />
     <Parameter Name="suc_Id" Type="int" Mode="In" />
     <Parameter Name="emp_Id" Type="smallint" Mode="In" />
   </Function>

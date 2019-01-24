@@ -32,7 +32,7 @@
                             @foreach (var item in Model.Where(x => x.bod_Id == ViewBag.bod_Prod))
                             {
                                
-                                    <tr tr data-id="@item.prod_Codigo" , tr data-content="@item.tbProducto.prod_Descripcion" , tr data-container="@item.tbProducto.tbProductoSubcategoria.pscat_Descripcion" , tr data-keyboard="@item.tbProducto.tbUnidadMedida.uni_Descripcion" , tr data-pcat="@item.tbProducto.tbProductoSubcategoria.tbProductoCategoria.pcat_Nombre" , tr data-html="@item.tbProducto.prod_CodigoBarras">
+                                    <tr tr data-id="@item.prod_Codigo" , tr data-content="@item.tbProducto.prod_Descripcion" , tr data-container="@item.tbProducto.tbProductoSubcategoria.pscat_Descripcion" , tr data-keyboard="@item.tbProducto.tbUnidadMedida.uni_Descripcion" , tr data-pcat="@item.tbProducto.tbProductoSubcategoria.tbProductoCategoria.pcat_Nombre" , tr data-cod_Barras="@item.tbProducto.prod_CodigoBarras">
                                      <td>
                                         @Html.DisplayFor(modelItem => item.prod_Codigo)
                                     </td>

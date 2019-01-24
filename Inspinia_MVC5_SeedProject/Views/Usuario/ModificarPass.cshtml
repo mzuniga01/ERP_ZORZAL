@@ -29,6 +29,7 @@
             @Html.LabelFor(model => model.usu_NombreUsuario, new { @class = "control-label col-md-2 invisible" })
             <div class="col-md-10">
                 @Html.HiddenFor(model => model.usu_NombreUsuario)
+                
             </div>
         </div>
 
@@ -36,12 +37,13 @@
             <label class="col-md-2">Contraseña Actual</label>
             <div class="col-md-4">
                
-                <input class="form-control" data-val="true" data-val-required="El campo Usuario es requerido" id="usu_Pass" name="usu_Pass" type="password"  maxlength="64" value="">
+                <input class="form-control" data-val="true"  id="txtPassword" name="txtPassword" type="password"  maxlength="64" value="">
+                <p style="color:red;">@Html.ValidationMessageFor(model => model.usu_NombreUsuario)</p>
             </div>
         </div>
 
         <div class="form-group">
-            <label id="msg"></label><br>
+            
             <label class="col-md-2">Contraseña Nueva</label>
             <div class="col-md-4">
         
@@ -54,6 +56,7 @@
             <label class="col-md-2">Vuelve a escribir la contraseña nueva</label>
             <div class="col-md-4">
                 <input class="form-control" data-val="true" data-val-required="El campo Usuario es requerido" id="confirmar-pass" name="confirmar" type="password" maxlength="64" value="">
+                <label id="msg"></label><br>
             </div>
         </div>
 

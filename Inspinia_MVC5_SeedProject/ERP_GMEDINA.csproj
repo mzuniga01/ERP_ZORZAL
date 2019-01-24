@@ -1452,6 +1452,11 @@
     <Content Include="Views\TipoDevolucion\Index.cshtml" />
     <Content Include="Views\Box\_CreateSalidaDetalle.cshtml" />
     <Content Include="Views\Salida\_CreateEditSalidaDetalle.cshtml" />
+    <Content Include="Views\Box\_BuscarProducto.cshtml" />
+    <Content Include="Views\Box\_CreateEditSalidaDetalle.cshtml" />
+    <Content Include="Views\Box\_EditProductoSalidaDetalle.cshtml" />
+    <Content Include="Views\Box\_EditSalidaDetalle.cshtml" />
+    <Content Include="Views\Box\_SalidaDetalle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

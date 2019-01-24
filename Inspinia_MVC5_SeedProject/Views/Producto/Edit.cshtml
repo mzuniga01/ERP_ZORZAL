@@ -236,18 +236,8 @@
                                         }
 
                                     }                                                                     
-                                    @*@if (Model.prod_EsActivo)
-                                    {
-                                        <button type="button" id="inactivar" name="inactivar" class="btn btn-danger" data-toggle="modal" data-target="#ModalAnular">
-                                            Inactivar
-                                        </button>
-                                    }
-                                    else
-                                    {
-                                        <button type="button" id="activar" name="activar" class="btn btn-info" data-toggle="modal" data-target="#ModalAnular1">
-                                            Activar
-                                        </button>
-                                    }*@
+                                  
+                                    
                                     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
 
 
@@ -272,14 +262,14 @@
                 <h5 class="modal-title" id="exampleModalLabel">Inactivar Producto</h5>
             </div>
             <div class="modal-body">
-                <p>¿Está Seguro de Inactivar Este Producto?</p>
-                <textarea rows="4" cols="70" placeholder="Ingrese la razon de Inactivación" id="razonInac" name="razonInac"></textarea>
+                <p>¿Ingrese Razón Inactivación?</p>
+                <textarea rows="4" cols="70" id="razonInac" name="razonInac"></textarea>
                 <p id="Mensaje" style="color:red"></p>
             </div>
 
             <div class="modal-footer">
-                <button class="btn btn-primary btn-sm" type="button" id="Inactivar">Si</button>           
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <button class="btn btn-primary btn-sm" type="button" id="Inactivar">Guardar</button>           
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
             </div>
         </div>
     </div>
@@ -299,7 +289,7 @@
                 ¿Está seguro de Volver a activar este Producto?
             </div>
             <div class="modal-footer">
-                <button class="btn btn-primary btn-sm" type="button" id="Activar">Guardar</button>
+                <button class="btn btn-primary btn-sm" type="button" id="Activar">Si</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
             </div>
         </div>
@@ -333,31 +323,6 @@
 <script src="~/Scripts/app/SubCategoriaProducto.js"></script>
 
 
-@*<script>
 
-        function GetCategoriaProducto() {
-            var codsubcategoria = $('#pscat_Id').val();
-            $.ajax({
-                url: "/Producto/GetCategoriaProducto",
-                method: "POST",
-                dataType: 'json',
-                contentType: "application/json; charset=utf-8",
-                data: JSON.stringify({ codsubcategoria: codsubcategoria }),
-            })
-                .done(function (data) {
-                    if (data.length > 0) {
-                        $('#pcat_Id').empty();                       
-                        $.each(data, function (key, val) {
-                            $('#pcat_Id').append("<option value=" + val.pcat_Id + ">" + val.pcat_Nombre + "</option>");
-                        });
-                        $('#pcat_Id').trigger("chosen:updated");
-                    }
-                    else {
-                        $('#pcat_Id').empty();
-                        $('#pcat_Id').append("<option value=" + val.pcat_Id + ">" + val.pcat_Nombre + "</option>");
-                    }
-                });
 
-        }
-</script>*@
 

@@ -68,7 +68,7 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion");
             List<tbProductoCategoria> tbProductoCategoriaList = db.tbProductoCategoria.ToList();
             //ViewBag.tbProductoCategoriaList = new SelectList(tbProductoCategoriaList, "pcat_Id", "pcat_Nombre");
-            ViewBag.pcat_Id = new SelectList(db.tbProductoCategoria, "pcat_Id", "pcat_Nombre");           
+            ViewBag.pcat_Id = new SelectList(db.tbProductoCategoria, "pcat_Id", "pcat_Nombre");
             return View();
         }
 
@@ -86,13 +86,14 @@ namespace ERP_GMEDINA.Controllers
             return Json(ViewBag.prod_Codigo, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
         public JsonResult GetSubCategoriaProducto(int CodCategoria)
         {
             var list = db.spGetSubCategoriaProducto(CodCategoria).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
-
+        [HttpPost]
         public JsonResult GetScatList(int pcat_Id)
         {
             db.Configuration.ProxyCreationEnabled = false;
@@ -110,57 +111,62 @@ namespace ERP_GMEDINA.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "prod_Codigo,prod_Descripcion,prod_Marca,prod_Modelo,prod_Talla,prod_Color,pscat_Id,uni_Id,prod_CodigoBarras,pcat_Id")] tbProducto tbProducto, int pcat_Id)
         {
-            if (ModelState.IsValid)
-            {
-                //db.tbProducto.Add(tbProducto);
-                //db.SaveChanges();
-
-                try
-                {
-                    IEnumerable<object> List = null;
-                    var MsjError = "";
-                    List = db.UDP_Inv_tbProducto_Insert(tbProducto.prod_Codigo, tbProducto.prod_Descripcion, tbProducto.prod_Marca, tbProducto.prod_Modelo, tbProducto.prod_Talla, tbProducto.prod_Color, tbProducto.pscat_Id, tbProducto.uni_Id,tbProducto.prod_CodigoBarras);
-                    foreach (UDP_Inv_tbProducto_Insert_Result Producto in List )
-                        MsjError = Producto.MensajeError;
-
-                    if (MsjError == "-1")
-                    {
-                        ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
-                    }
-                    else
-                    {
-                        return RedirectToAction("Index");
-                    }
-
-
-                }
-                catch (Exception Ex)
-                {
-                    Ex.Message.ToString();
-                    ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
-                    ViewBag.prod_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbProducto.prod_UsuarioModifica);
-                    ViewBag.prod_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbProducto.prod_UsuarioCrea);
-                    ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion", tbProducto.uni_Id);
-                    ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion", tbProducto.pscat_Id);
-                    ViewBag.pcat_Id = new SelectList(db.tbProductoCategoria, "pcat_Id", "pcat_Nombre");
-                    return RedirectToAction("Index");
-                }
-                
-            }
-            else
-            {
-                var errors = ModelState.Values.SelectMany(v => v.Errors);
-            }
             
+                    if (ModelState.IsValid)
+                    {
+                        //db.tbProducto.Add(tbProducto);
+                        //db.SaveChanges();
 
-            ViewBag.prod_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbProducto.prod_UsuarioModifica);
-            ViewBag.prod_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbProducto.prod_UsuarioCrea);
-            ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion", tbProducto.uni_Id);
-            ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion", tbProducto.pscat_Id);
-            ViewBag.pcat_Id = new SelectList(db.tbProductoCategoria, "pcat_Id", "pcat_Nombre");            
+                        try
+                        {
+                            IEnumerable<object> List = null;
+                            var MsjError = "0";
+                            List = db.UDP_Inv_tbProducto_Insert(tbProducto.prod_Codigo, tbProducto.prod_Descripcion, tbProducto.prod_Marca, tbProducto.prod_Modelo, tbProducto.prod_Talla, tbProducto.prod_Color, tbProducto.pscat_Id, tbProducto.uni_Id, tbProducto.prod_CodigoBarras);
+                            foreach (UDP_Inv_tbProducto_Insert_Result Producto in List)
+                                MsjError = Producto.MensajeError;
 
+                            if (MsjError.StartsWith("-1"))
+                            {
+                                ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
+                                return View(tbProducto);
+                            }
+                            else if (MsjError.StartsWith("0"))
+                            {
+                                ModelState.AddModelError("", "Este Codigo de Barras ya Existe");
+                                ViewBag.prod_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+                                ViewBag.prod_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+                                ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion");
+                                ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion");
+                                //List<tbProductoCategoria> tbProductoCategoriaList = db.tbProductoCategoria.ToList();
+                                //ViewBag.tbProductoCategoriaList = new SelectList(tbProductoCategoriaList, "pcat_Id", "pcat_Nombre");
+                                ViewBag.pcat_Id = new SelectList(db.tbProductoCategoria, "pcat_Id", "pcat_Nombre");
+                                return View(tbProducto);
+                            }
+                                return RedirectToAction("Index");
+
+                         }
+                        catch (Exception Ex)
+                        {
+                            Ex.Message.ToString();
+                            ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");                          
+                            return View(tbProducto);
+                    
+                        }
+                return RedirectToAction("Index");
+
+            }
+
+            ViewBag.prod_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+            ViewBag.prod_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+            ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion");
+            ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion");
+            List<tbProductoCategoria> tbProductoCategoriaList = db.tbProductoCategoria.ToList();
+            //ViewBag.tbProductoCategoriaList = new SelectList(tbProductoCategoriaList, "pcat_Id", "pcat_Nombre");
+            ViewBag.pcat_Id = new SelectList(db.tbProductoCategoria, "pcat_Id", "pcat_Nombre");
             return View(tbProducto);
         }
+                
+
 
         // GET: /Producto/Edit/5
         public ActionResult Edit(string id)
@@ -217,7 +223,7 @@ namespace ERP_GMEDINA.Controllers
                     foreach (UDP_Inv_tbProducto_Update_Result producto in List)
                         MsjError = producto.MensajeError;
 
-                    if (MsjError == "-1")
+                    if (MsjError.StartsWith("-1"))
                     {
                         ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
                     }

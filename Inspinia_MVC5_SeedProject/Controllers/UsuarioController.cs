@@ -18,14 +18,16 @@ namespace ERP_GMEDINA.Controllers
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
         GeneralFunctions Function = new GeneralFunctions();
         // GET: /Usuario/
-        public ActionResult Index()
+        public ActionResult Index() 
         {
+            
             if (Function.GetUserLogin())
             {
                 if (Function.GetUserRols("Usuario/Index"))
                 {
                     return View(db.tbUsuario.ToList());
                 }
+                
                 else
                 {
                     return RedirectToAction("SinAcceso", "Login");
@@ -66,30 +68,42 @@ namespace ERP_GMEDINA.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ModificarPass([Bind(Include = "usu_Id,usu_NombreUsuario,usu_Password,usu_Nombres,usu_Apellidos,usu_Correo,ConfirmarPassword,suc_Id")] tbUsuario tbUsuario, string usu_Password)
+        public ActionResult ModificarPass([Bind(Include = "usu_Id,usu_NombreUsuario,usu_Nombres,usu_Apellidos,usu_Correo,ConfirmarPassword,suc_Id")] tbUsuario tbUsuario, string usu_Password, string txtPassword)
         {
             if (Function.GetUserLogin())
             {
                 if (Function.GetUserRols("Usuario/ModificarPass"))
                 {
+                    ModelState.Remove("usu_Password");
                     if (ModelState.IsValid)
                     {
                         try
                         {
+
                             IEnumerable<object> List = null;
                             var MsjError = "0";
-                            List = db.UDP_Acce_tbUsuario_PasswordUpdate(tbUsuario.usu_Id, usu_Password);
-                            foreach (UDP_Acce_tbUsuario_PasswordUpdate_Result Usuario in List)
-                                MsjError = Usuario.MensajeError;
-
-                            if (MsjError.StartsWith("-1"))
+                            var credenciales = db.UDP_Acce_Login(tbUsuario.usu_NombreUsuario, txtPassword).ToList();
+                            if (credenciales.Count > 0)
                             {
-                                ModelState.AddModelError("", "No se guardó el registro , contacte al Administrador");
-                                return View(tbUsuario);
+                                List = db.UDP_Acce_tbUsuario_PasswordUpdate(tbUsuario.usu_Id, usu_Password);
+                           
+                                foreach (UDP_Acce_tbUsuario_PasswordUpdate_Result Usuario in List)
+                                    MsjError = Usuario.MensajeError;
+
+                                if (MsjError.StartsWith("-1"))
+                                {
+                                    ModelState.AddModelError("", "No se guardó el registro , contacte al Administrador");
+                                    return View(tbUsuario);
+                                }
+                                else
+                                {
+                                    return RedirectToAction("Index");
+                                }
                             }
                             else
                             {
-                                return RedirectToAction("Index");
+                                ModelState.AddModelError("usu_NombreUsuario", "Contraseña incorrecta");
+                                return View(tbUsuario);
                             }
                         }
                         catch (Exception Ex)
@@ -377,7 +391,7 @@ namespace ERP_GMEDINA.Controllers
                         {
                             IEnumerable<object> List = null;
                             var MsjError = "0";
-                            List = db.UDP_Acce_tbUsuario_Update(tbUsuario.usu_Id, tbUsuario.usu_NombreUsuario, tbUsuario.usu_Nombres, tbUsuario.usu_Apellidos, tbUsuario.usu_Correo, tbUsuario.usu_EsActivo, tbUsuario.usu_RazonInactivo, tbUsuario.usu_EsAdministrador, tbUsuario.usu_SesionesValidas,
+                            List = db.UDP_Acce_tbUsuario_Update(tbUsuario.usu_Id, tbUsuario.usu_NombreUsuario, tbUsuario.usu_Nombres, tbUsuario.usu_Apellidos, tbUsuario.usu_Correo, tbUsuario.usu_EsActivo, tbUsuario.usu_RazonInactivo, tbUsuario.usu_EsAdministrador, 
                                 tbUsuario.suc_Id, tbUsuario.emp_Id);
                             foreach (UDP_Acce_tbUsuario_Update_Result Usuario in List)
                                 MsjError = Usuario.MensajeError;
@@ -438,8 +452,8 @@ namespace ERP_GMEDINA.Controllers
                             {
                                 IEnumerable<object> List = null;
                                 var MsjError = "0";
-                                List = db.UDP_Acce_tbUsuario_PasswordUpdate(tbUsuario.usu_Id, passwordnueva);
-                                foreach (UDP_Acce_tbUsuario_PasswordUpdate_Result Usuario in List)
+                                List = db.UDP_Acce_tbUsuario_PasswordUpdateRestore(tbUsuario.usu_Id, passwordnueva);
+                                foreach (UDP_Acce_tbUsuario_PasswordUpdateRestore_Result Usuario in List)
                                     MsjError = Usuario.MensajeError;
 
                                 Email(emailsalida, passwordsalida, emaildestino, passwordnueva);

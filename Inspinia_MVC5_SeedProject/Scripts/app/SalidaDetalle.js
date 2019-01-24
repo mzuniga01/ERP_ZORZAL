@@ -40,11 +40,14 @@ $(document).on("click", "#Table_BuscarProducto tbody tr td button#seleccionar", 
     uni_IdtItem = $(this).closest('tr').data('keyboard');
     psubctItem = $(this).closest('tr').data('container');
     pcatItem = $(this).closest('tr').data('pcat');
+    prod_CodigoBarrasItem = $(this).closest('tr').data('cod_barras');
     $("#prod_Codigo").val(idItem);
     $("#prod_Descripcion").val(contentItem);
     $("#uni_Id").val(uni_IdtItem);
     $("#pscat_Id").val(psubctItem);
     $("#pcat_Id").val(pcatItem);
+    $("#prod_CodigoBarras").val(prod_CodigoBarrasItem);
+    $("#sald_Cantidad").focus();
     //$("#cod").val(idItem);
 });
 //
@@ -137,7 +140,7 @@ $(function () {
 function GetSalidaDetalle() {
     var SalidaDetalle = {
         prod_Codigo: $('#prod_Codigo').val(),
-        sal_Cantidad: $('#sal_Cantidad').val(),
+        sald_Cantidad: $('#sald_Cantidad').val(),
         sald_UsuarioCrea: contador
     };
     return SalidaDetalle;
@@ -150,7 +153,7 @@ $('#AgregarSalidaDetalle').click(function () {
     var Cod_Producto = $('#prod_Codigo').val();
     var Producto = $('#prod_Descripcion').val();
     var Unidad_Medida = $('#pscat_Id').val();
-    var Cantidad = $('#sal_Cantidad').val();
+    var Cantidad = $('#sald_Cantidad').val();
 
 
     if (Producto == '') {
@@ -169,7 +172,7 @@ $('#AgregarSalidaDetalle').click(function () {
         $('#MessageError').text('');
         $('#CodigoError').text('');
         $('#NombreError').text('');
-        $('#sal_Cantidad').after('<ul id="NombreError" class="validation-summary-errors text-danger">Cantidad Requerido</ul>');
+        $('#sald_Cantidad').after('<ul id="NombreError" class="validation-summary-errors text-danger">Cantidad Requerido</ul>');
     }
     else {
         contador = contador + 1;
@@ -178,7 +181,7 @@ $('#AgregarSalidaDetalle').click(function () {
         copiar += "<td id = 'Cod_Producto'>" + $('#prod_Codigo').val() + "</td>";
         copiar += "<td id = 'Producto'>" + $('#prod_Descripcion').val() + "</td>";
         copiar += "<td id = 'Unidad_Medida'>" + $('#pscat_Id').val() + "</td>";
-        copiar += "<td id = 'Cantidad'>" + $('#sal_Cantidad').val() + "</td>";
+        copiar += "<td id = 'Cantidad'>" + $('#sald_Cantidad').val() + "</td>";
         copiar += "<td>" + '<button id="removeSalidaDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
         copiar += "</tr>";
         $('#tblSalidaDetalle').append(copiar);
@@ -199,7 +202,7 @@ $('#AgregarSalidaDetalle').click(function () {
                 $('#uni_Id').val(''); 
                 $('#pcat_Id').val(''); 
 
-                $('#sal_Cantidad').val('0.00');
+                $('#sald_Cantidad').val('0.00');
                     $('#MessageError').text('');
                     $('#NombreError').text('');
                     console.log('Hola');
@@ -244,7 +247,7 @@ function EditSalidaDetalles(sald_Id) {
                 $.each(data, function (i, item) {
                     $("#sald_Id_SD").val(item.sald_Id);
                     $("#prod_Codigo_SD").val(item.prod_Codigo);
-                    $("#sal_Cantidad_SD").val(item.sal_Cantidad);
+                    $("#sald_Cantidad_SD").val(item.sald_Cantidad);
                     $("#prod_Descripcion_SD").val(item.prod_Descripcion);
                     //$("#pedd_FechaCrea_Ped").val(item.pedd_FechaCrea);
                     $("#EditSalidaDetalle").modal();
@@ -277,7 +280,7 @@ function GetNewSalidaDetalle() {
     var SalidaDetalle = {
         sal_Id : $('#sal_Id').val(),
         prod_Codigo: $('#prod_Codigo').val(),
-        sal_Cantidad: $('#sal_Cantidad').val(),
+        sald_Cantidad: $('#sald_Cantidad').val(),
         sald_UsuarioCrea: contador
     };
     return SalidaDetalle;
@@ -288,7 +291,7 @@ $('#btnCreateSalidaDetalle').click(function () {
     var Cod_Producto = $('#prod_Codigo').val();
     var Producto = $('#prod_Descripcion').val();
     var Unidad_Medida = $('#pscat_Id').val();
-    var Cantidad = $('#sal_Cantidad').val();
+    var Cantidad = $('#sald_Cantidad').val();
     var sal_Id = $('#sal_Id').val();
 
     if (Producto == '') {
@@ -307,7 +310,7 @@ $('#btnCreateSalidaDetalle').click(function () {
         $('#MessageError').text('');
         $('#CodigoError').text('');
         $('#NombreError').text('');
-        $('#sal_Cantidad').after('<ul id="NombreError" class="validation-summary-errors text-danger">Cantidad Requerido</ul>');
+        $('#sald_Cantidad').after('<ul id="NombreError" class="validation-summary-errors text-danger">Cantidad Requerido</ul>');
     }
 
     else {
@@ -318,7 +321,7 @@ $('#btnCreateSalidaDetalle').click(function () {
             dataType: 'json',
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify({ SalidaDetalle: tbSalidaDetalle }),
-        })
+        }),
         done(function (data) {
             if (data == 'El registro se guardo exitosamente') {
                 location.reload();
@@ -330,16 +333,6 @@ $('#btnCreateSalidaDetalle').click(function () {
             }
         });
 
-        var PuntoEmisionDetalle = GetPuntoEmisionDetalle();
-        $.ajax({
-            url: "/PuntoEmision/SaveCreateNumeracion",
-            method: "POST",
-            dataType: 'json',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ CreatePuntoEmisionDetalle: PuntoEmisionDetalle }),
-            success: function (data) {
-            }
-        })
     }
 
 });

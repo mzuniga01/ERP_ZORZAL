@@ -65,31 +65,44 @@ namespace ERP_ZORZAL.Controllers
                 try
                 {
                     IEnumerable<object> List = null;
-                    var MsjError = "";
+                    var MsjError = "0";
                     List = db.UDP_Inv_tbTipoSalida_Insert(tbTipoSalida.tsal_Descripcion);
                     foreach (UDP_Inv_tbTipoSalida_Insert_Result TipoSalida in List)
                         MsjError = TipoSalida.MensajeError;
 
-                    if (MsjError == "-1")
+                    if (MsjError.StartsWith("-1"))
                     {
-                        ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
+                        ModelState.AddModelError("Error", "No se Guardo el registro , Contacte al Administrador");
+                        return View(tbTipoSalida);
                     }
-                    else
+                    else if (MsjError.StartsWith("0"))
                     {
-                        return RedirectToAction("Index");
+                        ModelState.AddModelError("", "La Descripcion ya Existe");
+                        return View(tbTipoSalida);
                     }
-
+                    //else
+                    //{
+                    return RedirectToAction("Index");
+                    //}
 
                 }
                 catch (Exception Ex)
                 {
                     Ex.Message.ToString();
                     ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
+
+                    return View(tbTipoSalida);
                 }
+
+            }
+            else
+            {
+                var errors = ModelState.Values.SelectMany(v => v.Errors);
                 return RedirectToAction("Index");
             }
+           
 
-            return View(tbTipoSalida);
+            return View("Index");
         }
 
         // GET: /TipoSalida/Edit/5
@@ -196,6 +209,12 @@ namespace ERP_ZORZAL.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        [HttpPost]
+        public JsonResult GetTipoSalidaExist(string Descripcion)
+        {
+            var list = db.tbTipoSalida.Where(s => s.tsal_Descripcion == Descripcion).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
         }
     }
 }

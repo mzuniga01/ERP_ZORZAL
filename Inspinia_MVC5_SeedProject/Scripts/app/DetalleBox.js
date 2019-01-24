@@ -1,6 +1,97 @@
 ﻿var contador = 0;
 
 
+
+$(document).ready(function () {
+    $('#Table_BuscarProducto').DataTable(
+        {
+            "searching": false,
+            "lengthChange": false,
+
+            "oLanguage": {
+                "oPaginate": {
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior",
+                },
+                "sEmptyTable": "No hay registros",
+                "sInfoEmpty": "Mostrando 0 de 0 Entradas",
+                "sSearch": "Buscar",
+                "sInfo": "Mostrando _START_ a _END_ Entradas",
+
+            }
+        });
+
+    var $rows = $('#Table_BuscarProducto tr');
+    $("#search").keyup(function () {
+        var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+
+        $rows.show().filter(function () {
+            var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+            return !~text.indexOf(val);
+        }).hide();
+        //$rows.show().filter(function () {
+        //    var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+        //    return !~text.indexOf(val);
+        //}).hide();
+
+    });
+});
+$(document).on("click", "#Table_BuscarProducto tbody tr td button#seleccionar", function () {
+
+    prod_CodigoBarrasItem = $(this).closest('tr').data('html');
+    idItem = $(this).closest('tr').data('id');
+    contentItem = $(this).closest('tr').data('content');
+    uni_IdtItem = $(this).closest('tr').data('keyboard');
+    psubctItem = $(this).closest('tr').data('container');
+    pcatItem = $(this).closest('tr').data('interval');
+    $("#prod_CodigoBarras").val(prod_CodigoBarrasItem);
+    $("#prod_Codigo").val(idItem);
+    $("#prod_Descripcion").val(contentItem);
+    $("#uni_Id").val(uni_IdtItem);
+    $("#pscat_Id").val(psubctItem);
+    $("#pcat_Id").val(pcatItem);
+    $("#entd_Cantidad").focus();
+    //$("#cod").val(idItem);
+
+});
+
+//prueba de enter
+$(function () {
+    $('#prod_CodigoBarras').keydown(function (e) {
+        if (e.keyCode == 13) {
+            $("#seleccionar").focus().click();
+
+            $(document).on("click", "#Table_BuscarProducto tbody tr td button#seleccionar", function () {
+                prod_CodigoBarrasItem = $(this).closest('tr').data('html');
+                idItem = $(this).closest('tr').data('id');
+                contentItem = $(this).closest('tr').data('content');
+                uni_IdtItem = $(this).closest('tr').data('keyboard');
+                psubctItem = $(this).closest('tr').data('container');
+                pcatItem = $(this).closest('tr').data('interval');
+                $("#prod_CodigoBarras").val(prod_CodigoBarrasItem);
+                $("#prod_Codigo").val(idItem);
+                $("#prod_Descripcion").val(contentItem);
+                $("#uni_Id").val(uni_IdtItem);
+                $("#pscat_Id").val(psubctItem);
+                $("#pcat_Id").val(pcatItem);
+                $("#entd_Cantidad").focus();
+                //$("#cod").val(idItem);
+
+            });
+            console.log('prueba');
+            $("#prod_CodigoBarras").val(prod_CodigoBarrasItem);
+            $("#prod_Codigo").val(idItem);
+            $("#prod_Descripcion").val(contentItem);
+            $("#uni_Id").val(uni_IdtItem);
+            $("#pscat_Id").val(psubctItem);
+            $("#pcat_Id").val(pcatItem);
+            $("#entd_Cantidad").focus();
+            return false;
+        }
+    });
+});
+
+
 function GetSalidaDetalle() {
     var SalidaDetalle = {
         prod_Codigo: $('#prod_Codigo').val(),
@@ -95,164 +186,120 @@ $(document).on("click", "#tbSalidaDetalle tbody tr td button#removeSalidaDetalle
 });
 
 
+//Detalle
 
-    //SalidaDetalle *Editar
+function EditSalidaDetalles(sald_Id) {
+    $.ajax({
+        url: "/Box/getSalidaDetalle",
+        method: "POST",
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({ sald_Id: sald_Id }),
 
-    function EditSalidaDetalle(sald_Id) {
-        $("#MsjError").text("");
-        console.log("Sii");
+    })
+        .done(function (data) {
+            console.log(data);
+            if (data.length > 0) {
+                $.each(data, function (i, item) {
+                    $("#sald_Id_SD").val(item.sald_Id);
+                    $("#prod_Codigo_SD").val(item.prod_Codigo);
+                    $("#sald_Cantidad_SD").val(item.sald_Cantidad);
+                    $("#prod_Descripcion_SD").val(item.prod_Descripcion);
+                    //$("#pedd_FechaCrea_Ped").val(item.pedd_FechaCrea);
+                    $("#EditSalidaDetalle").modal();
+                })
+            }
+        })
+}
+
+
+$("#BtnsubmitMunicipio").click(function () {
+    var sald_id = $('#sald_Id').val();
+    var data = $("#SubmitForm").serializeArray();
+    $.ajax({
+        type: "Post",
+        url: "/Box/EditSalidaDetalle",
+        data: data,
+        success: function (result) {
+            if (result == '-1')
+                $("#MsjError").text("No se pudo actualizar el registro, contacte al administrador");
+            else
+                window.location.href = '/Box/Edit/' + sald_id;
+        }
+
+    });
+})
+
+
+
+function GetNewSalidaDetalle() {
+    var SalidaDetalle = {
+        sald_Id: $('#sald_Id').val(),
+        prod_Codigo: $('#prod_Codigo').val(),
+        sald_Cantidad: $('#sald_Cantidad').val(),
+        sald_UsuarioCrea: contador
+    };
+    return SalidaDetalle;
+}
+
+
+$('#btnCreateSalidaDetalle').click(function () {
+    var Cod_Producto = $('#prod_Codigo').val();
+    var Producto = $('#prod_Descripcion').val();
+    var Unidad_Medida = $('#pscat_Id').val();
+    var Cantidad = $('#sald_Cantidad').val();
+    var sald_Id = $('#sald_Id').val();
+
+    if (Producto == '') {
+        $('#MessageError').text('');
+        $('#CodigoError').text('');
+        $('#NombreError').text('');
+        $('#ValidationCodigoCreate').after('<ul id="CodigoError" class="validation-summary-errors text-danger">Campo Producto Requerido</ul>');
+    }
+    else if (Unidad_Medida == '') {
+        $('#MessageError').text('');
+        $('#CodigoError').text('');
+        $('#NombreError').text('');
+        $('#ValidationNombreCreate').after('<ul id="NombreError" class="validation-summary-errors text-danger">Unidad Medida Requerido</ul>');
+    }
+    else if (Cantidad == '') {
+        $('#MessageError').text('');
+        $('#CodigoError').text('');
+        $('#NombreError').text('');
+        $('#sald_Cantidad').after('<ul id="NombreError" class="validation-summary-errors text-danger">Cantidad Requerido</ul>');
+    }
+
+    else {
+        var tbSalidaDetalle = GetNewSalidaDetalle();
         $.ajax({
-            url: "/Box/GetBox",
+            url: "/Box/SaveNewDatail",
             method: "POST",
             dataType: 'json',
             contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ sald_Id }),
+            data: JSON.stringify({ SalidaDetalle: tbSalidaDetalle }),
         })
-        .done(function (data) {
-            $.each(data, function (i, item) {
-                $("#prod_Descripcion_edit").val(item.prod_Descripcion);
-                $("#prod_Marca_edit").val(item.prod_Marca);
-                $("#prod_Modelo_edit").val(item.prod_Modelo);
-                $("#prod_Talla_edit").val(item.prod_Talla);
-                $("#prod_Color_edit").val(item.prod_Color);
-                $("#uni_Descripcion_edit").val(item.uni_Descripcion);
-                $("#sal_Cantidad_edit").val(item.sal_Cantidad);
-                $("#prod_Codigo_edit").val(item.prod_Codigo);
-                $("#MyModal").modal();
-                console.log(data);
-            })
-        })
-
-        .fail(function (jqXHR, textStatus, errorThrown) {
-            console.log('jqXHR', jqXHR);
-            console.log('textStatus', textStatus);
-            console.log('errorThrown', errorThrown);
-
-        })
-    }
-
-
-    $("#Btnsubmit").click(function () {
-        var data = $("#SubmitForm").serializeArray();
-
-        $.ajax({
-            type: "Post",
-            url: "/Box/UpdateSalidaDetalle",
-            data: data,
-            success: function (result) {
-                if (result == '-1')
-                    $("#MsjError").text("No se pudo actualizar el registro, contacte al administrador");
-                else
-                    $("#MyModal").modal("hide");
+        done(function (data) {
+            if (data == 'El registro se guardo exitosamente') {
+                location.reload();
+                swal("El registro se almacenó exitosamente!", "", "success");
+            }
+            else {
+                location.reload();
+                swal("El registro  no se almacenó!", "", "error");
             }
         });
-    })
 
-    //$('#btnNuevoCreate').click(function () {
-    //    var SaldDescripcionModal = $('#DescripcionCreate').val();
-    //    var SaldMarcaModal = $('#MarcaCreate').val();
-    //    var SaldModeloModal = $('#ModeloCreate').val();
-    //    var SaldTallaModal = $('#TallaCreate').val();
-    //    var SaldColorModal = $('#ColorCreate').val();
-    //    var SaldDescripcionUnidadModal = $('#Descripcion_uniCreate').val();
-    //    var SaldCantidad = $('#Cantidad').val();
-
-    //    console.log(SaldDescripcionModal);
-    //    console.log(SaldMarcaModal);
-    //    console.log(SaldModeloModal);
-    //    console.log(SaldTallaModal);
-    //    console.log(SaldColorModal);
-    //    console.log(SaldDescripcionUnidadModal);
-    //    console.log(SaldCantidad);
+        var PuntoEmisionDetalle = GetPuntoEmisionDetalle();
+        $.ajax({
+            url: "/PuntoEmision/SaveCreateNumeracion",
+            method: "POST",
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ CreatePuntoEmisionDetalle: PuntoEmisionDetalle }),
+            success: function (data) {
+            }
+        })
+    }
+});
 
 
-    //    if (SaldDescripcionModal == '') {
-    //        $('#DescripcionCreate').text('');
-    //        $('#errorCodigo').text('');
-    //        $('#errorNombre').text('');
-    //        $('#ValidationNombre').after('<ul id="errorNombre" class="validation-summary-errors text-danger">Campo Descripcion de producto Requerido</ul>');
-
-    //    }
-
-    //    else if (SaldMarcaModal == '') {
-    //        $('#MarcaCreate').text('');
-    //        $('#errorCodigo').text('');
-    //        $('#errorNombre').text('');
-    //        $('#ValidationCodigoUpdate').after('<ul id="errorCodigo" class="validation-summary-errors text-danger">Campo Marca de producto Requerido</ul>');
-
-
-    //    }
-
-    //    else if (SaldModeloModal == '') {
-    //        $('#ModeloCreate').text('');
-    //        $('#errorCodigo').text('');
-    //        $('#errorNombre').text('');
-    //        $('#ValidationCodigoUpdate').after('<ul id="errorCodigo" class="validation-summary-errors text-danger">Campo Modelo de producto Requerido</ul>');
-
-    //    }
-    //    else if (SaldTallaModal == '') {
-    //        $('#TallaCreate').text('');
-    //        $('#errorCodigo').text('');
-    //        $('#errorNombre').text('');
-    //        $('#ValidationCodigoUpdate').after('<ul id="errorCodigo" class="validation-summary-errors text-danger">Campo Talla de producto Requerido</ul>');
-
-    //    }
-    //    else if (SaldColorModal == '') {
-    //        $('#ColorCreate').text('');
-    //        $('#errorCodigo').text('');
-    //        $('#errorNombre').text('');
-    //        $('#ValidationCodigoUpdate').after('<ul id="errorCodigo" class="validation-summary-errors text-danger">Campo Color de producto Requerido</ul>');
-
-    //    }
-    //    else if (SaldDescripcionUnidadModal == '') {
-    //        $('#Descripcion_uniCreate').text('');
-    //        $('#errorCodigo').text('');
-    //        $('#errorNombre').text('');
-    //        $('#ValidationCodigoUpdate').after('<ul id="errorCodigo" class="validation-summary-errors text-danger">Campo Unidad de medida de producto Requerido</ul>');
-
-    //    }
-
-    //    else if (SaldCantidad == '') {
-    //        $('#Cantidad').text('');
-    //        $('#errorCodigo').text('');
-    //        $('#errorNombre').text('');
-    //        $('#ValidationCodigoUpdate').after('<ul id="errorCodigo" class="validation-summary-errors text-danger">Campo Cantidad de producto Requerido</ul>');
-
-    //    }
-
-
-
-    //    else {
-    //        var tbSalidaDetalle = GetSalidaDetalle();
-    //        $.ajax({
-    //            url: "/Box/GuardarSalidaDetalle",
-    //            method: "POST",
-    //            dataType: 'json',
-    //            contentType: "application/json; charset=utf-8",
-    //            data: JSON.stringify({ GuardarSalidas: tbSalidaDetalle }),
-
-    //        })
-    //        .done(function (data) {
-    //            if (data == '') {
-    //                $('#ValidationNombreUpdate').after('<ul id="ValidationNombreUpdate" class="validation-summary-errors text-danger">No se pudo actualizar el registro, contacte con el administrador</ul>');
-    //            }
-    //            else {
-    //                window.location.href = '/Box/Index';
-    //            }
-    //        })
-    //    }
-    //});
-
-
-    //function GetSalidaDetalle() {
-    //    var SalidaDetalle = {
-    //        prod_Descripcion: $('#DescripcionCreate').val(),
-    //        prod_Marca: $('#MarcaCreate').val(),
-    //        prod_Modelo: $('#ModeloCreate').val(),
-    //        prod_Talla: $('#TallaCreate').val(),
-    //        prod_Color: $('#ColorCreate').val(),
-    //        uni_Descripcion: $('#Descripcion_uniCreate').val(),
-    //        sal_Cantidad: $('#Cantidad').val()
-    //    };
-    //    return SalidaDetalle;
-    //}

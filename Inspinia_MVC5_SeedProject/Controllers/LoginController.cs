@@ -33,10 +33,21 @@ namespace Inspinia_MVC5_SeedProject.Controllers
                         Session["UserLogin"] = UserLogin.usu_Id;
                         Session["UserLoginRols"] = Listado;
                         Session["UserLoginEsAdmin"] = UserLogin.usu_EsAdministrador;
+                        Session["UserLoginSesion"] = UserLogin.usu_SesionesValidas;
                         if (!UserLogin.usu_EsActivo)
                         {
                             ModelState.AddModelError("usu_NombreUsuario", "Usuario inactivo, contacte al Administrador");
                             return View(Login);
+                        }
+                        if (UserLogin.usu_SesionesValidas ==0)
+                        {
+                            ModelState.AddModelError("usu_NombreUsuario", "Su contraseña expiro, contacte al Administrador");
+                            return View(Login);
+                        }
+                        if (UserLogin.usu_SesionesValidas ==1)
+                        {
+                           
+                            return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
                         }
                     }
                     return RedirectToAction("Index", "Home");

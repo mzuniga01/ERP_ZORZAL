@@ -41,11 +41,7 @@
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
                     <h3><b>Listado de Salida</b></h3>
-                    <div class="ibox-tools">
-                        <button type="button" id="btnModalGuardarNumeracion" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#Nuevo">
-                            Registrar Numeración
-                        </button>
-                    </div>
+                    
                 </div>
                 <div class="ibox-content">
 
@@ -166,11 +162,13 @@
                                 @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                             </div>
                         </div>
+                        
                         <div class="modal fade" id="Nuevo" tabindex="-1" role="dialog" aria-labelledby="DetalleNumeracion" aria-hidden="true">
+                           
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Registar Numeración</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Seleccione un Producto</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -204,9 +202,16 @@
                             <div class="ibox-content">
 
                                 <div class="row">
+
                                     <div class="col-lg-12">
                                         <div class="ibox-content">
+
                                             <fieldset class="box-border">
+                                                <div class="ibox-tools">
+                                                    <button type="button" id="btnModalGuardarNumeracion" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#Nuevo">
+                                                        Agregar Producto
+                                                    </button>
+                                                </div>
                                                 <legend class="box-border">SalidaDetalle</legend>
                                                 @Html.Partial("_EditSalidaDetalle", Model.tbSalidaDetalle, new ViewDataDictionary(new { clave = Model.sal_Id }))
                                             </fieldset>

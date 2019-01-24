@@ -146,6 +146,43 @@ namespace ERP_ZORZAL.Controllers
             return View(tbBox);
         }
 
+
+        public JsonResult SaveNewDatail(tbSalidaDetalle SalidaDetalle)
+        {
+            var list = (List<tbSalidaDetalle>)Session["SalidaDetalle"];
+            var MensajeError = "0";
+            var MensajeErrorDetalle = "0";
+            IEnumerable<object> listSalidaDetalle = null;
+            if (ModelState.IsValid)
+            {
+                try
+                {
+
+                    var box_Codigo = "0";
+                    listSalidaDetalle = db.UDP_Inv_tbSalidaDetalle_Insert(
+                        SalidaDetalle.sal_Id,
+                        SalidaDetalle.prod_Codigo,
+                        SalidaDetalle.sald_Cantidad,
+                        box_Codigo
+                        );
+                    foreach (UDP_Inv_tbSalidaDetalle_Insert_Result spDetalle in listSalidaDetalle)
+                    {
+                        MensajeErrorDetalle = spDetalle.MensajeError;
+                        if (MensajeError == "-1")
+                        {
+                            ModelState.AddModelError("", "No se pudo agregar el registro detalle");
+                            return Json("", JsonRequestBehavior.AllowGet);
+                        }
+                    }
+                }
+                catch (Exception Ex)
+                {
+                    Ex.Message.ToString();
+                }
+            }
+            return Json("", JsonRequestBehavior.AllowGet);
+        }
+
         // GET: /Box/Edit/5
         public ActionResult Edit(string id)
         {
@@ -158,7 +195,72 @@ namespace ERP_ZORZAL.Controllers
             {
                 return HttpNotFound();
             }
+            string UserName = "";
+            int idUser = 0;
+            GeneralFunctions Login = new GeneralFunctions();
+            List<tbUsuario> User = Login.getUserInformation();
+            tbBodega tbBod = new tbBodega();
+            foreach (tbUsuario Usuario in User)
+            {
+                UserName = Usuario.usu_Nombres + " " + Usuario.usu_Apellidos;
+                idUser = Convert.ToInt32(Usuario.emp_Id);
+            }
+            ViewBag.IdSal = id;
+            ViewBag.bod_Id = new SelectList(db.tbBodega.Where(x => x.bod_ResponsableBodega == idUser).ToList(), "bod_Id", "bod_Nombre");
+            ViewBag.bod_Prod = db.tbBodega.Where(x => x.bod_ResponsableBodega == idUser).Select(x => x.bod_Id).SingleOrDefault();
+            
+            ViewBag.Producto = db.tbBodegaDetalle.ToList();
+
             return View(tbBox);
+        }
+
+        public JsonResult getSalidaDetalle(string sald_Id)
+        {
+            IEnumerable<object> list = null;
+            try
+            {
+                var dsad = Convert.ToInt32(sald_Id);
+                list = db.SDP_Inv_tbSalidaDetalle_Edit_Select(dsad).ToList();
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+            }
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public ActionResult EditSalidaDetalle(tbSalidaDetalle data)
+        {
+            try
+            {
+
+                tbSalidaDetalle pSalidaDetalle = db.tbSalidaDetalle.Find(data.sald_Id);
+                var MensajeError = "";
+                IEnumerable<object> list = null;
+                list = db.UDP_Inv_tbSalidaDetalle_Update(data.sald_Id,
+                                                    pSalidaDetalle.sal_Id,
+                                                    data.prod_Codigo,
+                                                    data.sald_Cantidad,
+                                                    data.box_Codigo);
+
+                foreach (UDP_Inv_tbSalidaDetalle_Update_Result RSSalidaDetalle in list)
+                    MensajeError = RSSalidaDetalle.MensajeError;
+                if (MensajeError == "-1")
+                {
+                    ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                    return PartialView("_EditSalidaDetalle");
+                }
+                else
+                {
+                    return RedirectToAction("Edit", "Salida", new { @id = pSalidaDetalle.sal_Id });
+                }
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                return PartialView("_EditSalidaDetalle", data);
+            }
         }
 
         // POST: /Box/Edit/5

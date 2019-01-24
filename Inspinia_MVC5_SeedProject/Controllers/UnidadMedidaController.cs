@@ -79,7 +79,7 @@ namespace ERP_ZORZAL.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="uni_Descripcion,uni_Abreviatura")] tbUnidadMedida tbUnidadMedida)
+        public ActionResult Create([Bind(Include="uni_Descripcion,uni_Abreviatura,uni_UsuarioCrea,uni_FechaCrea")] tbUnidadMedida tbUnidadMedida)
         {
             if (Function.GetUserLogin())
             {
@@ -90,7 +90,7 @@ namespace ERP_ZORZAL.Controllers
                         try
                         {
                             IEnumerable<object> List = null;
-                            var MsjError = "";
+                            var MsjError = "0";
                             List = db.UDP_Gral_tbUnidadMedida_Insert(tbUnidadMedida.uni_Descripcion, tbUnidadMedida.uni_Abreviatura, Function.GetUser(), DateTime.Now);
                             foreach (UDP_Gral_tbUnidadMedida_Insert_Result uni in List)
                                 MsjError = uni.MensajeError;
@@ -100,10 +100,14 @@ namespace ERP_ZORZAL.Controllers
                                 ModelState.AddModelError("", "No se guardó el registro, Contacte al Administrador");
                                 return View(tbUnidadMedida);
                             }
-                            else
+                            else if (MsjError.StartsWith("0"))
                             {
-                                return RedirectToAction("Index");
+                                ModelState.AddModelError("", "La Unidad de Medida ya Existe");
+                                return View(tbUnidadMedida);
                             }
+                            
+                                return RedirectToAction("Index");
+                            
                         }
                         catch (Exception Ex)
                         {
@@ -111,11 +115,20 @@ namespace ERP_ZORZAL.Controllers
                             ModelState.AddModelError("", "No se guardó el registro, Contacte al Administrador");
                             return View(tbUnidadMedida);
                         }
+                        
+                    }
+                    else
+                    {
+                        var errors = ModelState.Values.SelectMany(v => v.Errors);
+                        return RedirectToAction("Index");
                     }
                     return View(tbUnidadMedida);
                 }
+                
                 else
                 {
+                    var errors = ModelState.Values.SelectMany(v => v.Errors);
+
                     return RedirectToAction("SinAcceso", "Login");
                 }
             }
