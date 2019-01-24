@@ -45,7 +45,7 @@
                             <label class="control-label col-md-2 AsteriscoRojo">Código Producto</label>
                         @*@Html.LabelFor(model => model.prod_Codigo , "Código Producto", new { @class = "control-label col-md-2" })*@
                         <div class="col-md-4 ">
-                            @Html.EditorFor(model => model.prod_Codigo)
+                            @Html.EditorFor(model => model.prod_Codigo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                             <div id="validacionCodigoProductoCreate">
                                 <p style="color:red">@Html.ValidationMessageFor(model => model.prod_Codigo)</p>
                             </div>

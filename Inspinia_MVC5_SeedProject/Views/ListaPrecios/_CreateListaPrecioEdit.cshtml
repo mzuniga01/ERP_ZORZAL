@@ -19,15 +19,16 @@
 
 
 
+           
                         <div class="form-group">
-                            @Html.LabelFor(model => model.tbProducto.prod_Codigo, "Código Producto", new { @class = "control-label col-md-2" })
+                            @Html.LabelFor(model => model.tbProducto.prod_CodigoBarras, "Código Barra Producto", new { @class = "control-label col-md-2" })
                             <div class="col-md-4 ">
-                                @Html.EditorFor(model => model.tbProducto.prod_Codigo)
-                                <div id="validacionCodigoProductoCreate">
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.tbProducto.prod_Codigo)</p>
+                                @Html.EditorFor(model => model.tbProducto.prod_CodigoBarras, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                <div id="validacionNombreProductoCreate">
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.tbProducto.prod_CodigoBarras)</p>
                                 </div>
-
                             </div>
+                        
                             <div class="col-md-3">
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarProducto" id="buscar"><span class="glyphicon glyphicon-search"></span></button>
                             </div>
@@ -35,11 +36,13 @@
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.tbProducto.prod_CodigoBarras, "Código Barra Producto", new { @class = "control-label col-md-2" })
+
+
+                            @Html.LabelFor(model => model.tbProducto.prod_Codigo, "Código Producto", new { @class = "control-label col-md-2", @readonly = "readonly" })
                             <div class="col-md-4 ">
-                                @Html.EditorFor(model => model.tbProducto.prod_CodigoBarras, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                <div id="validacionNombreProductoCreate">
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.tbProducto.prod_CodigoBarras)</p>
+                                @Html.EditorFor(model => model.tbProducto.prod_Codigo)
+                                <div id="validacionCodigoProductoCreate">
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.tbProducto.prod_Codigo)</p>
                                 </div>
                             </div>
                         </div>
@@ -89,17 +92,17 @@
                             <div class="col-md-4">
                                 @Html.EditorFor(model => model.lispd_DescCaja, new { htmlAttributes = new { @type = "number", @min = "0", @step = "0.01", @value = "0" } })
                                 <div id="validacionDescuentoCajaCreate">
-                                    @Html.ValidationMessageFor(model => model.lispd_DescCaja)
+                                    <p id="desccaja">@Html.ValidationMessageFor(model => model.lispd_DescCaja)</p>
                                 </div>
 
 
                             </div>
 
-                            @Html.LabelFor(model => model.lispd_DescGerente, "Descuento Gerente (%)", new { @class = "control-label col-md-2" })
+                            @Html.LabelFor(model => model.lispd_DescGerente, "Descuento Gerenteeeee (%)", new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
                                 @Html.EditorFor(model => model.lispd_DescGerente, new { htmlAttributes = new { @type = "number", @min = "0", @step = "0.01", @value = "0" } })
                                 <div id="validacionDescuentoGerenteCreate">
-                                    @Html.ValidationMessageFor(model => model.lispd_DescGerente)
+                                    <p id="">@Html.ValidationMessageFor(model => model.lispd_DescGerente)</p>
                                 </div>
 
                             </div>
@@ -163,7 +166,7 @@
   
 </div>
 <script src="~/Scripts/app/ProductoListaPrecios.js"></script>
-@*<script src="~/Scripts/app/ProductoFactura.js"></script>*@
+
 <script type="text/javascript">
         $(document).ready(function () {
             $('#lispd_DescGerente').val('0.00')
@@ -182,6 +185,7 @@
 
 </script>
 <script>
+
     function comprobar()
     {
 
@@ -193,6 +197,73 @@
                 return false;
             }
             return true;
+
+
+            $("#lispd_DescCaja").blur(function () {
+                valido = document.getElementById('smsCantidad');
+
+                var DescuentoCaja = $('#lispd_DescCaja').val();
+
+
+
+                if (parseFloat(DescuentoCaja) < 0 || parseFloat(DescuentoCaja) > 100) {
+                    //console.log("facturada", CantFacturada)
+                    //console.log(CantDevolucion)
+                    //console.log("if")
+                    valido.innerText = "El valor debe estar entre 0 a 100";
+                    $('#lispd_DescCaja').val("");
+                    $('#lispd_DescCaja').focus();
+                }
+                else {
+                    //console.log("else")
+                    valido.innerText = "";
+                }
+
+
+            });
+
+            $("#lispd_DescGerente").blur(function () {
+
+                valido1 = document.getElementById('desccaja');
+
+                var DescuentoGerente = $('#lispd_DescGerente').val();
+
+
+
+
+                if (parseFloat(DescuentoGerente) < 0 || parseFloat(DescuentoGerente) > 100) {
+                    //console.log("facturada", CantFacturada)
+                    //console.log(CantDevolucion)
+                    //console.log("if")
+                    valido1.innerText = "El valor debe estar entre 0 a 100";
+                    $('#lispd_DescGerente').val("");
+                    $('#lispd_DescGerente').focus();
+                }
+                else {
+                    //console.log("else")
+                    valido1.innerText = "";
+                }
+
+
+
+
+
+            });
+
+    }
+
+
+
+
+    //---------------------------------Ctrl + G (GuardarRegistro)------------------------------
+    $(document).keydown(function (e) {
+        if ((e.key == 'g' || e.key == 'G') && (e.ctrlKey || e.metaKey)) {
+            e.preventDefault();
+            $("form").submit();
+            return false;
         }
+        return true;
+    });
+
 
 </script>

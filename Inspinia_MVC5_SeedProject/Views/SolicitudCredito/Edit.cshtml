@@ -110,7 +110,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.cred_MontoSolicitado, new { @class = "control-label col-md-2" })
                                 <div class="col-md-5">
-                                    @Html.EditorFor(model => model.cred_MontoSolicitado/*, new { htmlAttributes = new { @onkeypres = "MASK(this,this.value,'-##,###,##0.00',1)", @onchange = "MASK(this,this.value,'-##,###,##0.00',1)" } }*/)
+                                    @Html.EditorFor(model => model.cred_MontoSolicitado, new { htmlAttributes = new {  @onkeypress = "return validar(event)" } })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.cred_MontoSolicitado)
 </div>
                             </div>
@@ -134,7 +134,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.cred_DiasAprobado, new { @class = "control-label col-md-2" })
                                 <div class="col-md-5">
-                                    @Html.EditorFor(model => model.cred_DiasAprobado, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+                                    @Html.EditorFor(model => model.cred_DiasAprobado, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly", @onkeypress = "return validar(event)" } })
                                     @Html.ValidationMessageFor(model => model.cred_DiasAprobado)
                                 </div>
                             </div>
@@ -266,7 +266,13 @@
         </div>
     </div>
 </div>
-
+<script>
+    function validar(e) {
+        tecla = (document.all) ? e.keyCode : e.which;
+        tecla = String.fromCharCode(tecla)
+        return /^[0-9\-]+$/.test(tecla);
+    }
+</script>
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/SolicituCreditoDenegar.js"></script>

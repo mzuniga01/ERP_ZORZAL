@@ -88,7 +88,7 @@
                             <div class="col-md-4">
                                 @Html.EditorFor(model => model.lispd_DescCaja, new { htmlAttributes = new { @type = "number", @min = "0", @step = "0.01", @value = "0" } })
                                 <div id="validacionDescuentoCajaCreate">
-                                    @Html.ValidationMessageFor(model => model.lispd_DescCaja)
+                                   <p id="smsCantidad"> @Html.ValidationMessageFor(model => model.lispd_DescCaja)</p>
                                 </div>
 
 
@@ -98,7 +98,7 @@
                             <div class="col-md-4">
                                 @Html.EditorFor(model => model.lispd_DescGerente, new { htmlAttributes = new {@type = "number", @min = "0", @step = "0.01", @value = "0" } })
                                 <div id="validacionDescuentoGerenteCreate">
-                                    @Html.ValidationMessageFor(model => model.lispd_DescGerente)
+                                    <p id="desccaja">@Html.ValidationMessageFor(model => model.lispd_DescGerente)</p>
                                 </div>
 
                             </div>
@@ -156,6 +156,7 @@
         </div>
     </div>
 </div>
+
 <script type="text/javascript">
         $(document).ready(function () {
             $('#lispd_DescGerente').val('0.00')
@@ -171,14 +172,107 @@
             var PMI = $('#lispd_PrecioMinorista').val();
             if (PMA<PMI)
             {
-                alert("El precio mayorista debe ser menor que el precio Minorista.");
+                alert("El precio mayorista debe ser menor que el precio minorista.");
                 return false;
             }
             return true;
         }
 
-</script>
 
+
+    $("#lispd_DescCaja").blur(function () {
+        valido = document.getElementById('smsCantidad');
+
+        var DescuentoCaja = $('#lispd_DescCaja').val();
+
+
+
+        if (parseFloat(DescuentoCaja) < 0 || parseFloat(DescuentoCaja)> 100) {
+            //console.log("facturada", CantFacturada)
+            //console.log(CantDevolucion)
+            //console.log("if")
+            valido.innerText = "El valor debe estar entre 0 a 100";
+            $('#lispd_DescCaja').val("");
+            $('#lispd_DescCaja').focus();
+        }
+        else {
+            //console.log("else")
+            valido.innerText = "";
+        }
+
+
+    });
+
+    $("#lispd_DescGerente").blur(function () {
+
+        valido1 = document.getElementById('desccaja');
+
+        var DescuentoGerente = $('#lispd_DescGerente').val();
+
+
+
+
+        if (parseFloat(DescuentoGerente) < 0 || parseFloat(DescuentoGerente) > 100) {
+            //console.log("facturada", CantFacturada)
+            //console.log(CantDevolucion)
+            //console.log("if")
+            valido1.innerText = "El valor debe estar entre 0 a 100";
+            $('#lispd_DescGerente').val("");
+            $('#lispd_DescGerente').focus();
+        }
+        else {
+            //console.log("else")
+            valido1.innerText = "";
+        }
+
+
+
+
+
+    });
+
+
+
+
+
+    //---------------------------------Ctrl + G (GuardarRegistro)------------------------------
+    $(document).keydown(function (e) {
+        if ((e.key == 'g' || e.key == 'G') && (e.ctrlKey || e.metaKey)) {
+            e.preventDefault();
+            $("form").submit();
+            return false;
+        }
+        return true;
+    });
+
+
+
+
+
+</script>
+@*<script type="text/javascript">
+            $(document).ready(function () {
+                $('#lispd_DescGerente').val('0.00')
+                $('#lispd_DescCaja').val('0.00')
+            })
+    </script>
+
+    <script>
+        function comprobar()
+        {
+
+                var PMA = $('#lispd_PrecioMayorista').val();
+                var PMI = $('#lispd_PrecioMinorista').val();
+                if (PMA<PMI)
+                {
+                    alert("El precio mayorista debe ser menor que el precio Minorista.");
+                    return false;
+                }
+                return true;
+            }
+
+    </script>
+*@s
 
 
 
