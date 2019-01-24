@@ -305,7 +305,7 @@ namespace ERP_GMEDINA.Controllers
                         {
                             IEnumerable<object> List = null;
                             var MsjError = "0";
-                            List = db.UDP_Acce_tbUsuario_Update(tbUsuario.usu_Id, tbUsuario.usu_NombreUsuario, tbUsuario.usu_Nombres, tbUsuario.usu_Apellidos, tbUsuario.usu_Correo, tbUsuario.usu_EsActivo, tbUsuario.usu_RazonInactivo, tbUsuario.usu_EsAdministrador, tbUsuario.usu_SesionesValidas,
+                            List = db. UDP_Acce_tbUsuario_Update(tbUsuario.usu_Id, tbUsuario.usu_NombreUsuario, tbUsuario.usu_Nombres, tbUsuario.usu_Apellidos, tbUsuario.usu_Correo, tbUsuario.usu_EsActivo, tbUsuario.usu_RazonInactivo, tbUsuario.usu_EsAdministrador,
                                 tbUsuario.suc_Id, tbUsuario.emp_Id);
                             foreach (UDP_Acce_tbUsuario_Update_Result Usuario in List)
                                 MsjError = Usuario.MensajeError;
@@ -452,8 +452,8 @@ namespace ERP_GMEDINA.Controllers
                             {
                                 IEnumerable<object> List = null;
                                 var MsjError = "0";
-                                List = db.UDP_Acce_tbUsuario_PasswordUpdateRestore(tbUsuario.usu_Id, passwordnueva);
-                                foreach (UDP_Acce_tbUsuario_PasswordUpdateRestore_Result Usuario in List)
+                                List = db.UDP_Acce_tbUsuario_PasswordRestore(tbUsuario.usu_Id, passwordnueva);
+                                foreach (UDP_Acce_tbUsuario_PasswordRestore_Result Usuario in List)
                                     MsjError = Usuario.MensajeError;
 
                                 Email(emailsalida, passwordsalida, emaildestino, passwordnueva);
