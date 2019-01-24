@@ -28,17 +28,17 @@
                 </div>
                 <div class="ibox-content">
 
-				@using (Html.BeginForm("Create", "Pago", FormMethod.Post, new { enctype = "multipart/form-data" })) 
-{
+				@using (Html.BeginForm("Create", "Pago", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         @Html.ValidationSummary(true)
 
         <div class="form-group">
             @Html.LabelFor(model => model.pago_Id, new { @class = "control-label col-md-2" })
             <div class="col-md-3">
-                @Html.EditorFor(model => model.pago_Id," ", new { htmlAttributes = new { @disabled = "disabled",@class = "form-control", @readonly = "readonly" } })
+                @Html.EditorFor(model => model.pago_Id, " ", new { htmlAttributes = new { @disabled = "disabled", @class = "form-control", @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.pago_Id)
             </div>
             <div class="form-group">
@@ -113,7 +113,7 @@
            
             @Html.Label("Total Pagado", new { @class = "control-label col-md-3" })
             <div class="col-md-2">
-                @Html.Editor("Total" , String.Empty, new { htmlAttributes = new { @class = "form-control", @readonly="readonly" ,@id="TotalPagado",@value="number", @onkeyup = "format(this)", @autocomplete = "off" } })       
+                @Html.Editor("Total", String.Empty, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @id = "TotalPagado", @value = "number", @onkeyup = "format(this)", @autocomplete = "off" } })       
             </div>
             @Html.Label("Saldo Anterior", new { @class = "control-label col-md-3 " })
             <div class="col-md-2">
@@ -124,11 +124,11 @@
         <div class="form-group">
             @Html.LabelFor(model => model.pago_TotalPago, "Monto Pagar", new { @class = "control-label col-md-3" })
             <div class="col-md-2">
-                @Html.EditorFor(model => model.pago_TotalPago, String.Empty, new { htmlAttributes = new { @class = "form-control",  @onkeyup = "format(this)", @autocomplete = "off" } })
-                @Html.ValidationMessageFor(model => model.pago_TotalPago, "", new { @style = "color:red" ,@id="msgMontoPagar" })
+                @Html.EditorFor(model => model.pago_TotalPago, String.Empty, new { htmlAttributes = new { @class = "form-control", @onkeyup = "format(this)", @autocomplete = "off" } })
+                @Html.ValidationMessageFor(model => model.pago_TotalPago, "", new { @style = "color:red", @id = "msgMontoPagar" })
             </div>
 
-            @Html.LabelFor(model => model.pago_SaldoAnterior, "Saldo Actual",new { @class = "control-label col-md-3" })
+            @Html.LabelFor(model => model.pago_SaldoAnterior, "Saldo Actual", new { @class = "control-label col-md-3" })
             <div class="col-md-2">
                 @Html.EditorFor(model => model.pago_SaldoAnterior, String.Empty, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @value = "number", @onkeyup = "format(this)", @autocomplete = "off" } })
                 @Html.ValidationMessageFor(model => model.pago_SaldoAnterior, "", new { @style = "color:red" })
@@ -145,7 +145,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.tpa_Id, "Tipo de Pago", new { @class = "control-label col-md-2" })
             <div class="col-md-3">
-                @Html.DropDownList("tpa_Id", null, "Seleccionar Tipo de Pago", new { @class = "form-control",  @id = "TipoPago" })
+                @Html.DropDownList("tpa_Id", null, "Seleccionar Tipo de Pago", new { @class = "form-control", @id = "TipoPago" })
                 @*@Html.DropDownList("tpa_id", new SelectList(Model.TPList, "ID_TP", "DESCRIPCION_TP"), "Seleccionar Tipo Pago", new { @class = "form-control", @id = "TipoPago" })*@
                 @Html.ValidationMessageFor(model => model.tpa_Id, "", new { @style = "color:red" })
             </div>
@@ -156,11 +156,11 @@
                 @Html.Label("Total Efectivo", new { @class = "control-label col-md-3" })
                 <div class="col-md-2">
                     @Html.Editor("Efectivo", String.Empty, new { htmlAttributes = new { @class = "form-control", @id = "efectivo", @value = "number", @onkeyup = "format(this)", @autocomplete = "off" } })
-                    @Html.ValidationMessage( "", new { @style = "color:red" })
+                    @Html.ValidationMessage("", new { @style = "color:red" })
                 </div>
                 @Html.LabelFor(model => model.pago_TotalCambio, "Cambio Efectivo", new { @class = "control-label col-md-3" })
                 <div class="col-md-2">
-                    @Html.EditorFor(model => model.pago_TotalCambio, String.Empty, new { htmlAttributes = new { @class = "form-control", @id = "cambio", @value = "number", @onkeyup = "format(this)", @autocomplete = "off" , @readonly="readonly"} })
+                    @Html.EditorFor(model => model.pago_TotalCambio, String.Empty, new { htmlAttributes = new { @class = "form-control", @id = "cambio", @value = "number", @onkeyup = "format(this)", @autocomplete = "off", @readonly = "readonly" } })
                     @Html.ValidationMessageFor(model => model.pago_TotalCambio, "", new { @style = "color:red" })
                 </div>
             </div>
@@ -194,16 +194,35 @@
         
         </div>
 
+        <div id="Cheque" name="Cheque">
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.pago_Titular, new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.pago_Titular)
+                    @Html.ValidationMessageFor(model => model.pago_Titular)
+                </div>
+                @Html.LabelFor(model => model.pago_Emisor, new { @class = "control-label col-md-3" })
+                <div class="col-md-2">
+                    @Html.EditorFor(model => model.pago_Emisor)
+                    @Html.ValidationMessageFor(model => model.pago_Emisor, "", new { @style = "color:red" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.bcta_Id, "Cuenta Banco", new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("bcta_Id", null, "Seleccionar Cuenta Banco", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.bcta_Id)
+                </div>
+            </div>
+
+        </div>
+
        
 
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.bcta_Id, "bcta_Id", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("bcta_Id", String.Empty)
-                @Html.ValidationMessageFor(model => model.bcta_Id)
-            </div>
-        </div>
-        *@
+    
+        
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Guardar" class="btn btn-primary" />

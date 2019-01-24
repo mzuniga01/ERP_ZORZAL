@@ -183,6 +183,30 @@
 
 
         </div>
+        <div id="Cheque" name="Cheque">
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.pago_Titular, new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.pago_Titular)
+                    @Html.ValidationMessageFor(model => model.pago_Titular)
+                </div>
+                @Html.LabelFor(model => model.pago_Emisor, new { @class = "control-label col-md-3" })
+                <div class="col-md-2">
+                    @Html.EditorFor(model => model.pago_Emisor)
+                    @Html.ValidationMessageFor(model => model.pago_Emisor, "", new { @style = "color:red" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.bcta_Id, "Cuenta Banco", new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("bcta_Id", null, "Seleccionar Cuenta Banco", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.bcta_Id)
+                </div>
+            </div>
+
+        </div>
       
 
       

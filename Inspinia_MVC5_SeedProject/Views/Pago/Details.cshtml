@@ -1,4 +1,5 @@
 ﻿@model ERP_GMEDINA.Models.tbPago
+@using ERP_GMEDINA.Models
 
 @{
     ViewBag.Title = "Details";
@@ -86,51 +87,77 @@
                         <dd>
                             @Html.DisplayFor(model => model.pago_TotalPago)
                         </dd>
+                        <di id="dEfectivo" name="dEfectivo">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.pago_TotalCambio)
+                            </dt>
 
-                        <dt>
-                            @Html.DisplayNameFor(model => model.pago_TotalCambio)
-                        </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.pago_TotalCambio)
+                            </dd>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.pago_TotalCambio)
-                        </dd>
+                        </di>
+                        <div id="dTCD" name="dTCD">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.pago_Emisor)
+                            </dt>
 
-                        @*<dt>
-                        @Html.DisplayNameFor(model => model.pago_Emisor)
-                    </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.pago_Emisor)
+                            </dd>
 
-                    <dd>
-                        @Html.DisplayFor(model => model.pago_Emisor)
-                    </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.pago_FechaVencimiento)
+                            </dt>
 
-                    <dt>
-                        @Html.DisplayNameFor(model => model.pago_FechaVencimiento)
-                    </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.pago_FechaVencimiento)
+                            </dd>
 
-                    <dd>
-                        @Html.DisplayFor(model => model.pago_FechaVencimiento)
-                    </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.pago_Titular)
+                            </dt>
 
-                    <dt>
-                        @Html.DisplayNameFor(model => model.pago_Titular_)
-                    </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.pago_Titular)
+                            </dd>
 
-                    <dd>
-                        @Html.DisplayFor(model => model.pago_Titular_)
-                    </dd>
+                        </div>
+                        <div id="dCheque" name="dCheque">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.pago_Emisor)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.pago_Emisor)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.pago_Titular)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.pago_Titular)
+                            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.tbCuentasBanco.bcta_Numero)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.tbCuentasBanco.bcta_Numero)
+                            </dd>
+
+                        </div>
+                   
+
+                    
 
 
 
-                    <dt>
-                        @Html.DisplayNameFor(model => model.tbCuentasBanco.bcta_Numero)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.tbCuentasBanco.bcta_Numero)
-                    </dd>*@
+                    
 
 
-
+                        @Html.HiddenFor(model => model.tbTipoPago.tpa_Id)
 
 
                     </dl>
@@ -168,9 +195,34 @@
 
 
 
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script >
+    $(document).ready(function () {
 
+        $('#dEfectivo').hide();
+        $('#dTCD').hide();
+        $('#dCheque').hide();
 
+        if ($("#tbTipoPago_tpa_Id").val() == 1) {
 
+            $('#dEfectivo').show();
+            $('#dTCD').hide();
+            $('#dCheque').hide();
+        }
+        else if ($("#tbTipoPago_tpa_Id").val() == 2) {
+            $('#dEfectivo').hide();
+            $('#dTCD').show();
+            $('#dCheque').hide();
+
+        }
+        else {
+            $('#dEfectivo').hide();
+            $('#dTCD').hide();
+            $('#dCheque').show();
+        }
+
+    });
+</script>
 
 
 
