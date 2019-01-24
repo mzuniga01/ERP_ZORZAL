@@ -1,36 +1,50 @@
-﻿//$('#btnGuardarEntregaEfectivo').click(function () {
-//    var SolicitudEfectivoEntrega = $('#solef_Id').val();
-//    var CantidadEntregada = $('#soled_CantidadEntregada').val();
-//    var MontoEntregado = $('#soled_MontoEntregado').val();
+﻿$("#btnGuardarEntregaEfectivo").click(function () {
+    var IdSolicitud = $('#solef_Id').val();
+    console.log("IdSolicitud:", IdSolicitud);
 
-//    console.log("SolicitudEfectivoEntrega:", SolicitudEfectivoEntrega);
-//    console.log("CantidadEntregada:", CantidadEntregada);
-//    console.log("MontoEntregado:", MontoEntregado);
-//});
+    $("#EntregaEfectivo tbody tr ").each(function (index) {
+        var IdSolicitudDetalle = $(this).children("td:eq(1)").text();
+        console.log("IdSolicitudDetalle:", IdSolicitudDetalle);
 
+        //var cantidad = $(this).parents("tr").find('#CantidadE').val();
+        //var cantidad = $("input[name*='CantidadE']").val();
+        //var cantidad = $('.CantidadE').val();
+        //console.log("Cantidad:", cantidad);
 
-//$(document).ready(function () {
-//    $("#EntregaEfectivo tbody tr").each(function () {
-//        //Id Entrega Efectivo
-//        var ID = $(this).children("td:eq(1)").text();
-//        var CantidadEntregada = $(this).children("td:eq(5)").text();
-//        console.log("Cantidad:", CantidadEntregada);
-//        console.log("ID:",ID);
-//    });
-//});
+        var Monto = $(this).children("td:eq(6)").html();
+        console.log('Monto:', Monto);
+    });
 
+    $("#EntregaEfectivo tbody tr td input#CantidadE").each(function (index) {
+        //$("#EntregaEfectivo tbody tr ").find(':input').each(function () {
+        var Cantidad = $(this).val();
+        console.log("Cantidad:", Cantidad);
+    });
 
-$(document).on("change", "#EntregaEfectivo tbody tr td input#CantidadE", function () {
-    var row = $(this).closest("tr");
-    var Cantidad = $(this).val();
-    console.log("Cantidad:", Cantidad);
-    var Subtotal = $(this).parents("tr").find("td")[6].innerHTML;
-    console.log("Subtotal:", Subtotal);
-    $("#EntregaEfectivo tbody tr").each(function (index) {
-        var ID = $(this).children("td:eq(1)").text();
-        console.log("ID:", ID);
-            Monto = $(this).children("td:eq(6)").html();
-            console.log('Monto', Monto);
-           
-        });
+    var GetEfectivoDetalle = {
+        solef_Id: IdSolicitud,
+        soled_Id: IdSolicitudDetalle,
+        soled_CantidadEntregada: Cantidad,
+        soled_MontoEntregado: Monto
+    };
+
+    $.ajax({
+        url: "/SolicitudEfectivo/SaveEditSolicitudEfectivoDetalle",
+        method: "POST",
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({ EdiEntregaEfectivoDetalle: GetEfectivoDetalle }),
+        success: function (data) {
+        }
+    })
+    .done(function (data) {
+        if (data == 'El registro se guardó exitosamente') {
+            location.reload();
+            swal("El registro se editó exitosamente!", "", "success");
+        }
+        else {
+            location.reload();
+            swal("El registro  no se editó!", "", "error");
+        }
+    });
 });

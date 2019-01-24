@@ -1201,6 +1201,7 @@
     <Content Include="Scripts\app\EmitirNotaCredito.js" />
     <Content Include="Scripts\app\Empleados.js" />
     <Content Include="Scripts\app\EntregaEfectivo.js" />
+    <Content Include="Scripts\app\EntregaEfectivoDetalle.js" />
     <Content Include="Scripts\app\Factura.js" />
     <Content Include="Scripts\app\FacturaDetalle.js" />
     <Content Include="Scripts\app\FacturaDetalleEdit.js" />
