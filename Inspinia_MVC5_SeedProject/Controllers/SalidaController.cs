@@ -156,7 +156,7 @@ namespace ERP_GMEDINA.Controllers
                                             listSalidaDetalle = db.UDP_Inv_tbSalidaDetalle_Insert(
                                                 MsjError,
                                                 Detalle.prod_Codigo,
-                                                Detalle.sal_Cantidad,
+                                                Detalle.sald_Cantidad,
                                                 box_Codigo
                                                 );
                                             foreach (UDP_Inv_tbSalidaDetalle_Insert_Result spDetalle in listSalidaDetalle)
@@ -215,7 +215,7 @@ namespace ERP_GMEDINA.Controllers
                     listSalidaDetalle = db.UDP_Inv_tbSalidaDetalle_Insert(
                         SalidaDetalle.sal_Id,
                         SalidaDetalle.prod_Codigo,
-                        SalidaDetalle.sal_Cantidad,
+                        SalidaDetalle.sald_Cantidad,
                         box_Codigo
                         );
                     foreach (UDP_Inv_tbSalidaDetalle_Insert_Result spDetalle in listSalidaDetalle)
@@ -321,7 +321,7 @@ namespace ERP_GMEDINA.Controllers
                 list = db.UDP_Inv_tbSalidaDetalle_Update(data.sald_Id,
                                                     pSalidaDetalle.sal_Id,
                                                     data.prod_Codigo,
-                                                    data.sal_Cantidad,
+                                                    data.sald_Cantidad,
                                                     data.box_Codigo);
 
                 foreach (UDP_Inv_tbSalidaDetalle_Update_Result RSSalidaDetalle in list)
@@ -603,7 +603,7 @@ namespace ERP_GMEDINA.Controllers
                 listSalidaDetalle = db.UDP_Inv_tbSalidaDetalle_Insert(
                     tbSalidaDetalle.sal_Id,
                     tbSalidaDetalle.prod_Codigo,
-                    tbSalidaDetalle.sal_Cantidad,
+                    tbSalidaDetalle.sald_Cantidad,
                     box_Codigo
                     );
                 foreach (UDP_Inv_tbSalidaDetalle_Insert_Result spDetalle in listSalidaDetalle)

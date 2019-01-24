@@ -3801,7 +3801,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
           <Parameter Name="usu_EsActivo" Type="bit" Mode="In" />
           <Parameter Name="usu_RazonInactivo" Type="varchar" Mode="In" />
           <Parameter Name="usu_EsAdministrador" Type="bit" Mode="In" />
-          <Parameter Name="usu_SesionesValidas" Type="tinyint" Mode="In" />
           <Parameter Name="suc_Id" Type="int" Mode="In" />
           <Parameter Name="emp_Id" Type="smallint" Mode="In" />
         </Function>
@@ -5735,19 +5734,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
             <Parameter Name="usu_Id" Mode="In" Type="Int32" />
             <Parameter Name="rol_Id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Acce_tbUsuario_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbUsuario_Update_Result)">
-            <Parameter Name="usu_Id" Mode="In" Type="Int32" />
-            <Parameter Name="usu_NombreUsuario" Mode="In" Type="String" />
-            <Parameter Name="usu_Nombres" Mode="In" Type="String" />
-            <Parameter Name="usu_Apellidos" Mode="In" Type="String" />
-            <Parameter Name="usu_Correo" Mode="In" Type="String" />
-            <Parameter Name="usu_EsActivo" Mode="In" Type="Boolean" />
-            <Parameter Name="usu_RazonInactivo" Mode="In" Type="String" />
-            <Parameter Name="usu_EsAdministrador" Mode="In" Type="Boolean" />
-            <Parameter Name="usu_SesionesValidas" Mode="In" Type="Byte" />
-            <Parameter Name="suc_Id" Mode="In" Type="Int32" />
-            <Parameter Name="emp_Id" Mode="In" Type="Int16" />
-          </FunctionImport>
           <FunctionImport Name="SP_Valores" ReturnType="Collection(ERP_ZORZALModel.SP_Valores_Result)">
             <Parameter Name="pcat_Id" Mode="In" Type="Int32" />
             <Parameter Name="pscat_Id" Mode="In" Type="Int32" />
@@ -6906,7 +6892,19 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
           <Parameter Name="sald_Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="UDP_Inv_tbSalidaDetalle_Delete" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbSalidaDetalle_Delete_Result)">
-            <Parameter Name="sald_Id" Mode="In" Type="Int32" />
+          <Parameter Name="sald_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Acce_tbUsuario_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbUsuario_Update_Result)">
+            <Parameter Name="usu_Id" Mode="In" Type="Int32" />
+            <Parameter Name="usu_NombreUsuario" Mode="In" Type="String" />
+            <Parameter Name="usu_Nombres" Mode="In" Type="String" />
+            <Parameter Name="usu_Apellidos" Mode="In" Type="String" />
+            <Parameter Name="usu_Correo" Mode="In" Type="String" />
+            <Parameter Name="usu_EsActivo" Mode="In" Type="Boolean" />
+            <Parameter Name="usu_RazonInactivo" Mode="In" Type="String" />
+            <Parameter Name="usu_EsAdministrador" Mode="In" Type="Boolean" />
+            <Parameter Name="suc_Id" Mode="In" Type="Int32" />
+            <Parameter Name="emp_Id" Mode="In" Type="Int16" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
@@ -7264,9 +7262,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
         <ComplexType Name="UDP_Acce_tbRolesUsuario_Insert_Result">
-          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-        </ComplexType>
-        <ComplexType Name="UDP_Acce_tbUsuario_Update_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
         <ComplexType Name="SP_Valores_Result">
@@ -11574,6 +11569,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
         <ComplexType Name="UDP_Inv_tbSalidaDetalle_Delete_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
+        <ComplexType Name="UDP_Acce_tbUsuario_Update_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -12210,13 +12208,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
           <FunctionImportMapping FunctionImportName="UDP_Acce_tbRolesUsuario_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbRolesUsuario_Insert" >
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_tbRolesUsuario_Insert_Result">
-                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Acce_tbUsuario_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbUsuario_Update" >
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_tbUsuario_Update_Result">
                 <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
               </ComplexTypeMapping>
             </ResultMapping>
@@ -13604,6 +13595,13 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
           <FunctionImportMapping FunctionImportName="UDP_Inv_tbSalidaDetalle_Delete" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbSalidaDetalle_Delete" >
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbSalidaDetalle_Delete_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Acce_tbUsuario_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbUsuario_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_tbUsuario_Update_Result">
                 <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
               </ComplexTypeMapping>
             </ResultMapping>

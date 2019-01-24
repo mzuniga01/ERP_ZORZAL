@@ -33,9 +33,9 @@ namespace ERP_GMEDINA.Controllers
                 using (TransactionScope Tran = new TransactionScope())
                 {
                     var FechaPedido = DateTime.Now;
-                    //listSalida = db.UDP_Inv_ValidacionCantidadExistente(CantidadSolicitada, IDBodega, IDProducto, FechaPedido, BodegaDestino, CantidadNoDisponible);
-                    //foreach (UDP_Inv_ValidacionCantidadExistente_Result Salida in listSalida)
-                    //    MensajeError = Salida.MensajeError;
+                    listSalida = db.UDP_Inv_ValidacionCantidadExistente(CantidadSolicitada, IDBodega, IDProducto, FechaPedido, BodegaDestino, CantidadNoDisponible);
+                    foreach (UDP_Inv_ValidacionCantidadExistente_Result Salida in listSalida)
+                        MensajeError = Salida.MensajeError;
                     if (MensajeError == "-1")
                     {
                         ModelState.AddModelError("", "No se pudo realizar el Pedido, Por favor contacte con el Administrador");

@@ -191,9 +191,9 @@ namespace ERP_GMEDINA.Controllers
                 tbObjeto obj = db.tbObjeto.Find(id);
                 IEnumerable<object> list = null;
                 var MsjError = "";
-                //list = db.UDP_Gral_tbEmpleado_Update_Estado(id, Helpers.Activo);
-                //foreach (UDP_Gral_tbEmpleado_Update_Estado_Result obje in list)
-                //    MsjError = obje.MensajeError;
+                list = db.UDP_Gral_tbEmpleado_Update_Estado(id, Helpers.Activo);
+                foreach (UDP_Gral_tbEmpleado_Update_Estado_Result obje in list)
+                    MsjError = obje.MensajeError;
 
                 if (MsjError == "-1")
                 {
@@ -220,9 +220,9 @@ namespace ERP_GMEDINA.Controllers
                 tbObjeto obj = db.tbObjeto.Find(id);
                 IEnumerable<object> list = null;
                 var MsjError = "";
-                //list = db.UDP_Gral_tbEmpleado_Update_Estado(id, Helpers.Inactivo);
-                //foreach (UDP_Gral_tbEmpleado_Update_Estado_Result obje in list)
-                    //MsjError = obje.MensajeError;
+                list = db.UDP_Gral_tbEmpleado_Update_Estado(id, Helpers.Inactivo);
+                foreach (UDP_Gral_tbEmpleado_Update_Estado_Result obje in list)
+                    MsjError = obje.MensajeError;
 
                 if (MsjError == "-1")
                 {
