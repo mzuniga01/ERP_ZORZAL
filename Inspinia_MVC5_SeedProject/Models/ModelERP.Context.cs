@@ -58,7 +58,6 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbProductoSubcategoria> tbProductoSubcategoria { get; set; }
         public virtual DbSet<tbProveedor> tbProveedor { get; set; }
         public virtual DbSet<tbSalida> tbSalida { get; set; }
-        public virtual DbSet<tbSalidaDetalle> tbSalidaDetalle { get; set; }
         public virtual DbSet<tbTipoDevolucion> tbTipoDevolucion { get; set; }
         public virtual DbSet<tbTipoEntrada> tbTipoEntrada { get; set; }
         public virtual DbSet<tbTipoSalida> tbTipoSalida { get; set; }
@@ -107,6 +106,8 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<UDV_Vent_FacturaPuntoEmision1> UDV_Vent_FacturaPuntoEmision1 { get; set; }
         public virtual DbSet<V_Vent_FacturaPago> V_Vent_FacturaPago { get; set; }
         public virtual DbSet<tbBitacoraErrores> tbBitacoraErrores { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<tbSalidaDetalle> tbSalidaDetalle { get; set; }
     
         public virtual ObjectResult<UDP_Gral_tbDenominacion_Insert_Result> UDP_Gral_tbDenominacion_Insert(string deno_Descripcion, Nullable<byte> deno_Tipo, Nullable<decimal> deno_valor, Nullable<short> mnda_Id, Nullable<int> deno_UsuarioCrea, Nullable<System.DateTime> deno_FechaCrea)
         {
@@ -1119,7 +1120,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Acce_tbUsuario_Select");
         }
     
-        public virtual ObjectResult<string> UDP_Acce_tbUsuario_Update(Nullable<int> usu_Id, string usu_NombreUsuario, string usu_Nombres, string usu_Apellidos, string usu_Correo, Nullable<bool> usu_EsActivo, string usu_RazonInactivo, Nullable<bool> usu_EsAdministrador, Nullable<byte> usu_SesionesValidas, Nullable<int> suc_Id, Nullable<short> emp_Id)
+        public virtual ObjectResult<string> UDP_Acce_tbUsuario_Update(Nullable<int> usu_Id, string usu_NombreUsuario, string usu_Nombres, string usu_Apellidos, string usu_Correo, Nullable<bool> usu_EsActivo, string usu_RazonInactivo, Nullable<bool> usu_EsAdministrador, Nullable<int> suc_Id, Nullable<short> emp_Id)
         {
             var usu_IdParameter = usu_Id.HasValue ?
                 new ObjectParameter("usu_Id", usu_Id) :
@@ -1153,10 +1154,6 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("usu_EsAdministrador", usu_EsAdministrador) :
                 new ObjectParameter("usu_EsAdministrador", typeof(bool));
     
-            var usu_SesionesValidasParameter = usu_SesionesValidas.HasValue ?
-                new ObjectParameter("usu_SesionesValidas", usu_SesionesValidas) :
-                new ObjectParameter("usu_SesionesValidas", typeof(byte));
-    
             var suc_IdParameter = suc_Id.HasValue ?
                 new ObjectParameter("suc_Id", suc_Id) :
                 new ObjectParameter("suc_Id", typeof(int));
@@ -1165,7 +1162,7 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("emp_Id", emp_Id) :
                 new ObjectParameter("emp_Id", typeof(short));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Acce_tbUsuario_Update", usu_IdParameter, usu_NombreUsuarioParameter, usu_NombresParameter, usu_ApellidosParameter, usu_CorreoParameter, usu_EsActivoParameter, usu_RazonInactivoParameter, usu_EsAdministradorParameter, usu_SesionesValidasParameter, suc_IdParameter, emp_IdParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Acce_tbUsuario_Update", usu_IdParameter, usu_NombreUsuarioParameter, usu_NombresParameter, usu_ApellidosParameter, usu_CorreoParameter, usu_EsActivoParameter, usu_RazonInactivoParameter, usu_EsAdministradorParameter, suc_IdParameter, emp_IdParameter);
         }
     
         public virtual int UDP_Gral_Padres_Insert(string nombresPadre, string apellidosPadre)

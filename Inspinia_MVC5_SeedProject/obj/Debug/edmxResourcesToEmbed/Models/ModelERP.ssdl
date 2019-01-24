@@ -77,6 +77,16 @@
     <Property Name="suc_Id" Type="int" />
     <Property Name="emp_Id" Type="smallint" />
   </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
   <EntityType Name="tbActividadEconomica">
     <Key>
       <PropertyRef Name="acte_Id" />
@@ -472,7 +482,7 @@
     <Property Name="sald_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="sal_Id" Type="int" Nullable="false" />
     <Property Name="prod_Codigo" Type="nvarchar" MaxLength="15" Nullable="false" />
-    <Property Name="sal_Cantidad" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="sald_Cantidad" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="box_Codigo" Type="varchar" MaxLength="20" />
     <Property Name="sald_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="sald_FechaCrea" Type="datetime" Nullable="false" />
@@ -4137,7 +4147,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <Parameter Name="usu_EsActivo" Type="bit" Mode="In" />
     <Parameter Name="usu_RazonInactivo" Type="varchar" Mode="In" />
     <Parameter Name="usu_EsAdministrador" Type="bit" Mode="In" />
-    <Parameter Name="usu_SesionesValidas" Type="tinyint" Mode="In" />
     <Parameter Name="suc_Id" Type="int" Mode="In" />
     <Parameter Name="emp_Id" Type="smallint" Mode="In" />
   </Function>
@@ -4257,6 +4266,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <Parameter Name="deno_Tipo" Type="tinyint" Mode="In" />
     <Parameter Name="deno_valor" Type="decimal" Mode="In" />
     <Parameter Name="mnda_Id" Type="smallint" Mode="In" />
+    <Parameter Name="deno_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="deno_FechaCrea" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Gral_tbDenominacion_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral" />
   <Function Name="UDP_Gral_tbDenominacion_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
@@ -4267,6 +4278,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <Parameter Name="mnda_Id" Type="smallint" Mode="In" />
     <Parameter Name="deno_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="deno_FechaCrea" Type="datetime" Mode="In" />
+    <Parameter Name="deno_UsuarioModifica" Type="int" Mode="In" />
+    <Parameter Name="deno_FechaModifica" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Gral_tbDepartamento_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
     <Parameter Name="dep_Codigo" Type="char" Mode="In" />
@@ -4282,9 +4295,15 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <Parameter Name="dep_UsuarioModifica" Type="int" Mode="In" />
     <Parameter Name="dep_FechaModifica" Type="datetime" Mode="In" />
   </Function>
+  <Function Name="UDP_Gral_tbEmpleado_Update_Baja" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
+    <Parameter Name="emp_Id" Type="int" Mode="In" />
+    <Parameter Name="emp_Estado" Type="bit" Mode="In" />
+    <Parameter Name="emp_RazonSalida" Type="nvarchar" Mode="In" />
+  </Function>
   <Function Name="UDP_Gral_tbEmpleado_Update_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
     <Parameter Name="emp_Id" Type="int" Mode="In" />
     <Parameter Name="emp_Estado" Type="bit" Mode="In" />
+    <Parameter Name="emp_RazonInactivacion" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="UDP_Gral_tbEmpleados_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
     <Parameter Name="emp_Nombres" Type="nvarchar" Mode="In" />
@@ -4731,14 +4750,14 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
   <Function Name="UDP_Inv_tbSalidaDetalle_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="sal_Id" Type="int" Mode="In" />
     <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
-    <Parameter Name="sal_Cantidad" Type="decimal" Mode="In" />
+    <Parameter Name="sald_Cantidad" Type="decimal" Mode="In" />
     <Parameter Name="box_Codigo" Type="varchar" Mode="In" />
   </Function>
   <Function Name="UDP_Inv_tbSalidaDetalle_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="sald_Id" Type="int" Mode="In" />
     <Parameter Name="sal_Id" Type="int" Mode="In" />
     <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
-    <Parameter Name="sal_Cantidad" Type="decimal" Mode="In" />
+    <Parameter Name="sald_Cantidad" Type="decimal" Mode="In" />
     <Parameter Name="box_Codigo" Type="varchar" Mode="In" />
   </Function>
   <Function Name="UDP_Inv_tbTipoEntrada_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
@@ -4765,7 +4784,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <Parameter Name="IDProducto" Type="varchar" Mode="In" />
     <Parameter Name="FechaElaboracion" Type="datetime" Mode="In" />
     <Parameter Name="BodegaDestino" Type="int" Mode="In" />
-    <Parameter Name="CantidadNoDisponible" Type="decimal" Mode="In" />
   </Function>
   <Function Name="crud_tbExoneracionInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="exo_Documento" Type="nvarchar" Mode="In" />
@@ -5084,6 +5102,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
   <Function Name="UDP_Vent_tbFactura_GetDetalle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="FACTURA_ID" Type="bigint" Mode="In" />
   </Function>
+  <Function Name="UDP_Vent_tbFactura_GetDetalle_Edit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="FACTURA_ID" Type="bigint" Mode="In" />
+  </Function>
   <Function Name="UDP_Vent_tbFactura_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="fact_Codigo" Type="nvarchar" Mode="In" />
     <Parameter Name="fact_Fecha" Type="datetime" Mode="In" />
@@ -5169,6 +5190,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <Parameter Name="lispd_DescCaja" Type="decimal" Mode="In" />
     <Parameter Name="lispd_DescGerente" Type="decimal" Mode="In" />
   </Function>
+  <Function Name="UDP_Vent_tbListadoPrecioDetalle_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="IDLISTAPRECIO" Type="int" Mode="In" />
+  </Function>
   <Function Name="UDP_Vent_tbListadoPrecioDetalle_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="listp_Id" Type="int" Mode="In" />
     <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
@@ -5219,14 +5243,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
   </Function>
   <Function Name="UDP_Vent_tbMovimientoCaja_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="mocja_Id" Type="int" Mode="In" />
-    <Parameter Name="cja_Id" Type="smallint" Mode="In" />
-    <Parameter Name="mocja_UsuarioApertura" Type="int" Mode="In" />
-    <Parameter Name="mocja_FechaArqueo" Type="datetime" Mode="In" />
-    <Parameter Name="mocja_UsuarioArquea" Type="int" Mode="In" />
-    <Parameter Name="mocja_FechaAceptacion" Type="datetime" Mode="In" />
-    <Parameter Name="mocja_UsuarioAceptacion" Type="int" Mode="In" />
-    <Parameter Name="mocja_UsuarioCrea" Type="int" Mode="In" />
-    <Parameter Name="mocja_FechaCrea" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbNotaCredito_Anulado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="nocre_Id" Type="smallint" Mode="In" />
@@ -5530,6 +5546,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <EntitySet Name="tbRol" EntityType="Self.tbRol" Schema="Acce" store:Type="Tables" />
     <EntitySet Name="tbRolesUsuario" EntityType="Self.tbRolesUsuario" Schema="Acce" store:Type="Tables" />
     <EntitySet Name="tbUsuario" EntityType="Self.tbUsuario" Schema="Acce" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbActividadEconomica" EntityType="Self.tbActividadEconomica" Schema="Gral" store:Type="Tables" />
     <EntitySet Name="tbBanco" EntityType="Self.tbBanco" Schema="Gral" store:Type="Tables" />
     <EntitySet Name="tbCuentasBanco" EntityType="Self.tbCuentasBanco" Schema="Gral" store:Type="Tables" />

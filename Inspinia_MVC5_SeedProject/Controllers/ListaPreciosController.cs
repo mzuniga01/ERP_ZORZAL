@@ -315,8 +315,8 @@ namespace ERP_GMEDINA.Controllers
 
                     ModelState.AddModelError("", "No se pudo agregar el registro");
 
-                    TempData["message"] = "No se pudo agregar el registro,ya existe nombre de lista";
-                    return View(tbListaPrecio);
+                    TempData["message"] = "No se pudo agregar el registro,ya existe producto";
+   
                 }
 
                 return RedirectToAction("Index");

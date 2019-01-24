@@ -35,7 +35,6 @@
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbProductoSubcategoria" Width="1.5" PointX="9.75" PointY="98.125" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbProveedor" Width="1.5" PointX="7.5" PointY="163.5" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbSalida" Width="1.5" PointX="22.25" PointY="128.875" />
-        <EntityTypeShape EntityType="ERP_ZORZALModel.tbSalidaDetalle" Width="1.5" PointX="24.5" PointY="135.625" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbTipoDevolucion" Width="1.5" PointX="7.5" PointY="182.75" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbTipoEntrada" Width="1.5" PointX="7.5" PointY="130.875" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbTipoSalida" Width="1.5" PointX="7.5" PointY="186.25" />
@@ -193,7 +192,6 @@
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbProveedor_prov_UsuarioModifica" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbSalida_Sal_UsuarioModifica" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbSalida_tbUsuario_sal_UsuarioCrea" />
-        <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_tbUsuario_sald_UsuarioCrea" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbTipoDevolucion_tdev_UsuarioCrea" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbTipoDevolucion_tdev_UsuarioModifica" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbTipoEntrada_tent_UsuarioCrea" />
@@ -240,7 +238,6 @@
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbSalida_tbBodega_sal_BodDestino" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbBodega_tbSucursal_bod_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbBodegaDetalle_tbProducto_prod_Codigo" />
-        <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_box_Codigo" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbEntrada_tbEstadoMovimiento_estm_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbEntrada_tbProveedor_prov_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbEntrada_tbSalida_fact_Id" />
@@ -253,14 +250,12 @@
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbInventarioFisicoDetalle_tbProducto_prod_Codigo" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbProducto_tbDevolucionDetalle_prod_Codigo" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbProducto_tbUnidadesMedida_pscat_Id" />
-        <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_tbProducto_prod_Codigo" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbFacturaDetalle_tbProducto_prod_Codigo" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbListado_tbProducto_prod_Codigo" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbPedidoDetalle_tbProducto_prod_Codigo" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbProductoSubcategoria_tbProductoCategoria_pcat_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbSalida_tbFactura_fact_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbSalida_tbTipoSalida_tsal_Id" />
-        <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_tbSalida_sal_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK__DatosCons__fact___4DAB2CE2" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbCaja_tbDevolucion_cja_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbCaja_tbFactura_cja_Id" />
@@ -302,6 +297,12 @@
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbBitacoraErrores" Width="1.5" PointX="15.75" PointY="117.125" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Acce_tbBitacoraErrores_bite_Usuario" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Acce_tbBitacoraErrores_obj_Id" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.sysdiagrams" Width="1.5" PointX="7.375" PointY="11.75" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbSalidaDetalle" Width="1.5" PointX="24.5" PointY="135.625" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_tbUsuario_sald_UsuarioCrea" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_box_Codigo" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_tbProducto_prod_Codigo" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_tbSalida_sal_Id" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
