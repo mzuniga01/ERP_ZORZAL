@@ -325,7 +325,6 @@
     <FunctionImport Name="UDP_Gral_tbEmpleado_Update_Estado" ReturnType="Collection(String)">
       <Parameter Name="emp_Id" Mode="In" Type="Int32" />
       <Parameter Name="emp_Estado" Mode="In" Type="Boolean" />
-      <Parameter Name="emp_RazonInactivacion" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="UDP_Gral_tbEmpleados_Insert" ReturnType="Collection(String)">
       <Parameter Name="emp_Nombres" Mode="In" Type="String" />
@@ -502,7 +501,7 @@
       <Parameter Name="ent_FacturaCompra" Mode="In" Type="String" />
       <Parameter Name="ent_FechaCompra" Mode="In" Type="DateTime" />
       <Parameter Name="fact_Id" Mode="In" Type="Int32" />
-      <Parameter Name="ent_RazonDevolucion" Mode="In" Type="String" />
+      <Parameter Name="ent_RazonDevolucion" Mode="In" Type="Int32" />
       <Parameter Name="ent_BodegaDestino" Mode="In" Type="Int32" />
       <Parameter Name="tent_Id" Mode="In" Type="Byte" />
     </FunctionImport>
@@ -2438,7 +2437,7 @@
       <Parameter Name="bite_Accion" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbFactura_GetDetalle_Edit" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFactura_GetDetalle_Edit_Result1)">
-      <Parameter Name="FACTURA_ID" Mode="In" Type="Int64" />
+      <Parameter Name="FACTURA_IDD" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbListadoPrecioDetalle_Select" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbListadoPrecioDetalle_Select_Result1)">
       <Parameter Name="IDLISTAPRECIO" Mode="In" Type="Int32" />
@@ -2461,6 +2460,9 @@
       <End Role="tbSalida" EntitySet="tbSalida" />
       <End Role="tbSalidaDetalle" EntitySet="tbSalidaDetalle" />
     </AssociationSet>
+    <FunctionImport Name="UDP_Vent_tbDevolucion_GetDetalle" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDevolucion_GetDetalle_Result)">
+      <Parameter Name="DEVOLUCION_ID" Mode="In" Type="Int64" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -7582,4 +7584,13 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <ComplexType Name="UDP_Vent_tbDevolucion_GetDetalle_Result">
+    <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="prod_Descripcion" Nullable="false" MaxLength="100" />
+    <Property Type="Decimal" Name="devd_CantidadProducto" Nullable="false" Precision="5" Scale="2" />
+    <Property Type="String" Name="devd_Descripcion" Nullable="false" MaxLength="100" />
+    <Property Type="Decimal" Name="devd_Monto" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Int64" Name="fact_Id" Nullable="false" />
+    <Property Type="DateTime" Name="dev_Fecha" Nullable="false" Precision="23" />
+  </ComplexType>
 </Schema>

@@ -129,7 +129,7 @@
                 <div class="col-md-4">
                     @*<input type="text" name="salida" id="salida" value="">*@
                     @Html.EditorFor(model => model.exo_FechaIFinalVigencia, new { htmlAttributes = new { @readonly = "readonly" } })
-                    @Html.ValidationMessageFor(model => model.exo_FechaIFinalVigencia)
+                    <p id="ccc" style="color:red">@Html.ValidationMessageFor(model => model.exo_FechaIFinalVigencia)</p>
                 </div>
             </div>
 
@@ -220,13 +220,10 @@
             </div>
             <div class="modal-body">
                 <p>¿Está seguro de inactivar este cliente?</p>
-                @*<br />
-                <textarea rows="4" cols="50" placeholder="Ingrese la razon de Inactivación" id="razonInac" name="razonInac"></textarea>
-                <p id="message" name="message"></p>*@
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" name="Si" id="Si" data-dismiss="modal" onclick="InactivarCliente();">Si</button>
+                <button type="button" class="btn btn-primary" name="Si" id="Inactivar" data-dismiss="modal" onclick="InactivarCliente();">Si</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
             </div>
         </div>

@@ -1,13 +1,19 @@
-﻿$(function () {
-var from = $("#exo_FechaInicialVigencia").val();
-var to = $("#exo_FechaIFinalVigencia").val();
+﻿$(document).ready(function () {
+    $("#exo_FechaIFinalVigencia").focus(function () {
+        $('#ccc').html('');
+    });
+    $("#exo_FechaIFinalVigencia").blur(function () {
+        var hoy = $('#exo_FechaInicialVigencia').val();
+        var fecha = $('#exo_FechaIFinalVigencia').val();
+        //var fechaFormulario = Date.parse(fecha);
 
-if (Date.parse(from) > Date.parse(to)) {
-    valido = document.getElementById('cc');
-    valido.innerText = "Fecha inicial mayor a la fecha vencimiento";
-}
+        if (hoy <= fecha) {
+            $('#ccc').html("La fecha final debe ser mayor a la fecha inicial");
+        } else {
+            $('#ccc').html("");
+        }
+    });
 });
-
 
 
 

@@ -4303,7 +4303,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
   <Function Name="UDP_Gral_tbEmpleado_Update_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
     <Parameter Name="emp_Id" Type="int" Mode="In" />
     <Parameter Name="emp_Estado" Type="bit" Mode="In" />
-    <Parameter Name="emp_RazonInactivacion" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="UDP_Gral_tbEmpleados_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
     <Parameter Name="emp_Nombres" Type="nvarchar" Mode="In" />
@@ -4549,7 +4548,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <Parameter Name="ent_FacturaCompra" Type="varchar" Mode="In" />
     <Parameter Name="ent_FechaCompra" Type="datetime" Mode="In" />
     <Parameter Name="fact_Id" Type="int" Mode="In" />
-    <Parameter Name="ent_RazonDevolucion" Type="varchar" Mode="In" />
+    <Parameter Name="ent_RazonDevolucion" Type="int" Mode="In" />
     <Parameter Name="ent_BodegaDestino" Type="int" Mode="In" />
     <Parameter Name="tent_Id" Type="tinyint" Mode="In" />
   </Function>
@@ -4997,6 +4996,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <Parameter Name="IDFACTURA" Type="int" Mode="In" />
     <Parameter Name="CODIGOPRODUCTO" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="UDP_Vent_tbDevolucion_GetDetalle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="DEVOLUCION_ID" Type="bigint" Mode="In" />
+  </Function>
   <Function Name="UDP_Vent_tbDevolucion_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="fact_Id" Type="bigint" Mode="In" />
     <Parameter Name="cja_Id" Type="smallint" Mode="In" />
@@ -5103,7 +5105,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <Parameter Name="FACTURA_ID" Type="bigint" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbFactura_GetDetalle_Edit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
-    <Parameter Name="FACTURA_ID" Type="bigint" Mode="In" />
+    <Parameter Name="FACTURA_IDD" Type="int" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbFactura_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="fact_Codigo" Type="nvarchar" Mode="In" />

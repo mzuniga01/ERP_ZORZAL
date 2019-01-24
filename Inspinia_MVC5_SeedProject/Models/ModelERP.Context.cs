@@ -1233,7 +1233,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Gral_tbDepartamento_Update", dep_CodigoParameter, dep_NombreParameter, dep_UsuarioCreaParameter, dep_FechaCreaParameter, dep_UsuarioModificaParameter, dep_FechaModificaParameter);
         }
     
-        public virtual ObjectResult<string> UDP_Gral_tbEmpleado_Update_Estado(Nullable<int> emp_Id, Nullable<bool> emp_Estado, string emp_RazonInactivacion)
+        public virtual ObjectResult<string> UDP_Gral_tbEmpleado_Update_Estado(Nullable<int> emp_Id, Nullable<bool> emp_Estado)
         {
             var emp_IdParameter = emp_Id.HasValue ?
                 new ObjectParameter("emp_Id", emp_Id) :
@@ -1243,11 +1243,7 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("emp_Estado", emp_Estado) :
                 new ObjectParameter("emp_Estado", typeof(bool));
     
-            var emp_RazonInactivacionParameter = emp_RazonInactivacion != null ?
-                new ObjectParameter("emp_RazonInactivacion", emp_RazonInactivacion) :
-                new ObjectParameter("emp_RazonInactivacion", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Gral_tbEmpleado_Update_Estado", emp_IdParameter, emp_EstadoParameter, emp_RazonInactivacionParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Gral_tbEmpleado_Update_Estado", emp_IdParameter, emp_EstadoParameter);
         }
     
         public virtual ObjectResult<string> UDP_Gral_tbEmpleados_Insert(string emp_Nombres, string emp_Apellidos, string emp_Sexo, Nullable<System.DateTime> emp_FechaNacimiento, Nullable<byte> tpi_Id, string emp_Identificacion, string emp_Telefono, string emp_Correoelectronico, string emp_TipoSangre, string emp_Puesto, Nullable<System.DateTime> emp_FechaIngreso, string emp_Direccion)
@@ -1861,7 +1857,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Inv_tbBox_Update", box_CodigoParameter, box_DescripcionParameter, box_EstadoParameter, box_UsuarioCreaParameter, box_FechaCreaParameter);
         }
     
-        public virtual ObjectResult<string> UDP_Inv_tbEntrada_Insert(Nullable<System.DateTime> ent_FechaElaboracion, Nullable<int> bod_Id, Nullable<byte> estm_Id, Nullable<int> prov_Id, string ent_FacturaCompra, Nullable<System.DateTime> ent_FechaCompra, Nullable<int> fact_Id, string ent_RazonDevolucion, Nullable<int> ent_BodegaDestino, Nullable<byte> tent_Id)
+        public virtual ObjectResult<string> UDP_Inv_tbEntrada_Insert(Nullable<System.DateTime> ent_FechaElaboracion, Nullable<int> bod_Id, Nullable<byte> estm_Id, Nullable<int> prov_Id, string ent_FacturaCompra, Nullable<System.DateTime> ent_FechaCompra, Nullable<int> fact_Id, Nullable<int> ent_RazonDevolucion, Nullable<int> ent_BodegaDestino, Nullable<byte> tent_Id)
         {
             var ent_FechaElaboracionParameter = ent_FechaElaboracion.HasValue ?
                 new ObjectParameter("ent_FechaElaboracion", ent_FechaElaboracion) :
@@ -1891,9 +1887,9 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("fact_Id", fact_Id) :
                 new ObjectParameter("fact_Id", typeof(int));
     
-            var ent_RazonDevolucionParameter = ent_RazonDevolucion != null ?
+            var ent_RazonDevolucionParameter = ent_RazonDevolucion.HasValue ?
                 new ObjectParameter("ent_RazonDevolucion", ent_RazonDevolucion) :
-                new ObjectParameter("ent_RazonDevolucion", typeof(string));
+                new ObjectParameter("ent_RazonDevolucion", typeof(int));
     
             var ent_BodegaDestinoParameter = ent_BodegaDestino.HasValue ?
                 new ObjectParameter("ent_BodegaDestino", ent_BodegaDestino) :
@@ -5382,13 +5378,13 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Acce_tbBitacoraErrores_Insert", obj_IdParameter, bite_UsuarioParameter, bite_FechaParameter, bite_MensajeErrorParameter, bite_AccionParameter);
         }
     
-        public virtual ObjectResult<UDP_Vent_tbFactura_GetDetalle_Edit_Result1> UDP_Vent_tbFactura_GetDetalle_Edit(Nullable<long> fACTURA_ID)
+        public virtual ObjectResult<UDP_Vent_tbFactura_GetDetalle_Edit_Result1> UDP_Vent_tbFactura_GetDetalle_Edit(Nullable<int> fACTURA_IDD)
         {
-            var fACTURA_IDParameter = fACTURA_ID.HasValue ?
-                new ObjectParameter("FACTURA_ID", fACTURA_ID) :
-                new ObjectParameter("FACTURA_ID", typeof(long));
+            var fACTURA_IDDParameter = fACTURA_IDD.HasValue ?
+                new ObjectParameter("FACTURA_IDD", fACTURA_IDD) :
+                new ObjectParameter("FACTURA_IDD", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbFactura_GetDetalle_Edit_Result1>("UDP_Vent_tbFactura_GetDetalle_Edit", fACTURA_IDParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbFactura_GetDetalle_Edit_Result1>("UDP_Vent_tbFactura_GetDetalle_Edit", fACTURA_IDDParameter);
         }
     
         public virtual ObjectResult<UDP_Vent_tbListadoPrecioDetalle_Select_Result1> UDP_Vent_tbListadoPrecioDetalle_Select(Nullable<int> iDLISTAPRECIO)
@@ -5398,6 +5394,15 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("IDLISTAPRECIO", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbListadoPrecioDetalle_Select_Result1>("UDP_Vent_tbListadoPrecioDetalle_Select", iDLISTAPRECIOParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbDevolucion_GetDetalle_Result> UDP_Vent_tbDevolucion_GetDetalle(Nullable<long> dEVOLUCION_ID)
+        {
+            var dEVOLUCION_IDParameter = dEVOLUCION_ID.HasValue ?
+                new ObjectParameter("DEVOLUCION_ID", dEVOLUCION_ID) :
+                new ObjectParameter("DEVOLUCION_ID", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbDevolucion_GetDetalle_Result>("UDP_Vent_tbDevolucion_GetDetalle", dEVOLUCION_IDParameter);
         }
     }
 }

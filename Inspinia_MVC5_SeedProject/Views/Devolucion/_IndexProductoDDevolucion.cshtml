@@ -54,7 +54,7 @@
                                     <td id="factID" hidden>@Html.DisplayFor(modelItem => item.tbDevolucion.fact_Id)</td>
                                     <td hidden>@Html.DisplayFor(modelItem => item.tbDevolucion.tbFactura.fact_Codigo)</td>
                                     <td>
-                                        <button id="Producto" type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#Editar_@item.devd_Id">
+                                        <button id="Producto" type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#Editar_@item.devd_Id"  onclick="Calcular(@item.devd_Id);">
                                             Editar
                                         </button>
                                     </td>

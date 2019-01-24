@@ -35,7 +35,9 @@
                            
                                 @foreach (var item in Model)
                                 {
-                                    <tr data-id="@item.Id" data-rtn="@item.RTN_Identificacion" data-name="@item.Nombre">
+                                    var name = (!item.persona_natural) ? item.persona_comercial : item.Nombre + ' ' + @item.apellido;
+
+                                    <tr data-id="@item.Id" data-rtn="@item.RTN_Identificacion" data-name="@name">
 
                                         <td>
                                             @Html.DisplayFor(modelItem => item.Id)
@@ -45,19 +47,9 @@
                                             @Html.DisplayFor(modelItem => item.RTN_Identificacion)
                                         </td>
 
-                                        @{ if (item.persona_natural == true)
-                                            {
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.Nombre)
-                                                </td>
-                                            }
-                                            else
-                                            {
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.persona_comercial)
-                                                </td>
-                                            }
-                                        }
+                                       <td>
+                                           @name
+                                       </td>
                                         <td>
                                             <button id="seleccionar" class="btn btn-primary btn-xs">Agregar</button>
                                         </td>

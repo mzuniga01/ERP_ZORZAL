@@ -36,8 +36,7 @@
                     <h5>Editar Devolucion</h5>
                 </div>
                 <div class="ibox-content">
-
-                    @using (Html.BeginForm())
+                    @using (Html.BeginForm("Edit", "Devolucion", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
 
@@ -127,45 +126,59 @@
                                         }
 
                                     }
+                            @*<div class="ibox-content">
+                             
+                                <div class="form-group">
+
+                                    <div class="col-md-offset col-md-11">
+                                        <button id="bottonNotaCredito" name="bottonNotaCredito" type="button" class="btn btn-primary btn-ms" data-toggle="modal" data-target="#ModalNotaCredito">
+                                            Emitir Nota de Credito
+                                        </button>
+                                        <button id="Detalle" type="button" class="btn btn-primary btn-ms" data-toggle="modal" data-target="#ModalAgregarDetalle"><span>Agregar Producto</span></button>
+
+                                        <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-danger" data-toggle="modal" data-target="#Anular">Anular</button>
+
+                                    </div>
+                                </div>
+                            </div>*@
 
 
 
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="ibox float-e-margins">
+                                        <div class="ibox-title">
+                                            <div class="title-action">
+                                                <h5>Agregar Productos</h5>
+                                            </div>
+                                        </div>
+                                        @Html.Hidden("RedirectTo", Url.Action("CreateNotaCredito", "Devolucion", new { id = Model.dev_Id }))
 
-                                         
+                                        @Html.Hidden("Redireccionar", Url.Action("Index", "Devolucion"))
+                                        @Html.Partial("_CreateDevolucionDetalle1", new tbDevolucionDetalle())
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <div class="col-md-12 text-center">
+                                            <button id="bottonNotaCredito" name="bottonNotaCredito" type="button" class="btn btn-primary btn-ms" data-toggle="modal" data-target="#ModalNotaCredito">
+                                                Emitir Nota de Credito
+                                            </button>
+                                            <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-danger" data-toggle="modal" data-target="#Anular">Anular</button>
+
+
+                                            <input type="submit" value="Guardar" id="Guardar" class="btn btn-primary btn-ms" />
+                                            @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white btn-sm" })
+                                        </div>
+                                    </div>
+                                    <br />
+                                </div>
+                            </div> 
 
                         </div>
 
                     }
                     
-                    <div class="ibox-content">
-                        @Html.Hidden("RedirectTo", Url.Action("CreateNotaCredito", "Devolucion" ,new { id = Model.dev_Id }))
-
-                        @Html.Hidden("Redireccionar", Url.Action("Index", "Devolucion"))
-                        <div class="form-group">
-                           
-                            <div class="col-md-offset col-md-11">
-                                <button id="bottonNotaCredito" name="bottonNotaCredito" type="button" class="btn btn-primary btn-ms" data-toggle="modal" data-target="#ModalNotaCredito">
-                                    Emitir Nota de Credito
-                                </button>
-                                <button id="Detalle" type="button" class="btn btn-primary btn-ms" data-toggle="modal" data-target="#ModalAgregarDetalle"><span>Agregar Producto</span></button>
-
-                                <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-danger" data-toggle="modal" data-target="#Anular">Anular</button>
-
-                            </div>
-                        </div>
-
-                        @Html.Partial("_IndexProductoDDevolucion", Model.tbDevolucionDetalle)
-
-                            
-                            <div class="form-group">
-                                <div class="col-md-offset col-md-10">
-                                    <input type="submit" value="Guardar" id="Guardar" class="btn btn-primary btn-ms" />
-                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white btn-ms" })
-                                </div>
-                            </div>
-                        </div>  
-                  
-                    </div>
             </div>
             <div class="ibox-content">
                 <table class="table table-striped">
@@ -247,8 +260,7 @@
             </div>
             <div class="modal-footer">
                 @Html.ActionLink("Si", "EmitirNotaCredito", null, new { @class = "btn btn-primary btn-sm" })
-                @*<button type="button" class="btn btn-primary" id="Yes" onclick="NotaCredito();" data-dismiss="modal">Si</button>*@
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
             </div>
         </div>
     </div>
@@ -257,52 +269,5 @@
 <script src="~/Scripts/app/EmitirNotaCredito.js"></script>
 <script src="~/Scripts/app/AnularDevolucion.js"></script>
 <script src="~/Scripts/app/DevolucionCalculos.js"></script>
-<script>
-    var contador = 0;
-    $('#btnEditarDetalle').click(function () {
-        console.log('boton');
-        var CodigoProducto = $('#prod_Codigo').val();
-        console.log("codigoproducto", CodigoProducto)
-        var Descripcion = $('#devd_Descripcion').val();
-        console.log("descripcion", Descripcion)
-        var Cantidad = $('#CantidadDevolucion').val();
-        console.log("observaciones", Observaciones)
-        var Observaciones = $('#devd_Descripcion').val();
-        console.log("observaciones", Observaciones)
-        var Monto = $('#MontoDevolu').val();
-        console.log("Monto",Monto)
-        if (CodigoProducto == '') {
-            $('#ErrorCodigoProductoCreate').text('');
-            $('#validationCodigoProductoCreate').after('<ul id="ErrorCodigoProductoCreate" class="validation-summary-errors text-danger">Campo Código Producto requerido</ul>');
-        }
-        else if (Descripcion == '') {
-            $('#ErrorCodigoProductoCreate').text('');
-            $('#validationMontoDescuentoCreate').after('<ul id="ErrorMontoDescuentoCreate" class="validation-summary-errors text-danger">Campo Monto Descuento requerido</ul>');
-        }
-        else if (Cantidad == '') {
-            $('#ErrorCodigoProductoCreate').text('');
-            $('#validationCantidadProductoCreate').after('<ul id="ErrorCantidadCreate" class="validation-summary-errors text-danger">Campo Cantidad requerido</ul>');
-        }
-        else if (Observaciones == '') {
-            $('#ErrorCodigoProductoCreate').text('');
-            $('#validationImpuestoProductoCreate').after('<ul id="ErrorImpuestoCreate" class="validation-summary-errors text-danger">Campo Impuesto requerido</ul>');
-        }
-        else if (Monto == '') {
-            $('#ErrorCodigoProductoCreate').text('');
-            $('#validationImpuestoProductoCreate').after('<ul id="ErrorImpuestoCreate" class="validation-summary-errors text-danger">Campo Impuesto requerido</ul>');
-        }
-      
-        else {
-            contador = contador + 1;
-            copiar = "<tr data-id=" + contador + ">";
-            copiar += "<td id = 'prod_CodigoCreate'>" + CodigoProducto + "</td>";
-            copiar += "<td id = 'tbProducto_prod_DescripcionCreate'>" + Descripcion + "</td>";
-            copiar += "<td id = 'factd_CantidadCreate' align='right'>" + Cantidad + "</td>";
-            copiar += "<td id = 'Precio_UnitarioCreate' align='right'>" + Observaciones + "</td>";
-            copiar += "<td id = 'ImpuestoCreate' align='right'>" + Monto + "</td>";
-            copiar += "<td>" + '<button id="removeFacturaDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
-            copiar += "</tr>";
-            $('#tbDetalleDevolucion').append(copiar);
-        }
-    })
-</script>
+<script src="~/Scripts/app/DetalleEditarDevolucion.js"></script>
+<script src="~/Scripts/app/TableDetalleDevolucion.js"></script>

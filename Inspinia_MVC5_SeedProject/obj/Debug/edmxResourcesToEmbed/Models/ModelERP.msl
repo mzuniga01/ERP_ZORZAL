@@ -2482,5 +2482,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbDevolucion_GetDetalle" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbDevolucion_GetDetalle">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbDevolucion_GetDetalle_Result">
+          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+          <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
+          <ScalarProperty Name="devd_CantidadProducto" ColumnName="devd_CantidadProducto" />
+          <ScalarProperty Name="devd_Descripcion" ColumnName="devd_Descripcion" />
+          <ScalarProperty Name="devd_Monto" ColumnName="devd_Monto" />
+          <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
+          <ScalarProperty Name="dev_Fecha" ColumnName="dev_Fecha" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>
