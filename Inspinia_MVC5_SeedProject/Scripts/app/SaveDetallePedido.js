@@ -186,6 +186,8 @@ $("#BtnsubmitMunicipio").click(function () {
                 window.location.href = '/Pedido/Edit/' + pedd_Ids;
         }
     });
+
+    location.reload(true);
 })
 
 
@@ -206,7 +208,6 @@ $("#BtnsubmitMunicipio").click(function () {
 $(document).ready(function () {
 
     var ped_Id = $('#ped_Id').val();
-    console.log(ped_Id)
 
     $.ajax({
         url: "/Pedido/GetPedidoDetalle",

@@ -454,6 +454,46 @@ namespace ERP_ZORZAL.Controllers
             return View(tbPedido);
         }
 
+
+
+
+
+
+
+        [HttpPost]
+        public JsonResult GuardarPedidoDetalle(tbPedidoDetalle PedidoDetalles)
+        {
+            string Msj = "";
+
+            try
+            {
+                string MensajeError = "";
+                IEnumerable<object> list = null;
+                list = db.UDP_Vent_tbPedidoDetalle_Insert(
+                           PedidoDetalles.ped_Id,
+                           PedidoDetalles.prod_Codigo,
+                           PedidoDetalles.pedd_Cantidad,
+                           0);
+                foreach (UDP_Vent_tbPedidoDetalle_Insert_Result PedidoDetalleD in list)
+                    MensajeError = PedidoDetalleD.MensajeError;
+                Msj = "El registro se guardo exitosamente";
+                if (MensajeError == "-1")
+                {
+                    Msj = "No se pudo actualizar el registro, favor contacte al administrador.";
+                    ModelState.AddModelError("", Msj);
+                }
+            }
+            catch (Exception Ex)
+            {
+                Msj = Ex.Message.ToString();
+                ModelState.AddModelError("", Msj);
+            }
+            
+            return Json(Msj, JsonRequestBehavior.AllowGet);
+
+        }
+
+
         [HttpPost]
         public ActionResult UpdatePedidoDetalle(tbPedidoDetalle EditPedidoDetalle)
         {
@@ -540,37 +580,6 @@ namespace ERP_ZORZAL.Controllers
 
 
 
-
-        [HttpPost]
-        public JsonResult GuardarPedidoDetalle(tbPedidoDetalle PedidoDetalles)
-        {
-            string Msj = "";
-
-            try
-            {
-                string MensajeError = "";
-                IEnumerable<object> list = null;
-                list = db.UDP_Vent_tbPedidoDetalle_Insert(
-                           PedidoDetalles.ped_Id,
-                           PedidoDetalles.prod_Codigo,
-                           PedidoDetalles.pedd_Cantidad,
-                           0);
-                foreach (UDP_Vent_tbPedidoDetalle_Insert_Result PedidoDetalleD in list)
-                    MensajeError = PedidoDetalleD.MensajeError;
-                Msj = "El registro se guardo exitosamente";
-                if (MensajeError == "-1")
-                {
-                    Msj = "No se pudo actualizar el registro, favor contacte al administrador.";
-                    ModelState.AddModelError("", Msj);
-                }
-            }
-            catch (Exception Ex)
-            {
-                Msj = Ex.Message.ToString();
-                ModelState.AddModelError("", Msj);
-            }
-            return Json(Msj, JsonRequestBehavior.AllowGet);
-        }
 
     }
 
