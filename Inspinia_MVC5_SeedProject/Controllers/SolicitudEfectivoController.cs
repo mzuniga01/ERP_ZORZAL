@@ -290,22 +290,22 @@ namespace ERP_GMEDINA.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 try
                 {
                     string MensajeError = "";
                     IEnumerable<object> list = null;
-                    list = db.UDP_Vent_tbSolicitudEfectivo_Update(
+                    list = db.UDP_Vent_tbSolicitudEfectivo_Update_Entrega(
                         tbSolicitudEfectivo.solef_Id,
                         tbSolicitudEfectivo.mocja_Id,
                         tbSolicitudEfectivo.solef_EsApertura,
+                        tbSolicitudEfectivo.solef_FechaEntrega,
+                        tbSolicitudEfectivo.solef_UsuarioEntrega,
                         tbSolicitudEfectivo.mnda_Id,
                         tbSolicitudEfectivo.solef_EsAnulada,
                         tbSolicitudEfectivo.solef_UsuarioCrea,
-                        tbSolicitudEfectivo.solef_FechaCrea
-
-
-                       );
-                    foreach (UDP_Vent_tbSolicitudEfectivo_Update_Result solicitud in list)
+                        tbSolicitudEfectivo.solef_FechaCrea);
+                    foreach (UDP_Vent_tbSolicitudEfectivo_Update_Entrega_Result solicitud in list)
                         MensajeError = solicitud.MensajeError;
                     if (MensajeError == "-1")
                     {
@@ -327,7 +327,7 @@ namespace ERP_GMEDINA.Controllers
                     ViewBag.mocja_Id = new SelectList(db.tbMovimientoCaja, "mocja_Id", "mocja_Id", tbSolicitudEfectivo.mocja_Id);
 
                     ViewBag.Denominacion = db.tbDenominacion.ToList();
-                    
+
 
                     ViewBag.SolicitudEdectivoDetalle = db.tbSolicitudEfectivoDetalle.ToList();
                 }
@@ -341,7 +341,7 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.mocja_Id = new SelectList(db.tbMovimientoCaja, "mocja_Id", "mocja_Id", tbSolicitudEfectivo.mocja_Id);
             return View(tbSolicitudEfectivo);
 
-        
+
         }
 
         // GET: /SolicitudEfectivo/Edit/5
