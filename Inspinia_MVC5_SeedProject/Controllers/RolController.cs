@@ -92,6 +92,12 @@ namespace ERP_ZORZAL.Controllers
         // GET: /Rol/Edit/5
         public ActionResult Edit(int? id)
         {
+            try
+            {
+                ViewBag.smserror = TempData["smserror"].ToString();
+            }
+            catch { }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -211,6 +217,33 @@ namespace ERP_ZORZAL.Controllers
                 List = db.UDP_Acce_tbRolEstado_Update(id, Helpers.Activo);
                 foreach (UDP_Acce_tbRolEstado_Update_Result Rol in List)
                     Msj = Rol.MensajeError;
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                ModelState.AddModelError("", "No se pudo actualizar el Estado , Contacte al Administrador");
+            }
+            return RedirectToAction("Edit/" + id);
+        }
+
+        public ActionResult Inactivar(int id)
+        {
+            try
+            {
+                IEnumerable<Object> List = null;
+                var Msj = "";
+                tbRol tbRol = db.tbRol.Find(id);
+                List = db.UDP_Acce_tbRol_Inactivar(id);
+                foreach (UDP_Acce_tbRol_Inactivar_Result Rol in List)
+                    Msj = Rol.MensajeError;
+                if (Msj.StartsWith("-1"))
+                {
+                    TempData["smserror"] = " No se puede inactivar el rol porque ya hay usuarios asignados con este rol.";
+                    ViewBag.smserror = TempData["smserror"];
+
+                    ModelState.AddModelError("", "No se puede inactivar el rol");
+                    return RedirectToAction("Edit/" + id);
+                }
             }
             catch (Exception Ex)
             {

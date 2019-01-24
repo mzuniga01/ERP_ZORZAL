@@ -44,7 +44,7 @@
 
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                                    <button type="button" id="btnGuardar" class="btn btn-primary">Guardar</button>
                                     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                                 </div>
                             </div>
@@ -59,10 +59,9 @@
 
 
 
-@*@section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-    }*@
 
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/app/ValidationEstadoMovimientojs.js"></script>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 

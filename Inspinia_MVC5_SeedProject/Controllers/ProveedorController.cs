@@ -48,6 +48,11 @@ namespace ERP_ZORZAL.Controllers
         // GET: /Proveedor/Create
         public ActionResult Create()
         {
+            try
+            {
+                ViewBag.smserror = TempData["smserror"].ToString();
+            }
+            catch { }
             return View();
         }
 
@@ -56,7 +61,7 @@ namespace ERP_ZORZAL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="prov_Nombre,prov_NombreContacto,prov_Direccion,prov_Email,prov_Telefono,prov_UsuarioCrea,prov_FechaCrea")] tbProveedor tbProveedor)
+        public ActionResult Create([Bind(Include="prov_Nombre,prov_NombreContacto,prov_Direccion,prov_Email,prov_Telefono,prov_RTN,prov_UsuarioCrea,prov_FechaCrea")] tbProveedor tbProveedor)
         {
             if (ModelState.IsValid)
             {
@@ -72,8 +77,16 @@ namespace ERP_ZORZAL.Controllers
 
                     if (MsjError == "-1")
                     {
+                      
                         ModelState.AddModelError("", "No se guardo el registro, Contacte al Administrador");
                         return RedirectToAction("Index");
+                    }
+
+                    else if (MsjError == "")
+                    {
+                       
+                        ModelState.AddModelError("prov_RTN", "No se guardo el registro, Contacte al Administrador");
+                        return RedirectToAction("Create");
                     }
                     else
                     {
@@ -118,6 +131,55 @@ namespace ERP_ZORZAL.Controllers
             return View(tbProveedor);
         }
 
+
+
+
+
+        [HttpPost]
+        public JsonResult GuardarProveedor(string prov_RTN, string prov_Nombre, string prov_NombreContacto, string prov_Direccion, string prov_Email, string prov_Telefono)
+        {
+            var MsjError = "";
+            if (ModelState.IsValid)
+            {
+                //db.tbUnidadMedida.Add(tbProveedor);
+                //db.SaveChanges();
+                try
+                {
+                    IEnumerable<object> List = null;
+                   
+
+
+                    List = db.UDP_Inv_tbProveedor_Insert(prov_Nombre, prov_NombreContacto, prov_Direccion, prov_Email, prov_Telefono, prov_RTN);
+                    foreach (UDP_Inv_tbProveedor_Insert_Result Proveedor in List)
+                        MsjError = Proveedor.MensajeError;
+
+                    if (MsjError == "-1")
+                    {
+
+                        ModelState.AddModelError("", "No se guardo el registro, Contacte al Administrador");
+                     
+                    }
+
+                    else if (MsjError == "")
+                    {
+
+                        ModelState.AddModelError("prov_RTN", "No se guardo el registro, Contacte al Administrador");
+                       
+                    }
+                  
+
+                }
+                catch (Exception Ex)
+                {
+                    MsjError = "-1";
+                    Ex.Message.ToString();
+                    ModelState.AddModelError("", "No se Guardo el registro, Contacte al Administrador");
+                }
+              
+            }
+            return Json(MsjError, JsonRequestBehavior.AllowGet);
+
+        }
         // POST: /Proveedor/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -203,5 +265,11 @@ namespace ERP_ZORZAL.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+
+
+
+
     }
 }

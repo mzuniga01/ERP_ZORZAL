@@ -17,8 +17,6 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         // GET: /EstadoMovimiento/
         public ActionResult Index()
         {
-           
-
             return View(db.tbEstadoMovimiento.ToList());
         }
         
@@ -93,13 +91,21 @@ namespace Inspinia_MVC5_SeedProject.Controllers
                 ViewBag.smserror = TempData["smserror"].ToString();
             }
             catch { }
-         
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             tbEstadoMovimiento tbEstadoMovimiento = db.tbEstadoMovimiento.Find(id);
-        
+            ViewBag.UsuarioCrea = db.tbUsuario.Find(tbEstadoMovimiento.estm_UsuarioCrea).usu_NombreUsuario;
+            var UsuarioModfica = tbEstadoMovimiento.estm_UsuarioModifica;
+            if (UsuarioModfica == null)
+            {
+                ViewBag.UsuarioModifica = "";
+            }
+            else
+            {
+                ViewBag.UsuarioModifica = db.tbUsuario.Find(UsuarioModfica).usu_NombreUsuario;
+            };
             if (tbEstadoMovimiento == null)
             {
                 return HttpNotFound();
@@ -184,7 +190,7 @@ namespace Inspinia_MVC5_SeedProject.Controllers
                 foreach (UDP_Inv_tbEstadoMovimiento_Delete_Result Estm in list)
                     MsjError = Estm.MensajeError;
 
-       
+
 
                 if (MsjError.StartsWith("-1The DELETE statement conflicted with the REFERENCE constraint"))
                 {
@@ -203,7 +209,7 @@ namespace Inspinia_MVC5_SeedProject.Controllers
             }
             catch (Exception Ex)
             {
-             
+
                 Ex.Message.ToString();
                 ModelState.AddModelError("", "No se Actualizo el registro");
                 return RedirectToAction("Index");
@@ -214,5 +220,46 @@ namespace Inspinia_MVC5_SeedProject.Controllers
 
         }
 
+        [HttpPost]
+        public JsonResult GuardarEstado(string estm_Descripcion)
+        {
+            var MsjError = "";
+            if (ModelState.IsValid)
+            {
+                //db.tbUnidadMedida.Add(tbProveedor);
+                //db.SaveChanges();
+                try
+                {
+                    IEnumerable<Object> List = null;
+                 
+                    List = db.UDP_Inv_tbEstadoMovimiento_Insert(estm_Descripcion);
+                    foreach (UDP_Inv_tbEstadoMovimiento_Insert_Result EstadoMovimientos in List)
+                        MsjError = EstadoMovimientos.MensajeError;
+                    if (MsjError == "-1")
+                    {
+
+                        ModelState.AddModelError("", "No se guardo el registro, Contacte al Administrador");
+
+                    }
+                    if (MsjError == "")
+                    {
+
+                        ModelState.AddModelError("", "No se guardo el registro, Contacte al Administrador");
+
+                    }
+
+
+                }
+                catch (Exception Ex)
+                {
+                    MsjError = "-1";
+                    Ex.Message.ToString();
+                    ModelState.AddModelError("", "No se Guardo el registro, Contacte al Administrador");
+                }
+
+            }
+            return Json(MsjError, JsonRequestBehavior.AllowGet);
+
+        }
     }
 }

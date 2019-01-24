@@ -20,7 +20,7 @@ namespace ERP_GMEDINA.Controllers
         }
 
         [HttpPost]
-        public JsonResult InsertPedido(int IDBodega, string IDProducto, decimal CantidadSolicitada, int BodegaDestino)
+        public JsonResult InsertPedido(int IDBodega, string IDProducto, decimal CantidadSolicitada, int BodegaDestino, decimal CantidadNoDisponible)
         {
             var MensajeError = "0";
             var MensajeErrorDetalle = "0";
@@ -33,18 +33,21 @@ namespace ERP_GMEDINA.Controllers
                 using (TransactionScope Tran = new TransactionScope())
                 {
                     var FechaPedido = DateTime.Now;
-                    listSalida = db.UDP_Inv_ValidacionCantidadExistente(CantidadSolicitada, IDBodega, IDProducto, FechaPedido, BodegaDestino);
+                    listSalida = db.UDP_Inv_ValidacionCantidadExistente(CantidadSolicitada, IDBodega, IDProducto, FechaPedido, BodegaDestino, CantidadNoDisponible);
                     foreach (UDP_Inv_ValidacionCantidadExistente_Result Salida in listSalida)
                         MensajeError = Salida.MensajeError;
                     if (MensajeError == "-1")
                     {
                         ModelState.AddModelError("", "No se pudo realizar el Pedido, Por favor contacte con el Administrador");
                     }
+                    if (MensajeError == "-2")
+                    {
+                        ModelState.AddModelError("", "No se pudo realizar el Pedido, Por favor contacte con el Administrador");
+                    }
                     else
                     {
                         var IDSalida = Convert.ToInt32(MensajeError);
-                        var IDObjeto = "0";
-                        listSalidaDetalle = db.UDP_Inv_tbSalidaDetalle_Insert(IDSalida, IDProducto, CantidadSolicitada, IDObjeto);
+                        listSalidaDetalle = db.UDP_Inv_tbSalidaDetalle_Insert(IDSalida, IDProducto, CantidadSolicitada, null);
 
                         foreach (UDP_Inv_tbSalidaDetalle_Insert_Result spDetalle in listSalidaDetalle)
                         {
@@ -69,6 +72,31 @@ namespace ERP_GMEDINA.Controllers
             {
                 MensajeError = "-1";
                 ModelState.AddModelError("hola", "No puede pedir esa cantidad" + Ex.Message.ToString());
+            }
+            return Json(MensajeError, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public JsonResult ValidacionPorBodega(int IDBodega, string IDProducto)
+        {
+            var MensajeError = "";
+            IEnumerable<object> ListSolicitarProducto = null;
+            //if (ModelState.IsValid)
+            //{
+            try
+            {
+                    var FechaPedido = DateTime.Now;
+                ListSolicitarProducto = db.UDP_Inv_SolicitarProducto_ValidacionPorBodega(IDBodega, IDProducto);
+                    foreach (UDP_Inv_SolicitarProducto_ValidacionPorBodega_Result SolicitarProducto in ListSolicitarProducto)
+                        MensajeError = SolicitarProducto.MensajeError;
+                    if (MensajeError == "-1")
+                    {
+                        ModelState.AddModelError("", "No se pudo realizar el Pedido, Por favor contacte con el Administrador");
+                    }
+            }
+            catch (Exception Ex)
+            {
+                MensajeError = "-1";
+                ModelState.AddModelError("", "No puede pedir esa cantidad" + Ex.Message.ToString());
             }
             return Json(MensajeError, JsonRequestBehavior.AllowGet);
         }

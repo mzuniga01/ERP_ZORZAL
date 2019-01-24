@@ -61,9 +61,9 @@ namespace ERP_GMEDINA.Controllers
                 {
                     IEnumerable<object> list = null;
                     string MsjError = "";
-                    list = db.UDP_Gral_tbEmpleados_Insert(tbEmpleado.emp_Nombres, tbEmpleado.emp_Apellidos, tbEmpleado.emp_Sexo, tbEmpleado.emp_FechaNacimiento, tbEmpleado.tpi_Id, tbEmpleado.emp_Identificacion, tbEmpleado.emp_Telefono, tbEmpleado.emp_Correoelectronico, tbEmpleado.emp_TipoSangre, tbEmpleado.emp_Puesto, tbEmpleado.emp_FechaIngreso, tbEmpleado.emp_Direccion, tbEmpleado.emp_Observaciones);
-                    foreach (UDP_Gral_tbEmpleados_Insert_Result empleados in list)
-                        MsjError = empleados.MensajeError;
+                    //list = db.UDP_Gral_tbEmpleados_Insert(tbEmpleado.emp_Nombres, tbEmpleado.emp_Apellidos, tbEmpleado.emp_Sexo, tbEmpleado.emp_FechaNacimiento, tbEmpleado.tpi_Id, tbEmpleado.emp_Identificacion, tbEmpleado.emp_Telefono, tbEmpleado.emp_Correoelectronico, tbEmpleado.emp_TipoSangre, tbEmpleado.emp_Puesto, tbEmpleado.emp_FechaIngreso, tbEmpleado.emp_Direccion, tbEmpleado.emp_Observaciones);
+                    //foreach (UDP_Gral_tbEmpleados_Insert_Result empleados in list)
+                    //    MsjError = empleados.MensajeError;
 
                     if (MsjError.Substring(0, 2) == "-1")
                     {
@@ -128,22 +128,22 @@ namespace ERP_GMEDINA.Controllers
                 {
                     IEnumerable<object> list = null;
                     string MsjError = "";                    
-                    list = db.UDP_Gral_tbEmpleados_Update(tbEmpleado.emp_Id
-                                                        ,tbEmpleado.emp_Nombres
-                                                        ,tbEmpleado.emp_Apellidos
-                                                        ,tbEmpleado.emp_Sexo
-                                                        ,tbEmpleado.emp_FechaNacimiento
-                                                        ,tbEmpleado.tpi_Id
-                                                        ,tbEmpleado.emp_Identificacion
-                                                        ,tbEmpleado.emp_Telefono
-                                                        ,tbEmpleado.emp_Correoelectronico
-                                                        ,tbEmpleado.emp_TipoSangre
-                                                        ,tbEmpleado.emp_Puesto
-                                                        ,tbEmpleado.emp_FechaIngreso
-                                                        ,tbEmpleado.emp_Direccion
-                                                        ,tbEmpleado.emp_Observaciones
-                                                        ,tbEmpleado.emp_UsuarioCrea
-                                                        ,tbEmpleado.emp_FechaCrea);
+                    //list = db.UDP_Gral_tbEmpleados_Update(tbEmpleado.emp_Id
+                    //                                    ,tbEmpleado.emp_Nombres
+                    //                                    ,tbEmpleado.emp_Apellidos
+                    //                                    ,tbEmpleado.emp_Sexo
+                    //                                    ,tbEmpleado.emp_FechaNacimiento
+                    //                                    ,tbEmpleado.tpi_Id
+                    //                                    ,tbEmpleado.emp_Identificacion
+                    //                                    ,tbEmpleado.emp_Telefono
+                    //                                    ,tbEmpleado.emp_Correoelectronico
+                    //                                    ,tbEmpleado.emp_TipoSangre
+                    //                                    ,tbEmpleado.emp_Puesto
+                    //                                    ,tbEmpleado.emp_FechaIngreso
+                    //                                    ,tbEmpleado.emp_Direccion
+                    //                                    ,tbEmpleado.emp_Observaciones
+                    //                                    ,tbEmpleado.emp_UsuarioCrea
+                    //                                    ,tbEmpleado.emp_FechaCrea);
                     foreach (UDP_Gral_tbEmpleados_Update_Result empleado in list)
                         MsjError = empleado.MensajeError;                    
                     if (MsjError.Substring(0, 2) == "-1")

@@ -24,18 +24,32 @@ function SolicitarProducto(bod_Id, bod_Nombre, suc_Descripcion, prod_Codigo, pro
         }
         else {
             $.ajax({
-                url: "/ConsultarExistenciaProductos/InsertPedido",
+                url: "/ConsultarExistenciaProductos/ValidacionPorBodega",
                 method: "POST",
                 dataType: 'json',
                 contentType: "application/json; charset=utf-8",
-                data: JSON.stringify({ IDBodega: bod_Id, IDProducto: prod_Codigo, CantidadSolicitada: CantidadSolicitada, BodegaDestino: BodegaDestino }),
-                success: function (json) {
-                },
-                error: function () {
-                    //window.location.href = "Index/ConsultarExisteciaProductos";
-                    $('#validationDescripcionRol').after('<ul id="ErrorValidacionGeneral" class="validation-summary-errors text-danger">No se pudo añadir la pantalla, contacte con el administrador</ul>');
-                }
+                data: JSON.stringify({ IDBodega: bod_Id, IDProducto: prod_Codigo })
             })
+            .done(function (data) {
+                if (data == '-1') {
+                    $("#ErrorValidacionGeneral").remove();
+                    $('#validationCantidad').text('');
+                    $('#errorCantidad').text('');
+                    $('#validationCantidad').after('<ul id="ErrorValidacionGeneral" class="validation-summary-errors text-danger">No se pudo hacer el pedido, Esta bodega ya tiene demasiadas solicitudes.</ul>');
+                }
+                else {
+                    $.ajax({
+                        url: "/ConsultarExistenciaProductos/InsertPedido",
+                        method: "POST",
+                        dataType: 'json',
+                        contentType: "application/json; charset=utf-8",
+                        data: JSON.stringify({ IDBodega: bod_Id, IDProducto: prod_Codigo, CantidadSolicitada: CantidadSolicitada, BodegaDestino: BodegaDestino, CantidadNoDisponible: data }),
+                        success: function (json) {
+                        },
+                        error: function () {
+                            $('#validationDescripcionRol').after('<ul id="ErrorValidacionGeneral" class="validation-summary-errors text-danger">No se pudo añadir la pantalla, contacte con el administrador</ul>');
+                        }
+                    })
             .done(function (data) {
                 if (data == '-1') {
                     $("#dialog").dialog({
@@ -48,8 +62,13 @@ function SolicitarProducto(bod_Id, bod_Nombre, suc_Descripcion, prod_Codigo, pro
                         ]
                     }).prev(".ui-widget-header").css("background", "#FF3232");
                 }
+                else if (data == '-2') {
+                    $("#ErrorValidacionGeneral").remove();
+                    $('#validationCantidad').text('');
+                    $('#errorCantidad').text('');
+                    $('#validationCantidad').after('<ul id="ErrorValidacionGeneral" class="validation-summary-errors text-danger">Esta bodega ya tiene pedidos pendientes porlo cual la cantidad que solicito sobrepasa la cantidad minima del producto que esta bodega de tener.</ul>');
+                }
                 else {
-                    //alert("El Pedido ha sido enviado correctamente. Codigo de referencia de la salidad Generada es: " + data);
                     $("#dialog").dialog({
                         modal: true,
                         title: "Exito",
@@ -59,18 +78,16 @@ function SolicitarProducto(bod_Id, bod_Nombre, suc_Descripcion, prod_Codigo, pro
                           }
                         ]
                     }).prev(".ui-widget-header").css("background", "#64FF00");
-                    //$('#dialog').after('<p>El Pedido ha sido enviado correctamente. Codigo de referencia de la salida Generada es: ' + data + '</p>');
                     $("#ErrorValidacionGeneral").remove();
                     $("#errorDescripcionRol").remove();
                 }
             })
-            $('#SolicitarProductomodal').modal('hide');
-            var fecha = new Date();
-            //$('#PedidoExitoso').after('<ul id="errorDescripcionRol" class="validation-summary-errors text-danger">Solicitud de Pedido realiazada Satisfactoriamente ' + "Hora: " + fecha.getHours() + ",\nMinuto: " + fecha.getMinutes() + ",\nSegundos: " + fecha.getSeconds() + ",\nDía: " + fecha.getDate() + ",\nMes: " + (fecha.getMonth() + 1) + ",\nAño: " + fecha.getFullYear() + '</ul>')
-            
-            $('#txt5').val("");
-        }
-    })
+                    $('#SolicitarProductomodal').modal('hide');
+                    $('#txt5').val("");
+                }
+            })
+                }
+            })
     $('#btnCerrar').click(function () {
         $("#ErrorValidacionGeneral").remove();
         $("#errorDescripcionRol").remove();
