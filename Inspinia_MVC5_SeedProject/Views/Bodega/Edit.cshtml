@@ -34,6 +34,19 @@
         </div>
     </div>
 }
+@if (ViewBag.smserror_Estado != "" && ViewBag.smserror_Estado != null)
+{
+    <div class="col-md-12" id="mensaje">
+        <div class="alert alert-warning alert-danger">
+
+            <button type="button" class="close" data-dissmiss="alert" aria-hidden="true">@Html.ActionLink("X", "index", new { @class = "btn btn-primary " })</button>
+            <h4><i class="icon fa fa-warning"></i>Alerta</h4>
+            <h2>@ViewBag.smserror_Estado</h2>
+
+
+        </div>
+    </div>
+}
 <link href="~/Content/themes/base/all.css" rel="stylesheet" />
 <link href="~/Content/css/Auditoria.css" rel="stylesheet" />
 <div class="row wrapper border-bottom white-bg page-heading">
@@ -90,7 +103,7 @@
                             @Html.HiddenFor(model => model.tbUsuario1.usu_Correo)
                             @Html.HiddenFor(model => model.tbUsuario1.usu_EsActivo)
                             @Html.HiddenFor(model => model.tbUsuario1.usu_EsAdministrador)
-                        
+
                             <div class="form-group">
                                 <label class="control-label col-md-2">Número<span style="color:red">*</span></label>
                                 <div class="col-md-4">
@@ -188,7 +201,7 @@
                                     </div>
                                 }
                             }
-                           
+
 
 
                             <div class="row">
@@ -333,15 +346,15 @@
 
     var contador = 0;
     $(document).keypress(function (e) {
-        console.log('Hola', e.target.id);
+        //console.log('Hola', e.target.id);
         var IDInput = e.target.id;
         if (e.which == 13) {
             if (IDInput == 'prod_CodigoBarras') {
                 /////
                 $(function () {
-                    console.log('1')
+                    //console.log('1')
                     //$('#prod_CodigoBarras').keydown(function (e) {
-                    console.log('2')
+                    //console.log('2')
                     //if (e.keyCode == 13) {
                     $("#prod_CodigoBarras").val();
                     //$("#seleccionar").focus().click();
@@ -349,9 +362,8 @@
                     var Bod_Id = $('#bod_Id').val();
                     var Barras = $('#prod_CodigoBarras').val();
 
-
-                    console.log(Barras);
-                    console.log(Bod_Id);
+                    //console.log(Barras);
+                    //console.log(Bod_Id);
                     $.ajax({
                         type: 'POST',
                         url: '/Bodega/BuscarCodigoBarras',
@@ -368,6 +380,7 @@
 
                         }
                         else {
+                            $('#Error_Barras').text('');
                             var CBarras_Nuevo = $("#prod_CodigoBarras").val();
                             $.ajax({
                                 url: "/Bodega/BuscarProductos",
@@ -380,17 +393,16 @@
                             }).done(function (data) {
                                 if (data.length > 0) {
                                     //alert('aqui');
-                                    console.log(data);
+                                    //console.log(data);
                                     //$("#seleccionar").focus().click();
-
+                                    $('#Error_Barras').text('');
                                     $.each(data, function (key, val) {
-                                        console.log('each')
+
                                         data_producto = val.prod_Codigo;
                                         data_categoria = val.pcat_Nombre;
                                         data_subcate = val.pscat_Descripcion;
                                         data_unidad = val.uni_Descripcion;
                                         data_pDescripcion = val.prod_Descripcion;
-                                        console.log(data_producto)
                                         $('#prod_Codigo').val(data_producto);
                                         $('#pcat_Id').val(data_categoria);
                                         $('#pscat_Id').val(data_subcate);
@@ -399,29 +411,18 @@
                                     })
                                     $("#bodd_CantidadMinima").focus();
 
-                                   
-
                                 }
                                 else {
                                     $('#Error_Barras').text('');
                                     $('#ErrorBarras_Create').after('<ul id="Error_Barras" class="validation-summary-errors text-danger">*Producto no existe</ul>');
                                 }
-                                
+
 
                             });
 
                         }
                     });
 
-
-                    //console.log('Hola');
-                    //$('#prod_CodigoBarras').val(pBarras);
-                    //$('#prod_Codigo').val(idItem);
-
-                    //$('#prod_Descripcion').val(contentItem);
-                    //$('#uni_Id').val(uni_IdtItem);
-                    //$('#pscat_Id').val(psubctItem);
-                    //$('#pcat_Id').val(pcatItem);
                     return false;
                     //}
                     //});
@@ -436,7 +437,6 @@
     });
 
     $('#AgregarBodegaDetalle').keypress(function () {
-        console.log('boton');
         var Producto = $('#prod_Codigo').val();
         var Cminima = $('#bodd_CantidadMinima').val();
         var Preorden = $('#bodd_PuntoReorden').val();
@@ -544,6 +544,7 @@
             copiar += "</tr>";
             $('#tbBodega').append(copiar);
 
+
             var tbBodegaDetalle = Getbodegadetalle();
             $.ajax({
                 url: "/Bodega/SaveBodegaDetalle",
@@ -554,6 +555,7 @@
             })
                 .done(function (data) {
                     $('#prod_Codigo').val('');
+                    $('#prod_CodigoBarras').val('');
                     $('#prod_Descripcion').val('');
                     $('#pcat_Id').val('');
                     $('#pscat_Id').val('');
@@ -587,29 +589,9 @@
             bodd_costoPromedio: $('#bodd_CostoPromedio').val(),
             bodd_UsuarioCrea: contador,
             bodd_Id: contador,
-            //Fecha: $('#fechaCreate').val(),
         };
         return BODEGADETALLE;
     }
 
 
-
-    $(document).on("click", "#Table_BuscarProductoBodega tbody tr td button#seleccionar", function () {
-        console.log('seleccionar');
-        idItem = $(this).closest('tr').data('animation');
-        contentItem = $(this).closest('tr').data('content');
-        uni_IdtItem = $(this).closest('tr').data('keyboard');
-        psubctItem = $(this).closest('tr').data('container');
-        pcatItem = $(this).closest('tr').data('interval');
-        pBarras = $(this).closest('tr').data('id');
-        $("#prod_CodigoBarras").val(pBarras);
-        $("#prod_Codigo").val(idItem);
-
-        $("#prod_Descripcion").val(contentItem);
-        $("#uni_Id").val(uni_IdtItem);
-        $("#pscat_Id").val(psubctItem);
-        $("#pcat_Id").val(pcatItem);
-
-        //$("#cod").val(idItem);
-    });
 </script>

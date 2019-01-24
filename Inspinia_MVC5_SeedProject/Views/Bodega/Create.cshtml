@@ -183,7 +183,7 @@
                                         //alert('aqui');
                                         console.log(data);
                                         //$("#seleccionar").focus().click();
-
+                                        
                                         $.each(data, function (key, val) {
                                             console.log('each')
                                             data_producto = val.prod_Codigo;
@@ -334,6 +334,7 @@
                 })
                     .done(function (data) {
                         $('#prod_Codigo').val('');
+                        $('#prod_CodigoBarras').val('');
                         $('#prod_Descripcion').val('');
                         $('#pcat_Id').val('');
                         $('#pscat_Id').val('');
@@ -346,6 +347,7 @@
 
                         $('#MessageError').text('');
                         $('#Error_Producto').text('');
+                        $('#Error_Barras').text('');
                         $('#Error_PuntoReorden').text('');
                         $('#Error_CantidadMinima').text('');
                         $('#Error_CantidadMaxima').text('');

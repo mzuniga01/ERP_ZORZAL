@@ -232,7 +232,7 @@ namespace ERP_GMEDINA.Controllers
             this.AllLists();
             ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre", tbBodega.dep_Codigo);
             ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbBodega.mun_Codigo);
-            Session["tbBodegaDetalle"] = null;
+            //Session["tbBodegaDetalle"] = null;
             return View(tbBodega);
         }
        
@@ -310,7 +310,7 @@ namespace ERP_GMEDINA.Controllers
         [HttpPost]
         public JsonResult BuscarProductos(string GET_Barras_Nuevo)
         {
-            Session["tbBodegaDetalle"] = null;
+            
             var list = db.spGetProducto_BodegaDetalle(GET_Barras_Nuevo).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
@@ -318,7 +318,7 @@ namespace ERP_GMEDINA.Controllers
         [HttpPost]
         public ActionResult BuscarCodigoBarras(int GET_Bod, string GET_Barras /*tbProducto GET_Barras , tbBodegaDetalle GET_Bod*/)
         {
-            Session["tbBodegaDetalle"] = null;
+            
             var list = db.spGetProducto(GET_Bod, GET_Barras).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
@@ -467,17 +467,21 @@ namespace ERP_GMEDINA.Controllers
                 tbBodega obj = db.tbBodega.Find(id);
                 IEnumerable<object> list = null;
                 var MsjError = "";
-                list = db.UDP_Inv_tbBodega_Update_Estado(id, EstadoBodega.Inactivo);
-                foreach (UDP_Inv_tbBodega_Update_Estado_Result obje in list)
+                list = db.UDP_Inv_tbBodega_Update_Estado_Validacion(id, EstadoBodega.Inactivo);
+                foreach (UDP_Inv_tbBodega_Update_Estado_Validacion_Result obje in list)
                     MsjError = obje.MensajeError;
 
-                if (MsjError == "-1")
+                if (MsjError.StartsWith("-2"))
                 {
+                    TempData["smserror"] = "No se puede Inactivar Bodegas Con Detalles";
+                    ViewBag.smserror_Estado = TempData["smserror"];
+
                     ModelState.AddModelError("", "No se Actualizo el registro");
                     return RedirectToAction("Edit/" + id);
                 }
                 else
                 {
+                    ViewBag.smserror_Estado = "";
                     return RedirectToAction("Edit/" + id);
                 }
             }
@@ -500,12 +504,13 @@ namespace ERP_GMEDINA.Controllers
                 tbBodega obj = db.tbBodega.Find(id);
                 IEnumerable<object> list = null;
                 var MsjError = "";
-                list = db.UDP_Inv_tbBodega_Update_Estado(id, EstadoBodega.Activo);
-                foreach (UDP_Inv_tbBodega_Update_Estado_Result obje in list)
+                list = db.UDP_Inv_tbBodega_Update_Estado_Validacion(id, EstadoBodega.Activo);
+                foreach (UDP_Inv_tbBodega_Update_Estado_Validacion_Result obje in list)
                     MsjError = obje.MensajeError;
 
                 if (MsjError == "-1")
                 {
+                   
                     ModelState.AddModelError("", "No se Actualizo el registro");
                     return RedirectToAction("Edit/" + id);
                 }
@@ -520,9 +525,7 @@ namespace ERP_GMEDINA.Controllers
                 ModelState.AddModelError("", "No se Actualizo el registro");
                 return RedirectToAction("Edit/" + id);
             }
-
-
-            //return RedirectToAction("Index");
+            
         }
 
         public ActionResult DeleteDetalle(int? id)
@@ -541,7 +544,7 @@ namespace ERP_GMEDINA.Controllers
 
                 if (MsjError.StartsWith("-2"))
                 {
-                    TempData["smserror"] = "Nose puede eliminar el detalle tiene Cantidad Esistente en bodega.";
+                    TempData["smserror"] = "Nose puede eliminar el detalle tiene Cantidad Existente en bodega.";
                     ViewBag.smserror = TempData["smserror"];
 
                     ModelState.AddModelError("", "No se puede Borrar el registro");

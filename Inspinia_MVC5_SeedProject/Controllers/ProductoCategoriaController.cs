@@ -20,7 +20,7 @@ namespace ERP_ZORZAL.Controllers
         public ActionResult Index()
         {
             try { ViewBag.smserror = TempData["smserror"].ToString(); } catch { }
-            try { ViewBag.smsexito = TempData["smsexito"].ToString(); } catch { }
+           
 
             var tbproductocategoria = db.tbProductoCategoria.Include(t => t.tbProductoSubcategoria);
             //ViewBag.smserror = "";
@@ -150,6 +150,11 @@ namespace ERP_ZORZAL.Controllers
         // GET: /ProductoCategoria/Edit/5
         public ActionResult Edit(int? id)
         {
+            try
+            {
+                ViewBag.smserror = TempData["smserror"].ToString();
+            }
+            catch { }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -325,18 +330,18 @@ namespace ERP_ZORZAL.Controllers
                 foreach (UDP_Inv_tbProductoCategoria_Delete_Result obje in list)
                     MsjError = obje.MensajeError;
 
-                if (MsjError.StartsWith("-1 The DELETE statement conflicted with the REFERENCE constraint"))
+                if (MsjError.StartsWith("-2"))
                 {
                     TempData["smserror"] = " No se puede eliminar el dato porque tiene dependencia.";
                     ViewBag.smserror = TempData["smserror"];
 
                     ModelState.AddModelError("", "No se puede borrar el registro");
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Edit/" + id);
                 }
                 
                 else
                 {
-                    ViewBag.smserror = "";
+                    
                     return RedirectToAction("Index");
                 }
             }
@@ -348,10 +353,10 @@ namespace ERP_ZORZAL.Controllers
             }
 
 
-            //return RedirectToAction("Index");
+          
           
         }
-
+        ///APLICAR ESTE DELETE 
         public ActionResult DeteleSub(int? id)
         {
 
@@ -360,97 +365,22 @@ namespace ERP_ZORZAL.Controllers
                 tbProductoSubcategoria obj = db.tbProductoSubcategoria.Find(id);
                 IEnumerable<object> list = null;
                 var MsjError = "";
-                list = db.UDP_Inv_tbProductoSubCategoria_Delete_test(id);
-                foreach (UDP_Inv_tbProductoSubCategoria_Delete_test_Result obje in list)
+                list = db.UDP_Inv_tbProductoSubCategoria_Delete(id);
+                foreach (UDP_Inv_tbProductoSubCategoria_Delete_Result obje in list)
                     MsjError = obje.MensajeError;
 
-                if (MsjError.StartsWith("-2 The DELETE statement conflicted with the REFERENCE constraint"))
+                if (MsjError.StartsWith("-2"))
                 {
                     TempData["smserror"] = " No se puede eliminar el dato porque tiene dependencia.";
                     ViewBag.smserror = TempData["smserror"];
 
                     ModelState.AddModelError("", "No se puede borrar el registro");
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Edit/" + id);
                 }
 
                 else
-                {
-                    ViewBag.smserror = "";
-                    return RedirectToAction("Index");
-                }
-            }
-            catch (Exception Ex)
-            {
-                Ex.Message.ToString();
-                ModelState.AddModelError("", "No se puede borrar el registro");
-                return RedirectToAction("Index");
-            }
-
-        }
-
-
-        public ActionResult EliminarProductoSubCategoria(int? id)
-        {
-            try
-            {
-                tbProductoCategoria obj = db.tbProductoCategoria.Find(id);
-                IEnumerable<object> list = null;
-                var MsjError = "";
-                list = db.UDP_Inv_tbProductoSubCategoria_Delete(id);
-                foreach (UDP_Inv_tbProductoSubCategoria_Delete_Result obje in list)
-                    MsjError = obje.MensajeError;
-
-                if (MsjError == "-1")
-                {
-                    ModelState.AddModelError("", "No se puede borrar el registro");
-                    return RedirectToAction("Index");
-                }
-                else
-                {
-                    return RedirectToAction("Index");
-                }
-            }
-            catch (Exception Ex)
-            {
-                Ex.Message.ToString();
-                ModelState.AddModelError("", "No se puede borrar el registro");
-                return RedirectToAction("Index");
-            }
-
-
-            //return RedirectToAction("Index");
-
-        }
-
-
-       
-
-
-
-
-
-
-
-
-        public ActionResult EliminarProductoCategoriaSubCategoria(int? id)
-        {
-            try
-            {
-                tbProductoCategoria obj = db.tbProductoCategoria.Find(id);
-                IEnumerable<object> list = null;
-                var MsjError = "";
-                list = db.UDP_Inv_tbProductoCategoriaSubCate_Delete(id);
-                foreach (UDP_Inv_tbProductoCategoriaSubCate_Delete_Result obje in list)
-                    MsjError = obje.MensajeError;
-
-                if (MsjError == "-1")
                 {
                     
-                    ModelState.AddModelError("", "No se puede borrar el registro");
-                    return RedirectToAction("Index");
-                }
-                else
-                {
                     return RedirectToAction("Index");
                 }
             }
@@ -458,15 +388,8 @@ namespace ERP_ZORZAL.Controllers
             {
                 Ex.Message.ToString();
                 ModelState.AddModelError("", "No se puede borrar el registro");
-                  
-                TempData["smserror"] = " no se puede eliminar el dato porque tiene dependencia";
-                ViewBag.smserror = TempData["smserror"];
                 return RedirectToAction("Index");
-          
             }
-
-
-            //return RedirectToAction("Index");
 
         }
 
