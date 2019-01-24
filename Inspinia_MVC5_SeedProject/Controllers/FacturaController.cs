@@ -675,6 +675,20 @@ namespace ERP_GMEDINA.Controllers
         }
 
         [HttpPost]
+        public JsonResult RemoveFacturaDetalleEdit(tbFacturaDetalle FacturaDetalleC)
+        {
+            var list = (List<tbFacturaDetalle>)Session["FacturaEdit"];
+
+            if (list != null)
+            {
+                var itemToRemove = list.Single(r => r.factd_Id == FacturaDetalleC.factd_Id);
+                list.Remove(itemToRemove);
+                Session["FacturaEdit"] = list;
+            }
+            return Json("", JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
         public ActionResult UpdateFacturaDetalle(tbFacturaDetalle EditFacturaDetalle)
         {
             try

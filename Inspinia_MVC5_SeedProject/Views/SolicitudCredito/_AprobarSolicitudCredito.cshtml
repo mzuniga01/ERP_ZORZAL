@@ -11,8 +11,7 @@
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.cred_Id)
         @Html.HiddenFor(model => model.escre_Id)
-        @Html.HiddenFor(model => model.cred_FechaAprobacion)
-        @**Auditoria*@
+         @**Auditoria*@
         @Html.HiddenFor(model => model.cred_UsuarioCrea)
         @Html.HiddenFor(model => model.cred_FechaCrea)
         @Html.HiddenFor(model => model.cred_UsuarioModifica)
@@ -31,7 +30,6 @@
                 <input class="col-md-5 form-control" id="" type="password"  />
             </div>
         </div>
-
         <div class="form-group">
             @Html.LabelFor(model => model.cred_MontoSolicitado, new { @class = "control-label col-md-2" })
             <div class="col-md-10">

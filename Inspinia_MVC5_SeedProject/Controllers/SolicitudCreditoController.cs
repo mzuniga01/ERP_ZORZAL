@@ -297,8 +297,8 @@ namespace ERP_ZORZAL.Controllers
                             EditSolicitudCredito.cred_UsuarioModifica,
                             EditSolicitudCredito.cred_FechaModifica);
                 foreach (UDP_Vent_tbSolicitudCredito_Aprobar_Result SolicitudAprobada in list)
-                    //MensajeError = SolicitudAprobada.MensajeError;
-                    if (MensajeError == "-1")
+                    MensajeError = SolicitudAprobada.MensajeError;
+                if (MensajeError == "-1")
                     {
                         ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
                         return PartialView("_AprobarSolicitudCredito");
@@ -314,7 +314,6 @@ namespace ERP_ZORZAL.Controllers
                 ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
                 return PartialView("_AprobarSolicitudCredito", EditSolicitudCredito);
             }
-            return View();
         }
         [HttpPost]
         public JsonResult DenegarSolCredito(int credID, byte Denegado)
