@@ -9,12 +9,9 @@
 
                 <div class="ibox-content">
 
-                    @*@using (Html.BeginForm())*@
-                    @*@Html.AntiForgeryToken()*@
-
                     <div class="form-horizontal">
                         @Html.ValidationSummary(true)
-
+                        <input name="ped_Id" id="ped_Id" type="hidden" value="@ViewBag.ped_idd">
                         <div class="form-horizontal">
                             <div class="form-group">
 
@@ -23,9 +20,9 @@
                                 @Html.LabelFor(model => model.prod_Codigo, new { @class = "control-label col-md-3" })
 
                                 <div class="col-md-6">
-                                    @Html.EditorFor(model => model.prod_Codigo, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly" } })
+                                    @Html.EditorFor(model => model.prod_Codigo, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly"  } })
                                     <p style="color:red">
-                                        @Html.ValidationMessageFor(model => model.prod_Codigo)
+                                        @Html.ValidationMessageFor(model => model.prod_Codigo )
                                 </div>
                                 <div class="col-md-1">
                                     <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#ModalAgregarProducto"><span class="glyphicon glyphicon-search"></span></button>
@@ -52,7 +49,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.pedd_Cantidad, new { @class = "control-label col-md-3" })
                                 <div class="col-md-6">
-                                    @Html.EditorFor(model => model.pedd_Cantidad, new { @onkeyup = "soloNumeros(e)" })
+                                    @Html.EditorFor(model => model.pedd_Cantidad, new { @onkeyup = "soloNumeros(e)" , @id="pedd_Cantidad_Ped"})
                                     @Html.ValidationMessageFor(model => model.pedd_Cantidad)
                                 </div>
                             </div>
@@ -60,7 +57,7 @@
 
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.pedd_CantidadFacturada, new { @class = "control-label col-md-3" })
+                                @Html.LabelFor(model => model.pedd_CantidadFacturada, new { @class = "control-label col-md-3" , @id="pedd_Cantidad_Ped"})
 
                                 <div class="col-md-6">
                                     @Html.EditorFor(model => model.pedd_CantidadFacturada, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly" } })
@@ -79,7 +76,7 @@
 
                             <div class="form-group">
                                 <div class="col-md-offset-5 col-md-10">
-                                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                                    <button class="btn btn-primary" type="submit" id="BtnGuardarDetalle"  tabindex="10"> Guardar </button>
                                     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                                 </div>
                             </div>
@@ -92,7 +89,7 @@
             </div>
         </div>
 
-        <script src="~/Scripts/app/Producto.js"></script>
+
 
 
         <div>
@@ -107,7 +104,7 @@
                         </div>
                         <div class="modal-body" id="ModalAgregarDetalle">
 
-                            @Html.Partial("_IndexProductoDetalle", (List<tbProducto>)ViewBag.Producto)
+                            @Html.Partial("_IndexProducto", (List<tbProducto>)ViewBag.Producto)
                         </div>
                     </div>
                 </div>
@@ -117,7 +114,7 @@
     </div>
 </div>
 
-
+<script src="~/Scripts/app/GuardarDetalleEdit.js"></script>
 <script src="~/Scripts/app/ProductoListaPrecios.js"></script>
 <script src="~/Scripts/app/SaveDetallePedido.js"></script>
 <script>

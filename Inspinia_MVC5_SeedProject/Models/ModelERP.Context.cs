@@ -758,27 +758,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbDevolucionDetalle_Update_Result>("UDP_Vent_tbDevolucionDetalle_Update", devd_IdParameter, dev_IdParameter, prod_CodigoParameter, devd_CantidadProductoParameter, devd_DescripcionParameter, devd_MontoParameter, devd_UsuarioCreaParameter, devd_FechaCreaParameter);
         }
     
-        public virtual ObjectResult<UDP_Vent_tbPedidoDetalle_Insert_Result> UDP_Vent_tbPedidoDetalle_Insert(Nullable<int> ped_Id, string prod_Codigo, Nullable<decimal> pedd_Cantidad, Nullable<decimal> pedd_CantidadFacturada)
-        {
-            var ped_IdParameter = ped_Id.HasValue ?
-                new ObjectParameter("ped_Id", ped_Id) :
-                new ObjectParameter("ped_Id", typeof(int));
-    
-            var prod_CodigoParameter = prod_Codigo != null ?
-                new ObjectParameter("prod_Codigo", prod_Codigo) :
-                new ObjectParameter("prod_Codigo", typeof(string));
-    
-            var pedd_CantidadParameter = pedd_Cantidad.HasValue ?
-                new ObjectParameter("pedd_Cantidad", pedd_Cantidad) :
-                new ObjectParameter("pedd_Cantidad", typeof(decimal));
-    
-            var pedd_CantidadFacturadaParameter = pedd_CantidadFacturada.HasValue ?
-                new ObjectParameter("pedd_CantidadFacturada", pedd_CantidadFacturada) :
-                new ObjectParameter("pedd_CantidadFacturada", typeof(decimal));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbPedidoDetalle_Insert_Result>("UDP_Vent_tbPedidoDetalle_Insert", ped_IdParameter, prod_CodigoParameter, pedd_CantidadParameter, pedd_CantidadFacturadaParameter);
-        }
-    
         public virtual ObjectResult<UDP_Vent_tbDenominacionArqueo_Insert_Result> UDP_Vent_tbDenominacionArqueo_Insert(Nullable<int> mocja_Id, Nullable<short> deno_Id, Nullable<short> arqde_CantidadDenominacion, Nullable<decimal> arqde_MontoDenominacion)
         {
             var mocja_IdParameter = mocja_Id.HasValue ?
@@ -5357,6 +5336,27 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("cred_FechaModifica", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbSolicitudCredito_Aprobar_Result>("UDP_Vent_tbSolicitudCredito_Aprobar", cred_IdParameter, escre_IdParameter, cred_FechaAprobacionParameter, cred_MontoSolicitadoParameter, cred_MontoAprobadoParameter, cred_DiasSolicitadoParameter, cred_DiasAprobadoParameter, cred_UsuarioCreaParameter, cred_FechaCreaParameter, cred_UsuarioModificaParameter, cred_FechaModificaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbPedidoDetalle_Insert_Result> UDP_Vent_tbPedidoDetalle_Insert(Nullable<int> ped_Id, string prod_Codigo, Nullable<decimal> pedd_Cantidad, Nullable<decimal> pedd_CantidadFacturada)
+        {
+            var ped_IdParameter = ped_Id.HasValue ?
+                new ObjectParameter("ped_Id", ped_Id) :
+                new ObjectParameter("ped_Id", typeof(int));
+    
+            var prod_CodigoParameter = prod_Codigo != null ?
+                new ObjectParameter("prod_Codigo", prod_Codigo) :
+                new ObjectParameter("prod_Codigo", typeof(string));
+    
+            var pedd_CantidadParameter = pedd_Cantidad.HasValue ?
+                new ObjectParameter("pedd_Cantidad", pedd_Cantidad) :
+                new ObjectParameter("pedd_Cantidad", typeof(decimal));
+    
+            var pedd_CantidadFacturadaParameter = pedd_CantidadFacturada.HasValue ?
+                new ObjectParameter("pedd_CantidadFacturada", pedd_CantidadFacturada) :
+                new ObjectParameter("pedd_CantidadFacturada", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbPedidoDetalle_Insert_Result>("UDP_Vent_tbPedidoDetalle_Insert", ped_IdParameter, prod_CodigoParameter, pedd_CantidadParameter, pedd_CantidadFacturadaParameter);
         }
     }
 }

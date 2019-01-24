@@ -6831,12 +6831,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="devd_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="devd_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Vent_tbPedidoDetalle_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPedidoDetalle_Insert_Result)">
-            <Parameter Name="ped_Id" Mode="In" Type="Int32" />
-            <Parameter Name="prod_Codigo" Mode="In" Type="String" />
-            <Parameter Name="pedd_Cantidad" Mode="In" Type="Decimal" />
-            <Parameter Name="pedd_CantidadFacturada" Mode="In" Type="Decimal" />
-          </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbDenominacionArqueo_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDenominacionArqueo_Insert_Result)">
             <Parameter Name="mocja_Id" Mode="In" Type="Int32" />
             <Parameter Name="deno_Id" Mode="In" Type="Int16" />
@@ -9081,6 +9075,12 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="cred_FechaCrea" Mode="In" Type="DateTime" />
             <Parameter Name="cred_UsuarioModifica" Mode="In" Type="Int32" />
             <Parameter Name="cred_FechaModifica" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbPedidoDetalle_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPedidoDetalle_Insert_Result)">
+            <Parameter Name="ped_Id" Mode="In" Type="Int32" />
+            <Parameter Name="prod_Codigo" Mode="In" Type="String" />
+            <Parameter Name="pedd_Cantidad" Mode="In" Type="Decimal" />
+            <Parameter Name="pedd_CantidadFacturada" Mode="In" Type="Decimal" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
@@ -14109,10 +14109,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
         <ComplexType Name="UDP_Vent_tbPedidoDetalle_Update_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
-        <ComplexType Name="UDP_Vent_tbPedidoDetalle_Insert_Result">
+        <ComplexType Name="UDP_Vent_tbSolicitudCredito_Aprobar_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
-        <ComplexType Name="UDP_Vent_tbSolicitudCredito_Aprobar_Result">
+        <ComplexType Name="UDP_Vent_tbPedidoDetalle_Insert_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
         </Schema>
@@ -14323,13 +14323,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbDevolucionDetalle_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbDevolucionDetalle_Update" >
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbDevolucionDetalle_Update_Result">
-                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbPedidoDetalle_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbPedidoDetalle_Insert" >
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbPedidoDetalle_Insert_Result">
                 <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
               </ComplexTypeMapping>
             </ResultMapping>
@@ -16550,6 +16543,13 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudCredito_Aprobar" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudCredito_Aprobar" >
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbSolicitudCredito_Aprobar_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbPedidoDetalle_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbPedidoDetalle_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbPedidoDetalle_Insert_Result">
                 <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
               </ComplexTypeMapping>
             </ResultMapping>

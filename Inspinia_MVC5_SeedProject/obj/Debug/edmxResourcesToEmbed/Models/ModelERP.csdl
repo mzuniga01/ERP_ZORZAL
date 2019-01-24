@@ -188,12 +188,6 @@
       <Parameter Name="devd_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="devd_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbPedidoDetalle_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPedidoDetalle_Insert_Result)">
-      <Parameter Name="ped_Id" Mode="In" Type="Int32" />
-      <Parameter Name="prod_Codigo" Mode="In" Type="String" />
-      <Parameter Name="pedd_Cantidad" Mode="In" Type="Decimal" />
-      <Parameter Name="pedd_CantidadFacturada" Mode="In" Type="Decimal" />
-    </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbDenominacionArqueo_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDenominacionArqueo_Insert_Result)">
       <Parameter Name="mocja_Id" Mode="In" Type="Int32" />
       <Parameter Name="deno_Id" Mode="In" Type="Int16" />
@@ -2438,6 +2432,12 @@
       <Parameter Name="cred_FechaCrea" Mode="In" Type="DateTime" />
       <Parameter Name="cred_UsuarioModifica" Mode="In" Type="Int32" />
       <Parameter Name="cred_FechaModifica" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbPedidoDetalle_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPedidoDetalle_Insert_Result)">
+      <Parameter Name="ped_Id" Mode="In" Type="Int32" />
+      <Parameter Name="prod_Codigo" Mode="In" Type="String" />
+      <Parameter Name="pedd_Cantidad" Mode="In" Type="Decimal" />
+      <Parameter Name="pedd_CantidadFacturada" Mode="In" Type="Decimal" />
     </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
@@ -7466,10 +7466,10 @@
   <ComplexType Name="UDP_Vent_tbPedidoDetalle_Update_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
-  <ComplexType Name="UDP_Vent_tbPedidoDetalle_Insert_Result">
+  <ComplexType Name="UDP_Vent_tbSolicitudCredito_Aprobar_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
-  <ComplexType Name="UDP_Vent_tbSolicitudCredito_Aprobar_Result">
+  <ComplexType Name="UDP_Vent_tbPedidoDetalle_Insert_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
 </Schema>
