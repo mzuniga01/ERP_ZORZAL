@@ -74,6 +74,13 @@ namespace ERP_ZORZAL.Controllers
             {
                 return HttpNotFound();
             }
+
+
+            Session["ID"] = tbDevolucion.dev_Id;
+            Session["FECHA"] = tbDevolucion.dev_Fecha;
+            Session["RTNCLIENTE"] = tbDevolucion.tbFactura.clte_Identificacion;
+            Session["NOMBRE"] = tbDevolucion.tbFactura.clte_Nombres;
+            //Session["MONTO"] = tbDevolucionDetalle.devd_Monto;
             return View(tbDevolucion);
         }
 
@@ -217,7 +224,7 @@ namespace ERP_ZORZAL.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             tbDevolucion tbDevolucion = db.tbDevolucion.Find(id);
-            tbDevolucionDetalle tbDevolucionDetalle = new tbDevolucionDetalle();
+            //tbDevolucionDetalle tbDevolucionDetalle = db.tbDevolucionDetalle.Find(id);
             if (tbDevolucion == null)
             {
                 return HttpNotFound();
@@ -231,7 +238,7 @@ namespace ERP_ZORZAL.Controllers
             Session["FECHA"] = tbDevolucion.dev_Fecha;
             Session["RTNCLIENTE"] = tbDevolucion.tbFactura.clte_Identificacion;
             Session["NOMBRE"] = tbDevolucion.tbFactura.clte_Nombres;
-            Session["MONTO"] = tbDevolucionDetalle.devd_Monto;
+            //Session["MONTO"] = tbDevolucionDetalle.devd_Monto;
             return View(tbDevolucion);
         }
 

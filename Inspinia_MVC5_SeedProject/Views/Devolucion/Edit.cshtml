@@ -156,44 +156,7 @@
 
                         @Html.Partial("_IndexProductoDDevolucion", Model.tbDevolucionDetalle)
 
-                            @*<table class="table table-striped table-bordered table-hover dataTables-example">
-                                <thead>
-                                    <tr>
-                                        <th>ID Producto</th>
-                                        <th>Descripción Producto</th>
-                                        <th>Cantidad</th>
-                                        <th>Valor Unit.</th>
-                                        <th>Descuento</th>
-                                        <th>Total</th>
-                                    </tr>
-                                </thead>
-                                <tfoot>
-                                    <tr>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                    </tr>
-                                    <tr>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                    </tr>
-                                    <tr>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                    </tr>
-                                </tfoot>
-                            </table>*@
+                            
                             <div class="form-group">
                                 <div class="col-md-offset col-md-10">
                                     <input type="submit" value="Guardar" id="Guardar" class="btn btn-primary btn-ms" />
@@ -293,6 +256,53 @@
 <script src="~/Scripts/app/Datepicker.js"></script>
 <script src="~/Scripts/app/EmitirNotaCredito.js"></script>
 <script src="~/Scripts/app/AnularDevolucion.js"></script>
-@*<script src="~/Scripts/app/DevolucionCalculos.js"></script>*@
-
-<script src="~/Scripts/app/DevolucionEditar_Calculo.js"></script>
+<script src="~/Scripts/app/DevolucionCalculos.js"></script>
+<script>
+    var contador = 0;
+    $('#btnEditarDetalle').click(function () {
+        console.log('boton');
+        var CodigoProducto = $('#prod_Codigo').val();
+        console.log("codigoproducto", CodigoProducto)
+        var Descripcion = $('#devd_Descripcion').val();
+        console.log("descripcion", Descripcion)
+        var Cantidad = $('#CantidadDevolucion').val();
+        console.log("observaciones", Observaciones)
+        var Observaciones = $('#devd_Descripcion').val();
+        console.log("observaciones", Observaciones)
+        var Monto = $('#MontoDevolu').val();
+        console.log("Monto",Monto)
+        if (CodigoProducto == '') {
+            $('#ErrorCodigoProductoCreate').text('');
+            $('#validationCodigoProductoCreate').after('<ul id="ErrorCodigoProductoCreate" class="validation-summary-errors text-danger">Campo Código Producto requerido</ul>');
+        }
+        else if (Descripcion == '') {
+            $('#ErrorCodigoProductoCreate').text('');
+            $('#validationMontoDescuentoCreate').after('<ul id="ErrorMontoDescuentoCreate" class="validation-summary-errors text-danger">Campo Monto Descuento requerido</ul>');
+        }
+        else if (Cantidad == '') {
+            $('#ErrorCodigoProductoCreate').text('');
+            $('#validationCantidadProductoCreate').after('<ul id="ErrorCantidadCreate" class="validation-summary-errors text-danger">Campo Cantidad requerido</ul>');
+        }
+        else if (Observaciones == '') {
+            $('#ErrorCodigoProductoCreate').text('');
+            $('#validationImpuestoProductoCreate').after('<ul id="ErrorImpuestoCreate" class="validation-summary-errors text-danger">Campo Impuesto requerido</ul>');
+        }
+        else if (Monto == '') {
+            $('#ErrorCodigoProductoCreate').text('');
+            $('#validationImpuestoProductoCreate').after('<ul id="ErrorImpuestoCreate" class="validation-summary-errors text-danger">Campo Impuesto requerido</ul>');
+        }
+      
+        else {
+            contador = contador + 1;
+            copiar = "<tr data-id=" + contador + ">";
+            copiar += "<td id = 'prod_CodigoCreate'>" + CodigoProducto + "</td>";
+            copiar += "<td id = 'tbProducto_prod_DescripcionCreate'>" + Descripcion + "</td>";
+            copiar += "<td id = 'factd_CantidadCreate' align='right'>" + Cantidad + "</td>";
+            copiar += "<td id = 'Precio_UnitarioCreate' align='right'>" + Observaciones + "</td>";
+            copiar += "<td id = 'ImpuestoCreate' align='right'>" + Monto + "</td>";
+            copiar += "<td>" + '<button id="removeFacturaDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
+            copiar += "</tr>";
+            $('#tbDetalleDevolucion').append(copiar);
+        }
+    })
+</script>

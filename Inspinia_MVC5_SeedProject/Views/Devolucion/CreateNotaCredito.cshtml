@@ -71,8 +71,8 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.tbCliente.clte_Nombres, "Cliente", new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.tbCliente.clte_Nombres, new { htmlAttributes = new { @readonly = "readonly" } })
-                                    <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.tbCliente.clte_Nombres)</span></p>
+                                    <input id="tbCliente_clte_Nombres" type="text" name="tbCliente_clte_Nombres" value="@ViewBag.Nombres" class="form-control " readonly />
+                                     <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.tbCliente.clte_Nombres)</span></p>
                                 </div>
                             </div>
 
@@ -104,7 +104,8 @@
                             <div class="form-group" id="divFechaDev">
                                 @Html.LabelFor(model => model.tbDevolucion.dev_Fecha, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.tbDevolucion.dev_Fecha, "{0:yyyy-MM-dd}")
+                                    <input id="tbDevolucion_dev_Fecha" type="text" name="tbDevolucion_dev_Fecha" value="@ViewBag.fechaDev" class="form-control " readonly />
+                                      @*@Html.EditorFor(model => model.tbDevolucion.dev_Fecha, "{0:yyyy-MM-dd}")*@
                                     <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.tbDevolucion.dev_Fecha)</span></p>
                                 </div>
                             </div>
