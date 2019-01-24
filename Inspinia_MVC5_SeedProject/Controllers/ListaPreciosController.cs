@@ -219,6 +219,7 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.listp_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbListaPrecio.listp_UsuarioModifica);
             ViewBag.listp_Id = new SelectList(db.tbListadoPrecioDetalle, "listp_Id", "prod_Codigo", tbListaPrecio.listp_Id);
             ViewBag.Producto = db.tbProducto.ToList();
+            Session["listaEdit"] = null;
             return View(tbListaPrecio);
         }
 
@@ -229,13 +230,18 @@ namespace ERP_GMEDINA.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include= "listp_Id,listp_Nombre,listp_EsActivo,listp_UsuarioCrea,listp_FechaCrea,listp_UsuarioModifica,listp_FechaModifica,listp_FechaInicioVigencia,listp_FechaFinalVigencia,listp_Prioridad")] tbListaPrecio tbListaPrecio)
         {
+            var listEdit = (List<tbListadoPrecioDetalle>)Session["listaEdit"];
+            string MensajeError = "";
+            var MensajeErrorDetalle = "";
+            IEnumerable<object> list = null;
+            IEnumerable<object> listDetalle = null;
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var MensajeError = "";
-                    IEnumerable<object> list = null;
-                    list = db.UDP_Vent_tbListaPrecio_Update(tbListaPrecio.listp_Id,
+                    using (TransactionScope Tran = new TransactionScope())
+                    {
+                        list = db.UDP_Vent_tbListaPrecio_Update(tbListaPrecio.listp_Id,
                                                                    tbListaPrecio.listp_Nombre,
                                                                    tbListaPrecio.listp_EsActivo,
                                                                        tbListaPrecio.listp_UsuarioCrea,
@@ -247,12 +253,55 @@ namespace ERP_GMEDINA.Controllers
                                                                   
                     foreach (UDP_Vent_tbListaPrecio_Update_Result ListaPrecio in list)
                         MensajeError = ListaPrecio.MensajeError;
-                    if (MensajeError == "-1")
-                    {
+                        if (MensajeError == "-1")
+                        {
+                            ModelState.AddModelError("", "No se pudo agregar el registro");
+                            return View(tbListaPrecio);
+                        }
+                        else
+                        {
 
-                    }
-                    else
-                    {
+                        }
+                        {
+                            if (MensajeError != "-1")
+                            {
+                                if (listEdit != null)
+                                {
+                                    if (listEdit.Count != 0)
+                                    {
+                                        foreach (tbListadoPrecioDetalle PrecioDetalle in list)
+                                        {
+                                            var liistp_Id = Convert.ToInt32(MensajeError);
+                                            PrecioDetalle.listp_Id = liistp_Id;
+                                            PrecioDetalle.listp_Id = liistp_Id;
+                                            listDetalle = db.UDP_Vent_tbListadoPrecioDetalle_Insert(
+                                              PrecioDetalle.listp_Id,
+                                              PrecioDetalle.prod_Codigo,
+                                              PrecioDetalle.lispd_PrecioMayorista,
+                                              PrecioDetalle.lispd_PrecioMinorista,
+                                              PrecioDetalle.lispd_DescCaja,
+                                              PrecioDetalle.lispd_DescGerente);
+                                            foreach (UDP_Vent_tbListadoPrecioDetalle_Insert_Result SPpreciodetalle in listDetalle)
+                                            {
+                                                MensajeErrorDetalle = SPpreciodetalle.MensajeError;
+                                                if (MensajeError == "-1")
+                                                {
+                                                    ModelState.AddModelError("", "No se pudo agregar el registro detalle");
+                                                    return View(tbListaPrecio);
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                ModelState.AddModelError("", "No se pudo agregar el registro");
+                                return View(tbListaPrecio);
+                            }
+
+                        }
+                        Tran.Complete();
                         return RedirectToAction("Index");
                     }
                 }
@@ -274,45 +323,64 @@ namespace ERP_GMEDINA.Controllers
             return View(tbListaPrecio);
         }
 
-        public ActionResult UpdateListaPrecioDetalle(tbListadoPrecioDetalle EditListadoPrecioDetalle)
+
+        [HttpPost]
+        public JsonResult SaveDetalleEdit(tbListadoPrecioDetalle FacturaDetalleEdit)
         {
-            try
+            List<tbListadoPrecioDetalle> sessionFacturaDetalle = new List<tbListadoPrecioDetalle>();
+            var listEdit = (List<tbListadoPrecioDetalle>)Session["listaEdit"];
+            if (listEdit == null)
             {
-
-
-                var MensajeError = "";
-                IEnumerable<object> list = null;
-                list = db.UDP_Vent_tbListadoPrecioDetalle_Update(
-                            EditListadoPrecioDetalle.listp_Id,
-                            EditListadoPrecioDetalle.prod_Codigo,
-                            EditListadoPrecioDetalle.lispd_PrecioMayorista,
-                            EditListadoPrecioDetalle.lispd_PrecioMinorista,
-                            EditListadoPrecioDetalle.lispd_DescCaja,
-                            EditListadoPrecioDetalle.lispd_DescGerente,
-                            EditListadoPrecioDetalle.lispd_UsuarioCrea,
-                            EditListadoPrecioDetalle.lispd_FechaCrea);
-
-
-
-                foreach (UDP_Vent_tbListadoPrecioDetalle_Update_Result ListadoPrecioDetalle in list)
-                    MensajeError = ListadoPrecioDetalle.MensajeError;
-                if (MensajeError == "-1")
-                {
-                    ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
-                    return PartialView("_EditListaPrecioDetalle");
-                }
-                else
-                {
-                    return RedirectToAction("Index");
-                }
+                sessionFacturaDetalle.Add(FacturaDetalleEdit);
+                Session["listaEdit"] = sessionFacturaDetalle;
             }
-            catch (Exception Ex)
+            else
             {
-                Ex.Message.ToString();
-                ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
-                return PartialView("_EditListaPrecioDetalle", EditListadoPrecioDetalle);
+                listEdit.Add(FacturaDetalleEdit);
+                Session["listaEdit"] = listEdit;
             }
+            return Json("Exito", JsonRequestBehavior.AllowGet);
         }
+
+        //public ActionResult UpdateListaPrecioDetalle(tbListadoPrecioDetalle EditListadoPrecioDetalle)
+        //{
+        //    try
+        //    {
+
+
+        //        var MensajeError = "";
+        //        IEnumerable<object> list = null;
+        //        list = db.UDP_Vent_tbListadoPrecioDetalle_Update(
+        //                    EditListadoPrecioDetalle.listp_Id,
+        //                    EditListadoPrecioDetalle.prod_Codigo,
+        //                    EditListadoPrecioDetalle.lispd_PrecioMayorista,
+        //                    EditListadoPrecioDetalle.lispd_PrecioMinorista,
+        //                    EditListadoPrecioDetalle.lispd_DescCaja,
+        //                    EditListadoPrecioDetalle.lispd_DescGerente,
+        //                    EditListadoPrecioDetalle.lispd_UsuarioCrea,
+        //                    EditListadoPrecioDetalle.lispd_FechaCrea);
+
+
+
+        //        foreach (UDP_Vent_tbListadoPrecioDetalle_Update_Result ListadoPrecioDetalle in list)
+        //            MensajeError = ListadoPrecioDetalle.MensajeError;
+        //        if (MensajeError == "-1")
+        //        {
+        //            ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+        //            return PartialView("_EditListaPrecioDetalle");
+        //        }
+        //        else
+        //        {
+        //            return RedirectToAction("Index");
+        //        }
+        //    }
+        //    catch (Exception Ex)
+        //    {
+        //        Ex.Message.ToString();
+        //        ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+        //        return PartialView("_EditListaPrecioDetalle", EditListadoPrecioDetalle);
+        //    }
+        //}
 
 
         [HttpPost]
@@ -346,43 +414,43 @@ namespace ERP_GMEDINA.Controllers
         }
 
 
-        [HttpPost]
-        public JsonResult SaveCreateEdit(tbListadoPrecioDetalle PrecioDetalle)
-        {
-            string Msj = "";
-            try
-            {
-                var MensajeError = "";
-                IEnumerable<object> list = null;
-                list = db.UDP_Vent_tbListadoPrecioDetalle_Insert(
-                                              PrecioDetalle.listp_Id,
-                                              PrecioDetalle.tbProducto.prod_Codigo,
-                                              PrecioDetalle.lispd_PrecioMayorista,
-                                              PrecioDetalle.lispd_PrecioMinorista,
-                                              PrecioDetalle.lispd_DescCaja,
-                                              PrecioDetalle.lispd_DescGerente);
-                foreach (UDP_Vent_tbListadoPrecioDetalle_Insert_Result listadetalle in list)
-                    MensajeError = listadetalle.MensajeError;
-                Msj = "El registro se guardo exitosamente";
-                if (MensajeError == "-1")
-                {
-                    Msj = "No se pudo actualizar el registro, favor contacte al administrador.";
-                    ModelState.AddModelError("", Msj);
-                }
-                else
-                {
-                    //Msj = "El registro se guardo exitosamente";
-                    //return RedirectToAction("Index");
-                }
-            }
-            catch (Exception Ex)
-            {
-                Msj = Ex.Message.ToString();
-                ViewBag.Producto = db.tbProducto.ToList();
-                ModelState.AddModelError("", Msj);
-            }
-            return Json(Msj, JsonRequestBehavior.AllowGet);
-        }
+        //[HttpPost]
+        //public JsonResult SaveCreateEdit(tbListadoPrecioDetalle PrecioDetalle)
+        //{
+        //    string Msj = "";
+        //    try
+        //    {
+        //        var MensajeError = "";
+        //        IEnumerable<object> list = null;
+        //        list = db.UDP_Vent_tbListadoPrecioDetalle_Insert(
+        //                                      PrecioDetalle.listp_Id,
+        //                                      PrecioDetalle.tbProducto.prod_Codigo,
+        //                                      PrecioDetalle.lispd_PrecioMayorista,
+        //                                      PrecioDetalle.lispd_PrecioMinorista,
+        //                                      PrecioDetalle.lispd_DescCaja,
+        //                                      PrecioDetalle.lispd_DescGerente);
+        //        foreach (UDP_Vent_tbListadoPrecioDetalle_Insert_Result listadetalle in list)
+        //            MensajeError = listadetalle.MensajeError;
+        //        Msj = "El registro se guardo exitosamente";
+        //        if (MensajeError == "-1")
+        //        {
+        //            Msj = "No se pudo actualizar el registro, favor contacte al administrador.";
+        //            ModelState.AddModelError("", Msj);
+        //        }
+        //        else
+        //        {
+        //            //Msj = "El registro se guardo exitosamente";
+        //            //return RedirectToAction("Index");
+        //        }
+        //    }
+        //    catch (Exception Ex)
+        //    {
+        //        Msj = Ex.Message.ToString();
+        //        ViewBag.Producto = db.tbProducto.ToList();
+        //        ModelState.AddModelError("", Msj);
+        //    }
+        //    return Json(Msj, JsonRequestBehavior.AllowGet);
+        //}
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         //[HttpPost]
         //[ValidateAntiForgeryToken]
@@ -481,6 +549,23 @@ namespace ERP_GMEDINA.Controllers
         //    }
 
 
+        [HttpPost]
+        public JsonResult SaveFacturaDetalleEdit(tbFacturaDetalle FacturaDetalleEdit)
+        {
+            List<tbFacturaDetalle> sessionFacturaDetalle = new List<tbFacturaDetalle>();
+            var listEdit = (List<tbFacturaDetalle>)Session["FacturaEdit"];
+            if (listEdit == null)
+            {
+                sessionFacturaDetalle.Add(FacturaDetalleEdit);
+                Session["FacturaEdit"] = sessionFacturaDetalle;
+            }
+            else
+            {
+                listEdit.Add(FacturaDetalleEdit);
+                Session["FacturaEdit"] = listEdit;
+            }
+            return Json("Exito", JsonRequestBehavior.AllowGet);
+        }
 
 
 

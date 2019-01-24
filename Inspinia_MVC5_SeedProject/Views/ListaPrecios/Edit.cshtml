@@ -31,9 +31,10 @@
                 </div>
                 <div class="ibox-content">
 
-                    @using (Html.BeginForm())
-                    {
-                        @Html.AntiForgeryToken()
+                 @using (Html.BeginForm("Edit", "ListaPrecios", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                 {
+                    @Html.AntiForgeryToken()
+
 
                         <div class="form-horizontal">
                             @Html.Hidden("RedirectTo", Url.Action("Index", "ListaPrecios"))
@@ -125,7 +126,7 @@
                             </div>*@
 
 
-                        <div class="form-group">
+                        @*<div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
                                 <input type="submit" value="Guardar" class="btn btn-primary" />
                                 @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
@@ -145,10 +146,10 @@
 
 
                             </div>
-                        </div>
+                        </div>*@
 
 
-                    }
+                    
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="tabs-container">
@@ -167,10 +168,22 @@
                                             <div class="ibox-content" id="create" style="display: none">
                                                 @Html.Partial("_CreateListaPrecioEdit", new tbListadoPrecioDetalle())
                                             </div>
-                                            <div class="ibox-content" div="Indexdetalle" ">
-                                                @Html.Partial("_IndexListaPrecioDetalle", Model.tbListadoPrecioDetalle)
+                                            <div class="col-lg-12">
+                                                <div class="form-group">
+                                                    <div class="col-md-12 text-center">
+                                                        <input id="btnSave" type="submit" value="Guardar" class="btn btn-primary btn-sm" />
+                                                        <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal">
+                                                            Anular
+                                                        </button>
+                                                        @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white btn-sm" })
+                                                    </div>
+                                                </div>
+                                                <br />
                                             </div>
-
+                                            @*<div class="ibox-content" div="Indexdetalle" ">
+                                                @Html.Partial("_IndexListaPrecioDetalle", Model.tbListadoPrecioDetalle)
+                                            </div>*@
+                                            
 
                                         </div>
                                     </div>
@@ -188,8 +201,8 @@
                             </div>
                         </div>
                     </div>
-
-                </div>
+                    }
+              
             </div>
             <div class="ibox-content">
                 <table class="table table-striped">
@@ -288,6 +301,8 @@
 <script src="~/Scripts/app/InactivarListaP.js"></script>
 <script src="~/Scripts/app/ProductoFactura.js"></script>
 <script src="~/Scripts/app/ListaPrecioDetalle.js"></script>
+
+<script src="~/Scripts/app/CreateListaPrecioDetails.js"></script>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

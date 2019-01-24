@@ -1,6 +1,8 @@
-﻿var contador = 0;
+﻿
+var contador = 0;
 
-(function btnCreateListaPrecioDetalle() {
+$('#AgregarListaPrecioDetalle').click(function () {
+    var CodigoBarra = $('tbProducto_prod_CodigoBarras').val();
     var Producto = $('#prod_Codigo').val();
     var DescripcionProducto = $('#tbProducto_prod_Descripcion').val();
     var PrecioMayorista = $('#lispd_PrecioMayorista').val();
@@ -81,16 +83,15 @@
         copiar += "</tr>";
         $('#tbListaPrecioDetalle').append(copiar);
 
-        var PrecioDetalle = GetListaPrecioDetalle();
+        var ListaDetalle = GetListaPrecioDetalleEditEdit();
         $.ajax({
-            url: "/ListaPrecios/SaveCreateEdit",
+            url: "/ListaPrecios/SaveDetalleEdit",
             method: "POST",
             dataType: 'json',
             contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ ListaDetalle: PrecioDetalle }),
+            data: JSON.stringify({ ListaDetalle: ListaDetalle }),
         })
         .done(function (data) {
-
 
             $('#ErrorPrecioMayoristaCreate').text('');
             $('#ErrorPrecioMinoristaCreate').text('');
@@ -100,7 +101,8 @@
 
             //Input
             $('#prod_Codigo').val('');
-            $('#tbProducto_prod_Descripcion').val('0.00');
+            $('#tbProducto_prod_CodigoBarras').val('');
+            $('#tbProducto_prod_Descripcion').val('');
             $('#lispd_PrecioMayorista').val('0.00');
             $('#lispd_PrecioMinorista').val('0.00');
             $('#lispd_DescCaja').val('0.00');
@@ -113,9 +115,10 @@
 
 });
 
-function GetListaPrecioDetalle() {
+function GetListaPrecioDetalleEdit() {
     var ListaDetalle = {
         prod_Codigo: $('#prod_Codigo').val(),
+        prod_CodigoBarra: $('#tbProducto_prod_CodigoBarras').val(),
         lispd_PrecioMayorista: $('#lispd_PrecioMayorista').val(),
         lispd_PrecioMinorista: $('#lispd_PrecioMinorista').val(),
         lispd_DescCaja: $('#lispd_DescCaja').val(),
@@ -150,4 +153,6 @@ $(document).on("click", "#tbListaPrecioDetalle tbody tr td button#removeListaPre
 
 
 });
+
+
 
