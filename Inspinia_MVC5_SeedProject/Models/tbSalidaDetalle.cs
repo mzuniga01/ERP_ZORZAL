@@ -23,6 +23,7 @@ namespace ERP_GMEDINA.Models
         public System.DateTime sald_FechaCrea { get; set; }
         public Nullable<int> sald_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> sald_FechaModifica { get; set; }
+        public decimal sald_Cantidad { get; set; }
     
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbBox tbBox { get; set; }

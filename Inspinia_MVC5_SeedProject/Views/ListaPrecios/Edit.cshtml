@@ -93,8 +93,8 @@
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.listp_FechaFinalVigencia, new { @class = "control-label col-md-2" })
-                    <div class="col-md-4">
-                        @Html.EditorFor(model => model.listp_FechaFinalVigencia)
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.listp_FechaFinalVigencia, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "FFV" } })
                         @Html.ValidationMessageFor(model => model.listp_FechaFinalVigencia)
                     </div>
                 </div>
@@ -103,81 +103,52 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.listp_Prioridad, new { @class = "control-label col-md-2" })
                     <div class="col-md-3">
-                        @Html.EditorFor(model => model.listp_Prioridad)
-                        @Html.ValidationMessageFor(model => model.listp_Prioridad)
+                        @Html.EditorFor(model => model.listp_Prioridad, new { htmlAttributes = new { @maxlength = "1", @onkeypress = "return validar(event)" } })
+                        <p id="nprioridad" style="color:red">@Html.ValidationMessageFor(model => model.listp_Prioridad)</p>
                     </div>
                 </div>
-                @*<div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Guardar" class="btn btn-primary" />
-                            @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
-                            @Html.ActionLink("Anular", "", null, new { @class = "btn btn-danger btn-xs" })
-                        </div>
-                    </div>*@
             </div>
-                        @*<div class="form-group">
-                                <div class="col-md-offset-8 col-md-10">
-                                    <input id="btnSave" type="submit" value="Guardar" class="btn btn-primary btn-sm" />
-                                    <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal">
-                                        Anular
-                                    </button>
-                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white btn-sm" })
-                                </div>
-                            </div>*@
+                       
 
 
-                        @*<div class="form-group">
-                                <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="Guardar" class="btn btn-primary" />
-                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
-                                    @if (Model.listp_EsActivo)
-                                    {
-                                        <button type="button" id="inactivar" name="inactivar" class="btn btn-danger" data-toggle="modal" data-target="#ModalAnular">
-                                            Inactivar
-                                        </button>
-                                    }
-                                    else
-                                    {
-                                        <button type="button" id="activar" name="activar" class="btn btn-info" data-toggle="modal" data-target="#ModalAnular1">
-                                            Activar
-                                        </button>
-                                    }
-
-
-
-                                </div>
-                            </div>*@
+                        
 
 
 
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="tabs-container">
-                                    <ul class="nav nav-tabs">
-                                        <li class="active"><a data-toggle="tab" href="#tab-1">Detalle Lista Precio</a></li>
-
-                                    </ul>
+                                    
                                     <div class="tab-content">
                                         <div id="tab-1" class="tab-pane active">
                                             <div class="panel-body">
-                                                @*<div class="ibox-title">
-                                                    <button id="AddProducto" value="Mostrar"  type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalAgregarDetalle"><span>Nuevo</span></button>
-                                                    </div><div class="col-md-offset-11">*@
-
+                                                
                                             </div>
                                             <div class="ibox-content" id="create" >
                                                 @Html.Partial("_CreateListaPrecioDetalleEdit", new tbListadoPrecioDetalle())
                                             </div>
                                             <div class="col-lg-12">
                                                 <div class="form-group">
-                                                    <div class="col-md-12 text-center">
-                                                        <input id="btnSave" type="submit" value="Guardar" class="btn btn-primary btn-sm" />
-                                                        <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal">
-                                                            Anular
-                                                        </button>
-                                                        @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white btn-sm" })
+                                                    <div class="col-md-offset-2 col-md-10">
+                                                        <input type="submit" value="Guardar" class="btn btn-primary" />
+                                                       
+                                                        @if (Model.listp_EsActivo)
+                                                        {
+                                                            <button type="button" id="inactivar" name="inactivar" class="btn btn-danger" data-toggle="modal" data-target="#ModalAnular">
+                                                                Inactivar
+                                                            </button>
+                                                        }
+                                                        else
+                                                        {
+                                                            <button type="button" id="activar" name="activar" class="btn btn-info" data-toggle="modal" data-target="#ModalAnular1">
+                                                                Activar
+                                                            </button>
+                                                        }
+                                                        @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+
+
                                                     </div>
-                                                </div>
+                                                                                                    </div>
                                                 <br />
                                             </div>
                                         </div>
@@ -263,31 +234,22 @@
         </div>
     </div>
 </div>
-@*<div class="modal fade" id="ModalAgregarDetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog modal-lg " role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title" id="myModalLabe2">Agregar Lista Precio Detalle</h4>
-                </div>
-                <div class="modal-body" id="frmEditarMunicipios">
-                    @Html.Partial("_CreateListaPrecioDetalleModal", new tbListadoPrecioDetalle())
-                </div>
-            </div>
-        </div>
-    </div>*@
 
 
+    <script>
+    function validar(e) {
+        tecla = (document.all) ? e.keyCode : e.which;
+        tecla = String.fromCharCode(tecla)
+        return /^[0-9\-]+$/.test(tecla);
+    }
+    </script>
 
-
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
 <script src="~/Scripts/app/Datepicker.js"></script>
 <script src="~/Scripts/app/InactivarListaP.js"></script>
 <script src="~/Scripts/app/ProductoFactura.js"></script>
-<script src="~/Scripts/app/ListaPrecioDetalle.js"></script>
-
-<script src="~/Scripts/app/CreateListaPrecioDetails.js"></script>
+<script src="~/Scripts/app/ListaPrecioDetalleEdit.js"></script>
+<script src="~/Scripts/app/GetListadoDetalleEdit.js"></script>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
@@ -299,6 +261,42 @@
     $(document).on('click', '#myModalLabe2', function () {
         $('#ModalAgregarDetalle').modal('show');
     });
+
+
+
+    $("#listp_Prioridad").blur(function () {
+
+        valido = document.getElementById('nprioridad');
+        var Prioridad = $('#listp_Prioridad').val();
+
+
+
+
+
+        if (parseFloat(Prioridad) < 1 || parseFloat(Prioridad) > 3) {
+
+            valido.innerText = "El valor debe estar entre 1 a 3";
+            $('#listp_Prioridad').val("");
+            $('#listp_Prioridad').focus();
+        }
+        else {
+            //console.log("else")
+            valido.innerText = "";
+
+        }
+
+
+
+
+
+    });
+
+
+
+
+
+
+
 </script>
 
 <script type="text/javascript">

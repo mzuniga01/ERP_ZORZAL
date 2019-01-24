@@ -477,7 +477,7 @@
           <Property Name="sald_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="sal_Id" Type="int" Nullable="false" />
           <Property Name="prod_Codigo" Type="nvarchar" MaxLength="15" Nullable="false" />
-          <Property Name="sal_Cantidad" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="sald_Cantidad" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="box_Codigo" Type="varchar" MaxLength="20" />
           <Property Name="sald_UsuarioCrea" Type="int" Nullable="false" />
           <Property Name="sald_FechaCrea" Type="datetime" Nullable="false" />
@@ -4262,6 +4262,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Parameter Name="deno_Tipo" Type="tinyint" Mode="In" />
           <Parameter Name="deno_valor" Type="decimal" Mode="In" />
           <Parameter Name="mnda_Id" Type="smallint" Mode="In" />
+          <Parameter Name="deno_UsuarioCrea" Type="int" Mode="In" />
+          <Parameter Name="deno_FechaCrea" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Gral_tbDenominacion_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral" />
         <Function Name="UDP_Gral_tbDenominacion_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
@@ -4272,6 +4274,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Parameter Name="mnda_Id" Type="smallint" Mode="In" />
           <Parameter Name="deno_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="deno_FechaCrea" Type="datetime" Mode="In" />
+          <Parameter Name="deno_UsuarioModifica" Type="int" Mode="In" />
+          <Parameter Name="deno_FechaModifica" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Gral_tbDepartamento_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
           <Parameter Name="dep_Codigo" Type="char" Mode="In" />
@@ -4287,9 +4291,15 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Parameter Name="dep_UsuarioModifica" Type="int" Mode="In" />
           <Parameter Name="dep_FechaModifica" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="UDP_Gral_tbEmpleado_Update_Baja" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
+          <Parameter Name="emp_Id" Type="int" Mode="In" />
+          <Parameter Name="emp_Estado" Type="bit" Mode="In" />
+          <Parameter Name="emp_RazonSalida" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="UDP_Gral_tbEmpleado_Update_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
           <Parameter Name="emp_Id" Type="int" Mode="In" />
           <Parameter Name="emp_Estado" Type="bit" Mode="In" />
+          <Parameter Name="emp_RazonInactivacion" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="UDP_Gral_tbEmpleados_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
           <Parameter Name="emp_Nombres" Type="nvarchar" Mode="In" />
@@ -4736,14 +4746,14 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
         <Function Name="UDP_Inv_tbSalidaDetalle_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="sal_Id" Type="int" Mode="In" />
           <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
-          <Parameter Name="sal_Cantidad" Type="decimal" Mode="In" />
+          <Parameter Name="sald_Cantidad" Type="decimal" Mode="In" />
           <Parameter Name="box_Codigo" Type="varchar" Mode="In" />
         </Function>
         <Function Name="UDP_Inv_tbSalidaDetalle_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="sald_Id" Type="int" Mode="In" />
           <Parameter Name="sal_Id" Type="int" Mode="In" />
           <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
-          <Parameter Name="sal_Cantidad" Type="decimal" Mode="In" />
+          <Parameter Name="sald_Cantidad" Type="decimal" Mode="In" />
           <Parameter Name="box_Codigo" Type="varchar" Mode="In" />
         </Function>
         <Function Name="UDP_Inv_tbTipoEntrada_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
@@ -4770,7 +4780,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Parameter Name="IDProducto" Type="varchar" Mode="In" />
           <Parameter Name="FechaElaboracion" Type="datetime" Mode="In" />
           <Parameter Name="BodegaDestino" Type="int" Mode="In" />
-          <Parameter Name="CantidadNoDisponible" Type="decimal" Mode="In" />
         </Function>
         <Function Name="crud_tbExoneracionInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="exo_Documento" Type="nvarchar" Mode="In" />
@@ -5089,6 +5098,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
         <Function Name="UDP_Vent_tbFactura_GetDetalle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="FACTURA_ID" Type="bigint" Mode="In" />
         </Function>
+        <Function Name="UDP_Vent_tbFactura_GetDetalle_Edit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="FACTURA_ID" Type="bigint" Mode="In" />
+        </Function>
         <Function Name="UDP_Vent_tbFactura_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="fact_Codigo" Type="nvarchar" Mode="In" />
           <Parameter Name="fact_Fecha" Type="datetime" Mode="In" />
@@ -5174,6 +5186,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Parameter Name="lispd_DescCaja" Type="decimal" Mode="In" />
           <Parameter Name="lispd_DescGerente" Type="decimal" Mode="In" />
         </Function>
+        <Function Name="UDP_Vent_tbListadoPrecioDetalle_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="IDLISTAPRECIO" Type="int" Mode="In" />
+        </Function>
         <Function Name="UDP_Vent_tbListadoPrecioDetalle_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="listp_Id" Type="int" Mode="In" />
           <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
@@ -5224,14 +5239,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
         </Function>
         <Function Name="UDP_Vent_tbMovimientoCaja_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="mocja_Id" Type="int" Mode="In" />
-          <Parameter Name="cja_Id" Type="smallint" Mode="In" />
-          <Parameter Name="mocja_UsuarioApertura" Type="int" Mode="In" />
-          <Parameter Name="mocja_FechaArqueo" Type="datetime" Mode="In" />
-          <Parameter Name="mocja_UsuarioArquea" Type="int" Mode="In" />
-          <Parameter Name="mocja_FechaAceptacion" Type="datetime" Mode="In" />
-          <Parameter Name="mocja_UsuarioAceptacion" Type="int" Mode="In" />
-          <Parameter Name="mocja_UsuarioCrea" Type="int" Mode="In" />
-          <Parameter Name="mocja_FechaCrea" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Vent_tbNotaCredito_Anulado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="nocre_Id" Type="smallint" Mode="In" />
@@ -6705,6 +6712,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="deno_Tipo" Mode="In" Type="Byte" />
             <Parameter Name="deno_valor" Mode="In" Type="Decimal" />
             <Parameter Name="mnda_Id" Mode="In" Type="Int16" />
+            <Parameter Name="deno_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="deno_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbCaja_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbCaja_Insert_Result)">
             <Parameter Name="cja_Id" Mode="In" Type="Int16" />
@@ -6735,6 +6744,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="mnda_Id" Mode="In" Type="Int16" />
             <Parameter Name="deno_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="deno_FechaCrea" Mode="In" Type="DateTime" />
+            <Parameter Name="deno_UsuarioModifica" Mode="In" Type="Int32" />
+            <Parameter Name="deno_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbPuntoEmision_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPuntoEmision_Insert_Result)">
           <Parameter Name="pemi_NumeroCAI" Mode="In" Type="String" />
@@ -7020,6 +7031,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <FunctionImport Name="UDP_Gral_tbEmpleado_Update_Estado" ReturnType="Collection(String)">
             <Parameter Name="emp_Id" Mode="In" Type="Int32" />
             <Parameter Name="emp_Estado" Mode="In" Type="Boolean" />
+            <Parameter Name="emp_RazonInactivacion" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="UDP_Gral_tbEmpleados_Insert" ReturnType="Collection(String)">
             <Parameter Name="emp_Nombres" Mode="In" Type="String" />
@@ -7380,14 +7392,14 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <FunctionImport Name="UDP_Inv_tbSalidaDetalle_Insert" ReturnType="Collection(String)">
             <Parameter Name="sal_Id" Mode="In" Type="Int32" />
             <Parameter Name="prod_Codigo" Mode="In" Type="String" />
-            <Parameter Name="sal_Cantidad" Mode="In" Type="Decimal" />
+            <Parameter Name="sald_Cantidad" Mode="In" Type="Decimal" />
             <Parameter Name="box_Codigo" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="UDP_Inv_tbSalidaDetalle_Update" ReturnType="Collection(String)">
             <Parameter Name="sald_Id" Mode="In" Type="Int32" />
             <Parameter Name="sal_Id" Mode="In" Type="Int32" />
             <Parameter Name="prod_Codigo" Mode="In" Type="String" />
-            <Parameter Name="sal_Cantidad" Mode="In" Type="Decimal" />
+            <Parameter Name="sald_Cantidad" Mode="In" Type="Decimal" />
             <Parameter Name="box_Codigo" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="UDP_Inv_tbTipoEntrada_Insert" ReturnType="Collection(String)">
@@ -7450,14 +7462,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbMovimientoCaja_Update" ReturnType="Collection(Int32)">
             <Parameter Name="mocja_Id" Mode="In" Type="Int32" />
-            <Parameter Name="cja_Id" Mode="In" Type="Int16" />
-            <Parameter Name="mocja_UsuarioApertura" Mode="In" Type="Int32" />
-            <Parameter Name="mocja_FechaArqueo" Mode="In" Type="DateTime" />
-            <Parameter Name="mocja_UsuarioArquea" Mode="In" Type="Int32" />
-            <Parameter Name="mocja_FechaAceptacion" Mode="In" Type="DateTime" />
-            <Parameter Name="mocja_UsuarioAceptacion" Mode="In" Type="Int32" />
-            <Parameter Name="mocja_UsuarioCrea" Mode="In" Type="Int32" />
-            <Parameter Name="mocja_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="GetBusquedaFactura">
             <Parameter Name="cliente" Mode="In" Type="String" />
@@ -7600,7 +7604,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="IDProducto" Mode="In" Type="String" />
             <Parameter Name="FechaElaboracion" Mode="In" Type="DateTime" />
             <Parameter Name="BodegaDestino" Mode="In" Type="Int32" />
-            <Parameter Name="CantidadNoDisponible" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbExoneracion_Estado" ReturnType="Collection(Int32)">
             <Parameter Name="exo_Id" Mode="In" Type="Int32" />
@@ -9157,6 +9160,12 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="bite_MensajeError" Mode="In" Type="String" />
             <Parameter Name="bite_Accion" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbFactura_GetDetalle_Edit" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFactura_GetDetalle_Edit_Result1)">
+            <Parameter Name="FACTURA_ID" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbListadoPrecioDetalle_Select" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbListadoPrecioDetalle_Select_Result1)">
+            <Parameter Name="IDLISTAPRECIO" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
           <Key>
@@ -10512,6 +10521,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <NavigationProperty Name="tbBox" Relationship="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_box_Codigo" FromRole="tbSalidaDetalle" ToRole="tbBox" />
           <NavigationProperty Name="tbProducto" Relationship="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_tbProducto_prod_Codigo" FromRole="tbSalidaDetalle" ToRole="tbProducto" />
           <NavigationProperty Name="tbSalida" Relationship="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_tbSalida_sal_Id" FromRole="tbSalidaDetalle" ToRole="tbSalida" />
+          <Property Name="sald_Cantidad" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
         </EntityType>
         <EntityType Name="tbTipoDevolucion">
           <Key>
@@ -14232,6 +14242,42 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
         <ComplexType Name="UDP_Gral_tbBanco_Update_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="Max" />
         </ComplexType>
+        <ComplexType Name="UDP_Vent_tbFactura_GetDetalle_Edit_Result">
+          <Property Type="Int16" Name="factd_Id" Nullable="false" />
+          <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="prod_Descripcion" Nullable="false" MaxLength="100" />
+          <Property Type="Decimal" Name="factd_Cantidad" Nullable="false" Precision="5" Scale="2" />
+          <Property Type="Decimal" Name="factd_MontoDescuento" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="factd_Impuesto" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="factd_PrecioUnitario" Nullable="false" Precision="10" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbListadoPrecioDetalle_Select_Result">
+          <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
+          <Property Type="Int32" Name="lispd_Id" Nullable="false" />
+          <Property Type="String" Name="prod_Descripcion" Nullable="false" MaxLength="100" />
+          <Property Type="Decimal" Name="lispd_PrecioMayorista" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="lispd_PrecioMinorista" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="lispd_DescCaja" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="lispd_DescGerente" Nullable="true" Precision="10" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbListadoPrecioDetalle_Select_Result1">
+          <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
+          <Property Type="Int32" Name="lispd_Id" Nullable="false" />
+          <Property Type="String" Name="prod_Descripcion" Nullable="false" MaxLength="100" />
+          <Property Type="Decimal" Name="lispd_PrecioMayorista" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="lispd_PrecioMinorista" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="lispd_DescCaja" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="lispd_DescGerente" Nullable="true" Precision="10" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbFactura_GetDetalle_Edit_Result1">
+          <Property Type="Int16" Name="factd_Id" Nullable="false" />
+          <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="prod_Descripcion" Nullable="false" MaxLength="100" />
+          <Property Type="Decimal" Name="factd_Cantidad" Nullable="false" Precision="5" Scale="2" />
+          <Property Type="Decimal" Name="factd_MontoDescuento" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="factd_Impuesto" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="factd_PrecioUnitario" Nullable="false" Precision="10" Scale="2" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -15813,12 +15859,12 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <EntitySetMapping Name="tbSalidaDetalle">
             <EntityTypeMapping TypeName="ERP_ZORZALModel.tbSalidaDetalle">
               <MappingFragment StoreEntitySet="tbSalidaDetalle">
+                <ScalarProperty Name="sald_Cantidad" ColumnName="sald_Cantidad" />
                 <ScalarProperty Name="sald_FechaModifica" ColumnName="sald_FechaModifica" />
                 <ScalarProperty Name="sald_UsuarioModifica" ColumnName="sald_UsuarioModifica" />
                 <ScalarProperty Name="sald_FechaCrea" ColumnName="sald_FechaCrea" />
                 <ScalarProperty Name="sald_UsuarioCrea" ColumnName="sald_UsuarioCrea" />
                 <ScalarProperty Name="box_Codigo" ColumnName="box_Codigo" />
-                <ScalarProperty Name="sal_Cantidad" ColumnName="sal_Cantidad" />
                 <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
                 <ScalarProperty Name="sal_Id" ColumnName="sal_Id" />
                 <ScalarProperty Name="sald_Id" ColumnName="sald_Id" />
@@ -16684,6 +16730,32 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UDP_Acce_tbBitacoraErrores_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbBitacoraErrores_Insert" />
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_GetDetalle_Edit" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_GetDetalle_Edit">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbFactura_GetDetalle_Edit_Result1">
+                <ScalarProperty Name="factd_Id" ColumnName="factd_Id" />
+                <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+                <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
+                <ScalarProperty Name="factd_Cantidad" ColumnName="factd_Cantidad" />
+                <ScalarProperty Name="factd_MontoDescuento" ColumnName="factd_MontoDescuento" />
+                <ScalarProperty Name="factd_Impuesto" ColumnName="factd_Impuesto" />
+                <ScalarProperty Name="factd_PrecioUnitario" ColumnName="factd_PrecioUnitario" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbListadoPrecioDetalle_Select" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbListadoPrecioDetalle_Select">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbListadoPrecioDetalle_Select_Result1">
+                <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+                <ScalarProperty Name="lispd_Id" ColumnName="lispd_Id" />
+                <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
+                <ScalarProperty Name="lispd_PrecioMayorista" ColumnName="lispd_PrecioMayorista" />
+                <ScalarProperty Name="lispd_PrecioMinorista" ColumnName="lispd_PrecioMinorista" />
+                <ScalarProperty Name="lispd_DescCaja" ColumnName="lispd_DescCaja" />
+                <ScalarProperty Name="lispd_DescGerente" ColumnName="lispd_DescGerente" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
