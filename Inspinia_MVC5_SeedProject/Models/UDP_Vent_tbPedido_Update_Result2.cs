@@ -11,8 +11,8 @@ namespace ERP_GMEDINA.Models
 {
     using System;
     
-    public partial class UDP_Vent_tbPedidoDetalle_Update_Result
+    public partial class UDP_Vent_tbPedido_Update_Result2
     {
-        public string Column1 { get; set; }
+        public string MensajeError { get; set; }
     }
 }

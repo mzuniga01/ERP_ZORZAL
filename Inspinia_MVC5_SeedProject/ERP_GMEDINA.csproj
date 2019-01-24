@@ -778,19 +778,13 @@
     <Compile Include="Models\UDP_Vent_tbPagosArqueo_Insert_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\UDP_Vent_tbPagosArqueo_Update_Result.cs">
-      <DependentUpon>ModelERP.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\UDP_Vent_tbPago_Insert_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Vent_tbPago_Update_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\UDP_Vent_tbPedidoDetalle_Insert_Result.cs">
-      <DependentUpon>ModelERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\UDP_Vent_tbPedidoDetalle_Update_Result.cs">
+    <Compile Include="Models\UDP_Vent_tbPedido_Estado_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Vent_tbPedido_Insert_Result.cs">
@@ -803,6 +797,9 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Vent_tbPedido_Update_Result1.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Vent_tbPedido_Update_Result2.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Vent_tbPuntoEmisionDetalle_Insert_Result.cs">
@@ -823,10 +820,13 @@
     <Compile Include="Models\UDP_Vent_tbSolicitudCredito_Aprobar_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\UDP_Vent_tbSolicitudCredito_Insert_Result.cs">
+    <Compile Include="Models\UDP_Vent_tbSolicitudCredito_Denegar_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\UDP_Vent_tbSolicitudCredito_Update_Result.cs">
+    <Compile Include="Models\UDP_Vent_tbSolicitudCredito_Estado_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Vent_tbSolicitudCredito_Insert_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert_Result.cs">

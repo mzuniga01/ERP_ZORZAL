@@ -13,6 +13,6 @@ namespace ERP_GMEDINA.Models
     
     public partial class UDP_Gral_tbActividadEconomica_Update_Result
     {
-        public short MensajeError { get; set; }
+        public string MensajeError { get; set; }
     }
 }

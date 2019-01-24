@@ -19,15 +19,19 @@
 
 
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.prod_Codigo, "Código Producto", new { @class = "control-label col-md-2" })
-                            <div class="col-md-4 ">
-                                @Html.EditorFor(model => model.prod_Codigo)
-                                <div id="validacionCodigoProductoCreate">
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.prod_Codigo)</p>
-                                </div>
 
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2 ">Código Barra Producto</label>
+                            @*@Html.LabelFor(model => model.tbProducto.prod_CodigoBarras, "Código Producto Barra", new { @class = "control-label col-md-2" })*@
+                            <div class="col-md-4 ">
+                                @Html.EditorFor(model => model.tbProducto.prod_CodigoBarras, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                <div id="validacionNombreProductoCreate">
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.tbProducto.prod_CodigoBarras)</p>
+                                </div>
                             </div>
+   
+
                             <div class="col-md-3">
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarProducto"><span class="glyphicon glyphicon-search"></span></button>
                             </div>
@@ -37,14 +41,21 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label col-md-2 AsteriscoRojo">Código Barra Producto</label>
-                            @*@Html.LabelFor(model => model.tbProducto.prod_CodigoBarras, "Código Producto Barra", new { @class = "control-label col-md-2" })*@
-                            <div class="col-md-4 ">
-                                @Html.EditorFor(model => model.tbProducto.prod_CodigoBarras, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                <div id="validacionNombreProductoCreate">
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.tbProducto.prod_CodigoBarras)</p>
-                                </div>
+
+                            <label class="control-label col-md-2 AsteriscoRojo">Código Producto</label>
+                        @*@Html.LabelFor(model => model.prod_Codigo , "Código Producto", new { @class = "control-label col-md-2" })*@
+                        <div class="col-md-4 ">
+                            @Html.EditorFor(model => model.prod_Codigo)
+                            <div id="validacionCodigoProductoCreate">
+                                <p style="color:red">@Html.ValidationMessageFor(model => model.prod_Codigo)</p>
                             </div>
+
+                        </div>
+
+
+
+
+                     
                         </div>
 
                         <div class="form-group">

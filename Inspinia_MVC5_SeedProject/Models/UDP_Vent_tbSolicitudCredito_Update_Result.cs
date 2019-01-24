@@ -13,6 +13,6 @@ namespace ERP_GMEDINA.Models
     
     public partial class UDP_Vent_tbSolicitudCredito_Update_Result
     {
-        public int MensajeError { get; set; }
+        public string MensajeError { get; set; }
     }
 }

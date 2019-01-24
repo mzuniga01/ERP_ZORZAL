@@ -79,7 +79,7 @@ namespace ERP_ZORZAL.Controllers
                     //db.SaveChanges();
                     //return RedirectToAction("Index");
 
-                    var MensajeError = 0;
+                    var MensajeError = "";
                     IEnumerable<object> list = null;
                     list = db.UDP_Vent_tbSolicitudCredito_Insert(
                         tbSolicitudCredito.clte_Id,
@@ -91,7 +91,7 @@ namespace ERP_ZORZAL.Controllers
                         tbSolicitudCredito.cred_DiasSolicitado);
                     foreach (UDP_Vent_tbSolicitudCredito_Insert_Result SolicitudCredito in list)
                         MensajeError = SolicitudCredito.MensajeError;
-                    if (MensajeError == -1)
+                    if (MensajeError == "-1")
                     {
                     }
                     else
@@ -157,9 +157,11 @@ namespace ERP_ZORZAL.Controllers
         // POST: /SolicitudCredito/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+
+            //INICIO DEL EDIT COMENTNTADO
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "cred_Id,clte_Id,escre_Id,cred_FechaSolicitud,cred_FechaAprobacion,cred_MontoSolicitado,cred_MontoAprobado,cred_DiasSolicitado,cred_DiasAprobado,cred_UsuarioCrea,cred_FechaCrea,cred_UsuarioModifica,cred_FechaModifica")] tbSolicitudCredito tbSolicitudCredito)
+        public ActionResult Edit([Bind(Include = "cred_Id,clte_Id,escre_Id,cred_FechaSolicitud,cred_FechaAprobacion,cred_MontoSolicitado,cred_MontoAprobado,cred_DiasSolicitado,cred_DiasAprobado,cred_UsuarioCrea,cred_FechaCrea,cred_UsuarioModifica,cred_FechaModifica, tbUsuario, tbUsuario1")] tbSolicitudCredito tbSolicitudCredito)
         {
             ViewBag.escre_Descripcion = new SelectList(db.tbEstadoSolicitudCredito, "escre_Id", "escre_Descripcion");
             ViewBag.Aprobacion = db.tbSolicitudCredito.ToList();
@@ -169,24 +171,24 @@ namespace ERP_ZORZAL.Controllers
                 {
                     //////////Aqui va la lista//////////////
 
-                    var MensajeError = 0;
+                    var MensajeError = "";
                     IEnumerable<object> list = null;
-                    list = db.UDP_Vent_tbSolicitudCredito_Update(tbSolicitudCredito.cred_Id,
-                        tbSolicitudCredito.clte_Id,
-                        tbSolicitudCredito.escre_Id=1,
-                        tbSolicitudCredito.cred_FechaSolicitud,
-                        tbSolicitudCredito.cred_FechaAprobacion,
-                        tbSolicitudCredito.cred_MontoSolicitado,
-                        tbSolicitudCredito.cred_MontoAprobado,
-                        tbSolicitudCredito.cred_DiasSolicitado,
-                        tbSolicitudCredito.cred_DiasAprobado,
-                        tbSolicitudCredito.cred_UsuarioCrea,
-                        tbSolicitudCredito.cred_FechaCrea,
-                        tbSolicitudCredito.cred_UsuarioModifica,
-                        tbSolicitudCredito.cred_FechaModifica);
+                    //list = db.UDP_Vent_tbSolicitudCredito_Update(tbSolicitudCredito.cred_Id,
+                    //    tbSolicitudCredito.clte_Id,
+                    //    tbSolicitudCredito.escre_Id=1,
+                    //    tbSolicitudCredito.cred_FechaSolicitud,
+                    //    tbSolicitudCredito.cred_FechaAprobacion,
+                    //    tbSolicitudCredito.cred_MontoSolicitado,
+                    //    tbSolicitudCredito.cred_MontoAprobado,
+                    //    tbSolicitudCredito.cred_DiasSolicitado,
+                    //    tbSolicitudCredito.cred_DiasAprobado,
+                    //    tbSolicitudCredito.cred_UsuarioCrea,
+                    //    tbSolicitudCredito.cred_FechaCrea,
+                    //    tbSolicitudCredito.cred_UsuarioModifica,
+                    //    tbSolicitudCredito.cred_FechaModifica);
                     foreach (UDP_Vent_tbSolicitudCredito_Update_Result SolicitudCredito in list)
                         MensajeError = SolicitudCredito.MensajeError;
-                    if (MensajeError == -1)
+                    if (MensajeError == "-1")
                     {
                     }
                     else
@@ -214,6 +216,12 @@ namespace ERP_ZORZAL.Controllers
             //ViewBag.escre_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbEstadoSolicitudCredito.escre_UsuarioModifica);
             //return View(tbEstadoSolicitudCredito);
         }
+
+
+        //FINAL DEL EDIT COMENTNTADO
+
+
+
         //{
         //    if (ModelState.IsValid)
         //    {
@@ -269,44 +277,44 @@ namespace ERP_ZORZAL.Controllers
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
-        [HttpPost]
-        public ActionResult UpdateSolicitudCredito(tbSolicitudCredito EditSolicitudCredito)
-        {
-            try
-            {
-                var MensajeError = 0;
-                IEnumerable<object> list = null;
-                list = db.UDP_Vent_tbSolicitudCredito_Aprobar(
-                            EditSolicitudCredito.cred_Id,
-                            EditSolicitudCredito.escre_Id,
-                            EditSolicitudCredito.cred_FechaAprobacion,
-                            EditSolicitudCredito.cred_MontoSolicitado,
-                            EditSolicitudCredito.cred_MontoAprobado,
-                            EditSolicitudCredito.cred_DiasSolicitado,
-                            EditSolicitudCredito.cred_DiasAprobado,
-                            EditSolicitudCredito.cred_UsuarioCrea,
-                            EditSolicitudCredito.cred_FechaCrea,
-                            EditSolicitudCredito.cred_UsuarioModifica,
-                            EditSolicitudCredito.cred_FechaModifica);
-                foreach (UDP_Vent_tbSolicitudCredito_Aprobar_Result SolicitudAprobada in list)
-                    MensajeError = SolicitudAprobada.MensajeError;
-                if (MensajeError == -1)
-                {
-                    ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
-                    return PartialView("_AprobarSolicitudCredito");
-                }
-                else
-                {
-                    return RedirectToAction("Index");
-                }
-            }
-            catch (Exception Ex)
-            {
-                Ex.Message.ToString();
-                ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
-                return PartialView("_AprobarSolicitudCredito", EditSolicitudCredito);
-            }
-        }
+        //[HttpPost]
+        //public ActionResult UpdateSolicitudCredito(tbSolicitudCredito EditSolicitudCredito)
+        //{
+        //    try
+        //    {
+        //        var MensajeError = 0;
+        //        IEnumerable<object> list = null;
+        //        list = db.UDP_Vent_tbSolicitudCredito_Aprobar(
+        //                    EditSolicitudCredito.cred_Id,
+        //                    EditSolicitudCredito.escre_Id,
+        //                    EditSolicitudCredito.cred_FechaAprobacion,
+        //                    EditSolicitudCredito.cred_MontoSolicitado,
+        //                    EditSolicitudCredito.cred_MontoAprobado,
+        //                    EditSolicitudCredito.cred_DiasSolicitado,
+        //                    EditSolicitudCredito.cred_DiasAprobado,
+        //                    EditSolicitudCredito.cred_UsuarioCrea,
+        //                    EditSolicitudCredito.cred_FechaCrea,
+        //                    EditSolicitudCredito.cred_UsuarioModifica,
+        //                    EditSolicitudCredito.cred_FechaModifica);
+        //        foreach (UDP_Vent_tbSolicitudCredito_Aprobar_Result SolicitudAprobada in list)
+        //            //MensajeError = SolicitudAprobada.MensajeError;
+        //        if (MensajeError == -1)
+        //        {
+        //            ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+        //            return PartialView("_AprobarSolicitudCredito");
+        //        }
+        //        else
+        //        {
+        //            return RedirectToAction("Index");
+        //        }
+        //    }
+        //    catch (Exception Ex)
+        //    {
+        //        Ex.Message.ToString();
+        //        ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+        //        return PartialView("_AprobarSolicitudCredito", EditSolicitudCredito);
+        //    }
+        //}
         [HttpPost]
         public JsonResult DenegarSolCredito(int credID, byte Denegado)
         {

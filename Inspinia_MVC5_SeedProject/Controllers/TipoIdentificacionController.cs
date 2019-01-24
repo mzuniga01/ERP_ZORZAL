@@ -56,12 +56,12 @@ namespace ERP_ZORZAL.Controllers
                     //db.SaveChanges();
                     //return RedirectToAction("Index");
 
-                    var MensajeError = 0;
+                    var MensajeError = "";
                     IEnumerable<object> list = null;
                     list = db.UDP_Gral_tbTipoIdentificacion_Insert(tbTipoIdentificacion.tpi_Descripcion);
                     foreach (UDP_Gral_tbTipoIdentificacion_Insert_Result TipoIdentificacion in list)
                         MensajeError = TipoIdentificacion.MensajeError;
-                    if (MensajeError == -1)
+                    if (MensajeError == "-1")
                     {
                     }
                     else
@@ -110,12 +110,12 @@ namespace ERP_ZORZAL.Controllers
                 {
                     //////////Aqui va la lista//////////////
 
-                    var MensajeError = 0;
+                    var MensajeError = "";
                     IEnumerable<object> list = null;
                     list = db.UDP_Gral_tbTipoIdentificacion_Update(tbTipoIdentificacion.tpi_Id, tbTipoIdentificacion.tpi_Descripcion, tbTipoIdentificacion.tpi_UsuarioCrea, tbTipoIdentificacion.tpi_FechaCrea, tbTipoIdentificacion.tpi_UsuarioModifica, tbTipoIdentificacion.tpi_FechaModifica);
                     foreach (UDP_Gral_tbTipoIdentificacion_Update_Result TipoIdentificacion in list)
                         MensajeError = TipoIdentificacion.MensajeError;
-                    if (MensajeError == -1)
+                    if (MensajeError == "-1")
                     {
                     }
                     else

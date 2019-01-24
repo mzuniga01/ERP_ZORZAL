@@ -4153,20 +4153,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
   <Function Name="UDP_Vent_tbPuntoEmision_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="pemi_Id" Type="int" Mode="In" />
   </Function>
-  <Function Name="UDP_Vent_tbSolicitudCredito_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="cred_Id" Type="int" Mode="In" />
-    <Parameter Name="clte_Id" Type="int" Mode="In" />
-    <Parameter Name="escre_Id" Type="tinyint" Mode="In" />
-    <Parameter Name="cred_FechaSolicitud" Type="datetime" Mode="In" />
-    <Parameter Name="cred_FechaAprobacion" Type="datetime" Mode="In" />
-    <Parameter Name="cred_MontoSolicitado" Type="decimal" Mode="In" />
-    <Parameter Name="cred_MontoAprobado" Type="decimal" Mode="In" />
-    <Parameter Name="cred_DiasSolicitado" Type="int" Mode="In" />
-    <Parameter Name="cred_DiasAprobado" Type="int" Mode="In" />
-    <Parameter Name="cred_UsuarioModifica" Type="int" Mode="In" />
-    <Parameter Name="cred_FechaModifica" Type="datetime" Mode="In" />
-    <Parameter Name="VariableError" Type="int" Mode="InOut" />
-  </Function>
   <Function Name="SDP_tbMunicipio_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
     <Parameter Name="mun_Codigo" Type="char" Mode="In" />
   </Function>
@@ -5373,7 +5359,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <Parameter Name="cred_MontoSolicitado" Type="decimal" Mode="In" />
     <Parameter Name="cred_DiasSolicitado" Type="int" Mode="In" />
   </Function>
-  <Function Name="UDP_Vent_tbSolicitudCredito_Update1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent" StoreFunctionName="UDP_Vent_tbSolicitudCredito_Update">
+  <Function Name="UDP_Vent_tbSolicitudCredito_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="cred_Id" Type="int" Mode="In" />
     <Parameter Name="clte_Id" Type="int" Mode="In" />
     <Parameter Name="escre_Id" Type="tinyint" Mode="In" />

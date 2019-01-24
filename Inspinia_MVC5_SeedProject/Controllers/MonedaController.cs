@@ -57,12 +57,12 @@ namespace ERP_ZORZAL.Controllers
                 {
                     //////////Aqui va la lista//////////////
 
-                    var MensajeError = 0;
+                    var MensajeError = "";
                     IEnumerable<object> list = null;
                     list = db.UDP_Gral_tbMoneda_Insert(tbMoneda.mnda_Abreviatura, tbMoneda.mnda_Nombre);
                     foreach (UDP_Gral_tbMoneda_Insert_Result Moneda in list)
                         MensajeError = Moneda.MensajeError;
-                    if (MensajeError == -1)
+                    if (MensajeError == "-1")
                     {
                     }
                     else
@@ -116,12 +116,12 @@ namespace ERP_ZORZAL.Controllers
                    //    return RedirectToAction("Index");
 
 
-                    var MensajeError = 0;
+                    var MensajeError = "";
                     IEnumerable<object> list = null;
                     list = db.UDP_Gral_tbMoneda_Update(tbMoneda.mnda_Id, tbMoneda.mnda_Abreviatura, tbMoneda.mnda_Nombre, tbMoneda.mnda_UsuarioCrea,tbMoneda.mnda_FechaCrea, tbMoneda.mnda_UsuarioModifica, tbMoneda.mnda_FechaModifica);
                     foreach (UDP_Gral_tbMoneda_Update_Result Moneda in list)
                         MensajeError = Moneda.MensajeError;
-                    if (MensajeError == -1)
+                    if (MensajeError == "-1")
                     {
                     }
                     else

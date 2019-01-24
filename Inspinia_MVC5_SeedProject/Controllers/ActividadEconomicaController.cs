@@ -55,14 +55,14 @@ namespace ERP_ZORZAL.Controllers
                     //} db.tbActividadEconomica.Add(tbActividadEconomica);
                     //db.SaveChanges();
                     //return RedirectToAction("Index");
-                    var MensajeError = 0;
+                    var MensajeError = "";
                     IEnumerable<object> list = null;
                     list = db.UDP_Gral_tbActividadEconomica_Insert(tbActividadEconomica.acte_Descripcion);
 
                     foreach (UDP_Gral_tbActividadEconomica_Insert_Result ActividadEconomica in list)
                         MensajeError = ActividadEconomica.MensajeError;
 
-                    if (MensajeError == -1)
+                    if (MensajeError == "-1")
                     {
                     }
 
@@ -110,12 +110,12 @@ namespace ERP_ZORZAL.Controllers
                 {
                   
 
-                    var MensajeError = 0;
+                    var MensajeError = "";
                     IEnumerable<object> list = null;
                     list = db.UDP_Gral_tbActividadEconomica_Update(tbActividadEconomica.acte_Id, tbActividadEconomica.acte_Descripcion, tbActividadEconomica.acte_UsuarioCrea, tbActividadEconomica.acte_FechaCrea);
                     foreach (UDP_Gral_tbActividadEconomica_Update_Result ActividadEconomica in list)
                         MensajeError = ActividadEconomica.MensajeError;
-                    if (MensajeError == -1)
+                    if (MensajeError == "-1")
                     {
                     }
                     else

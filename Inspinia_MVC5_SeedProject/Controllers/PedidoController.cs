@@ -143,15 +143,15 @@ namespace ERP_ZORZAL.Controllers
                                             var pedds_Id = Convert.ToInt32(MensajeError);
                                             PedDetalle.ped_Id = pedds_Id;
 
-                                            PedDetalle.ped_Id = pedds_Id;
-                                            listPedidoDetalle = db.UDP_Vent_tbPedidoDetalle_Insert(
-                                                PedDetalle.ped_Id,
-                                                PedDetalle.prod_Codigo,
-                                                PedDetalle.pedd_Cantidad,
-                                                PedDetalle.pedd_CantidadFacturada);
-                                            foreach (UDP_Vent_tbPedidoDetalle_Insert_Result SPpedidodetalle in listPedidoDetalle)
+                                            //PedDetalle.ped_Id = pedds_Id;
+                                            //listPedidoDetalle = db.UDP_Vent_tbPedidoDetalle_Insert(
+                                            //    PedDetalle.ped_Id,
+                                            //    PedDetalle.prod_Codigo,
+                                            //    PedDetalle.pedd_Cantidad,
+                                            //    PedDetalle.pedd_CantidadFacturada);
+                                            //foreach (UDP_Vent_tbPedidoDetalle_Insert_Result SPpedidodetalle in listPedidoDetalle)
                                             {
-                                                MensajeErrorDetalle = SPpedidodetalle.MensajeError;
+                                                //MensajeErrorDetalle = SPpedidodetalle.MensajeError;
                                                 if (MensajeError == "-1")
                                                 {
                                                     ModelState.AddModelError("", "No se pudo agregar el registro detalle");
@@ -446,14 +446,14 @@ namespace ERP_ZORZAL.Controllers
                 //var MensajeError = 0;
                 string MensajeError = "";
                 IEnumerable<object> list = null;
-                list = db.UDP_Vent_tbPedidoDetalle_Update(
-                            EditPedidoDetalle.pedd_Id,
-                            EditPedidoDetalle.prod_Codigo,
-                            EditPedidoDetalle.pedd_Cantidad,
-                            EditPedidoDetalle.pedd_CantidadFacturada,
-                            EditPedidoDetalle.pedd_UsuarioCrea,
-                            EditPedidoDetalle.pedd_FechaCrea
-                    );
+                //list = db.UDP_Vent_tbPedidoDetalle_Update(
+                //            EditPedidoDetalle.pedd_Id,
+                //            EditPedidoDetalle.prod_Codigo,
+                //            EditPedidoDetalle.pedd_Cantidad,
+                //            EditPedidoDetalle.pedd_CantidadFacturada,
+                //            EditPedidoDetalle.pedd_UsuarioCrea,
+                //            EditPedidoDetalle.pedd_FechaCrea
+                //    );
 
                 foreach (UDP_Vent_tbPuntoEmisionDetalle_Update_Result PedidoDetalle in list)
                     MensajeError = PedidoDetalle.MensajeError;
