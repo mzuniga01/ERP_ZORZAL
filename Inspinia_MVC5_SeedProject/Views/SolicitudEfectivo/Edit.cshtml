@@ -40,7 +40,7 @@
 
                             @Html.ValidationSummary(true)
                             @Html.HiddenFor(model => model.solef_Id)
-                            @Html.Hidden("RedirectTo", Url.Action("Index", "SolicitudEfectivo"));
+                            @Html.Hidden("RedirectTo", Url.Action("Index", "SolicitudEfectivo"))
 
 
 
@@ -53,10 +53,6 @@
                             @Html.HiddenFor(model => model.tbUsuario.usu_Apellidos)
                             @Html.HiddenFor(model => model.tbUsuario2.usu_Nombres)
                             @Html.HiddenFor(model => model.tbUsuario2.usu_Apellidos)
-
-
-
-
 
 
                             <div class="form-group">
@@ -92,9 +88,13 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.mnda_Id, new { @class = "control-label col-md-2" })
                                 <div class="col-md-3">
-                                    @Html.DropDownList("mnda_Id", @*String.Empty*@ null, "Seleccione la Moneda", new { @class = "form-control" })                                  
-                                  
-           
+                                    @Html.DropDownList("mnda_Id", null, "Seleccione la Moneda", new { @class = "form-control" })
+
+                                    @*<select id="mnda_Id" name="mnda_Id" class="form-control select2 select2-hidden-accessible"
+                                                style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                            <option value="0">Seleccione la Moneda</option>
+                                        </select>*@
+
                                     @Html.ValidationMessageFor(model => model.mnda_Id, "", new { style = "Color:red" })
                                 </div>
 
@@ -107,23 +107,23 @@
                             </div>
 
 
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.solef_EsApertura, new { @class = "control-label col-md-2" })
-                                <div class="col-md-3">
-                                    @Html.CheckBoxFor(model => model.solef_EsApertura, new { onclick = "return false" })
-                                    @*@Html.DisplayFor(model => model.solef_EsApertura)*@
-                                    @Html.ValidationMessageFor(model => model.solef_EsApertura)
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.solef_EsAnulada, new { @class = "control-label col-md-2" })
-                                <div class="col-md-3">
-                                    @*@Html.EditorFor(model => model.solef_EsApertura)*@
-                                    @*@Html.CheckBoxFor(model => model.solef_EsAnulada)*@
-                                    @Html.CheckBoxFor(model => model.solef_EsAnulada, new { onclick = "return false" })
-                                    @Html.ValidationMessageFor(model => model.solef_EsAnulada)
-                                </div>
-                            </div>
+                            @*<div class="form-group">
+                                    @Html.LabelFor(model => model.solef_EsApertura, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-3">
+                                        @Html.CheckBoxFor(model => model.solef_EsApertura, new { onclick = "return false" })
+                                        @Html.DisplayFor(model => model.solef_EsApertura)
+                                        @Html.ValidationMessageFor(model => model.solef_EsApertura)
+                                    </div>
+                                </div>*@
+                            @*<div class="form-group">
+                                    @Html.LabelFor(model => model.solef_EsAnulada, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-3">
+                                        @Html.EditorFor(model => model.solef_EsApertura)
+                                        @Html.CheckBoxFor(model => model.solef_EsAnulada)
+                                        @Html.CheckBoxFor(model => model.solef_EsAnulada, new { onclick = "return false" })
+                                        @Html.ValidationMessageFor(model => model.solef_EsAnulada)
+                                    </div>
+                                </div>*@
 
                             <div class="form-group">
                                 <label class="control-label col-md-2">Total Solicitud</label>
@@ -137,24 +137,11 @@
 
 
 
-                            <div class="form-group">
-                                <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="Guardar" id="guardaencabezado" class="btn btn-primary" />
-                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
 
-                                    <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#Anular">
-                                        Anular
-                                    </button>
-                                    @*<div class="col-md-offset-10">
-                                        <button id="AñadirDenominacion" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalAgregarDetalle" data-backdrop="static" data-keyboard="false"><span>Agregar Denominación</span></button>
-                                    </div>*@
-                                </div>
-                            </div>
-                            
+
                             @Html.Partial("_IndexEditSolicitudEfectivoDetalle", Model.tbSolicitudEfectivoDetalle)
 
-
-                            <h4 style="color:dodgerblue">Solcitar Denominación</h4>
+                            <h4 style="color:dodgerblue">Solicitar Denominación</h4>
 
                             <div class="table table-responsive">
                                 <table class="table table-bordered" id="example1">
@@ -186,16 +173,28 @@
 
                                 </table>
                                 <div class="form-group">
-                                    <div class="col-md-offset-5 col-md-5">
-                                        <input type="submit" value="Solicitar" id="guardar" class="btn btn-primary" />
+                                    @*<div class="col-md-offset-5 col-md-5">
+                                            <input type="submit" value="Solicitar" id="guardar" class="btn btn-primary" />
 
-                                    </div>
+                                        </div>*@
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-5 col-md-10">
+                                    <input type="submit" value="Guardar" id="guardaencabezado" class="btn btn-primary" />
+                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
 
-
-
+                                    <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#Anular">
+                                        Anular
+                                    </button>
+                                    @*<div class="col-md-offset-10">
+                                            <button id="AñadirDenominacion" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalAgregarDetalle" data-backdrop="static" data-keyboard="false"><span>Agregar Denominación</span></button>
+                                        </div>*@
+                                </div>
+                            </div>
                         </div>
+
+
                     }
 
 
@@ -236,26 +235,26 @@
 
 @*------------------------Modal Agreagar Detalle-------------------- *@
 @*<div>
-    <div class="modal fade" id="ModalAgregarDetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog modal-lg " role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel">Agregar Denominación</h4>
-                </div>
-                <div class="modal-body" id="frmEditarMunicipios">
-                    <div>
-                        @Html.Partial("_IndexEditSolicitudEfectivoDetalle", Model.tbSolicitudEfectivoDetalle)
-                        @Html.Partial("_AddDetalle", Model.tbMoneda.tbDenominacion)
+        <div class="modal fade" id="ModalAgregarDetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog modal-lg " role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Agregar Denominación</h4>
                     </div>
-                    @Html.Partial("_CreateSolicitudEfectivoDetalle", new tbSolicitudEfectivoDetalle())
+                    <div class="modal-body" id="frmEditarMunicipios">
+                        <div>
+
+                            @Html.Partial("_AddDetalle", Model.tbMoneda.tbDenominacion)
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>*@
+    </div>*@
 
 
 @* -------------------Modal Anular---------------- *@
@@ -285,10 +284,6 @@
     @Scripts.Render("~/bundles/jqueryval")
 
     @* validación Readonly *@
-
-
-
-
 
     <script>
         var MontoSolicitado = 0;
@@ -335,15 +330,19 @@
 
     <script>
         if ($('#mitabla >tbody >tr').length == 0) {
+
             // $('#mnda_Id').hide().disabled = false;
           // $('#mnda_Id').attr("readOnly", "False");
-             document.getElementById("mnda_Id").disabled = false
+
+            document.getElementById("mnda_Id").disabled = false;
             // $('#mnda_Id').attr("readOnly", "readOnly");
            // alert("Puede!!");
         }
         else {
-            $('#mnda_Id').attr("disabled", "disabled");
-            document.getElementById("guardaencabezado").disabled = true
+            // $('#mnda_Id').attr("disabled", "disabled");
+           document.getElementById("mnda_Id").disabled = true;
+
+           // document.getElementById("guardaencabezado").disabled = true
 
             // alert('no puede');
         }
@@ -364,15 +363,41 @@
 
 
     @* ___________________________Tabla de Add Detalle_______________________________________________ *@
+
+    <script>
+
+        $(document).ready(function () {
+            $.ajax({
+                type: 'GET',
+                url: '/SolicitudEfectivo/GetModena',
+                datatype: 'JSON',
+                data: {},
+                success: function (data) {
+
+                    $.each(data, function (i, item) {
+                        $('#mnda_Id').append("<option value='" + item.mnda_Id + "'>" + item.Text + "</option>");
+                    });
+                },
+                error: function (data) { alert(data.responseText); }
+            });
+
+        });
+    </script>
+
+
     <script type="text/javascript">
+
      $(document).ready(function () {
          GetDenominacion()
-
-
      });
-         function GetDenominacion() {
+
+
+     function GetDenominacion() {
+         //  $("#mnda_Id").change(function ()
+
              var DENOID = $("#solef_Id").val();
              var idSolicitud = $("#solef_Id").val();
+
                 $.ajax({
                     type: 'GET',
                     url: '/SolicitudEfectivo/GetAddDenominacion',
@@ -397,7 +422,9 @@
                     },
                     error: function (data) { alert(data.responseText); }
                 });
-        };
+     };
+
+
     </script>
     @* ________________________________________Calculos_____________________________________ *@
     <script>
@@ -427,7 +454,7 @@
     @* ___________________________________________Guardar mas Detalle Denominación________________________________ *@
 
     <script>
-    $('#guardar').click(function () {
+        $('#guardaencabezado').click(function () {
 
                 var idmovimiento
                 var Detail = [];
@@ -472,8 +499,10 @@
 
                         }
                         else {
-                            location.reload();
-                            alert('Detalle Añadido CorrectaMnete');
+                            //location.reload();
+                            window.location.href = "/SolicitudEfectivo/Index";
+
+                            alert('Realizando Solicitud');
                             console.log(procesoData);
                             console.log(cantisoli);
                         }
