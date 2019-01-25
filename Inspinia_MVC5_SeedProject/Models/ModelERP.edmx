@@ -4102,6 +4102,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Parameter Name="obj_UsuarioModifica" Type="int" Mode="In" />
           <Parameter Name="obj_FechaModifica" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="UDP_Acce_tbRol_Inactivar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
+          <Parameter Name="IDRol" Type="int" Mode="In" />
+        </Function>
         <Function Name="UDP_Acce_tbRol_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
           <Parameter Name="rol_Descripcion" Type="varchar" Mode="In" />
           <Parameter Name="rol_Estado" Type="bit" Mode="In" />
@@ -4129,6 +4132,11 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Parameter Name="rolu_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="rolu_FechaCrea" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="UDP_Acce_tbUsuario_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
+          <Parameter Name="usu_Id" Type="nvarchar" Mode="In" />
+          <Parameter Name="usu_EsActivo" Type="bit" Mode="In" />
+          <Parameter Name="usu_RazonInactivo" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="UDP_Acce_tbUsuario_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
           <Parameter Name="usu_NombreUsuario" Type="varchar" Mode="In" />
           <Parameter Name="usu_Password" Type="varchar" Mode="In" />
@@ -4137,6 +4145,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Parameter Name="usu_Correo" Type="varchar" Mode="In" />
           <Parameter Name="suc_Id" Type="int" Mode="In" />
           <Parameter Name="emp_Id" Type="smallint" Mode="In" />
+        </Function>
+        <Function Name="UDP_Acce_tbUsuario_PasswordRestore" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
+          <Parameter Name="usu_Id" Type="int" Mode="In" />
+          <Parameter Name="usu_Password" Type="varchar" Mode="In" />
         </Function>
         <Function Name="UDP_Acce_tbUsuario_PasswordUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
           <Parameter Name="usu_Id" Type="int" Mode="In" />
@@ -4209,6 +4221,13 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
         <Function Name="UDP_Vent_tbPuntoEmision_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="pemi_Id" Type="int" Mode="In" />
         </Function>
+        <Function Name="SDP_Gral_tbEmpleado_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
+          <Parameter Name="emp_Id" Type="smallint" Mode="In" />
+        </Function>
+        <Function Name="SDP_tbEmpleado_Consulta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
+          <Parameter Name="emp_Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SDP_tbEmpleado_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral" />
         <Function Name="SDP_tbMunicipio_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
           <Parameter Name="mun_Codigo" Type="char" Mode="In" />
         </Function>
@@ -4433,14 +4452,29 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Parameter Name="uni_UsuarioModifica" Type="int" Mode="In" />
           <Parameter Name="uni_FechaModifica" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="ACtualizar_Cantidad_BOdegaDetalle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+          <Parameter Name="IDBodega" Type="int" Mode="In" />
+          <Parameter Name="IDProducto" Type="varchar" Mode="In" />
+          <Parameter Name="CantidadSolicitadad" Type="decimal" Mode="In" />
+          <Parameter Name="FechaElaboracion" Type="datetime" Mode="In" />
+          <Parameter Name="BodegaDestino" Type="int" Mode="In" />
+        </Function>
         <Function Name="crud_tbProductoSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="SDP_Inv_tbProducto_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv" />
         <Function Name="SDP_Inv_tbSalidaDetalle_Edit_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="sald_Id" Type="int" Mode="In" />
         </Function>
         <Function Name="SDP_Inv_tbSalidaDetalle_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="sald_Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SDP_tbentradadetalle_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+          <Parameter Name="entd_Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SDP_tbentradaImprimirCompra_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv" />
+        <Function Name="SDP_tbInventarioFisicoDetalle_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+          <Parameter Name="invfd_Id" Type="int" Mode="In" />
         </Function>
         <Function Name="SDP_tbProductoCategoria_tbProductoSubCategoria_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="pcat_Id" Type="int" Mode="In" />
@@ -4472,6 +4506,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
         <Function Name="spGetSubCategoriaProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="CodCategoria" Type="int" Mode="In" />
         </Function>
+        <Function Name="spGetSuCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+          <Parameter Name="pscat_Id" Type="int" Mode="In" />
+        </Function>
         <Function Name="spGetValue" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="pcat_Id" Type="int" Mode="In" />
           <Parameter Name="pscat_Id" Type="int" Mode="In" />
@@ -4482,6 +4519,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Parameter Name="bodega" Type="varchar" Mode="In" />
           <Parameter Name="Producto" Type="varchar" Mode="In" />
           <Parameter Name="Marca" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="UDP_Inv_SolicitarProducto_ValidacionPorBodega" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+          <Parameter Name="IDBodega" Type="int" Mode="In" />
+          <Parameter Name="IDProducto" Type="varchar" Mode="In" />
         </Function>
         <Function Name="UDP_Inv_tbBodega_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="bod_Nombre" Type="varchar" Mode="In" />
@@ -4503,6 +4544,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Parameter Name="bod_Fechacrea" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Inv_tbBodega_Update_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+          <Parameter Name="bod_Id" Type="int" Mode="In" />
+          <Parameter Name="bod_EsActiva" Type="tinyint" Mode="In" />
+        </Function>
+        <Function Name="UDP_Inv_tbBodega_Update_Estado_Validacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="bod_Id" Type="int" Mode="In" />
           <Parameter Name="bod_EsActiva" Type="tinyint" Mode="In" />
         </Function>
@@ -4533,6 +4578,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Parameter Name="bodd_FechaCrea" Type="datetime" Mode="In" />
           <Parameter Name="bodd_Costo" Type="decimal" Mode="In" />
           <Parameter Name="bodd_CostoPromedio" Type="decimal" Mode="In" />
+        </Function>
+        <Function Name="UDP_Inv_tbBox_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+          <Parameter Name="box_Codigo" Type="varchar" Mode="In" />
         </Function>
         <Function Name="UDP_Inv_tbBox_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="box_Codigo" Type="varchar" Mode="In" />
@@ -4610,6 +4658,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Parameter Name="bod_Id" Type="int" Mode="In" />
           <Parameter Name="estif_Id" Type="tinyint" Mode="In" />
           <Parameter Name="invf_FechaInventario" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="UDP_Inv_tbInventarioFisico_ListaProductos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+          <Parameter Name="bod_Id" Type="int" Mode="In" />
         </Function>
         <Function Name="UDP_Inv_tbInventarioFisico_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="invf_Id" Type="int" Mode="In" />
@@ -4764,6 +4815,19 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Parameter Name="sald_Cantidad" Type="decimal" Mode="In" />
           <Parameter Name="box_Codigo" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="UDP_Inv_tbTipoDevolucion_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+          <Parameter Name="tdev_Descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="tdev_UsuarioCrea" Type="int" Mode="In" />
+          <Parameter Name="tdev_FechaCrea" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="UDP_Inv_tbTipoDevolucion_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+          <Parameter Name="tdev_Id" Type="int" Mode="In" />
+          <Parameter Name="tdev_Descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="tdev_UsuarioCrea" Type="int" Mode="In" />
+          <Parameter Name="tdev_FechaCrea" Type="datetime" Mode="In" />
+          <Parameter Name="tdev_UsuarioModifica" Type="int" Mode="In" />
+          <Parameter Name="tdev_FechaModifica" Type="datetime" Mode="In" />
+        </Function>
         <Function Name="UDP_Inv_tbTipoEntrada_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="tent_Descripcion" Type="nvarchar" Mode="In" />
         </Function>
@@ -4788,6 +4852,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Parameter Name="IDProducto" Type="varchar" Mode="In" />
           <Parameter Name="FechaElaboracion" Type="datetime" Mode="In" />
           <Parameter Name="BodegaDestino" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CARLOS1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent" StoreFunctionName="CARLOS">
+          <Parameter Name="IDSOLICITUD" Type="int" Mode="In" />
         </Function>
         <Function Name="crud_tbExoneracionInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="exo_Documento" Type="nvarchar" Mode="In" />
@@ -4832,6 +4899,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Parameter Name="fecha" Type="varchar" Mode="In" />
           <Parameter Name="Caja" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="prueba" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="SOLICITUD_ID" Type="int" Mode="In" />
+        </Function>
         <Function Name="SDP_tbPedidoDetalle_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="pedd_Id" Type="int" Mode="In" />
         </Function>
@@ -4865,6 +4935,12 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
         </Function>
         <Function Name="UDF_Vent_RecuperacionBodegaID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent" ReturnType="int">
           <Parameter Name="ID_FACTURA_DETALLE" Type="smallint" Mode="In" />
+        </Function>
+        <Function Name="UDP_tbPedidoDetalle_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="pedd_Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UDP_tbPedidoDetalle_Select_Edit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="pedd_Id" Type="int" Mode="In" />
         </Function>
         <Function Name="UDP_Vent_FacturasPagoSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="fact_Id" Type="int" Mode="In" />
@@ -4948,6 +5024,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
         <Function Name="UDP_Vent_tbCuponDescuento_Anulado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="cdto_ID" Type="int" Mode="In" />
           <Parameter Name="cdto_Anulado" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="UDP_Vent_tbCuponDescuento_Imprimir" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="cdto_ID" Type="int" Mode="In" />
         </Function>
         <Function Name="UDP_Vent_tbCuponDescuento_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="suc_Id" Type="int" Mode="In" />
@@ -5221,6 +5300,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Parameter Name="listp_FechaFinalVigencia" Type="date" Mode="In" />
           <Parameter Name="listp_Prioridad" Type="smallint" Mode="In" />
         </Function>
+        <Function Name="UDP_Vent_tbListaPrecio_UltimaFechaVigente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="PRIORIDAD" Type="smallint" Mode="In" />
+        </Function>
         <Function Name="UDP_Vent_tbListaPrecio_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="listp_Id" Type="int" Mode="In" />
           <Parameter Name="listp_Nombre" Type="nvarchar" Mode="In" />
@@ -5290,6 +5372,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Parameter Name="nocre_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="nocre_FechaCrea" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="UDP_Vent_tbNotaCreditoSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent" />
         <Function Name="UDP_Vent_tbPago_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="fact_Id" Type="bigint" Mode="In" />
           <Parameter Name="tpa_Id" Type="smallint" Mode="In" />
@@ -5434,6 +5517,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Parameter Name="cred_MontoSolicitado" Type="decimal" Mode="In" />
           <Parameter Name="cred_DiasSolicitado" Type="int" Mode="In" />
         </Function>
+        <Function Name="UDP_Vent_tbSolicitudCredito_RolGerenteCreditosCobranza" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="UsuarioId" Type="varchar" Mode="In" />
+          <Parameter Name="password" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="UDP_Vent_tbSolicitudCredito_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="cred_Id" Type="int" Mode="In" />
           <Parameter Name="clte_Id" Type="int" Mode="In" />
@@ -5454,6 +5541,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Parameter Name="solef_EsApertura" Type="bit" Mode="In" />
           <Parameter Name="mnda_Id" Type="smallint" Mode="In" />
           <Parameter Name="solef_EsAnulada" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="UDP_Vent_tbSolicitudEfectivo_Details" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="IDSOLICITUD" Type="int" Mode="In" />
         </Function>
         <Function Name="UDP_Vent_tbSolicitudEfectivo_EsAnulada" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="solef_Id" Type="int" Mode="In" />
@@ -5545,6 +5635,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Parameter Name="tpa_Titular" Type="bit" Mode="In" />
           <Parameter Name="tpa_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="tpa_FechaCrea" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="UDP_Vent_vFacturaPago" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="clte_Id" Type="bigint" Mode="In" />
         </Function>
         <EntityContainer Name="ERP_ZORZALModelStoreContainer">
           <EntitySet Name="tbAccesoRol" EntityType="Self.tbAccesoRol" Schema="Acce" store:Type="Tables" />
@@ -6939,24 +7032,24 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="rol_Id" Mode="In" Type="Int32" />
             <Parameter Name="obj_Id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Acce_tbAccesoRol_Insert" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Acce_tbAccesoRol_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbAccesoRol_Insert_Result)">
             <Parameter Name="rol_Id" Mode="In" Type="Int32" />
             <Parameter Name="obj_Id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Acce_tbAccesoRol_Update" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Acce_tbAccesoRol_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbAccesoRol_Update_Result)">
             <Parameter Name="acrol_Id" Mode="In" Type="Int32" />
             <Parameter Name="rol_Id" Mode="In" Type="Int32" />
             <Parameter Name="obj_Id" Mode="In" Type="Int32" />
             <Parameter Name="acrol_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="acrol_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Acce_tbObjeto_Insert" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Acce_tbObjeto_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbObjeto_Insert_Result)">
             <Parameter Name="obj_Pantalla" Mode="In" Type="String" />
             <Parameter Name="obj_Referencia" Mode="In" Type="String" />
             <Parameter Name="obj_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="obj_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Acce_tbObjeto_Update" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Acce_tbObjeto_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbObjeto_Update_Result)">
             <Parameter Name="obj_Id" Mode="In" Type="Int32" />
             <Parameter Name="obj_Pantalla" Mode="In" Type="String" />
             <Parameter Name="obj_Referencia" Mode="In" Type="String" />
@@ -6965,36 +7058,36 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="obj_UsuarioModifica" Mode="In" Type="Int32" />
             <Parameter Name="obj_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Acce_tbObjeto_Update_Estado" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Acce_tbObjeto_Update_Estado" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbObjeto_Update_Estado_Result)">
             <Parameter Name="obj_Id" Mode="In" Type="Int32" />
             <Parameter Name="obj_Estado" Mode="In" Type="Boolean" />
             <Parameter Name="obj_UsuarioModifica" Mode="In" Type="Int32" />
             <Parameter Name="obj_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Acce_tbRol_Insert" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Acce_tbRol_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbRol_Insert_Result)">
             <Parameter Name="rol_Descripcion" Mode="In" Type="String" />
             <Parameter Name="rol_Estado" Mode="In" Type="Boolean" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Acce_tbRol_Update" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Acce_tbRol_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbRol_Update_Result)">
             <Parameter Name="rol_Id" Mode="In" Type="Int32" />
             <Parameter Name="rol_Descripcion" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Acce_tbRolEstado_Update" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Acce_tbRolEstado_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbRolEstado_Update_Result)">
             <Parameter Name="rol_Id" Mode="In" Type="Int32" />
             <Parameter Name="rol_Estado" Mode="In" Type="Boolean" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Acce_tbRolesUsuario_Insert" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Acce_tbRolesUsuario_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbRolesUsuario_Insert_Result)">
             <Parameter Name="usu_Id" Mode="In" Type="Int32" />
             <Parameter Name="rol_Id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Acce_tbRolesUsuario_Update" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Acce_tbRolesUsuario_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbRolesUsuario_Update_Result)">
             <Parameter Name="rolu_Id" Mode="In" Type="Int32" />
             <Parameter Name="rol_Id" Mode="In" Type="Int32" />
             <Parameter Name="usu_Id" Mode="In" Type="Int32" />
             <Parameter Name="rolu_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="rolu_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Acce_tbUsuario_Insert" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Acce_tbUsuario_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbUsuario_Insert_Result)">
             <Parameter Name="usu_NombreUsuario" Mode="In" Type="String" />
             <Parameter Name="usu_Password" Mode="In" Type="String" />
             <Parameter Name="usu_Nombres" Mode="In" Type="String" />
@@ -7003,12 +7096,12 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="suc_Id" Mode="In" Type="Int32" />
             <Parameter Name="emp_Id" Mode="In" Type="Int16" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Acce_tbUsuario_PasswordUpdate" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Acce_tbUsuario_PasswordUpdate" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbUsuario_PasswordUpdate_Result)">
             <Parameter Name="usu_Id" Mode="In" Type="Int32" />
             <Parameter Name="usu_Password" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Acce_tbUsuario_Select" ReturnType="Collection(String)" />
-          <FunctionImport Name="UDP_Acce_tbUsuario_Update" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Acce_tbUsuario_Select" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbUsuario_Select_Result)" />
+          <FunctionImport Name="UDP_Acce_tbUsuario_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbUsuario_Update_Result)">
             <Parameter Name="usu_Id" Mode="In" Type="Int32" />
             <Parameter Name="usu_NombreUsuario" Mode="In" Type="String" />
             <Parameter Name="usu_Nombres" Mode="In" Type="String" />
@@ -7025,13 +7118,13 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="ApellidosPadre" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="UDP_Gral_tbDenominacion_Select" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbDenominacion_Select_Result)" />
-          <FunctionImport Name="UDP_Gral_tbDepartamento_Insert" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Gral_tbDepartamento_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbDepartamento_Insert_Result)">
             <Parameter Name="dep_Codigo" Mode="In" Type="String" />
             <Parameter Name="dep_Nombre" Mode="In" Type="String" />
             <Parameter Name="dep_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="dep_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Gral_tbDepartamento_Update" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Gral_tbDepartamento_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbDepartamento_Update_Result)">
             <Parameter Name="dep_Codigo" Mode="In" Type="String" />
             <Parameter Name="dep_Nombre" Mode="In" Type="String" />
             <Parameter Name="dep_UsuarioCrea" Mode="In" Type="Int32" />
@@ -7043,7 +7136,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="emp_Id" Mode="In" Type="Int32" />
             <Parameter Name="emp_Estado" Mode="In" Type="Boolean" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Gral_tbEmpleados_Insert" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Gral_tbEmpleados_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbEmpleados_Insert_Result)">
             <Parameter Name="emp_Nombres" Mode="In" Type="String" />
             <Parameter Name="emp_Apellidos" Mode="In" Type="String" />
             <Parameter Name="emp_Sexo" Mode="In" Type="String" />
@@ -7057,7 +7150,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="emp_FechaIngreso" Mode="In" Type="DateTime" />
             <Parameter Name="emp_Direccion" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Gral_tbEmpleados_Update" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Gral_tbEmpleados_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbEmpleados_Update_Result)">
             <Parameter Name="emp_Id" Mode="In" Type="Int16" />
             <Parameter Name="emp_Nombres" Mode="In" Type="String" />
             <Parameter Name="emp_Apellidos" Mode="In" Type="String" />
@@ -7077,24 +7170,24 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="emp_RazonSalida" Mode="In" Type="String" />
             <Parameter Name="emp_fechaSalida" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Gral_tbMunicipio_Delete">
+          <FunctionImport Name="UDP_Gral_tbMunicipio_Delete" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbMunicipio_Delete_Result)">
           <Parameter Name="mun_Codigo" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Gral_tbMunicipio_Insert" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Gral_tbMunicipio_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbMunicipio_Insert_Result)">
             <Parameter Name="mun_Codigo" Mode="In" Type="String" />
             <Parameter Name="dep_Codigo" Mode="In" Type="String" />
             <Parameter Name="mun_Nombre" Mode="In" Type="String" />
             <Parameter Name="mun_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="mun_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Gral_tbMunicipio_Update" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Gral_tbMunicipio_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbMunicipio_Update_Result)">
             <Parameter Name="mun_Codigo" Mode="In" Type="String" />
             <Parameter Name="dep_Codigo" Mode="In" Type="String" />
             <Parameter Name="mun_Nombre" Mode="In" Type="String" />
             <Parameter Name="mun_UsuarioModifica" Mode="In" Type="Int32" />
             <Parameter Name="mun_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Gral_tbParametro_Insert" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Gral_tbParametro_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbParametro_Insert_Result)">
             <Parameter Name="par_Id" Mode="In" Type="Byte" />
             <Parameter Name="par_NombreEmpresa" Mode="In" Type="String" />
             <Parameter Name="par_TelefonoEmpresa" Mode="In" Type="String" />
@@ -7110,7 +7203,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="par_PorcentajeDescuentoTE" Mode="In" Type="Decimal" />
             <Parameter Name="par_IdConsumidorFinal" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Gral_tbParametro_Update" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Gral_tbParametro_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbParametro_Update_Result)">
             <Parameter Name="par_Id" Mode="In" Type="Byte" />
             <Parameter Name="par_NombreEmpresa" Mode="In" Type="String" />
             <Parameter Name="par_TelefonoEmpresa" Mode="In" Type="String" />
@@ -7128,13 +7221,13 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="par_PorcentajeDescuentoTE" Mode="In" Type="Decimal" />
             <Parameter Name="par_IdConsumidorFinal" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Gral_tbUnidadMedida_Insert" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Gral_tbUnidadMedida_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbUnidadMedida_Insert_Result)">
             <Parameter Name="uni_Descripcion" Mode="In" Type="String" />
             <Parameter Name="uni_Abreviatura" Mode="In" Type="String" />
             <Parameter Name="uni_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="uni_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Gral_tbUnidadMedida_Update" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Gral_tbUnidadMedida_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbUnidadMedida_Update_Result)">
             <Parameter Name="uni_Id" Mode="In" Type="Int32" />
             <Parameter Name="uni_Descripcion" Mode="In" Type="String" />
             <Parameter Name="uni_Abreviatura" Mode="In" Type="String" />
@@ -7155,7 +7248,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="Producto" Mode="In" Type="String" />
             <Parameter Name="Marca" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Inv_tbBodega_Insert" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Inv_tbBodega_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbBodega_Insert_Result)">
             <Parameter Name="bod_Nombre" Mode="In" Type="String" />
             <Parameter Name="bod_ResponsableBodega" Mode="In" Type="Int16" />
             <Parameter Name="bod_Direccion" Mode="In" Type="String" />
@@ -7163,7 +7256,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="bod_Telefono" Mode="In" Type="String" />
             <Parameter Name="mun_Codigo" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Inv_tbBodega_Update" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Inv_tbBodega_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbBodega_Update_Result)">
             <Parameter Name="bod_Id" Mode="In" Type="Int32" />
             <Parameter Name="bod_Nombre" Mode="In" Type="String" />
             <Parameter Name="bod_ResponsableBodega" Mode="In" Type="Int16" />
@@ -7174,11 +7267,11 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="bod_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="bod_Fechacrea" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Inv_tbBodega_Update_Estado" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Inv_tbBodega_Update_Estado" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbBodega_Update_Estado_Result)">
             <Parameter Name="bod_Id" Mode="In" Type="Int32" />
             <Parameter Name="bod_EsActiva" Mode="In" Type="Byte" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Inv_tbBodegaDetalle_Insert" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Inv_tbBodegaDetalle_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbBodegaDetalle_Insert_Result)">
             <Parameter Name="prod_Codigo" Mode="In" Type="String" />
             <Parameter Name="bod_Id" Mode="In" Type="Int32" />
             <Parameter Name="bodd_CantidadMinima" Mode="In" Type="Decimal" />
@@ -7187,7 +7280,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="bodd_Costo" Mode="In" Type="Decimal" />
             <Parameter Name="bodd_CostoPromedio" Mode="In" Type="Decimal" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Inv_tbBodegaDetalle_Update" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Inv_tbBodegaDetalle_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbBodegaDetalle_Update_Result)">
             <Parameter Name="bodd_Id" Mode="In" Type="Int32" />
             <Parameter Name="prod_Codigo" Mode="In" Type="String" />
             <Parameter Name="bod_Id" Mode="In" Type="Int32" />
@@ -7199,18 +7292,18 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="bodd_Costo" Mode="In" Type="Decimal" />
             <Parameter Name="bodd_CostoPromedio" Mode="In" Type="Decimal" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Inv_tbBox_Insert" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Inv_tbBox_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbBox_Insert_Result)">
             <Parameter Name="box_Codigo" Mode="In" Type="String" />
             <Parameter Name="box_Descripcion" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Inv_tbBox_Update" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Inv_tbBox_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbBox_Update_Result)">
             <Parameter Name="box_Codigo" Mode="In" Type="String" />
             <Parameter Name="box_Descripcion" Mode="In" Type="String" />
             <Parameter Name="box_Estado" Mode="In" Type="Boolean" />
             <Parameter Name="box_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="box_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Inv_tbEntrada_Insert" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Inv_tbEntrada_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEntrada_Insert_Result)">
             <Parameter Name="ent_FechaElaboracion" Mode="In" Type="DateTime" />
             <Parameter Name="bod_Id" Mode="In" Type="Int32" />
             <Parameter Name="estm_Id" Mode="In" Type="Byte" />
@@ -7222,7 +7315,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="ent_BodegaDestino" Mode="In" Type="Int32" />
             <Parameter Name="tent_Id" Mode="In" Type="Byte" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Inv_tbEntrada_Update" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Inv_tbEntrada_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEntrada_Update_Result)">
             <Parameter Name="ent_Id" Mode="In" Type="Int32" />
             <Parameter Name="ent_NumeroFormato" Mode="In" Type="String" />
             <Parameter Name="ent_FechaElaboracion" Mode="In" Type="DateTime" />
@@ -7237,38 +7330,38 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="ent_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="ent_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Inv_tbEntrada_Update_Estado" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Inv_tbEntrada_Update_Estado" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEntrada_Update_Estado_Result)">
             <Parameter Name="ent_Id" Mode="In" Type="Int32" />
             <Parameter Name="estm_Id" Mode="In" Type="Byte" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Inv_tbEntradaDetalle_Insert" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Inv_tbEntradaDetalle_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEntradaDetalle_Insert_Result)">
             <Parameter Name="ent_Id" Mode="In" Type="Int32" />
             <Parameter Name="prod_Codigo" Mode="In" Type="String" />
             <Parameter Name="entd_Cantidad" Mode="In" Type="Decimal" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Inv_tbEntradaDetalle_Update" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Inv_tbEntradaDetalle_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEntradaDetalle_Update_Result)">
             <Parameter Name="entd_Id" Mode="In" Type="Int32" />
             <Parameter Name="ent_Id" Mode="In" Type="Int32" />
             <Parameter Name="prod_Codigo" Mode="In" Type="String" />
             <Parameter Name="entd_Cantidad" Mode="In" Type="Decimal" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Inv_tbEstadoMovimiento_Insert" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Inv_tbEstadoMovimiento_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEstadoMovimiento_Insert_Result)">
           <Parameter Name="estm_Descripcion" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Inv_tbEstadoMovimiento_Update" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Inv_tbEstadoMovimiento_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEstadoMovimiento_Update_Result)">
             <Parameter Name="estm_Id" Mode="In" Type="Byte" />
             <Parameter Name="estm_Descripcion" Mode="In" Type="String" />
             <Parameter Name="estm_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="estm_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Inv_tbInventarioFisico_Insert" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Inv_tbInventarioFisico_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbInventarioFisico_Insert_Result)">
             <Parameter Name="invf_Descripcion" Mode="In" Type="String" />
             <Parameter Name="invf_ResponsableBodega" Mode="In" Type="String" />
             <Parameter Name="bod_Id" Mode="In" Type="Int32" />
             <Parameter Name="estif_Id" Mode="In" Type="Byte" />
             <Parameter Name="invf_FechaInventario" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Inv_tbInventarioFisico_Update" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Inv_tbInventarioFisico_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbInventarioFisico_Update_Result)">
             <Parameter Name="invf_Id" Mode="In" Type="Int32" />
             <Parameter Name="invf_Descripcion" Mode="In" Type="String" />
             <Parameter Name="invf_ResponsableBodega" Mode="In" Type="String" />
@@ -7278,14 +7371,14 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="invf_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="invf_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Inv_tbInventarioFisicoDetalle_Insert" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Inv_tbInventarioFisicoDetalle_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbInventarioFisicoDetalle_Insert_Result)">
             <Parameter Name="invf_Id" Mode="In" Type="Int32" />
             <Parameter Name="prod_Codigo" Mode="In" Type="String" />
             <Parameter Name="invfd_Cantidad" Mode="In" Type="Decimal" />
             <Parameter Name="invfd_CantidadSistema" Mode="In" Type="Decimal" />
             <Parameter Name="uni_Id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Inv_tbInventarioFisicoDetalle_Update" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Inv_tbInventarioFisicoDetalle_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbInventarioFisicoDetalle_Update_Result)">
             <Parameter Name="invfd_Id" Mode="In" Type="Int32" />
             <Parameter Name="invf_Id" Mode="In" Type="Int32" />
             <Parameter Name="prod_Codigo" Mode="In" Type="String" />
@@ -7293,7 +7386,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="invfd_CantidadSistema" Mode="In" Type="Decimal" />
             <Parameter Name="uni_Id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Inv_tbProducto_Insert" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Inv_tbProducto_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProducto_Insert_Result)">
             <Parameter Name="prod_Codigo" Mode="In" Type="String" />
             <Parameter Name="prod_Descripcion" Mode="In" Type="String" />
             <Parameter Name="prod_Marca" Mode="In" Type="String" />
@@ -7304,7 +7397,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="uni_Id" Mode="In" Type="Int32" />
             <Parameter Name="prod_CodigoBarras" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Inv_tbProducto_Update" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Inv_tbProducto_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProducto_Update_Result)">
             <Parameter Name="prod_Codigo" Mode="In" Type="String" />
             <Parameter Name="prod_Descripcion" Mode="In" Type="String" />
             <Parameter Name="prod_Marca" Mode="In" Type="String" />
@@ -7319,44 +7412,44 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="prod_Razon_Inactivacion" Mode="In" Type="String" />
             <Parameter Name="prod_CodigoBarras" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Inv_tbProductoCategoria_Delete" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Inv_tbProductoCategoria_Delete" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProductoCategoria_Delete_Result)">
           <Parameter Name="pcat_Id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Inv_tbProductoCategoria_Insert" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Inv_tbProductoCategoria_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProductoCategoria_Insert_Result)">
           <Parameter Name="pcat_Nombre" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Inv_tbProductoCategoria_Update" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Inv_tbProductoCategoria_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProductoCategoria_Update_Result)">
             <Parameter Name="pcat_Id" Mode="In" Type="Int32" />
             <Parameter Name="pcat_Nombre" Mode="In" Type="String" />
             <Parameter Name="pcat_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="pcat_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Inv_tbProductoCategoria_Update_Estado" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Inv_tbProductoCategoria_Update_Estado" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProductoCategoria_Update_Estado_Result)">
             <Parameter Name="pcat_Id" Mode="In" Type="Int32" />
             <Parameter Name="ESTADO" Mode="In" Type="Byte" />
           </FunctionImport>
           <FunctionImport Name="UDP_Inv_tbProductoCategoriaSubCate_Delete" ReturnType="Collection(String)">
           <Parameter Name="pcat_Id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Inv_tbProductoSubCategoria_Delete" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Inv_tbProductoSubCategoria_Delete" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProductoSubCategoria_Delete_Result)">
           <Parameter Name="pscat_Id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Inv_tbProductoSubcategoria_Insert" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Inv_tbProductoSubcategoria_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProductoSubcategoria_Insert_Result)">
             <Parameter Name="pscat_Descripcion" Mode="In" Type="String" />
             <Parameter Name="pcat_Id" Mode="In" Type="Int32" />
             <Parameter Name="pscat_ISV" Mode="In" Type="Decimal" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Inv_tbProductoSubcategoria_Update" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Inv_tbProductoSubcategoria_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProductoSubcategoria_Update_Result)">
             <Parameter Name="pscat_Id" Mode="In" Type="Int32" />
             <Parameter Name="pscat_Descripcion" Mode="In" Type="String" />
             <Parameter Name="pcat_Id" Mode="In" Type="Int32" />
             <Parameter Name="pscat_ISV" Mode="In" Type="Decimal" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Inv_tbProductoSubCategoria_Update_Estado" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Inv_tbProductoSubCategoria_Update_Estado" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProductoSubCategoria_Update_Estado_Result)">
             <Parameter Name="pscat_Id" Mode="In" Type="Int32" />
             <Parameter Name="pscat_EsActiva" Mode="In" Type="Byte" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Inv_tbProveedor_Insert" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Inv_tbProveedor_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProveedor_Insert_Result)">
             <Parameter Name="prov_Nombre" Mode="In" Type="String" />
             <Parameter Name="prov_NombreContacto" Mode="In" Type="String" />
             <Parameter Name="prov_Direccion" Mode="In" Type="String" />
@@ -7364,7 +7457,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="prov_Telefono" Mode="In" Type="String" />
             <Parameter Name="prov_RTN" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Inv_tbProveedor_Update" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Inv_tbProveedor_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProveedor_Update_Result)">
             <Parameter Name="prov_Id" Mode="In" Type="Int32" />
             <Parameter Name="prov_Nombre" Mode="In" Type="String" />
             <Parameter Name="prov_NombreContacto" Mode="In" Type="String" />
@@ -7374,7 +7467,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="prov_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="prov_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Inv_tbSalida_Insert" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Inv_tbSalida_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbSalida_Insert_Result)">
             <Parameter Name="bod_Id" Mode="In" Type="Int32" />
             <Parameter Name="fact_Id" Mode="In" Type="Int64" />
             <Parameter Name="sal_FechaElaboracion" Mode="In" Type="DateTime" />
@@ -7385,7 +7478,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="sal_RazonDevolucion" Mode="In" Type="String" />
             <Parameter Name="sal_RazonAnulada" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Inv_tbSalida_Update" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Inv_tbSalida_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbSalida_Update_Result)">
             <Parameter Name="sal_Id" Mode="In" Type="Int32" />
             <Parameter Name="bod_Id" Mode="In" Type="Int32" />
             <Parameter Name="fact_Id" Mode="In" Type="Int64" />
@@ -7399,32 +7492,32 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="sal_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="sal_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Inv_tbSalidaDetalle_Insert" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Inv_tbSalidaDetalle_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbSalidaDetalle_Insert_Result)">
             <Parameter Name="sal_Id" Mode="In" Type="Int32" />
             <Parameter Name="prod_Codigo" Mode="In" Type="String" />
             <Parameter Name="sald_Cantidad" Mode="In" Type="Decimal" />
             <Parameter Name="box_Codigo" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Inv_tbSalidaDetalle_Update" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Inv_tbSalidaDetalle_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbSalidaDetalle_Update_Result)">
             <Parameter Name="sald_Id" Mode="In" Type="Int32" />
             <Parameter Name="sal_Id" Mode="In" Type="Int32" />
             <Parameter Name="prod_Codigo" Mode="In" Type="String" />
             <Parameter Name="sald_Cantidad" Mode="In" Type="Decimal" />
             <Parameter Name="box_Codigo" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Inv_tbTipoEntrada_Insert" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Inv_tbTipoEntrada_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbTipoEntrada_Insert_Result)">
           <Parameter Name="tent_Descripcion" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Inv_tbTipoEntrada_Update" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Inv_tbTipoEntrada_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbTipoEntrada_Update_Result)">
             <Parameter Name="tent_Id" Mode="In" Type="Byte" />
             <Parameter Name="tent_Descripcion" Mode="In" Type="String" />
             <Parameter Name="tent_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="tent_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Inv_tbTipoSalida_Insert" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Inv_tbTipoSalida_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbTipoSalida_Insert_Result)">
           <Parameter Name="tsal_Descripcion" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Inv_tbTipoSalida_Update" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Inv_tbTipoSalida_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbTipoSalida_Update_Result)">
             <Parameter Name="tsal_Id" Mode="In" Type="Byte" />
             <Parameter Name="tsal_Descripcion" Mode="In" Type="String" />
             <Parameter Name="tsal_UsuarioCrea" Mode="In" Type="Int32" />
@@ -7605,10 +7698,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="bod_Id" Mode="In" Type="Int32" />
             <Parameter Name="prod_Codigo" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Inv_tbEstadoMovimiento_Delete" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Inv_tbEstadoMovimiento_Delete" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEstadoMovimiento_Delete_Result)">
           <Parameter Name="estm_Id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Inv_ValidacionCantidadExistente" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Inv_ValidacionCantidadExistente" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_ValidacionCantidadExistente_Result)">
             <Parameter Name="CantidadSolicitadad" Mode="In" Type="Decimal" />
             <Parameter Name="IDBodega" Mode="In" Type="Int32" />
             <Parameter Name="IDProducto" Mode="In" Type="String" />
@@ -7693,19 +7786,19 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <FunctionImport Name="spGetSubCategoriaProducto" ReturnType="Collection(ERP_ZORZALModel.spGetSubCategoriaProducto_Result)">
           <Parameter Name="CodCategoria" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Inv_tbBodegaDetalle_Delete" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Inv_tbBodegaDetalle_Delete" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbBodegaDetalle_Delete_Result)">
           <Parameter Name="bodd_Id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Inv_tbEntrada_Update_Anular" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Inv_tbEntrada_Update_Anular" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEntrada_Update_Anular_Result)">
             <Parameter Name="ent_Id" Mode="In" Type="Int32" />
             <Parameter Name="entd_EsAnulada" Mode="In" Type="Byte" />
             <Parameter Name="entd_RazonAnulada" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Inv_tbInventarioFisico_Update_Estado" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Inv_tbInventarioFisico_Update_Estado" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbInventarioFisico_Update_Estado_Result)">
             <Parameter Name="invf_Id" Mode="In" Type="Int32" />
             <Parameter Name="estif_Id" Mode="In" Type="Byte" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Inv_tbProducto_Estado" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Inv_tbProducto_Estado" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProducto_Estado_Result)">
             <Parameter Name="prod_Codigo" Mode="In" Type="String" />
             <Parameter Name="prod_EsActivo" Mode="In" Type="Boolean" />
             <Parameter Name="prod_Razon_Inactivacion" Mode="In" Type="String" />
@@ -7792,7 +7885,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <FunctionImport Name="spGetProducto_BodegaDetalle" ReturnType="Collection(ERP_ZORZALModel.spGetProducto_BodegaDetalle_Result)">
           <Parameter Name="prod_CodigoBarras" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Inv_tbSalidaDetalle_Delete" ReturnType="Collection(Int32)">
+          <FunctionImport Name="UDP_Inv_tbSalidaDetalle_Delete" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbSalidaDetalle_Delete_Result)">
           <Parameter Name="sald_Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="spGetParametro" ReturnType="Collection(ERP_ZORZALModel.spGetParametro_Result)" />
@@ -9178,7 +9271,100 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <End Role="tbSalidaDetalle" EntitySet="tbSalidaDetalle" />
           </AssociationSet>
           <FunctionImport Name="UDP_Vent_tbDevolucion_GetDetalle" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDevolucion_GetDetalle_Result)">
-            <Parameter Name="DEVOLUCION_ID" Mode="In" Type="Int64" />
+          <Parameter Name="DEVOLUCION_ID" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Acce_tbRol_Inactivar" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbRol_Inactivar_Result)">
+            <Parameter Name="IDRol" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Acce_tbUsuario_Estado" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbUsuario_Estado_Result)">
+            <Parameter Name="usu_Id" Mode="In" Type="String" />
+            <Parameter Name="usu_EsActivo" Mode="In" Type="Boolean" />
+            <Parameter Name="usu_RazonInactivo" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Acce_tbUsuario_PasswordRestore" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbUsuario_PasswordRestore_Result)">
+            <Parameter Name="usu_Id" Mode="In" Type="Int32" />
+            <Parameter Name="usu_Password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SDP_Gral_tbEmpleado_Select">
+            <Parameter Name="emp_Id" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="SDP_tbEmpleado_Consulta" ReturnType="Collection(ERP_ZORZALModel.SDP_tbEmpleado_Consulta_Result)">
+            <Parameter Name="emp_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SDP_tbEmpleado_Select" ReturnType="Collection(ERP_ZORZALModel.SDP_tbEmpleado_Select_Result)" />
+          <FunctionImport Name="ACtualizar_Cantidad_BOdegaDetalle" ReturnType="Collection(String)">
+            <Parameter Name="IDBodega" Mode="In" Type="Int32" />
+            <Parameter Name="IDProducto" Mode="In" Type="String" />
+            <Parameter Name="CantidadSolicitadad" Mode="In" Type="Decimal" />
+            <Parameter Name="FechaElaboracion" Mode="In" Type="DateTime" />
+            <Parameter Name="BodegaDestino" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SDP_Inv_tbProducto_Select" ReturnType="Collection(ERP_ZORZALModel.SDP_Inv_tbProducto_Select_Result)" />
+          <FunctionImport Name="SDP_tbentradadetalle_Select" ReturnType="Collection(ERP_ZORZALModel.SDP_tbentradadetalle_Select_Result)">
+            <Parameter Name="entd_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SDP_tbentradaImprimirCompra_Select" ReturnType="Collection(ERP_ZORZALModel.SDP_tbentradaImprimirCompra_Select_Result)" />
+          <FunctionImport Name="SDP_tbInventarioFisicoDetalle_Select" ReturnType="Collection(ERP_ZORZALModel.SDP_tbInventarioFisicoDetalle_Select_Result)">
+            <Parameter Name="invfd_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spGetSuCategoria" ReturnType="Collection(ERP_ZORZALModel.spGetSuCategoria_Result)">
+            <Parameter Name="pscat_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Inv_SolicitarProducto_ValidacionPorBodega" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_SolicitarProducto_ValidacionPorBodega_Result)">
+            <Parameter Name="IDBodega" Mode="In" Type="Int32" />
+            <Parameter Name="IDProducto" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Inv_tbBodega_Update_Estado_Validacion" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbBodega_Update_Estado_Validacion_Result)">
+            <Parameter Name="bod_Id" Mode="In" Type="Int32" />
+            <Parameter Name="bod_EsActiva" Mode="In" Type="Byte" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Inv_tbBox_Delete" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbBox_Delete_Result)">
+            <Parameter Name="box_Codigo" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Inv_tbInventarioFisico_ListaProductos" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbInventarioFisico_ListaProductos_Result)">
+            <Parameter Name="bod_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Inv_tbTipoDevolucion_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbTipoDevolucion_Insert_Result)">
+            <Parameter Name="tdev_Descripcion" Mode="In" Type="String" />
+            <Parameter Name="tdev_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="tdev_FechaCrea" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Inv_tbTipoDevolucion_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbTipoDevolucion_Update_Result)">
+            <Parameter Name="tdev_Id" Mode="In" Type="Int32" />
+            <Parameter Name="tdev_Descripcion" Mode="In" Type="String" />
+            <Parameter Name="tdev_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="tdev_FechaCrea" Mode="In" Type="DateTime" />
+            <Parameter Name="tdev_UsuarioModifica" Mode="In" Type="Int32" />
+            <Parameter Name="tdev_FechaModifica" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="CARLOS1" ReturnType="Collection(ERP_ZORZALModel.CARLOS1_Result)">
+            <Parameter Name="IDSOLICITUD" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="prueba" ReturnType="Collection(ERP_ZORZALModel.prueba_Result)">
+            <Parameter Name="SOLICITUD_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_tbPedidoDetalle_Select" ReturnType="Collection(ERP_ZORZALModel.UDP_tbPedidoDetalle_Select_Result)">
+            <Parameter Name="pedd_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_tbPedidoDetalle_Select_Edit" ReturnType="Collection(ERP_ZORZALModel.UDP_tbPedidoDetalle_Select_Edit_Result)">
+            <Parameter Name="pedd_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbCuponDescuento_Imprimir" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbCuponDescuento_Imprimir_Result)">
+            <Parameter Name="cdto_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbListaPrecio_UltimaFechaVigente" ReturnType="Collection(DateTime)">
+            <Parameter Name="PRIORIDAD" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbNotaCreditoSelect" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbNotaCreditoSelect_Result)" />
+          <FunctionImport Name="UDP_Vent_tbSolicitudCredito_RolGerenteCreditosCobranza" ReturnType="Collection(Boolean)">
+            <Parameter Name="UsuarioId" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbSolicitudEfectivo_Details" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivo_Details_Result)">
+            <Parameter Name="IDSOLICITUD" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_vFacturaPago" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_vFacturaPago_Result)">
+            <Parameter Name="clte_Id" Mode="In" Type="Int64" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
@@ -14310,6 +14496,412 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Property Type="Int64" Name="fact_Id" Nullable="false" />
           <Property Type="DateTime" Name="dev_Fecha" Nullable="false" Precision="23" />
         </ComplexType>
+        <ComplexType Name="SDP_tbEmpleado_Consulta_Result">
+          <Property Type="Int16" Name="emp_Id" Nullable="false" />
+          <Property Type="String" Name="emp_Nombres" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="emp_Apellidos" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="emp_Sexo" Nullable="false" MaxLength="1" />
+          <Property Type="DateTime" Name="emp_FechaNacimiento" Nullable="false" Precision="23" />
+          <Property Type="Byte" Name="tpi_Id" Nullable="false" />
+          <Property Type="String" Name="emp_Identificacion" Nullable="false" MaxLength="14" />
+          <Property Type="String" Name="emp_Telefono" Nullable="false" MaxLength="25" />
+          <Property Type="String" Name="emp_Correoelectronico" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="emp_TipoSangre" Nullable="false" MaxLength="2" />
+          <Property Type="String" Name="emp_Puesto" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="emp_FechaIngreso" Nullable="false" />
+          <Property Type="String" Name="emp_Direccion" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="emp_RazonInactivacion" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="emp_UsuarioCrea" Nullable="false" />
+          <Property Type="DateTime" Name="emp_FechaCrea" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="emp_UsuarioModifica" Nullable="true" />
+          <Property Type="DateTime" Name="emp_FechaModifica" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="emp_Estado" Nullable="false" />
+          <Property Type="String" Name="emp_RazonSalida" Nullable="true" MaxLength="250" />
+          <Property Type="DateTime" Name="emp_FechaDeSalida" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SDP_tbEmpleado_Select_Result">
+          <Property Type="Int16" Name="emp_Id" Nullable="false" />
+          <Property Type="String" Name="emp_Nombres" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="emp_Apellidos" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="emp_Sexo" Nullable="false" MaxLength="1" />
+          <Property Type="DateTime" Name="emp_FechaNacimiento" Nullable="false" Precision="23" />
+          <Property Type="Byte" Name="tpi_Id" Nullable="false" />
+          <Property Type="String" Name="emp_Identificacion" Nullable="false" MaxLength="14" />
+          <Property Type="String" Name="emp_Telefono" Nullable="false" MaxLength="25" />
+          <Property Type="String" Name="emp_Correoelectronico" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="emp_TipoSangre" Nullable="false" MaxLength="2" />
+          <Property Type="String" Name="emp_Puesto" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="emp_FechaIngreso" Nullable="false" />
+          <Property Type="String" Name="emp_Direccion" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="emp_RazonInactivacion" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="emp_UsuarioCrea" Nullable="false" />
+          <Property Type="DateTime" Name="emp_FechaCrea" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="emp_UsuarioModifica" Nullable="true" />
+          <Property Type="DateTime" Name="emp_FechaModifica" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="emp_Estado" Nullable="false" />
+          <Property Type="String" Name="emp_RazonSalida" Nullable="true" MaxLength="250" />
+          <Property Type="DateTime" Name="emp_FechaDeSalida" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SDP_Inv_tbProducto_Select_Result">
+          <Property Type="String" Name="prod_CodigoBarras" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="prod_Descripcion" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="prod_Marca" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="prod_Modelo" Nullable="false" MaxLength="25" />
+          <Property Type="String" Name="prod_Talla" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="prod_Color" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="pcat_Nombre" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="pscat_Descripcion" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="uni_Descripcion" Nullable="false" MaxLength="150" />
+        </ComplexType>
+        <ComplexType Name="SDP_tbentradadetalle_Select_Result">
+          <Property Type="Int32" Name="entd_Id" Nullable="false" />
+          <Property Type="Int32" Name="ent_Id" Nullable="false" />
+          <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
+          <Property Type="Decimal" Name="entd_Cantidad" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Int32" Name="entd_UsuarioCrea" Nullable="false" />
+          <Property Type="DateTime" Name="entd_FechaCrea" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="entd_UsuarioModifica" Nullable="true" />
+          <Property Type="DateTime" Name="entd_FechaModifica" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="SDP_tbentradaImprimirCompra_Select_Result">
+          <Property Type="String" Name="ent_NumeroFormato" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="bod_Nombre" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="ent_FechaElaboracion" Nullable="false" Precision="23" />
+          <Property Type="String" Name="prov_Nombre" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="estm_Descripcion" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="ent_FacturaCompra" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="ent_FechaCompra" Nullable="true" Precision="23" />
+          <Property Type="String" Name="tdev_descripcion" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="fact_Id" Nullable="true" />
+          <Property Type="Int32" Name="ent_BodegaDestino" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SDP_tbInventarioFisicoDetalle_Select_Result">
+          <Property Type="Int32" Name="invfd_Id" Nullable="false" />
+          <Property Type="Int32" Name="invf_Id" Nullable="false" />
+          <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
+          <Property Type="Decimal" Name="invfd_Cantidad" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="invfd_CantidadSistema" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Int32" Name="uni_Id" Nullable="false" />
+          <Property Type="Int32" Name="invfd_UsuarioCrea" Nullable="false" />
+          <Property Type="DateTime" Name="invfd_FechaCrea" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="invfd_UsuarioModifica" Nullable="true" />
+          <Property Type="DateTime" Name="invfd_FechaModifica" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="spGetSuCategoria_Result">
+          <Property Type="Int32" Name="pcat_Id" Nullable="false" />
+          <Property Type="String" Name="pcat_Nombre" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="pscat_Id" Nullable="false" />
+          <Property Type="String" Name="pscat_Descripcion" Nullable="true" MaxLength="150" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbInventarioFisico_ListaProductos_Result">
+          <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="prod_Descripcion" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="prod_Marca" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="prod_CodigoBarras" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="prod_Modelo" Nullable="false" MaxLength="25" />
+          <Property Type="Int32" Name="uni_Id" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="CARLOS1_Result">
+          <Property Type="Int16" Name="denoId" Nullable="false" />
+          <Property Type="String" Name="DenoDescripcion" Nullable="false" MaxLength="50" />
+          <Property Type="Decimal" Name="valor" Nullable="false" Precision="10" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="prueba_Result">
+          <Property Type="Int16" Name="denoId" Nullable="false" />
+          <Property Type="String" Name="DenoDescripcion" Nullable="false" MaxLength="50" />
+          <Property Type="Decimal" Name="valor" Nullable="false" Precision="10" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="UDP_tbPedidoDetalle_Select_Result">
+          <Property Type="Int32" Name="pedd_Id" Nullable="false" />
+          <Property Type="Int32" Name="ped_Id" Nullable="false" />
+          <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
+          <Property Type="Decimal" Name="pedd_Cantidad" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="pedd_CantidadFacturada" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Int32" Name="pedd_UsuarioCrea" Nullable="false" />
+          <Property Type="DateTime" Name="pedd_FechaCrea" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="pedd_UsuarioModifica" Nullable="true" />
+          <Property Type="DateTime" Name="pedd_FechaModifica" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="UDP_tbPedidoDetalle_Select_Edit_Result">
+          <Property Type="Int32" Name="pedd_Id" Nullable="false" />
+          <Property Type="Int32" Name="ped_Id" Nullable="false" />
+          <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
+          <Property Type="Decimal" Name="pedd_Cantidad" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="pedd_CantidadFacturada" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Int32" Name="pedd_UsuarioCrea" Nullable="false" />
+          <Property Type="DateTime" Name="pedd_FechaCrea" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="pedd_UsuarioModifica" Nullable="true" />
+          <Property Type="DateTime" Name="pedd_FechaModifica" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbCuponDescuento_Imprimir_Result">
+          <Property Type="Int32" Name="cdto_ID" Nullable="false" />
+          <Property Type="Int32" Name="suc_Id" Nullable="false" />
+          <Property Type="DateTime" Name="cdto_FechaEmision" Nullable="false" />
+          <Property Type="DateTime" Name="cdto_FechaVencimiento" Nullable="false" />
+          <Property Type="Decimal" Name="cdto_PorcentajeDescuento" Nullable="true" Precision="5" Scale="2" />
+          <Property Type="Decimal" Name="cdto_MaximoMontoDescuento" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="cdto_MontoDescuento" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="cdto_CantidadCompraMinima" Nullable="false" Precision="10" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbNotaCreditoSelect_Result">
+          <Property Type="String" Name="nocre_Codigo" Nullable="false" MaxLength="19" />
+          <Property Type="Decimal" Name="nocre_Monto" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Boolean" Name="nocre_Redimido" Nullable="false" />
+          <Property Type="Boolean" Name="nocre_EsImpreso" Nullable="false" />
+          <Property Type="Boolean" Name="nocre_Anulado" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbSolicitudEfectivo_Details_Result">
+          <Property Type="Int16" Name="mnda_Id" Nullable="false" />
+          <Property Type="Int16" Name="deno_Id" Nullable="false" />
+          <Property Type="String" Name="deno_Descripcion" Nullable="false" MaxLength="50" />
+          <Property Type="Int16" Name="soled_CantidadSolicitada" Nullable="false" />
+          <Property Type="Decimal" Name="MontoSolicitado" Nullable="true" Precision="16" Scale="2" />
+          <Property Type="Int16" Name="soled_CantidadEntregada" Nullable="false" />
+          <Property Type="Decimal" Name="MontoEntregado" Nullable="true" Precision="16" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_vFacturaPago_Result">
+          <Property Type="Int64" Name="fact_Id" Nullable="false" />
+          <Property Type="Int32" Name="clte_Id" Nullable="false" />
+          <Property Type="String" Name="fact_Codigo" Nullable="false" MaxLength="19" />
+          <Property Type="Decimal" Name="MontoFactura" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="TotalPagado" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="SaldoFactura" Nullable="true" Precision="18" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_ValidacionCantidadExistente_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbTipoSalida_Update_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbTipoSalida_Insert_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbTipoEntrada_Update_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbTipoEntrada_Insert_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbTipoDevolucion_Update_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbTipoDevolucion_Insert_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbSalidaDetalle_Update_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbSalidaDetalle_Insert_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbSalidaDetalle_Delete_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbSalida_Update_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbSalida_Insert_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbProveedor_Update_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbProveedor_Insert_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbProductoSubCategoria_Update_Estado_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbProductoSubcategoria_Update_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbProductoSubcategoria_Insert_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbProductoSubCategoria_Delete_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="4000" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbProductoCategoria_Update_Estado_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbProductoCategoria_Update_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbProductoCategoria_Insert_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbProductoCategoria_Delete_Result">
+          <Property Type="String" Name="MensajeError" Nullable="false" MaxLength="69" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbProducto_Update_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbProducto_Insert_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbProducto_Estado_Result">
+          <Property Type="String" Name="MensajeError" Nullable="false" MaxLength="15" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbInventarioFisicoDetalle_Update_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbInventarioFisicoDetalle_Insert_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbInventarioFisico_Update_Estado_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbInventarioFisico_Update_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbInventarioFisico_Insert_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbEstadoMovimiento_Update_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbEstadoMovimiento_Insert_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbEstadoMovimiento_Delete_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbEntradaDetalle_Update_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbEntradaDetalle_Insert_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbEntrada_Update_Estado_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbEntrada_Update_Anular_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbEntrada_Update_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbEntrada_Insert_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbBox_Update_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbBox_Insert_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbBox_Delete_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbBodegaDetalle_Update_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbBodegaDetalle_Insert_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbBodegaDetalle_Delete_Result">
+          <Property Type="String" Name="MensajeError" Nullable="false" MaxLength="56" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbBodega_Update_Estado_Validacion_Result">
+          <Property Type="String" Name="MensajeError" Nullable="false" MaxLength="44" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbBodega_Update_Estado_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbBodega_Update_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbBodega_Insert_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_SolicitarProducto_ValidacionPorBodega_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="25" />
+        </ComplexType>
+        <ComplexType Name="UDP_Gral_tbUnidadMedida_Update_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Gral_tbUnidadMedida_Insert_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Gral_tbParametro_Update_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Gral_tbParametro_Insert_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Gral_tbMunicipio_Update_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Gral_tbMunicipio_Insert_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Gral_tbMunicipio_Delete_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Gral_tbEmpleados_Update_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Gral_tbEmpleados_Insert_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Gral_tbDepartamento_Update_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Gral_tbDepartamento_Insert_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Acce_tbUsuario_Update_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Acce_tbUsuario_Select_Result">
+          <Property Type="String" Name="usu_NombreUsuario" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="UDP_Acce_tbUsuario_PasswordUpdate_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Acce_tbUsuario_PasswordRestore_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Acce_tbUsuario_Insert_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Acce_tbUsuario_Estado_Result">
+          <Property Type="Int32" Name="MensajeError" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="UDP_Acce_tbRolesUsuario_Update_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Acce_tbRolesUsuario_Insert_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Acce_tbRolEstado_Update_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Acce_tbRol_Update_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Acce_tbRol_Insert_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Acce_tbRol_Inactivar_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="2" />
+        </ComplexType>
+        <ComplexType Name="UDP_Acce_tbObjeto_Update_Estado_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Acce_tbObjeto_Update_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Acce_tbObjeto_Insert_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Acce_tbAccesoRol_Update_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Acce_tbAccesoRol_Insert_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -14580,20 +15172,104 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UDP_Acce_tbAccesoRol_Delete" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbAccesoRol_Delete" />
-          <FunctionImportMapping FunctionImportName="UDP_Acce_tbAccesoRol_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbAccesoRol_Insert" />
-          <FunctionImportMapping FunctionImportName="UDP_Acce_tbAccesoRol_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbAccesoRol_Update" />
-          <FunctionImportMapping FunctionImportName="UDP_Acce_tbObjeto_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbObjeto_Insert" />
-          <FunctionImportMapping FunctionImportName="UDP_Acce_tbObjeto_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbObjeto_Update" />
-          <FunctionImportMapping FunctionImportName="UDP_Acce_tbObjeto_Update_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbObjeto_Update_Estado" />
-          <FunctionImportMapping FunctionImportName="UDP_Acce_tbRol_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbRol_Insert" />
-          <FunctionImportMapping FunctionImportName="UDP_Acce_tbRol_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbRol_Update" />
-          <FunctionImportMapping FunctionImportName="UDP_Acce_tbRolEstado_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbRolEstado_Update" />
-          <FunctionImportMapping FunctionImportName="UDP_Acce_tbRolesUsuario_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbRolesUsuario_Insert" />
-          <FunctionImportMapping FunctionImportName="UDP_Acce_tbRolesUsuario_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbRolesUsuario_Update" />
-          <FunctionImportMapping FunctionImportName="UDP_Acce_tbUsuario_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbUsuario_Insert" />
-          <FunctionImportMapping FunctionImportName="UDP_Acce_tbUsuario_PasswordUpdate" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbUsuario_PasswordUpdate" />
-          <FunctionImportMapping FunctionImportName="UDP_Acce_tbUsuario_Select" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbUsuario_Select" />
-          <FunctionImportMapping FunctionImportName="UDP_Acce_tbUsuario_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbUsuario_Update" />
+          <FunctionImportMapping FunctionImportName="UDP_Acce_tbAccesoRol_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbAccesoRol_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_tbAccesoRol_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Acce_tbAccesoRol_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbAccesoRol_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_tbAccesoRol_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Acce_tbObjeto_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbObjeto_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_tbObjeto_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Acce_tbObjeto_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbObjeto_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_tbObjeto_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Acce_tbObjeto_Update_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbObjeto_Update_Estado" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_tbObjeto_Update_Estado_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Acce_tbRol_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbRol_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_tbRol_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Acce_tbRol_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbRol_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_tbRol_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Acce_tbRolEstado_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbRolEstado_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_tbRolEstado_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Acce_tbRolesUsuario_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbRolesUsuario_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_tbRolesUsuario_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Acce_tbRolesUsuario_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbRolesUsuario_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_tbRolesUsuario_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Acce_tbUsuario_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbUsuario_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_tbUsuario_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Acce_tbUsuario_PasswordUpdate" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbUsuario_PasswordUpdate" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_tbUsuario_PasswordUpdate_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Acce_tbUsuario_Select" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbUsuario_Select" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_tbUsuario_Select_Result">
+                <ScalarProperty Name="usu_NombreUsuario" ColumnName="usu_NombreUsuario" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Acce_tbUsuario_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbUsuario_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_tbUsuario_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UDP_Gral_Padres_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_Padres_Insert" />
           <FunctionImportMapping FunctionImportName="UDP_Gral_tbDenominacion_Select" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbDenominacion_Select">
             <ResultMapping>
@@ -14606,18 +15282,84 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Gral_tbDepartamento_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbDepartamento_Insert" />
-          <FunctionImportMapping FunctionImportName="UDP_Gral_tbDepartamento_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbDepartamento_Update" />
+          <FunctionImportMapping FunctionImportName="UDP_Gral_tbDepartamento_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbDepartamento_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbDepartamento_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Gral_tbDepartamento_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbDepartamento_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbDepartamento_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UDP_Gral_tbEmpleado_Update_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbEmpleado_Update_Estado" />
-          <FunctionImportMapping FunctionImportName="UDP_Gral_tbEmpleados_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbEmpleados_Insert" />
-          <FunctionImportMapping FunctionImportName="UDP_Gral_tbEmpleados_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbEmpleados_Update" />
-          <FunctionImportMapping FunctionImportName="UDP_Gral_tbMunicipio_Delete" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbMunicipio_Delete" />
-          <FunctionImportMapping FunctionImportName="UDP_Gral_tbMunicipio_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbMunicipio_Insert" />
-          <FunctionImportMapping FunctionImportName="UDP_Gral_tbMunicipio_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbMunicipio_Update" />
-          <FunctionImportMapping FunctionImportName="UDP_Gral_tbParametro_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbParametro_Insert" />
-          <FunctionImportMapping FunctionImportName="UDP_Gral_tbParametro_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbParametro_Update" />
-          <FunctionImportMapping FunctionImportName="UDP_Gral_tbUnidadMedida_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbUnidadMedida_Insert" />
-          <FunctionImportMapping FunctionImportName="UDP_Gral_tbUnidadMedida_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbUnidadMedida_Update" />
+          <FunctionImportMapping FunctionImportName="UDP_Gral_tbEmpleados_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbEmpleados_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbEmpleados_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Gral_tbEmpleados_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbEmpleados_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbEmpleados_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Gral_tbMunicipio_Delete" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbMunicipio_Delete" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbMunicipio_Delete_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Gral_tbMunicipio_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbMunicipio_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbMunicipio_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Gral_tbMunicipio_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbMunicipio_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbMunicipio_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Gral_tbParametro_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbParametro_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbParametro_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Gral_tbParametro_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbParametro_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbParametro_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Gral_tbUnidadMedida_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbUnidadMedida_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbUnidadMedida_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Gral_tbUnidadMedida_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbUnidadMedida_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbUnidadMedida_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="crud_tbProductoSelect" FunctionName="ERP_ZORZALModel.Store.crud_tbProductoSelect">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.crud_tbProductoSelect_Result">
@@ -14631,44 +15373,272 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="spGetSubCategoria" FunctionName="ERP_ZORZALModel.Store.spGetSubCategoria" />
-          <FunctionImportMapping FunctionImportName="UDP_Inv_tbBodega_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBodega_Insert" />
-          <FunctionImportMapping FunctionImportName="UDP_Inv_tbBodega_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBodega_Update" />
-          <FunctionImportMapping FunctionImportName="UDP_Inv_tbBodega_Update_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBodega_Update_Estado" />
-          <FunctionImportMapping FunctionImportName="UDP_Inv_tbBodegaDetalle_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBodegaDetalle_Insert" />
-          <FunctionImportMapping FunctionImportName="UDP_Inv_tbBodegaDetalle_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBodegaDetalle_Update" />
-          <FunctionImportMapping FunctionImportName="UDP_Inv_tbBox_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBox_Insert" />
-          <FunctionImportMapping FunctionImportName="UDP_Inv_tbBox_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBox_Update" />
-          <FunctionImportMapping FunctionImportName="UDP_Inv_tbEntrada_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEntrada_Insert" />
-          <FunctionImportMapping FunctionImportName="UDP_Inv_tbEntrada_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEntrada_Update" />
-          <FunctionImportMapping FunctionImportName="UDP_Inv_tbEntrada_Update_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEntrada_Update_Estado" />
-          <FunctionImportMapping FunctionImportName="UDP_Inv_tbEntradaDetalle_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEntradaDetalle_Insert" />
-          <FunctionImportMapping FunctionImportName="UDP_Inv_tbEntradaDetalle_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEntradaDetalle_Update" />
-          <FunctionImportMapping FunctionImportName="UDP_Inv_tbEstadoMovimiento_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEstadoMovimiento_Insert" />
-          <FunctionImportMapping FunctionImportName="UDP_Inv_tbEstadoMovimiento_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEstadoMovimiento_Update" />
-          <FunctionImportMapping FunctionImportName="UDP_Inv_tbInventarioFisico_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbInventarioFisico_Insert" />
-          <FunctionImportMapping FunctionImportName="UDP_Inv_tbInventarioFisico_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbInventarioFisico_Update" />
-          <FunctionImportMapping FunctionImportName="UDP_Inv_tbInventarioFisicoDetalle_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbInventarioFisicoDetalle_Insert" />
-          <FunctionImportMapping FunctionImportName="UDP_Inv_tbInventarioFisicoDetalle_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbInventarioFisicoDetalle_Update" />
-          <FunctionImportMapping FunctionImportName="UDP_Inv_tbProducto_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProducto_Insert" />
-          <FunctionImportMapping FunctionImportName="UDP_Inv_tbProducto_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProducto_Update" />
-          <FunctionImportMapping FunctionImportName="UDP_Inv_tbProductoCategoria_Delete" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProductoCategoria_Delete" />
-          <FunctionImportMapping FunctionImportName="UDP_Inv_tbProductoCategoria_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProductoCategoria_Insert" />
-          <FunctionImportMapping FunctionImportName="UDP_Inv_tbProductoCategoria_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProductoCategoria_Update" />
-          <FunctionImportMapping FunctionImportName="UDP_Inv_tbProductoCategoria_Update_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProductoCategoria_Update_Estado" />
-          <FunctionImportMapping FunctionImportName="UDP_Inv_tbProductoSubCategoria_Delete" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProductoSubCategoria_Delete" />
-          <FunctionImportMapping FunctionImportName="UDP_Inv_tbProductoSubcategoria_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProductoSubcategoria_Insert" />
-          <FunctionImportMapping FunctionImportName="UDP_Inv_tbProductoSubcategoria_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProductoSubcategoria_Update" />
-          <FunctionImportMapping FunctionImportName="UDP_Inv_tbProductoSubCategoria_Update_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProductoSubCategoria_Update_Estado" />
-          <FunctionImportMapping FunctionImportName="UDP_Inv_tbProveedor_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProveedor_Insert" />
-          <FunctionImportMapping FunctionImportName="UDP_Inv_tbProveedor_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProveedor_Update" />
-          <FunctionImportMapping FunctionImportName="UDP_Inv_tbSalida_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbSalida_Insert" />
-          <FunctionImportMapping FunctionImportName="UDP_Inv_tbSalida_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbSalida_Update" />
-          <FunctionImportMapping FunctionImportName="UDP_Inv_tbSalidaDetalle_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbSalidaDetalle_Insert" />
-          <FunctionImportMapping FunctionImportName="UDP_Inv_tbSalidaDetalle_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbSalidaDetalle_Update" />
-          <FunctionImportMapping FunctionImportName="UDP_Inv_tbTipoEntrada_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbTipoEntrada_Insert" />
-          <FunctionImportMapping FunctionImportName="UDP_Inv_tbTipoEntrada_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbTipoEntrada_Update" />
-          <FunctionImportMapping FunctionImportName="UDP_Inv_tbTipoSalida_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbTipoSalida_Insert" />
-          <FunctionImportMapping FunctionImportName="UDP_Inv_tbTipoSalida_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbTipoSalida_Update" />
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbBodega_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBodega_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbBodega_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbBodega_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBodega_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbBodega_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbBodega_Update_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBodega_Update_Estado" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbBodega_Update_Estado_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbBodegaDetalle_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBodegaDetalle_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbBodegaDetalle_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbBodegaDetalle_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBodegaDetalle_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbBodegaDetalle_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbBox_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBox_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbBox_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbBox_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBox_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbBox_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbEntrada_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEntrada_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbEntrada_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbEntrada_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEntrada_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbEntrada_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbEntrada_Update_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEntrada_Update_Estado" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbEntrada_Update_Estado_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbEntradaDetalle_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEntradaDetalle_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbEntradaDetalle_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbEntradaDetalle_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEntradaDetalle_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbEntradaDetalle_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbEstadoMovimiento_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEstadoMovimiento_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbEstadoMovimiento_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbEstadoMovimiento_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEstadoMovimiento_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbEstadoMovimiento_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbInventarioFisico_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbInventarioFisico_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbInventarioFisico_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbInventarioFisico_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbInventarioFisico_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbInventarioFisico_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbInventarioFisicoDetalle_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbInventarioFisicoDetalle_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbInventarioFisicoDetalle_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbInventarioFisicoDetalle_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbInventarioFisicoDetalle_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbInventarioFisicoDetalle_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbProducto_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProducto_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProducto_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbProducto_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProducto_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProducto_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbProductoCategoria_Delete" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProductoCategoria_Delete" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProductoCategoria_Delete_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbProductoCategoria_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProductoCategoria_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProductoCategoria_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbProductoCategoria_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProductoCategoria_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProductoCategoria_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbProductoCategoria_Update_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProductoCategoria_Update_Estado" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProductoCategoria_Update_Estado_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbProductoSubCategoria_Delete" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProductoSubCategoria_Delete" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProductoSubCategoria_Delete_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbProductoSubcategoria_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProductoSubcategoria_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProductoSubcategoria_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbProductoSubcategoria_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProductoSubcategoria_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProductoSubcategoria_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbProductoSubCategoria_Update_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProductoSubCategoria_Update_Estado" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProductoSubCategoria_Update_Estado_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbProveedor_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProveedor_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProveedor_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbProveedor_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProveedor_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProveedor_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbSalida_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbSalida_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbSalida_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbSalida_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbSalida_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbSalida_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbSalidaDetalle_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbSalidaDetalle_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbSalidaDetalle_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbSalidaDetalle_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbSalidaDetalle_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbSalidaDetalle_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbTipoEntrada_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbTipoEntrada_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbTipoEntrada_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbTipoEntrada_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbTipoEntrada_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbTipoEntrada_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbTipoSalida_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbTipoSalida_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbTipoSalida_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbTipoSalida_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbTipoSalida_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbTipoSalida_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="crud_tbExoneracionInsert" FunctionName="ERP_ZORZALModel.Store.crud_tbExoneracionInsert" />
           <FunctionImportMapping FunctionImportName="crud_tbSucursalInsert" FunctionName="ERP_ZORZALModel.Store.crud_tbSucursalInsert" />
           <FunctionImportMapping FunctionImportName="GetBusquedaClient" FunctionName="ERP_ZORZALModel.Store.GetBusquedaClient" />
@@ -14822,8 +15792,20 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Inv_tbEstadoMovimiento_Delete" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEstadoMovimiento_Delete" />
-          <FunctionImportMapping FunctionImportName="UDP_Inv_ValidacionCantidadExistente" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_ValidacionCantidadExistente" />
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbEstadoMovimiento_Delete" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEstadoMovimiento_Delete" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbEstadoMovimiento_Delete_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_ValidacionCantidadExistente" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_ValidacionCantidadExistente" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_ValidacionCantidadExistente_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbExoneracion_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbExoneracion_Estado" />
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_BuscarListaPrecio" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_BuscarListaPrecio" />
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudEfectivoDetalle_Select" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudEfectivoDetalle_Select">
@@ -14980,10 +15962,34 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Inv_tbBodegaDetalle_Delete" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBodegaDetalle_Delete" />
-          <FunctionImportMapping FunctionImportName="UDP_Inv_tbEntrada_Update_Anular" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEntrada_Update_Anular" />
-          <FunctionImportMapping FunctionImportName="UDP_Inv_tbInventarioFisico_Update_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbInventarioFisico_Update_Estado" />
-          <FunctionImportMapping FunctionImportName="UDP_Inv_tbProducto_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProducto_Estado" />
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbBodegaDetalle_Delete" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBodegaDetalle_Delete" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbBodegaDetalle_Delete_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbEntrada_Update_Anular" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEntrada_Update_Anular" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbEntrada_Update_Anular_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbInventarioFisico_Update_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbInventarioFisico_Update_Estado" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbInventarioFisico_Update_Estado_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbProducto_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProducto_Estado" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProducto_Estado_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbExoneracion_Select" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbExoneracion_Select">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbExoneracion_Select_Result">
@@ -15113,7 +16119,13 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Inv_tbSalidaDetalle_Delete" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbSalidaDetalle_Delete" />
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbSalidaDetalle_Delete" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbSalidaDetalle_Delete" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbSalidaDetalle_Delete_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="spGetParametro" FunctionName="ERP_ZORZALModel.Store.spGetParametro">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.spGetParametro_Result">
@@ -16809,6 +17821,302 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
                 <ScalarProperty Name="devd_Monto" ColumnName="devd_Monto" />
                 <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
                 <ScalarProperty Name="dev_Fecha" ColumnName="dev_Fecha" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Acce_tbRol_Inactivar" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbRol_Inactivar" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_tbRol_Inactivar_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Acce_tbUsuario_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbUsuario_Estado" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_tbUsuario_Estado_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Acce_tbUsuario_PasswordRestore" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbUsuario_PasswordRestore" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_tbUsuario_PasswordRestore_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SDP_Gral_tbEmpleado_Select" FunctionName="ERP_ZORZALModel.Store.SDP_Gral_tbEmpleado_Select" />
+          <FunctionImportMapping FunctionImportName="SDP_tbEmpleado_Consulta" FunctionName="ERP_ZORZALModel.Store.SDP_tbEmpleado_Consulta">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_tbEmpleado_Consulta_Result">
+                <ScalarProperty Name="emp_Id" ColumnName="emp_Id" />
+                <ScalarProperty Name="emp_Nombres" ColumnName="emp_Nombres" />
+                <ScalarProperty Name="emp_Apellidos" ColumnName="emp_Apellidos" />
+                <ScalarProperty Name="emp_Sexo" ColumnName="emp_Sexo" />
+                <ScalarProperty Name="emp_FechaNacimiento" ColumnName="emp_FechaNacimiento" />
+                <ScalarProperty Name="tpi_Id" ColumnName="tpi_Id" />
+                <ScalarProperty Name="emp_Identificacion" ColumnName="emp_Identificacion" />
+                <ScalarProperty Name="emp_Telefono" ColumnName="emp_Telefono" />
+                <ScalarProperty Name="emp_Correoelectronico" ColumnName="emp_Correoelectronico" />
+                <ScalarProperty Name="emp_TipoSangre" ColumnName="emp_TipoSangre" />
+                <ScalarProperty Name="emp_Puesto" ColumnName="emp_Puesto" />
+                <ScalarProperty Name="emp_FechaIngreso" ColumnName="emp_FechaIngreso" />
+                <ScalarProperty Name="emp_Direccion" ColumnName="emp_Direccion" />
+                <ScalarProperty Name="emp_RazonInactivacion" ColumnName="emp_RazonInactivacion" />
+                <ScalarProperty Name="emp_UsuarioCrea" ColumnName="emp_UsuarioCrea" />
+                <ScalarProperty Name="emp_FechaCrea" ColumnName="emp_FechaCrea" />
+                <ScalarProperty Name="emp_UsuarioModifica" ColumnName="emp_UsuarioModifica" />
+                <ScalarProperty Name="emp_FechaModifica" ColumnName="emp_FechaModifica" />
+                <ScalarProperty Name="emp_Estado" ColumnName="emp_Estado" />
+                <ScalarProperty Name="emp_RazonSalida" ColumnName="emp_RazonSalida" />
+                <ScalarProperty Name="emp_FechaDeSalida" ColumnName="emp_FechaDeSalida" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SDP_tbEmpleado_Select" FunctionName="ERP_ZORZALModel.Store.SDP_tbEmpleado_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_tbEmpleado_Select_Result">
+                <ScalarProperty Name="emp_Id" ColumnName="emp_Id" />
+                <ScalarProperty Name="emp_Nombres" ColumnName="emp_Nombres" />
+                <ScalarProperty Name="emp_Apellidos" ColumnName="emp_Apellidos" />
+                <ScalarProperty Name="emp_Sexo" ColumnName="emp_Sexo" />
+                <ScalarProperty Name="emp_FechaNacimiento" ColumnName="emp_FechaNacimiento" />
+                <ScalarProperty Name="tpi_Id" ColumnName="tpi_Id" />
+                <ScalarProperty Name="emp_Identificacion" ColumnName="emp_Identificacion" />
+                <ScalarProperty Name="emp_Telefono" ColumnName="emp_Telefono" />
+                <ScalarProperty Name="emp_Correoelectronico" ColumnName="emp_Correoelectronico" />
+                <ScalarProperty Name="emp_TipoSangre" ColumnName="emp_TipoSangre" />
+                <ScalarProperty Name="emp_Puesto" ColumnName="emp_Puesto" />
+                <ScalarProperty Name="emp_FechaIngreso" ColumnName="emp_FechaIngreso" />
+                <ScalarProperty Name="emp_Direccion" ColumnName="emp_Direccion" />
+                <ScalarProperty Name="emp_RazonInactivacion" ColumnName="emp_RazonInactivacion" />
+                <ScalarProperty Name="emp_UsuarioCrea" ColumnName="emp_UsuarioCrea" />
+                <ScalarProperty Name="emp_FechaCrea" ColumnName="emp_FechaCrea" />
+                <ScalarProperty Name="emp_UsuarioModifica" ColumnName="emp_UsuarioModifica" />
+                <ScalarProperty Name="emp_FechaModifica" ColumnName="emp_FechaModifica" />
+                <ScalarProperty Name="emp_Estado" ColumnName="emp_Estado" />
+                <ScalarProperty Name="emp_RazonSalida" ColumnName="emp_RazonSalida" />
+                <ScalarProperty Name="emp_FechaDeSalida" ColumnName="emp_FechaDeSalida" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ACtualizar_Cantidad_BOdegaDetalle" FunctionName="ERP_ZORZALModel.Store.ACtualizar_Cantidad_BOdegaDetalle" />
+          <FunctionImportMapping FunctionImportName="SDP_Inv_tbProducto_Select" FunctionName="ERP_ZORZALModel.Store.SDP_Inv_tbProducto_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_Inv_tbProducto_Select_Result">
+                <ScalarProperty Name="prod_CodigoBarras" ColumnName="prod_CodigoBarras" />
+                <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+                <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
+                <ScalarProperty Name="prod_Marca" ColumnName="prod_Marca" />
+                <ScalarProperty Name="prod_Modelo" ColumnName="prod_Modelo" />
+                <ScalarProperty Name="prod_Talla" ColumnName="prod_Talla" />
+                <ScalarProperty Name="prod_Color" ColumnName="prod_Color" />
+                <ScalarProperty Name="pcat_Nombre" ColumnName="pcat_Nombre" />
+                <ScalarProperty Name="pscat_Descripcion" ColumnName="pscat_Descripcion" />
+                <ScalarProperty Name="uni_Descripcion" ColumnName="uni_Descripcion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SDP_tbentradadetalle_Select" FunctionName="ERP_ZORZALModel.Store.SDP_tbentradadetalle_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_tbentradadetalle_Select_Result">
+                <ScalarProperty Name="entd_Id" ColumnName="entd_Id" />
+                <ScalarProperty Name="ent_Id" ColumnName="ent_Id" />
+                <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+                <ScalarProperty Name="entd_Cantidad" ColumnName="entd_Cantidad" />
+                <ScalarProperty Name="entd_UsuarioCrea" ColumnName="entd_UsuarioCrea" />
+                <ScalarProperty Name="entd_FechaCrea" ColumnName="entd_FechaCrea" />
+                <ScalarProperty Name="entd_UsuarioModifica" ColumnName="entd_UsuarioModifica" />
+                <ScalarProperty Name="entd_FechaModifica" ColumnName="entd_FechaModifica" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SDP_tbentradaImprimirCompra_Select" FunctionName="ERP_ZORZALModel.Store.SDP_tbentradaImprimirCompra_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_tbentradaImprimirCompra_Select_Result">
+                <ScalarProperty Name="ent_NumeroFormato" ColumnName="ent_NumeroFormato" />
+                <ScalarProperty Name="bod_Nombre" ColumnName="bod_Nombre" />
+                <ScalarProperty Name="ent_FechaElaboracion" ColumnName="ent_FechaElaboracion" />
+                <ScalarProperty Name="prov_Nombre" ColumnName="prov_Nombre" />
+                <ScalarProperty Name="estm_Descripcion" ColumnName="estm_Descripcion" />
+                <ScalarProperty Name="ent_FacturaCompra" ColumnName="ent_FacturaCompra" />
+                <ScalarProperty Name="ent_FechaCompra" ColumnName="ent_FechaCompra" />
+                <ScalarProperty Name="tdev_descripcion" ColumnName="tdev_descripcion" />
+                <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
+                <ScalarProperty Name="ent_BodegaDestino" ColumnName="ent_BodegaDestino" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SDP_tbInventarioFisicoDetalle_Select" FunctionName="ERP_ZORZALModel.Store.SDP_tbInventarioFisicoDetalle_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_tbInventarioFisicoDetalle_Select_Result">
+                <ScalarProperty Name="invfd_Id" ColumnName="invfd_Id" />
+                <ScalarProperty Name="invf_Id" ColumnName="invf_Id" />
+                <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+                <ScalarProperty Name="invfd_Cantidad" ColumnName="invfd_Cantidad" />
+                <ScalarProperty Name="invfd_CantidadSistema" ColumnName="invfd_CantidadSistema" />
+                <ScalarProperty Name="uni_Id" ColumnName="uni_Id" />
+                <ScalarProperty Name="invfd_UsuarioCrea" ColumnName="invfd_UsuarioCrea" />
+                <ScalarProperty Name="invfd_FechaCrea" ColumnName="invfd_FechaCrea" />
+                <ScalarProperty Name="invfd_UsuarioModifica" ColumnName="invfd_UsuarioModifica" />
+                <ScalarProperty Name="invfd_FechaModifica" ColumnName="invfd_FechaModifica" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGetSuCategoria" FunctionName="ERP_ZORZALModel.Store.spGetSuCategoria">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.spGetSuCategoria_Result">
+                <ScalarProperty Name="pcat_Id" ColumnName="pcat_Id" />
+                <ScalarProperty Name="pcat_Nombre" ColumnName="pcat_Nombre" />
+                <ScalarProperty Name="pscat_Id" ColumnName="pscat_Id" />
+                <ScalarProperty Name="pscat_Descripcion" ColumnName="pscat_Descripcion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_SolicitarProducto_ValidacionPorBodega" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_SolicitarProducto_ValidacionPorBodega" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_SolicitarProducto_ValidacionPorBodega_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbBodega_Update_Estado_Validacion" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBodega_Update_Estado_Validacion" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbBodega_Update_Estado_Validacion_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbBox_Delete" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBox_Delete" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbBox_Delete_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbInventarioFisico_ListaProductos" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbInventarioFisico_ListaProductos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbInventarioFisico_ListaProductos_Result">
+                <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+                <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
+                <ScalarProperty Name="prod_Marca" ColumnName="prod_Marca" />
+                <ScalarProperty Name="prod_CodigoBarras" ColumnName="prod_CodigoBarras" />
+                <ScalarProperty Name="prod_Modelo" ColumnName="prod_Modelo" />
+                <ScalarProperty Name="uni_Id" ColumnName="uni_Id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbTipoDevolucion_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbTipoDevolucion_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbTipoDevolucion_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbTipoDevolucion_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbTipoDevolucion_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbTipoDevolucion_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CARLOS1" FunctionName="ERP_ZORZALModel.Store.CARLOS1">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.CARLOS1_Result">
+                <ScalarProperty Name="denoId" ColumnName="denoId" />
+                <ScalarProperty Name="DenoDescripcion" ColumnName="DenoDescripcion" />
+                <ScalarProperty Name="valor" ColumnName="valor" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="prueba" FunctionName="ERP_ZORZALModel.Store.prueba">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.prueba_Result">
+                <ScalarProperty Name="denoId" ColumnName="denoId" />
+                <ScalarProperty Name="DenoDescripcion" ColumnName="DenoDescripcion" />
+                <ScalarProperty Name="valor" ColumnName="valor" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_tbPedidoDetalle_Select" FunctionName="ERP_ZORZALModel.Store.UDP_tbPedidoDetalle_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_tbPedidoDetalle_Select_Result">
+                <ScalarProperty Name="pedd_Id" ColumnName="pedd_Id" />
+                <ScalarProperty Name="ped_Id" ColumnName="ped_Id" />
+                <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+                <ScalarProperty Name="pedd_Cantidad" ColumnName="pedd_Cantidad" />
+                <ScalarProperty Name="pedd_CantidadFacturada" ColumnName="pedd_CantidadFacturada" />
+                <ScalarProperty Name="pedd_UsuarioCrea" ColumnName="pedd_UsuarioCrea" />
+                <ScalarProperty Name="pedd_FechaCrea" ColumnName="pedd_FechaCrea" />
+                <ScalarProperty Name="pedd_UsuarioModifica" ColumnName="pedd_UsuarioModifica" />
+                <ScalarProperty Name="pedd_FechaModifica" ColumnName="pedd_FechaModifica" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_tbPedidoDetalle_Select_Edit" FunctionName="ERP_ZORZALModel.Store.UDP_tbPedidoDetalle_Select_Edit">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_tbPedidoDetalle_Select_Edit_Result">
+                <ScalarProperty Name="pedd_Id" ColumnName="pedd_Id" />
+                <ScalarProperty Name="ped_Id" ColumnName="ped_Id" />
+                <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+                <ScalarProperty Name="pedd_Cantidad" ColumnName="pedd_Cantidad" />
+                <ScalarProperty Name="pedd_CantidadFacturada" ColumnName="pedd_CantidadFacturada" />
+                <ScalarProperty Name="pedd_UsuarioCrea" ColumnName="pedd_UsuarioCrea" />
+                <ScalarProperty Name="pedd_FechaCrea" ColumnName="pedd_FechaCrea" />
+                <ScalarProperty Name="pedd_UsuarioModifica" ColumnName="pedd_UsuarioModifica" />
+                <ScalarProperty Name="pedd_FechaModifica" ColumnName="pedd_FechaModifica" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbCuponDescuento_Imprimir" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbCuponDescuento_Imprimir">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbCuponDescuento_Imprimir_Result">
+                <ScalarProperty Name="cdto_ID" ColumnName="cdto_ID" />
+                <ScalarProperty Name="suc_Id" ColumnName="suc_Id" />
+                <ScalarProperty Name="cdto_FechaEmision" ColumnName="cdto_FechaEmision" />
+                <ScalarProperty Name="cdto_FechaVencimiento" ColumnName="cdto_FechaVencimiento" />
+                <ScalarProperty Name="cdto_PorcentajeDescuento" ColumnName="cdto_PorcentajeDescuento" />
+                <ScalarProperty Name="cdto_MaximoMontoDescuento" ColumnName="cdto_MaximoMontoDescuento" />
+                <ScalarProperty Name="cdto_MontoDescuento" ColumnName="cdto_MontoDescuento" />
+                <ScalarProperty Name="cdto_CantidadCompraMinima" ColumnName="cdto_CantidadCompraMinima" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbListaPrecio_UltimaFechaVigente" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbListaPrecio_UltimaFechaVigente" />
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbNotaCreditoSelect" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbNotaCreditoSelect">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbNotaCreditoSelect_Result">
+                <ScalarProperty Name="nocre_Codigo" ColumnName="nocre_Codigo" />
+                <ScalarProperty Name="nocre_Monto" ColumnName="nocre_Monto" />
+                <ScalarProperty Name="nocre_Redimido" ColumnName="nocre_Redimido" />
+                <ScalarProperty Name="nocre_EsImpreso" ColumnName="nocre_EsImpreso" />
+                <ScalarProperty Name="nocre_Anulado" ColumnName="nocre_Anulado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudCredito_RolGerenteCreditosCobranza" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudCredito_RolGerenteCreditosCobranza" />
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudEfectivo_Details" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudEfectivo_Details">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivo_Details_Result">
+                <ScalarProperty Name="mnda_Id" ColumnName="mnda_Id" />
+                <ScalarProperty Name="deno_Id" ColumnName="deno_Id" />
+                <ScalarProperty Name="deno_Descripcion" ColumnName="deno_Descripcion" />
+                <ScalarProperty Name="soled_CantidadSolicitada" ColumnName="soled_CantidadSolicitada" />
+                <ScalarProperty Name="MontoSolicitado" ColumnName="MontoSolicitado" />
+                <ScalarProperty Name="soled_CantidadEntregada" ColumnName="soled_CantidadEntregada" />
+                <ScalarProperty Name="MontoEntregado" ColumnName="MontoEntregado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_vFacturaPago" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_vFacturaPago">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_vFacturaPago_Result">
+                <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
+                <ScalarProperty Name="clte_Id" ColumnName="clte_Id" />
+                <ScalarProperty Name="fact_Codigo" ColumnName="fact_Codigo" />
+                <ScalarProperty Name="MontoFactura" ColumnName="MontoFactura" />
+                <ScalarProperty Name="TotalPagado" ColumnName="TotalPagado" />
+                <ScalarProperty Name="SaldoFactura" ColumnName="SaldoFactura" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
