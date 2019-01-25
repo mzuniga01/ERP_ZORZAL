@@ -68,7 +68,20 @@ namespace ERP_ZORZAL.Controllers
         // GET: /Entrada/Create
         public ActionResult Create()
         {
-            ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
+            string UserName = "";
+            int idUser = 0;
+            GeneralFunctions Login = new GeneralFunctions();
+            List<tbUsuario> User = Login.getUserInformation();
+            tbBodega tbBod = new tbBodega();
+            foreach (tbUsuario Usuario in User)
+            {
+                UserName = Usuario.usu_Nombres + " " + Usuario.usu_Apellidos;
+                idUser = Convert.ToInt32(Usuario.emp_Id);
+            }
+
+            ViewBag.bod_Id = new SelectList(db.tbBodega.Where(x => x.bod_ResponsableBodega == idUser).ToList(), "bod_Id", "bod_Nombre");
+
+            //ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
             ViewBag.estm_Id = new SelectList(db.tbEstadoMovimiento, "estm_Id", "estm_Descripcion");
             ViewBag.prov_Id = new SelectList(db.tbProveedor, "prov_Id", "prov_Nombre");
             ViewBag.tent_Id = new SelectList(db.tbTipoEntrada, "tent_Id", "tent_Descripcion");

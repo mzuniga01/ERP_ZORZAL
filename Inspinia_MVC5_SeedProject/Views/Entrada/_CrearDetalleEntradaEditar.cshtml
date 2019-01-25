@@ -72,7 +72,8 @@
                         <div class="form-group">
                             <label class="control-label col-md-2">Cantidad<span style="color:red">*</span></label>
                             <div class="col-md-4">
-                                @Html.EditorFor(model => model.entd_Cantidad)
+                                <input type="number" id="entd_Cantidad" placeholder="" class="form-control" name="entd_Cantidad" />
+                                @*@Html.EditorFor(model => model.entd_Cantidad)*@
                                 <div id="validationcantidad">
                                     @Html.ValidationMessageFor(model => model.entd_Cantidad)
                                 </div>

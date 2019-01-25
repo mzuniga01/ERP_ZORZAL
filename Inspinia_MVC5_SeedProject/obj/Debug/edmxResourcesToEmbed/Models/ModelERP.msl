@@ -1861,13 +1861,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Inv_tbEntrada_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEntrada_Insert">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbEntrada_Insert_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="UDP_Acce_Login" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_Login">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_Login_Result">
@@ -2024,6 +2017,13 @@
     <FunctionImportMapping FunctionImportName="UDP_Acce_tbUsuario_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbUsuario_Update">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_tbUsuario_Update_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbEntrada_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEntrada_Insert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbEntrada_Insert_Result">
           <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
         </ComplexTypeMapping>
       </ResultMapping>

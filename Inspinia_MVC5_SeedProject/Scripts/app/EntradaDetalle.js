@@ -1,5 +1,20 @@
 ﻿var contador = 0;
-
+//para q cantidad acepte numeros(create)
+$("#entd_Cantidad").on("keypress keyup blur", function (event) {
+    //this.value = this.value.replace(/[^0-9\.]/g,'');
+    $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
+    if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+        event.preventDefault();
+    }
+});
+//para q cantidad acepte numeros(edit)
+$("#pscat_ISV_Edit").on("keypress keyup blur", function (event) {
+    //this.value = this.value.replace(/[^0-9\.]/g,'');
+    $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
+    if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+        event.preventDefault();
+    }
+});
 //para busqueda de productos
 $(document).ready(function () {
     $('#Table_BuscarProducto').DataTable(

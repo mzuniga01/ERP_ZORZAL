@@ -87,12 +87,24 @@
                                             <p style="color:maroon">Anulada</p>
                                         }
                                     </td>
-
+                                    @Html.HiddenFor(modelItem => item.tent_Id)
                                     <td>
                                         
                                             @Html.ActionLink("Detalles", "Details", new { id = item.ent_Id }, new { @class = "btn btn-primary btn-xs" })
                                             @Html.ActionLink("Editar", "Edit", new { id = item.ent_Id }, new { @class = "btn btn-white btn-xs" })
-                                            <input type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#ModalImprimir" value="Imprimir" />
+                                            @{if (item.tbTipoEntrada.tent_Descripcion == "Compra")
+                                                {
+                                                    <a href="~/ReportViewer/ImprimirEntrada.aspx" class="btn btn-primary btn-xs">Generar Reporte</a>
+                                                }
+                                                else if (item.tbTipoEntrada.tent_Descripcion == "Devolucion")
+                                                {
+                                                    <a href="~/ReportViewer/ImprimirEntradaDevolucion.aspx" class="btn btn-primary btn-xs">Generar Reporte</a>
+                                                }
+                                                else if (item.tbTipoEntrada.tent_Descripcion == "Traslado")
+                                                {
+                                                    <a href="~/ReportViewer/ImprimirEntradaTraslado.aspx" class="btn btn-primary btn-xs">Generar Reporte</a>
+                                                }
+                                            }
                                         
                                     </td>
                                 </tr>

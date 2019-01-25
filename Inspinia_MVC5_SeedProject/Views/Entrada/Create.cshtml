@@ -46,20 +46,27 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-2">Bodega<span style="color:red">*</span></label>
                                     <div class="col-md-4">
-                                        @Html.DropDownList("bod_Id", (IEnumerable<SelectListItem>)ViewBag.bod_Id, "Seleccione", new { @class = "form-control" })
-
-                                        <div class="col-md-10">
+                                        @Html.EditorFor(model => model.tbBodega.bod_Nombre, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    </div>
+                                        <div style="display:none" class="col-md-4">
+                                            @Html.DropDownList("bod_Id", (IEnumerable<SelectListItem>)ViewBag.bod_Id, new { @class = "form-control" })
                                             <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Id)</p>
                                         </div>
+                                        @*<div class="col-md-4">
+                @Html.DropDownList("bod_Id", (IEnumerable<SelectListItem>)ViewBag.bod_Id, "Seleccione", new { @class = "form-control" })
+
+                <div class="col-md-10">
+                    <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Id)</p>
+                </div>
+            </div>*@
+                                        @*<label class="control-label col-md-2">Numero Fórmato<span style="color:red">*</span></label>
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.ent_NumeroFormato, new { htmlAttributes = new { @class = "form-control" } })
+                <div class="col-md-10">
+                    <p style="color:red">@Html.ValidationMessageFor(model => model.ent_NumeroFormato)</p>
+                </div>
+            </div>*@
                                     </div>
-                                    @*<label class="control-label col-md-2">Numero Fórmato<span style="color:red">*</span></label>
-                                    <div class="col-md-4">
-                                        @Html.EditorFor(model => model.ent_NumeroFormato, new { htmlAttributes = new { @class = "form-control" } })
-                                        <div class="col-md-10">
-                                            <p style="color:red">@Html.ValidationMessageFor(model => model.ent_NumeroFormato)</p>
-                                        </div>
-                                    </div>*@
-                                </div>
 
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.ent_FechaElaboracion, new { @class = "control-label col-md-2" })
@@ -177,12 +184,12 @@
                                 </div>
                             </div>
                         </div>
+
+
                         @*botones*@
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
                                 <input type="submit" value="Guardar" class="btn btn-primary" />
-                                <button id="btnImprimir" onclick="btnImprimir" class="btn btn-primary" type="button" data-print>Imprimir</button>
-
                                 @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                                 @*<input type="button" class="btn btn-danger" data-toggle="modal" data-target="#Modalanular" value="Anular" />*@
                             </div>
@@ -206,7 +213,16 @@
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/Datepicker.js"></script>
 <script src="~/Scripts/app/EntradaDetalle.js"></script>
+<script>
+    $(document).ready( function () {
+        var e = document.getElementById("bod_Id");
+        var strUser = e.options[e.selectedIndex].text;
+        console.log(strUser)
+        $("#tbBodega_bod_Nombre").val(strUser)
 
+    });
+
+</script>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
