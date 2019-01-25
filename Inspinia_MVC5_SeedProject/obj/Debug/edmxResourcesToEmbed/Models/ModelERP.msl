@@ -734,7 +734,6 @@
     <FunctionImportMapping FunctionImportName="crud_tbExoneracionInsert" FunctionName="ERP_ZORZALModel.Store.crud_tbExoneracionInsert" />
     <FunctionImportMapping FunctionImportName="crud_tbSucursalInsert" FunctionName="ERP_ZORZALModel.Store.crud_tbSucursalInsert" />
     <FunctionImportMapping FunctionImportName="GetBusquedaClient" FunctionName="ERP_ZORZALModel.Store.GetBusquedaClient" />
-    <FunctionImportMapping FunctionImportName="spGetProducto" FunctionName="ERP_ZORZALModel.Store.spGetProducto1" />
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbFacturaHistorica_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFacturaHistorica_Insert" />
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbFacturaHistorica_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFacturaHistorica_Update" />
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbMovimientoCaja_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbMovimientoCaja_Update" />
@@ -1041,18 +1040,6 @@
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.spGetCategoriaProducto_Result">
           <ScalarProperty Name="pcat_Id" ColumnName="pcat_Id" />
-          <ScalarProperty Name="pcat_Nombre" ColumnName="pcat_Nombre" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="spGetProducto1" FunctionName="ERP_ZORZALModel.Store.spGetProducto">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.spGetProducto1_Result">
-          <ScalarProperty Name="prod_CodigoBarras" ColumnName="prod_CodigoBarras" />
-          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
-          <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
-          <ScalarProperty Name="pscat_Descripcion" ColumnName="pscat_Descripcion" />
-          <ScalarProperty Name="uni_Descripcion" ColumnName="uni_Descripcion" />
           <ScalarProperty Name="pcat_Nombre" ColumnName="pcat_Nombre" />
         </ComplexTypeMapping>
       </ResultMapping>
@@ -2976,33 +2963,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SDP_tbEmpleado_Select" FunctionName="ERP_ZORZALModel.Store.SDP_tbEmpleado_Select">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_tbEmpleado_Select_Result">
-          <ScalarProperty Name="emp_Id" ColumnName="emp_Id" />
-          <ScalarProperty Name="emp_Nombres" ColumnName="emp_Nombres" />
-          <ScalarProperty Name="emp_Apellidos" ColumnName="emp_Apellidos" />
-          <ScalarProperty Name="emp_Sexo" ColumnName="emp_Sexo" />
-          <ScalarProperty Name="emp_FechaNacimiento" ColumnName="emp_FechaNacimiento" />
-          <ScalarProperty Name="tpi_Id" ColumnName="tpi_Id" />
-          <ScalarProperty Name="emp_Identificacion" ColumnName="emp_Identificacion" />
-          <ScalarProperty Name="emp_Telefono" ColumnName="emp_Telefono" />
-          <ScalarProperty Name="emp_Correoelectronico" ColumnName="emp_Correoelectronico" />
-          <ScalarProperty Name="emp_TipoSangre" ColumnName="emp_TipoSangre" />
-          <ScalarProperty Name="emp_Puesto" ColumnName="emp_Puesto" />
-          <ScalarProperty Name="emp_FechaIngreso" ColumnName="emp_FechaIngreso" />
-          <ScalarProperty Name="emp_Direccion" ColumnName="emp_Direccion" />
-          <ScalarProperty Name="emp_RazonInactivacion" ColumnName="emp_RazonInactivacion" />
-          <ScalarProperty Name="emp_UsuarioCrea" ColumnName="emp_UsuarioCrea" />
-          <ScalarProperty Name="emp_FechaCrea" ColumnName="emp_FechaCrea" />
-          <ScalarProperty Name="emp_UsuarioModifica" ColumnName="emp_UsuarioModifica" />
-          <ScalarProperty Name="emp_FechaModifica" ColumnName="emp_FechaModifica" />
-          <ScalarProperty Name="emp_Estado" ColumnName="emp_Estado" />
-          <ScalarProperty Name="emp_RazonSalida" ColumnName="emp_RazonSalida" />
-          <ScalarProperty Name="emp_FechaDeSalida" ColumnName="emp_FechaDeSalida" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="ACtualizar_Cantidad_BOdegaDetalle" FunctionName="ERP_ZORZALModel.Store.ACtualizar_Cantidad_BOdegaDetalle" />
     <FunctionImportMapping FunctionImportName="SDP_Inv_tbProducto_Select" FunctionName="ERP_ZORZALModel.Store.SDP_Inv_tbProducto_Select">
       <ResultMapping>
@@ -3220,6 +3180,65 @@
           <ScalarProperty Name="MontoFactura" ColumnName="MontoFactura" />
           <ScalarProperty Name="TotalPagado" ColumnName="TotalPagado" />
           <ScalarProperty Name="SaldoFactura" ColumnName="SaldoFactura" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SDP_Gral_tbEmpleado_Select1" FunctionName="ERP_ZORZALModel.Store.SDP_Gral_tbEmpleado_Select" />
+    <FunctionImportMapping FunctionImportName="SDP_tbEmpleado_Select" FunctionName="ERP_ZORZALModel.Store.SDP_tbEmpleado_Select">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_tbEmpleado_Select_Result">
+          <ScalarProperty Name="emp_Id" ColumnName="emp_Id" />
+          <ScalarProperty Name="emp_Nombres" ColumnName="emp_Nombres" />
+          <ScalarProperty Name="emp_Apellidos" ColumnName="emp_Apellidos" />
+          <ScalarProperty Name="emp_Sexo" ColumnName="emp_Sexo" />
+          <ScalarProperty Name="emp_FechaNacimiento" ColumnName="emp_FechaNacimiento" />
+          <ScalarProperty Name="tpi_Id" ColumnName="tpi_Id" />
+          <ScalarProperty Name="emp_Identificacion" ColumnName="emp_Identificacion" />
+          <ScalarProperty Name="emp_Telefono" ColumnName="emp_Telefono" />
+          <ScalarProperty Name="emp_Correoelectronico" ColumnName="emp_Correoelectronico" />
+          <ScalarProperty Name="emp_TipoSangre" ColumnName="emp_TipoSangre" />
+          <ScalarProperty Name="emp_Puesto" ColumnName="emp_Puesto" />
+          <ScalarProperty Name="emp_FechaIngreso" ColumnName="emp_FechaIngreso" />
+          <ScalarProperty Name="emp_Direccion" ColumnName="emp_Direccion" />
+          <ScalarProperty Name="emp_RazonInactivacion" ColumnName="emp_RazonInactivacion" />
+          <ScalarProperty Name="emp_UsuarioCrea" ColumnName="emp_UsuarioCrea" />
+          <ScalarProperty Name="emp_FechaCrea" ColumnName="emp_FechaCrea" />
+          <ScalarProperty Name="emp_UsuarioModifica" ColumnName="emp_UsuarioModifica" />
+          <ScalarProperty Name="emp_FechaModifica" ColumnName="emp_FechaModifica" />
+          <ScalarProperty Name="emp_Estado" ColumnName="emp_Estado" />
+          <ScalarProperty Name="emp_RazonSalida" ColumnName="emp_RazonSalida" />
+          <ScalarProperty Name="emp_FechaDeSalida" ColumnName="emp_FechaDeSalida" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SDP_Inv_tbSalidaDetalle_Edit_Select" FunctionName="ERP_ZORZALModel.Store.SDP_Inv_tbSalidaDetalle_Edit_Select">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_Inv_tbSalidaDetalle_Edit_Select_Result">
+          <ScalarProperty Name="sald_Id" ColumnName="sald_Id" />
+          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+          <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
+          <ScalarProperty Name="prod_Marca" ColumnName="prod_Marca" />
+          <ScalarProperty Name="prod_Modelo" ColumnName="prod_Modelo" />
+          <ScalarProperty Name="prod_Talla" ColumnName="prod_Talla" />
+          <ScalarProperty Name="prod_Color" ColumnName="prod_Color" />
+          <ScalarProperty Name="uni_Descripcion" ColumnName="uni_Descripcion" />
+          <ScalarProperty Name="pcat_Nombre" ColumnName="pcat_Nombre" />
+          <ScalarProperty Name="pscat_Descripcion" ColumnName="pscat_Descripcion" />
+          <ScalarProperty Name="sald_Cantidad" ColumnName="sald_Cantidad" />
+          <ScalarProperty Name="box_Codigo" ColumnName="box_Codigo" />
+          <ScalarProperty Name="prod_CodigoBarras" ColumnName="prod_CodigoBarras" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetProducto" FunctionName="ERP_ZORZALModel.Store.spGetProducto">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.spGetProducto_Result">
+          <ScalarProperty Name="prod_CodigoBarras" ColumnName="prod_CodigoBarras" />
+          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+          <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
+          <ScalarProperty Name="pscat_Descripcion" ColumnName="pscat_Descripcion" />
+          <ScalarProperty Name="uni_Descripcion" ColumnName="uni_Descripcion" />
+          <ScalarProperty Name="pcat_Nombre" ColumnName="pcat_Nombre" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

@@ -1,0 +1,127 @@
+﻿@model ERP_GMEDINA.Models.tbTipoEntrada
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/css/Auditoria.css" rel="stylesheet" />
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Tipo Entrada</h2>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            @Html.ActionLink("Regresar", "Index")
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Editar Tipo Entrada</h5>
+                </div>
+                <div class="ibox-content">
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true)
+                            @Html.HiddenFor(model => model.tent_Id)
+                            @*Auditoria*@
+                            @Html.HiddenFor(model => model.tent_UsuarioCrea)
+                            @Html.HiddenFor(model => model.tent_FechaCrea)
+                            @Html.HiddenFor(model => model.tent_UsuarioModifica)
+                            @Html.HiddenFor(model => model.tent_FechaModifica)
+                            @Html.HiddenFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.HiddenFor(model => model.tbUsuario.usu_Apellidos)
+                            @Html.HiddenFor(model => model.tbUsuario1.usu_Nombres)
+                            @Html.HiddenFor(model => model.tbUsuario1.usu_Apellidos)
+
+                            @*Esto lo agregó Mágdaly Zúniga*@
+                            @*Extras usuario crea*@
+                            @Html.HiddenFor(model => model.tbUsuario.usu_NombreUsuario)
+                            @Html.HiddenFor(model => model.tbUsuario.usu_Password)
+                            @Html.HiddenFor(model => model.tbUsuario.usu_Correo)
+                            @Html.HiddenFor(model => model.tbUsuario.usu_EsActivo)
+                            @Html.HiddenFor(model => model.tbUsuario.usu_EsAdministrador)
+
+                            @*Extras usuario crea*@
+                            @Html.HiddenFor(model => model.tbUsuario1.usu_NombreUsuario)
+                            @Html.HiddenFor(model => model.tbUsuario1.usu_Password)
+                            @Html.HiddenFor(model => model.tbUsuario1.usu_Correo)
+                            @Html.HiddenFor(model => model.tbUsuario1.usu_EsActivo)
+                            @Html.HiddenFor(model => model.tbUsuario1.usu_EsAdministrador)
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.tent_Id, new { @class = "control-label col-md-2" })
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.tent_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                                    <p style="color:red"> @Html.ValidationMessageFor(model => model.tent_Id)</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.tent_Descripcion, new { @class = "control-label col-md-2" })
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.tent_Descripcion)
+
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.tent_Descripcion)</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="ibox-content">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Acción</th>
+                        <th>Usuario</th>
+                        <th>Fecha</th>
+                    </tr>
+                    <tr>
+                        <td>Creado</td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                         
+                        </td>
+                        <td>@Html.DisplayFor(model => model.tent_FechaCrea)</td>
+                    </tr>
+                    <tr>
+                        <td>Modificado</td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+
+                        </td>
+                        <td>@Html.DisplayFor(model => model.tent_FechaModifica)</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+

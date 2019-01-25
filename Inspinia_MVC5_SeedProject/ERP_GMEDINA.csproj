@@ -115,6 +115,10 @@
       <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="SimpleCrypto, Version=26.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SimpleCrypto.0.3.30.26\lib\SimpleCrypto.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Activities" />
     <Reference Include="System.Data" />
@@ -187,6 +191,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ActividadEconomicaController.cs" />
     <Compile Include="Controllers\BancoController.cs" />
+    <Compile Include="Controllers\BodegaController.cs" />
     <Compile Include="Controllers\CajaController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\CuentaBancoController.cs" />
@@ -196,6 +201,7 @@
     <Compile Include="Controllers\DepartamentoController.cs" />
     <Compile Include="Controllers\DevolucionController.cs" />
     <Compile Include="Controllers\DocumentoFiscalController.cs" />
+    <Compile Include="Controllers\EntradaController.cs" />
     <Compile Include="Controllers\EstadoFacturaController.cs" />
     <Compile Include="Controllers\EstadoSolicitudCreditoController.cs" />
     <Compile Include="Controllers\ExoneracionController.cs" />
@@ -212,12 +218,15 @@
     <Compile Include="Controllers\ParametroController.cs" />
     <Compile Include="Controllers\PedidoController.cs" />
     <Compile Include="Controllers\PuntoEmisionController.cs" />
+    <Compile Include="Controllers\SalidaController.cs" />
     <Compile Include="Controllers\SolicitudCreditoController.cs" />
     <Compile Include="Controllers\SolicitudEfectivoController.cs" />
     <Compile Include="Controllers\SucursalController.cs" />
+    <Compile Include="Controllers\TipoEntradaController.cs" />
     <Compile Include="Controllers\TipoIdentificacionController.cs" />
     <Compile Include="Controllers\TipoPagoController.cs" />
     <Compile Include="Controllers\UnidadMedidaController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Dataset\PuntoEmision.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -229,8 +238,11 @@
     <Compile Include="Helpers\HMTLHelperExtensions.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ActividadEconomicas.cs" />
+    <Compile Include="Models\AnularEntrada.cs" />
     <Compile Include="Models\ArqueoCajas.cs" />
     <Compile Include="Models\Banco.cs" />
+    <Compile Include="Models\Bodega.cs" />
+    <Compile Include="Models\BodegaDetalle.cs" />
     <Compile Include="Models\cActivo.cs" />
     <Compile Include="Models\Cajas.cs" />
     <Compile Include="Models\CARLOS.cs">
@@ -269,6 +281,9 @@
     </Compile>
     <Compile Include="Models\Denominacion.cs" />
     <Compile Include="Models\DenominacionArqueos.cs" />
+    <Compile Include="Models\Entrada.cs" />
+    <Compile Include="Models\EstadoBodega.cs" />
+    <Compile Include="Models\EstadoEntrada.cs" />
     <Compile Include="Models\EstadoFactura.cs" />
     <Compile Include="Models\EstadoPedido.cs" />
     <Compile Include="Models\EstadosSolicitudCreditos.cs" />
@@ -316,6 +331,8 @@
     </Compile>
     <Compile Include="Models\PuntoEmision.cs" />
     <Compile Include="Models\PuntoEmisionDetalle.cs" />
+    <Compile Include="Models\Salida.cs" />
+    <Compile Include="Models\SalidaDetalle.cs" />
     <Compile Include="Models\SDP_Acce_GetObjetosAsignados_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -338,6 +355,9 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SDP_Inv_tbProducto_Select_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SDP_Inv_tbSalidaDetalle_Edit_Select_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SDP_Inv_tbSalidaDetalle_Select_Result.cs">
@@ -401,6 +421,9 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\spGetProducto_BodegaDetalle_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spGetProducto_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SPGetResponsableBodega_Result.cs">
@@ -626,6 +649,7 @@
     <Compile Include="Models\tbUsuario.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TipoEntrada.cs" />
     <Compile Include="Models\TipoPagos.cs" />
     <Compile Include="Models\TiposIdenticacion.cs" />
     <Compile Include="Models\UDP_Acce_Login_Result.cs">
@@ -1225,8 +1249,8 @@
     <Compile Include="Models\UDV_Vent_FacturaPuntoEmision1.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\UnidadesMedida.cs" />
     <Compile Include="Models\UnidadMedida.cs" />
+    <Compile Include="Models\Usuario.cs" />
     <Compile Include="Models\V_Objetos.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -2020,6 +2044,67 @@
     <Content Include="Views\Parametro\Details.cshtml" />
     <Content Include="Views\Parametro\Edit.cshtml" />
     <Content Include="Views\Parametro\Index.cshtml" />
+    <Content Include="Views\Usuario\Create.cshtml" />
+    <Content Include="Views\Usuario\Delete.cshtml" />
+    <Content Include="Views\Usuario\Details.cshtml" />
+    <Content Include="Views\Usuario\Edit.cshtml" />
+    <Content Include="Views\Usuario\Editct.cshtml" />
+    <Content Include="Views\Usuario\Index.cshtml" />
+    <Content Include="Views\Usuario\ModificarCuenta.cshtml" />
+    <Content Include="Views\Usuario\ModificarPass.cshtml" />
+    <Content Include="Views\Usuario\RestaurarPassword.cshtml" />
+    <Content Include="Views\Usuario\_BuscarEmpleado.cshtml" />
+    <Content Include="Views\Usuario\_IndexRolesUsuario.cshtml" />
+    <Content Include="Views\Entrada\Create.cshtml" />
+    <Content Include="Views\Entrada\Delete.cshtml" />
+    <Content Include="Views\Entrada\Details.cshtml" />
+    <Content Include="Views\Entrada\Edit.cshtml" />
+    <Content Include="Views\Entrada\Index.cshtml" />
+    <Content Include="Views\Entrada\_BuscarProducto.cshtml" />
+    <Content Include="Views\Entrada\_CrearDetalleEntrada.cshtml" />
+    <Content Include="Views\Entrada\_CrearDetalleEntradaEditar.cshtml" />
+    <Content Include="Views\Entrada\_DetalleDeEntrada.cshtml" />
+    <Content Include="Views\Entrada\_DetallesDeEntrada.cshtml" />
+    <Content Include="Views\Entrada\_EditarDetalleEntrada.cshtml" />
+    <Content Include="Views\Entrada\_IndexDetalle.cshtml" />
+    <Content Include="Views\Entrada\_IndexDetalleEntrada.cshtml" />
+    <Content Include="Views\Entrada\_IndexEditar.cshtml" />
+    <Content Include="Views\Entrada\_ProductoEntradaEditarModal.cshtml" />
+    <Content Include="Views\TipoEntrada\Create.cshtml" />
+    <Content Include="Views\TipoEntrada\Delete.cshtml" />
+    <Content Include="Views\TipoEntrada\Details.cshtml" />
+    <Content Include="Views\TipoEntrada\Edit.cshtml" />
+    <Content Include="Views\TipoEntrada\Index.cshtml" />
+    <Content Include="Views\Salida\Create.cshtml" />
+    <Content Include="Views\Salida\Delete.cshtml" />
+    <Content Include="Views\Salida\Details.cshtml" />
+    <Content Include="Views\Salida\Edit.cshtml" />
+    <Content Include="Views\Salida\Index.cshtml" />
+    <Content Include="Views\Salida\View.cshtml" />
+    <Content Include="Views\Salida\_BuscarProducto.cshtml" />
+    <Content Include="Views\Salida\_CreateEditSalidaDetalle.cshtml" />
+    <Content Include="Views\Salida\_CreateSalidaDetalle.cshtml" />
+    <Content Include="Views\Salida\_DetailsSalidaDetalle.cshtml" />
+    <Content Include="Views\Salida\_EditProductoSalidaDetalle.cshtml" />
+    <Content Include="Views\Salida\_EditSalidaDetalle.cshtml" />
+    <Content Include="Views\Salida\_Modales.cshtml" />
+    <Content Include="Views\Salida\_SalidaDetalle.cshtml" />
+    <Content Include="Views\Bodega\Create.cshtml" />
+    <Content Include="Views\Bodega\Delete.cshtml" />
+    <Content Include="Views\Bodega\Details.cshtml" />
+    <Content Include="Views\Bodega\Edit.cshtml" />
+    <Content Include="Views\Bodega\Index.cshtml" />
+    <Content Include="Views\Bodega\_BuscarProducto.cshtml" />
+    <Content Include="Views\Bodega\_BuscarProductoAutocomplete.cshtml" />
+    <Content Include="Views\Bodega\_CreateBodegaDetalle.cshtml" />
+    <Content Include="Views\Bodega\_CreateNuevoBodegaDetalle_Modal.cshtml" />
+    <Content Include="Views\Bodega\_DetailsBodegaDetalle.cshtml" />
+    <Content Include="Views\Bodega\_DetailsProductoModal.cshtml" />
+    <Content Include="Views\Bodega\_DetallesProductos.cshtml" />
+    <Content Include="Views\Bodega\_EditBodegaDetalle.cshtml" />
+    <Content Include="Views\Bodega\_EditBodegaDetalleModal.cshtml" />
+    <Content Include="Views\Bodega\_IndexBodegaDetalle.cshtml" />
+    <Content Include="Views\Bodega\_ListBodegaDetalles.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

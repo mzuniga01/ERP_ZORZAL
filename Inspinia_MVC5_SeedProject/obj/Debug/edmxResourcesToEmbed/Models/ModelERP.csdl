@@ -741,9 +741,6 @@
       <Parameter Name="prod_Codigo" Mode="In" Type="String" />
       <Parameter Name="clte_EsMinorista" Mode="In" Type="Boolean" />
     </FunctionImport>
-    <FunctionImport Name="spGetProducto" ReturnType="Collection(String)">
-      <Parameter Name="prod_Codigo" Mode="In" Type="String" />
-    </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbFacturaHistorica_Insert" ReturnType="Collection(Byte)">
       <Parameter Name="fact_Id" Mode="In" Type="Int64" />
       <Parameter Name="esfac_Id" Mode="In" Type="Byte" />
@@ -2481,7 +2478,6 @@
     <FunctionImport Name="SDP_tbEmpleado_Consulta" ReturnType="Collection(ERP_ZORZALModel.SDP_tbEmpleado_Consulta_Result)">
       <Parameter Name="emp_Id" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="SDP_tbEmpleado_Select" ReturnType="Collection(ERP_ZORZALModel.SDP_tbEmpleado_Select_Result)" />
     <FunctionImport Name="ACtualizar_Cantidad_BOdegaDetalle" ReturnType="Collection(String)">
       <Parameter Name="IDBodega" Mode="In" Type="Int32" />
       <Parameter Name="IDProducto" Mode="In" Type="String" />
@@ -2555,6 +2551,17 @@
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_vFacturaPago" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_vFacturaPago_Result)">
       <Parameter Name="clte_Id" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="SDP_Gral_tbEmpleado_Select1">
+      <Parameter Name="emp_Id" Mode="In" Type="Int16" />
+    </FunctionImport>
+    <FunctionImport Name="SDP_tbEmpleado_Select" ReturnType="Collection(ERP_ZORZALModel.SDP_tbEmpleado_Select_Result)" />
+    <FunctionImport Name="SDP_Inv_tbSalidaDetalle_Edit_Select" ReturnType="Collection(ERP_ZORZALModel.SDP_Inv_tbSalidaDetalle_Edit_Select_Result)">
+      <Parameter Name="sald_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spGetProducto" ReturnType="Collection(ERP_ZORZALModel.spGetProducto_Result)">
+      <Parameter Name="bod_Id" Mode="In" Type="Int32" />
+      <Parameter Name="prod_CodigoBarras" Mode="In" Type="String" />
     </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
@@ -7709,29 +7716,6 @@
     <Property Type="String" Name="emp_RazonSalida" Nullable="true" MaxLength="250" />
     <Property Type="DateTime" Name="emp_FechaDeSalida" Nullable="true" />
   </ComplexType>
-  <ComplexType Name="SDP_tbEmpleado_Select_Result">
-    <Property Type="Int16" Name="emp_Id" Nullable="false" />
-    <Property Type="String" Name="emp_Nombres" Nullable="false" MaxLength="100" />
-    <Property Type="String" Name="emp_Apellidos" Nullable="false" MaxLength="100" />
-    <Property Type="String" Name="emp_Sexo" Nullable="false" MaxLength="1" />
-    <Property Type="DateTime" Name="emp_FechaNacimiento" Nullable="false" Precision="23" />
-    <Property Type="Byte" Name="tpi_Id" Nullable="false" />
-    <Property Type="String" Name="emp_Identificacion" Nullable="false" MaxLength="14" />
-    <Property Type="String" Name="emp_Telefono" Nullable="false" MaxLength="25" />
-    <Property Type="String" Name="emp_Correoelectronico" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="emp_TipoSangre" Nullable="false" MaxLength="2" />
-    <Property Type="String" Name="emp_Puesto" Nullable="false" MaxLength="50" />
-    <Property Type="DateTime" Name="emp_FechaIngreso" Nullable="false" />
-    <Property Type="String" Name="emp_Direccion" Nullable="false" MaxLength="250" />
-    <Property Type="String" Name="emp_RazonInactivacion" Nullable="true" MaxLength="500" />
-    <Property Type="Int32" Name="emp_UsuarioCrea" Nullable="false" />
-    <Property Type="DateTime" Name="emp_FechaCrea" Nullable="false" Precision="23" />
-    <Property Type="Int32" Name="emp_UsuarioModifica" Nullable="true" />
-    <Property Type="DateTime" Name="emp_FechaModifica" Nullable="true" Precision="23" />
-    <Property Type="Boolean" Name="emp_Estado" Nullable="false" />
-    <Property Type="String" Name="emp_RazonSalida" Nullable="true" MaxLength="250" />
-    <Property Type="DateTime" Name="emp_FechaDeSalida" Nullable="true" />
-  </ComplexType>
   <ComplexType Name="SDP_Inv_tbProducto_Select_Result">
     <Property Type="String" Name="prod_CodigoBarras" Nullable="false" MaxLength="15" />
     <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
@@ -8097,5 +8081,51 @@
   </ComplexType>
   <ComplexType Name="ConteoParametro_Result">
     <Property Type="Int32" Name="Conteo" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SDP_tbEmpleado_Select_Result">
+    <Property Type="Int16" Name="emp_Id" Nullable="false" />
+    <Property Type="String" Name="emp_Nombres" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="emp_Apellidos" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="emp_Sexo" Nullable="false" MaxLength="1" />
+    <Property Type="DateTime" Name="emp_FechaNacimiento" Nullable="false" Precision="23" />
+    <Property Type="Byte" Name="tpi_Id" Nullable="false" />
+    <Property Type="String" Name="emp_Identificacion" Nullable="false" MaxLength="14" />
+    <Property Type="String" Name="emp_Telefono" Nullable="false" MaxLength="25" />
+    <Property Type="String" Name="emp_Correoelectronico" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="emp_TipoSangre" Nullable="false" MaxLength="2" />
+    <Property Type="String" Name="emp_Puesto" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="emp_FechaIngreso" Nullable="false" />
+    <Property Type="String" Name="emp_Direccion" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="emp_RazonInactivacion" Nullable="true" MaxLength="500" />
+    <Property Type="Int32" Name="emp_UsuarioCrea" Nullable="false" />
+    <Property Type="DateTime" Name="emp_FechaCrea" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="emp_UsuarioModifica" Nullable="true" />
+    <Property Type="DateTime" Name="emp_FechaModifica" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="emp_Estado" Nullable="false" />
+    <Property Type="String" Name="emp_RazonSalida" Nullable="true" MaxLength="250" />
+    <Property Type="DateTime" Name="emp_FechaDeSalida" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SDP_Inv_tbSalidaDetalle_Edit_Select_Result">
+    <Property Type="Int32" Name="sald_Id" Nullable="false" />
+    <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="prod_Descripcion" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="prod_Marca" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="prod_Modelo" Nullable="false" MaxLength="25" />
+    <Property Type="String" Name="prod_Talla" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="prod_Color" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="uni_Descripcion" Nullable="false" MaxLength="150" />
+    <Property Type="String" Name="pcat_Nombre" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="pscat_Descripcion" Nullable="true" MaxLength="150" />
+    <Property Type="Decimal" Name="sald_Cantidad" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="String" Name="box_Codigo" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="prod_CodigoBarras" Nullable="false" MaxLength="15" />
+  </ComplexType>
+  <ComplexType Name="spGetProducto_Result">
+    <Property Type="String" Name="prod_CodigoBarras" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="prod_Descripcion" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="pscat_Descripcion" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="uni_Descripcion" Nullable="false" MaxLength="150" />
+    <Property Type="String" Name="pcat_Nombre" Nullable="false" MaxLength="50" />
   </ComplexType>
 </Schema>

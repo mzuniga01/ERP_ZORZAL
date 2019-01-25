@@ -1,0 +1,132 @@
+﻿@model ERP_GMEDINA.Models.tbSalida
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Salidas</h2>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            <a href="@Url.Action("Index","Salida")">Regresar</a>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Detalles Salida</h5>
+                </div>
+                <div class="ibox-content">
+
+
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.sal_FechaElaboracion)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.sal_FechaElaboracion)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.tbBodega.bod_Nombre)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.tbBodega.bod_Nombre)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.tbEstadoMovimiento.estm_Descripcion)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.tbEstadoMovimiento.estm_Descripcion)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.tbFactura.fact_Codigo)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.tbFactura.fact_Codigo)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.tbTipoSalida.tsal_Descripcion)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.tbTipoSalida.tsal_Descripcion)
+                        </dd>
+
+                    </dl>
+
+                    @Html.ActionLink("Editar", "Edit", new { id = Model.sal_Id }, new { @class = "btn btn-primary" })
+                    @*@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white"})*@
+                </div>
+            </div>
+
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="ibox-content">
+                                <fieldset class="box-border">
+                                    <legend class="box-border">SalidaDetalle</legend>
+                                    @Html.Partial("_DetailsSalidaDetalle", Model.tbSalidaDetalle, new ViewDataDictionary(new { clave = Model.sal_Id }))
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                @*Campos de Auditoria*@
+                <div class="ibox-content">
+                    <fieldset class="box-border">
+                        <legend class="box-border">Datos Auditoria</legend>
+                        <table class="table table-striped" style="width:100%">
+                            <tr>
+                                <th>Acciones</th>
+                                <th>Usuario</th>
+                                <th>Fecha</th>
+                            </tr>
+                            <tr>
+                                <td>Creado</td>
+                                <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                                <td>@Html.DisplayFor(model => model.sal_FechaCrea)</td>
+                            </tr>
+                            <tr>
+                                <td>Modificado</td>
+                                <td>@Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)</td>
+                                <td>@Html.DisplayFor(model => model.sal_FechaModifica)</td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                </div>
+            </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

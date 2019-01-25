@@ -1,0 +1,79 @@
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbBodegaDetalle>
+
+
+@using ERP_GMEDINA.Models
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Listado de Detalles</h5>
+                    <div class="ibox-tools">
+
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="table table-striped" id="tbBodega">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Código Barras
+                                </th>
+                                <th>
+                                    Código Producto
+                                </th>
+                                <th>
+                                    Producto
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.bodd_CantidadMinima)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.bodd_PuntoReorden)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.bodd_CantidadMaxima)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.bodd_CantidadExistente)
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tbProducto.prod_CodigoBarras)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tbProducto.prod_Codigo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.bodd_CantidadMinima)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.bodd_PuntoReorden)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.bodd_CantidadMaxima)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.bodd_CantidadExistente)
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

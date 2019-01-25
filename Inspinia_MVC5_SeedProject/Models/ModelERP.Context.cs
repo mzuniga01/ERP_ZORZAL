@@ -2741,15 +2741,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetPrecioUnitario_Result>("GetPrecioUnitario", clte_IdentificacionParameter, prod_CodigoParameter, clte_EsMinoristaParameter);
         }
     
-        public virtual ObjectResult<string> spGetProducto(string prod_Codigo)
-        {
-            var prod_CodigoParameter = prod_Codigo != null ?
-                new ObjectParameter("prod_Codigo", prod_Codigo) :
-                new ObjectParameter("prod_Codigo", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("spGetProducto", prod_CodigoParameter);
-        }
-    
         public virtual ObjectResult<Nullable<byte>> UDP_Vent_tbFacturaHistorica_Insert(Nullable<long> fact_Id, Nullable<byte> esfac_Id, Nullable<System.DateTime> facth_Fecha)
         {
             var fact_IdParameter = fact_Id.HasValue ?
@@ -5462,11 +5453,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_tbEmpleado_Consulta_Result>("SDP_tbEmpleado_Consulta", emp_IdParameter);
         }
     
-        public virtual ObjectResult<SDP_tbEmpleado_Select_Result> SDP_tbEmpleado_Select()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_tbEmpleado_Select_Result>("SDP_tbEmpleado_Select");
-        }
-    
         public virtual ObjectResult<string> ACtualizar_Cantidad_BOdegaDetalle(Nullable<int> iDBodega, string iDProducto, Nullable<decimal> cantidadSolicitadad, Nullable<System.DateTime> fechaElaboracion, Nullable<int> bodegaDestino)
         {
             var iDBodegaParameter = iDBodega.HasValue ?
@@ -5707,6 +5693,42 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("clte_Id", typeof(long));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_vFacturaPago_Result>("UDP_Vent_vFacturaPago", clte_IdParameter);
+        }
+    
+        public virtual int SDP_Gral_tbEmpleado_Select1(Nullable<short> emp_Id)
+        {
+            var emp_IdParameter = emp_Id.HasValue ?
+                new ObjectParameter("emp_Id", emp_Id) :
+                new ObjectParameter("emp_Id", typeof(short));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SDP_Gral_tbEmpleado_Select1", emp_IdParameter);
+        }
+    
+        public virtual ObjectResult<SDP_tbEmpleado_Select_Result> SDP_tbEmpleado_Select()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_tbEmpleado_Select_Result>("SDP_tbEmpleado_Select");
+        }
+    
+        public virtual ObjectResult<SDP_Inv_tbSalidaDetalle_Edit_Select_Result> SDP_Inv_tbSalidaDetalle_Edit_Select(Nullable<int> sald_Id)
+        {
+            var sald_IdParameter = sald_Id.HasValue ?
+                new ObjectParameter("sald_Id", sald_Id) :
+                new ObjectParameter("sald_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_Inv_tbSalidaDetalle_Edit_Select_Result>("SDP_Inv_tbSalidaDetalle_Edit_Select", sald_IdParameter);
+        }
+    
+        public virtual ObjectResult<spGetProducto_Result> spGetProducto(Nullable<int> bod_Id, string prod_CodigoBarras)
+        {
+            var bod_IdParameter = bod_Id.HasValue ?
+                new ObjectParameter("bod_Id", bod_Id) :
+                new ObjectParameter("bod_Id", typeof(int));
+    
+            var prod_CodigoBarrasParameter = prod_CodigoBarras != null ?
+                new ObjectParameter("prod_CodigoBarras", prod_CodigoBarras) :
+                new ObjectParameter("prod_CodigoBarras", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetProducto_Result>("spGetProducto", bod_IdParameter, prod_CodigoBarrasParameter);
         }
     }
 }

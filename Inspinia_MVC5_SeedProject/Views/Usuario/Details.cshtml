@@ -1,0 +1,144 @@
+﻿@model ERP_GMEDINA.Models.tbUsuario
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Usuario</h2>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            @Html.ActionLink("Regresar", "Index")
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Detalles Usuario</h5>
+                </div>
+                <div class="ibox-content">
+				    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.usu_Id)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.usu_Id)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.usu_NombreUsuario)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.usu_NombreUsuario)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.usu_Nombres)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.usu_Nombres)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.usu_Apellidos)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.usu_Apellidos)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.usu_Correo)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.usu_Correo)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.suc_Id)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.suc_Id)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.emp_Id)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.emp_Id)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.usu_EsActivo)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.usu_EsActivo)
+                        </dd>
+                        @if (Model.usu_EsActivo ==true)
+                        {
+                            <dt>
+                            
+                            </dt>
+
+                            <dd>
+                           
+                            </dd> 
+                        }
+                        else
+                        {
+                            <dt>
+                                @Html.DisplayNameFor(model => model.usu_RazonInactivo)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.usu_RazonInactivo)
+                            </dd> 
+                        }
+
+                    </dl>
+                        @Html.ActionLink("Editar", "Edit", new { id = Model.usu_Id }, new { @class = "btn btn-primary" })
+                </div>
+            </div>
+
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Roles Asignados</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="form-horizontal">
+                        @Html.Partial("_IndexRolesUsuario", Model.tbRolesUsuario2, new ViewDataDictionary { { "usu_Id", Model.usu_Id } })
+                        <div class="form-group">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/DataTable.js"></script>
+
+
+
+
+
+
+
+
+
