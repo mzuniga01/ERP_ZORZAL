@@ -809,7 +809,7 @@
       <Parameter Name="arqpg_PagosSistema" Mode="In" Type="Decimal" />
       <Parameter Name="arqpg_PagosConteo" Mode="In" Type="Decimal" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbPagosArqueo_Update">
+    <FunctionImport Name="UDP_Vent_tbPagosArqueo_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPagosArqueo_Update_Result)">
       <Parameter Name="arqpg_Id" Mode="In" Type="Int32" />
       <Parameter Name="mocja_Id" Mode="In" Type="Int32" />
       <Parameter Name="tpa_Id" Mode="In" Type="Int16" />
@@ -829,7 +829,7 @@
       <Parameter Name="UsuarioId" Mode="In" Type="String" />
       <Parameter Name="password" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="ConteoParametro" ReturnType="Collection(Int32)">
+    <FunctionImport Name="ConteoParametro" ReturnType="Collection(ERP_ZORZALModel.ConteoParametro_Result)">
       <Parameter Name="conteo" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="sp_alterdiagram">
@@ -8091,5 +8091,11 @@
   </ComplexType>
   <ComplexType Name="UDP_Acce_tbAccesoRol_Insert_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbPagosArqueo_Update_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="ConteoParametro_Result">
+    <Property Type="Int32" Name="Conteo" Nullable="false" />
   </ComplexType>
 </Schema>

@@ -7,6 +7,11 @@ namespace ERP_GMEDINA.Models
 {
     public class Helpers
     {
+        //Objeto Estado Inventario 
+        public const bool Activo = true;//1
+        public const bool Inactivo = false;//0
+
+        //Factura Ventas
         public const bool AnuladoFactura = true;
         public const int RTN = 3;
         public const int ID = 2;

@@ -193,6 +193,7 @@
     <Compile Include="Controllers\CuponDescuentoController.cs" />
     <Compile Include="Controllers\DenominacionArqueoController.cs" />
     <Compile Include="Controllers\DenominacionController.cs" />
+    <Compile Include="Controllers\DepartamentoController.cs" />
     <Compile Include="Controllers\DevolucionController.cs" />
     <Compile Include="Controllers\DocumentoFiscalController.cs" />
     <Compile Include="Controllers\EstadoFacturaController.cs" />
@@ -205,8 +206,10 @@
     <Compile Include="Controllers\MonedaController.cs" />
     <Compile Include="Controllers\MovimientoCajaController.cs" />
     <Compile Include="Controllers\NotaCreditoController.cs" />
+    <Compile Include="Controllers\ObjetoController.cs" />
     <Compile Include="Controllers\PagoController.cs" />
     <Compile Include="Controllers\PagosArqueoController.cs" />
+    <Compile Include="Controllers\ParametroController.cs" />
     <Compile Include="Controllers\PedidoController.cs" />
     <Compile Include="Controllers\PuntoEmisionController.cs" />
     <Compile Include="Controllers\SolicitudCreditoController.cs" />
@@ -214,6 +217,7 @@
     <Compile Include="Controllers\SucursalController.cs" />
     <Compile Include="Controllers\TipoIdentificacionController.cs" />
     <Compile Include="Controllers\TipoPagoController.cs" />
+    <Compile Include="Controllers\UnidadMedidaController.cs" />
     <Compile Include="Dataset\PuntoEmision.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -247,6 +251,9 @@
     <Compile Include="Models\cMinorista.cs" />
     <Compile Include="Models\cNacionalidad.cs" />
     <Compile Include="Models\cNotaCredito.cs" />
+    <Compile Include="Models\ConteoParametro_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\crud_tbProductoSelect_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -297,8 +304,10 @@
     </Compile>
     <Compile Include="Models\Monedas.cs" />
     <Compile Include="Models\MovimientoCajas.cs" />
+    <Compile Include="Models\Objeto.cs" />
     <Compile Include="Models\Pagos.cs" />
     <Compile Include="Models\PagosArqueos.cs" />
+    <Compile Include="Models\Parametros.cs" />
     <Compile Include="Models\PedidoDetalle.cs" />
     <Compile Include="Models\Pedidos.cs" />
     <Compile Include="Models\Producto.cs" />
@@ -1081,6 +1090,9 @@
     <Compile Include="Models\UDP_Vent_tbPagosArqueo_Insert_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UDP_Vent_tbPagosArqueo_Update_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UDP_Vent_tbPago_Insert_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -1214,6 +1226,7 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UnidadesMedida.cs" />
+    <Compile Include="Models\UnidadMedida.cs" />
     <Compile Include="Models\V_Objetos.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -1470,6 +1483,8 @@
     <Content Include="Scripts\app\AceptarSolicitudCre.js" />
     <Content Include="Scripts\app\Activo.js" />
     <Content Include="Scripts\app\ActivoExoneracion.js" />
+    <Content Include="Scripts\app\ActivoP.js" />
+    <Content Include="Scripts\app\AgregarMunicipio.js" />
     <Content Include="Scripts\app\AnularDevolucion.js" />
     <Content Include="Scripts\app\AnularFactura.js" />
     <Content Include="Scripts\app\AnularPedido.js" />
@@ -1481,14 +1496,19 @@
     <Content Include="Scripts\app\AutorizarDescuento.js" />
     <Content Include="Scripts\app\Banco.js" />
     <Content Include="Scripts\app\BCliente.js" />
+    <Content Include="Scripts\app\BodegaDetalle.js" />
+    <Content Include="Scripts\app\BusquedaGenerica.js" />
     <Content Include="Scripts\app\CalculoFactura.js" />
     <Content Include="Scripts\app\Cantidad.js" />
+    <Content Include="Scripts\app\Categoria.js" />
     <Content Include="Scripts\app\ClienteDevolucion.js" />
     <Content Include="Scripts\app\ClienteExoneracion.js" />
     <Content Include="Scripts\app\ClienteFactura.js" />
     <Content Include="Scripts\app\ClientePago.js" />
     <Content Include="Scripts\app\Clientes-Pedido-Credito.js" />
     <Content Include="Scripts\app\ComandoGuardar.js" />
+    <Content Include="Scripts\app\Comparar.js" />
+    <Content Include="Scripts\app\CrearActualizarEliminar.js" />
     <Content Include="Scripts\app\CreateListaPrecioDetails.js" />
     <Content Include="Scripts\app\CreateNumeracionDetails.js" />
     <Content Include="Scripts\app\Credito.js" />
@@ -1498,14 +1518,20 @@
     <Content Include="Scripts\app\DataTable.js" />
     <Content Include="Scripts\app\DataTableBusquedaGenerica.js" />
     <Content Include="Scripts\app\Datepicker.js" />
+    <Content Include="Scripts\app\DatepickerEmpleado.js" />
     <Content Include="Scripts\app\Denominacion.js" />
     <Content Include="Scripts\app\DenominacionArqueo.js" />
     <Content Include="Scripts\app\Departamento.js" />
+    <Content Include="Scripts\app\DetalleBox.js" />
+    <Content Include="Scripts\app\DetalleEditarDevolucion.js" />
     <Content Include="Scripts\app\DevolucionCalculos.js" />
     <Content Include="Scripts\app\DevolucionDetalle.js" />
+    <Content Include="Scripts\app\disableSubmits.js" />
     <Content Include="Scripts\app\EditNumeracion.js" />
+    <Content Include="Scripts\app\emailvalidation.js" />
     <Content Include="Scripts\app\EmitirNotaCredito.js" />
     <Content Include="Scripts\app\Empleados.js" />
+    <Content Include="Scripts\app\EntradaDetalle.js" />
     <Content Include="Scripts\app\EntregaEfectivo.js" />
     <Content Include="Scripts\app\EntregaEfectivoDetalle.js" />
     <Content Include="Scripts\app\Factura.js" />
@@ -1517,38 +1543,67 @@
     <Content Include="Scripts\app\FuncionResta.js" />
     <Content Include="Scripts\app\GetCodigoNotaCredito.js" />
     <Content Include="Scripts\app\GetDetalleFactura.js" />
+    <Content Include="Scripts\app\GetFacturaDetalleEdit.js" />
+    <Content Include="Scripts\app\GetListadoDetalleEdit.js" />
     <Content Include="Scripts\app\GetNumeroFact.js" />
+    <Content Include="Scripts\app\GuardarDetalleEdit.js" />
     <Content Include="Scripts\app\Identificacion.js" />
     <Content Include="Scripts\app\InActivarCliente.js" />
     <Content Include="Scripts\app\InactivarExoneracion.js" />
     <Content Include="Scripts\app\InactivarListaP.js" />
+    <Content Include="Scripts\app\InActivarProducto.js" />
+    <Content Include="Scripts\app\InActivarUsuario.js" />
     <Content Include="Scripts\app\inspinia.js" />
+    <Content Include="Scripts\app\InvFisicoDetalle.js" />
+    <Content Include="Scripts\app\letras.js" />
     <Content Include="Scripts\app\ListaPrecioDetalle.js" />
+    <Content Include="Scripts\app\ListaPrecioDetalleEdit.js" />
     <Content Include="Scripts\app\MessageError.js" />
+    <Content Include="Scripts\app\MostrarCamposEditar.js" />
+    <Content Include="Scripts\app\MostrarCamposEntradajs.js" />
+    <Content Include="Scripts\app\MostrarCamposSalida.js" />
+    <Content Include="Scripts\app\MostrarOcultar.js" />
     <Content Include="Scripts\app\MovientoCaja.js" />
+    <Content Include="Scripts\app\Municipio.js" />
     <Content Include="Scripts\app\NotaCredito.js" />
     <Content Include="Scripts\app\NotaCreditoAnulado.js" />
     <Content Include="Scripts\app\PagoClienteFacturas.js" />
     <Content Include="Scripts\app\PagosArqueo.js" />
     <Content Include="Scripts\app\PagoTransacciones.js" />
+    <Content Include="Scripts\app\PartialViewGetObjectos.js" />
     <Content Include="Scripts\app\PedidosFacturar.js" />
     <Content Include="Scripts\app\PersonaNatural.js" />
+    <Content Include="Scripts\app\ProductoCodigo.js" />
     <Content Include="Scripts\app\ProductoDevolucion.js" />
     <Content Include="Scripts\app\ProductoFactura.js" />
     <Content Include="Scripts\app\ProductoListaPrecios.js" />
     <Content Include="Scripts\app\PuntoEmision.js" />
     <Content Include="Scripts\app\PuntoEmisionDetalle.js" />
+    <Content Include="Scripts\app\RolesUsuario.js" />
+    <Content Include="Scripts\app\RolesUsuarioEdit.js" />
+    <Content Include="Scripts\app\RolObjetos.js" />
+    <Content Include="Scripts\app\RolObjetosEdit.js" />
+    <Content Include="Scripts\app\Salida.js" />
+    <Content Include="Scripts\app\SalidaDetalle.js" />
     <Content Include="Scripts\app\SaveDetallePedido.js" />
     <Content Include="Scripts\app\SavePedidoDetalle.js" />
+    <Content Include="Scripts\app\search.js" />
+    <Content Include="Scripts\app\SolicitarProducto.js" />
     <Content Include="Scripts\app\SolicituCreditoDenegar.js" />
     <Content Include="Scripts\app\SolicitudCredito.js" />
     <Content Include="Scripts\app\SolicitudEfectipoDetalless.js" />
     <Content Include="Scripts\app\SolicitudEfectivo.js" />
     <Content Include="Scripts\app\SolicitudEfectivoDetalles.js" />
     <Content Include="Scripts\app\SolicitudEfectivoEsAnulada.js" />
+    <Content Include="Scripts\app\SubCategoriaProducto.js" />
     <Content Include="Scripts\app\Sucursal.js" />
+    <Content Include="Scripts\app\TableDetalleDevolucion.js" />
     <Content Include="Scripts\app\TipoPago.js" />
+    <Content Include="Scripts\app\ValidacionProveedor.js" />
     <Content Include="Scripts\app\ValidarPedido.js" />
+    <Content Include="Scripts\app\ValidationEmail.js" />
+    <Content Include="Scripts\app\ValidationEstadoMovimientojs.js" />
+    <Content Include="Scripts\app\ValidationNumber.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\bootstrap.css.map" />
@@ -1763,11 +1818,6 @@
     <Content Include="Views\DocumentoFiscal\Details.cshtml" />
     <Content Include="Views\DocumentoFiscal\Edit.cshtml" />
     <Content Include="Views\DocumentoFiscal\Index.cshtml" />
-    <Content Include="Views\UnidadesMedida\Create.cshtml" />
-    <Content Include="Views\UnidadesMedida\Delete.cshtml" />
-    <Content Include="Views\UnidadesMedida\Details.cshtml" />
-    <Content Include="Views\UnidadesMedida\Edit.cshtml" />
-    <Content Include="Views\UnidadesMedida\Index.cshtml" />
     <Content Include="Views\CuponDescuento\Create.cshtml" />
     <Content Include="Views\CuponDescuento\Delete.cshtml" />
     <Content Include="Views\CuponDescuento\Details.cshtml" />
@@ -1944,6 +1994,32 @@
     <Content Include="Views\SolicitudEfectivo\_AddDetalle.cshtml" />
     <Content Include="Views\SolicitudEfectivo\_Detalle_Insert.cshtml" />
     <Content Include="Views\SolicitudEfectivo\IndexOriginal.cshtml" />
+    <Content Include="Views\Departamento\Create.cshtml" />
+    <Content Include="Views\Departamento\Delete.cshtml" />
+    <Content Include="Views\Departamento\Details.cshtml" />
+    <Content Include="Views\Departamento\Edit.cshtml" />
+    <Content Include="Views\Departamento\Index.cshtml" />
+    <Content Include="Views\Departamento\_CreateMunicipio.cshtml" />
+    <Content Include="Views\Departamento\_DeleteMunicipio.cshtml" />
+    <Content Include="Views\Departamento\_DetailsMunicipio.cshtml" />
+    <Content Include="Views\Departamento\_EditMunicipio.cshtml" />
+    <Content Include="Views\Departamento\_IndexMunicipio.cshtml" />
+    <Content Include="Views\Departamento\_IndexMunicipio_Botones.cshtml" />
+    <Content Include="Views\Objeto\Create.cshtml" />
+    <Content Include="Views\Objeto\Delete.cshtml" />
+    <Content Include="Views\Objeto\Details.cshtml" />
+    <Content Include="Views\Objeto\Edit.cshtml" />
+    <Content Include="Views\Objeto\Index.cshtml" />
+    <Content Include="Views\UnidadMedida\Create.cshtml" />
+    <Content Include="Views\UnidadMedida\Delete.cshtml" />
+    <Content Include="Views\UnidadMedida\Details.cshtml" />
+    <Content Include="Views\UnidadMedida\Edit.cshtml" />
+    <Content Include="Views\UnidadMedida\Index.cshtml" />
+    <Content Include="Views\Parametro\Create.cshtml" />
+    <Content Include="Views\Parametro\Delete.cshtml" />
+    <Content Include="Views\Parametro\Details.cshtml" />
+    <Content Include="Views\Parametro\Edit.cshtml" />
+    <Content Include="Views\Parametro\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

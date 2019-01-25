@@ -2977,7 +2977,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbPagosArqueo_Insert_Result>("UDP_Vent_tbPagosArqueo_Insert", mocja_IdParameter, tpa_IdParameter, arqpg_PagosSistemaParameter, arqpg_PagosConteoParameter);
         }
     
-        public virtual int UDP_Vent_tbPagosArqueo_Update(Nullable<int> arqpg_Id, Nullable<int> mocja_Id, Nullable<short> tpa_Id, Nullable<decimal> arqpg_PagosSistema, Nullable<decimal> arqpg_PagosConteo, Nullable<int> arqpg_UsuarioCrea, Nullable<System.DateTime> arqpg_FechaCrea)
+        public virtual ObjectResult<UDP_Vent_tbPagosArqueo_Update_Result> UDP_Vent_tbPagosArqueo_Update(Nullable<int> arqpg_Id, Nullable<int> mocja_Id, Nullable<short> tpa_Id, Nullable<decimal> arqpg_PagosSistema, Nullable<decimal> arqpg_PagosConteo, Nullable<int> arqpg_UsuarioCrea, Nullable<System.DateTime> arqpg_FechaCrea)
         {
             var arqpg_IdParameter = arqpg_Id.HasValue ?
                 new ObjectParameter("arqpg_Id", arqpg_Id) :
@@ -3007,7 +3007,7 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("arqpg_FechaCrea", arqpg_FechaCrea) :
                 new ObjectParameter("arqpg_FechaCrea", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_Vent_tbPagosArqueo_Update", arqpg_IdParameter, mocja_IdParameter, tpa_IdParameter, arqpg_PagosSistemaParameter, arqpg_PagosConteoParameter, arqpg_UsuarioCreaParameter, arqpg_FechaCreaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbPagosArqueo_Update_Result>("UDP_Vent_tbPagosArqueo_Update", arqpg_IdParameter, mocja_IdParameter, tpa_IdParameter, arqpg_PagosSistemaParameter, arqpg_PagosConteoParameter, arqpg_UsuarioCreaParameter, arqpg_FechaCreaParameter);
         }
     
         public virtual ObjectResult<SDP_Acce_GetRoles_Result> SDP_Acce_GetRoles()
@@ -3046,13 +3046,13 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Login_Result>("UDP_Login", usuarioIdParameter, passwordParameter);
         }
     
-        public virtual ObjectResult<Nullable<int>> ConteoParametro(Nullable<int> conteo)
+        public virtual ObjectResult<ConteoParametro_Result> ConteoParametro(Nullable<int> conteo)
         {
             var conteoParameter = conteo.HasValue ?
                 new ObjectParameter("conteo", conteo) :
                 new ObjectParameter("conteo", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("ConteoParametro", conteoParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ConteoParametro_Result>("ConteoParametro", conteoParameter);
         }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)

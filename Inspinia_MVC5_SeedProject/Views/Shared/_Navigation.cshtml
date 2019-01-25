@@ -137,10 +137,28 @@
                             <a href="@Url.Action("Index", "Banco")"><i class="fa fa-university fa-fw"></i> <span class="nav-label">Bancos</span> </a>
                         </li>
                     }
+                    @if (Login.GetUserRols("PagosArqueo/Index"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("Index", "PagosArqueo")"><i class="fa fa-university fa-fw"></i> <span class="nav-label">Pagos Arqueo</span> </a>
+                        </li>
+                    }
+                    @if (Login.GetUserRols("Departamento/Index"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("Index", "Departamento")"><i class="fa fa-map fa-fw"></i><span class="nav-label">División Política</span> </a>
+                        </li>
+                    }
                     @if (Login.GetUserRols("Denominacion/Index"))
                     {
                         <li class="@Html.IsSelected(action: "Index")">
                             <a href="@Url.Action("Index", "Denominacion")"><i class="fa fa-map"></i><span class="nav-label">Denominación</span> </a>
+                        </li>
+                    }
+                    @if (Login.GetUserRols("Objeto/Index"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("Index", "Objeto")"><i class="fa fa-desktop fa-fw"></i><span class="nav-label">Objeto</span> </a>
                         </li>
                     }
                     @if (Login.GetUserRols("TipoPago/Index"))
@@ -171,6 +189,18 @@
                     {
                         <li class="@Html.IsSelected(action: "Index")">
                             <a href="@Url.Action("Index", "EstadoFactura")"><i class="fa fa-clipboard"></i> <span class="nav-label">Estado Factura</span> </a>
+                        </li>
+                    }
+                    @if (Login.GetUserRols("UnidadMedida/Index"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("Index", "UnidadMedida")"><i class="fa fa-balance-scale"></i><span class="nav-label">Unidades de Medida</span> </a>
+                        </li>
+                    }
+                    @if (Login.GetUserRols("Parametro/Index"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("Index", "Parametro")"><i class="fa fa-desktop fa-fw"></i><span class="nav-label">Parametro</span> </a>
                         </li>
                     }
                 </ul>

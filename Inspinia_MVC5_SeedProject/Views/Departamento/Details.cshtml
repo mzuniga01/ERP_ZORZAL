@@ -1,0 +1,103 @@
+﻿@model ERP_GMEDINA.Models.tbDepartamento
+
+@{
+    ViewBag.Title = "Detalle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Departamento</h2>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            @Html.ActionLink("Regresar", "Index")
+        </div>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Detalle Departamento</h5>
+                </div>
+                <div class="ibox-content">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.dep_Codigo)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.dep_Codigo)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.dep_Nombre)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.dep_Nombre)
+                        </dd>
+                        <div>
+                            <br /><br />
+                        </div>
+                        <div class="col-md-12">
+                            @Html.ActionLink("Editar", "Edit", new { id = Model.dep_Codigo }, new { @class = "btn btn-primary" })
+                        </div>
+                    </dl>
+                </div>
+                </div>
+
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Listado Municipios</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="form-horizontal">
+                        @Html.Partial("_DetailsMunicipio", Model.tbMunicipio)
+                        <div class="form-group">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div class="ibox-content">
+            <table class="table table-striped">
+                <tr>
+                    <th>Acción</th>
+                    <th>Usuario</th>
+                    <th> Fecha</th>
+                </tr>
+                <tr>
+                    <td>Creado por  </td>
+                    <td>
+                        @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                        @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                    </td>
+                    <td>@Html.DisplayFor(model => model.dep_FechaCrea)</td>
+
+                </tr>
+                <tr>
+                    <td>Modificado por</td>
+                    <td>
+                        @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                        @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                    </td>
+                    <td>@Html.DisplayFor(model => model.dep_FechaModifica)</td>
+                </tr>
+            </table>
+        </div>
+
+     </div>
+  </div>
+
+
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/app/CrearActualizarEliminar.js"></script>
+
+
+
+
+
+
+
+

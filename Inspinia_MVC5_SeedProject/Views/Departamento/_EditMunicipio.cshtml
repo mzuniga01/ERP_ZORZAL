@@ -1,0 +1,48 @@
+﻿
+@model ERP_GMEDINA.Models.tbMunicipio
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+            <div class="ibox float-e-margins">
+                    <div class="form-horizontal">
+
+                        @Html.ValidationSummary(true)
+                        @Html.HiddenFor(model => model.mun_Codigo)
+
+                      
+                        @*<div class="form-group">
+                                @Html.LabelFor(model => model.dep_Codigo, "dep_Codigo", new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("dep_Codigo", String.Empty)
+                                    @Html.ValidationMessageFor(model => model.dep_Codigo)
+                                </div>
+                            </div>*@
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.mun_Codigo, new { @class = "control-label col-md-2" })
+                            <div class="col-md-5">
+                                @Html.TextBoxFor(model => model.mun_Codigo, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.mun_Codigo)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.mun_Nombre, new { @class = "control-label col-md-2" })
+                            <div class="col-md-5">
+                                @{string mun_Nombre = "MunNombre_" + @Model.mun_Codigo;}
+                                @{string ID = @Model.mun_Codigo;}
+                                @Html.TextBoxFor(model => model.mun_Nombre, new { @class = "form-control", id = @mun_Nombre, onkeydown = "MunicipioUpper("+ @mun_Nombre + ");" })
+                                <div id="MunNombre_@Model.mun_Codigo">
+                                    @Html.ValidationMessageFor(model => model.mun_Nombre)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+   
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+ 
+    }

@@ -1,0 +1,158 @@
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbParametro>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Index</h2>
+        <ol class="breadcrumb">
+            <li class="active">
+                <strong>tbParametro</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>List of tbParametro</h5>
+					<div class="ibox-tools">
+						@Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary btn-xs"})
+					</div>
+                </div>
+                <div class="ibox-content">
+
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.par_NombreEmpresa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.par_TelefonoEmpresa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.par_CorreoEmpresa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.par_PathLogo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.par_RolGerenteTienda)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.par_RolCreditoCobranza)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.par_RolSupervisorCaja)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.par_RolCajero)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.par_RolAuditor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.par_SucursalPrincipal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.par_FechaCrea)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.par_FechaModifica)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.par_PorcentajeDescuentoTE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.par_IdConsumidorFinal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbUsuario1.usu_NombreUsuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbMoneda.mnda_Abreviatura)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.par_NombreEmpresa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.par_TelefonoEmpresa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.par_CorreoEmpresa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.par_PathLogo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.par_RolGerenteTienda)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.par_RolCreditoCobranza)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.par_RolSupervisorCaja)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.par_RolCajero)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.par_RolAuditor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.par_SucursalPrincipal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.par_FechaCrea)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.par_FechaModifica)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.par_PorcentajeDescuentoTE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.par_IdConsumidorFinal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbUsuario.usu_NombreUsuario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbUsuario1.usu_NombreUsuario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbMoneda.mnda_Abreviatura)
+        </td>
+        <td>
+			@Html.ActionLink("Details", "Details", new { id=item.par_Id }, new { @class = "btn btn-primary btn-sm"})
+            @Html.ActionLink("Edit", "Edit", new { id=item.par_Id }, new { @class = "btn btn-white btn-sm"})
+            @Html.ActionLink("Delete", "Delete", new { id=item.par_Id }, new { @class = "btn btn-white btn-sm"})
+        </td>
+    </tr>
+}
+
+</table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+

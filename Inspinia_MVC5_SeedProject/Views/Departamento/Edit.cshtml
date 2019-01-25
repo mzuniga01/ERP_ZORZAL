@@ -1,0 +1,268 @@
+﻿@model ERP_GMEDINA.Models.tbDepartamento
+@using ERP_GMEDINA.Models
+@{
+    ViewBag.Title = "Editar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    tbMunicipio Municipio = new tbMunicipio();
+}
+<style type="text/css">
+#dep_Nombre, #mun_NombreEdit, #mun_NombreEdit_ {
+        text-transform: uppercase;
+    }
+</style>
+@if (ViewBag.smserror != "" && ViewBag.smserror != null)
+{     <div class="col-md-12" id="mensaje">
+        <div class="alert alert-warning alert-danger">
+            <button type="button" class="close" data-dissmiss="alert" aria-hidden="true">@Html.ActionLink("X", "index", new { @class = "btn btn-primary " })</button>             <h4><i class="icon fa fa-warning"></i>Alerta</h4>             <h2>@ViewBag.smserror</h2>
+        </div>
+    </div> }
+   
+
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Departamento</h2>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            @Html.ActionLink("Regresar", "Index")
+        </div>
+    </div>
+</div>
+
+    @using (Html.BeginForm("Edit", "Departamento", FormMethod.Post, new { enctype = "multipart/form-data" }))
+
+    {
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>Editar Departamento</h5>
+            </div>
+            <div class="ibox-content">
+        
+                @Html.AntiForgeryToken()
+                 <div class="form-horizontal">
+
+                        @Html.ValidationSummary(true)
+                        @Html.HiddenFor(model => model.dep_Codigo)
+                        @Html.HiddenFor(model => model.dep_FechaCrea)
+                        @Html.HiddenFor(model => model.dep_UsuarioCrea)
+                        @Html.HiddenFor(model => model.tbUsuario1.usu_Nombres)
+                        @Html.HiddenFor(model => model.tbUsuario1.usu_Apellidos)
+                        @Html.HiddenFor(model => model.tbUsuario.usu_Nombres)
+                        @Html.HiddenFor(model => model.tbUsuario.usu_Apellidos)
+                        
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.dep_Codigo, new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(model => model.dep_Codigo, new { @class = "form-control", @readonly = "readonly" })
+                                @Html.ValidationMessageFor(model => model.dep_Codigo)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.dep_Nombre, new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(model => model.dep_Nombre, new { @class = "textbox single-line", })
+                                <p style="color:red">@Html.ValidationMessageFor(model => model.dep_Nombre)
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <br/><br/>
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Listado Municipios</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="form-horizontal">
+                        @Html.Partial("_IndexMunicipio_Botones", Model.tbMunicipio)
+                        <div class="form-group">
+                            <div class="col-md-12 text-center">
+                                <input type="submit" value="Guardar" class="btn btn-primary" />
+                                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                
+
+            <div class="ibox-content">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Acción</th>
+                        <th>Usuario</th>
+                        <th> Fecha</th>
+                    </tr>
+                    <tr>
+                        <td>Creado por  </td>
+                        <td>
+                           @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos) </td>
+                        <td>@Html.DisplayFor(model => model.dep_FechaCrea)</td>
+
+                    </tr>
+                    <tr>
+                        <td>Modificado por</td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos) </td>
+                        <td>@Html.DisplayFor(model => model.dep_FechaModifica)</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+}  
+<!-- CREAR REGISTRO MODAL-->
+<div class="modal fade" id="modalregistro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel">Registrar Municipio</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-horizontal">
+                        <div id="ValidationCreate_">
+                        </div>
+                        @Html.HiddenFor(model => model.dep_Codigo)
+                        <div class="form-group">
+                            @*@Html.LabelFor(model => model.dep_Codigo, new { @class = "control-label col-md-2" })*@
+                            <label class="control-label col-md-2">Código Departamento</label>
+                            <div class="col-md-2">
+                                @Html.TextBoxFor(model => model.dep_Codigo, new { @class = "form-control", @readonly = "readonly" })
+                            </div>
+                            @Html.LabelFor(model => model.dep_Nombre, new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(model => model.dep_Nombre, new { @class = "form-control", @readonly = "readonly" })
+                            </div>
+                        </div>  
+                        <div class="form-group">
+                            @Html.LabelFor(model => Municipio.mun_Codigo, new { @class = "control-label col-md-2" })
+                            <div class="col-md-2">
+                                <input type="text" id="mun_CodigoEdit" name="mun_Codigo" class="form-control" />
+                                <div id="ValidacionMunCodigoEdit">
+                                    @Html.ValidationMessageFor(model => Municipio.mun_Codigo)
+                                </div>
+                            </div>
+                            @Html.LabelFor(model => Municipio.mun_Nombre, new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                <input type="text" id="mun_NombreEdit" name="mun_Nombre" class="form-control" />
+                                <div id="ValidacionMunNombreEdit">
+                                    @Html.ValidationMessageFor(model => Municipio.mun_Nombre)
+                                </div>
+                            </div>
+                            <div class="col-md-2 text-center">
+                                <button class="btn btn-primary btn-sm" type="button" id="AgregarMunicipiosEdit">Añadir</button>
+                            </div>
+                        </div>   
+                        <div class="form-group">
+                            <div>
+                                <br /><br />
+                            </div>
+                            <table id="tblMunicipiosEdit" class="table table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Código Municipio</th>
+                                        <th>Municipio</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>                     
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" aria-label="Close" type="button" id="btnNuevoEdit">Guardar</button>
+                <input type="button" class="btn btn-white btn-sm" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cancelar" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Municipio Modal-->
+<div class="modal fade" id="EditMunicipioModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h4 id="ModalTitle">Editar Municipio</h4>
+            </div>
+            <div class="modal-body">
+                <form id="form">
+                    <fieldset id="SubmitForm">
+                        <div class="form-horizontal">
+                            <label id="MsjError">
+                            </label>
+                            <div class="form-group">
+                                @Html.LabelFor(m => Municipio.mun_Codigo, new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-10">
+                                    <input type="text" id="mun_CodigoEdit_" name="mun_Codigo" class="form-control" />
+                                    @Html.ValidationMessageFor(m => Municipio.mun_Codigo)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => Municipio.mun_Nombre, new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-10">
+                                    <input type="text" id="mun_NombreEdit_" name="mun_Nombre" class="form-control" />
+                                    @Html.ValidationMessageFor(m => Municipio.mun_Nombre)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12 text-center">
+                                    <button class="btn btn-primary" type="button" id="BtnsubmitMunicipio" tabindex="10"> Guardar </button>
+                                    <button type="button" class="btn btn-white" data-dismiss="modal" aria-label="Close">Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+                @*<div class="form-group">
+                    <table class="table table-striped">
+                        <tr>
+                            <th>Acción</th>
+                            <th>Usuario</th>
+                            <th> Fecha</th>
+                        </tr>
+                        <tr>
+                            <td>Creado por  </td>
+                            <td id="UsuarioCreaEdit">
+                            </td>
+                            <td id="FechaCreaEdit"></td>
+
+                        </tr>
+                        <tr>
+                            <td>Modificado por</td>
+                            <td>
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                            </td>
+                            <td>@Html.DisplayFor(model => model.dep_FechaModifica)</td>
+                        </tr>
+                    </table>
+                </div>*@
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <script src="~/Scripts/app/AgregarMunicipio.js"></script>
+    <script src="~/Scripts/app/CrearActualizarEliminar.js"></script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+}

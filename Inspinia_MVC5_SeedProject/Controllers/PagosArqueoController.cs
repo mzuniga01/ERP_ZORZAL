@@ -136,9 +136,9 @@ namespace ERP_GMEDINA.Controllers
                     //////////Aqui va la lista//////////////
                     var MensajeError = string.Empty;
                     IEnumerable<object> list = null;
-                    //list = db.UDP_Vent_tbPagosArqueo_Update(tbPagosArqueo.arqpg_Id, tbPagosArqueo.mocja_Id, tbPagosArqueo.tpa_Id, tbPagosArqueo.arqpg_PagosSistema, tbPagosArqueo.arqpg_PagosConteo, tbPagosArqueo.arqpg_UsuarioCrea, tbPagosArqueo.arqpg_FechaCrea);
-                    //foreach (UDP_Vent_tbPagosArqueo_Update_Result paar in list)
-                        //MensajeError = paar.MensajeError;
+                    list = db.UDP_Vent_tbPagosArqueo_Update(tbPagosArqueo.arqpg_Id, tbPagosArqueo.mocja_Id, tbPagosArqueo.tpa_Id, tbPagosArqueo.arqpg_PagosSistema, tbPagosArqueo.arqpg_PagosConteo, tbPagosArqueo.arqpg_UsuarioCrea, tbPagosArqueo.arqpg_FechaCrea);
+                    foreach (UDP_Vent_tbPagosArqueo_Update_Result paar in list)
+                        MensajeError = paar.MensajeError;
                     if (MensajeError == "-1")
                     {
                         ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
