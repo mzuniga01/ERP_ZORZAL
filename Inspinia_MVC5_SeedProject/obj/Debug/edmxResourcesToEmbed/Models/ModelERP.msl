@@ -359,7 +359,6 @@
     <FunctionImportMapping FunctionImportName="spGetProducto" FunctionName="ERP_ZORZALModel.Store.spGetProducto1" />
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbFacturaHistorica_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFacturaHistorica_Insert" />
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbFacturaHistorica_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFacturaHistorica_Update" />
-    <FunctionImportMapping FunctionImportName="UDP_Vent_tbMovimientoCaja_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbMovimientoCaja_Update" />
     <FunctionImportMapping FunctionImportName="GetBusquedaFactura" FunctionName="ERP_ZORZALModel.Store.GetBusquedaFactura" />
     <FunctionImportMapping FunctionImportName="spGetDenominacionesMoneda" FunctionName="ERP_ZORZALModel.Store.spGetDenominacionesMoneda">
       <ResultMapping>
@@ -2497,6 +2496,13 @@
           <ScalarProperty Name="factd_PrecioUnitario" ColumnName="factd_PrecioUnitario" />
           <ScalarProperty Name="factd_UsuarioCrea" ColumnName="factd_UsuarioCrea" />
           <ScalarProperty Name="factd_FechaCrea" ColumnName="factd_FechaCrea" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbMovimientoCaja_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbMovimientoCaja_Update">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_Update_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

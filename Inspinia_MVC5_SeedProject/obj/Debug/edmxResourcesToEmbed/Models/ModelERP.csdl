@@ -753,9 +753,6 @@
       <Parameter Name="facth_Id" Mode="In" Type="Byte" />
       <Parameter Name="facth_Fecha" Mode="In" Type="DateTime" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbMovimientoCaja_Update" ReturnType="Collection(Int32)">
-      <Parameter Name="mocja_Id" Mode="In" Type="Int32" />
-    </FunctionImport>
     <FunctionImport Name="GetBusquedaFactura">
       <Parameter Name="cliente" Mode="In" Type="String" />
       <Parameter Name="fecha" Mode="In" Type="String" />
@@ -2462,6 +2459,9 @@
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbFactura_GetDetalle_Edit" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFactura_GetDetalle_Edit_Result)">
       <Parameter Name="FACTURA_IDD" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbMovimientoCaja_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_Update_Result)">
+      <Parameter Name="mocja_Id" Mode="In" Type="Int32" />
     </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
@@ -7588,5 +7588,8 @@
     <Property Type="Decimal" Name="factd_PrecioUnitario" Nullable="false" Precision="10" Scale="2" />
     <Property Type="Int32" Name="factd_UsuarioCrea" Nullable="false" />
     <Property Type="DateTime" Name="factd_FechaCrea" Nullable="false" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbMovimientoCaja_Update_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
 </Schema>

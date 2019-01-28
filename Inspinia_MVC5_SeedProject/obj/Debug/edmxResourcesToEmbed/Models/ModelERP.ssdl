@@ -4295,11 +4295,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <Parameter Name="dep_UsuarioModifica" Type="int" Mode="In" />
     <Parameter Name="dep_FechaModifica" Type="datetime" Mode="In" />
   </Function>
-  <Function Name="UDP_Gral_tbEmpleado_Update_Baja" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
-    <Parameter Name="emp_Id" Type="int" Mode="In" />
-    <Parameter Name="emp_Estado" Type="bit" Mode="In" />
-    <Parameter Name="emp_RazonSalida" Type="nvarchar" Mode="In" />
-  </Function>
   <Function Name="UDP_Gral_tbEmpleado_Update_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
     <Parameter Name="emp_Id" Type="int" Mode="In" />
     <Parameter Name="emp_Estado" Type="bit" Mode="In" />

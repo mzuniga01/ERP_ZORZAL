@@ -2780,15 +2780,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<byte>>("UDP_Vent_tbFacturaHistorica_Update", facth_IdParameter, facth_FechaParameter);
         }
     
-        public virtual ObjectResult<Nullable<int>> UDP_Vent_tbMovimientoCaja_Update(Nullable<int> mocja_Id)
-        {
-            var mocja_IdParameter = mocja_Id.HasValue ?
-                new ObjectParameter("mocja_Id", mocja_Id) :
-                new ObjectParameter("mocja_Id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("UDP_Vent_tbMovimientoCaja_Update", mocja_IdParameter);
-        }
-    
         public virtual int GetBusquedaFactura(string cliente, string fecha, string caja)
         {
             var clienteParameter = cliente != null ?
@@ -5403,6 +5394,15 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("FACTURA_IDD", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbFactura_GetDetalle_Edit_Result>("UDP_Vent_tbFactura_GetDetalle_Edit", fACTURA_IDDParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbMovimientoCaja_Update_Result> UDP_Vent_tbMovimientoCaja_Update(Nullable<int> mocja_Id)
+        {
+            var mocja_IdParameter = mocja_Id.HasValue ?
+                new ObjectParameter("mocja_Id", mocja_Id) :
+                new ObjectParameter("mocja_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbMovimientoCaja_Update_Result>("UDP_Vent_tbMovimientoCaja_Update", mocja_IdParameter);
         }
     }
 }

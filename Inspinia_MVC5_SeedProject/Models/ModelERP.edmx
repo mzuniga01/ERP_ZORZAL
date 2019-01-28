@@ -4300,11 +4300,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Parameter Name="dep_UsuarioModifica" Type="int" Mode="In" />
           <Parameter Name="dep_FechaModifica" Type="datetime" Mode="In" />
         </Function>
-        <Function Name="UDP_Gral_tbEmpleado_Update_Baja" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
-          <Parameter Name="emp_Id" Type="int" Mode="In" />
-          <Parameter Name="emp_Estado" Type="bit" Mode="In" />
-          <Parameter Name="emp_RazonSalida" Type="nvarchar" Mode="In" />
-        </Function>
         <Function Name="UDP_Gral_tbEmpleado_Update_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
           <Parameter Name="emp_Id" Type="int" Mode="In" />
           <Parameter Name="emp_Estado" Type="bit" Mode="In" />
@@ -7470,9 +7465,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="facth_Id" Mode="In" Type="Byte" />
             <Parameter Name="facth_Fecha" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Vent_tbMovimientoCaja_Update" ReturnType="Collection(Int32)">
-          <Parameter Name="mocja_Id" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="GetBusquedaFactura">
             <Parameter Name="cliente" Mode="In" Type="String" />
             <Parameter Name="fecha" Mode="In" Type="String" />
@@ -9175,10 +9167,13 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Parameter Name="DEVOLUCION_ID" Mode="In" Type="Int64" />
           </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbFactura_GetDetalle" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFactura_GetDetalle_Result)">
-            <Parameter Name="FACTURA_ID" Mode="In" Type="Int64" />
+          <Parameter Name="FACTURA_ID" Mode="In" Type="Int64" />
           </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbFactura_GetDetalle_Edit" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFactura_GetDetalle_Edit_Result)">
-            <Parameter Name="FACTURA_IDD" Mode="In" Type="Int32" />
+          <Parameter Name="FACTURA_IDD" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbMovimientoCaja_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_Update_Result)">
+            <Parameter Name="mocja_Id" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
@@ -14306,6 +14301,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Property Type="Int32" Name="factd_UsuarioCrea" Nullable="false" />
           <Property Type="DateTime" Name="factd_FechaCrea" Nullable="false" Precision="23" />
         </ComplexType>
+        <ComplexType Name="UDP_Vent_tbMovimientoCaja_Update_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -14671,7 +14669,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <FunctionImportMapping FunctionImportName="spGetProducto" FunctionName="ERP_ZORZALModel.Store.spGetProducto1" />
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbFacturaHistorica_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFacturaHistorica_Insert" />
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbFacturaHistorica_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFacturaHistorica_Update" />
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbMovimientoCaja_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbMovimientoCaja_Update" />
           <FunctionImportMapping FunctionImportName="GetBusquedaFactura" FunctionName="ERP_ZORZALModel.Store.GetBusquedaFactura" />
           <FunctionImportMapping FunctionImportName="spGetDenominacionesMoneda" FunctionName="ERP_ZORZALModel.Store.spGetDenominacionesMoneda">
             <ResultMapping>
@@ -16810,6 +16807,13 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
                 <ScalarProperty Name="factd_PrecioUnitario" ColumnName="factd_PrecioUnitario" />
                 <ScalarProperty Name="factd_UsuarioCrea" ColumnName="factd_UsuarioCrea" />
                 <ScalarProperty Name="factd_FechaCrea" ColumnName="factd_FechaCrea" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbMovimientoCaja_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbMovimientoCaja_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
