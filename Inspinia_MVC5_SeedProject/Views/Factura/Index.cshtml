@@ -18,7 +18,7 @@
                 <div class="ibox-title">
                     <h5>Listado de Facturas</h5>
                     <div class="ibox-tools">
-                        <a href="~/ReportViewer/Factura.aspx" class="btn btn-primary btn-sm">Generar Reporte</a>
+                        @*<a href="~/ReportViewer/Factura.aspx" class="btn btn-primary btn-sm">Generar Reporte</a>*@
                        @Html.ActionLink("Registrar Factura", "Create", null, new { @class = "btn btn-primary btn-sm" })
                     </div>
                 </div>
@@ -98,13 +98,30 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.esfac_Descripcion)
                                     </td>
-                                    <td>
-                                        @Html.ActionLink("Detalle", "Details", new { id = item.fact_Id }, new { @class = "btn btn-primary btn-xs" })
-                                        @Html.ActionLink("Editar", "Edit", new { id = item.fact_Id }, new { @class = "btn btn-primary btn-xs" })
-                                        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalImprimir">
-                                            Imprimir
-                                        </button>
-                                    </td>
+                                    @if (item.fact_EsAnulada == false)
+                                    {
+                                        <td>
+                                            @Html.ActionLink("Detalle", "Details", new { id = item.fact_Id }, new { @class = "btn btn-primary btn-xs" })
+                                            @Html.ActionLink("Editar", "Edit", new { id = item.fact_Id }, new { @class = "btn btn-primary btn-xs" })
+                                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalImprimir">
+                                                Imprimir
+                                            </button>
+
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                            @Html.ActionLink("Detalle", "Details", new { id = item.fact_Id }, new { @class = "btn btn-primary btn-xs" })
+
+                                            <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="No se puede Editar, esta Anulado">
+                                                <button class="btn btn-white btn-xs" style="pointer-events: none;" type="button" disabled>Editar</button>
+                                            </span>
+                                            <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="No se puede Editar, esta Anulado">
+                                                <button class="btn btn-primary btn-xs" style="pointer-events: none;" type="button" disabled>Imprimir</button>
+                                            </span>
+                                        </td>
+                                    }
                                 </tr>
 
                             }

@@ -80,7 +80,7 @@
         prevText: 'Ant',
         nextText: 'Sig',
         minDate: '-100Y',
-        maxDate: '-59Y',
+        maxDate: '-61Y',
         changeMonth: true,
         changeYear: true,
         monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic']

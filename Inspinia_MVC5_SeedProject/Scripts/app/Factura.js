@@ -11,7 +11,7 @@
     else {
         $("#cliente_Nombresxx").val('');
         $("#cliente_Identificacionxx").val('');
-        $("#IDCliente").val('');
+        $("#clte_Id").val('');
         document.getElementById("MostrarTerceraEdad").disabled = false;
         $("#MostrarTerceraEdad").prop("checked", false);
         $("#fact_AutorizarDescuento").prop("checked", false);
@@ -22,36 +22,26 @@
     }
 })
 
-$("#consumidorFinal").ready(function () {
-    if (this.checked) {
-        //Do stuff     
-        $("#cliente_Identificacionxx").val('99999999999999');
-        $("#cliente_Nombresxx").val('CONSUMIDOR FINAL');
-        document.getElementById("fact_AlCredito").disabled = true;
-        document.getElementById("fact_AutorizarDescuento").disabled = true;
-    }
-    else {
-        $("#cliente_Nombresxx").val('');
-        $("#cliente_Identificacionxx").val('');
-        $("#IDCliente").val('');
-        document.getElementById("fact_AlCredito").disabled = false;
-        document.getElementById("fact_AutorizarDescuento").disabled = false;
-    }
-});
-
-
 $("#fact_NombresTE").change(function () {
     var str = $("#fact_NombresTE").val();
     var res = str.toUpperCase();
     $("#fact_NombresTE").val(res);
 });
 
-$("#fact_NombresTE").on("keypress", function () {
-    $input = $(this);
-    setTimeout(function () {
-        $input.val($input.val().toUpperCase());
-    }, 50);
-})
+function format(input) {
+    $(input).change(function () {
+        var str = $(input).val();
+        var res = str.toUpperCase();
+        $(input).val(res);
+    });
+    $(input).on("keypress", function () {
+        $input = $(this);
+        setTimeout(function () {
+            $input.val($input.val().toUpperCase());
+        }, 0);
+    })
+}
+
 
 $("#fact_IdentidadTE")[0].maxLength = 13;
 //Validacion de numeros//

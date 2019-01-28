@@ -164,7 +164,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-md-4">
-                                    <input id="IDCliente" name="clte_Id" type="hidden" class="form-control" value="@ViewBag.Iden" />
+                                    <input id="clte_Id" name="clte_Id" type="hidden" class="form-control" value="@ViewBag.Iden" />
                                 </div>
                             </div>
 
@@ -273,7 +273,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.fact_NombresTE, new { @class = "control-label col-md-3" })
                                     <div class="col-md-7">
-                                        @Html.EditorFor(model => model.fact_NombresTE)
+                                        @Html.EditorFor(model => model.fact_NombresTE, new { htmlAttributes = new { @autocomplete = "off", @onkeyup = "format(this)", @style="text-transform:capitalize;" } })
                                         <div id="validationNombreTECreate">
                                             <span class="validation-error">@Html.ValidationMessageFor(model => model.fact_NombresTE)</span>
                                         </div>
@@ -435,7 +435,7 @@
                 $(function () {
                     var IDSucursal = $('#suc_Id').val();
                     var CodBarra = $('#prod_CodigoBarras').val();
-                    var IDCliente = $('#IDCliente').val();
+                    var IDCliente = $('#clte_Id').val();
                     $.ajax({
                         type: 'POST',
                         url: '/Factura/BuscarCodigoBarras',

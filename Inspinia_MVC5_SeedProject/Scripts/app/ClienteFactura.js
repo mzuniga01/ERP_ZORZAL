@@ -53,7 +53,7 @@ $(document).on("click", "#tbCliente tbody tr td button#seleccionar", function ()
     document.getElementById('label_identificacion').innerHTML = LabelIdentificacion + '<span style="color:red"> *</span>';
     nuevaCadena = Persona1.trim();
     ConCredito1 = ConCredito.trim();
-    $("#IDCliente").val(idItem);
+    $("#clte_Id").val(idItem);
     $("#cliente_Identificacionxx").val(rtnItem);
     $("#cliente_Nombresxx").val(nombreItem);
     $("#tpi_Id").val(tpid);
@@ -141,7 +141,7 @@ $('#consumidorFinal').change(function () {
             })
             .done(function (data) {
                 $.each(data, function (key, val) {
-                    $('#IDCliente').val(val.par_IdConsumidorFinal);
+                    $('#clte_Id').val(val.par_IdConsumidorFinal);
                 });
 
                 console.log(data)
@@ -153,7 +153,7 @@ $('#consumidorFinal').change(function () {
         document.getElementById("cliente_Identificacionxx").disabled = false;
         $('#ocultar').show();
         $('#Alcredito').show();
-        $('#IDCliente').val('');
+        $('#clte_Id').val('');
         $('#AutorizarD').show();
     }
 
