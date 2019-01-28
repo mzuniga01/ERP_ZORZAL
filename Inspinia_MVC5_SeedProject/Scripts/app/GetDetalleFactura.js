@@ -50,7 +50,7 @@ function GetDetalle() {
               document.getElementById("TotalDescuento").innerHTML = parseFloat(total_col1);
               document.getElementById("Subtotal").innerHTML = parseFloat(SubtotalD);
               document.getElementById("isv").innerHTML = parseFloat(GranImpuesto);
-              document.getElementById("total").innerHTML = parseFloat(GranTotal);
+              document.getElementById("total").innerHTML = parseFloat(GranTotal - DescuentoDD);
           });         
 
   })

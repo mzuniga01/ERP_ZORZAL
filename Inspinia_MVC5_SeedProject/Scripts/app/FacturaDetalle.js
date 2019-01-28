@@ -50,7 +50,7 @@ $('#AgregarDetalleFactura').click(function () {
         copiar += "<td id = 'ImpuestoCreate' align='right'>" + Impuesto + "</td>";
         copiar += "<td id = 'factd_MontoDescuentoCreate' align='right'>" + MontoDescuento + "</td>";
         copiar += "<td id = 'TotalProductoCreate' align='right'>" + Total + "</td>";
-        copiar += "<td>" + '<button id="removeFacturaDetalle" class="btn btn-danger glyphicon glyphicon-trash btn-xs eliminar" type="button">-</button>' + "</td>";
+        copiar += "<td>" + '<button id="removeFacturaDetalle" class="btn btn-danger glyphicon glyphicon-trash btn-xs eliminar" type="button"></button>' + "</td>";
         copiar += "</tr>";
         $('#tblDetalleFactura').append(copiar);
         //Descuento 

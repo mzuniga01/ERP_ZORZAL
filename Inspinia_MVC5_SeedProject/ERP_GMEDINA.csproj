@@ -214,6 +214,11 @@
     <Compile Include="Controllers\SucursalController.cs" />
     <Compile Include="Controllers\TipoIdentificacionController.cs" />
     <Compile Include="Controllers\TipoPagoController.cs" />
+    <Compile Include="Dataset\Factura.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Factura.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Dataset\PuntoEmision.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -748,9 +753,6 @@
     <Compile Include="Models\UDP_Vent_tbFactura_GetDetalle_Edit_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\UDP_Vent_tbFactura_GetDetalle_Edit_Result1.cs">
-      <DependentUpon>ModelERP.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\UDP_Vent_tbFactura_GetDetalle_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -939,6 +941,13 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportViewer\Factura.aspx.cs">
+      <DependentUpon>Factura.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReportViewer\Factura.aspx.designer.cs">
+      <DependentUpon>Factura.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ReportViewer\PuntoEmision.aspx.cs">
       <DependentUpon>PuntoEmision.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1184,6 +1193,7 @@
       <DependentUpon>ModelERP.edmx</DependentUpon>
       <LastGenOutput>ModelERP.cs</LastGenOutput>
     </Content>
+    <Content Include="ReportViewer\Factura.aspx" />
     <Content Include="ReportViewer\PuntoEmision.aspx" />
     <Content Include="Scripts\app\AceptarSolicitudCre.js" />
     <Content Include="Scripts\app\Activo.js" />
@@ -1235,13 +1245,17 @@
     <Content Include="Scripts\app\FuncionResta.js" />
     <Content Include="Scripts\app\GetCodigoNotaCredito.js" />
     <Content Include="Scripts\app\GetDetalleFactura.js" />
+    <Content Include="Scripts\app\GetFacturaDetalleEdit.js" />
+    <Content Include="Scripts\app\GetListadoDetalleEdit.js" />
     <Content Include="Scripts\app\GetNumeroFact.js" />
+    <Content Include="Scripts\app\GuardarDetalleEdit.js" />
     <Content Include="Scripts\app\Identificacion.js" />
     <Content Include="Scripts\app\InActivarCliente.js" />
     <Content Include="Scripts\app\InactivarExoneracion.js" />
     <Content Include="Scripts\app\InactivarListaP.js" />
     <Content Include="Scripts\app\inspinia.js" />
     <Content Include="Scripts\app\ListaPrecioDetalle.js" />
+    <Content Include="Scripts\app\ListaPrecioDetalleEdit.js" />
     <Content Include="Scripts\app\MessageError.js" />
     <Content Include="Scripts\app\MovientoCaja.js" />
     <Content Include="Scripts\app\NotaCredito.js" />
@@ -1265,6 +1279,7 @@
     <Content Include="Scripts\app\SolicitudEfectivoDetalles.js" />
     <Content Include="Scripts\app\SolicitudEfectivoEsAnulada.js" />
     <Content Include="Scripts\app\Sucursal.js" />
+    <Content Include="Scripts\app\TableDetalleDevolucion.js" />
     <Content Include="Scripts\app\TipoPago.js" />
     <Content Include="Scripts\app\ValidarPedido.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -1315,6 +1330,17 @@
     <Content Include="Content\DataTables\css\common.scss" />
     <Content Include="Dataset\PuntoEmision.xsc">
       <DependentUpon>PuntoEmision.xsd</DependentUpon>
+    </Content>
+    <Content Include="Dataset\Factura.xsc">
+      <DependentUpon>Factura.xsd</DependentUpon>
+    </Content>
+    <None Include="Dataset\Factura.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Factura.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Dataset\Factura.xss">
+      <DependentUpon>Factura.xsd</DependentUpon>
     </Content>
     <None Include="Dataset\PuntoEmision.xsd">
       <SubType>Designer</SubType>
@@ -1600,16 +1626,12 @@
     <Content Include="Views\Exoneracion\Index.cshtml" />
     <Content Include="Views\Exoneracion\_IndexCliente.cshtml" />
     <Content Include="Views\Factura\Create.cshtml" />
-    <Content Include="Views\Factura\Delete.cshtml" />
     <Content Include="Views\Factura\Details.cshtml" />
     <Content Include="Views\Factura\Edit.cshtml" />
     <Content Include="Views\Factura\Index.cshtml" />
     <Content Include="Views\Factura\_IndexCliente.cshtml" />
     <Content Include="Views\Factura\_CreateFacturaDetalle.cshtml" />
-    <Content Include="Views\Factura\_IndexFacturaDetalle.cshtml" />
     <Content Include="Views\Factura\_IndexProducto.cshtml" />
-    <Content Include="Views\Factura\_EditFacturaDetalle.cshtml" />
-    <Content Include="Views\Factura\_DetailsFacturaDetalle.cshtml" />
     <Content Include="Views\Factura\_CreateFacturaDetalleModal.cshtml" />
     <Content Include="Views\NotaCredito\_IndexDevolucion.cshtml" />
     <Content Include="Views\SolicitudEfectivo\_DetailsSolicitudEfectivoDetalle.cshtml" />
@@ -1673,6 +1695,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Reports\PrintingFactura.rdlc" />
     <EmbeddedResource Include="Reports\PuntoEmision.rdlc" />
   </ItemGroup>
   <PropertyGroup>

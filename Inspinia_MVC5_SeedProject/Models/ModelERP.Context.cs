@@ -3962,15 +3962,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente_Result>("UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente", iDSUCURSALParameter, cODIGOBARRASParameter, iDCLIENTEParameter);
         }
     
-        public virtual ObjectResult<UDP_Vent_tbFactura_GetDetalle_Result> UDP_Vent_tbFactura_GetDetalle(Nullable<long> fACTURA_ID)
-        {
-            var fACTURA_IDParameter = fACTURA_ID.HasValue ?
-                new ObjectParameter("FACTURA_ID", fACTURA_ID) :
-                new ObjectParameter("FACTURA_ID", typeof(long));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbFactura_GetDetalle_Result>("UDP_Vent_tbFactura_GetDetalle", fACTURA_IDParameter);
-        }
-    
         public virtual ObjectResult<UDP_Vent_tbFactura_Insert_Result> UDP_Vent_tbFactura_Insert(string fact_Codigo, Nullable<System.DateTime> fact_Fecha, Nullable<byte> esfac_Id, Nullable<short> cja_Id, Nullable<int> suc_Id, Nullable<int> clte_Id, string pemi_NumeroCAI, Nullable<bool> fact_AlCredito, Nullable<int> fact_DiasCredito, Nullable<decimal> fact_PorcentajeDescuento, string fact_Vendedor, string clte_Identificacion, string clte_Nombres, string fact_IdentidadTE, string fact_NombresTE, Nullable<System.DateTime> fact_FechaNacimientoTE, Nullable<bool> fact_EsAnulada, string fact_RazonAnulado)
         {
             var fact_CodigoParameter = fact_Codigo != null ?
@@ -5378,15 +5369,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Acce_tbBitacoraErrores_Insert", obj_IdParameter, bite_UsuarioParameter, bite_FechaParameter, bite_MensajeErrorParameter, bite_AccionParameter);
         }
     
-        public virtual ObjectResult<UDP_Vent_tbFactura_GetDetalle_Edit_Result1> UDP_Vent_tbFactura_GetDetalle_Edit(Nullable<int> fACTURA_IDD)
-        {
-            var fACTURA_IDDParameter = fACTURA_IDD.HasValue ?
-                new ObjectParameter("FACTURA_IDD", fACTURA_IDD) :
-                new ObjectParameter("FACTURA_IDD", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbFactura_GetDetalle_Edit_Result1>("UDP_Vent_tbFactura_GetDetalle_Edit", fACTURA_IDDParameter);
-        }
-    
         public virtual ObjectResult<UDP_Vent_tbListadoPrecioDetalle_Select_Result1> UDP_Vent_tbListadoPrecioDetalle_Select(Nullable<int> iDLISTAPRECIO)
         {
             var iDLISTAPRECIOParameter = iDLISTAPRECIO.HasValue ?
@@ -5403,6 +5385,24 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("DEVOLUCION_ID", typeof(long));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbDevolucion_GetDetalle_Result>("UDP_Vent_tbDevolucion_GetDetalle", dEVOLUCION_IDParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbFactura_GetDetalle_Result> UDP_Vent_tbFactura_GetDetalle(Nullable<long> fACTURA_ID)
+        {
+            var fACTURA_IDParameter = fACTURA_ID.HasValue ?
+                new ObjectParameter("FACTURA_ID", fACTURA_ID) :
+                new ObjectParameter("FACTURA_ID", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbFactura_GetDetalle_Result>("UDP_Vent_tbFactura_GetDetalle", fACTURA_IDParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbFactura_GetDetalle_Edit_Result> UDP_Vent_tbFactura_GetDetalle_Edit(Nullable<int> fACTURA_IDD)
+        {
+            var fACTURA_IDDParameter = fACTURA_IDD.HasValue ?
+                new ObjectParameter("FACTURA_IDD", fACTURA_IDD) :
+                new ObjectParameter("FACTURA_IDD", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbFactura_GetDetalle_Edit_Result>("UDP_Vent_tbFactura_GetDetalle_Edit", fACTURA_IDDParameter);
         }
     }
 }

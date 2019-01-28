@@ -705,24 +705,24 @@ namespace ERP_GMEDINA.Controllers
                             EditFacturaDetalle.factd_UsuarioAutoriza,
                             EditFacturaDetalle.factd_FechaAutoriza,
                             EditFacturaDetalle.factd_UsuarioCrea,
-                            EditFacturaDetalle.factd_FechaCrea);
+                            EditFacturaDetalle.factd_FechaCrea = System.DateTime.Now);
                 foreach (UDP_Vent_tbFacturaDetalle_Update_Result FacturaDetalle in list)
                     MensajeError = FacturaDetalle.MensajeError;
                 if (MensajeError == "-1")
                 {
                     ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
-                    return PartialView("_EditFacturaDetalle");
+                    return RedirectToAction("Edit", "Factura");
                 }
                 else
                 {
-                    return RedirectToAction("Index","Factura");
+                    return RedirectToAction("Edit", "Factura");
                 }
             }
             catch (Exception Ex)
             {
                 Ex.Message.ToString();
                 ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
-                return PartialView("_EditFacturaDetalle", EditFacturaDetalle);
+                return RedirectToAction("Edit", "Factura");
             }
         }
 
@@ -782,6 +782,18 @@ namespace ERP_GMEDINA.Controllers
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
+        public ActionResult GetFacturaDetalleD(long factID)
+        {
+            var list = db.UDP_Vent_tbFactura_GetDetalle(factID).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetDetalleEdit(int StudentId)
+        {
+            var list = db.UDP_Vent_tbFactura_GetDetalle_Edit(StudentId).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
 
         [HttpPost]
         public JsonResult GetDetallePedido(int CodPedido)
@@ -848,7 +860,7 @@ namespace ERP_GMEDINA.Controllers
                     }
                     else
                     {
-                        Session["IDCLIENTE"] =MensajeError;
+                        Session["IDCLIENTE"] = MensajeError;
                         Session["IDENTIFICACION"] =tbCliente.clte_Identificacion;
                         if (tbCliente.clte_EsPersonaNatural)
                         {

@@ -7815,9 +7815,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="CODIGOBARRAS" Mode="In" Type="String" />
             <Parameter Name="IDCLIENTE" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Vent_tbFactura_GetDetalle" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFactura_GetDetalle_Result)">
-          <Parameter Name="FACTURA_ID" Mode="In" Type="Int64" />
-          </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbFactura_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFactura_Insert_Result)">
             <Parameter Name="fact_Codigo" Mode="In" Type="String" />
             <Parameter Name="fact_Fecha" Mode="In" Type="DateTime" />
@@ -9153,9 +9150,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="bite_MensajeError" Mode="In" Type="String" />
             <Parameter Name="bite_Accion" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Vent_tbFactura_GetDetalle_Edit" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFactura_GetDetalle_Edit_Result1)">
-          <Parameter Name="FACTURA_IDD" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbListadoPrecioDetalle_Select" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbListadoPrecioDetalle_Select_Result1)">
           <Parameter Name="IDLISTAPRECIO" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -9178,7 +9172,13 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <End Role="tbSalidaDetalle" EntitySet="tbSalidaDetalle" />
           </AssociationSet>
           <FunctionImport Name="UDP_Vent_tbDevolucion_GetDetalle" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDevolucion_GetDetalle_Result)">
-            <Parameter Name="DEVOLUCION_ID" Mode="In" Type="Int64" />
+          <Parameter Name="DEVOLUCION_ID" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbFactura_GetDetalle" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFactura_GetDetalle_Result)">
+            <Parameter Name="FACTURA_ID" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbFactura_GetDetalle_Edit" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFactura_GetDetalle_Edit_Result)">
+            <Parameter Name="FACTURA_IDD" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
@@ -9669,14 +9669,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Property Type="Decimal" Name="IMPUESTOPRODUCTO" Nullable="true" Precision="5" Scale="2" />
           <Property Type="Decimal" Name="PRECIOUNITARIO" Nullable="true" Precision="10" Scale="2" />
           <Property Type="Boolean" Name="EXISTE" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="UDP_Vent_tbFactura_GetDetalle_Result">
-          <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
-          <Property Type="String" Name="prod_Descripcion" Nullable="false" MaxLength="100" />
-          <Property Type="Decimal" Name="factd_Cantidad" Nullable="false" Precision="5" Scale="2" />
-          <Property Type="Decimal" Name="factd_MontoDescuento" Nullable="false" Precision="10" Scale="2" />
-          <Property Type="Decimal" Name="factd_Impuesto" Nullable="false" Precision="10" Scale="2" />
-          <Property Type="Decimal" Name="factd_PrecioUnitario" Nullable="false" Precision="10" Scale="2" />
         </ComplexType>
         <ComplexType Name="UDP_Vent_tbFactura_Insert_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
@@ -14189,15 +14181,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
         <ComplexType Name="UDP_Gral_tbBanco_Update_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="Max" />
         </ComplexType>
-        <ComplexType Name="UDP_Vent_tbFactura_GetDetalle_Edit_Result">
-          <Property Type="Int16" Name="factd_Id" Nullable="false" />
-          <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
-          <Property Type="String" Name="prod_Descripcion" Nullable="false" MaxLength="100" />
-          <Property Type="Decimal" Name="factd_Cantidad" Nullable="false" Precision="5" Scale="2" />
-          <Property Type="Decimal" Name="factd_MontoDescuento" Nullable="false" Precision="10" Scale="2" />
-          <Property Type="Decimal" Name="factd_Impuesto" Nullable="false" Precision="10" Scale="2" />
-          <Property Type="Decimal" Name="factd_PrecioUnitario" Nullable="false" Precision="10" Scale="2" />
-        </ComplexType>
         <ComplexType Name="UDP_Vent_tbListadoPrecioDetalle_Select_Result">
           <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
           <Property Type="Int32" Name="lispd_Id" Nullable="false" />
@@ -14215,15 +14198,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Property Type="Decimal" Name="lispd_PrecioMinorista" Nullable="false" Precision="10" Scale="2" />
           <Property Type="Decimal" Name="lispd_DescCaja" Nullable="true" Precision="10" Scale="2" />
           <Property Type="Decimal" Name="lispd_DescGerente" Nullable="true" Precision="10" Scale="2" />
-        </ComplexType>
-        <ComplexType Name="UDP_Vent_tbFactura_GetDetalle_Edit_Result1">
-          <Property Type="Int16" Name="factd_Id" Nullable="false" />
-          <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
-          <Property Type="String" Name="prod_Descripcion" Nullable="false" MaxLength="100" />
-          <Property Type="Decimal" Name="factd_Cantidad" Nullable="false" Precision="5" Scale="2" />
-          <Property Type="Decimal" Name="factd_MontoDescuento" Nullable="false" Precision="10" Scale="2" />
-          <Property Type="Decimal" Name="factd_Impuesto" Nullable="false" Precision="10" Scale="2" />
-          <Property Type="Decimal" Name="factd_PrecioUnitario" Nullable="false" Precision="10" Scale="2" />
         </ComplexType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -14309,6 +14283,28 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Property Type="Decimal" Name="devd_Monto" Nullable="false" Precision="10" Scale="2" />
           <Property Type="Int64" Name="fact_Id" Nullable="false" />
           <Property Type="DateTime" Name="dev_Fecha" Nullable="false" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbFactura_GetDetalle_Result">
+          <Property Type="Int16" Name="factd_Id" Nullable="false" />
+          <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="prod_Descripcion" Nullable="false" MaxLength="100" />
+          <Property Type="Decimal" Name="factd_Cantidad" Nullable="false" Precision="5" Scale="2" />
+          <Property Type="Decimal" Name="factd_MontoDescuento" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="factd_Impuesto" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="factd_PrecioUnitario" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Int32" Name="factd_UsuarioCrea" Nullable="false" />
+          <Property Type="DateTime" Name="factd_FechaCrea" Nullable="false" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbFactura_GetDetalle_Edit_Result">
+          <Property Type="Int16" Name="factd_Id" Nullable="false" />
+          <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="prod_Descripcion" Nullable="false" MaxLength="100" />
+          <Property Type="Decimal" Name="factd_Cantidad" Nullable="false" Precision="5" Scale="2" />
+          <Property Type="Decimal" Name="factd_MontoDescuento" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="factd_Impuesto" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="factd_PrecioUnitario" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Int32" Name="factd_UsuarioCrea" Nullable="false" />
+          <Property Type="DateTime" Name="factd_FechaCrea" Nullable="false" Precision="23" />
         </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
@@ -15186,18 +15182,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
                 <ScalarProperty Name="IMPUESTOPRODUCTO" ColumnName="IMPUESTOPRODUCTO" />
                 <ScalarProperty Name="PRECIOUNITARIO" ColumnName="PRECIOUNITARIO" />
                 <ScalarProperty Name="EXISTE" ColumnName="EXISTE" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_GetDetalle" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_GetDetalle">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbFactura_GetDetalle_Result">
-                <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
-                <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
-                <ScalarProperty Name="factd_Cantidad" ColumnName="factd_Cantidad" />
-                <ScalarProperty Name="factd_MontoDescuento" ColumnName="factd_MontoDescuento" />
-                <ScalarProperty Name="factd_Impuesto" ColumnName="factd_Impuesto" />
-                <ScalarProperty Name="factd_PrecioUnitario" ColumnName="factd_PrecioUnitario" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -16747,19 +16731,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UDP_Acce_tbBitacoraErrores_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbBitacoraErrores_Insert" />
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_GetDetalle_Edit" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_GetDetalle_Edit">
-          <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbFactura_GetDetalle_Edit_Result1">
-                <ScalarProperty Name="factd_Id" ColumnName="factd_Id" />
-                <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
-                <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
-                <ScalarProperty Name="factd_Cantidad" ColumnName="factd_Cantidad" />
-                <ScalarProperty Name="factd_MontoDescuento" ColumnName="factd_MontoDescuento" />
-                <ScalarProperty Name="factd_Impuesto" ColumnName="factd_Impuesto" />
-                <ScalarProperty Name="factd_PrecioUnitario" ColumnName="factd_PrecioUnitario" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbListadoPrecioDetalle_Select" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbListadoPrecioDetalle_Select">
           <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbListadoPrecioDetalle_Select_Result1">
@@ -16809,6 +16780,36 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
                 <ScalarProperty Name="devd_Monto" ColumnName="devd_Monto" />
                 <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
                 <ScalarProperty Name="dev_Fecha" ColumnName="dev_Fecha" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_GetDetalle" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_GetDetalle">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbFactura_GetDetalle_Result">
+                <ScalarProperty Name="factd_Id" ColumnName="factd_Id" />
+                <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+                <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
+                <ScalarProperty Name="factd_Cantidad" ColumnName="factd_Cantidad" />
+                <ScalarProperty Name="factd_MontoDescuento" ColumnName="factd_MontoDescuento" />
+                <ScalarProperty Name="factd_Impuesto" ColumnName="factd_Impuesto" />
+                <ScalarProperty Name="factd_PrecioUnitario" ColumnName="factd_PrecioUnitario" />
+                <ScalarProperty Name="factd_UsuarioCrea" ColumnName="factd_UsuarioCrea" />
+                <ScalarProperty Name="factd_FechaCrea" ColumnName="factd_FechaCrea" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_GetDetalle_Edit" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_GetDetalle_Edit">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbFactura_GetDetalle_Edit_Result">
+                <ScalarProperty Name="factd_Id" ColumnName="factd_Id" />
+                <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+                <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
+                <ScalarProperty Name="factd_Cantidad" ColumnName="factd_Cantidad" />
+                <ScalarProperty Name="factd_MontoDescuento" ColumnName="factd_MontoDescuento" />
+                <ScalarProperty Name="factd_Impuesto" ColumnName="factd_Impuesto" />
+                <ScalarProperty Name="factd_PrecioUnitario" ColumnName="factd_PrecioUnitario" />
+                <ScalarProperty Name="factd_UsuarioCrea" ColumnName="factd_UsuarioCrea" />
+                <ScalarProperty Name="factd_FechaCrea" ColumnName="factd_FechaCrea" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

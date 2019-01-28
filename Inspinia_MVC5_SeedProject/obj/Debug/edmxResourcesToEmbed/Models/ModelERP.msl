@@ -872,18 +872,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_GetDetalle" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_GetDetalle">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbFactura_GetDetalle_Result">
-          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
-          <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
-          <ScalarProperty Name="factd_Cantidad" ColumnName="factd_Cantidad" />
-          <ScalarProperty Name="factd_MontoDescuento" ColumnName="factd_MontoDescuento" />
-          <ScalarProperty Name="factd_Impuesto" ColumnName="factd_Impuesto" />
-          <ScalarProperty Name="factd_PrecioUnitario" ColumnName="factd_PrecioUnitario" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_Insert">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbFactura_Insert_Result">
@@ -2430,19 +2418,6 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="UDP_Acce_tbBitacoraErrores_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbBitacoraErrores_Insert" />
-    <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_GetDetalle_Edit" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_GetDetalle_Edit">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbFactura_GetDetalle_Edit_Result1">
-          <ScalarProperty Name="factd_Id" ColumnName="factd_Id" />
-          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
-          <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
-          <ScalarProperty Name="factd_Cantidad" ColumnName="factd_Cantidad" />
-          <ScalarProperty Name="factd_MontoDescuento" ColumnName="factd_MontoDescuento" />
-          <ScalarProperty Name="factd_Impuesto" ColumnName="factd_Impuesto" />
-          <ScalarProperty Name="factd_PrecioUnitario" ColumnName="factd_PrecioUnitario" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbListadoPrecioDetalle_Select" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbListadoPrecioDetalle_Select">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbListadoPrecioDetalle_Select_Result1">
@@ -2492,6 +2467,36 @@
           <ScalarProperty Name="devd_Monto" ColumnName="devd_Monto" />
           <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
           <ScalarProperty Name="dev_Fecha" ColumnName="dev_Fecha" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_GetDetalle" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_GetDetalle">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbFactura_GetDetalle_Result">
+          <ScalarProperty Name="factd_Id" ColumnName="factd_Id" />
+          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+          <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
+          <ScalarProperty Name="factd_Cantidad" ColumnName="factd_Cantidad" />
+          <ScalarProperty Name="factd_MontoDescuento" ColumnName="factd_MontoDescuento" />
+          <ScalarProperty Name="factd_Impuesto" ColumnName="factd_Impuesto" />
+          <ScalarProperty Name="factd_PrecioUnitario" ColumnName="factd_PrecioUnitario" />
+          <ScalarProperty Name="factd_UsuarioCrea" ColumnName="factd_UsuarioCrea" />
+          <ScalarProperty Name="factd_FechaCrea" ColumnName="factd_FechaCrea" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_GetDetalle_Edit" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_GetDetalle_Edit">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbFactura_GetDetalle_Edit_Result">
+          <ScalarProperty Name="factd_Id" ColumnName="factd_Id" />
+          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+          <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
+          <ScalarProperty Name="factd_Cantidad" ColumnName="factd_Cantidad" />
+          <ScalarProperty Name="factd_MontoDescuento" ColumnName="factd_MontoDescuento" />
+          <ScalarProperty Name="factd_Impuesto" ColumnName="factd_Impuesto" />
+          <ScalarProperty Name="factd_PrecioUnitario" ColumnName="factd_PrecioUnitario" />
+          <ScalarProperty Name="factd_UsuarioCrea" ColumnName="factd_UsuarioCrea" />
+          <ScalarProperty Name="factd_FechaCrea" ColumnName="factd_FechaCrea" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
