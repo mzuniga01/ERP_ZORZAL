@@ -109,7 +109,11 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.FacturaDetalle = db.tbFacturaDetalle.ToList();
             return View();
         }
-
+        public ActionResult _CreateDevolucionDetalle1()
+        {
+            ViewBag.FacturaDetalle = db.tbFacturaDetalle.ToList();
+            return View();
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -223,8 +227,10 @@ namespace ERP_ZORZAL.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
+         
             tbDevolucion tbDevolucion = db.tbDevolucion.Find(id);
-            //tbDevolucionDetalle tbDevolucionDetalle = db.tbDevolucionDetalle.Find(id);
+            tbDevolucionDetalle tbDevolucionDetalle = db.tbDevolucionDetalle.Find(id);
             if (tbDevolucion == null)
             {
                 return HttpNotFound();
@@ -233,7 +239,7 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.dev_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbDevolucion.dev_UsuarioModifica);
             ViewBag.cja_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion", tbDevolucion.cja_Id);
             ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo", tbDevolucion.fact_Id);
-
+            ViewBag.FacturaDetalle = db.tbFacturaDetalle.ToList();
             Session["ID"] = tbDevolucion.dev_Id;
             Session["FECHA"] = tbDevolucion.dev_Fecha;
             Session["RTNCLIENTE"] = tbDevolucion.tbFactura.clte_Identificacion;
