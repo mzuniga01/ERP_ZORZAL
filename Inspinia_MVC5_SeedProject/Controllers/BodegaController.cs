@@ -318,7 +318,6 @@ namespace ERP_GMEDINA.Controllers
         [HttpPost]
         public ActionResult BuscarCodigoBarras(int GET_Bod, string GET_Barras /*tbProducto GET_Barras , tbBodegaDetalle GET_Bod*/)
         {
-            
             var list = db.spGetProducto(GET_Bod, GET_Barras).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
@@ -467,7 +466,7 @@ namespace ERP_GMEDINA.Controllers
                 tbBodega obj = db.tbBodega.Find(id);
                 IEnumerable<object> list = null;
                 var MsjError = "";
-                list = db.UDP_Inv_tbBodega_Update_Estado_Validacion(id, EstadoBodega.Inactivo);
+                list = db.UDP_Inv_tbBodega_Update_Estado_Validacion(id, Helpers.BodegaInactivo);
                 foreach (UDP_Inv_tbBodega_Update_Estado_Validacion_Result obje in list)
                     MsjError = obje.MensajeError;
 
@@ -504,7 +503,7 @@ namespace ERP_GMEDINA.Controllers
                 tbBodega obj = db.tbBodega.Find(id);
                 IEnumerable<object> list = null;
                 var MsjError = "";
-                list = db.UDP_Inv_tbBodega_Update_Estado_Validacion(id, EstadoBodega.Activo);
+                list = db.UDP_Inv_tbBodega_Update_Estado_Validacion(id, Helpers.BodegaActivo);
                 foreach (UDP_Inv_tbBodega_Update_Estado_Validacion_Result obje in list)
                     MsjError = obje.MensajeError;
 

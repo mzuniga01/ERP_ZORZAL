@@ -1,0 +1,155 @@
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbInventarioFisicoDetalle>
+@using ERP_GMEDINA.Models
+
+@{ 
+    tbInventarioFisicoDetalle inventariofisicodetalle = new tbInventarioFisicoDetalle();
+    tbInventarioFisico inv = new tbInventarioFisico();
+}
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Inventario Fisico Detalle</h5>
+                    <div class="title-action">
+                        @*<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#RegistrarNuevoDetalle">
+                            Registrar Nuevo Detalle
+                        </button>*@
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="table table-striped" id="InvDetalle">
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tbProducto.prod_CodigoBarras)
+                                </th>
+                                <th>
+                                    Descripcion del Producto
+                                </th>
+                                <th>
+                                   Unidad de Medida
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.invfd_CantidadSistema)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.invfd_Cantidad)
+                                </th>
+
+                                <th>
+                                    Acciones
+                                </th>
+                            </tr>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbProducto.prod_CodigoBarras)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbUnidadMedida.uni_Descripcion)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.invfd_CantidadSistema)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.invfd_Cantidad)
+                                    </td>
+
+                                    <td>
+                                        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalDetails_@item.invfd_Id">Detalles</button>
+                                        <button type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#Modaleditar" onclick='EditarDetalle(@item.invfd_Id)'>
+                                            Editar
+                                        </button>
+                                    </td>
+                                </tr>
+
+
+                            <!-- Modal Details -->
+                                <div>
+                                    <div class="modal fade" id="ModalDetails_@item.invfd_Id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                        <div class="modal-dialog modal-lg" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    <h4 class="modal-title" id="myModalLabel">Ingresar Caso de Éxito</h4>
+                                                </div>
+                                                <div class="modal-body" id="frmAgregarCasoExito">
+                                                    @Html.Partial("_DetailsInvFisicoDetalle", new ERP_GMEDINA.Models.tbInventarioFisicoDetalle()
+                                               {
+                                                   prod_Codigo = item.prod_Codigo,
+                                                   invfd_Cantidad = item.invfd_Cantidad,
+                                                   invfd_CantidadSistema = item.invfd_CantidadSistema,
+                                                   uni_Id = item.uni_Id,
+                                               })
+                                                    <div class="form-group">
+                                                        <div class="col-md-12 text-center">
+                                                            <button type="button" class="btn btn-primary" data-dismiss="modal" aria-label="Close">Aceptar</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                                <!-- Modal EDIT -->
+                                <div class="modal fade" id="Modaleditar">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                                <h4 class="modal-title" id="myModalLabel">Editar Inventario Fisico Detalle</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form id="form">
+                                                    <fieldset id="form">
+                                                        <div class="form-horizontal">
+                                                            <div class="form-group">
+                                                                @Html.LabelFor(model => inventariofisicodetalle.invfd_Cantidad, "Cantidad Fisica", new { @class = "control-label col-md-2" })
+                                                                <div class="col-md-10">
+                                                                    <input type="text" id="invfd_Cantidad_edit" name="invfd_Cantidad" class="form-control" />
+                                                                    @Html.ValidationMessageFor(m => inventariofisicodetalle.invfd_Cantidad)
+                                                                </div>
+                                                            </div>
+                                                            <input type="hidden" id="prod_Codigo_edit" name="prod_Codigo" class="form-control" />
+                                                            <input type="hidden" id="invfd_CantidadSistema_edit" name="invfd_CantidadSistema" class="form-control" />
+                                                            <input type="hidden" id="invf_Id_edit" name="invf_Id" class="form-control" />
+                                                            <input type="hidden" id="invfd_Id" name="invfd_Id" class="form-control" />
+                                                            <input type="hidden" id="uni_Id_edit" name="uni_Id" class="form-control" />
+
+                                                            <div class="form-group">
+                                                                <div class="col-sm-10">
+                                                                    <label id="MsjError" class="text-danger"></label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="col-md-12 text-center">
+                                                                    <button class="btn btn-primary" type="button" id="submit" tabindex="10"> Guardar </button>
+                                                                    <button type="button" class="btn btn-white" data-dismiss="modal" aria-label="Close">Cancelar</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </fieldset>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                        </table>
+                            
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,95 @@
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbInventarioFisico>
+
+@{
+    ViewBag.Title = "Inventario Fisico";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Inventario Fisico</h2>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Listado de Inventario Fisico</h5>
+                    <div class="ibox-tools">
+                        @Html.ActionLink("Levantar Inventario Fisico", "Create", null, new { @class = "btn btn-primary"})
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="table table-responsive" style="width:100%" id="DataTable">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.invf_FechaInventario)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.bod_Id)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.invf_ResponsableBodega)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.estif_Id)
+                                </th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                      <td>
+                                        @Html.DisplayFor(modelItem => item.invf_FechaInventario)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbBodega.bod_Nombre)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.invf_ResponsableBodega)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbEstadoInventarioFisico.estif_Descripcion)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Detalle", "Details", new { id = item.invf_Id }, new { @class = "btn btn-primary btn-xs" })
+                                        @Html.ActionLink("Editar", "Edit", new { id = item.invf_Id }, new { @class = "btn btn-white btn-xs" })
+                                    </td>
+                                </tr>
+                            }
+                         </tbody>
+                     </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/app/parametro.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#DataTable').DataTable({
+
+        "searching": true,
+        "oLanguage": {
+            "oPaginate": {
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior",
+            },
+            "sSearch": "Buscar",
+            "sLengthMenu": "Mostrar _MENU_Registros Por Página",
+            "sInfo": "Mostrando _START_ a _END_ Entradas"
+
+        },
+
+    });
+    });
+</script>

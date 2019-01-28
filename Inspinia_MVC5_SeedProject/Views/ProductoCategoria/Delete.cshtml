@@ -1,0 +1,57 @@
+﻿@model ERP_GMEDINA.Models.tbProductoCategoria
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Eliminar</h2>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+			@Html.ActionLink("Regresar al Listado", "Index")
+        </div>
+    </div>
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Producto Categoría</h5>
+                </div>
+                <div class="ibox-content">
+				<h4 class="text-danger">¿Estás seguro que quieres eliminar esta Categoría?
+                    *Sí Elimina Esta Categoría Eliminara SubCategorías Asignadas
+                    </h4>
+				 <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.pcat_Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pcat_Nombre)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-danger btn-xs" />
+        </div>
+    }
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+

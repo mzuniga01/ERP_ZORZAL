@@ -13,7 +13,7 @@ namespace ERP_GMEDINA.Models
     }
     public class EntradaMetaData
     {
-        [Display(Name = "Código Entrada")]
+        [Display(Name = "Código Entrada1")]
         //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int ent_Id { get; set; }
 

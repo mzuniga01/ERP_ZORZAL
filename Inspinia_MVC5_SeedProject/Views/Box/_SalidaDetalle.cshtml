@@ -1,0 +1,191 @@
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbSalidaDetalle>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Detalle de la Salida</h5>
+                </div>
+                <div class="ibox-content">
+
+<table class="table table-striped" style="width:100%" id="Datatable">
+    <thead>
+        <tr>
+            <th>
+                @*@Html.DisplayNameFor(model => model.sald_Cantidad)*@
+                Cantidad
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.tbProducto.prod_Descripcion)*@  
+                Producto
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.tbSalida.box_Codigo)*@
+                Numero de Caja
+
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.sald_Cantidad)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.box_Codigo)
+                </td>
+                @*<td>
+                        <input type="button" class="btn btn-primary btn-xs" data-dismiss="modal" id="#Detalles" value="Detalles" data-toggle="modal" data-target="#Detalles" />
+                        <input type="button" class="btn btn-white btn-xs" data-dismiss="modal" id="#Editar" value="Editar" data-toggle="modal" data-target="#Editar" />
+                    </td>*@
+            </tr>
+        }
+    </tbody>
+</table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+<!-- INSERT MODAL -->
+<div class="modal fade" id="Crear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><label id="LblSearchByDescription">Ingresar Detalle de Salida</label></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription">Descripcion</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" id="" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Estado Movimiento</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" id="" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Nombre Producto Categoria</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" id="" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input type="button" class="btn btn-primary" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cerrar" />
+                <input type="button" class="btn btn-primary" id="btnAceptar" style="width:110px;" value="Aceptar" onclick="Aceptar();" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- INSERT MODAL -->
+<div class="modal fade" id="Detalles" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><label id="LblSearchByDescription">Salida Detalles</label></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription">Descripcion</label>
+                            <div class="col-sm-7  input-group">
+                                nombre
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Estado Movimiento</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" id="" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Nombre Producto Categoria</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" id="" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input type="button" class="btn btn-primary" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cerrar" />
+                <input type="button" class="btn btn-primary" id="btnAceptar" style="width:110px;" value="Aceptar" onclick="Aceptar();" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- INSERT MODAL -->
+<div class="modal fade" id="Editar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><label id="LblSearchByDescription">Ingresar</label></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            @*<div class="modal-body">
+                <div class="row">
+                    @Html.Partial("_EditSalidaDetalle",Model.tbSalida)
+                    <div class="col-12">
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription">Descripcion</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" id="" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Estado Movimiento</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" id="" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription1">Nombre Producto Categoria</label>
+                            <div class="col-sm-7  input-group">
+                                <input type="text" class="form-control" id="" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+            <div class="modal-footer">
+                <input type="button" class="btn btn-primary" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cerrar" />
+                <input type="button" class="btn btn-primary" id="btnAceptar" style="width:110px;" value="Aceptar" onclick="Aceptar();" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/DataTable.js"></script>

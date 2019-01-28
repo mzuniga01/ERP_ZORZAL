@@ -686,14 +686,11 @@ namespace ERP_GMEDINA.Controllers
             return Json(Msj, JsonRequestBehavior.AllowGet);
         }
 
-        //[HttpPost]
-        //public JsonResult getEmpleado(int EmpleadoID)
-        //{
-        //    var EmpleadoList = db.SDP_Gral_tbEmpleado_Select((short)EmpleadoID).ToList();
-        //    return Json(EmpleadoList, JsonRequestBehavior.AllowGet);
-        //}
-
+        [HttpPost]
+        public JsonResult getEmpleado(int EmpleadoID)
+        {
+            var EmpleadoList = db.SDP_Gral_tbEmpleado_Select((short)EmpleadoID).ToList();
+            return Json(EmpleadoList, JsonRequestBehavior.AllowGet);
+        }
     }
-
-
 }

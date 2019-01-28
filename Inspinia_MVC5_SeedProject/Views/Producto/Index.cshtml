@@ -1,0 +1,153 @@
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbProducto>
+@using ERP_GMEDINA.Models;
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Producto</h2>
+    </div>
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Listado de Productos</h5>
+                    <div class="ibox-tools">
+                        @*@Html.ActionLink("Consultar Existencia", "Index", "ConsultarExistenciaProductos",null, new { @class = "btn btn-primary" })*@                        
+                        @Html.ActionLink("Registrar Producto", "Create", null, new { @class = "btn btn-primary" })
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="form-group">
+
+                        <table class="table table-responsive" id="indexa">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.prod_Codigo)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.prod_Descripcion)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.prod_Marca)
+                                    </th>
+                                    <th>
+                                        Categoria
+                                        @Html.DisplayNameFor(model => model.pscat_Id)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.prod_Modelo)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.prod_Talla)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.prod_Color)
+                                    </th>
+                                    <th>
+                                        Unidad Medida                                     
+                                    </th>
+                                    
+
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        @Html.HiddenFor(modelItem => item.tbProductoSubcategoria.tbProductoCategoria.pcat_Id)
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.prod_Codigo)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.prod_Descripcion)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.prod_Marca)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.tbProductoSubcategoria.tbProductoCategoria.pcat_Nombre)
+                                            -
+                                            @Html.DisplayFor(modelItem => item.tbProductoSubcategoria.pscat_Descripcion)                                                  
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.prod_Modelo)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.prod_Talla)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.prod_Color)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.tbUnidadMedida.uni_Descripcion)
+                                        </td>
+                                       
+                                        <td>
+                                           @{  
+
+                                           }
+                                             @Html.ActionLink("Detalles", "Details", new { id = item.prod_Codigo }, new { @class = "btn btn-primary btn-xs" })                                           
+                                            @{
+                                                ERP_ZORZALEntities db2 = new ERP_ZORZALEntities();
+                                                var id2 = item.prod_Codigo;
+                                                string query = "SELECT COUNT(prod_Codigo) FROM Inv.tbBodegaDetalle WHERE prod_Codigo ='" + id2 + "'";
+                                                var count = db2.Database.SqlQuery<int>(query, id2).Single();
+
+                                                if (count > 0)
+                                                {
+                                                    <button class = "btn btn-white btn-xs" title = "Producto en Bodega Detalle"  disabled >Editar</button>                                                   
+                                                }
+                                                else
+                                                {
+                                                    @Html.ActionLink("Editar", "Edit", new { id = item.prod_Codigo }, new { @class = "btn btn-white btn-xs" })
+                                                }
+
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts
+{
+    @*<script src="~/Scripts/jquery-3.3.1.js"></script>*@
+    <script src="~/Scripts/app/DataTable.js"></script>
+    <script src="~/Scripts/app/search.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#indexa').DataTable(
+        {
+            "searching": true,
+
+            "oLanguage": {
+                "oPaginate": {
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior",
+                },
+                "sSearch": "Buscar",
+                "sLengthMenu": "Mostrar _MENU_ registros por página",
+                "sInfo": "Mostrando _START_ a _END_ Entradas",
+            }
+        });
+    });
+</script>
+
+}

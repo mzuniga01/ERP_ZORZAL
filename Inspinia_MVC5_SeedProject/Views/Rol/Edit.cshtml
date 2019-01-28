@@ -1,0 +1,225 @@
+﻿@model ERP_GMEDINA.Models.tbRol
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (ViewBag.smserror != "" && ViewBag.smserror != null)
+{     <div class="col-md-12" id="mensaje">
+        <div class="alert alert-warning alert-danger">
+            <button type="button" class="close" data-dissmiss="alert" aria-hidden="true">@Html.ActionLink("X", "Edit/" + Model.rol_Id, new { @class = "btn btn-primary " })</button>
+            <h4><i class="icon fa fa-warning"></i> Alerta</h4>
+            <h2>@ViewBag.smserror</h2>
+        </div>
+    </div> }
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Rol</h2>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            @Html.ActionLink("Regresar", "Index")
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Editar Rol</h5>
+                </div>
+                <div class="ibox-content">
+                        <div class="form-horizontal">
+
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.rol_Id, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.rol_Id, new { @class = "form-control", @readonly = "readonly" })
+                                    @Html.ValidationMessageFor(model => model.rol_Id)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.rol_Descripcion, new { @class = "control-label col-md-2", @maxlength = "100" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.rol_Descripcion)
+                                    <div id="validationDescripcionRol">
+                                        <p style="color:red">@Html.ValidationMessageFor(model => model.rol_Descripcion)</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.rol_Estado, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @if (Model.rol_Estado == true)
+                                    {
+                                        <input type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#ModalEstado" value="Inactivar" />
+                                        @*@Html.ActionLink("Inactivar", "EstadoRolInactivo", new { id = Model.rol_Id }, new { @class = "btn btn-danger btn-sm" })*@
+                                    }
+                                    else
+                                    {
+                                        @Html.ActionLink("Activar", "EstadoRolActivo", new { id = Model.rol_Id }, new { @class = "btn btn-primary btn-sm" })
+                                    }
+                                    @Html.ValidationMessageFor(model => model.rol_Estado)
+                                    
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <div class="col-md-5">
+                                    <label class="col-md-10" style="text-align:center">Objetos No Asignados</label>
+
+                                    <table class="table table-responsive" style="width:100%" id="NoAsignadosEdit">
+                                        <thead>
+                                            <tr>
+                                                <td id="RegistrosNoAsignadosEdit" style="background-color:#1ab394;color:white">Pantallas</td>
+                                                <td style="background-color:#1ab394"></td>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+
+                                <div class="col-md-2" align="center">
+                                    <br /><br /><br>
+                                    <div>
+                                        @if (Model.rol_Estado == true)
+                                        {
+                                            <input id="Add" type="button" value="Agregar &#9658;" class="btn btn-primary btn-xs" />
+                                        }
+                                        else
+                                        {
+                                            <input id="Add" type="button" value="Agregar &#9658;" disabled class="btn btn-primary btn-xs" />
+                                        }
+                                        
+                                    </div>
+                                    <div>
+                                        @if (Model.rol_Estado == true)
+                                        {
+                                            <input id="Remove" type="button" value="&#9668; Quitar &nbsp;&nbsp;" class="btn btn-primary btn-xs" />
+                                        }
+                                        else
+                                        {
+                                            <input id="Remove" type="button" value="&#9668; Quitar &nbsp;&nbsp;" disabled class="btn btn-primary btn-xs" />
+                                        }
+                                    </div>
+                                </div>
+
+                                <div class="col-md-5">
+                                    <label class="col-md-10" style="text-align:center">Objetos Asignados</label>
+                                    <table class="table table-responsive" style="width:100%" id="AsignadosEdit">
+                                        <thead>
+                                            <tr>
+                                                <td id="RegistrosAsignadosEdit" style="background-color:#1ab394;color:white">Pantallas</td>
+                                                <td style="background-color:#1ab394"></td>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12 text-center">
+                                        @if (Model.rol_Estado == true)
+                                        {
+                                            <button type="button" id="btnActualizarRol" class="btn btn-primary">Guardar</button>
+                                        }
+                                        else
+                                        {
+                                            <button type="button" id="btnActualizarRol" class="btn btn-primary" disabled>Guardar</button>
+                                        }
+                                        @Html.ValidationMessageFor(model => model.rol_Estado)
+                                        @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                
+                </div>
+            </div>
+                        
+                    </div>
+
+                </div>
+            </div>
+            <div class="ibox float-e-margins">
+
+                <div class="ibox-content">
+                    <table class="table table-striped">
+                        <tr>
+                            <th>
+                                Acción
+                            </th>
+                            <th>
+                                Usuario
+                            </th>
+                            <th>
+                                Fecha
+                            </th>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                Creado por
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                                @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.rol_FechaCrea)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Modificado por
+                            </td>
+                            <td>
+                            @*@if (Convert.ToString(Model.rol_FechaModifica) == "")
+                            {
+
+                            }
+                            else
+                            {
+                            @ViewBag.UsuarioModifica
+                            }*@
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.rol_FechaModifica)
+                            </td>
+                        </tr>
+
+                    </table>
+                    <div class="modal fade" id="ModalEstado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Inactivar Rol</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    ¿Está seguro que quiere Inactivar este Rol?
+                                </div>
+                                <div class="modal-footer">
+                                    @Html.ActionLink("Sí", "Inactivar", new { id = Model.rol_Id }, new { @class = "btn btn-danger" })
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/app/RolObjetosEdit.js"></script>
+<script src="~/Scripts/app/ellipses.js"></script>

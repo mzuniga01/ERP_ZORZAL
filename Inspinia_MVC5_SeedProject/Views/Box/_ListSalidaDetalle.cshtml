@@ -1,0 +1,292 @@
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbSalidaDetalle>
+
+
+@using ERP_GMEDINA.Models
+@{
+    tbSalidaDetalle salidaDetalle = new tbSalidaDetalle();
+}
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Listado de Salida Detalle</h5>
+                </div>
+                <div class="ibox-tools">
+                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modalregistro">Registrar Salida Detalle</button>
+                </div>
+                <div class="ibox-content">
+
+<table class="table table-striped" id="DataTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.tbProducto.prod_Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tbProducto.prod_Marca)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tbProducto.prod_Modelo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tbProducto.prod_Talla)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tbProducto.prod_Color)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tbProducto.tbUnidadMedida.uni_Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.sal_Cantidad)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tbProducto.prod_Marca)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tbProducto.prod_Modelo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tbProducto.prod_Talla)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tbProducto.prod_Color)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tbProducto.tbUnidadMedida.uni_Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.sal_Cantidad)
+                </td>
+                <td>
+                    <button type="button" class="btn btn-white btn-xs" id="Editarmodal" onclick='EditSalidaDetalle(@item.sald_Id)'>
+                        Editar
+                    </button>
+                    <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#ModalEstado_@item.sald_Id" value="Eliminar">Eliminar</button>
+                </td>
+            </tr>
+
+
+            //Modal de Eliminar
+
+            <div class="modal fade" id="ModalEstado_@item.sald_Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Eliminar Estado</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            ¿Está seguro que quiere Eliminar?
+                        </div>
+                        <div class="modal-footer">
+                            @Html.ActionLink("Sí", "EliminarBox", new { id = item.sald_Id }, new { @class = "btn btn-danger" })
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
+    </tbody>
+</table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+ @*CREAR REGISTRO SalidaDetalle*@
+<div class="modal fade" id="modalregistro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel">Registrar Salida Detalle</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-horizontal">
+                        <div id="ValidationCreate_">
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => salidaDetalle.tbProducto.prod_Descripcion, new { @class = "control-label col-md-2" })
+                            <div class="col-md-7">
+                                <input type="text" id="DescripcionCreate" name="prod_Descripcion" class="form-control" />
+                                @Html.ValidationMessageFor(m => salidaDetalle.tbProducto.prod_Descripcion)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => salidaDetalle.tbProducto.prod_Marca, new { @class = "control-label col-md-2" })
+                            <div class="col-md-7">
+                                <input type="text" id="MarcaCreate" name="prod_Marca" class="form-control" />
+                                @Html.ValidationMessageFor(m => salidaDetalle.tbProducto.prod_Marca)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => salidaDetalle.tbProducto.prod_Modelo, new { @class = "control-label col-md-2" })
+                            <div class="col-md-7">
+                                <input type="text" id="ModeloCreate" name="prod_Modelo" class="form-control" />
+                                @Html.ValidationMessageFor(m => salidaDetalle.tbProducto.prod_Modelo)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => salidaDetalle.tbProducto.prod_Talla, new { @class = "control-label col-md-2" })
+                            <div class="col-md-7">
+                                <input type="text" id="TallaCreate" name="prod_Talla" class="form-control" />
+                                @Html.ValidationMessageFor(m => salidaDetalle.tbProducto.prod_Talla)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => salidaDetalle.tbProducto.prod_Color, new { @class = "control-label col-md-2" })
+                            <div class="col-md-7">
+                                <input type="text" id="ColorCreate" name="prod_Color" class="form-control" />
+                                @Html.ValidationMessageFor(m => salidaDetalle.tbProducto.prod_Color)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => salidaDetalle.tbProducto.tbUnidadMedida.uni_Descripcion, new { @class = "control-label col-md-2" })
+                            <div class="col-md-7">
+                                <input type="text" id="Descripcion_uniCreate" name="uni_Descripcion" class="form-control" />
+                                @Html.ValidationMessageFor(m => salidaDetalle.tbProducto.tbUnidadMedida.uni_Descripcion)
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => salidaDetalle.sal_Cantidad, new { @class = "control-label col-md-2" })
+                            <div class="col-md-7">
+                                <input type="text" id="Cantidad" name="sal_Cantidad" class="form-control" />
+                                @Html.ValidationMessageFor(m => salidaDetalle.sal_Cantidad)
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" aria-label="Close" type="button" id="btnNuevoCreate">Guardar</button>
+                <input type="button" class="btn btn-white btn-sm" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cancelar" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Editar MODAL SalidaDetalle-->
+<div class="modal fade" id="MyModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Editar Salida Detalle</h4>
+            </div>
+            <div class="modal-body">
+                <form id="form">
+                    <fieldset id="SubmitForm">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                @Html.LabelFor(m => salidaDetalle.tbProducto.prod_Descripcion, new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-10">
+                                    <input type="text" id="prod_Descripcion_edit" name="prod_Descripcion" class="form-control"  />
+                                    @Html.ValidationMessageFor(m => salidaDetalle.tbProducto.prod_Descripcion)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(m => salidaDetalle.tbProducto.prod_Marca, new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-10">
+                                    <input type="text" id="prod_Marca_edit" name="prod_Marca" class="form-control"  />
+                                    @Html.ValidationMessageFor(m => salidaDetalle.tbProducto.prod_Marca)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(m => salidaDetalle.tbProducto.prod_Modelo, new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-10">
+                                    <input type="text" id="prod_Modelo_edit" name="prod_Modelo" class="form-control"  />
+                                    @Html.ValidationMessageFor(m => salidaDetalle.tbProducto.prod_Modelo)
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                @Html.LabelFor(m => salidaDetalle.tbProducto.prod_Talla, new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-10">
+                                    <input type="text" id="prod_Talla_edit" name="prod_Talla" class="form-control"/>
+                                    @Html.ValidationMessageFor(m => salidaDetalle.tbProducto.prod_Talla)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(m => salidaDetalle.tbProducto.prod_Color, new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-10">
+                                    <input type="text" id="prod_Color_edit" name="prod_Color" class="form-control" />
+                                    @Html.ValidationMessageFor(m => salidaDetalle.tbProducto.prod_Color)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(m => salidaDetalle.tbProducto.tbUnidadMedida.uni_Descripcion, new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-10">
+                                    <input type="text" id="uni_Descripcion_edit" name="uni_Descripcion" class="form-control" />
+                                    @Html.ValidationMessageFor(m => salidaDetalle.tbProducto.tbUnidadMedida.uni_Descripcion)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(m => salidaDetalle.sal_Cantidad, new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-10">
+                                    <input type="text" id="sal_Cantidad_edit" name="sal_Cantidad" class="form-control" />
+                                    @Html.ValidationMessageFor(m => salidaDetalle.sal_Cantidad)
+                                </div>
+                            </div>
+                           
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    <label id="MsjError" class="text-danger"></label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-12 text-center">
+                                    <button class="btn btn-primary" type="button" id="Btnsubmit" tabindex="10"> Guardar </button>
+                                    <button type="button" class="btn btn-white" data-dismiss="modal" aria-label="Close">Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+

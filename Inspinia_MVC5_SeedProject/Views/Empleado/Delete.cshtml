@@ -1,0 +1,193 @@
+﻿@model ERP_GMEDINA.Models.tbEmpleado
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Delete</h2>
+        <ol class="breadcrumb">
+            <li>
+                @Html.ActionLink("List", "Index")
+            </li>
+            <li class="active">
+                <strong>Delete</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+			@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary"})
+        </div>
+    </div>
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>tbEmpleado</h5>
+                </div>
+                <div class="ibox-content">
+				<h4 class="text-danger">Are you sure you want to delete this?</h4>
+				 <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.emp_Nombres)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.emp_Nombres)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.emp_Apellidos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.emp_Apellidos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.emp_Sexo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.emp_Sexo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.emp_FechaNacimiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.emp_FechaNacimiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.emp_Identificacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.emp_Identificacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.emp_Telefono)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.emp_Telefono)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.emp_Correoelectronico)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.emp_Correoelectronico)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.emp_TipoSangre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.emp_TipoSangre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.emp_Puesto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.emp_Puesto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.emp_FechaIngreso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.emp_FechaIngreso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.emp_Direccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.emp_Direccion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.emp_Observaciones)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.emp_Observaciones)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.emp_FechaCrea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.emp_FechaCrea)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.emp_UsuarioModifica)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.emp_UsuarioModifica)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.emp_FechaModifica)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.emp_FechaModifica)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbUsuario.usu_NombreUsuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbTipoIdentificacion.tpi_Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbTipoIdentificacion.tpi_Descripcion)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-primary" />
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white"})
+        </div>
+    }
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+

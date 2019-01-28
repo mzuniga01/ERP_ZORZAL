@@ -18,7 +18,7 @@ namespace ERP_GMEDINA.Models
         [Display(Name = "Arqueo")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public int aqcja_Id { get; set; }
-
+        
 
         [Display(Name = "Numero de Caja")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]

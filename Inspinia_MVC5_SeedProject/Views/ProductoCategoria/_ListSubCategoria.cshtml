@@ -1,0 +1,235 @@
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbProductoSubcategoria>
+
+@using ERP_GMEDINA.Models
+
+@{ 
+    tbProductoSubcategoria subcategoria = new tbProductoSubcategoria();
+}
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Listado de Producto Subcategoría</h5>
+                </div>
+
+                <div class="ibox-content">
+                    <table class="table table-striped table-bordered" style="width:100%" id="Datatable">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.pscat_Id)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.pscat_Descripcion)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.pscat_EsActiva)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.pscat_ISV)
+                                </th>
+                                <th>
+                                    Acciones
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.pscat_Id)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.pscat_Descripcion)
+                                    </td>
+                                    <td>
+                                        @if (item.pscat_EsActiva == 1)
+                                        {
+                                            <p> Activo</p>
+                                        }
+                                        else
+                                        {
+                                            <p>Inactivo</p>
+                                        }
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.pscat_ISV)
+                                    </td>
+                                    <td>
+
+                                        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalDetalles_@item.pscat_Id">
+                                            Detalle
+                                        </button>
+                                        @{
+                                            if (item.pscat_EsActiva == 1)
+                                            {
+                                                <button type="button" class="btn btn-white btn-xs" id="Editarmodal" onclick='EditStudentRecord(@item.pscat_Id)'>
+                                                    Editar
+                                                </button>
+                                                <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#ModalEstado_@item.pscat_Id">
+                                                    Eliminar
+                                                </button>
+                                                <input type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#ModalEstadoSub_@item.pscat_Id" value="Inactivar" />
+                                            }
+                                            else
+                                            {
+                                                <button type="button" class="btn btn-white btn-xs" disabled id="Editarmodal" onclick='EditStudentRecord(@item.pscat_Id)'>
+                                                    Editar
+                                                </button>
+                                                <button type="button" class="btn btn-danger btn-xs" disabled data-toggle="modal" data-target="#ModalEstado_@item.pscat_Id">
+                                                    Eliminar
+                                                </button>
+                                                
+                                            }
+
+                                        }
+
+                                    </td>
+                                </tr>
+
+                                <div class="modal fade" id="ModalDetalles_@item.pscat_Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group">
+                                                            <div class="col-md-12">
+                                                                @Html.Partial("_DetailsSubCategoria", new ERP_GMEDINA.Models.tbProductoSubcategoria() {
+                                                               pscat_Id = item.pscat_Id,
+                                                               pscat_Descripcion = item.pscat_Descripcion,
+                                                               pscat_EsActiva = item.pscat_EsActiva,
+                                                               pcat_Id = item.pcat_Id,
+                                                               pscat_ISV = item.pscat_ISV
+                                                           })
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal fade" id="ModalEstadoSub_@item.pscat_Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Inactivar SubCategoría</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                ¿Está seguro que quiere Inactivar esta SubCategoría?
+                                            </div>
+                                            <div class="modal-footer">
+                                                @Html.ActionLink("Sí", "InactivarSub", new { id = item.pscat_Id }, new { @class = "btn btn-danger" })
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="modal fade" id="ModalEstado_@item.pscat_Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Eliminar SubCategorìa</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                ¿Está seguro que quiere Eliminar esta SubCategoría?
+                                            </div>
+                                            <div class="modal-footer">
+                                                @Html.ActionLink("Sí", "DeteleSub", new { id = item.pscat_Id }, new { @class = "btn btn-danger" })
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Editar MODAL SUBCATEGORIA-->
+<div class="modal fade" id="MyModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Editar Sub Categoría</h4>
+            </div>
+            <div class="modal-body">
+                <form id="form">
+                    <fieldset id="SubmitForm">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                               
+
+                                @Html.LabelFor(m => subcategoria.pscat_Id, new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-10">
+                                    <input type="text" id="pscat_Id" name="pscat_Id" class="form-control" readonly />
+                                    @Html.ValidationMessageFor(m => subcategoria.pscat_Id)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(m => subcategoria.pscat_Descripcion, new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-10">
+                                    <input type="text"  onkeypress="return soloLetras(event)" id="pscat_Descripcion_edit" name="pscat_Descripcion" class="form-control" />
+                                    @Html.ValidationMessageFor(m => subcategoria.pscat_Descripcion)
+                                </div>
+                            </div>
+
+                            
+                            <input  type="hidden" id="pcat_id_Edit"  name="pcat_Id"/>
+
+                            <input type="hidden" id="pscat_UsuarioCrea_Edit" name="pscat_UsuarioCrea" />
+
+                            <input type="hidden" id="pscat_FechaCrea_Edit" name="pscat_FechaCrea"  {dd-mm-yyyy hh:mm:ss}/>
+
+                            <div class="form-group">
+                                @Html.LabelFor(m => subcategoria.pscat_ISV, new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-10">
+                                    <input type="number" id="pscat_ISV_Edit" name="pscat_ISV" class="form-control" />
+                                    @Html.ValidationMessageFor(m => subcategoria.pscat_ISV)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    <label id="MsjError" class="text-danger"></label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12 text-center">
+                                    <button class="btn btn-primary" type="button" id="Btnsubmit" tabindex="10"> Guardar </button>
+                                    <button type="button" class="btn btn-white" data-dismiss="modal" aria-label="Close">Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
