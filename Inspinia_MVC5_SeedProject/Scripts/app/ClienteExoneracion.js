@@ -7,7 +7,7 @@
         var fecha = $('#exo_FechaIFinalVigencia').val();
         //var fechaFormulario = Date.parse(fecha);
 
-        if (hoy <= fecha) {
+        if (hoy < fecha) {
             //$('#ccc').html("");
             valido = document.getElementById('ccc');
             valido.innerText = "";
