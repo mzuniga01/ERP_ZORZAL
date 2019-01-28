@@ -45,7 +45,7 @@ $(document).ready(function () {
         $("#tbProducto_prod_Descripcion").val(DescItem);
         $("#factd_Impuesto").val(ISVItem);
         $('#ModalAgregarProducto').modal('hide');
-        var Cliente = $('#IDCliente').val();
+        var Cliente = $('#clte_Id').val();
         if (Cliente == '') {
             Cliente = 0;
             GetPrecio(Cliente,idItem);

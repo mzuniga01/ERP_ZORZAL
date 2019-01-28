@@ -51,12 +51,14 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.suc_Id, new { @class = "control-label required col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.suc_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    <input class = "form-control" readonly value="@ViewBag.suc_Descripcion"  />
+                                    @Html.EditorFor(model => model.suc_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @type="hidden" } })
                                     <span class="validation-error">  @Html.ValidationMessageFor(model => model.suc_Id)</span>
                                 </div>
                                 @Html.LabelFor(model => model.cja_Id, new { @class = "control-label required col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.cja_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    <input class="form-control" readonly value="Caja 1" />
+                                    @Html.EditorFor(model => model.cja_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @type="hidden" } })
                                     <span class="validation-error">@Html.ValidationMessageFor(model => model.cja_Id)</span>
                                 </div>
                             </div>
@@ -467,7 +469,9 @@
                                         console.log(datos)
                                         //if (datos.length > 0) {
                                             if (datos== data_producto) {
-                                                doSearch()
+                                                //doSearch(data_producto)
+                                                jsBuscar(data_producto)
+                                                //buscar()
                                             }
                                             else {
                                                 var Cantidad = 1,
@@ -640,9 +644,9 @@
                                     })
 
 
-                                    function doSearch() {
+                                    function doSearch(data_producto) {
                                         var tableReg = document.getElementById('tblDetalleFactura');
-                                        var searchText = document.getElementById('prod_Codigo').value.toLowerCase();
+                                        var searchText = data_producto
                                         var cellsOfRow = "";
                                         var found = false;
                                         var compareWith = "";
@@ -658,17 +662,104 @@
                                                 if (searchText.length == 0 || (compareWith.indexOf(searchText) > -1)) {
                                                     //found = true;
                                                     var Cantidad = parseInt($('#factd_Cantidad').val());
-                                                    
+
                                                     var Cantidad1 = parseInt(document.getElementById("factd_CantidadCreate").innerHTML)
 
                                                     var Total = parseInt(document.getElementById("TotalProductoCreate").innerHTML);
                                                     var PrecioU = parseInt(document.getElementById("Precio_UnitarioCreate").innerHTML);
                                                     var Porcentaje = parseInt(document.getElementById("ImpuestoCreate").innerHTML) / 100;
-                                                    document.getElementById("factd_CantidadCreate").innerHTML = Cantidad + Cantidad1
-                                                    document.getElementById("TotalProductoCreate").innerHTML = ((Cantidad * PrecioU) + Total) + ((Cantidad * PrecioU) * Porcentaje)
+                                                    var dato = Cantidad + Cantidad1
+                                                    var dato1 = ((Cantidad * PrecioU) + Total) + ((Cantidad * PrecioU) * Porcentaje)
+                                                    $("#tblDetalleFactura").children().children()[i].children[2].innerHTML = dato;
+                                                    $("#tblDetalleFactura").children().children()[i].children[6].innerHTML = dato1;
+                                                    Cantidad1 = 0;
+
                                                 }
                                             }
                                         }
+                                    }
+
+                                    //función que realiza la busqueda
+                                    function jsBuscar(data_producto) {
+
+                                        //obtenemos el valor insertado a buscar
+                                        buscar = data_producto
+
+                                        //utilizamos esta variable solo de ayuda y mostrar que se encontro
+                                        encontradoResultado = false;
+
+                                        //realizamos el recorrido solo por las celdas que contienen el código, que es la primera
+                                        $("#tblDetalleFactura tr").find('td:eq(0)').each(function () {
+
+                                            //obtenemos el codigo de la celda
+                                            codigo = $(this).html();
+
+                                            //comparamos para ver si el código es igual a la busqueda
+                                            if (codigo == buscar) {
+
+                                                //aqui ya que tenemos el td que contiene el codigo utilizaremos parent para obtener el tr.
+                                                trDelResultado = $(this).parent();
+
+                                                //ya que tenemos el tr seleccionado ahora podemos navegar a las otras celdas con find
+                                                nombre = trDelResultado.find("td:eq(1)").html();
+                                                edad = trDelResultado.find("td:eq(2)").html();
+
+                                                //mostramos el resultado en el div
+
+                                                //alert("Lo encontre")
+
+                                                encontradoResultado = true;
+                                                var Cantidad = parseInt($('#factd_Cantidad').val());
+
+                                                // var Cantidad1 = parseInt(document.getElementById("factd_CantidadCreate").innerHTML)
+
+                                                var Cantidad1 = parseInt($(this).find('td:eq(2)').html())
+                                                console.log(Cantidad1)
+
+                                                //Id: $(this).find('td:eq(1) input').val(),
+
+                                                //Address: $(this).find('td:eq(3) input').val(),
+                                                //Contact: $(this).find('td:eq(4) input').val()
+
+
+
+                                                var Total = parseInt(document.getElementById("TotalProductoCreate").innerHTML);
+                                                var PrecioU = parseInt(document.getElementById("Precio_UnitarioCreate").innerHTML);
+                                                var Porcentaje = parseInt(document.getElementById("ImpuestoCreate").innerHTML) / 100;
+                                                var dato = Cantidad + Cantidad1
+                                                var dato1 = ((Cantidad * PrecioU) + Total) + ((Cantidad * PrecioU) * Porcentaje)
+                                                trDelResultado.find("td:eq(2)").html(dato);
+                                                //document.getElementById("factd_CantidadCreate").innerHTML = Cantidad + Cantidad1
+                                                //document.getElementById("TotalProductoCreate").innerHTML = ((Cantidad * PrecioU) + Total) + ((Cantidad * PrecioU) * Porcentaje)
+                                                //$("#tblDetalleFactura").children().children()[trDelResultado].children[2].innerHTML = dato;
+                                                //$("#tblDetalleFactura").children().children()[trDelResultado].children[6].innerHTML = dato1;
+                                                Cantidad = 0;
+                                                Cantidad1 = 0;
+                                                dato = 0;
+                                                dato1 = 0;
+                                            }
+
+                                        })
+
+                                        //si no se encontro resultado mostramos que no existe.
+                                        if (!encontradoResultado)
+                                            alert("No lo encontre")
+                                    }
+
+                                    function buscar() {
+                                        $('table.tblDetalleFactura tr').each(function () {
+
+                                            Id = $(this).find('td:eq(1) input').val(),
+                                            Name = $(this).find('td:eq(2) input').val(),
+                                            Address = $(this).find('td:eq(3) input').val(),
+                                            Contact = $(this).find('td:eq(4) input').val()
+
+                                            console.log(Id)
+                                            console.log(Name)
+                                            console.log(Address)
+                                            console.log(Contact)
+
+                                        });
                                     }
 
 
