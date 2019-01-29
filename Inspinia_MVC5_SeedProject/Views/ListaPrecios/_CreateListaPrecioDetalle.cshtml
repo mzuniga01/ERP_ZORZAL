@@ -85,7 +85,7 @@
                                 <label class="control-label col-md-2 AsteriscoRojo">Precio Minorista</label>
                                @* @Html.LabelFor(model => model.lispd_PrecioMinorista, "Precio Minorista", new { @class = "control-label col-md-2" })*@
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.lispd_PrecioMinorista, new { htmlAttributes = new { @type = "number", @min = "0", @step = "0.01", @value = "0",@style="text-align:right" } })
+                                    @Html.EditorFor(model => model.lispd_PrecioMinorista, new { htmlAttributes = new { @type = "number", @min = "0", @step = "0.01", @value = "0"} })
                                     <div id="validacionPrecioMinoristaCreate">
                                         <p style="color:red">@Html.ValidationMessageFor(model => model.lispd_PrecioMinorista)</p>
                                     </div>
