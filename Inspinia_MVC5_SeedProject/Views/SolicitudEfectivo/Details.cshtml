@@ -145,9 +145,16 @@
 
     </dl>
 
-                   
+                  @if (Model.solef_FechaEntrega == null)
+                  {
+                    @Html.ActionLink("Editar", "Edit", new { id = Model.solef_Id }, new { @class = "btn btn-primary" })
+                  }
+                  else
+                  {
 
-	    @Html.ActionLink("Editar", "Edit", new { id = Model.solef_Id }, new { @class = "btn btn-primary"})
+                  } 
+
+	    
         
                     @Html.Partial("_DetailsSolicitudEfectivoDetalle", Model.tbSolicitudEfectivoDetalle)
 
@@ -215,13 +222,14 @@
 
     </script>
 
+
+    @* -----------------Ocultar Boton si el valor es mayor a 0------------ *@
     <script>
-        $('mitabla').dataTable({
-            // display everything 
-            "iDisplayLength": -1,
-            "aaSorting": [[2, "desc"]] // Sort by first column descending 
-            
-        });
+        function Cantidad() {
+            if ($('#montoEntregado').val() == 0) {
+                document.getElementById("mnda_Id").disabled = false;
+            }
+        };
 
     </script>
 

@@ -29,7 +29,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.soled_MontoEntregado)   
             </th> 
-            <th>
+            <th class="hide">
                 @Html.DisplayNameFor(model => model.tbDenominacion.deno_valor)
             </th>          
            
@@ -72,7 +72,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => MontoEntregado)
                 </td> 
-                <td>
+                <td class="hidden">
                     @Html.DisplayFor(modelItem => item.tbDenominacion.deno_valor)
                 </td> 
                                

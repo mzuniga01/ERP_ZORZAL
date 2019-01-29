@@ -56,28 +56,35 @@
                             </div>
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.tbMovimientoCaja.mocja_Id,"Id Apertura", new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.tbMovimientoCaja.mocja_Id, "Id Apertura", new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.mocja_Id, new { htmlAttributes = new { @Value = "6", @class = "form-control", @readonly = "readonly" } })
                                     @Html.ValidationMessageFor(model => model.mocja_Id, "", new { style = "Color:red" })
                                 </div>
-                                @Html.LabelFor(model => model.tbMovimientoCaja.tbCaja.tbSucursal.suc_Descripcion,"Moneda", new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">          
-                                                       
+                                @Html.LabelFor(model => model.tbMovimientoCaja.tbCaja.tbSucursal.suc_Descripcion, "Moneda", new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+
                                     <select id="mnda_Id" name="mnda_Id" class="form-control select2 select2-hidden-accessible"
                                             style="width: 100%;" tabindex="-1" aria-hidden="true">
                                         <option value="0">Seleccione la Moneda</option>
                                     </select>
                                     <p id="mone" style="color:red"> @Html.ValidationMessageFor(model => model.mnda_Id)</p>
                                     @*<div class="validationMonedaCreate">
-                                        @Html.ValidationMessageFor(model => model.mnda_Id, "", new { style = "Color:red" })
-                                    </div>*@
+                                            @Html.ValidationMessageFor(model => model.mnda_Id, "", new { style = "Color:red" })
+                                        </div>*@
                                 </div>
                             </div>
 
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Total Solicitud</label>
+                                <div class="col-md-4">
+                                    <input id="total" class="form-control" readonly />
+                                </div>
+                            </div>
+                       
 
-                            
-                           
+
+
 
                             <div class="form-group">
                                 <div class="col-md-12">
@@ -107,17 +114,38 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 
+
     <script>
         $(document).on("keyup", "#example1 tbody tr td input#cantidad", function () {
             var row = $(this).closest("tr");
             var Cantidad = $(this).val();
             var ValorDenominacion = $(this).parents("tr").find("td")[6].innerHTML;
             var montosoli = parseFloat(Cantidad * ValorDenominacion);
+            var suma = 0;
+            var data = [];
+
             MontoInicial = 0;
          
             $(this).parents("tr").find("td")[3].innerHTML = montosoli;
             if (montosoli != 0) {
                 MontoInicial += montosoli;
+
+               //Calculo Total
+
+                $("td.sumTotal").each(function () {
+                    data.push(parseFloat($(this).text()));
+                });
+                var suma = data.reduce(function (a, b) { return a + b; }, 0);
+
+
+                $("#total").val(suma);
+
+                console.log(data);
+                console.log(suma);
+            //---------------------------------------------
+
+
+
             }
             else {
                 MontoInicial = 0;
@@ -183,7 +211,7 @@
                                        "<td hidden>" + item.deno_Id + "</td>" +
                                        "<td>" + item.deno_Descripcion + "</td>" +
                                         "<td>" + '<input type="text" id="cantidad" name="name" onKeyPress="return soloNumeros(event)" onKeyUp="pierdeFoco(this)" autocomplete="off" class="form-control" ize="3">' + "</td>" +
-                                        "<td>" +  0 + "</td>" +
+                                        "<td class='sumTotal'>" + 0 + "</td>" +
                                          "<td>" +  0 +   "</td>" +
                                         "<td >" + 0+ "</td>" +
                                        "<td hidden>" + item.deno_valor + "</td>" +
