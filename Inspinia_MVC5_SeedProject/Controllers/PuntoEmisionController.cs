@@ -210,10 +210,14 @@ namespace ERP_ZORZAL.Controllers
                 catch (Exception Ex)
                 {
                     Ex.Message.ToString();
+                    //*****PuntoEmisionDetalle
+                    ViewBag.dfisc_Id = new SelectList(db.tbDocumentoFiscal, "dfisc_Id", "dfisc_Descripcion");
                     ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
                     return View(PuntoEmision);
                 }
             }
+            //*****PuntoEmisionDetalle
+            ViewBag.dfisc_Id = new SelectList(db.tbDocumentoFiscal, "dfisc_Id", "dfisc_Descripcion");
             return View(PuntoEmision);
         }
 
