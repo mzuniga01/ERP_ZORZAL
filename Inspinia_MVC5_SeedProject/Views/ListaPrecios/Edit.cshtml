@@ -108,6 +108,26 @@
                         @Html.EditorFor(model => model.listp_Prioridad, new { htmlAttributes = new { @maxlength = "1", @onkeypress = "return validar(event)" } })
                         <p id="nprioridad" style="color:red">@Html.ValidationMessageFor(model => model.listp_Prioridad)</p>
                     </div>
+
+
+                   
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Guardar" class="btn btn-primary" />
+                                @if (Model.listp_EsActivo)
+                                {  
+                                     <button type="button" id="inactivar" name="inactivar" class="btn btn-danger" data-toggle="modal" data-target="#ModalAnular">   Inactivar </button>    }
+
+                                else
+                                {
+                                     <button type="button" id="activar" name="activar" class="btn btn-info" data-toggle="modal" data-target="#ModalAnular1">  Activar</button>   }      
+                                   @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                            </div>
+                        </div>                         <br />
+                    </div>
+
+                 
                 </div>
             </div>
 
@@ -115,8 +135,10 @@
 
 
 
+
+
             <div class="ibox-title">
-                <h5>Lista Precio Detalle</h5>
+                <h5>Listas Precio Detalle</h5>
             </div>
 
 
@@ -320,9 +342,3 @@
 </script>
 
 
-@*<script type="text/javascript">
-    function mostrar() {
-        document.getElementById('create').style.display = 'block';
-        //document.getElementById('Indexdetalle').style.display = 'none';
-    }
-</script>*@

@@ -1687,6 +1687,7 @@
     <Content Include="Views\SolicitudEfectivo\_Detalle_Insert.cshtml" />
     <Content Include="Views\SolicitudEfectivo\IndexOriginal.cshtml" />
     <Content Include="Views\Pago\_IndexNotaCredito.cshtml" />
+    <Content Include="Views\ListaPrecios\_PrecioDetalle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

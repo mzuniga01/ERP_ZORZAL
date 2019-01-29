@@ -72,24 +72,13 @@
                                     @Html.EditorFor(model => model.lispd_PrecioMinorista, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control" } })
                                     @*@Html.ValidationMessageFor(model => model.lispd_PrecioMayorista)*@
                                     <div id="validacionPrecioMinoristaCreate">
-                                        <p style="color:red">@Html.ValidationMessageFor(model => model.lispd_PrecioMinorista)</p>
+                                        <p style="color:red" id="validacionPreciosMM">@Html.ValidationMessageFor(model => model.lispd_PrecioMinorista)</p>
                                     </div>
 
 
                                 </div>
                             </div>
-                            @*<div class="form-group">
-                               
-                                @Html.LabelFor(model => model.lispd_PrecioMayorista, "Precio Mayorista", new { @class = "control-label col-md-3" })
-                                <div class="col-md-6">
-                                    @Html.EditorFor(model => model.lispd_PrecioMayorista, new { htmlAttributes = new { @type = "number", @min = "0", @step = "0.01", @value = "0" } })
-                                    <div id="validacionPrecioMayoristaCreate">
-                                        <p style="color:red">@Html.ValidationMessageFor(model => model.lispd_PrecioMayorista)</p>
-                                    </div>
-
-                                </div>
-                            </div>*@
-
+                     
 
             
 
@@ -116,27 +105,6 @@
                                 </div>
 
 
-
-
-                                @*<div class="form-group">
-                                    @Html.LabelFor(model => model.lispd_UsuarioCrea, new { @class = "control-label col-md-3", @id = "lispd_UsuarioCrea_Lp" })
-
-                                    <div class="col-md-6">
-                                        @Html.EditorFor(model => model.lispd_UsuarioCrea, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.lispd_UsuarioCrea)
-                                    </div>
-                                </div>
-
-
-
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.lispd_FechaCrea, new { @class = "control-label col-md-3", @id = "lispd_FechaCrea_Lp" })
-
-                                    <div class="col-md-6">
-                                        @Html.EditorFor(model => model.lispd_FechaCrea, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.lispd_FechaCrea)
-                                    </div>
-                                </div>*@
 
 
                                 <input type="hidden" id="lispd_UsuarioCrea_Lp" name="lispd_UsuarioCrea" />
@@ -193,18 +161,30 @@
         </script>
 
         <script>
-    function comprobar()
-    {
 
-            var PMA = $('#lispd_PrecioMayorista').val();
-            var PMI = $('#lispd_PrecioMinorista').val();
-            if (PMA<PMI)
-            {
-                alert("El precio mayorista debe ser menor que el precio minorista.");
-                return false;
-            }
-            return true;
+    $("#lispd_PrecioMinorista").blur(function () {
+        valido = document.getElementById('validacionPreciosMM');
+
+      
+        var PrecioMinorista = $('#lispd_PrecioMinorista').val();
+        var PrecioMayorista = $('#lispd_PrecioMayorista').val();
+
+
+
+        if (parseFloat(PrecioMinorista) < parseFloat(PrecioMayorista)) {
+     
+            valido.innerText = "El precio minorista debe ser mayor a precio mayorista.";
+            $('#lispd_PrecioMinorista').val("");
+            $('#lispd_PrecioMinorista').focus();
+          
         }
+        else {
+          
+            valido.innerText = "";
+        }
+
+
+    });
 
 
 
