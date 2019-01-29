@@ -38,11 +38,9 @@
     })
     .done(function (data) {
         if (data == 'El registro se guardó exitosamente') {
-            location.reload();
             swal("El registro se editó exitosamente!", "", "success");
         }
         else {
-            location.reload();
             swal("El registro  no se editó!", "", "error");
         }
     });
