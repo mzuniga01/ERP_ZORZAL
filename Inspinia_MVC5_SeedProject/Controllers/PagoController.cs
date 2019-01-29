@@ -66,11 +66,10 @@ namespace ERP_GMEDINA.Controllers
             return Json(FacturaList, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetFacturaMonto(int fact_Id)
+        public JsonResult AnularPago(int pago_Id, bool PagoAnulado, string RazonAnulado)
         {
-            db.Configuration.ProxyCreationEnabled = false;
-            List<tbFactura> FacturaMonto = db.tbFactura.Where(x => x.fact_Id == fact_Id).ToList();
-            return Json(FacturaMonto, JsonRequestBehavior.AllowGet);
+            var list = db.UDP_Vent_tbPago_Anulado(pago_Id, PagoAnulado,RazonAnulado).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
         }
 
 
@@ -80,6 +79,7 @@ namespace ERP_GMEDINA.Controllers
         // GET: /Pago/Create
         public ActionResult Create()
         {
+
             ViewBag.pago_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             ViewBag.pago_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             ViewBag.bcta_Id = new SelectList(db.tbCuentasBanco, "bcta_Id", "bcta_Numero");
@@ -89,6 +89,7 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.Cliente = db.tbCliente.ToList();
             ViewBag.Factura = db.tbFactura.ToList();
             ViewBag.FacturaPago = db.V_Vent_FacturaPago.ToList();
+            ViewBag.NotaCredito = db.UDP_Vent_tbNotaCreditoSelect().ToList();
             
        
             return View();
@@ -112,6 +113,10 @@ namespace ERP_GMEDINA.Controllers
                         MensajeError = pago.MensajeError;
                     if (MensajeError == -1)
                     {
+                        ViewBag.Cliente = db.tbCliente.ToList();
+                        ViewBag.Factura = db.tbFactura.ToList();
+                        ViewBag.FacturaPago = db.V_Vent_FacturaPago.ToList();
+                        ViewBag.NotaCredito = db.UDP_Vent_tbNotaCreditoSelect().ToList();
                         ModelState.AddModelError("", "No se pudo agregar el registro");
                         return View(tbPago);
                     }
@@ -127,8 +132,10 @@ namespace ERP_GMEDINA.Controllers
                     ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo");
                     ViewBag.tpa_Id = new SelectList(db.tbTipoPago, "tpa_Id", "tpa_Descripcion");
 
-                    ViewBag.Factura = db.tbFactura.ToList();
                     ViewBag.Cliente = db.tbCliente.ToList();
+                    ViewBag.Factura = db.tbFactura.ToList();
+                    ViewBag.FacturaPago = db.V_Vent_FacturaPago.ToList();
+                    ViewBag.NotaCredito = db.UDP_Vent_tbNotaCreditoSelect().ToList();
                     ModelState.AddModelError("", "Error al agregar el registro " + Ex.Message.ToString());
                     return View(tbPago);
                   

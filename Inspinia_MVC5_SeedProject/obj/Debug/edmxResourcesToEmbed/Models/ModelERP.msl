@@ -471,7 +471,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_Valores" FunctionName="ERP_ZORZALModel.Store.SP_Valores" />
     <FunctionImportMapping FunctionImportName="spGetCategoria" FunctionName="ERP_ZORZALModel.Store.spGetCategoria">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.spGetCategoria_Result">
@@ -619,14 +618,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="spGetCategoriaProducto" FunctionName="ERP_ZORZALModel.Store.spGetCategoriaProducto">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.spGetCategoriaProducto_Result">
-          <ScalarProperty Name="pcat_Id" ColumnName="pcat_Id" />
-          <ScalarProperty Name="pcat_Nombre" ColumnName="pcat_Nombre" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="spGetProducto1" FunctionName="ERP_ZORZALModel.Store.spGetProducto">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.spGetProducto1_Result">
@@ -636,14 +627,6 @@
           <ScalarProperty Name="pscat_Descripcion" ColumnName="pscat_Descripcion" />
           <ScalarProperty Name="uni_Descripcion" ColumnName="uni_Descripcion" />
           <ScalarProperty Name="pcat_Nombre" ColumnName="pcat_Nombre" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="spGetSubCategoriaProducto" FunctionName="ERP_ZORZALModel.Store.spGetSubCategoriaProducto">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.spGetSubCategoriaProducto_Result">
-          <ScalarProperty Name="pscat_Id" ColumnName="pscat_Id" />
-          <ScalarProperty Name="pscat_Descripcion" ColumnName="pscat_Descripcion" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -2508,6 +2491,41 @@
           <ScalarProperty Name="MontoSolicitado" ColumnName="MontoSolicitado" />
           <ScalarProperty Name="soled_CantidadEntregada" ColumnName="soled_CantidadEntregada" />
           <ScalarProperty Name="MontoEntregado" ColumnName="MontoEntregado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbCuponDescuentoSelect" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbCuponDescuentoSelect">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbCuponDescuentoSelect_Result">
+          <ScalarProperty Name="cdto_ID" ColumnName="cdto_ID" />
+          <ScalarProperty Name="cdto_FechaVencimiento" ColumnName="cdto_FechaVencimiento" />
+          <ScalarProperty Name="cdto_PorcentajeDescuento" ColumnName="cdto_PorcentajeDescuento" />
+          <ScalarProperty Name="cdto_MontoDescuento" ColumnName="cdto_MontoDescuento" />
+          <ScalarProperty Name="cdto_MaximoMontoDescuento" ColumnName="cdto_MaximoMontoDescuento" />
+          <ScalarProperty Name="cdto_CantidadCompraMinima" ColumnName="cdto_CantidadCompraMinima" />
+          <ScalarProperty Name="cdto_Redimido" ColumnName="cdto_Redimido" />
+          <ScalarProperty Name="cdto_Anulado" ColumnName="cdto_Anulado" />
+          <ScalarProperty Name="cdto_EsImpreso" ColumnName="cdto_EsImpreso" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbNotaCreditoSelect" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbNotaCreditoSelect">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbNotaCreditoSelect_Result">
+          <ScalarProperty Name="clte_Id" ColumnName="clte_Id" />
+          <ScalarProperty Name="nocre_Id" ColumnName="nocre_Id" />
+          <ScalarProperty Name="nocre_Codigo" ColumnName="nocre_Codigo" />
+          <ScalarProperty Name="nocre_Monto" ColumnName="nocre_Monto" />
+          <ScalarProperty Name="nocre_Redimido" ColumnName="nocre_Redimido" />
+          <ScalarProperty Name="nocre_EsImpreso" ColumnName="nocre_EsImpreso" />
+          <ScalarProperty Name="nocre_Anulado" ColumnName="nocre_Anulado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbPago_Anulado" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbPago_Anulado">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbPago_Anulado_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

@@ -678,6 +678,9 @@
     <Compile Include="Models\UDP_Vent_tbCliente_Update_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UDP_Vent_tbCuponDescuentoSelect_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UDP_Vent_tbCuponDescuento_Anulado_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -795,6 +798,9 @@
     <Compile Include="Models\UDP_Vent_tbMovimientoCaja_Update_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UDP_Vent_tbNotaCreditoSelect_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UDP_Vent_tbNotaCredito_Anulado_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -808,6 +814,9 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Vent_tbPagosArqueo_Insert_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Vent_tbPago_Anulado_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Vent_tbPago_Insert_Result.cs">
@@ -1677,6 +1686,7 @@
     <Content Include="Views\SolicitudEfectivo\_AddDetalle.cshtml" />
     <Content Include="Views\SolicitudEfectivo\_Detalle_Insert.cshtml" />
     <Content Include="Views\SolicitudEfectivo\IndexOriginal.cshtml" />
+    <Content Include="Views\Pago\_IndexNotaCredito.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

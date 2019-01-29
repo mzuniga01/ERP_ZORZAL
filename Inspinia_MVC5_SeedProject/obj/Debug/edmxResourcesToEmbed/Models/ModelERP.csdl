@@ -2462,6 +2462,13 @@
     <FunctionImport Name="UDP_Vent_tbSolicitudEfectivo_Details" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivo_Details_Result1)">
       <Parameter Name="IDSOLICITUD" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbCuponDescuentoSelect" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbCuponDescuentoSelect_Result)" />
+    <FunctionImport Name="UDP_Vent_tbNotaCreditoSelect" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbNotaCreditoSelect_Result)" />
+    <FunctionImport Name="UDP_Vent_tbPago_Anulado" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPago_Anulado_Result)">
+      <Parameter Name="pago_Id" Mode="In" Type="Int32" />
+      <Parameter Name="pago_EstaAnulado" Mode="In" Type="Boolean" />
+      <Parameter Name="pago_RazonAnulado" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -7608,5 +7615,28 @@
     <Property Type="Decimal" Name="MontoSolicitado" Nullable="true" Precision="16" Scale="2" />
     <Property Type="Int16" Name="soled_CantidadEntregada" Nullable="false" />
     <Property Type="Decimal" Name="MontoEntregado" Nullable="true" Precision="16" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbCuponDescuentoSelect_Result">
+    <Property Type="Int32" Name="cdto_ID" Nullable="false" />
+    <Property Type="DateTime" Name="cdto_FechaVencimiento" Nullable="false" />
+    <Property Type="Decimal" Name="cdto_PorcentajeDescuento" Nullable="true" Precision="5" Scale="2" />
+    <Property Type="Decimal" Name="cdto_MontoDescuento" Nullable="true" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="cdto_MaximoMontoDescuento" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="cdto_CantidadCompraMinima" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Boolean" Name="cdto_Redimido" Nullable="false" />
+    <Property Type="Boolean" Name="cdto_Anulado" Nullable="true" />
+    <Property Type="Boolean" Name="cdto_EsImpreso" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbNotaCreditoSelect_Result">
+    <Property Type="Int32" Name="clte_Id" Nullable="false" />
+    <Property Type="Int16" Name="nocre_Id" Nullable="false" />
+    <Property Type="String" Name="nocre_Codigo" Nullable="false" MaxLength="19" />
+    <Property Type="Decimal" Name="nocre_Monto" Nullable="true" Precision="10" Scale="2" />
+    <Property Type="Boolean" Name="nocre_Redimido" Nullable="false" />
+    <Property Type="Boolean" Name="nocre_EsImpreso" Nullable="false" />
+    <Property Type="Boolean" Name="nocre_Anulado" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbPago_Anulado_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
 </Schema>

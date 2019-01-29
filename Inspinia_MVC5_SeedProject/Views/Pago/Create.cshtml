@@ -103,10 +103,7 @@
      
 
         
-        
-
-
-       
+      
         
         
         <div class="form-group">
@@ -219,6 +216,40 @@
 
         </div>
 
+        <div id="NC" name="NC">
+       
+            <div class="form-group">
+                @Html.Label("Monto NC", new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.Editor("NC", String.Empty, new { htmlAttributes = new { @class = "form-control", @id = "MontoNC", @value = "number", @onkeyup = "format(this)", @autocomplete = "off" } })
+                    @Html.ValidationMessage("", new { @style = "color:red" })
+                </div>
+                <input type="hidden" id="nc_Id" name="nc_Id" value="false" />
+                <div class="col-sm-1">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarNotaCredito" title="Seleccione un empleado" data-placement="bottom"><span class="glyphicon glyphicon-search"></span></button>
+                </div>
+                @Html.Label("Código", new { @class = "control-label col-md-2" })
+                <div class="col-md-2">
+                    @Html.Editor("Codigo", String.Empty, new { htmlAttributes = new { @class = "form-control", @id = "CodigoNC", @onkeyup = "format(this)", @autocomplete = "off" } })
+                    @Html.ValidationMessage("", new { @style = "color:red" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.pago_Titular, new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.pago_Titular)
+                    @Html.ValidationMessageFor(model => model.pago_Titular)
+                </div>
+                @Html.LabelFor(model => model.pago_Emisor, new { @class = "control-label col-md-3" })
+                <div class="col-md-2">
+                    @Html.EditorFor(model => model.pago_Emisor)
+                    @Html.ValidationMessageFor(model => model.pago_Emisor, "", new { @style = "color:red" })
+                </div>
+            </div>
+
+        </div>
+
        
 
     
@@ -269,6 +300,21 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="ModalAgregarNotaCredito" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Buscar Nota Credito</h4>
+                </div>
+                <div class="modal-body" id="frmEditarMunicipios">
+                    @Html.Partial("_IndexNotaCredito", (List<UDP_Vent_tbNotaCreditoSelect_Result>) ViewBag.NotaCredito)
+                </div>
+            </div>
+        </div>
+    </div>
 
  </div>
 
@@ -311,50 +357,10 @@
 </script>
 
 
-<script>
-        $(document).ready(function () {
-            $("#tbFactura_clte_Id").change(function () {
-                var valor = 0;
-                $.get("/Pago/GetFacturaList", { tbFactura_clte_Id: $("#tbFactura_clte_Id").val() }, function (data) {
-                    $("#fact_Id").empty("");
-                    $('#fact_Id').append("<option value='0'>Seleccionar factura</option>");
-                    $('#idinput').val(valor);
-                    $.each(data, function (index, row) {
-                        $("#fact_Id").append("<option value='" + row.fact_Id + "'>" + row.fact_Codigo + "</option>")
-                        //$('#deno_Id').val('Please Select');
-                    });
-                });
 
-            })
-        });
-</script>
 
-     @* Monto *@
 
-<script>
-    $('#fact_Id').change(function () {
-        var url = "/Pago/BuscarFacturaId?fId=" + $('#fact_Id option:selected').val();
-            $.ajax({
-                url: url,
-                type: 'GET',
-                dataType: 'json',
-                contentType: 'application/json; charset=utf-8',
-                async: true,
-                success: function (result) {
-                    var lider;
-                    if (result != null && result.length > 0) {
-                        monto = JSON.parse(result);
-                    }
-                    if (monto != null) {
-                        $('#pago_TotalPago').val(pago_TotalPago);//Monto
-                    }
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    alert("No se Apodido cargar el valor 'Porfavor Contacte al Administrador' ");
-                }
-            });
-        });
-</script>
+
 
 <script>
         $(document).ready(function () {

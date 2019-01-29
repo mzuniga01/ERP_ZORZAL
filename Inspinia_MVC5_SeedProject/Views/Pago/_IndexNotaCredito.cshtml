@@ -1,0 +1,65 @@
+﻿
+@model IEnumerable<ERP_GMEDINA.Models.UDP_Vent_tbNotaCreditoSelect_Result>
+@using ERP_GMEDINA.Models
+
+@{
+    //tbEmpleado empleado = new tbEmpleado();
+}
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="form-horizontal">
+                    <input id="searchFactura" type="text" placeholder="Buscar Nota Crédito" class="form-control" />
+
+                    <table id="pagoNC" class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Codigo
+                                </th>
+                                <th>
+                                    Monto
+                                </th>
+                                <th>
+                               Redimido
+                                </th>
+                                <th>
+                                  Anulado
+                                </th>
+                                <th>
+                                    Impreso
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="BodyNC">
+                            @foreach (var item in Model)
+                            {
+                                <tr data-id="@item.nocre_Id" data-codigo="@item.nocre_Codigo" data-monto="@item.nocre_Monto">
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.nocre_Codigo)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.nocre_Monto)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.nocre_Redimido)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.nocre_EsImpreso)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.nocre_Anulado)
+                                    </td>
+                                    <td>
+                                        <button id="AgregarNotaCredito"class="btn btn-primary btn-xs" >Seleccionar</button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

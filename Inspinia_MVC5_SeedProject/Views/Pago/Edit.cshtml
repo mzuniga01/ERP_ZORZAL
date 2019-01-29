@@ -217,6 +217,10 @@
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Guardar" class="btn btn-primary" />
 				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
+
+                <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal">
+                    Anular
+                </button>
             </div>
       
         </div>
@@ -249,6 +253,27 @@
     </div>
  </div>
 
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Anular Pago</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>¿Está seguro de anular este pago?</p>
+                <textarea rows="4" cols="50" placeholder="Ingrese la razon de Anular" id="razonAnular" name="razonAnular"></textarea>
+                <p id="Mensaje" style="color:red"></p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary btn-sm" type="button" id="Anular">Guardar</button>
+                <button type="button" class="btn btn-white btn-sm" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/TipoPago.js"></script>
 
@@ -312,4 +337,34 @@
     });
 
 </script>
-<script src="~/Scripts/app/FacturaDevolucion.js"></script>
+<script>
+$('#Anular').click(function () {
+    var pago_Id = $('#pago_Id').val();
+    var PagoAnulado = 1
+    var RazonAnulado = $('#razonAnular').val();
+    if (RazonAnulado == "") {
+        valido = document.getElementById('Mensaje');
+        valido.innerText = "La razón Anular es requerida";
+    }else
+    {
+        $.ajax({
+            url: "/Factura/AnularPago",
+            method: "POST",
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ pago_Id: pago_Id, PagoAnulado: PagoAnulado, RazonAnulado: RazonAnulado }),
+
+        })
+            .done(function (data) {
+                if (data.length > 0) {
+                    var url = $("#RedirectTo").val();
+                    location.href = url;
+                }
+                else {
+                    alert("Registro No Actualizado");
+                }
+            });
+    }
+
+})
+</script>
