@@ -692,15 +692,22 @@ namespace ERP_GMEDINA.Controllers
             }
             catch (Exception Ex)
             {
-               
+
                 ModelState.AddModelError("", "No se pudo actualizar el registros" + Ex.Message.ToString());
-            
+
             }
             return Json("Exito", JsonRequestBehavior.AllowGet);
 
 
         }
 
+        //__________________DETALLES_____SOLICITUD____________
+        [HttpGet]
+        public ActionResult GetDtalle(short Solictud)
+        {
+            var list = db.UDP_Vent_tbSolicitudEfectivo_Details(Solictud).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
 
 
     }
