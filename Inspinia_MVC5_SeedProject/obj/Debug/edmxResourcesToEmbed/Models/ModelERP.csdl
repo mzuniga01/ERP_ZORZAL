@@ -7,8 +7,6 @@
       <Parameter Name="deno_Tipo" Mode="In" Type="Byte" />
       <Parameter Name="deno_valor" Mode="In" Type="Decimal" />
       <Parameter Name="mnda_Id" Mode="In" Type="Int16" />
-      <Parameter Name="deno_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="deno_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbCaja_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbCaja_Insert_Result)">
       <Parameter Name="cja_Id" Mode="In" Type="Int16" />
@@ -39,8 +37,6 @@
       <Parameter Name="mnda_Id" Mode="In" Type="Int16" />
       <Parameter Name="deno_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="deno_FechaCrea" Mode="In" Type="DateTime" />
-      <Parameter Name="deno_UsuarioModifica" Mode="In" Type="Int32" />
-      <Parameter Name="deno_FechaModifica" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbPuntoEmision_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPuntoEmision_Insert_Result)">
       <Parameter Name="pemi_NumeroCAI" Mode="In" Type="String" />
@@ -598,8 +594,6 @@
       <Parameter Name="uni_Id" Mode="In" Type="Int32" />
       <Parameter Name="prod_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="prod_FechaCrea" Mode="In" Type="DateTime" />
-      <Parameter Name="prod_EsActivo" Mode="In" Type="Boolean" />
-      <Parameter Name="prod_Razon_Inactivacion" Mode="In" Type="String" />
       <Parameter Name="prod_CodigoBarras" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="UDP_Inv_tbProductoCategoria_Delete" ReturnType="Collection(String)">
@@ -779,16 +773,6 @@
       <Parameter Name="listp_FechaInicioVigencia" Mode="In" Type="DateTime" />
       <Parameter Name="listp_FechaFinalVigencia" Mode="In" Type="DateTime" />
       <Parameter Name="listp_Prioridad" Mode="In" Type="Int16" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbListadoPrecioDetalle_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbListadoPrecioDetalle_Update_Result)">
-      <Parameter Name="listp_Id" Mode="In" Type="Int32" />
-      <Parameter Name="prod_Codigo" Mode="In" Type="String" />
-      <Parameter Name="lispd_PrecioMayorista" Mode="In" Type="Decimal" />
-      <Parameter Name="lispd_PrecioMinorista" Mode="In" Type="Decimal" />
-      <Parameter Name="lispd_DescCaja" Mode="In" Type="Decimal" />
-      <Parameter Name="lispd_DescGerente" Mode="In" Type="Decimal" />
-      <Parameter Name="lispd_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="lispd_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbListaPrecio_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbListaPrecio_Update_Result)">
       <Parameter Name="listp_Id" Mode="In" Type="Int32" />
@@ -2463,6 +2447,16 @@
     <FunctionImport Name="UDP_Vent_tbMovimientoCaja_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_Update_Result)">
       <Parameter Name="mocja_Id" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbListadoPrecioDetalle_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbListadoPrecioDetalle_Update_Result)">
+      <Parameter Name="lispd_Id" Mode="In" Type="Int32" />
+      <Parameter Name="prod_Codigo" Mode="In" Type="String" />
+      <Parameter Name="lispd_PrecioMayorista" Mode="In" Type="Decimal" />
+      <Parameter Name="lispd_PrecioMinorista" Mode="In" Type="Decimal" />
+      <Parameter Name="lispd_DescCaja" Mode="In" Type="Decimal" />
+      <Parameter Name="lispd_DescGerente" Mode="In" Type="Decimal" />
+      <Parameter Name="lispd_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="lispd_FechaCrea" Mode="In" Type="DateTime" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -2627,9 +2621,6 @@
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbListadoPrecioDetalle_Insert_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbListadoPrecioDetalle_Update_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbListaPrecio_Update_Result">
@@ -7590,6 +7581,9 @@
     <Property Type="DateTime" Name="factd_FechaCrea" Nullable="false" Precision="23" />
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbMovimientoCaja_Update_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbListadoPrecioDetalle_Update_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
 </Schema>

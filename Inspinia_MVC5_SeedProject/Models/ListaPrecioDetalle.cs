@@ -39,7 +39,7 @@ namespace ERP_GMEDINA.Models
 
 
         [Display(Name = "Usuario Creación")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int lispd_UsuarioCrea { get; set; }
 
           [Display(Name = "Fecha Creación")]

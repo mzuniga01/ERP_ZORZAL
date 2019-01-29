@@ -352,17 +352,17 @@ namespace ERP_GMEDINA.Controllers
                     ViewBag.clte_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
                     ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre");
                     ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion");
-                    int idUser = 0;
-                    GeneralFunctions Login = new GeneralFunctions();
-                    List<tbUsuario> User = Login.getUserInformation();
-                    foreach (tbUsuario Usuario in User)
-                    {
-                        idUser = Convert.ToInt32(Usuario.emp_Id);
-                    }
-                    ViewBag.suc_Descripcion = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.tbSucursal.suc_Descripcion).SingleOrDefault();
-                    ViewBag.suc_Id = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.tbSucursal.suc_Id).SingleOrDefault();
-                    ViewBag.Cliente = db.tbCliente.ToList();
-                    ViewBag.Producto = db.tbProducto.ToList();
+                    //int idUser = 0;
+                    //GeneralFunctions Login = new GeneralFunctions();
+                    //List<tbUsuario> User = Login.getUserInformation();
+                    //foreach (tbUsuario Usuario in User)
+                    //{
+                    //    idUser = Convert.ToInt32(Usuario.emp_Id);
+                    //}
+                    //ViewBag.suc_Descripcion = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.tbSucursal.suc_Descripcion).SingleOrDefault();
+                    //ViewBag.suc_Id = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.tbSucursal.suc_Id).SingleOrDefault();
+                    //ViewBag.Cliente = db.tbCliente.ToList();
+                    //ViewBag.Producto = db.tbProducto.ToList();
                 }
 
             }
