@@ -232,7 +232,7 @@ namespace ERP_GMEDINA.Controllers
             this.AllLists();
             ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre", tbBodega.dep_Codigo);
             ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbBodega.mun_Codigo);
-            //Session["tbBodegaDetalle"] = null;
+            Session["tbBodegaDetalle"] = null;
             return View(tbBodega);
         }
        

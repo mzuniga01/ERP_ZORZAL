@@ -1,8 +1,12 @@
 ﻿$(function () {
     //Factura
     $("#emp_FechaNacimiento").datepicker({
-        dateFormat: 'dd-mm-yy',
+        dateFormat: 'dd-mm-yy',               
+        changeMonth: true,
+        monthNamesShort: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+        changeYear: true,
+        yearRange: '1980:2000',
         dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá']
     }).datepicker("setDate", new Date());
     
@@ -89,3 +93,96 @@ function soloLetras(e) {
     }
 }
 
+function EditStudentRecord(emp_Id) {
+  
+    
+    $("#MsjError").text("");
+
+    $.ajax({
+        url: "/Empleado/GetEmpleado",
+        method: "POST",
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({ emp_Id }),
+    })
+    .done(function (data) {
+        $.each(data, function (m, Model) {
+            $("#emp_Id_Edit").val(Model.emp_Id);
+            $("emp_Estado_Edit").val(Model.emp_Estado);
+            $("#emp_RazonInactivacion_Edit").val(Model.emp_RazonInactivacion);
+            
+            $("#MyModal").modal();
+            
+        })
+    })
+    .fail( function( jqXHR, textStatus, errorThrown ) {
+        console.log('jqXHR', jqXHR);
+        console.log('textStatus', textStatus);
+        console.log('errorThrown', errorThrown);
+    })
+}
+
+$("#Btnsubmit").click(function () {
+    var data = $("#SubmitForm").serializeArray();
+   
+
+    $.ajax({
+        type: "Post",
+        url: "/Empleado/EstadoEmpleadoRazon",
+        data: data,
+        success: function (result) {
+            if (result == '-1')
+                $("#MsjError").text("No se pudo actualizar el registro, contacte al administrador");
+            else
+                $("#MyModal").modal("hide");
+            location.reload();
+        }
+    });
+})
+
+
+function RazonSalida(emp_Id) {
+
+
+    $("#MsjError").text("");
+
+    $.ajax({
+        url: "/Empleado/GetEmpleadoRazon",
+        method: "POST",
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({ emp_Id }),
+    })
+    .done(function (data) {
+        $.each(data, function (m, Model) {
+            $("#emp_Id_Edit_Razon").val(Model.emp_Id);
+            $("emp_Estado_Edit_Razon").val(Model.emp_Estado);
+            $("#emp_RazonSalida_Edit_Razon").val(Model.emp_RazonSalida);
+
+            $("#Editarmodales").modal();
+
+        })
+    })
+    .fail(function (jqXHR, textStatus, errorThrown) {
+        console.log('jqXHR', jqXHR);
+        console.log('textStatus', textStatus);
+        console.log('errorThrown', errorThrown);
+    })
+}
+$("#BtnRazon").click(function () {
+    var data = $("#DatosRazon").serializeArray();
+
+
+    $.ajax({
+        type: "Post",
+        url: "/Empleado/RazonSalida",
+        data: data,
+        success: function (result) {
+            if (result == '-1')
+                $("#MsjError").text("No se pudo actualizar el registro, contacte al administrador");
+            else
+                $("#Editarmodales").modal("hide");
+            location.reload();
+        }
+    });
+})

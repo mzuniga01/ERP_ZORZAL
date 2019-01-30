@@ -52,7 +52,7 @@ namespace ERP_GMEDINA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="emp_Id,emp_Nombres,emp_Apellidos,emp_Sexo,emp_FechaNacimiento,tpi_Id,emp_Identificacion,emp_Telefono,emp_Correoelectronico,emp_TipoSangre,emp_Puesto,emp_FechaIngreso,emp_Direccion,emp_Observaciones,emp_UsuarioCrea,emp_FechaCrea,emp_UsuarioModifica,emp_FechaModifica")] tbEmpleado tbEmpleado)
+        public ActionResult Create([Bind(Include= "emp_Id,emp_Nombres,emp_Apellidos,emp_Sexo,emp_FechaNacimiento,tpi_Id,emp_Identificacion,emp_Telefono,emp_Correoelectronico,emp_TipoSangre,emp_Puesto,emp_FechaIngreso,emp_Direccion,emp_RazonInactivacion,emp_UsuarioCrea,emp_FechaCrea,emp_UsuarioModifica,emp_FechaModifica,emp_Estado,emp_RazonSalida,emp_FechaDeSalida")] tbEmpleado tbEmpleado)
         {
             if (ModelState.IsValid)
             {
@@ -61,9 +61,21 @@ namespace ERP_GMEDINA.Controllers
                 {
                     IEnumerable<object> list = null;
                     string MsjError = "";
-                    //list = db.UDP_Gral_tbEmpleados_Insert(tbEmpleado.emp_Nombres, tbEmpleado.emp_Apellidos, tbEmpleado.emp_Sexo, tbEmpleado.emp_FechaNacimiento, tbEmpleado.tpi_Id, tbEmpleado.emp_Identificacion, tbEmpleado.emp_Telefono, tbEmpleado.emp_Correoelectronico, tbEmpleado.emp_TipoSangre, tbEmpleado.emp_Puesto, tbEmpleado.emp_FechaIngreso, tbEmpleado.emp_Direccion, tbEmpleado.emp_Observaciones);
-                    //foreach (UDP_Gral_tbEmpleados_Insert_Result empleados in list)
-                    //    MsjError = empleados.MensajeError;
+                    list = db.UDP_Gral_tbEmpleados_Insert(tbEmpleado.emp_Nombres, 
+                        tbEmpleado.emp_Apellidos, 
+                        tbEmpleado.emp_Sexo, 
+                        tbEmpleado.emp_FechaNacimiento, 
+                        tbEmpleado.tpi_Id, 
+                        tbEmpleado.emp_Identificacion,
+                        tbEmpleado.emp_Telefono, 
+                        tbEmpleado.emp_Correoelectronico, 
+                        tbEmpleado.emp_TipoSangre, 
+                        tbEmpleado.emp_Puesto, 
+                        tbEmpleado.emp_FechaIngreso, 
+                        tbEmpleado.emp_Direccion
+                        );
+                    foreach (UDP_Gral_tbEmpleados_Insert_Result empleados in list)
+                        MsjError = empleados.MensajeError;
 
                     if (MsjError.Substring(0, 2) == "-1")
                     {
@@ -82,7 +94,7 @@ namespace ERP_GMEDINA.Controllers
                     //ViewBag.tpi_Id = new SelectList(db.tbEmpleado, "emp_Id", "tpi_Id", tbEmpleado.tpi_Id);
                     //ViewBag.TipoIList = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion", "Seleccione");
                     ModelState.AddModelError("", "No se pudo ingresar el registro" + " " + Ex);
-                    return RedirectToAction("Index");
+                    return View(tbEmpleado);
                 }
                 
             }
@@ -118,7 +130,7 @@ namespace ERP_GMEDINA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="emp_Id,emp_Nombres,emp_Apellidos,emp_Sexo,emp_FechaNacimiento,tpi_Id,emp_Identificacion,emp_Telefono,emp_Correoelectronico,emp_TipoSangre,emp_Puesto,emp_FechaIngreso,emp_Direccion,emp_Observaciones,emp_UsuarioCrea,emp_FechaCrea,emp_UsuarioModifica,emp_FechaModifica")] tbEmpleado tbEmpleado)
+        public ActionResult Edit([Bind(Include= "emp_Id,emp_Nombres,emp_Apellidos,emp_Sexo,emp_FechaNacimiento,tpi_Id,emp_Identificacion,emp_Telefono,emp_Correoelectronico,emp_TipoSangre,emp_Puesto,emp_FechaIngreso,emp_Direccion,emp_RazonInactivacion,emp_UsuarioCrea,emp_FechaCrea,emp_UsuarioModifica,emp_FechaModifica")] tbEmpleado tbEmpleado)
         {
            
             if (ModelState.IsValid)
@@ -128,22 +140,22 @@ namespace ERP_GMEDINA.Controllers
                 {
                     IEnumerable<object> list = null;
                     string MsjError = "";                    
-                    //list = db.UDP_Gral_tbEmpleados_Update(tbEmpleado.emp_Id
-                    //                                    ,tbEmpleado.emp_Nombres
-                    //                                    ,tbEmpleado.emp_Apellidos
-                    //                                    ,tbEmpleado.emp_Sexo
-                    //                                    ,tbEmpleado.emp_FechaNacimiento
-                    //                                    ,tbEmpleado.tpi_Id
-                    //                                    ,tbEmpleado.emp_Identificacion
-                    //                                    ,tbEmpleado.emp_Telefono
-                    //                                    ,tbEmpleado.emp_Correoelectronico
-                    //                                    ,tbEmpleado.emp_TipoSangre
-                    //                                    ,tbEmpleado.emp_Puesto
-                    //                                    ,tbEmpleado.emp_FechaIngreso
-                    //                                    ,tbEmpleado.emp_Direccion
-                    //                                    ,tbEmpleado.emp_Observaciones
-                    //                                    ,tbEmpleado.emp_UsuarioCrea
-                    //                                    ,tbEmpleado.emp_FechaCrea);
+                    list = db.UDP_Gral_tbEmpleados_Update(tbEmpleado.emp_Id
+                                                        ,tbEmpleado.emp_Nombres
+                                                        ,tbEmpleado.emp_Apellidos
+                                                        ,tbEmpleado.emp_Sexo
+                                                        ,tbEmpleado.emp_FechaNacimiento
+                                                        ,tbEmpleado.tpi_Id
+                                                        ,tbEmpleado.emp_Identificacion
+                                                        ,tbEmpleado.emp_Telefono
+                                                        ,tbEmpleado.emp_Correoelectronico
+                                                        ,tbEmpleado.emp_TipoSangre
+                                                        ,tbEmpleado.emp_Puesto
+                                                        ,tbEmpleado.emp_FechaIngreso
+                                                        ,tbEmpleado.emp_Direccion
+                                                        ,tbEmpleado.emp_RazonInactivacion
+                                                        ,tbEmpleado.emp_UsuarioCrea
+                                                        ,tbEmpleado.emp_FechaCrea, tbEmpleado.emp_RazonSalida,tbEmpleado.emp_FechaDeSalida);
                     foreach (UDP_Gral_tbEmpleados_Update_Result empleado in list)
                         MsjError = empleado.MensajeError;                    
                     if (MsjError.Substring(0, 2) == "-1")
@@ -184,43 +196,92 @@ namespace ERP_GMEDINA.Controllers
             return View(tbEmpleado);
         }
 
-        public ActionResult Estadoactivar(int? id)
+        [HttpPost]
+        public JsonResult GetEmpleado(int emp_Id)
         {
+            var list = db.SDP_tbEmpleado_Consulta(emp_Id).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+      
+        public JsonResult EstadoEmpleadoRazon(tbEmpleado tbEmpleado)
+        {
+            string Msj = "";
             try
             {
-                tbObjeto obj = db.tbObjeto.Find(id);
                 IEnumerable<object> list = null;
-                var MsjError = "";
-                list = db.UDP_Gral_tbEmpleado_Update_Estado(id, Helpers.Activo);
-                foreach (UDP_Gral_tbEmpleado_Update_Estado_Result obje in list)
-                    MsjError = obje.MensajeError;
 
-                if (MsjError == "-1")
+
+                list = db.UDP_Gral_tbEmpleado_Update_RazonInactivacion(tbEmpleado.emp_Id,
+                    tbEmpleado.emp_Estado,
+                  
+                    tbEmpleado.emp_RazonInactivacion
+                    );
+                foreach ( UDP_Gral_tbEmpleado_Update_RazonInactivacion_Result empleado in list)
+                    Msj = empleado.MensajeError;
+
+                if (Msj.StartsWith("-1"))
                 {
-                    ModelState.AddModelError("", "No se Actualizo el registro contacte con el administrador");
-                    return RedirectToAction("Edit/" + id);
-                }
-                else
-                {
-                    return RedirectToAction("Edit/" + id);
+                    Msj = "-1";
                 }
             }
             catch (Exception Ex)
             {
                 Ex.Message.ToString();
-                ModelState.AddModelError("", "No se Actualizo el registro contacte con el administrador");
-                return RedirectToAction("Edit/" + id);
+                ModelState.AddModelError("", "No se Guardo el registro");
+                Msj = "-1";
             }
-            //return RedirectToAction("Index");
+            return Json(Msj, JsonRequestBehavior.AllowGet);
+
         }
-        public ActionResult EstadoInactivar(int? id)
+        [HttpPost]
+        public JsonResult GetEmpleadoRazon(int emp_Id)
+        {
+            var list = db.SDP_tbEmpleado_Consulta(emp_Id).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult RazonSalida(tbEmpleado tbEmpleado)
+        {
+            string Msj = "";
+            try
+            {
+                IEnumerable<object> list = null;
+
+
+                list = db.UDP_Gral_tbEmpleado_Update_RazonSalida(tbEmpleado.emp_Id,
+                    tbEmpleado.emp_Estado,
+                    tbEmpleado.emp_RazonSalida
+                    );
+                foreach (UDP_Gral_tbEmpleado_Update_RazonSalida_Result empleado in list)
+                    Msj = empleado.MensajeError;
+
+                if (Msj.StartsWith("-1"))
+                {
+                    Msj = "-1";
+                }
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                ModelState.AddModelError("", "No se Guardo el registro");
+                Msj = "-1";
+            }
+            return Json(Msj, JsonRequestBehavior.AllowGet);
+
+        }
+
+
+
+
+
+        public ActionResult EstadoActivar(int? id)
         {
             try
             {
-                tbObjeto obj = db.tbObjeto.Find(id);
+                tbEmpleado obj = db.tbEmpleado.Find(id);
+                tbEmpleado empleado = new tbEmpleado();
                 IEnumerable<object> list = null;
                 var MsjError = "";
-                list = db.UDP_Gral_tbEmpleado_Update_Estado(id, Helpers.Inactivo);
+                list = db.UDP_Gral_tbEmpleado_Update_Estado(id, Helpers.EmpleadoActivo);
                 foreach (UDP_Gral_tbEmpleado_Update_Estado_Result obje in list)
                     MsjError = obje.MensajeError;
 

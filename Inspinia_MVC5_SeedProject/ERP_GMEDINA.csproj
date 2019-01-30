@@ -189,6 +189,7 @@
     <Compile Include="Controllers\BodegaController.cs" />
     <Compile Include="Controllers\BoxController.cs" />
     <Compile Include="Controllers\DepartamentoController.cs" />
+    <Compile Include="Controllers\EmpleadoController.cs" />
     <Compile Include="Controllers\EntradaController.cs" />
     <Compile Include="Controllers\EstadoMovimientoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -218,7 +219,6 @@
     <Compile Include="Helpers\HMTLHelperExtensions.cs" />
     <Compile Include="Models\accesorol.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\AnularEntrada.cs" />
     <Compile Include="Models\Bodega.cs" />
     <Compile Include="Models\BodegaDetalle.cs" />
     <Compile Include="Models\Box.cs" />
@@ -235,7 +235,6 @@
     <Compile Include="Models\Entrada.cs" />
     <Compile Include="Models\EstadoBodega.cs" />
     <Compile Include="Models\EstadoCategoria.cs" />
-    <Compile Include="Models\EstadoEntrada.cs" />
     <Compile Include="Models\EstadoInventario.cs" />
     <Compile Include="Models\EstadoInventariosFisico.cs" />
     <Compile Include="Models\estadomovimientos.cs" />
@@ -306,6 +305,9 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SDP_Inv_tbSalidaDetalle_Select_Result1.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SDP_tbEmpleado_Consulta_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SDP_tbEmpleado_Select_Result.cs">
@@ -627,6 +629,12 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Gral_tbEmpleado_Update_Estado_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Gral_tbEmpleado_Update_RazonInactivacion_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Gral_tbEmpleado_Update_RazonSalida_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Gral_tbMunicipio_Delete_Result.cs">
@@ -1394,9 +1402,7 @@
     <Content Include="Views\Entrada\Index.cshtml" />
     <Content Include="Views\Entrada\_BuscarProducto.cshtml" />
     <Content Include="Views\Entrada\_CrearDetalleEntrada.cshtml" />
-    <Content Include="Views\Entrada\_DetalleDeEntrada.cshtml" />
     <Content Include="Views\Entrada\_EditarDetalleEntrada.cshtml" />
-    <Content Include="Views\Entrada\_IndexDetalle.cshtml" />
     <Content Include="Views\Entrada\_IndexEditar.cshtml" />
     <Content Include="Views\TipoEntrada\Create.cshtml" />
     <Content Include="Views\TipoEntrada\Delete.cshtml" />
@@ -1481,7 +1487,6 @@
     <Content Include="Views\Salida\View.cshtml" />
     <Content Include="Views\Login\NotFound.cshtml" />
     <Content Include="Views\Departamento\_DeleteMunicipio.cshtml" />
-    <Content Include="Views\Entrada\_ProductoEntradaEditarModal.cshtml" />
     <Content Include="Views\InventarioFisico\_CreateInvFisicoDetalle_nuevo.cshtml" />
     <Content Include="Views\InventarioFisico\_ListadoInventarioFisicoDetalleConciliado.cshtml" />
     <Content Include="Views\Salida\_Modales.cshtml" />

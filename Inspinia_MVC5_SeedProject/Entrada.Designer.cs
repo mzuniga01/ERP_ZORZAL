@@ -289,6 +289,8 @@ namespace ERP_GMEDINA {
             
             private global::System.Data.DataColumn columnestm_Descripcion;
             
+            private global::System.Data.DataColumn columntent_Descripcion;
+            
             private global::System.Data.DataColumn columnent_FacturaCompra;
             
             private global::System.Data.DataColumn columnent_FechaCompra;
@@ -374,6 +376,14 @@ namespace ERP_GMEDINA {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn tent_DescripcionColumn {
+                get {
+                    return this.columntent_Descripcion;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn ent_FacturaCompraColumn {
                 get {
                     return this.columnent_FacturaCompra;
@@ -449,7 +459,7 @@ namespace ERP_GMEDINA {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SDP_tbentradaImprimirCompra_SelectRow AddSDP_tbentradaImprimirCompra_SelectRow(string ent_NumeroFormato, string bod_Nombre, System.DateTime ent_FechaElaboracion, string prov_Nombre, string estm_Descripcion, string ent_FacturaCompra, System.DateTime ent_FechaCompra, string tdev_descripcion, int fact_Id, int ent_BodegaDestino) {
+            public SDP_tbentradaImprimirCompra_SelectRow AddSDP_tbentradaImprimirCompra_SelectRow(string ent_NumeroFormato, string bod_Nombre, System.DateTime ent_FechaElaboracion, string prov_Nombre, string estm_Descripcion, string tent_Descripcion, string ent_FacturaCompra, System.DateTime ent_FechaCompra, string tdev_descripcion, int fact_Id, int ent_BodegaDestino) {
                 SDP_tbentradaImprimirCompra_SelectRow rowSDP_tbentradaImprimirCompra_SelectRow = ((SDP_tbentradaImprimirCompra_SelectRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ent_NumeroFormato,
@@ -457,6 +467,7 @@ namespace ERP_GMEDINA {
                         ent_FechaElaboracion,
                         prov_Nombre,
                         estm_Descripcion,
+                        tent_Descripcion,
                         ent_FacturaCompra,
                         ent_FechaCompra,
                         tdev_descripcion,
@@ -489,6 +500,7 @@ namespace ERP_GMEDINA {
                 this.columnent_FechaElaboracion = base.Columns["ent_FechaElaboracion"];
                 this.columnprov_Nombre = base.Columns["prov_Nombre"];
                 this.columnestm_Descripcion = base.Columns["estm_Descripcion"];
+                this.columntent_Descripcion = base.Columns["tent_Descripcion"];
                 this.columnent_FacturaCompra = base.Columns["ent_FacturaCompra"];
                 this.columnent_FechaCompra = base.Columns["ent_FechaCompra"];
                 this.columntdev_descripcion = base.Columns["tdev_descripcion"];
@@ -509,6 +521,8 @@ namespace ERP_GMEDINA {
                 base.Columns.Add(this.columnprov_Nombre);
                 this.columnestm_Descripcion = new global::System.Data.DataColumn("estm_Descripcion", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnestm_Descripcion);
+                this.columntent_Descripcion = new global::System.Data.DataColumn("tent_Descripcion", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columntent_Descripcion);
                 this.columnent_FacturaCompra = new global::System.Data.DataColumn("ent_FacturaCompra", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnent_FacturaCompra);
                 this.columnent_FechaCompra = new global::System.Data.DataColumn("ent_FechaCompra", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
@@ -527,6 +541,8 @@ namespace ERP_GMEDINA {
                 this.columnprov_Nombre.MaxLength = 100;
                 this.columnestm_Descripcion.AllowDBNull = false;
                 this.columnestm_Descripcion.MaxLength = 100;
+                this.columntent_Descripcion.AllowDBNull = false;
+                this.columntent_Descripcion.MaxLength = 50;
                 this.columnent_FacturaCompra.MaxLength = 20;
                 this.columntdev_descripcion.MaxLength = 100;
             }
@@ -727,6 +743,17 @@ namespace ERP_GMEDINA {
                 }
                 set {
                     this[this.tableSDP_tbentradaImprimirCompra_Select.estm_DescripcionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string tent_Descripcion {
+                get {
+                    return ((string)(this[this.tableSDP_tbentradaImprimirCompra_Select.tent_DescripcionColumn]));
+                }
+                set {
+                    this[this.tableSDP_tbentradaImprimirCompra_Select.tent_DescripcionColumn] = value;
                 }
             }
             
@@ -1052,6 +1079,7 @@ namespace ERP_GMEDINA.EntradaTableAdapters {
             tableMapping.ColumnMappings.Add("ent_FechaElaboracion", "ent_FechaElaboracion");
             tableMapping.ColumnMappings.Add("prov_Nombre", "prov_Nombre");
             tableMapping.ColumnMappings.Add("estm_Descripcion", "estm_Descripcion");
+            tableMapping.ColumnMappings.Add("tent_Descripcion", "tent_Descripcion");
             tableMapping.ColumnMappings.Add("ent_FacturaCompra", "ent_FacturaCompra");
             tableMapping.ColumnMappings.Add("ent_FechaCompra", "ent_FechaCompra");
             tableMapping.ColumnMappings.Add("tdev_descripcion", "tdev_descripcion");
@@ -1076,14 +1104,21 @@ namespace ERP_GMEDINA.EntradaTableAdapters {
             this._commandCollection[0].CommandText = "Inv.SDP_tbentradaImprimirCompra_Select";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TipoEntrada", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(Entrada.SDP_tbentradaImprimirCompra_SelectDataTable dataTable) {
+        public virtual int Fill(Entrada.SDP_tbentradaImprimirCompra_SelectDataTable dataTable, global::System.Nullable<int> TipoEntrada) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((TipoEntrada.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(TipoEntrada.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
@@ -1095,8 +1130,14 @@ namespace ERP_GMEDINA.EntradaTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual Entrada.SDP_tbentradaImprimirCompra_SelectDataTable GetData() {
+        public virtual Entrada.SDP_tbentradaImprimirCompra_SelectDataTable GetData(global::System.Nullable<int> TipoEntrada) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((TipoEntrada.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(TipoEntrada.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
             Entrada.SDP_tbentradaImprimirCompra_SelectDataTable dataTable = new Entrada.SDP_tbentradaImprimirCompra_SelectDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;

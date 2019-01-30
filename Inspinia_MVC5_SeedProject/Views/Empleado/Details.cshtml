@@ -135,12 +135,54 @@
                         </dd>
 
                         <dt>
-                            @Html.DisplayNameFor(model => model.emp_Observaciones)
+                            @Html.DisplayNameFor(model => model.emp_RazonSalida)
                         </dt>
 
                         <dd>
-                            @Html.DisplayFor(model => model.emp_Observaciones)
+                            @if (Model.emp_RazonSalida == null)
+                            {
+                                <p> No Aplica</p>
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(model => model.emp_RazonSalida)
+
+                            }
                         </dd>
+                        @*///*@
+                        <dt>
+                            @Html.DisplayNameFor(model => model.emp_FechaDeSalida)
+                        </dt>
+
+                        <dd>
+                            @if (Model.emp_FechaDeSalida == null)
+                            {
+                                <p> No Aplica</p>
+                            }
+                            else
+                            {
+
+                                @Html.DisplayFor(model => model.emp_FechaDeSalida)
+                            }
+                        </dd>
+
+                        @*///*@
+                        <dt>
+                            @Html.DisplayNameFor(model => model.emp_RazonInactivacion)
+                        </dt>
+
+                        <dd>
+                            @if (Model.emp_RazonInactivacion == null)
+                            {
+                                <p> No Aplica</p>
+                            }
+                            else
+                            {
+
+                                @Html.DisplayFor(model => model.emp_RazonInactivacion)
+                            }
+                        </dd>
+                       
 
                         <dt>
                             @*@Html.DisplayNameFor(model => model.emp_Estado)*@
@@ -154,6 +196,7 @@
                             else
                             {
                                 <p>Inactivo</p>
+
                             }
                         </dd>
 

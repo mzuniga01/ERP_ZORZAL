@@ -1,5 +1,5 @@
 ﻿@model ERP_GMEDINA.Models.tbEmpleado
-
+@using ERP_GMEDINA.Models
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -10,6 +10,10 @@
         color: red;
         font-size: small;
     }
+    .required:after {
+         content: "*";
+         font-weight: bold;
+         color: red; }
 </style>
 
 
@@ -28,155 +32,142 @@
 </div>
 
 
-
-<div class="wrapper wrapper-content animated fadeInRight">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <h5>Registrar Empleado</h5>
-                </div>
-                <div class="ibox-content">
-
-				@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create", "Empleado", FormMethod.Post, new { encenctype = "multipart/form-data" }))
 {
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        @Html.ValidationSummary(true)
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Registrar Empleado</h5>
+                    </div>
+                    <div class="ibox-content">
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true)
 
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.emp_Nombres, new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.TextBoxFor(model => model.emp_Nombres,new {@class="single-line", MaxLength=100})
-                <p style="color:red">@Html.ValidationMessageFor(model => model.emp_Nombres)</p>
-            </div>     
-                  
-                @Html.LabelFor(model => model.emp_Apellidos, new { @class = "control-label col-md-2" })
-                <div class="col-md-4">
-                    @Html.TextBoxFor(model => model.emp_Apellidos, new { @class = "single-line", MaxLength = 100 })
-                    <p style="color:red">@Html.ValidationMessageFor(model => model.emp_Apellidos)</p>
-</div>           
-        </div>
+                            <div class="form-group">
 
-      
+                                @Html.LabelFor(model => model.emp_Nombres, new { @class = "control-label col-md-2 , required" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.emp_Nombres, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)" } })
+                                    <p style="color:red">
+                                        @Html.ValidationMessageFor(model => model.emp_Nombres)
+                                    </p>
+                                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.emp_Sexo, new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                 <select class="form-control" id="emp_Sexo" name="emp_Sexo">
-                    <option value="" >Seleccione Sexo</option>
-                    <option value="H">Hombre</option>
-                    <option value="M">Mujer</option>
-                </select>                
-                @*@Html.EditorFor(model => model.emp_Sexo)*@
-                @*@Html.DropDownList("emp_sexo",(IEnumerable<SelectListItem>)ViewBag.emp_sexo,"Seleccione",new { @class ="form-control"})*@
-                <p style="color:red">@Html.ValidationMessageFor(model => model.emp_Sexo)</p>
-</div>
-            
-                @Html.LabelFor(model => model.emp_FechaNacimiento, new { @class = "control-label col-md-2" })
-                <div class="col-md-4">
-                    @Html.EditorFor(model => model.emp_FechaNacimiento,"{0:yyyy-mm-dd }",new { HtmlAttribute = new { @id = "emp_FechaNacimiento" } })
-                    <p style="color:red">@Html.ValidationMessageFor(model => model.emp_FechaNacimiento)</p>
-</div>          
-        </div>
+                                @Html.LabelFor(model => model.emp_Apellidos, new { @class = "control-label col-md-2 , required" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.emp_Apellidos, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)" } })
+                                    <p style="color:red">
+                                        @Html.ValidationMessageFor(model => model.emp_Apellidos)
+                                    </p>
+                                </div>
+                            </div>
 
-       
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.emp_Sexo, new { @class = "control-label col-md-2 , required" })
+                                <div class="col-md-4">
+                                    <select class="form-control" id="emp_Sexo" name="emp_Sexo">
+                                        <option value="">Seleccione Sexo</option>
+                                        <option value="H">Hombre</option>
+                                        <option value="M">Mujer</option>
+                                    </select>
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.emp_Sexo)</p>
+                                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.tbTipoIdentificacion.tpi_Id, "Tipo Identificación", new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.DropDownList("tpi_Id", (IEnumerable<SelectListItem>)ViewBag.TipoIList, "Seleccione", new { @class = "form-control" })
-                <p style="color:red"> @Html.ValidationMessageFor(model => model.tbTipoIdentificacion.tpi_Id)</p>
-</div>
+                                @Html.LabelFor(model => model.emp_FechaNacimiento, new { @class = "control-label col-md-2 , required" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.emp_FechaNacimiento, "{0:yyyy-mm-dd }", new { HtmlAttribute = new { @id = "emp_FechaNacimiento" } })
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.emp_FechaNacimiento)</p>
+                                </div>
+                            </div>
 
-            
-                @Html.LabelFor(model => model.emp_Identificacion, new { @class = "control-label col-md-2" })
-                <div class="col-md-4">
-                    @Html.TextBoxFor(model => model.emp_Identificacion, new { @class = "single-line", MaxLength = 14 })
-                    <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_Identificacion)</p>
-</div>            
-        </div>
 
-       
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.emp_Telefono, new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.TextBoxFor(model => model.emp_Telefono, new { @class = "single-line", MaxLength = 25 })
-                <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_Telefono)</p>
-</div>
-            
-                @Html.LabelFor(model => model.emp_Correoelectronico, new { @class = "control-label col-md-2" })
-                <div class="col-md-4">
-                    @Html.TextBoxFor(model => model.emp_Correoelectronico, new { @class = "single-line", MaxLength = 50 })
-                    <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_Correoelectronico)</p>
-</div>            
-        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.tbTipoIdentificacion.tpi_Id, "Tipo Identificación", new { @class = "control-label col-md-2 , required" })
+                                <div class="col-md-4">
+                                    @Html.DropDownList("tpi_Id", (IEnumerable<SelectListItem>)ViewBag.TipoIList, "Seleccione", new { @class = "form-control" })
+                                    <p style="color:red"> @Html.ValidationMessageFor(model => model.tbTipoIdentificacion.tpi_Id)</p>
+                                </div>
 
-        
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.emp_TipoSangre, new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.TextBoxFor(model => model.emp_TipoSangre, new { @class = "single-line", MaxLength = 2 })
-                <p style="color:red">@Html.ValidationMessageFor(model => model.emp_TipoSangre)</p>
-</div>
-            
-                @Html.LabelFor(model => model.emp_Puesto, new { @class = "control-label col-md-2" })
-                <div class="col-md-4">
-                    @Html.TextBoxFor(model => model.emp_Puesto, new { @class = "single-line", MaxLength = 50 })
-                    <p style="color:red">@Html.ValidationMessageFor(model => model.emp_Puesto)</p>
-</div>            
-        </div>
+                                @Html.LabelFor(model => model.emp_Identificacion, new { @class = "control-label col-md-2 , required" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.emp_Identificacion, new { @class = "single-line", MaxLength = 14 })
+                                    <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_Identificacion)</p>
+                                </div>
+                            </div>
 
-        
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.emp_FechaIngreso, new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.emp_FechaIngreso,"{0:yyyy-mm-dd}",new { HtmlAttribute = new { @id="emp_FechaIngreso"} })
-                <p style="color:red">@Html.ValidationMessageFor(model => model.emp_FechaIngreso)</p>
-</div>
-            
-                @Html.LabelFor(model => model.emp_Direccion, new { @class = "control-label col-md-2" })
-                <div class="col-md-4">
-                    @Html.TextBoxFor(model => model.emp_Direccion, new { @class = "single-line", MaxLength = 250 })
-                    <p style="color:red">@Html.ValidationMessageFor(model => model.emp_Direccion)</p>
-</div>            
-        </div>
 
-        
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.emp_Telefono, new { @class = "control-label col-md-2 , required" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.emp_Telefono, new { @class = "form-control", maxlength = 10 })
+                                    <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_Telefono)</p>
+                                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.emp_Observaciones, new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.TextBoxFor(model => model.emp_Observaciones, new { @class = "single-line", MaxLength = 500 })
-                <p style="color:red">@Html.ValidationMessageFor(model => model.emp_Observaciones)</p>
-</div>
-        </div>
+                                @Html.LabelFor(model => model.emp_Correoelectronico, new { @class = "control-label col-md-2 , required" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.emp_Correoelectronico, new { @class = "form-control", maxlength = 50 })
+                                    <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_Correoelectronico)</p>
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
-				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
-            </div>
-        </div>
-    </div>
-}
 
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.emp_TipoSangre, new { @class = "control-label col-md-2 , required" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.emp_TipoSangre, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)" } })
+                                    <p style="color:red">
+                                        @Html.ValidationMessageFor(model => model.emp_TipoSangre)
+                                    </p>
+                                </div>
+
+                                @Html.LabelFor(model => model.emp_Puesto, new { @class = "control-label col-md-2 , required" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.emp_Puesto, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)" } })
+                                    <p style="color:red">
+                                        @Html.ValidationMessageFor(model => model.emp_Puesto)
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.emp_FechaIngreso, new { @class = "control-label col-md-2 , required" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.emp_FechaIngreso, "{0:yyyy-mm-dd}", new { HtmlAttribute = new { @id = "emp_FechaIngreso" } })
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.emp_FechaIngreso)</p>
+                                </div>
+
+                                @Html.LabelFor(model => model.emp_Direccion, new { @class = "control-label col-md-2 , required" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.emp_Direccion, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)" } })
+                                    <p style="color:red">
+                                        @Html.ValidationMessageFor(model => model.emp_Direccion)
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
- </div>
 
- 
-<script src="~/Scripts/jquery-3.3.1.js"></script>
-@*<script src="~/Scripts/app/Datepicker.js"></script>*@
-<script src="~/Scripts/app/DatepickerEmpleado.js"></script>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/app/DatepickerEmpleado.js"></script>
+
 }
+

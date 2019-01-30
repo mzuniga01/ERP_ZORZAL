@@ -54,7 +54,7 @@ namespace ERP_GMEDINA.Models
         //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string ent_RazonDevolucion { get; set; }
 
-        [Display(Name = "Código Bodega")]
+        [Display(Name = "Bodega Destino")]
         //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int ent_BodegaDestino { get; set; }
 

@@ -9,7 +9,14 @@
         color: red;
         font-size: small;
     }
+
+    .required:after {
+        content: "*";
+        font-weight: bold;
+        color: red;
+    }
 </style>
+
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 <link href="~/Content/css/Auditoria.css" rel="stylesheet" />
 
@@ -67,58 +74,58 @@
                             @Html.HiddenFor(model => model.tbUsuario1.usu_EsActivo)
                             @Html.HiddenFor(model => model.tbUsuario1.usu_EsAdministrador)
                             <div class="form-group">
-                                <label class="control-label col-md-2">Codigó Entrada<span style="color:red">*</span></label>
+                                @Html.LabelFor(model => model.ent_Id, new { @class = "control-label col-md-2" })
+                                @*<label class="control-label col-md-2">Codigó Entrada<span style="color:red">*</span></label>*@
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.ent_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     @Html.ValidationMessageFor(model => model.ent_Id)
                                 </div>
-                                <label class="control-label col-md-2">Nombre Bodega<span style="color:red">*</span></label>
+                                @Html.LabelFor(model => model.bod_Id, new { @class = "control-label col-md-2 , required" })
+                                @*<label class="control-label col-md-2">Nombre Bodega<span style="color:red">*</span></label>*@
                                 <div class="col-md-4">
                                     @Html.DropDownListFor(model => model.bod_Id, (SelectList)ViewBag.bodega, new { @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.bod_Id)
-                                    @*@Html.DropDownList("bod_Id", (IEnumerable<SelectListItem>)ViewBag.bod_Id, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.bod_Id)*@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-2">Numero Fórmato<span style="color:red">*</span></label>
+                                @*<label class="control-label col-md-2">Numero Fórmato<span style="color:red">*</span></label>*@
+                                @Html.LabelFor(model => model.ent_NumeroFormato, new { @class = "control-label col-md-2 " })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.ent_NumeroFormato, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     @Html.ValidationMessageFor(model => model.ent_NumeroFormato)
                                 </div>
 
-                                @Html.LabelFor(model => model.ent_FechaElaboracion, new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.ent_FechaElaboracion, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.ent_FechaElaboracion, new { htmlAttributes = new { @class = "form-control", @id = "FechaElaboracion" } })
                                     @Html.ValidationMessageFor(model => model.ent_FechaElaboracion)
                                 </div>
                             </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-2">Tipo Entrada<span style="color:red">*</span></label>
+                                    @*<label class="control-label col-md-2">Tipo Entrada<span style="color:red">*</span></label>*@
+                                    @Html.LabelFor(model => model.tent_Id, new { @class = "control-label col-md-2 " })
                                     <div class="col-md-4">
                                         @Html.EditorFor(model => model.tbTipoEntrada.tent_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                         <div style="display:none" class="col-md-4">
                                             @Html.DropDownListFor(model => model.tent_Id, (SelectList)ViewBag.tipo_Entrada, new { @class = "form-control" })
                                             @Html.ValidationMessageFor(model => model.tent_Id)
-                                            @*@Html.DropDownList("tent_Id", (IEnumerable<SelectListItem>)ViewBag.tent_Id, new { @class = "form-control", @readonly = "readonly" })
-                        @Html.ValidationMessageFor(model => model.tent_Id)*@
                                         </div>
                                     </div>
-                                    @Html.LabelFor(model => model.estm_Id, "Estado", new { @class = "control-label col-md-2" })
+                                    @Html.LabelFor(model => model.estm_Id, new { @class = "control-label col-md-2 , required" })
                                     <div class="col-md-4">
-                                        @if (Model.estm_Id == 2)
+                                        @if (Model.estm_Id == Helpers.EntradaEmitida)
                                         {
                                             <p>Emitida</p>
                                         }
-                                        else if (Model.estm_Id == 36)
+                                        else if (Model.estm_Id == Helpers.EntradaInactivada)
                                         {
                                             <p>Inactiva</p>
                                         }
-                                        else if (Model.estm_Id == 1)
+                                        else if (Model.estm_Id == Helpers.EntradaAplicada)
                                         {
                                             <p style="color:maroon">Aplicada</p>
                                         }
-                                        else if (Model.estm_Id == 24)
+                                        else if (Model.estm_Id == Helpers.EntradaEstadoAnulada)
                                         {
                                             <p style="color:maroon">Anulada</p>
                                         }
@@ -127,12 +134,14 @@
                             </div>
                         <div class="form-horizontal" name="compra" id="CamposCompra" style="display:none">
                             <div class="form-group">
-                                <label class="control-label col-md-2">Fáctura Compra<span style="color:red">*</span></label>
+                                @*<label class="control-label col-md-2">Fáctura Compra<span style="color:red">*</span></label>*@
+                                @Html.LabelFor(model => model.ent_FacturaCompra, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.ent_FacturaCompra, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     @Html.ValidationMessageFor(model => model.ent_FacturaCompra)
                                 </div>
-                                <label class="control-label col-md-2">Fecha Compra<span style="color:red">*</span></label>
+                                @*<label class="control-label col-md-2">Fecha Compra<span style="color:red">*</span></label>*@
+                                @Html.LabelFor(model => model.ent_FechaCompra, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.ent_FechaCompra, new { htmlAttributes = new { @class = "form-control", @id = "FechaCompra" } })
                                     @Html.ValidationMessageFor(model => model.ent_FechaCompra)
@@ -144,7 +153,8 @@
                                     @Html.EditorFor(model => model.fact_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     @Html.ValidationMessageFor(model => model.fact_Id)
                                 </div>*@
-                                <label class="control-label col-md-2">Proveedor<span style="color:red">*</span></label>
+                                @*<label class="control-label col-md-2">Proveedor<span style="color:red">*</span></label>*@
+                                @Html.LabelFor(model => model.prov_Id, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
                                     @Html.DropDownListFor(model => model.prov_Id, (SelectList)ViewBag.proveedor, new { @class = "form-control" })
                                     @*@Html.DropDownList("prov_Id", (IEnumerable<SelectListItem>)ViewBag.prov_Id, new { @class = "form-control" })*@
@@ -154,13 +164,15 @@
                         </div>
                         <div class="form-horizontal" name="compra" id="CamposDevoluciones" style="display:none">
                             <div class="form-group">
-                                <label class="control-label col-md-2">Razón Devolucion<span style="color:red">*</span></label>
+                                @*<label class="control-label col-md-2">Razón Devolucion<span style="color:red">*</span></label>*@
+                                @Html.LabelFor(model => model.ent_RazonDevolucion, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
                                     @Html.DropDownListFor(model => model.ent_RazonDevolucion, (SelectList)ViewBag.tdev_Id, new { @class = "form-control" })
                                     @*@Html.EditorFor(model => model.ent_RazonDevolucion)*@
                                     @Html.ValidationMessageFor(model => model.ent_RazonDevolucion)
                                 </div>
-                                <label class="control-label col-md-2">Código Factura<span style="color:red">*</span></label>
+                                @*<label class="control-label col-md-2">Código Factura<span style="color:red">*</span></label>*@
+                                @Html.LabelFor(model => model.fact_Id, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.fact_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     @Html.ValidationMessageFor(model => model.fact_Id)
@@ -170,7 +182,8 @@
 
                         <div class="form-horizontal" name="compra" id="CamposTraslado" style="display:none">
                             <div class="form-group">
-                                <label class="control-label col-md-2">Bodega Destino<span style="color:red">*</span></label>
+                                @*<label class="control-label col-md-2">Bodega Destino<span style="color:red">*</span></label>*@
+                                @Html.LabelFor(model => model.bod_Id, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
                                     @Html.DropDownListFor(model => model.ent_BodegaDestino, (SelectList)ViewBag.bbod_Id, new { @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.bod_Id)
@@ -182,7 +195,7 @@
                             <div class="col-md-offset-2 col-md-10">
 
                                 
-                                @{if (Model.estm_Id == 2)
+                                @{if (Model.estm_Id == Helpers.EntradaEmitida)
                                     {
                                         <input type="submit" value="Guardar" class="btn btn-primary" />
                                         <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalAnular" value="Anular"/>
@@ -191,21 +204,24 @@
                                         @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                                             @*@Html.ActionLink("Inactivar", "EstadoInactivar", new { id = Model.bod_Id }, new { @class = "btn btn-danger" })*@
                                     }
-                                    else if (Model.estm_Id == 36)
+                                    else if (Model.estm_Id == Helpers.EntradaInactivada)
                                     {
                                         @Html.ActionLink("Emitir", "Estadoactivar", new { id = Model.ent_Id }, new { @class = "btn btn-primary" })
                                         <input type="submit" value="Guardar" disabled class="btn btn-primary" />
                                         <input type="button" class="btn btn-danger" disabled value="Anular" />
                                         <input type="button" class="btn btn-danger" disabled value="Aplicar" />
+                                        @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                                     }
-                                    else if (Model.estm_Id == 24)
+                                    else if (Model.estm_Id == Helpers.EntradaEstadoAnulada)
                                     {
                                         <input type="submit" value="Guardar" disabled class="btn btn-primary" />
                                         <input type="button" class="btn btn-danger" disabled value="Anular" />
+                                        @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                                     }
-                                    else if (Model.estm_Id == 1)
+                                    else if (Model.estm_Id == Helpers.EntradaAplicada)
                                     {
                                         <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalImprimir" value="Imprimir" />
+                                        @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                                     }
                                     else
                                     {

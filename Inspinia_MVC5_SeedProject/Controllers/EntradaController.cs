@@ -19,19 +19,6 @@ namespace ERP_ZORZAL.Controllers
         // GET: /Entrada/
         public ActionResult Index()
         {
-            ////retorna, recupera el valor ala vista editar del lista de bodega
-            //List<tbBodega> listbodega = new List<tbBodega>();
-            //var bodega = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
-            //ViewBag.Statuses = bodega;
-            ////retorna, recupera el valor ala vista editar del lista de Proveedor
-            //List<tbProveedor> listproveedor = new List<tbProveedor>();
-            //var proveedor = new SelectList(db.tbProveedor, "prov_Id", "prov_Nombre");
-            //ViewBag.Statuses = proveedor;
-            ////retorna, recupera el valor ala vista editar del lista de Tipo Entrada
-            //List<tbBodega> listtipo_Entrada = new List<tbBodega>();
-            //var tipo_Entrada = new SelectList(db.tbTipoEntrada, "tent_Id", "tent_Descripcion");
-            //ViewBag.Statuses = tipo_Entrada;
-
             var tbentrada = db.tbEntrada.Include(t => t.tbBodega).Include(t => t.tbEstadoMovimiento).Include(t => t.tbProveedor).Include(t => t.tbTipoEntrada);
             return View(tbentrada.ToList());
         }
@@ -594,7 +581,6 @@ namespace ERP_ZORZAL.Controllers
 
 
 
-        //para que cambie estado a activar
         public ActionResult EstadoInactivar(int? id)
         {
 
@@ -603,7 +589,7 @@ namespace ERP_ZORZAL.Controllers
                 tbEntrada obj = db.tbEntrada.Find(id);
                 IEnumerable<object> list = null;
                 var MsjError = "";
-                list = db.UDP_Inv_tbEntrada_Update_Estado(id, EstadoEntrada.Inactivada);
+                list = db.UDP_Inv_tbEntrada_Update_Estado(id, Helpers.EntradaInactivada);
                 foreach (UDP_Inv_tbEntrada_Update_Estado_Result obje in list)
                     MsjError = obje.MensajeError;
 
@@ -636,7 +622,7 @@ namespace ERP_ZORZAL.Controllers
                 tbEntrada obj = db.tbEntrada.Find(id);
                 IEnumerable<object> list = null;
                 var MsjError = "";
-                list = db.UDP_Inv_tbEntrada_Update_Estado(id, EstadoEntrada.Emitida);
+                list = db.UDP_Inv_tbEntrada_Update_Estado(id, Helpers.EntradaEmitida);
                 foreach (UDP_Inv_tbEntrada_Update_Estado_Result obje in list)
                     MsjError = obje.MensajeError;
 
@@ -672,10 +658,10 @@ namespace ERP_ZORZAL.Controllers
             tbEntrada obj = db.tbEntrada.Find(cambiaAnular.ent_Id);
             try
             {
-                
+
                 IEnumerable<object> list = null;
                 var MsjError = "";
-                list = db.UDP_Inv_tbEntrada_Update_Anular(cambiaAnular.ent_Id,AnularEntrada.Anulado, cambiaAnular.entd_RazonAnulada);
+                list = db.UDP_Inv_tbEntrada_Update_Anular(cambiaAnular.ent_Id, Helpers.EntradaAnulada, cambiaAnular.entd_RazonAnulada);
                 foreach (UDP_Inv_tbEntrada_Update_Anular_Result obje in list)
                     MsjError = obje.MensajeError;
 
@@ -707,7 +693,7 @@ namespace ERP_ZORZAL.Controllers
                 tbEntrada obj = db.tbEntrada.Find(id);
                 IEnumerable<object> list = null;
                 var MsjError = "";
-                list = db.UDP_Inv_tbEntrada_Update_Estado(id, EstadoEntrada.Aplicada);
+                list = db.UDP_Inv_tbEntrada_Update_Estado(id, Helpers.EntradaAplicada);
                 foreach (UDP_Inv_tbEntrada_Update_Estado_Result obje in list)
                     MsjError = obje.MensajeError;
 

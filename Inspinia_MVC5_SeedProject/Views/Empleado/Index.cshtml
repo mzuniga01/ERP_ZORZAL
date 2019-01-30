@@ -80,8 +80,20 @@
                                         }
                                     </td>
                                     <td>
-                                        @Html.ActionLink("Detalles", "Details", new { id = item.emp_Id }, new { @class = "btn btn-primary btn-xs" })
-                                        @Html.ActionLink("Editar", "Edit", new { id = item.emp_Id }, new { @class = "btn btn-white btn-xs" })                                        
+                                        
+                                        @{
+                                            if (item.emp_Estado == true)
+                                            {
+                                                @Html.ActionLink("Detalles", "Details", new { id = item.emp_Id }, new { @class = "btn btn-primary btn-xs" })
+                                                @Html.ActionLink("Editar", "Edit", new { id = item.emp_Id }, new { @class = "btn btn-white btn-xs" })
+
+                                            }
+                                            else
+                                            {
+                                                @Html.ActionLink("Detalles", "Details", new { id = item.emp_Id }, new { @class = "btn btn-primary btn-xs" })
+                                                @Html.ActionLink("Editar", "", new { id = item.emp_Id }, new { @class = "btn btn-white btn-xs", @disabled = "disabled" })
+                                            }
+                                        }                                         
                                     </td>
                                 </tr>
                             }
@@ -97,11 +109,12 @@
 
 @section scripts{
 
-<script src="~/Scripts/jquery-3.3.1.js"></script>
+@*<script src="~/Scripts/jquery-3.3.1.js"></script>*@
 <script src="~/Scripts/app/DataTable.js"></script>
 <script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
 <script src="~/Scripts/DataTables/dataTables.responsive.js"></script>
 <script src="~/Scripts/DataTables/dataTables.bootstrap.js"></script>
+@*<script src="~/Scripts/app/DatepickerEmpleado.js"></script>*@
     <script>
         $(document).ready(function () {
             $('#DataTable').DataTable({

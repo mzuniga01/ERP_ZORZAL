@@ -117,21 +117,6 @@
       <Parameter Name="uni_Id" Mode="In" Type="Int32" />
       <Parameter Name="prod_CodigoBarras" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Inv_tbProducto_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProducto_Update_Result)">
-      <Parameter Name="prod_Codigo" Mode="In" Type="String" />
-      <Parameter Name="prod_Descripcion" Mode="In" Type="String" />
-      <Parameter Name="prod_Marca" Mode="In" Type="String" />
-      <Parameter Name="prod_Modelo" Mode="In" Type="String" />
-      <Parameter Name="prod_Talla" Mode="In" Type="String" />
-      <Parameter Name="prod_Color" Mode="In" Type="String" />
-      <Parameter Name="pscat_Id" Mode="In" Type="Int32" />
-      <Parameter Name="uni_Id" Mode="In" Type="Int32" />
-      <Parameter Name="prod_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="prod_FechaCrea" Mode="In" Type="DateTime" />
-      <Parameter Name="prod_EsActivo" Mode="In" Type="Boolean" />
-      <Parameter Name="prod_Razon_Inactivacion" Mode="In" Type="String" />
-      <Parameter Name="prod_CodigoBarras" Mode="In" Type="String" />
-    </FunctionImport>
     <FunctionImport Name="UDP_Inv_tbTipoSalida_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbTipoSalida_Update_Result)">
       <Parameter Name="tsal_Id" Mode="In" Type="Byte" />
       <Parameter Name="tsal_Descripcion" Mode="In" Type="String" />
@@ -1606,6 +1591,32 @@
       <Parameter Name="ent_BodegaDestino" Mode="In" Type="Int32" />
       <Parameter Name="tent_Id" Mode="In" Type="Byte" />
     </FunctionImport>
+    <FunctionImport Name="SDP_tbEmpleado_Consulta" ReturnType="Collection(ERP_ZORZALModel.SDP_tbEmpleado_Consulta_Result)">
+      <Parameter Name="emp_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Gral_tbEmpleado_Update_RazonInactivacion" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbEmpleado_Update_RazonInactivacion_Result)">
+      <Parameter Name="emp_Id" Mode="In" Type="Int32" />
+      <Parameter Name="emp_Estado" Mode="In" Type="Boolean" />
+      <Parameter Name="emp_RazonInactivacion" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Gral_tbEmpleado_Update_RazonSalida" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbEmpleado_Update_RazonSalida_Result)">
+      <Parameter Name="emp_Id" Mode="In" Type="Int32" />
+      <Parameter Name="emp_Estado" Mode="In" Type="Boolean" />
+      <Parameter Name="emp_RazonSalida" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Inv_tbProducto_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProducto_Update_Result)">
+      <Parameter Name="prod_Codigo" Mode="In" Type="String" />
+      <Parameter Name="prod_Descripcion" Mode="In" Type="String" />
+      <Parameter Name="prod_Marca" Mode="In" Type="String" />
+      <Parameter Name="prod_Modelo" Mode="In" Type="String" />
+      <Parameter Name="prod_Talla" Mode="In" Type="String" />
+      <Parameter Name="prod_Color" Mode="In" Type="String" />
+      <Parameter Name="pscat_Id" Mode="In" Type="Int32" />
+      <Parameter Name="uni_Id" Mode="In" Type="Int32" />
+      <Parameter Name="prod_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="prod_FechaCrea" Mode="In" Type="DateTime" />
+      <Parameter Name="prod_CodigoBarras" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -1655,9 +1666,6 @@
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
   <ComplexType Name="UDP_Inv_tbProducto_Insert_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="UDP_Inv_tbProducto_Update_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
   <ComplexType Name="UDP_Inv_tbTipoSalida_Update_Result">
@@ -6270,6 +6278,38 @@
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
   <ComplexType Name="UDP_Inv_tbEntrada_Insert_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="SDP_tbEmpleado_Consulta_Result">
+    <Property Type="Int16" Name="emp_Id" Nullable="false" />
+    <Property Type="String" Name="emp_Nombres" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="emp_Apellidos" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="emp_Sexo" Nullable="false" MaxLength="1" />
+    <Property Type="DateTime" Name="emp_FechaNacimiento" Nullable="false" Precision="23" />
+    <Property Type="Byte" Name="tpi_Id" Nullable="false" />
+    <Property Type="String" Name="emp_Identificacion" Nullable="false" MaxLength="14" />
+    <Property Type="String" Name="emp_Telefono" Nullable="false" MaxLength="25" />
+    <Property Type="String" Name="emp_Correoelectronico" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="emp_TipoSangre" Nullable="false" MaxLength="2" />
+    <Property Type="String" Name="emp_Puesto" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="emp_FechaIngreso" Nullable="false" />
+    <Property Type="String" Name="emp_Direccion" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="emp_RazonInactivacion" Nullable="true" MaxLength="500" />
+    <Property Type="Int32" Name="emp_UsuarioCrea" Nullable="false" />
+    <Property Type="DateTime" Name="emp_FechaCrea" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="emp_UsuarioModifica" Nullable="true" />
+    <Property Type="DateTime" Name="emp_FechaModifica" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="emp_Estado" Nullable="false" />
+    <Property Type="String" Name="emp_RazonSalida" Nullable="true" MaxLength="250" />
+    <Property Type="DateTime" Name="emp_FechaDeSalida" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="UDP_Gral_tbEmpleado_Update_RazonInactivacion_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Gral_tbEmpleado_Update_RazonSalida_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Inv_tbProducto_Update_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
 </Schema>

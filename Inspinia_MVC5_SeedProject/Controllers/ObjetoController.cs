@@ -229,7 +229,7 @@ namespace ERP_ZORZAL.Controllers
                         tbObjeto obj = db.tbObjeto.Find(id);
                         IEnumerable<object> list = null;
                         var MsjError = "";
-                        list = db.UDP_Acce_tbObjeto_Update_Estado(id, Helpers.Inactivo, Function.GetUser(), DateTime.Now);
+                        list = db.UDP_Acce_tbObjeto_Update_Estado(id, Helpers.ObjetoInactivo, Function.GetUser(), DateTime.Now);
                         foreach (UDP_Acce_tbObjeto_Update_Estado_Result obje in list)
                             MsjError = obje.MensajeError;
 
@@ -270,7 +270,7 @@ namespace ERP_ZORZAL.Controllers
                         tbObjeto obj = db.tbObjeto.Find(id);
                         IEnumerable<object> list = null;
                         var MsjError = "";
-                        list = db.UDP_Acce_tbObjeto_Update_Estado(id, Helpers.Activo, Function.GetUser(), DateTime.Now);
+                        list = db.UDP_Acce_tbObjeto_Update_Estado(id, Helpers.ObjetoActivo, Function.GetUser(), DateTime.Now);
                         foreach (UDP_Acce_tbObjeto_Update_Estado_Result obje in list)
                             MsjError = obje.MensajeError;
 

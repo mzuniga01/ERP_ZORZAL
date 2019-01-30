@@ -20,6 +20,11 @@
         color: red;
         font-size: small;
     }
+    .required:after {
+                            content: "*";
+                            font-weight: bold;
+                            color: red; 
+                        }
 </style>
 @if (ViewBag.smserror != "" && ViewBag.smserror != null)
 {
@@ -105,37 +110,40 @@
                             @Html.HiddenFor(model => model.tbUsuario1.usu_EsAdministrador)
 
                             <div class="form-group">
-                                <label class="control-label col-md-2">Número<span style="color:red">*</span></label>
+                                @*<label class="control-label col-md-2">Número<span style="color:red">*</span></label>*@
+                                @*@Html.LabelFor(model => model.bod_Id,new { @class = "control-label col-md-2"})*@
+                                @Html.LabelFor(model => model.bod_Id,new { @class = "control-label col-md-2 , required" })
+                                @*<span style="position:absolute ; color:red"> *</span>*@
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.bod_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     @Html.ValidationMessageFor(model => model.bod_Id)
                                 </div>
 
-                                <label class="control-label col-md-2">Dirección<span style="color:red">*</span></label>
+                                @Html.LabelFor(model => model.bod_Direccion, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.bod_Direccion)
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Direccion) </p>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-2">Nombre<span style="color:red">*</span></label>
+                                @Html.LabelFor(model => model.bod_Nombre, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.bod_Nombre)
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Nombre) </p>
                                 </div>
-                                <label class="control-label col-md-2">Correo<span style="color:red">*</span></label>
+                                @Html.LabelFor(model => model.bod_Correo, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.bod_Correo)
                                     <p style="color:red"> @Html.ValidationMessageFor(model => model.bod_Correo)</p>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-2">Departamento<span style="color:red">*</span></label>
+                                @Html.LabelFor(model => model.dep_Codigo, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
                                     @Html.DropDownList("dep_Codigo", (IEnumerable<SelectListItem>)ViewBag.deparatamento_Edit, new { @class = "form-control" })
                                     <p id="Departamento" style="color:red">@Html.ValidationMessageFor(muni => ListadoDepartamento.dep_Codigo)</p>
                                 </div>
-                                <label class="control-label col-md-2">Municipio<span style="color:red">*</span></label>
+                                @Html.LabelFor(model => model.mun_Codigo, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
                                     @Html.DropDownList("mun_Codigo", null, "Seleccione Municipio", new { @class = "form-control" })
                                     <p id="Municipio" style="color:red">@Html.ValidationMessageFor(model => model.mun_Codigo)</p>
@@ -143,12 +151,12 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label col-md-2">Teléfono<span style="color:red">*</span></label>
+                                @Html.LabelFor(model => model.bod_Telefono, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.bod_Telefono)
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Telefono)</p>
                                 </div>
-                                <label class="control-label col-md-2">Responsable Bodega<span style="color:red">*</span></label>
+                                @Html.LabelFor(model => model.bod_ResponsableBodega, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
                                     @Html.DropDownList("bod_ResponsableBodega", (IEnumerable<SelectListItem>)ViewBag.ResponsableBodegaList, new { @class = "form-control" })
                                     <p id="Departamento" style="color:red">@Html.ValidationMessageFor(muni => Model.bod_ResponsableBodega)</p>
@@ -529,9 +537,10 @@
 
         else {
             //Aqui importa el orden
+            console.log(Cbarras , 'prueba');
             contador = contador + 1;
             copiar = "<tr data-id=" + contador + ">";
-            copiar += "<td id = 'Cbarras'>" + $('#prod_CodigoBarras').val() + "</td>";
+            copiar += "<td id = 'Cbarras'>" + Cbarras + "</td>";
             copiar += "<td id = 'Producto'>" + $('#prod_Codigo').val() + "</td>";
             copiar += "<td id = 'Descripcion_P'>" + $('#prod_Descripcion').val() + "</td>";
             copiar += "<td id = 'Costo'>" + $('#bodd_Costo').val() + "</td>";
@@ -543,8 +552,7 @@
             copiar += "<td>" + '<button id="removeBodegaDetalle" class="btn btn-danger btn-xs eliminar" type="button">Quitar</button>' + "</td>";
             copiar += "</tr>";
             $('#tbBodega').append(copiar);
-
-
+            
             var tbBodegaDetalle = Getbodegadetalle();
             $.ajax({
                 url: "/Bodega/SaveBodegaDetalle",
@@ -573,10 +581,8 @@
                     $('#Error_CantidadMaxima').text('');
                     $('#Error_Costo').text('');
                     $('#Error_CostoPromedioo').text('');
+                    
                 });
-
-
-
         }
     });
     function Getbodegadetalle() {

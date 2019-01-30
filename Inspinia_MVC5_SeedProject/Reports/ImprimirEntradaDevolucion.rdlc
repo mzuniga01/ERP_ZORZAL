@@ -21,6 +21,9 @@
               <Width>2.5cm</Width>
             </TablixColumn>
             <TablixColumn>
+              <Width>2.5cm</Width>
+            </TablixColumn>
+            <TablixColumn>
               <Width>3.13865cm</Width>
             </TablixColumn>
             <TablixColumn>
@@ -146,6 +149,38 @@
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox24</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>LightGrey</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox4">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Tipo Compra</Value>
+                              <Style />
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox4</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
@@ -386,6 +421,37 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
+                    <Textbox Name="tent_Descripcion">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!tent_Descripcion.Value</Value>
+                              <Style />
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>tent_Descripcion</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
                     <Textbox Name="estm_Descripcion">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
@@ -490,6 +556,7 @@
             <TablixMember />
             <TablixMember />
             <TablixMember />
+            <TablixMember />
           </TablixMembers>
         </TablixColumnHierarchy>
         <TablixRowHierarchy>
@@ -506,7 +573,7 @@
         <Top>7.17875cm</Top>
         <Left>2.19946cm</Left>
         <Height>1.2cm</Height>
-        <Width>24.84126cm</Width>
+        <Width>27.34126cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -777,7 +844,6 @@
             <VerticalAlign>Top</VerticalAlign>
           </Style>
         </ChartNoDataMessage>
-        <DataSetName>DataSet1</DataSetName>
         <Top>0.34961cm</Top>
         <Left>2.19946cm</Left>
         <Height>5cm</Height>
@@ -1065,7 +1131,6 @@
             <VerticalAlign>Top</VerticalAlign>
           </Style>
         </ChartNoDataMessage>
-        <DataSetName>DataSet1</DataSetName>
         <Top>0.34961cm</Top>
         <Left>19.54073cm</Left>
         <Height>5cm</Height>
@@ -1355,6 +1420,10 @@
           <DataField>estm_Descripcion</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="tent_Descripcion">
+          <DataField>tent_Descripcion</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="ent_FacturaCompra">
           <DataField>ent_FacturaCompra</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -1378,7 +1447,7 @@
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>Entrada</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\DORIAN\Documents\GitHub\23-01-2019\ERP_ZORZAL\Inspinia_MVC5_SeedProject\Entrada.xsd</rd:SchemaPath>
+        <rd:SchemaPath>C:\Users\DORIAN\Documents\GitHub\copais anteriores\ERP_ZORZAL\Inspinia_MVC5_SeedProject\Entrada.xsd</rd:SchemaPath>
         <rd:TableName>SDP_tbentradaImprimirCompra_Select</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>

@@ -74,7 +74,7 @@ namespace ERP_ZORZAL.Controllers
                 {
                     IEnumerable<Object> List = null;
                     var Msj = "";
-                    List = db.UDP_Acce_tbRol_Insert(tbRol.rol_Descripcion, Helpers.Activo);
+                    List = db.UDP_Acce_tbRol_Insert(tbRol.rol_Descripcion, Helpers.RolActivo);
                     foreach (UDP_Acce_tbRol_Insert_Result Rol in List)
                         Msj = Rol.MensajeError;
                 }
@@ -195,7 +195,7 @@ namespace ERP_ZORZAL.Controllers
                 IEnumerable<Object> List = null;
                 var Msj = "";
                 tbRol tbRol = db.tbRol.Find(id);
-                List = db.UDP_Acce_tbRolEstado_Update(id, Helpers.Inactivo);
+                List = db.UDP_Acce_tbRolEstado_Update(id, Helpers.RolInactivo);
                 foreach (UDP_Acce_tbRolEstado_Update_Result Rol in List)
                     Msj = Rol.MensajeError;
             }
@@ -214,7 +214,7 @@ namespace ERP_ZORZAL.Controllers
                 IEnumerable<Object> List = null;
                 var Msj = "";
                 tbRol tbRol = db.tbRol.Find(id);
-                List = db.UDP_Acce_tbRolEstado_Update(id, Helpers.Activo);
+                List = db.UDP_Acce_tbRolEstado_Update(id, Helpers.RolActivo);
                 foreach (UDP_Acce_tbRolEstado_Update_Result Rol in List)
                     Msj = Rol.MensajeError;
             }
@@ -327,7 +327,7 @@ namespace ERP_ZORZAL.Controllers
                 {
                     if (DescripcionRol != "")
                     {
-                        Rol = db.UDP_Acce_tbRol_Insert(DescripcionRol, Helpers.Activo);
+                        Rol = db.UDP_Acce_tbRol_Insert(DescripcionRol, Helpers.RolActivo);
                         foreach (UDP_Acce_tbRol_Insert_Result vRol in Rol)
                             Msj1 = vRol.MensajeError;
                         if (Msj1.Substring(0, 1) != "-")

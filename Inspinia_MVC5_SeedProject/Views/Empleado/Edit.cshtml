@@ -1,9 +1,24 @@
 ﻿@model ERP_GMEDINA.Models.tbEmpleado
 
+@using ERP_GMEDINA.Models
+
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<style>
+    .validation-error {
+        color: red;
+        font-size: small;
+    }
+
+    .required:after {
+        content: "*";
+        font-weight: bold;
+        color: red;
+    }
+</style>
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
@@ -15,9 +30,6 @@
         </div>
     </div>
 </div>
-
-
-
 
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
@@ -40,28 +52,23 @@
         @Html.HiddenFor(model => model.emp_FechaCrea)
         @Html.HiddenFor(model => model.emp_UsuarioModifica)
         @Html.HiddenFor(model => model.emp_FechaModifica)     
-       
-
-
         <div class="form-group">
-            @Html.LabelFor(model => model.emp_Nombres, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.emp_Nombres, new { @class = "control-label col-md-2 , required" })
             <div class="col-md-4">
                 @Html.TextBoxFor(model => model.emp_Nombres,new {@class="single-line", MaxLength=100 })
                 <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_Nombres)</p>
             </div>
             
-                @Html.LabelFor(model => model.emp_Apellidos, new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.emp_Apellidos, new { @class = "control-label col-md-2 , required" })
                 <div class="col-md-4">
                     @Html.TextBoxFor(model => model.emp_Apellidos, new { @class = "single-line", MaxLength = 100 })
                     <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_Apellidos)</p>
                 </div>
         </div>
-
         <div class="form-group">
 
-            @Html.LabelFor(model => model.emp_Sexo, new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @*@Html.EditorFor(model => model.emp_Sexo)*@
+            @Html.LabelFor(model => model.emp_Sexo, new { @class = "control-label col-md-2 , required" })
+            <div class="col-md-4">      
                 <select class="form-control" id="emp_Sexo" name="emp_Sexo">
                     @if (Model.emp_Sexo == "M")
                     {
@@ -78,25 +85,21 @@
                 <p style="color:red">@Html.ValidationMessageFor(model => model.emp_Sexo)</p>
             </div>
 
-            @Html.LabelFor(model => model.emp_FechaNacimiento, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.emp_FechaNacimiento, new { @class = "control-label col-md-2 , required" })
             <div class="col-md-4">
                 @Html.EditorFor(model => model.emp_FechaNacimiento, new { htmlAttributes = new { @class = "form-control", @id = "emp_FechaNacimientoEdit" } })
                 <p style="color:red">@Html.ValidationMessageFor(model => model.emp_FechaNacimiento)</p>
             </div>         
                
         </div>
-
-
-
-
         <div class="form-group">
-           @Html.LabelFor(model => model.emp_Identificacion, new { @class = "control-label col-md-2" })
+           @Html.LabelFor(model => model.emp_Identificacion, new { @class = "control-label col-md-2 , required" })
         <div class="col-md-4">
             @Html.EditorFor(model => model.emp_Identificacion,new {@class="single-line", MaxLength=14 })
             <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_Identificacion)</p>
         </div>
 
-                @Html.LabelFor(model => model.tpi_Id, "Tipo Identificación", new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.tpi_Id, "Tipo Identificación", new { @class = "control-label col-md-2 , required" })
                 <div class="col-md-4">
                     @Html.DropDownList("tpi_Id", (IEnumerable<SelectListItem>)ViewBag.TipoIList, "seleccione", new { @class = "form-control" })
                     <p style="color:red">@Html.ValidationMessageFor(model => model.tpi_Id)</p>
@@ -104,13 +107,9 @@
 
 
         </div>
-
-
-
-
         <div class="form-group">
 
-            @Html.LabelFor(model => model.emp_Telefono, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.emp_Telefono, new { @class = "control-label col-md-2 , required" })
             <div class="col-md-4">
                 @Html.TextBoxFor(model => model.emp_Telefono, new { @class = "single-line", MaxLength = 25 })
                 <p style="color:red">@Html.ValidationMessageFor(model => model.emp_Telefono)</p>
@@ -123,77 +122,154 @@
             </div>
                           
         </div>
-
-
-
-
         <div class="form-group">
             
-            @Html.LabelFor(model => model.emp_TipoSangre, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.emp_TipoSangre, new { @class = "control-label col-md-2 , required" })
             <div class="col-md-4">
                 @Html.TextBoxFor(model => model.emp_TipoSangre, new { @class = "single-line", MaxLength = 2 })
                 <p style="color:red">@Html.ValidationMessageFor(model => model.emp_TipoSangre)</p>
             </div>
 
-            @Html.LabelFor(model => model.emp_Puesto, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.emp_Puesto, new { @class = "control-label col-md-2 , required" })
             <div class="col-md-4">
                 @Html.TextBoxFor(model => model.emp_Puesto, new { @class = "single-line", MaxLength = 50 })
                 <p style="color:red">@Html.ValidationMessageFor(model => model.emp_Puesto)</p>
             </div>
                            
         </div>
-
-
-
-
         <div class="form-group">
            
-            @Html.LabelFor(model => model.emp_Direccion, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.emp_Direccion, new { @class = "control-label col-md-2 , required" })
             <div class="col-md-4">
                 @Html.TextBoxFor(model => model.emp_Direccion, new { @class = "single-line", MaxLength = 250 })
                 <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_Direccion)</p>
             </div>
 
-                @Html.LabelFor(model => model.emp_FechaIngreso, new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.emp_FechaIngreso, new { @class = "control-label col-md-2 , required" })
                 <div class="col-md-4">
-                    @Html.EditorFor(model => model.emp_FechaIngreso,new { htmlAttributes = new { @id= "emp_FechaIngresoEdit" } })
+                    @Html.EditorFor(model => model.emp_FechaIngreso, new { htmlAttributes = new { @id= "emp_FechaIngresoEdit" } })
                     <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_FechaIngreso)</p>
                 </div>
         </div>
-
-
-
-
-        <div class="form-group">            
-
-            @Html.LabelFor(model => model.emp_Observaciones, new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.TextBoxFor(model => model.emp_Observaciones, new { @class = "single-line", MaxLength = 500 })
-                <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_Observaciones)</p>
-            </div>
-        </div>
-
-
-
-
-
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Guardar" class="btn btn-primary" />
-				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
+				
                 @{if (Model.emp_Estado == true)
-                    {  <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalEstado" value="Inactivar" />
-                    @*@Html.ActionLink("Inactivar", "EstadoInactivar", new { id = Model.emp_Id }, new { @class = "btn btn-danger" })*@
+                    {  <button type="button" id="EditarModal" class="btn btn-danger" onclick='EditStudentRecord(@Model.emp_Id)'>
+                    Inactivar
+                    </button>
+
+                    <button type="button" id="EditarModal" class="btn btn-danger" onclick='RazonSalida(@Model.emp_Id)'>
+                        Razones de Salida
+                    </button>
                     }
                     else
-                    {@*<input type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalEstado" value="Activar" />*@
+                    {
                         @Html.ActionLink("Activar", "Estadoactivar", new { id = Model.emp_Id }, new { @class = "btn btn-success" })
                     }
                 }
+                @{if (Model.emp_Estado == false)
+                    {
+                       
+                    }
+                    else
+                    {
+
+                    }
+                }
+                
+                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
             </div>
         </div>
     </div>
-}
+                    //modal
+    <div class="modal fade" id="MyModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Editar Estado Empleado</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="form">
+                        <fieldset id="SubmitForm">
+                            <div class="form-horizontal">
+                                <input type="hidden" id="emp_Id_Edit" name="emp_Id" />
+                                <input type="hidden" id="emp_Estado_Edit" name="emp_Estado" />
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.emp_RazonInactivacion, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        <input type="text" onkeypress="return soloLetras(event)" id="emp_RazonInactivacion_Edit" name="emp_RazonInactivacion" class="form-control  , required" />
+                                        <p style="color:red">@Html.ValidationMessageFor(model => model.emp_RazonInactivacion)</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-10">
+                                        <label id="MsjError" class="text-danger"></label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12 text-center">
+                                        @*@Html.ActionLink("Sí", "EstadoEmpleadoRazon", new { id = Model.emp_Id }, new { @class = "btn btn-danger" })*@
+                                        <button class="btn btn-primary" type="button" id="Btnsubmit" tabindex="10"> Guardar </button>
+                                        <button type="button" class="btn btn-white" data-dismiss="modal" aria-label="Close">Cancelar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Editar MODAL RAZON-->
+                    <div class="modal fade" id="Editarmodales">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <h4 class="modal-title" id="myModalLabel">Razones de Salida</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="SalidaRazon">
+                                        <fieldset id="DatosRazon">
+                                            <div class="form-horizontal">
+                                                <input type="hidden" id="emp_Id_Edit_Razon" name="emp_Id" />
+                                                <input type="hidden" id="emp_Estado_Edit_Razon" name="emp_Estado" />
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.emp_RazonSalida, new { @class = "control-label col-md-2" })
+                                                    <div class="col-md-10">
+                                                        <input type="text" onkeypress="return soloLetras(event)" id="emp_RazonSalida_Edit_Razon" name="emp_RazonSalida" class="form-control" />
+                                                        <p style="color:red">@Html.ValidationMessageFor(model => model.emp_RazonSalida)</p>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-sm-10">
+                                                        <label id="MsjError" class="text-danger"></label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-md-12 text-center">
+
+                                                        <button class="btn btn-primary" type="button" id="BtnRazon" tabindex="10"> Guardar </button>
+                                                        <button type="button" class="btn btn-white" data-dismiss="modal" aria-label="Close">Cancelar</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    }
                 </div>
             </div>
             <div class="ibox-content">
@@ -216,43 +292,15 @@
                 </table>
             </div>
         </div>
-        <div class="modal fade" id="ModalEstado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Inactivar Objeto</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        ¿Está seguro que quiere Inactivar esta Pantalla?
-                    </div>
-                    <div class="modal-footer">
-                        @Html.ActionLink("Sí", "EstadoInactivar", new { id = Model.emp_Id }, new { @class = "btn btn-danger" })
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
  </div>
 
 
-@*<script src="~/Scripts/jquery-3.3.1.js"></script>*@
+
 
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script src="~/Scripts/app/DatepickerEmpleado.js"></script>
     <script src="~/Scripts/app/Datepicker.js"></script>
-    @*<script>
-        var sexo = document.getElementById('emp_Sexo');
-        var select = document.getElementById('provincia');
-        select.addEventListener('change',
-          function () {
-              var selectedOption = this.options[select.selectedIndex];
-              console.log(selectedOption.value + ': ' + selectedOption.text);
-          });
-    </script>*@
-}
+    }
