@@ -5425,7 +5425,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbPago_Anulado_Result>("UDP_Vent_tbPago_Anulado", pago_IdParameter, pago_EstaAnuladoParameter, pago_RazonAnuladoParameter);
         }
     
-        public virtual ObjectResult<UDP_Vent_DatosConsumidorFinal_Insert_Result> UDP_Vent_DatosConsumidorFinal_Insert(Nullable<long> fact_Id, string confi_Nombres, string confi_Telefono, string confi_Correo)
+        public virtual ObjectResult<UDP_Vent_DatosConsumidorFinal_Insert_Result1> UDP_Vent_DatosConsumidorFinal_Insert(Nullable<long> fact_Id, string confi_Nombres, string confi_Telefono, string confi_Correo)
         {
             var fact_IdParameter = fact_Id.HasValue ?
                 new ObjectParameter("fact_Id", fact_Id) :
@@ -5443,7 +5443,7 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("confi_Correo", confi_Correo) :
                 new ObjectParameter("confi_Correo", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_DatosConsumidorFinal_Insert_Result>("UDP_Vent_DatosConsumidorFinal_Insert", fact_IdParameter, confi_NombresParameter, confi_TelefonoParameter, confi_CorreoParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_DatosConsumidorFinal_Insert_Result1>("UDP_Vent_DatosConsumidorFinal_Insert", fact_IdParameter, confi_NombresParameter, confi_TelefonoParameter, confi_CorreoParameter);
         }
     }
 }
