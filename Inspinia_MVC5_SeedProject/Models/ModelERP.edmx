@@ -9177,7 +9177,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="pago_EstaAnulado" Mode="In" Type="Boolean" />
             <Parameter Name="pago_RazonAnulado" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Vent_DatosConsumidorFinal_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_DatosConsumidorFinal_Insert_Result1)">
+          <FunctionImport Name="UDP_Vent_DatosConsumidorFinal_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_DatosConsumidorFinal_Insert_Result)">
             <Parameter Name="fact_Id" Mode="In" Type="Int64" />
             <Parameter Name="confi_Nombres" Mode="In" Type="String" />
             <Parameter Name="confi_Telefono" Mode="In" Type="String" />
@@ -14356,9 +14356,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
         <ComplexType Name="UDP_Vent_DatosConsumidorFinal_Insert_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
-        <ComplexType Name="UDP_Vent_DatosConsumidorFinal_Insert_Result1">
-          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -16896,8 +16893,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UDP_Vent_DatosConsumidorFinal_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_DatosConsumidorFinal_Insert" >
-          <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_DatosConsumidorFinal_Insert_Result1">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_DatosConsumidorFinal_Insert_Result">
                 <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
               </ComplexTypeMapping>
             </ResultMapping>

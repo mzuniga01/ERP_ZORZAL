@@ -2469,7 +2469,7 @@
       <Parameter Name="pago_EstaAnulado" Mode="In" Type="Boolean" />
       <Parameter Name="pago_RazonAnulado" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Vent_DatosConsumidorFinal_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_DatosConsumidorFinal_Insert_Result1)">
+    <FunctionImport Name="UDP_Vent_DatosConsumidorFinal_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_DatosConsumidorFinal_Insert_Result)">
       <Parameter Name="fact_Id" Mode="In" Type="Int64" />
       <Parameter Name="confi_Nombres" Mode="In" Type="String" />
       <Parameter Name="confi_Telefono" Mode="In" Type="String" />
@@ -7646,9 +7646,6 @@
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
   <ComplexType Name="UDP_Vent_DatosConsumidorFinal_Insert_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_DatosConsumidorFinal_Insert_Result1">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
 </Schema>
