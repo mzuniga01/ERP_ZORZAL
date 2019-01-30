@@ -14281,15 +14281,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <ComplexType Name="UDP_Vent_tbDevolucion_GetDetalle_Result">
-          <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
-          <Property Type="String" Name="prod_Descripcion" Nullable="false" MaxLength="100" />
-          <Property Type="Decimal" Name="devd_CantidadProducto" Nullable="false" Precision="5" Scale="2" />
-          <Property Type="String" Name="devd_Descripcion" Nullable="false" MaxLength="100" />
-          <Property Type="Decimal" Name="devd_Monto" Nullable="false" Precision="10" Scale="2" />
-          <Property Type="Int64" Name="fact_Id" Nullable="false" />
-          <Property Type="DateTime" Name="dev_Fecha" Nullable="false" Precision="23" />
-        </ComplexType>
         <ComplexType Name="UDP_Vent_tbFactura_GetDetalle_Result">
           <Property Type="Int16" Name="factd_Id" Nullable="false" />
           <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
@@ -14364,6 +14355,16 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
         </ComplexType>
         <ComplexType Name="UDP_Vent_tbDevolucion_GetDetalle_Editar_Result">
           <Property Type="Int32" Name="dev_Id" Nullable="false" />
+          <Property Type="Int32" Name="devd_Id" Nullable="false" />
+          <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="prod_Descripcion" Nullable="false" MaxLength="100" />
+          <Property Type="Decimal" Name="devd_CantidadProducto" Nullable="false" Precision="5" Scale="2" />
+          <Property Type="String" Name="devd_Descripcion" Nullable="false" MaxLength="100" />
+          <Property Type="Decimal" Name="devd_Monto" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Int64" Name="fact_Id" Nullable="false" />
+          <Property Type="DateTime" Name="dev_Fecha" Nullable="false" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbDevolucion_GetDetalle_Result">
           <Property Type="Int32" Name="devd_Id" Nullable="false" />
           <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
           <Property Type="String" Name="prod_Descripcion" Nullable="false" MaxLength="100" />
@@ -16807,6 +16808,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbDevolucion_GetDetalle" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbDevolucion_GetDetalle">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbDevolucion_GetDetalle_Result">
+                <ScalarProperty Name="devd_Id" ColumnName="devd_Id" />
                 <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
                 <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
                 <ScalarProperty Name="devd_CantidadProducto" ColumnName="devd_CantidadProducto" />
