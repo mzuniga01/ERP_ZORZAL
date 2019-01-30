@@ -2427,6 +2427,7 @@
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbDevolucion_GetDetalle" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbDevolucion_GetDetalle">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbDevolucion_GetDetalle_Result">
+          <ScalarProperty Name="devd_Id" ColumnName="devd_Id" />
           <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
           <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
           <ScalarProperty Name="devd_CantidadProducto" ColumnName="devd_CantidadProducto" />
@@ -2533,6 +2534,21 @@
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_DatosConsumidorFinal_Insert_Result">
           <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbDevolucion_GetDetalle_Editar" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbDevolucion_GetDetalle_Editar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbDevolucion_GetDetalle_Editar_Result">
+          <ScalarProperty Name="dev_Id" ColumnName="dev_Id" />
+          <ScalarProperty Name="devd_Id" ColumnName="devd_Id" />
+          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+          <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
+          <ScalarProperty Name="devd_CantidadProducto" ColumnName="devd_CantidadProducto" />
+          <ScalarProperty Name="devd_Descripcion" ColumnName="devd_Descripcion" />
+          <ScalarProperty Name="devd_Monto" ColumnName="devd_Monto" />
+          <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
+          <ScalarProperty Name="dev_Fecha" ColumnName="dev_Fecha" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

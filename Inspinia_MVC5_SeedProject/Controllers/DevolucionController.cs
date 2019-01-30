@@ -425,12 +425,18 @@ namespace ERP_ZORZAL.Controllers
         }
 
         [HttpPost]
-        public ActionResult GetDevolucionDetalle(long devolucionId)
+        public JsonResult GetDevolucionDetalle(long devolucionId)
         {
             var list = db.UDP_Vent_tbDevolucion_GetDetalle(devolucionId).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
+
+        public JsonResult GetDevolucionDetalleEditar(long DetalleDevID)
+        {
+            var list = db.UDP_Vent_tbDevolucion_GetDetalle_Editar(DetalleDevID).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
 
         [HttpPost]
         public JsonResult FiltrarModal(string CodCliente)

@@ -4981,6 +4981,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
   <Function Name="UDP_Vent_tbDevolucion_GetDetalle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="DEVOLUCION_ID" Type="bigint" Mode="In" />
   </Function>
+  <Function Name="UDP_Vent_tbDevolucion_GetDetalle_Editar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="DEVOLUCIONDD_ID" Type="bigint" Mode="In" />
+  </Function>
   <Function Name="UDP_Vent_tbDevolucion_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="fact_Id" Type="bigint" Mode="In" />
     <Parameter Name="cja_Id" Type="smallint" Mode="In" />

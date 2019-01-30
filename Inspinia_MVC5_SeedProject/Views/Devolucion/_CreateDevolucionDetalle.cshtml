@@ -37,7 +37,7 @@
         </div>
 
         <div class="form-group">
-            <label class="control-label col-md-1">Precio Unitario</label>
+            <label class="col-md-1">Precio Unitario</label>
             <div class="col-md-3">
                 <input type="text" value="" class="form-control " id="PrecioUnitario" readonly />
             </div>
@@ -50,7 +50,7 @@
         </div>
         @*agregar cantidad facturada*@
         <div class="form-group">
-            <label class="control-label col-md-1">Cantidad Facturada</label>
+            <label class="col-md-1">Cantidad Facturada</label>
             <div class="col-md-3">
                 <input type="text" value="" class="form-control " id="CantidadFacturada" readonly/>
             </div>
@@ -65,7 +65,7 @@
 
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.devd_CantidadProducto, "Cantidad Devolución", new { @class = "control-label col-md-1" })
+            @Html.LabelFor(model => model.devd_CantidadProducto, "Cantidad Devolución", new { @class = "col-md-1" })
             <div class="col-md-3">
                 <input type="text" id="devd_CantidadProducto" name="devd_CantidadProducto" class="form-control " Value="" onKeyPress="return soloNumeros(event)" autocomplete="off" />
                 <div id="validationCantidadCreate">
@@ -86,7 +86,7 @@
 
         <div class="form-group">
 
-            @Html.LabelFor(model => model.devd_Monto, "Monto Total", new { @class = "control-label   col-md-1" })
+            @Html.LabelFor(model => model.devd_Monto, "Monto Total", new { @class = "col-md-1" })
             <div class="col-md-offset col-md-3">
                 @Html.EditorFor(model => model.devd_Monto, new { htmlAttributes = new { @readonly = "readonly" , @class = "form-control" } })
                 <div id="validationProductoDevolucionCreate">
@@ -117,7 +117,6 @@
                                 <th>Cantidad</th>
                                 <th>Observaciones</th>
                                 <th>Monto</th>
-                                @*<th>Descuento</th>*@
                                 <th></th>
                             </tr>
                         </thead>
@@ -154,6 +153,22 @@
             </div>
         </div>
     </div>
+
+ <!-- Modal de editar detalle devolución-->
+<div class="modal fade" id="EditarDetalleDev" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg " role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Editar Devolucion Detalle</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="EditarDevolucionDetalle" class="modal-body">
+                @Html.Partial("_EditarDetalleDevolucion", new ERP_GMEDINA.Models.tbDevolucionDetalle());
+        </div>
+    </div>
+</div>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/DevolucionCalculos.js"></script>
 <script>
