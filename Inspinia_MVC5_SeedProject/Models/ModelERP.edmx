@@ -4986,6 +4986,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
         <Function Name="UDP_Vent_tbDevolucion_GetDetalle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="DEVOLUCION_ID" Type="bigint" Mode="In" />
         </Function>
+        <Function Name="UDP_Vent_tbDevolucion_GetDetalle_Editar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="DEVOLUCIONDD_ID" Type="bigint" Mode="In" />
+        </Function>
         <Function Name="UDP_Vent_tbDevolucion_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="fact_Id" Type="bigint" Mode="In" />
           <Parameter Name="cja_Id" Type="smallint" Mode="In" />
@@ -9182,6 +9185,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="confi_Nombres" Mode="In" Type="String" />
             <Parameter Name="confi_Telefono" Mode="In" Type="String" />
             <Parameter Name="confi_Correo" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbDevolucion_GetDetalle_Editar" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDevolucion_GetDetalle_Editar_Result)">
+            <Parameter Name="DEVOLUCIONDD_ID" Mode="In" Type="Int64" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
@@ -14356,6 +14362,17 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
         <ComplexType Name="UDP_Vent_DatosConsumidorFinal_Insert_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
+        <ComplexType Name="UDP_Vent_tbDevolucion_GetDetalle_Editar_Result">
+          <Property Type="Int32" Name="dev_Id" Nullable="false" />
+          <Property Type="Int32" Name="devd_Id" Nullable="false" />
+          <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="prod_Descripcion" Nullable="false" MaxLength="100" />
+          <Property Type="Decimal" Name="devd_CantidadProducto" Nullable="false" Precision="5" Scale="2" />
+          <Property Type="String" Name="devd_Descripcion" Nullable="false" MaxLength="100" />
+          <Property Type="Decimal" Name="devd_Monto" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Int64" Name="fact_Id" Nullable="false" />
+          <Property Type="DateTime" Name="dev_Fecha" Nullable="false" Precision="23" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -16896,6 +16913,21 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_DatosConsumidorFinal_Insert_Result">
                 <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbDevolucion_GetDetalle_Editar" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbDevolucion_GetDetalle_Editar">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbDevolucion_GetDetalle_Editar_Result">
+                <ScalarProperty Name="dev_Id" ColumnName="dev_Id" />
+                <ScalarProperty Name="devd_Id" ColumnName="devd_Id" />
+                <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+                <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
+                <ScalarProperty Name="devd_CantidadProducto" ColumnName="devd_CantidadProducto" />
+                <ScalarProperty Name="devd_Descripcion" ColumnName="devd_Descripcion" />
+                <ScalarProperty Name="devd_Monto" ColumnName="devd_Monto" />
+                <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
+                <ScalarProperty Name="dev_Fecha" ColumnName="dev_Fecha" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

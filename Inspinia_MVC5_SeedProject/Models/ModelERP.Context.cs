@@ -5445,5 +5445,14 @@ namespace ERP_GMEDINA.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_DatosConsumidorFinal_Insert_Result>("UDP_Vent_DatosConsumidorFinal_Insert", fact_IdParameter, confi_NombresParameter, confi_TelefonoParameter, confi_CorreoParameter);
         }
+    
+        public virtual ObjectResult<UDP_Vent_tbDevolucion_GetDetalle_Editar_Result> UDP_Vent_tbDevolucion_GetDetalle_Editar(Nullable<long> dEVOLUCIONDD_ID)
+        {
+            var dEVOLUCIONDD_IDParameter = dEVOLUCIONDD_ID.HasValue ?
+                new ObjectParameter("DEVOLUCIONDD_ID", dEVOLUCIONDD_ID) :
+                new ObjectParameter("DEVOLUCIONDD_ID", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbDevolucion_GetDetalle_Editar_Result>("UDP_Vent_tbDevolucion_GetDetalle_Editar", dEVOLUCIONDD_IDParameter);
+        }
     }
 }

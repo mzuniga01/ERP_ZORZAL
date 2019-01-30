@@ -63,6 +63,36 @@ function soloNumeros(e) {
 }
 
 
+$("#confi_Telefono").on("keypress keyup blur", function (event) {
+    var Telefono = $(this).val();
+    console.log(Telefono)
+    if (Telefono == '') {
+        $(this).val('+');
+    }
+    this.value = this.value.replace(/[a-záéíóúüñ#/=]+/ig, "");
+});
+
+
+$("#confi_Correo").blur(function () {
+    campo = event.target;
+    valido = document.getElementById('emailOK1');
+
+    var reg = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    var regOficial = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+    //Se muestra un texto a modo de ejemplo, luego va a ser un icono
+    if (reg.test(campo.value) && regOficial.test(campo.value)) {
+        valido.innerText = "";
+    } else if (reg.test(campo.value)) {
+        valido.innerText = "";
+
+    } else {
+        valido.innerText = "Direccion de Correo Electronico Incorrecta";
+
+    }
+});
+
+
 ////Tercera Edad
 $('#AgregarTerceraEdad').click(function () {
     var IdentidadTE = $('#fact_IdentidadTE').val();

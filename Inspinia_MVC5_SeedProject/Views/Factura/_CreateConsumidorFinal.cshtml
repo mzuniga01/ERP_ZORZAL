@@ -4,7 +4,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.confi_Nombres, "Nombres", new { @class = "control-label col-md-3" })
         <div class="col-md-6">
-            @Html.EditorFor(model => model.confi_Nombres)
+            @Html.EditorFor(model => model.confi_Nombres, new { htmlAttributes = new { @autocomplete = "off", @onkeyup = "format(this)", @style = "text-transform:capitalize;" } })
             @Html.ValidationMessageFor(model => model.confi_Nombres)
         </div>
     </div>
@@ -21,7 +21,7 @@
         @Html.LabelFor(model => model.confi_Correo, "Correo", new { @class = "control-label col-md-3" })
         <div class="col-md-6">
             @Html.EditorFor(model => model.confi_Correo)
-            @Html.ValidationMessageFor(model => model.confi_Correo)
+            <p id="emailOK1" style="color:red">@Html.ValidationMessageFor(model => model.confi_Correo)</p>
         </div>
     </div>
     <div class="modal-footer">

@@ -1234,6 +1234,8 @@
     <Content Include="Scripts\app\Denominacion.js" />
     <Content Include="Scripts\app\DenominacionArqueo.js" />
     <Content Include="Scripts\app\Departamento.js" />
+    <Content Include="Scripts\app\DetalleEditarDevolucion.js" />
+    <Content Include="Scripts\app\DetalleEditarDevolucion1.js" />
     <Content Include="Scripts\app\DevolucionCalculos.js" />
     <Content Include="Scripts\app\DevolucionDetalle.js" />
     <Content Include="Scripts\app\EditNumeracion.js" />
@@ -1254,6 +1256,7 @@
     <Content Include="Scripts\app\GetListadoDetalleEdit.js" />
     <Content Include="Scripts\app\GetNumeroFact.js" />
     <Content Include="Scripts\app\GuardarDetalleEdit.js" />
+    <Content Include="Scripts\app\GuardarListadoPrecioDetalle.js" />
     <Content Include="Scripts\app\Identificacion.js" />
     <Content Include="Scripts\app\InActivarCliente.js" />
     <Content Include="Scripts\app\InactivarExoneracion.js" />
@@ -1691,6 +1694,7 @@
     <Content Include="Views\SolicitudEfectivo\IndexOriginal.cshtml" />
     <Content Include="Views\Pago\_IndexNotaCredito.cshtml" />
     <Content Include="Views\ListaPrecios\_PrecioDetalle.cshtml" />
+    <Content Include="Views\Factura\_CreateConsumidorFinal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
