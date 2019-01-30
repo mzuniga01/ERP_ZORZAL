@@ -10,12 +10,14 @@ using ERP_GMEDINA.Models;
 using System.Transactions;
 using System.Data.SqlClient;
 using System.Data.Common;
+using System.Data.Entity.Core.Objects;
 
 namespace ERP_GMEDINA.Controllers
 {
     public class FacturaController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
+        private ObjectResult<UDP_Vent_DatosConsumidorFinal_Insert_Result> listConsumidorFinal;
 
         // GET: /Factura/
         public ActionResult Index()
@@ -169,7 +171,7 @@ namespace ERP_GMEDINA.Controllers
 
         // GET: /Factura/Create
         public ActionResult Create()
-         {
+        {
             tbFactura Factura = new tbFactura();
             if (Session["IDCLIENTE"] == null)
             {
@@ -206,6 +208,7 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.Producto = db.tbProducto.ToList();
             ViewBag.Cliente = db.tbCliente.ToList();
             Session["Factura"] = null;
+            Session["Consumidor"] = null;
             Session["TerceraEdad"] = null;
             Session["IDCLIENTE"] = null;
             Session["IDENTIFICACION"] = null;
@@ -235,10 +238,13 @@ namespace ERP_GMEDINA.Controllers
 
             var list = (List<tbFacturaDetalle>)Session["Factura"];
             var listTercera = (List<tbFactura>)Session["TerceraEdad"];
+            var listConsumidor = (List<DatosConsumidorFinal>)Session["Consumidor"];
             string MensajeError = "";
+            string MensajeErrorConsumidor = "";
             var MensajeErrorDetalle = "";
             IEnumerable<object> listFactura = null;
             IEnumerable<object> listFacturaDetalle = null;
+            IEnumerable<object> listConsumidorFinal = null;
             if (db.tbFactura.Any(a => a.fact_Codigo == tbFactura.fact_Codigo))
             {
                 ModelState.AddModelError("", "Ya existe este Número de Factura.");
@@ -247,27 +253,25 @@ namespace ERP_GMEDINA.Controllers
             {
                 try
                 {
-                         if (listTercera != null)
+                    if (listTercera != null)
+                    {
+                        if (listTercera.Count != 0)
+                        {
+                            foreach (tbFactura Tercera in listTercera)
                             {
-                                if (listTercera.Count != 0)
-                                {
-                                    foreach (tbFactura Tercera in listTercera)
-                                    {
-                                        tbFactura.fact_IdentidadTE = Tercera.fact_IdentidadTE;
-                                        tbFactura.fact_NombresTE = Tercera.fact_NombresTE;
-                                        tbFactura.fact_FechaNacimientoTE = Tercera.fact_FechaNacimientoTE;
-                                    }
-                                }
+                                tbFactura.fact_IdentidadTE = Tercera.fact_IdentidadTE;
+                                tbFactura.fact_NombresTE = Tercera.fact_NombresTE;
+                                tbFactura.fact_FechaNacimientoTE = Tercera.fact_FechaNacimientoTE;
                             }
-
-
+                        }
+                    }
                     using (TransactionScope Tran = new TransactionScope())
                     {
-                        
+
                         listFactura = db.UDP_Vent_tbFactura_Insert(
                                                 tbFactura.fact_Codigo,
                                                 tbFactura.fact_Fecha,
-                                                tbFactura.esfac_Id= 1,
+                                                tbFactura.esfac_Id = 1,
                                                 tbFactura.cja_Id,
                                                 tbFactura.suc_Id,
                                                 tbFactura.clte_Id,
@@ -323,6 +327,31 @@ namespace ERP_GMEDINA.Controllers
                                         }
                                     }
                                 }
+                                if (listConsumidor != null)
+                                {
+                                    if (listConsumidor.Count != 0)
+                                    {
+                                        foreach (DatosConsumidorFinal ConsuFinal in listConsumidor)
+                                        {
+                                            var FacturaD_Id = Convert.ToInt64(MensajeError);
+                                            listConsumidorFinal = db.UDP_Vent_DatosConsumidorFinal_Insert(
+                                                FacturaD_Id ,
+                                                ConsuFinal.confi_Nombres,
+                                                ConsuFinal.confi_Telefono,
+                                                ConsuFinal.confi_Correo
+                                                );
+                                            foreach (UDP_Vent_DatosConsumidorFinal_Insert_Result SPConsumidordet in listConsumidorFinal)
+                                            {
+                                                MensajeErrorConsumidor = SPConsumidordet.MensajeError;
+                                                if (MensajeError.StartsWith("-1"))
+                                                {
+                                                    ModelState.AddModelError("", "No se pudo agregar el registro detalle");
+                                                    return View(tbFactura);
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
                             }
                             else
                             {
@@ -336,7 +365,8 @@ namespace ERP_GMEDINA.Controllers
                         Session["IDENTIFICACION"] = null;
                         Session["NOMBRES"] = null;
                         return RedirectToAction("Index");
-                    }
+                    }                    
+
                 }
                 catch (Exception Ex)
                 {
@@ -352,17 +382,8 @@ namespace ERP_GMEDINA.Controllers
                     ViewBag.clte_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
                     ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre");
                     ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion");
-                    //int idUser = 0;
-                    //GeneralFunctions Login = new GeneralFunctions();
-                    //List<tbUsuario> User = Login.getUserInformation();
-                    //foreach (tbUsuario Usuario in User)
-                    //{
-                    //    idUser = Convert.ToInt32(Usuario.emp_Id);
-                    //}
-                    //ViewBag.suc_Descripcion = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.tbSucursal.suc_Descripcion).SingleOrDefault();
-                    //ViewBag.suc_Id = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.tbSucursal.suc_Id).SingleOrDefault();
-                    //ViewBag.Cliente = db.tbCliente.ToList();
-                    //ViewBag.Producto = db.tbProducto.ToList();
+                    ViewBag.Cliente = db.tbCliente.ToList();
+                    ViewBag.Producto = db.tbProducto.ToList();
                 }
 
             }
@@ -431,7 +452,7 @@ namespace ERP_GMEDINA.Controllers
             var MensajeErrorDetalle = "";
             IEnumerable<object> listFactura = null;
             IEnumerable<object> listFacturaDetalle = null;
-           
+
             if (ModelState.IsValid)
             {
                 try
@@ -661,6 +682,23 @@ namespace ERP_GMEDINA.Controllers
             return Json("Exito", JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult ConsumidorFinal(DatosConsumidorFinal ConsumidorFinal)
+        {
+            List<DatosConsumidorFinal> sessionConsumidor = new List<DatosConsumidorFinal>();
+            var listConsumidor = (List<DatosConsumidorFinal>)Session["Consumidor"];
+            if (listConsumidor == null)
+            {
+                sessionConsumidor.Add(ConsumidorFinal);
+                Session["Consumidor"] = sessionConsumidor;
+            }
+            else
+            {
+                listConsumidor.Add(ConsumidorFinal);
+                Session["Consumidor"] = listConsumidor;
+            }
+            return Json("Exito", JsonRequestBehavior.AllowGet);
+        }
+
         [HttpPost]
         public JsonResult RemoveFacturaDetalle(tbFacturaDetalle FacturaDetalleC)
         {
@@ -745,7 +783,7 @@ namespace ERP_GMEDINA.Controllers
         public JsonResult GetPrecio(int Cliente, string idItem)
         {
             var list = db.UDP_Vent_tbFactura_BuscarListaPrecio(Cliente, idItem).ToArray();
-           return Json(list, JsonRequestBehavior.AllowGet);
+            return Json(list, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -862,10 +900,10 @@ namespace ERP_GMEDINA.Controllers
                     else
                     {
                         Session["IDCLIENTE"] = MensajeError;
-                        Session["IDENTIFICACION"] =tbCliente.clte_Identificacion;
+                        Session["IDENTIFICACION"] = tbCliente.clte_Identificacion;
                         if (tbCliente.clte_EsPersonaNatural)
                         {
-                            Session["NOMBRES"] = tbCliente.clte_Nombres +" "+ tbCliente.clte_Apellidos ;
+                            Session["NOMBRES"] = tbCliente.clte_Nombres + " " + tbCliente.clte_Apellidos;
                         }
                         else
                         {
@@ -880,19 +918,15 @@ namespace ERP_GMEDINA.Controllers
                 {
                     ModelState.AddModelError("", "Error al agregar el registro" + Ex.Message.ToString());
                     ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre", dep_Codigo);
-                    //ViewBag.clte_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCliente.clte_UsuarioCrea);
-                    //ViewBag.clte_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCliente.clte_UsuarioModifica);
                     ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbCliente.mun_Codigo);
                     ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion", tbCliente.tpi_Id);
                     return View(tbCliente);
                 }
-                
+
                 return RedirectToAction("Index");
             }
             tbCliente Cliente = new tbCliente();
             ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre", dep_Codigo);
-            //ViewBag.clte_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCliente.clte_UsuarioCrea);
-            //ViewBag.clte_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCliente.clte_UsuarioModifica);
             ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbCliente.mun_Codigo);
             ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion", tbCliente.tpi_Id);
             return View(tbCliente);

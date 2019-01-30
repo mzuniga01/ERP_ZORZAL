@@ -10,13 +10,9 @@
 namespace ERP_GMEDINA.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class CARLOS
+    public partial class UDP_Vent_DatosConsumidorFinal_Insert_Result
     {
-        public int solef_Id { get; set; }
-        public short denoId { get; set; }
-        public string DenoDescripcion { get; set; }
-        public decimal valor { get; set; }
+        public string MensajeError { get; set; }
     }
 }

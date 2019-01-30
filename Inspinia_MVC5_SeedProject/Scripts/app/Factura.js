@@ -22,6 +22,18 @@
     }
 })
 
+$("#consumidorFinal").change(function () {
+    if (this.checked) {
+        $('#ConsuFinal').modal('show');
+    }
+    else {
+
+        $('#ConsuFinal').modal('hide');
+    }
+});
+
+
+
 $("#fact_NombresTE").change(function () {
     var str = $("#fact_NombresTE").val();
     var res = str.toUpperCase();
@@ -127,6 +139,37 @@ function GetTerceraEdad() {
         fact_FechaNacimientoTE: $('#fact_FechaNacimientoTE').val(),
     }
     return TerceraEdad
+};
+
+
+$('#AgregarConsumidorFinal').click(function () {
+
+    var DatoConsumidorFinal = GetConsumidorFinal();
+    $.ajax({
+        url: "/Factura/ConsumidorFinal",
+        method: "POST",
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({ ConsumidorFinal: DatoConsumidorFinal }),
+    })
+    .done(function (data) {
+        //Input
+        $('#confi_Nombres').val();
+        $('#confi_Telefono').val();
+        $('#confi_Correo').val();
+        $('#ConsuFinal').modal('hide');
+    });
+});
+function GetConsumidorFinal() {
+
+    var ConsumidorFinal = {
+        fact_Id: $('#fact_Id').val(),
+        confi_Nombres: $('#confi_Nombres').val(),
+        confi_Telefono: $('#confi_Telefono').val(),
+        confi_Correo: $('#confi_Correo').val()
+
+    }
+    return ConsumidorFinal
 };
 
 
