@@ -4265,7 +4265,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <Parameter Name="deno_Descripcion" Type="varchar" Mode="In" />
     <Parameter Name="deno_Tipo" Type="tinyint" Mode="In" />
     <Parameter Name="deno_valor" Type="decimal" Mode="In" />
-    <Parameter Name="mnda_Id" Type="smallint" Mode="In" />
+    <Parameter Name="mnda_Id" Type="int" Mode="In" />
+    <Parameter Name="deno_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="deno_FechaCrea" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Gral_tbDenominacion_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral" />
   <Function Name="UDP_Gral_tbDenominacion_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
