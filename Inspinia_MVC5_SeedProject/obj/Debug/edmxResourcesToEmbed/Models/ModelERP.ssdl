@@ -5481,6 +5481,13 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <Parameter Name="soled_CantidadEntregada" Type="smallint" Mode="In" />
     <Parameter Name="soled_MontoEntregado" Type="decimal" Mode="In" />
   </Function>
+  <Function Name="UDP_Vent_tbSolicitudEfectivoDetalle_CantidadSolicitada_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="soled_Id" Type="int" Mode="In" />
+    <Parameter Name="deno_Id" Type="smallint" Mode="In" />
+    <Parameter Name="soled_CantidadSolicitada" Type="smallint" Mode="In" />
+    <Parameter Name="soled_CantidadEntregada" Type="smallint" Mode="In" />
+    <Parameter Name="soled_MontoEntregado" Type="decimal" Mode="In" />
+  </Function>
   <Function Name="UDP_Vent_tbSolicitudEfectivoDetalle_Detalle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="IDSOLICITUD" Type="int" Mode="In" />
   </Function>

@@ -709,6 +709,37 @@ namespace ERP_GMEDINA.Controllers
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
+        //''''''''''''''''''''Dweetallle update'''''''''''''''''''''
+        [HttpPost]
+        public JsonResult SaveEditSolicitudEfectivoDetalleCantidad(tbSolicitudEfectivoDetalle tbSolicitudEfectivoDetalle)
+        {
+            string MensajeEdit = "";
 
+            try
+            {
+                string MensajeError = "";
+                IEnumerable<object> list = null;
+                list = db.UDP_Vent_tbSolicitudEfectivoDetalle_CantidadSolicitada_Update(
+                            tbSolicitudEfectivoDetalle.soled_Id,
+                            tbSolicitudEfectivoDetalle.deno_Id,
+                            tbSolicitudEfectivoDetalle.soled_CantidadSolicitada,
+                            tbSolicitudEfectivoDetalle.soled_CantidadEntregada,
+                            tbSolicitudEfectivoDetalle.soled_MontoEntregado);
+                foreach (UDP_Vent_tbSolicitudEfectivoDetalle_CantidadSolicitada_Update_Result solicitudefectivodetalle in list)
+                    MensajeError = solicitudefectivodetalle.MensajeError;
+                MensajeEdit = "El registro se guardó exitosamente";
+                if (MensajeError == "-1")
+                {
+                    MensajeEdit = "No se pudo actualizar el registro, favor contacte al administrador.";
+                    ModelState.AddModelError("", MensajeEdit);
+                }
+            }
+            catch (Exception Ex)
+            {
+                MensajeEdit = Ex.Message.ToString();
+                ModelState.AddModelError("", MensajeEdit);
+            }
+            return Json(MensajeEdit, JsonRequestBehavior.AllowGet);
+        }
     }
 }

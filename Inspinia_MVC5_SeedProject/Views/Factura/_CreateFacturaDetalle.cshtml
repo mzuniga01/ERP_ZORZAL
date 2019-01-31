@@ -16,7 +16,7 @@
                             </div>
                             @Html.LabelFor(model => model.tbProducto.prod_Descripcion, new { @class = "control-label col-md-1" })
                             <div class="col-md-5">
-                                @Html.EditorFor(model => model.tbProducto.prod_Descripcion, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly", } })
+                                @Html.EditorFor(model => model.tbProducto.prod_Descripcion, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly" } })
                                 <div id="validationDescripcionProductoCreate">
                                     @Html.ValidationMessageFor(model => model.tbProducto.prod_Descripcion)
                                 </div>
@@ -36,9 +36,9 @@
                                 </div>                               
                             </div>
 
-                            @Html.LabelFor(model => model.factd_PorcentajeDescuento, new { @class = "col-md-1 col-md-offset-1" })
+                            @Html.LabelFor(model => model.factd_PorcentajeDescuento, new { @class = " col-md-1 col-md-offset-1" })
                             <div class="col-md-2">
-                                @Html.EditorFor(model => model.factd_PorcentajeDescuento, new { htmlAttributes = new { @Value = "", onKeyPress = "return soloNumeros(event)", @autocomplete = "off" } })
+                                @Html.EditorFor(model => model.factd_PorcentajeDescuento, new { htmlAttributes = new { @class = "form-control", @Value = "", onKeyPress = "return soloNumeros(event)", @autocomplete = "off", @readonly = "readonly" } })
                                 <p style="color:red">@Html.ValidationMessageFor(model => model.factd_PorcentajeDescuento)</p>
                             </div>
                            @Html.LabelFor(model => model.factd_MontoDescuento, new { @class = "col-md-1" })

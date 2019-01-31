@@ -2442,9 +2442,6 @@
       <Parameter Name="lispd_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="lispd_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbSolicitudEfectivo_Details" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivo_Details_Result1)">
-      <Parameter Name="IDSOLICITUD" Mode="In" Type="Int32" />
-    </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbCuponDescuentoSelect" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbCuponDescuentoSelect_Result)" />
     <FunctionImport Name="UDP_Vent_tbNotaCreditoSelect" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbNotaCreditoSelect_Result)" />
     <FunctionImport Name="UDP_Vent_tbPago_Anulado" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPago_Anulado_Result)">
@@ -2479,6 +2476,16 @@
       <Parameter Name="deno_FechaCrea" Mode="In" Type="DateTime" />
       <Parameter Name="deno_UsuarioModifica" Mode="In" Type="Int32" />
       <Parameter Name="deno_FechaModifica" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbSolicitudEfectivo_Details" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivo_Details_Result1)">
+      <Parameter Name="IDSOLICITUD" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbSolicitudEfectivoDetalle_CantidadSolicitada_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivoDetalle_CantidadSolicitada_Update_Result)">
+      <Parameter Name="soled_Id" Mode="In" Type="Int32" />
+      <Parameter Name="deno_Id" Mode="In" Type="Int16" />
+      <Parameter Name="soled_CantidadSolicitada" Mode="In" Type="Int16" />
+      <Parameter Name="soled_CantidadEntregada" Mode="In" Type="Int16" />
+      <Parameter Name="soled_MontoEntregado" Mode="In" Type="Decimal" />
     </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
@@ -7594,24 +7601,6 @@
   <ComplexType Name="UDP_Vent_tbListadoPrecioDetalle_Update_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
-  <ComplexType Name="UDP_Vent_tbSolicitudEfectivo_Details_Result">
-    <Property Type="Int16" Name="mnda_Id" Nullable="false" />
-    <Property Type="Int16" Name="deno_Id" Nullable="false" />
-    <Property Type="String" Name="deno_Descripcion" Nullable="false" MaxLength="50" />
-    <Property Type="Int16" Name="soled_CantidadSolicitada" Nullable="false" />
-    <Property Type="Decimal" Name="MontoSolicitado" Nullable="true" Precision="16" Scale="2" />
-    <Property Type="Int16" Name="soled_CantidadEntregada" Nullable="false" />
-    <Property Type="Decimal" Name="MontoEntregado" Nullable="true" Precision="16" Scale="2" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbSolicitudEfectivo_Details_Result1">
-    <Property Type="Int16" Name="mnda_Id" Nullable="false" />
-    <Property Type="Int16" Name="deno_Id" Nullable="false" />
-    <Property Type="String" Name="deno_Descripcion" Nullable="false" MaxLength="50" />
-    <Property Type="Int16" Name="soled_CantidadSolicitada" Nullable="false" />
-    <Property Type="Decimal" Name="MontoSolicitado" Nullable="true" Precision="16" Scale="2" />
-    <Property Type="Int16" Name="soled_CantidadEntregada" Nullable="false" />
-    <Property Type="Decimal" Name="MontoEntregado" Nullable="true" Precision="16" Scale="2" />
-  </ComplexType>
   <ComplexType Name="UDP_Vent_tbCuponDescuentoSelect_Result">
     <Property Type="Int32" Name="cdto_ID" Nullable="false" />
     <Property Type="DateTime" Name="cdto_FechaVencimiento" Nullable="false" />
@@ -7663,6 +7652,27 @@
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
   <ComplexType Name="UDP_Gral_tbDenominacion_Update_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbSolicitudEfectivo_Details_Result">
+    <Property Type="Int32" Name="soled_Id" Nullable="false" />
+    <Property Type="String" Name="deno_Descripcion" Nullable="false" MaxLength="50" />
+    <Property Type="Int16" Name="soled_CantidadSolicitada" Nullable="false" />
+    <Property Type="Decimal" Name="MontoSolicitado" Nullable="true" Precision="16" Scale="2" />
+    <Property Type="Int16" Name="soled_CantidadEntregada" Nullable="false" />
+    <Property Type="Decimal" Name="MontoEntregado" Nullable="true" Precision="16" Scale="2" />
+    <Property Type="Int16" Name="deno_Id" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbSolicitudEfectivo_Details_Result1">
+    <Property Type="Int32" Name="soled_Id" Nullable="false" />
+    <Property Type="String" Name="deno_Descripcion" Nullable="false" MaxLength="50" />
+    <Property Type="Int16" Name="soled_CantidadSolicitada" Nullable="false" />
+    <Property Type="Decimal" Name="MontoSolicitado" Nullable="true" Precision="16" Scale="2" />
+    <Property Type="Int16" Name="soled_CantidadEntregada" Nullable="false" />
+    <Property Type="Decimal" Name="MontoEntregado" Nullable="true" Precision="16" Scale="2" />
+    <Property Type="Int16" Name="deno_Id" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbSolicitudEfectivoDetalle_CantidadSolicitada_Update_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
 </Schema>

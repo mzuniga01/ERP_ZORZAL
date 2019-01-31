@@ -5486,6 +5486,13 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Parameter Name="soled_CantidadEntregada" Type="smallint" Mode="In" />
           <Parameter Name="soled_MontoEntregado" Type="decimal" Mode="In" />
         </Function>
+        <Function Name="UDP_Vent_tbSolicitudEfectivoDetalle_CantidadSolicitada_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="soled_Id" Type="int" Mode="In" />
+          <Parameter Name="deno_Id" Type="smallint" Mode="In" />
+          <Parameter Name="soled_CantidadSolicitada" Type="smallint" Mode="In" />
+          <Parameter Name="soled_CantidadEntregada" Type="smallint" Mode="In" />
+          <Parameter Name="soled_MontoEntregado" Type="decimal" Mode="In" />
+        </Function>
         <Function Name="UDP_Vent_tbSolicitudEfectivoDetalle_Detalle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="IDSOLICITUD" Type="int" Mode="In" />
         </Function>
@@ -9155,9 +9162,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="lispd_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="lispd_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Vent_tbSolicitudEfectivo_Details" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivo_Details_Result1)">
-          <Parameter Name="IDSOLICITUD" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbCuponDescuentoSelect" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbCuponDescuentoSelect_Result)" />
           <FunctionImport Name="UDP_Vent_tbNotaCreditoSelect" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbNotaCreditoSelect_Result)" />
           <FunctionImport Name="UDP_Vent_tbPago_Anulado" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPago_Anulado_Result)">
@@ -9192,6 +9196,16 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="deno_FechaCrea" Mode="In" Type="DateTime" />
             <Parameter Name="deno_UsuarioModifica" Mode="In" Type="Int32" />
             <Parameter Name="deno_FechaModifica" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbSolicitudEfectivo_Details" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivo_Details_Result1)">
+          <Parameter Name="IDSOLICITUD" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbSolicitudEfectivoDetalle_CantidadSolicitada_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivoDetalle_CantidadSolicitada_Update_Result)">
+            <Parameter Name="soled_Id" Mode="In" Type="Int32" />
+            <Parameter Name="deno_Id" Mode="In" Type="Int16" />
+            <Parameter Name="soled_CantidadSolicitada" Mode="In" Type="Int16" />
+            <Parameter Name="soled_CantidadEntregada" Mode="In" Type="Int16" />
+            <Parameter Name="soled_MontoEntregado" Mode="In" Type="Decimal" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
@@ -14307,24 +14321,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
         <ComplexType Name="UDP_Vent_tbListadoPrecioDetalle_Update_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
-        <ComplexType Name="UDP_Vent_tbSolicitudEfectivo_Details_Result">
-          <Property Type="Int16" Name="mnda_Id" Nullable="false" />
-          <Property Type="Int16" Name="deno_Id" Nullable="false" />
-          <Property Type="String" Name="deno_Descripcion" Nullable="false" MaxLength="50" />
-          <Property Type="Int16" Name="soled_CantidadSolicitada" Nullable="false" />
-          <Property Type="Decimal" Name="MontoSolicitado" Nullable="true" Precision="16" Scale="2" />
-          <Property Type="Int16" Name="soled_CantidadEntregada" Nullable="false" />
-          <Property Type="Decimal" Name="MontoEntregado" Nullable="true" Precision="16" Scale="2" />
-        </ComplexType>
-        <ComplexType Name="UDP_Vent_tbSolicitudEfectivo_Details_Result1">
-          <Property Type="Int16" Name="mnda_Id" Nullable="false" />
-          <Property Type="Int16" Name="deno_Id" Nullable="false" />
-          <Property Type="String" Name="deno_Descripcion" Nullable="false" MaxLength="50" />
-          <Property Type="Int16" Name="soled_CantidadSolicitada" Nullable="false" />
-          <Property Type="Decimal" Name="MontoSolicitado" Nullable="true" Precision="16" Scale="2" />
-          <Property Type="Int16" Name="soled_CantidadEntregada" Nullable="false" />
-          <Property Type="Decimal" Name="MontoEntregado" Nullable="true" Precision="16" Scale="2" />
-        </ComplexType>
         <ComplexType Name="UDP_Vent_tbCuponDescuentoSelect_Result">
           <Property Type="Int32" Name="cdto_ID" Nullable="false" />
           <Property Type="DateTime" Name="cdto_FechaVencimiento" Nullable="false" />
@@ -14376,6 +14372,27 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
         <ComplexType Name="UDP_Gral_tbDenominacion_Update_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbSolicitudEfectivo_Details_Result">
+          <Property Type="Int32" Name="soled_Id" Nullable="false" />
+          <Property Type="String" Name="deno_Descripcion" Nullable="false" MaxLength="50" />
+          <Property Type="Int16" Name="soled_CantidadSolicitada" Nullable="false" />
+          <Property Type="Decimal" Name="MontoSolicitado" Nullable="true" Precision="16" Scale="2" />
+          <Property Type="Int16" Name="soled_CantidadEntregada" Nullable="false" />
+          <Property Type="Decimal" Name="MontoEntregado" Nullable="true" Precision="16" Scale="2" />
+          <Property Type="Int16" Name="deno_Id" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbSolicitudEfectivo_Details_Result1">
+          <Property Type="Int32" Name="soled_Id" Nullable="false" />
+          <Property Type="String" Name="deno_Descripcion" Nullable="false" MaxLength="50" />
+          <Property Type="Int16" Name="soled_CantidadSolicitada" Nullable="false" />
+          <Property Type="Decimal" Name="MontoSolicitado" Nullable="true" Precision="16" Scale="2" />
+          <Property Type="Int16" Name="soled_CantidadEntregada" Nullable="false" />
+          <Property Type="Decimal" Name="MontoEntregado" Nullable="true" Precision="16" Scale="2" />
+          <Property Type="Int16" Name="deno_Id" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbSolicitudEfectivoDetalle_CantidadSolicitada_Update_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
         </Schema>
@@ -16853,19 +16870,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudEfectivo_Details" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudEfectivo_Details">
-          <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivo_Details_Result1">
-                <ScalarProperty Name="mnda_Id" ColumnName="mnda_Id" />
-                <ScalarProperty Name="deno_Id" ColumnName="deno_Id" />
-                <ScalarProperty Name="deno_Descripcion" ColumnName="deno_Descripcion" />
-                <ScalarProperty Name="soled_CantidadSolicitada" ColumnName="soled_CantidadSolicitada" />
-                <ScalarProperty Name="MontoSolicitado" ColumnName="MontoSolicitado" />
-                <ScalarProperty Name="soled_CantidadEntregada" ColumnName="soled_CantidadEntregada" />
-                <ScalarProperty Name="MontoEntregado" ColumnName="MontoEntregado" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbCuponDescuentoSelect" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbCuponDescuentoSelect">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbCuponDescuentoSelect_Result">
@@ -16933,6 +16937,26 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <FunctionImportMapping FunctionImportName="UDP_Gral_tbDenominacion_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbDenominacion_Update" >
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbDenominacion_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudEfectivo_Details" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudEfectivo_Details">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivo_Details_Result1">
+                <ScalarProperty Name="soled_Id" ColumnName="soled_Id" />
+                <ScalarProperty Name="deno_Descripcion" ColumnName="deno_Descripcion" />
+                <ScalarProperty Name="soled_CantidadSolicitada" ColumnName="soled_CantidadSolicitada" />
+                <ScalarProperty Name="MontoSolicitado" ColumnName="MontoSolicitado" />
+                <ScalarProperty Name="soled_CantidadEntregada" ColumnName="soled_CantidadEntregada" />
+                <ScalarProperty Name="MontoEntregado" ColumnName="MontoEntregado" />
+                <ScalarProperty Name="deno_Id" ColumnName="deno_Id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudEfectivoDetalle_CantidadSolicitada_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudEfectivoDetalle_CantidadSolicitada_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivoDetalle_CantidadSolicitada_Update_Result">
                 <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
               </ComplexTypeMapping>
             </ResultMapping>
