@@ -173,10 +173,17 @@
                         <dt>
                             @Html.DisplayNameFor(model => model.fact_Vendedor)
                         </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.fact_Vendedor)
-                        </dd>
+                        @if(Model.fact_Vendedor==null)
+                        {
+                            <dd>Ninguno</dd>
+                        }
+                        else
+                        {
+                            <dd>
+                                @Html.DisplayFor(model => model.fact_Vendedor)
+                            </dd>
+                        }
+                        
                         @{ if (Model.fact_PorcentajeDescuento == 1)
                             {
                                 <dt>

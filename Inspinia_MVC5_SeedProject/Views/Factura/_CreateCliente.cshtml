@@ -15,7 +15,7 @@
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-            <a href="@Url.Action("Create","Factura")">Regresar</a>
+            <a href="@Url.Action("Index","Cliente")">Regresar</a>
         </div>
     </div>
 </div>
@@ -192,10 +192,59 @@
                                     </tr>
                                 </table>
                             </div>
+
+
+                            <div class="form-group" id="Activo">
+                                @Html.LabelFor(model => model.clte_EsActivo, new { @class = "control-label col-md-2" })
+                                <div class="col-md-2">
+                                    @Html.EditorFor(model => model.clte_EsActivo, new { htmlAttributes = new { @type = "checkbox", @checked = "true", @disabled = "disabled" } })
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.clte_EsActivo)</p>
+                                </div>
+                                <div>
+                                    @Html.LabelFor(model => model.clte_ConCredito, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-2">
+                                        @Html.EditorFor(model => model.clte_ConCredito, new { htmlAttributes = new { @type = "checkbox", @checked = "true", @disabled = "disabled" } })
+                                        <p style="color:red">@Html.ValidationMessageFor(model => model.clte_ConCredito)</p>
+                                    </div>
+                                </div>
+                                @Html.LabelFor(model => model.clte_EsMinorista, new { @class = "control-label col-md-2" })
+                                <div class="col-md-2">
+                                    @Html.EditorFor(model => model.clte_EsMinorista, new { @type = "checkbox", @checked = "true" })
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.clte_EsMinorista)</p>
+                                </div>
+                            </div>
+                            @*<div class="form-group" id="Credito" name="Credito">
+                                    @Html.LabelFor(model => model.clte_MontoCredito, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.clte_MontoCredito, new { htmlAttributes = new { @autocomplete = "off" } })
+                                        <p style="color:red">@Html.ValidationMessageFor(model => model.clte_MontoCredito)</p>
+                                    </div>
+                                    @Html.LabelFor(model => model.clte_DiasCredito, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.clte_DiasCredito)
+                                        <p style="color:red">@Html.ValidationMessageFor(model => model.clte_DiasCredito)</p>
+                                    </div>
+                                </div>*@
+                            <div class="form-group" id="RazonInactivo">
+                                @Html.LabelFor(model => model.clte_RazonInactivo, new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.TextAreaFor(model => model.clte_RazonInactivo, new { @class = "form-control" })
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.clte_RazonInactivo)</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.clte_Observaciones, new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.TextAreaFor(model => model.clte_Observaciones, new { @class = "form-control" })
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.clte_Observaciones)</p>
+                                </div>
+                            </div>
+
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
                                     <input type="submit" value="Guardar" class="btn btn-primary" />
-                                    @Html.ActionLink("Cancelar", "Create", null, new { @class = "btn btn-white" })
+                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                                 </div>
                             </div>
                         </div>

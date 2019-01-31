@@ -95,7 +95,22 @@ function Validar() {
                                     $('#TotalProducto').val('');
                                 }); 
 
+                                function GetFacturaDetalle() {
 
+                                    var FacturaDetalle = {
+                                        prod_Codigo: val.prod_Codigo,
+                                        factd_PorcentajeDescuento: Descuento,
+                                        factd_MontoDescuento: Descuento,
+                                        tbProducto_prod_Descripcion: val.prod_Descripcion,
+                                        factd_Cantidad: val.pedd_Cantidad,
+                                        SubtotalProducto: Subtotal,
+                                        factd_PrecioUnitario: val.lispd_PrecioMayorista,
+                                        factd_Impuesto: ImpuestoTotal,
+                                        TotalProducto: Subtotal,
+                                        factd_Id: contador
+                                    }
+                                    return FacturaDetalle
+                                };
 
                             });
                         })
