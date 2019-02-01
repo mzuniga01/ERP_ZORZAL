@@ -1,7 +1,4 @@
 ﻿var contador = 0;
-
-
-
 $(document).ready(function () {
     $('#Table_BuscarProducto').DataTable(
         {
@@ -36,6 +33,8 @@ $(document).ready(function () {
 
     });
 });
+
+
 $(document).on("click", "#Table_BuscarProducto tbody tr td button#seleccionar", function () {
 
     prod_CodigoBarrasItem = $(this).closest('tr').data('html');
@@ -50,12 +49,13 @@ $(document).on("click", "#Table_BuscarProducto tbody tr td button#seleccionar", 
     $("#uni_Id").val(uni_IdtItem);
     $("#pscat_Id").val(psubctItem);
     $("#pcat_Id").val(pcatItem);
-    $("#entd_Cantidad").focus();
+    $("#sald_Cantidad").focus();
     //$("#cod").val(idItem);
 
 });
 
 //prueba de enter
+
 $(function () {
     $('#prod_CodigoBarras').keydown(function (e) {
         if (e.keyCode == 13) {
@@ -74,7 +74,7 @@ $(function () {
                 $("#uni_Id").val(uni_IdtItem);
                 $("#pscat_Id").val(psubctItem);
                 $("#pcat_Id").val(pcatItem);
-                $("#entd_Cantidad").focus();
+                $("#sald_Cantidad").focus();
                 //$("#cod").val(idItem);
 
             });
@@ -85,7 +85,7 @@ $(function () {
             $("#uni_Id").val(uni_IdtItem);
             $("#pscat_Id").val(psubctItem);
             $("#pcat_Id").val(pcatItem);
-            $("#entd_Cantidad").focus();
+            $("#sald_Cantidad").focus();
             return false;
         }
     });
@@ -95,7 +95,7 @@ $(function () {
 function GetSalidaDetalle() {
     var SalidaDetalle = {
         prod_Codigo: $('#prod_Codigo').val(),
-        sal_Cantidad: $('#sal_Cantidad').val(),
+        sal_Cantidad: $('#sald_Cantidad').val(),
         sald_UsuarioCrea: contador
     };
     return SalidaDetalle;
@@ -108,7 +108,7 @@ $('#AgregarDetalleSalida').click(function () {
     var Cod_Producto = $('#prod_Codigo').val();
     var Producto = $('#prod_Descripcion').val();
     var Unidad_Medida = $('#pscat_Id').val();
-    var Cantidad = $('#sal_Cantidad').val();
+    var Cantidad = $('#sald_Cantidad').val();
     
     
     if (Producto == '') {
@@ -137,7 +137,7 @@ $('#AgregarDetalleSalida').click(function () {
         copiar += "<td id = 'Cod_Producto'>" + $('#prod_Codigo').val() + "</td>";
         copiar += "<td id = 'Producto'>" + $('#prod_Descripcion').val() + "</td>";
         copiar += "<td id = 'Unidad_Medida'>" + $('#pscat_Id').val() + "</td>";
-        copiar += "<td id = 'Cantidad'>" + $('#sal_Cantidad').val() + "</td>";
+        copiar += "<td id = 'Cantidad'>" + $('#sald_Cantidad').val() + "</td>";
         copiar += "<td>" + '<button id="removeSalidaDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
         copiar += "</tr>";
         $('#tbSalidaDetalle').append(copiar);
@@ -157,7 +157,7 @@ $('#AgregarDetalleSalida').click(function () {
                     $('#prod_Codigo').val('');
                     $('#prod_Descripcion').val('');
                     $('#pscat_Id').val('');
-                    $('#sal_Cantidad').val('');
+                    $('#sald_Cantidad').val('');
                     $('#MessageError').text('');
                     $('#NombreError').text('');
                     console.log('Hola');
@@ -278,7 +278,7 @@ $('#btnCreateSalidaDetalle').click(function () {
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify({ SalidaDetalle: tbSalidaDetalle }),
         })
-        done(function (data) {
+        .done(function (data) {
             if (data == 'El registro se guardo exitosamente') {
                 location.reload();
                 swal("El registro se almacenó exitosamente!", "", "success");

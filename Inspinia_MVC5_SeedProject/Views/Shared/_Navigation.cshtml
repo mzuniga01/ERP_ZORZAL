@@ -71,11 +71,18 @@
                         <a href="@Url.Action("Index", "Producto")"><i class="fa fa-cube fa-fw"></i>Producto <span class="nav-label"></span> </a>
                     </li>
                     }
+
                     @if (Login.GetUserRols("ProductoCategoria/Index"))
                     {
                     <li class="@Html.IsSelected(action: "Index")">
                         <a href="@Url.Action("Index", "ProductoCategoria")"><i class="fa fa-cubes fa-fw"></i>Producto Categoría<span class="nav-label"></span> </a>
                     </li>
+                    }
+                    @if (Login.GetUserRols("Box/Index"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("Index", "Box")"><i class="fa fa-cube fa-fw"></i> Caja <span class="nav-label"></span> </a>
+                        </li>
                     }
                     @if (Login.GetUserRols("Proveedor/Index"))
                     {

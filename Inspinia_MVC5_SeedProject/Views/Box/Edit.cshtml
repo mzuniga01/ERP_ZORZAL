@@ -96,7 +96,7 @@
                                                   <div class="col-lg-12">
                                                       <div class="ibox-content">
                                                           <fieldset class="box-border">
-                                                              <legend class="box-border">SalidaDetalle</legend>
+                                                              <legend class="box-border">Salida Detalle</legend>
                                                               @Html.Partial("_EditSalidaDetalle", Model.tbSalidaDetalle, new ViewDataDictionary(new { clave = Model.box_Codigo }))
                                                           </fieldset>
                                                       </div>
@@ -105,60 +105,32 @@
                                           </div>
                                       </div>
 
-    <div class="col-lg-12">
-        <div class="ibox float-e-margins">
-            <div class="ibox-title">
-                <div class="title-action">
-                    <h5>Datos de Auditoria</h5>
-                    <button type="button" class="btn btn-white glyphicon glyphicon-plus" data-toggle="collapse" data-target="#DatosdeAuditoria"></button>
-                </div>
-            </div>
-            <div class="ibox-content collapse" id="DatosdeAuditoria">
-                <div class="ibox-content">
-                    <table class="table table-striped">
-                        <tr>
-                            <th>
-                                Acción
-                            </th>
-                            <th>
-                                Usuario
-                            </th>
-                            <th>
-                                Fecha
-                            </th>
+                                      <div class="ibox-content">
+                                          <table class="table table-striped">
+                                              <tr>
+                                                  <th>Acción</th>
+                                                  <th>Usuario</th>
+                                                  <th> Fecha</th>
+                                              </tr>
+                                              <tr>
+                                                  <td>Creado por  </td>
+                                                  <td>
+                                                      @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                                                      @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                                                  </td>
+                                                  <td>@Html.DisplayFor(model => model.box_FechaCrea)</td>
 
-                        </tr>
-
-                        <tr>
-                            <td>
-                                Creado
-                            </td>
-                            <td>
-                                @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(model => model.box_FechaCrea)
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td>
-                                Modificado
-                            </td>
-                            <td>
-                                @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(model => model.box_FechaModifica)
-                            </td>
-
-                        </tr>
-
-                    </table>
-                </div>
-                </div>
-            </div>
-        </div>
+                                              </tr>
+                                              <tr>
+                                                  <td>Modificado por</td>
+                                                  <td>
+                                                      @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                                                      @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                                                  </td>
+                                                  <td>@Html.DisplayFor(model => model.box_FechaModifica)</td>
+                                              </tr>
+                                          </table>
+                                      </div>
     </div>
 </div>                        
                       
