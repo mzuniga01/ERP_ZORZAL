@@ -143,17 +143,43 @@
             }
         });
     });
+ 
+    //CirculosColores
+    $(document).ready(function () {
+        //Current Date
+        var d = new Date();
+        $("#PuntoEmisionDetalle tbody tr").each(function () {
+            //Id PuntoEmisionDetalle
+            var ID = $(this).children("td:eq(0)").text();
 
-    $(document).on("click", "#PuntoEmisionDetalle tbody tr td button#BtnModalDetalles", function () {
-        UsuarioCreaItem = $(this).closest('tr').data('usuariocrea');
-        UsuarioApellidoCreaItem = $(this).closest('tr').data('usuariocreaapellido');
+            var RangoFinal = $(this).children("td:eq(3)").text();
 
-        //$(tbUsuario_usu_Nombres).val(UsuarioCreaItem);
-        //$(tbUsuario_usu_Apellidos).val(UsuarioApellidoCreaItem);
+            var DivisionesRangoFinal = RangoFinal.split("-", 4);
+            var UltimoNumero = DivisionesRangoFinal[3]
+            var RangoFinalCasteado = parseInt(UltimoNumero)
+
+            var NumeroActual = $(this).children("td:eq(4)").text();
+
+            var NumeroActualCasteado = parseInt(NumeroActual)
+
+            //FechaLimiteEmision
+            var FechaLimiteEmsion = $(this).children("td:eq(5)").text();
+
+            var i = new Date(FechaLimiteEmsion);
+
+            if (i <= d) {
+                $("#btnModalEditarEdit_" + parseInt(ID)).prop("disabled", true);
+                $("#Circulos_" + parseInt(ID)).removeClass().addClass("red");
+            }
+            else if (NumeroActualCasteado == RangoFinalCasteado) {
+                $("#btnModalEditarEdit_" + parseInt(ID)).prop("disabled", true);
+                $("#Circulos_" + parseInt(ID)).removeClass().addClass("red");
+            }
+            else {
+                $("#btnModalEditarEdit_" + parseInt(ID)).prop("disabled", false);
+                $("#Circulos_" + parseInt(ID)).removeClass().addClass("green");
+            }
+
+        });
     });
-
-    //$(document).ready(function () {
-    //    $(tbUsuario_usu_Nombres).css("border", "none");
-    //    $(tbUsuario_usu_Apellidos).css("border", "none");
-    //});
 </script>

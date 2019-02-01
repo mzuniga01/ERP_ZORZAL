@@ -1,8 +1,7 @@
 ﻿@model IEnumerable<ERP_GMEDINA.Models.tbPuntoEmisionDetalle>
 
 <style type="text/css">
-    /* Círculos de colores numerados */
-    span.red {
+    .red {
         background: #FF0000;
         border-radius: 0.8em;
         -moz-border-radius: 0.8em;
@@ -17,7 +16,7 @@
     }
 
 
-    span.green {
+    .green {
         background: #5EA226;
         border-radius: 0.8em;
         -moz-border-radius: 0.8em;
@@ -31,7 +30,7 @@
         width: 1.6em;
     }
 
-    span.amarillo {
+    .amarillo {
         background: #FAFA00;
         border-radius: 0.8em;
         -moz-border-radius: 0.8em;
@@ -44,7 +43,6 @@
         text-align: center;
         width: 1.6em;
     }
-
 </style>
 
             <div class="ibox float-e-margins">
@@ -96,8 +94,6 @@
                            
                             @foreach (var item in Model)
                             {
-                                DateTime today = DateTime.Now;
-                                
                                 <tr data-usuariocrea="@item.tbUsuario.usu_Nombres">
                                     <td hidden>
                                         @Html.DisplayFor(modelItem => item.pemid_Id)
@@ -123,50 +119,20 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.pemid_FechaLimite)
                                     </td>
-                                    @{
-                                        if (item.pemid_FechaLimite > today)
-                                        {
-                                            <td>
-                                                <span class="green" data-toggle="tooltip" title="Vigente">&nbsp;</span>
-                                            </td>
-                                        }
-                                        else
-                                        {
-                                            <td>
-                                                <span class="red" data-toggle="tooltip" title="No vigente">&nbsp;</span>
-                                            </td>
-
-                                        }
-                                    } 
+                                    <td>
+                                        <span id="Circulos_@item.pemid_Id" data-toggle="tooltip" title="Vigente">&nbsp;</span>
+                                    </td>
                                     <td hidden>
                                         @Html.DisplayFor(modelItem => item.tbUsuario.usu_Nombres)
                                     </td>
-                                    @{
-                                        if (item.pemid_FechaLimite > today)
-                                        {
-                                            <td>
-                                                <button type="button" id="btnModalDetallesEdit_@item.pemid_Id" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#Detalle_@item.pemid_Id">
-                                                    Detalles
-                                                </button>
-                                                <button type="button"  id="btnModalEditarEdit_@item.pemid_Id" class="btn btn-white btn-xs" data-toggle="modal" data-target="#Editar_@item.pemid_Id" onclick="FechaLimite(@item.pemid_Id);">
-                                                    Editar
-                                                </button>
-                                            </td>
-                                        }
-                                        else
-                                        {
-                                            <td>
-                                                <button type="button" id="btnModalDetallesEdit_@item.pemid_Id" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#Detalle_@item.pemid_Id">
-                                                    Detalles
-                                                </button>
-                                                <button type="button" disabled id="btnModalEditarEdit_@item.pemid_Id" class="btn btn-white btn-xs" data-toggle="modal" data-target="#Editar_@item.pemid_Id" onclick="FechaLimite(@item.pemid_Id);">
-                                                    Editar
-                                                </button>
-                                            </td>
-
-                                        }
-                                    } 
-                                    
+                                    <td>
+                                        <button type="button" id="btnModalDetallesEdit_@item.pemid_Id" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#Detalle_@item.pemid_Id">
+                                            Detalles
+                                        </button>
+                                        <button type="button" id="btnModalEditarEdit_@item.pemid_Id" class="btn btn-white btn-xs" data-toggle="modal" data-target="#Editar_@item.pemid_Id" onclick="FechaLimite(@item.pemid_Id);">
+                                            Editar
+                                        </button>
+                                    </td>
                                 </tr>
                                 <div class="modal fade" id="Editar_@item.pemid_Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">

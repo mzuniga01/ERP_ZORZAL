@@ -2,8 +2,7 @@
 
 
 <style type="text/css">
-    /* Círculos de colores numerados */
-    span.red {
+    .red {
         background: #FF0000;
         border-radius: 0.8em;
         -moz-border-radius: 0.8em;
@@ -18,7 +17,7 @@
     }
 
 
-    span.green {
+    .green {
         background: #5EA226;
         border-radius: 0.8em;
         -moz-border-radius: 0.8em;
@@ -32,7 +31,7 @@
         width: 1.6em;
     }
 
-    span.amarillo {
+    .amarillo {
         background: #FAFA00;
         border-radius: 0.8em;
         -moz-border-radius: 0.8em;
@@ -46,7 +45,6 @@
         width: 1.6em;
     }
 </style>
-
 
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
@@ -82,9 +80,7 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                                DateTime today = DateTime.Now;
-
-                                <tr data-usuariocrea="@item.tbUsuario.usu_Nombres" data-usuariocreaapellido="@item.tbUsuario.usu_Apellidos" >
+                                <tr>
                                     <td hidden>@Html.DisplayFor(modelItem => item.pemid_Id)</td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.tbDocumentoFiscal.dfisc_Descripcion)
@@ -101,27 +97,9 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.pemid_FechaLimite)
                                     </td>
-                                   @{
-                                       if (item.pemid_FechaLimite > today)
-                                       {
-                                        <td>
-                                            <span class="green" data-toggle="tooltip" title="Vigente">&nbsp;</span>
-                                        </td>
-                                       }
-                                       else if (item.pemid_FechaLimite == today)
-                                       {
-                                        <td>
-                                            <span class="amarillo" data-toggle="tooltip" title="A punto de vencerse">&nbsp;</span>
-                                        </td>
-                                       }
-                                       else
-                                       {
-                                        <td>
-                                            <span class="red" data-toggle="tooltip" title="No vigente">&nbsp;</span>
-                                        </td>
-
-                                       }
-                                }
+                                    <td>
+                                        <span id="Circulos_@item.pemid_Id" data-toggle="tooltip" title="Vigente">&nbsp;</span>
+                                    </td>
                                     <td hidden>@Html.DisplayFor(modelItem => item.tbUsuario.usu_Nombres)</td>
                                     <td hidden>@Html.DisplayFor(modelItem => item.tbUsuario.usu_Apellidos)</td>
                                     <td>

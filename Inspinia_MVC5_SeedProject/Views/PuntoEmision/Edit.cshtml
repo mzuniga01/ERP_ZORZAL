@@ -154,6 +154,7 @@
 <script src="~/Scripts/app/CreateNumeracionDetails.js"></script>
 <script src="~/Scripts/app/EditNumeracion.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="~/Scripts/app/IndexNumeracion.js"></script>
 <script>
     //Get Número CAI
     $('#btnModalGuardarNumeracion').click(function () {
@@ -165,7 +166,6 @@
     $(document).on("click", "#PuntoEmision tbody tr td button#btnModalDetallesEdit", function () {
         UsuarioCreaItem = $(this).closest('tr').data('usuariocrea');
     });
-
 
     //Validación-Sólo número y guiones
     function validar(e) {

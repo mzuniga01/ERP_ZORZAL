@@ -1267,6 +1267,7 @@
     <Content Include="Scripts\app\InActivarCliente.js" />
     <Content Include="Scripts\app\InactivarExoneracion.js" />
     <Content Include="Scripts\app\InactivarListaP.js" />
+    <Content Include="Scripts\app\IndexNumeracion.js" />
     <Content Include="Scripts\app\inspinia.js" />
     <Content Include="Scripts\app\ListaPrecioDetalle.js" />
     <Content Include="Scripts\app\ListaPrecioDetalleEdit.js" />
