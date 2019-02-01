@@ -37,9 +37,9 @@
 
                             <div class="form-horizontal">
                                 <div class="form-group col-md-7">
-                                   @Html.LabelFor(model => test.suc_Id, "Sucursal", new { @class = "control-label col-md-2" })
+                                   @Html.LabelFor(model => test.suc_Descripcion, "Sucursal", new { @class = "control-label col-md-2" })
                                     <div class="col-md-7">
-                                        @Html.EditorFor(model => test.suc_Descripcion, new { htmlAttributes = new { @class = "form-control" @*, @readonly = "readonly"*@ } })
+                                        @Html.EditorFor(model => test.suc_Descripcion, new { htmlAttributes = new { @class = "form-control" , @readonly = "readonly", @Value = ViewBag.suc_Descripcion } })
                                         <p style="color:red"> @Html.ValidationMessageFor(model => test.suc_Descripcion)</p>
                                     </div>
                                 </div>
@@ -62,10 +62,18 @@
                                     </div>
                             </div> 
 
-                            <div class="form-group col-md-5">
+                             <div class="form-group col-md-5">
+                                <label class = "control-label col-md-2">Usuario Apertura</label>
+                                <div class="col-md-10">
+                                    <input class = "form-control" readonly value="@ViewBag.UsuarioApertura" />
+                                   <p id="MensajeErrorDenominacion" style="color:red"> @Html.ValidationMessageFor(model => model.mocja_UsuarioApertura)</p>
+                                </div>
+                            </div>
+
+                            <div hidden class="form-group col-md-5">
                                 @Html.LabelFor(model => model.mocja_UsuarioApertura, "Usuario Apertura", new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.mocja_UsuarioApertura, new { htmlAttributes = new { @class = "form-control" @*, @readonly = "readonly"*@ } })
+                                    @Html.EditorFor(model => model.mocja_UsuarioApertura, new { htmlAttributes = new { @class = "form-control" , @readonly = "readonly", @Value = ViewBag.mocja_UsuarioApertura } })
                                    <p id="MensajeErrorDenominacion" style="color:red"> @Html.ValidationMessageFor(model => model.mocja_UsuarioApertura)</p>
                                 </div>
                             </div>

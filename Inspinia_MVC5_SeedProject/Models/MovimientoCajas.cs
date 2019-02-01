@@ -36,7 +36,6 @@ namespace ERP_GMEDINA.Models
 
 
         [Display(Name = "Fecha Arqueo")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
         public System.DateTime mocja_FechaArqueo { get; set; }
 
@@ -47,7 +46,6 @@ namespace ERP_GMEDINA.Models
 
 
         [Display(Name = "Fecha Aceptacion")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
         public System.DateTime mocja_FechaAceptacion { get; set; }
 

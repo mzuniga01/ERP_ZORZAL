@@ -67,3 +67,19 @@ function soloNumeros(e) {
 
 $("#devd_CantidadProducto")[0].maxLength = 10;
 
+////Devolucion Seleccionar Producto
+//$(document).on("click", "#DataTable1 tbody tr td button#Agregar", function () {
+//    idItem = $(this).closest('tr').data('id');
+//    DescItem = $(this).closest('tr').data('desc');
+//    DescValor = $(this).closest('tr').data('valor');
+//    PorcentajeItem = $(this).closest('tr').data('porcentaje');
+//    CantidadItem = $(this).closest('tr').data('cantfacturada');
+//    ImpuestoItem = $(this).closest('tr').data('impuesto');
+//    $("#prod_Codigo").val(idItem);
+//    $("#DescripcionProducto").val(DescItem);
+//    $("#PrecioUnit").val(DescValor);
+//    $("#PorDescuento").val(PorcentajeItem);
+//    $("#CantidadFacturada").val(CantidadItem);
+//    $("#ImpuestoD").val(ImpuestoItem);
+//    $('#ModalAgregarProducto').modal('hide');
+//});

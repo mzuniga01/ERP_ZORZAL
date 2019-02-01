@@ -18,7 +18,9 @@ namespace ERP_GMEDINA.Controllers
         public ActionResult Index()
         {
             var conteo = db.ConteoParametro(1).ToList();
+            var parametro = db.tbParametro.ToList();
             int? par = 0;
+            byte? idparametro = 0;
             var tbparametro = db.tbParametro.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbMoneda);
             if(tbparametro == null)
             {
@@ -28,9 +30,11 @@ namespace ERP_GMEDINA.Controllers
             {
                 foreach (ConteoParametro_Result contarparametro in conteo)
                     par = contarparametro.Conteo;
+                foreach (tbParametro id in parametro)
+                    idparametro = id.par_Id;
                 if(par > 0)
                 {
-                    return RedirectToAction("Details/" + 1 , "Parametro");
+                    return RedirectToAction("Details/" + idparametro, "Parametro");
                 }
                 else
                 {
@@ -61,6 +65,12 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.par_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             ViewBag.par_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Abreviatura");
+            ViewBag.Id_Rol = new SelectList(db.tbRol, "rol_Id", "rol_Descripcion");
+            ViewBag.Id_Rol1 = new SelectList(db.tbRol, "rol_Id", "rol_Descripcion");
+            ViewBag.Id_Rol2 = new SelectList(db.tbRol, "rol_Id", "rol_Descripcion");
+            ViewBag.Id_Rol3 = new SelectList(db.tbRol, "rol_Id", "rol_Descripcion");
+            ViewBag.Id_Rol4 = new SelectList(db.tbRol, "rol_Id", "rol_Descripcion");
+            ViewBag.id_mnda = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Abreviatura");
             return View();
         }
 
@@ -122,6 +132,11 @@ namespace ERP_GMEDINA.Controllers
             }
             ViewBag.par_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbParametro.par_UsuarioModifica);
             ViewBag.par_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbParametro.par_UsuarioCrea);
+            ViewBag.Id_Rol = new SelectList(db.tbRol, "rol_Id", "rol_Descripcion", tbParametro.par_RolAuditor);
+            ViewBag.Id_Rol1 = new SelectList(db.tbRol, "rol_Id", "rol_Descripcion", tbParametro.par_RolCajero);
+            ViewBag.Id_Rol2 = new SelectList(db.tbRol, "rol_Id", "rol_Descripcion", tbParametro.par_RolCreditoCobranza);
+            ViewBag.Id_Rol3 = new SelectList(db.tbRol, "rol_Id", "rol_Descripcion", tbParametro.par_RolGerenteTienda);
+            ViewBag.Id_Rol4 = new SelectList(db.tbRol, "rol_Id", "rol_Descripcion", tbParametro.par_RolSupervisorCaja);
             ViewBag.id_mnda = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Abreviatura", tbParametro.mnda_Id);
             return View(tbParametro);
         }

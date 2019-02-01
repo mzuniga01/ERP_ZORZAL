@@ -109,7 +109,11 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.FacturaDetalle = db.tbFacturaDetalle.ToList();
             return View();
         }
-
+        public ActionResult _CreateDevolucionDetalle1()
+        {
+            ViewBag.FacturaDetalle = db.tbFacturaDetalle.ToList();
+            return View();
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -223,8 +227,10 @@ namespace ERP_ZORZAL.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
+         
             tbDevolucion tbDevolucion = db.tbDevolucion.Find(id);
-            //tbDevolucionDetalle tbDevolucionDetalle = db.tbDevolucionDetalle.Find(id);
+            tbDevolucionDetalle tbDevolucionDetalle = db.tbDevolucionDetalle.Find(id);
             if (tbDevolucion == null)
             {
                 return HttpNotFound();
@@ -233,17 +239,106 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.dev_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbDevolucion.dev_UsuarioModifica);
             ViewBag.cja_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion", tbDevolucion.cja_Id);
             ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo", tbDevolucion.fact_Id);
-
+            ViewBag.FacturaDetalle = db.tbFacturaDetalle.ToList();
             Session["ID"] = tbDevolucion.dev_Id;
             Session["FECHA"] = tbDevolucion.dev_Fecha;
             Session["RTNCLIENTE"] = tbDevolucion.tbFactura.clte_Identificacion;
             Session["NOMBRE"] = tbDevolucion.tbFactura.clte_Nombres;
+            //Session["Devolucion"] = null;
             //Session["MONTO"] = tbDevolucionDetalle.devd_Monto;
             return View(tbDevolucion);
         }
 
-
         [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "dev_Id,fact_Id,cja_Id,dev_Fecha,dev_Estado,dev_UsuarioCrea,dev_FechaCrea,dev_UsuarioModifica,dev_FechaModifica")] tbDevolucion tbDevolucion)
+        {
+            var list = (List<tbDevolucionDetalle>)Session["Devolucion"];
+            var MensajeError = "";
+            var MensajeErrorDetalle = "";
+            IEnumerable<object> listDevolucion = null;
+            IEnumerable<object> listDevolucionDetalle = null;
+            tbDevolucionDetalle cDevolucionDetalle = new tbDevolucionDetalle();
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    using (TransactionScope Tran = new TransactionScope())
+                    {
+                        listDevolucion = db.UDP_Vent_tbDevolucion_Update(
+                            tbDevolucion.dev_Id,
+                            tbDevolucion.fact_Id,
+                            tbDevolucion.cja_Id,
+                            tbDevolucion.dev_Fecha,
+                            tbDevolucion.dev_Estado,
+                            tbDevolucion.dev_UsuarioCrea,
+                            tbDevolucion.dev_FechaCrea);
+                        foreach (UDP_Vent_tbDevolucion_Update_Result DevolucionL in listDevolucion)
+                            MensajeError = DevolucionL.MensajeError;
+                        if (MensajeError == "-1")
+                        {
+                            ModelState.AddModelError("", "No se pudo Modificar el registro");
+                            return View(tbDevolucion);
+                        }
+                        else
+                        {
+                            if (MensajeError != "-1")
+                            {
+                                if (list != null)
+                                {
+                                    if (list.Count != 0)
+                                    {
+                                        foreach (tbDevolucionDetalle Detalle in list)
+                                        {
+                                            Detalle.dev_Id = Convert.ToInt32(MensajeError);
+                                            listDevolucionDetalle = db.UDP_Vent_tbDevolucionDetalle_Insert(
+                                                Detalle.dev_Id,
+                                                Detalle.prod_Codigo,
+                                                Detalle.devd_CantidadProducto,
+                                                Detalle.devd_Descripcion,
+                                                Detalle.devd_Monto);
+                                            foreach (UDP_Vent_tbDevolucionDetalle_Insert_Result SPDevolucionDetalleDet in listDevolucionDetalle)
+                                            {
+                                                MensajeErrorDetalle = SPDevolucionDetalleDet.MensajeError;
+                                                if (MensajeError == "-1")
+                                                {
+                                                    ModelState.AddModelError("", "No se pudo agregar el registro detalle");
+                                                    return View(tbDevolucion);
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                ModelState.AddModelError("", "No se pudo Modificar el registro");
+                                return View(tbDevolucion);
+                            }
+                        }
+                        Tran.Complete();
+                        return RedirectToAction("Index");
+                    }
+                }
+
+                catch (Exception Ex)
+                {
+                    ViewBag.FacturaDetalle = db.tbFacturaDetalle.ToList();
+                    ViewBag.Factura = db.tbFactura.ToList();
+                    ViewBag.Cliente = db.tbCliente.ToList();
+                    ModelState.AddModelError("", "No se pudo Modificar el registro" + Ex.Message.ToString());
+                    return View(tbDevolucion);
+                }
+            }
+            ViewBag.FacturaDetalle = db.tbFacturaDetalle.ToList();
+            ViewBag.Factura = db.tbFactura.ToList();
+            ViewBag.Cliente = db.tbCliente.ToList();
+            return View(tbDevolucion);
+        }
+
+
+
+       [HttpPost]
         public ActionResult UpdateDevolucionDetalle(tbDevolucionDetalle EditDevolucionDetalle)
         {
             try
@@ -330,12 +425,18 @@ namespace ERP_ZORZAL.Controllers
         }
 
         [HttpPost]
-        public ActionResult GetDevolucionDetalle(long devolucionId)
+        public JsonResult GetDevolucionDetalle(long devolucionId)
         {
             var list = db.UDP_Vent_tbDevolucion_GetDetalle(devolucionId).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
+
+        public JsonResult GetDevolucionDetalleEditar(long DetalleDevID)
+        {
+            var list = db.UDP_Vent_tbDevolucion_GetDetalle_Editar(DetalleDevID).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
 
         [HttpPost]
         public JsonResult FiltrarModal(string CodCliente)

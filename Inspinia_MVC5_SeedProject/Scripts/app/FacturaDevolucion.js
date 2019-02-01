@@ -38,6 +38,7 @@ $(document).on("click", "#DevFactura tbody tr td button#AgregarFactura", functio
 
 //Filtro de Modal Producto----------------------------------------------------------------------------
 var FacturaID = $('#fact_Id').val();
+GetIDFactura(FacturaID);
 console.log('facturaid', FacturaID)
 function GetIDFactura(FacturaID, idFactitem) {
     $.ajax({
@@ -48,7 +49,7 @@ function GetIDFactura(FacturaID, idFactitem) {
         data: JSON.stringify({ FacturaID: FacturaID }),
 
         error: function () {
-            alert("No se puede filtrar");
+            //alert("No se puede filtrar");
         },
         success: function (list) {
            
@@ -145,5 +146,22 @@ $(document).on("click", "#DataTable1 tbody tr td button#Agregar", function () {
     $("#CantidadFacturada").val(CantidadItem);
     $("#Impuesto").val(ImpuestoItem);
     $('#ModalBuscarProducto').modal('hide');
+});
+
+//Devolucion Seleccionar Producto
+$(document).on("click", "#DataTable1 tbody tr td button#Agregar", function () {
+    idItem = $(this).closest('tr').data('id');
+    DescItem = $(this).closest('tr').data('desc');
+    DescValor = $(this).closest('tr').data('valor');
+    PorcentajeItem = $(this).closest('tr').data('porcentaje');
+    CantidadItem = $(this).closest('tr').data('cantfacturada');
+    ImpuestoItem = $(this).closest('tr').data('impuesto');
+    $("#prod_Codigo").val(idItem);
+    $("#DescripcionProducto").val(DescItem);
+    $("#PrecioUnit").val(DescValor);
+    $("#PorDescuento").val(PorcentajeItem);
+    $("#CantidadFacturada").val(CantidadItem);
+    $("#ImpuestoD").val(ImpuestoItem);
+    $('#ModalAgregarProducto').modal('hide');
 });
 

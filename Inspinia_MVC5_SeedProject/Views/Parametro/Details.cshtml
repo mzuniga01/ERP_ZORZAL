@@ -1,20 +1,14 @@
 ﻿@model ERP_GMEDINA.Models.tbParametro
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalle";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Details</h2>
+        <h2>Detalle</h2>
         <ol class="breadcrumb">
-            <li>
-                @Html.ActionLink("List", "Index")
-            </li>
-            <li class="active">
-                <strong>Detalle</strong>
-            </li>
         </ol>
     </div>
 </div>
@@ -70,7 +64,8 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.par_RolGerenteTienda)
+            @Html.DisplayFor(model => model.par_RolGerenteTienda) -
+            @Html.DisplayFor(model => model.tbRol3.rol_Descripcion)
         </dd>
 
         <dt>
@@ -78,7 +73,8 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.par_RolCreditoCobranza)
+            @Html.DisplayFor(model => model.par_RolCreditoCobranza) -
+            @Html.DisplayFor(model => model.tbRol2.rol_Descripcion)
         </dd>
 
         <dt>
@@ -86,7 +82,8 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.par_RolSupervisorCaja)
+            @Html.DisplayFor(model => model.par_RolSupervisorCaja) -
+            @Html.DisplayFor(model => model.tbRol4.rol_Descripcion)
         </dd>
 
         <dt>
@@ -94,7 +91,8 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.par_RolCajero)
+            @Html.DisplayFor(model => model.par_RolCajero) -
+            @Html.DisplayFor(model => model.tbRol1.rol_Descripcion)
         </dd>
 
         <dt>
@@ -102,7 +100,8 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.par_RolAuditor)
+            @Html.DisplayFor(model => model.par_RolAuditor) -
+            @Html.DisplayFor(model => model.tbRol.rol_Descripcion)
         </dd>
 
         <dt>

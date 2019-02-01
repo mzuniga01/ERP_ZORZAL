@@ -74,7 +74,11 @@
 
                 <td>
                     @Html.ActionLink("Detalle", "Details", new { id = item.mocja_Id }, new { @class = "btn btn-primary btn-xs" })
-                    @Html.ActionLink("Imprimir", "Index", new { id = item.mocja_Id }, new { @class = "btn btn-white btn-xs" })
+                    @Html.ActionLink("Editar", "Edit", new { id = item.mocja_Id }, new { @class = "btn btn-primary btn-xs" })
+                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalImprimir">
+                        Imprimir
+                    </button>
+
                 </td>
             </tr>
         }
@@ -87,6 +91,29 @@
         </div>
     </div>
  </div>
+
+
+<div class="modal fade" id="ModalImprimir" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Imprimir Arqueo de Caja</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Desea Imprimir Arqueo de Caja?
+            </div>
+            <div class="modal-footer">
+                <a href="@Url.Action("Index","MovimientoCaja")" class="btn btn-primary">Si</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/MovientoCaja.js"></script>
