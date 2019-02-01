@@ -269,9 +269,12 @@ namespace ERP_GMEDINA.Controllers
         [HttpPost]
         public ActionResult UpdateBodegaDetalle(tbBodegaDetalle ACTUALIZAR_tbBodegaDetalle)
         {
+            
             string Msj = "";
             try
             {
+                tbBodegaDetalle obj = db.tbBodegaDetalle.Find(ACTUALIZAR_tbBodegaDetalle.bod_Id);
+                var idbodega = ACTUALIZAR_tbBodegaDetalle.bod_Id;
                 IEnumerable<object> list = null;
                 list = db.UDP_Inv_tbBodegaDetalle_Update(ACTUALIZAR_tbBodegaDetalle.bodd_Id
                                                         , ACTUALIZAR_tbBodegaDetalle.prod_Codigo
@@ -296,7 +299,8 @@ namespace ERP_GMEDINA.Controllers
                 else
                 {
                     //return View("Edit/" + bod_Id);
-                    return RedirectToAction("Index");
+                    //return RedirectToAction("Index");
+                    return RedirectToAction("Edit/" + idbodega);
                 }
             }
             catch (Exception Ex)

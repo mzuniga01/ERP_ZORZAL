@@ -148,14 +148,55 @@
                     $('#ErrorTelephone').text('');
                 }
                 else {
-                    this.style.backgroundColor = "LightPink";
                     $('#ErrorTelephone').text('');
                     $('#MessageForTelephone').after('<ul id="ErrorTelephone" class="validation-summary-errors text-danger">Formato de Télefono: +### ######## </ul>');
                     $("#bod_Telefono").focus();
                 }
             });
-        });
+            //Esto lo Agregó Mirian
+            $("#bod_Telefono").on("keypress keyup blur", function (event) {
+                var Telefono = $(this).val();
+                if (Telefono == '') {
+                    $(this).val('+');
+                }
+                this.value = this.value.replace(/[a-záéíóúüñ#/=]+/ig, "");
+            });
 
+            var depto = $('#dep_Codigo').val();
+            if (depto === '') {
+                document.getElementById("mun_Codigo").disabled = true;
+            }
+            else {
+
+            }
+
+            var x = document.getElementById("mun_Codigo").disabled;
+            if (x == true) {
+                document.getElementById("mun_Codigo").style.backgroundColor = "#EDE8E7";
+                document.getElementById("mun_Codigo").title = "Seleccione primero un departamento";
+            }
+            else {
+            }
+        });
+        $("#dep_Codigo").change(function () {
+            var depto = $('#dep_Codigo').val();
+            if (depto != '') {
+                document.getElementById("mun_Codigo").disabled = false;
+            }
+            else {
+
+            }
+        });
+        $("#dep_Codigo").change(function () {
+            var x = document.getElementById("mun_Codigo").disabled;
+            if (x == true) {
+
+            }
+            else {
+                document.getElementById("mun_Codigo").title = "";
+                document.getElementById("mun_Codigo").style.backgroundColor = "";
+            }
+        });  
 
         //Esto lo agrego Mirian
         var contador = 0;
