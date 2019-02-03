@@ -49,12 +49,18 @@
 
                            @foreach (var item in Model)
                            {
-                               var nombrecliente = (!item.clte_EsPersonaNatural) ? item.clte_NombreComercial : item.clte_Nombres + ' ' + @item.clte_Apellidos;
-                               var Espersona = (item.clte_EsPersonaNatural) ? "Si" : "No";
-                               var ConCredito = (item.clte_ConCredito) ? "Si" : "No";
+                               if (item.clte_Id == 1)
+                               {
+
+                               }
+                               else
+                               {
+                                   var nombrecliente = (!item.clte_EsPersonaNatural) ? item.clte_NombreComercial : item.clte_Nombres + ' ' + @item.clte_Apellidos;
+                                   var Espersona = (item.clte_EsPersonaNatural) ? "Si" : "No";
+                                   var ConCredito = (item.clte_ConCredito) ? "Si" : "No";
                             <tr data-id="@item.clte_Id" data-rtn="@item.clte_Identificacion" data-nombrecliente="@nombrecliente" data-tpi="@item.tbTipoIdentificacion.tpi_Descripcion" data-fecha="@item.clte_FechaNacimiento" data-Espersona="@Espersona" data-ConCredito="@ConCredito" data-DiasCredito="@item.clte_DiasCredito">
 
-                                <td>
+                                <td >
                                     @Html.DisplayFor(modelItem => item.clte_Id)
                                 </td>
                                 <td>
@@ -82,6 +88,7 @@
                                     <button id="seleccionar" type="button" class="btn btn-primary btn-xs">Agregar</button>
                                 </td>
                             </tr>
+                               }
                            }
                         </tbody>
                     </table>

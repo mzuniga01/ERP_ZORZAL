@@ -73,6 +73,12 @@
 
                             @foreach (var item in Model)
                             {
+                                if (item.clte_Id == 1)
+                                {
+
+                                }
+                                else
+                                {
                                 <tr>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.tpi_Descripcion)
@@ -83,10 +89,10 @@
                                     <td>
                                         @if (item.clte_EsPersonaNatural)
                                         {
-                                        <p>
-                                            @Html.DisplayFor(modelItem => item.clte_Nombres)&nbsp
-                                            @Html.DisplayFor(modelItem => item.clte_Apellidos)
-                                        </p>
+                                            <p>
+                                                @Html.DisplayFor(modelItem => item.clte_Nombres)&nbsp
+                                                @Html.DisplayFor(modelItem => item.clte_Apellidos)
+                                            </p>
                                         }
                                         else
                                         {
@@ -103,19 +109,21 @@
                                             @Html.DisplayFor(modelItem => item.clte_ContactoTelefono)
                                         }
                                     </td>
-                                        @if (item.clte_EsActivo )
-                                        {
+                                    @if (item.clte_EsActivo)
+                                    {
                                         <td>Sí</td>
-                                        }
-                                        else
-                                        {
-                                         <td>No</td>
-                                        }
+                                    }
+                                    else
+                                    {
+                                        <td>No</td>
+                                    }
                                     <td>
                                         @Html.ActionLink("Detalles", "Details", new { id = item.clte_Id }, new { @class = "btn btn-primary btn-xs" })
                                         @Html.ActionLink("Editar", "Edit", new { id = item.clte_Id }, new { @class = "btn btn-white btn-xs" })
                                     </td>
+                                   
                                 </tr>
+                                }
                             }
                         </tbody>
                         
