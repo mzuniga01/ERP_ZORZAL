@@ -354,24 +354,14 @@
 
     var contador = 0;
     $(document).keypress(function (e) {
-        //console.log('Hola', e.target.id);
         var IDInput = e.target.id;
         if (e.which == 13) {
             if (IDInput == 'prod_CodigoBarras') {
-                /////
                 $(function () {
-                    //console.log('1')
-                    //$('#prod_CodigoBarras').keydown(function (e) {
-                    //console.log('2')
-                    //if (e.keyCode == 13) {
                     $("#prod_CodigoBarras").val();
-                    //$("#seleccionar").focus().click();
-                    ///
                     var Bod_Id = $('#bod_Id').val();
                     var Barras = $('#prod_CodigoBarras').val();
-
-                    //console.log(Barras);
-                    //console.log(Bod_Id);
+                    
                     $.ajax({
                         type: 'POST',
                         url: '/Bodega/BuscarCodigoBarras',
@@ -382,9 +372,9 @@
 
                     }).done(function (data) {
                         if (data.length > 0) {
-                            //location.reload();
                             $('#Error_Barras').text('');
                             $('#ErrorBarras_Create').after('<ul id="Error_Barras" class="validation-summary-errors text-danger">*Codigo De Barras Existente</ul>');
+                            $('#prod_CodigoBarras').val('');
 
                         }
                         else {
@@ -418,7 +408,34 @@
                                         $('#prod_Descripcion').val(data_pDescripcion);
                                     })
                                     $("#bodd_CantidadMinima").focus();
+                                    $.ajax({
+                                        url: "/Bodega/ProductosRepetidos",
+                                        method: "POST",
+                                        dataType: 'json',
+                                        contentType: "application/json; charset=utf-8",
+                                        data: JSON.stringify({ data_producto: data_producto }),
+                                    })
+                                        .done(function (datos) {
+                                            //if (datos.length > 0) {
+                                            if (datos == data_producto) {
+                                                //alert('Es Igual.')
+                                                $('#prod_Codigo').val('');
+                                                $('#prod_CodigoBarras').val('');
+                                                $('#prod_Descripcion').val('');
+                                                $('#pcat_Id').val('');
+                                                $('#pscat_Id').val('');
+                                                $('#uni_Id').val('');
+                                                $('#Error_Barras').text('');
+                                                $('#ErrorBarras_Create').after('<ul id="Error_Barras" class="validation-summary-errors text-danger">*El Codigo ya ha sido ingresado</ul>');
+                                                $("#prod_CodigoBarras").focus();
+                                            }
+                                            else {
+                                                //alert('NO ES IGUAL')
 
+                                            }
+
+
+                                        })
                                 }
                                 else {
                                     $('#Error_Barras').text('');

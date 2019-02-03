@@ -102,17 +102,18 @@ namespace ERP_GMEDINA.Controllers
         }
 
         [HttpPost]
-        public JsonResult removeBodegaDetalle(tbBodegaDetalle bodedaDetalle)
+        public JsonResult removeBodegaDetalle(tbBodegaDetalle BorrarItem)
         {
-            var list = (List<tbBodegaDetalle>)Session["tbBodegaDetalles"];
+            var list = (List<tbBodegaDetalle>)Session["tbBodegaDetalle"];
 
             if (list != null)
             {
-                var itemToRemove = list.Single(r => r.bodd_Id == bodedaDetalle.bodd_Id);
+                var itemToRemove = list.Single(r => r.bodd_Id == BorrarItem.bodd_Id);
                 list.Remove(itemToRemove);
-                Session["tbBodegaDetalless"] = list;
+                Session["tbBodegaDetalle"] = list;
             }
-            return Json(list, JsonRequestBehavior.AllowGet);
+            //return Json(list, JsonRequestBehavior.AllowGet);
+            return Json("", JsonRequestBehavior.AllowGet);
 
         }
         
@@ -572,7 +573,30 @@ namespace ERP_GMEDINA.Controllers
           
         }
 
+        //Validar que no hayan campos repetidos en la variable de session:
+        [HttpPost]
+        public JsonResult ProductosRepetidos(string data_producto)
+        {
+            var Datos = "";
+            if (Session["tbBodegaDetalle"] == null)
+            {
 
+            }
+            else
+            {
+                var menu = Session["tbBodegaDetalle"] as List<tbBodegaDetalle>;
+
+                foreach (var t in menu)
+                {
+                    if (t.prod_Codigo == data_producto)
+                        Datos = data_producto;
+                }
+
+
+            }
+
+            return Json(Datos);
+        }
 
 
 

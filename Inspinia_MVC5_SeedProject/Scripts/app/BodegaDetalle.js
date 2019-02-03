@@ -124,6 +124,7 @@ $(document).on("click", "#Table_BuscarProductoBodega tbody tr td button#seleccio
     $("#pscat_Id").val(psubctItem);
     $("#pcat_Id").val(pcatItem);
 
+    $('#Error_Barras').text('');
     //$("#cod").val(idItem);
 });
 ///Fin
@@ -135,7 +136,7 @@ $(document).on("click", "#tblBodega tbody tr td button#removeBodegaDetalle", fun
     $(this).closest('tr').remove();
     idItem = $(this).closest('tr').data('id');
     var BorrarItems = {
-        bodd_Id : idItem,
+        Barras : idItem,
     };
     $.ajax({
         url: "/Bodega/removeBodegaDetalle",

@@ -207,14 +207,7 @@
                 if (IDInput == 'prod_CodigoBarras') {
                     /////
                     $(function () {
-                        console.log('1')
-                        //$('#prod_CodigoBarras').keydown(function (e) {
-                        console.log('2')
-                        //if (e.keyCode == 13) {
                         $("#prod_CodigoBarras").val();
-                        //$("#seleccionar").focus().click();
-                        ///
-                     
                                 var CBarras_Nuevo = $("#prod_CodigoBarras").val();
                                 $.ajax({
                                     url: "/Bodega/BuscarProductos",
@@ -226,10 +219,6 @@
                                     }),
                                 }).done(function (data) {
                                     if (data.length > 0) {
-                                        //alert('aqui');
-                                        console.log(data);
-                                        //$("#seleccionar").focus().click();
-                                        
                                         $.each(data, function (key, val) {
                                             console.log('each')
                                             data_producto = val.prod_Codigo;
@@ -244,9 +233,37 @@
                                             $('#uni_Id').val(data_unidad);
                                             $('#prod_Descripcion').val(data_pDescripcion);
                                         })
+                                        $('#Error_Barras').text('');
                                         $("#bodd_CantidadMinima").focus();
+                                        ///--
+                                        $.ajax({
+                                            url: "/Bodega/ProductosRepetidos",
+                                            method: "POST",
+                                            dataType: 'json',
+                                            contentType: "application/json; charset=utf-8",
+                                            data: JSON.stringify({ data_producto: data_producto }),
+                                        })
+                                            .done(function (datos) {
+                                                //if (datos.length > 0) {
+                                                if (datos == data_producto) {
+                                                    //alert('Es Igual.')
+                                                    $('#prod_Codigo').val('');
+                                                    $('#prod_CodigoBarras').val('');
+                                                    $('#prod_Descripcion').val('');
+                                                    $('#pcat_Id').val('');
+                                                    $('#pscat_Id').val('');
+                                                    $('#uni_Id').val('');
+                                                    $('#Error_Barras').text('');
+                                                    $('#ErrorBarras_Create').after('<ul id="Error_Barras" class="validation-summary-errors text-danger">*El Codigo ya ha sido ingresado</ul>');
+                                                    $("#prod_CodigoBarras").focus();
+                                                }
+                                                else {
+                                                    //alert('NO ES IGUAL')
+                                                   
+                                                    }
 
-                                       
+
+                                            })
 
                                     }
                                     else {
@@ -262,6 +279,11 @@
                     return false;
             }
         });
+
+
+
+
+
         $('#AgregarBodegaDetalle_Prueba').keypress(function () {
             console.log('boton');
             var Producto = $('#prod_Codigo').val();
