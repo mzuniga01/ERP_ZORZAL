@@ -47,9 +47,8 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.suc_Id, "Sucursal", new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    <select id="suc_Id" name="suc_Id" class="form-control" readonly>
-                                        <option value="1" class="form-control">San Pedro Sula</option>
-                                    </select>
+                                    <input class="form-control" readonly value="@ViewBag.suc_Descripcion" />
+                                    <input class="form-control" readonly value="@ViewBag.suc_Id" id="suc_Id" name="suc_Id" type="hidden" />
                                 </div>
                             </div>
 
@@ -145,11 +144,19 @@
                             @*---------------Botones---------------------*@
                             <div class="form-group">
                                 <div class="col-md-12 text-center">
-                                    <input type="submit" value="Guardar" class="btn btn-primary"/>
-                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
-                                    <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-danger" data-toggle="modal" data-target="#Anular2">@*boton Anular Cupon Descuento*@
+                                    @if (Model.cdto_Anulado == false)
+                                    {
+                                        <input type="submit" value="Guardar" class="btn btn-primary" />
+                                        @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                        <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-danger" data-toggle="modal" data-target="#Anular2">
+                                            @*boton Anular Cupon Descuento*@
                                         Anular
                                     </button>
+                                    }
+                                    else
+                                    {
+
+                                    }
                                 </div>
                             </div>
                             @*---------------FIN Botones---------------------*@
@@ -199,7 +206,7 @@
                 ¿Está seguro de Anular este Cupón Descuento?
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="AnularCuponDescuento();" data-dismiss="modal">Si</button>
+                <button type="button" class="btn btn-danger" onclick="AnularCuponDescuento();" data-dismiss="modal">Si</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
             </div>
         </div>

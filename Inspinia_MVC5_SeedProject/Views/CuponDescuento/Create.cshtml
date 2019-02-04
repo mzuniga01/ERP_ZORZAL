@@ -40,9 +40,9 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.suc_Id, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    <select id="suc_Id" name="suc_Id" class="form-control" readonly>
-                                        <option value="1">San Pedro Sula</option>
-                                    </select>
+                                    <input class="form-control" readonly value="@ViewBag.suc_Descripcion" />
+                                    <input class="form-control" readonly value="@ViewBag.suc_Id" id="suc_Id" name="suc_Id" type="hidden"/>
+                                    <span class="validation-error">  @Html.ValidationMessageFor(model => model.suc_Id)</span>
                                 </div>
                             </div>
 

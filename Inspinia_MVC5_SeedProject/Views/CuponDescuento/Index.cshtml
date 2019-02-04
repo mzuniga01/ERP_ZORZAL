@@ -70,9 +70,19 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.cdto_MontoDescuento)
                                     </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.cdto_Redimido)
-                                    </td>
+                                    @if (item.cdto_Redimido == false)
+                                    {
+                                        <td>
+                                           No
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                            Si
+                                        </td>
+                                    }
+
                                     @if (item.cdto_Anulado == false)
                                     {
                                         <td> No</td>

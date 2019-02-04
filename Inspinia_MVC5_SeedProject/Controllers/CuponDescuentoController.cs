@@ -40,7 +40,17 @@ namespace ERP_GMEDINA.Controllers
         // GET: /CuponDescuento/Create
         public ActionResult Create()
         {
-            ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "suc_Descripcion");
+            int idUser = 0;
+            GeneralFunctions Login = new GeneralFunctions();
+            List<tbUsuario> User = Login.getUserInformation();
+            foreach (tbUsuario Usuario in User)
+            {
+                idUser = Convert.ToInt32(Usuario.emp_Id);
+            }
+            ViewBag.suc_Descripcion = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Descripcion).SingleOrDefault();
+            ViewBag.suc_Id = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Id).SingleOrDefault();
+
+            //ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "suc_Descripcion");
             return View();
         }
         [HttpPost]
@@ -52,6 +62,13 @@ namespace ERP_GMEDINA.Controllers
                 try
                 {
                     var MensajeError = "";
+                    tbCuponDescuento.cdto_PorcentajeDescuento = 0;
+                    tbCuponDescuento.cdto_MaximoMontoDescuento = 0;
+                    tbCuponDescuento.cdto_MontoDescuento = 10;
+                    tbCuponDescuento.cdto_CantidadCompraMinima = 100;
+                    tbCuponDescuento.cdto_Redimido = false;
+                    tbCuponDescuento.cdto_Anulado = false;
+                    tbCuponDescuento.cdto_EsImpreso = false;
                     IEnumerable<object> list = null;
                     list = db.UDP_Vent_tbCuponDescuento_Insert(tbCuponDescuento.suc_Id, tbCuponDescuento.cdto_FechaEmision, 
                                                      tbCuponDescuento.cdto_FechaVencimiento, tbCuponDescuento.cdto_PorcentajeDescuento,
@@ -80,6 +97,16 @@ namespace ERP_GMEDINA.Controllers
         // GET: /CuponDescuento/Edit/5
         public ActionResult Edit(int? id)
         {
+            int idUser = 0;
+            GeneralFunctions Login = new GeneralFunctions();
+            List<tbUsuario> User = Login.getUserInformation();
+            foreach (tbUsuario Usuario in User)
+            {
+                idUser = Convert.ToInt32(Usuario.emp_Id);
+            }
+            ViewBag.suc_Descripcion = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Descripcion).SingleOrDefault();
+            ViewBag.suc_Id = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Id).SingleOrDefault();
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -89,7 +116,7 @@ namespace ERP_GMEDINA.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "suc_Descripcion", tbCuponDescuento.suc_Id);
+            //ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "suc_Descripcion", tbCuponDescuento.suc_Id);
             return View(tbCuponDescuento);
         }
 

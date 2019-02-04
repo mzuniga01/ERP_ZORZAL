@@ -37,7 +37,8 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.suc_Id, new { @class = "control-label required col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.suc_Id, new { htmlAttributes = new { @class = "form-control"@*, @readonly = "readonly"*@ } })
+                                    <input class="form-control" readonly value="@ViewBag.suc_Descripcion" name="suc_Descripcion" id="suc_Descripcion"/>
+                                    <input class="form-control" readonly value="@ViewBag.suc_Id" id="suc_Id" name="suc_Id" type="hidden" />
                                     <span class="validation-error">  @Html.ValidationMessageFor(model => model.suc_Id)</span>
                                 </div>
                             </div>

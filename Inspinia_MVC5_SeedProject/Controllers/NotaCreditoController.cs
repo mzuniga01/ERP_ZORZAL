@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using ERP_GMEDINA.Models;
 
-namespace ERP_ZORZAL.Controllers
+namespace ERP_GMEDINA.Controllers
 {
     public class NotaCreditoController : Controller
     {
@@ -54,11 +54,21 @@ namespace ERP_ZORZAL.Controllers
         // GET: /NotaCredito/Create
         public ActionResult Create()
         {
-            ViewBag.nocre_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
-            ViewBag.nocre_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
-            ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo");
-            ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_Identificacion");
-            ViewBag.dev_Id = new SelectList(db.tbDevolucion, "dev_Id", "dev_Id");
+            int idUser = 0;
+            GeneralFunctions Login = new GeneralFunctions();
+            List<tbUsuario> User = Login.getUserInformation();
+            foreach (tbUsuario Usuario in User)
+            {
+                idUser = Convert.ToInt32(Usuario.emp_Id);
+            }
+            ViewBag.suc_Descripcion = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Descripcion).SingleOrDefault();
+            ViewBag.suc_Id = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Id).SingleOrDefault();
+
+            //ViewBag.nocre_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+            //ViewBag.nocre_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+            //ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo");
+            //ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_Identificacion");
+            //ViewBag.dev_Id = new SelectList(db.tbDevolucion, "dev_Id", "dev_Id");
             ViewBag.Devolucion = db.tbDevolucionDetalle.ToList();
             ViewBag.Cliente = db.tbCliente.ToList();
 
@@ -96,8 +106,8 @@ namespace ERP_ZORZAL.Controllers
                     if (MensajeError == "-1")
                     {
                         ModelState.AddModelError("", "No se pudo Insertar el registro, favor contacte al administrador.");
-                        ViewBag.Devolucion = db.tbDevolucionDetalle.ToList();
-                        ViewBag.Cliente = db.tbCliente.ToList();
+                        //ViewBag.Devolucion = db.tbDevolucionDetalle.ToList();
+                        //ViewBag.Cliente = db.tbCliente.ToList();
                         return View(tbNotaCredito);
                     }
                     else
@@ -109,18 +119,18 @@ namespace ERP_ZORZAL.Controllers
                 {
                     Ex.Message.ToString();
                     ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
-                    ViewBag.Devolucion = db.tbDevolucionDetalle.ToList();
-                    ViewBag.Cliente = db.tbCliente.ToList();
+                    //ViewBag.Devolucion = db.tbDevolucionDetalle.ToList();
+                    //ViewBag.Cliente = db.tbCliente.ToList();
                     return View(tbNotaCredito);
 
                 }
             }
 
-            ViewBag.nocre_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbNotaCredito.nocre_UsuarioCrea);
-            ViewBag.nocre_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbNotaCredito.nocre_UsuarioModifica);
-            ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_Identificacion", tbNotaCredito.clte_Id);
-            ViewBag.dev_Id = new SelectList(db.tbDevolucion, "dev_Id", "dev_Id", tbNotaCredito.dev_Id);
-            ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo", tbNotaCredito.suc_Id);
+            //ViewBag.nocre_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbNotaCredito.nocre_UsuarioCrea);
+            //ViewBag.nocre_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbNotaCredito.nocre_UsuarioModifica);
+            //ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_Identificacion", tbNotaCredito.clte_Id);
+            //ViewBag.dev_Id = new SelectList(db.tbDevolucion, "dev_Id", "dev_Id", tbNotaCredito.dev_Id);
+            //ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo", tbNotaCredito.suc_Id);
             ViewBag.Devolucion = db.tbDevolucionDetalle.ToList();
             ViewBag.Cliente = db.tbCliente.ToList();
             return View(tbNotaCredito);
