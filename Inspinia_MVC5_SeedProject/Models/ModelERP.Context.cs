@@ -711,15 +711,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Acce_tbRol_Update_Result>("UDP_Acce_tbRol_Update", rol_IdParameter, rol_DescripcionParameter);
         }
     
-        public virtual ObjectResult<string> spGetSubCategoria(Nullable<int> pcat_Id)
-        {
-            var pcat_IdParameter = pcat_Id.HasValue ?
-                new ObjectParameter("pcat_Id", pcat_Id) :
-                new ObjectParameter("pcat_Id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("spGetSubCategoria", pcat_IdParameter);
-        }
-    
         public virtual ObjectResult<UDP_Inv_tbProductoSubcategoria_Insert_Result> UDP_Inv_tbProductoSubcategoria_Insert(string pscat_Descripcion, Nullable<int> pcat_Id, Nullable<decimal> pscat_ISV)
         {
             var pscat_DescripcionParameter = pscat_Descripcion != null ?
@@ -1009,24 +1000,6 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("mun_Codigo", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbMunicipio_Delete_Result>("UDP_Gral_tbMunicipio_Delete", mun_CodigoParameter);
-        }
-    
-        public virtual ObjectResult<spGetCategoriaProducto_Result> spGetCategoriaProducto(Nullable<int> codsubcategoria)
-        {
-            var codsubcategoriaParameter = codsubcategoria.HasValue ?
-                new ObjectParameter("codsubcategoria", codsubcategoria) :
-                new ObjectParameter("codsubcategoria", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetCategoriaProducto_Result>("spGetCategoriaProducto", codsubcategoriaParameter);
-        }
-    
-        public virtual ObjectResult<spGetSubCategoriaProducto_Result> spGetSubCategoriaProducto(Nullable<int> codCategoria)
-        {
-            var codCategoriaParameter = codCategoria.HasValue ?
-                new ObjectParameter("CodCategoria", codCategoria) :
-                new ObjectParameter("CodCategoria", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetSubCategoriaProducto_Result>("spGetSubCategoriaProducto", codCategoriaParameter);
         }
     
         public virtual ObjectResult<SDP_tbProductoSubcategoria_Select_Result> SDP_tbProductoSubcategoria_Select(Nullable<int> pscat_Id)
@@ -1481,32 +1454,6 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("rol_Id", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Acce_tbRolesUsuario_Insert_Result>("UDP_Acce_tbRolesUsuario_Insert", usu_IdParameter, rol_IdParameter);
-        }
-    
-        public virtual ObjectResult<SP_Valores_Result> SP_Valores(Nullable<int> pcat_Id, Nullable<int> pscat_Id, ObjectParameter prod_Codigo)
-        {
-            var pcat_IdParameter = pcat_Id.HasValue ?
-                new ObjectParameter("pcat_Id", pcat_Id) :
-                new ObjectParameter("pcat_Id", typeof(int));
-    
-            var pscat_IdParameter = pscat_Id.HasValue ?
-                new ObjectParameter("pscat_Id", pscat_Id) :
-                new ObjectParameter("pscat_Id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_Valores_Result>("SP_Valores", pcat_IdParameter, pscat_IdParameter, prod_Codigo);
-        }
-    
-        public virtual ObjectResult<spGetValue_Result> spGetValue(Nullable<int> pcat_Id, Nullable<int> pscat_Id, ObjectParameter prod_Codigo)
-        {
-            var pcat_IdParameter = pcat_Id.HasValue ?
-                new ObjectParameter("pcat_Id", pcat_Id) :
-                new ObjectParameter("pcat_Id", typeof(int));
-    
-            var pscat_IdParameter = pscat_Id.HasValue ?
-                new ObjectParameter("pscat_Id", pscat_Id) :
-                new ObjectParameter("pscat_Id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetValue_Result>("spGetValue", pcat_IdParameter, pscat_IdParameter, prod_Codigo);
         }
     
         public virtual ObjectResult<UDP_Gral_tbDepartamento_Insert_Result> UDP_Gral_tbDepartamento_Insert(string dep_Codigo, string dep_Nombre, Nullable<int> dep_UsuarioCrea, Nullable<System.DateTime> dep_FechaCrea)
