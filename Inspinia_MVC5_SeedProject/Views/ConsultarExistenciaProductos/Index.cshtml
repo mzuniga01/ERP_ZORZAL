@@ -56,7 +56,7 @@
                 </div>
                 <div class="ibox-content">
 
-<table id="example" class="display" style="width:100%">
+<table id="example" class="table table table-striped table-bordered dataTable no-footer" style="width:100%">
     <thead>
         <tr>
             
@@ -230,14 +230,16 @@
 
       var table =  $('#example').DataTable(
         {
-            "searching": true,
+            "searching": false,
 
             "oLanguage": {
                 "oPaginate": {
                     "sNext": "Siguiente",
                     "sPrevious": "Anterior",
                 },
-                //"sSearch": "Buscar",
+                "sEmptyTable": "No hay registros",
+                "sInfoEmpty": "Mostrando 0 de 0 Entradas",
+                "sSearch": "Buscar",
                 "sLengthMenu": "Mostrar _MENU_ registros por página",
                 "sInfo": "Mostrando _START_ a _END_ Entradas",
                

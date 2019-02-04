@@ -13,11 +13,20 @@ namespace ERP_GMEDINA.Controllers
 {
     public class BodegaController : Controller
     {
-        private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
+        private ERP_ZORZALEntities db = new ERP_ZORZALEntities();      
+        GeneralFunctions Function = new GeneralFunctions();
 
         // GET: /Bodega/
         public ActionResult Index()
         {
+            if (Function.Sesiones("Bodega/Index"))
+            {
+
+            }
+            else
+            {
+                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+            }
             var tbbodega = db.tbBodega.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbMunicipio);
             this.AllLists();
             return View(tbbodega.ToList());
@@ -26,6 +35,14 @@ namespace ERP_GMEDINA.Controllers
         // GET: /Bodega/Details/5
         public ActionResult Details(int? id)
         {
+            if (Function.Sesiones("Bodega/Details"))
+            {
+
+            }
+            else
+            {
+                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -120,6 +137,14 @@ namespace ERP_GMEDINA.Controllers
         // GET: /Bodega/Create
         public ActionResult Create()
         {
+            if (Function.Sesiones("Bodega/Create"))
+            {
+
+            }
+            else
+            {
+                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+            }
             this.AllLists();
             Session["tbBodegaDetalle"] = null;
             return View();
@@ -215,6 +240,14 @@ namespace ERP_GMEDINA.Controllers
         // GET: /Bodega/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (Function.Sesiones("Bodega/Edit"))
+            {
+
+            }
+            else
+            {
+                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+            }
             try
             {
                 ViewBag.smserror = TempData["smserror"].ToString();

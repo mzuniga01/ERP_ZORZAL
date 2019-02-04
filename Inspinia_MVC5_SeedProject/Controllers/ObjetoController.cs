@@ -19,6 +19,14 @@ namespace ERP_ZORZAL.Controllers
         {
             if (Function.GetUserLogin())
             {
+                if (Function.Sesiones("Objeto/Index"))
+                {
+
+                }
+                else
+                {
+                    return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+                }
                 if (Function.GetUserRols("Objeto/Index"))
                 {
                     return View(db.tbObjeto.ToList());
@@ -37,6 +45,14 @@ namespace ERP_ZORZAL.Controllers
         {
             if (Function.GetUserLogin())
             {
+                if (Function.Sesiones("Objeto/Details"))
+                {
+
+                }
+                else
+                {
+                    return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+                }
                 if (Function.GetUserRols("Objeto/Details"))
                 {
                     if (id == null)
@@ -64,6 +80,14 @@ namespace ERP_ZORZAL.Controllers
         {
             if (Function.GetUserLogin())
             {
+                if (Function.Sesiones("Objeto/Create"))
+                {
+
+                }
+                else
+                {
+                    return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+                }
                 if (Function.GetUserRols("Objeto/Create"))
                 {
                     return View();
@@ -131,6 +155,14 @@ namespace ERP_ZORZAL.Controllers
         {
             if (Function.GetUserLogin())
             {
+                if (Function.Sesiones("Objeto/Edit"))
+                {
+
+                }
+                else
+                {
+                    return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+                }
                 if (Function.GetUserRols("Objeto/Edit"))
                 {
                     if (id == null)

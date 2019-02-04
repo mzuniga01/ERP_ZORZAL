@@ -15,10 +15,19 @@ namespace ERP_ZORZAL.Controllers
     public class EntradaController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
+        GeneralFunctions Function = new GeneralFunctions();
 
         // GET: /Entrada/
         public ActionResult Index()
         {
+            if (Function.Sesiones("Entrada/Index"))
+            {
+
+            }
+            else
+            {
+                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+            }
             var tbentrada = db.tbEntrada.Include(t => t.tbBodega).Include(t => t.tbEstadoMovimiento).Include(t => t.tbProveedor).Include(t => t.tbTipoEntrada);
             return View(tbentrada.ToList());
         }
@@ -26,6 +35,14 @@ namespace ERP_ZORZAL.Controllers
         // GET: /Entrada/Details/5
         public async Task<ActionResult> Details(int? id)
         {
+            if (Function.Sesiones("Entrada/Details"))
+            {
+
+            }
+            else
+            {
+                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -55,6 +72,14 @@ namespace ERP_ZORZAL.Controllers
         // GET: /Entrada/Create
         public ActionResult Create()
         {
+            if (Function.Sesiones("Entrada/Create"))
+            {
+
+            }
+            else
+            {
+                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+            }
             string UserName = "";
             int idUser = 0;
             GeneralFunctions Login = new GeneralFunctions();
@@ -87,6 +112,14 @@ namespace ERP_ZORZAL.Controllers
         // GET: /Entrada/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (Function.Sesiones("Entrada/Edit"))
+            {
+
+            }
+            else
+            {
+                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

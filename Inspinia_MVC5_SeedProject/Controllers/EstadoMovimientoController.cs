@@ -13,10 +13,19 @@ namespace Inspinia_MVC5_SeedProject.Controllers
     public class EstadoMovimientoController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
+        GeneralFunctions Function = new GeneralFunctions();
 
         // GET: /EstadoMovimiento/
         public ActionResult Index()
         {
+            if (Function.Sesiones("EstadoMovimiento/Index"))
+            {
+
+            }
+            else
+            {
+                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+            }
             return View(db.tbEstadoMovimiento.ToList());
         }
         
@@ -24,6 +33,14 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         // GET: /EstadoMovimiento/Details/5
         public ActionResult Details(byte? id)
         {
+            if (Function.Sesiones("EstadoMovimiento/Details"))
+            {
+
+            }
+            else
+            {
+                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -49,6 +66,14 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         // GET: /EstadoMovimiento/Create
         public ActionResult Create()
         {
+            if (Function.Sesiones("EstadoMovimiento/Create"))
+            {
+
+            }
+            else
+            {
+                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+            }
             return View();
         }
 
@@ -86,6 +111,14 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         // GET: /EstadoMovimiento/Edit/5
         public ActionResult Edit(byte? id)
         {
+            if (Function.Sesiones("EstadoMovimiento/Edit"))
+            {
+
+            }
+            else
+            {
+                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+            }
             try
             {
                 ViewBag.smserror = TempData["smserror"].ToString();

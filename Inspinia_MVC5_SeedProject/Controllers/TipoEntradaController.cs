@@ -13,16 +13,35 @@ namespace ERP_ZORZAL.Controllers
     public class TipoEntradaController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
+        GeneralFunctions Function = new GeneralFunctions();
 
         // GET: /TipoEntrada/
         public ActionResult Index()
         {
+            if (Function.Sesiones("TipoEntrada/Index"))
+            {
+
+            }
+            else
+            {
+                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+            }
+
             return View(db.tbTipoEntrada.ToList());
         }
 
         // GET: /TipoEntrada/Details/5
         public ActionResult Details(byte? id)
         {
+            if (Function.Sesiones("TipoEntrada/Details"))
+            {
+
+            }
+            else
+            {
+                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -38,6 +57,14 @@ namespace ERP_ZORZAL.Controllers
         // GET: /TipoEntrada/Create
         public ActionResult Create()
         {
+            if (Function.Sesiones("TipoEntrada/Create"))
+            {
+
+            }
+            else
+            {
+                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+            }
             return View();
         }
 
@@ -85,6 +112,15 @@ namespace ERP_ZORZAL.Controllers
         // GET: /TipoEntrada/Edit/5
         public ActionResult Edit(byte? id)
         {
+            if (Function.Sesiones("TipoEntrada/Edit"))
+            {
+
+            }
+            else
+            {
+                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+            }
+
             ViewBag.id = id;
             if (id == null)
             {

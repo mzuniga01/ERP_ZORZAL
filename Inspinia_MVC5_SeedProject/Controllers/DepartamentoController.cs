@@ -20,6 +20,14 @@ namespace ERP_ZORZAL.Controllers
         {
             if (Function.GetUserLogin())
             {
+                if (Function.Sesiones("Departamento/Index"))
+                {
+
+                }
+                else
+                {
+                    return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+                }
                 if (Function.GetUserRols("Departamento/Index"))
                 {
                     try
@@ -55,8 +63,17 @@ namespace ERP_ZORZAL.Controllers
             //Validar Inicio de Sesión
             if (Function.GetUserLogin())
             {
+                if (Function.Sesiones("Departamento/Details"))
+                {
+
+                }
+                else
+                {
+                    return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+                }
                 if (Function.GetUserRols("Departamento/Details"))
                 {
+
                     if (id == null)
                     {
                         return RedirectToAction("Index");
@@ -82,6 +99,14 @@ namespace ERP_ZORZAL.Controllers
             //Validar Inicio de Sesión
             if (Function.GetUserLogin())
             {
+                if (Function.Sesiones("Departamento/Create"))
+                {
+
+                }
+                else
+                {
+                    return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+                }
                 if (Function.GetUserRols("Departamento/Create"))
                 {
                     ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre", "Seleccione");
@@ -175,6 +200,14 @@ namespace ERP_ZORZAL.Controllers
             //Validar Inicio de Sesión
             if (Function.GetUserLogin())
             {
+                if (Function.Sesiones("Departamento/Edit"))
+                {
+
+                }
+                else
+                {
+                    return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+                }
                 if (Function.GetUserRols("Departamento/Edit"))
                 {
                     Session["tbMunicipio"] = null;

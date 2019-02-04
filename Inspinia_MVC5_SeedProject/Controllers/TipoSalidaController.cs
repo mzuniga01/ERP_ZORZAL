@@ -13,16 +13,34 @@ namespace ERP_ZORZAL.Controllers
     public class TipoSalidaController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
+        GeneralFunctions Function = new GeneralFunctions();
 
         // GET: /TipoSalida/
         public ActionResult Index()
         {
+            if (Function.Sesiones("TipoSalida/Index"))
+            {
+
+            }
+            else
+            {
+                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+            }
             return View(db.tbTipoSalida.ToList());
         }
 
         // GET: /TipoSalida/Details/5
         public ActionResult Details(byte? id)
         {
+            if (Function.Sesiones("TipoSalida/Details"))
+            {
+
+            }
+            else
+            {
+                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -48,6 +66,15 @@ namespace ERP_ZORZAL.Controllers
         // GET: /TipoSalida/Create
         public ActionResult Create()
         {
+            if (Function.Sesiones("TipoSalida/Create"))
+            {
+
+            }
+            else
+            {
+                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+            }
+
             return View();
         }
 
@@ -102,12 +129,21 @@ namespace ERP_ZORZAL.Controllers
             }
            
 
-            return View("Index");
+           
         }
 
         // GET: /TipoSalida/Edit/5
         public ActionResult Edit(byte? id)
         {
+            if (Function.Sesiones("TipoSalida/Edit"))
+            {
+
+            }
+            else
+            {
+                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

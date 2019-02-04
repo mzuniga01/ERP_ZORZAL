@@ -14,10 +14,20 @@ namespace ERP_GMEDINA.Controllers
     public class SalidaController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
+        GeneralFunctions Function = new GeneralFunctions();
 
         // GET: /Salida/
         public ActionResult Index()
         {
+            if (Function.Sesiones("Salida/Index"))
+            {
+
+            }
+            else
+            {
+                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+            }
+
             var tbsalida = db.tbSalida;
             //.Include(t => t.tbUsuario).Include(t => t.tbBodega).Include(t => t.tbEstadoMovimiento).Include(t => t.tbTipoSalida)
             return View(tbsalida.ToList());
@@ -26,6 +36,15 @@ namespace ERP_GMEDINA.Controllers
         // GET: /Salida/Details/5
         public ActionResult Details(int? id)
         {
+            if (Function.Sesiones("Salida/Details"))
+            {
+
+            }
+            else
+            {
+                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -41,6 +60,15 @@ namespace ERP_GMEDINA.Controllers
         // GET: /Salida/Create
         public ActionResult Create()
         {
+            if (Function.Sesiones("Salida/Create"))
+            {
+
+            }
+            else
+            {
+                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+            }
+
             string UserName = "";
             int idUser = 0;
             GeneralFunctions Login = new GeneralFunctions();
@@ -242,6 +270,15 @@ namespace ERP_GMEDINA.Controllers
         // GET: /Salida/Edit
         public ActionResult Edit(int? id)
         {
+            if (Function.Sesiones("Salida/Edit"))
+            {
+
+            }
+            else
+            {
+                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

@@ -1,9 +1,6 @@
 ﻿$(document).ready(function () {
 
     var rolId = $("#dd").text();
-    console.log("Hola Desde tiempos asestrales");
-
-
     $.ajax({
         url: "/Rol/GetObjetosAsignados",
         method: "POST",
@@ -21,16 +18,14 @@
                             "sNext": "Siguiente",
                             "sPrevious": "Anterior",
                         },
+                        "sEmptyTable": "No hay registros",
+                        "sInfoEmpty": "Mostrando 0 de 0 Entradas",
                         "sSearch": "Buscar",
-                        "sLengthMenu": "Mostrar _MENU_ Registros Por Página",
-                        "sInfo": "Mostrando _START_ a _END_ Entradas"
-
+                        "sLengthMenu": "Mostrar _MENU_ registros por página",
+                        "sInfo": "Mostrando _START_ a _END_ Entradas",
                     },
 
                 });
-                $('#DataTable> tbody > tr').each(function () {
-                    $(this).remove();
-                })
             }
             else {
                 $.each(data, function (i, model) {
@@ -49,9 +44,11 @@
                             "sNext": "Siguiente",
                             "sPrevious": "Anterior",
                         },
+                        "sEmptyTable": "No hay registros",
+                        "sInfoEmpty": "Mostrando 0 de 0 Entradas",
                         "sSearch": "Buscar",
-                        "sLengthMenu": "Mostrar _MENU_ Registros Por Página",
-                        "sInfo": "Mostrando _START_ a _END_ Entradas"
+                        "sLengthMenu": "Mostrar _MENU_ registros por página",
+                        "sInfo": "Mostrando _START_ a _END_ Entradas",
 
                     },
 

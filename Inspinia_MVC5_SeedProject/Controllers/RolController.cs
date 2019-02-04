@@ -18,6 +18,15 @@ namespace ERP_ZORZAL.Controllers
         // GET: /Rol/
         public ActionResult Index()
         {
+            if (Function.Sesiones("Rol/Index"))
+            {
+
+            }
+            else
+            {
+                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+            }
+
             return View(db.tbRol.ToList());
         }
 
@@ -29,6 +38,15 @@ namespace ERP_ZORZAL.Controllers
         // GET: /Rol/Details/5
         public ActionResult Details(int? id)
         {
+            if (Function.Sesiones("Rol/Details"))
+            {
+
+            }
+            else
+            {
+                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -55,6 +73,15 @@ namespace ERP_ZORZAL.Controllers
         // GET: /Rol/Create
         public ActionResult Create()
         {
+            if (Function.Sesiones("Rol/Create"))
+            {
+
+            }
+            else
+            {
+                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+            }
+
             ViewBag.obj_Id = new SelectList(db.tbObjeto, "obj_Id", "obj_Pantalla");
             return View();
         }
@@ -92,6 +119,15 @@ namespace ERP_ZORZAL.Controllers
         // GET: /Rol/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (Function.Sesiones("Rol/Edit"))
+            {
+
+            }
+            else
+            {
+                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+            }
+
             try
             {
                 ViewBag.smserror = TempData["smserror"].ToString();

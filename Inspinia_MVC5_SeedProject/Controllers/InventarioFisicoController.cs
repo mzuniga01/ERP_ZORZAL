@@ -14,10 +14,19 @@ namespace Inspinia_MVC5_SeedProject.Controllers
     public class InventarioFisicoController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
+        GeneralFunctions Function = new GeneralFunctions();
 
         // GET: /InventarioFisico/
         public ActionResult Index()
         {
+            if (Function.Sesiones("InventarioFisico/Index"))
+            {
+
+            }
+            else
+            {
+                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+            }
             var tbinventariofisico = db.tbInventarioFisico.Include(t => t.tbEstadoInventarioFisico).Include(t => t.tbUsuario).Include(t => t.tbUsuario1);
             ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
             this.listas();
@@ -27,6 +36,14 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         // GET: /InventarioFisico/Details/5
         public ActionResult Details(int? id)
         {
+            if (Function.Sesiones("InventarioFisico/Details"))
+            {
+
+            }
+            else
+            {
+                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -80,6 +97,14 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         // GET: /InventarioFisico/Create
         public ActionResult Create()
         {
+            if (Function.Sesiones("InventarioFisico/Create"))
+            {
+
+            }
+            else
+            {
+                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+            }
             ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
             this.listas();
             return View();
@@ -236,6 +261,14 @@ namespace Inspinia_MVC5_SeedProject.Controllers
         // GET: /InventarioFisico/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (Function.Sesiones("InventarioFisico/Edit"))
+            {
+
+            }
+            else
+            {
+                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

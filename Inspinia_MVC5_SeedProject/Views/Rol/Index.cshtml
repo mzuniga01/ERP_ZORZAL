@@ -25,7 +25,7 @@
                 </div>
                 <div class="ibox-content">
 
-                    <table class="table table-responsive" style="width:100%" id="DataTable">
+                    <table class="table table table-striped table-bordered dataTable no-footer" style="width:100%" id="DataTable">
                         <thead>
                             <tr>
                                 <th>
@@ -50,7 +50,6 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.rol_Descripcion)
                                     </td>
-                                    @*<td>@Html.DisplayFor(modelItem => item.rol_Estado)</td>*@
                                     @if (Convert.ToString(item.rol_Estado) == "True")
                                     { 
                                              <td>Activo</td>  
@@ -68,7 +67,6 @@
                             }
                         </tbody>
                     </table>
-                    @*<input id="Button1" type="button" value="button" />*@
                 </div>
             </div>
         </div>
@@ -87,9 +85,11 @@
                 "sNext": "Siguiente",
                 "sPrevious": "Anterior",
             },
+            "sEmptyTable": "No hay registros",
+            "sInfoEmpty": "Mostrando 0 de 0 Entradas",
             "sSearch": "Buscar",
-            "sLengthMenu": "Mostrar _MENU_Registros Por Página",
-            "sInfo": "Mostrando _START_ a _END_ Entradas"
+            "sLengthMenu": "Mostrar _MENU_ registros por página",
+            "sInfo": "Mostrando _START_ a _END_ Entradas",
 
         },
 

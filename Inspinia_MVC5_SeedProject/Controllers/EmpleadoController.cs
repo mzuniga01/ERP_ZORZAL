@@ -13,10 +13,19 @@ namespace ERP_GMEDINA.Controllers
     public class EmpleadoController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
+        GeneralFunctions Function = new GeneralFunctions();
 
         // GET: /Empleado/
         public ActionResult Index()
         {
+            if (Function.Sesiones("Empleado/Index"))
+            {
+
+            }
+            else
+            {
+                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+            }
             var tbempleado = db.tbEmpleado.Include(t => t.tbUsuario).Include(t => t.tbTipoIdentificacion);
             return View(tbempleado.ToList());
         }
@@ -24,6 +33,14 @@ namespace ERP_GMEDINA.Controllers
         // GET: /Empleado/Details/5
         public ActionResult Details(short? id)
         {
+            if (Function.Sesiones("Empleado/Details"))
+            {
+
+            }
+            else
+            {
+                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -40,6 +57,14 @@ namespace ERP_GMEDINA.Controllers
         // GET: /Empleado/Create
         public ActionResult Create()
         {
+            if (Function.Sesiones("Empleado/Create"))
+            {
+
+            }
+            else
+            {
+                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+            }
             ViewBag.emp_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             ViewBag.tpi_Id = new SelectList(db.tbEmpleado, "emp_Id", "tpi_Id");
             ViewBag.TipoIList = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion", "Seleccione");
@@ -108,6 +133,14 @@ namespace ERP_GMEDINA.Controllers
         // GET: /Empleado/Edit/5
         public ActionResult Edit(short? id)
         {
+            if (Function.Sesiones("Empleado/Edit"))
+            {
+
+            }
+            else
+            {
+                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

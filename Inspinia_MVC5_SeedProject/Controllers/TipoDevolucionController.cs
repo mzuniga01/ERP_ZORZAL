@@ -20,6 +20,15 @@ namespace ERP_GMEDINA.Controllers
 
             if (Function.GetUserLogin())
             {
+                if (Function.Sesiones("TipoDevolucion/Index"))
+                {
+
+                }
+                else
+                {
+                    return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+                }
+
                 if (Function.GetUserRols("TipoDevolucion/Index"))
                 {
                     //AQUI
@@ -42,6 +51,15 @@ namespace ERP_GMEDINA.Controllers
         {
             if (Function.GetUserLogin())
             {
+                if (Function.Sesiones("TipoDevolucion/Details"))
+                {
+
+                }
+                else
+                {
+                    return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+                }
+
                 if (Function.GetUserRols("TipoDevolucion/Details"))
                 {
                     if (id == null)
@@ -72,6 +90,15 @@ namespace ERP_GMEDINA.Controllers
 
             if (Function.GetUserLogin())
             {
+                if (Function.Sesiones("TipoDevolucion/Create"))
+                {
+
+                }
+                else
+                {
+                    return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+                }
+
                 if (Function.GetUserRols("TipoDevolucion/Create"))
                 {
                     ViewBag.tdev_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
@@ -142,6 +169,16 @@ namespace ERP_GMEDINA.Controllers
         {
             if (Function.GetUserLogin())
             {
+
+                if (Function.Sesiones("TipoDevolucion/Edit"))
+                {
+
+                }
+                else
+                {
+                    return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+                }
+
                 if (Function.GetUserRols("Objeto/Edit"))
                 {
                     if (id == null)

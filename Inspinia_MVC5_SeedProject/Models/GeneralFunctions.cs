@@ -11,6 +11,38 @@ namespace ERP_GMEDINA.Models
     public class GeneralFunctions
     {
         ERP_ZORZALEntities db = new ERP_ZORZALEntities();
+
+        public bool Sesiones(string sPantalla)
+        {
+            int UserID = 0;
+            bool Retorno = false;
+            byte Sesion = 0;
+
+            try
+            {
+                UserID = (int)HttpContext.Current.Session["UserLogin"];
+                Sesion = (byte)HttpContext.Current.Session["UserLoginSesion"];
+                if (Sesion > 1)
+                {
+                    Retorno = true;
+                }
+                else
+                {
+                    var list = (IEnumerable<SDP_Acce_GetUserRols_Result>)HttpContext.Current.Session["UserLoginRols"];
+                    var BuscarList = list.Where(x => x.obj_Referencia == sPantalla);
+                    int Conteo = BuscarList.Count();
+                    if (Conteo > 0)
+                        Retorno = true;
+                }
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                Retorno = false;
+            }
+            return Retorno;
+        }
+
         public bool GetUserRols(string sPantalla)
         {
             int UserID = 0;

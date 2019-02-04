@@ -122,11 +122,11 @@ $(document).on("click", "#detalle tbody tr td button#removerInventarioFisicoDeta
         invfd_id: idItem,
     };
     $.ajax({
-        url: "/InventarioFisico/GuardarInventarioDetalle",
+        url: "/InventarioFisico/removeInvFisicoDetalle",
         method: "POST",
         dataType: 'json',
         contentType: "application/json; charset=utf-8",
-        data: JSON.stringify({ inventariofisicodetalle: InventarioFisicoDetalle }),
+        data: JSON.stringify({ detalle: detalle }),
     });
 });
 
@@ -490,12 +490,14 @@ $('#AgregarNuevoDetalle').click(function () {
     } else {
         //Rellenar la tabla 
         contador = contador + 1;
-        copiar = "<tr data-id=" + contador + ">";
+        copiar = "<tr id = 'Ban'><td></td><td></td><td>Nuevo Detalle</td></tr>";
+        copiar += "<tr data-id=" + contador + ">";
         copiar += "<td id = 'producto'>" + $('#prod_CodigoBarras').val() + "</td>";
         copiar += "<td id = 'Descripcion'>" + $('#prod_Descripcion').val() + "</td>";
         copiar += "<td id = 'UnidadMedida'>" + $('#uni_Id').val() + "</td>";
         copiar += "<td id = 'cantidadfisica'>" + $('#invfd_CantidadSistema').val() + "</td>";
         copiar += "<td id = 'cantidadsistema'>" + $('#invfd_Cantidad').val() + "</td>";
+        copiar += "<td>" + '<button id="removerInvFisicoDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
         copiar += "</tr>";
         $('#InvDetalle').append(copiar);
 
@@ -522,6 +524,22 @@ $('#AgregarNuevoDetalle').click(function () {
     }
 
 })
+
+//eliminar datos agregados a la tabla detalle editar
+$(document).on("click", "#InvDetalle tbody tr td button#removerInvFisicoDetalle", function () {
+    $(this).closest('tr').remove();
+    idItem = $(this).closest('tr').data('id');
+    var detalle = {
+        invfd_id: idItem,
+    };
+    $.ajax({
+        url: "/InventarioFisico/removeInvFisicoDetalle",
+        method: "POST",
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({ detalle: detalle }),
+    });
+});
 
 //$("#seleccionar").click("#bod_Id", function () {
 //    console.log("Hola");

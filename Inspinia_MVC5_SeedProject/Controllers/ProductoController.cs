@@ -18,6 +18,7 @@ namespace ERP_GMEDINA.Controllers
     public class ProductoController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
+        GeneralFunctions Function = new GeneralFunctions();
 
         // GET: /Producto/
         public ActionResult Index()
@@ -25,6 +26,15 @@ namespace ERP_GMEDINA.Controllers
             GeneralFunctions Function = new GeneralFunctions();
             if (Function.GetUserLogin())
             {
+                if (Function.Sesiones("Producto/Index"))
+                {
+
+                }
+                else
+                {
+                    return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+                }
+
                 if (Function.GetUserRols("Producto/Index"))
                 {
                     var tbproducto = db.tbProducto.Include(t => t.tbUsuario).Include(t => t.tbUnidadMedida).Include(t => t.tbProductoSubcategoria);
@@ -48,6 +58,14 @@ namespace ERP_GMEDINA.Controllers
             GeneralFunctions Function = new GeneralFunctions();
             if (Function.GetUserLogin())
             {
+                if (Function.Sesiones("Producto/Details"))
+                {
+
+                }
+                else
+                {
+                    return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+                }
                 if (Function.GetUserRols("Producto/Details"))
                 {
                     if (id == null)
@@ -95,6 +113,14 @@ namespace ERP_GMEDINA.Controllers
             GeneralFunctions Function = new GeneralFunctions();
             if (Function.GetUserLogin())
             {
+                if (Function.Sesiones("Producto/Create"))
+                {
+
+                }
+                else
+                {
+                    return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+                }
                 if (Function.GetUserRols("Producto/Create"))
                 {
                     ViewBag.pcat_Id = new SelectList(db.tbProductoCategoria, "pcat_Id", "pcat_Nombre");
@@ -217,9 +243,17 @@ namespace ERP_GMEDINA.Controllers
         {
            
 
-            GeneralFunctions Function = new GeneralFunctions();
+            //GeneralFunctions Function = new GeneralFunctions();
             if (Function.GetUserLogin())
             {
+                if (Function.Sesiones("Producto/Edit"))
+                {
+
+                }
+                else
+                {
+                    return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+                }
                 if (Function.GetUserRols("Cliente/Edit"))
                 {
                     if (id == null)
@@ -232,10 +266,9 @@ namespace ERP_GMEDINA.Controllers
                     {
                         return HttpNotFound();
                     }
-                    //ViewData["Razon"] = tbProducto.prod_Razon_Inactivacion;
+                  
                     ViewBag.prod_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbProducto.prod_UsuarioModifica);
-                    ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion", tbProducto.uni_Id);
-                    //ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion ", tbProducto.pscat_Id);
+                    ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion", tbProducto.uni_Id);                    
                     ViewBag.pcat_Id = new SelectList(db.tbProductoCategoria, "pcat_Id", "pcat_Nombre", tbProducto.tbProductoSubcategoria.tbProductoCategoria.pcat_Id);
                     var Categoria = tbProducto.tbProductoSubcategoria.tbProductoCategoria.pcat_Id; ;
                     var Sucategoria = db.tbProductoSubcategoria.Select(s => new

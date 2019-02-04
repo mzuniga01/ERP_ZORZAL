@@ -20,7 +20,7 @@
                 $('#NoAsignados tbody').append(newTr)
             })
             $('#NoAsignados').DataTable({
-                "searching": false,
+                "searching": true,
                 "scrollY": "300px",
                 "scrollCollapse": true,
                 "paging": false,
@@ -30,16 +30,17 @@
                             "sNext": "Siguiente",
                             "sPrevious": "Anterior",
                         },
+                        "sEmptyTable": "No hay registros",
+                        "sInfoEmpty": "Mostrando 0 de 0 Entradas",
                         "sSearch": "Buscar",
-                        "sLengthMenu": "Mostrar _MENU_ Registros Por Página",
-                        "sInfo": "Mostrando _START_ a _END_ Entradas"
-
+                        "sLengthMenu": "Mostrar _MENU_ registros por página",
+                        "sInfo": "Mostrando _START_ a _END_ Entradas",
                     },
 
             });
 
                 $('#Asignados').DataTable({
-                    "searching": false,
+                    "searching": true,
                     "scrollY": "300px",
                     "scrollCollapse": true,
                     "paging": false,
@@ -49,10 +50,11 @@
                             "sNext": "Siguiente",
                             "sPrevious": "Anterior",
                         },
+                        "sEmptyTable": "No hay registros",
+                        "sInfoEmpty": "Mostrando 0 de 0 Entradas",
                         "sSearch": "Buscar",
-                        "sLengthMenu": "Mostrar _MENU_ Registros Por Página",
-                        "sInfo": "Mostrando _START_ a _END_ Entradas"
-
+                        "sLengthMenu": "Mostrar _MENU_ registros por página",
+                        "sInfo": "Mostrando _START_ a _END_ Entradas",
                     },
 
                 });
@@ -73,16 +75,8 @@ $('#Add').click(function () {
         var objpantalla;
         
         if ($('#check' + idItem).is(':checked')) {
-            //objpantalla = $('#objpantalla' + idItem).val();
             active = $(this)
-            //var data = $(this).closest('tr').data();
-            //$('#Asignados tbody').append(data)
-            //console.log(data.length);
-            //console.log(active.length);
             var Asignados = $('#Asignados').length
-            //if (Asignados == 1) {
-            //    $('#Asignados').empty();
-            //}
             $('#NoAsignados tbody').append(active)
             $('#check' + idItem).prop('checked', false);
             $(this).remove();
@@ -114,25 +108,6 @@ $('#btnGuardarRol').click(function () {
         $('#validationDescripcionRol').after('<ul id="errorDescripcionRol" class="validation-summary-errors text-danger">Campo Descripción Requerido</ul>');
     }
     else {
-
-        //$('#Asignados> tbody > tr').each(function () {
-        //    idItem = $(this).data('id');
-        //    console.log(idItem);
-        //$('#Asignados> tbody > tr').each(function () {
-        //    var idItem = $(this).attr('data-id')
-        //    var DescripcionRol = $('#rol_Descripcion').val()
-        //    $.ajax({
-        //        url: "/Rol/InsertRol",
-        //        method: "POST",
-        //        dataType: 'json',
-        //        contentType: "application/json; charset=utf-8",
-        //        data: JSON.stringify({ ConsolidatedSerial: consolidated, ManifestSerial: idItem }),
-        //    })
-        //    .done(function (data) {
-
-        //    })
-
-        //})
 
         var TableLeght = $("#Asignados tr").length;
         var DescripcionRol = $('#rol_Descripcion').val()
@@ -175,7 +150,6 @@ $('#btnGuardarRol').click(function () {
 $("#rol_Descripcion").change(function () {
     var txtDescripcion = $("#rol_Descripcion").val();
     if (txtDescripcion == "") {
-        //alert("Handler for .change() called.");
         $('#Add').attr("disabled", true);
         $('#Remove').attr("disabled", true);
     }

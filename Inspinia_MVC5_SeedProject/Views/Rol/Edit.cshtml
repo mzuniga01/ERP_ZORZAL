@@ -63,7 +63,6 @@
                                     @if (Model.rol_Estado == true)
                                     {
                                         <input type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#ModalEstado" value="Inactivar" />
-                                        @*@Html.ActionLink("Inactivar", "EstadoRolInactivo", new { id = Model.rol_Id }, new { @class = "btn btn-danger btn-sm" })*@
                                     }
                                     else
                                     {
@@ -75,9 +74,9 @@
                             </div>
                             <div class="ibox-content">
                                 <div class="col-md-5">
-                                    <label class="col-md-10" style="text-align:center">Objetos No Asignados</label>
+                                    <label class="col-md-10" style="text-align:center">Pantallas No Asignadas</label>
 
-                                    <table class="table table-responsive" style="width:100%" id="NoAsignadosEdit">
+                                    <table class="table table table-striped table-bordered dataTable no-footer" style="width:100%" id="NoAsignadosEdit">
                                         <thead>
                                             <tr>
                                                 <td id="RegistrosNoAsignadosEdit" style="background-color:#1ab394;color:white">Pantallas</td>
@@ -114,8 +113,8 @@
                                 </div>
 
                                 <div class="col-md-5">
-                                    <label class="col-md-10" style="text-align:center">Objetos Asignados</label>
-                                    <table class="table table-responsive" style="width:100%" id="AsignadosEdit">
+                                    <label class="col-md-10" style="text-align:center">Pantallas Asignadas</label>
+                                    <table class="table table table-striped table-bordered dataTable no-footer" style="width:100%" id="AsignadosEdit">
                                         <thead>
                                             <tr>
                                                 <td id="RegistrosAsignadosEdit" style="background-color:#1ab394;color:white">Pantallas</td>
@@ -182,14 +181,6 @@
                                 Modificado por
                             </td>
                             <td>
-                            @*@if (Convert.ToString(Model.rol_FechaModifica) == "")
-                            {
-
-                            }
-                            else
-                            {
-                            @ViewBag.UsuarioModifica
-                            }*@
                                 @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
                                 @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
                             </td>
@@ -222,4 +213,3 @@
             </div>
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script src="~/Scripts/app/RolObjetosEdit.js"></script>
-<script src="~/Scripts/app/ellipses.js"></script>

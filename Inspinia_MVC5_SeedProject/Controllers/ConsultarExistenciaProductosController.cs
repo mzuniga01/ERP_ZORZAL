@@ -12,15 +12,24 @@ namespace ERP_GMEDINA.Controllers
     public class ConsultarExistenciaProductosController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
+        GeneralFunctions Function = new GeneralFunctions();
         // GET: ConsultarExistenciaProductos
         public ActionResult Index()
         {
+            if (Function.Sesiones("ConsultarExistenciaProductos/Index"))
+            {
+
+            }
+            else
+            {
+                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+            }
 
             return View(db.UDV_Inv_Consultar_Existencias_Productos);
         }
 
         [HttpPost]
-        public JsonResult InsertPedido(int IDBodega, string IDProducto, decimal CantidadSolicitada, int BodegaDestino, decimal CantidadNoDisponible)
+        public JsonResult InsertPedido(int IDBodega, string IDProducto, decimal CantidadSolicitada, int BodegaDestino, decimal CantidadDisponible)
         {
             var MensajeError = "0";
             var MensajeErrorDetalle = "0";
@@ -33,7 +42,7 @@ namespace ERP_GMEDINA.Controllers
                 using (TransactionScope Tran = new TransactionScope())
                 {
                     var FechaPedido = DateTime.Now;
-                    listSalida = db.UDP_Inv_ValidacionCantidadExistente(CantidadSolicitada, IDBodega, IDProducto, FechaPedido, BodegaDestino, CantidadNoDisponible);
+                    listSalida = db.UDP_Inv_ValidacionCantidadExistente(CantidadSolicitada, IDBodega, IDProducto, FechaPedido, BodegaDestino, CantidadDisponible);
                     foreach (UDP_Inv_ValidacionCantidadExistente_Result Salida in listSalida)
                         MensajeError = Salida.MensajeError;
                     if (MensajeError == "-1")

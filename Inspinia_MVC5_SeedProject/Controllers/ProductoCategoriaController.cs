@@ -15,10 +15,19 @@ namespace ERP_ZORZAL.Controllers
     public class ProductoCategoriaController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
+        GeneralFunctions Function = new GeneralFunctions();
 
         // GET: /ProductoCategoria/
         public ActionResult Index()
         {
+            if (Function.Sesiones("ProductoCategoria/Index"))
+            {
+
+            }
+            else
+            {
+                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+            }
             try { ViewBag.smserror = TempData["smserror"].ToString(); } catch { }
            
 
@@ -30,6 +39,14 @@ namespace ERP_ZORZAL.Controllers
         // GET: /ProductoCategoria/Details/5
         public ActionResult Details(int? id)
         {
+            if (Function.Sesiones("ProductoCategoria/Details"))
+            {
+
+            }
+            else
+            {
+                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -61,6 +78,14 @@ namespace ERP_ZORZAL.Controllers
         // GET: /ProductoCategoria/Create
         public ActionResult Create()
         {
+            if (Function.Sesiones("ProductoCategoria/Create"))
+            {
+
+            }
+            else
+            {
+                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+            }
             //ViewBag.smserror = "";
             Session["tbProductoSubcategoria"] = null;
             return View();
@@ -150,6 +175,14 @@ namespace ERP_ZORZAL.Controllers
         // GET: /ProductoCategoria/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (Function.Sesiones("ProductoCategoria/Edit"))
+            {
+
+            }
+            else
+            {
+                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+            }
             try
             {
                 ViewBag.smserror = TempData["smserror"].ToString();

@@ -63,7 +63,7 @@
             </div>
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Objetos Asignados</h5>
+                    <h5>Pantallas Asignadas</h5>
                 </div>
                 <div class="ibox-content">
                     <div class="form-horizontal">
@@ -107,14 +107,6 @@
                     Modificado por
                 </td>
                 <td>
-                    @*@if (Convert.ToString(Model.rol_FechaModifica) == "")
-                    {
-
-                    }
-                    else
-                    {
-                        @ViewBag.UsuarioModifica
-                    }*@
                     @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
                     @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
                 </td>

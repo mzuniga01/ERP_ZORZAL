@@ -95,7 +95,7 @@
         <div class="form-group">
             <label class="control-label col-md-2">Gerente de Tienda<span style="color:red">*</span></label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.par_RolGerenteTienda)
+                @Html.DropDownList("rol_Id", (IEnumerable<SelectListItem>)ViewBag.Id_Rol3,"Seleccione", new { @class = "form-control" })
                 <p style="color:red">  @Html.ValidationMessageFor(model => model.par_RolGerenteTienda)</p>
 </div>
         </div>
@@ -103,7 +103,7 @@
         <div class="form-group">
           <label class="control-label col-md-2">Credito-Cobranza<span style="color:red">*</span></label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.par_RolCreditoCobranza)
+                @Html.DropDownList("rol_Id", (IEnumerable<SelectListItem>)ViewBag.Id_Rol2, "Seleccione", new { @class = "form-control" })
                 <p style="color:red">  @Html.ValidationMessageFor(model => model.par_RolCreditoCobranza) </p>
 </div>
         </div>
@@ -111,7 +111,7 @@
         <div class="form-group">
             <label class="control-label col-md-2">Supervisor de Caja<span style="color:red">*</span></label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.par_RolSupervisorCaja)
+                @Html.DropDownList("rol_Id", (IEnumerable<SelectListItem>)ViewBag.Id_Rol4, "Seleccione", new { @class = "form-control" })
                 <p style="color:red">  @Html.ValidationMessageFor(model => model.par_RolSupervisorCaja) </p>
 </div>
         </div>
@@ -119,7 +119,7 @@
         <div class="form-group">
             <label class="control-label col-md-2">Cajero<span style="color:red">*</span></label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.par_RolCajero)
+                @Html.DropDownList("rol_Id", (IEnumerable<SelectListItem>)ViewBag.Id_Rol1, "Seleccione", new { @class = "form-control" })
                 <p style="color:red">   @Html.ValidationMessageFor(model => model.par_RolCajero)</p>
 </div>
         </div>
@@ -127,7 +127,7 @@
         <div class="form-group">
             <label class="control-label col-md-2">Auditor<span style="color:red">*</span></label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.par_RolAuditor)
+                @Html.DropDownList("rol_Id", (IEnumerable<SelectListItem>)ViewBag.Id_Rol, "Seleccione", new { @class = "form-control" })
                 <p style="color:red"> @Html.ValidationMessageFor(model => model.par_RolAuditor)</p>
 </div>
         </div>
@@ -151,7 +151,7 @@
         <div class="form-group">
             <label class="control-label col-md-2">Consumidor Final<span style="color:red">*</span></label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.par_IdConsumidorFinal)
+                @Html.DropDownList("par_IdConsumidorFinal", (IEnumerable<SelectListItem>)ViewBag.consumidor, new { @class = "form-control" })
                 <p style="color:red"> @Html.ValidationMessageFor(model => model.par_IdConsumidorFinal) </p>
 </div>
         </div>

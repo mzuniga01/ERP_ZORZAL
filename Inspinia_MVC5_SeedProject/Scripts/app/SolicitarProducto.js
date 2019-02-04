@@ -43,11 +43,11 @@ function SolicitarProducto(bod_Id, bod_Nombre, suc_Descripcion, prod_Codigo, pro
                         method: "POST",
                         dataType: 'json',
                         contentType: "application/json; charset=utf-8",
-                        data: JSON.stringify({ IDBodega: bod_Id, IDProducto: prod_Codigo, CantidadSolicitada: CantidadSolicitada, BodegaDestino: BodegaDestino, CantidadNoDisponible: data }),
+                        data: JSON.stringify({ IDBodega: bod_Id, IDProducto: prod_Codigo, CantidadSolicitada: CantidadSolicitada, BodegaDestino: BodegaDestino, CantidadDisponible: data }),
                         success: function (json) {
                         },
                         error: function () {
-                            $('#validationDescripcionRol').after('<ul id="ErrorValidacionGeneral" class="validation-summary-errors text-danger">No se pudo añadir la pantalla, contacte con el administrador</ul>');
+                            $('#validationDescripcionRol').after('<ul id="ErrorValidacionGeneral" class="validation-summary-errors text-danger">No se pudo haacer el pedido, contacte con el administrador</ul>');
                         }
                     })
             .done(function (data) {
@@ -66,7 +66,7 @@ function SolicitarProducto(bod_Id, bod_Nombre, suc_Descripcion, prod_Codigo, pro
                     $("#ErrorValidacionGeneral").remove();
                     $('#validationCantidad').text('');
                     $('#errorCantidad').text('');
-                    $('#validationCantidad').after('<ul id="ErrorValidacionGeneral" class="validation-summary-errors text-danger">Esta bodega ya tiene pedidos pendientes porlo cual la cantidad que solicito sobrepasa la cantidad minima del producto que esta bodega de tener.</ul>');
+                    $('#validationCantidad').after('<ul id="ErrorValidacionGeneral" class="validation-summary-errors text-danger">Esta bodega ya tiene pedidos pendientes por lo cuál la cantidad que solicito sobrepasa la cantidad minima del producto que esta bodega debe tener.</ul>');
                 }
                 else {
                     $("#dialog").dialog({

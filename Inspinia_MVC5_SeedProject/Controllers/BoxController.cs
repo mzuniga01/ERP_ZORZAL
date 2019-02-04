@@ -14,12 +14,21 @@ namespace ERP_ZORZAL.Controllers
     public class BoxController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
+        GeneralFunctions Function = new GeneralFunctions();
 
         public object ACTUALIZAR_tbSalidaDetalle { get; private set; }
 
         // GET: /Box/
         public ActionResult Index()
         {
+            if (Function.Sesiones("Box/Index"))
+            {
+
+            }
+            else
+            {
+                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+            }
             ViewBag.Salida = new tbSalida();
             return View(db.tbBox.ToList());
         }
@@ -27,6 +36,14 @@ namespace ERP_ZORZAL.Controllers
         // GET: /Box/Details/5
         public ActionResult Details(string id)
         {
+            if (Function.Sesiones("Box/Details"))
+            {
+
+            }
+            else
+            {
+                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -42,6 +59,14 @@ namespace ERP_ZORZAL.Controllers
         // GET: /Box/Create
         public ActionResult Create()
         {
+            if (Function.Sesiones("Box/Create"))
+            {
+
+            }
+            else
+            {
+                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+            }
             ViewBag.ent_Id = new SelectList(db.tbEntrada, "ent_Id", "ent_Id");
             ViewBag.prod_Codigo = new SelectList(db.tbProducto, "prod_Codigo", "prod_Descripcion");
             ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion");
@@ -186,6 +211,14 @@ namespace ERP_ZORZAL.Controllers
         // GET: /Box/Edit/5
         public ActionResult Edit(string id)
         {
+            if (Function.Sesiones("Box/Edit"))
+            {
+
+            }
+            else
+            {
+                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

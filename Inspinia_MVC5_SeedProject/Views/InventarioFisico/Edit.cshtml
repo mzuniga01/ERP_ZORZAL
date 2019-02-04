@@ -6,6 +6,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Inventario Fisico</h2>
@@ -85,7 +86,9 @@
                                             }
                                         }
                                         @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
-                                        <input type="button" class="btn btn-group" id="Imprimir" value="Imprimir" />
+                                        <div id="Imprimir">
+                                            <a href="~/ReportViewer/ImprimirConciliacion.aspx" class="btn-primary"></a>
+                                        </div>
 
                                     </div>
                                 </div>
@@ -248,6 +251,7 @@
             if (valorid == 1) {
                 document.getElementById("Imprimir").style.display = 'none';
                 document.getElementById("IndexDetalleConciliado").style.display = 'none';
+                $("#bod_Id").prop("disabled", true);
             }
             else
             {

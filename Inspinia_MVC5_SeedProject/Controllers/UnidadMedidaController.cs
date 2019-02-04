@@ -19,6 +19,15 @@ namespace ERP_ZORZAL.Controllers
         {
             if (Function.GetUserLogin())
             {
+                if (Function.Sesiones("UnidadMedida/Index"))
+                {
+
+                }
+                else
+                {
+                    return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+                }
+
                 if (Function.GetUserRols("UnidadMedida/Index"))
                 {
                     return View(db.tbUnidadMedida.ToList());
@@ -37,6 +46,15 @@ namespace ERP_ZORZAL.Controllers
         {
             if (Function.GetUserLogin())
             {
+                if (Function.Sesiones("UnidadMedida/Details"))
+                {
+
+                }
+                else
+                {
+                    return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+                }
+
                 if (Function.GetUserRols("UnidadMedida/Details"))
                 {
                     if (id == null)
@@ -64,6 +82,15 @@ namespace ERP_ZORZAL.Controllers
         {
             if (Function.GetUserLogin())
             {
+                if (Function.Sesiones("UnidadMedida/Create"))
+                {
+
+                }
+                else
+                {
+                    return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+                }
+
                 if (Function.GetUserRols("UnidadMedida/Create"))
                 {
                     return View();
@@ -141,6 +168,15 @@ namespace ERP_ZORZAL.Controllers
         {
             if (Function.GetUserLogin())
             {
+                if (Function.Sesiones("UnidadMedida/Edit"))
+                {
+
+                }
+                else
+                {
+                    return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+                }
+
                 if (Function.GetUserRols("UnidadMedida/Edit"))
                 {
                     if (id == null)

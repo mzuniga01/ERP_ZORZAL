@@ -13,16 +13,35 @@ namespace ERP_ZORZAL.Controllers
     public class ProveedorController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
+        GeneralFunctions Function = new GeneralFunctions();
 
         // GET: /Proveedor/
         public ActionResult Index()
         {
+            if (Function.Sesiones("Proveedor/Index"))
+            {
+
+            }
+            else
+            {
+                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+            }
+
             return View(db.tbProveedor.ToList());
         }
 
         // GET: /Proveedor/Details/5
         public ActionResult Details(int? id)
         {
+            if (Function.Sesiones("Proveedor/Details"))
+            {
+
+            }
+            else
+            {
+                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -48,6 +67,15 @@ namespace ERP_ZORZAL.Controllers
         // GET: /Proveedor/Create
         public ActionResult Create()
         {
+            if (Function.Sesiones("Proveedor/Create"))
+            {
+
+            }
+            else
+            {
+                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+            }
+
             try
             {
                 ViewBag.smserror = TempData["smserror"].ToString();
@@ -109,6 +137,15 @@ namespace ERP_ZORZAL.Controllers
         // GET: /Proveedor/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (Function.Sesiones("Proveedor/Edit"))
+            {
+
+            }
+            else
+            {
+                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
