@@ -14,7 +14,7 @@
         </div>
         <div class="col-sm-8">
             <div class="title-action">
-                <a href="/Pedido/Index">Regresar</a>
+                <a href="/Pedido/IndexPedido">Regresar</a>
             </div>
         </div>
     </div>
@@ -75,7 +75,7 @@
                                     @Html.ValidationMessageFor(model => model.tbCliente.clte_Identificacion)
                                 </div>
                                 <div class="col-md-1">
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarClientes"><span class="glyphicon glyphicon-search"></span></button>
+                                    
                                 </div>
 
                                 @Html.LabelFor(model => model.tbCliente.clte_Nombres, new { @class = "control-label col-md-1" })
@@ -123,7 +123,6 @@
                                         <input type="submit" value="Guardar" class="btn btn-primary" />
                                         @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                                         @Html.ActionLink("Facturar", "Facturar", null, new { @class = "btn btn-danger" })
-                                        @*       <a type="submit" href="@Url.Action("Facturar", "Pedido")" class="btn btn-danger">Facturar</a>*@
                                     </div>
                                 </div>
                             </div>
