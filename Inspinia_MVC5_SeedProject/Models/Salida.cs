@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -9,7 +10,11 @@ namespace ERP_GMEDINA.Models
     [MetadataType(typeof(SalidaMetaData))]
     public partial class tbSalida
     {
-       
+        
+        [NotMapped]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [Display(Name = "Codigo de Factura")]
+        public string fact_Codigo { get; set; }
     }
 
     public class SalidaMetaData
@@ -62,7 +67,6 @@ namespace ERP_GMEDINA.Models
 
         [Display(Name = "Fecha de Modificaion")]
         public Nullable<System.DateTime> sal_FechaModifica { get; set; }
-   
 
 
     }

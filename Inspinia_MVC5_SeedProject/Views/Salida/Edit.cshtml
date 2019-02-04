@@ -60,7 +60,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.sal_FechaElaboracion, "Fecha de Elaboración", new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.EditorFor(model => model.sal_FechaElaboracion)
+                                        @Html.EditorFor(model => model.sal_FechaElaboracion, new { htmlAttributes = new { @readonly = "readonly" } })
                                         @Html.ValidationMessageFor(model => model.sal_FechaElaboracion)
                                     </div>
                                 </div>
@@ -69,34 +69,34 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.bod_Id, "Nombre de Bodega", new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.DropDownList("bod_Id", null, htmlAttributes: new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.bod_Id)
+                                        @Html.EditorFor(model => model.tbBodega.bod_Nombre, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                        <div style="display:none" class="col-md-4">
+                                            @Html.DropDownList("bod_Id", null, htmlAttributes: new { @class = "form-control" })
+                                            <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Id)</p>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    @Html.LabelFor(model => model.estm_Id, "Estado", new { @class = "control-label col-md-2" })
+                                   @Html.LabelFor(model => model.estm_Id, "Estado", new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.DropDownList("estm_Id", null, htmlAttributes: new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.estm_Id)
+                                        @Html.EditorFor(model => model.tbEstadoMovimiento.estm_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                        <div style="display:none" class="col-md-4">
+                                            @Html.DropDownList("estm_Id", null, htmlAttributes: new { @class = "form-control" })
+                                            <p style="color:red">@Html.ValidationMessageFor(model => model.estm_Id)</p>
+                                        </div>
                                     </div>
                                 </div>
+                               
 
-
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.fact_Id, "Factura", new { @class = "control-label col-md-2" })
-                                    <div class="col-md-4">
-                                        @Html.DropDownList("fact_Id", null, htmlAttributes: new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.estm_Id)
-                                    </div>
-                                    <div id="Venta" style="display:none"></div>
-
-                                </div>
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.tsal_Id, "Tipo de Salida", new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.DropDownList("tsal_Id", null, htmlAttributes: new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.tsal_Id)
+                                        @Html.EditorFor(model => model.tbTipoSalida.tsal_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                        <div style="display:none" class="col-md-4">
+                                            @Html.DropDownList("tsal_Id", null, htmlAttributes: new { @class = "form-control" })
+                                            <p style="color:red">@Html.ValidationMessageFor(model => model.tsal_Id)</p>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -104,44 +104,52 @@
                             </fieldset>
                         </div>
 
-                        <div class="form-horizontal" id="Devolucion" style="display:none">
+                        <div class="form-horizontal" id="Venta" style="display:none">
                             <fieldset class="box-border">
-                                <legend class="box-border">Devolucion</legend>
+                                <legend class="box-border">Venta</legend>
                                 <div class="form-group">
-                                    @Html.LabelFor(model => model.sal_RazonDevolucion, new { @class = "control-label col-md-2" })
+                                    @Html.LabelFor(model => model.tbFactura.fact_Codigo, "N# de Factura", new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.EditorFor(model => model.sal_RazonDevolucion)
-                                        @Html.ValidationMessageFor(model => model.sal_RazonDevolucion)
-                                    </div>
-
-                                    @Html.LabelFor(model => model.fact_Id, new { @class = "control-label col-md-2" })
-                                    <div class="col-md-4">
-                                        @Html.EditorFor(model => model.fact_Id)
-                                        <p style="color:red">
-                                            @Html.ValidationMessageFor(model => model.fact_Id)
-                                        </p>
-
+                                        @Html.EditorFor(model => model.tbFactura.fact_Codigo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                        <div style="display:none" class="col-md-4">
+                                            @Html.DropDownList("fact_Id", null, htmlAttributes: new { @class = "form-control" })
+                                            <p style="color:red">@Html.ValidationMessageFor(model => model.tbFactura.fact_Codigo)</p>
+                                        </div>
                                     </div>
                                 </div>
                             </fieldset>
                         </div>
 
-                        <div class="form-horizontal" name="compra" id="compra" style="display:none">
-                            <fieldset class="box-border">
-                                <legend class="box-border">Compra</legend>
-
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.fact_Id, new { @class = "control-label col-md-2" })
-                                    <div class="col-md-4">
-                                        @Html.EditorFor(model => model.fact_Id)
-                                        @Html.ValidationMessageFor(model => model.fact_Id)
+                                    <div class="form-horizontal" id="Prestamo" style="display:none">
+                                        <fieldset class="box-border">
+                                            <legend class="box-border">Prestamo</legend>
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.sal_BodDestino, "Bodega de Destino", new { @class = "control-label col-md-2" })
+                                                <div class="col-md-4">
+                                                    @Html.DropDownList("sal_BodDestino", (IEnumerable<SelectListItem>)ViewBag.sal_BodDestino, new { @class = "form-control" })
+                                                    <p style="color:red">
+                                                        @Html.ValidationMessageFor(model => model.sal_BodDestino)
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </fieldset>
                                     </div>
-                                </div>
 
-                            </fieldset>
+                                    <div class="form-horizontal" id="Devolucion" style="display:none">
+                                        <fieldset class="box-border">
+                                            <legend class="box-border">Devolucion</legend>
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.sal_RazonDevolucion, new { @class = "control-label col-md-2" })
+                                                <div class="col-md-4">
+                                                    @Html.EditorFor(model => model.sal_RazonDevolucion)
+                                                    <p style="color:red">
+                                                        @Html.ValidationMessageFor(model => model.sal_RazonDevolucion)
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
 
-
-                        </div>
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
                                 <input type="submit" value="Guardar" class="btn btn-primary" />
@@ -236,8 +244,8 @@
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/DataTable.js"></script>
 <script src="~/Scripts/app/Datepicker.js"></script>
+<script src="~/Scripts/app/Salida.js"></script>
 <script src="~/Scripts/app/SalidaDetalle.js"></script>
-
 @*<script type="text/javascript">
         var contadorp = 0;
         $(document).ready(function () {

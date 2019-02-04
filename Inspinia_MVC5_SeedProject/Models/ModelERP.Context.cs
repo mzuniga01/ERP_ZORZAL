@@ -481,47 +481,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbBox_Update_Result>("UDP_Inv_tbBox_Update", box_CodigoParameter, box_DescripcionParameter, box_EstadoParameter, box_UsuarioCreaParameter, box_FechaCreaParameter);
         }
     
-        public virtual ObjectResult<UDP_Inv_tbProducto_Insert_Result> UDP_Inv_tbProducto_Insert(string prod_Codigo, string prod_Descripcion, string prod_Marca, string prod_Modelo, string prod_Talla, string prod_Color, Nullable<int> pscat_Id, Nullable<int> uni_Id, string prod_CodigoBarras)
-        {
-            var prod_CodigoParameter = prod_Codigo != null ?
-                new ObjectParameter("prod_Codigo", prod_Codigo) :
-                new ObjectParameter("prod_Codigo", typeof(string));
-    
-            var prod_DescripcionParameter = prod_Descripcion != null ?
-                new ObjectParameter("prod_Descripcion", prod_Descripcion) :
-                new ObjectParameter("prod_Descripcion", typeof(string));
-    
-            var prod_MarcaParameter = prod_Marca != null ?
-                new ObjectParameter("prod_Marca", prod_Marca) :
-                new ObjectParameter("prod_Marca", typeof(string));
-    
-            var prod_ModeloParameter = prod_Modelo != null ?
-                new ObjectParameter("prod_Modelo", prod_Modelo) :
-                new ObjectParameter("prod_Modelo", typeof(string));
-    
-            var prod_TallaParameter = prod_Talla != null ?
-                new ObjectParameter("prod_Talla", prod_Talla) :
-                new ObjectParameter("prod_Talla", typeof(string));
-    
-            var prod_ColorParameter = prod_Color != null ?
-                new ObjectParameter("prod_Color", prod_Color) :
-                new ObjectParameter("prod_Color", typeof(string));
-    
-            var pscat_IdParameter = pscat_Id.HasValue ?
-                new ObjectParameter("pscat_Id", pscat_Id) :
-                new ObjectParameter("pscat_Id", typeof(int));
-    
-            var uni_IdParameter = uni_Id.HasValue ?
-                new ObjectParameter("uni_Id", uni_Id) :
-                new ObjectParameter("uni_Id", typeof(int));
-    
-            var prod_CodigoBarrasParameter = prod_CodigoBarras != null ?
-                new ObjectParameter("prod_CodigoBarras", prod_CodigoBarras) :
-                new ObjectParameter("prod_CodigoBarras", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbProducto_Insert_Result>("UDP_Inv_tbProducto_Insert", prod_CodigoParameter, prod_DescripcionParameter, prod_MarcaParameter, prod_ModeloParameter, prod_TallaParameter, prod_ColorParameter, pscat_IdParameter, uni_IdParameter, prod_CodigoBarrasParameter);
-        }
-    
         public virtual ObjectResult<UDP_Inv_tbTipoSalida_Update_Result> UDP_Inv_tbTipoSalida_Update(Nullable<byte> tsal_Id, string tsal_Descripcion, Nullable<int> tsal_UsuarioCrea, Nullable<System.DateTime> tsal_FechaCrea)
         {
             var tsal_IdParameter = tsal_Id.HasValue ?
@@ -1180,23 +1139,6 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("emp_Id", typeof(short));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Acce_tbUsuario_Insert_Result>("UDP_Acce_tbUsuario_Insert", usu_NombreUsuarioParameter, usu_PasswordParameter, usu_NombresParameter, usu_ApellidosParameter, usu_CorreoParameter, suc_IdParameter, emp_IdParameter);
-        }
-    
-        public virtual ObjectResult<string> UDP_Inv_tbProducto_Estado(string prod_Codigo, Nullable<bool> prod_EsActivo, string prod_Razon_Inactivacion)
-        {
-            var prod_CodigoParameter = prod_Codigo != null ?
-                new ObjectParameter("prod_Codigo", prod_Codigo) :
-                new ObjectParameter("prod_Codigo", typeof(string));
-    
-            var prod_EsActivoParameter = prod_EsActivo.HasValue ?
-                new ObjectParameter("prod_EsActivo", prod_EsActivo) :
-                new ObjectParameter("prod_EsActivo", typeof(bool));
-    
-            var prod_Razon_InactivacionParameter = prod_Razon_Inactivacion != null ?
-                new ObjectParameter("prod_Razon_Inactivacion", prod_Razon_Inactivacion) :
-                new ObjectParameter("prod_Razon_Inactivacion", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Inv_tbProducto_Estado", prod_CodigoParameter, prod_EsActivoParameter, prod_Razon_InactivacionParameter);
         }
     
         public virtual ObjectResult<UDP_Inv_CantidadExistente_Result> UDP_Inv_CantidadExistente(Nullable<int> bod_Id, string prod_Codigo)
@@ -1958,7 +1900,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Acce_tbRol_Inactivar_Result>("UDP_Acce_tbRol_Inactivar", iDRolParameter);
         }
     
-        public virtual ObjectResult<UDP_Inv_ValidacionCantidadExistente_Result> UDP_Inv_ValidacionCantidadExistente(Nullable<decimal> cantidadSolicitadad, Nullable<int> iDBodega, string iDProducto, Nullable<System.DateTime> fechaElaboracion, Nullable<int> bodegaDestino)
+        public virtual ObjectResult<UDP_Inv_ValidacionCantidadExistente_Result> UDP_Inv_ValidacionCantidadExistente(Nullable<decimal> cantidadSolicitadad, Nullable<int> iDBodega, string iDProducto, Nullable<System.DateTime> fechaElaboracion, Nullable<int> bodegaDestino, Nullable<decimal> cantidadDisponible)
         {
             var cantidadSolicitadadParameter = cantidadSolicitadad.HasValue ?
                 new ObjectParameter("CantidadSolicitadad", cantidadSolicitadad) :
@@ -1980,7 +1922,11 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("BodegaDestino", bodegaDestino) :
                 new ObjectParameter("BodegaDestino", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_ValidacionCantidadExistente_Result>("UDP_Inv_ValidacionCantidadExistente", cantidadSolicitadadParameter, iDBodegaParameter, iDProductoParameter, fechaElaboracionParameter, bodegaDestinoParameter);
+            var cantidadDisponibleParameter = cantidadDisponible.HasValue ?
+                new ObjectParameter("CantidadDisponible", cantidadDisponible) :
+                new ObjectParameter("CantidadDisponible", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_ValidacionCantidadExistente_Result>("UDP_Inv_ValidacionCantidadExistente", cantidadSolicitadadParameter, iDBodegaParameter, iDProductoParameter, fechaElaboracionParameter, bodegaDestinoParameter, cantidadDisponibleParameter);
         }
     
         public virtual ObjectResult<UDP_Inv_tbBodega_Update_Estado_Validacion_Result> UDP_Inv_tbBodega_Update_Estado_Validacion(Nullable<int> bod_Id, Nullable<byte> bod_EsActiva)
@@ -2361,6 +2307,82 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbEmpleado_Update_RazonSalida_Result>("UDP_Gral_tbEmpleado_Update_RazonSalida", emp_IdParameter, emp_EstadoParameter, emp_RazonSalidaParameter);
         }
     
+        public virtual ObjectResult<UDP_Inv_tbProducto_Estado_Result> UDP_Inv_tbProducto_Estado(string prod_Codigo, Nullable<bool> prod_EsActivo, string prod_Razon_Inactivacion)
+        {
+            var prod_CodigoParameter = prod_Codigo != null ?
+                new ObjectParameter("prod_Codigo", prod_Codigo) :
+                new ObjectParameter("prod_Codigo", typeof(string));
+    
+            var prod_EsActivoParameter = prod_EsActivo.HasValue ?
+                new ObjectParameter("prod_EsActivo", prod_EsActivo) :
+                new ObjectParameter("prod_EsActivo", typeof(bool));
+    
+            var prod_Razon_InactivacionParameter = prod_Razon_Inactivacion != null ?
+                new ObjectParameter("prod_Razon_Inactivacion", prod_Razon_Inactivacion) :
+                new ObjectParameter("prod_Razon_Inactivacion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbProducto_Estado_Result>("UDP_Inv_tbProducto_Estado", prod_CodigoParameter, prod_EsActivoParameter, prod_Razon_InactivacionParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Inv_tbProducto_GetCategoria_Result> UDP_Inv_tbProducto_GetCategoria(Nullable<int> codsubcategoria)
+        {
+            var codsubcategoriaParameter = codsubcategoria.HasValue ?
+                new ObjectParameter("codsubcategoria", codsubcategoria) :
+                new ObjectParameter("codsubcategoria", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbProducto_GetCategoria_Result>("UDP_Inv_tbProducto_GetCategoria", codsubcategoriaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Inv_tbProducto_GetSubCategoia_Result> UDP_Inv_tbProducto_GetSubCategoia(Nullable<int> codCategoria)
+        {
+            var codCategoriaParameter = codCategoria.HasValue ?
+                new ObjectParameter("CodCategoria", codCategoria) :
+                new ObjectParameter("CodCategoria", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbProducto_GetSubCategoia_Result>("UDP_Inv_tbProducto_GetSubCategoia", codCategoriaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Inv_tbProducto_Insert_Result> UDP_Inv_tbProducto_Insert(string prod_Codigo, string prod_Descripcion, string prod_Marca, string prod_Modelo, string prod_Talla, string prod_Color, Nullable<int> pscat_Id, Nullable<int> uni_Id, string prod_CodigoBarras)
+        {
+            var prod_CodigoParameter = prod_Codigo != null ?
+                new ObjectParameter("prod_Codigo", prod_Codigo) :
+                new ObjectParameter("prod_Codigo", typeof(string));
+    
+            var prod_DescripcionParameter = prod_Descripcion != null ?
+                new ObjectParameter("prod_Descripcion", prod_Descripcion) :
+                new ObjectParameter("prod_Descripcion", typeof(string));
+    
+            var prod_MarcaParameter = prod_Marca != null ?
+                new ObjectParameter("prod_Marca", prod_Marca) :
+                new ObjectParameter("prod_Marca", typeof(string));
+    
+            var prod_ModeloParameter = prod_Modelo != null ?
+                new ObjectParameter("prod_Modelo", prod_Modelo) :
+                new ObjectParameter("prod_Modelo", typeof(string));
+    
+            var prod_TallaParameter = prod_Talla != null ?
+                new ObjectParameter("prod_Talla", prod_Talla) :
+                new ObjectParameter("prod_Talla", typeof(string));
+    
+            var prod_ColorParameter = prod_Color != null ?
+                new ObjectParameter("prod_Color", prod_Color) :
+                new ObjectParameter("prod_Color", typeof(string));
+    
+            var pscat_IdParameter = pscat_Id.HasValue ?
+                new ObjectParameter("pscat_Id", pscat_Id) :
+                new ObjectParameter("pscat_Id", typeof(int));
+    
+            var uni_IdParameter = uni_Id.HasValue ?
+                new ObjectParameter("uni_Id", uni_Id) :
+                new ObjectParameter("uni_Id", typeof(int));
+    
+            var prod_CodigoBarrasParameter = prod_CodigoBarras != null ?
+                new ObjectParameter("prod_CodigoBarras", prod_CodigoBarras) :
+                new ObjectParameter("prod_CodigoBarras", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbProducto_Insert_Result>("UDP_Inv_tbProducto_Insert", prod_CodigoParameter, prod_DescripcionParameter, prod_MarcaParameter, prod_ModeloParameter, prod_TallaParameter, prod_ColorParameter, pscat_IdParameter, uni_IdParameter, prod_CodigoBarrasParameter);
+        }
+    
         public virtual ObjectResult<UDP_Inv_tbProducto_Update_Result> UDP_Inv_tbProducto_Update(string prod_Codigo, string prod_Descripcion, string prod_Marca, string prod_Modelo, string prod_Talla, string prod_Color, Nullable<int> pscat_Id, Nullable<int> uni_Id, Nullable<int> prod_UsuarioCrea, Nullable<System.DateTime> prod_FechaCrea, string prod_CodigoBarras)
         {
             var prod_CodigoParameter = prod_Codigo != null ?
@@ -2408,6 +2430,19 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("prod_CodigoBarras", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbProducto_Update_Result>("UDP_Inv_tbProducto_Update", prod_CodigoParameter, prod_DescripcionParameter, prod_MarcaParameter, prod_ModeloParameter, prod_TallaParameter, prod_ColorParameter, pscat_IdParameter, uni_IdParameter, prod_UsuarioCreaParameter, prod_FechaCreaParameter, prod_CodigoBarrasParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Inv_tbProducto_ValorCodigo_Result> UDP_Inv_tbProducto_ValorCodigo(Nullable<int> pcat_Id, Nullable<int> pscat_Id, ObjectParameter prod_Codigo)
+        {
+            var pcat_IdParameter = pcat_Id.HasValue ?
+                new ObjectParameter("pcat_Id", pcat_Id) :
+                new ObjectParameter("pcat_Id", typeof(int));
+    
+            var pscat_IdParameter = pscat_Id.HasValue ?
+                new ObjectParameter("pscat_Id", pscat_Id) :
+                new ObjectParameter("pscat_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbProducto_ValorCodigo_Result>("UDP_Inv_tbProducto_ValorCodigo", pcat_IdParameter, pscat_IdParameter, prod_Codigo);
         }
     }
 }

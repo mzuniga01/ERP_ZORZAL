@@ -59,5 +59,10 @@ namespace ERP_GMEDINA.Models
         //Empleado
         public const bool EmpleadoActivo = true;//1
         public const bool EmpleadoInactivo = false;//0
+
+        //Estados Producto
+        public const bool ProductoActivo = true;
+        public const bool ProductoInactivo = false;
+
     }
 }

@@ -23,7 +23,7 @@ function GetSubCategoriaProducto() {
         }
         else {
             $('#pscat_Id').empty();
-            $('#pscat_Id').append("<option value=" + val.pscat_Id + ">" +  val.pscat_Descripcion +"</option>");
+            $('#pscat_Id').append("<option value=" + val.pscat_Id + ">" + val.pscat_Descripcion + "</option>");
         }
     });
 }

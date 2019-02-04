@@ -6,10 +6,23 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@*@{
-    var ListadoSubCategoria = new ERP_GMEDINA.Models.tbProductoSubcategoria();
-    var ListadoCategoria = new ERP_GMEDINA.Models.tbProductoCategoria();
-}*@
+@{
+    var test = new ERP_GMEDINA.Models.tbProductoSubcategoria();
+}
+<style>
+    .validation-error {
+        color: red;
+        font-size: small;
+    }
+    
+    .required:after {
+        content: "*";
+        font-weight: bold;
+        color: red;
+    }
+</style>
+
+
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Producto</h2>
@@ -37,36 +50,40 @@
                         @Html.AntiForgeryToken()
 
                     <div class="form-horizontal">
-                       
+                        @Html.ValidationSummary(true)
 
                         <div class="form-group">
-                            <label class="control-label col-md-2">Categoria<span style="color:red">*</span></label>
+                            @Html.LabelFor(model => model.tbProductoSubcategoria.tbProductoCategoria.pcat_Nombre,"Categoria" ,new { @class = "control-label col-md-2 , required" })
+                         
+                            @*<label class="control-label col-md-2">Categoria<span style="color:red">*</span></label>*@
                             <div class="col-md-4">
 
-                                @Html.DropDownList("pcat_Id", (IEnumerable<SelectListItem>)ViewBag.pcat_Id, "Seleccione una Categoria", new { @class = "form-control" })
+                                @Html.DropDownList("pcat_Id", null, "Seleccione una Categoria", new { @class = "form-control" })
+                                <p id="Departamento" style="color:red">@Html.ValidationMessageFor(subcat => test.pcat_Id)</p>
                             </div>
-                            <label class="control-label col-md-2">SubCategoria<span style="color:red">*</span></label>
+                            @Html.LabelFor(model => model.tbProductoSubcategoria.pscat_Descripcion, "SubCategoria", new { @class = "control-label col-md-2 , required" })
+                            @*<label class="control-label col-md-2">SubCategoria<span style="color:red">*</span></label>*@
                             <div class="col-md-4">
 
-                                @Html.DropDownList("pscat_Id", (IEnumerable<SelectListItem>)ViewBag.pscat_Id, "Seleccione una Subcategoria", new { @class = "form-control" })
+                                @Html.DropDownList("pscat_Id",null, "Seleccione una Subcategoria", new { @class = "form-control" })
                                 <p style="color:red">@Html.ValidationMessageFor(model => model.pscat_Id)</p>
                             </div>
 
                         </div>
                         
                             <div class="form-group">
-                                <label class="control-label col-md-2"> Código<span style="color:red">*</span></label>
+                               @Html.LabelFor(model => model.prod_Codigo, new { @class = "control-label col-md-2 , required" })
                                    
                                     <div class="col-md-4">                                     
                                         @Html.EditorFor(model => model.prod_Codigo, new { htmlAttributes = new { @id = "CodigoPro", @class = "form-control", @readonly = "readonly" } })
                                         <p style="color:red">@Html.ValidationMessageFor(model => model.prod_Codigo)</p>
                                     </div>
 
-                                <label class="control-label col-md-2">Codigo de Barras<span style="color:red">*</span></label>
+                                @Html.LabelFor(model => model.prod_CodigoBarras, new { @class = "control-label col-md-2" })
                                   
                                     <div class="col-md-4">
                                         @Html.EditorFor(model => model.prod_CodigoBarras, new { @class = "form-control" })
-                                        <span style="color:red">@Html.ValidationSummary(true)</span>
+                                        @*<span style="color:red">@Html.ValidationSummary(true)</span>*@
                                         <p style="color:red">@Html.ValidationMessageFor(model => model.prod_CodigoBarras)</p>
                                     </div>
                         </div>
@@ -108,7 +125,7 @@
                                 @Html.EditorFor(model => model.prod_Talla, new { @class = "form-control" })
                                 <p style="color:red">@Html.ValidationMessageFor(model => model.prod_Talla)</p>
                             </div>
-                                <label class="control-label col-md-2"> Unidad Medida<span style="color:red">*</span></label>
+                                @Html.LabelFor(model => model.tbUnidadMedida.uni_Descripcion,"Unidad Medida", new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
                                     @Html.DropDownList("uni_Id", (IEnumerable<SelectListItem>)ViewBag.uni_Id, "Seleccione una Unidad", new { @class = "form-control" })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.uni_Id)</p>
@@ -143,13 +160,25 @@
 
 
 <script>
-        //Esto lo agregó Mágdaly
-        $(document).ready(function () {
-            $('#pscat_Id').empty();
-            $('#pscat_Id').append("<option value=''>Seleccione SubCategoria</option>");
-                                        
-           
-        });
+    $(document).ready(function () {
+       
+
+        var x = document.getElementById("pscat_Id").disabled;
+        if (x == true) {
+            document.getElementById("pscat_Id").title = "Seleccione primero un Categoria";
+        }
+        else {
+        }
+    });
+    $("#pcat_Id").change(function () {
+        var x = document.getElementById("pscat_Id").disabled;
+        if (x == true) {
+
+        }
+        else {
+            document.getElementById("pscat_Id").title = "";
+        }
+    });
 </script>
 
 @section Scripts{

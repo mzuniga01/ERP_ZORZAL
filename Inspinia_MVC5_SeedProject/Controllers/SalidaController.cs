@@ -18,7 +18,8 @@ namespace ERP_GMEDINA.Controllers
         // GET: /Salida/
         public ActionResult Index()
         {
-            var tbsalida = db.tbSalida.Include(t => t.tbUsuario).Include(t => t.tbBodega).Include(t => t.tbEstadoMovimiento).Include(t => t.tbTipoSalida);
+            var tbsalida = db.tbSalida;
+            //.Include(t => t.tbUsuario).Include(t => t.tbBodega).Include(t => t.tbEstadoMovimiento).Include(t => t.tbTipoSalida)
             return View(tbsalida.ToList());
         }
 
@@ -92,7 +93,7 @@ namespace ERP_GMEDINA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "bod_Id,fact_Id,sal_FechaElaboracion,estm_Id,tsal_Id,sal_RazonDevolucion, sal_BodDestino, sal_EsAnulada, sal_RazonAnulada")] tbSalida tbSalida)
+        public ActionResult Create([Bind(Include = "bod_Id,fact_Id,fact_Codigo,sal_FechaElaboracion,estm_Id,tsal_Id,sal_RazonDevolucion, sal_BodDestino, sal_EsAnulada, sal_RazonAnulada")] tbSalida tbSalida)
         {
             string UserName = "";
             int idUser = 0;
@@ -131,8 +132,9 @@ namespace ERP_GMEDINA.Controllers
                 {
                     using (TransactionScope Tran = new TransactionScope())
                     {
+                        var vFactura = db.tbFactura.Where(x => x.fact_Codigo == tbSalida.fact_Codigo).Select(x => x.fact_Id).SingleOrDefault();
                         //tbSalida.bod_Id
-                           listSalida = db.UDP_Inv_tbSalida_Insert(4, tbSalida.fact_Id, tbSalida.sal_FechaElaboracion, tbSalida.estm_Id, tbSalida.tsal_Id, tbSalida.sal_BodDestino, tbSalida.sal_EsAnulada, tbSalida.sal_RazonAnulada, tbSalida.sal_RazonDevolucion);
+                        listSalida = db.UDP_Inv_tbSalida_Insert(tbSalida.bod_Id, vFactura, tbSalida.sal_FechaElaboracion, tbSalida.estm_Id, tbSalida.tsal_Id, tbSalida.sal_BodDestino, tbSalida.sal_EsAnulada, tbSalida.sal_RazonAnulada, tbSalida.sal_RazonDevolucion);
                         foreach (UDP_Inv_tbSalida_Insert_Result Salida in listSalida)
                             MensajeError = Salida.MensajeError;
                         if (MensajeError == "-1")
@@ -413,9 +415,6 @@ namespace ERP_GMEDINA.Controllers
 
         }
 
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Aplicar(int? id)
         {
             if (ModelState.IsValid)
@@ -511,10 +510,9 @@ namespace ERP_GMEDINA.Controllers
 
 
 
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Anular(int? id,[Bind(Include = "sal_Id, bod_Id,fact_Id,sal_FechaElaboracion,estm_Id,tsal_Id,sal_RazonDevolucion, sal_UsuarioCrea, sal_FechaCrea")] tbSalida tbSalida)
+        
+           
+        public JsonResult Anular(tbSalida Salida)
         {
             if (ModelState.IsValid)
             {
@@ -523,7 +521,7 @@ namespace ERP_GMEDINA.Controllers
                     var MensajeError = "";
                     bool EsAnulada = true;
                     IEnumerable<object> list = null;
-                    tbSalida vSalida = db.tbSalida.Find(id);
+                    tbSalida vSalida = db.tbSalida.Find(Salida.sal_Id);
                     list = db.UDP_Inv_tbSalida_Update(vSalida.sal_Id,
                                                     vSalida.bod_Id,
                                                     vSalida.fact_Id,
@@ -532,20 +530,19 @@ namespace ERP_GMEDINA.Controllers
                                                     vSalida.tsal_Id,
                                                     vSalida.sal_BodDestino,
                                                     EsAnulada,
-                                                    tbSalida.sal_RazonAnulada,
+                                                    Salida.sal_RazonAnulada,
                                                     vSalida.sal_RazonDevolucion,
                                                     vSalida.sal_UsuarioCrea,
                                                     vSalida.sal_FechaCrea);
 
-                    foreach (UDP_Inv_tbSalida_Update_Result Salida in list)
-                        MensajeError = Salida.MensajeError;
+                    foreach (UDP_Inv_tbSalida_Update_Result RSSalida in list)
+                        MensajeError = RSSalida.MensajeError;
                     if (MensajeError == "-1")
                     {
 
                     }
                     else
                     {
-                        return RedirectToAction("Index");
                     }
                 }
                 catch (Exception Ex)
@@ -553,9 +550,8 @@ namespace ERP_GMEDINA.Controllers
                     ModelState.AddModelError("", "No se pudo agregar el registros" + Ex.Message.ToString());
                 }
 
-                return RedirectToAction("Index");
             }
-            return RedirectToAction("Index");
+            return Json("", JsonRequestBehavior.AllowGet);
 
         }
 

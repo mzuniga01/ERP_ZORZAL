@@ -188,6 +188,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BodegaController.cs" />
     <Compile Include="Controllers\BoxController.cs" />
+    <Compile Include="Controllers\ConsultarExistenciaProductosController.cs" />
     <Compile Include="Controllers\DepartamentoController.cs" />
     <Compile Include="Controllers\EmpleadoController.cs" />
     <Compile Include="Controllers\EntradaController.cs" />
@@ -769,10 +770,25 @@
     <Compile Include="Models\UDP_Inv_tbProductoSubcategoria_Update_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UDP_Inv_tbProducto_Estado_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Inv_tbProducto_GetCategoria_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Inv_tbProducto_GetCategoria_Result1.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Inv_tbProducto_GetSubCategoia_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UDP_Inv_tbProducto_Insert_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Inv_tbProducto_Update_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Inv_tbProducto_ValorCodigo_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Inv_tbProveedor_Insert_Result.cs">

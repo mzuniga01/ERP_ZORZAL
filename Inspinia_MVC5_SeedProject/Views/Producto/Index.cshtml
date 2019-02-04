@@ -27,7 +27,7 @@
                 <div class="ibox-content">
                     <div class="form-group">
 
-                        <table class="table table-responsive" id="indexa">
+                        <table class="table table table-striped  table-bordered" id="DataTable">
                             <thead>
                                 <tr>
                                     <th>
@@ -128,12 +128,10 @@
 
 @section scripts
 {
-    @*<script src="~/Scripts/jquery-3.3.1.js"></script>*@
-    <script src="~/Scripts/app/DataTable.js"></script>
-    <script src="~/Scripts/app/search.js"></script>
+
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#indexa').DataTable(
+        $('#DataTable').DataTable(
         {
             "searching": true,
 
@@ -151,3 +149,4 @@
 </script>
 
 }
+<script src="~/Scripts/jquery-3.3.1.js"></script>

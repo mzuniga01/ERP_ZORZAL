@@ -5,10 +5,19 @@
     ViewBag.Title = "Editar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@{
-    var ListadoSuCategoria = new ERP_GMEDINA.Models.tbProductoSubcategoria();
-    var ListadoCategoria = new ERP_GMEDINA.Models.tbProductoCategoria();
-}
+<style>
+    .validation-error {
+        color: red;
+        font-size: small;
+    }
+
+    .required:after {
+        content: "*";
+        font-weight: bold;
+        color: red;
+    }
+</style>
+
 
 
 <div class="row wrapper border-bottom white-bg page-heading">
@@ -55,27 +64,15 @@
                         @Html.HiddenFor(model => model.tbUsuario1.usu_Nombres)
                         @Html.HiddenFor(model => model.tbUsuario1.usu_Apellidos)
 
-                        @*Extras usuario crea*@
-                        @Html.HiddenFor(model => model.tbUsuario.usu_NombreUsuario)
-                        @Html.HiddenFor(model => model.tbUsuario.usu_Password)
-                        @Html.HiddenFor(model => model.tbUsuario.usu_Correo)
-                        @Html.HiddenFor(model => model.tbUsuario.usu_EsActivo)
-                        @Html.HiddenFor(model => model.tbUsuario.usu_EsAdministrador)
-
-                        @*Extras usuario crea*@
-                        @Html.HiddenFor(model => model.tbUsuario1.usu_NombreUsuario)
-                        @Html.HiddenFor(model => model.tbUsuario1.usu_Password)
-                        @Html.HiddenFor(model => model.tbUsuario1.usu_Correo)
-                        @Html.HiddenFor(model => model.tbUsuario1.usu_EsActivo)
-                        @Html.HiddenFor(model => model.tbUsuario1.usu_EsAdministrador)
+                       
 
                         <div class="form-group">
-                            <label class="control-label col-md-2">Categoria<span style="color:red">*</span></label>
+                            @Html.LabelFor(model => model.tbProductoSubcategoria.tbProductoCategoria.pcat_Nombre, "Categoria", new { @class = "control-label col-md-2 , required" })
                             <div class="col-md-4">
 
                                 @Html.DropDownList("pcat_Id", null, "Seleccione una Categoria", new { @class = "form-control" })
                             </div>
-                            <label class="control-label col-md-2">SubCategoria<span style="color:red">*</span></label>
+                            @Html.LabelFor(model => model.tbProductoSubcategoria.pscat_Descripcion, "SubCategoria", new { @class = "control-label col-md-2 , required" })
                             <div class="col-md-4">
 
                                 @Html.DropDownList("pscat_Id", null, "Seleccione una Subcategoria", new { @class = "form-control" })
@@ -137,18 +134,17 @@
                                 <p style="color:red">@Html.ValidationMessageFor(model => model.prod_Talla)</p>
                             </div>
 
-                            <label class="control-label col-md-2">Unidad Medida<span style="color:red">*</span></label>
-                            @*@Html.LabelFor(model => model.uni_Id, "Unidad Medida", new { @class = "control-label col-md-2" })*@
+                            @Html.LabelFor(model => model.tbUnidadMedida.uni_Descripcion, "Unidad Medida", new { @class = "control-label col-md-2 , required" })           
                             <div class="col-md-4">
                                 @Html.DropDownList("uni_Id", null, new { @class = "form-control" })
                                 <p style="color:red">@Html.ValidationMessageFor(model => model.uni_Id)</p>
                             </div>                                                                       
                         </div>    
 
-                        <div class="form-group" id="Activo" name="Activo">
+                        <div class="form-group" id="Activo" >
                             @Html.LabelFor(model => model.prod_EsActivo, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                @if (Model.prod_EsActivo )
+                                @if (Model.prod_EsActivo == Helpers.ProductoActivo)
                                 {
                                     <p> Si</p>
                                 }
@@ -156,17 +152,17 @@
                                 {
                                     <p>No</p>
                                 }
+                                
                             </div>
-                                <p style="color:red">  @Html.ValidationMessageFor(model => model.prod_EsActivo)</p>                           
+                            <p style="color:red">  @Html.ValidationMessageFor(model => model.prod_EsActivo)</p>  
+                                                         
 
-                            @if (!Model.prod_EsActivo)
+                            @if (Model.prod_EsActivo == Helpers.ProductoInactivo)
                             {
                                 <div class="form-group" id="RazonInactivo">
                                     @Html.LabelFor(model => model.prod_Razon_Inactivacion, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
                                         @Html.EditorFor(model => model.prod_Razon_Inactivacion, new { htmlAttributes = new { @class = "form-control" } })
-
-                                        @*<textarea class="form-control" id="prod_Razon_Inactivacion" name="clte_RazonInactivo" >@ViewData["Razon"]</textarea>*@
                                         <p style="color:red">@Html.ValidationMessageFor(model => model.prod_Razon_Inactivacion)</p>
                                     </div>
                                 </div>
@@ -184,12 +180,14 @@
                                     </tr>
                                     <tr>
                                         <td>Creado</td>
-                                        <td>@Html.DisplayFor(model => model.tbUsuario1.usu_Nombres) @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)</td>
+                                        <td>@Html.DisplayFor(model => model.tbUsuario1.usu_Nombres) 
+                                            @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)</td>
                                         <td>@Html.DisplayFor(model => model.prod_FechaCrea)</td>
                                     </tr>
                                     <tr>
                                         <td>Modificado</td>
-                                        <td> @Html.DisplayFor(model => model.tbUsuario.usu_Nombres) @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)</td>
+                                        <td> @Html.DisplayFor(model => model.tbUsuario.usu_Nombres) 
+                                             @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)</td>
                                         <td>@Html.DisplayFor(model => model.prod_FechaModifica)</td>
                                     </tr>
                                 </table>
@@ -206,7 +204,7 @@
                                         if (count > 0)
                                         {
                                             <input type="submit" value="Guardar" class="btn btn-primary" disabled/>
-                                            if (Model.prod_EsActivo) {
+                                            if (Model.prod_EsActivo == Helpers.ProductoActivo) {
                                             <button type="button" id="inactivar" name="inactivar" class="btn btn-danger" data-toggle="modal" data-target="#ModalAnular" disabled>
                                                 Inactivar
                                             </button>
@@ -221,23 +219,36 @@
                                         else
                                         {
                                             <input type="submit" value="Guardar" class="btn btn-primary" />
-                                            if (Model.prod_EsActivo)
-                                            {
-                                                <button type="button" id="inactivar" name="inactivar" class="btn btn-danger" data-toggle="modal" data-target="#ModalAnular">
-                                                    Inactivar
-                                                </button>
-                                            }
-                                            else
+                                            if (Model.prod_EsActivo == Helpers.ProductoInactivo)
                                             {
                                                 <button type="button" id="activar" name="activar" class="btn btn-info" data-toggle="modal" data-target="#ModalAnular1">
                                                     Activar
                                                 </button>
                                             }
+                                            else
+                                            {
+                                                <button type="button" id="inactivar" name="inactivar" class="btn btn-danger" data-toggle="modal" data-target="#ModalAnular">
+                                                    Inactivar
+                                                </button>
+                                                
+                                            }
                                         }
 
                                     }                                                                     
                                   
-                                    
+                                    @*<input type="submit" value="Guardar" class="btn btn-primary" />
+                                    @if (Model.prod_EsActivo)
+                                    {
+                                    <button type="button" id="inactivar" name="inactivar" class="btn btn-danger" data-toggle="modal" data-target="#ModalAnular">
+                                        Inactivar
+                                    </button>
+                                    }
+                                    else
+                                    {
+                                    <button type="button" id="activar" name="activar" class="btn btn-info" data-toggle="modal" data-target="#ModalAnular1">
+                                        Activar
+                                    </button>
+                                    }*@
                                     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
 
 
@@ -310,11 +321,10 @@
             }
         });
 
-    </script>
-   
+    </script>  
 
 }
-
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

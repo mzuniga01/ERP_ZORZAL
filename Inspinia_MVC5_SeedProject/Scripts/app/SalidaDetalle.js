@@ -202,6 +202,7 @@ $('#AgregarSalidaDetalle').click(function () {
                 $('#uni_Id').val(''); 
                 $('#pcat_Id').val(''); 
 
+                $("#prod_CodigoBarras").val('');
                 $('#sald_Cantidad').val('0.00');
                     $('#MessageError').text('');
                     $('#NombreError').text('');
@@ -321,8 +322,8 @@ $('#btnCreateSalidaDetalle').click(function () {
             dataType: 'json',
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify({ SalidaDetalle: tbSalidaDetalle }),
-        }),
-        done(function (data) {
+        })
+        .done(function (data) {
             if (data == 'El registro se guardo exitosamente') {
                 location.reload();
                 swal("El registro se almacenó exitosamente!", "", "success");
