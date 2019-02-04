@@ -50,7 +50,7 @@
                         @Html.AntiForgeryToken()
 
                     <div class="form-horizontal">
-                        @Html.ValidationSummary(true)
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                         <div class="form-group">
                             @Html.LabelFor(model => model.tbProductoSubcategoria.tbProductoCategoria.pcat_Nombre,"Categoria" ,new { @class = "control-label col-md-2 , required" })
@@ -61,8 +61,7 @@
                                 @Html.DropDownList("pcat_Id", null, "Seleccione una Categoria", new { @class = "form-control" })
                                 <p id="Departamento" style="color:red">@Html.ValidationMessageFor(subcat => test.pcat_Id)</p>
                             </div>
-                            @Html.LabelFor(model => model.tbProductoSubcategoria.pscat_Descripcion, "SubCategoria", new { @class = "control-label col-md-2 , required" })
-                            @*<label class="control-label col-md-2">SubCategoria<span style="color:red">*</span></label>*@
+                            @Html.LabelFor(model => model.tbProductoSubcategoria.pscat_Descripcion, "SubCategoria", new { @class = "control-label col-md-2 , required" })                       
                             <div class="col-md-4">
 
                                 @Html.DropDownList("pscat_Id",null, "Seleccione una Subcategoria", new { @class = "form-control" })
@@ -82,9 +81,8 @@
                                 @Html.LabelFor(model => model.prod_CodigoBarras, new { @class = "control-label col-md-2" })
                                   
                                     <div class="col-md-4">
-                                        @Html.EditorFor(model => model.prod_CodigoBarras, new { @class = "form-control" })
-                                        @*<span style="color:red">@Html.ValidationSummary(true)</span>*@
-                                        <p style="color:red">@Html.ValidationMessageFor(model => model.prod_CodigoBarras)</p>
+                                        @Html.EditorFor(model => model.prod_CodigoBarras, new { @class = "form-control" })                                                                                
+                                        <p style="color:red">@Html.ValidationMessageFor(model => model.prod_CodigoBarras)</p>                                                                                
                                     </div>
                         </div>
                         

@@ -152,8 +152,11 @@ namespace ERP_GMEDINA.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "prod_Codigo,prod_Descripcion,prod_Marca,prod_Modelo,prod_Talla,prod_Color,pscat_Id,uni_Id,prod_CodigoBarras,pcat_Id")] tbProducto tbProducto, int pcat_Id)
         {
-            
-                    if (ModelState.IsValid)
+            if (db.tbProducto.Any(a => a.prod_CodigoBarras == tbProducto.prod_CodigoBarras))
+            {
+                ModelState.AddModelError("", "El Codigo de Barras ya Existe.");
+            }
+            if (ModelState.IsValid)
                     {                        
                         try
                         {                           
@@ -175,17 +178,7 @@ namespace ERP_GMEDINA.Controllers
                                 {
                                     ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
                                     return View(tbProducto);
-                                }
-                                else if (MsjError ==("-1"))
-                                {
-                                    ModelState.AddModelError("", "El Codigo de Barras ya Existe");
-                                    ViewBag.pcat_Id = new SelectList(db.tbProductoCategoria, "pcat_Id", "pcat_Nombre");
-                                    //ViewBag.prod_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
-                                    //ViewBag.prod_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
-                                    ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion");
-                                    ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion");
-                                    return View(tbProducto);
-                                }
+                                }                               
                                 else
                                 {
                                     return RedirectToAction("Index");
@@ -242,8 +235,16 @@ namespace ERP_GMEDINA.Controllers
                     //ViewData["Razon"] = tbProducto.prod_Razon_Inactivacion;
                     ViewBag.prod_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbProducto.prod_UsuarioModifica);
                     ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion", tbProducto.uni_Id);
-                    ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion ", tbProducto.pscat_Id);
+                    //ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion ", tbProducto.pscat_Id);
                     ViewBag.pcat_Id = new SelectList(db.tbProductoCategoria, "pcat_Id", "pcat_Nombre", tbProducto.tbProductoSubcategoria.tbProductoCategoria.pcat_Id);
+                    var Categoria = tbProducto.tbProductoSubcategoria.tbProductoCategoria.pcat_Id; ;
+                    var Sucategoria = db.tbProductoSubcategoria.Select(s => new
+                    {
+                        pscat_Id = s.pscat_Id,
+                        pscat_Descripcion = s.pscat_Descripcion,
+                        pcat_Id = s.pcat_Id
+                    }).Where(x => x.pcat_Id == Categoria).ToList();
+                    ViewBag.pscat_Id = new SelectList(Sucategoria, "pscat_Id", "pscat_Descripcion", tbProducto.pscat_Id);
                     return View(tbProducto);
                 }
                 else

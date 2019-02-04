@@ -22,11 +22,13 @@ function GetSubCategoriaProducto() {
             $('#pscat_Id').trigger("chosen:updated");
         }
         else {
-            $('#pscat_Id').empty();
-            $('#pscat_Id').append("<option value=" + val.pscat_Id + ">" + val.pscat_Descripcion + "</option>");
+            $('#pscat_Id').empty('');
+            $('#pscat_Id').append("<option value=''>Sin SubCtaegoria</option>");
         }
     });
 }
+
+//Fin
 
 
 //Cargar Codigo Producto
@@ -52,6 +54,27 @@ $('#pscat_Id').change(function () {
     })
 });
 
-$(document).ready(function () {
-    GetCategoriaProducto()
+//$(document).ready(function () {
+//    GetCategoriaProducto()
+//});
+
+$(document).keydown(function (e) {
+    if ((e.key == 'g' || e.key == 'G') && (e.ctrlKey || e.metaKey)) {
+        e.preventDefault();
+        //alert("Ctrl-g pressed");
+        $("form").submit();
+        return false;
+    }
+    return true;
 });
+
+
+//$(document).ready(function () {
+//var cate = $('#pcat_Id').val();
+//if (depto === '') {
+//    document.getElementById("pscat_Id").disabled = true;
+//}
+//else {
+
+//}
+//});
