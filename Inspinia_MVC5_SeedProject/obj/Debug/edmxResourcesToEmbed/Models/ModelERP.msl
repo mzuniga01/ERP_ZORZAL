@@ -2559,5 +2559,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbPedido_Factura" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbPedido_Factura" />
   </EntityContainerMapping>
 </Mapping>

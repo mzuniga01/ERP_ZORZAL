@@ -246,7 +246,7 @@ $("#clte_ContactoEmail").blur(function () {
         }
 });
 
-$("#confi_Correo").blur(function () {
+$("#clte_CorreoElectronico").blur(function () {
     campo = event.target;
     valido = document.getElementById('emailOK1');
 

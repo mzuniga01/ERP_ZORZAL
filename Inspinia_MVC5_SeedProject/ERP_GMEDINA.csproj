@@ -1286,6 +1286,7 @@
     <Content Include="Scripts\app\FacturaDetalleEdit.js" />
     <Content Include="Scripts\app\FacturaDevolucion.js" />
     <Content Include="Scripts\app\FacturaPagar.js" />
+    <Content Include="Scripts\app\FacturaPedido.js" />
     <Content Include="Scripts\app\fechaExoneracion.js" />
     <Content Include="Scripts\app\FuncionResta.js" />
     <Content Include="Scripts\app\GetCodigoNotaCredito.js" />

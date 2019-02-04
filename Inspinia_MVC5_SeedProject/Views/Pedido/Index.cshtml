@@ -66,9 +66,20 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.ped_Id)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.tbEstadoPedido.esped_Descripcion)
-                </td>
+                @if (item.ped_EsAnulado)
+                {
+                        <td>Anulado</td>
+                }
+                else if (item.fact_Id != 0)
+                {
+                    <td>Facturado</td>
+                }
+                else
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tbEstadoPedido.esped_Descripcion)
+                    </td>
+                }
                 <td>
                       @Html.DisplayFor(modelItem => item.tbSucursal.suc_Descripcion)
                 </td>
@@ -100,27 +111,40 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.tbFactura.fact_Codigo)
                 </td>
-        @if (item.ped_EsAnulado == false)
-        {
-            <td>
-                @Html.ActionLink("Detalles", "Details", new { id = item.ped_Id }, new { @class = "btn btn-primary btn-xs " })
+                @if (item.ped_EsAnulado)
+                {
+                    <td>
+                        @Html.ActionLink("Detalles", "Details", new { id = item.ped_Id }, new { @class = "btn btn-primary btn-xs " })
 
-                @Html.ActionLink("Editar", "Edit", new { id = item.ped_Id }, new { @class = "btn btn-white btn-xs" })
+                        <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="No se puede Editar, esta Anulado">
+                            <button class="btn btn-white btn-xs" style="pointer-events: none;" type="button" disabled>Editar</button>
+                        </span>
 
-            </td>
-        }
-        else
-        {
+                    </td>
+                }
+                else if (item.fact_Id != 0)
+                {
+                    <td>
+                        @Html.ActionLink("Detalles", "Details", new { id = item.ped_Id }, new { @class = "btn btn-primary btn-xs " })
 
-            <td>
-                @Html.ActionLink("Detalles", "Details", new { id = item.ped_Id }, new { @class = "btn btn-primary btn-xs " })
+                        <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="No se puede Editar, esta Facturado">
+                            <button class="btn btn-white btn-xs" style="pointer-events: none;" type="button" disabled>Editar</button>
+                        </span>
 
-                <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="No se puede Editar, esta Anulado">
-                    <button class="btn btn-white btn-xs" style="pointer-events: none;" type="button" disabled>Editar</button>
-                </span>
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @Html.ActionLink("Detalles", "Details", new { id = item.ped_Id }, new { @class = "btn btn-primary btn-xs " })
 
-            </td>
-        }
+                        @Html.ActionLink("Editar", "Edit", new { id = item.ped_Id }, new { @class = "btn btn-white btn-xs" })
+                    </td>
+                }
+
+
+
+
 
             </tr>
         }

@@ -25,7 +25,7 @@ function Validar() {
                   data: JSON.stringify({ CodPedido: CodPedido }),
               })
                         .done(function (data) {
-                            
+                            $("#ped_Id").val(CodPedido);
                             $.each(data, function (key, val) {
                                 Descuento = 0;
                                 ImpuestoTotal = ((val.pscat_ISV / 100) * val.lispd_PrecioMayorista) * val.pedd_Cantidad;

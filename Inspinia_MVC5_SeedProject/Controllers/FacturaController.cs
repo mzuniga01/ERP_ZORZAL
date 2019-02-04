@@ -183,7 +183,7 @@ namespace ERP_GMEDINA.Controllers
             }
             else
             {
-                string id = (string)Session["IDCLIENTE"];
+                int id = (int)Session["IDCLIENTE"];
                 ViewBag.Iden = id;
                 int? idped = (int)Session["PEDIDO"];
                 ViewBag.Pedid = idped;
@@ -200,6 +200,8 @@ namespace ERP_GMEDINA.Controllers
             {
                 idUser = Convert.ToInt32(Usuario.emp_Id);
             }
+            var Fact_Id = db.tbFactura.OrderBy(x => x.fact_Id).Select(x => x.fact_Id).ToList().LastOrDefault();
+            ViewBag.fact_Id = Fact_Id + 1;
             ViewBag.suc_Descripcion = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Descripcion).SingleOrDefault();
             ViewBag.suc_Id = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Id).SingleOrDefault();
             ViewBag.fact_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
@@ -828,6 +830,13 @@ namespace ERP_GMEDINA.Controllers
         public ActionResult BuscarCodigoBarras(int IDSucursal, string CodBarra, int IDCliente)
         {
             var list = db.UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente(IDSucursal, CodBarra, IDCliente).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult FacturaPedido(int CodPedido,int CodFactura)
+        {
+            var list = db.UDP_Vent_tbPedido_Factura(CodPedido,CodFactura).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 

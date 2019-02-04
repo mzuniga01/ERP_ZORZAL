@@ -863,6 +863,7 @@
       <Parameter Name="IDProducto" Mode="In" Type="String" />
       <Parameter Name="FechaElaboracion" Mode="In" Type="DateTime" />
       <Parameter Name="BodegaDestino" Mode="In" Type="Int32" />
+      <Parameter Name="CantidadDisponible" Mode="In" Type="Decimal" />
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbExoneracion_Estado" ReturnType="Collection(Int32)">
       <Parameter Name="exo_Id" Mode="In" Type="Int32" />
@@ -2486,6 +2487,10 @@
       <Parameter Name="soled_CantidadSolicitada" Mode="In" Type="Int16" />
       <Parameter Name="soled_CantidadEntregada" Mode="In" Type="Int16" />
       <Parameter Name="soled_MontoEntregado" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbPedido_Factura" ReturnType="Collection(String)">
+      <Parameter Name="ped_Id" Mode="In" Type="Int32" />
+      <Parameter Name="fact_Id" Mode="In" Type="Int32" />
     </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
