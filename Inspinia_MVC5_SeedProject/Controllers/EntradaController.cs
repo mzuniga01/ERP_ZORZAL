@@ -15,19 +15,11 @@ namespace ERP_ZORZAL.Controllers
     public class EntradaController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
-        GeneralFunctions Function = new GeneralFunctions();
 
         // GET: /Entrada/
         public ActionResult Index()
         {
-            if (Function.Sesiones("Entrada/Index"))
-            {
-
-            }
-            else
-            {
-                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
-            }
+            
             var tbentrada = db.tbEntrada.Include(t => t.tbBodega).Include(t => t.tbEstadoMovimiento).Include(t => t.tbProveedor).Include(t => t.tbTipoEntrada);
             return View(tbentrada.ToList());
         }
@@ -35,14 +27,6 @@ namespace ERP_ZORZAL.Controllers
         // GET: /Entrada/Details/5
         public async Task<ActionResult> Details(int? id)
         {
-            if (Function.Sesiones("Entrada/Details"))
-            {
-
-            }
-            else
-            {
-                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
-            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -70,16 +54,17 @@ namespace ERP_ZORZAL.Controllers
         }
 
         // GET: /Entrada/Create
+        [HttpPost]
+        public JsonResult GetRTNProveedor(int codigoProveedor)
+        {
+            try { ViewBag.smserror = TempData["smserror"].ToString(); } catch { }
+            var list = db.SPGetRTNproveedor(codigoProveedor).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult Create()
         {
-            if (Function.Sesiones("Entrada/Create"))
-            {
-
-            }
-            else
-            {
-                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
-            }
+            try { ViewBag.smserror = TempData["smserror"].ToString(); } catch { }
             string UserName = "";
             int idUser = 0;
             GeneralFunctions Login = new GeneralFunctions();
@@ -112,14 +97,6 @@ namespace ERP_ZORZAL.Controllers
         // GET: /Entrada/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (Function.Sesiones("Entrada/Edit"))
-            {
-
-            }
-            else
-            {
-                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
-            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -152,32 +129,6 @@ namespace ERP_ZORZAL.Controllers
             Session["CrearDetalleEntrada"] =null;
             return View(tbEntrada);
         }
-        
-        // GET: /Entrada/Delete/5
-        public async Task<ActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            tbEntrada tbEntrada = await db.tbEntrada.FindAsync(id);
-            if (tbEntrada == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tbEntrada);
-        }
-
-        // POST: /Entrada/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
-        {
-            tbEntrada tbEntrada = await db.tbEntrada.FindAsync(id);
-            db.tbEntrada.Remove(tbEntrada);
-            await db.SaveChangesAsync();
-            return RedirectToAction("Index");
-        }
 
         protected override void Dispose(bool disposing)
         {
@@ -187,29 +138,6 @@ namespace ERP_ZORZAL.Controllers
             }
             base.Dispose(disposing);
         }
-
-        //creacion de vistas parciales
-        public ActionResult _EditarDetalleEntrada()
-        {
-            return View();
-        }
-        public ActionResult _CrearDetalleEntrada()
-        {
-            return View();
-        }
-        public ActionResult _DetallesDeEntrada()
-        {
-            return View();
-        }
-        public ActionResult _IndexDetalleEntrada()
-        {
-            return View();
-        }
-        public ActionResult _IndexEditar()
-        {
-            return View();
-        }
-
         //para añadir datos temporales a la tabla
         [HttpPost]
         public JsonResult Guardardetalleentrada(tbEntradaDetalle EntradaDetalle)
@@ -228,56 +156,6 @@ namespace ERP_ZORZAL.Controllers
             }
             return Json("Exito", JsonRequestBehavior.AllowGet);
         }
-
-
-
-
-        //para guardar solo el detalles de la entrada En editar
-        //[HttpPost]
-        //public JsonResult GuardardetalleentradaEditar(tbEntradaDetalle EntradaDetalleEditar)
-        //{
-
-        //    var listaDetalle = (List<tbEntradaDetalle>)Session["CrearDetalleEntrada"];
-        //    var idMaster = EntradaDetalleEditar.ent_Id;
-        //    var MensajeError = "";
-        //    var MsjError = "";
-        //    IEnumerable<object> DETALLE = null;
-        //    try{
-
-        //        if (listaDetalle != null)
-        //        {
-        //            if (listaDetalle.Count > 0)
-        //            {
-        //                foreach (tbEntradaDetalle entd in listaDetalle)
-        //                {
-        //                    DETALLE = db.UDP_Inv_tbEntradaDetalle_Insert(idMaster
-        //                                                                , entd.prod_Codigo
-        //                                                                , entd.entd_Cantidad
-        //                                                                , entd.uni_Id);
-        //                    foreach (UDP_Inv_tbEntradaDetalle_Insert_Result B_detalle in DETALLE)
-
-        //                    //if (MensajeError == "-1")
-        //                    {
-        //                        ModelState.AddModelError("", "No se Guardo el Registro");
-        //                        //return View(tbEntrada);
-        //                        //}
-        //                        //else
-        //                        //{
-        //                        //    _Tran.Complete();
-        //                        //    return RedirectToAction("Index");
-        //                    }
-        //                }
-        //            }
-        //        }
-        //    }
-        //    catch (Exception Ex)
-        //    {
-        //        Ex.Message.ToString();
-        //        ModelState.AddModelError("", "No se pudo registra el detalle ");
-        //        //return PartialView("_EditarDetalleEntrada", EditarDetalleEntrada);
-        //    }
-        //    return Json("", JsonRequestBehavior.AllowGet);
-        //}
 
             //para actualizar detalle de la entrada del modal
         [HttpPost]
@@ -426,78 +304,87 @@ namespace ERP_ZORZAL.Controllers
 
             if (ModelState.IsValid)
             {
-                using (TransactionScope _Tran = new TransactionScope())
+                if (listaDetalle == null)
                 {
-                    try
+                    TempData["smserror"] = " No Puede Ingresar Una Entrada Sin Detalle.";
+                    ViewBag.smserror = TempData["smserror"];
+                    return RedirectToAction("Create");
+                }
+                else
+                {
+                    using (TransactionScope _Tran = new TransactionScope())
                     {
-                    
-                    ENTRADA = db.UDP_Inv_tbEntrada_Insert(
-                                                        tbEntrada.ent_FechaElaboracion,
-                                                        tbEntrada.bod_Id,
-                                                        tbEntrada.estm_Id,
-                                                        tbEntrada.prov_Id,
-                                                        tbEntrada.ent_FacturaCompra,
-                                                        tbEntrada.ent_FechaCompra,
-                                                        tbEntrada.fact_Id,
-                                                        tbEntrada.ent_RazonDevolucion,
-                                                        tbEntrada.ent_BodegaDestino,
-                                                        tbEntrada.tent_Id);
-                    foreach (UDP_Inv_tbEntrada_Insert_Result Entrada in ENTRADA)
-                            idMaster = Convert.ToInt32(Entrada.MensajeError);
+                        try
+                        {
 
-                    if (MsjError =="-")
-                    {
-                        ModelState.AddModelError("", "No se guardo el registro");
-                            return View(tbEntrada);
-                    }
-                    else
-                    {
-                            if (listaDetalle != null)
+                            ENTRADA = db.UDP_Inv_tbEntrada_Insert(
+                                                                tbEntrada.ent_FechaElaboracion,
+                                                                tbEntrada.bod_Id,
+                                                                tbEntrada.estm_Id,
+                                                                tbEntrada.prov_Id,
+                                                                tbEntrada.ent_FacturaCompra,
+                                                                tbEntrada.ent_FechaCompra,
+                                                                tbEntrada.fact_Id,
+                                                                tbEntrada.ent_RazonDevolucion,
+                                                                tbEntrada.ent_BodegaDestino,
+                                                                tbEntrada.tent_Id);
+                            foreach (UDP_Inv_tbEntrada_Insert_Result Entrada in ENTRADA)
+                                idMaster = Convert.ToInt32(Entrada.MensajeError);
+
+                            if (MsjError == "-")
                             {
-                                if (listaDetalle.Count > 0)
+                                ModelState.AddModelError("", "No se guardo el registro");
+                                return View(tbEntrada);
+                            }
+                            else
+                            {
+                                if (listaDetalle != null)
                                 {
-                                    foreach (tbEntradaDetalle entd in listaDetalle)
+                                    if (listaDetalle.Count > 0)
                                     {
-                                        DETALLE = db.UDP_Inv_tbEntradaDetalle_Insert( idMaster
-                                                                                    , entd.prod_Codigo
-                                                                                    , entd.entd_Cantidad);
-                                        foreach (UDP_Inv_tbEntradaDetalle_Insert_Result B_detalle in DETALLE)
-
-                                        //if (MensajeError == "-1")
+                                        foreach (tbEntradaDetalle entd in listaDetalle)
                                         {
-                                            ModelState.AddModelError("", "No se Guardo el Registro");
-                                            //return View(tbEntrada);
-                                            //}
-                                            //else
-                                            //{
-                                            //    _Tran.Complete();
-                                            //    return RedirectToAction("Index");
+                                            DETALLE = db.UDP_Inv_tbEntradaDetalle_Insert(idMaster
+                                                                                        , entd.prod_Codigo
+                                                                                        , entd.entd_Cantidad);
+                                            foreach (UDP_Inv_tbEntradaDetalle_Insert_Result B_detalle in DETALLE)
+
+                                            //if (MensajeError == "-1")
+                                            {
+                                                ModelState.AddModelError("", "No se Guardo el Registro");
+                                                //return View(tbEntrada);
+                                                //}
+                                                //else
+                                                //{
+                                                //    _Tran.Complete();
+                                                //    return RedirectToAction("Index");
+                                            }
                                         }
                                     }
                                 }
-                            }
-                            {
-                                _Tran.Complete();
-                                //return RedirectToAction("Index");
+                                {
+                                    _Tran.Complete();
+                                    //return RedirectToAction("Index");
+                                }
+
                             }
 
                         }
-
-                    }
-                    catch (Exception Ex)
-                    {
-                        Ex.Message.ToString();
-                        //ModelState.AddModelError("", "No se Guardo el Registro");
-                        //return View(tbBodega);
-                        MsjError = "-1";
+                        catch (Exception Ex)
+                        {
+                            Ex.Message.ToString();
+                            //ModelState.AddModelError("", "No se Guardo el Registro");
+                            //return View(tbBodega);
+                            MsjError = "-1";
+                        }
                     }
                 }
+                
                 return RedirectToAction("Index");
             }
             
             return View(tbEntrada);
         }
-
 
         // POST: /Entrada/Edit/5
         //Para q edite la master y el detalle

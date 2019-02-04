@@ -5,7 +5,6 @@
     tbEntradaDetalle Detalles = new tbEntradaDetalle();
    
  }
-
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
@@ -60,22 +59,22 @@
                                     <td>
                                         @{if (item.tbEntrada.estm_Id == Helpers.EntradaInactivada)
                                             {
-                                                <button type="button" class="btn btn-primary btn-xs" disabled>Detalles</button>
-                                                <button type="button" class="btn btn-white btn-xs" disabled>
+                                                <button type="button" class="btn btn-primary btn-xs" title="No Puede Ver Detalles Porque Esta Inactiva" disabled>Detalles</button>
+                                                <button type="button" class="btn btn-white btn-xs" title="No Puede Editar Porque Esta Inactiva" disabled>
                                                     Editar
                                                 </button>
                                             }
                                             else if (item.tbEntrada.estm_Id == Helpers.EntradaEstadoAnulada)
                                             {
-                                                <button type="button" class="btn btn-primary btn-xs" disabled>Detalles</button>
-                                                <button type="button" class="btn btn-white btn-xs" disabled>
+                                                <button type="button" class="btn btn-primary btn-xs" title="No Puede Ver Detalles Porque Esta Anulada" disabled>Detalles</button>
+                                                <button type="button" class="btn btn-white btn-xs" title="No Puede Editar Porque Esta Anulada" disabled>
                                                     Editar
                                                 </button>
                                             }
                                             else if (item.tbEntrada.estm_Id == Helpers.EntradaAplicada)
                                             {
-                                                <button type="button" class="btn btn-primary btn-xs" disabled>Detalles</button>
-                                                <button type="button" class="btn btn-white btn-xs" disabled>
+                                                <button type="button" class="btn btn-primary btn-xs" title="No Puede Ver Detalles Porque ya Esta Aplicada" disabled>Detalles</button>
+                                                <button type="button" class="btn btn-white btn-xs" title="No Puede Editar Porque ya Esta Aplicada" disabled>
                                                     Editar
                                                 </button>
                                             }
@@ -209,6 +208,7 @@
                     "sNext": "Siguiente",
                     "sPrevious": "Anterior",
                 },
+                "sEmptyTable": "No hay registros",
                 "sSearch": "Buscar",
                 "sLengthMenu": "Mostrar _MENU_ registros por página",
                 "sInfo": "Mostrando _START_ a _END_ Entradas",

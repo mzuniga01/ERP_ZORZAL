@@ -83,7 +83,8 @@
                                 @Html.LabelFor(model => model.bod_Id, new { @class = "control-label col-md-2 , required" })
                                 @*<label class="control-label col-md-2">Nombre Bodega<span style="color:red">*</span></label>*@
                                 <div class="col-md-4">
-                                    @Html.DropDownListFor(model => model.bod_Id, (SelectList)ViewBag.bodega, new { @class = "form-control" })
+                                    @Html.EditorFor(model => model.tbBodega1.bod_Nombre, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @*@Html.DropDownListFor(model => model.bod_Id, (SelectList)ViewBag.bodega, new { @class = "form-control", @readonly = "readonly" })*@
                                     @Html.ValidationMessageFor(model => model.bod_Id)
                                 </div>
                             </div>
@@ -100,6 +101,18 @@
                                     @Html.EditorFor(model => model.ent_FechaElaboracion, new { htmlAttributes = new { @class = "form-control", @id = "FechaElaboracion" } })
                                     @Html.ValidationMessageFor(model => model.ent_FechaElaboracion)
                                 </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.prov_Id, new { @class = "control-label col-md-2 , required" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.tbProveedor.prov_Nombre, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.prov_Id)
+                                </div>
+                                <label class="control-label col-md-2">RTN Proveedor<span style="color:red">*</span></label>
+                                <div class="col-md-4">
+                                    @*<input type="text" value="1" id="Rtn"/>*@
+                                    @Html.EditorFor(item => item.tbProveedor.prov_RTN, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @Id = "Rtn" } })
+                                </div>  
                             </div>
                                 <div class="form-group">
                                     @*<label class="control-label col-md-2">Tipo Entrada<span style="color:red">*</span></label>*@
@@ -145,20 +158,6 @@
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.ent_FechaCompra, new { htmlAttributes = new { @class = "form-control", @id = "FechaCompra" } })
                                     @Html.ValidationMessageFor(model => model.ent_FechaCompra)
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                @*@Html.LabelFor(model => model.fact_Id, new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-                                    @Html.EditorFor(model => model.fact_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                    @Html.ValidationMessageFor(model => model.fact_Id)
-                                </div>*@
-                                @*<label class="control-label col-md-2">Proveedor<span style="color:red">*</span></label>*@
-                                @Html.LabelFor(model => model.prov_Id, new { @class = "control-label col-md-2 , required" })
-                                <div class="col-md-4">
-                                    @Html.DropDownListFor(model => model.prov_Id, (SelectList)ViewBag.proveedor, new { @class = "form-control" })
-                                    @*@Html.DropDownList("prov_Id", (IEnumerable<SelectListItem>)ViewBag.prov_Id, new { @class = "form-control" })*@
-                                    @Html.ValidationMessageFor(model => model.prov_Id)
                                 </div>
                             </div>
                         </div>
@@ -207,15 +206,15 @@
                                     else if (Model.estm_Id == Helpers.EntradaInactivada)
                                     {
                                         @Html.ActionLink("Emitir", "Estadoactivar", new { id = Model.ent_Id }, new { @class = "btn btn-primary" })
-                                        <input type="submit" value="Guardar" disabled class="btn btn-primary" />
-                                        <input type="button" class="btn btn-danger" disabled value="Anular" />
-                                        <input type="button" class="btn btn-danger" disabled value="Aplicar" />
+                                        <input type="button" value="Guardar" disabled  class="btn btn-primary" title="No Puede Guardar Porque Esta Inactiva" />
+                                        <input type="button" class="btn btn-danger" disabled value="Anular" title= "No Puede Anular Porque Esta Inactiva" />
+                                        <input type="button" class="btn btn-danger" disabled value="Aplicar"  title = "No Puede Aplicar Porque Esta Inactiva"/>
                                         @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                                     }
                                     else if (Model.estm_Id == Helpers.EntradaEstadoAnulada)
                                     {
-                                        <input type="submit" value="Guardar" disabled class="btn btn-primary" />
-                                        <input type="button" class="btn btn-danger" disabled value="Anular" />
+                                        <input type="submit" value="Guardar" disabled class="btn btn-primary" title="No Puede Guardar Porque Esta Anulada"/>
+                                        <input type="button" class="btn btn-danger" disabled value="Anular" title="Ya Esta Anulada"/>
                                         @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                                     }
                                     else if (Model.estm_Id == Helpers.EntradaAplicada)
@@ -235,21 +234,6 @@
 
                             </div>
                         </div>
-
-                        @*@{ if (Model.estm_Id == 36)
-                            {
-                                <div class="ibox-content collapse" id="RegistrarNuevoDetalle">
-                                    @Html.Partial("_CrearDetalleEntrada", new tbEntradaDetalle())
-                                </div>
-
-                            }
-                            else
-                            {
-                                <div class="ibox-content collapse" id="RegistrarNuevoDetalle">
-                                    @Html.Partial("_CrearDetalleEntrada", new tbEntradaDetalle())
-                                </div>
-                            }
-                        }*@
                         <div class="ibox-content collapse" id="RegistrarNuevoDetalle">
                             @Html.Partial("_CrearDetalleEntradaEditar", new tbEntradaDetalle())
                         </div>
@@ -379,7 +363,6 @@
     </div>
 
 }
-
 @*modal para agregar un nuevo detalle en editar*@
 <div>
     <div class="modal fade" id="RegistrarNuevoDetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -447,4 +430,12 @@
     };
 
 </script>
-
+<script>
+    var x = document.getElementById("mun_Codigo").disabled;
+     if (X == true) {
+         document.getElementById("mun_Codigo").style.backgroundColor = "#EDE8E7";
+         document.getElementById("mun_Codigo").title = "Seleccione primero un departamento";
+     }
+     else {
+     }
+</script>

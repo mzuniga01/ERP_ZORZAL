@@ -108,6 +108,12 @@
             <li>
                 <a href="#"><i class="fa fa-folder-open"></i><span class="nav-label">Catálagos</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
+                    @if (Login.GetUserRols("TipoDevolucion/Index"))
+                    {
+                    <li class="@Html.IsSelected(action: "Index")">
+                        <a href="@Url.Action("Index", "TipoDevolucion")"><i class="fa fa-recycle fa-fw"></i><span class="nav-label">Tipo Devolucion</span> </a>
+                    </li>
+                    }
                     @if (Login.GetUserRols("Departamento/Index"))
                     {
                     <li class="@Html.IsSelected(action: "Index")">

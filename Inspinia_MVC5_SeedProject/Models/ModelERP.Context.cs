@@ -2391,5 +2391,14 @@ namespace ERP_GMEDINA.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_ValidacionCantidadExistente_Result>("UDP_Inv_ValidacionCantidadExistente", cantidadSolicitadadParameter, iDBodegaParameter, iDProductoParameter, fechaElaboracionParameter, bodegaDestinoParameter, cantidadDisponibleParameter);
         }
+    
+        public virtual ObjectResult<SPGetRTNproveedor_Result> SPGetRTNproveedor(Nullable<int> prov_Id)
+        {
+            var prov_IdParameter = prov_Id.HasValue ?
+                new ObjectParameter("prov_Id", prov_Id) :
+                new ObjectParameter("prov_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPGetRTNproveedor_Result>("SPGetRTNproveedor", prov_IdParameter);
+        }
     }
 }

@@ -2068,5 +2068,12 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SPGetRTNproveedor" FunctionName="ERP_ZORZALModel.Store.SPGetRTNproveedor">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SPGetRTNproveedor_Result">
+          <ScalarProperty Name="prov_RTN" ColumnName="prov_RTN" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -110,25 +110,6 @@ namespace Inspinia_MVC5_SeedProject.Controllers
             return View();
         }
 
-        public ActionResult _IndexInvFisicoDetalle()
-        {
-            return View();
-        }
-
-        public ActionResult _IndexProductos()
-        {
-            return View();
-        }
-
-        public ActionResult Detalle()
-        {
-            return View();
-        }
-
-        public ActionResult Editar()
-        {
-            return View();
-        }
         // POST: /InventarioFisico/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -482,7 +463,7 @@ namespace Inspinia_MVC5_SeedProject.Controllers
                 tbInventarioFisico obj = db.tbInventarioFisico.Find(id);
                 IEnumerable<object> list = null;
                 var MsjError = "";
-                list = db.UDP_Inv_tbInventarioFisico_Update_Estado(id, EstadoInventarioFisico.Conciliado );
+                list = db.UDP_Inv_tbInventarioFisico_Update_Estado(id, Helpers.InvFisicoConciliado );
                 foreach (UDP_Inv_tbInventarioFisico_Update_Estado_Result obje in list)
                     MsjError = obje.MensajeError;
 

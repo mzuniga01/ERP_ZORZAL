@@ -1614,6 +1614,9 @@
       <Parameter Name="BodegaDestino" Mode="In" Type="Int32" />
       <Parameter Name="CantidadDisponible" Mode="In" Type="Decimal" />
     </FunctionImport>
+    <FunctionImport Name="SPGetRTNproveedor" ReturnType="Collection(ERP_ZORZALModel.SPGetRTNproveedor_Result)">
+      <Parameter Name="prov_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -6327,5 +6330,8 @@
   </ComplexType>
   <ComplexType Name="UDP_Inv_ValidacionCantidadExistente_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="SPGetRTNproveedor_Result">
+    <Property Type="String" Name="prov_RTN" Nullable="true" MaxLength="14" />
   </ComplexType>
 </Schema>

@@ -16,6 +16,17 @@
                             color: red;
                         }
 </style>
+@if (ViewBag.smserror != "" && ViewBag.smserror != null)
+{     <div class="col-md-12" id="mensaje">
+        <div class="alert alert-warning alert-danger">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <h4><i class="icon fa fa-warning"></i>Alerta</h4>
+            <h2>No Puede Guardar una Entrada Sin Detalle</h2>
+        </div>
+    </div> 
+}
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
@@ -30,7 +41,6 @@
         </div>
     </div>
 </div>
-
 @using (Html.BeginForm("Create", "Entrada", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
 
@@ -54,14 +64,10 @@
                                     <div class="col-md-4">
                                         @Html.EditorFor(model => model.tbBodega.bod_Nombre, new { htmlAttributes = new { @class = "form-control ", @readonly = "readonly" } })
                                     </div>
-                                        <div style="display:none" class="col-md-4">
-                                            @Html.DropDownList("bod_Id", (IEnumerable<SelectListItem>)ViewBag.bod_Id, new { @class = "form-control" })
-                                            <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Id)</p>
-                                        </div>
-                                        
+                                    <div style="display:none" class="col-md-4">
+                                        @Html.DropDownList("bod_Id", (IEnumerable<SelectListItem>)ViewBag.bod_Id, new { @class = "form-control" })
+                                        <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Id)</p>
                                     </div>
-
-                                <div class="form-group">
                                     @Html.LabelFor(model => model.ent_FechaElaboracion, new { @class = "control-label col-md-2 , required" })
                                     <div class="col-md-4">
                                         @Html.EditorFor(model => model.ent_FechaElaboracion, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "FechaElaboracion" } })
@@ -69,6 +75,8 @@
                                             <p style="color:red">@Html.ValidationMessageFor(model => model.ent_FechaElaboracion)</p>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="form-group">
                                     @Html.LabelFor(model => model.prov_Id, new { @class = "control-label col-md-2 , required" })
                                     @*<label class="control-label col-md-2">Proveedor<span style="color:red">*</span></label>*@
                                     <div class="col-md-4">
@@ -77,6 +85,11 @@
                                         <div class="col-md-10">
                                             <p style="color:red">@Html.ValidationMessageFor(model => model.prov_Id)</p>
                                         </div>
+                                    </div>
+                                    <label class="control-label col-md-2">RTN Proveedor<span style="color:red">*</span></label>
+                                    <div class="col-md-4">
+                                        @*<input type="text" value="1" id="Rtn"/>*@
+                                        @Html.EditorFor(item => item.tbProveedor.prov_RTN, new { htmlAttributes = new {@Value="Seleccione Proveedor", @class = "form-control", @readonly = "readonly", @Id = "Rtn" } })
                                     </div>
                                 </div>
 
@@ -238,6 +251,23 @@
         $("#tbBodega_bod_Nombre").val(strUser)
 
     });
-
 </script>
- 
+<script>
+    $("#Btnsubmit").click(function () {
+        var data = $("#SubmitForm").serializeArray();
+
+
+        $.ajax({
+            type: "Post",
+            url: "/Entrada/UpdateEntradaDetalle",
+            data: data,
+            success: function (result) {
+                if (result == '-1')
+                    $("#MsjError").text("No se pudo actualizar el registro, contacte al administrador");
+                else
+                    //$("#MyModal").modal("hide");
+                    location.reload();
+            }
+        });
+    });
+</script>

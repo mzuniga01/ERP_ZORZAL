@@ -3818,6 +3818,9 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
   <Function Name="SPGetResponsableBodega" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="bod_id" Type="int" Mode="In" />
   </Function>
+  <Function Name="SPGetRTNproveedor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="prov_Id" Type="int" Mode="In" />
+  </Function>
   <Function Name="UDP_Inv_CantidadExistente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="bod_Id" Type="int" Mode="In" />
     <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />

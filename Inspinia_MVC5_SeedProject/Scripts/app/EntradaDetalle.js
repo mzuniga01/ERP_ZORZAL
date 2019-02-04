@@ -394,54 +394,6 @@ $("#Btnsubmit").click(function () {
     });
 })
 
-//function btnActualizarentrada(entd_Id) {
-//    console.log(entd_Id);
-//    //var coProductoEdit = $("#coProductoEdit").val();
-//    //var cantidadEdit = $("#cantidadEdit").val();
-//    //var unidadEdit = $("#unidadEdit").val();
-//    //console.log(coProductoEdit);
-//    //console.log(cantidadEdit);
-//    //console.log(unidadEdit);
-
-//    var tbEntradaDetalle = Getentradadetalle_actualizar();
-
-//    $.ajax({
-//        url: "/Entrada/entradadetalle_actualizar",
-//        method: "POST",
-//        dataType: 'json',
-//        contentType: "application/json; charset=utf-8",
-//        data: JSON.stringify({ actualizarEntradaDetalle: tbEntradaDetalle }),
-//    }).done(function (data) {
-//        if (data == '') {
-//            location.reload();
-//        }
-//        else if (data == '-1') {
-//            $('#MensajeError' + entd_Id).text('');
-//            $('#ValidationMessageFor' + entd_Id).after('<ul id="MensajeError' + entd_Id + '" class="validation-summary-errors text-danger">No se ha podido Actualizar el registro.</ul>');
-//        }
-//        else {
-//            $('#MensajeError' + entd_Id).text('');
-//            $('#ValidationMessageFor' + entd_Id).after('<ul id="MensajeError' + entd_Id + '" class="validation-summary-errors text-danger">Campo Requerido</ul>');
-            
-//        }
-        
-//    });
-//}
-//function Getentradadetalle_actualizar() {
-
-//    var actualizarEntradaDetalle = {
-//        ent_Id: $('#ent_Id_Edit').val(),
-//        entd_Id: $('#entd_Id').val(),
-//        prod_Codigo: $('#coProductoEdit').val(),
-//        entd_Cantidad: $("#cantidadEdit").val(),
-//        entd_UsuarioCrea: $('#entd_UsuarioCrea').val(),
-//        entd_UsuarioModifica: $('#entd_UsuarioModifica').val(),
-//        entd_FechaCrea: $('#entd_FechaCrea').val(),
-//        entd_FechaModifica: $('#entd_FechaModifica').val(),
-//        uni_Id: $('#unidadEdit').val(),
-//    };
-//    return actualizarEntradaDetalle;
-//}
 
 //para inprimir
 $('#btnImprimir').click(function () {
@@ -501,4 +453,36 @@ function GetAnualarEntrada() {
         ent_Id: $('#ent_Id').val(),
     };
     return cambiaAnular;
+}
+
+
+//Encargado de Bodega
+$(document).change("#prov_Id", function () {
+    GetRTNproveedor();
+});
+
+function GetRTNproveedor() {
+    var codigoProveedor = $('#prov_Id').val();
+    $.ajax({
+        url: "/Entrada/GetRTNProveedor",
+        method: "POST",
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({ codigoProveedor: codigoProveedor }),
+    })
+    .done(function (data) {
+        if (data.length > 0) {
+            $('#Rtn').empty();
+            $.each(data, function (key, val) {
+                $('#Rtn').val(val.prov_RTN);
+                console.log(val.codigoProveedor);
+            });
+            $('#Rtn').trigger("chosen:updated");
+        }
+        else {
+            $('#Rtn').empty();
+            $('#Rtn').val(val.prov_RTN);
+            console.log(val.prov_Id);
+        }
+    });
 }

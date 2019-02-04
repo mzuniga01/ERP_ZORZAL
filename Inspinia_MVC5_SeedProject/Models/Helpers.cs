@@ -64,5 +64,15 @@ namespace ERP_GMEDINA.Models
         public const bool ProductoActivo = true;
         public const bool ProductoInactivo = false;
 
+        //Estado Categoria
+        public const int CategoriaActivo = 1;
+        public const int CategoriaInactivo = 2;
+
+        //Estado Subcategoria
+        public const int SubcategoriaActivo = 1;
+        public const int SubcategoriaInactivo = 2;
+
+
+
     }
 }

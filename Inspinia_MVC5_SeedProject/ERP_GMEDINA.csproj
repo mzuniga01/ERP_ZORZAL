@@ -236,7 +236,6 @@
     <Compile Include="Models\Entrada.cs" />
     <Compile Include="Models\EstadoBodega.cs" />
     <Compile Include="Models\EstadoCategoria.cs" />
-    <Compile Include="Models\EstadoInventario.cs" />
     <Compile Include="Models\EstadoInventariosFisico.cs" />
     <Compile Include="Models\estadomovimientos.cs" />
     <Compile Include="Models\Estados.cs" />
@@ -351,6 +350,9 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SPGetResponsableBodega_Result2.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SPGetRTNproveedor_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\spGetSubCategoriaProducto_Result.cs">
@@ -1453,8 +1455,6 @@
     <Content Include="Views\Entrada\_IndexDetalleEntrada.cshtml" />
     <Content Include="Views\Entrada\_DetallesDeEntrada.cshtml" />
     <Content Include="Views\Bodega\_BuscarProductoAutocomplete.cshtml" />
-    <Content Include="Views\ProductoCategoria\_EliminarSubCategoriaModal.cshtml" />
-    <Content Include="Views\ProductoCategoria\EliminarSub.cshtml" />
     <Content Include="Views\ConsultarExistenciaProductos\Index.cshtml" />
     <Content Include="Views\Parametro\Create.cshtml" />
     <Content Include="Views\Parametro\Delete.cshtml" />

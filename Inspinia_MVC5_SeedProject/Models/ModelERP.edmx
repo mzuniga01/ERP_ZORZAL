@@ -3823,6 +3823,9 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
         <Function Name="SPGetResponsableBodega" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="bod_id" Type="int" Mode="In" />
         </Function>
+        <Function Name="SPGetRTNproveedor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="prov_Id" Type="int" Mode="In" />
+        </Function>
         <Function Name="UDP_Inv_CantidadExistente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="bod_Id" Type="int" Mode="In" />
           <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
@@ -6935,6 +6938,9 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
             <Parameter Name="FechaElaboracion" Mode="In" Type="DateTime" />
             <Parameter Name="BodegaDestino" Mode="In" Type="Int32" />
             <Parameter Name="CantidadDisponible" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="SPGetRTNproveedor" ReturnType="Collection(ERP_ZORZALModel.SPGetRTNproveedor_Result)">
+            <Parameter Name="prov_Id" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
@@ -11650,6 +11656,9 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
         <ComplexType Name="UDP_Inv_ValidacionCantidadExistente_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
+        <ComplexType Name="SPGetRTNproveedor_Result">
+          <Property Type="String" Name="prov_RTN" Nullable="true" MaxLength="14" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -13721,6 +13730,13 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_ValidacionCantidadExistente_Result">
                 <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SPGetRTNproveedor" FunctionName="ERP_ZORZALModel.Store.SPGetRTNproveedor" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.SPGetRTNproveedor_Result">
+                <ScalarProperty Name="prov_RTN" ColumnName="prov_RTN" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

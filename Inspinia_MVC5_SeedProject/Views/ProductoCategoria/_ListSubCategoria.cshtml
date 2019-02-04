@@ -82,10 +82,10 @@
                                                 <button type="button" class="btn btn-danger btn-xs" disabled data-toggle="modal" data-target="#ModalEstado_@item.pscat_Id">
                                                     Eliminar
                                                 </button>
-                                                
+                                                @Html.ActionLink("Activar", "ActivarSub", new { id = item.pscat_Id }, new { @class = "btn btn-primary btn-xs" })
                                             }
 
-                                        }
+                                                }
 
                                     </td>
                                 </tr>
@@ -133,9 +133,7 @@
                                         </div>
                                     </div>
                                 </div>
-
-
-
+                            
                                 <div class="modal fade" id="ModalEstado_@item.pscat_Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
