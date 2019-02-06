@@ -436,7 +436,6 @@ C:\Users\DELL\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ER
 C:\Users\DELL\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.csprojResolveAssemblyReference.cache
 C:\Users\DELL\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.dll
 C:\Users\DELL\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.pdb
-C:\Users\usuario\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.csproj.CoreCompileInputs.cache
 C:\Users\usuario\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\ERP_GMEDINA.dll.config
 C:\Users\usuario\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\ERP_GMEDINA.dll
 C:\Users\usuario\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\ERP_GMEDINA.pdb
@@ -492,8 +491,6 @@ C:\Users\usuario\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\Syste
 C:\Users\usuario\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\System.Web.WebPages.xml
 C:\Users\usuario\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\System.Web.WebPages.Deployment.xml
 C:\Users\usuario\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\System.Web.WebPages.Razor.xml
-C:\Users\usuario\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.csprojAssemblyReference.cache
-C:\Users\usuario\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.csproj.CopyComplete
 C:\Users\usuario\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.dll
 C:\Users\usuario\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.pdb
 C:\Users\Lab 2\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.csprojResolveAssemblyReference.cache
@@ -689,3 +686,6 @@ C:\Users\Jose Dubon\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\Sy
 C:\Users\Jose Dubon\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\System.Web.WebPages.xml
 C:\Users\Jose Dubon\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\System.Web.WebPages.Deployment.xml
 C:\Users\Jose Dubon\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\System.Web.WebPages.Razor.xml
+C:\Users\usuario\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\SimpleCrypto.Fakes.fakesconfig
+C:\Users\usuario\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.csprojFakesResolveAssemblyReference.cache
+C:\Users\usuario\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.csprojResolveAssemblyReference.cache
