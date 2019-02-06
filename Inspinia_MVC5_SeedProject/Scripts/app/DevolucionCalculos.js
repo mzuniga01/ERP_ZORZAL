@@ -1,7 +1,5 @@
 ﻿$(document).ready(function () {
-    console.log('devd_CantidadProducto');
     $("#devd_CantidadProducto,#PrecioUnitario").keyup(function (e) {
-        console.log("sii",'devd_CantidadProducto');
         var Cantidad = $("#devd_CantidadProducto").val(),
             Precio = $("#PrecioUnitario").val(),
             porcentajeDesc = $("#Descuento").val(),
@@ -12,7 +10,6 @@
             MontoTotal = "";
             ValorImpuesto = "";
             ValorDescuento = "";
-            console.log("sii22", Precio);
             Impuesto1 = (parseFloat(Impuesto)/ 100)
             porcentajeDesc1 = (parseFloat(porcentajeDesc) / 100)
             if (Cantidad.length && Precio.length > 0) {
@@ -32,13 +29,11 @@
 });
 
 $(document).change(function () {
-    console.log('CantidadDevolucion');
     $("#CantidadDevolucion,#PrecioUnit").keyup(function (e) {
-        console.log("sii", 'CantidadDevolucion');
         var Cantidad = $("#CantidadDevolucion").val(),
             Precio = $("#PrecioUnit").val(),
             porcentajeDesc = $("#PorDescuento").val(),
-            Impuesto = $("#ImpuestoD").val(),
+            Impuesto = $("#PorImpuesto").val(),
 
             valorSubtotal = "";
         MontoTotal = "";
@@ -55,11 +50,9 @@ $(document).change(function () {
             MontoTotal += (parseFloat(valorSubtotal) + parseFloat(ValorImpuesto)) - parseFloat(ValorDescuento);
 
         }
-        $("#SubtotalDev").val(valorSubtotal);
-        console.log("Subtotal", valorSubtotal);
-        $("#MontoDevolu").val(MontoTotal);
-        console.log("MontoDevolu", MontoTotal);
-        $("#ValImpuesto").val(ValorImpuesto);
+        $("#Stotal").val(valorSubtotal);
+        $("#MontoDevolucion").val(MontoTotal);
+        $("#ValorImp").val(ValorImpuesto);
         $("#MontoDesc").val(ValorDescuento);
     });
 

@@ -7704,5 +7704,7 @@
     <Property Type="Decimal" Name="factd_PorcentajeDescuento" Nullable="false" Precision="10" Scale="2" />
     <Property Type="Decimal" Name="factd_Impuesto" Nullable="false" Precision="10" Scale="2" />
     <Property Type="Decimal" Name="factd_PrecioUnitario" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Int32" Name="devd_UsuarioCrea" Nullable="false" />
+    <Property Type="DateTime" Name="devd_FechaCrea" Nullable="false" Precision="23" />
   </ComplexType>
 </Schema>

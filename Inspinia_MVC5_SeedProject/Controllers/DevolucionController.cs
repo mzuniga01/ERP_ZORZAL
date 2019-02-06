@@ -347,7 +347,8 @@ namespace ERP_ZORZAL.Controllers
             {
                 var MensajeError = "";
                 IEnumerable<object> list = null;
-                list = db.UDP_Vent_tbDevolucionDetalle_Update(EditDevolucionDetalle.devd_Id,
+                list = db.UDP_Vent_tbDevolucionDetalle_Update(
+                    EditDevolucionDetalle.devd_Id,
                     EditDevolucionDetalle.dev_Id,
                     EditDevolucionDetalle.prod_Codigo,
                     EditDevolucionDetalle.devd_CantidadProducto,

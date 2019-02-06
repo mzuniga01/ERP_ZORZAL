@@ -27,5 +27,7 @@ namespace ERP_GMEDINA.Models
         public decimal factd_PorcentajeDescuento { get; set; }
         public decimal factd_Impuesto { get; set; }
         public decimal factd_PrecioUnitario { get; set; }
+        public int devd_UsuarioCrea { get; set; }
+        public System.DateTime devd_FechaCrea { get; set; }
     }
 }

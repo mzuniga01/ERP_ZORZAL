@@ -9800,9 +9800,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
         <ComplexType Name="UDP_Vent_tbDevolucionDetalle_Insert_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
-        <ComplexType Name="UDP_Vent_tbDevolucionDetalle_Update_Result">
-          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-        </ComplexType>
         <ComplexType Name="UDP_Vent_tbDevolucion_Filtrado_CodProducto_Result">
           <Property Type="String" Name="DESCRIPCIONPRODUCTO" Nullable="true" MaxLength="100" />
           <Property Type="Decimal" Name="DESCUENTOPRODUCTO" Nullable="true" Precision="10" Scale="2" />
@@ -14447,6 +14444,11 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Property Type="Decimal" Name="factd_PorcentajeDescuento" Nullable="false" Precision="10" Scale="2" />
           <Property Type="Decimal" Name="factd_Impuesto" Nullable="false" Precision="10" Scale="2" />
           <Property Type="Decimal" Name="factd_PrecioUnitario" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Int32" Name="devd_UsuarioCrea" Nullable="false" />
+          <Property Type="DateTime" Name="devd_FechaCrea" Nullable="false" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbDevolucionDetalle_Update_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
@@ -16983,6 +16985,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
                 <ScalarProperty Name="factd_PorcentajeDescuento" ColumnName="factd_PorcentajeDescuento" />
                 <ScalarProperty Name="factd_Impuesto" ColumnName="factd_Impuesto" />
                 <ScalarProperty Name="factd_PrecioUnitario" ColumnName="factd_PrecioUnitario" />
+                <ScalarProperty Name="devd_UsuarioCrea" ColumnName="devd_UsuarioCrea" />
+                <ScalarProperty Name="devd_FechaCrea" ColumnName="devd_FechaCrea" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

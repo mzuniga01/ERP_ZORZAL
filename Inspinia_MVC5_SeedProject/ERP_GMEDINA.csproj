@@ -1550,7 +1550,6 @@
     <Content Include="Views\Devolucion\Edit.cshtml" />
     <Content Include="Views\Devolucion\Index.cshtml" />
     <Content Include="Views\Devolucion\_CreateDevolucionDetalle.cshtml" />
-    <Content Include="Views\Devolucion\_EditarDetalleDevolucion.cshtml" />
     <Content Include="Views\DocumentoFiscal\Create.cshtml" />
     <Content Include="Views\DocumentoFiscal\Delete.cshtml" />
     <Content Include="Views\DocumentoFiscal\Details.cshtml" />

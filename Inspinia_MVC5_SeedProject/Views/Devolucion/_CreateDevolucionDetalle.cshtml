@@ -176,101 +176,102 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <div class="ibox-content">
-                    <div class="form-horizontal">
-                        <form id="form">
-                            <fieldset id="SubmitForm">
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.prod_Codigo, new { @class = "control-label col-md-2" })
-                                    <div class="col-md-3">
-                                        <input id="CodigoProducto" name="prod_Codigo" type="text" class="form-control" />
-                                        @Html.ValidationMessageFor(model => model.prod_Codigo)
+                <div class="modal-body" id="">
+                    <div class="ibox-content">
+                        <div class="form-horizontal">
+                            <form id="form">
+                                <fieldset id="SubmitForm">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.prod_Codigo, new { @class = "control-label col-md-2" })
+                                        <div class="col-md-3">
+                                            <input id="CodigoProducto" name="prod_Codigo" type="text" class="form-control" />
+                                            @Html.ValidationMessageFor(model => model.prod_Codigo)
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.tbProducto.prod_Descripcion, new { @class = "control-label col-md-2" })
+                                            <div class="col-md-4">
+                                                <input id="DescripcionProducto" name="tbProducto_prod_Descripcion" type="text" class="form-control" readonly />
+                                                @Html.ValidationMessageFor(model => model.tbProducto.prod_Descripcion)
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-2">Cantidad Facturada</label>
+                                        <div class="col-md-3">
+                                            <input type="text" value="" class="form-control " id="CantFacturada" name="CantFacturada" readonly />
+                                        </div>
+
+                                        @Html.LabelFor(model => model.devd_CantidadProducto, new { @class = "control-label col-md-2" })
+                                        <div class="col-md-4">
+                                            <input type="text" id="CantidadDevolucion" name="devd_CantidadProducto" class="form-control col-md-2" Value="" onKeyPress="return soloNumeros(event)" autocomplete="off" />
+                                            <p id="smsCantidadModal" style="color:red"></p>
+                                            @*@Html.EditorFor(model => model.devd_CantidadProducto, new { @class = "control-label col-md-2" @onKeyPre="return soloNumeros(event)", @autocomplete = "off" })*@
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-2">Precio Unitario</label>
+                                        <div class="col-md-3">
+                                            <input type="text" value="" class="form-control " id="PrecioUnit" name="PrecioUnit" readonly />
+                                        </div>
+
+
+                                        <label class="control-label col-md-2">Sub-Total</label>
+                                        <div class="col-md-4">
+                                            <input type="text" value="" class="form-control " id="Stotal" readonly />
+                                        </div>
                                     </div>
                                     <div class="form-group">
-                                        @Html.LabelFor(model => model.tbProducto.prod_Descripcion, new { @class = "control-label col-md-2" })
+
+                                        <label class="control-label col-md-2">Monto Impuesto</label>
+                                        <div class="col-md-3">
+                                            <input type="text" value="" class="form-control " id="ValorImp" readonly />
+                                        </div>
+                                        <label class="control-label col-md-2">Monto Descuento</label>
                                         <div class="col-md-4">
-                                            <input id="DescripcionProducto" name="tbProducto_prod_Descripcion" type="text" class="form-control" readonly />
-                                            @Html.ValidationMessageFor(model => model.tbProducto.prod_Descripcion)
+                                            <input type="text" value="" class="form-control " id="MontoDesc" readonly />
                                         </div>
                                     </div>
-                                </div>
+                                    <input type="hidden" value="" class="form-control " id="devd_Id" name="devd_Id" />
+                                    <input type="hidden" value="" class="form-control " id="IdDevolucion" name="dev_Id" />
+                                    <input type="hidden" value="" class="form-control " id="PorDescuento" />
+                                    <input type="hidden" value="" class="form-control " id="PorImpuesto" />
+                                    @Html.HiddenFor(model => model.devd_UsuarioCrea)
+                                    @Html.HiddenFor(model => model.devd_FechaCrea)
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.devd_Monto, "Monto Total", new { @class = "control-label   col-md-2" })
+                                        <div class="col-md-offset col-md-3">
+                                            <input id="MontoDevolucion" name="devd_Monto" type="text" class="form-control" readonly />
+                                            <div id="validationProductoDevolucionCreate">
+                                                @Html.ValidationMessageFor(model => model.devd_Monto)
+                                            </div>
 
-                                <div class="form-group">
-                                    <label class="control-label col-md-2">Cantidad Facturada</label>
-                                    <div class="col-md-3">
-                                        <input type="text" value="" class="form-control " id="CantidadFacturada" readonly />
-                                    </div>
-
-                                    @Html.LabelFor(model => model.devd_CantidadProducto, new { @class = "control-label col-md-2" })
-                                    <div class="col-md-4">
-                                        <input type="text" id="CantidadDevolucion" name="devd_CantidadProducto" class="form-control col-md-2" Value="" onKeyPress="return soloNumeros(event)" autocomplete="off" />
-                                        <p id="smsCantidad" style="color:red">@Html.ValidationMessageFor(model => model.devd_CantidadProducto)</p>
-                                        @*@Html.EditorFor(model => model.devd_CantidadProducto, new { @class = "control-label col-md-2" @onKeyPre="return soloNumeros(event)", @autocomplete = "off" })*@
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="control-label col-md-2">Precio Unitario</label>
-                                    <div class="col-md-3">
-                                        <input type="text" value="" class="form-control " id="PrecioUnitario" readonly />
-                                    </div>
-
-
-                                    <label class="control-label col-md-2">Sub-Total</label>
-                                    <div class="col-md-4">
-                                        <input type="text" value="" class="form-control " id="Subtotal" readonly />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-
-                                    <label class="control-label col-md-2">Monto Impuesto</label>
-                                    <div class="col-md-3">
-                                        <input type="text" value="" class="form-control " id="ValorImpuesto" readonly />
-                                    </div>
-                                    <label class="control-label col-md-2">Monto Descuento</label>
-                                    <div class="col-md-4">
-                                        <input type="text" value="" class="form-control " id="MontoDescuento" readonly />
-                                    </div>
-                                </div>
-                                <input type="hidden" value="" class="form-control " id="Descuento" readonly />
-                                <input type="hidden" value="" class="form-control " id="Impuesto" readonly />
-
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.devd_Monto, "Monto Total", new { @class = "control-label   col-md-2" })
-                                    <div class="col-md-offset col-md-3">
-                                        <input id="MontoDev" name="devd_Monto" type="text" class="form-control" readonly />
-                                        <div id="validationProductoDevolucionCreate">
-                                            @Html.ValidationMessageFor(model => model.devd_Monto)
                                         </div>
-
                                     </div>
-                                </div>
-
-
-
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.devd_Descripcion, new { @class = "control-label col-md-2" })
-                                    <div class="col-md-9">
-                                        <textarea id="Comentario" class="form-control" name="devd_Descripcion"></textarea>
-                                        @Html.ValidationMessageFor(model => model.devd_Descripcion)
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.devd_Descripcion, new { @class = "control-label col-md-2" })
+                                        <div class="col-md-9">
+                                            <textarea id="Comentario" class="form-control" name="devd_Descripcion"></textarea>
+                                            @Html.ValidationMessageFor(model => model.devd_Descripcion)
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="form-group">
-                                    <div class="col-lg-offset-5 col-md-10">
-                                        <a href="#" class="btn btn-primary btn-sm" id="EditFacturaDetalle">Guardar</a>
-                                        <button type="button" class="btn btn-white btn-sm" data-dismiss="modal">Cancelar</button>
+                                    <div class="form-group">
+                                        <div class="col-lg-offset-5 col-md-10">
+                                            <a href="#" class="btn btn-primary btn-sm" id="EditDevolucionDetalle">Guardar</a>
+                                            <button type="button" class="btn btn-white btn-sm" data-dismiss="modal">Cancelar</button>
+                                        </div>
                                     </div>
-                                </div>
-                            </fieldset>
-                        </form>
+                                </fieldset>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 
  <!-- Modal de editar detalle devolución-->
 @*<div class="modal fade" id="EditarDetalleDev" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -301,6 +302,27 @@
          //console.log('else')
          //document.getElementById("Factura").title = "";
          //document.getElementById("tbFactura_fact_Codigo").title = "";
+     }
+ });
+ function soloNumeros(e) {
+     var key = window.Event ? e.which : e.keyCode;
+     return ((key >= 48 && key <= 57) || (key == 8))
+ }
+
+ //Validacion de cantidad de producto devuelto
+ $("#CantidadDevolucion").blur(function () {
+     valido = document.getElementById('smsCantidadModal');
+     var CantFacturada = $('#CantFacturada').val();
+     var CantDevolucion = $('#CantidadDevolucion').val();
+     if (parseFloat(CantFacturada) < parseFloat(CantDevolucion)) {
+         console.log("facturada", CantFacturada)
+         console.log(CantDevolucion)
+         console.log("if")
+         valido.innerText = "El valor debe ser menor a la cantidad facturada";
+     }
+     else {
+         console.log("else")
+         valido.innerText = "";
      }
  });
 </script>

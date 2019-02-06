@@ -2528,6 +2528,8 @@
           <ScalarProperty Name="factd_PorcentajeDescuento" ColumnName="factd_PorcentajeDescuento" />
           <ScalarProperty Name="factd_Impuesto" ColumnName="factd_Impuesto" />
           <ScalarProperty Name="factd_PrecioUnitario" ColumnName="factd_PrecioUnitario" />
+          <ScalarProperty Name="devd_UsuarioCrea" ColumnName="devd_UsuarioCrea" />
+          <ScalarProperty Name="devd_FechaCrea" ColumnName="devd_FechaCrea" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
