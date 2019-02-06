@@ -1,5 +1,4 @@
-﻿using CrystalDecisions.CrystalReports.Engine;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -12,8 +11,6 @@ using System.Transactions;
 using System.Data.SqlClient;
 using System.Data.Common;
 using System.Data.Entity.Core.Objects;
-using System.IO;
-using System.Reflection;
 
 namespace ERP_GMEDINA.Controllers
 {
@@ -142,78 +139,6 @@ namespace ERP_GMEDINA.Controllers
             }
 
         }
-
-        public DataTable EvaluarNullable(PropertyInfo[] properties)
-        {
-            DataTable dt = new DataTable();
-            DataColumn dc = null;
-            foreach (PropertyInfo pi in properties)
-            {
-                dc = new DataColumn();
-                dc.ColumnName = pi.Name;
-
-                if (pi.PropertyType.Name.Contains("Nullable"))
-                    dc.DataType = typeof(String);
-                else
-                    dc.DataType = pi.PropertyType;
-
-                // dc.DataType = pi.PropertyType;
-                dt.Columns.Add(dc);
-            }
-            return dt;
-        }
-
-        //public ActionResult ExportImprimir()
-        //{
-        //    PropertyInfo[] myIntArray;
-        //    List<tbFactura> allCustomer = new List<tbFactura>();
-        //    ReportDocument rd = new ReportDocument();
-        //    foreach (tbFactura pi in allCustomer)
-        //    {
-        //        myIntArray = new PropertyInfo[](
-        //        pi.fact_Codigo,
-        //        pi.fact_Fecha,
-        //        pi.esfac_Id,
-        //        pi.cja_Id,
-        //        pi.suc_Id,
-        //        pi.clte_Id,
-        //        pi.pemi_NumeroCAI,
-        //        pi.fact_AlCredito,
-        //        pi.fact_DiasCredito,
-        //        pi.fact_PorcentajeDescuento,
-        //        pi.fact_Vendedor,
-        //        pi.clte_Identificacion,
-        //        pi.clte_Nombres,
-        //        pi.fact_IdentidadTE,
-        //        pi.fact_NombresTE,
-        //        pi.fact_FechaNacimientoTE,
-        //        pi.fact_EsAnulada,
-        //        pi.fact_RazonAnulado);
-        //    }
-        //    try
-        //    {              
-        //        allCustomer = db.tbFactura.ToList();
-               
-        //        rd.Load(Path.Combine(Server.MapPath("~/Reports"), "Factura.rpt"));
-
-        //        rd.SetDataSource(allCustomer);
-
-        //        Response.Buffer = false;
-        //        Response.ClearContent();
-        //        Response.ClearHeaders();
-              
-        //    }catch(Exception Ex)
-        //    {
-        //        Ex.Message.ToString();
-        //    }
-
-        //    Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
-        //    stream.Seek(0, SeekOrigin.Begin);
-        //    return File(stream, "application/pdf", "CustomerList.pdf");
-
-        //}
-
-
 
         // GET: /Factura/Details/5
         public ActionResult Details(long? id)

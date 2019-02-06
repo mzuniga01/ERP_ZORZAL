@@ -19,34 +19,34 @@
                     <h5>Listado de Facturas</h5>
                     <div class="ibox-tools">
                         @*<a href="~/ReportViewer/Factura.aspx" class="btn btn-primary btn-sm">Generar Reporte</a>*@
-                        @Html.ActionLink("Registrar Factura", "Create", null, new { @class = "btn btn-primary btn-sm" })
+                       @Html.ActionLink("Registrar Factura", "Create", null, new { @class = "btn btn-primary btn-sm" })
                     </div>
                 </div>
                 <div class="ibox-content">
-                    @using (Html.BeginForm())
-                    {
-                        <div class="form-horizontal">
-                            <div class="form-group">
-                                <label class="control-label col-md-2">Cliente</label>
-                                <div class="col-md-4">
-                                    <input type="text" value="@ViewBag.cliente" id="cliente" autocomplete="off" name="cliente" class="form-control" />
-                                </div>
-                                <label class="control-label col-md-1">Fecha</label>
-                                <div class="col-md-4">
-                                    <input type="text" id="fecha" value="@ViewBag.fecha" name="fecha" autocomplete="off" class="form-control" maxlength="10" />
-                                </div>
+                  @using (Html.BeginForm())
+                  {
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Cliente</label>
+                            <div class="col-md-4">
+                                <input type="text" value="@ViewBag.cliente" id="cliente" autocomplete="off" name="cliente" class="form-control" />
                             </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-2">Caja</label>
-                                <div class="col-md-4">
-                                    <input type="text" id="caja" value="@ViewBag.caja" name="caja" autocomplete="off" class="form-control" />
-                                </div>
-                                <div class="">
-                                    <button id="search" type="submit" class="btn btn-primary btn-sm">Buscar</button>
-                                </div>
+                            <label class="control-label col-md-1">Fecha</label>
+                            <div class="col-md-4">
+                                <input type="text" id="fecha" value="@ViewBag.fecha" name="fecha" autocomplete="off" class="form-control" maxlength="10" />
                             </div>
                         </div>
-                    }
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Caja</label>
+                            <div class="col-md-4">
+                                <input type="text" id="caja" value="@ViewBag.caja" name="caja" autocomplete="off" class="form-control" />
+                            </div>
+                            <div class="">
+                                <button id="search" type="submit" class="btn btn-primary btn-sm">Buscar</button>
+                            </div>
+                        </div>
+                    </div>
+                  }
                     <table id="DataTable1" class="table table table-striped  table-bordered">
                         <thead>
                             <tr>
@@ -103,10 +103,10 @@
                                         <td>
                                             @Html.ActionLink("Detalle", "Details", new { id = item.fact_Id }, new { @class = "btn btn-primary btn-xs" })
                                             @Html.ActionLink("Editar", "Edit", new { id = item.fact_Id }, new { @class = "btn btn-primary btn-xs" })
-                                            @*<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalImprimir">
-                                                    Imprimir
-                                                </button>*@
-                                            <a href="@Url.Action("ExportImprimir")">Imprimir</a>
+                                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalImprimir">
+                                                Imprimir
+                                            </button>
+
                                         </td>
                                     }
                                     else
@@ -115,10 +115,10 @@
                                             @Html.ActionLink("Detalle", "Details", new { id = item.fact_Id }, new { @class = "btn btn-primary btn-xs" })
 
                                             <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="No se puede Editar, esta Anulado">
-                                                <button class="btn btn-white btn-xs" style="pointer-events: none;" type="button">Editar</button>
+                                                <button class="btn btn-white btn-xs" style="pointer-events: none;" type="button" >Editar</button>
                                             </span>
                                             <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="No se puede Editar, esta Anulado">
-                                                <button class="btn btn-primary btn-xs" style="pointer-events: none;" type="button">Imprimir</button>
+                                                <button class="btn btn-primary btn-xs" style="pointer-events: none;" type="button" >Imprimir</button>
                                             </span>
                                         </td>
                                     }
