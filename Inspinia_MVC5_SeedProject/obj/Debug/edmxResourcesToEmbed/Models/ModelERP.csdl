@@ -625,6 +625,7 @@
       <Parameter Name="prov_Email" Mode="In" Type="String" />
       <Parameter Name="prov_Telefono" Mode="In" Type="String" />
       <Parameter Name="prov_RTN" Mode="In" Type="String" />
+      <Parameter Name="acte_Id" Mode="In" Type="Int16" />
     </FunctionImport>
     <FunctionImport Name="UDP_Inv_tbProveedor_Update" ReturnType="Collection(String)">
       <Parameter Name="prov_Id" Mode="In" Type="Int32" />
@@ -633,8 +634,8 @@
       <Parameter Name="prov_Direccion" Mode="In" Type="String" />
       <Parameter Name="prov_Email" Mode="In" Type="String" />
       <Parameter Name="prov_Telefono" Mode="In" Type="String" />
-      <Parameter Name="prov_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="prov_FechaCrea" Mode="In" Type="DateTime" />
+      <Parameter Name="prov_RTN" Mode="In" Type="String" />
+      <Parameter Name="acte_Id" Mode="In" Type="Int16" />
     </FunctionImport>
     <FunctionImport Name="UDP_Inv_tbSalida_Insert" ReturnType="Collection(String)">
       <Parameter Name="bod_Id" Mode="In" Type="Int32" />
@@ -2492,6 +2493,10 @@
       <Parameter Name="ped_Id" Mode="In" Type="Int32" />
       <Parameter Name="fact_Id" Mode="In" Type="Int32" />
     </FunctionImport>
+    <AssociationSet Name="FK_Gral_tbActividadEconomica_tbProveedor_acte_Id" Association="ERP_ZORZALModel.FK_Gral_tbActividadEconomica_tbProveedor_acte_Id">
+      <End Role="tbActividadEconomica" EntitySet="tbActividadEconomica" />
+      <End Role="tbProveedor" EntitySet="tbProveedor" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -3325,6 +3330,7 @@
     <Property Name="acte_FechaModifica" Type="DateTime" Precision="3" />
     <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbActividadEconomica_acte_UsuarioCrea" FromRole="tbActividadEconomica" ToRole="tbUsuario" />
     <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbActividadEconomica_acte_UsuarioModifica" FromRole="tbActividadEconomica" ToRole="tbUsuario" />
+    <NavigationProperty Name="tbProveedor" Relationship="ERP_ZORZALModel.FK_Gral_tbActividadEconomica_tbProveedor_acte_Id" FromRole="tbActividadEconomica" ToRole="tbProveedor" />
   </EntityType>
   <EntityType Name="tbBanco">
     <Key>
@@ -3784,6 +3790,8 @@
     <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Inv_tbProveedor_prov_UsuarioCrea" FromRole="tbProveedor" ToRole="tbUsuario" />
     <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Inv_tbProveedor_prov_UsuarioModifica" FromRole="tbProveedor" ToRole="tbUsuario" />
     <NavigationProperty Name="tbEntrada" Relationship="ERP_ZORZALModel.FK_Inv_tbEntrada_tbProveedor_prov_Id" FromRole="tbProveedor" ToRole="tbEntrada" />
+    <Property Name="acte_Id" Type="Int16" />
+    <NavigationProperty Name="tbActividadEconomica" Relationship="ERP_ZORZALModel.FK_Gral_tbActividadEconomica_tbProveedor_acte_Id" FromRole="tbProveedor" ToRole="tbActividadEconomica" />
   </EntityType>
   <EntityType Name="tbSalida">
     <Key>
@@ -7632,17 +7640,6 @@
   <ComplexType Name="UDP_Vent_DatosConsumidorFinal_Insert_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
-  <ComplexType Name="UDP_Vent_tbDevolucion_GetDetalle_Editar_Result">
-    <Property Type="Int32" Name="dev_Id" Nullable="false" />
-    <Property Type="Int32" Name="devd_Id" Nullable="false" />
-    <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
-    <Property Type="String" Name="prod_Descripcion" Nullable="false" MaxLength="100" />
-    <Property Type="Decimal" Name="devd_CantidadProducto" Nullable="false" Precision="5" Scale="2" />
-    <Property Type="String" Name="devd_Descripcion" Nullable="false" MaxLength="100" />
-    <Property Type="Decimal" Name="devd_Monto" Nullable="false" Precision="10" Scale="2" />
-    <Property Type="Int64" Name="fact_Id" Nullable="false" />
-    <Property Type="DateTime" Name="dev_Fecha" Nullable="false" Precision="23" />
-  </ComplexType>
   <ComplexType Name="UDP_Vent_tbDevolucion_GetDetalle_Result">
     <Property Type="Int32" Name="devd_Id" Nullable="false" />
     <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
@@ -7679,5 +7676,33 @@
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbSolicitudEfectivoDetalle_CantidadSolicitada_Update_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <Association Name="FK_Gral_tbActividadEconomica_tbProveedor_acte_Id">
+    <End Type="ERP_ZORZALModel.tbActividadEconomica" Role="tbActividadEconomica" Multiplicity="0..1" />
+    <End Type="ERP_ZORZALModel.tbProveedor" Role="tbProveedor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbActividadEconomica">
+        <PropertyRef Name="acte_Id" />
+      </Principal>
+      <Dependent Role="tbProveedor">
+        <PropertyRef Name="acte_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="UDP_Vent_tbDevolucion_GetDetalle_Editar_Result">
+    <Property Type="Int32" Name="dev_Id" Nullable="false" />
+    <Property Type="Int32" Name="devd_Id" Nullable="false" />
+    <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="prod_Descripcion" Nullable="false" MaxLength="100" />
+    <Property Type="Decimal" Name="devd_CantidadProducto" Nullable="false" Precision="5" Scale="2" />
+    <Property Type="String" Name="devd_Descripcion" Nullable="false" MaxLength="100" />
+    <Property Type="Decimal" Name="devd_Monto" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Int64" Name="fact_Id" Nullable="false" />
+    <Property Type="DateTime" Name="dev_Fecha" Nullable="false" Precision="23" />
+    <Property Type="Decimal" Name="factd_Cantidad" Nullable="false" Precision="5" Scale="2" />
+    <Property Type="Decimal" Name="factd_MontoDescuento" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="factd_PorcentajeDescuento" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="factd_Impuesto" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="factd_PrecioUnitario" Nullable="false" Precision="10" Scale="2" />
   </ComplexType>
 </Schema>

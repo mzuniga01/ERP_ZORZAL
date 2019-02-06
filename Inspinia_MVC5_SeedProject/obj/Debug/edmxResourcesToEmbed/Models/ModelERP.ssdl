@@ -455,6 +455,7 @@
     <Property Name="prov_UsuarioModifica" Type="int" />
     <Property Name="prov_FechaModifica" Type="datetime" />
     <Property Name="prov_RTN" Type="nvarchar" MaxLength="14" />
+    <Property Name="acte_Id" Type="smallint" />
   </EntityType>
   <EntityType Name="tbSalida">
     <Key>
@@ -2227,6 +2228,18 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
       </Principal>
       <Dependent Role="tbTipoIdentificacion">
         <PropertyRef Name="tpi_UsuarioModifica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Gral_tbActividadEconomica_tbProveedor_acte_Id">
+    <End Role="tbActividadEconomica" Type="Self.tbActividadEconomica" Multiplicity="0..1" />
+    <End Role="tbProveedor" Type="Self.tbProveedor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbActividadEconomica">
+        <PropertyRef Name="acte_Id" />
+      </Principal>
+      <Dependent Role="tbProveedor">
+        <PropertyRef Name="acte_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -4684,6 +4697,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <Parameter Name="prov_Email" Type="nvarchar" Mode="In" />
     <Parameter Name="prov_Telefono" Type="nvarchar" Mode="In" />
     <Parameter Name="prov_RTN" Type="nvarchar" Mode="In" />
+    <Parameter Name="acte_Id" Type="smallint" Mode="In" />
   </Function>
   <Function Name="UDP_Inv_tbProveedor_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="prov_Id" Type="int" Mode="In" />
@@ -4692,8 +4706,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <Parameter Name="prov_Direccion" Type="varchar" Mode="In" />
     <Parameter Name="prov_Email" Type="nvarchar" Mode="In" />
     <Parameter Name="prov_Telefono" Type="nvarchar" Mode="In" />
-    <Parameter Name="prov_UsuarioCrea" Type="int" Mode="In" />
-    <Parameter Name="prov_FechaCrea" Type="datetime" Mode="In" />
+    <Parameter Name="prov_RTN" Type="nvarchar" Mode="In" />
+    <Parameter Name="acte_Id" Type="smallint" Mode="In" />
   </Function>
   <Function Name="UDP_Inv_tbSalida_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="bod_Id" Type="int" Mode="In" />
@@ -6114,6 +6128,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <AssociationSet Name="FK_Acce_tbUsuario_tbTipoIdentificacion_tpi_UsuarioModifica" Association="Self.FK_Acce_tbUsuario_tbTipoIdentificacion_tpi_UsuarioModifica">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbTipoIdentificacion" EntitySet="tbTipoIdentificacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Gral_tbActividadEconomica_tbProveedor_acte_Id" Association="Self.FK_Gral_tbActividadEconomica_tbProveedor_acte_Id">
+      <End Role="tbActividadEconomica" EntitySet="tbActividadEconomica" />
+      <End Role="tbProveedor" EntitySet="tbProveedor" />
     </AssociationSet>
     <AssociationSet Name="FK_Gral_tbBanco_tbCuentasBanco_ban_Id" Association="Self.FK_Gral_tbBanco_tbCuentasBanco_ban_Id">
       <End Role="tbBanco" EntitySet="tbBanco" />

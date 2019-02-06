@@ -69,6 +69,8 @@ namespace ERP_ZORZAL.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
+            tbDevolucionDetalle tbDevolucionDetalle = new tbDevolucionDetalle();
             tbDevolucion tbDevolucion = db.tbDevolucion.Find(id);
             if (tbDevolucion == null)
             {
@@ -230,7 +232,7 @@ namespace ERP_ZORZAL.Controllers
 
          
             tbDevolucion tbDevolucion = db.tbDevolucion.Find(id);
-            tbDevolucionDetalle tbDevolucionDetalle = db.tbDevolucionDetalle.Find(id);
+            tbDevolucionDetalle tbDevolucionDetalle = new tbDevolucionDetalle();
             if (tbDevolucion == null)
             {
                 return HttpNotFound();
@@ -485,7 +487,7 @@ namespace ERP_ZORZAL.Controllers
             Session["FECHADEV"] = Session["FECHA"];
             Session["RTN"] = Session["RTNCLIENTE"];
             Session["NOMBRECLIENTE"] = Session["NOMBRE"];
-            Session["MONTODEV"] = Session["MONTO"];
+            //Session["MONTODEV"] = Session["MONTO"];
             return RedirectToAction("CreateNotaCredito", "Devolucion");
         }
 

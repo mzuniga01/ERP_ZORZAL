@@ -1,0 +1,83 @@
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbCliente>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input id="searchCliente" type="text" class="form-control" placeholder="Buscar Cliente" />
+                            <br />
+                        </div>
+                    </div>
+                </div>
+                <table id="ClienteModal"  class="table table table-striped  table-bordered">
+                    <thead>
+                        <tr>
+                            <th>
+                                Número Cliente
+                                @*@Html.DisplayNameFor(model => model.clte_Id)*@
+                            </th>
+                            <th>
+                                RTN/Identidad/Pasaporte
+                                @*@Html.DisplayNameFor(model => model.clte_RTN_Identidad_Pasaporte)*@
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.clte_Nombres)
+                            </th>
+
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="BodyCliente">
+                        @foreach (var item in Model)
+                        {
+                            var name = (!item.clte_EsPersonaNatural) ? item.clte_NombreComercial : item.clte_Nombres + ' ' + @item.clte_Apellidos;
+                            <tr data-id="@item.clte_Identificacion" data-desc="@name">
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.clte_Id)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.clte_Identificacion)
+                                </td>
+
+                                <td>
+                                    @name
+                                </td>
+                                <td>
+                                    <button id="AgregarCliente" class="btn btn-primary btn-xs">Agregar</button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#ClienteModal').DataTable(
+        {
+            "searching": false,
+            "lengthChange": false,
+
+            "oLanguage": {
+                "oPaginate": {
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior",
+                },
+                "sEmptyTable": "No hay registros",
+                "sInfoEmpty": "Mostrando 0 de 0 Entradas",
+                "sSearch": "Buscar",
+                "sInfo": "Mostrando _START_ a _END_ Entradas",
+
+            }
+        });
+    });
+</script>
+

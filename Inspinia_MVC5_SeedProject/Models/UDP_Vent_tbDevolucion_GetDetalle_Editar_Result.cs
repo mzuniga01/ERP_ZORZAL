@@ -22,5 +22,10 @@ namespace ERP_GMEDINA.Models
         public decimal devd_Monto { get; set; }
         public long fact_Id { get; set; }
         public System.DateTime dev_Fecha { get; set; }
+        public decimal factd_Cantidad { get; set; }
+        public decimal factd_MontoDescuento { get; set; }
+        public decimal factd_PorcentajeDescuento { get; set; }
+        public decimal factd_Impuesto { get; set; }
+        public decimal factd_PrecioUnitario { get; set; }
     }
 }

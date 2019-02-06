@@ -1478,6 +1478,7 @@
     <EntitySetMapping Name="tbProveedor">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbProveedor">
         <MappingFragment StoreEntitySet="tbProveedor">
+          <ScalarProperty Name="acte_Id" ColumnName="acte_Id" />
           <ScalarProperty Name="prov_RTN" ColumnName="prov_RTN" />
           <ScalarProperty Name="prov_FechaModifica" ColumnName="prov_FechaModifica" />
           <ScalarProperty Name="prov_UsuarioModifica" ColumnName="prov_UsuarioModifica" />
@@ -2522,6 +2523,11 @@
           <ScalarProperty Name="devd_Monto" ColumnName="devd_Monto" />
           <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
           <ScalarProperty Name="dev_Fecha" ColumnName="dev_Fecha" />
+          <ScalarProperty Name="factd_Cantidad" ColumnName="factd_Cantidad" />
+          <ScalarProperty Name="factd_MontoDescuento" ColumnName="factd_MontoDescuento" />
+          <ScalarProperty Name="factd_PorcentajeDescuento" ColumnName="factd_PorcentajeDescuento" />
+          <ScalarProperty Name="factd_Impuesto" ColumnName="factd_Impuesto" />
+          <ScalarProperty Name="factd_PrecioUnitario" ColumnName="factd_PrecioUnitario" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
