@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using ERP_GMEDINA.Models;
 
-namespace Inspinia_MVC5_SeedProject.Controllers
+namespace ERP_GMEDINA.Controllers
 {
     public class EstadoFacturaController : Controller
     {

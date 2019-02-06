@@ -3057,9 +3057,6 @@
   <ComplexType Name="UDP_Vent_tbDevolucionDetalle_Insert_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
-  <ComplexType Name="UDP_Vent_tbDevolucionDetalle_Update_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
   <ComplexType Name="UDP_Vent_tbDevolucion_Filtrado_CodProducto_Result">
     <Property Type="String" Name="DESCRIPCIONPRODUCTO" Nullable="true" MaxLength="100" />
     <Property Type="Decimal" Name="DESCUENTOPRODUCTO" Nullable="true" Precision="10" Scale="2" />
@@ -7706,5 +7703,8 @@
     <Property Type="Decimal" Name="factd_PrecioUnitario" Nullable="false" Precision="10" Scale="2" />
     <Property Type="Int32" Name="devd_UsuarioCrea" Nullable="false" />
     <Property Type="DateTime" Name="devd_FechaCrea" Nullable="false" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbDevolucionDetalle_Update_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
 </Schema>
