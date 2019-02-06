@@ -7,9 +7,9 @@
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
                     <h5>Listado de Solicitus de Eectivo</h5>
-					<div class="ibox-tools">
-						@Html.ActionLink("Registrar Solicitud Efectivo", "Create", null, new { @class = "btn btn-primary btn-xs"})
-					</div>
+                    <div class="ibox-tools">
+                        @Html.ActionLink("Registrar Solicitud Efectivo", "Create", null, new { @class = "btn btn-primary btn-xs" })
+                    </div>
                 </div>
                 <div class="ibox-content">
                     <div class="table table-responsive">
@@ -93,7 +93,7 @@
                                             }
                                         }
 
-                                        
+
 
                                         <td class="hidden">
                                             @Html.DisplayFor(modelItem => item.Apertura)
@@ -113,11 +113,31 @@
                                                 </td>
                                             }
 
+                                            else if (Convert.ToString(item.MontoSolicitado) == "")
+                                            {
+                                                <td>
+                                                    @Html.ActionLink("Detalle", "Details", new { id = item.IdSolicitud }, new { @class = "btn btn-primary btn-xs" })
+                                                    @Html.ActionLink("Editar", "Edit", new { id = item.IdSolicitud }, new { @class = "btn btn-white btn-xs", id = Editar })
+                                                </td>
+
+
+                                            }
+                                            else if (item.MontoEntregado == 0)
+                                            {
+                                                <td>
+                                                    @Html.ActionLink("Detalle", "Details", new { id = item.IdSolicitud }, new { @class = "btn btn-primary btn-xs" })
+                                                    @Html.ActionLink("Editar", "Edit", new { id = item.IdSolicitud }, new { @class = "btn btn-white btn-xs", id = Editar })
+                                                    @Html.ActionLink("Entregar Efectivo", "EditEntregaEfectivo", new { id = item.IdSolicitud }, new { @class = "btn btn-danger btn-xs" })
+
+                                                </td>
+
+
+                                            }
+
                                             else if (item.MontoEntregado > 0)
                                             {
                                                 <td>
                                                     @Html.ActionLink("Detalle", "Details", new { id = item.IdSolicitud }, new { @class = "btn btn-primary btn-xs" })
-                                                   
                                                     <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalImprimir">
                                                         Imprimir
                                                     </button>
@@ -131,8 +151,8 @@
                                             {
                                                 <td>
                                                     @Html.ActionLink("Detalle", "Details", new { id = item.IdSolicitud }, new { @class = "btn btn-primary btn-xs" })
-                                                            @Html.ActionLink("Editar", "Edit", new { id = item.IdSolicitud }, new { @class = "btn btn-white btn-xs", id = Editar })
-                                                            @Html.ActionLink("Entregar Efectivo", "EditEntregaEfectivo", new { id = item.IdSolicitud }, new { @class = "btn btn-danger btn-xs" })
+                                                    @Html.ActionLink("Editar", "Edit", new { id = item.IdSolicitud }, new { @class = "btn btn-white btn-xs", id = Editar })
+                                                    @Html.ActionLink("Entregar Efectivo", "EditEntregaEfectivo", new { id = item.IdSolicitud }, new { @class = "btn btn-danger btn-xs" })
                                                     <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalImprimir">
                                                         Imprimir
                                                     </button>
@@ -151,7 +171,7 @@
             </div>
         </div>
     </div>
- </div>
+</div>
 
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
