@@ -1,0 +1,295 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2B6DFE0D-351B-4CD0-9D36-A878800AA01F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ERP_GMEDINA.Tests</RootNamespace>
+    <AssemblyName>ERP_GMEDINA.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
+    <IsCodedUITest>False</IsCodedUITest>
+    <TestProjectType>UnitTest</TestProjectType>
+    <CodeContractsEnableRuntimeChecking>True</CodeContractsEnableRuntimeChecking>
+    <CodeContractsRuntimeCheckingLevel>Full</CodeContractsRuntimeCheckingLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.ExtendedReflection, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Pex.Framework, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\Inspinia_MVC5_SeedProject\bin\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Routing" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Inspinia_MVC5_SeedProject\ERP_GMEDINA.csproj">
+      <Project>{86CADB26-5817-46B6-88C7-76D5753722C3}</Project>
+      <Name>ERP_GMEDINA</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BodegaControllerTest.Create.g.cs">
+      <DependentUpon>BodegaControllerTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BodegaControllerTest.CreateTest.g.cs" />
+    <Compile Include="BodegaControllerTest.cs" />
+    <Compile Include="BodegaControllerTest.Edit.g.cs">
+      <DependentUpon>BodegaControllerTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BodegaControllerTest.Estadoactivar.g.cs">
+      <DependentUpon>BodegaControllerTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BodegaControllerTest.EstadoInactivar.g.cs">
+      <DependentUpon>BodegaControllerTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BodegaControllerTest.removeBodegaDetalle.g.cs" />
+    <Compile Include="EmpleadoControllerTest.ConstructorTest.g.cs" />
+    <Compile Include="EmpleadoControllerTest.CreateTest.g.cs" />
+    <Compile Include="EmpleadoControllerTest.CreateTest01.g.cs" />
+    <Compile Include="EmpleadoControllerTest.cs" />
+    <Compile Include="EmpleadoControllerTest.DeleteTest.g.cs" />
+    <Compile Include="EmpleadoControllerTest.DetailsTest.g.cs" />
+    <Compile Include="EmpleadoControllerTest.EditTest.g.cs" />
+    <Compile Include="EmpleadoControllerTest.EditTest01.g.cs" />
+    <Compile Include="EmpleadoControllerTest.EstadoEmpleadoRazonTest.g.cs" />
+    <Compile Include="EmpleadoControllerTest.IndexTest.g.cs" />
+    <Compile Include="EmpleadoControllerTest.RazonSalidaTest.g.cs" />
+    <Compile Include="EntradaControllerTest.ConstructorTest.g.cs" />
+    <Compile Include="EntradaControllerTest.CreateTest.g.cs" />
+    <Compile Include="EntradaControllerTest.CreateTest01.g.cs" />
+    <Compile Include="EntradaControllerTest.cs" />
+    <Compile Include="EntradaControllerTest.DetailsTest.g.cs" />
+    <Compile Include="EntradaControllerTest.EditTest.g.cs" />
+    <Compile Include="EntradaControllerTest.EditTest01.g.cs" />
+    <Compile Include="EntradaControllerTest.EliminardetalleentradaTest.g.cs" />
+    <Compile Include="EntradaControllerTest.EstadoAnularTest.g.cs" />
+    <Compile Include="EntradaControllerTest.EstadoInactivarTest.g.cs" />
+    <Compile Include="EntradaControllerTest.GetRTNProveedorTest.g.cs" />
+    <Compile Include="EntradaControllerTest.GuardardetalleentradaTest.g.cs" />
+    <Compile Include="EntradaControllerTest.UpdateEntradaDetalleTest.g.cs" />
+    <Compile Include="Factories\BodegaControllerFactory.cs" />
+    <Compile Include="Factories\ControllerContextFactory.cs" />
+    <Compile Include="Factories\DependencyResolverFactory.cs" />
+    <Compile Include="Factories\EntradaControllerFactory.cs" />
+    <Compile Include="Factories\ObjetoControllerFactory.cs" />
+    <Compile Include="Factories\RouteDataFactory.cs" />
+    <Compile Include="Factories\TipoEntradaControllerFactory.cs" />
+    <Compile Include="ObjetoControllerTest.ConstructorTest.g.cs" />
+    <Compile Include="ObjetoControllerTest.CreateTest.g.cs" />
+    <Compile Include="ObjetoControllerTest.CreateTest01.g.cs" />
+    <Compile Include="ObjetoControllerTest.cs" />
+    <Compile Include="ObjetoControllerTest.DeleteTest.g.cs" />
+    <Compile Include="ObjetoControllerTest.DetailsTest.g.cs" />
+    <Compile Include="ObjetoControllerTest.EditTest.g.cs" />
+    <Compile Include="ObjetoControllerTest.EditTest01.g.cs" />
+    <Compile Include="ObjetoControllerTest.EstadoactivarTest.g.cs" />
+    <Compile Include="ObjetoControllerTest.EstadoInactivarTest.g.cs" />
+    <Compile Include="ObjetoControllerTest.IndexTest.g.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="ProductoCategoriaControllerTest.CreateTest.g.cs">
+      <DependentUpon>ProductoCategoriaControllerTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProductoCategoriaControllerTest.cs" />
+    <Compile Include="ProductoCategoriaControllerTest.DetailsTest.g.cs">
+      <DependentUpon>ProductoCategoriaControllerTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\PexAssemblyInfo.cs" />
+    <Compile Include="tbBodegaTest.ConstructorTest.g.cs" />
+    <Compile Include="tbBodegaTest.cs" />
+    <Compile Include="TipoDevolucionControllerTest.ConstructorTest.g.cs" />
+    <Compile Include="TipoDevolucionControllerTest.CreateTest.g.cs" />
+    <Compile Include="TipoDevolucionControllerTest.CreateTest01.g.cs" />
+    <Compile Include="TipoDevolucionControllerTest.cs" />
+    <Compile Include="TipoDevolucionControllerTest.DeleteTest.g.cs" />
+    <Compile Include="TipoDevolucionControllerTest.DetailsTest.g.cs" />
+    <Compile Include="TipoDevolucionControllerTest.EditTest.g.cs" />
+    <Compile Include="TipoDevolucionControllerTest.EditTest01.g.cs" />
+    <Compile Include="TipoDevolucionControllerTest.IndexTest.g.cs" />
+    <Compile Include="TipoEntradaControllerTest.CreateTest.g.cs" />
+    <Compile Include="TipoEntradaControllerTest.CreateTest01.g.cs" />
+    <Compile Include="TipoEntradaControllerTest.cs" />
+    <Compile Include="TipoEntradaControllerTest.DeleteTest.g.cs" />
+    <Compile Include="TipoEntradaControllerTest.DetailsTest.g.cs" />
+    <Compile Include="TipoEntradaControllerTest.EditTest.g.cs" />
+    <Compile Include="TipoEntradaControllerTest.IndexTest.g.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\EntityFramework.dll" />
+    <Content Include="bin\Debug\EntityFramework.xml" />
+    <Content Include="bin\Debug\ERP_GMEDINA.dll" />
+    <Content Include="bin\Debug\ERP_GMEDINA.pdb" />
+    <Content Include="bin\Debug\ERP_GMEDINA.Tests.dll" />
+    <Content Include="bin\Debug\ERP_GMEDINA.Tests.pdb" />
+    <Content Include="bin\Debug\ERP_GMEDINA.Tests1.dll" />
+    <Content Include="bin\Debug\ERP_GMEDINA.Tests1.pdb" />
+    <Content Include="bin\Debug\es\Microsoft.ExtendedReflection.resources.dll" />
+    <Content Include="bin\Debug\es\Microsoft.Pex.Framework.resources.dll" />
+    <Content Include="bin\Debug\es\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll" />
+    <Content Include="bin\Debug\es\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.resources.dll" />
+    <Content Include="bin\Debug\es\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.resources.dll" />
+    <Content Include="bin\Debug\es\Microsoft.VisualStudio.TestPlatform.TestFramework.resources.dll" />
+    <Content Include="bin\Debug\Microsoft.AspNet.Identity.Core.dll" />
+    <Content Include="bin\Debug\Microsoft.AspNet.Identity.Core.xml" />
+    <Content Include="bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll" />
+    <Content Include="bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml" />
+    <Content Include="bin\Debug\Microsoft.AspNet.Identity.Owin.dll" />
+    <Content Include="bin\Debug\Microsoft.AspNet.Identity.Owin.xml" />
+    <Content Include="bin\Debug\Microsoft.ExtendedReflection.dll" />
+    <Content Include="bin\Debug\Microsoft.ExtendedReflection.Reasoning.dll" />
+    <Content Include="bin\Debug\Microsoft.Owin.dll" />
+    <Content Include="bin\Debug\Microsoft.Owin.Host.SystemWeb.dll" />
+    <Content Include="bin\Debug\Microsoft.Owin.Host.SystemWeb.xml" />
+    <Content Include="bin\Debug\Microsoft.Owin.Security.Cookies.dll" />
+    <Content Include="bin\Debug\Microsoft.Owin.Security.Cookies.xml" />
+    <Content Include="bin\Debug\Microsoft.Owin.Security.dll" />
+    <Content Include="bin\Debug\Microsoft.Owin.Security.xml" />
+    <Content Include="bin\Debug\Microsoft.Owin.xml" />
+    <Content Include="bin\Debug\Microsoft.Pex.Framework.dll" />
+    <Content Include="bin\Debug\Microsoft.Pex.Framework.xml" />
+    <Content Include="bin\Debug\Microsoft.ReportViewer.WebForms.dll" />
+    <Content Include="bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll" />
+    <Content Include="bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll" />
+    <Content Include="bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll" />
+    <Content Include="bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll" />
+    <Content Include="bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll" />
+    <Content Include="bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll" />
+    <Content Include="bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml" />
+    <Content Include="bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml" />
+    <Content Include="bin\Debug\Microsoft.Web.Infrastructure.dll" />
+    <Content Include="bin\Debug\Owin.dll" />
+    <Content Include="bin\Debug\SimpleCrypto.dll" />
+    <Content Include="bin\Debug\System.ComponentModel.DataAnnotations.dll" />
+    <Content Include="bin\Debug\System.Web.Mvc.dll" />
+    <Content Include="bin\Debug\System.Web.Mvc.xml" />
+    <Content Include="bin\Debug\System.Web.Optimization.dll" />
+    <Content Include="bin\Debug\System.Web.Optimization.xml" />
+    <Content Include="bin\Debug\System.Web.Razor.dll" />
+    <Content Include="bin\Debug\System.Web.Razor.xml" />
+    <Content Include="bin\Debug\System.Web.WebPages.Deployment.dll" />
+    <Content Include="bin\Debug\System.Web.WebPages.Deployment.xml" />
+    <Content Include="bin\Debug\System.Web.WebPages.dll" />
+    <Content Include="bin\Debug\System.Web.WebPages.Razor.dll" />
+    <Content Include="bin\Debug\System.Web.WebPages.Razor.xml" />
+    <Content Include="bin\Debug\System.Web.WebPages.xml" />
+    <Content Include="ERP_GMEDINA.Tests1.csproj" />
+    <Content Include="obj\Debug\ERP_GMEDINA.Tests.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\ERP_GMEDINA.Tests.dll" />
+    <Content Include="obj\Debug\ERP_GMEDINA.Tests.pdb" />
+    <Content Include="obj\Debug\ERP_GMEDINA.Tests1.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\ERP_GMEDINA.Tests1.dll" />
+    <Content Include="obj\Debug\ERP_GMEDINA.Tests1.pdb" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="bin\Debug\ERP_GMEDINA.dll.config" />
+    <None Include="bin\Debug\ERP_GMEDINA.Tests.dll.config" />
+    <None Include="bin\Debug\ERP_GMEDINA.Tests1.dll.config" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Debug\ERP_GMEDINA.Tests.csproj.CopyComplete" />
+    <None Include="obj\Debug\ERP_GMEDINA.Tests.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Debug\ERP_GMEDINA.Tests.csprojAssemblyReference.cache" />
+    <None Include="obj\Debug\ERP_GMEDINA.Tests1.csproj.CopyComplete" />
+    <None Include="obj\Debug\ERP_GMEDINA.Tests1.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Debug\ERP_GMEDINA.Tests1.csprojAssemblyReference.cache" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Debug\reports\190205.161555.6500.pex\dg\" />
+    <Folder Include="bin\Debug\reports\190205.161555.6500.pex\fix\out\" />
+    <Folder Include="bin\Debug\reports\190205.161555.6500.pex\tests\" />
+    <Folder Include="bin\Debug\reports\190205.162824.16000.pex\dg\" />
+    <Folder Include="bin\Debug\reports\190205.162824.16000.pex\fix\out\" />
+    <Folder Include="bin\Debug\reports\190205.162824.16000.pex\tests\" />
+    <Folder Include="bin\Debug\reports\190205.225610.9900.pex\dg\" />
+    <Folder Include="bin\Debug\reports\190205.225610.9900.pex\fix\out\" />
+    <Folder Include="bin\Debug\reports\190205.225610.9900.pex\tests\" />
+    <Folder Include="bin\Debug\reports\190205.230304.7988.pex\dg\" />
+    <Folder Include="bin\Debug\reports\190205.230304.7988.pex\fix\out\" />
+    <Folder Include="bin\Debug\reports\190205.230304.7988.pex\tests\" />
+    <Folder Include="bin\Debug\reports\190205.235633.12204.pex\dg\" />
+    <Folder Include="bin\Debug\reports\190205.235633.12204.pex\fix\out\" />
+    <Folder Include="bin\Debug\reports\190205.235633.12204.pex\tests\" />
+    <Folder Include="bin\Debug\reports\190206.120751.14836.pex\dg\" />
+    <Folder Include="bin\Debug\reports\190206.120751.14836.pex\fix\out\" />
+    <Folder Include="bin\Debug\reports\190206.120751.14836.pex\tests\" />
+    <Folder Include="bin\Debug\reports\190206.123302.8156.pex\dg\" />
+    <Folder Include="bin\Debug\reports\190206.123302.8156.pex\fix\out\" />
+    <Folder Include="bin\Debug\reports\190206.123302.8156.pex\tests\" />
+    <Folder Include="bin\Debug\reports\190206.130840.13860.pex\dg\" />
+    <Folder Include="bin\Debug\reports\190206.130840.13860.pex\fix\out\" />
+    <Folder Include="bin\Debug\reports\190206.130840.13860.pex\tests\" />
+    <Folder Include="bin\Release\" />
+    <Folder Include="obj\Debug\TempPE\" />
+  </ItemGroup>
+  <Choose>
+    <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+      </ItemGroup>
+    </Otherwise>
+  </Choose>
+  <Choose>
+    <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.CodedUITestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITesting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

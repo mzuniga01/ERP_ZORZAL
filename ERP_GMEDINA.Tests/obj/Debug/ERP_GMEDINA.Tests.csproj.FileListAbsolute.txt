@@ -1,0 +1,62 @@
+C:\Users\Jose Dubon\Desktop\ERP_ZORZAL VS2017\ERP_GMEDINA.Tests\bin\Debug\ERP_GMEDINA.Tests.dll
+C:\Users\Jose Dubon\Desktop\ERP_ZORZAL VS2017\ERP_GMEDINA.Tests\bin\Debug\ERP_GMEDINA.Tests.pdb
+C:\Users\Jose Dubon\Desktop\ERP_ZORZAL VS2017\ERP_GMEDINA.Tests\bin\Debug\ERP_GMEDINA.dll
+C:\Users\Jose Dubon\Desktop\ERP_ZORZAL VS2017\ERP_GMEDINA.Tests\bin\Debug\Microsoft.Pex.Framework.dll
+C:\Users\Jose Dubon\Desktop\ERP_ZORZAL VS2017\ERP_GMEDINA.Tests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\Jose Dubon\Desktop\ERP_ZORZAL VS2017\ERP_GMEDINA.Tests\bin\Debug\System.Web.Mvc.dll
+C:\Users\Jose Dubon\Desktop\ERP_ZORZAL VS2017\ERP_GMEDINA.Tests\bin\Debug\Microsoft.Owin.dll
+C:\Users\Jose Dubon\Desktop\ERP_ZORZAL VS2017\ERP_GMEDINA.Tests\bin\Debug\Microsoft.ReportViewer.WebForms.dll
+C:\Users\Jose Dubon\Desktop\ERP_ZORZAL VS2017\ERP_GMEDINA.Tests\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Jose Dubon\Desktop\ERP_ZORZAL VS2017\ERP_GMEDINA.Tests\bin\Debug\EntityFramework.dll
+C:\Users\Jose Dubon\Desktop\ERP_ZORZAL VS2017\ERP_GMEDINA.Tests\bin\Debug\System.Web.Optimization.dll
+C:\Users\Jose Dubon\Desktop\ERP_ZORZAL VS2017\ERP_GMEDINA.Tests\bin\Debug\Owin.dll
+C:\Users\Jose Dubon\Desktop\ERP_ZORZAL VS2017\ERP_GMEDINA.Tests\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Jose Dubon\Desktop\ERP_ZORZAL VS2017\ERP_GMEDINA.Tests\bin\Debug\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\Jose Dubon\Desktop\ERP_ZORZAL VS2017\ERP_GMEDINA.Tests\bin\Debug\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Jose Dubon\Desktop\ERP_ZORZAL VS2017\ERP_GMEDINA.Tests\bin\Debug\SimpleCrypto.dll
+C:\Users\Jose Dubon\Desktop\ERP_ZORZAL VS2017\ERP_GMEDINA.Tests\bin\Debug\Microsoft.Owin.Security.Cookies.dll
+C:\Users\Jose Dubon\Desktop\ERP_ZORZAL VS2017\ERP_GMEDINA.Tests\bin\Debug\Microsoft.Owin.Security.dll
+C:\Users\Jose Dubon\Desktop\ERP_ZORZAL VS2017\ERP_GMEDINA.Tests\bin\Debug\Microsoft.ExtendedReflection.Reasoning.dll
+C:\Users\Jose Dubon\Desktop\ERP_ZORZAL VS2017\ERP_GMEDINA.Tests\bin\Debug\Microsoft.ExtendedReflection.dll
+C:\Users\Jose Dubon\Desktop\ERP_ZORZAL VS2017\ERP_GMEDINA.Tests\bin\Debug\System.Web.WebPages.dll
+C:\Users\Jose Dubon\Desktop\ERP_ZORZAL VS2017\ERP_GMEDINA.Tests\bin\Debug\System.Web.WebPages.Razor.dll
+C:\Users\Jose Dubon\Desktop\ERP_ZORZAL VS2017\ERP_GMEDINA.Tests\bin\Debug\System.Web.Razor.dll
+C:\Users\Jose Dubon\Desktop\ERP_ZORZAL VS2017\ERP_GMEDINA.Tests\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Users\Jose Dubon\Desktop\ERP_ZORZAL VS2017\ERP_GMEDINA.Tests\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\Users\Jose Dubon\Desktop\ERP_ZORZAL VS2017\ERP_GMEDINA.Tests\bin\Debug\ERP_GMEDINA.pdb
+C:\Users\Jose Dubon\Desktop\ERP_ZORZAL VS2017\ERP_GMEDINA.Tests\bin\Debug\ERP_GMEDINA.dll.config
+C:\Users\Jose Dubon\Desktop\ERP_ZORZAL VS2017\ERP_GMEDINA.Tests\bin\Debug\Microsoft.Pex.Framework.xml
+C:\Users\Jose Dubon\Desktop\ERP_ZORZAL VS2017\ERP_GMEDINA.Tests\bin\Debug\System.Web.Mvc.xml
+C:\Users\Jose Dubon\Desktop\ERP_ZORZAL VS2017\ERP_GMEDINA.Tests\bin\Debug\Microsoft.Owin.xml
+C:\Users\Jose Dubon\Desktop\ERP_ZORZAL VS2017\ERP_GMEDINA.Tests\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Jose Dubon\Desktop\ERP_ZORZAL VS2017\ERP_GMEDINA.Tests\bin\Debug\EntityFramework.xml
+C:\Users\Jose Dubon\Desktop\ERP_ZORZAL VS2017\ERP_GMEDINA.Tests\bin\Debug\System.Web.Optimization.xml
+C:\Users\Jose Dubon\Desktop\ERP_ZORZAL VS2017\ERP_GMEDINA.Tests\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Jose Dubon\Desktop\ERP_ZORZAL VS2017\ERP_GMEDINA.Tests\bin\Debug\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\Jose Dubon\Desktop\ERP_ZORZAL VS2017\ERP_GMEDINA.Tests\bin\Debug\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Jose Dubon\Desktop\ERP_ZORZAL VS2017\ERP_GMEDINA.Tests\bin\Debug\Microsoft.Owin.Security.Cookies.xml
+C:\Users\Jose Dubon\Desktop\ERP_ZORZAL VS2017\ERP_GMEDINA.Tests\bin\Debug\Microsoft.Owin.Security.xml
+C:\Users\Jose Dubon\Desktop\ERP_ZORZAL VS2017\ERP_GMEDINA.Tests\bin\Debug\System.Web.WebPages.xml
+C:\Users\Jose Dubon\Desktop\ERP_ZORZAL VS2017\ERP_GMEDINA.Tests\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Users\Jose Dubon\Desktop\ERP_ZORZAL VS2017\ERP_GMEDINA.Tests\bin\Debug\System.Web.Razor.xml
+C:\Users\Jose Dubon\Desktop\ERP_ZORZAL VS2017\ERP_GMEDINA.Tests\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Users\Jose Dubon\Desktop\ERP_ZORZAL VS2017\ERP_GMEDINA.Tests\bin\Debug\es\Microsoft.Pex.Framework.resources.dll
+C:\Users\Jose Dubon\Desktop\ERP_ZORZAL VS2017\ERP_GMEDINA.Tests\bin\Debug\es\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
+C:\Users\Jose Dubon\Desktop\ERP_ZORZAL VS2017\ERP_GMEDINA.Tests\bin\Debug\es\Microsoft.ExtendedReflection.resources.dll
+C:\Users\Jose Dubon\Desktop\ERP_ZORZAL VS2017\ERP_GMEDINA.Tests\obj\Debug\ERP_GMEDINA.Tests.csprojAssemblyReference.cache
+C:\Users\Jose Dubon\Desktop\ERP_ZORZAL VS2017\ERP_GMEDINA.Tests\obj\Debug\ERP_GMEDINA.Tests.csproj.CoreCompileInputs.cache
+C:\Users\Jose Dubon\Desktop\ERP_ZORZAL VS2017\ERP_GMEDINA.Tests\obj\Debug\ERP_GMEDINA.Tests.csproj.CopyComplete
+C:\Users\Jose Dubon\Desktop\ERP_ZORZAL VS2017\ERP_GMEDINA.Tests\obj\Debug\ERP_GMEDINA.Tests.dll
+C:\Users\Jose Dubon\Desktop\ERP_ZORZAL VS2017\ERP_GMEDINA.Tests\obj\Debug\ERP_GMEDINA.Tests.pdb
+C:\Users\Jose Dubon\Desktop\G5 - ERP_ZORZALTEST\ERP_GMEDINA.Tests\obj\Debug\ERP_GMEDINA.Tests.csprojAssemblyReference.cache
+C:\Users\Jose Dubon\Desktop\G5 - ERP_ZORZALTEST\ERP_GMEDINA.Tests\obj\Debug\ERP_GMEDINA.Tests.csproj.CoreCompileInputs.cache
+C:\Users\Jose Dubon\Desktop\G5 - ERP_ZORZALTEST\ERP_GMEDINA.Tests\obj\Debug\ERP_GMEDINA.Tests.dll
+C:\Users\Jose Dubon\Desktop\G5 - ERP_ZORZALTEST\ERP_GMEDINA.Tests\obj\Debug\ERP_GMEDINA.Tests.pdb
+C:\Users\Jose Dubon\Documents\GitHub\G5 - ERP_ZORZALTEST\ERP_GMEDINA.Tests\obj\Debug\ERP_GMEDINA.Tests.csprojAssemblyReference.cache
+C:\Users\Jose Dubon\Documents\GitHub\G5 - ERP_ZORZALTEST\ERP_GMEDINA.Tests\obj\Debug\ERP_GMEDINA.Tests.csproj.CoreCompileInputs.cache
+C:\Users\Jose Dubon\Documents\GitHub\G5 - ERP_ZORZALTEST\ERP_GMEDINA.Tests\obj\Debug\ERP_GMEDINA.Tests.dll
+C:\Users\Jose Dubon\Documents\GitHub\G5 - ERP_ZORZALTEST\ERP_GMEDINA.Tests\obj\Debug\ERP_GMEDINA.Tests.pdb
+C:\Users\Jose Dubon\Documents\GitHub\ERP_ZORZAL\ERP_GMEDINA.Tests\obj\Debug\ERP_GMEDINA.Tests.csprojAssemblyReference.cache
+C:\Users\Jose Dubon\Documents\GitHub\ERP_ZORZAL\ERP_GMEDINA.Tests\obj\Debug\ERP_GMEDINA.Tests.csproj.CoreCompileInputs.cache
+C:\Users\Jose Dubon\Documents\GitHub\ERP_ZORZAL\ERP_GMEDINA.Tests\obj\Debug\ERP_GMEDINA.Tests.dll
+C:\Users\Jose Dubon\Documents\GitHub\ERP_ZORZAL\ERP_GMEDINA.Tests\obj\Debug\ERP_GMEDINA.Tests.pdb
