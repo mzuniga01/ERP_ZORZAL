@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 
-namespace Inspinia_MVC5_SeedProject
+namespace ERP_GMEDINA
 {
     public class MvcApplication : System.Web.HttpApplication
     {

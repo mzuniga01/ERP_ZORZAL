@@ -9,7 +9,7 @@ using System.Web.Mvc;
 using ERP_GMEDINA.Models;
 using System.Transactions;
 
-namespace ERP_ZORZAL.Controllers
+namespace ERP_GMEDINA.Controllers
 {
     public class RolController : Controller
     {

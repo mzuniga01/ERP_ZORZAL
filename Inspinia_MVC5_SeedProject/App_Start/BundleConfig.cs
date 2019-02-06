@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace Inspinia_MVC5_SeedProject
+namespace ERP_GMEDINA
 {
     public class BundleConfig
     {

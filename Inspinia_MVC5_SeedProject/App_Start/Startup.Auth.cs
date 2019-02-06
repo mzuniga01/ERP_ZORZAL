@@ -3,7 +3,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
 
-namespace Inspinia_MVC5_SeedProject
+namespace ERP_GMEDINA
 {
     public partial class Startup
     {

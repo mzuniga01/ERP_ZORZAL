@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using ERP_ZORZAL.Controllers;
-using Inspinia_MVC5_SeedProject.Controllers;
+using ERP_GMEDINA.Controllers;
 using ERP_GMEDINA.Models;
 
 namespace ERP_GMEDINA.Models

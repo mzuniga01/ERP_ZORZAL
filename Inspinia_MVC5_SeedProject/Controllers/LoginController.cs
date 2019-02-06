@@ -7,7 +7,7 @@ using ERP_GMEDINA.Models;
 using Microsoft.Owin.Security;
 
 
-namespace Inspinia_MVC5_SeedProject.Controllers
+namespace ERP_GMEDINA.Controllers
 {
     public class LoginController : Controller
     {

@@ -10,7 +10,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using ERP_GMEDINA.Models;
 
-namespace Inspinia_MVC5_SeedProject.Controllers
+namespace ERP_GMEDINA.Controllers
 {
     [Authorize]
     public class AccountController : Controller

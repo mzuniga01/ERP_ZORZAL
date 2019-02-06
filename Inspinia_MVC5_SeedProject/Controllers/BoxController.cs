@@ -9,7 +9,7 @@ using System.Web.Mvc;
 using Newtonsoft.Json;
 
 
-namespace ERP_ZORZAL.Controllers
+namespace ERP_GMEDINA.Controllers
 {
     public class BoxController : Controller
     {

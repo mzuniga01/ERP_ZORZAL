@@ -9,7 +9,7 @@ using System.Web.Mvc;
 using ERP_GMEDINA.Models;
 using System.Transactions;
 
-namespace Inspinia_MVC5_SeedProject.Controllers
+namespace ERP_GMEDINA.Controllers
 {
     public class InventarioFisicoController : Controller
     {
