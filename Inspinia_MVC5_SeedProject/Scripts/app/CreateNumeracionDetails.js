@@ -186,39 +186,37 @@ $("#dfisc_Id").change(function () {
     }
 });
 
-$("#txtRangoInicial").change(function () {
-    var pemid_RangoInicio = $("#txtRangoInicial").val();
-    if (pemid_RangoInicio != '') {
-        $('#ErrorRangoInicioCreateEventoChange').text('');
-    }
-    else {
-        $('#validacionRangoInicioCreate').after('<p id="ErrorRangoInicioCreateEventoChange" style="color:red">Campo Rango Inicio requerido</p>');
-    }
+//Limpiar mensajes en tiempo real
+$("#dfisc_Id").change(function () {
+    $('#ErrorDocumentoFiscalCreate').text('');
 });
 
-$("#txtRangoFinal").change(function () {
-    var pemid_RangoFinal = $("#txtRangoFinal").val();
-    if (pemid_RangoFinal != '') {
-        $('#ErrorRangoFinalCreateEventoChange').text('');
-    }
-    else {
-        $('#validacionRangoFinalCreate').after('<p id="ErrorRangoFinalCreateEventoChange" style="color:red">Campo Rango Final requerido</p>');
-    }
+$("#txtRangoInicial").keyup(function () {
+    $('#ErrorRangoInicioCreate').text('');
+    $('#ErrorRangoInicioLengthCreate').text('');
+});
 
+$("#txtRangoFinal").keyup(function () {
+    $('#ErrorRangoFinalCreate').text('');
+    $('#ErrorRangoFinalSplitCreate').text('');
+    $('#ErrorRangoFinalLengthCreate').text('');
+});
+
+$("#txtFechalimite").keyup(function () {
+    $('#ErrorFechaLimiteCreate').text('');
+    $('#ErrorFechaLimiteMenorCreate').text('');
 });
 
 $(document).ready(function () {
     //Máximo de caracteres_Rangos
-    $("#txtRangoInicial")[0].maxLength = 20;
-    $("#txtRangoFinal")[0].maxLength = 20;
+    $("#txtRangoInicial")[0].maxLength = 19;
+    $("#txtRangoFinal")[0].maxLength = 19;
+});
 
-    $("#txtRangoInicial").blur(function () {
-        var RangoInicio = $('#txtRangoInicial').val();
-
-        //Split Rango Inicial
-        var divisiones = RangoInicio.split("-", 4);
-        var ultimo = divisiones[3]
-
-        var NumeroActual = $('#txtNumeroActual').val(ultimo);
-    });
+//Número Actual
+$("#txtRangoInicial").keyup(function () {
+    var RangoInicio = $('#txtRangoInicial').val();
+    var divisiones = RangoInicio.split("-", 4);
+    var ultimo = divisiones[3]
+    var NumeroActual = $('#txtNumeroActual').val(ultimo);
 });

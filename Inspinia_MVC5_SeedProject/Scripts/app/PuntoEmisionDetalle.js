@@ -49,7 +49,7 @@ $('#AgregarPuntoEmisionDetalle').click(function () {
         $('#ErrorRangoFinalLengthCreate').text('');
         $('#ErrorFechaLimiteCreate').text('');
         $('#ErrorFechaLimiteMenorCreate').text('');
-        $('#validacionRangoInicioCreate').after('<p id="ErrorRangoInicioCreate" style="color:red">Campo Rango Inicio requerido</p>');
+        $('#validacionRangoInicioCreate').after('<p id="ErrorRangoInicioCreate" style="color:red">Campo Rango Inicial requerido</p>');
     }
     else if (RangoInicioLength < Length) {
         $('#ErrorDocumentoFiscalCreate').text('');
@@ -60,7 +60,7 @@ $('#AgregarPuntoEmisionDetalle').click(function () {
         $('#ErrorRangoFinalLengthCreate').text('');
         $('#ErrorFechaLimiteCreate').text('');
         $('#ErrorFechaLimiteMenorCreate').text('');
-        $('#validacionRangoInicioCreate').after('<p id="ErrorRangoInicioLengthCreate" style="color:red">Campo Rango Inicio debe  tener 19 caracteres</p>');
+        $('#validacionRangoInicioCreate').after('<p id="ErrorRangoInicioLengthCreate" style="color:red">Campo Rango Inicial debe  tener 19 caracteres</p>');
     }
     else if (RangoFinal == '')
     {
@@ -105,7 +105,7 @@ $('#AgregarPuntoEmisionDetalle').click(function () {
         $('#ErrorRangoFinalLengthCreate').text('');
         $('#ErrorFechaLimiteCreate').text('');
         $('#ErrorFechaLimiteMenorCreate').text('');
-        $('#validacionFechaLimiteCreate').after('<p id="ErrorFechaLimiteCreate" style="color:red">Campo Fecha Limite requerido</p>');
+        $('#validacionFechaLimiteCreate').after('<p id="ErrorFechaLimiteCreate" style="color:red">Campo Fecha Límite Emisión requerido</p>');
     }
     else if (p < GetCurrentDate) {
         $('#ErrorDocumentoFiscalCreate').text('');
@@ -116,7 +116,7 @@ $('#AgregarPuntoEmisionDetalle').click(function () {
         $('#ErrorRangoFinalLengthCreate').text('');
         $('#ErrorFechaLimiteCreate').text('');
         $('#ErrorFechaLimiteMenorCreate').text('');
-        $('#validacionFechaLimiteCreate').after('<p id="ErrorFechaLimiteMenorCreate" style="color:red">El campo Fecha Límite debe ser mayor a la actual</p>');
+        $('#validacionFechaLimiteCreate').after('<p id="ErrorFechaLimiteMenorCreate" style="color:red">El campo Fecha Límite Emisión debe ser mayor a la actual</p>');
     }
     else {
         contador = contador + 1;
@@ -190,10 +190,17 @@ $(document).on("click", "#tblPuntoEmisionDetalle tbody tr td button#removePuntoE
 
 //Máximo de caracteres_Rangos
 $(document).ready(function () {
-    $("#pemid_RangoInicio")[0].maxLength = 20;
-    $("#pemid_RangoFinal")[0].maxLength = 20;
+    $("#pemid_RangoInicio")[0].maxLength = 19;
+    $("#pemid_RangoFinal")[0].maxLength = 19;
 });
 
+//Número Actual
+$("#pemid_RangoInicio").keyup(function () {
+    var RangoInicio = $('#pemid_RangoInicio').val();
+    var divisiones = RangoInicio.split("-", 4);
+    var ultimo = divisiones[3]
+    var NumeroActual = $('#pemid_NumeroActual').val(ultimo);
+});
 
 //Mostrar Mensaje:Campo requerido en tiempo real
 $("#dfisc_Id").change(function () {
@@ -205,45 +212,24 @@ $("#dfisc_Id").change(function () {
         $('#validacionDocumentoFiscalCreate').after('<p id="ErrorDocumentoFiscalCreateEventoChange" style="color:red">Campo Documento Fiscal requerido</p>');
     }
 });
-$("#pemid_RangoInicio").change(function () {
-    var pemid_RangoInicio = $("#pemid_RangoInicio").val();
-    if (pemid_RangoInicio != '') {
-        $('#ErrorRangoInicioCreateEventoChange').text('');
-    }
-    else {
-        $('#validacionRangoInicioCreate').after('<p id="ErrorRangoInicioCreateEventoChange" style="color:red">Campo Rango Inicio requerido</p>');
-    }
+
+//Limpiar mensajes en tiempo real
+$("#dfisc_Id").change(function () {
+    $('#ErrorDocumentoFiscalCreate').text('');
 });
 
-$("#pemid_RangoFinal").change(function () {
-    var pemid_RangoFinal = $("#pemid_RangoFinal").val();
-    if (pemid_RangoFinal != '') {
-        $('#ErrorRangoFinalCreateEventoChange').text('');
-    }
-    else {
-        $('#validacionRangoFinalCreate').after('<p id="ErrorRangoFinalCreateEventoChange" style="color:red">Campo Rango Final requerido</p>');
-    }
-
+$("#pemid_RangoInicio").keyup(function () {
+    $('#ErrorRangoInicioCreate').text('');
+    $('#ErrorRangoInicioLengthCreate').text('');
 });
 
-$("#pemid_FechaLimite").change(function () {
-    var pemid_FechaLimite = $("#pemid_FechaLimite").val();
-    if (pemid_FechaLimite != '') {
-        $('#ErrorFechaLimiteCreateEventoChange').text('');
-    }
-    else {
-        $('#validacionFechaLimiteCreate').after('<p id="ErrorFechaLimiteCreateEventoChange" style="color:red">Campo Fecha Limite requerido</p>');
-    }
+$("#pemid_RangoFinal").keyup(function () {
+    $('#ErrorRangoFinalCreate').text('');
+    $('#ErrorRangoFinalSplitCreate').text('');
+    $('#ErrorRangoFinalLengthCreate').text('');
 });
 
-$(document).ready(function () {
-    $("#pemid_RangoInicio").blur(function () {
-        var RangoInicio = $('#pemid_RangoInicio').val();        
-
-        //Split Rango Inicial
-        var divisiones = RangoInicio.split("-", 4);
-        var ultimo = divisiones[3]
-
-        var NumeroActual = $('#pemid_NumeroActual').val(ultimo);
-    });
+$("#pemid_FechaLimite").keyup(function () {
+    $('#ErrorFechaLimiteCreate').text('');
+    $('#ErrorFechaLimiteMenorCreate').text('');
 });

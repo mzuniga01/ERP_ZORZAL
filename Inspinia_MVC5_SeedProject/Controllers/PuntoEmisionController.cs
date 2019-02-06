@@ -9,7 +9,7 @@ using System.Web.Mvc;
 using ERP_GMEDINA.Models;
 using System.Transactions;
 
-namespace ERP_GMEDINA.Controllers
+namespace ERP_ZORZAL.Controllers
 {
     public class PuntoEmisionController : Controller
     {
@@ -295,7 +295,7 @@ namespace ERP_GMEDINA.Controllers
             
             try
                 {
-                        string MensajeError = "";
+                        var MensajeError = "";
                         IEnumerable<object> list = null;
                         list = db.UDP_Vent_tbPuntoEmisionDetalle_Update(
                                     EditPuntoEmisionDetalle.pemid_Id,
@@ -308,12 +308,15 @@ namespace ERP_GMEDINA.Controllers
                                     EditPuntoEmisionDetalle.pemid_FechaCrea);
                         foreach (UDP_Vent_tbPuntoEmisionDetalle_Update_Result puntoemisiondetalle in list)
                             MensajeError = puntoemisiondetalle.MensajeError;
-                            MensajeEdit = "El registro se guardó exitosamente";
-                        if (MensajeError == "-1")
-                        {
-                            MensajeEdit = "No se pudo actualizar el registro, favor contacte al administrador.";
-                            ModelState.AddModelError("", MensajeEdit);
-                        }
+                if (MensajeError == "-1")
+                {
+                    MensajeEdit = "No se pudo actualizar el registro, favor contacte al administrador.";
+                    ModelState.AddModelError("", MensajeEdit);
+                }
+                else
+                {
+                    MensajeEdit = "El registro se guardó exitosamente";
+                }
                }
                catch (Exception Ex)
                {
@@ -342,11 +345,14 @@ namespace ERP_GMEDINA.Controllers
                             CreatePuntoEmisionDetalle.pemid_FechaLimite);
                 foreach (UDP_Vent_tbPuntoEmisionDetalle_Insert_Result puntoemisiondetalle in list)
                     MensajeError = puntoemisiondetalle.MensajeError;
-                    Msj = "El registro se guardo exitosamente";
                 if (MensajeError == "-1")
                 {
                     Msj = "No se pudo actualizar el registro, favor contacte al administrador.";
                     ModelState.AddModelError("", Msj);
+                }
+                else
+                {
+                    Msj = "El registro se guardo exitosamente";
                 }
             }
             catch (Exception Ex)

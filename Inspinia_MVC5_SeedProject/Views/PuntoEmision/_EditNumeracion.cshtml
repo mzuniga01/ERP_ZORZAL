@@ -10,7 +10,7 @@
         <input type="hidden" name="pemi_Id" id="pemi_Id"  value="@ViewBag.IdPuntoEmisionEdit">
         <input type="hidden" name="pemid_Id" id="pemid_Id_@Model.pemid_Id" value="@Model.pemid_Id" />
         <input type="hidden" name="pemid_UsuarioCrea" id="pemid_UsuarioCreaEdit_@Model.pemid_Id" value="@Model.pemid_UsuarioCrea" />
-        <input type="hidden" name="pemid_FechaCrea" id="pemid_FechaCreaEdit_@Model.pemid_Id" value="@Model.pemid_FechaCrea" />
+        <input type="hidden" name="pemid_FechaCrea" id="pemid_FechaCreaEdit_@Model.pemid_Id" value="@Model.pemid_FechaCrea"/>
         @Html.HiddenFor(model => model.pemid_UsuarioModifica)
         @Html.HiddenFor(model => model.pemid_FechaModifica)
         @Html.HiddenFor(model => model.tbUsuario.usu_Nombres)
@@ -34,8 +34,8 @@
             @Html.LabelFor(model => model.pemid_RangoInicio, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @{string EditRangoInicial = "RangoInicial_" + @Model.pemid_Id;}
-                @Html.EditorFor(model => model.pemid_RangoInicio, new { htmlAttributes = new { @onkeypress = "return validar(event)", @maxlength = "20", id = @EditRangoInicial } })
-                <div id="ValidacionRangoInicioEdit_@Model.pemid_Id">
+                <input class="text-box single-line" type="text" id="@EditRangoInicial" value="@Model.pemid_RangoInicio" maxlength="19" onkeyup = "myFunction(@Model.pemid_Id)" onkeypress = "return validar(event)"/>
+                <div id="ValidacionRangoInicioEdit_@Model.pemid_Id" onkeyup="BorrarMensaje(@Model.pemid_Id)">
                     <p style="color:red">@Html.ValidationMessageFor(model => model.pemid_RangoInicio)</p>
                 </div>
             </div>
@@ -45,7 +45,7 @@
             @Html.LabelFor(model => model.pemid_RangoFinal, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @{string EditRangoFinal = "RangoFinal_" + @Model.pemid_Id;}
-                @Html.EditorFor(model => model.pemid_RangoFinal, new { htmlAttributes = new { @onkeypress = "return validar(event)", @maxlength = "20" , id = @EditRangoFinal } })
+                <input class="text-box single-line" type="text" id="@EditRangoFinal" value="@Model.pemid_RangoFinal" maxlength="19" onkeyup="RangoFinal(@Model.pemid_Id)" onkeypress="return validar(event)" />
                 <div id="ValidacionRangoFinalEdit_@Model.pemid_Id">
                     <p style="color:red">@Html.ValidationMessageFor(model => model.pemid_RangoFinal)</p>
                 </div>

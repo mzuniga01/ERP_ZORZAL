@@ -1,6 +1,6 @@
 ﻿//Máximo de caracteres
 $(document).ready(function () {
-    $("#pemi_NumeroCAI")[0].maxLength = 40;
+    $("#pemi_NumeroCAI")[0].maxLength = 37;
 });
 
 //Conversión a mayúscula

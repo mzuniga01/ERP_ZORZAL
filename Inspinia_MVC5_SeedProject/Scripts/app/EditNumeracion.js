@@ -152,16 +152,15 @@
         .done(function (data) {
             if (data == 'El registro se guardó exitosamente') {
                 location.reload();
-                swal("El registro se editó exitosamente!", "", "success"); 
+                //swal("El registro se editó exitosamente!", "", "success"); 
             }
             else {
                 location.reload();
-                swal("El registro  no se editó!", "", "error");
+                //swal("El registro  no se editó!", "", "error");
             }
         });
     }
 }
-
 
 //Datepicker
 function FechaLimite(IdPuntoEmisionDetalle) {
@@ -179,3 +178,27 @@ function FechaLimite(IdPuntoEmisionDetalle) {
     });
 }
 
+//Número Actual
+function myFunction(IdPuntoEmisionDetalle) {
+    var RangoInicial = $('#RangoInicial_' + IdPuntoEmisionDetalle).val();
+    var divisiones = RangoInicial.split("-", 4);
+    var ultimo = divisiones[3]
+    var NumeroActual = $('#NumeroActual_' + IdPuntoEmisionDetalle).val(ultimo);
+
+    if (RangoInicial != '') {
+        $('#ErrorRangoInicioEdit_' + IdPuntoEmisionDetalle).text('');
+        $('#ErrorRangoInicioLengthEdit_' + IdPuntoEmisionDetalle).text('');
+    }
+}
+
+//Mostrar Mensaje:Campo requerido en tiempo real
+function RangoFinal(IdPuntoEmisionDetalle) {
+    $('#ErrorRangoFinalEdit_' + IdPuntoEmisionDetalle).text('');
+    $('#ErrorRangoFinalSplitEdit_' + IdPuntoEmisionDetalle).text('');
+    $('#ErrorRangoFinalLengthEdit_' + IdPuntoEmisionDetalle).text('');
+}
+
+function BorrarMensaje(IdPuntoEmisionDetalle) {
+    $('#ErrorRangoInicioEdit_' + IdPuntoEmisionDetalle).text('');
+    $('#ErrorRangoInicioLengthEdit_' + IdPuntoEmisionDetalle).text('');
+}
