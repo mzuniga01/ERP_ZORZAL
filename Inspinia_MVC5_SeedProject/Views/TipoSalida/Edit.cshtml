@@ -31,7 +31,7 @@
                         @Html.AntiForgeryToken()
 
                         <div class="form-horizontal">
-                            @Html.ValidationSummary(true)
+                            @*@Html.ValidationSummary(true)*@  
                             @Html.HiddenFor(model => model.tsal_Id)
                             @Html.HiddenFor(model => model.tsal_UsuarioCrea)
                             @Html.HiddenFor(model => model.tsal_FechaCrea)
@@ -54,7 +54,7 @@
                             @Html.HiddenFor(model => model.tbUsuario1.usu_Password)
                             @Html.HiddenFor(model => model.tbUsuario1.usu_Correo)
                             @Html.HiddenFor(model => model.tbUsuario1.usu_EsActivo)
-                            @*@Html.HiddenFor(model => model.tbUsuario1.usu_EsAdministrador*@)
+                            @*@Html.HiddenFor(model => model.tbUsuario1.usu_EsAdministrador*@
 
 
                             <div class="form-group">
@@ -70,6 +70,8 @@
                                 @Html.LabelFor(model => model.tsal_Descripcion, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.tsal_Descripcion)
+                                    @*<p style="color:red">@Html.ValidationMessageFor(model => model.tsal_Descripcion)</p>*@
+                                    <span style="color:red">@Html.ValidationSummary(true)</span>
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.tsal_Descripcion)</p>
                                 </div>
                             </div>

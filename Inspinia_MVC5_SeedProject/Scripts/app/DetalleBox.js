@@ -205,6 +205,7 @@ function EditSalidaDetalles(sald_Id) {
                     $("#prod_Codigo_SD").val(item.prod_Codigo);
                     $("#sald_Cantidad_SD").val(item.sald_Cantidad);
                     $("#prod_Descripcion_SD").val(item.prod_Descripcion);
+                    $("#box_Codigo_SD").val(item.box_Codigo);
                     //$("#pedd_FechaCrea_Ped").val(item.pedd_FechaCrea);
                     $("#EditSalidaDetalle").modal();
                 })
@@ -215,6 +216,7 @@ function EditSalidaDetalles(sald_Id) {
 
 $("#BtnsubmitMunicipio").click(function () {
     var sald_id = $('#sald_Id').val();
+    var box = $('#box_Codigo').val();
     var data = $("#SubmitForm").serializeArray();
     $.ajax({
         type: "Post",
@@ -224,7 +226,7 @@ $("#BtnsubmitMunicipio").click(function () {
             if (result == '-1')
                 $("#MsjError").text("No se pudo actualizar el registro, contacte al administrador");
             else
-                window.location.href = '/Box/Edit/' + sald_id;
+                window.location.href = '/Box/Edit/' + box;
         }
 
     });

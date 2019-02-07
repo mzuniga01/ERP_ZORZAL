@@ -39,7 +39,6 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbCuentasBanco> tbCuentasBanco { get; set; }
         public virtual DbSet<tbDenominacion> tbDenominacion { get; set; }
         public virtual DbSet<tbDepartamento> tbDepartamento { get; set; }
-        public virtual DbSet<tbEmpleado> tbEmpleado { get; set; }
         public virtual DbSet<tbIdentificacionCliente> tbIdentificacionCliente { get; set; }
         public virtual DbSet<tbMoneda> tbMoneda { get; set; }
         public virtual DbSet<tbMunicipio> tbMunicipio { get; set; }
@@ -94,6 +93,7 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbEntrada> tbEntrada { get; set; }
         public virtual DbSet<tbSalida> tbSalida { get; set; }
         public virtual DbSet<tbSalidaDetalle> tbSalidaDetalle { get; set; }
+        public virtual DbSet<tbEmpleado> tbEmpleado { get; set; }
     
         public virtual ObjectResult<UDP_Inv_tbTipoEntrada_Insert_Result> UDP_Inv_tbTipoEntrada_Insert(string tent_Descripcion)
         {
@@ -1559,11 +1559,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_Gral_tbEmpleado_Select_Result>("SDP_Gral_tbEmpleado_Select", emp_IdParameter);
         }
     
-        public virtual ObjectResult<SDP_tbEmpleado_Select_Result> SDP_tbEmpleado_Select()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_tbEmpleado_Select_Result>("SDP_tbEmpleado_Select");
-        }
-    
         public virtual ObjectResult<UDP_Inv_tbProductoSubCategoria_Delete_test_Result> UDP_Inv_tbProductoSubCategoria_Delete_test(Nullable<int> pscat_Id)
         {
             var pscat_IdParameter = pscat_Id.HasValue ?
@@ -2427,6 +2422,11 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("emp_FechaModifica", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbEmpleados_Update_Result>("UDP_Gral_tbEmpleados_Update", emp_IdParameter, emp_NombresParameter, emp_ApellidosParameter, emp_SexoParameter, emp_FechaNacimientoParameter, tpi_IdParameter, emp_IdentificacionParameter, emp_TelefonoParameter, emp_CorreoelectronicoParameter, emp_TipoSangreParameter, emp_PuestoParameter, emp_FechaIngresoParameter, emp_DireccionParameter, emp_RazonInactivacionParameter, emp_UsuarioCreaParameter, emp_FechaCreaParameter, emp_RazonSalidaParameter, emp_fechaSalidaParameter, emp_UsuarioModificaParameter, emp_FechaModificaParameter);
+        }
+    
+        public virtual ObjectResult<SDP_tbEmpleado_Select_Result> SDP_tbEmpleado_Select()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_tbEmpleado_Select_Result>("SDP_tbEmpleado_Select");
         }
     }
 }

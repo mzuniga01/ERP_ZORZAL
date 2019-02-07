@@ -663,31 +663,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SDP_tbEmpleado_Select" FunctionName="ERP_ZORZALModel.Store.SDP_tbEmpleado_Select">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_tbEmpleado_Select_Result">
-          <ScalarProperty Name="emp_Id" ColumnName="emp_Id" />
-          <ScalarProperty Name="emp_Nombres" ColumnName="emp_Nombres" />
-          <ScalarProperty Name="emp_Apellidos" ColumnName="emp_Apellidos" />
-          <ScalarProperty Name="emp_Sexo" ColumnName="emp_Sexo" />
-          <ScalarProperty Name="emp_FechaNacimiento" ColumnName="emp_FechaNacimiento" />
-          <ScalarProperty Name="tpi_Id" ColumnName="tpi_Id" />
-          <ScalarProperty Name="emp_Identificacion" ColumnName="emp_Identificacion" />
-          <ScalarProperty Name="emp_Telefono" ColumnName="emp_Telefono" />
-          <ScalarProperty Name="emp_Correoelectronico" ColumnName="emp_Correoelectronico" />
-          <ScalarProperty Name="emp_TipoSangre" ColumnName="emp_TipoSangre" />
-          <ScalarProperty Name="emp_Puesto" ColumnName="emp_Puesto" />
-          <ScalarProperty Name="emp_FechaIngreso" ColumnName="emp_FechaIngreso" />
-          <ScalarProperty Name="emp_Direccion" ColumnName="emp_Direccion" />
-          <ScalarProperty Name="emp_Observaciones" ColumnName="emp_Observaciones" />
-          <ScalarProperty Name="emp_UsuarioCrea" ColumnName="emp_UsuarioCrea" />
-          <ScalarProperty Name="emp_FechaCrea" ColumnName="emp_FechaCrea" />
-          <ScalarProperty Name="emp_UsuarioModifica" ColumnName="emp_UsuarioModifica" />
-          <ScalarProperty Name="emp_FechaModifica" ColumnName="emp_FechaModifica" />
-          <ScalarProperty Name="emp_Estado" ColumnName="emp_Estado" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="SDP_Inv_tbProducto_Select" FunctionName="ERP_ZORZALModel.Store.SDP_Inv_tbProducto_Select">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_Inv_tbProducto_Select_Result">
@@ -894,33 +869,6 @@
           <ScalarProperty Name="dep_UsuarioCrea" ColumnName="dep_UsuarioCrea" />
           <ScalarProperty Name="dep_Nombre" ColumnName="dep_Nombre" />
           <ScalarProperty Name="dep_Codigo" ColumnName="dep_Codigo" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tbEmpleado">
-      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbEmpleado">
-        <MappingFragment StoreEntitySet="tbEmpleado">
-          <ScalarProperty Name="emp_FechaDeSalida" ColumnName="emp_FechaDeSalida" />
-          <ScalarProperty Name="emp_RazonSalida" ColumnName="emp_RazonSalida" />
-          <ScalarProperty Name="emp_Estado" ColumnName="emp_Estado" />
-          <ScalarProperty Name="emp_FechaModifica" ColumnName="emp_FechaModifica" />
-          <ScalarProperty Name="emp_UsuarioModifica" ColumnName="emp_UsuarioModifica" />
-          <ScalarProperty Name="emp_FechaCrea" ColumnName="emp_FechaCrea" />
-          <ScalarProperty Name="emp_UsuarioCrea" ColumnName="emp_UsuarioCrea" />
-          <ScalarProperty Name="emp_RazonInactivacion" ColumnName="emp_RazonInactivacion" />
-          <ScalarProperty Name="emp_Direccion" ColumnName="emp_Direccion" />
-          <ScalarProperty Name="emp_FechaIngreso" ColumnName="emp_FechaIngreso" />
-          <ScalarProperty Name="emp_Puesto" ColumnName="emp_Puesto" />
-          <ScalarProperty Name="emp_TipoSangre" ColumnName="emp_TipoSangre" />
-          <ScalarProperty Name="emp_Correoelectronico" ColumnName="emp_Correoelectronico" />
-          <ScalarProperty Name="emp_Telefono" ColumnName="emp_Telefono" />
-          <ScalarProperty Name="emp_Identificacion" ColumnName="emp_Identificacion" />
-          <ScalarProperty Name="tpi_Id" ColumnName="tpi_Id" />
-          <ScalarProperty Name="emp_FechaNacimiento" ColumnName="emp_FechaNacimiento" />
-          <ScalarProperty Name="emp_Sexo" ColumnName="emp_Sexo" />
-          <ScalarProperty Name="emp_Apellidos" ColumnName="emp_Apellidos" />
-          <ScalarProperty Name="emp_Nombres" ColumnName="emp_Nombres" />
-          <ScalarProperty Name="emp_Id" ColumnName="emp_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -2072,6 +2020,60 @@
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbEmpleados_Update_Result">
           <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="tbEmpleado">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbEmpleado">
+        <MappingFragment StoreEntitySet="tbEmpleado">
+          <ScalarProperty Name="emp_FechaDeSalida" ColumnName="emp_FechaDeSalida" />
+          <ScalarProperty Name="emp_RazonSalida" ColumnName="emp_RazonSalida" />
+          <ScalarProperty Name="emp_Estado" ColumnName="emp_Estado" />
+          <ScalarProperty Name="emp_FechaModifica" ColumnName="emp_FechaModifica" />
+          <ScalarProperty Name="emp_UsuarioModifica" ColumnName="emp_UsuarioModifica" />
+          <ScalarProperty Name="emp_FechaCrea" ColumnName="emp_FechaCrea" />
+          <ScalarProperty Name="emp_UsuarioCrea" ColumnName="emp_UsuarioCrea" />
+          <ScalarProperty Name="emp_RazonInactivacion" ColumnName="emp_RazonInactivacion" />
+          <ScalarProperty Name="emp_Direccion" ColumnName="emp_Direccion" />
+          <ScalarProperty Name="emp_FechaIngreso" ColumnName="emp_FechaIngreso" />
+          <ScalarProperty Name="emp_Puesto" ColumnName="emp_Puesto" />
+          <ScalarProperty Name="emp_TipoSangre" ColumnName="emp_TipoSangre" />
+          <ScalarProperty Name="emp_Correoelectronico" ColumnName="emp_Correoelectronico" />
+          <ScalarProperty Name="emp_Telefono" ColumnName="emp_Telefono" />
+          <ScalarProperty Name="emp_Identificacion" ColumnName="emp_Identificacion" />
+          <ScalarProperty Name="tpi_Id" ColumnName="tpi_Id" />
+          <ScalarProperty Name="emp_FechaNacimiento" ColumnName="emp_FechaNacimiento" />
+          <ScalarProperty Name="emp_Sexo" ColumnName="emp_Sexo" />
+          <ScalarProperty Name="emp_Apellidos" ColumnName="emp_Apellidos" />
+          <ScalarProperty Name="emp_Nombres" ColumnName="emp_Nombres" />
+          <ScalarProperty Name="emp_Id" ColumnName="emp_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SDP_tbEmpleado_Select" FunctionName="ERP_ZORZALModel.Store.SDP_tbEmpleado_Select">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_tbEmpleado_Select_Result">
+          <ScalarProperty Name="emp_Id" ColumnName="emp_Id" />
+          <ScalarProperty Name="emp_Nombres" ColumnName="emp_Nombres" />
+          <ScalarProperty Name="emp_Apellidos" ColumnName="emp_Apellidos" />
+          <ScalarProperty Name="emp_Sexo" ColumnName="emp_Sexo" />
+          <ScalarProperty Name="emp_FechaNacimiento" ColumnName="emp_FechaNacimiento" />
+          <ScalarProperty Name="tpi_Id" ColumnName="tpi_Id" />
+          <ScalarProperty Name="emp_Identificacion" ColumnName="emp_Identificacion" />
+          <ScalarProperty Name="emp_Telefono" ColumnName="emp_Telefono" />
+          <ScalarProperty Name="emp_Correoelectronico" ColumnName="emp_Correoelectronico" />
+          <ScalarProperty Name="emp_TipoSangre" ColumnName="emp_TipoSangre" />
+          <ScalarProperty Name="emp_Puesto" ColumnName="emp_Puesto" />
+          <ScalarProperty Name="emp_FechaIngreso" ColumnName="emp_FechaIngreso" />
+          <ScalarProperty Name="emp_Direccion" ColumnName="emp_Direccion" />
+          <ScalarProperty Name="emp_RazonInactivacion" ColumnName="emp_RazonInactivacion" />
+          <ScalarProperty Name="emp_UsuarioCrea" ColumnName="emp_UsuarioCrea" />
+          <ScalarProperty Name="emp_FechaCrea" ColumnName="emp_FechaCrea" />
+          <ScalarProperty Name="emp_UsuarioModifica" ColumnName="emp_UsuarioModifica" />
+          <ScalarProperty Name="emp_FechaModifica" ColumnName="emp_FechaModifica" />
+          <ScalarProperty Name="emp_Estado" ColumnName="emp_Estado" />
+          <ScalarProperty Name="emp_RazonSalida" ColumnName="emp_RazonSalida" />
+          <ScalarProperty Name="emp_FechaDeSalida" ColumnName="emp_FechaDeSalida" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

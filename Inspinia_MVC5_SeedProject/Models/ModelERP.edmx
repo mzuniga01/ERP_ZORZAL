@@ -5757,7 +5757,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
           <FunctionImport Name="SDP_Gral_tbEmpleado_Select" ReturnType="Collection(ERP_ZORZALModel.SDP_Gral_tbEmpleado_Select_Result)">
           <Parameter Name="emp_Id" Mode="In" Type="Int16" />
           </FunctionImport>
-          <FunctionImport Name="SDP_tbEmpleado_Select" ReturnType="Collection(ERP_ZORZALModel.SDP_tbEmpleado_Select_Result)" />
           <FunctionImport Name="UDP_Inv_tbProductoSubCategoria_Delete_test" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProductoSubCategoria_Delete_test_Result)">
             <Parameter Name="pscat_Id" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -5807,7 +5806,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
           <EntitySet Name="tbCuentasBanco" EntityType="ERP_ZORZALModel.tbCuentasBanco" />
           <EntitySet Name="tbDenominacion" EntityType="ERP_ZORZALModel.tbDenominacion" />
           <EntitySet Name="tbDepartamento" EntityType="ERP_ZORZALModel.tbDepartamento" />
-          <EntitySet Name="tbEmpleado" EntityType="ERP_ZORZALModel.tbEmpleado" />
           <EntitySet Name="tbIdentificacionCliente" EntityType="ERP_ZORZALModel.tbIdentificacionCliente" />
           <EntitySet Name="tbMoneda" EntityType="ERP_ZORZALModel.tbMoneda" />
           <EntitySet Name="tbMunicipio" EntityType="ERP_ZORZALModel.tbMunicipio" />
@@ -5934,10 +5932,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
           <AssociationSet Name="FK_Acce_tbUsuario_bodd_UsuarioModifica" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_bodd_UsuarioModifica">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbBodegaDetalle" EntitySet="tbBodegaDetalle" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Acce_tbUsuario_emp_Id" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_emp_Id">
-            <End Role="tbEmpleado" EntitySet="tbEmpleado" />
-            <End Role="tbUsuario" EntitySet="tbUsuario" />
           </AssociationSet>
           <AssociationSet Name="FK_Acce_tbUsuario_suc_Id" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_suc_Id">
             <End Role="tbSucursal" EntitySet="tbSucursal" />
@@ -6183,14 +6177,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbDepartamento" EntitySet="tbDepartamento" />
           </AssociationSet>
-          <AssociationSet Name="FK_Gral_tbEmpleado_emp_UsuarioModifica" Association="ERP_ZORZALModel.FK_Gral_tbEmpleado_emp_UsuarioModifica">
-            <End Role="tbUsuario" EntitySet="tbUsuario" />
-            <End Role="tbEmpleado" EntitySet="tbEmpleado" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Gral_tbEmpleado_tbUsuario_emp_UsuarioCrea" Association="ERP_ZORZALModel.FK_Gral_tbEmpleado_tbUsuario_emp_UsuarioCrea">
-            <End Role="tbUsuario" EntitySet="tbUsuario" />
-            <End Role="tbEmpleado" EntitySet="tbEmpleado" />
-          </AssociationSet>
           <AssociationSet Name="FK_Gral_tbMunicipio_mun_UsuarioModifica" Association="ERP_ZORZALModel.FK_Gral_tbMunicipio_mun_UsuarioModifica">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbMunicipio" EntitySet="tbMunicipio" />
@@ -6398,14 +6384,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
           <AssociationSet Name="FK_Gral_tbMunicipio_dep_Codigo" Association="ERP_ZORZALModel.FK_Gral_tbMunicipio_dep_Codigo">
             <End Role="tbDepartamento" EntitySet="tbDepartamento" />
             <End Role="tbMunicipio" EntitySet="tbMunicipio" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Gral_tbEmpleado_tbTipoIdentificacion_tpi_Id" Association="ERP_ZORZALModel.FK_Gral_tbEmpleado_tbTipoIdentificacion_tpi_Id">
-            <End Role="tbTipoIdentificacion" EntitySet="tbTipoIdentificacion" />
-            <End Role="tbEmpleado" EntitySet="tbEmpleado" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Inv_tbBodega_bod_ResponsableBodega" Association="ERP_ZORZALModel.FK_Inv_tbBodega_bod_ResponsableBodega">
-            <End Role="tbEmpleado" EntitySet="tbEmpleado" />
-            <End Role="tbBodega" EntitySet="tbBodega" />
           </AssociationSet>
           <AssociationSet Name="FK_Gral_tbTipoIdentificacion_tbIdentificacionCliente_tpi_Id" Association="ERP_ZORZALModel.FK_Gral_tbTipoIdentificacion_tbIdentificacionCliente_tpi_Id">
             <End Role="tbTipoIdentificacion" EntitySet="tbTipoIdentificacion" />
@@ -6956,6 +6934,28 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
             <Parameter Name="emp_UsuarioModifica" Mode="In" Type="Int32" />
             <Parameter Name="emp_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
+          <EntitySet Name="tbEmpleado" EntityType="ERP_ZORZALModel.tbEmpleado" />
+          <AssociationSet Name="FK_Acce_tbUsuario_emp_Id" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_emp_Id">
+            <End Role="tbEmpleado" EntitySet="tbEmpleado" />
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gral_tbEmpleado_emp_UsuarioModifica" Association="ERP_ZORZALModel.FK_Gral_tbEmpleado_emp_UsuarioModifica">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbEmpleado" EntitySet="tbEmpleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gral_tbEmpleado_tbUsuario_emp_UsuarioCrea" Association="ERP_ZORZALModel.FK_Gral_tbEmpleado_tbUsuario_emp_UsuarioCrea">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbEmpleado" EntitySet="tbEmpleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gral_tbEmpleado_tbTipoIdentificacion_tpi_Id" Association="ERP_ZORZALModel.FK_Gral_tbEmpleado_tbTipoIdentificacion_tpi_Id">
+            <End Role="tbTipoIdentificacion" EntitySet="tbTipoIdentificacion" />
+            <End Role="tbEmpleado" EntitySet="tbEmpleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inv_tbBodega_bod_ResponsableBodega" Association="ERP_ZORZALModel.FK_Inv_tbBodega_bod_ResponsableBodega">
+            <End Role="tbEmpleado" EntitySet="tbEmpleado" />
+            <End Role="tbBodega" EntitySet="tbBodega" />
+          </AssociationSet>
+          <FunctionImport Name="SDP_tbEmpleado_Select" ReturnType="Collection(ERP_ZORZALModel.SDP_tbEmpleado_Select_Result)" />
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
           <Key>
@@ -7362,27 +7362,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
           <Property Type="DateTime" Name="emp_FechaModifica" Nullable="true" Precision="23" />
           <Property Type="Boolean" Name="emp_Estado" Nullable="false" />
         </ComplexType>
-        <ComplexType Name="SDP_tbEmpleado_Select_Result">
-          <Property Type="Int16" Name="emp_Id" Nullable="false" />
-          <Property Type="String" Name="emp_Nombres" Nullable="false" MaxLength="100" />
-          <Property Type="String" Name="emp_Apellidos" Nullable="false" MaxLength="100" />
-          <Property Type="String" Name="emp_Sexo" Nullable="false" MaxLength="1" />
-          <Property Type="DateTime" Name="emp_FechaNacimiento" Nullable="false" Precision="23" />
-          <Property Type="Byte" Name="tpi_Id" Nullable="false" />
-          <Property Type="String" Name="emp_Identificacion" Nullable="false" MaxLength="14" />
-          <Property Type="String" Name="emp_Telefono" Nullable="false" MaxLength="25" />
-          <Property Type="String" Name="emp_Correoelectronico" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="emp_TipoSangre" Nullable="false" MaxLength="2" />
-          <Property Type="String" Name="emp_Puesto" Nullable="false" MaxLength="50" />
-          <Property Type="DateTime" Name="emp_FechaIngreso" Nullable="false" />
-          <Property Type="String" Name="emp_Direccion" Nullable="false" MaxLength="250" />
-          <Property Type="String" Name="emp_Observaciones" Nullable="true" MaxLength="500" />
-          <Property Type="Int32" Name="emp_UsuarioCrea" Nullable="false" />
-          <Property Type="DateTime" Name="emp_FechaCrea" Nullable="false" Precision="23" />
-          <Property Type="Int32" Name="emp_UsuarioModifica" Nullable="true" />
-          <Property Type="DateTime" Name="emp_FechaModifica" Nullable="true" Precision="23" />
-          <Property Type="Boolean" Name="emp_Estado" Nullable="false" />
-        </ComplexType>
         <ComplexType Name="UDP_Inv_tbProductoSubCategoria_Delete_test_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="4000" />
         </ComplexType>
@@ -7514,7 +7493,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
           <NavigationProperty Name="tbRolesUsuario2" Relationship="ERP_ZORZALModel.FK_Acce_tbRolesUsuario_tbUsuario_usu_Id" FromRole="tbUsuario" ToRole="tbRolesUsuario" />
           <NavigationProperty Name="tbBodegaDetalle" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_bodd_UsuarioCrea" FromRole="tbUsuario" ToRole="tbBodegaDetalle" />
           <NavigationProperty Name="tbBodegaDetalle1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_bodd_UsuarioModifica" FromRole="tbUsuario" ToRole="tbBodegaDetalle" />
-          <NavigationProperty Name="tbEmpleado" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_emp_Id" FromRole="tbUsuario" ToRole="tbEmpleado" />
           <NavigationProperty Name="tbSucursal" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_suc_Id" FromRole="tbUsuario" ToRole="tbSucursal" />
           <NavigationProperty Name="tbActividadEconomica" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbActividadEconomica_acte_UsuarioCrea" FromRole="tbUsuario" ToRole="tbActividadEconomica" />
           <NavigationProperty Name="tbActividadEconomica1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbActividadEconomica_acte_UsuarioModifica" FromRole="tbUsuario" ToRole="tbActividadEconomica" />
@@ -7576,8 +7554,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
           <NavigationProperty Name="tbCuentasBanco1" Relationship="ERP_ZORZALModel.FK_Gral_tbCuentasBanco_tbUsuario_usu_Id_Modifica" FromRole="tbUsuario" ToRole="tbCuentasBanco" />
           <NavigationProperty Name="tbDepartamento" Relationship="ERP_ZORZALModel.FK_Gral_tbDepartamento_dep_UsuarioModifica" FromRole="tbUsuario" ToRole="tbDepartamento" />
           <NavigationProperty Name="tbDepartamento1" Relationship="ERP_ZORZALModel.FK_Gral_tbDepartamento_tbUsuario_dep_UsuarioCrea" FromRole="tbUsuario" ToRole="tbDepartamento" />
-          <NavigationProperty Name="tbEmpleado1" Relationship="ERP_ZORZALModel.FK_Gral_tbEmpleado_emp_UsuarioModifica" FromRole="tbUsuario" ToRole="tbEmpleado" />
-          <NavigationProperty Name="tbEmpleado2" Relationship="ERP_ZORZALModel.FK_Gral_tbEmpleado_tbUsuario_emp_UsuarioCrea" FromRole="tbUsuario" ToRole="tbEmpleado" />
           <NavigationProperty Name="tbMunicipio" Relationship="ERP_ZORZALModel.FK_Gral_tbMunicipio_mun_UsuarioModifica" FromRole="tbUsuario" ToRole="tbMunicipio" />
           <NavigationProperty Name="tbMunicipio1" Relationship="ERP_ZORZALModel.FK_Gral_tbMunicipio_tbUsuario_mun_UsuarioCrea" FromRole="tbUsuario" ToRole="tbMunicipio" />
           <NavigationProperty Name="tbParametro" Relationship="ERP_ZORZALModel.FK_Gral_tbParametro_par_UsuarioModifica" FromRole="tbUsuario" ToRole="tbParametro" />
@@ -7628,6 +7604,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
           <NavigationProperty Name="tbSalida" Relationship="ERP_ZORZALModel.FK_Inv_tbSalida_Sal_UsuarioModifica" FromRole="tbUsuario" ToRole="tbSalida" />
           <NavigationProperty Name="tbSalida1" Relationship="ERP_ZORZALModel.FK_Inv_tbSalida_tbUsuario_sal_UsuarioCrea" FromRole="tbUsuario" ToRole="tbSalida" />
           <NavigationProperty Name="tbSalidaDetalle" Relationship="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_tbUsuario_sald_UsuarioCrea" FromRole="tbUsuario" ToRole="tbSalidaDetalle" />
+          <NavigationProperty Name="tbEmpleado" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_emp_Id" FromRole="tbUsuario" ToRole="tbEmpleado" />
+          <NavigationProperty Name="tbEmpleado1" Relationship="ERP_ZORZALModel.FK_Gral_tbEmpleado_emp_UsuarioModifica" FromRole="tbUsuario" ToRole="tbEmpleado" />
+          <NavigationProperty Name="tbEmpleado2" Relationship="ERP_ZORZALModel.FK_Gral_tbEmpleado_tbUsuario_emp_UsuarioCrea" FromRole="tbUsuario" ToRole="tbEmpleado" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -7724,37 +7703,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
           <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Gral_tbDepartamento_tbUsuario_dep_UsuarioCrea" FromRole="tbDepartamento" ToRole="tbUsuario" />
           <NavigationProperty Name="tbMunicipio" Relationship="ERP_ZORZALModel.FK_Gral_tbMunicipio_dep_Codigo" FromRole="tbDepartamento" ToRole="tbMunicipio" />
         </EntityType>
-        <EntityType Name="tbEmpleado">
-          <Key>
-            <PropertyRef Name="emp_Id" />
-          </Key>
-          <Property Name="emp_Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="emp_Nombres" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="emp_Apellidos" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="emp_Sexo" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="emp_FechaNacimiento" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="tpi_Id" Type="Byte" Nullable="false" />
-          <Property Name="emp_Identificacion" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="true" />
-          <Property Name="emp_Telefono" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
-          <Property Name="emp_Correoelectronico" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="emp_TipoSangre" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
-          <Property Name="emp_Puesto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="emp_FechaIngreso" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="emp_Direccion" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="emp_RazonInactivacion" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="emp_UsuarioCrea" Type="Int32" Nullable="false" />
-          <Property Name="emp_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="emp_UsuarioModifica" Type="Int32" />
-          <Property Name="emp_FechaModifica" Type="DateTime" Precision="3" />
-          <Property Name="emp_Estado" Type="Boolean" Nullable="false" />
-          <Property Name="emp_RazonSalida" Type="String" MaxLength="250" FixedLength="true" Unicode="true" />
-          <Property Name="emp_FechaDeSalida" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_emp_Id" FromRole="tbEmpleado" ToRole="tbUsuario" />
-          <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Gral_tbEmpleado_emp_UsuarioModifica" FromRole="tbEmpleado" ToRole="tbUsuario" />
-          <NavigationProperty Name="tbUsuario2" Relationship="ERP_ZORZALModel.FK_Gral_tbEmpleado_tbUsuario_emp_UsuarioCrea" FromRole="tbEmpleado" ToRole="tbUsuario" />
-          <NavigationProperty Name="tbTipoIdentificacion" Relationship="ERP_ZORZALModel.FK_Gral_tbEmpleado_tbTipoIdentificacion_tpi_Id" FromRole="tbEmpleado" ToRole="tbTipoIdentificacion" />
-          <NavigationProperty Name="tbBodega" Relationship="ERP_ZORZALModel.FK_Inv_tbBodega_bod_ResponsableBodega" FromRole="tbEmpleado" ToRole="tbBodega" />
-        </EntityType>
         <EntityType Name="tbIdentificacionCliente">
           <Key>
             <PropertyRef Name="tpi_Id" />
@@ -7844,9 +7792,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
           <Property Name="tpi_FechaModifica" Type="DateTime" Precision="3" />
           <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbTipoIdentificacion_tpi_UsuarioCrea" FromRole="tbTipoIdentificacion" ToRole="tbUsuario" />
           <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbTipoIdentificacion_tpi_UsuarioModifica" FromRole="tbTipoIdentificacion" ToRole="tbUsuario" />
-          <NavigationProperty Name="tbEmpleado" Relationship="ERP_ZORZALModel.FK_Gral_tbEmpleado_tbTipoIdentificacion_tpi_Id" FromRole="tbTipoIdentificacion" ToRole="tbEmpleado" />
           <NavigationProperty Name="tbIdentificacionCliente" Relationship="ERP_ZORZALModel.FK_Gral_tbTipoIdentificacion_tbIdentificacionCliente_tpi_Id" FromRole="tbTipoIdentificacion" ToRole="tbIdentificacionCliente" />
           <NavigationProperty Name="tbCliente" Relationship="ERP_ZORZALModel.FK_Vent_tbTipoIdentificacion_tbCliente_tpi_Id" FromRole="tbTipoIdentificacion" ToRole="tbCliente" />
+          <NavigationProperty Name="tbEmpleado" Relationship="ERP_ZORZALModel.FK_Gral_tbEmpleado_tbTipoIdentificacion_tpi_Id" FromRole="tbTipoIdentificacion" ToRole="tbEmpleado" />
         </EntityType>
         <EntityType Name="tbUnidadMedida">
           <Key>
@@ -7882,7 +7830,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
           <Property Name="bod_FechaModifica" Type="DateTime" Precision="3" />
           <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Inv_tbBodega_bod_tbUsuario_UsuarioModifica" FromRole="tbBodega" ToRole="tbUsuario" />
           <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Inv_tbBodega_tbUsuario_bod_UsuarioCrea" FromRole="tbBodega" ToRole="tbUsuario" />
-          <NavigationProperty Name="tbEmpleado" Relationship="ERP_ZORZALModel.FK_Inv_tbBodega_bod_ResponsableBodega" FromRole="tbBodega" ToRole="tbEmpleado" />
           <NavigationProperty Name="tbMunicipio" Relationship="ERP_ZORZALModel.FK_Inv_tbBodega_tbMunicipio_mun_Id" FromRole="tbBodega" ToRole="tbMunicipio" />
           <NavigationProperty Name="tbBodegaDetalle" Relationship="ERP_ZORZALModel.FK_Inv_tbBodegaDetalle_tbBodega_bod_Id" FromRole="tbBodega" ToRole="tbBodegaDetalle" />
           <NavigationProperty Name="tbInventarioFisico" Relationship="ERP_ZORZALModel.FK_Inv_tbInventarioFisico_tbBodega_bod_Id" FromRole="tbBodega" ToRole="tbInventarioFisico" />
@@ -7891,6 +7838,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
           <NavigationProperty Name="tbEntrada1" Relationship="ERP_ZORZALModel.FK_Inv_tbEntrada_tbBodega_bod_Id" FromRole="tbBodega" ToRole="tbEntrada" />
           <NavigationProperty Name="tbSalida" Relationship="ERP_ZORZALModel.FK_Inv_tbSalida_Inv_tbBodega_bod_Id" FromRole="tbBodega" ToRole="tbSalida" />
           <NavigationProperty Name="tbSalida1" Relationship="ERP_ZORZALModel.FK_Inv_tbSalida_tbBodega_sal_BodDestino" FromRole="tbBodega" ToRole="tbSalida" />
+          <NavigationProperty Name="tbEmpleado" Relationship="ERP_ZORZALModel.FK_Inv_tbBodega_bod_ResponsableBodega" FromRole="tbBodega" ToRole="tbEmpleado" />
         </EntityType>
         <EntityType Name="tbBodegaDetalle">
           <Key>
@@ -9011,18 +8959,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Acce_tbUsuario_emp_Id">
-          <End Type="ERP_ZORZALModel.tbEmpleado" Role="tbEmpleado" Multiplicity="0..1" />
-          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbEmpleado">
-              <PropertyRef Name="emp_Id" />
-            </Principal>
-            <Dependent Role="tbUsuario">
-              <PropertyRef Name="emp_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Acce_tbUsuario_suc_Id">
           <End Type="ERP_ZORZALModel.tbSucursal" Role="tbSucursal" Multiplicity="0..1" />
           <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="*" />
@@ -9755,30 +9691,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Gral_tbEmpleado_emp_UsuarioModifica">
-          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
-          <End Type="ERP_ZORZALModel.tbEmpleado" Role="tbEmpleado" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuario">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbEmpleado">
-              <PropertyRef Name="emp_UsuarioModifica" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Gral_tbEmpleado_tbUsuario_emp_UsuarioCrea">
-          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
-          <End Type="ERP_ZORZALModel.tbEmpleado" Role="tbEmpleado" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuario">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbEmpleado">
-              <PropertyRef Name="emp_UsuarioCrea" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Gral_tbMunicipio_mun_UsuarioModifica">
           <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
           <End Type="ERP_ZORZALModel.tbMunicipio" Role="tbMunicipio" Multiplicity="*" />
@@ -10400,30 +10312,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
             </Principal>
             <Dependent Role="tbMunicipio">
               <PropertyRef Name="dep_Codigo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Gral_tbEmpleado_tbTipoIdentificacion_tpi_Id">
-          <End Type="ERP_ZORZALModel.tbTipoIdentificacion" Role="tbTipoIdentificacion" Multiplicity="1" />
-          <End Type="ERP_ZORZALModel.tbEmpleado" Role="tbEmpleado" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbTipoIdentificacion">
-              <PropertyRef Name="tpi_Id" />
-            </Principal>
-            <Dependent Role="tbEmpleado">
-              <PropertyRef Name="tpi_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Inv_tbBodega_bod_ResponsableBodega">
-          <End Type="ERP_ZORZALModel.tbEmpleado" Role="tbEmpleado" Multiplicity="1" />
-          <End Type="ERP_ZORZALModel.tbBodega" Role="tbBodega" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbEmpleado">
-              <PropertyRef Name="emp_Id" />
-            </Principal>
-            <Dependent Role="tbBodega">
-              <PropertyRef Name="bod_ResponsableBodega" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -11673,6 +11561,120 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
         <ComplexType Name="UDP_Gral_tbEmpleados_Update_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
+        <EntityType Name="tbEmpleado">
+          <Key>
+            <PropertyRef Name="emp_Id" />
+          </Key>
+          <Property Name="emp_Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="emp_Nombres" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="emp_Apellidos" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="emp_Sexo" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="emp_FechaNacimiento" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="tpi_Id" Type="Byte" Nullable="false" />
+          <Property Name="emp_Identificacion" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="true" />
+          <Property Name="emp_Telefono" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="emp_Correoelectronico" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="emp_TipoSangre" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="emp_Puesto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="emp_FechaIngreso" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="emp_Direccion" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="emp_RazonInactivacion" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="emp_UsuarioCrea" Type="Int32" Nullable="false" />
+          <Property Name="emp_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="emp_UsuarioModifica" Type="Int32" />
+          <Property Name="emp_FechaModifica" Type="DateTime" Precision="3" />
+          <Property Name="emp_Estado" Type="Boolean" Nullable="false" />
+          <Property Name="emp_RazonSalida" Type="String" MaxLength="250" FixedLength="true" Unicode="true" />
+          <Property Name="emp_FechaDeSalida" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_emp_Id" FromRole="tbEmpleado" ToRole="tbUsuario" />
+          <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Gral_tbEmpleado_emp_UsuarioModifica" FromRole="tbEmpleado" ToRole="tbUsuario" />
+          <NavigationProperty Name="tbUsuario2" Relationship="ERP_ZORZALModel.FK_Gral_tbEmpleado_tbUsuario_emp_UsuarioCrea" FromRole="tbEmpleado" ToRole="tbUsuario" />
+          <NavigationProperty Name="tbTipoIdentificacion" Relationship="ERP_ZORZALModel.FK_Gral_tbEmpleado_tbTipoIdentificacion_tpi_Id" FromRole="tbEmpleado" ToRole="tbTipoIdentificacion" />
+          <NavigationProperty Name="tbBodega" Relationship="ERP_ZORZALModel.FK_Inv_tbBodega_bod_ResponsableBodega" FromRole="tbEmpleado" ToRole="tbBodega" />
+        </EntityType>
+        <Association Name="FK_Acce_tbUsuario_emp_Id">
+          <End Type="ERP_ZORZALModel.tbEmpleado" Role="tbEmpleado" Multiplicity="0..1" />
+          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbEmpleado">
+              <PropertyRef Name="emp_Id" />
+            </Principal>
+            <Dependent Role="tbUsuario">
+              <PropertyRef Name="emp_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gral_tbEmpleado_emp_UsuarioModifica">
+          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
+          <End Type="ERP_ZORZALModel.tbEmpleado" Role="tbEmpleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbEmpleado">
+              <PropertyRef Name="emp_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gral_tbEmpleado_tbUsuario_emp_UsuarioCrea">
+          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
+          <End Type="ERP_ZORZALModel.tbEmpleado" Role="tbEmpleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbEmpleado">
+              <PropertyRef Name="emp_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gral_tbEmpleado_tbTipoIdentificacion_tpi_Id">
+          <End Type="ERP_ZORZALModel.tbTipoIdentificacion" Role="tbTipoIdentificacion" Multiplicity="1" />
+          <End Type="ERP_ZORZALModel.tbEmpleado" Role="tbEmpleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbTipoIdentificacion">
+              <PropertyRef Name="tpi_Id" />
+            </Principal>
+            <Dependent Role="tbEmpleado">
+              <PropertyRef Name="tpi_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inv_tbBodega_bod_ResponsableBodega">
+          <End Type="ERP_ZORZALModel.tbEmpleado" Role="tbEmpleado" Multiplicity="1" />
+          <End Type="ERP_ZORZALModel.tbBodega" Role="tbBodega" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbEmpleado">
+              <PropertyRef Name="emp_Id" />
+            </Principal>
+            <Dependent Role="tbBodega">
+              <PropertyRef Name="bod_ResponsableBodega" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="SDP_tbEmpleado_Select_Result">
+          <Property Type="Int16" Name="emp_Id" Nullable="false" />
+          <Property Type="String" Name="emp_Nombres" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="emp_Apellidos" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="emp_Sexo" Nullable="false" MaxLength="1" />
+          <Property Type="DateTime" Name="emp_FechaNacimiento" Nullable="false" Precision="23" />
+          <Property Type="Byte" Name="tpi_Id" Nullable="false" />
+          <Property Type="String" Name="emp_Identificacion" Nullable="false" MaxLength="14" />
+          <Property Type="String" Name="emp_Telefono" Nullable="false" MaxLength="25" />
+          <Property Type="String" Name="emp_Correoelectronico" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="emp_TipoSangre" Nullable="false" MaxLength="2" />
+          <Property Type="String" Name="emp_Puesto" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="emp_FechaIngreso" Nullable="false" />
+          <Property Type="String" Name="emp_Direccion" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="emp_RazonInactivacion" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="emp_UsuarioCrea" Nullable="false" />
+          <Property Type="DateTime" Name="emp_FechaCrea" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="emp_UsuarioModifica" Nullable="true" />
+          <Property Type="DateTime" Name="emp_FechaModifica" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="emp_Estado" Nullable="false" />
+          <Property Type="String" Name="emp_RazonSalida" Nullable="true" MaxLength="250" />
+          <Property Type="DateTime" Name="emp_FechaDeSalida" Nullable="true" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -12342,31 +12344,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SDP_tbEmpleado_Select" FunctionName="ERP_ZORZALModel.Store.SDP_tbEmpleado_Select">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_tbEmpleado_Select_Result">
-                <ScalarProperty Name="emp_Id" ColumnName="emp_Id" />
-                <ScalarProperty Name="emp_Nombres" ColumnName="emp_Nombres" />
-                <ScalarProperty Name="emp_Apellidos" ColumnName="emp_Apellidos" />
-                <ScalarProperty Name="emp_Sexo" ColumnName="emp_Sexo" />
-                <ScalarProperty Name="emp_FechaNacimiento" ColumnName="emp_FechaNacimiento" />
-                <ScalarProperty Name="tpi_Id" ColumnName="tpi_Id" />
-                <ScalarProperty Name="emp_Identificacion" ColumnName="emp_Identificacion" />
-                <ScalarProperty Name="emp_Telefono" ColumnName="emp_Telefono" />
-                <ScalarProperty Name="emp_Correoelectronico" ColumnName="emp_Correoelectronico" />
-                <ScalarProperty Name="emp_TipoSangre" ColumnName="emp_TipoSangre" />
-                <ScalarProperty Name="emp_Puesto" ColumnName="emp_Puesto" />
-                <ScalarProperty Name="emp_FechaIngreso" ColumnName="emp_FechaIngreso" />
-                <ScalarProperty Name="emp_Direccion" ColumnName="emp_Direccion" />
-                <ScalarProperty Name="emp_Observaciones" ColumnName="emp_Observaciones" />
-                <ScalarProperty Name="emp_UsuarioCrea" ColumnName="emp_UsuarioCrea" />
-                <ScalarProperty Name="emp_FechaCrea" ColumnName="emp_FechaCrea" />
-                <ScalarProperty Name="emp_UsuarioModifica" ColumnName="emp_UsuarioModifica" />
-                <ScalarProperty Name="emp_FechaModifica" ColumnName="emp_FechaModifica" />
-                <ScalarProperty Name="emp_Estado" ColumnName="emp_Estado" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SDP_Inv_tbProducto_Select" FunctionName="ERP_ZORZALModel.Store.SDP_Inv_tbProducto_Select">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_Inv_tbProducto_Select_Result">
@@ -12573,33 +12550,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
                 <ScalarProperty Name="dep_UsuarioCrea" ColumnName="dep_UsuarioCrea" />
                 <ScalarProperty Name="dep_Nombre" ColumnName="dep_Nombre" />
                 <ScalarProperty Name="dep_Codigo" ColumnName="dep_Codigo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tbEmpleado">
-            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbEmpleado">
-              <MappingFragment StoreEntitySet="tbEmpleado">
-                <ScalarProperty Name="emp_FechaDeSalida" ColumnName="emp_FechaDeSalida" />
-                <ScalarProperty Name="emp_RazonSalida" ColumnName="emp_RazonSalida" />
-                <ScalarProperty Name="emp_Estado" ColumnName="emp_Estado" />
-                <ScalarProperty Name="emp_FechaModifica" ColumnName="emp_FechaModifica" />
-                <ScalarProperty Name="emp_UsuarioModifica" ColumnName="emp_UsuarioModifica" />
-                <ScalarProperty Name="emp_FechaCrea" ColumnName="emp_FechaCrea" />
-                <ScalarProperty Name="emp_UsuarioCrea" ColumnName="emp_UsuarioCrea" />
-                <ScalarProperty Name="emp_RazonInactivacion" ColumnName="emp_RazonInactivacion" />
-                <ScalarProperty Name="emp_Direccion" ColumnName="emp_Direccion" />
-                <ScalarProperty Name="emp_FechaIngreso" ColumnName="emp_FechaIngreso" />
-                <ScalarProperty Name="emp_Puesto" ColumnName="emp_Puesto" />
-                <ScalarProperty Name="emp_TipoSangre" ColumnName="emp_TipoSangre" />
-                <ScalarProperty Name="emp_Correoelectronico" ColumnName="emp_Correoelectronico" />
-                <ScalarProperty Name="emp_Telefono" ColumnName="emp_Telefono" />
-                <ScalarProperty Name="emp_Identificacion" ColumnName="emp_Identificacion" />
-                <ScalarProperty Name="tpi_Id" ColumnName="tpi_Id" />
-                <ScalarProperty Name="emp_FechaNacimiento" ColumnName="emp_FechaNacimiento" />
-                <ScalarProperty Name="emp_Sexo" ColumnName="emp_Sexo" />
-                <ScalarProperty Name="emp_Apellidos" ColumnName="emp_Apellidos" />
-                <ScalarProperty Name="emp_Nombres" ColumnName="emp_Nombres" />
-                <ScalarProperty Name="emp_Id" ColumnName="emp_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -13751,6 +13701,60 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbEmpleados_Update_Result">
                 <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="tbEmpleado">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbEmpleado">
+              <MappingFragment StoreEntitySet="tbEmpleado">
+                <ScalarProperty Name="emp_FechaDeSalida" ColumnName="emp_FechaDeSalida" />
+                <ScalarProperty Name="emp_RazonSalida" ColumnName="emp_RazonSalida" />
+                <ScalarProperty Name="emp_Estado" ColumnName="emp_Estado" />
+                <ScalarProperty Name="emp_FechaModifica" ColumnName="emp_FechaModifica" />
+                <ScalarProperty Name="emp_UsuarioModifica" ColumnName="emp_UsuarioModifica" />
+                <ScalarProperty Name="emp_FechaCrea" ColumnName="emp_FechaCrea" />
+                <ScalarProperty Name="emp_UsuarioCrea" ColumnName="emp_UsuarioCrea" />
+                <ScalarProperty Name="emp_RazonInactivacion" ColumnName="emp_RazonInactivacion" />
+                <ScalarProperty Name="emp_Direccion" ColumnName="emp_Direccion" />
+                <ScalarProperty Name="emp_FechaIngreso" ColumnName="emp_FechaIngreso" />
+                <ScalarProperty Name="emp_Puesto" ColumnName="emp_Puesto" />
+                <ScalarProperty Name="emp_TipoSangre" ColumnName="emp_TipoSangre" />
+                <ScalarProperty Name="emp_Correoelectronico" ColumnName="emp_Correoelectronico" />
+                <ScalarProperty Name="emp_Telefono" ColumnName="emp_Telefono" />
+                <ScalarProperty Name="emp_Identificacion" ColumnName="emp_Identificacion" />
+                <ScalarProperty Name="tpi_Id" ColumnName="tpi_Id" />
+                <ScalarProperty Name="emp_FechaNacimiento" ColumnName="emp_FechaNacimiento" />
+                <ScalarProperty Name="emp_Sexo" ColumnName="emp_Sexo" />
+                <ScalarProperty Name="emp_Apellidos" ColumnName="emp_Apellidos" />
+                <ScalarProperty Name="emp_Nombres" ColumnName="emp_Nombres" />
+                <ScalarProperty Name="emp_Id" ColumnName="emp_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SDP_tbEmpleado_Select" FunctionName="ERP_ZORZALModel.Store.SDP_tbEmpleado_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_tbEmpleado_Select_Result">
+                <ScalarProperty Name="emp_Id" ColumnName="emp_Id" />
+                <ScalarProperty Name="emp_Nombres" ColumnName="emp_Nombres" />
+                <ScalarProperty Name="emp_Apellidos" ColumnName="emp_Apellidos" />
+                <ScalarProperty Name="emp_Sexo" ColumnName="emp_Sexo" />
+                <ScalarProperty Name="emp_FechaNacimiento" ColumnName="emp_FechaNacimiento" />
+                <ScalarProperty Name="tpi_Id" ColumnName="tpi_Id" />
+                <ScalarProperty Name="emp_Identificacion" ColumnName="emp_Identificacion" />
+                <ScalarProperty Name="emp_Telefono" ColumnName="emp_Telefono" />
+                <ScalarProperty Name="emp_Correoelectronico" ColumnName="emp_Correoelectronico" />
+                <ScalarProperty Name="emp_TipoSangre" ColumnName="emp_TipoSangre" />
+                <ScalarProperty Name="emp_Puesto" ColumnName="emp_Puesto" />
+                <ScalarProperty Name="emp_FechaIngreso" ColumnName="emp_FechaIngreso" />
+                <ScalarProperty Name="emp_Direccion" ColumnName="emp_Direccion" />
+                <ScalarProperty Name="emp_RazonInactivacion" ColumnName="emp_RazonInactivacion" />
+                <ScalarProperty Name="emp_UsuarioCrea" ColumnName="emp_UsuarioCrea" />
+                <ScalarProperty Name="emp_FechaCrea" ColumnName="emp_FechaCrea" />
+                <ScalarProperty Name="emp_UsuarioModifica" ColumnName="emp_UsuarioModifica" />
+                <ScalarProperty Name="emp_FechaModifica" ColumnName="emp_FechaModifica" />
+                <ScalarProperty Name="emp_Estado" ColumnName="emp_Estado" />
+                <ScalarProperty Name="emp_RazonSalida" ColumnName="emp_RazonSalida" />
+                <ScalarProperty Name="emp_FechaDeSalida" ColumnName="emp_FechaDeSalida" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

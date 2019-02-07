@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using ERP_GMEDINA.Models;
 
-namespace ERP_GMEDINA.Controllers
+namespace ERP_ZORZAL.Controllers
 {
     public class TipoSalidaController : Controller
     {
@@ -149,16 +149,7 @@ namespace ERP_GMEDINA.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             tbTipoSalida tbTipoSalida = db.tbTipoSalida.Find(id);
-            //ViewBag.UsuarioCrea = db.tbUsuario.Find(tbTipoSalida.tsal_UsuarioCrea).usu_NombreUsuario;
-            //var UsuarioModifica = tbTipoSalida.tsal_UsuarioModifica;
-            //if (UsuarioModifica == null)
-            //{
-            //    ViewBag.UsuarioModifica = "";
-            //}
-            //else
-            //{
-            //    ViewBag.UsuarioModifica = db.tbUsuario.Find(UsuarioModifica).usu_NombreUsuario;
-            //};
+           
             if (tbTipoSalida == null)
             {
                 return HttpNotFound();
@@ -171,8 +162,14 @@ namespace ERP_GMEDINA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(byte? id, [Bind(Include= "tsal_Id,tsal_Descripcion,tsal_UsuarioCrea,tsal_FechaCrea,tsal_UsuarioModifica,tsal_FechaModifica,tbUsuario,tbUsuario1")] tbTipoSalida tbTipoSalida)
+        public ActionResult Edit(byte? id, [Bind(Include= "tsal_Id,tsal_Descripcion,tsal_UsuarioCrea,tsal_FechaCrea,tsal_UsuarioModifica,tsal_FechaModifica")] tbTipoSalida tbTipoSalida)
         {
+            if (db.tbTipoSalida.Any(a => a.tsal_Descripcion == tbTipoSalida.tsal_Descripcion))
+            {
+                ModelState.AddModelError("", "La Descripcion ya Existe.");
+                ViewBag.UsuarioCrea = db.tbUsuario.Find(tbTipoSalida.tsal_UsuarioCrea).usu_NombreUsuario;
+
+            }
             if (ModelState.IsValid)
             {
                 try
@@ -187,11 +184,25 @@ namespace ERP_GMEDINA.Controllers
                     foreach (UDP_Inv_tbTipoSalida_Update_Result tsal in List)
                         MsjError = tsal.MensajeError;
 
-                    if (MsjError == "-1")
+                    //if (MsjError == "-1")
+                    //{
+                    //    ModelState.AddModelError("", "No se guardo el cambio");
+                    //    //return RedirectToAction("Index");
+                    //}
+                    //else
+                    //{
+                    //    return RedirectToAction("Index");
+                    //}
+                    if (MsjError.StartsWith("-1"))
                     {
-                        ModelState.AddModelError("", "No se guardo el cambio");
-                        //return RedirectToAction("Index");
+                        ModelState.AddModelError("Error", "No se Guardo el registro , Contacte al Administrador");
+                        return View(tbTipoSalida);
                     }
+                    //else if (MsjError.StartsWith("0"))
+                    //{
+                    //    ModelState.AddModelError("", "La Descripcion ya Existe");
+                    //    return View(tbTipoSalida);
+                    //}
                     else
                     {
                         return RedirectToAction("Index");
@@ -202,8 +213,10 @@ namespace ERP_GMEDINA.Controllers
                 {
                     Ex.Message.ToString();
                     ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
+
+                    return View(tbTipoSalida);
                 }
-                return RedirectToAction("Index");
+               
             }
             else
             {

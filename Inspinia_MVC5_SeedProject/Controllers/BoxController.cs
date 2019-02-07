@@ -9,7 +9,7 @@ using System.Web.Mvc;
 using Newtonsoft.Json;
 
 
-namespace ERP_GMEDINA.Controllers
+namespace ERP_ZORZAL.Controllers
 {
     public class BoxController : Controller
     {
@@ -238,7 +238,7 @@ namespace ERP_GMEDINA.Controllers
                 UserName = Usuario.usu_Nombres + " " + Usuario.usu_Apellidos;
                 idUser = Convert.ToInt32(Usuario.emp_Id);
             }
-            ViewBag.IdSal = id;
+            ViewBag.Cod_Box = id;
             ViewBag.bod_Id = new SelectList(db.tbBodega.Where(x => x.bod_ResponsableBodega == idUser).ToList(), "bod_Id", "bod_Nombre");
             ViewBag.bod_Prod = db.tbBodega.Where(x => x.bod_ResponsableBodega == idUser).Select(x => x.bod_Id).SingleOrDefault();
             
@@ -285,7 +285,7 @@ namespace ERP_GMEDINA.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("Edit", "Salida", new { @id = pSalidaDetalle.sal_Id });
+                    return RedirectToAction("Edit", "Box", new { @id = data.box_Codigo });
                 }
             }
             catch (Exception Ex)

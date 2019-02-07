@@ -1,7 +1,18 @@
 ﻿@using ERP_GMEDINA.Models
 @{
     GeneralFunctions Login = new GeneralFunctions();
+    int Sesiones = 0;
+
+
+    List<tbUsuario> User = Login.getUserInformation();
+
+    foreach (tbUsuario Usuario in User)
+    {
+
+        Sesiones = Usuario.usu_SesionesValidas;
+    }
 }  
+
 <nav class="navbar-default navbar-static-side" role="navigation">
     <div class="sidebar-collapse">
         <div class="logo-element">
@@ -19,7 +30,8 @@
                     </a>
                     </div>
                 </li>
-
+@if (Sesiones > 1)
+{
             <li>
                 <a href="#"><i class="fa fa-tag"></i><span class="nav-label">Inventario</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
@@ -175,11 +187,13 @@
                     </li>
                     }
                 </ul>
+                
             </li>
-
+}
         </ul>
     </div>
 </nav>
+
 
 
 

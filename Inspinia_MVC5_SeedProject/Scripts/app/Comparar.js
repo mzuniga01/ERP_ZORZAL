@@ -21,6 +21,7 @@
                 else
                 {
                     $('#Cambiarpass').prop('disabled', false);
+                    $('#msg').removeClass('text-success').addClass('text-danger').text('');
                 }
 
 

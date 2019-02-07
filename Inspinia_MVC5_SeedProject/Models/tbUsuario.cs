@@ -88,8 +88,6 @@ namespace ERP_GMEDINA.Models
             this.tbCuentasBanco1 = new HashSet<tbCuentasBanco>();
             this.tbDepartamento = new HashSet<tbDepartamento>();
             this.tbDepartamento1 = new HashSet<tbDepartamento>();
-            this.tbEmpleado1 = new HashSet<tbEmpleado>();
-            this.tbEmpleado2 = new HashSet<tbEmpleado>();
             this.tbMunicipio = new HashSet<tbMunicipio>();
             this.tbMunicipio1 = new HashSet<tbMunicipio>();
             this.tbParametro = new HashSet<tbParametro>();
@@ -139,6 +137,8 @@ namespace ERP_GMEDINA.Models
             this.tbSalida = new HashSet<tbSalida>();
             this.tbSalida1 = new HashSet<tbSalida>();
             this.tbSalidaDetalle = new HashSet<tbSalidaDetalle>();
+            this.tbEmpleado1 = new HashSet<tbEmpleado>();
+            this.tbEmpleado2 = new HashSet<tbEmpleado>();
         }
     
         public int usu_Id { get; set; }
@@ -176,7 +176,6 @@ namespace ERP_GMEDINA.Models
         public virtual ICollection<tbBodegaDetalle> tbBodegaDetalle { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbBodegaDetalle> tbBodegaDetalle1 { get; set; }
-        public virtual tbEmpleado tbEmpleado { get; set; }
         public virtual tbSucursal tbSucursal { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbActividadEconomica> tbActividadEconomica { get; set; }
@@ -299,10 +298,6 @@ namespace ERP_GMEDINA.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbDepartamento> tbDepartamento1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbEmpleado> tbEmpleado1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbEmpleado> tbEmpleado2 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbMunicipio> tbMunicipio { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbMunicipio> tbMunicipio1 { get; set; }
@@ -401,5 +396,10 @@ namespace ERP_GMEDINA.Models
         public virtual ICollection<tbSalida> tbSalida1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbSalidaDetalle> tbSalidaDetalle { get; set; }
+        public virtual tbEmpleado tbEmpleado { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbEmpleado> tbEmpleado1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbEmpleado> tbEmpleado2 { get; set; }
     }
 }

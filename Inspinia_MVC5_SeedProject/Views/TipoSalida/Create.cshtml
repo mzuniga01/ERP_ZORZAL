@@ -46,9 +46,7 @@
                                     @Html.LabelFor(model => model.tsal_Descripcion, new { @class = "control-label col-md-2" })
                                     <div class="col-md-5">
                                         @Html.EditorFor(model => model.tsal_Descripcion , new { @class = "text-danger", id = "TipoSalida_Descripcion" })
-                                        @*<p style="color:red">@Html.ValidationSummary(true)</p>*@
                                         <span style="color:red">@Html.ValidationSummary(true)</span>
-                                        @*<label class="control-label col-md-2"> Código<span style="color:red">*</span></label>*@
                                         <p style="color:red">@Html.ValidationMessageFor(model => model.tsal_Descripcion)</p>
 
                                     </div>

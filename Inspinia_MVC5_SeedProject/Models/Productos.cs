@@ -14,9 +14,20 @@ namespace ERP_GMEDINA.Models
 
     public partial class tbProducto
     {
-        //[NotMapped]
-        //[Display(Name = "Categoria")]
-        //public string pcat_Id { get; set; }
+        [NotMapped]
+        [Display(Name = "Categoria")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        public int pcat_Id { get; set; }
+
+        [NotMapped]
+        [Display(Name = "Unidad Medida")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        public int uni_Descripcion { get; set; }
+
+        [NotMapped]
+        [Display(Name = "SubCaegoria")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        public int pscat_Descripcion { get; set; }
 
     }
 
@@ -88,9 +99,21 @@ namespace ERP_GMEDINA.Models
         [Display(Name = "Carrelativo")]
         public Nullable<int> prod_Correlativo { get; set; }
 
-        //[NotMapped]
-        //[Display(Name = "Categoria")]
-        //public string pcat_Id { get; set; }
-      
+
+        [NotMapped]
+        [Display(Name = "Categoria")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        public int pcat_Id { get; set; }
+
+        [NotMapped]
+        [Display(Name = "Unidad Medida")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        public int uni_Descripcion { get; set; }
+
+        [NotMapped]
+        [Display(Name = "SubCaegoria")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        public int pscat_Descripcion { get; set; }
+
     }
 }

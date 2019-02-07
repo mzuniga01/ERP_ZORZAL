@@ -53,18 +53,16 @@
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.tbProductoSubcategoria.tbProductoCategoria.pcat_Nombre,"Categoria" ,new { @class = "control-label col-md-2 , required" })
-                         
-                            @*<label class="control-label col-md-2">Categoria<span style="color:red">*</span></label>*@
+                            @Html.LabelFor(model => model.pcat_Id,new { @class = "control-label col-md-2 , required" })                       
                             <div class="col-md-4">
 
                                 @Html.DropDownList("pcat_Id", null, "Seleccione una Categoria", new { @class = "form-control" })
-                                <p id="Departamento" style="color:red">@Html.ValidationMessageFor(subcat => test.pcat_Id)</p>
+                                <p style="color:red">@Html.ValidationMessageFor(subcat => test.pcat_Id)</p>
                             </div>
-                            @Html.LabelFor(model => model.tbProductoSubcategoria.pscat_Descripcion, "SubCategoria", new { @class = "control-label col-md-2 , required" })                       
+                            @Html.LabelFor(model => model.pscat_Descripcion, new { @class = "control-label col-md-2 , required" })                       
                             <div class="col-md-4">
 
-                                @Html.DropDownList("pscat_Id",null, "Seleccione una Subcategoria", new { @class = "form-control" })
+                                @Html.DropDownList("pscat_Id",null, "Seleccione una Subcategoria", new { @class = "single-line" })
                                 <p style="color:red">@Html.ValidationMessageFor(model => model.pscat_Id)</p>
                             </div>
 
@@ -90,7 +88,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.prod_Descripcion, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.prod_Descripcion, new { @class = "form-control" })
+                                    @Html.EditorFor(model => model.prod_Descripcion, new { @class = "form-control"})
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.prod_Descripcion)</p>
                                 </div>
 
@@ -123,7 +121,7 @@
                                 @Html.EditorFor(model => model.prod_Talla, new { @class = "form-control" })
                                 <p style="color:red">@Html.ValidationMessageFor(model => model.prod_Talla)</p>
                             </div>
-                                @Html.LabelFor(model => model.tbUnidadMedida.uni_Descripcion,"Unidad Medida", new { @class = "control-label col-md-2 , required" })
+                                @Html.LabelFor(model => model.uni_Descripcion, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
                                     @Html.DropDownList("uni_Id", (IEnumerable<SelectListItem>)ViewBag.uni_Id, "Seleccione una Unidad", new { @class = "form-control" })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.uni_Id)</p>
@@ -159,13 +157,34 @@
 
 <script>
     $(document).ready(function () {
-       
+
+
+        $('#pscat_Id').empty();
+        $('#pscat_Id').append("<option value=''>Seleccione SubCategoria</option>");
+
+        var categoria = $('#pcat_Id').val();
+        if (categoria === '') {
+            document.getElementById("pscat_Id").disabled = true;
+        }
+        else {
+
+        }
 
         var x = document.getElementById("pscat_Id").disabled;
         if (x == true) {
-            document.getElementById("pscat_Id").title = "Seleccione primero un Categoria";
+            document.getElementById("pscat_Id").style.backgroundColor = "#EDE8E7";
+            document.getElementById("pscat_Id").title = "Seleccione primero una Categoria";
         }
         else {
+        }
+    });
+    $("#pcat_Id").change(function () {
+        var depto = $('#pcat_Id').val();
+        if (depto != '') {
+            document.getElementById("pscat_Id").disabled = false;
+        }
+        else {
+
         }
     });
     $("#pcat_Id").change(function () {
@@ -175,8 +194,18 @@
         }
         else {
             document.getElementById("pscat_Id").title = "";
+            document.getElementById("pscat_Id").style.backgroundColor = "";
         }
     });
+    //$("#pcat_Id").change(function () {
+    //    var x = document.getElementById("pscat_Id").disabled;
+    //    if (x == true) {
+
+    //    }
+    //    else {
+    //        document.getElementById("pscat_Id").title = "";
+    //    }
+    //});
 </script>
 
 @section Scripts{
