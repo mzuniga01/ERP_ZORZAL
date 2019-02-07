@@ -45,8 +45,7 @@
                         @Html.AntiForgeryToken()
 
                         <div class="form-horizontal">
-                            @Html.ValidationSummary(true)
-
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                             <div class="form-group">
 
@@ -97,7 +96,7 @@
 
                                 @Html.LabelFor(model => model.emp_Identificacion, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    @Html.TextBoxFor(model => model.emp_Identificacion, new { @class = "single-line", MaxLength = 14 })
+                                    @Html.TextBoxFor(model => model.emp_Identificacion,  new {  @class = "form-control", MaxLength = 14 })
                                     <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_Identificacion)</p>
                                 </div>
                             </div>
@@ -140,7 +139,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.emp_FechaIngreso, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.emp_FechaIngreso, "{0:yyyy-mm-dd}", new { HtmlAttribute = new { @id = "emp_FechaIngreso" } })
+                                    @Html.EditorFor(model => model.emp_FechaIngreso, "{0:yyyy-mm-dd}", new { HtmlAttribute = new { @id = "emp_FechaIngreso", @readonly = "readonly" } })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.emp_FechaIngreso)</p>
                                 </div>
 

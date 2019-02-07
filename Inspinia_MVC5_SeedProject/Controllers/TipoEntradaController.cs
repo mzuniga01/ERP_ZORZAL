@@ -75,38 +75,50 @@ namespace ERP_GMEDINA.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include="tent_Id,tent_Descripcion,tent_UsuarioCrea,tent_FechaCrea,tent_UsarioModifica,tent_FechaCrea")] tbTipoEntrada tbTipoEntrada)
         {
-            if (ModelState.IsValid)
+            if (Function.GetUserLogin())
             {
-                try
+                if (Function.GetUserRols("TipoEntrada/Create"))
                 {
-                    IEnumerable<object> list = null;
-                    var MsjError = "";
-                    list = db.UDP_Inv_tbTipoEntrada_Insert(tbTipoEntrada.tent_Descripcion);
-                    //list = db.udp_inv_tbtipoentrada_insert(tbtipoentrada.tent_descripcion,);
-                    foreach (UDP_Inv_tbTipoEntrada_Insert_Result TipoEntrada in list)
-                        MsjError = TipoEntrada.MensajeError;
-                    if (MsjError == "-1")
+                    if (ModelState.IsValid)
                     {
-                        ModelState.AddModelError("", "No se pudo almacenar el registro");
-                        return View(tbTipoEntrada);
-                    }
-                    else
-                    {
-                        //db.tbTipoEntrada.Add(tbTipoEntrada);
-                        //db.SaveChanges();
+                        try
+                        {
+                            IEnumerable<object> list = null;
+                            var MsjError = "";
+                            list = db.UDP_Inv_tbTipoEntrada_Insert(tbTipoEntrada.tent_Descripcion, Function.GetUser(), DateTime.Now);
+                            //list = db.udp_inv_tbtipoentrada_insert(tbtipoentrada.tent_descripcion,);
+                            foreach (UDP_Inv_tbTipoEntrada_Insert_Result TipoEntrada in list)
+                                MsjError = TipoEntrada.MensajeError;
+                            if (MsjError == "-1")
+                            {
+                                ModelState.AddModelError("", "No se pudo almacenar el registro");
+                                return View(tbTipoEntrada);
+                            }
+                            else
+                            {
+                                //db.tbTipoEntrada.Add(tbTipoEntrada);
+                                //db.SaveChanges();
+                                return RedirectToAction("Index");
+
+                            }
+                        }
+                        catch (Exception Ex)
+                        {
+                            Ex.Message.ToString();
+                            ModelState.AddModelError("", "No se Guardo el registro");
+                        }
                         return RedirectToAction("Index");
+                    }
 
-                    }                        
+                    return View(tbTipoEntrada);
                 }
-                catch (Exception Ex)
+                else
                 {
-                    Ex.Message.ToString();
-                    ModelState.AddModelError("", "No se Guardo el registro");
+                    return RedirectToAction("SinAcceso", "Login");
                 }
-                return RedirectToAction("Index");
             }
-
-            return View(tbTipoEntrada);
+            else
+                return RedirectToAction("Index", "Login");
         }
        
         // GET: /TipoEntrada/Edit/5

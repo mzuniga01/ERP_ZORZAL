@@ -95,15 +95,6 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbSalidaDetalle> tbSalidaDetalle { get; set; }
         public virtual DbSet<tbEmpleado> tbEmpleado { get; set; }
     
-        public virtual ObjectResult<UDP_Inv_tbTipoEntrada_Insert_Result> UDP_Inv_tbTipoEntrada_Insert(string tent_Descripcion)
-        {
-            var tent_DescripcionParameter = tent_Descripcion != null ?
-                new ObjectParameter("tent_Descripcion", tent_Descripcion) :
-                new ObjectParameter("tent_Descripcion", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbTipoEntrada_Insert_Result>("UDP_Inv_tbTipoEntrada_Insert", tent_DescripcionParameter);
-        }
-    
         public virtual ObjectResult<UDP_Gral_tbParametro_Insert_Result> UDP_Gral_tbParametro_Insert(Nullable<byte> par_Id, string par_NombreEmpresa, string par_TelefonoEmpresa, string par_CorreoEmpresa, string par_PathLogo, Nullable<short> mnda_Id, Nullable<int> par_RolGerenteTienda, Nullable<int> par_RolCreditoCobranza, Nullable<int> par_RolSupervisorCaja, Nullable<int> par_RolCajero, Nullable<int> par_RolAuditor, Nullable<short> par_SucursalPrincipal, Nullable<decimal> par_PorcentajeDescuentoTE, Nullable<int> par_IdConsumidorFinal)
         {
             var par_IdParameter = par_Id.HasValue ?
@@ -267,59 +258,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbBodegaDetalle_Insert_Result>("UDP_Inv_tbBodegaDetalle_Insert", prod_CodigoParameter, bod_IdParameter, bodd_CantidadMinimaParameter, bodd_CantidadMaximaParameter, bodd_PuntoReordenParameter, bodd_CostoParameter, bodd_CostoPromedioParameter);
         }
     
-        public virtual ObjectResult<UDP_Gral_tbEmpleados_Insert_Result> UDP_Gral_tbEmpleados_Insert(string emp_Nombres, string emp_Apellidos, string emp_Sexo, Nullable<System.DateTime> emp_FechaNacimiento, Nullable<byte> tpi_Id, string emp_Identificacion, string emp_Telefono, string emp_Correoelectronico, string emp_TipoSangre, string emp_Puesto, Nullable<System.DateTime> emp_FechaIngreso, string emp_Direccion)
-        {
-            var emp_NombresParameter = emp_Nombres != null ?
-                new ObjectParameter("emp_Nombres", emp_Nombres) :
-                new ObjectParameter("emp_Nombres", typeof(string));
-    
-            var emp_ApellidosParameter = emp_Apellidos != null ?
-                new ObjectParameter("emp_Apellidos", emp_Apellidos) :
-                new ObjectParameter("emp_Apellidos", typeof(string));
-    
-            var emp_SexoParameter = emp_Sexo != null ?
-                new ObjectParameter("emp_Sexo", emp_Sexo) :
-                new ObjectParameter("emp_Sexo", typeof(string));
-    
-            var emp_FechaNacimientoParameter = emp_FechaNacimiento.HasValue ?
-                new ObjectParameter("emp_FechaNacimiento", emp_FechaNacimiento) :
-                new ObjectParameter("emp_FechaNacimiento", typeof(System.DateTime));
-    
-            var tpi_IdParameter = tpi_Id.HasValue ?
-                new ObjectParameter("tpi_Id", tpi_Id) :
-                new ObjectParameter("tpi_Id", typeof(byte));
-    
-            var emp_IdentificacionParameter = emp_Identificacion != null ?
-                new ObjectParameter("emp_Identificacion", emp_Identificacion) :
-                new ObjectParameter("emp_Identificacion", typeof(string));
-    
-            var emp_TelefonoParameter = emp_Telefono != null ?
-                new ObjectParameter("emp_Telefono", emp_Telefono) :
-                new ObjectParameter("emp_Telefono", typeof(string));
-    
-            var emp_CorreoelectronicoParameter = emp_Correoelectronico != null ?
-                new ObjectParameter("emp_Correoelectronico", emp_Correoelectronico) :
-                new ObjectParameter("emp_Correoelectronico", typeof(string));
-    
-            var emp_TipoSangreParameter = emp_TipoSangre != null ?
-                new ObjectParameter("emp_TipoSangre", emp_TipoSangre) :
-                new ObjectParameter("emp_TipoSangre", typeof(string));
-    
-            var emp_PuestoParameter = emp_Puesto != null ?
-                new ObjectParameter("emp_Puesto", emp_Puesto) :
-                new ObjectParameter("emp_Puesto", typeof(string));
-    
-            var emp_FechaIngresoParameter = emp_FechaIngreso.HasValue ?
-                new ObjectParameter("emp_FechaIngreso", emp_FechaIngreso) :
-                new ObjectParameter("emp_FechaIngreso", typeof(System.DateTime));
-    
-            var emp_DireccionParameter = emp_Direccion != null ?
-                new ObjectParameter("emp_Direccion", emp_Direccion) :
-                new ObjectParameter("emp_Direccion", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbEmpleados_Insert_Result>("UDP_Gral_tbEmpleados_Insert", emp_NombresParameter, emp_ApellidosParameter, emp_SexoParameter, emp_FechaNacimientoParameter, tpi_IdParameter, emp_IdentificacionParameter, emp_TelefonoParameter, emp_CorreoelectronicoParameter, emp_TipoSangreParameter, emp_PuestoParameter, emp_FechaIngresoParameter, emp_DireccionParameter);
-        }
-    
         public virtual ObjectResult<UDP_Acce_tbRolesUsuario_Update_Result> UDP_Acce_tbRolesUsuario_Update(Nullable<int> rolu_Id, Nullable<int> rol_Id, Nullable<int> usu_Id, Nullable<int> rolu_UsuarioCrea, Nullable<System.DateTime> rolu_FechaCrea)
         {
             var rolu_IdParameter = rolu_Id.HasValue ?
@@ -383,7 +321,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbBox_Update_Result>("UDP_Inv_tbBox_Update", box_CodigoParameter, box_DescripcionParameter, box_EstadoParameter, box_UsuarioCreaParameter, box_FechaCreaParameter);
         }
     
-        public virtual ObjectResult<UDP_Inv_tbTipoSalida_Update_Result> UDP_Inv_tbTipoSalida_Update(Nullable<byte> tsal_Id, string tsal_Descripcion, Nullable<int> tsal_UsuarioCrea, Nullable<System.DateTime> tsal_FechaCrea)
+        public virtual ObjectResult<UDP_Inv_tbTipoSalida_Update_Result> UDP_Inv_tbTipoSalida_Update(Nullable<byte> tsal_Id, string tsal_Descripcion, Nullable<int> tsal_UsuarioCrea, Nullable<System.DateTime> tsal_FechaCrea, Nullable<int> tsal_UsuarioModifica, Nullable<System.DateTime> tsal_FechaModifica)
         {
             var tsal_IdParameter = tsal_Id.HasValue ?
                 new ObjectParameter("tsal_Id", tsal_Id) :
@@ -401,7 +339,15 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("tsal_FechaCrea", tsal_FechaCrea) :
                 new ObjectParameter("tsal_FechaCrea", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbTipoSalida_Update_Result>("UDP_Inv_tbTipoSalida_Update", tsal_IdParameter, tsal_DescripcionParameter, tsal_UsuarioCreaParameter, tsal_FechaCreaParameter);
+            var tsal_UsuarioModificaParameter = tsal_UsuarioModifica.HasValue ?
+                new ObjectParameter("tsal_UsuarioModifica", tsal_UsuarioModifica) :
+                new ObjectParameter("tsal_UsuarioModifica", typeof(int));
+    
+            var tsal_FechaModificaParameter = tsal_FechaModifica.HasValue ?
+                new ObjectParameter("tsal_FechaModifica", tsal_FechaModifica) :
+                new ObjectParameter("tsal_FechaModifica", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbTipoSalida_Update_Result>("UDP_Inv_tbTipoSalida_Update", tsal_IdParameter, tsal_DescripcionParameter, tsal_UsuarioCreaParameter, tsal_FechaCreaParameter, tsal_UsuarioModificaParameter, tsal_FechaModificaParameter);
         }
     
         public virtual ObjectResult<SDP_Acce_GetObjetos_Result> SDP_Acce_GetObjetos()
@@ -449,7 +395,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbEstadoMovimiento_Insert_Result>("UDP_Inv_tbEstadoMovimiento_Insert", estm_DescripcionParameter);
         }
     
-        public virtual ObjectResult<UDP_Inv_tbEstadoMovimiento_Update_Result> UDP_Inv_tbEstadoMovimiento_Update(Nullable<byte> estm_Id, string estm_Descripcion, Nullable<int> estm_UsuarioCrea, Nullable<System.DateTime> estm_FechaCrea)
+        public virtual ObjectResult<UDP_Inv_tbEstadoMovimiento_Update_Result> UDP_Inv_tbEstadoMovimiento_Update(Nullable<byte> estm_Id, string estm_Descripcion)
         {
             var estm_IdParameter = estm_Id.HasValue ?
                 new ObjectParameter("estm_Id", estm_Id) :
@@ -459,15 +405,7 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("estm_Descripcion", estm_Descripcion) :
                 new ObjectParameter("estm_Descripcion", typeof(string));
     
-            var estm_UsuarioCreaParameter = estm_UsuarioCrea.HasValue ?
-                new ObjectParameter("estm_UsuarioCrea", estm_UsuarioCrea) :
-                new ObjectParameter("estm_UsuarioCrea", typeof(int));
-    
-            var estm_FechaCreaParameter = estm_FechaCrea.HasValue ?
-                new ObjectParameter("estm_FechaCrea", estm_FechaCrea) :
-                new ObjectParameter("estm_FechaCrea", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbEstadoMovimiento_Update_Result>("UDP_Inv_tbEstadoMovimiento_Update", estm_IdParameter, estm_DescripcionParameter, estm_UsuarioCreaParameter, estm_FechaCreaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbEstadoMovimiento_Update_Result>("UDP_Inv_tbEstadoMovimiento_Update", estm_IdParameter, estm_DescripcionParameter);
         }
     
         public virtual ObjectResult<UDP_Inv_tbProveedor_Insert_Result> UDP_Inv_tbProveedor_Insert(string prov_Nombre, string prov_NombreContacto, string prov_Direccion, string prov_Email, string prov_Telefono, string prov_RTN, Nullable<short> acte_Id)
@@ -739,36 +677,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbEmpleado_Update_Estado_Result>("UDP_Gral_tbEmpleado_Update_Estado", emp_IdParameter, emp_EstadoParameter);
         }
     
-        public virtual ObjectResult<UDP_Inv_tbProductoCategoria_Insert_Result> UDP_Inv_tbProductoCategoria_Insert(string pcat_Nombre)
-        {
-            var pcat_NombreParameter = pcat_Nombre != null ?
-                new ObjectParameter("pcat_Nombre", pcat_Nombre) :
-                new ObjectParameter("pcat_Nombre", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbProductoCategoria_Insert_Result>("UDP_Inv_tbProductoCategoria_Insert", pcat_NombreParameter);
-        }
-    
-        public virtual ObjectResult<UDP_Inv_tbProductoCategoria_Update_Result> UDP_Inv_tbProductoCategoria_Update(Nullable<int> pcat_Id, string pcat_Nombre, Nullable<int> pcat_UsuarioCrea, Nullable<System.DateTime> pcat_FechaCrea)
-        {
-            var pcat_IdParameter = pcat_Id.HasValue ?
-                new ObjectParameter("pcat_Id", pcat_Id) :
-                new ObjectParameter("pcat_Id", typeof(int));
-    
-            var pcat_NombreParameter = pcat_Nombre != null ?
-                new ObjectParameter("pcat_Nombre", pcat_Nombre) :
-                new ObjectParameter("pcat_Nombre", typeof(string));
-    
-            var pcat_UsuarioCreaParameter = pcat_UsuarioCrea.HasValue ?
-                new ObjectParameter("pcat_UsuarioCrea", pcat_UsuarioCrea) :
-                new ObjectParameter("pcat_UsuarioCrea", typeof(int));
-    
-            var pcat_FechaCreaParameter = pcat_FechaCrea.HasValue ?
-                new ObjectParameter("pcat_FechaCrea", pcat_FechaCrea) :
-                new ObjectParameter("pcat_FechaCrea", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbProductoCategoria_Update_Result>("UDP_Inv_tbProductoCategoria_Update", pcat_IdParameter, pcat_NombreParameter, pcat_UsuarioCreaParameter, pcat_FechaCreaParameter);
-        }
-    
         public virtual ObjectResult<UDP_Inv_tbBodegaDetalle_CantidadExistente_Result> UDP_Inv_tbBodegaDetalle_CantidadExistente(Nullable<int> bod_Id, string prod_Codigo)
         {
             var bod_IdParameter = bod_Id.HasValue ?
@@ -915,35 +823,6 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("pscat_Id", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_tbProductoSubcategoria_Select_Result>("SDP_tbProductoSubcategoria_Select", pscat_IdParameter);
-        }
-    
-        public virtual ObjectResult<UDP_Inv_tbBodega_Insert_Result> UDP_Inv_tbBodega_Insert(string bod_Nombre, Nullable<short> bod_ResponsableBodega, string bod_Direccion, string bod_Correo, string bod_Telefono, string mun_Codigo)
-        {
-            var bod_NombreParameter = bod_Nombre != null ?
-                new ObjectParameter("bod_Nombre", bod_Nombre) :
-                new ObjectParameter("bod_Nombre", typeof(string));
-    
-            var bod_ResponsableBodegaParameter = bod_ResponsableBodega.HasValue ?
-                new ObjectParameter("bod_ResponsableBodega", bod_ResponsableBodega) :
-                new ObjectParameter("bod_ResponsableBodega", typeof(short));
-    
-            var bod_DireccionParameter = bod_Direccion != null ?
-                new ObjectParameter("bod_Direccion", bod_Direccion) :
-                new ObjectParameter("bod_Direccion", typeof(string));
-    
-            var bod_CorreoParameter = bod_Correo != null ?
-                new ObjectParameter("bod_Correo", bod_Correo) :
-                new ObjectParameter("bod_Correo", typeof(string));
-    
-            var bod_TelefonoParameter = bod_Telefono != null ?
-                new ObjectParameter("bod_Telefono", bod_Telefono) :
-                new ObjectParameter("bod_Telefono", typeof(string));
-    
-            var mun_CodigoParameter = mun_Codigo != null ?
-                new ObjectParameter("mun_Codigo", mun_Codigo) :
-                new ObjectParameter("mun_Codigo", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbBodega_Insert_Result>("UDP_Inv_tbBodega_Insert", bod_NombreParameter, bod_ResponsableBodegaParameter, bod_DireccionParameter, bod_CorreoParameter, bod_TelefonoParameter, mun_CodigoParameter);
         }
     
         public virtual ObjectResult<UDP_Acce_tbUsuario_Insert_Result> UDP_Acce_tbUsuario_Insert(string usu_NombreUsuario, string usu_Password, string usu_Nombres, string usu_Apellidos, string usu_Correo, Nullable<int> suc_Id, Nullable<short> emp_Id)
@@ -1903,13 +1782,21 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbSalidaDetalle_Update_Result>("UDP_Inv_tbSalidaDetalle_Update", sald_IdParameter, sal_IdParameter, prod_CodigoParameter, sald_CantidadParameter, box_CodigoParameter);
         }
     
-        public virtual ObjectResult<UDP_Inv_tbTipoSalida_Insert_Result> UDP_Inv_tbTipoSalida_Insert(string tsal_Descripcion)
+        public virtual ObjectResult<UDP_Inv_tbTipoSalida_Insert_Result> UDP_Inv_tbTipoSalida_Insert(string tsal_Descripcion, Nullable<int> tsal_UsuarioCrea, Nullable<System.DateTime> tsal_FechaCrea)
         {
             var tsal_DescripcionParameter = tsal_Descripcion != null ?
                 new ObjectParameter("tsal_Descripcion", tsal_Descripcion) :
                 new ObjectParameter("tsal_Descripcion", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbTipoSalida_Insert_Result>("UDP_Inv_tbTipoSalida_Insert", tsal_DescripcionParameter);
+            var tsal_UsuarioCreaParameter = tsal_UsuarioCrea.HasValue ?
+                new ObjectParameter("tsal_UsuarioCrea", tsal_UsuarioCrea) :
+                new ObjectParameter("tsal_UsuarioCrea", typeof(int));
+    
+            var tsal_FechaCreaParameter = tsal_FechaCrea.HasValue ?
+                new ObjectParameter("tsal_FechaCrea", tsal_FechaCrea) :
+                new ObjectParameter("tsal_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbTipoSalida_Insert_Result>("UDP_Inv_tbTipoSalida_Insert", tsal_DescripcionParameter, tsal_UsuarioCreaParameter, tsal_FechaCreaParameter);
         }
     
         public virtual ObjectResult<SDP_Inv_tbSalidaDetalle_Edit_Select_Result> SDP_Inv_tbSalidaDetalle_Edit_Select(Nullable<int> sald_Id)
@@ -2427,6 +2314,167 @@ namespace ERP_GMEDINA.Models
         public virtual ObjectResult<SDP_tbEmpleado_Select_Result> SDP_tbEmpleado_Select()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_tbEmpleado_Select_Result>("SDP_tbEmpleado_Select");
+        }
+    
+        public virtual ObjectResult<UDP_Inv_tbBodega_Insert_Result> UDP_Inv_tbBodega_Insert(string bod_Nombre, Nullable<short> bod_ResponsableBodega, string bod_Direccion, string bod_Correo, string bod_Telefono, string mun_Codigo, Nullable<int> bod_UsuarioCrea, Nullable<System.DateTime> bod_FechaCrea)
+        {
+            var bod_NombreParameter = bod_Nombre != null ?
+                new ObjectParameter("bod_Nombre", bod_Nombre) :
+                new ObjectParameter("bod_Nombre", typeof(string));
+    
+            var bod_ResponsableBodegaParameter = bod_ResponsableBodega.HasValue ?
+                new ObjectParameter("bod_ResponsableBodega", bod_ResponsableBodega) :
+                new ObjectParameter("bod_ResponsableBodega", typeof(short));
+    
+            var bod_DireccionParameter = bod_Direccion != null ?
+                new ObjectParameter("bod_Direccion", bod_Direccion) :
+                new ObjectParameter("bod_Direccion", typeof(string));
+    
+            var bod_CorreoParameter = bod_Correo != null ?
+                new ObjectParameter("bod_Correo", bod_Correo) :
+                new ObjectParameter("bod_Correo", typeof(string));
+    
+            var bod_TelefonoParameter = bod_Telefono != null ?
+                new ObjectParameter("bod_Telefono", bod_Telefono) :
+                new ObjectParameter("bod_Telefono", typeof(string));
+    
+            var mun_CodigoParameter = mun_Codigo != null ?
+                new ObjectParameter("mun_Codigo", mun_Codigo) :
+                new ObjectParameter("mun_Codigo", typeof(string));
+    
+            var bod_UsuarioCreaParameter = bod_UsuarioCrea.HasValue ?
+                new ObjectParameter("bod_UsuarioCrea", bod_UsuarioCrea) :
+                new ObjectParameter("bod_UsuarioCrea", typeof(int));
+    
+            var bod_FechaCreaParameter = bod_FechaCrea.HasValue ?
+                new ObjectParameter("bod_FechaCrea", bod_FechaCrea) :
+                new ObjectParameter("bod_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbBodega_Insert_Result>("UDP_Inv_tbBodega_Insert", bod_NombreParameter, bod_ResponsableBodegaParameter, bod_DireccionParameter, bod_CorreoParameter, bod_TelefonoParameter, mun_CodigoParameter, bod_UsuarioCreaParameter, bod_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Inv_tbTipoEntrada_Insert_Result> UDP_Inv_tbTipoEntrada_Insert(string tent_Descripcion, Nullable<int> tent_UsuarioCrea, Nullable<System.DateTime> tent_FechaCrea)
+        {
+            var tent_DescripcionParameter = tent_Descripcion != null ?
+                new ObjectParameter("tent_Descripcion", tent_Descripcion) :
+                new ObjectParameter("tent_Descripcion", typeof(string));
+    
+            var tent_UsuarioCreaParameter = tent_UsuarioCrea.HasValue ?
+                new ObjectParameter("tent_UsuarioCrea", tent_UsuarioCrea) :
+                new ObjectParameter("tent_UsuarioCrea", typeof(int));
+    
+            var tent_FechaCreaParameter = tent_FechaCrea.HasValue ?
+                new ObjectParameter("tent_FechaCrea", tent_FechaCrea) :
+                new ObjectParameter("tent_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbTipoEntrada_Insert_Result>("UDP_Inv_tbTipoEntrada_Insert", tent_DescripcionParameter, tent_UsuarioCreaParameter, tent_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Inv_tbProductoCategoria_Insert_Result> UDP_Inv_tbProductoCategoria_Insert(string pcat_Nombre, Nullable<int> pcat_UsuarioCrea, Nullable<System.DateTime> pcat_FechaCrea)
+        {
+            var pcat_NombreParameter = pcat_Nombre != null ?
+                new ObjectParameter("pcat_Nombre", pcat_Nombre) :
+                new ObjectParameter("pcat_Nombre", typeof(string));
+    
+            var pcat_UsuarioCreaParameter = pcat_UsuarioCrea.HasValue ?
+                new ObjectParameter("pcat_UsuarioCrea", pcat_UsuarioCrea) :
+                new ObjectParameter("pcat_UsuarioCrea", typeof(int));
+    
+            var pcat_FechaCreaParameter = pcat_FechaCrea.HasValue ?
+                new ObjectParameter("pcat_FechaCrea", pcat_FechaCrea) :
+                new ObjectParameter("pcat_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbProductoCategoria_Insert_Result>("UDP_Inv_tbProductoCategoria_Insert", pcat_NombreParameter, pcat_UsuarioCreaParameter, pcat_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Inv_tbProductoCategoria_Update_Result> UDP_Inv_tbProductoCategoria_Update(Nullable<int> pcat_Id, string pcat_Nombre, Nullable<int> pcat_UsuarioCrea, Nullable<System.DateTime> pcat_FechaCrea, Nullable<int> pcat_UsuarioModifica, Nullable<System.DateTime> pcat_FechaModifica)
+        {
+            var pcat_IdParameter = pcat_Id.HasValue ?
+                new ObjectParameter("pcat_Id", pcat_Id) :
+                new ObjectParameter("pcat_Id", typeof(int));
+    
+            var pcat_NombreParameter = pcat_Nombre != null ?
+                new ObjectParameter("pcat_Nombre", pcat_Nombre) :
+                new ObjectParameter("pcat_Nombre", typeof(string));
+    
+            var pcat_UsuarioCreaParameter = pcat_UsuarioCrea.HasValue ?
+                new ObjectParameter("pcat_UsuarioCrea", pcat_UsuarioCrea) :
+                new ObjectParameter("pcat_UsuarioCrea", typeof(int));
+    
+            var pcat_FechaCreaParameter = pcat_FechaCrea.HasValue ?
+                new ObjectParameter("pcat_FechaCrea", pcat_FechaCrea) :
+                new ObjectParameter("pcat_FechaCrea", typeof(System.DateTime));
+    
+            var pcat_UsuarioModificaParameter = pcat_UsuarioModifica.HasValue ?
+                new ObjectParameter("pcat_UsuarioModifica", pcat_UsuarioModifica) :
+                new ObjectParameter("pcat_UsuarioModifica", typeof(int));
+    
+            var pcat_FechaModificaParameter = pcat_FechaModifica.HasValue ?
+                new ObjectParameter("pcat_FechaModifica", pcat_FechaModifica) :
+                new ObjectParameter("pcat_FechaModifica", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbProductoCategoria_Update_Result>("UDP_Inv_tbProductoCategoria_Update", pcat_IdParameter, pcat_NombreParameter, pcat_UsuarioCreaParameter, pcat_FechaCreaParameter, pcat_UsuarioModificaParameter, pcat_FechaModificaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Gral_tbEmpleados_Insert_Result> UDP_Gral_tbEmpleados_Insert(string emp_Nombres, string emp_Apellidos, string emp_Sexo, Nullable<System.DateTime> emp_FechaNacimiento, Nullable<byte> tpi_Id, string emp_Identificacion, string emp_Telefono, string emp_Correoelectronico, string emp_TipoSangre, string emp_Puesto, Nullable<System.DateTime> emp_FechaIngreso, string emp_Direccion, Nullable<int> emp_UsuarioCrea, Nullable<System.DateTime> emp_FechaCrea)
+        {
+            var emp_NombresParameter = emp_Nombres != null ?
+                new ObjectParameter("emp_Nombres", emp_Nombres) :
+                new ObjectParameter("emp_Nombres", typeof(string));
+    
+            var emp_ApellidosParameter = emp_Apellidos != null ?
+                new ObjectParameter("emp_Apellidos", emp_Apellidos) :
+                new ObjectParameter("emp_Apellidos", typeof(string));
+    
+            var emp_SexoParameter = emp_Sexo != null ?
+                new ObjectParameter("emp_Sexo", emp_Sexo) :
+                new ObjectParameter("emp_Sexo", typeof(string));
+    
+            var emp_FechaNacimientoParameter = emp_FechaNacimiento.HasValue ?
+                new ObjectParameter("emp_FechaNacimiento", emp_FechaNacimiento) :
+                new ObjectParameter("emp_FechaNacimiento", typeof(System.DateTime));
+    
+            var tpi_IdParameter = tpi_Id.HasValue ?
+                new ObjectParameter("tpi_Id", tpi_Id) :
+                new ObjectParameter("tpi_Id", typeof(byte));
+    
+            var emp_IdentificacionParameter = emp_Identificacion != null ?
+                new ObjectParameter("emp_Identificacion", emp_Identificacion) :
+                new ObjectParameter("emp_Identificacion", typeof(string));
+    
+            var emp_TelefonoParameter = emp_Telefono != null ?
+                new ObjectParameter("emp_Telefono", emp_Telefono) :
+                new ObjectParameter("emp_Telefono", typeof(string));
+    
+            var emp_CorreoelectronicoParameter = emp_Correoelectronico != null ?
+                new ObjectParameter("emp_Correoelectronico", emp_Correoelectronico) :
+                new ObjectParameter("emp_Correoelectronico", typeof(string));
+    
+            var emp_TipoSangreParameter = emp_TipoSangre != null ?
+                new ObjectParameter("emp_TipoSangre", emp_TipoSangre) :
+                new ObjectParameter("emp_TipoSangre", typeof(string));
+    
+            var emp_PuestoParameter = emp_Puesto != null ?
+                new ObjectParameter("emp_Puesto", emp_Puesto) :
+                new ObjectParameter("emp_Puesto", typeof(string));
+    
+            var emp_FechaIngresoParameter = emp_FechaIngreso.HasValue ?
+                new ObjectParameter("emp_FechaIngreso", emp_FechaIngreso) :
+                new ObjectParameter("emp_FechaIngreso", typeof(System.DateTime));
+    
+            var emp_DireccionParameter = emp_Direccion != null ?
+                new ObjectParameter("emp_Direccion", emp_Direccion) :
+                new ObjectParameter("emp_Direccion", typeof(string));
+    
+            var emp_UsuarioCreaParameter = emp_UsuarioCrea.HasValue ?
+                new ObjectParameter("emp_UsuarioCrea", emp_UsuarioCrea) :
+                new ObjectParameter("emp_UsuarioCrea", typeof(int));
+    
+            var emp_FechaCreaParameter = emp_FechaCrea.HasValue ?
+                new ObjectParameter("emp_FechaCrea", emp_FechaCrea) :
+                new ObjectParameter("emp_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbEmpleados_Insert_Result>("UDP_Gral_tbEmpleados_Insert", emp_NombresParameter, emp_ApellidosParameter, emp_SexoParameter, emp_FechaNacimientoParameter, tpi_IdParameter, emp_IdentificacionParameter, emp_TelefonoParameter, emp_CorreoelectronicoParameter, emp_TipoSangreParameter, emp_PuestoParameter, emp_FechaIngresoParameter, emp_DireccionParameter, emp_UsuarioCreaParameter, emp_FechaCreaParameter);
         }
     }
 }

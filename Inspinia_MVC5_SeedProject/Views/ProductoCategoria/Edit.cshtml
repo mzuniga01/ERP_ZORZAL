@@ -148,23 +148,25 @@
 
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalEstado_@Model.pcat_Id">
-                                    Eliminar
-                                </button>
+
                                 <input type="submit" value="Guardar" class="btn btn-primary" />
                                 @{if (Model.pcat_EsActivo == 1)
                                     {
-                                        
+
                                         <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalEstado" value="Inactivar" />
                                         @*@Html.ActionLink("Inactivar", "InactivarCate", new { id = Model.pcat_Id }, new { @class = "btn btn-danger" })*@
                                     }
                                     else
                                     {
-                                        
+
                                         @Html.ActionLink("Activar", "ActivarCate", new { id = Model.pcat_Id }, new { @class = "btn btn-primary" })
                                     }
                                 }
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalEstado_@Model.pcat_Id">
+                                    Eliminar
+                                </button>
                                 @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+
                             </div>
                         </div>
 
@@ -221,8 +223,8 @@
                     Creado
                 </td>
                 <td>
-                    @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                    @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                    @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                    @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
                 </td>
                 <td>
                     @Html.DisplayFor(model => model.pcat_FechaCrea)
@@ -233,8 +235,8 @@
                     Modificado
                 </td>
                 <td>
-                    @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
-                    @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                    @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                    @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
                 </td>
                 <td>
                     @Html.DisplayFor(model => model.pcat_FechaModifica)

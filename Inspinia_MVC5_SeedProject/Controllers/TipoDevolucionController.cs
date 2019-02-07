@@ -125,7 +125,7 @@ namespace ERP_GMEDINA.Controllers
         {
             if (Function.GetUserLogin())
             {
-                if (Function.GetUserRols("Objeto/Create"))
+                if (Function.GetUserRols("TipoDevolucion/Create"))
                 {
                     if (ModelState.IsValid)
                     {
@@ -213,7 +213,7 @@ namespace ERP_GMEDINA.Controllers
         {
             if (Function.GetUserLogin())
             {
-                if (Function.GetUserRols("Objeto/Edit"))
+                if (Function.GetUserRols("TipoDevolucion/Edit"))
                 {
                     if (ModelState.IsValid)
                     {

@@ -57,6 +57,7 @@ namespace ERP_GMEDINA.Controllers
         // GET: /Empleado/Create
         public ActionResult Create()
         {
+            
             if (Function.Sesiones("Empleado/Create"))
             {
 
@@ -79,6 +80,10 @@ namespace ERP_GMEDINA.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include= "emp_Id,emp_Nombres,emp_Apellidos,emp_Sexo,emp_FechaNacimiento,tpi_Id,emp_Identificacion,emp_Telefono,emp_Correoelectronico,emp_TipoSangre,emp_Puesto,emp_FechaIngreso,emp_Direccion,emp_RazonInactivacion,emp_UsuarioCrea,emp_FechaCrea,emp_UsuarioModifica,emp_FechaModifica,emp_Estado,emp_RazonSalida,emp_FechaDeSalida")] tbEmpleado tbEmpleado)
         {
+            if (db.tbEmpleado.Any(a => a.emp_Identificacion == tbEmpleado.emp_Identificacion))
+            {
+                ModelState.AddModelError("", "Ya existe un empleado con el mismo numero de identidad");
+            }
             if (ModelState.IsValid)
             {
                
@@ -97,7 +102,9 @@ namespace ERP_GMEDINA.Controllers
                         tbEmpleado.emp_TipoSangre, 
                         tbEmpleado.emp_Puesto, 
                         tbEmpleado.emp_FechaIngreso, 
-                        tbEmpleado.emp_Direccion
+                        tbEmpleado.emp_Direccion,
+                        Function.GetUser(),
+                        DateTime.Now                        
                         );
                     foreach (UDP_Gral_tbEmpleados_Insert_Result empleados in list)
                         MsjError = empleados.MensajeError;
@@ -165,86 +172,72 @@ namespace ERP_GMEDINA.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include= "emp_Id,emp_Nombres,emp_Apellidos,emp_Sexo,emp_FechaNacimiento,tpi_Id,emp_Identificacion,emp_Telefono,emp_Correoelectronico,emp_TipoSangre,emp_Puesto,emp_FechaIngreso,emp_Direccion,emp_RazonInactivacion,emp_UsuarioCrea,emp_FechaCrea,emp_UsuarioModifica,emp_FechaModifica")] tbEmpleado tbEmpleado)
         {
-            if (Function.GetUserLogin())
+           
+            if (ModelState.IsValid)
             {
-                if (Function.GetUserRols("Objeto/Edit"))
+
+                try
                 {
-                    if (ModelState.IsValid)
+                    IEnumerable<object> list = null;
+                    string MsjError = "";
+                    list = db.UDP_Gral_tbEmpleados_Update(tbEmpleado.emp_Id
+                                                        , tbEmpleado.emp_Nombres
+                                                        , tbEmpleado.emp_Apellidos
+                                                        , tbEmpleado.emp_Sexo
+                                                        , tbEmpleado.emp_FechaNacimiento
+                                                        , tbEmpleado.tpi_Id
+                                                        , tbEmpleado.emp_Identificacion
+                                                        , tbEmpleado.emp_Telefono
+                                                        , tbEmpleado.emp_Correoelectronico
+                                                        , tbEmpleado.emp_TipoSangre
+                                                        , tbEmpleado.emp_Puesto
+                                                        , tbEmpleado.emp_FechaIngreso
+                                                        , tbEmpleado.emp_Direccion
+                                                        , tbEmpleado.emp_RazonInactivacion
+                                                        , tbEmpleado.emp_UsuarioCrea
+                                                        , tbEmpleado.emp_FechaCrea,
+                                                        tbEmpleado.emp_RazonSalida,
+                                                        tbEmpleado.emp_FechaDeSalida,
+                                                        Function.GetUser(),
+                                                        DateTime.Now);
+                    foreach (UDP_Gral_tbEmpleados_Update_Result empleado in list)
+                        MsjError = empleado.MensajeError;                    
+                    if (MsjError.Substring(0, 2) == "-1")
                     {
-
-                        try
-                        {
-                            IEnumerable<object> list = null;
-                            string MsjError = "";
-                            list = db.UDP_Gral_tbEmpleados_Update(tbEmpleado.emp_Id
-                                                                , tbEmpleado.emp_Nombres
-                                                                , tbEmpleado.emp_Apellidos
-                                                                , tbEmpleado.emp_Sexo
-                                                                , tbEmpleado.emp_FechaNacimiento
-                                                                , tbEmpleado.tpi_Id
-                                                                , tbEmpleado.emp_Identificacion
-                                                                , tbEmpleado.emp_Telefono
-                                                                , tbEmpleado.emp_Correoelectronico
-                                                                , tbEmpleado.emp_TipoSangre
-                                                                , tbEmpleado.emp_Puesto
-                                                                , tbEmpleado.emp_FechaIngreso
-                                                                , tbEmpleado.emp_Direccion
-                                                                , tbEmpleado.emp_RazonInactivacion
-                                                                , tbEmpleado.emp_UsuarioCrea
-                                                                , tbEmpleado.emp_FechaCrea, tbEmpleado.emp_RazonSalida, tbEmpleado.emp_FechaDeSalida, Function.GetUser()
-                                                                , DateTime.Now);
-                            foreach (UDP_Gral_tbEmpleados_Update_Result empleado in list)
-                                MsjError = empleado.MensajeError;
-                            if (MsjError.Substring(0, 2) == "-1")
-                            {
-                                ModelState.AddModelError("", "Error al actualizar el registro");
-                                ViewBag.emp_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbEmpleado.emp_UsuarioCrea);
-                                ViewBag.emp_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbEmpleado.emp_UsuarioModifica);
-                                return View(tbEmpleado);
-                            }
-                            else
-                            {
-                                //db.Entry(tbEmpleado).State = EntityState.Modified;
-                                //db.SaveChanges();
-                                return RedirectToAction("Index");
-                            }
-
-                        }
-                        catch (Exception Ex)
-                        {
-                            //ViewBag.emp_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbEmpleado.emp_UsuarioCrea);
-                            //ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion", tbEmpleado.tpi_Id);
-                            //ViewBag.TipoIList = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion", "Seleccione");                    
-                            //ModelState.AddModelError("","Error al actualizar el registro" + " "+ Ex.Message.ToString() );
-                            //return View(tbEmpleado);
-                            Ex.Message.ToString();
-                            ModelState.AddModelError("", "No se guardo el cambio");
-                            ViewBag.emp_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbEmpleado.emp_UsuarioCrea);
-                            ViewBag.emp_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbEmpleado.emp_UsuarioModifica);
-                            return RedirectToAction("Index");
-
-                        }
+                        ModelState.AddModelError("", "Error al actualizar el registro");
+                        return View(tbEmpleado);
                     }
                     else
                     {
-                        var errors = ModelState.Values.SelectMany(v => v.Errors);
+                        //db.Entry(tbEmpleado).State = EntityState.Modified;
+                        //db.SaveChanges();
+                        return RedirectToAction("Index");
                     }
+
+                }
+                catch(Exception Ex)
+                {
                     ViewBag.emp_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbEmpleado.emp_UsuarioCrea);
-                    ViewBag.emp_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbEmpleado.emp_UsuarioModifica);
                     ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion", tbEmpleado.tpi_Id);
                     ViewBag.TipoIList = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion", "Seleccione");
-                    //ViewBag.Macho = "H";
-                    //ViewBag.Hembra = "M";
+                    ModelState.AddModelError("", "Error al actualizar el registro" + " " + Ex.Message.ToString());
                     return View(tbEmpleado);
-                }
-                else
-                {
-                    return RedirectToAction("SinAcceso", "Login");
-                }
+                    Ex.Message.ToString();
+                    ModelState.AddModelError("", "No se guardo el cambio");
+                    return View("tbEmpleado");
+
+                }                
             }
             else
-                return RedirectToAction("Index", "Login");
-
+            {
+                var errors = ModelState.Values.SelectMany(v => v.Errors);
+            }
+            ViewBag.emp_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbEmpleado.emp_UsuarioCrea);
+            ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion", tbEmpleado.tpi_Id);
+            ViewBag.TipoIList = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion", "Seleccione");
+            //ViewBag.Macho = "H";
+            //ViewBag.Hembra = "M";
+            return View(tbEmpleado);
         }
 
         [HttpPost]

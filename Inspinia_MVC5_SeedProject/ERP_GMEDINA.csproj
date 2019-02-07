@@ -192,7 +192,6 @@
     <Compile Include="Controllers\DepartamentoController.cs" />
     <Compile Include="Controllers\EmpleadoController.cs" />
     <Compile Include="Controllers\EntradaController.cs" />
-    <Compile Include="Controllers\EstadoMovimientoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InventarioFisicoController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -205,7 +204,6 @@
     <Compile Include="Controllers\tbProveedorsController.cs" />
     <Compile Include="Controllers\TipoDevolucionController.cs" />
     <Compile Include="Controllers\TipoEntradaController.cs" />
-    <Compile Include="Controllers\TipoSalidaController.cs" />
     <Compile Include="Controllers\UnidadMedidaController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Entrada.Designer.cs">

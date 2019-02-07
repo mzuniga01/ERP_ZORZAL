@@ -172,91 +172,101 @@ namespace ERP_GMEDINA.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include="bod_Id,bod_Nombre,bod_ResponsableBodega,bod_Direccion,bod_Correo,bod_Telefono,usu_Id,mun_Codigo,bod_EsActiva")] tbBodega tbBodega)
         {
-            try
+            if (Function.GetUserLogin())
             {
-                IEnumerable<object> BODEGA = null;
-                IEnumerable<object> DETALLE = null;
-                var idMaster = 0;
-                var MsjError = "";
-                var listaDetalle = (List<tbBodegaDetalle>)Session["tbBodegaDetalle"];
-                if (ModelState.IsValid)
+                if (Function.GetUserRols("Bodega/Create"))
                 {
 
-                    using (TransactionScope _Tran = new TransactionScope())
+                    IEnumerable<object> BODEGA = null;
+                    IEnumerable<object> DETALLE = null;
+                    var idMaster = 0;
+                    var MsjError = "";
+                    var listaDetalle = (List<tbBodegaDetalle>)Session["tbBodegaDetalle"];
+                    if (ModelState.IsValid)
                     {
-                        try
-                        {
 
-                            BODEGA = db.UDP_Inv_tbBodega_Insert(tbBodega.bod_Nombre,
-                                                             tbBodega.bod_ResponsableBodega
-                                                            , tbBodega.bod_Direccion
-                                                            , tbBodega.bod_Correo
-                                                            , tbBodega.bod_Telefono
-                                                            , tbBodega.mun_Codigo);
-                            foreach (UDP_Inv_tbBodega_Insert_Result bodega in BODEGA)
-                                idMaster = Convert.ToInt32(bodega.MensajeError);
-                            if (MsjError == "-")
+                        using (TransactionScope _Tran = new TransactionScope())
+                        {
+                            try
                             {
-                                ModelState.AddModelError("", "No se Guardo el Registro");
-                                return View(tbBodega);
-                            }
-                            else
-                            {
-                                if (listaDetalle != null)
+
+                                BODEGA = db.UDP_Inv_tbBodega_Insert(tbBodega.bod_Nombre,
+                                                                 tbBodega.bod_ResponsableBodega
+                                                                , tbBodega.bod_Direccion
+                                                                , tbBodega.bod_Correo
+                                                                , tbBodega.bod_Telefono
+                                                                , tbBodega.mun_Codigo
+                                                                , Function.GetUser()
+                                                                    , DateTime.Now);
+                                foreach (UDP_Inv_tbBodega_Insert_Result bodega in BODEGA)
+                                    idMaster = Convert.ToInt32(bodega.MensajeError);
+                                if (MsjError == "-")
                                 {
-                                    if (listaDetalle.Count > 0)
+                                    ModelState.AddModelError("", "No se Guardo el Registro");
+                                    return View(tbBodega);
+                                }
+                                else
+                                {
+                                    if (listaDetalle != null)
                                     {
-                                        foreach (tbBodegaDetalle bodd in listaDetalle)
+                                        if (listaDetalle.Count > 0)
                                         {
-                                            DETALLE = db.UDP_Inv_tbBodegaDetalle_Insert(bodd.prod_Codigo
-                                                                                        , idMaster
-                                                                                        , bodd.bodd_CantidadMinima
-                                                                                        , bodd.bodd_CantidadMaxima
-                                                                                        , bodd.bodd_PuntoReorden
-                                                                                        , bodd.bodd_Costo
-                                                                                        , bodd.bodd_CostoPromedio);
-                                            foreach (UDP_Inv_tbBodegaDetalle_Insert_Result B_detalle in DETALLE)
-                                                MsjError = B_detalle.MensajeError;
-                                            //if (MsjError == "-1")
+                                            foreach (tbBodegaDetalle bodd in listaDetalle)
                                             {
-                                                ModelState.AddModelError("", "No se Guardo el Registro");
-                                                //return View(tbBodega);
-                                                //    }
-                                                //else
-                                                //{
-                                                //    _Tran.Complete();
-                                                //    return RedirectToAction("Index");
+                                                DETALLE = db.UDP_Inv_tbBodegaDetalle_Insert(bodd.prod_Codigo
+                                                                                            , idMaster
+                                                                                            , bodd.bodd_CantidadMinima
+                                                                                            , bodd.bodd_CantidadMaxima
+                                                                                            , bodd.bodd_PuntoReorden
+                                                                                            , bodd.bodd_Costo
+                                                                                            , bodd.bodd_CostoPromedio);
+                                                foreach (UDP_Inv_tbBodegaDetalle_Insert_Result B_detalle in DETALLE)
+                                                    MsjError = B_detalle.MensajeError;
+                                                //if (MsjError == "-1")
+                                                {
+                                                    ModelState.AddModelError("", "No se Guardo el Registro");
+                                                    //return View(tbBodega);
+                                                    //    }
+                                                    //else
+                                                    //{
+                                                    //    _Tran.Complete();
+                                                    //    return RedirectToAction("Index");
+                                                }
                                             }
                                         }
                                     }
-                                }
 
-                                //else
-                                {
-                                    _Tran.Complete();
-                                    //return RedirectToAction("Index");
+                                    //else
+                                    {
+                                        _Tran.Complete();
+                                        //return RedirectToAction("Index");
+                                    }
+
                                 }
 
                             }
-
+                            catch (Exception Ex)
+                            {
+                                Ex.Message.ToString();
+                                //ModelState.AddModelError("", "No se Guardo el Registro");
+                                //return View(tbBodega);
+                                MsjError = "-1";
+                            }
                         }
-                        catch (Exception Ex)
-                        {
-                            Ex.Message.ToString();
-                            //ModelState.AddModelError("", "No se Guardo el Registro");
-                            //return View(tbBodega);
-                            MsjError = "-1";
-                        }
+                        return RedirectToAction("Index");
                     }
-                    return RedirectToAction("Index");
+
+
+                    this.AllLists();
+                    return View(tbBodega);
+                }
+                else
+                {
+                    return RedirectToAction("SinAcceso", "Login");
                 }
             }
-            catch(Exception Ex)
-            {
-                Ex.Message.ToString();
-            }
-            this.AllLists();
-            return View(tbBodega);
+            else
+                return RedirectToAction("Index", "Login");
         }
 
         // GET: /Bodega/Edit/5

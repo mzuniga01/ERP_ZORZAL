@@ -66,18 +66,20 @@ $('#emp_Correoelectronico').change(function (e) {
 });
 
 //Validar telefono 
-$("#emp_Telefono").on("keypress keyup blur", function (event) {
+$("#emp_Identificacion").on("keypress keyup blur", function (event) {
     //this.value = this.value.replace(/[^0-9\.]/g,'');
     $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
     if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
         event.preventDefault();
     }
 });
+
+
 //Validacion de solo letras
 function soloLetras(e) {
     key = e.keyCode || e.which;
     tecla = String.fromCharCode(key).toLowerCase();
-    letras = " +-áéíóúabcdefghijklmnñopqrstuvwxyz";
+    letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
     especiales = "8-37-39-46";
 
     tecla_especial = false
@@ -92,6 +94,19 @@ function soloLetras(e) {
         return false;
     }
 }
+
+//Validar Los campos numericos
+function format(input) {
+    var num = input.value.replace(/\,/g, '');
+    if (!isNaN(num)) {
+        input.value = num;
+    }
+    else {
+        //alert('Solo se permiten numeros');
+        input.value = input.value.replace(/[^\d\.]*/g, '');
+    }
+}
+//fin
 
 function EditStudentRecord(emp_Id) {
   
