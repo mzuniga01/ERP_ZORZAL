@@ -389,96 +389,116 @@ namespace ERP_GMEDINA.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int? id, [Bind(Include="bod_Id,bod_Nombre,bod_ResponsableBodega,bod_Direccion,bod_Correo,bod_Telefono,usu_Id,mun_Codigo,bod_EsActiva,bod_UsuarioCrea,bod_FechaCrea,bod_UsuarioModifica,bod_FechaModifica,dep_Codigo")] tbBodega tbBodega)
-        {   
-            IEnumerable<object> BODEGA = null;
-            IEnumerable<object> DETALLE = null;
-            var idMaster = 0;
-            var MsjError = "";
-            var listaDetalle = (List<tbBodegaDetalle>)Session["tbBodegaDetalle"];
-            if (ModelState.IsValid)
+        {
+            if (Function.GetUserLogin())
             {
-
-                using (TransactionScope _Tran = new TransactionScope())
+                if (Function.GetUserRols("Objeto/Edit"))
                 {
-                    try
+                    IEnumerable<object> BODEGA = null;
+                    IEnumerable<object> DETALLE = null;
+                    var idMaster = 0;
+                    var MsjError = "";
+                    var listaDetalle = (List<tbBodegaDetalle>)Session["tbBodegaDetalle"];
+                    if (ModelState.IsValid)
                     {
 
-                        BODEGA = db.UDP_Inv_tbBodega_Update(tbBodega.bod_Id
-                                                            , tbBodega.bod_Nombre
-                                                            , tbBodega.bod_ResponsableBodega
-                                                            , tbBodega.bod_Direccion
-                                                            , tbBodega.bod_Correo
-                                                            , tbBodega.bod_Telefono
-                                                            , tbBodega.mun_Codigo
-                                                            , tbBodega.bod_UsuarioCrea
-                                                            , tbBodega.bod_FechaCrea);
-                        foreach (UDP_Inv_tbBodega_Update_Result bodega in BODEGA)
-                            idMaster = Convert.ToInt32(bodega.MensajeError);
-                        if (MsjError == "-")
+                        using (TransactionScope _Tran = new TransactionScope())
                         {
-                            ModelState.AddModelError("", "No se Actualizó el Registro");
-                            return View(tbBodega);
-                        }
-                        else
-                        {
-                            if (listaDetalle != null)
+                            try
                             {
-                                if (listaDetalle.Count > 0)
-                                {
-                                    foreach (tbBodegaDetalle bodd in listaDetalle)
-                                    {
-                                        DETALLE = db.UDP_Inv_tbBodegaDetalle_Insert( 
-                                                                                      bodd.prod_Codigo
-                                                                                    , idMaster
-                                                                                    , bodd.bodd_CantidadMinima
-                                                                                    , bodd.bodd_CantidadMaxima
-                                                                                    , bodd.bodd_PuntoReorden
-                                                                                    , bodd.bodd_Costo
-                                                                                    , bodd.bodd_CostoPromedio);
-                                        foreach (UDP_Inv_tbBodegaDetalle_Insert_Result B_detalle in DETALLE)
-                                            //MsjError = B_detalle.MensajeError;
 
-                                        //if (MsjError == "-1")
+                                BODEGA = db.UDP_Inv_tbBodega_Update(tbBodega.bod_Id
+                                                                    , tbBodega.bod_Nombre
+                                                                    , tbBodega.bod_ResponsableBodega
+                                                                    , tbBodega.bod_Direccion
+                                                                    , tbBodega.bod_Correo
+                                                                    , tbBodega.bod_Telefono
+                                                                    , tbBodega.mun_Codigo
+                                                                    , tbBodega.bod_UsuarioCrea
+                                                                    , tbBodega.bod_FechaCrea, 
+                                                                    Function.GetUser()
+                                                                , DateTime.Now);
+                                foreach (UDP_Inv_tbBodega_Update_Result bodega in BODEGA)
+                                    idMaster = Convert.ToInt32(bodega.MensajeError);
+                                if (MsjError == "-1")
+                                {
+                                    ModelState.AddModelError("", "No se Actualizó el Registro");
+                                    ViewBag.bod_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbBodega.bod_UsuarioCrea);
+                                    ViewBag.bod_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbBodega.bod_UsuarioModifica);
+                                    return View(tbBodega);
+                                }
+                                else
+                                {
+                                    if (listaDetalle != null)
+                                    {
+                                        if (listaDetalle.Count > 0)
                                         {
-                                            //ViewBag.deparatamento_Edit = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre", tbBodega.dep_Codigo);
-                                            //ViewBag.municipio_Edit = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbBodega.mun_Codigo);
-                                            ModelState.AddModelError("", "No se Actualizó el Registro");
-                                        //        return View(tbBodega);
-                                        //}
-                                        //else
-                                        //{
-                                        //    _Tran.Complete();
-                                        //    return RedirectToAction("Index");
+                                            foreach (tbBodegaDetalle bodd in listaDetalle)
+                                            {
+                                                DETALLE = db.UDP_Inv_tbBodegaDetalle_Insert(
+                                                                                              bodd.prod_Codigo
+                                                                                            , idMaster
+                                                                                            , bodd.bodd_CantidadMinima
+                                                                                            , bodd.bodd_CantidadMaxima
+                                                                                            , bodd.bodd_PuntoReorden
+                                                                                            , bodd.bodd_Costo
+                                                                                            , bodd.bodd_CostoPromedio);
+                                                foreach (UDP_Inv_tbBodegaDetalle_Insert_Result B_detalle in DETALLE)
+                                                //MsjError = B_detalle.MensajeError;
+
+                                                //if (MsjError == "-1")
+                                                {
+                                                    //ViewBag.deparatamento_Edit = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre", tbBodega.dep_Codigo);
+                                                    //ViewBag.municipio_Edit = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbBodega.mun_Codigo);
+                                                    ModelState.AddModelError("", "No se Actualizó el Registro");
+                                                    //        return View(tbBodega);
+                                                    //}
+                                                    //else
+                                                    //{
+                                                    //    _Tran.Complete();
+                                                    //    return RedirectToAction("Index");
+                                                }
+                                            }
                                         }
                                     }
+                                    //else
+                                    {
+                                        _Tran.Complete();
+                                        //return RedirectToAction("Index");
+                                        return RedirectToAction("Edit/" + idMaster);
+                                    }
+
                                 }
+
                             }
-                            //else
+                            catch (Exception Ex)
                             {
-                                _Tran.Complete();
-                                //return RedirectToAction("Index");
-                                return RedirectToAction("Edit/" + idMaster);
+                                Ex.Message.ToString();
+                                ModelState.AddModelError("", "No se Actualizó el Registro");
+                                ViewBag.bod_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbBodega.bod_UsuarioCrea);
+                                ViewBag.bod_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbBodega.bod_UsuarioModifica);
+                                //ViewBag.deparatamento_Edit = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre", tbBodega.dep_Codigo);
+                                //ViewBag.municipio_Edit = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbBodega.mun_Codigo);
+                                //return View(tbBodega);
+                                //MsjError = "-1";
                             }
-
                         }
-
+                        return RedirectToAction("Index");
                     }
-                    catch (Exception Ex)
-                    {
-                        Ex.Message.ToString();
-                        ModelState.AddModelError("", "No se Actualizó el Registro");
-                        //ViewBag.deparatamento_Edit = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre", tbBodega.dep_Codigo);
-                        //ViewBag.municipio_Edit = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbBodega.mun_Codigo);
-                        //return View(tbBodega);
-                        //MsjError = "-1";
-                    }
+                    this.AllLists();
+                    ViewBag.deparatamento_Edit = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre", tbBodega.dep_Codigo);
+                    ViewBag.municipio_Edit = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbBodega.mun_Codigo);
+                    ViewBag.bod_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbBodega.bod_UsuarioCrea);
+                    ViewBag.bod_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbBodega.bod_UsuarioModifica);
+                    return View(tbBodega);
                 }
-                return RedirectToAction("Index");
+                else
+                {
+                    return RedirectToAction("SinAcceso", "Login");
+                }
             }
-            this.AllLists();
-            ViewBag.deparatamento_Edit= new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre", tbBodega.dep_Codigo);
-            ViewBag.municipio_Edit = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbBodega.mun_Codigo);
-            return View(tbBodega);
+            else
+                return RedirectToAction("Index", "Login");
         }
 
         // GET: /Bodega/Delete/5

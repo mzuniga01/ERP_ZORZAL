@@ -156,43 +156,61 @@ namespace ERP_GMEDINA.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(byte? id,[Bind(Include= "tent_Id,tent_Descripcion,tent_UsuarioCrea,tent_FechaCrea, tent_UsuarioModifica, tent_FechaModifica")] tbTipoEntrada tbTipoEntrada)
         {
-            if (ModelState.IsValid)
+            if (Function.GetUserLogin())
             {
-                try
+                if (Function.GetUserRols("Objeto/Edit"))
                 {
-                    tbTipoEntrada TipoEntrada = db.tbTipoEntrada.Find(id);
-                    IEnumerable<object> list = null;
-                    string MsjError = "";
-                    list = db.UDP_Inv_tbTipoEntrada_Update(tbTipoEntrada.tent_Id
-                                                            ,tbTipoEntrada.tent_Descripcion
-                                                            , tbTipoEntrada.tent_UsuarioCrea
-                                                            , tbTipoEntrada.tent_FechaCrea);
-                    foreach (UDP_Inv_tbTipoEntrada_Update_Result tent in list)
-                        MsjError = tent.MensajeError;
-
-                    if (MsjError.Substring(0, 2) == "-1")
+                    if (ModelState.IsValid)
                     {
-                        ModelState.AddModelError("", "No se guardo el cambio");
+                        try
+                        {
+                            tbTipoEntrada TipoEntrada = db.tbTipoEntrada.Find(id);
+                            IEnumerable<object> list = null;
+                            string MsjError = "";
+                            list = db.UDP_Inv_tbTipoEntrada_Update(tbTipoEntrada.tent_Id
+                                                                    , tbTipoEntrada.tent_Descripcion
+                                                                    , tbTipoEntrada.tent_UsuarioCrea
+                                                                    , tbTipoEntrada.tent_FechaCrea, Function.GetUser()
+                                                                , DateTime.Now);
+                            foreach (UDP_Inv_tbTipoEntrada_Update_Result tent in list)
+                                MsjError = tent.MensajeError;
+
+                            if (MsjError.Substring(0, 2) == "-1")
+                            {
+                                ModelState.AddModelError("", "No se guardo el cambio");
+                                ViewBag.tent_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbTipoEntrada.tent_UsuarioCrea);
+                                ViewBag.tent_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbTipoEntrada.tent_UsuarioModifica);
+                                return RedirectToAction("Index");
+                            }
+                            else
+                            {
+                                //db.Entry(tbTipoEntrada).State = EntityState.Modified;
+                                //db.SaveChanges();
+                                return RedirectToAction("Index");
+                            }
+
+                        }
+                        catch (Exception Ex)
+                        {
+                            Ex.Message.ToString();
+                            ViewBag.tent_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbTipoEntrada.tent_UsuarioCrea);
+                            ViewBag.tent_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbTipoEntrada.tent_UsuarioModifica);
+                            ModelState.AddModelError("", "No se guardo el cambio");
+                        }
                         return RedirectToAction("Index");
                     }
-                    else
-                    {
-                        //db.Entry(tbTipoEntrada).State = EntityState.Modified;
-                        //db.SaveChanges();
-                        return RedirectToAction("Index");
-                    }
-
+                    ViewBag.tent_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbTipoEntrada.tent_UsuarioCrea);
+                    ViewBag.tent_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbTipoEntrada.tent_UsuarioModifica);
+                    return View(tbTipoEntrada);
                 }
-                catch (Exception Ex)
+                else
                 {
-                    Ex.Message.ToString();
-                    ModelState.AddModelError("", "No se guardo el cambio");
+                    return RedirectToAction("SinAcceso", "Login");
                 }
-                return RedirectToAction("Index");
             }
-            ViewBag.tent_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbTipoEntrada.tent_UsuarioCrea);
-            ViewBag.tent_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbTipoEntrada.tent_UsuarioModifica);
-            return View(tbTipoEntrada);
+            else
+                return RedirectToAction("Index", "Login");
+
         }
 
         // GET: /TipoEntrada/Delete/5

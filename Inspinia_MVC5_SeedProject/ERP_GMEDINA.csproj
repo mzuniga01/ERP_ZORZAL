@@ -200,7 +200,6 @@
     <Compile Include="Controllers\ParametroController.cs" />
     <Compile Include="Controllers\ProductoCategoriaController.cs" />
     <Compile Include="Controllers\ProductoController.cs" />
-    <Compile Include="Controllers\ProveedorController.cs" />
     <Compile Include="Controllers\RolController.cs" />
     <Compile Include="Controllers\SalidaController.cs" />
     <Compile Include="Controllers\tbProveedorsController.cs" />

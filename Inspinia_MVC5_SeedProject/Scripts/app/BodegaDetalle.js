@@ -21,6 +21,31 @@ $('#bod_Correo').change(function (e) {
 });
 //
 
+//Validar Los campos Stringg
+$("#bod_Nombre").keypress(function (key){
+    window.console.log(key.charCode)
+    if ((key.charCode < 97 || key.charCode > 122)//letras mayusculas
+        && (key.charCode < 65 || key.charCode > 90) //letras minusculas
+        && (key.charCode != 45) //retroceso
+        && (key.charCode != 241) //ñ
+        && (key.charCode != 209) //Ñ
+        && (key.charCode != 32) //espacio
+        && (key.charCode != 225) //á
+        && (key.charCode != 233) //é
+        && (key.charCode != 237) //í
+        && (key.charCode != 243) //ó
+        && (key.charCode != 250) //ú
+        && (key.charCode != 193) //Á
+        && (key.charCode != 201) //É
+        && (key.charCode != 205) //Í
+        && (key.charCode != 211) //Ó
+        && (key.charCode != 218) //Ú
+         
+    )
+      
+        return false;
+});
+
 //Validar Los campos numericos
 function format(input) {
     var num = input.value.replace(/\,/g, '');
@@ -66,28 +91,28 @@ $(document).ready(function () {
                 "sNext": "Siguiente",
                 "sPrevious": "Anterior",
             },
-            "sSearch": "Buscar",
-            "sLengthMenu": "Mostrar _MENU_Registros Por Página",
+          
+             "sSearch": "Buscar",
+            "sLengthMenu": "Mostrar _MENU_Registros ",
             "sInfo": "Mostrando _START_ a _END_ Entradas"
-
         },
 
     });
 
-    var $rows = $('#Table_BuscarProductoBodega tr');
-        $("#search").keyup(function () {
-            var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+    //var $rows = $('#Table_BuscarProductoBodega tr');
+    //    $("#search").keyup(function () {
+    //        var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
 
-            $rows.show().filter(function () {
-                var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
-                return !~text.indexOf(val);
-            }).hide();
-            //$rows.show().filter(function () {
-            //    var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
-            //    return !~text.indexOf(val);
-            //}).hide();
+    //        $rows.show().filter(function () {
+    //            var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+    //            return !~text.indexOf(val);
+    //        }).hide();
+    //        //$rows.show().filter(function () {
+    //        //    var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+    //        //    return !~text.indexOf(val);
+    //        //}).hide();
 
-        });
+    //    });
     });
 $(document).on("click", "#Table_BuscarProductoBodega tbody tr td button#seleccionar", function () {
     idItem = $(this).closest('tr').data('animation');
@@ -104,39 +129,6 @@ $(document).on("click", "#Table_BuscarProductoBodega tbody tr td button#seleccio
     $("#pcat_Id").val(pcatItem);
     $('#Error_Barras').text('');
     $('#bodd_CantidadMinima').focus();
-
-
-    //alert(pBarras)
-    //validacionProdRepetidos = ("#prod_CodigoBarras").val(pBarras);
-    //alert(validacionProdRepetidos)
-    //$.ajax({
-    //    url: "/Bodega/ProductosRepetidos_ModalListadoProductos",
-    //    method: "POST",
-    //    dataType: 'json',
-    //    contentType: "application/json; charset=utf-8",
-    //    data: JSON.stringify({ validacionProdRepetidos: validacionProdRepetidos }),
-    //})
-    //    .done(function (datos) {
-    //        //if (datos.length > 0) {
-    //        if (datos == pBarras) {
-    //            //alert('Es Igual.')
-    //            $('#prod_Codigo').val('');
-    //            $('#prod_CodigoBarras').val('');
-    //            $('#prod_Descripcion').val('');
-    //            $('#pcat_Id').val('');
-    //            $('#pscat_Id').val('');
-    //            $('#uni_Id').val('');
-    //            $('#Error_Barras').text('');
-    //            $('#ErrorBarras_Create').after('<ul id="Error_Barras" class="validation-summary-errors text-danger">*El Codigo ya ha sido ingresado</ul>');
-    //            $("#prod_CodigoBarras").focus();
-    //        }
-    //        else {
-    //            //alert('NO ES IGUAL')
-
-    //        }
-
-    //    });
-
     
 });
 ///Fin

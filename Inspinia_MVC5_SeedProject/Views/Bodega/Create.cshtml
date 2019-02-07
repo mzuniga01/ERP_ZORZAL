@@ -58,7 +58,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.bod_Nombre, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    @Html.TextBoxFor(model => model.bod_Nombre, new { @class = "single-line", MaxLength = 100 })
+                                    @Html.TextBoxFor(model => model.bod_Nombre, new { @class = "single-line", MaxLength = 100})
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Nombre) </p>
                                 </div>
                                 @Html.LabelFor(model => model.bod_ResponsableBodega, new { @class = "control-label col-md-2 , required" })
@@ -421,6 +421,7 @@
                         $('#Error_CantidadMaxima').text('');
                         $('#Error_Costo').text('');
                         $('#Error_CostoPromedioo').text('');
+                       
                     });
 
 
