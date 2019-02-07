@@ -9,7 +9,7 @@ using System.Web.Mvc;
 using ERP_GMEDINA.Models;
 using System.Transactions;
 
-namespace ERP_GMEDINA.Controllers
+namespace ERP_ZORZAL.Controllers
 {
     public class DevolucionController : Controller
     {
@@ -59,10 +59,9 @@ namespace ERP_GMEDINA.Controllers
             return Json("", JsonRequestBehavior.AllowGet);
         }
 
-
-
+       
         /// Post
-        // GET: /Devolucion/Details/5
+            // GET: /Devolucion/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -81,6 +80,7 @@ namespace ERP_GMEDINA.Controllers
             Session["ID"] = tbDevolucion.dev_Id;
             Session["FECHA"] = tbDevolucion.dev_Fecha;
             Session["RTNCLIENTE"] = tbDevolucion.tbFactura.clte_Identificacion;
+            Session["IDCLIENTE"] = tbDevolucion.tbFactura.clte_Id;
             Session["NOMBRE"] = tbDevolucion.tbFactura.clte_Nombres;
             //Session["MONTO"] = tbDevolucionDetalle.devd_Monto;
             return View(tbDevolucion);
@@ -107,11 +107,6 @@ namespace ERP_GMEDINA.Controllers
         }
 
         public ActionResult _CreateDevolucionDetalle()
-        {
-            ViewBag.FacturaDetalle = db.tbFacturaDetalle.ToList();
-            return View();
-        }
-        public ActionResult _CreateDevolucionDetalle1()
         {
             ViewBag.FacturaDetalle = db.tbFacturaDetalle.ToList();
             return View();
@@ -221,7 +216,6 @@ namespace ERP_GMEDINA.Controllers
         //    ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo", tbDevolucion.fact_Id);
         //    return View(tbDevolucion);
         //}
-
         // GET: /Devolucion/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -229,9 +223,8 @@ namespace ERP_GMEDINA.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
-         
-            tbDevolucion tbDevolucion = db.tbDevolucion.Find(id);
+            
+        tbDevolucion tbDevolucion = db.tbDevolucion.Find(id);
             tbDevolucionDetalle tbDevolucionDetalle = new tbDevolucionDetalle();
             if (tbDevolucion == null)
             {
@@ -245,9 +238,11 @@ namespace ERP_GMEDINA.Controllers
             Session["ID"] = tbDevolucion.dev_Id;
             Session["FECHA"] = tbDevolucion.dev_Fecha;
             Session["RTNCLIENTE"] = tbDevolucion.tbFactura.clte_Identificacion;
+            Session["IDCLIENTE"] = tbDevolucion.tbFactura.clte_Id;
             Session["NOMBRE"] = tbDevolucion.tbFactura.clte_Nombres;
+         
             //Session["Devolucion"] = null;
-            //Session["MONTO"] = tbDevolucionDetalle.devd_Monto;
+            //Session["MONTO"] = MONTO;
             return View(tbDevolucion);
         }
 
@@ -347,21 +342,20 @@ namespace ERP_GMEDINA.Controllers
             {
                 var MensajeError = "";
                 IEnumerable<object> list = null;
-                list = db.UDP_Vent_tbDevolucionDetalle_Update(
-                    EditDevolucionDetalle.devd_Id,
-                    EditDevolucionDetalle.dev_Id,
-                    EditDevolucionDetalle.prod_Codigo,
-                    EditDevolucionDetalle.devd_CantidadProducto,
-                    EditDevolucionDetalle.devd_Descripcion,
-                    EditDevolucionDetalle.devd_Monto,
-                    EditDevolucionDetalle.devd_UsuarioCrea,
-                    EditDevolucionDetalle.devd_FechaCrea);
-                foreach (UDP_Vent_tbDevolucionDetalle_Update_Result DevolucionDetalle in list)
-                    MensajeError = DevolucionDetalle.MensajeError;
+                list = db.UDP_Vent_tbDevolucionDetalle_Update( EditDevolucionDetalle.devd_Id,
+                                                                EditDevolucionDetalle.dev_Id,
+                                                                EditDevolucionDetalle.prod_Codigo,
+                                                                EditDevolucionDetalle.devd_CantidadProducto,
+                                                                EditDevolucionDetalle.devd_Descripcion,
+                                                                EditDevolucionDetalle.devd_Monto,
+                                                                EditDevolucionDetalle.devd_UsuarioCrea,
+                                                                EditDevolucionDetalle.devd_FechaCrea);
+                foreach (UDP_Vent_tbDevolucionDetalle_Update_Result DevDetalle in list)
+                    MensajeError = DevDetalle.MensajeError;
                 if (MensajeError == "-1")
                 {
                     ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
-                    return PartialView("_EditarDetalleDevolucion");
+                    return RedirectToAction("Edit", "Devolucion");
                 }
                 else
                 {
@@ -372,7 +366,7 @@ namespace ERP_GMEDINA.Controllers
             {
                 Ex.Message.ToString();
                 ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
-                return PartialView("_EditarDetalleDevolucion", EditDevolucionDetalle);
+                return RedirectToAction("Edit", "Devolucion");
             }
         }
 
@@ -434,7 +428,6 @@ namespace ERP_GMEDINA.Controllers
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
-
         public JsonResult GetDevolucionDetalleEditar(long DetalleDevID)
         {
             var list = db.UDP_Vent_tbDevolucion_GetDetalle_Editar(DetalleDevID).ToList();
@@ -442,6 +435,7 @@ namespace ERP_GMEDINA.Controllers
         }
 
         [HttpPost]
+
         public JsonResult FiltrarModal(string CodCliente)
         {
 
@@ -482,13 +476,21 @@ namespace ERP_GMEDINA.Controllers
             //return Json(list);
         }
 
+        public ActionResult MontoDevolucion(int MontoDev)
+        {
+            var MONTO = MontoDev;
+            Session["MONTO"] = MONTO;
+           //ViewBag.montodev = MONTO;
+            return RedirectToAction("EmitirNotaCredito", "Devolucion");
+        }
         public ActionResult EmitirNotaCredito(tbDevolucion Devolucion)
         {
             Session["IDDEVOLUCION"] = Session["ID"];
             Session["FECHADEV"] = Session["FECHA"];
+            Session["IDCTL"] = Session["IDCLIENTE"];
             Session["RTN"] = Session["RTNCLIENTE"];
             Session["NOMBRECLIENTE"] = Session["NOMBRE"];
-            //Session["MONTODEV"] = Session["MONTO"];
+            Session["MONTODEV"] = Session["MONTO"];
             return RedirectToAction("CreateNotaCredito", "Devolucion");
         }
 
@@ -512,10 +514,13 @@ namespace ERP_GMEDINA.Controllers
                 ViewBag.fechaDev = fechad;
                 string identificacion = (string)Session["RTN"];
                 ViewBag.Identificacion = identificacion;
+                int IdCtl = (int)Session["IDCTL"];
+                ViewBag.IdCtll = IdCtl;
                 string nombres = (string)Session["NOMBRECLIENTE"];
                 ViewBag.Nombres = nombres;
-                //int montod = (Int32)Session["MONTODEV"];
-                //ViewBag.montodev = montod;
+                int montod = (Int32)Session["MONTODEV"];
+                ViewBag.montodev = montod;
+
             }
 
             ViewBag.dev_Id = new SelectList(db.tbDevolucion, "dev_Id", "dev_Id");
@@ -528,6 +533,7 @@ namespace ERP_GMEDINA.Controllers
             Session["RTN"] = null;
             Session["NOMBRECLIENTE"] = null;
             Session["MONTODEV"] = null;
+            Session["IDCTL"] = null;
 
             return View();
         }
@@ -543,18 +549,18 @@ namespace ERP_GMEDINA.Controllers
                 {
                     var MensajeError = "";
                     IEnumerable<object> list = null;
-                    list = db.UDP_Vent_tbNotaCredito_Insert(tbNotaCredito.nocre_Codigo, 
-                                                            tbNotaCredito.dev_Id, 
-                                                            tbNotaCredito.clte_Id, 
-                                                            tbNotaCredito.suc_Id, 
-                                                            tbNotaCredito.cja_Id,
-                                                            tbNotaCredito.nocre_Anulado, 
-                                                            tbNotaCredito.nocre_FechaEmision, 
-                                                            tbNotaCredito.nocre_MotivoEmision, 
-                                                            tbNotaCredito.nocre_Monto, 
-                                                            tbNotaCredito.nocre_Redimido, 
-                                                            tbNotaCredito.nocre_FechaRedimido, 
-                                                            tbNotaCredito.nocre_EsImpreso);
+                    list = db.UDP_Vent_tbNotaCredito_Insert(tbNotaCredito.nocre_Codigo,
+                                                             tbNotaCredito.dev_Id,
+                                                             tbNotaCredito.clte_Id,
+                                                             tbNotaCredito.suc_Id,
+                                                             tbNotaCredito.cja_Id,
+                                                             tbNotaCredito.nocre_Anulado,
+                                                             tbNotaCredito.nocre_FechaEmision,
+                                                             tbNotaCredito.nocre_MotivoEmision,
+                                                             tbNotaCredito.nocre_Monto,
+                                                             tbNotaCredito.nocre_Redimido,
+                                                             tbNotaCredito.nocre_FechaRedimido,
+                                                             tbNotaCredito.nocre_EsImpreso);
                     foreach (UDP_Vent_tbNotaCredito_Insert_Result NotaCredito in list)
                         MensajeError = Convert.ToString(NotaCredito.MensajeError);
                     if (MensajeError != "-1")

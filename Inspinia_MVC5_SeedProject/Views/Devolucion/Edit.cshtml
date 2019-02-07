@@ -8,15 +8,6 @@
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Devolución de Producto</h2>
-        @*
-    <ol class="breadcrumb">
-        <li>
-            @Html.ActionLink("Lista", "Index")
-        </li>
-        <li class="active">
-            <strong>Editar</strong>
-        </li>
-    </ol>*@
     </div>
     <div class="col-sm-8">
         <div class="title-action">
@@ -76,7 +67,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.tbFactura.fact_Codigo, "Codigo Factura", new { @class = "control-label col-md-2" })
                                 <div class="col-md-3">
-                                    <input id="Dev_Monto" type="text" />
+                                    <input id="Dev_Monto" type="hidden" />
                                     @Html.HiddenFor(model => model.fact_Id, new { htmlAttributes = new { @class = "form-control" } })
                                     <input type="hidden" class="form-control" id="dev_Estado" name="dev_Estado" value="false" />
                                    @Html.EditorFor(model => model.tbFactura.fact_Codigo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
@@ -150,18 +141,13 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="ibox float-e-margins">
-                                        @*<div class="ibox-title">
-                                            <div class="title-action">
-                                                <h5>Agregar Productos</h5>
-                                            </div>
-                                        </div>*@
                                         @Html.Hidden("RedirectTo", Url.Action("CreateNotaCredito", "Devolucion", new { id = Model.dev_Id }))
                                         @Html.Hidden("Redireccionar", Url.Action("Index", "Devolucion"))
                                         
                                         
 
                                     
-                                        @Html.Partial("_CreateDevolucionDetalle", new tbDevolucionDetalle())
+                                        @Html.Partial("_CreateDevolucionDetalle1", new tbDevolucionDetalle())
                                     </div>
                                 </div>
 
@@ -210,21 +196,6 @@
         </div>
     </div>
 </div>
-@*<div class="modal fade" id="ModalAgregarDetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-lg " role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title" id="myModalLabel">Agregar Producto</h4>
-            </div>
-            <div class="modal-body" id="frmEditarMunicipios">
-                @Html.Partial("_CreateDevolucionDetalle1", new tbDevolucionDetalle())
-            </div>
-        </div>
-    </div>
-</div>*@
 
 @* -------------------Modal Anular----------------*@
 <div class="modal fade" id="Anular" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -276,8 +247,6 @@
 <script src="~/Scripts/app/EmitirNotaCredito.js"></script>
 <script src="~/Scripts/app/AnularDevolucion.js"></script>
 <script src="~/Scripts/app/DevolucionCalculos.js"></script>
-    <script src="~/Scripts/app/FacturaDevolucion.js"></script>
-@*<script src="~/Scripts/app/DetalleEditarDevolucion.js"></script>*@
+<script src="~/Scripts/app/FacturaDevolucion.js"></script>
 <script src="~/Scripts/app/TableDetalleDevolucion.js"></script>
-@*<script src="~/Scripts/app/DetalleEditarDevolucion1.js"></script>*@
 <script src="~/Scripts/app/DevolucionDetalle.js"></script>

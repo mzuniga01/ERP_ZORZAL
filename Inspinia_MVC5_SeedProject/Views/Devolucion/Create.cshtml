@@ -28,11 +28,11 @@
                 </div>
                 <div class="ibox-content">
 
-                    @using (Html.BeginForm("Create", "Devolucion", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                    {
+                   @using (Html.BeginForm("create","Devolucion", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                   {
                         @Html.AntiForgeryToken()
 
-
+                       
                         <div class="form-horizontal">
 
                             @Html.ValidationSummary(true)
@@ -109,9 +109,10 @@
                         </div>
                         <div class="form-group">
                             <div class="col-md-12">
+                                @Html.Hidden("RedirectTo", Url.Action("CreateNotaCredito", "Devolucion"))
                                 @Html.Partial("_CreateDevolucionDetalle", new tbDevolucionDetalle())
 
-                                @Html.Hidden("RedirectTo", Url.Action("CreateNotaCredito", "Devolucion"))
+                              
 
                             </div>
                         </div>
@@ -124,11 +125,8 @@
                                         <div class="ibox-content">
                                             <div class="form-group">
                                                 <div class="col-md-12 text">
-                                                    @*<button id="bottonNotaCredito" name="bottonNotaCredito" type="button" class="btn btn-primary btn-ms" data-toggle="modal" data-target="#ModalNotaCredito">
-                                                        Emitir Nota de Credito
-                                                    </button>*@
-                                                    <input type="submit" value="Guardar" class="btn btn-primary" />
-                                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                                    <input type="submit" value="Guardar" id="Guardar" class="btn btn-primary btn-ms" />
+                                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white btn-sm" }) 
                                                 </div>
                                             </div>
                                             <br />
@@ -144,7 +142,7 @@
     </div>
 
 </div>
-<!-- Modal -->
+<!-- Modal de Clientes-->
 <div>
     <div class="modal fade" id="ModalAgregarCliente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
@@ -163,7 +161,7 @@
     </div>
 </div>
 
-<!-- Modal -->
+<!-- Modal de Facturas -->
 <div>
     <div class="modal fade" id="ModalAgregarFactura" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
@@ -188,38 +186,11 @@
                         <tbody id="BodyFactura"></tbody>
 
                     </table>
-                    @*@Html.Partial("_BuscarFacturaDevolucion", (List<tbFactura>)ViewBag.Factura)*@
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<div class="modal fade" id="ModalNotaCredito" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLabel">Emitir Nota Credito</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <h3>
-                    <strong>
-                        ¿Esta seguro que desea crear una Nota de Credito? <br /><br />
-                        Recuerde que no podra volver hacerlo, esta acción es irreversible.
-                    </strong>
-                </h3>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="Yes" onclick="NotaCredito();" data-dismiss="modal">Si</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 <script src="~/Scripts/app/EmitirNotaCredito.js"></script>
 <script src="~/Scripts/app/Datepicker.js"></script>
 <script src="~/Scripts/app/ProductoDevolucion.js"></script>

@@ -1,4 +1,8 @@
-﻿$(document).ready(function () {
+﻿var MontoTotal = $('#Dev_Monto').val();
+function getMontoTotal(suma, MontoTotal) {
+    console.log('Entra')
+}
+$(document).ready(function () {
     GetDetalle()
 });
 var contador = 0;
@@ -30,13 +34,9 @@ function GetDetalle() {
               $('#tbDetalleDevolucion').append(copiar);
 
               $("#tbDetalleDevolucion tbody tr").each(function (index) {
-                  //var ValorMontoD = $(this).parents("tr").find("td")[2].innerHTML;
-                  //Calculo Total
                   var suma = 0;
                   var data = [];
-                
-                  //console("ValorMontoD", ValorMontoD)
-                  //$(this).parents("tr").find("td")[5].innerHTML = devol;
+              
                   $("td.Monto").each(function () {
                       data.push(parseFloat($(this).text()));
                   });
@@ -44,16 +44,26 @@ function GetDetalle() {
 
 
                   $("#Dev_Monto").val(suma);
+                  $('#nocre_Monto').val(suma);
+                  getMontoTotal(suma);
+                  console.log("nocre_Monto", suma)
 
+               
+                  var MontoDev = $("#Dev_Monto").val();
+                  $.ajax({
+                      url: "/Devolucion/MontoDevolucion",
+                      method: "POST",
+                      dataType: 'json',
+                      contentType: "application/json; charset=utf-8",
+                      data: JSON.stringify({ MontoDev: MontoDev }),
+                  })
                   console.log("Data",data);
                   console.log(suma);
               });
-
-            
           });
-
       })
 }
+
 
 //Añadir productos en modal editar producto----------------------------------------------------------------------------
 function GetIDFactura(DevIdd) {
@@ -98,7 +108,7 @@ function GetIDFactura(DevIdd) {
                     SubTotal = (parseFloat(Dcantidad) * parseFloat(Dprecio));
                     MontoImp += (parseFloat(SubTotal) * parseFloat(PorcentajeImpuesto));
                     MontoDesc += (parseFloat(SubTotal) * parseFloat(PorcentajeDescuento));
-                    MontoTotal += ((parseFloat(SubTotal) + MontoImp) - MontoDesc);
+                    MontoTotal += ((parseFloat(SubTotal) + parseFloat(MontoImp)) - parseFloat(MontoDesc));
                 };
                 $("#ValorImp").val(MontoImp);
                 $("#MontoDesc").val(MontoDesc);
@@ -114,7 +124,7 @@ function GetIDFactura(DevIdd) {
 }
 
 //Guardar Actualizacion de Detalle Devolucion
-$("#EditDevolucionDetalle").click(function () {
+$("#EditarDevolucionDetalle").click(function () {
     var Devd_Idd = $('#devd_Id').val();
     var data = $("#SubmitForm").serializeArray();
     $.ajax({
@@ -129,3 +139,4 @@ $("#EditDevolucionDetalle").click(function () {
 
     location.reload(true);
 })
+
