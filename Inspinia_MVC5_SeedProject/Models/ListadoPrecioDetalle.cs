@@ -17,7 +17,7 @@ namespace ERP_GMEDINA.Models
 
     public class ListadoPrecioDetalleMetaData
     {
-        [Display(Name = "ID Listado Precio Detalle")]
+        [Display(Name = "Código")]
         public int lispd_Id { get; set; }
 
 

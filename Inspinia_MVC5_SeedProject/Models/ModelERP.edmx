@@ -500,7 +500,7 @@
             <PropertyRef Name="tdev_Id" />
           </Key>
           <Property Name="tdev_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="tdev_Descripcion" Type="varchar" MaxLength="100" />
+          <Property Name="tdev_Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="tdev_UsuarioCrea" Type="int" Nullable="false" />
           <Property Name="tdev_FechaCrea" Type="datetime" Nullable="false" />
           <Property Name="tdev_UsuarioModifica" Type="int" />
@@ -4350,6 +4350,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Parameter Name="emp_FechaCrea" Type="datetime" Mode="In" />
           <Parameter Name="emp_RazonSalida" Type="nvarchar" Mode="In" />
           <Parameter Name="emp_fechaSalida" Type="date" Mode="In" />
+          <Parameter Name="emp_UsuarioModifica" Type="int" Mode="In" />
+          <Parameter Name="emp_FechaModifica" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Gral_tbMoneda_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
           <Parameter Name="mnda_Abreviatura" Type="varchar" Mode="In" />
@@ -4493,6 +4495,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Parameter Name="mun_Codigo" Type="char" Mode="In" />
           <Parameter Name="bod_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="bod_Fechacrea" Type="datetime" Mode="In" />
+          <Parameter Name="bod_UsuarioModifica" Type="int" Mode="In" />
+          <Parameter Name="bod_FechaModifica" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Inv_tbBodega_Update_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="bod_Id" Type="int" Mode="In" />
@@ -4763,6 +4767,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Parameter Name="tent_Descripcion" Type="nvarchar" Mode="In" />
           <Parameter Name="tent_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="tent_FechaCrea" Type="datetime" Mode="In" />
+          <Parameter Name="tent_UsuarioModifica" Type="int" Mode="In" />
+          <Parameter Name="tent_FechaModifica" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Inv_tbTipoSalida_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="tsal_Descripcion" Type="nvarchar" Mode="In" />
@@ -7083,6 +7089,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="emp_FechaCrea" Mode="In" Type="DateTime" />
             <Parameter Name="emp_RazonSalida" Mode="In" Type="String" />
             <Parameter Name="emp_fechaSalida" Mode="In" Type="DateTime" />
+            <Parameter Name="emp_UsuarioModifica" Mode="In" Type="Int32" />
+            <Parameter Name="emp_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Gral_tbMunicipio_Delete">
           <Parameter Name="mun_Codigo" Mode="In" Type="String" />
@@ -7180,6 +7188,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="mun_Codigo" Mode="In" Type="String" />
             <Parameter Name="bod_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="bod_Fechacrea" Mode="In" Type="DateTime" />
+            <Parameter Name="bod_UsuarioModifica" Mode="In" Type="Int32" />
+            <Parameter Name="bod_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Inv_tbBodega_Update_Estado" ReturnType="Collection(String)">
             <Parameter Name="bod_Id" Mode="In" Type="Int32" />
@@ -7426,6 +7436,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="tent_Descripcion" Mode="In" Type="String" />
             <Parameter Name="tent_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="tent_FechaCrea" Mode="In" Type="DateTime" />
+            <Parameter Name="tent_UsuarioModifica" Mode="In" Type="Int32" />
+            <Parameter Name="tent_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Inv_tbTipoSalida_Insert" ReturnType="Collection(String)">
           <Parameter Name="tsal_Descripcion" Mode="In" Type="String" />
@@ -10563,7 +10575,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <PropertyRef Name="tdev_Id" />
           </Key>
           <Property Name="tdev_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="tdev_Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="tdev_Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="tdev_UsuarioCrea" Type="Int32" Nullable="false" />
           <Property Name="tdev_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="tdev_UsuarioModifica" Type="Int32" />
