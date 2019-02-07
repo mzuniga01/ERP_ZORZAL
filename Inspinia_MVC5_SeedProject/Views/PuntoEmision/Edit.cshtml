@@ -57,7 +57,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.pemi_NumeroCAI, new { @class = "control-label col-md-2" })
                                 <div class="col-md-7">
-                                    @Html.EditorFor(model => model.pemi_NumeroCAI)
+                                    @Html.EditorFor(model => model.pemi_NumeroCAI, new { htmlAttributes = new { @onkeypress = "return validarNúmeroCAI(event)" } })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.pemi_NumeroCAI)</p>
                                 </div>
                             </div>
@@ -172,6 +172,13 @@
         tecla = (document.all) ? e.keyCode : e.which;
         tecla = String.fromCharCode(tecla)
         return /^[0-9\-]+$/.test(tecla);
+    }
+
+    //Número CAI
+    function validarNúmeroCAI(e) {
+        tecla = (document.all) ? e.keyCode : e.which;
+        tecla = String.fromCharCode(tecla)
+        return /^[a-z0-9A-Z\-]+$/.test(tecla);
     }
 </script>
 <script src="~/Scripts/jquery.validate.min.js"></script>

@@ -1,5 +1,4 @@
-﻿$(document).ready(function () {
-    //Current Date
+﻿    //Current Date
     var d = new Date();
     $("#PuntoEmision tbody tr").each(function () {
         //Id PuntoEmisionDetalle
@@ -30,4 +29,3 @@
             $("#Circulos_" + parseInt(ID)).removeClass().addClass("green");
         }
     });
-});
