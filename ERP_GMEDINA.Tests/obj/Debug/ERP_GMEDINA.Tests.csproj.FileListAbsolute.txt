@@ -60,3 +60,6 @@ C:\Users\Jose Dubon\Documents\GitHub\ERP_ZORZAL\ERP_GMEDINA.Tests\obj\Debug\ERP_
 C:\Users\Jose Dubon\Documents\GitHub\ERP_ZORZAL\ERP_GMEDINA.Tests\obj\Debug\ERP_GMEDINA.Tests.csproj.CoreCompileInputs.cache
 C:\Users\Jose Dubon\Documents\GitHub\ERP_ZORZAL\ERP_GMEDINA.Tests\obj\Debug\ERP_GMEDINA.Tests.dll
 C:\Users\Jose Dubon\Documents\GitHub\ERP_ZORZAL\ERP_GMEDINA.Tests\obj\Debug\ERP_GMEDINA.Tests.pdb
+C:\Users\Lab 2\Documents\GitHub\ERP_ZORZAL\ERP_GMEDINA.Tests\obj\Debug\ERP_GMEDINA.Tests.csprojResolveAssemblyReference.cache
+C:\Users\Lab 2\Documents\GitHub\ERP_ZORZAL\ERP_GMEDINA.Tests\obj\Debug\ERP_GMEDINA.Tests.dll
+C:\Users\Lab 2\Documents\GitHub\ERP_ZORZAL\ERP_GMEDINA.Tests\obj\Debug\ERP_GMEDINA.Tests.pdb

@@ -12,7 +12,7 @@ namespace ERP_ZORZAL.Controllers
 {
     public class TipoSalidaController : Controller
     {
-        private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
+        internal ERP_ZORZALEntities db = new ERP_ZORZALEntities();
         GeneralFunctions Function = new GeneralFunctions();
 
         // GET: /TipoSalida/

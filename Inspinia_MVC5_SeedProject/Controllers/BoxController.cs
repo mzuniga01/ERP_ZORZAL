@@ -13,7 +13,7 @@ namespace ERP_ZORZAL.Controllers
 {
     public class BoxController : Controller
     {
-        private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
+        internal ERP_ZORZALEntities db = new ERP_ZORZALEntities();
         GeneralFunctions Function = new GeneralFunctions();
 
         public object ACTUALIZAR_tbSalidaDetalle { get; private set; }

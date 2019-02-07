@@ -37,12 +37,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Inspinia_MVC5_SeedProject\bin\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\Inspinia_MVC5_SeedProject\bin\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.ExtendedReflection, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Pex.Framework, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -72,6 +80,12 @@
       <DependentUpon>BodegaControllerTest.cs</DependentUpon>
     </Compile>
     <Compile Include="BodegaControllerTest.removeBodegaDetalle.g.cs" />
+    <Compile Include="BoxControllerTest.Constructor.g.cs" />
+    <Compile Include="BoxControllerTest.Create.g.cs" />
+    <Compile Include="BoxControllerTest.cs" />
+    <Compile Include="BoxControllerTest.Delete.g.cs" />
+    <Compile Include="BoxControllerTest.Edit.g.cs" />
+    <Compile Include="BoxControllerTest.Index.g.cs" />
     <Compile Include="EmpleadoControllerTest.ConstructorTest.g.cs" />
     <Compile Include="EmpleadoControllerTest.CreateTest.g.cs" />
     <Compile Include="EmpleadoControllerTest.CreateTest01.g.cs" />
@@ -124,8 +138,41 @@
     <Compile Include="ProductoCategoriaControllerTest.DetailsTest.g.cs">
       <DependentUpon>ProductoCategoriaControllerTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProductoControllerTest.ConstructorTest.g.cs" />
+    <Compile Include="ProductoControllerTest.CreateTest.g.cs" />
+    <Compile Include="ProductoControllerTest.CreateTest01.g.cs" />
+    <Compile Include="ProductoControllerTest.cs" />
+    <Compile Include="ProductoControllerTest.DeleteConfirmedTest.g.cs" />
+    <Compile Include="ProductoControllerTest.DeleteTest.g.cs" />
+    <Compile Include="ProductoControllerTest.DetailsTest.g.cs" />
+    <Compile Include="ProductoControllerTest.EditTest.g.cs" />
+    <Compile Include="ProductoControllerTest.EditTest01.g.cs" />
+    <Compile Include="ProductoControllerTest.EstadoactivarTest.g.cs" />
+    <Compile Include="ProductoControllerTest.EstadoInactivarTest.g.cs" />
+    <Compile Include="ProductoControllerTest.GetCategoriaProductoTest.g.cs" />
+    <Compile Include="ProductoControllerTest.GetScatListTest.g.cs" />
+    <Compile Include="ProductoControllerTest.GetSubCategoriaProductoTest.g.cs" />
+    <Compile Include="ProductoControllerTest.GetValueTest.g.cs" />
+    <Compile Include="ProductoControllerTest.IndexTest.g.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\PexAssemblyInfo.cs" />
+    <Compile Include="SalidaControllerTest.Anular.g.cs" />
+    <Compile Include="SalidaControllerTest.Aplicar.g.cs" />
+    <Compile Include="SalidaControllerTest.Create.g.cs" />
+    <Compile Include="SalidaControllerTest.cs" />
+    <Compile Include="SalidaControllerTest.Delete.g.cs" />
+    <Compile Include="SalidaControllerTest.DeleteConfirmed.g.cs" />
+    <Compile Include="SalidaControllerTest.Details.g.cs" />
+    <Compile Include="SalidaControllerTest.Edit.g.cs" />
+    <Compile Include="SalidaControllerTest.EditSalidaDetalle.g.cs" />
+    <Compile Include="SalidaControllerTest.GetProdList.g.cs" />
+    <Compile Include="SalidaControllerTest.getSalidaDetalle.g.cs" />
+    <Compile Include="SalidaControllerTest.Imprimir.g.cs" />
+    <Compile Include="SalidaControllerTest.IndexTest.g.cs" />
+    <Compile Include="SalidaControllerTest.RemoveSalidaDetalle.g.cs" />
+    <Compile Include="SalidaControllerTest.SaveCreateSalidaDetalle.g.cs" />
+    <Compile Include="SalidaControllerTest.SaveNewDatail.g.cs" />
+    <Compile Include="SalidaControllerTest.SaveSalidaDetalle.g.cs" />
     <Compile Include="tbBodegaTest.ConstructorTest.g.cs" />
     <Compile Include="tbBodegaTest.cs" />
     <Compile Include="TipoDevolucionControllerTest.ConstructorTest.g.cs" />
@@ -144,6 +191,19 @@
     <Compile Include="TipoEntradaControllerTest.DetailsTest.g.cs" />
     <Compile Include="TipoEntradaControllerTest.EditTest.g.cs" />
     <Compile Include="TipoEntradaControllerTest.IndexTest.g.cs" />
+    <Compile Include="TipoSalidaControllerTest.Constructor.g.cs" />
+    <Compile Include="TipoSalidaControllerTest.Create.g.cs" />
+    <Compile Include="TipoSalidaControllerTest.cs" />
+    <Compile Include="TipoSalidaControllerTest.Details.g.cs" />
+    <Compile Include="TipoSalidaControllerTest.Edit.g.cs" />
+    <Compile Include="TipoSalidaControllerTest.GetTipoSalidaExist.g.cs" />
+    <Compile Include="TipoSalidaControllerTest.Index.g.cs" />
+    <Compile Include="UnidadMedidaControllerTest.Constructor.g.cs" />
+    <Compile Include="UnidadMedidaControllerTest.Create.g.cs" />
+    <Compile Include="UnidadMedidaControllerTest.cs" />
+    <Compile Include="UnidadMedidaControllerTest.Details.g.cs" />
+    <Compile Include="UnidadMedidaControllerTest.Edit.g.cs" />
+    <Compile Include="UnidadMedidaControllerTest.Index.g.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\Debug\EntityFramework.dll" />
