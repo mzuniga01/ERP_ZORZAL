@@ -117,7 +117,7 @@
                                                             <div class="form-group">
                                                                 @Html.LabelFor(model => inventariofisicodetalle.invfd_Cantidad, "Cantidad Fisica", new { @class = "control-label col-md-2" })
                                                                 <div class="col-md-10">
-                                                                    <input type="text" id="invfd_Cantidad_edit" name="invfd_Cantidad" class="form-control" />
+                                                                    <input type="text" id="invfd_Cantidad_edit" name="invfd_Cantidad" class="form-control" onkeypress="return justNumbers(event);"/>
                                                                     @Html.ValidationMessageFor(m => inventariofisicodetalle.invfd_Cantidad)
                                                                 </div>
                                                             </div>

@@ -207,8 +207,7 @@ namespace ERP_GMEDINA.Controllers
                     {
                         return HttpNotFound();
                     }
-                    ViewBag.pcat_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbProductoCategoria.pcat_UsuarioModifica);
-                    ViewBag.pcat_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbProductoCategoria.pcat_UsuarioCrea);
+                   
                     Session["tbProductoSubcategoria"] = null;
                     return View(tbProductoCategoria);
                 }
@@ -331,8 +330,7 @@ namespace ERP_GMEDINA.Controllers
 
                                             foreach (tbProductoSubcategoria subcategoria in List)
                                             {
-                                                subcategoria.pscat_UsuarioCrea = 1;
-                                                subcategoria.pscat_FechaCrea = DateTime.Now;
+                                               
 
                                                 subcate = db.UDP_Inv_tbProductoSubcategoria_Insert(subcategoria.pscat_Descripcion
                                                                                             , idMaster,
@@ -358,7 +356,7 @@ namespace ERP_GMEDINA.Controllers
                                     //else
                                     {
                                         _Tran.Complete();
-                                        //return RedirectToAction("Index");
+                                        return RedirectToAction("Edit/" + idMaster);
                                     }
 
                                 }
@@ -367,9 +365,10 @@ namespace ERP_GMEDINA.Controllers
                             catch (Exception Ex)
                             {
                                 Ex.Message.ToString();
+                                ModelState.AddModelError("", "No se Actualizó el Registro");
                                 ViewBag.pcat_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbProductoCategoria.pcat_UsuarioModifica);
                                 ViewBag.pcat_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbProductoCategoria.pcat_UsuarioCrea);
-                                MsjError = "-1";
+                                //MsjError = "-1";
                             }
                         }
                         return RedirectToAction("Index");

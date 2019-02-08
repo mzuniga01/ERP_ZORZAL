@@ -17,6 +17,12 @@ function SolicitarProducto(bod_Id, bod_Nombre, suc_Descripcion, prod_Codigo, pro
             $('#errorCantidad').text('');
             $('#validationCantidad').after('<ul id="ErrorValidacionGeneral" class="validation-summary-errors text-danger">Favor de Enviar una cantidad</ul>');
         }
+        if (CantidadSolicitada <= 0) {
+            $("#ErrorValidacionGeneral").remove();
+            $('#validationCantidad').text('');
+            $('#errorCantidad').text('');
+            $('#validationCantidad').after('<ul id="ErrorValidacionGeneral" class="validation-summary-errors text-danger">Favor de Enviar una cantidad mayor a 0</ul>');
+        }
         else if (CantidadDisponible < bodd_CantidadMinima) {
             $('#validationCantidad').text('');
             $('#errorCantidad').text('');

@@ -69,7 +69,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.invfd_Cantidad, new { @class = "control-label col-md-2" })
             <div class="col-md-8">
-                <input type="text" value="1" id="invfd_Cantidad" placeholder="" class="form-control" />
+                <input type="text" value="1" id="invfd_Cantidad" placeholder="" class="form-control" onkeypress="return justNumbers(event);"/>
                 <div id="validationCantidadFisica">
                     @Html.ValidationMessageFor(model => model.invfd_Cantidad)
                 </div>

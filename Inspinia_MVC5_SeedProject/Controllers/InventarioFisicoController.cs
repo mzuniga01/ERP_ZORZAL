@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using ERP_GMEDINA.Models;
 using System.Transactions;
+using CrystalDecisions.CrystalReports.Engine;
+using System.IO;
 
 namespace ERP_GMEDINA.Controllers
 {
@@ -66,12 +68,7 @@ namespace ERP_GMEDINA.Controllers
         }
         private void listas()
         {
-            var _bodegas = db.tbBodega.Select(s => new
-            {
-                bod_id = s.bod_Id,
-                bod_nombre = string.Concat(s.bod_Id + " - " + s.bod_Nombre)
-            }).ToList();
-
+          
             ViewBag.estif_Id = new SelectList(db.tbEstadoInventarioFisico, "estif_Id", "estif_Descripcion");
             ViewBag.invf_Id = new SelectList(db.tbInventarioFisico, "invf_Id", "invf_Descripcion");
             ViewBag.prod_Codigo = new SelectList(db.tbProducto, "prod_Codigo", "prod_Codigo");
@@ -94,6 +91,101 @@ namespace ERP_GMEDINA.Controllers
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
+        public JsonResult ProductosEnter(string cod_Barras)
+        {
+            var list = db.SP_tbInventariofisico_ProductosRepetidos(cod_Barras).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult ProductosRepetidos(string data_producto)
+        {
+            var datos = "";
+            if (Session["tbInventarioFisicoDetalle"] == null)
+            {
+
+            }
+            else
+            {
+                var menu = Session["tbInventarioFisicoDetalle"] as List<tbInventarioFisicoDetalle>;
+
+                foreach (var t in menu)
+                {
+                    if (t.prod_Codigo == data_producto)
+                        datos = data_producto;
+                }
+
+
+            }
+
+            return Json(datos);
+        }
+
+        public ActionResult ExportReport(int? id)
+        {
+            ReportDocument rd = new ReportDocument();
+            rd.Load(Path.Combine(Server.MapPath("~/Reports"), "ImprimirConciliacion.rpt"));
+            var tbInventarioFisico = db.tbInventarioFisico.ToList();
+            var tbEmpleado = db.tbEmpleado.ToList();
+            var tbestadoinventariofisico = db.tbEstadoInventarioFisico.ToList();
+            var tbInventarioFisicoDetalle = db.tbInventarioFisicoDetalle.ToList();
+            var tbProducto = db.tbProducto.ToList();
+            var tbBodega = db.tbBodega.ToList();
+            var tbUnidadMedida = db.tbUnidadMedida.ToList();
+            var todo = (from inv in tbInventarioFisico
+                        join  e in tbestadoinventariofisico on inv.estif_Id equals e.estif_Id
+                        join b in tbBodega on inv.bod_Id equals b.bod_Id
+                        join emp in tbEmpleado on b.bod_ResponsableBodega equals emp.emp_Id
+                        join invd in tbInventarioFisicoDetalle on inv.invf_Id equals invd.invf_Id
+                        join p in tbProducto on invd.prod_Codigo equals p.prod_Codigo
+                        join u in tbUnidadMedida on p.uni_Id equals u.uni_Id
+                        where inv.invf_Id == id
+                        select new
+                        {
+                            invf_Descripcion = inv.invf_Descripcion,
+                            invf_FechaInventario = inv.invf_FechaInventario,
+                            estif_Descripcion = e.estif_Descripcion,
+                            bod_Nombre = b.bod_Nombre,
+                            emp_Nombres = emp.emp_Nombres,
+                            emp_Apellidos = emp.emp_Apellidos,
+                            prod_CodigoBarras = p.prod_CodigoBarras,
+                            prod_Descripcion = p.prod_Descripcion,
+                            prod_Marca = p.prod_Marca,
+                            prod_Modelo = p.prod_Modelo,
+                            uni_Descripcion = u.uni_Descripcion,
+                            invfd_CantidadSistema = invd.invfd_CantidadSistema,
+                            invfd_Cantidad = invd.invfd_Cantidad
+                        }).ToList();
+
+            rd.SetDataSource(todo);
+            Response.Buffer = false;
+            Response.ClearContent();
+            Response.ClearHeaders();
+            try
+            {
+                Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+                stream.Seek(0, SeekOrigin.Begin);
+                return File(stream, "application/pdf", "InventarioFisico_List.pdf");
+                //{
+                //    PageMargins margins = rd.PrintOptions.PageMargins;/* TODO ERROR: Skipped SkippedTokensTrivia */
+                //    margins.bottomMargin = 200;/* TODO ERROR: Skipped SkippedTokensTrivia */
+                //    margins.leftMargin = 200;/* TODO ERROR: Skipped SkippedTokensTrivia */
+                //    margins.rightMargin = 50;/* TODO ERROR: Skipped SkippedTokensTrivia */
+                //    margins.topMargin = 100;/* TODO ERROR: Skipped SkippedTokensTrivia */
+                //    rd.PrintOptions.ApplyPageMargins(margins);/* TODO ERROR: Skipped SkippedTokensTrivia */
+                //}
+
+
+                //rd.PrintToPrinter(1, false, 0, 0);
+                //return View();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
         // GET: /InventarioFisico/Create
         public ActionResult Create()
         {
@@ -105,7 +197,14 @@ namespace ERP_GMEDINA.Controllers
             {
                 return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
             }
-            ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
+            try
+            {
+                ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
+            }
+            catch (Exception ex)
+            {
+                ex.Message.ToString();
+            }
             this.listas();
             return View();
         }
@@ -125,55 +224,64 @@ namespace ERP_GMEDINA.Controllers
             var detalle = (List<tbInventarioFisicoDetalle>)Session["tbInventarioFisicoDetalle"];
             if (ModelState.IsValid)
             {
-                using (TransactionScope _Tran = new TransactionScope())
+                if (detalle == null)
                 {
-                    try
+                    TempData["smserror"] = " No Puede Ingresar Una Entrada Sin Detalle.";
+                    ViewBag.smserror = TempData["smserror"];
+                    return View();
+                }
+                else
+                {
+                    using (TransactionScope _Tran = new TransactionScope())
                     {
-                        INVENTARIOFISICO = db.UDP_Inv_tbInventarioFisico_Insert(tbInventarioFisico.invf_Descripcion
-                                                                                , tbInventarioFisico.invf_ResponsableBodega
-                                                                                , tbInventarioFisico.bod_Id
-                                                                                , tbInventarioFisico.estif_Id
-                                                                                , tbInventarioFisico.invf_FechaInventario);
-                        foreach (UDP_Inv_tbInventarioFisico_Insert_Result InventarioFisico in INVENTARIOFISICO)
-                            id = Convert.ToInt32(InventarioFisico.MensajeError);
-                        if (MsjError == "-")
+                        try
                         {
-                            ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
-                            return View(tbInventarioFisico);
-                        }
-                        else
-                        {
-                            if (detalle != null)
+                            INVENTARIOFISICO = db.UDP_Inv_tbInventarioFisico_Insert(tbInventarioFisico.invf_Descripcion
+                                                                                    , tbInventarioFisico.invf_ResponsableBodega
+                                                                                    , tbInventarioFisico.bod_Id
+                                                                                    , tbInventarioFisico.estif_Id
+                                                                                    , tbInventarioFisico.invf_FechaInventario);
+                            foreach (UDP_Inv_tbInventarioFisico_Insert_Result InventarioFisico in INVENTARIOFISICO)
+                                id = Convert.ToInt32(InventarioFisico.MensajeError);
+                            if (MsjError == "-")
                             {
-                                if (detalle.Count > 0)
+                                ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
+                                return View(tbInventarioFisico);
+                            }
+                            else
+                            {
+                                if (detalle != null)
                                 {
-                                    foreach (tbInventarioFisicoDetalle invfd in detalle)
+                                    if (detalle.Count > 0)
                                     {
-                                        INVFISICODETALLE = db.UDP_Inv_tbInventarioFisicoDetalle_Insert(id
-                                                                                                        , invfd.prod_Codigo
-                                                                                                        , invfd.invfd_Cantidad
-                                                                                                        , invfd.invfd_CantidadSistema
-                                                                                                        , invfd.uni_Id);
-                                        foreach (UDP_Inv_tbInventarioFisicoDetalle_Insert_Result invfdetalle in INVFISICODETALLE)
-                                            MsjError = invfdetalle.MensajeError;
+                                        foreach (tbInventarioFisicoDetalle invfd in detalle)
                                         {
-                                            ModelState.AddModelError("", "No se Guardo el Registro");
+                                            INVFISICODETALLE = db.UDP_Inv_tbInventarioFisicoDetalle_Insert(id
+                                                                                                            , invfd.prod_Codigo
+                                                                                                            , invfd.invfd_Cantidad
+                                                                                                            , invfd.invfd_CantidadSistema
+                                                                                                            , invfd.uni_Id);
+                                            foreach (UDP_Inv_tbInventarioFisicoDetalle_Insert_Result invfdetalle in INVFISICODETALLE)
+                                                MsjError = invfdetalle.MensajeError;
+                                            {
+                                                ModelState.AddModelError("", "No se Guardo el Registro");
+                                            }
                                         }
                                     }
                                 }
+                                {
+                                    _Tran.Complete();
+                                }
                             }
-                            {
-                                _Tran.Complete();
-                            }
+
+
                         }
-
-
-                    }
-                    catch (Exception Ex)
-                    {
-                        //Ex.Message.ToString();
-                        //ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
-                        MsjError = "-1";
+                        catch (Exception Ex)
+                        {
+                            //Ex.Message.ToString();
+                            //ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
+                            MsjError = "-1";
+                        }
                     }
                 }
                 return RedirectToAction("Index");

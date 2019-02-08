@@ -27,7 +27,7 @@ public partial class tbInventarioFisicoDetalle
     public string prod_Codigo { get; set; }
 
 
-        [Display(Name = "Cantidad")]
+        [Display(Name = "Cantidad Fisica")]
     public decimal invfd_Cantidad { get; set; }
 
     [Display(Name = "Cantidad Sistema")]

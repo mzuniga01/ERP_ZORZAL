@@ -93,7 +93,7 @@ namespace ERP_GMEDINA.Controllers
                     {
                         IEnumerable<Object> List = null;
                         var Msj = "";
-                        List = db.UDP_Inv_tbEstadoMovimiento_Insert(tbEstadoMovimiento.estm_Descripcion);
+                        List = db.UDP_Inv_tbEstadoMovimiento_Insert(tbEstadoMovimiento.estm_Id,tbEstadoMovimiento.estm_Descripcion);
                         foreach (UDP_Inv_tbEstadoMovimiento_Insert_Result EstadoMovimientos in List)
                             Msj = EstadoMovimientos.MensajeError;
                     }
@@ -163,7 +163,7 @@ namespace ERP_GMEDINA.Controllers
                     tbEstadoMovimiento VtbEstadoMovimiento = db.tbEstadoMovimiento.Find(id);
                     IEnumerable<Object> List = null;
                     var Msj = "";
-                    List = db.UDP_Inv_tbEstadoMovimiento_Update(tbEstadoMovimiento.estm_Id, tbEstadoMovimiento.estm_Descripcion, tbEstadoMovimiento.estm_UsuarioCrea, tbEstadoMovimiento.estm_FechaCrea);
+                    List = db.UDP_Inv_tbEstadoMovimiento_Update(tbEstadoMovimiento.estm_Id, tbEstadoMovimiento.estm_Descripcion);
                     foreach (UDP_Inv_tbEstadoMovimiento_Update_Result EstadoMovimiento in List)
                         Msj = EstadoMovimiento.MensajeError;
                 }
@@ -254,7 +254,7 @@ namespace ERP_GMEDINA.Controllers
         }
 
         [HttpPost]
-        public JsonResult GuardarEstado(string estm_Descripcion)
+        public JsonResult GuardarEstado(byte estm_Id, string estm_Descripcion)
         {
             var MsjError = "";
             if (ModelState.IsValid)
@@ -265,7 +265,7 @@ namespace ERP_GMEDINA.Controllers
                 {
                     IEnumerable<Object> List = null;
                  
-                    List = db.UDP_Inv_tbEstadoMovimiento_Insert(estm_Descripcion);
+                    List = db.UDP_Inv_tbEstadoMovimiento_Insert(estm_Id , estm_Descripcion);
                     foreach (UDP_Inv_tbEstadoMovimiento_Insert_Result EstadoMovimientos in List)
                         MsjError = EstadoMovimientos.MensajeError;
                     if (MsjError == "-1")

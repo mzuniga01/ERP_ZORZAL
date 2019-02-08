@@ -21,7 +21,17 @@
     </div>
 </div>
 
-
+@if (ViewBag.smserror != "" && ViewBag.smserror != null)
+{     <div class="col-md-12" id="mensaje">
+        <div class="alert alert-warning alert-danger">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <h4><i class="icon fa fa-warning"></i>Alerta</h4>
+            <h2>No Puede Guardar una Entrada Sin Detalle</h2>
+        </div>
+    </div>
+}
 
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
@@ -50,7 +60,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-2">Bodega<span style="color:red">*</span></label>
                             <div class="col-md-10">
-                                @Html.DropDownList("bod_Id", (IEnumerable<SelectListItem>)ViewBag.bodega_Id,"Seleccione",  new { @class = "form-control" })
+                                @Html.DropDownList("bod_Id", (IEnumerable<SelectListItem>)ViewBag.bod_Id, "Seleccione",  new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.tbBodega.bod_Id)
                             </div>
                         </div>

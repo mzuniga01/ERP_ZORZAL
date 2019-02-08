@@ -99,7 +99,7 @@ namespace ERP_GMEDINA.Controllers
                 {
                     IEnumerable<object> List = null;
                     var MsjError = "";
-                    List = db.UDP_Inv_tbProveedor_Insert(tbProveedor.prov_Nombre,tbProveedor.prov_NombreContacto,tbProveedor.prov_Direccion,tbProveedor.prov_Email,tbProveedor.prov_Telefono,tbProveedor.prov_RTN);
+                    List = db.UDP_Inv_tbProveedor_Insert(tbProveedor.prov_Nombre,tbProveedor.prov_NombreContacto,tbProveedor.prov_Direccion,tbProveedor.prov_Email,tbProveedor.prov_Telefono,tbProveedor.prov_RTN,tbProveedor.acte_Id);
                     foreach (UDP_Inv_tbProveedor_Insert_Result Proveedor in List)
                         MsjError = Proveedor.MensajeError;
 
@@ -173,7 +173,7 @@ namespace ERP_GMEDINA.Controllers
 
 
         [HttpPost]
-        public JsonResult GuardarProveedor(string prov_RTN, string prov_Nombre, string prov_NombreContacto, string prov_Direccion, string prov_Email, string prov_Telefono)
+        public JsonResult GuardarProveedor(string prov_RTN, string prov_Nombre, string prov_NombreContacto, string prov_Direccion, string prov_Email, string prov_Telefono,byte acte_Id)
         {
             var MsjError = "";
             if (ModelState.IsValid)
@@ -186,7 +186,7 @@ namespace ERP_GMEDINA.Controllers
                    
 
 
-                    List = db.UDP_Inv_tbProveedor_Insert(prov_Nombre, prov_NombreContacto, prov_Direccion, prov_Email, prov_Telefono, prov_RTN);
+                    List = db.UDP_Inv_tbProveedor_Insert(prov_Nombre, prov_NombreContacto, prov_Direccion, prov_Email, prov_Telefono, prov_RTN,acte_Id);
                     foreach (UDP_Inv_tbProveedor_Insert_Result Proveedor in List)
                         MsjError = Proveedor.MensajeError;
 
@@ -239,9 +239,9 @@ namespace ERP_GMEDINA.Controllers
                                                          tbProveedor.prov_NombreContacto,
                                                          tbProveedor.prov_Direccion,
                                                          tbProveedor.prov_Email,
-                                                         tbProveedor.prov_Telefono, 
-                                                         tbProveedor.prov_UsuarioCrea, 
-                                                         tbProveedor.prov_FechaCrea);
+                                                         tbProveedor.prov_Telefono,
+                                                         tbProveedor.prov_RTN,
+                                                         tbProveedor.acte_Id);
                     foreach (UDP_Inv_tbProveedor_Update_Result Proveedor in List)
                         MsjError = Proveedor.MensajeError;
 

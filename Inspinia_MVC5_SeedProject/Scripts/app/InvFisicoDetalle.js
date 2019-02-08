@@ -89,31 +89,6 @@ function GetInventarioFisicoDetalle() {
 
 
 
-//enter
-$(function () {
-    $('#prod_CodigoBarras').keydown(function (e) {
-        if (e.keyCode == 13) {
-            $("#seleccionar").focus().click();
-
-            $(document).on("click", "#BuscarProducto tbody tr td button#seleccionar", function () {
-                id = $(this).closest('tr').data('id');
-                descripcion = $(this).closest('tr').data('content');
-                barras = $(this).closest('tr').data('delay');
-                uni = $(this).closest('tr').data('keyboard');
-                uniid = $(this).closest('tr').data('container');
-                $("#prod_Codigo").val(id);
-                $("#prod_Descripcion").val(descripcion);
-                $("#prod_CodigoBarras").val(barras);
-                $("#uni_Id").val(uni);
-                $("#uni_Ids").val(uniid);
-             
-            });
-        }
-    });
-});
-
-
-
 //eliminar datos agregados a la tabla
 $(document).on("click", "#detalle tbody tr td button#removerInventarioFisicoDetalle", function () {
     $(this).closest('tr').remove();
@@ -165,7 +140,7 @@ $(document).on("click", "#BuscarProducto tbody tr td button#seleccionar", functi
     id = $(this).closest('tr').data('id');
     descripcion = $(this).closest('tr').data('content');
     barras = $(this).closest('tr').data('delay');
-    uni = $(this).closest('tr').data('keyboard');
+    uni = $(this).closest('tr').data('animation');
     uniid = $(this).closest('tr').data('container');
     $("#prod_Codigo").val(id);
     $("#prod_Descripcion").val(descripcion);
@@ -403,13 +378,14 @@ function productos() {
         data: JSON.stringify({ productos: guardar }),
     }).done(function (data) {
         $.each(data, function (i, copiar) {
-            i = "<tr tr data-id=" + copiar.prod_Codigo + " , tr data-content=" + copiar.prod_Descripcion + " tr data-delay=" + copiar.prod_CodigoBarras + " , tr data-keyboard=" + copiar.prod_Modelo + " , tr data-container=" + copiar.uni_Id + " >";
+            i = "<tr tr data-id=" + copiar.prod_Codigo + " , tr data-content=" + copiar.prod_Descripcion + " tr data-delay=" + copiar.prod_CodigoBarras + " , tr data-keyboard=" + copiar.prod_Modelo + " , tr data-container=" + copiar.uni_Id + " , tr data-animation=" + copiar.uni_Descripcion + " >";
             i += "<td id ='prod_Codigo' hidden='hidden'>" + copiar.prod_Codigo + "</td>";
+            i += "<td id ='uni_Id' hidden='hidden'>" + copiar.uni_Id + "</td>";
             i += "<td id = 'prod_Descripcion'>" + copiar.prod_Descripcion + "</td>";
             i += "<td id = 'prod_Marca'>" + copiar.prod_Marca + "</td>";
             i += "<td id = 'prod_CodigoBarras'>" + copiar.prod_CodigoBarras + "</td>";
             i += "<td id = 'prod_Modelo'>" + copiar.prod_Modelo + "</td>";
-            i += "<td id = 'uni_Id'>" + copiar.uni_Id + "</td>";
+            i += "<td id = 'uni_Id'>" + copiar.uni_Descripcion + "</td>";
             i += "<td>" + "<button class='btn btn-primary btn-xs' value=" + copiar.prod_Codigo +" id='seleccionar' data-dismiss='modal'>Seleccionar</button>" + "</td>" 
             i += "</tr>";
             $('#BuscarProducto').append(i);
@@ -423,10 +399,10 @@ function productos() {
 //Productos Por Bodega en editar
 
 $("#Detalle").click(function () {
-    productos();
+    producto();
 });
 
-function productos() {
+function producto() {
     var bodega = $("#bod_Id").val();
     var guardar = {
         bod_Id: bodega
@@ -439,13 +415,14 @@ function productos() {
         data: JSON.stringify({ productos: guardar }),
     }).done(function (data) {
         $.each(data, function (i, copiar) {
-            i = "<tr tr data-id=" + copiar.prod_Codigo + " , tr data-content=" + copiar.prod_Descripcion + " tr data-delay=" + copiar.prod_CodigoBarras + " , tr data-keyboard=" + copiar.prod_Modelo + " , tr data-container=" + copiar.uni_Id + " >";
+            i = "<tr tr data-id=" + copiar.prod_Codigo + " , tr data-content=" + copiar.prod_Descripcion + " tr data-delay=" + copiar.prod_CodigoBarras + " , tr data-keyboard=" + copiar.prod_Modelo + " , tr data-container=" + copiar.uni_Id + " , tr data-animation=" + copiar.uni_Descripcion + " >";
             i += "<td id ='prod_Codigo' hidden='hidden'>" + copiar.prod_Codigo + "</td>";
+            i += "<td id ='uni_Id' hidden='hidden'>" + copiar.uni_Id + "</td>";
             i += "<td id = 'prod_Descripcion'>" + copiar.prod_Descripcion + "</td>";
             i += "<td id = 'prod_Marca'>" + copiar.prod_Marca + "</td>";
             i += "<td id = 'prod_CodigoBarras'>" + copiar.prod_CodigoBarras + "</td>";
             i += "<td id = 'prod_Modelo'>" + copiar.prod_Modelo + "</td>";
-            i += "<td id = 'uni_Id'>" + copiar.uni_Id + "</td>";
+            i += "<td id = 'uni_Id'>" + copiar.uni_Descripcion + "</td>";
             i += "<td>" + "<button class='btn btn-primary btn-xs' value=" + copiar.prod_Codigo + " id='seleccionar' data-dismiss='modal'>Seleccionar</button>" + "</td>"
             i += "</tr>";
             $('#BuscarProducto').append(i);
@@ -490,8 +467,7 @@ $('#AgregarNuevoDetalle').click(function () {
     } else {
         //Rellenar la tabla 
         contador = contador + 1;
-        copiar = "<tr id = 'Ban'><td></td><td></td><td>Nuevo Detalle</td></tr>";
-        copiar += "<tr data-id=" + contador + ">";
+        copiar = "<tr data-id=" + contador + ">";
         copiar += "<td id = 'producto'>" + $('#prod_CodigoBarras').val() + "</td>";
         copiar += "<td id = 'Descripcion'>" + $('#prod_Descripcion').val() + "</td>";
         copiar += "<td id = 'UnidadMedida'>" + $('#uni_Id').val() + "</td>";
@@ -540,6 +516,102 @@ $(document).on("click", "#InvDetalle tbody tr td button#removerInvFisicoDetalle"
         data: JSON.stringify({ detalle: detalle }),
     });
 });
+
+//Solo numeros
+function justNumbers(e) {
+    var keynum = window.event ? window.event.keyCode : e.which;
+    if ((keynum == 8) || (keynum == 46))
+        return true;
+
+    return /\d/.test(String.fromCharCode(keynum));
+}
+
+//Enter
+var contador = 0;
+$(document).keypress(function (e) {
+    console.log('Hola', e.target.id);
+    var IDInput = e.target.id;
+    if (e.which == 13) {
+        if (IDInput == 'prod_CodigoBarras') {
+            /////
+            $(function () {
+                $("#prod_CodigoBarras").val();
+                var cod_Barras = $("#prod_CodigoBarras").val();
+                $.ajax({
+                    url: "/InventarioFisico/ProductosEnter",
+                    method: "POST",
+                    dataType: 'json',
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify({
+                        cod_Barras: cod_Barras,
+                    }),
+                }).done(function (data) {
+                    if (data.length > 0) {
+                        $.each(data, function (key, val) {
+                            console.log('each')
+                            data_producto = val.prod_Codigo;
+                            data_cantidadsistema = val.bodd_CantidadExistente;
+                            data_cantidadfisica = val.invfd_Cantidad;
+                            data_unidad = val.uni_Descripcion;
+                            data_Descripcion = val.prod_Descripcion;
+                            $('#prod_Codigo').val(data_producto);
+                            $('#invfd_CantidadSistema').val(data_cantidadsistema);
+                            $('#invfd_Cantidad').val('1');
+                            $('#uni_Id').val(data_unidad);
+                            $('#prod_Descripcion').val(data_Descripcion);
+                        })
+                        $('#Error_Barras').text('');
+                        $("#bodd_CantidadExistente").focus();
+                        ///--
+                        $.ajax({
+                            url: "/InventarioFisico/ProductosRepetidos",
+                            method: "POST",
+                            dataType: 'json',
+                            contentType: "application/json; charset=utf-8",
+                            data: JSON.stringify({ data_producto: data_producto }),
+                        })
+                            .done(function (datos) {
+                                //if (datos.length > 0) {
+                                if (datos == data_producto) {
+                                    //alert('Es Igual.')
+                                    $('#prod_Codigo').val();
+                                    $('#invfd_CantidadSistema').val();
+                                    $('#invfd_Cantidad').val();
+                                    $('#uni_Id').val();
+                                    $('#prod_Descripcion').val();
+                                    $('#Error_Barras').text('');
+                                    $('#ErrorBarras_Create').after('<ul id="Error_Barras" class="validation-summary-errors text-danger">*El Codigo ya ha sido ingresado</ul>');
+                                    $("#prod_CodigoBarras").focus();
+                                }
+                                else {
+                                    //alert('NO ES IGUAL')
+
+                                }
+
+
+                            })
+
+                    }
+                    else {
+                        $('#Error_Barras').text('');
+                        $('#ErrorBarras_Create').after('<ul id="Error_Barras" class="validation-summary-errors text-danger">*Producto no existe</ul>');
+                    }
+                });
+                return false;
+            });
+            return false;
+        }
+        else
+            return false;
+    }
+});
+
+
+
+//Cambio de Bodega
+
+
+
 
 //$("#seleccionar").click("#bod_Id", function () {
 //    console.log("Hola");

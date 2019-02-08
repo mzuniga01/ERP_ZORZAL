@@ -48,7 +48,7 @@
 
                                     @Html.LabelFor(model => model.bod_Id, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.DropDownList("bod_Id", (IEnumerable<SelectListItem>)ViewBag.bodegas, new { @class = "form-control" })
+                                        @Html.DropDownList("bod_Ids", (IEnumerable<SelectListItem>)ViewBag.bodegas, new { @class = "form-control" })
                                         <p style="color:red"> @Html.ValidationMessageFor(model => model.bod_Id)</p>
                                     </div>
                                 </div>
@@ -70,6 +70,7 @@
                                 @Html.HiddenFor(model => model.invf_UsuarioCrea)
                                 @Html.HiddenFor(model => model.invf_FechaCrea)
                                 @Html.HiddenFor(model => model.estif_Id)
+                                @Html.HiddenFor(model => model.bod_Id)
 
                                 <div class="form-group">
                                     <div class="col-md-offset-2 col-md-10">
@@ -86,9 +87,7 @@
                                             }
                                         }
                                         @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
-                                        <div id="Imprimir">
-                                            <a href="~/ReportViewer/ImprimirConciliacion.aspx" class="btn-primary"></a>
-                                        </div>
+                                        @Html.ActionLink("Imprimir", "ExportReport", new { id = Model.invf_Id }, new { @class = "btn btn-primary", @Id = "Imprimir" })
 
                                     </div>
                                 </div>
@@ -251,17 +250,17 @@
             if (valorid == 1) {
                 document.getElementById("Imprimir").style.display = 'none';
                 document.getElementById("IndexDetalleConciliado").style.display = 'none';
-                $("#bod_Id").prop("disabled", true);
+                $("#bod_Ids").prop("disabled", true);
             }
             else
             {
-                $("#bod_Id").prop("disabled", true);
+                $("#bod_Ids").prop("disabled", true);
                 document.getElementById("invf_Descripcion").setAttribute("readonly", true);
                 document.getElementById("aceptar").style.display = 'none';
                 document.getElementById("Crear").style.display = 'none';
                 document.getElementById("IndexdetalleBotones").style.display = 'none';
                 document.getElementById("IndexDetalleConciliado").style.display = 'display';
-
+                document.getElementById("Detalle").style.display = 'none';
             }
 
     };
