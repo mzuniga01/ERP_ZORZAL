@@ -66,7 +66,8 @@ namespace ERP_ZORZAL.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             tbProveedor tbProveedor = db.tbProveedor.Find(id);
-            ViewBag.acte_Id = new SelectList(db.tbActividadEconomica, "acte_Id", "acte_Descripcion");
+         
+            ViewBag.acte_Id = new SelectList(db.tbActividadEconomica, "acte_Id", "acte_Descripcion", tbProveedor.tbActividadEconomica.acte_Descripcion);
             if (tbProveedor == null)
             {
                 return HttpNotFound();
@@ -147,7 +148,7 @@ namespace ERP_ZORZAL.Controllers
 
                     if (MsjError == "-1")
                     {
-
+                        ViewBag.acte_Id = new SelectList(db.tbActividadEconomica, "acte_Id", "acte_Descripcion");
                         ModelState.AddModelError("", "No se guardo el registro, Contacte al Administrador");
 
                     }

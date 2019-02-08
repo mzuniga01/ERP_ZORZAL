@@ -49,7 +49,7 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.prov_RTN, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                @Html.EditorFor(model => model.prov_RTN, new { @class = "form-control", maxlength = 14 })
+                                @Html.TextBoxFor(model => model.prov_RTN, new { @class = "form-control", maxlength = 14 })
                                 <p style="color:red">@Html.ValidationMessageFor(model => model.prov_RTN)</p>
 
                             </div>
@@ -73,7 +73,7 @@
 
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.prov_Direccion, new { @class = "control-label col-md-2" })
+                            <label class="control-label col-md-2">Direccion<span style="color:red">*</span></label>
                             <div class="col-md-4">
 
                                 @Html.TextAreaFor(model => model.prov_Direccion, new { @class = "form-control", maxlength = 50 })
@@ -85,7 +85,12 @@
                             @Html.LabelFor(model => model.prov_Email, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
                                 @Html.TextBoxFor(model => model.prov_Email, new { @class = "form-control", maxlength = 50 })
-                                <p style="color:red">@Html.ValidationMessageFor(model => model.prov_Email)</p>
+
+
+                                <div id="MessageForCorreo">
+                                    <p style="color:red"> @Html.ValidationMessageFor(model => model.prov_Email)</p>
+                                </div>
+                              
                             </div>
                         </div>
 
@@ -99,6 +104,7 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.acte_Id, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
+                             
                                 @Html.DropDownList("acte_Id", (IEnumerable<SelectListItem>)ViewBag.acte_Id, "Seleccione", new { @class = "form-control" })
                                 <p style="color:red">@Html.ValidationMessageFor(model => model.acte_Id)</p>
                             </div>

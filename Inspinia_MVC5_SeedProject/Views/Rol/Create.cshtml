@@ -31,7 +31,8 @@
                         
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.rol_Descripcion, new { @class = "control-label col-md-2"})
+                            <label class="control-label col-md-2">Descripción Rol<span style="color:red"> *</span></label>
+                            @*@Html.LabelFor(model => model.rol_Descripcion, new { @class = "control-label col-md-2" })*@
                             <div class="col-md-4">
                                 @Html.EditorFor(model => model.rol_Descripcion, new { @maxlength = "100" })
                                 <div id="validationDescripcionRol">

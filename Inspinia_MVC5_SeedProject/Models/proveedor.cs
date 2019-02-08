@@ -51,5 +51,6 @@ namespace ERP_GMEDINA.Models
         [Required(ErrorMessage = "El campo no puede estar vacio")]
         [Display(Name = "Actividad Economica")]
         public Nullable<short> acte_Id { get; set; }
+      
     }
 }

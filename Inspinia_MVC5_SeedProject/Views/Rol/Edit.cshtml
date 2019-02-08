@@ -48,9 +48,10 @@
                             </div>
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.rol_Descripcion, new { @class = "control-label col-md-2", @maxlength = "100" })
+                                <label class="control-label col-md-2">Descripción Rol<span style="color:red"> *</span></label>
+                                @*@Html.LabelFor(model => model.rol_Descripcion, new { @class = "control-label col-md-2" })*@
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.rol_Descripcion)
+                                    @Html.EditorFor(model => model.rol_Descripcion, new { @maxlength = "100" })
                                     <div id="validationDescripcionRol">
                                         <p style="color:red">@Html.ValidationMessageFor(model => model.rol_Descripcion)</p>
                                     </div>

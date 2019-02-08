@@ -1,11 +1,19 @@
 ﻿$('#prov_Email').change(function (e) {
     var emailRegex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     var EmailId = this.value;
-    if (emailRegex.test(EmailId))
+    if (emailRegex.test(EmailId)) {
+        $('#ErrorCorreo').text('');
         this.style.backgroundColor = "";
-    else
-        this.style.backgroundColor = "LightPink";
-    
+    }
+
+    else {
+        console.log('hola');
+        $('#ErrorCorreo').text('');
+        $('#MessageForCorreo').after('<ul id="ErrorCorreo" class="validation-summary-errors text-danger">Correo Electronico Es Incorrecto </ul>');
+        $("#prov_Email").focus();
+    }
+
+
 });
 $("#prov_Telefono").on("keypress keyup blur", function (event) {
     //this.value = this.value.replace(/[^0-9\.]/g,'');
@@ -22,7 +30,8 @@ $('#btnGuardar').click(function () {
     var Direccion = $("#prov_Direccion").val();
     var Email = $("#prov_Email").val();
     var Telefono = $("#prov_Telefono").val();
-    var Actividad = $("#acte_Id").val();
+    var Actividad = $("#acte_Id").find('option:selected').val();
+    console.log(Actividad);
     if (RTN == '') {
         $('#RTN').text('');
         $('#errorRTN').text('');
@@ -71,7 +80,7 @@ $('#btnGuardar').click(function () {
             method: "POST",
             dataType: 'json',
             contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ prov_RTN: RTN, prov_Nombre: Nombre, prov_NombreContacto: Contacto, prov_Direccion: Direccion, prov_Email: Email, prov_Telefono: Telefono, Actividad: acte_Id }),
+            data: JSON.stringify({ prov_RTN: RTN, prov_Nombre: Nombre, prov_NombreContacto: Contacto, prov_Direccion: Direccion, prov_Email: Email, prov_Telefono: Telefono, acte_Id: Actividad}),
         })
                 .done(function (data) {
                     if (data == "-1") {
@@ -146,7 +155,7 @@ $('#btnActualizar').click(function () {
             method: "POST",
             dataType: 'json',
             contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ prov_Id:Id,prov_RTN: RTN, prov_Nombre: Nombre, prov_NombreContacto: Contacto, prov_Direccion: Direccion, prov_Email: Email, prov_Telefono: Telefono, Actividad: acte_Id }),
+            data: JSON.stringify({ prov_Id: Id, prov_RTN: RTN, prov_Nombre: Nombre, prov_NombreContacto: Contacto, prov_Direccion: Direccion, prov_Email: Email, prov_Telefono: Telefono, acte_Id: Actividad }),
         })
             .done(function (data) {
                 if (data == "-1") {
