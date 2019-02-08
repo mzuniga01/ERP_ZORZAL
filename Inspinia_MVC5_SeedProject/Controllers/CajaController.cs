@@ -137,7 +137,7 @@ namespace ERP_GMEDINA.Controllers
                                 IEnumerable<object> list = null;
                                 list = db.UDP_Vent_tbCaja_Insert(tbCaja.cja_Descripcion, tbCaja.suc_Id, Function.GetUser(), Function.DatetimeNow());
                                 foreach (UDP_Vent_tbCaja_Insert_Result caja in list)
-                                    MensajeError = caja.MensajeError;
+                                    MensajeError = caja.MensajeError.ToString();
                                 if (MensajeError.StartsWith("-1"))
                                 {
                                     ViewBag.suc_Id = new SelectList(Sucursal, "suc_Id", "suc_Descripcion");
@@ -251,7 +251,7 @@ namespace ERP_GMEDINA.Controllers
                                 IEnumerable<object> list = null;
                                 list = db.UDP_Vent_tbCaja_Update(tbCaja.cja_Id, tbCaja.cja_Descripcion, tbCaja.suc_Id, tbCaja.cja_UsuarioCrea, tbCaja.cja_FechaCrea, Function.GetUser(), Function.DatetimeNow());
                                 foreach (UDP_Vent_tbCaja_Update_Result caja in list)
-                                    MensajeError = caja.MensajeError;
+                                    MensajeError = caja.MensajeError.ToString();
                                 if (MensajeError.StartsWith("-1"))
                                 {
                                     ViewBag.suc_Id = new SelectList(Sucursal, "suc_Id", "suc_Descripcion");

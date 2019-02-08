@@ -9264,12 +9264,12 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <End Role="tbActividadEconomica" EntitySet="tbActividadEconomica" />
             <End Role="tbProveedor" EntitySet="tbProveedor" />
           </AssociationSet>
-          <FunctionImport Name="UDP_Gral_tbActividadEconomica_Insert" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Gral_tbActividadEconomica_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbActividadEconomica_Insert_Result)">
             <Parameter Name="acte_Descripcion" Mode="In" Type="String" />
             <Parameter Name="acte_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="acte_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Gral_tbActividadEconomica_Update" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Gral_tbActividadEconomica_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbActividadEconomica_Update_Result)">
             <Parameter Name="acte_Id" Mode="In" Type="Int16" />
             <Parameter Name="acte_Descripcion" Mode="In" Type="String" />
             <Parameter Name="acte_UsuarioCrea" Mode="In" Type="Int32" />
@@ -9277,13 +9277,13 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="acte_UsuarioModifica" Mode="In" Type="Int32" />
             <Parameter Name="acte_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Vent_tbCaja_Insert" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Vent_tbCaja_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbCaja_Insert_Result)">
             <Parameter Name="cja_Descripcion" Mode="In" Type="String" />
             <Parameter Name="suc_Id" Mode="In" Type="Int32" />
             <Parameter Name="cja_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="cja_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Vent_tbCaja_Update" ReturnType="Collection(String)">
+          <FunctionImport Name="UDP_Vent_tbCaja_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbCaja_Update_Result)">
             <Parameter Name="cja_Id" Mode="In" Type="Int16" />
             <Parameter Name="cja_Descripcion" Mode="In" Type="String" />
             <Parameter Name="suc_Id" Mode="In" Type="Int32" />
@@ -9851,12 +9851,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Property Type="Decimal" Name="PRECIOUNITARIO" Nullable="true" Precision="10" Scale="2" />
           <Property Type="Decimal" Name="CANTIDADFACTURA" Nullable="true" Precision="5" Scale="2" />
           <Property Type="Boolean" Name="EXISTE" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="UDP_Gral_tbActividadEconomica_Insert_Result">
-          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="Max" />
-        </ComplexType>
-        <ComplexType Name="UDP_Gral_tbActividadEconomica_Update_Result">
-          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="Max" />
         </ComplexType>
         <ComplexType Name="UDP_Gral_tbMoneda_Insert_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
@@ -14496,8 +14490,14 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
         <ComplexType Name="UDP_Vent_tbPuntoEmisionDetalle_Update_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
+        <ComplexType Name="UDP_Gral_tbActividadEconomica_Insert_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="Max" />
+        </ComplexType>
+        <ComplexType Name="UDP_Gral_tbActividadEconomica_Update_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="Max" />
+        </ComplexType>
         <ComplexType Name="UDP_Vent_tbCaja_Insert_Result">
-          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="Max" />
         </ComplexType>
         <ComplexType Name="UDP_Vent_tbCaja_Update_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="Max" />
@@ -17049,10 +17049,34 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbPedido_Factura" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbPedido_Factura" />
-          <FunctionImportMapping FunctionImportName="UDP_Gral_tbActividadEconomica_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbActividadEconomica_Insert" />
-          <FunctionImportMapping FunctionImportName="UDP_Gral_tbActividadEconomica_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbActividadEconomica_Update" />
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbCaja_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbCaja_Insert" />
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbCaja_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbCaja_Update" />
+          <FunctionImportMapping FunctionImportName="UDP_Gral_tbActividadEconomica_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbActividadEconomica_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbActividadEconomica_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Gral_tbActividadEconomica_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbActividadEconomica_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbActividadEconomica_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbCaja_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbCaja_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbCaja_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbCaja_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbCaja_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbCaja_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
