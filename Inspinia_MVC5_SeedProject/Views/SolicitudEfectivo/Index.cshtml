@@ -106,10 +106,9 @@
                                             {
                                                 <td>
                                                     @Html.ActionLink("Detalle", "Details", new { id = item.IdSolicitud }, new { @class = "btn btn-primary btn-xs" })
-                                                    @Html.ActionLink("Entregar Efectivo", "EditEntregaEfectivo", new { id = item.IdSolicitud }, new { @class = "btn btn-danger btn-xs" })
-                                                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalImprimir">
-                                                        Imprimir
-                                                    </button>
+                                                    @Html.ActionLink("Imprimir", "ExportReport", new { id = item.IdSolicitud }, new { @class = "btn btn-primary btn-xs" })
+
+
                                                 </td>
                                             }
 
@@ -138,9 +137,9 @@
                                             {
                                                 <td>
                                                     @Html.ActionLink("Detalle", "Details", new { id = item.IdSolicitud }, new { @class = "btn btn-primary btn-xs" })
-                                                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalImprimir">
-                                                        Imprimir
-                                                    </button>
+                                                    @Html.ActionLink("Imprimir", "ExportReport", new { id = item.IdSolicitud }, new { @class = "btn btn-primary btn-xs" })
+
+
                                                 </td>
 
 
@@ -153,9 +152,15 @@
                                                     @Html.ActionLink("Detalle", "Details", new { id = item.IdSolicitud }, new { @class = "btn btn-primary btn-xs" })
                                                     @Html.ActionLink("Editar", "Edit", new { id = item.IdSolicitud }, new { @class = "btn btn-white btn-xs", id = Editar })
                                                     @Html.ActionLink("Entregar Efectivo", "EditEntregaEfectivo", new { id = item.IdSolicitud }, new { @class = "btn btn-danger btn-xs" })
-                                                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalImprimir">
-                                                        Imprimir
-                                                    </button>
+                                                    @Html.ActionLink("Imprimir", "ExportReport", new { id = item.IdSolicitud }, new { @class = "btn btn-primary btn-xs" })
+
+
+
+
+
+
+
+
                                                 </td>
                                             }
 

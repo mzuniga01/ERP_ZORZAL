@@ -748,7 +748,6 @@ C:\Users\Lab 1\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\System.
 C:\Users\Lab 1\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\System.Web.WebPages.xml
 C:\Users\Lab 1\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\System.Web.WebPages.Deployment.xml
 C:\Users\Lab 1\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\System.Web.WebPages.Razor.xml
-C:\Users\DELL\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\Antlr3.Runtime.pdb
 C:\Users\DELL\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\EntityFramework.xml
 C:\Users\DELL\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\EntityFramework.SqlServer.xml
 C:\Users\DELL\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\Microsoft.AspNet.Identity.Core.xml
@@ -763,7 +762,6 @@ C:\Users\DELL\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\Microsof
 C:\Users\DELL\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\DELL\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Users\DELL\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\Microsoft.Owin.Security.Twitter.xml
-C:\Users\DELL\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\Newtonsoft.Json.pdb
 C:\Users\DELL\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\Newtonsoft.Json.xml
 C:\Users\DELL\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\System.Web.Helpers.xml
 C:\Users\DELL\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\System.Web.Mvc.xml
@@ -772,4 +770,3 @@ C:\Users\DELL\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\System.W
 C:\Users\DELL\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\System.Web.WebPages.xml
 C:\Users\DELL\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\System.Web.WebPages.Deployment.xml
 C:\Users\DELL\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\System.Web.WebPages.Razor.xml
-C:\Users\DELL\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\es\Microsoft.ReportViewer.WebForms.resources.dll
