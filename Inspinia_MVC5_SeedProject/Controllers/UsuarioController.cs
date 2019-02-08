@@ -10,6 +10,7 @@ using ERP_GMEDINA.Models;
 using System.Net.Mail;
 using SimpleCrypto;
 using System.Transactions;
+using Microsoft.Owin.Security;
 
 namespace ERP_GMEDINA.Controllers
 {
@@ -25,7 +26,7 @@ namespace ERP_GMEDINA.Controllers
             {
                 if (Function.Sesiones("Usuario/Index"))
                 {
-                    return View(db.tbUsuario.ToList());
+
                 }
                 else
                 {
@@ -106,7 +107,18 @@ namespace ERP_GMEDINA.Controllers
                                 }
                                 else
                                 {
-                                    return RedirectToAction("Index");
+                                    Session.Clear();
+                                    Session.Abandon();
+                                    Response.Buffer = true;
+                                    Response.ExpiresAbsolute = DateTime.Now.AddDays(-1D);
+                                    Response.Expires = -1500;
+                                    Response.CacheControl = "no-cache";
+                                    Response.Cache.SetCacheability(HttpCacheability.NoCache);
+                                    AuthenticationManager.SignOut();
+                                    Session["UserLogin"] = null;
+                                    Session["UserLoginRols"] = null;
+                                    Session["UserLoginEsAdmin"] = null;
+                                    return RedirectToAction("Index", "Login");
                                 }
                             }
                             else
@@ -137,11 +149,28 @@ namespace ERP_GMEDINA.Controllers
                 return RedirectToAction("Index", "Login");
         }
 
+        private IAuthenticationManager AuthenticationManager
+        {
+            get
+            {
+                return HttpContext.GetOwinContext().Authentication;
+            }
+        }
+
         // GET: /Usuario/Details/5
         public ActionResult Details(int? id)
         {
             if (Function.GetUserLogin())
             {
+                if (Function.Sesiones("Usuario/Details"))
+                {
+
+                }
+                else
+                {
+                    return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+                }
+
                 if (Function.GetUserRols("Usuario/Details"))
                 {
                     if (id == null)
@@ -169,6 +198,15 @@ namespace ERP_GMEDINA.Controllers
         {
             if (Function.GetUserLogin())
             {
+                if (Function.Sesiones("Usuario/Create"))
+                {
+
+                }
+                else
+                {
+                    return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+                }
+
                 if (Function.GetUserRols("Usuario/Create"))
                 {
                     Session["tbRolesUsuario"] = null;
@@ -276,6 +314,14 @@ namespace ERP_GMEDINA.Controllers
         {
             if (Function.GetUserLogin())
             {
+                if (Function.Sesiones("Usuario/ModificarCuenta"))
+                {
+
+                }
+                else
+                {
+                    return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+                }
                 if (Function.GetUserRols("Usuario/ModificarCuenta"))
                 {
                     if (id == null)
@@ -356,6 +402,15 @@ namespace ERP_GMEDINA.Controllers
         {
             if (Function.GetUserLogin())
             {
+                if (Function.Sesiones("Usuario/Edit"))
+                {
+
+                }
+                else
+                {
+                    return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+                }
+
                 if (Function.GetUserRols("Usuario/Edit"))
                 {
                     if (id == null)
@@ -418,6 +473,7 @@ namespace ERP_GMEDINA.Controllers
                                 return RedirectToAction("Index");
                             }
                         }
+
                         catch (Exception Ex)
                         {
                             Ex.Message.ToString();

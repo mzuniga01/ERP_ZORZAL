@@ -1421,7 +1421,6 @@
     <Content Include="Views\Producto\Index.cshtml" />
     <Content Include="Views\Usuario\Create.cshtml" />
     <Content Include="Views\Usuario\Details.cshtml" />
-    <Content Include="Views\Usuario\Edit.cshtml" />
     <Content Include="Views\ProductoCategoria\Create.cshtml" />
     <Content Include="Views\ProductoCategoria\Delete.cshtml" />
     <Content Include="Views\ProductoCategoria\Details.cshtml" />
@@ -1503,6 +1502,7 @@
     <Content Include="Views\Box\_EditProductoSalidaDetalle.cshtml" />
     <Content Include="Views\Box\_EditSalidaDetalle.cshtml" />
     <Content Include="Views\Box\_SalidaDetalle.cshtml" />
+    <Content Include="Views\Usuario\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
