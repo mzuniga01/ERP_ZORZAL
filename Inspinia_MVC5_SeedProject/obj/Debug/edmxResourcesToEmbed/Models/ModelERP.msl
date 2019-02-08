@@ -877,20 +877,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Gral_tbCuentasBanco_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbCuentasBanco_Insert">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbCuentasBanco_Insert_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Gral_tbCuentasBanco_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbCuentasBanco_Update">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbCuentasBanco_Update_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbMovimientoCaja_Apertura_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbMovimientoCaja_Apertura_Insert">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_Apertura_Insert_Result">
@@ -915,20 +901,6 @@
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudEfectivo_Apertura_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudEfectivo_Apertura_Insert">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivo_Apertura_Insert_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Vent_tbCliente_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbCliente_Insert">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbCliente_Insert_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Vent_tbCliente_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbCliente_Update">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbCliente_Update_Result">
           <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
         </ComplexTypeMapping>
       </ResultMapping>
@@ -1853,6 +1825,7 @@
     <EntitySetMapping Name="tbPago">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbPago">
         <MappingFragment StoreEntitySet="tbPago">
+          <ScalarProperty Name="nocre_Codigo_cdto_Id" ColumnName="nocre_Codigo_cdto_Id" />
           <ScalarProperty Name="pago_RazonAnulado" ColumnName="pago_RazonAnulado" />
           <ScalarProperty Name="pago_FechaModifica" ColumnName="pago_FechaModifica" />
           <ScalarProperty Name="pago_UsuarioModifica" ColumnName="pago_UsuarioModifica" />
@@ -2568,5 +2541,9 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Gral_tbCuentasBanco_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbCuentasBanco_Insert" />
+    <FunctionImportMapping FunctionImportName="UDP_Gral_tbCuentasBanco_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbCuentasBanco_Update" />
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbCliente_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbCliente_Insert" />
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbCliente_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbCliente_Update" />
   </EntityContainerMapping>
 </Mapping>

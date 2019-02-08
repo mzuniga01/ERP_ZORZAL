@@ -90,12 +90,12 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.SolicitudCreditoAprobar = db.tbSolicitudCredito.ToList();
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbSolicitudCredito tbSolicitudCredito = db.tbSolicitudCredito.Find(id);
             if (tbSolicitudCredito == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbSolicitudCredito);
         }
@@ -179,10 +179,10 @@ namespace ERP_GMEDINA.Controllers
                                     tbSolicitudCredito.clte_Id,
                                     tbSolicitudCredito.escre_Id,
                                     tbSolicitudCredito.cred_FechaSolicitud,
-                                           //   tbSolicitudCredito.cred_FechaAprobacion,
                                            tbSolicitudCredito.cred_MontoSolicitado,
-                                    //  tbSolicitudCredito.cred_MontoAprobado,
-                                    tbSolicitudCredito.cred_DiasSolicitado);
+                                    tbSolicitudCredito.cred_DiasSolicitado,
+                                    Function.GetUser(),
+                                    Function.DatetimeNow());
                                 foreach (UDP_Vent_tbSolicitudCredito_Insert_Result SolicitudCredito in list)
                                     MensajeError = SolicitudCredito.MensajeError;
                                 if (MensajeError == "-1")
@@ -272,7 +272,7 @@ namespace ERP_GMEDINA.Controllers
                         /////////////////////////////CODIGO
                         if (id == null)
                         {
-                            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                            return RedirectToAction("Index");
                         }
                         tbSolicitudCredito tbSolicitudCredito = db.tbSolicitudCredito.Find(id);
 
@@ -281,7 +281,7 @@ namespace ERP_GMEDINA.Controllers
                         ViewBag.Aprobacion = db.tbSolicitudCredito.ToList();
                         if (tbSolicitudCredito == null)
                         {
-                            return HttpNotFound();
+                            return RedirectToAction("NotFound", "Login");
                         }
                         // ViewBag.cred_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSolicitudCredito.cred_UsuarioCrea);
                         //ViewBag.cred_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSolicitudCredito.cred_UsuarioModifica);
@@ -310,7 +310,7 @@ namespace ERP_GMEDINA.Controllers
                 return RedirectToAction("Index", "Login");
             /* if (id == null)
              {
-                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                 return RedirectToAction("Index");
              }
              tbSolicitudCredito tbSolicitudCredito = db.tbSolicitudCredito.Find(id);
 
@@ -319,7 +319,7 @@ namespace ERP_GMEDINA.Controllers
              ViewBag.Aprobacion = db.tbSolicitudCredito.ToList();
              if (tbSolicitudCredito == null)
              {
-                 return HttpNotFound();
+                 return RedirectToAction("NotFound", "Login");
              }
              // ViewBag.cred_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSolicitudCredito.cred_UsuarioCrea);
              //ViewBag.cred_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSolicitudCredito.cred_UsuarioModifica);
@@ -477,12 +477,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbSolicitudCredito tbSolicitudCredito = db.tbSolicitudCredito.Find(id);
             if (tbSolicitudCredito == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbSolicitudCredito);
         }

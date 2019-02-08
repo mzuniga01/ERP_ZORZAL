@@ -13,7 +13,7 @@ namespace ERP_GMEDINA.Controllers
     public class ExoneracionController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
-
+        GeneralFunctions Function = new GeneralFunctions();
         public ActionResult ClientesnoExonerado()
         {
 
@@ -34,12 +34,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbExoneracion tbExoneracion = db.tbExoneracion.Find(id);
             if (tbExoneracion == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbExoneracion);
         }
@@ -74,7 +74,8 @@ namespace ERP_GMEDINA.Controllers
                                                             tbExoneracion.exo_ExoneracionActiva,
                                                             tbExoneracion.exo_FechaInicialVigencia,
                                                             tbExoneracion.exo_FechaIFinalVigencia,
-                                                            tbExoneracion.clte_Id);
+                                                            tbExoneracion.clte_Id, Function.GetUser(),
+                                    Function.DatetimeNow());
                     foreach (UDP_Vent_tbExoneracion_Insert_Result Exoneracion in list)
                         MensajeError = Exoneracion.MensajeError;
                     if (MensajeError == -1)
@@ -111,12 +112,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbExoneracion tbExoneracion = db.tbExoneracion.Find(id);
             if (tbExoneracion == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             ViewBag.exo_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbExoneracion.exo_UsuarioCrea);
             ViewBag.exo_UsuarioModifa = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbExoneracion.exo_UsuarioModifa);
@@ -149,7 +150,8 @@ namespace ERP_GMEDINA.Controllers
                                                             tbExoneracion.exo_FechaIFinalVigencia,
                                                             tbExoneracion.clte_Id,
                                                             pExoneracion.exo_UsuarioCrea,
-                                                            pExoneracion.exo_FechaCrea);
+                                                            pExoneracion.exo_FechaCrea, Function.GetUser(),
+                                    Function.DatetimeNow());
                     foreach (UDP_Vent_tbExoneracion_Update_Result Exoneracion in list)
                         MensajeError = Exoneracion.MensajeError;
                     if (MensajeError == -1)
@@ -184,12 +186,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbExoneracion tbExoneracion = db.tbExoneracion.Find(id);
             if (tbExoneracion == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbExoneracion);
         }

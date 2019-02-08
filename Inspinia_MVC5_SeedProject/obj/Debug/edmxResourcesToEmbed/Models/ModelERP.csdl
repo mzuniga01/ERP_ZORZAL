@@ -10,15 +10,21 @@
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbEstadoSolicitudCredito_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbEstadoSolicitudCredito_Insert_Result)">
       <Parameter Name="escre_Descripcion" Mode="In" Type="String" />
+      <Parameter Name="escre_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="escre_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbPuntoEmision_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPuntoEmision_Insert_Result)">
       <Parameter Name="pemi_NumeroCAI" Mode="In" Type="String" />
+      <Parameter Name="pemi_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="pemi_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbPuntoEmision_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPuntoEmision_Update_Result)">
       <Parameter Name="pemi_Id" Mode="In" Type="Int32" />
       <Parameter Name="pemi_NumeroCAI" Mode="In" Type="String" />
       <Parameter Name="pemi_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="pemi_FechaCrea" Mode="In" Type="DateTime" />
+      <Parameter Name="pemi_UsuarioModifica" Mode="In" Type="Int32" />
+      <Parameter Name="pemi_FechaModifica" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbPuntoEmisionDetalle_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPuntoEmisionDetalle_Update_Result)">
       <Parameter Name="pemid_Id" Mode="In" Type="Int32" />
@@ -29,6 +35,8 @@
       <Parameter Name="pemid_FechaLimite" Mode="In" Type="DateTime" />
       <Parameter Name="pemid_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="pemid_FechaCrea" Mode="In" Type="DateTime" />
+      <Parameter Name="pemid_UsuarioModifica" Mode="In" Type="Int32" />
+      <Parameter Name="pemid_FechaModifica" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbPuntoEmisionDetalle_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPuntoEmisionDetalle_Insert_Result)">
       <Parameter Name="pemi_Id" Mode="In" Type="Int32" />
@@ -37,6 +45,8 @@
       <Parameter Name="pemid_RangoFinal" Mode="In" Type="String" />
       <Parameter Name="pemid_NumeroActual" Mode="In" Type="String" />
       <Parameter Name="pemid_FechaLimite" Mode="In" Type="DateTime" />
+      <Parameter Name="pemid_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="pemid_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbEstadoSolicitudCredito_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbEstadoSolicitudCredito_Update_Result)">
       <Parameter Name="escre_Id" Mode="In" Type="Byte" />
@@ -59,12 +69,16 @@
       <Parameter Name="exo_FechaInicialVigencia" Mode="In" Type="DateTime" />
       <Parameter Name="exo_FechaIFinalVigencia" Mode="In" Type="DateTime" />
       <Parameter Name="clte_Id" Mode="In" Type="Int32" />
+      <Parameter Name="exo_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="exo_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbDevolucion_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDevolucion_Insert_Result)">
       <Parameter Name="fact_Id" Mode="In" Type="Int64" />
       <Parameter Name="cja_Id" Mode="In" Type="Int16" />
       <Parameter Name="dev_Fecha" Mode="In" Type="DateTime" />
       <Parameter Name="dev_Estado" Mode="In" Type="Boolean" />
+      <Parameter Name="dev_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="dev_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbDevolucionDetalle_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDevolucionDetalle_Insert_Result)">
       <Parameter Name="dev_Id" Mode="In" Type="Int32" />
@@ -89,12 +103,16 @@
     <FunctionImport Name="UDP_Vent_tbDocumentoFiscal_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDocumentoFiscal_Insert_Result)">
       <Parameter Name="dfisc_Id" Mode="In" Type="String" />
       <Parameter Name="dfisc_Descripcion" Mode="In" Type="String" />
+      <Parameter Name="dfisc_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="dfisc_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbDocumentoFiscal_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDocumentoFiscal_Update_Result)">
       <Parameter Name="dfisc_Id" Mode="In" Type="String" />
       <Parameter Name="dfisc_Descripcion" Mode="In" Type="String" />
       <Parameter Name="dfisc_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="dfisc_FechaCrea" Mode="In" Type="DateTime" />
+      <Parameter Name="dfisc_UsuarioModifica" Mode="In" Type="Int32" />
+      <Parameter Name="dfisc_FechaModifica" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbExoneracion_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbExoneracion_Update_Result)">
       <Parameter Name="exo_Id" Mode="In" Type="Int32" />
@@ -105,6 +123,8 @@
       <Parameter Name="clte_Id" Mode="In" Type="Int32" />
       <Parameter Name="exo_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="exo_FechaCrea" Mode="In" Type="DateTime" />
+      <Parameter Name="exo_UsuarioModifa" Mode="In" Type="Int32" />
+      <Parameter Name="exo_FechaModifica" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="spGetDepartamento" ReturnType="Collection(ERP_ZORZALModel.spGetDepartamento_Result)">
       <Parameter Name="CodMunicipio" Mode="In" Type="String" />
@@ -122,12 +142,16 @@
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbEstadoFactura_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbEstadoFactura_Insert_Result)">
       <Parameter Name="esfac_Descripcion" Mode="In" Type="String" />
+      <Parameter Name="esfac_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="esfac_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbEstadoFactura_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbEstadoFactura_Update_Result)">
       <Parameter Name="esfac_Id" Mode="In" Type="Byte" />
       <Parameter Name="esfac_Descripcion" Mode="In" Type="String" />
       <Parameter Name="esfac_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="esfac_FechaCrea" Mode="In" Type="DateTime" />
+      <Parameter Name="esfac_UsuarioModifica" Mode="In" Type="Int32" />
+      <Parameter Name="esfac_FechaModifica" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbMovimientoCaja_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_Insert_Result)">
       <Parameter Name="cja_Id" Mode="In" Type="Int16" />
@@ -166,6 +190,8 @@
       <Parameter Name="deno_Id" Mode="In" Type="Int16" />
       <Parameter Name="arqde_CantidadDenominacion" Mode="In" Type="Int16" />
       <Parameter Name="arqde_MontoDenominacion" Mode="In" Type="Decimal" />
+      <Parameter Name="arqde_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="arqde_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbDenominacionArqueo_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDenominacionArqueo_Update_Result)">
       <Parameter Name="arqde_Id" Mode="In" Type="Int32" />
@@ -175,6 +201,8 @@
       <Parameter Name="arqde_MontoDenominacion" Mode="In" Type="Decimal" />
       <Parameter Name="arqde_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="arqde_FechaCrea" Mode="In" Type="DateTime" />
+      <Parameter Name="arqde_UsuarioModifica" Mode="In" Type="Int32" />
+      <Parameter Name="arqde_FechaModifica" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbSolicitudEfectivo_EsAnulada" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivo_EsAnulada_Result)">
       <Parameter Name="solef_Id" Mode="In" Type="Int32" />
@@ -980,6 +1008,8 @@
       <Parameter Name="suc_Telefono" Mode="In" Type="String" />
       <Parameter Name="suc_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="suc_FechaCrea" Mode="In" Type="DateTime" />
+      <Parameter Name="suc_UsuarioModifica" Mode="In" Type="Int32" />
+      <Parameter Name="suc_FechaModifica" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbSucursal_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSucursal_Insert_Result)">
       <Parameter Name="mun_Codigo" Mode="In" Type="String" />
@@ -989,6 +1019,8 @@
       <Parameter Name="suc_Correo" Mode="In" Type="String" />
       <Parameter Name="suc_Direccion" Mode="In" Type="String" />
       <Parameter Name="suc_Telefono" Mode="In" Type="String" />
+      <Parameter Name="suc_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="suc_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbFacturaDetalle_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFacturaDetalle_Insert_Result)">
       <Parameter Name="fact_Id" Mode="In" Type="Int64" />
@@ -1137,6 +1169,8 @@
       <Parameter Name="cdto_FechaRedencion" Mode="In" Type="DateTime" />
       <Parameter Name="cdto_Anulado" Mode="In" Type="Boolean" />
       <Parameter Name="cdto_EsImpreso" Mode="In" Type="Boolean" />
+      <Parameter Name="cdto_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="cdto_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbCuponDescuento_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbCuponDescuento_Update_Result)">
       <Parameter Name="cdto_ID" Mode="In" Type="Int32" />
@@ -1153,6 +1187,8 @@
       <Parameter Name="cdto_EsImpreso" Mode="In" Type="Boolean" />
       <Parameter Name="cdto_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="cdto_FechaCrea" Mode="In" Type="DateTime" />
+      <Parameter Name="cdto_UsuarioModifica" Mode="In" Type="Int32" />
+      <Parameter Name="cdto_FechaModifica" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbNotaCredito_Anulado" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbNotaCredito_Anulado_Result)">
       <Parameter Name="nocre_Id" Mode="In" Type="Int16" />
@@ -1171,6 +1207,8 @@
       <Parameter Name="nocre_Redimido" Mode="In" Type="Boolean" />
       <Parameter Name="nocre_FechaRedimido" Mode="In" Type="DateTime" />
       <Parameter Name="nocre_EsImpreso" Mode="In" Type="Boolean" />
+      <Parameter Name="nocre_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="nocre_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbNotaCredito_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbNotaCredito_Update_Result)">
       <Parameter Name="nocre_Id" Mode="In" Type="Int16" />
@@ -1188,30 +1226,11 @@
       <Parameter Name="nocre_EsImpreso" Mode="In" Type="Boolean" />
       <Parameter Name="nocre_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="nocre_FechaCrea" Mode="In" Type="DateTime" />
+      <Parameter Name="nocre_UsuarioModifica" Mode="In" Type="Int32" />
+      <Parameter Name="nocre_FechaModifica" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbSolicitudEfectivoDetalle_Detalle" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivoDetalle_Detalle_Result1)">
       <Parameter Name="IDSOLICITUD" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Gral_tbCuentasBanco_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbCuentasBanco_Insert_Result)">
-      <Parameter Name="ban_Id" Mode="In" Type="Int16" />
-      <Parameter Name="mnda_Id" Mode="In" Type="Int16" />
-      <Parameter Name="bcta_TipoCuenta" Mode="In" Type="Byte" />
-      <Parameter Name="bcta_TotalCredito" Mode="In" Type="Decimal" />
-      <Parameter Name="bcta_TotalDebito" Mode="In" Type="Decimal" />
-      <Parameter Name="bcta_FechaApertura" Mode="In" Type="DateTime" />
-      <Parameter Name="bcta_Numero" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Gral_tbCuentasBanco_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbCuentasBanco_Update_Result)">
-      <Parameter Name="bcta_Id" Mode="In" Type="Int16" />
-      <Parameter Name="ban_Id" Mode="In" Type="Int16" />
-      <Parameter Name="mnda_Id" Mode="In" Type="Int16" />
-      <Parameter Name="bcta_TipoCuenta" Mode="In" Type="Byte" />
-      <Parameter Name="bcta_TotalCredito" Mode="In" Type="Decimal" />
-      <Parameter Name="bcta_TotalDebito" Mode="In" Type="Decimal" />
-      <Parameter Name="bcta_FechaApertura" Mode="In" Type="DateTime" />
-      <Parameter Name="bcta_Numero" Mode="In" Type="String" />
-      <Parameter Name="bcta_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="bcta_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbMovimientoCaja_Apertura_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_Apertura_Insert_Result)">
       <Parameter Name="cja_Id" Mode="In" Type="Int16" />
@@ -1246,65 +1265,6 @@
       <Parameter Name="mnda_Id" Mode="In" Type="Int16" />
       <Parameter Name="solef_EsAnulada" Mode="In" Type="Boolean" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbCliente_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbCliente_Insert_Result)">
-      <Parameter Name="tpi_Id" Mode="In" Type="Byte" />
-      <Parameter Name="clte_Identificacion" Mode="In" Type="String" />
-      <Parameter Name="clte_EsPersonaNatural" Mode="In" Type="Boolean" />
-      <Parameter Name="clte_Nombres" Mode="In" Type="String" />
-      <Parameter Name="clte_Apellidos" Mode="In" Type="String" />
-      <Parameter Name="clte_FechaNacimiento" Mode="In" Type="DateTime" />
-      <Parameter Name="clte_Nacionalidad" Mode="In" Type="String" />
-      <Parameter Name="clte_Sexo" Mode="In" Type="String" />
-      <Parameter Name="clte_Telefono" Mode="In" Type="String" />
-      <Parameter Name="clte_NombreComercial" Mode="In" Type="String" />
-      <Parameter Name="clte_RazonSocial" Mode="In" Type="String" />
-      <Parameter Name="clte_ContactoNombre" Mode="In" Type="String" />
-      <Parameter Name="clte_ContactoEmail" Mode="In" Type="String" />
-      <Parameter Name="clte_ContactoTelefono" Mode="In" Type="String" />
-      <Parameter Name="clte_FechaConstitucion" Mode="In" Type="DateTime" />
-      <Parameter Name="mun_Codigo" Mode="In" Type="String" />
-      <Parameter Name="clte_Direccion" Mode="In" Type="String" />
-      <Parameter Name="clte_CorreoElectronico" Mode="In" Type="String" />
-      <Parameter Name="clte_EsActivo" Mode="In" Type="Boolean" />
-      <Parameter Name="clte_RazonInactivo" Mode="In" Type="String" />
-      <Parameter Name="clte_ConCredito" Mode="In" Type="Boolean" />
-      <Parameter Name="clte_EsMinorista" Mode="In" Type="Boolean" />
-      <Parameter Name="clte_Observaciones" Mode="In" Type="String" />
-      <Parameter Name="clte_MontoCredito" Mode="In" Type="Decimal" />
-      <Parameter Name="clte_DiasCredito" Mode="In" Type="Int32" />
-      <Parameter Name="clte_Exonerado" Mode="In" Type="Boolean" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbCliente_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbCliente_Update_Result)">
-      <Parameter Name="clte_Id" Mode="In" Type="Int32" />
-      <Parameter Name="tpi_Id" Mode="In" Type="Int32" />
-      <Parameter Name="clte_Identificacion" Mode="In" Type="String" />
-      <Parameter Name="clte_EsPersonaNatural" Mode="In" Type="Boolean" />
-      <Parameter Name="clte_Nombres" Mode="In" Type="String" />
-      <Parameter Name="clte_Apellidos" Mode="In" Type="String" />
-      <Parameter Name="clte_FechaNacimiento" Mode="In" Type="DateTime" />
-      <Parameter Name="clte_Nacionalidad" Mode="In" Type="String" />
-      <Parameter Name="clte_Sexo" Mode="In" Type="String" />
-      <Parameter Name="clte_Telefono" Mode="In" Type="String" />
-      <Parameter Name="clte_NombreComercial" Mode="In" Type="String" />
-      <Parameter Name="clte_RazonSocial" Mode="In" Type="String" />
-      <Parameter Name="clte_ContactoNombre" Mode="In" Type="String" />
-      <Parameter Name="clte_ContactoEmail" Mode="In" Type="String" />
-      <Parameter Name="clte_ContactoTelefono" Mode="In" Type="String" />
-      <Parameter Name="clte_FechaConstitucion" Mode="In" Type="DateTime" />
-      <Parameter Name="mun_Codigo" Mode="In" Type="String" />
-      <Parameter Name="clte_Direccion" Mode="In" Type="String" />
-      <Parameter Name="clte_CorreoElectronico" Mode="In" Type="String" />
-      <Parameter Name="clte_EsActivo" Mode="In" Type="Boolean" />
-      <Parameter Name="clte_RazonInactivo" Mode="In" Type="String" />
-      <Parameter Name="clte_ConCredito" Mode="In" Type="Boolean" />
-      <Parameter Name="clte_EsMinorista" Mode="In" Type="Boolean" />
-      <Parameter Name="clte_Observaciones" Mode="In" Type="String" />
-      <Parameter Name="clte_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="clte_FechaCrea" Mode="In" Type="DateTime" />
-      <Parameter Name="clte_MontoCredito" Mode="In" Type="Decimal" />
-      <Parameter Name="clte_DiasCredito" Mode="In" Type="Int32" />
-      <Parameter Name="clte_Exonerado" Mode="In" Type="Boolean" />
-    </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbDevolucion_Filtrado_CodProducto" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDevolucion_Filtrado_CodProducto_Result)">
       <Parameter Name="IDFACTURA" Mode="In" Type="Int32" />
       <Parameter Name="CODIGOPRODUCTO" Mode="In" Type="String" />
@@ -1312,6 +1272,8 @@
     <FunctionImport Name="UDP_Gral_tbMoneda_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbMoneda_Insert_Result)">
       <Parameter Name="mnda_Abreviatura" Mode="In" Type="String" />
       <Parameter Name="mnda_Nombre" Mode="In" Type="String" />
+      <Parameter Name="mnda_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="mnda_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="UDP_Gral_tbMoneda_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbMoneda_Update_Result)">
       <Parameter Name="mnda_Id" Mode="In" Type="Int16" />
@@ -1324,6 +1286,8 @@
     </FunctionImport>
     <FunctionImport Name="UDP_Gral_tbTipoIdentificacion_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbTipoIdentificacion_Insert_Result)">
       <Parameter Name="tpi_Descripcion" Mode="In" Type="String" />
+      <Parameter Name="tpi_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="tpi_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="UDP_Gral_tbTipoIdentificacion_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbTipoIdentificacion_Update_Result)">
       <Parameter Name="tpi_Id" Mode="In" Type="Byte" />
@@ -1345,6 +1309,8 @@
       <Parameter Name="clte_Id" Mode="In" Type="Int32" />
       <Parameter Name="suc_Id" Mode="In" Type="Int32" />
       <Parameter Name="fact_Id" Mode="In" Type="Int64" />
+      <Parameter Name="ped_UsuarioModifica" Mode="In" Type="Int32" />
+      <Parameter Name="ped_FechaModifica" Mode="In" Type="DateTime" />
       <Parameter Name="ped_EsAnulado" Mode="In" Type="Boolean" />
       <Parameter Name="ped_RazonAnulado" Mode="In" Type="String" />
     </FunctionImport>
@@ -1360,6 +1326,8 @@
       <Parameter Name="ped_RazonAnulado" Mode="In" Type="String" />
       <Parameter Name="ped_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="ped_FechaCrea" Mode="In" Type="DateTime" />
+      <Parameter Name="ped_UsuarioModifica" Mode="In" Type="Int32" />
+      <Parameter Name="ped_FechaModifica" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbSolicitudCredito_Denegar" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudCredito_Denegar_Result)">
       <Parameter Name="cred_Id" Mode="In" Type="Int32" />
@@ -1375,6 +1343,8 @@
       <Parameter Name="cred_FechaSolicitud" Mode="In" Type="DateTime" />
       <Parameter Name="cred_MontoSolicitado" Mode="In" Type="Decimal" />
       <Parameter Name="cred_DiasSolicitado" Mode="In" Type="Int32" />
+      <Parameter Name="cred_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="cred_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
     <EntitySet Name="tbAccesoRol" EntityType="ERP_ZORZALModel.tbAccesoRol" />
     <EntitySet Name="tbObjeto" EntityType="ERP_ZORZALModel.tbObjeto" />
@@ -2522,6 +2492,94 @@
       <Parameter Name="cja_FechaCrea" Mode="In" Type="DateTime" />
       <Parameter Name="cja_UsuarioModifica" Mode="In" Type="Int32" />
       <Parameter Name="cja_FechaModifica" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Gral_tbCuentasBanco_Insert" ReturnType="Collection(String)">
+      <Parameter Name="ban_Id" Mode="In" Type="Int16" />
+      <Parameter Name="mnda_Id" Mode="In" Type="Int16" />
+      <Parameter Name="bcta_TipoCuenta" Mode="In" Type="Byte" />
+      <Parameter Name="bcta_TotalCredito" Mode="In" Type="Decimal" />
+      <Parameter Name="bcta_TotalDebito" Mode="In" Type="Decimal" />
+      <Parameter Name="bcta_FechaApertura" Mode="In" Type="DateTime" />
+      <Parameter Name="bcta_Numero" Mode="In" Type="String" />
+      <Parameter Name="bcta_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="bcta_FechaCrea" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Gral_tbCuentasBanco_Update" ReturnType="Collection(String)">
+      <Parameter Name="bcta_Id" Mode="In" Type="Int16" />
+      <Parameter Name="ban_Id" Mode="In" Type="Int16" />
+      <Parameter Name="mnda_Id" Mode="In" Type="Int16" />
+      <Parameter Name="bcta_TipoCuenta" Mode="In" Type="Byte" />
+      <Parameter Name="bcta_TotalCredito" Mode="In" Type="Decimal" />
+      <Parameter Name="bcta_TotalDebito" Mode="In" Type="Decimal" />
+      <Parameter Name="bcta_FechaApertura" Mode="In" Type="DateTime" />
+      <Parameter Name="bcta_Numero" Mode="In" Type="String" />
+      <Parameter Name="bcta_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="bcta_FechaCrea" Mode="In" Type="DateTime" />
+      <Parameter Name="bcta_UsuarioModifica" Mode="In" Type="Int32" />
+      <Parameter Name="bcta_FechaModifica" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbCliente_Insert" ReturnType="Collection(String)">
+      <Parameter Name="tpi_Id" Mode="In" Type="Byte" />
+      <Parameter Name="clte_Identificacion" Mode="In" Type="String" />
+      <Parameter Name="clte_EsPersonaNatural" Mode="In" Type="Boolean" />
+      <Parameter Name="clte_Nombres" Mode="In" Type="String" />
+      <Parameter Name="clte_Apellidos" Mode="In" Type="String" />
+      <Parameter Name="clte_FechaNacimiento" Mode="In" Type="DateTime" />
+      <Parameter Name="clte_Nacionalidad" Mode="In" Type="String" />
+      <Parameter Name="clte_Sexo" Mode="In" Type="String" />
+      <Parameter Name="clte_Telefono" Mode="In" Type="String" />
+      <Parameter Name="clte_NombreComercial" Mode="In" Type="String" />
+      <Parameter Name="clte_RazonSocial" Mode="In" Type="String" />
+      <Parameter Name="clte_ContactoNombre" Mode="In" Type="String" />
+      <Parameter Name="clte_ContactoEmail" Mode="In" Type="String" />
+      <Parameter Name="clte_ContactoTelefono" Mode="In" Type="String" />
+      <Parameter Name="clte_FechaConstitucion" Mode="In" Type="DateTime" />
+      <Parameter Name="mun_Codigo" Mode="In" Type="String" />
+      <Parameter Name="clte_Direccion" Mode="In" Type="String" />
+      <Parameter Name="clte_CorreoElectronico" Mode="In" Type="String" />
+      <Parameter Name="clte_EsActivo" Mode="In" Type="Boolean" />
+      <Parameter Name="clte_RazonInactivo" Mode="In" Type="String" />
+      <Parameter Name="clte_ConCredito" Mode="In" Type="Boolean" />
+      <Parameter Name="clte_EsMinorista" Mode="In" Type="Boolean" />
+      <Parameter Name="clte_Observaciones" Mode="In" Type="String" />
+      <Parameter Name="clte_MontoCredito" Mode="In" Type="Decimal" />
+      <Parameter Name="clte_DiasCredito" Mode="In" Type="Int32" />
+      <Parameter Name="clte_Exonerado" Mode="In" Type="Boolean" />
+      <Parameter Name="clte_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="clte_FechaCrea" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbCliente_Update" ReturnType="Collection(String)">
+      <Parameter Name="clte_Id" Mode="In" Type="Int32" />
+      <Parameter Name="tpi_Id" Mode="In" Type="Int32" />
+      <Parameter Name="clte_Identificacion" Mode="In" Type="String" />
+      <Parameter Name="clte_EsPersonaNatural" Mode="In" Type="Boolean" />
+      <Parameter Name="clte_Nombres" Mode="In" Type="String" />
+      <Parameter Name="clte_Apellidos" Mode="In" Type="String" />
+      <Parameter Name="clte_FechaNacimiento" Mode="In" Type="DateTime" />
+      <Parameter Name="clte_Nacionalidad" Mode="In" Type="String" />
+      <Parameter Name="clte_Sexo" Mode="In" Type="String" />
+      <Parameter Name="clte_Telefono" Mode="In" Type="String" />
+      <Parameter Name="clte_NombreComercial" Mode="In" Type="String" />
+      <Parameter Name="clte_RazonSocial" Mode="In" Type="String" />
+      <Parameter Name="clte_ContactoNombre" Mode="In" Type="String" />
+      <Parameter Name="clte_ContactoEmail" Mode="In" Type="String" />
+      <Parameter Name="clte_ContactoTelefono" Mode="In" Type="String" />
+      <Parameter Name="clte_FechaConstitucion" Mode="In" Type="DateTime" />
+      <Parameter Name="mun_Codigo" Mode="In" Type="String" />
+      <Parameter Name="clte_Direccion" Mode="In" Type="String" />
+      <Parameter Name="clte_CorreoElectronico" Mode="In" Type="String" />
+      <Parameter Name="clte_EsActivo" Mode="In" Type="Boolean" />
+      <Parameter Name="clte_RazonInactivo" Mode="In" Type="String" />
+      <Parameter Name="clte_ConCredito" Mode="In" Type="Boolean" />
+      <Parameter Name="clte_EsMinorista" Mode="In" Type="Boolean" />
+      <Parameter Name="clte_Observaciones" Mode="In" Type="String" />
+      <Parameter Name="clte_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="clte_FechaCrea" Mode="In" Type="DateTime" />
+      <Parameter Name="clte_MontoCredito" Mode="In" Type="Decimal" />
+      <Parameter Name="clte_DiasCredito" Mode="In" Type="Int32" />
+      <Parameter Name="clte_Exonerado" Mode="In" Type="Boolean" />
+      <Parameter Name="clte_UsuarioModifica" Mode="In" Type="Int32" />
+      <Parameter Name="clte_FechaModifica" Mode="In" Type="DateTime" />
     </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
@@ -4300,6 +4358,7 @@
     <NavigationProperty Name="tbCuentasBanco" Relationship="ERP_ZORZALModel.FK_Gral_tbCuentaBanco_bcta_Id" FromRole="tbPago" ToRole="tbCuentasBanco" />
     <NavigationProperty Name="tbFactura" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbPago_fact_Id" FromRole="tbPago" ToRole="tbFactura" />
     <NavigationProperty Name="tbTipoPago" Relationship="ERP_ZORZALModel.FK_Vent_tbTipoPago_tbPago_tpa_Id" FromRole="tbPago" ToRole="tbTipoPago" />
+    <Property Name="nocre_Codigo_cdto_Id" Type="String" MaxLength="19" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="tbPagosArqueo">
     <Key>

@@ -14,6 +14,7 @@ namespace ERP_GMEDINA.Controllers
     public class PedidoController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
+        GeneralFunctions Function = new GeneralFunctions();
         public ActionResult Index()
         {
             var tbpedido = db.tbPedido.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbCliente).Include(t => t.tbEstadoPedido).Include(t => t.tbSucursal);
@@ -31,12 +32,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbPedido tbPedido = db.tbPedido.Find(id);
             if (tbPedido == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbPedido);
         }
@@ -121,6 +122,8 @@ namespace ERP_GMEDINA.Controllers
                                                 tbPedido.clte_Id,
                                                 tbPedido.suc_Id,
                                                 tbPedido.fact_Id,
+                                                Function.GetUser(),
+                                                Function.DatetimeNow(),
                                                 tbPedido.ped_EsAnulado,
                                                 tbPedido.ped_RazonAnulado);
                         foreach (UDP_Vent_tbPedido_Insert_Result Pedido in listPedido)
@@ -253,12 +256,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbPedido tbPedido = db.tbPedido.Find(id);
             if (tbPedido == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             ViewBag.ped_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPedido.ped_UsuarioCrea);
             ViewBag.ped_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPedido.ped_UsuarioModifica);
@@ -291,12 +294,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbPedido tbPedido = db.tbPedido.Find(id);
             if (tbPedido == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             ViewBag.ped_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPedido.ped_UsuarioCrea);
             ViewBag.ped_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPedido.ped_UsuarioModifica);
@@ -348,7 +351,9 @@ namespace ERP_GMEDINA.Controllers
                                                         tbPedido.ped_EsAnulado,
                                                         tbPedido.ped_RazonAnulado,
                                                         tbPedido.ped_UsuarioCrea,
-                                                        tbPedido.ped_FechaCrea);
+                                                        tbPedido.ped_FechaCrea,
+                                                        Function.GetUser(),
+                                                        Function.DatetimeNow());
 
                     foreach (UDP_Vent_tbPedido_Update_Result ListaPrecio in list)
                         MensajeError = ListaPrecio.MensajeError;
@@ -409,7 +414,9 @@ namespace ERP_GMEDINA.Controllers
                                                        tbPedido.ped_EsAnulado,
                                                        tbPedido.ped_RazonAnulado,
                                                        vPedido.ped_UsuarioCrea,
-                                                       vPedido.ped_FechaCrea);
+                                                       vPedido.ped_FechaCrea,
+                                                       Function.GetUser(),
+                                                        Function.DatetimeNow());
                     foreach (UDP_Vent_tbPedido_Update_Result Pedido in list)
                         MensajeError = Pedido.MensajeError;
                     if (MensajeError == "-1")
@@ -444,12 +451,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbPedido tbPedido = db.tbPedido.Find(id);
             if (tbPedido == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbPedido);
         }

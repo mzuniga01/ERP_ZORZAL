@@ -13,7 +13,7 @@ namespace ERP_GMEDINA.Controllers
     public class TipoIdentificacionController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
-
+        GeneralFunctions Function = new GeneralFunctions();
         // GET: /TipoIdentificacion/
         public ActionResult Index()
         {
@@ -25,12 +25,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbTipoIdentificacion tbTipoIdentificacion = db.tbTipoIdentificacion.Find(id);
             if (tbTipoIdentificacion == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbTipoIdentificacion);
         }
@@ -58,7 +58,7 @@ namespace ERP_GMEDINA.Controllers
 
                     var MensajeError = "";
                     IEnumerable<object> list = null;
-                    list = db.UDP_Gral_tbTipoIdentificacion_Insert(tbTipoIdentificacion.tpi_Descripcion);
+                    list = db.UDP_Gral_tbTipoIdentificacion_Insert(tbTipoIdentificacion.tpi_Descripcion, Function.GetUser(), Function.DatetimeNow());
                     foreach (UDP_Gral_tbTipoIdentificacion_Insert_Result TipoIdentificacion in list)
                         MensajeError = TipoIdentificacion.MensajeError;
                     if (MensajeError == "-1")
@@ -87,12 +87,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbTipoIdentificacion tbTipoIdentificacion = db.tbTipoIdentificacion.Find(id);
             if (tbTipoIdentificacion == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbTipoIdentificacion);
         }
@@ -137,12 +137,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbTipoIdentificacion tbTipoIdentificacion = db.tbTipoIdentificacion.Find(id);
             if (tbTipoIdentificacion == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbTipoIdentificacion);
         }

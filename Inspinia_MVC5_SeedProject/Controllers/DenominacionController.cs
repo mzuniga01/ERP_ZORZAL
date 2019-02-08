@@ -41,12 +41,12 @@ namespace ERP_GMEDINA.Controllers
                 {
                     if (id == null)
                     {
-                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                        return RedirectToAction("Index");
                     }
                     tbDenominacion tbDenominacion = db.tbDenominacion.Find(id);
                     if (tbDenominacion == null)
                     {
-                        return HttpNotFound();
+                        return RedirectToAction("NotFound", "Login");
                     }
                     return View(tbDenominacion);
                 }
@@ -154,12 +154,12 @@ namespace ERP_GMEDINA.Controllers
                 {
                     if (id == null)
                     {
-                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                        return RedirectToAction("Index");
                     }
                     tbDenominacion tbDenominacion = db.tbDenominacion.Find(id);
                     if (tbDenominacion == null)
                     {
-                        return HttpNotFound();
+                        return RedirectToAction("NotFound", "Login");
                     }
                     ViewBag.deno_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbDenominacion.deno_UsuarioCrea);
                     ViewBag.deno_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbDenominacion.deno_UsuarioModifica);
@@ -248,12 +248,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbDenominacion tbDenominacion = db.tbDenominacion.Find(id);
             if (tbDenominacion == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbDenominacion);
         }

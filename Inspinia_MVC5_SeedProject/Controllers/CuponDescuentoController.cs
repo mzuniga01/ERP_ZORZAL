@@ -14,180 +14,292 @@ namespace ERP_GMEDINA.Controllers
     public class CuponDescuentoController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
-
+        GeneralFunctions Function = new GeneralFunctions();
         // GET: /CuponDescuento/
         public ActionResult Index()
         {
-            var tbcupondescuento = db.tbCuponDescuento.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbSucursal);
-            return View(tbcupondescuento.ToList());
+            if (Function.GetUserLogin())
+            {
+                if (Function.GetRol())
+                {
+                    if (Function.GetUserRols("CuponDescuento/Index"))
+                    {
+                        var tbcupondescuento = db.tbCuponDescuento.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbSucursal);
+                        return View(tbcupondescuento.ToList());
+                    }
+                    else
+                    {
+                        return RedirectToAction("SinAcceso", "Login");
+                    }
+                }
+                else
+                    return RedirectToAction("SinRol", "Login");
+            }
+            else
+                return RedirectToAction("Index", "Login");
         }
 
         // GET: /CuponDescuento/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            if (Function.GetUserLogin())
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (Function.GetRol())
+                {
+                    if (Function.GetUserRols("CuponDescuento/Details"))
+                    {
+                        if (id == null)
+                        {
+                            return RedirectToAction("Index");
+                        }
+                        tbCuponDescuento tbCuponDescuento = db.tbCuponDescuento.Find(id);
+                        if (tbCuponDescuento == null)
+                        {
+                            return RedirectToAction("NotFound", "Login");
+                        }
+                        return View(tbCuponDescuento);
+                    }
+                    else
+                    {
+                        return RedirectToAction("SinAcceso", "Login");
+                    }
+                }
+                else
+                    return RedirectToAction("SinRol", "Login");
             }
-            tbCuponDescuento tbCuponDescuento = db.tbCuponDescuento.Find(id);
-            if (tbCuponDescuento == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tbCuponDescuento);
+            else
+                return RedirectToAction("Index", "Login");
         }
 
         // GET: /CuponDescuento/Create
         public ActionResult Create()
         {
-            int idUser = 0;
-            GeneralFunctions Login = new GeneralFunctions();
-            List<tbUsuario> User = Login.getUserInformation();
-            foreach (tbUsuario Usuario in User)
+            if (Function.GetUserLogin())
             {
-                idUser = Convert.ToInt32(Usuario.emp_Id);
+                if (Function.GetRol())
+                {
+                    if (Function.GetUserRols("CuponDescuento/Create"))
+                    {
+                        int idUser = 0;
+                        List<tbUsuario> User = Function.getUserInformation();
+                        foreach (tbUsuario Usuario in User)
+                        {
+                            idUser = Convert.ToInt32(Usuario.emp_Id);
+                        }
+                        ViewBag.suc_Descripcion = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Descripcion).SingleOrDefault();
+                        ViewBag.suc_Id = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Id).SingleOrDefault();
+                        return View();
+                    }
+                    else
+                    {
+                        return RedirectToAction("SinAcceso", "Login");
+                    }
+                }
+                else
+                    return RedirectToAction("SinRol", "Login");
             }
-            ViewBag.suc_Descripcion = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Descripcion).SingleOrDefault();
-            ViewBag.suc_Id = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Id).SingleOrDefault();
-
-            //ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "suc_Descripcion");
-            return View();
+            else
+                return RedirectToAction("Index", "Login");
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include= "cdto_ID,suc_Id,cdto_FechaEmision,cdto_FechaVencimiento,cdto_PorcentajeDescuento,cdto_MontoDescuento,cdto_MaximoMontoDescuento,cdto_CantidadCompraMinima,cdto_Redimido,cdto_FechaRedencion,cdto_Anulado,cdto_EsImpreso,cdto_UsuarioCrea,cdto_FechaCrea,cdto_UsuarioModifica,cdto_FechaModifica")] tbCuponDescuento tbCuponDescuento)
         {
-            if (ModelState.IsValid)
+            if (Function.GetUserLogin())
             {
-                try
+                if (Function.GetRol())
                 {
-                    var MensajeError = "";
-                    tbCuponDescuento.cdto_PorcentajeDescuento = 0;
-                    tbCuponDescuento.cdto_MaximoMontoDescuento = 0;
-                    tbCuponDescuento.cdto_MontoDescuento = 10;
-                    tbCuponDescuento.cdto_CantidadCompraMinima = 100;
-                    tbCuponDescuento.cdto_Redimido = false;
-                    tbCuponDescuento.cdto_Anulado = false;
-                    tbCuponDescuento.cdto_EsImpreso = false;
-                    IEnumerable<object> list = null;
-                    list = db.UDP_Vent_tbCuponDescuento_Insert(tbCuponDescuento.suc_Id, tbCuponDescuento.cdto_FechaEmision, 
-                                                     tbCuponDescuento.cdto_FechaVencimiento, tbCuponDescuento.cdto_PorcentajeDescuento,
-                                                     tbCuponDescuento.cdto_MontoDescuento, tbCuponDescuento.cdto_MaximoMontoDescuento,
-                                                     tbCuponDescuento.cdto_CantidadCompraMinima,
-                                                     tbCuponDescuento.cdto_Redimido, tbCuponDescuento.cdto_FechaRedencion, tbCuponDescuento.cdto_Anulado,tbCuponDescuento.cdto_EsImpreso );
-                    foreach (UDP_Vent_tbCuponDescuento_Insert_Result CuponDescuento in list)
-                        MensajeError = CuponDescuento.MensajeError;
-                    if (MensajeError == "-1")
+                    if (Function.GetUserRols("CuponDescuento/Create"))
                     {
+                        int idUser = 0;
+                        List<tbUsuario> User = Function.getUserInformation();
+                        foreach (tbUsuario Usuario in User)
+                        {
+                            idUser = Convert.ToInt32(Usuario.emp_Id);
+                        }
+                        if (ModelState.IsValid)
+                        {
+                            try
+                            {
+                                var MensajeError = "";
+                                tbCuponDescuento.cdto_PorcentajeDescuento = 0;
+                                tbCuponDescuento.cdto_MaximoMontoDescuento = 0;
+                                tbCuponDescuento.cdto_MontoDescuento = 10;
+                                tbCuponDescuento.cdto_CantidadCompraMinima = 100;
+                                tbCuponDescuento.cdto_Redimido = false;
+                                tbCuponDescuento.cdto_Anulado = false;
+                                tbCuponDescuento.cdto_EsImpreso = false;
+                                IEnumerable<object> list = null;
+                                list = db.UDP_Vent_tbCuponDescuento_Insert(tbCuponDescuento.suc_Id, tbCuponDescuento.cdto_FechaEmision,
+                                                                 tbCuponDescuento.cdto_FechaVencimiento, tbCuponDescuento.cdto_PorcentajeDescuento,
+                                                                 tbCuponDescuento.cdto_MontoDescuento, tbCuponDescuento.cdto_MaximoMontoDescuento,
+                                                                 tbCuponDescuento.cdto_CantidadCompraMinima,
+                                                                 tbCuponDescuento.cdto_Redimido,
+                                                                 tbCuponDescuento.cdto_FechaRedencion,
+                                                                 tbCuponDescuento.cdto_Anulado,
+                                                                 tbCuponDescuento.cdto_EsImpreso,
+                                                                 Function.GetUser(),
+                                                                 Function.DatetimeNow());
+                                foreach (UDP_Vent_tbCuponDescuento_Insert_Result CuponDescuento in list)
+                                    MensajeError = CuponDescuento.MensajeError;
+                                if (MensajeError.StartsWith("-1"))
+                                {
+                                    ViewBag.suc_Descripcion = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Descripcion).SingleOrDefault();
+                                    ViewBag.suc_Id = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Id).SingleOrDefault();
+                                    Function.InsertBitacoraErrores("CuponDescuento/Create", MensajeError, "Create");
+                                    ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                                    return View(tbCuponDescuento);
+                                }
+                                else
+                                {
+                                    return RedirectToAction("Index");
+                                }
+                            }
+                            catch (Exception Ex)
+                            {
+                                ViewBag.suc_Descripcion = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Descripcion).SingleOrDefault();
+                                ViewBag.suc_Id = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Id).SingleOrDefault();
+                                Function.InsertBitacoraErrores("CuponDescuento/Create", Ex.Message.ToString(), "Create");
+                                ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                                return View(tbCuponDescuento);
+                            }
+                        }
+                        ViewBag.suc_Descripcion = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Descripcion).SingleOrDefault();
+                        ViewBag.suc_Id = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Id).SingleOrDefault();
+                        return View(tbCuponDescuento);
                     }
                     else
                     {
-                        return RedirectToAction("Index");
+                        return RedirectToAction("SinAcceso", "Login");
                     }
                 }
-                catch(Exception Ex)
-                {
-                    ModelState.AddModelError("", "Error al agregar el registro" + Ex.Message.ToString());
-                    return View(tbCuponDescuento);
-                }
+                else
+                    return RedirectToAction("SinRol", "Login");
             }
-            return View(tbCuponDescuento);
+            else
+                return RedirectToAction("Index", "Login");
         }
 
         // GET: /CuponDescuento/Edit/5
         public ActionResult Edit(int? id)
         {
-            int idUser = 0;
-            GeneralFunctions Login = new GeneralFunctions();
-            List<tbUsuario> User = Login.getUserInformation();
-            foreach (tbUsuario Usuario in User)
+            if (Function.GetUserLogin())
             {
-                idUser = Convert.ToInt32(Usuario.emp_Id);
-            }
-            ViewBag.suc_Descripcion = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Descripcion).SingleOrDefault();
-            ViewBag.suc_Id = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Id).SingleOrDefault();
+                if (Function.GetRol())
+                {
+                    if (Function.GetUserRols("CuponDescuento/Edit"))
+                    {
+                        int idUser = 0;
+                        GeneralFunctions Login = new GeneralFunctions();
+                        List<tbUsuario> User = Login.getUserInformation();
+                        foreach (tbUsuario Usuario in User)
+                        {
+                            idUser = Convert.ToInt32(Usuario.emp_Id);
+                        }
+                        ViewBag.suc_Descripcion = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Descripcion).SingleOrDefault();
+                        ViewBag.suc_Id = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Id).SingleOrDefault();
 
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                        if (id == null)
+                        {
+                            return RedirectToAction("Index");
+                        }
+                        tbCuponDescuento tbCuponDescuento = db.tbCuponDescuento.Find(id);
+                        if (tbCuponDescuento == null)
+                        {
+                            return RedirectToAction("NotFound", "Login");
+                        }
+                        return View(tbCuponDescuento);
+                    }
+                    else
+                    {
+                        return RedirectToAction("SinAcceso", "Login");
+                    }
+                }
+                else
+                    return RedirectToAction("SinRol", "Login");
             }
-            tbCuponDescuento tbCuponDescuento = db.tbCuponDescuento.Find(id);
-            if (tbCuponDescuento == null)
-            {
-                return HttpNotFound();
-            }
-            //ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "suc_Descripcion", tbCuponDescuento.suc_Id);
-            return View(tbCuponDescuento);
+            else
+                return RedirectToAction("Index", "Login");
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include= "cdto_ID,suc_Id,cdto_FechaEmision,cdto_FechaVencimiento,cdto_PorcentajeDescuento,cdto_MontoDescuento,cdto_MaximoMontoDescuento,cdto_CantidadCompraMinima,cdto_Redimido,cdto_FechaRedencion, cdto_Anulado,cdto_EsImpreso,cdto_UsuarioCrea,cdto_FechaCrea,cdto_UsuarioModifica,cdto_FechaModifica, tbUsuario, tbUsuario1")] tbCuponDescuento tbCuponDescuento)
         {
-            if (ModelState.IsValid)
+            if (Function.GetUserLogin())
             {
-                try
+                if (Function.GetRol())
                 {
-                    var MensajeError = "";
-                    IEnumerable<object> list = null;
-                    list = db.UDP_Vent_tbCuponDescuento_Update(tbCuponDescuento.cdto_ID,
-                        tbCuponDescuento.suc_Id, 
-                        tbCuponDescuento.cdto_FechaEmision, 
-                        tbCuponDescuento.cdto_FechaVencimiento, 
-                        tbCuponDescuento.cdto_PorcentajeDescuento,
-                        tbCuponDescuento.cdto_MontoDescuento, 
-                        tbCuponDescuento.cdto_MaximoMontoDescuento, 
-                        tbCuponDescuento.cdto_CantidadCompraMinima,
-                        tbCuponDescuento.cdto_Redimido,
-                        tbCuponDescuento.cdto_FechaRedencion,
-                        tbCuponDescuento.cdto_Anulado, 
-                        tbCuponDescuento.cdto_EsImpreso,
-                        tbCuponDescuento.cdto_UsuarioCrea, 
-                        tbCuponDescuento.cdto_FechaCrea);
-                    foreach (UDP_Vent_tbCuponDescuento_Update_Result CuponDescuento in list)
-                        MensajeError = CuponDescuento.MensajeError;
-                    if (MensajeError == "-1")
+                    if (Function.GetUserRols("CuponDescuento/Edit"))
                     {
+                        int idUser = 0;
+                        GeneralFunctions Login = new GeneralFunctions();
+                        List<tbUsuario> User = Login.getUserInformation();
+                        foreach (tbUsuario Usuario in User)
+                        {
+                            idUser = Convert.ToInt32(Usuario.emp_Id);
+                        }
+                        if (ModelState.IsValid)
+                        {
+                            try
+                            {
+                                var MensajeError = "";
+                                IEnumerable<object> list = null;
+                                list = db.UDP_Vent_tbCuponDescuento_Update(tbCuponDescuento.cdto_ID,
+                                    tbCuponDescuento.suc_Id,
+                                    tbCuponDescuento.cdto_FechaEmision,
+                                    tbCuponDescuento.cdto_FechaVencimiento,
+                                    tbCuponDescuento.cdto_PorcentajeDescuento,
+                                    tbCuponDescuento.cdto_MontoDescuento,
+                                    tbCuponDescuento.cdto_MaximoMontoDescuento,
+                                    tbCuponDescuento.cdto_CantidadCompraMinima,
+                                    tbCuponDescuento.cdto_Redimido,
+                                    tbCuponDescuento.cdto_FechaRedencion,
+                                    tbCuponDescuento.cdto_Anulado,
+                                    tbCuponDescuento.cdto_EsImpreso,
+                                    tbCuponDescuento.cdto_UsuarioCrea,
+                                    tbCuponDescuento.cdto_FechaCrea,
+                                    Function.GetUser(),
+                                    Function.DatetimeNow());
+                                foreach (UDP_Vent_tbCuponDescuento_Update_Result CuponDescuento in list)
+                                    MensajeError = CuponDescuento.MensajeError;
+                                if (MensajeError.StartsWith("-1"))
+                                {
+                                    ViewBag.suc_Descripcion = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Descripcion).SingleOrDefault();
+                                    ViewBag.suc_Id = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Id).SingleOrDefault();
+                                    Function.InsertBitacoraErrores("CuponDescuento/Create", MensajeError, "Create");
+                                    ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                                    return View(tbCuponDescuento);
+                                }
+                                else
+                                {
+                                    return RedirectToAction("Index");
+                                }
+                            }
+                            catch (Exception Ex)
+                            {
+                                ViewBag.suc_Descripcion = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Descripcion).SingleOrDefault();
+                                ViewBag.suc_Id = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Id).SingleOrDefault();
+                                Function.InsertBitacoraErrores("CuponDescuento/Create", Ex.Message.ToString(), "Create");
+                                ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                                return View(tbCuponDescuento);
+                            }
+
+                        }
+                        ViewBag.suc_Descripcion = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Descripcion).SingleOrDefault();
+                        ViewBag.suc_Id = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Id).SingleOrDefault();
+                        return View(tbCuponDescuento);
                     }
                     else
                     {
-                        return RedirectToAction("Index");
+                        return RedirectToAction("SinAcceso", "Login");
                     }
                 }
-                catch(Exception Ex)
-                {
-                    ModelState.AddModelError("", "Error al Editar el registro" + Ex.Message.ToString());
-                    return View(tbCuponDescuento);
-                }
-                
+                else
+                    return RedirectToAction("SinRol", "Login");
             }
-            
-            return View(tbCuponDescuento);
-        }
-        // GET: /CuponDescuento/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            tbCuponDescuento tbCuponDescuento = db.tbCuponDescuento.Find(id);
-            if (tbCuponDescuento == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tbCuponDescuento);
-        }
-
-        // POST: /CuponDescuento/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            tbCuponDescuento tbCuponDescuento = db.tbCuponDescuento.Find(id);
-            db.tbCuponDescuento.Remove(tbCuponDescuento);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            else
+                return RedirectToAction("Index", "Login");
         }
 
         protected override void Dispose(bool disposing)

@@ -13,7 +13,7 @@ namespace ERP_GMEDINA.Controllers
     public class EstadoSolicitudCreditoController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
-
+        GeneralFunctions Function = new GeneralFunctions();
         // GET: /EstadoSolicitudCredito/
         public ActionResult Index()
         {
@@ -26,12 +26,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbEstadoSolicitudCredito tbEstadoSolicitudCredito = db.tbEstadoSolicitudCredito.Find(id);
             if (tbEstadoSolicitudCredito == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbEstadoSolicitudCredito);
         }
@@ -62,7 +62,8 @@ namespace ERP_GMEDINA.Controllers
 
                     var MensajeError = 0;
                     IEnumerable<object> list = null;
-                    list = db.UDP_Vent_tbEstadoSolicitudCredito_Insert(tbEstadoSolicitudCredito.escre_Descripcion);
+                    list = db.UDP_Vent_tbEstadoSolicitudCredito_Insert(tbEstadoSolicitudCredito.escre_Descripcion, Function.GetUser(),
+                                    Function.DatetimeNow());
                     foreach (UDP_Vent_tbEstadoSolicitudCredito_Insert_Result EstadoSolicitudCredito in list)
                         MensajeError = EstadoSolicitudCredito.MensajeError;
                     if (MensajeError == -1)
@@ -93,12 +94,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbEstadoSolicitudCredito tbEstadoSolicitudCredito = db.tbEstadoSolicitudCredito.Find(id);
             if (tbEstadoSolicitudCredito == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             //ViewBag.escre_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbEstadoSolicitudCredito.escre_UsuarioCrea);
             //ViewBag.escre_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbEstadoSolicitudCredito.escre_UsuarioModifica);
@@ -161,12 +162,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbEstadoSolicitudCredito tbEstadoSolicitudCredito = db.tbEstadoSolicitudCredito.Find(id);
             if (tbEstadoSolicitudCredito == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbEstadoSolicitudCredito);
         }

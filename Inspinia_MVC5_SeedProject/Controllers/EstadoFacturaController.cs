@@ -13,7 +13,7 @@ namespace ERP_GMEDINA.Controllers
     public class EstadoFacturaController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
-
+        GeneralFunctions Function = new GeneralFunctions();
         // GET: /EstadoFactura/
         public ActionResult Index()
         {
@@ -25,12 +25,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbEstadoFactura tbEstadoFactura = db.tbEstadoFactura.Find(id);
             if (tbEstadoFactura == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbEstadoFactura);
         }
@@ -55,7 +55,8 @@ namespace ERP_GMEDINA.Controllers
                     //////////Aqui va la lista//////////////
                     var MensajeError = 0;
                     IEnumerable<object> list = null;
-                    list = db.UDP_Vent_tbEstadoFactura_Insert(tbEstadoFactura.esfac_Descripcion);
+                    list = db.UDP_Vent_tbEstadoFactura_Insert(tbEstadoFactura.esfac_Descripcion, Function.GetUser(),
+                                    Function.DatetimeNow());
                     foreach (UDP_Vent_tbEstadoFactura_Insert_Result estado in list)
                         MensajeError = estado.MensajeError;
                     if (MensajeError == -1)
@@ -83,12 +84,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbEstadoFactura tbEstadoFactura = db.tbEstadoFactura.Find(id);
             if (tbEstadoFactura == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbEstadoFactura);
         }
@@ -108,7 +109,12 @@ namespace ERP_GMEDINA.Controllers
                     //////////Aqui va la lista//////////////
                     var MensajeError = 0;
                     IEnumerable<object> list = null;
-                    list = db.UDP_Vent_tbEstadoFactura_Update(tbEstadoFactura.esfac_Id, tbEstadoFactura.esfac_Descripcion, tbEstadoFactura.esfac_UsuarioCrea, tbEstadoFactura.esfac_FechaCrea);
+                    list = db.UDP_Vent_tbEstadoFactura_Update(tbEstadoFactura.esfac_Id, 
+                        tbEstadoFactura.esfac_Descripcion, 
+                        tbEstadoFactura.esfac_UsuarioCrea, 
+                        tbEstadoFactura.esfac_FechaCrea,
+                        Function.GetUser(),
+                                    Function.DatetimeNow());
                     foreach (UDP_Vent_tbEstadoFactura_Update_Result estado in list)
                         MensajeError = estado.MensajeError;
                     if (MensajeError == -1)
@@ -137,12 +143,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbEstadoFactura tbEstadoFactura = db.tbEstadoFactura.Find(id);
             if (tbEstadoFactura == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbEstadoFactura);
         }

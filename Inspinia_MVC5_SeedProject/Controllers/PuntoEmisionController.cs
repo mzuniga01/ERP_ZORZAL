@@ -14,7 +14,7 @@ namespace ERP_ZORZAL.Controllers
     public class PuntoEmisionController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
-
+        GeneralFunctions Function = new GeneralFunctions();
         // GET: /PuntoEmision/
         public ActionResult Index()
         {
@@ -27,13 +27,13 @@ namespace ERP_ZORZAL.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbPuntoEmision tbPuntoEmision = db.tbPuntoEmision.Find(id);
             ViewBag.IdPuntoEmision = id;
             if (tbPuntoEmision == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
 
             return View(tbPuntoEmision);
@@ -83,7 +83,9 @@ namespace ERP_ZORZAL.Controllers
                     using (TransactionScope Tran = new TransactionScope())
                     {
                         listPuntoEmision = db.UDP_Vent_tbPuntoEmision_Insert(
-                            tbPuntoEmision.pemi_NumeroCAI
+                            tbPuntoEmision.pemi_NumeroCAI,
+                            Function.GetUser(),
+                            Function.DatetimeNow()
                             );
                         foreach (UDP_Vent_tbPuntoEmision_Insert_Result PuntoEmisionL in listPuntoEmision)
                         MensajeError = PuntoEmisionL.MensajeError;
@@ -111,7 +113,9 @@ namespace ERP_ZORZAL.Controllers
                                                 Detalle.pemid_RangoInicio,
                                                 Detalle.pemid_RangoFinal,
                                                 Detalle.pemid_NumeroActual,
-                                                Detalle.pemid_FechaLimite
+                                                Detalle.pemid_FechaLimite,
+                                                Function.GetUser(),
+                                                Function.DatetimeNow()
                                                 );
                                             foreach (UDP_Vent_tbPuntoEmisionDetalle_Insert_Result SPpuntoemisiondet in listPuntoEmisionDetalle)
                                             {
@@ -152,13 +156,13 @@ namespace ERP_ZORZAL.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbPuntoEmision tbPuntoEmision = db.tbPuntoEmision.Find(id);
             ViewBag.IdPuntoEmisionEdit = id;
             if (tbPuntoEmision == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             //*****PuntoEmisionDetalle
             string cas = "dfisc_IdList_";
@@ -194,7 +198,9 @@ namespace ERP_ZORZAL.Controllers
                             PuntoEmision.pemi_Id,
                             PuntoEmision.pemi_NumeroCAI,
                             PuntoEmision.pemi_UsuarioCrea,
-                            PuntoEmision.pemi_FechaCrea);
+                            PuntoEmision.pemi_FechaCrea,
+                            Function.GetUser(),
+                            Function.DatetimeNow());
                         foreach (UDP_Vent_tbPuntoEmision_Update_Result puntoemision in list)
                             MensajeError = puntoemision.MensajeError;
                         if (MensajeError == "-1")
@@ -226,12 +232,12 @@ namespace ERP_ZORZAL.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbPuntoEmision tbPuntoEmision = db.tbPuntoEmision.Find(id);
             if (tbPuntoEmision == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbPuntoEmision);
         }
@@ -305,7 +311,9 @@ namespace ERP_ZORZAL.Controllers
                                     EditPuntoEmisionDetalle.pemid_NumeroActual,
                                     EditPuntoEmisionDetalle.pemid_FechaLimite,
                                     EditPuntoEmisionDetalle.pemid_UsuarioCrea,
-                                    EditPuntoEmisionDetalle.pemid_FechaCrea);
+                                    EditPuntoEmisionDetalle.pemid_FechaCrea,
+                                    Function.GetUser(),
+                                    Function.DatetimeNow());
                         foreach (UDP_Vent_tbPuntoEmisionDetalle_Update_Result puntoemisiondetalle in list)
                             MensajeError = puntoemisiondetalle.MensajeError;
                 if (MensajeError == "-1")
@@ -342,7 +350,9 @@ namespace ERP_ZORZAL.Controllers
                             CreatePuntoEmisionDetalle.pemid_RangoInicio,
                             CreatePuntoEmisionDetalle.pemid_RangoFinal,
                             CreatePuntoEmisionDetalle.pemid_NumeroActual,
-                            CreatePuntoEmisionDetalle.pemid_FechaLimite);
+                            CreatePuntoEmisionDetalle.pemid_FechaLimite,
+                            Function.GetUser(),
+                            Function.DatetimeNow());
                 foreach (UDP_Vent_tbPuntoEmisionDetalle_Insert_Result puntoemisiondetalle in list)
                     MensajeError = puntoemisiondetalle.MensajeError;
                 if (MensajeError == "-1")

@@ -18,7 +18,7 @@ namespace ERP_GMEDINA.Controllers
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
         private ObjectResult<UDP_Vent_DatosConsumidorFinal_Insert_Result> listConsumidorFinal;
-
+        GeneralFunctions Function = new GeneralFunctions();
         // GET: /Factura/
         public ActionResult Index()
         {
@@ -145,12 +145,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbFactura tbFactura = db.tbFactura.Find(id);
             if (tbFactura == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbFactura);
         }
@@ -423,12 +423,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbFactura tbFactura = db.tbFactura.Find(id);
             if (tbFactura == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             int idUser = 0;
             GeneralFunctions Login = new GeneralFunctions();
@@ -589,12 +589,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbFactura tbFactura = db.tbFactura.Find(id);
             if (tbFactura == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbFactura);
         }
@@ -916,7 +916,8 @@ namespace ERP_GMEDINA.Controllers
                                                         tbCliente.clte_Observaciones,
                                                         tbCliente.clte_MontoCredito,
                                                         tbCliente.clte_DiasCredito,
-                                                        tbCliente.clte_Exonerado);
+                                                        tbCliente.clte_Exonerado, Function.GetUser(),
+                                    Function.DatetimeNow());
                     foreach (UDP_Vent_tbCliente_Insert_Result cliente in list)
                         MensajeError = cliente.MensajeError;
                     if (MensajeError == "-1")

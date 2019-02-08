@@ -26,12 +26,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbPagosArqueo tbPagosArqueo = db.tbPagosArqueo.Find(id);
             if (tbPagosArqueo == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbPagosArqueo);
         }
@@ -105,12 +105,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbPagosArqueo tbPagosArqueo = db.tbPagosArqueo.Find(id);
             if (tbPagosArqueo == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             ViewBag.arqpg_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPagosArqueo.arqpg_UsuarioCrea);
             ViewBag.arqpg_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPagosArqueo.arqpg_UsuarioModifica);
@@ -195,12 +195,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbPagosArqueo tbPagosArqueo = db.tbPagosArqueo.Find(id);
             if (tbPagosArqueo == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbPagosArqueo);
         }

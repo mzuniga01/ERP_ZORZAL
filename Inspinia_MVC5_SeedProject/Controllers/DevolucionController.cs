@@ -14,7 +14,7 @@ namespace ERP_ZORZAL.Controllers
     public class DevolucionController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
-
+        GeneralFunctions Function = new GeneralFunctions();
         // GET: /Devolucion/
         public ActionResult Index()
         {
@@ -66,14 +66,14 @@ namespace ERP_ZORZAL.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
 
             tbDevolucionDetalle tbDevolucionDetalle = new tbDevolucionDetalle();
             tbDevolucion tbDevolucion = db.tbDevolucion.Find(id);
             if (tbDevolucion == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
 
 
@@ -133,7 +133,9 @@ namespace ERP_ZORZAL.Controllers
                             tbDevolucion.fact_Id,
                             tbDevolucion.cja_Id,
                             tbDevolucion.dev_Fecha,
-                            tbDevolucion.dev_Estado);
+                            tbDevolucion.dev_Estado,
+                            Function.GetUser(),
+                                    Function.DatetimeNow());
                         foreach (UDP_Vent_tbDevolucion_Insert_Result DevolucionL in listDevolucion)
                             MensajeError = DevolucionL.MensajeError;
                         if (MensajeError == "-1")
@@ -221,14 +223,14 @@ namespace ERP_ZORZAL.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             
         tbDevolucion tbDevolucion = db.tbDevolucion.Find(id);
             tbDevolucionDetalle tbDevolucionDetalle = new tbDevolucionDetalle();
             if (tbDevolucion == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             ViewBag.dev_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbDevolucion.dev_UsuarioCrea);
             ViewBag.dev_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbDevolucion.dev_UsuarioModifica);
@@ -377,12 +379,12 @@ namespace ERP_ZORZAL.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbDevolucion tbDevolucion = db.tbDevolucion.Find(id);
             if (tbDevolucion == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbDevolucion);
         }
@@ -560,7 +562,8 @@ namespace ERP_ZORZAL.Controllers
                                                              tbNotaCredito.nocre_Monto,
                                                              tbNotaCredito.nocre_Redimido,
                                                              tbNotaCredito.nocre_FechaRedimido,
-                                                             tbNotaCredito.nocre_EsImpreso);
+                                                             tbNotaCredito.nocre_EsImpreso, Function.GetUser(),
+                                    Function.DatetimeNow());
                     foreach (UDP_Vent_tbNotaCredito_Insert_Result NotaCredito in list)
                         MensajeError = Convert.ToString(NotaCredito.MensajeError);
                     if (MensajeError != "-1")

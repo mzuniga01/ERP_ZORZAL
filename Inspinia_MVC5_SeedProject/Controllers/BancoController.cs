@@ -193,13 +193,20 @@ namespace ERP_GMEDINA.Controllers
                                 //////////Aqui va la lista//////////////
                                 string MensajeError = "";
                                 IEnumerable<object> list = null;
-                                list = db.UDP_Gral_tbBanco_Update(tbBanco.ban_Id, tbBanco.ban_Nombre, tbBanco.ban_NombreContacto, tbBanco.ban_TelefonoContacto, tbBanco.ban_UsuarioCrea, tbBanco.ban_FechaCrea, Function.GetUser(), Function.DatetimeNow());
+                                list = db.UDP_Gral_tbBanco_Update(tbBanco.ban_Id, 
+                                    tbBanco.ban_Nombre, 
+                                    tbBanco.ban_NombreContacto, 
+                                    tbBanco.ban_TelefonoContacto, 
+                                    tbBanco.ban_UsuarioCrea, 
+                                    tbBanco.ban_FechaCrea, 
+                                    Function.GetUser(), 
+                                    Function.DatetimeNow());
                                 foreach (UDP_Gral_tbBanco_Update_Result banco in list)
                                     MensajeError = banco.MensajeError.ToString();
                                 if (MensajeError.StartsWith("-1"))
                                 {
                                     Function.InsertBitacoraErrores("Banco/Create", MensajeError, "Edit");
-                                    ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                                    ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
                                     return View(tbBanco);
                                 }
                                 else
@@ -210,7 +217,7 @@ namespace ERP_GMEDINA.Controllers
                             catch (Exception Ex)
                             {
                                 Function.InsertBitacoraErrores("Banco/Create", Ex.Message.ToString(), "Create");
-                                ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                                ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
                                 return View(tbBanco);
                             }
                         }

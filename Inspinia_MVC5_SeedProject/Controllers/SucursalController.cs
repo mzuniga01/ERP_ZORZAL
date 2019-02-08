@@ -13,7 +13,7 @@ namespace ERP_GMEDINA.Controllers
     public class SucursalController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
-
+        GeneralFunctions Function = new GeneralFunctions();
         // GET: /Sucursal/
         public ActionResult Index()
         {
@@ -26,12 +26,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbSucursal tbSucursal = db.tbSucursal.Find(id);
             if (tbSucursal == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbSucursal);
         }
@@ -78,7 +78,9 @@ namespace ERP_GMEDINA.Controllers
                                                             tbSucursal.suc_Descripcion,
                                                             tbSucursal.suc_Correo,
                                                             tbSucursal.suc_Direccion,
-                                                            tbSucursal.suc_Telefono);
+                                                            tbSucursal.suc_Telefono,
+                                                            Function.GetUser(),
+                                                            Function.DatetimeNow());
                     foreach (UDP_Vent_tbSucursal_Insert_Result Exoneracion in list)
                         MensajeError = Exoneracion.MensajeError;
                     if (MensajeError == -1)
@@ -121,12 +123,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbSucursal tbSucursal = db.tbSucursal.Find(id);
             if (tbSucursal == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             ViewBag.suc_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSucursal.suc_UsuarioCrea);
             ViewBag.suc_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSucursal.suc_UsuarioModifica);
@@ -170,7 +172,7 @@ namespace ERP_GMEDINA.Controllers
                                                             tbSucursal.suc_Direccion,
                                                             tbSucursal.suc_Telefono,
                                                             pSucursal.suc_UsuarioCrea,
-                                                            pSucursal.suc_FechaCrea);
+                                                            pSucursal.suc_FechaCrea, Function.GetUser(), Function.DatetimeNow());
                     foreach (UDP_Vent_tbSucursal_Update_Result Exoneracion in list)
                         MensajeError = Exoneracion.MensajeError;
                     if (MensajeError == -1)
@@ -211,12 +213,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbSucursal tbSucursal = db.tbSucursal.Find(id);
             if (tbSucursal == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbSucursal);
         }

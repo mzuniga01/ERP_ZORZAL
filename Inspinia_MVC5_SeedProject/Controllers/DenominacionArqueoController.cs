@@ -13,7 +13,7 @@ namespace ERP_GMEDINA.Controllers
     public class DenominacionArqueoController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
-
+        GeneralFunctions Function = new GeneralFunctions();
         // GET: /DenominacionArqueo/
         public ActionResult Index()
         {
@@ -26,12 +26,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbDenominacionArqueo tbDenominacionArqueo = db.tbDenominacionArqueo.Find(id);
             if (tbDenominacionArqueo == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbDenominacionArqueo);
         }
@@ -62,7 +62,11 @@ namespace ERP_GMEDINA.Controllers
                     //////////Aqui va la lista//////////////
                     var MensajeError = string.Empty;
                     IEnumerable<object> list = null;
-                    list = db.UDP_Vent_tbDenominacionArqueo_Insert(tbDenominacionArqueo.mocja_Id, tbDenominacionArqueo.deno_Id, tbDenominacionArqueo.arqde_CantidadDenominacion, tbDenominacionArqueo.arqde_MontoDenominacion);
+                    list = db.UDP_Vent_tbDenominacionArqueo_Insert(tbDenominacionArqueo.mocja_Id, 
+                        tbDenominacionArqueo.deno_Id, 
+                        tbDenominacionArqueo.arqde_CantidadDenominacion, 
+                        tbDenominacionArqueo.arqde_MontoDenominacion, Function.GetUser(),
+                                    Function.DatetimeNow());
                     foreach (UDP_Vent_tbDenominacionArqueo_Insert_Result denoarq in list)
                         MensajeError = denoarq.MensajeError;
                     if (MensajeError == "-1")
@@ -104,12 +108,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbDenominacionArqueo tbDenominacionArqueo = db.tbDenominacionArqueo.Find(id);
             if (tbDenominacionArqueo == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             ViewBag.arqde_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbDenominacionArqueo.arqde_UsuarioCrea);
             ViewBag.arqde_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbDenominacionArqueo.arqde_UsuarioModifica);
@@ -136,7 +140,12 @@ namespace ERP_GMEDINA.Controllers
                     //////////Aqui va la lista//////////////
                     var MensajeError = string.Empty;
                     IEnumerable<object> list = null;
-                    list = db.UDP_Vent_tbDenominacionArqueo_Update(tbDenominacionArqueo.arqde_Id, tbDenominacionArqueo.mocja_Id, tbDenominacionArqueo.deno_Id, tbDenominacionArqueo.arqde_CantidadDenominacion, tbDenominacionArqueo.arqde_MontoDenominacion, tbDenominacionArqueo.arqde_UsuarioCrea, tbDenominacionArqueo.arqde_FechaCrea);
+                    list = db.UDP_Vent_tbDenominacionArqueo_Update(tbDenominacionArqueo.arqde_Id, tbDenominacionArqueo.mocja_Id, tbDenominacionArqueo.deno_Id, 
+                        tbDenominacionArqueo.arqde_CantidadDenominacion, 
+                        tbDenominacionArqueo.arqde_MontoDenominacion, 
+                        tbDenominacionArqueo.arqde_UsuarioCrea, 
+                        tbDenominacionArqueo.arqde_FechaCrea, Function.GetUser(),
+                                    Function.DatetimeNow());
                     foreach (UDP_Vent_tbDenominacionArqueo_Update_Result denoarq in list)
                         MensajeError = denoarq.MensajeError;
                     if (MensajeError == "-1")
@@ -178,12 +187,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbDenominacionArqueo tbDenominacionArqueo = db.tbDenominacionArqueo.Find(id);
             if (tbDenominacionArqueo == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbDenominacionArqueo);
         }

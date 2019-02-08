@@ -13,7 +13,7 @@ namespace ERP_GMEDINA.Controllers
     public class DocumentoFiscalController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
-
+        GeneralFunctions Function = new GeneralFunctions();
         // GET: /DocumentoFiscal/
         public ActionResult Index()
         {
@@ -26,12 +26,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbDocumentoFiscal tbDocumentoFiscal = db.tbDocumentoFiscal.Find(id);
             if (tbDocumentoFiscal == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbDocumentoFiscal);
         }
@@ -56,7 +56,9 @@ namespace ERP_GMEDINA.Controllers
                     //////////Aqui va la lista//////////////
                     var MensajeError = 0;
                     IEnumerable<object> list = null;
-                    list = db.UDP_Vent_tbDocumentoFiscal_Insert(tbDocumentoFiscal.dfisc_Id, tbDocumentoFiscal.dfisc_Descripcion);
+                    list = db.UDP_Vent_tbDocumentoFiscal_Insert(tbDocumentoFiscal.dfisc_Id, 
+                        tbDocumentoFiscal.dfisc_Descripcion, Function.GetUser(),
+                                    Function.DatetimeNow());
                     foreach (UDP_Vent_tbDocumentoFiscal_Insert_Result DocumentoFiscal in list)
                         MensajeError = Convert.ToInt32(DocumentoFiscal.MensajeError);
                     if (MensajeError == -1)
@@ -84,12 +86,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbDocumentoFiscal tbDocumentoFiscal = db.tbDocumentoFiscal.Find(id);
             if (tbDocumentoFiscal == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             ViewBag.dfisc_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbDocumentoFiscal.dfisc_UsuarioCrea);
             ViewBag.dfisc_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbDocumentoFiscal.dfisc_UsuarioModifica);
@@ -110,7 +112,12 @@ namespace ERP_GMEDINA.Controllers
                     //////////Aqui va la lista//////////////
                     var MensajeError = 0;
                     IEnumerable<object> list = null;
-                    list = db.UDP_Vent_tbDocumentoFiscal_Update(tbDocumentoFiscal.dfisc_Id, tbDocumentoFiscal.dfisc_Descripcion, tbDocumentoFiscal.dfisc_UsuarioCrea, tbDocumentoFiscal.dfisc_FechaCrea);
+                    list = db.UDP_Vent_tbDocumentoFiscal_Update(tbDocumentoFiscal.dfisc_Id, 
+                        tbDocumentoFiscal.dfisc_Descripcion, 
+                        tbDocumentoFiscal.dfisc_UsuarioCrea, 
+                        tbDocumentoFiscal.dfisc_FechaCrea,
+                        Function.GetUser(),
+                                    Function.DatetimeNow());
                     foreach (UDP_Vent_tbDocumentoFiscal_Update_Result DocumentoFiscal in list)
                         MensajeError = Convert.ToInt32(DocumentoFiscal.MensajeError);
                     if (MensajeError == -1)
@@ -138,12 +145,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbDocumentoFiscal tbDocumentoFiscal = db.tbDocumentoFiscal.Find(id);
             if (tbDocumentoFiscal == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbDocumentoFiscal);
         }

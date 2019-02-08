@@ -13,7 +13,7 @@ namespace ERP_GMEDINA.Controllers
     public class MonedaController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
-
+        GeneralFunctions Function = new GeneralFunctions();
         // GET: /Moneda/
         public ActionResult Index()
         {
@@ -26,12 +26,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbMoneda tbMoneda = db.tbMoneda.Find(id);
             if (tbMoneda == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbMoneda);
         }
@@ -59,7 +59,8 @@ namespace ERP_GMEDINA.Controllers
 
                     var MensajeError = "";
                     IEnumerable<object> list = null;
-                    list = db.UDP_Gral_tbMoneda_Insert(tbMoneda.mnda_Abreviatura, tbMoneda.mnda_Nombre);
+                    list = db.UDP_Gral_tbMoneda_Insert(tbMoneda.mnda_Abreviatura, tbMoneda.mnda_Nombre, Function.GetUser(),
+                                    Function.DatetimeNow());
                     foreach (UDP_Gral_tbMoneda_Insert_Result Moneda in list)
                         MensajeError = Moneda.MensajeError;
                     if (MensajeError == "-1")
@@ -86,12 +87,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbMoneda tbMoneda = db.tbMoneda.Find(id);
             if (tbMoneda == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             //ViewBag.mnda_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbMoneda.mnda_UsuarioCrea);
             //ViewBag.mnda_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbMoneda.mnda_UsuarioModifica);
@@ -144,12 +145,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbMoneda tbMoneda = db.tbMoneda.Find(id);
             if (tbMoneda == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbMoneda);
         }

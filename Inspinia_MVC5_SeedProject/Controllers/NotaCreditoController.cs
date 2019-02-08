@@ -13,7 +13,7 @@ namespace ERP_GMEDINA.Controllers
     public class NotaCreditoController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
-
+        GeneralFunctions Function = new GeneralFunctions();
         // GET: /NotaCredito/
         public ActionResult Index()
         {
@@ -25,12 +25,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbDevolucion tbDevolucion = db.tbDevolucion.Find(id);
             if (tbDevolucion == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbDevolucion);
         }
@@ -41,12 +41,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbNotaCredito tbNotaCredito = db.tbNotaCredito.Find(id);
             if (tbNotaCredito == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbNotaCredito);
         }
@@ -100,7 +100,9 @@ namespace ERP_GMEDINA.Controllers
                                                             tbNotaCredito.nocre_Monto, 
                                                             tbNotaCredito.nocre_Redimido,
                                                             tbNotaCredito.nocre_FechaRedimido,
-                                                            tbNotaCredito.nocre_EsImpreso);
+                                                            tbNotaCredito.nocre_EsImpreso,
+                                                            Function.GetUser(),
+                                                            Function.DatetimeNow());
                     foreach (UDP_Vent_tbNotaCredito_Insert_Result NotaCredito in list)
                         MensajeError = NotaCredito.MensajeError;
                     if (MensajeError == "-1")
@@ -141,12 +143,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbNotaCredito tbNotaCredito = db.tbNotaCredito.Find(id);
             if (tbNotaCredito == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             //ViewBag.nocre_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbNotaCredito.nocre_UsuarioCrea);
             //ViewBag.nocre_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbNotaCredito.nocre_UsuarioModifica);
@@ -175,7 +177,8 @@ namespace ERP_GMEDINA.Controllers
                         tbNotaCredito.dev_Id, tbNotaCredito.clte_Id, tbNotaCredito.suc_Id, tbNotaCredito.cja_Id, tbNotaCredito.nocre_Anulado,
                         tbNotaCredito.nocre_FechaEmision, tbNotaCredito.nocre_MotivoEmision, tbNotaCredito.nocre_Monto,
                         tbNotaCredito.nocre_Redimido, tbNotaCredito.nocre_FechaRedimido, tbNotaCredito.nocre_EsImpreso,
-                        tbNotaCredito.nocre_UsuarioCrea, tbNotaCredito.nocre_FechaCrea);
+                        tbNotaCredito.nocre_UsuarioCrea, tbNotaCredito.nocre_FechaCrea,Function.GetUser(),
+                                    Function.DatetimeNow());
                     foreach (UDP_Vent_tbNotaCredito_Update_Result NotaCredito in list)
                         MensajeError = Convert.ToString(NotaCredito.MensajeError);
                     if (MensajeError == "-1")
@@ -207,12 +210,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbNotaCredito tbNotaCredito = db.tbNotaCredito.Find(id);
             if (tbNotaCredito == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbNotaCredito);
         }
