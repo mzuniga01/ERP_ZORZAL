@@ -153,13 +153,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Inv_tbProductoSubcategoria_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProductoSubcategoria_Insert">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProductoSubcategoria_Insert_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="UDP_Inv_tbProductoSubcategoria_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProductoSubcategoria_Update">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProductoSubcategoria_Update_Result">
@@ -1423,6 +1416,7 @@
     <EntitySetMapping Name="tbPago">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbPago">
         <MappingFragment StoreEntitySet="tbPago">
+          <ScalarProperty Name="nocre_Codigo_cdto_Id" ColumnName="nocre_Codigo_cdto_Id" />
           <ScalarProperty Name="pago_RazonAnulado" ColumnName="pago_RazonAnulado" />
           <ScalarProperty Name="pago_FechaModifica" ColumnName="pago_FechaModifica" />
           <ScalarProperty Name="pago_UsuarioModifica" ColumnName="pago_UsuarioModifica" />
@@ -2075,6 +2069,13 @@
           <ScalarProperty Name="prod_Modelo" ColumnName="prod_Modelo" />
           <ScalarProperty Name="uni_Id" ColumnName="uni_Id" />
           <ScalarProperty Name="uni_Descripcion" ColumnName="uni_Descripcion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbProductoSubcategoria_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProductoSubcategoria_Insert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProductoSubcategoria_Insert_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

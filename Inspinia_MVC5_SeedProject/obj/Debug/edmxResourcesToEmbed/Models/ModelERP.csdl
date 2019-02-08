@@ -124,11 +124,6 @@
       <Parameter Name="rol_Id" Mode="In" Type="Int32" />
       <Parameter Name="rol_Descripcion" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Inv_tbProductoSubcategoria_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProductoSubcategoria_Insert_Result)">
-      <Parameter Name="pscat_Descripcion" Mode="In" Type="String" />
-      <Parameter Name="pcat_Id" Mode="In" Type="Int32" />
-      <Parameter Name="pscat_ISV" Mode="In" Type="Decimal" />
-    </FunctionImport>
     <FunctionImport Name="UDP_Inv_tbProductoSubcategoria_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProductoSubcategoria_Update_Result)">
       <Parameter Name="pscat_Id" Mode="In" Type="Int32" />
       <Parameter Name="pscat_Descripcion" Mode="In" Type="String" />
@@ -1639,6 +1634,11 @@
     <FunctionImport Name="UDP_Inv_tbInventarioFisico_ListaProductos" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbInventarioFisico_ListaProductos_Result)">
       <Parameter Name="bod_Id" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="UDP_Inv_tbProductoSubcategoria_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProductoSubcategoria_Insert_Result)">
+      <Parameter Name="pscat_Descripcion" Mode="In" Type="String" />
+      <Parameter Name="pcat_Id" Mode="In" Type="Int32" />
+      <Parameter Name="pscat_ISV" Mode="In" Type="Decimal" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -1724,9 +1724,6 @@
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
   <ComplexType Name="UDP_Acce_tbRol_Update_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="UDP_Inv_tbProductoSubcategoria_Insert_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
   <ComplexType Name="UDP_Inv_tbProductoSubcategoria_Update_Result">
@@ -3143,6 +3140,7 @@
     <NavigationProperty Name="tbCuentasBanco" Relationship="ERP_ZORZALModel.FK_Gral_tbCuentaBanco_bcta_Id" FromRole="tbPago" ToRole="tbCuentasBanco" />
     <NavigationProperty Name="tbFactura" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbPago_fact_Id" FromRole="tbPago" ToRole="tbFactura" />
     <NavigationProperty Name="tbTipoPago" Relationship="ERP_ZORZALModel.FK_Vent_tbTipoPago_tbPago_tpa_Id" FromRole="tbPago" ToRole="tbTipoPago" />
+    <Property Name="nocre_Codigo_cdto_Id" Type="String" MaxLength="19" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="tbPagosArqueo">
     <Key>
@@ -6355,5 +6353,8 @@
     <Property Type="String" Name="prod_Modelo" Nullable="false" MaxLength="25" />
     <Property Type="Int32" Name="uni_Id" Nullable="false" />
     <Property Type="String" Name="uni_Descripcion" Nullable="false" MaxLength="150" />
+  </ComplexType>
+  <ComplexType Name="UDP_Inv_tbProductoSubcategoria_Insert_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
 </Schema>

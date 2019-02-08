@@ -188,13 +188,13 @@ $('#AgregarDetalleEntrada_Craete').click(function () {
         //$('#Errorcodigoproducto').text('');
         //$('#Errorcantidad').text('');
         console.log("entrada");
-        //}
-        //else
-        //if (codigoproducto == '') {
-        //    $('#Mensajecodigo').text('');
-        //    $('#Mensajecantidad').text('');
-        //    $('#validationcodigoproducto').after('<ul id="Mensajecodigo" class="validation-summary-errors text-danger">Campo codigo producto Requerido</ul>');
-        //    console.log("codigoproducto");
+        }
+        else
+        if (codigoproducto == '') {
+            $('#Mensajecodigo').text('');
+            $('#Mensajecantidad').text('');
+            $('#validationcodigoproducto').after('<ul id="Mensajecodigo" class="validation-summary-errors text-danger">Campo codigo producto Requerido</ul>');
+            console.log("codigoproducto");
     }
     else if (cantidad == '') {
         $('#Mensajecodigo').text('');
