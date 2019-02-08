@@ -30,6 +30,8 @@ namespace ERP_GMEDINA.Controllers
                     foreach (UDP_Acce_Login_Result UserLogin in Usuario)
                     {
                         var Listado = db.SDP_Acce_GetUserRols(UserLogin.usu_Id, "").ToList();
+                        var ListadoRol = db.SDP_Acce_GetRolesAsignados(UserLogin.usu_Id).ToList();
+                        Session["UserRol"] = ListadoRol.Count();
                         Session["UserLogin"] = UserLogin.usu_Id;
                         Session["UserLoginRols"] = Listado;
                         Session["UserLoginEsAdmin"] = UserLogin.usu_EsAdministrador;
@@ -89,6 +91,15 @@ namespace ERP_GMEDINA.Controllers
         }
 
         public ActionResult NotFound()
+        {
+            //Validar Inicio de Sesión
+            GeneralFunctions Function = new GeneralFunctions();
+            if (Function.GetUserLogin())
+                return View();
+            else
+                return RedirectToAction("Index", "Login");
+        }
+        public ActionResult SinRol()
         {
             //Validar Inicio de Sesión
             GeneralFunctions Function = new GeneralFunctions();

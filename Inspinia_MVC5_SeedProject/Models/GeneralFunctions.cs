@@ -132,5 +132,23 @@ namespace ERP_GMEDINA.Models
                 Ex.Message.ToString();
             }
         }
+
+        public bool GetRol()
+        {
+            bool state = false;
+            int Rol = 0;
+            try
+            {
+                Rol = (int)HttpContext.Current.Session["UserRol"];
+                if (Rol != 0)
+                    state = true;
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                state = false;
+            }
+            return state;
+        }
     }
 }

@@ -13,32 +13,83 @@ namespace ERP_GMEDINA.Controllers
     public class ActividadEconomicaController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
-
+        GeneralFunctions Function = new GeneralFunctions();
         // GET: /ActividadEconomica/
         public ActionResult Index()
         {
-            return View(db.tbActividadEconomica.ToList());
+            if (Function.GetUserLogin())
+            {
+                if (Function.GetRol())
+                {
+                    if (Function.GetUserRols("ActividadEconomica/Index"))
+                    {
+                        return View(db.tbActividadEconomica.ToList());
+                    }
+                    else
+                    {
+                        return RedirectToAction("SinAcceso", "Login");
+                    }
+                }
+                else
+                    return RedirectToAction("SinRol", "Login");
+            }
+            else
+                return RedirectToAction("Index", "Login");
         }
 
         // GET: /ActividadEconomica/Details/5
         public ActionResult Details(short? id)
         {
-            if (id == null)
+            if (Function.GetUserLogin())
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (Function.GetRol())
+                {
+                    if (Function.GetUserRols("ActividadEconomica/Details"))
+                    {
+                        if (id == null)
+                        {
+                            return RedirectToAction("Index");
+                        }
+                        tbActividadEconomica tbActividadEconomica = db.tbActividadEconomica.Find(id);
+                        if (tbActividadEconomica == null)
+                        {
+                            return RedirectToAction("NotFound", "Login");
+                        }
+                        return View(tbActividadEconomica);
+                    }
+                    else
+                    {
+                        return RedirectToAction("SinAcceso", "Login");
+                    }
+                }
+                else
+                    return RedirectToAction("SinRol", "Login");
             }
-            tbActividadEconomica tbActividadEconomica = db.tbActividadEconomica.Find(id);
-            if (tbActividadEconomica == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tbActividadEconomica);
+            else
+                return RedirectToAction("Index", "Login");
         }
 
         // GET: /ActividadEconomica/Create
         public ActionResult Create()
         {
-            return View();
+            if (Function.GetUserLogin())
+            {
+                if (Function.GetRol())
+                {
+                    if (Function.GetUserRols("ActividadEconomica/Create"))
+                    {
+                        return View();
+                    }
+                    else
+                    {
+                        return RedirectToAction("SinAcceso", "Login");
+                    }
+                }
+                else
+                    return RedirectToAction("SinRol", "Login");
+            }
+            else
+                return RedirectToAction("Index", "Login");
         }
 
         // POST: /ActividadEconomica/Create
@@ -48,51 +99,84 @@ namespace ERP_GMEDINA.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include="acte_Id,acte_Descripcion,acte_UsuarioCrea,acte_FechaCrea,acte_UsuarioModifica,acte_FechaModifica")] tbActividadEconomica tbActividadEconomica)
         {
-            try
+            if (Function.GetUserLogin())
             {
-                if (ModelState.IsValid)
+                if (Function.GetRol())
                 {
-                    //} db.tbActividadEconomica.Add(tbActividadEconomica);
-                    //db.SaveChanges();
-                    //return RedirectToAction("Index");
-                    var MensajeError = "";
-                    IEnumerable<object> list = null;
-                    list = db.UDP_Gral_tbActividadEconomica_Insert(tbActividadEconomica.acte_Descripcion);
-
-                    foreach (UDP_Gral_tbActividadEconomica_Insert_Result ActividadEconomica in list)
-                        MensajeError = ActividadEconomica.MensajeError;
-
-                    if (MensajeError == "-1")
+                    if (Function.GetUserRols("ActividadEconomica/Create"))
                     {
-                    }
+                        try
+                        {
+                            if (ModelState.IsValid)
+                            {
+                                var MensajeError = "";
+                                IEnumerable<object> list = null;
+                                list = db.UDP_Gral_tbActividadEconomica_Insert(tbActividadEconomica.acte_Descripcion, Function.GetUser(), Function.DatetimeNow());
 
+                                foreach (UDP_Gral_tbActividadEconomica_Insert_Result ActividadEconomica in list)
+                                    MensajeError = ActividadEconomica.MensajeError;
+                                if (MensajeError.StartsWith("-1"))
+                                {
+                                    Function.InsertBitacoraErrores("ActividadEconomica/Create", MensajeError, "Create");
+                                    ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                                    return View(tbActividadEconomica);
+                                }
+                                else
+                                {
+                                    return RedirectToAction("Index");
+                                }
+                            }
+                            return View(tbActividadEconomica);
+                        }
+                        catch (Exception Ex)
+                        {
+                            Function.InsertBitacoraErrores("ActividadEconomica/Create", Ex.Message.ToString(), "Create");
+                            ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                            return View(tbActividadEconomica);
+                        }
+                    }
                     else
                     {
-                        return RedirectToAction("Index");
+                        return RedirectToAction("SinAcceso", "Login");
                     }
-
                 }
+                else
+                    return RedirectToAction("SinRol", "Login");
             }
-            catch(Exception Ex)
-            {
-                Ex.Message.ToString();
-            }
-                return View(tbActividadEconomica);
+            else
+                return RedirectToAction("Index", "Login");
         }
 
         // GET: /ActividadEconomica/Edit/5
         public ActionResult Edit(short? id)
         {
-            if (id == null)
+            if (Function.GetUserLogin())
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (Function.GetRol())
+                {
+                    if (Function.GetUserRols("ActividadEconomica/Edit"))
+                    {
+                        if (id == null)
+                        {
+                            return RedirectToAction("Index");
+                        }
+                        tbActividadEconomica tbActividadEconomica = db.tbActividadEconomica.Find(id);
+                        if (tbActividadEconomica == null)
+                        {
+                            return RedirectToAction("NotFound", "Login");
+                        }
+                        return View(tbActividadEconomica);
+                    }
+                    else
+                    {
+                        return RedirectToAction("SinAcceso", "Login");
+                    }
+                }
+                else
+                    return RedirectToAction("SinRol", "Login");
             }
-            tbActividadEconomica tbActividadEconomica = db.tbActividadEconomica.Find(id);
-            if (tbActividadEconomica == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tbActividadEconomica);
+            else
+                return RedirectToAction("Index", "Login");
         }
 
         // POST: /ActividadEconomica/Edit/5
@@ -102,63 +186,51 @@ namespace ERP_GMEDINA.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include= "acte_Id,acte_Descripcion,acte_UsuarioCrea,acte_FechaCrea,acte_UsuarioModifica,acte_FechaModifica, tbUsuario, tbUsuario1")] tbActividadEconomica tbActividadEconomica)
         {
-            try
+            if (Function.GetUserLogin())
             {
-
-
-                if (ModelState.IsValid)
+                if (Function.GetRol())
                 {
-                  
-
-                    var MensajeError = "";
-                    IEnumerable<object> list = null;
-                    list = db.UDP_Gral_tbActividadEconomica_Update(tbActividadEconomica.acte_Id, tbActividadEconomica.acte_Descripcion, tbActividadEconomica.acte_UsuarioCrea, tbActividadEconomica.acte_FechaCrea);
-                    foreach (UDP_Gral_tbActividadEconomica_Update_Result ActividadEconomica in list)
-                        MensajeError = ActividadEconomica.MensajeError;
-                    if (MensajeError == "-1")
+                    if (Function.GetUserRols("ActividadEconomica/Edit"))
                     {
+                        try
+                        {
+                            if (ModelState.IsValid)
+                            {
+                                var MensajeError = "";
+                                IEnumerable<object> list = null;
+                                list = db.UDP_Gral_tbActividadEconomica_Update(tbActividadEconomica.acte_Id, tbActividadEconomica.acte_Descripcion, tbActividadEconomica.acte_UsuarioCrea, tbActividadEconomica.acte_FechaCrea, Function.GetUser(), Function.DatetimeNow());
+                                foreach (UDP_Gral_tbActividadEconomica_Update_Result ActividadEconomica in list)
+                                    MensajeError = ActividadEconomica.MensajeError;
+                                if (MensajeError.StartsWith("-1"))
+                                {
+                                    Function.InsertBitacoraErrores("ActividadEconomica/Edit", MensajeError, "Edit");
+                                    ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                                    return View(tbActividadEconomica);
+                                }
+                                else
+                                {
+                                    return RedirectToAction("Index");
+                                }
+                            }
+                        }
+                        catch (Exception Ex)
+                        {
+                            Function.InsertBitacoraErrores("ActividadEconomica/Edit", Ex.Message.ToString(), "Edit");
+                            ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                            return View(tbActividadEconomica);
+                        }
+                        return View(tbActividadEconomica);
                     }
                     else
                     {
-                        return RedirectToAction("Index");
+                        return RedirectToAction("SinAcceso", "Login");
                     }
-
                 }
-
-
+                else
+                    return RedirectToAction("SinRol", "Login");
             }
-            catch (Exception Ex)
-            {
-                Ex.Message.ToString();
-            }
-
-            return View(tbActividadEconomica);
-        }
-
-        // GET: /ActividadEconomica/Delete/5
-        public ActionResult Delete(short? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            tbActividadEconomica tbActividadEconomica = db.tbActividadEconomica.Find(id);
-            if (tbActividadEconomica == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tbActividadEconomica);
-        }
-
-        // POST: /ActividadEconomica/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(short id)
-        {
-            tbActividadEconomica tbActividadEconomica = db.tbActividadEconomica.Find(id);
-            db.tbActividadEconomica.Remove(tbActividadEconomica);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            else
+                return RedirectToAction("Index", "Login");
         }
 
         protected override void Dispose(bool disposing)

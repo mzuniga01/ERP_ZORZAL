@@ -56,8 +56,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.suc_Id, "Sucursal", new { @class = "control-label col-md-2" })
             <div class="col-md-5">
-                @Html.EditorFor(model => model.suc_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.suc_Id)
+                @Html.DropDownList("suc_Id", null, new { @class = "form-control", @readonly = "readonly" })
+                <p id="Identificacion" style="color:red">@Html.ValidationMessageFor(model => model.suc_Id)</p>
             </div>
         </div>
 

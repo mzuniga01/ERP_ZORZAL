@@ -13,35 +13,96 @@ namespace ERP_GMEDINA.Controllers
     public class CajaController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
-
+        GeneralFunctions Function = new GeneralFunctions();
         // GET: /Caja/
         public ActionResult Index()
         {
-            return View(db.tbCaja.ToList());
+            if (Function.GetUserLogin())
+            {
+                if (Function.GetRol())
+                {
+                    if (Function.GetUserRols("Caja/Index"))
+                    {
+                        return View(db.tbCaja.ToList());
+                    }
+                    else
+                    {
+                        return RedirectToAction("SinAcceso", "Login");
+                    }
+                }
+                else
+                    return RedirectToAction("SinRol", "Login");
+            }
+            else
+                return RedirectToAction("Index", "Login");
         }
 
         // GET: /Caja/Details/5
         public ActionResult Details(short? id)
         {
-            if (id == null)
+            if (Function.GetUserLogin())
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (Function.GetRol())
+                {
+                    if (Function.GetUserRols("Caja/Details"))
+                    {
+                        if (id == null)
+                        {
+                            return RedirectToAction("Index");
+                        }
+                        tbCaja tbCaja = db.tbCaja.Find(id);
+                        if (tbCaja == null)
+                        {
+                            return RedirectToAction("NotFound", "Login");
+                        }
+                        return View(tbCaja);
+                    }
+                    else
+                    {
+                        return RedirectToAction("SinAcceso", "Login");
+                    }
+                }
+                else
+                    return RedirectToAction("SinRol", "Login");
             }
-            tbCaja tbCaja = db.tbCaja.Find(id);
-            if (tbCaja == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tbCaja);
+            else
+                return RedirectToAction("Index", "Login");
         }
 
         // GET: /Caja/Create
         public ActionResult Create()
         {
-            ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo");
-            tbCaja caja = new tbCaja();
-            caja.suc_Id = 1;
-            return View(caja);
+            if (Function.GetUserLogin())
+            {
+                if (Function.GetRol())
+                {
+                    if (Function.GetUserRols("Caja/Create"))
+                    {
+                        tbCaja caja = new tbCaja();
+                        List<tbUsuario> List = Function.getUserInformation();
+                        int SucursalId = 0;
+                        foreach(tbUsuario User in List)
+                        {
+                            SucursalId =  (int)User.suc_Id;
+                        }
+                        var Sucursal = db.tbSucursal.Select(s => new
+                        {
+                            suc_Id = s.suc_Id,
+                            suc_Descripcion = s.suc_Descripcion
+                        }).Where(x => x.suc_Id == SucursalId).ToList();
+                        ViewBag.suc_Id = new SelectList(Sucursal, "suc_Id", "suc_Descripcion");
+                        return View(caja);
+                    }
+                    else
+                    {
+                        return RedirectToAction("SinAcceso", "Login");
+                    }
+                }
+                else
+                    return RedirectToAction("SinRol", "Login");
+            }
+            else
+                return RedirectToAction("Index", "Login");
         }
 
         // POST: /Caja/Create
@@ -51,60 +112,111 @@ namespace ERP_GMEDINA.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include="cja_Id,cja_Descripcion,suc_Id,cja_UsuarioCrea,cja_FechaCrea,cja_UsuarioModifica,cja_FechaModifica")] tbCaja tbCaja)
         {
-
-            try
+            if (Function.GetUserLogin())
             {
-                if (ModelState.IsValid)
+                if (Function.GetRol())
                 {
-                    var MensajeError = 0;
-                    IEnumerable<object> list = null;
-                    list = db.UDP_Vent_tbCaja_Insert(tbCaja.cja_Id,tbCaja.cja_Descripcion,tbCaja.suc_Id);
-                    foreach (UDP_Vent_tbCaja_Insert_Result caja in list)
-                        MensajeError = caja.MensajeError;
-                    if (MensajeError == -1)
+                    if (Function.GetUserRols("Caja/Create"))
                     {
+                        List<tbUsuario> List = Function.getUserInformation();
+                        int SucursalId = 0;
+                        foreach (tbUsuario User in List)
+                        {
+                            SucursalId = (int)User.suc_Id;
+                        }
+                        var Sucursal = db.tbSucursal.Select(s => new
+                        {
+                            suc_Id = s.suc_Id,
+                            suc_Descripcion = s.suc_Descripcion
+                        }).Where(x => x.suc_Id == SucursalId).ToList();
+                        try
+                        {
+                            if (ModelState.IsValid)
+                            {
+                                string MensajeError = "";
+                                IEnumerable<object> list = null;
+                                list = db.UDP_Vent_tbCaja_Insert(tbCaja.cja_Descripcion, tbCaja.suc_Id, Function.GetUser(), Function.DatetimeNow());
+                                foreach (UDP_Vent_tbCaja_Insert_Result caja in list)
+                                    MensajeError = caja.MensajeError;
+                                if (MensajeError.StartsWith("-1"))
+                                {
+                                    ViewBag.suc_Id = new SelectList(Sucursal, "suc_Id", "suc_Descripcion");
+                                    Function.InsertBitacoraErrores("Caja/Create", MensajeError, "Create");
+                                    ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                                    return View(tbCaja);
+                                }
+                                else
+                                {
+                                    return RedirectToAction("Index");
+                                }
+                            }
+                            ViewBag.suc_Id = new SelectList(Sucursal, "suc_Id", "suc_Descripcion");
+                            return View(tbCaja);
+                        }
+                        catch (Exception Ex)
+                        {
+                            ViewBag.suc_Id = new SelectList(Sucursal, "suc_Id", "suc_Descripcion");
+                            Function.InsertBitacoraErrores("Caja/Create", Ex.Message.ToString(), "Create");
+                            ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                            return View(tbCaja);
+                        }
                     }
                     else
                     {
-                        return RedirectToAction("Index");
+                        return RedirectToAction("SinAcceso", "Login");
                     }
-                    db.tbCaja.Add(tbCaja);
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
                 }
+                else
+                    return RedirectToAction("SinRol", "Login");
             }
-            catch (Exception Ex)
-            {
-                Ex.Message.ToString();
-            }
-
-            //if (ModelState.IsValid)
-            //{
-            //    db.tbCaja.Add(tbCaja);
-            //    db.SaveChanges();
-            //    return RedirectToAction("Index");
-            //}
-
-            ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo", tbCaja.suc_Id);
-            return View(tbCaja);
+            else
+                return RedirectToAction("Index", "Login");            
         }
 
         // GET: /Caja/Edit/5
         public ActionResult Edit(short? id)
         {
-            if (id == null)
+            if (Function.GetUserLogin())
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (Function.GetRol())
+                {
+                    if (Function.GetUserRols("Caja/Edit"))
+                    {
+                        if (id == null)
+                        {
+                            return RedirectToAction("Index");
+                        }
+                        tbCaja tbCaja = db.tbCaja.Find(id);
+                        if (tbCaja == null)
+                        {
+                            return RedirectToAction("NotFound", "Login");
+                        }
+                        ViewBag.cja_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCaja.cja_UsuarioCrea);
+                        ViewBag.cja_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCaja.cja_UsuarioModifica);
+                        List<tbUsuario> List = Function.getUserInformation();
+                        int SucursalId = 0;
+                        foreach (tbUsuario User in List)
+                        {
+                            SucursalId = (int)User.suc_Id;
+                        }
+                        var Sucursal = db.tbSucursal.Select(s => new
+                        {
+                            suc_Id = s.suc_Id,
+                            suc_Descripcion = s.suc_Descripcion
+                        }).Where(x => x.suc_Id == SucursalId).ToList();
+                        ViewBag.suc_Id = new SelectList(Sucursal, "suc_Id", "suc_Descripcion");
+                        return View(tbCaja);
+                    }
+                    else
+                    {
+                        return RedirectToAction("SinAcceso", "Login");
+                    }
+                }
+                else
+                    return RedirectToAction("SinRol", "Login");
             }
-            tbCaja tbCaja = db.tbCaja.Find(id);
-            if (tbCaja == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.cja_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCaja.cja_UsuarioCrea);
-            ViewBag.cja_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCaja.cja_UsuarioModifica);
-            ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo", tbCaja.suc_Id);
-            return View(tbCaja);
+            else
+                return RedirectToAction("Index", "Login");
         }
 
         // POST: /Caja/Edit/5
@@ -114,67 +226,68 @@ namespace ERP_GMEDINA.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include= "cja_Id,cja_Descripcion,suc_Id,cja_UsuarioCrea,cja_FechaCrea,cja_UsuarioModifica,cja_FechaModifica,tbUsuario,tbUsuario1")] tbCaja tbCaja)
         {
-            if (ModelState.IsValid)
+            if (Function.GetUserLogin())
             {
-                try
+                if (Function.GetRol())
                 {
-                    var MensajeError = 0;
-                    IEnumerable<object> list = null;
-                    list = db.UDP_Vent_tbCaja_Update(tbCaja.cja_Id, tbCaja.cja_Descripcion, tbCaja.suc_Id, tbCaja.cja_UsuarioCrea, tbCaja.cja_FechaCrea);
-                    foreach (UDP_Vent_tbCaja_Update_Result caja in list)
-                        MensajeError = caja.MensajeError;
-                    if (MensajeError == -1)
+                    if (Function.GetUserRols("Caja/Edit"))
                     {
+                        List<tbUsuario> List = Function.getUserInformation();
+                        int SucursalId = 0;
+                        foreach (tbUsuario User in List)
+                        {
+                            SucursalId = (int)User.suc_Id;
+                        }
+                        var Sucursal = db.tbSucursal.Select(s => new
+                        {
+                            suc_Id = s.suc_Id,
+                            suc_Descripcion = s.suc_Descripcion
+                        }).Where(x => x.suc_Id == SucursalId).ToList();
+                        if (ModelState.IsValid)
+                        {
+                            try
+                            {
+                                string MensajeError = "";
+                                IEnumerable<object> list = null;
+                                list = db.UDP_Vent_tbCaja_Update(tbCaja.cja_Id, tbCaja.cja_Descripcion, tbCaja.suc_Id, tbCaja.cja_UsuarioCrea, tbCaja.cja_FechaCrea, Function.GetUser(), Function.DatetimeNow());
+                                foreach (UDP_Vent_tbCaja_Update_Result caja in list)
+                                    MensajeError = caja.MensajeError;
+                                if (MensajeError.StartsWith("-1"))
+                                {
+                                    ViewBag.suc_Id = new SelectList(Sucursal, "suc_Id", "suc_Descripcion");
+                                    Function.InsertBitacoraErrores("Caja/Edit", MensajeError, "Edit");
+                                    ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                                    return View(tbCaja);
+                                }
+                                else
+                                {
+                                    return RedirectToAction("Index");
+                                }
+                            }
+                            catch (Exception Ex)
+                            {
+                                ViewBag.suc_Id = new SelectList(Sucursal, "suc_Id", "suc_Descripcion");
+                                Function.InsertBitacoraErrores("Caja/Edit", Ex.Message.ToString(), "Edit");
+                                ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                                return View(tbCaja);
+                            }
+                        }
+                        ViewBag.cja_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCaja.cja_UsuarioCrea);
+                        ViewBag.cja_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCaja.cja_UsuarioModifica);
+                        ViewBag.suc_Id = new SelectList(Sucursal, "suc_Id", "suc_Descripcion");
+                        return View(tbCaja);
                     }
                     else
                     {
-                        return RedirectToAction("Index");
+                        return RedirectToAction("SinAcceso", "Login");
                     }
                 }
-                catch (Exception Ex)
-                {
-
-                    
-                    ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo", tbCaja.suc_Id);
-                    ModelState.AddModelError("", "No se ha podido actualizar el registro, favor contacte al administrador" + Ex.Message.ToString());
-                    return View(tbCaja);
-
-                }
-                return RedirectToAction("Index");
-
+                else
+                    return RedirectToAction("SinRol", "Login");
             }
-            ViewBag.cja_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCaja.cja_UsuarioCrea);
-            ViewBag.cja_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbCaja.cja_UsuarioModifica);
-            ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo", tbCaja.suc_Id);
-            
-            return View(tbCaja);
+            else
+                return RedirectToAction("Index", "Login");
        }
-
-        // GET: /Caja/Delete/5
-        public ActionResult Delete(short? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            tbCaja tbCaja = db.tbCaja.Find(id);
-            if (tbCaja == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tbCaja);
-        }
-
-        // POST: /Caja/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(short id)
-        {
-            tbCaja tbCaja = db.tbCaja.Find(id);
-            db.tbCaja.Remove(tbCaja);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
 
         protected override void Dispose(bool disposing)
         {
