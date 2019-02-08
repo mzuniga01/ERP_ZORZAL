@@ -690,7 +690,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetBusquedaCliente_Result>("spGetBusquedaCliente", identificacionParameter, nombreParameter, telefonoParameter);
         }
     
-        public virtual ObjectResult<UDP_Vent_tbDevolucion_Update_Result> UDP_Vent_tbDevolucion_Update(Nullable<int> dev_Id, Nullable<long> fact_Id, Nullable<short> cja_Id, Nullable<System.DateTime> dev_Fecha, Nullable<bool> dev_Estado, Nullable<int> dev_UsuarioCrea, Nullable<System.DateTime> dev_FechaCrea)
+        public virtual ObjectResult<UDP_Vent_tbDevolucion_Update_Result> UDP_Vent_tbDevolucion_Update(Nullable<int> dev_Id, Nullable<long> fact_Id, Nullable<short> cja_Id, Nullable<System.DateTime> dev_Fecha, Nullable<bool> dev_Estado, Nullable<int> dev_UsuarioCrea, Nullable<System.DateTime> dev_FechaCrea, Nullable<int> dev_UsuarioModifica, Nullable<System.DateTime> dev_FechaModifica)
         {
             var dev_IdParameter = dev_Id.HasValue ?
                 new ObjectParameter("dev_Id", dev_Id) :
@@ -720,7 +720,15 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("dev_FechaCrea", dev_FechaCrea) :
                 new ObjectParameter("dev_FechaCrea", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbDevolucion_Update_Result>("UDP_Vent_tbDevolucion_Update", dev_IdParameter, fact_IdParameter, cja_IdParameter, dev_FechaParameter, dev_EstadoParameter, dev_UsuarioCreaParameter, dev_FechaCreaParameter);
+            var dev_UsuarioModificaParameter = dev_UsuarioModifica.HasValue ?
+                new ObjectParameter("dev_UsuarioModifica", dev_UsuarioModifica) :
+                new ObjectParameter("dev_UsuarioModifica", typeof(int));
+    
+            var dev_FechaModificaParameter = dev_FechaModifica.HasValue ?
+                new ObjectParameter("dev_FechaModifica", dev_FechaModifica) :
+                new ObjectParameter("dev_FechaModifica", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbDevolucion_Update_Result>("UDP_Vent_tbDevolucion_Update", dev_IdParameter, fact_IdParameter, cja_IdParameter, dev_FechaParameter, dev_EstadoParameter, dev_UsuarioCreaParameter, dev_FechaCreaParameter, dev_UsuarioModificaParameter, dev_FechaModificaParameter);
         }
     
         public virtual ObjectResult<UDP_Vent_tbDevolucionDetalle_Update_Result> UDP_Vent_tbDevolucionDetalle_Update(Nullable<int> devd_Id, Nullable<int> dev_Id, string prod_Codigo, Nullable<decimal> devd_CantidadProducto, string devd_Descripcion, Nullable<decimal> devd_Monto, Nullable<int> devd_UsuarioCrea, Nullable<System.DateTime> devd_FechaCrea)
@@ -5843,6 +5851,15 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("clte_FechaModifica", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Vent_tbCliente_Update", clte_IdParameter, tpi_IdParameter, clte_IdentificacionParameter, clte_EsPersonaNaturalParameter, clte_NombresParameter, clte_ApellidosParameter, clte_FechaNacimientoParameter, clte_NacionalidadParameter, clte_SexoParameter, clte_TelefonoParameter, clte_NombreComercialParameter, clte_RazonSocialParameter, clte_ContactoNombreParameter, clte_ContactoEmailParameter, clte_ContactoTelefonoParameter, clte_FechaConstitucionParameter, mun_CodigoParameter, clte_DireccionParameter, clte_CorreoElectronicoParameter, clte_EsActivoParameter, clte_RazonInactivoParameter, clte_ConCreditoParameter, clte_EsMinoristaParameter, clte_ObservacionesParameter, clte_UsuarioCreaParameter, clte_FechaCreaParameter, clte_MontoCreditoParameter, clte_DiasCreditoParameter, clte_ExoneradoParameter, clte_UsuarioModificaParameter, clte_FechaModificaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbListaPrecio_UltimaFechaVigente_Result> UDP_Vent_tbListaPrecio_UltimaFechaVigente(Nullable<short> pRIORIDAD)
+        {
+            var pRIORIDADParameter = pRIORIDAD.HasValue ?
+                new ObjectParameter("PRIORIDAD", pRIORIDAD) :
+                new ObjectParameter("PRIORIDAD", typeof(short));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbListaPrecio_UltimaFechaVigente_Result>("UDP_Vent_tbListaPrecio_UltimaFechaVigente", pRIORIDADParameter);
         }
     }
 }

@@ -19,8 +19,8 @@
                         <tr>
 
                             <th>
-                                Código  
-                                @*@Html.DisplayNameFor(model => model.lispd_Id)*@
+                         
+                                @Html.DisplayNameFor(model => model.lispd_Id)
                             </th>
 
                             <th>
@@ -129,7 +129,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(m => ListDetalle.lispd_Id, new { @class = "control-label col-sm-2" })
                                 <div class="col-sm-10">
-                                    <input type="text" id="lispd_Id_lisd" name="lispd_Id" class="form-control" readonly="readonly"/>
+                                    <input type="text" id="lispd_Id_lisd" name="lispd_Id" class="form-control" />
                                     @Html.ValidationMessageFor(m => ListDetalle.lispd_Id)
                                 </div>
                             </div>
@@ -137,7 +137,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(m => ListDetalle.prod_Codigo, new { @class = "control-label col-sm-2" })
                                 <div class="col-sm-10">
-                                    <input type="text" id="prod_Codigo_lisd" name="prod_Codigo" class="form-control" readonly="readonly" />
+                                    <input type="text" id="prod_Codigo_lisd" name="prod_Codigo" class="form-control" />
                                     @Html.ValidationMessageFor(m => ListDetalle.prod_Codigo)
                                 </div>
                             </div>
@@ -198,7 +198,7 @@
 
 
 
-<div class="modal fade" id="ModalAgregarDetalle" tabindex="-1" role="dialog" aria-labelledby="DetalleNumeracion" aria-hidden="true" style="overflow-y: scroll";>
+<div class="modal fade" id="ModalAgregarDetalle" tabindex="-1" role="dialog" aria-labelledby="DetalleNumeracion" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">

@@ -174,6 +174,8 @@
       <Parameter Name="dev_Estado" Mode="In" Type="Boolean" />
       <Parameter Name="dev_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="dev_FechaCrea" Mode="In" Type="DateTime" />
+      <Parameter Name="dev_UsuarioModifica" Mode="In" Type="Int32" />
+      <Parameter Name="dev_FechaModifica" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbDevolucionDetalle_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDevolucionDetalle_Update_Result)">
       <Parameter Name="devd_Id" Mode="In" Type="Int32" />
@@ -2580,6 +2582,9 @@
       <Parameter Name="clte_Exonerado" Mode="In" Type="Boolean" />
       <Parameter Name="clte_UsuarioModifica" Mode="In" Type="Int32" />
       <Parameter Name="clte_FechaModifica" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbListaPrecio_UltimaFechaVigente" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbListaPrecio_UltimaFechaVigente_Result)">
+      <Parameter Name="PRIORIDAD" Mode="In" Type="Int16" />
     </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
@@ -7791,5 +7796,8 @@
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbCaja_Update_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="Max" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbListaPrecio_UltimaFechaVigente_Result">
+    <Property Type="DateTime" Name="FECHAVIGENCIAFINAL" Nullable="true" />
   </ComplexType>
 </Schema>

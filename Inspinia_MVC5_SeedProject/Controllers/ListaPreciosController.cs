@@ -31,12 +31,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return RedirectToAction("Index");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             tbListaPrecio tbListaPrecio = db.tbListaPrecio.Find(id);
             if (tbListaPrecio == null)
             {
-                return RedirectToAction("NotFound", "Login");
+                return HttpNotFound();
             }
             return View(tbListaPrecio);
         }
@@ -208,12 +208,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return RedirectToAction("Index");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             tbListaPrecio tbListaPrecio = db.tbListaPrecio.Find(id);
             if (tbListaPrecio == null)
             {
-                return RedirectToAction("NotFound", "Login");
+                return HttpNotFound();
             }
             ViewBag.listp_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbListaPrecio.listp_UsuarioCrea);
             ViewBag.listp_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbListaPrecio.listp_UsuarioModifica);
@@ -403,6 +403,15 @@ namespace ERP_GMEDINA.Controllers
         }
 
         [HttpPost]
+        public JsonResult ListaPrecioFechaFinal(Int16 Prioridad)
+        {
+
+            var list = db.UDP_Vent_tbListaPrecio_UltimaFechaVigente(Prioridad).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+            
+        } 
+
+        [HttpPost]
         public ActionResult GetListadoDetalleEdit(int listp_Id)
         {
             var list = db.UDP_Vent_tbListadoPrecioDetalle_Select(listp_Id).ToList();
@@ -415,12 +424,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return RedirectToAction("Index");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             tbListaPrecio tbListaPrecio = db.tbListaPrecio.Find(id);
             if (tbListaPrecio == null)
             {
-                return RedirectToAction("NotFound", "Login");
+                return HttpNotFound();
             }
             return View(tbListaPrecio);
         }

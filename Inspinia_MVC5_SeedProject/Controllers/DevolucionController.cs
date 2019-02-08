@@ -135,7 +135,7 @@ namespace ERP_ZORZAL.Controllers
                             tbDevolucion.dev_Fecha,
                             tbDevolucion.dev_Estado,
                             Function.GetUser(),
-                                    Function.DatetimeNow());
+                            Function.DatetimeNow());
                         foreach (UDP_Vent_tbDevolucion_Insert_Result DevolucionL in listDevolucion)
                             MensajeError = DevolucionL.MensajeError;
                         if (MensajeError == "-1")
@@ -270,6 +270,8 @@ namespace ERP_ZORZAL.Controllers
                             tbDevolucion.cja_Id,
                             tbDevolucion.dev_Fecha,
                             tbDevolucion.dev_Estado,
+                            tbDevolucion.dev_UsuarioCrea,
+                            tbDevolucion.dev_FechaCrea,
                             tbDevolucion.dev_UsuarioCrea,
                             tbDevolucion.dev_FechaCrea);
                         foreach (UDP_Vent_tbDevolucion_Update_Result DevolucionL in listDevolucion)
