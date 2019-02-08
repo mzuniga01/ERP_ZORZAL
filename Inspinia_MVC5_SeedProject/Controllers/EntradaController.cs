@@ -9,8 +9,10 @@ using System.Web;
 using System.Web.Mvc;
 using ERP_GMEDINA.Models;
 using System.Transactions;
+using CrystalDecisions.CrystalReports.Engine;
+using System.IO;
 
-namespace ERP_GMEDINA.Controllers
+namespace ERP_ZORZAL.Controllers
 {
     public class EntradaController : Controller
     {
@@ -61,6 +63,79 @@ namespace ERP_GMEDINA.Controllers
             var list = db.SPGetRTNproveedor(codigoProveedor).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
+        //para imprimir entra por id
+        public ActionResult ExportReport(int? id)
+        {
+            ReportDocument rd = new ReportDocument();
+            rd.Load(Path.Combine(Server.MapPath("~/Reports"), "ImprimirEntradaPorId.rpt"));
+            
+            var tbEntrada = db.tbEntrada.ToList();
+            var tbProveedor = db.tbProveedor.ToList();
+            var tbBodega = db.tbBodega.ToList();
+            var tbEstadoMovimiento = db.tbEstadoMovimiento.ToList();
+            var tbTipoEntrada = db.tbTipoEntrada.ToList();
+            var tbTipoDevolucion = db.tbTipoDevolucion.ToList();
+            var tbentradadetalle = db.tbEntradaDetalle.ToList();
+            var tbProducto = db.tbProducto.ToList();
+            var tbUnidadMedida = db.tbUnidadMedida.ToList();
+            var todo = (from r in tbEntrada
+                        join pro in tbProveedor on r.prov_Id equals pro.prov_Id
+                        join bod in tbBodega on r.bod_Id equals bod.bod_Id
+                        join esta in tbEstadoMovimiento on r.estm_Id equals esta.estm_Id
+                        join tent in tbTipoEntrada on r.tent_Id equals tent.tent_Id
+                        join tdel in tbTipoDevolucion on r.ent_RazonDevolucion equals tdel.tdev_Id
+                        join deta in tbentradadetalle on r.ent_Id equals deta.ent_Id
+                        join prod in tbProducto on deta.prod_Codigo equals prod.prod_Codigo
+                        join unid in tbUnidadMedida on prod.uni_Id equals unid.uni_Id
+                        where r.ent_Id == id
+                        select new
+                        {
+                            ent_Id = r.ent_Id,
+                            ent_NumeroFormato = r.ent_NumeroFormato,
+                            bod_Nombre = bod.bod_Nombre,
+                            ent_FechaElaboracion = r.ent_FechaElaboracion,
+                            prov_Nombre = pro.prov_Nombre,
+                            estm_Descripcion = esta.estm_Descripcion,
+                            tent_Descripcion = tent.tent_Descripcion,
+                            ent_FacturaCompra =r.ent_FacturaCompra,
+                            ent_FechaCompra = r.ent_FechaCompra,
+                            tdev_descripcion = tdel.tdev_Descripcion,
+                            fact_Id = r.fact_Id,
+                            ent_BodegaDestino = r.ent_BodegaDestino,
+                            entd_Cantidad = deta.entd_Cantidad,
+                            prod_Codigo = prod.prod_Codigo,
+                            prod_Descripcion = prod.prod_Descripcion,
+                            uni_Descripcion = unid.uni_Descripcion
+                        }).ToList();
+
+            rd.SetDataSource(todo);
+            Response.Buffer = false;
+            Response.ClearContent();
+            Response.ClearHeaders();
+            try
+            {
+                Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+                stream.Seek(0, SeekOrigin.Begin);
+                return File(stream, "application/pdf", "Entrada_List.pdf");
+                //{
+                //    PageMargins margins = rd.PrintOptions.PageMargins;/* TODO ERROR: Skipped SkippedTokensTrivia */
+                //    margins.bottomMargin = 200;/* TODO ERROR: Skipped SkippedTokensTrivia */
+                //    margins.leftMargin = 200;/* TODO ERROR: Skipped SkippedTokensTrivia */
+                //    margins.rightMargin = 50;/* TODO ERROR: Skipped SkippedTokensTrivia */
+                //    margins.topMargin = 100;/* TODO ERROR: Skipped SkippedTokensTrivia */
+                //    rd.PrintOptions.ApplyPageMargins(margins);/* TODO ERROR: Skipped SkippedTokensTrivia */
+                //}
+
+
+                //rd.PrintToPrinter(1, false, 0, 0);
+                //return View();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
 
         public ActionResult Create()
         {
@@ -77,7 +152,7 @@ namespace ERP_GMEDINA.Controllers
             }
 
             ViewBag.bod_Id = new SelectList(db.tbBodega.Where(x => x.bod_ResponsableBodega == idUser).ToList(), "bod_Id", "bod_Nombre");
-
+            ViewBag.tdev_Id = new SelectList(db.tbTipoDevolucion, "tdev_Id", "tdev_Descripcion");
             //ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
             ViewBag.estm_Id = new SelectList(db.tbEstadoMovimiento, "estm_Id", "estm_Descripcion");
             ViewBag.prov_Id = new SelectList(db.tbProveedor, "prov_Id", "prov_Nombre");
@@ -201,15 +276,15 @@ namespace ERP_GMEDINA.Controllers
         }
         //para borrar registros en la tabla temporal
         [HttpPost]
-        public JsonResult Eliminardetalleentrada(tbEntradaDetalle eliminardetalle)
+        public JsonResult Eliminardetalleentrada(tbEntradaDetalle EntradaDetalle)
         {
-            var list = (List<tbEntradaDetalle>)Session["_CrearDetalleEntrada"];
-
+            var list = (List<tbEntradaDetalle>)Session["CrearDetalleEntrada"];
+ 
             if (list != null)
             {
-                var itemToRemove = list.Single(r => r.ent_Id == eliminardetalle.ent_Id);
+                var itemToRemove = list.Single(r => r.entd_Id == EntradaDetalle.entd_Id);
                 list.Remove(itemToRemove);
-                Session["_CrearDetalleEntrada"] = list;
+                Session["CrearDetalleEntrada"] = list;
             }
             return Json(list, JsonRequestBehavior.AllowGet);
         }
@@ -308,7 +383,7 @@ namespace ERP_GMEDINA.Controllers
                 {
                     TempData["smserror"] = " No Puede Ingresar Una Entrada Sin Detalle.";
                     ViewBag.smserror = TempData["smserror"];
-                    return RedirectToAction("Create");
+                    return View();
                 }
                 else
                 {
@@ -377,6 +452,12 @@ namespace ERP_GMEDINA.Controllers
                             //return View(tbBodega);
                             MsjError = "-1";
                         }
+                        ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbEntrada.bod_Id);
+                        ViewBag.tdev_Id = new SelectList(db.tbTipoDevolucion, "tdev_Id", "tdev_Descripcion", tbEntrada.ent_RazonDevolucion);
+                        ViewBag.prov_Id = new SelectList(db.tbProveedor, "prov_Id", "prov_Nombre", tbEntrada.prov_Id);
+                        ViewBag.tent_Id = new SelectList(db.tbTipoEntrada, "tent_Id", "tent_Descripcion", tbEntrada.tent_Id);
+                        ViewBag.ent_BodegaDestino = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbEntrada.ent_BodegaDestino);
+                        ViewBag.Producto = db.SDP_Inv_tbProducto_Select().ToList();
                     }
                 }
                 

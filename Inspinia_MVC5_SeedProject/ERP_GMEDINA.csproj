@@ -844,6 +844,12 @@
       <DependentUpon>ImprimirConciliacion.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\ImprimirEntradaPorId1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImprimirEntradaPorId.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportViewer\ImprimirEntrada.aspx.cs">
       <DependentUpon>ImprimirEntrada.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1550,6 +1556,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\ImprimirEntrada.rdlc" />
     <EmbeddedResource Include="Reports\ImprimirEntradaDevolucion.rdlc" />
+    <EmbeddedResource Include="Reports\ImprimirEntradaPorId.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ImprimirEntradaPorId1.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\ImprimirEntradaTraslado.rdlc" />
   </ItemGroup>
   <PropertyGroup>

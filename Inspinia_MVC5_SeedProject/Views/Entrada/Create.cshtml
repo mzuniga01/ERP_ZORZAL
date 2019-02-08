@@ -70,7 +70,7 @@
                                     </div>
                                     @Html.LabelFor(model => model.ent_FechaElaboracion, new { @class = "control-label col-md-2 , required" })
                                     <div class="col-md-4">
-                                        @Html.EditorFor(model => model.ent_FechaElaboracion, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "FechaElaboracion" } })
+                                        @Html.EditorFor(model => model.ent_FechaElaboracion, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "FechaElaboracion", @readonly = "readonly" } })
                                         <div class="col-md-10">
                                             <p style="color:red">@Html.ValidationMessageFor(model => model.ent_FechaElaboracion)</p>
                                         </div>
@@ -159,8 +159,8 @@
                                     @Html.LabelFor(model => model.ent_RazonDevolucion, new { @class = "control-label col-md-2 , required" })
                                     @*<label class="control-label col-md-2">Razon Devolucion<span style="color:red">*</span></label>*@
                                     <div class="col-md-4">
-                                        @Html.DropDownList("ent_RazonDevolucion", (IEnumerable<SelectListItem>)ViewBag.ent_RazonDevolucion, "Seleccione", new { @class = "form-control" })
-                                        @*@Html.EditorFor(model => model.ent_RazonDevolucion)*@
+                                        @Html.DropDownList("ent_RazonDevolucion", (IEnumerable<SelectListItem>)ViewBag.tdev_Id, "Seleccione", new { @class = "form-control" })
+                                        
                                         <div class="col-md-10">
                                             <p style="color:red">@Html.ValidationMessageFor(model => model.ent_RazonDevolucion)</p>
                                         </div>
@@ -239,10 +239,10 @@
 }
 
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-<script src="~/Scripts/app/MostrarCamposEntradajs.js"></script>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/Datepicker.js"></script>
 <script src="~/Scripts/app/EntradaDetalle.js"></script>
+<script src="~/Scripts/app/MostrarCamposEntradajs.js"></script>
 <script>
     $(document).ready( function () {
         var e = document.getElementById("bod_Id");
@@ -270,4 +270,32 @@
             }
         });
     });
+</script>
+<script>
+    window.onload = function () {
+        console.log('hola');
+        var valorid = document.getElementById("tent_Id").value;
+        console.log(valorid);
+            if (valorid == 1) {
+                document.getElementById("compra").style.display = 'block';
+                document.getElementById("Devolucion").style.display = 'none';
+                document.getElementById("traslado").style.display = 'none';
+            }
+            else if (valorid == 2) {
+                document.getElementById("Devolucion").style.display = 'block';
+                document.getElementById("compra").style.display = 'none';
+                document.getElementById("traslado").style.display = 'none';
+            }
+            else if (valorid == 3) {
+                document.getElementById("traslado").style.display = 'block';
+                document.getElementById("Devolucion").style.display = 'none';
+                document.getElementById("compra").style.display = 'none';
+            }
+            //else
+            //{
+            //    alert("Entrada Seeccionada no Disponible");
+            //}
+
+    };
+
 </script>

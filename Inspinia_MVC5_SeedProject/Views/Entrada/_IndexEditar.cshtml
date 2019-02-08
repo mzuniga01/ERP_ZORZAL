@@ -9,13 +9,12 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
-                <div class="ibox-title">
+                @*<div class="ibox-title">
                     <h5>Listado Entrada Detalle</h5>
                     <div class="ibox-tools">
                         <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#RegistrarNuevoDetalle">Registrar Detalle</button>
-                        @*@Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary btn-xs"})*@
-                    </div>
-                </div>
+                     </div>
+                </div>*@
                 <div class="ibox-content">
 
                     <table class="table table-striped" id="tbEntradaDetalle">
@@ -29,7 +28,7 @@
                                     Nombre Producto
                                 </th>
                                 <th>
-                                    Unidad Medidad
+                                    Código Barra
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.entd_Cantidad)
@@ -51,7 +50,7 @@
                                         @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.tbProducto.tbUnidadMedida.uni_Descripcion)
+                                        @Html.DisplayFor(modelItem => item.tbProducto.prod_CodigoBarras)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.entd_Cantidad)
@@ -169,11 +168,13 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                @Html.LabelFor(model => Detalles.entd_Cantidad, "Cantidad", new { @class = "control-label col-md-4" })
-                                <div class="col-md-6">
-                                    <input type="text" id="cantidadEdit" name="entd_Cantidad" class="form-control" />
-                                    @Html.ValidationMessageFor(model => Detalles.entd_Cantidad)
-                                </div>
+
+                               @Html.LabelFor(model => Detalles.entd_Cantidad, "Cantidad", new { @class = "control-label col-md-4" })
+                            <div class="col-md-6">
+                                <input type="text" id="cantidadEdit" name="entd_Cantidad" class="form-control" />
+                                @Html.ValidationMessageFor(model => Detalles.entd_Cantidad)
+                            </div>
+
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-10">
@@ -216,3 +217,4 @@
         });
     });
 </script>
+

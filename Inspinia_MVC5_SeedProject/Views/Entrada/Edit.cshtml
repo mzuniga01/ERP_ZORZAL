@@ -86,6 +86,9 @@
                                     @Html.EditorFor(model => model.tbBodega1.bod_Nombre, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     @*@Html.DropDownListFor(model => model.bod_Id, (SelectList)ViewBag.bodega, new { @class = "form-control", @readonly = "readonly" })*@
                                     @Html.ValidationMessageFor(model => model.bod_Id)
+                                    <div style="display:none" class="col-md-4">
+                                        @Html.DropDownListFor(model => model.bod_Id, (SelectList)ViewBag.bodega, new { @class = "form-control" })
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -96,9 +99,9 @@
                                     @Html.ValidationMessageFor(model => model.ent_NumeroFormato)
                                 </div>
 
-                                @Html.LabelFor(model => model.ent_FechaElaboracion, new { @class = "control-label col-md-2 , required" })
+                                @Html.LabelFor(model => model.ent_FechaElaboracion, new { @class = "control-label col-md-2 " })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.ent_FechaElaboracion, new { htmlAttributes = new { @class = "form-control", @id = "FechaElaboracion" } })
+                                    @Html.EditorFor(model => model.ent_FechaElaboracion, "{0:dd/MM/yyyy}", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     @Html.ValidationMessageFor(model => model.ent_FechaElaboracion)
                                 </div>
                             </div>
@@ -107,6 +110,10 @@
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.tbProveedor.prov_Nombre, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     @Html.ValidationMessageFor(model => model.prov_Id)
+                                    <div style="display:none" class="col-md-4">
+                                        @Html.DropDownListFor(model => model.prov_Id, (SelectList)ViewBag.proveedor, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.prov_Id)
+                                    </div>
                                 </div>
                                 <label class="control-label col-md-2">RTN Proveedor<span style="color:red">*</span></label>
                                 <div class="col-md-4">
@@ -166,7 +173,7 @@
                                 @*<label class="control-label col-md-2">Razón Devolucion<span style="color:red">*</span></label>*@
                                 @Html.LabelFor(model => model.ent_RazonDevolucion, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    @Html.DropDownListFor(model => model.ent_RazonDevolucion, (SelectList)ViewBag.tdev_Id, new { @class = "form-control" })
+                                    @Html.DropDownListFor(model => model.ent_RazonDevolucion, (SelectList)ViewBag.tdev_Id, new { @class = "form-control", @readonly = "readonly" })
                                     @*@Html.EditorFor(model => model.ent_RazonDevolucion)*@
                                     @Html.ValidationMessageFor(model => model.ent_RazonDevolucion)
                                 </div>
@@ -184,12 +191,16 @@
                                 @*<label class="control-label col-md-2">Bodega Destino<span style="color:red">*</span></label>*@
                                 @Html.LabelFor(model => model.bod_Id, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    @Html.DropDownListFor(model => model.ent_BodegaDestino, (SelectList)ViewBag.bbod_Id, new { @class = "form-control" })
+                                    @Html.DropDownListFor(model => model.ent_BodegaDestino, (SelectList)ViewBag.bbod_Id, new { @class = "form-control", @readonly = "readonly" })
                                     @Html.ValidationMessageFor(model => model.bod_Id)
+                                    @*<div style="display:none" class="col-md-4">
+                                        @Html.DropDownListFor(model => model.ent_BodegaDestino, (SelectList)ViewBag.bbod_Id, new { @class = "form-control", @readonly = "readonly" })
+                                    </div>*@
                                 </div>
                             </div>
                         </div>
                         @*Botoness*@
+                        
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
 
@@ -219,7 +230,7 @@
                                     }
                                     else if (Model.estm_Id == Helpers.EntradaAplicada)
                                     {
-                                        <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalImprimir" value="Imprimir" />
+                                        @Html.ActionLink("Imprimir", "ExportReport", new { id = Model.ent_Id }, new { @class = "btn btn-primary" })
                                         @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                                     }
                                     else
@@ -234,10 +245,74 @@
 
                             </div>
                         </div>
-                        <div class="ibox-content collapse" id="RegistrarNuevoDetalle">
-                            @Html.Partial("_CrearDetalleEntradaEditar", new tbEntradaDetalle())
-                        </div>
 
+                        @{if (Model.estm_Id == Helpers.EntradaEmitida)
+                            {
+                                <div class="col-lg-12">
+                                    <div class="ibox-title">
+                                        <div class="title-action">
+                                            <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#RegistrarNuevoDetalle">Registrar Detalle</button>
+                                        </div>
+                                    </div>
+                                    <div class="ibox-content collapse" id="RegistrarNuevoDetalle">
+                                        @Html.Partial("_CrearDetalleEntradaEditar", new tbEntradaDetalle())
+                                    </div>
+                                </div>
+                            }
+                            else if (Model.estm_Id == Helpers.EntradaInactivada)
+                            {
+                                <div class="col-lg-12">
+                                    <div class="ibox-title">
+                                        <div class="title-action">
+                                            <button type="button" class="btn btn-primary" title="No Puede Agregar Detalle Porque Esta Inactiva" disabled>Registrar Detalle</button>
+                                        </div>
+                                    </div>
+                                    <div class="ibox-content collapse" id="RegistrarNuevoDetalle">
+                                        @Html.Partial("_CrearDetalleEntradaEditar", new tbEntradaDetalle())
+                                    </div>
+                                </div>
+                            }
+                            else if (Model.estm_Id == Helpers.EntradaEstadoAnulada)
+                            {
+                                <div class="col-lg-12">
+                                    <div class="ibox-title">
+                                        <div class="title-action">
+                                            <button type="button" class="btn btn-primary"  title="No Puede Agregar Detalle Porque Esta Anulada" disabled>Registrar Detalle</button>
+                                        </div>
+                                    </div>
+                                    <div class="ibox-content collapse" id="RegistrarNuevoDetalle">
+                                        @Html.Partial("_CrearDetalleEntradaEditar", new tbEntradaDetalle())
+                                    </div>
+                                </div>
+                            }
+                            else if (Model.estm_Id == Helpers.EntradaAplicada)
+                            {
+                                <div class="col-lg-12">
+                                    <div class="ibox-title">
+                                        <div class="title-action">
+                                            <button type="button" class="btn btn-primary"  title="No Puede Agregar Detalle Porque Esta Aplicada" disabled>Registrar Detalle</button>
+                                        </div>
+                                    </div>
+                                    <div class="ibox-content collapse" id="RegistrarNuevoDetalle">
+                                        @Html.Partial("_CrearDetalleEntradaEditar", new tbEntradaDetalle())
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="col-lg-12">
+                                    <div class="ibox-title">
+                                        <div class="title-action">
+                                            <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#RegistrarNuevoDetalle">Registrar Detalle</button>
+                                        </div>
+                                    </div>
+                                    <div class="ibox-content collapse" id="RegistrarNuevoDetalle">
+                                        @Html.Partial("_CrearDetalleEntradaEditar", new tbEntradaDetalle())
+                                    </div>
+                                </div>
+                            }
+                        }
+                        
                         @*llama la vista pasrcial de entrada detalle*@
                         <div class="row">
                             <div class="col-lg-12">
@@ -439,3 +514,16 @@
      else {
      }
 </script>
+@*<script>
+    $(document).on("click", "#Imprimir", function () {
+        id = $('#ent_id').val();
+        console.log(id);
+        $.ajax({
+            url: "/Entrada/ExportReport",
+            method: "POST",
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ id: id }),
+        });
+    });
+</script>*@

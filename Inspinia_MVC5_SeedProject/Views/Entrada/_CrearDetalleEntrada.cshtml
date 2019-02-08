@@ -13,8 +13,7 @@
                     <div class="form-horizontal">
                        
                         <div class="form-group">
-                        @Html.LabelFor(model => model.prod_Codigo, new { @class = "control-label col-md-2 , required" })
-                        @*<label class = "control-label col-md-2">Código Barra<span style="color:red">*</span></label>*@
+                        <label class = "control-label col-md-2">Código Barra<span style="color:red">*</span></label>
                             <div class="col-md-4">
                                 <input type="text" id="prod_CodigoBarras" placeholder="" class="form-control" />
                                 <div id="validationcodigoproducto">
@@ -26,12 +25,12 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-2">Producto</label>
+                            @Html.LabelFor(model => model.prod_Codigo, "Código Producto", new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
                                 <input type="text" id="prod_Codigo" placeholder="" class="form-control" readonly />
-                                <div id="validationcodigoproducto">
+                                @*<div id="validationcodigoproducto">
                                     @Html.ValidationMessageFor(model => model.prod_Codigo)
-                                </div>
+                                </div>*@
                             </div>
                             @Html.LabelFor(model => model.tbProducto.prod_Descripcion, "Descripcion", new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
@@ -53,7 +52,7 @@
                         </div>
                         <div class="form-group">
                             @*<label class="control-label col-md-2">Cantidad<span style="color:red">*</span></label>*@
-                            @Html.LabelFor(model => model.entd_Cantidad, new { @class = "control-label col-md-2 , required" })
+                            @Html.LabelFor(model => model.entd_Cantidad,"Cantidad", new { @class = "control-label col-md-2 , required" })
                             <div class="col-md-4">
                                 <input type="number" id="entd_Cantidad" placeholder="" class="form-control" name="entd_Cantidad" />
                                 @*@Html.EditorFor(model => model.entd_Cantidad)*@

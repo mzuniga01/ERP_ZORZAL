@@ -1,4 +1,12 @@
 ﻿var contador = 0;
+//para q cantidad acepte numeros(editar detalle)
+    $("#cantidadEdit").on("keypress keyup blur", function (event) {
+        //this.value = this.value.replace(/[^0-9\.]/g,'');
+        $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
+        if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+            event.preventDefault();
+        }
+    });
 //para q cantidad acepte numeros(create)
 $("#entd_Cantidad").on("keypress keyup blur", function (event) {
     //this.value = this.value.replace(/[^0-9\.]/g,'');
@@ -133,8 +141,25 @@ $('#seleccionarModal').click(function () {
 
 
 
-//para eliminar
+//para eliminar detalle
 $(document).on("click", "#tbentrada tbody tr td button#Eliminardetalleentrada", function () {
+    $(this).closest('tr').remove();
+    idItem = $(this).closest('tr').data('id');
+
+    var Eliminar = {
+        ent_Id: idItem,
+    };
+    $.ajax({
+        url: "/Entrada/Eliminardetalleentrada",
+        method: "POST",
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({ EntradaDetalle: Eliminar }),
+    });
+});
+
+
+$(document).on("click", "#tbEntradaDetalle tbody tr td button#Eliminardetalleentrada_Edit", function () {
     $(this).closest('tr').remove();
     idItem = $(this).closest('tr').data('id');
 
@@ -163,26 +188,26 @@ $('#AgregarDetalleEntrada_Craete').click(function () {
         //$('#Errorcodigoproducto').text('');
         //$('#Errorcantidad').text('');
         console.log("entrada");
-    //}
-    //else
-    //if (codigoproducto == '') {
-    //    $('#Mensajecodigo').text('');
-    //    $('#Mensajecantidad').text('');
-    //    $('#validationcodigoproducto').after('<ul id="Mensajecodigo" class="validation-summary-errors text-danger">Campo codigo producto Requerido</ul>');
-    //    console.log("codigoproducto");
+        //}
+        //else
+        //if (codigoproducto == '') {
+        //    $('#Mensajecodigo').text('');
+        //    $('#Mensajecantidad').text('');
+        //    $('#validationcodigoproducto').after('<ul id="Mensajecodigo" class="validation-summary-errors text-danger">Campo codigo producto Requerido</ul>');
+        //    console.log("codigoproducto");
     }
-    else if(cantidad == '') {
+    else if (cantidad == '') {
         $('#Mensajecodigo').text('');
         $('#Mensajecantidad').text('');
         $('#validationcantidad').after('<ul id="Mensajecantidad" class="validation-summary-errors text-danger">Campo cantidad Requerido</ul>');
         console.log("cantidad");
 
-    //}
-    //else if (unimedida == '') {
-    //    $('#Errorentrada').text('');
-    //    $('#Errorcodigoproducto').text('');
-    //    $('#validationcodigoproducto').after('<ul id="validationunimedida" class="validation-summary-errors text-danger">Campo codigo producto Requerido</ul>');
-    //    console.log("codigoproducto");
+        //}
+        //else if (unimedida == '') {
+        //    $('#Errorentrada').text('');
+        //    $('#Errorcodigoproducto').text('');
+        //    $('#validationcodigoproducto').after('<ul id="validationunimedida" class="validation-summary-errors text-danger">Campo codigo producto Requerido</ul>');
+        //    console.log("codigoproducto");
     }
     else {
         contador = contador + 1;
@@ -200,7 +225,7 @@ $('#AgregarDetalleEntrada_Craete').click(function () {
 
         copiar += "<td id = 'cantidad'>" + $('#entd_Cantidad').val() + "</td>";
 
-        copiar += "<td>" + '<button id="Eliminardetalleentrada" class="btn btn-danger btn-xs eliminar" type="button">Quitar</button>' + "</td>";
+        copiar += "<td>" + '<button id="Eliminardetalleentrada_Edit" class="btn btn-danger btn-xs eliminar" type="button">Quitar</button>' + "</td>";
         copiar += "</tr>";
         $('#tbEntradaDetalle').append(copiar);
 
@@ -217,12 +242,12 @@ $('#AgregarDetalleEntrada_Craete').click(function () {
             $('#prod_Codigo').val('');
             $("#uni_Id").val('');
             $('#entd_Cantidad').val('0.00');
-             //
+            //
             $('#prod_Descripcion').val('');
             $('#pscat_Id').val('');
 
             $('#Mensajecodigo').text('');
-            //$('#Mensajecantidad').text('');
+            $('#Mensajecantidad').text('');
 
         });
     }
@@ -252,13 +277,13 @@ $('#AgregarDetalleEntrada').click(function () {
         //$('#Errorcodigoproducto').text('');
         //$('#Errorcantidad').text('');
         console.log("entrada");
-        //}
-        //else
-        //if (codigoproducto == '') {
-        //    $('#Mensajecodigo').text('');
-        //    $('#Mensajecantidad').text('');
-        //    $('#validationcodigoproducto').after('<ul id="Mensajecodigo" class="validation-summary-errors text-danger">Campo codigo producto Requerido</ul>');
-        //    console.log("codigoproducto");
+        }
+        else
+        if (codigoproducto == '') {
+            $('#Mensajecodigo').text('');
+            $('#Mensajecantidad').text('');
+            $('#validationcodigoproducto').after('<ul id="Mensajecodigo" class="validation-summary-errors text-danger">Campo codigo producto Requerido</ul>');
+            console.log("codigoproducto");
     }
     else if (cantidad == '') {
         $('#Mensajecodigo').text('');
@@ -311,7 +336,7 @@ $('#AgregarDetalleEntrada').click(function () {
                 $('#pscat_Id').val('');
 
                 $('#Mensajecodigo').text('');
-                //$('#Mensajecantidad').text('');
+                $('#Mensajecantidad').text('');
 
             });
     }
