@@ -37,7 +37,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.estm_Descripcion, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.TextBoxFor(model => model.estm_Descripcion, new { @class = "form-control", maxlength = 100 })
+                                    @Html.TextBoxFor(model => model.estm_Descripcion, new { @class = "form-control", maxlength = 50, minlength = 5 })
                                     <p style="color:red;">@Html.ValidationMessageFor(model => model.estm_Descripcion)</p>
                                 </div>
                             </div>

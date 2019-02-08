@@ -28,7 +28,7 @@ namespace ERP_GMEDINA.Controllers
             }
             return View(db.tbEstadoMovimiento.ToList());
         }
-        
+
 
         // GET: /EstadoMovimiento/Details/5
         public ActionResult Details(byte? id)
@@ -93,7 +93,7 @@ namespace ERP_GMEDINA.Controllers
                     {
                         IEnumerable<Object> List = null;
                         var Msj = "";
-                        List = db.UDP_Inv_tbEstadoMovimiento_Insert(tbEstadoMovimiento.estm_Id,tbEstadoMovimiento.estm_Descripcion);
+                        List = db.UDP_Inv_tbEstadoMovimiento_Insert(tbEstadoMovimiento.estm_Id, tbEstadoMovimiento.estm_Descripcion);
                         foreach (UDP_Inv_tbEstadoMovimiento_Insert_Result EstadoMovimientos in List)
                             Msj = EstadoMovimientos.MensajeError;
                     }
@@ -151,8 +151,9 @@ namespace ERP_GMEDINA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(byte? id, [Bind(Include="estm_Id,estm_Descripcion,estm_UsuarioCrea,estm_FechaCrea")] tbEstadoMovimiento tbEstadoMovimiento)
+        public ActionResult Edit(byte? id, [Bind(Include = "estm_Id,estm_Descripcion,estm_UsuarioCrea,estm_FechaCrea")] tbEstadoMovimiento tbEstadoMovimiento)
         {
+            
             if (ModelState.IsValid)
             {
 
@@ -254,18 +255,19 @@ namespace ERP_GMEDINA.Controllers
         }
 
         [HttpPost]
-        public JsonResult GuardarEstado(byte estm_Id, string estm_Descripcion)
+        public JsonResult GuardarEstado(byte? estm_Id, string estm_Descripcion)
         {
+          
             var MsjError = "";
             if (ModelState.IsValid)
             {
-                //db.tbUnidadMedida.Add(tbProveedor);
-                //db.SaveChanges();
+              
+
                 try
                 {
                     IEnumerable<Object> List = null;
-                 
-                    List = db.UDP_Inv_tbEstadoMovimiento_Insert(estm_Id , estm_Descripcion);
+
+                    List = db.UDP_Inv_tbEstadoMovimiento_Insert(estm_Id, estm_Descripcion);
                     foreach (UDP_Inv_tbEstadoMovimiento_Insert_Result EstadoMovimientos in List)
                         MsjError = EstadoMovimientos.MensajeError;
                     if (MsjError == "-1")
@@ -274,7 +276,7 @@ namespace ERP_GMEDINA.Controllers
                         ModelState.AddModelError("", "No se guardo el registro, Contacte al Administrador");
 
                     }
-                    if (MsjError == "")
+                    if (MsjError == "-2")
                     {
 
                         ModelState.AddModelError("", "No se guardo el registro, Contacte al Administrador");
@@ -294,5 +296,47 @@ namespace ERP_GMEDINA.Controllers
             return Json(MsjError, JsonRequestBehavior.AllowGet);
 
         }
+        [HttpPost]
+        public JsonResult ActualizarEstado(byte? estm_Id, string estm_Descripcion)
+        {
+            var MsjError = "";
+            if (ModelState.IsValid)
+            {
+
+
+                try
+                {
+                    IEnumerable<Object> List = null;
+
+                    List = db.UDP_Inv_tbEstadoMovimiento_Update(estm_Id,estm_Descripcion);
+                    foreach (UDP_Inv_tbEstadoMovimiento_Update_Result EstadoMovimientos in List)
+                        MsjError = EstadoMovimientos.MensajeError;
+                    if (MsjError =="-1")
+                    {
+
+                        ModelState.AddModelError("", "No se guardo el registro, Contacte al Administrador");
+                      
+                    }
+                    if (MsjError == "-2")
+                    {
+
+                        ModelState.AddModelError("", "No se guardo el registro, Contacte al Administrador");
+                        
+                    }
+
+
+                }
+                catch (Exception Ex)
+                {
+                   
+                    Ex.Message.ToString();
+                    ModelState.AddModelError("", "No se Guardo el registro, Contacte al Administrador");
+                }
+
+            }
+            return Json(MsjError, JsonRequestBehavior.AllowGet);
+
+        }
+
     }
 }

@@ -48,6 +48,8 @@ namespace ERP_GMEDINA.Models
         [Required(ErrorMessage = "El campo no puede estar vacio")]
         [Display(Name = "RTN")]
         public string prov_RTN { get; set; }
-
+        [Required(ErrorMessage = "El campo no puede estar vacio")]
+        [Display(Name = "Actividad Economica")]
+        public Nullable<short> acte_Id { get; set; }
     }
 }
