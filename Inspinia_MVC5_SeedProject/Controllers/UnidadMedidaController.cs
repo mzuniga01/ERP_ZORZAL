@@ -207,6 +207,11 @@ namespace ERP_GMEDINA.Controllers
             {
                 if (Function.GetUserRols("UnidadMedida/Edit"))
                 {
+                    if (db.tbUnidadMedida.Any(a => a.uni_Descripcion == tbUnidadMedida.uni_Descripcion))
+                    {
+                        ModelState.AddModelError("", "La Descripcion ya Existe.");
+
+                    }
                     if (ModelState.IsValid)
                     {
                         try

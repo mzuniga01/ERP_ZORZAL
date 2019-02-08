@@ -93,7 +93,7 @@ namespace ERP_ZORZAL.Controllers
                 {
                     IEnumerable<object> List = null;
                     var MsjError = "0";
-                    List = db.UDP_Inv_tbTipoSalida_Insert(tbTipoSalida.tsal_Descripcion);
+                    List = db.UDP_Inv_tbTipoSalida_Insert(tbTipoSalida.tsal_Descripcion, Function.GetUser(), DateTime.Now);
                     foreach (UDP_Inv_tbTipoSalida_Insert_Result TipoSalida in List)
                         MsjError = TipoSalida.MensajeError;
 
@@ -178,9 +178,11 @@ namespace ERP_ZORZAL.Controllers
                     IEnumerable<object> List = null;
                     var MsjError = "";
                     List = db.UDP_Inv_tbTipoSalida_Update(tbTipoSalida.tsal_Id,
-                                                            tbTipoSalida.tsal_Descripcion,
-                                                             tbTipoSalida.tsal_UsuarioCrea,
-                                                            tbTipoSalida.tsal_FechaCrea);
+                                                            tbTipoSalida.tsal_Descripcion
+                                                            , tbTipoSalida.tsal_UsuarioCrea
+                                                                 , tbTipoSalida.tsal_FechaCrea
+                                                             , Function.GetUser()
+                                                                , DateTime.Now);
                     foreach (UDP_Inv_tbTipoSalida_Update_Result tsal in List)
                         MsjError = tsal.MensajeError;
 
