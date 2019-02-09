@@ -29,14 +29,14 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                                <tr>
+                                <tr data-Monto="@item.devd_Monto">
                                     <td>
                                         @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.devd_CantidadProducto)
                                     </td>
-                                    <td>
+                                    <td id="Monto">
                                         @Html.DisplayFor(modelItem => item.devd_Monto)
                                     </td>
                                     <td>
@@ -78,3 +78,21 @@
 </script>
 
 
+<script>
+    $(document).ready(function () {
+        $(document).on("ready", "#DetalleDevolucion tbody tr td", function () {
+            console.log('Si entra')
+        })
+
+        Monto = $(this).closest('tr').data('monto');
+        console.log('Monto', Monto)
+        $("#Dev_Monto").val(Monto);
+        GetMonto()
+    });
+    var contador = 0;
+    function GetMonto() {
+
+    }
+
+
+</script>

@@ -1,7 +1,4 @@
-﻿var MontoTotal = $('#Dev_Monto').val();
-function getMontoTotal(suma, MontoTotal) {
-    console.log('Entra')
-}
+﻿
 $(document).ready(function () {
     GetDetalle()
 });
@@ -21,7 +18,6 @@ function GetDetalle() {
           $.each(data, function (key, val) {
               DevIdd = val.devd_Id;
               contador = contador + 1;
-              
               //ValorMontoD = document.getElementById("Monto").innerHTML;
               copiar = "<tr data-id=" + DevIdd + ">";
               copiar += "<td id = 'a'>" + val.prod_Codigo + "</td>";
@@ -45,7 +41,6 @@ function GetDetalle() {
 
                   $("#Dev_Monto").val(suma);
                   $('#nocre_Monto').val(suma);
-                  getMontoTotal(suma);
                   console.log("nocre_Monto", suma)
 
                
@@ -75,12 +70,21 @@ function GetIDFactura(DevIdd) {
             url: url,
         success: function (data) {
             $.each(data, function (key, arn) {
+
+                var fechaString = arn.devd_FechaCrea.substr(6);
+                var fechaActual = new Date(parseInt(fechaString));
+                var mes = fechaActual.getMonth() + 1;
+                var dia = fechaActual.getDate();
+                var anio = fechaActual.getFullYear();
+                var FechaCrea = dia + "/" + mes + "/" + anio;
+
+
                 $('#IdDevolucion').val(arn.dev_Id);
                 console.log("dev_Id", arn.dev_Id)
                 $('#devd_Id').val(arn.devd_Id);
                 $('#CodigoFactura').val(arn.fact_Id);
                 $('#devd_UsuarioCrea').val(arn.devd_UsuarioCrea);
-                $('#devd_FechaCrea').val(arn.devd_FechaCrea);
+                $('#devd_FechaCrea').val(FechaCrea);
                 $('#CodigoProducto').val(arn.prod_Codigo);
                 $('#CantidadDevolucion').val(arn.devd_CantidadProducto);
                 $('#DescripcionProducto').val(arn.prod_Descripcion);

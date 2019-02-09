@@ -76,16 +76,17 @@ function GetIDCliente(CodCliente, idItem) {
             $('#BodyFactura').empty();
             $.each(list, function (key, val) {
                 contador = contador + 1;
-                //var myDate = "/Date(1547704800000)/";
-                //var jsDate = new Date(parseInt(myDate.replace(/\D/g, '')))
+        
+                var fechaString = val.FactFecha.substr(6);
+                var fechaActual = new Date(parseInt(fechaString ));
+                var mes = fechaActual.getMonth() + 1;
+                var dia =  fechaActual.getDate();
+                var anio = fechaActual.getFullYear();
+                var Fecha = dia + "/" + mes + "/" + anio;
 
-                //var date = new Date(parseInt(val.FactFecha.substr(6)));
-               
-                val.FactFecha = new Date(parseInt(val.FactFecha.replace("/Date(", "").replace(")/", ""), 10));
-                //$(val.FactFecha).val(moment().format('MMM D, YYYY'));
                 copiar = "<tr data-id=" + contador + " data-codigo=" + val.FactCodigo + " data-idfact=" + val.FactId + ">";
                 copiar += "<td id = 'codigo'>" + val.FactCodigo + "</td>";
-                copiar += "<td id = 'b'>" + val.FactFecha + "</td>";
+                copiar += "<td id = 'Fecha'>" + Fecha + "</td>";
                 copiar += "<td id = 'data-DescItem'>" + val.CtleRTN + "</td>";
                 copiar += "<td id = 'ClienteItem'>" + val.Nombre + "</td>";
                 copiar += "<td>" + '<button id="AgregarFactura" class="btn btn-primary btn-xs" type="button">Añadir</button>' + "</td>";
@@ -101,3 +102,7 @@ function GetIDCliente(CodCliente, idItem) {
 }
 
 
+$(function () {
+   
+
+});

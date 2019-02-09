@@ -236,7 +236,7 @@
                                     <input type="hidden" value="" class="form-control " id="PorDescuento" />
                                     <input type="hidden" value="" class="form-control " id="PorImpuesto" />
                                     @Html.HiddenFor(model => model.devd_UsuarioCrea)
-                                    @Html.HiddenFor(model => model.devd_FechaCrea)
+                                    @Html.EditorFor(model => model.devd_FechaCrea)
                                     <div class="form-group">
                                         @Html.LabelFor(model => model.devd_Monto, "Monto Total", new { @class = "control-label   col-md-2" })
                                         <div class="col-md-offset col-md-3">

@@ -56,6 +56,7 @@
 
                         <dd>
                             @Html.DisplayFor(model => model.tbFactura.fact_Codigo)
+                            @Html.HiddenFor(model => model.dev_Id)
                         </dd>
 
                         <br />
@@ -98,6 +99,7 @@
 
                         <dd>
                             @Html.DisplayFor(model => test.tbDevolucion.dev_Id)
+                            @*<input id="Dev_Monto" type="text" />*@
                         </dd>
                         @{
                             if (Model.dev_Id == test.dev_Id)
@@ -119,24 +121,38 @@
                             </dd>
                             }
                         }
+                        @*<div class="ibox-content">
+                            <table id="DataTable1" class="table table table-striped  table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Descripcion</th>
+                                        <th>Cantidad</th>
+                                        <th>Porcentaje Descuento</th>
+                                        <th>Precio Unitario</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="BodyProducto"></tbody>
 
-                        @Html.Partial("_IndexDetalleDevolucion", Model.tbDevolucionDetalle)
+                            </table>
+                            </div>*@
+                            @Html.Partial("_IndexDetalleDevolucion", Model.tbDevolucionDetalle)
 
-                        @Html.Hidden("Redireccionar", Url.Action("Index", "Devolucion"))
+                            @Html.Hidden("Redireccionar", Url.Action("Index", "Devolucion"))
 
-                        @Html.Hidden("RedirectTo", Url.Action("CreateNotaCredito", "Devolucion", new { id = Model.dev_Id }))
+                            @Html.Hidden("RedirectTo", Url.Action("CreateNotaCredito", "Devolucion", new { id = Model.dev_Id }))
 
-                        <div class="form-group">
-                            <div class="col-md-offset col-md-11">
+                            <div class="form-group">
+                                <div class="col-md-offset col-md-11">
 
-                                @{
-                                    if (Model.dev_Estado == true)
-                                    {
-                                    }
+                                    @{
+                                        if (Model.dev_Estado == true)
+                                        {
+                                        }
 
-                                    else
-                                    {
-                                        
+                                        else
+                                        {
+
                                             string Editar = "btnDetalleEditar";
                                             @Html.ActionLink("Editar", "Edit", new { id = Model.dev_Id }, new { @class = "btn btn-primary  btn-ms", id = Editar })
 
@@ -145,12 +161,12 @@
                                             </button>
                                             <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-danger" data-toggle="modal" data-target="#Anular">Anular</button>
 
-                                            }
-                                }
-                              
+                                        }
+                                    }
+
+                                </div>
                             </div>
-                        </div>
-                    </dl>
+</dl>
 
                    
                 </div>
@@ -232,6 +248,7 @@
 </div>
 <script src="~/Scripts/app/EmitirNotaCredito.js"></script>
 <script src="~/Scripts/app/AnularDevolucion.js"></script>
+@*<script src="~/Scripts/app/TableDetalleDevolucion.js"></script>*@
 
 
 
