@@ -63,7 +63,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.nocre_Codigo, new { @class = "control-label col-md-2" })
                                 <div class="col-md-3">
-                                    @Html.EditorFor(model => model.nocre_Codigo)
+                                    @Html.EditorFor(model => model.nocre_Codigo , new { @class = "control-label", @readonly = "readonly" } )
                                     <p style="color:red"><span class="validation-error"> @Html.ValidationMessageFor(model => model.nocre_Codigo)</span></p>
                                 </div>
 

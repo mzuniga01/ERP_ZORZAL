@@ -1591,22 +1591,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="tbDevolucion">
-      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbDevolucion">
-        <MappingFragment StoreEntitySet="tbDevolucion">
-          <ScalarProperty Name="dev_FechaModifica" ColumnName="dev_FechaModifica" />
-          <ScalarProperty Name="dev_UsuarioModifica" ColumnName="dev_UsuarioModifica" />
-          <ScalarProperty Name="dev_FechaCrea" ColumnName="dev_FechaCrea" />
-          <ScalarProperty Name="dev_UsuarioCrea" ColumnName="dev_UsuarioCrea" />
-          <ScalarProperty Name="dev_Fecha" ColumnName="dev_Fecha" />
-          <ScalarProperty Name="dev_Estado" ColumnName="dev_Estado" />
-          <ScalarProperty Name="nocre_Id" ColumnName="nocre_Id" />
-          <ScalarProperty Name="cja_Id" ColumnName="cja_Id" />
-          <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
-          <ScalarProperty Name="dev_Id" ColumnName="dev_Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="tbDevolucionDetalle">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbDevolucionDetalle">
         <MappingFragment StoreEntitySet="tbDevolucionDetalle">
@@ -2552,5 +2536,28 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbDevolucion_NotaCredito" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbDevolucion_NotaCredito">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbDevolucion_NotaCredito_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="tbDevolucion">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbDevolucion">
+        <MappingFragment StoreEntitySet="tbDevolucion">
+          <ScalarProperty Name="dev_FechaModifica" ColumnName="dev_FechaModifica" />
+          <ScalarProperty Name="dev_UsuarioModifica" ColumnName="dev_UsuarioModifica" />
+          <ScalarProperty Name="dev_FechaCrea" ColumnName="dev_FechaCrea" />
+          <ScalarProperty Name="dev_UsuarioCrea" ColumnName="dev_UsuarioCrea" />
+          <ScalarProperty Name="dev_Fecha" ColumnName="dev_Fecha" />
+          <ScalarProperty Name="dev_Estado" ColumnName="dev_Estado" />
+          <ScalarProperty Name="nocre_Codigo" ColumnName="nocre_Codigo" />
+          <ScalarProperty Name="cja_Id" ColumnName="cja_Id" />
+          <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
+          <ScalarProperty Name="dev_Id" ColumnName="dev_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

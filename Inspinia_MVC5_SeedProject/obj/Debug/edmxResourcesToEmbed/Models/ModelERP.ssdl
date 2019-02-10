@@ -623,7 +623,7 @@
     <Property Name="dev_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="fact_Id" Type="bigint" Nullable="false" />
     <Property Name="cja_Id" Type="smallint" Nullable="false" />
-    <Property Name="nocre_Id" Type="smallint" />
+    <Property Name="nocre_Codigo" Type="nvarchar" MaxLength="19" />
     <Property Name="dev_Estado" Type="bit" />
     <Property Name="dev_Fecha" Type="datetime" Nullable="false" />
     <Property Name="dev_UsuarioCrea" Type="int" Nullable="false" />
@@ -4320,6 +4320,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
   <Function Name="UDP_Gral_tbEmpleado_Update_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
     <Parameter Name="emp_Id" Type="int" Mode="In" />
     <Parameter Name="emp_Estado" Type="bit" Mode="In" />
+    <Parameter Name="emp_UsuarioModifica" Type="int" Mode="In" />
+    <Parameter Name="emp_FechaModifica" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Gral_tbEmpleados_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
     <Parameter Name="emp_Nombres" Type="nvarchar" Mode="In" />
@@ -4651,6 +4653,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
     <Parameter Name="prod_EsActivo" Type="bit" Mode="In" />
     <Parameter Name="prod_Razon_Inactivacion" Type="varchar" Mode="In" />
+    <Parameter Name="prod_UsuarioModifica" Type="int" Mode="In" />
+    <Parameter Name="prod_FechaModifica" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Inv_tbProducto_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
@@ -5056,6 +5060,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <Parameter Name="dev_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="dev_FechaCrea" Type="datetime" Mode="In" />
   </Function>
+  <Function Name="UDP_Vent_tbDevolucion_NotaCredito" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="dev_Id" Type="int" Mode="In" />
+    <Parameter Name="nocre_Codigo" Type="nvarchar" Mode="In" />
+  </Function>
   <Function Name="UDP_Vent_tbDevolucion_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="dev_Id" Type="int" Mode="In" />
     <Parameter Name="fact_Id" Type="bigint" Mode="In" />
@@ -5073,6 +5081,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <Parameter Name="devd_CantidadProducto" Type="decimal" Mode="In" />
     <Parameter Name="devd_Descripcion" Type="nvarchar" Mode="In" />
     <Parameter Name="devd_Monto" Type="decimal" Mode="In" />
+    <Parameter Name="devd_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="devd_FechaCrea" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbDevolucionDetalle_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="devd_Id" Type="int" Mode="In" />
@@ -5083,6 +5093,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <Parameter Name="devd_Monto" Type="decimal" Mode="In" />
     <Parameter Name="devd_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="devd_FechaCrea" Type="datetime" Mode="In" />
+    <Parameter Name="devd_UsuarioModifica" Type="int" Mode="In" />
+    <Parameter Name="devd_FechaModifica" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbDocumentoFiscal_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="dfisc_Id" Type="char" Mode="In" />

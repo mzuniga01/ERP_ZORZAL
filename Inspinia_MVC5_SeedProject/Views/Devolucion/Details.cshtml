@@ -28,8 +28,6 @@
                    
                 </div>
                 <div class="ibox-content">
-
-
                     <dl class="dl-horizontal">
 
                         <dt>
@@ -142,30 +140,29 @@
 
                             @Html.Hidden("RedirectTo", Url.Action("CreateNotaCredito", "Devolucion", new { id = Model.dev_Id }))
 
+                        @if (ViewBag.NotaCredito == "1")
+                        {
+                            //Aqui finaliza el If
+                        }
+                        else
+                        {
                             <div class="form-group">
                                 <div class="col-md-offset col-md-11">
 
-                                    @{
-                                        if (Model.dev_Estado == true)
-                                        {
-                                        }
+                                    @Html.ActionLink("Editar", "Edit", new { id = Model.dev_Id }, new { @class = "btn btn-primary  btn-ms" })
 
-                                        else
-                                        {
-
-                                            string Editar = "btnDetalleEditar";
-                                            @Html.ActionLink("Editar", "Edit", new { id = Model.dev_Id }, new { @class = "btn btn-primary  btn-ms", id = Editar })
-
-                                            <button id="bottonNotaCredito" name="bottonNotaCredito" type="button" class="btn btn-primary btn-ms" data-toggle="modal" data-target="#ModalNotaCredito">
-                                                Emitir Nota de Credito
-                                            </button>
-                                            <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-danger" data-toggle="modal" data-target="#Anular">Anular</button>
-
-                                        }
-                                    }
+                                    <button id="bottonNotaCredito" name="bottonNotaCredito" type="button" class="btn btn-primary btn-ms" data-toggle="modal" data-target="#ModalNotaCredito">
+                                        Emitir Nota de Credito
+                                    </button>
+                                    <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-danger" data-toggle="modal" data-target="#Anular">Anular</button>
 
                                 </div>
                             </div>
+                            //Aqui finaliza el Else
+                        }
+   
+                        
+                      
 </dl>
 
                    

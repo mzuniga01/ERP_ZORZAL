@@ -628,7 +628,7 @@
           <Property Name="dev_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="fact_Id" Type="bigint" Nullable="false" />
           <Property Name="cja_Id" Type="smallint" Nullable="false" />
-          <Property Name="nocre_Id" Type="smallint" />
+          <Property Name="nocre_Codigo" Type="nvarchar" MaxLength="19" />
           <Property Name="dev_Estado" Type="bit" />
           <Property Name="dev_Fecha" Type="datetime" Nullable="false" />
           <Property Name="dev_UsuarioCrea" Type="int" Nullable="false" />
@@ -4325,6 +4325,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
         <Function Name="UDP_Gral_tbEmpleado_Update_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
           <Parameter Name="emp_Id" Type="int" Mode="In" />
           <Parameter Name="emp_Estado" Type="bit" Mode="In" />
+          <Parameter Name="emp_UsuarioModifica" Type="int" Mode="In" />
+          <Parameter Name="emp_FechaModifica" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Gral_tbEmpleados_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
           <Parameter Name="emp_Nombres" Type="nvarchar" Mode="In" />
@@ -4656,6 +4658,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
           <Parameter Name="prod_EsActivo" Type="bit" Mode="In" />
           <Parameter Name="prod_Razon_Inactivacion" Type="varchar" Mode="In" />
+          <Parameter Name="prod_UsuarioModifica" Type="int" Mode="In" />
+          <Parameter Name="prod_FechaModifica" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Inv_tbProducto_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
@@ -5061,6 +5065,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Parameter Name="dev_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="dev_FechaCrea" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="UDP_Vent_tbDevolucion_NotaCredito" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="dev_Id" Type="int" Mode="In" />
+          <Parameter Name="nocre_Codigo" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="UDP_Vent_tbDevolucion_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="dev_Id" Type="int" Mode="In" />
           <Parameter Name="fact_Id" Type="bigint" Mode="In" />
@@ -5078,6 +5086,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Parameter Name="devd_CantidadProducto" Type="decimal" Mode="In" />
           <Parameter Name="devd_Descripcion" Type="nvarchar" Mode="In" />
           <Parameter Name="devd_Monto" Type="decimal" Mode="In" />
+          <Parameter Name="devd_UsuarioCrea" Type="int" Mode="In" />
+          <Parameter Name="devd_FechaCrea" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Vent_tbDevolucionDetalle_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="devd_Id" Type="int" Mode="In" />
@@ -5088,6 +5098,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Parameter Name="devd_Monto" Type="decimal" Mode="In" />
           <Parameter Name="devd_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="devd_FechaCrea" Type="datetime" Mode="In" />
+          <Parameter Name="devd_UsuarioModifica" Type="int" Mode="In" />
+          <Parameter Name="devd_FechaModifica" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Vent_tbDocumentoFiscal_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="dfisc_Id" Type="char" Mode="In" />
@@ -6919,6 +6931,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="devd_CantidadProducto" Mode="In" Type="Decimal" />
             <Parameter Name="devd_Descripcion" Mode="In" Type="String" />
             <Parameter Name="devd_Monto" Mode="In" Type="Decimal" />
+            <Parameter Name="devd_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="devd_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbTipoPago_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbTipoPago_Update_Result)">
             <Parameter Name="tpa_Id" Mode="In" Type="Int16" />
@@ -7019,6 +7033,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="devd_Monto" Mode="In" Type="Decimal" />
             <Parameter Name="devd_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="devd_FechaCrea" Mode="In" Type="DateTime" />
+            <Parameter Name="devd_UsuarioModifica" Mode="In" Type="Int32" />
+            <Parameter Name="devd_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbDenominacionArqueo_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDenominacionArqueo_Insert_Result)">
             <Parameter Name="mocja_Id" Mode="In" Type="Int32" />
@@ -7157,6 +7173,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <FunctionImport Name="UDP_Gral_tbEmpleado_Update_Estado" ReturnType="Collection(String)">
             <Parameter Name="emp_Id" Mode="In" Type="Int32" />
             <Parameter Name="emp_Estado" Mode="In" Type="Boolean" />
+            <Parameter Name="emp_UsuarioModifica" Mode="In" Type="Int32" />
+            <Parameter Name="emp_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Gral_tbEmpleados_Insert" ReturnType="Collection(String)">
             <Parameter Name="emp_Nombres" Mode="In" Type="String" />
@@ -7830,6 +7848,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="prod_Codigo" Mode="In" Type="String" />
             <Parameter Name="prod_EsActivo" Mode="In" Type="Boolean" />
             <Parameter Name="prod_Razon_Inactivacion" Mode="In" Type="String" />
+            <Parameter Name="prod_UsuarioModifica" Mode="In" Type="Int32" />
+            <Parameter Name="prod_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbExoneracion_Select" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbExoneracion_Select_Result)" />
           <FunctionImport Name="UDP_Vent_tbSucursal_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSucursal_Update_Result)">
@@ -8219,7 +8239,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <EntitySet Name="tbCliente" EntityType="ERP_ZORZALModel.tbCliente" />
           <EntitySet Name="tbCuponDescuento" EntityType="ERP_ZORZALModel.tbCuponDescuento" />
           <EntitySet Name="tbDenominacionArqueo" EntityType="ERP_ZORZALModel.tbDenominacionArqueo" />
-          <EntitySet Name="tbDevolucion" EntityType="ERP_ZORZALModel.tbDevolucion" />
           <EntitySet Name="tbDevolucionDetalle" EntityType="ERP_ZORZALModel.tbDevolucionDetalle" />
           <EntitySet Name="tbDocumentoFiscal" EntityType="ERP_ZORZALModel.tbDocumentoFiscal" />
           <EntitySet Name="tbEstadoFactura" EntityType="ERP_ZORZALModel.tbEstadoFactura" />
@@ -8381,14 +8400,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <AssociationSet Name="FK_Acce_tbUsuario_tbDenominacionArqueo_arqde_UsuarioModifica" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDenominacionArqueo_arqde_UsuarioModifica">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbDenominacionArqueo" EntitySet="tbDenominacionArqueo" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioCrea" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioCrea">
-            <End Role="tbUsuario" EntitySet="tbUsuario" />
-            <End Role="tbDevolucion" EntitySet="tbDevolucion" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioModifica" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioModifica">
-            <End Role="tbUsuario" EntitySet="tbUsuario" />
-            <End Role="tbDevolucion" EntitySet="tbDevolucion" />
           </AssociationSet>
           <AssociationSet Name="FK_Acce_tbUsuario_tbDevolucionDetalle_devd_UsuarioCrea" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDevolucionDetalle_devd_UsuarioCrea">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
@@ -8978,10 +8989,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <End Role="tbFactura" EntitySet="tbFactura" />
             <End Role="DatosConsumidorFinal" EntitySet="DatosConsumidorFinal" />
           </AssociationSet>
-          <AssociationSet Name="FK_Vent_tbCaja_tbDevolucion_cja_Id" Association="ERP_ZORZALModel.FK_Vent_tbCaja_tbDevolucion_cja_Id">
-            <End Role="tbCaja" EntitySet="tbCaja" />
-            <End Role="tbDevolucion" EntitySet="tbDevolucion" />
-          </AssociationSet>
           <AssociationSet Name="FK_Vent_tbCaja_tbFactura_cja_Id" Association="ERP_ZORZALModel.FK_Vent_tbCaja_tbFactura_cja_Id">
             <End Role="tbCaja" EntitySet="tbCaja" />
             <End Role="tbFactura" EntitySet="tbFactura" />
@@ -9025,18 +9032,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <AssociationSet Name="FK_Vent_tbMovimientoCaja_tbDenominacionArqueo_mocja_Id" Association="ERP_ZORZALModel.FK_Vent_tbMovimientoCaja_tbDenominacionArqueo_mocja_Id">
             <End Role="tbMovimientoCaja" EntitySet="tbMovimientoCaja" />
             <End Role="tbDenominacionArqueo" EntitySet="tbDenominacionArqueo" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Vent_tbDevolucion_tbDevolucionDetalle_dev_Id" Association="ERP_ZORZALModel.FK_Vent_tbDevolucion_tbDevolucionDetalle_dev_Id">
-            <End Role="tbDevolucion" EntitySet="tbDevolucion" />
-            <End Role="tbDevolucionDetalle" EntitySet="tbDevolucionDetalle" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Vent_tbFactura_tbDevolucion_fact_Id" Association="ERP_ZORZALModel.FK_Vent_tbFactura_tbDevolucion_fact_Id">
-            <End Role="tbFactura" EntitySet="tbFactura" />
-            <End Role="tbDevolucion" EntitySet="tbDevolucion" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Vent_tbNotaCredito_tbDevolucion_dev_Id" Association="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbDevolucion_dev_Id">
-            <End Role="tbDevolucion" EntitySet="tbDevolucion" />
-            <End Role="tbNotaCredito" EntitySet="tbNotaCredito" />
           </AssociationSet>
           <AssociationSet Name="FK_Vent_tbPuntoEmisionDetalle_tbDocumentoFiscal_dfisc_Id" Association="ERP_ZORZALModel.FK_Vent_tbPuntoEmisionDetalle_tbDocumentoFiscal_dfisc_Id">
             <End Role="tbDocumentoFiscal" EntitySet="tbDocumentoFiscal" />
@@ -9419,6 +9414,35 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <FunctionImport Name="UDP_Vent_tbListaPrecio_UltimaFechaVigente" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbListaPrecio_UltimaFechaVigente_Result)">
           <Parameter Name="PRIORIDAD" Mode="In" Type="Int16" />
           </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbDevolucion_NotaCredito" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDevolucion_NotaCredito_Result)">
+            <Parameter Name="dev_Id" Mode="In" Type="Int32" />
+            <Parameter Name="nocre_Codigo" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="tbDevolucion" EntityType="ERP_ZORZALModel.tbDevolucion" />
+          <AssociationSet Name="FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioCrea" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioCrea">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbDevolucion" EntitySet="tbDevolucion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioModifica" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioModifica">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbDevolucion" EntitySet="tbDevolucion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vent_tbCaja_tbDevolucion_cja_Id" Association="ERP_ZORZALModel.FK_Vent_tbCaja_tbDevolucion_cja_Id">
+            <End Role="tbCaja" EntitySet="tbCaja" />
+            <End Role="tbDevolucion" EntitySet="tbDevolucion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vent_tbDevolucion_tbDevolucionDetalle_dev_Id" Association="ERP_ZORZALModel.FK_Vent_tbDevolucion_tbDevolucionDetalle_dev_Id">
+            <End Role="tbDevolucion" EntitySet="tbDevolucion" />
+            <End Role="tbDevolucionDetalle" EntitySet="tbDevolucionDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vent_tbFactura_tbDevolucion_fact_Id" Association="ERP_ZORZALModel.FK_Vent_tbFactura_tbDevolucion_fact_Id">
+            <End Role="tbFactura" EntitySet="tbFactura" />
+            <End Role="tbDevolucion" EntitySet="tbDevolucion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vent_tbNotaCredito_tbDevolucion_dev_Id" Association="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbDevolucion_dev_Id">
+            <End Role="tbDevolucion" EntitySet="tbDevolucion" />
+            <End Role="tbNotaCredito" EntitySet="tbNotaCredito" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
           <Key>
@@ -10118,8 +10142,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <NavigationProperty Name="tbDenominacion1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDenominacion_deno_UsuarioModifica" FromRole="tbUsuario" ToRole="tbDenominacion" />
           <NavigationProperty Name="tbDenominacionArqueo" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDenominacionArqueo_arqde_UsuarioCrea" FromRole="tbUsuario" ToRole="tbDenominacionArqueo" />
           <NavigationProperty Name="tbDenominacionArqueo1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDenominacionArqueo_arqde_UsuarioModifica" FromRole="tbUsuario" ToRole="tbDenominacionArqueo" />
-          <NavigationProperty Name="tbDevolucion" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioCrea" FromRole="tbUsuario" ToRole="tbDevolucion" />
-          <NavigationProperty Name="tbDevolucion1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioModifica" FromRole="tbUsuario" ToRole="tbDevolucion" />
           <NavigationProperty Name="tbDevolucionDetalle" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDevolucionDetalle_devd_UsuarioCrea" FromRole="tbUsuario" ToRole="tbDevolucionDetalle" />
           <NavigationProperty Name="tbDevolucionDetalle1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDevolucionDetalle_devd_UsuarioModifica" FromRole="tbUsuario" ToRole="tbDevolucionDetalle" />
           <NavigationProperty Name="tbDocumentoFiscal" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDocumentoFiscal_dfisc_UsuarioCrea" FromRole="tbUsuario" ToRole="tbDocumentoFiscal" />
@@ -10221,6 +10243,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <NavigationProperty Name="tbCliente1" Relationship="ERP_ZORZALModel.FK_Vent_tbUsuario_tbCliente_usu_Id_Modifica" FromRole="tbUsuario" ToRole="tbCliente" />
           <NavigationProperty Name="tbBitacoraErrores" Relationship="ERP_ZORZALModel.FK_Acce_tbBitacoraErrores_bite_Usuario" FromRole="tbUsuario" ToRole="tbBitacoraErrores" />
           <NavigationProperty Name="tbSalidaDetalle" Relationship="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_tbUsuario_sald_UsuarioCrea" FromRole="tbUsuario" ToRole="tbSalidaDetalle" />
+          <NavigationProperty Name="tbDevolucion" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioCrea" FromRole="tbUsuario" ToRole="tbDevolucion" />
+          <NavigationProperty Name="tbDevolucion1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioModifica" FromRole="tbUsuario" ToRole="tbDevolucion" />
         </EntityType>
         <EntityType Name="tbActividadEconomica">
           <Key>
@@ -10791,11 +10815,11 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Property Name="cja_FechaModifica" Type="DateTime" Precision="3" />
           <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbCaja_cja_UsuarioCrea" FromRole="tbCaja" ToRole="tbUsuario" />
           <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbCaja_cja_UsuarioModifica" FromRole="tbCaja" ToRole="tbUsuario" />
-          <NavigationProperty Name="tbDevolucion" Relationship="ERP_ZORZALModel.FK_Vent_tbCaja_tbDevolucion_cja_Id" FromRole="tbCaja" ToRole="tbDevolucion" />
           <NavigationProperty Name="tbFactura" Relationship="ERP_ZORZALModel.FK_Vent_tbCaja_tbFactura_cja_Id" FromRole="tbCaja" ToRole="tbFactura" />
           <NavigationProperty Name="tbMovimientoCaja" Relationship="ERP_ZORZALModel.FK_Vent_tbCaja_tbMovimientoCaja_cja_Id" FromRole="tbCaja" ToRole="tbMovimientoCaja" />
           <NavigationProperty Name="tbNotaCredito" Relationship="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbCaja_cja_Id" FromRole="tbCaja" ToRole="tbNotaCredito" />
           <NavigationProperty Name="tbSucursal" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbCaja_suc_Id" FromRole="tbCaja" ToRole="tbSucursal" />
+          <NavigationProperty Name="tbDevolucion" Relationship="ERP_ZORZALModel.FK_Vent_tbCaja_tbDevolucion_cja_Id" FromRole="tbCaja" ToRole="tbDevolucion" />
         </EntityType>
         <EntityType Name="tbCliente">
           <Key>
@@ -10884,27 +10908,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDenominacionArqueo_arqde_UsuarioModifica" FromRole="tbDenominacionArqueo" ToRole="tbUsuario" />
           <NavigationProperty Name="tbDenominacion" Relationship="ERP_ZORZALModel.FK_Vent_tbDenominacion_tbDenominacionArqueo_deno_Id" FromRole="tbDenominacionArqueo" ToRole="tbDenominacion" />
           <NavigationProperty Name="tbMovimientoCaja" Relationship="ERP_ZORZALModel.FK_Vent_tbMovimientoCaja_tbDenominacionArqueo_mocja_Id" FromRole="tbDenominacionArqueo" ToRole="tbMovimientoCaja" />
-        </EntityType>
-        <EntityType Name="tbDevolucion">
-          <Key>
-            <PropertyRef Name="dev_Id" />
-          </Key>
-          <Property Name="dev_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="fact_Id" Type="Int64" Nullable="false" />
-          <Property Name="cja_Id" Type="Int16" Nullable="false" />
-          <Property Name="nocre_Id" Type="Int16" />
-          <Property Name="dev_Estado" Type="Boolean" />
-          <Property Name="dev_Fecha" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="dev_UsuarioCrea" Type="Int32" Nullable="false" />
-          <Property Name="dev_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="dev_UsuarioModifica" Type="Int32" />
-          <Property Name="dev_FechaModifica" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioCrea" FromRole="tbDevolucion" ToRole="tbUsuario" />
-          <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioModifica" FromRole="tbDevolucion" ToRole="tbUsuario" />
-          <NavigationProperty Name="tbCaja" Relationship="ERP_ZORZALModel.FK_Vent_tbCaja_tbDevolucion_cja_Id" FromRole="tbDevolucion" ToRole="tbCaja" />
-          <NavigationProperty Name="tbDevolucionDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbDevolucion_tbDevolucionDetalle_dev_Id" FromRole="tbDevolucion" ToRole="tbDevolucionDetalle" />
-          <NavigationProperty Name="tbFactura" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbDevolucion_fact_Id" FromRole="tbDevolucion" ToRole="tbFactura" />
-          <NavigationProperty Name="tbNotaCredito" Relationship="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbDevolucion_dev_Id" FromRole="tbDevolucion" ToRole="tbNotaCredito" />
         </EntityType>
         <EntityType Name="tbDevolucionDetalle">
           <Key>
@@ -11034,13 +11037,13 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <NavigationProperty Name="DatosConsumidorFinal" Relationship="ERP_ZORZALModel.FK__DatosCons__fact___4DAB2CE2" FromRole="tbFactura" ToRole="DatosConsumidorFinal" />
           <NavigationProperty Name="tbCaja" Relationship="ERP_ZORZALModel.FK_Vent_tbCaja_tbFactura_cja_Id" FromRole="tbFactura" ToRole="tbCaja" />
           <NavigationProperty Name="tbCliente" Relationship="ERP_ZORZALModel.FK_Vent_tbCliente_tbFactura_clte_Id" FromRole="tbFactura" ToRole="tbCliente" />
-          <NavigationProperty Name="tbDevolucion" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbDevolucion_fact_Id" FromRole="tbFactura" ToRole="tbDevolucion" />
           <NavigationProperty Name="tbEstadoFactura" Relationship="ERP_ZORZALModel.FK_Vent_tbEstadoFactura_tbFactura_esfac_codigo" FromRole="tbFactura" ToRole="tbEstadoFactura" />
           <NavigationProperty Name="tbFacturaHistorica" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbFacturaHistorica_fact_Id" FromRole="tbFactura" ToRole="tbFacturaHistorica" />
           <NavigationProperty Name="tbPago" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbPago_fact_Id" FromRole="tbFactura" ToRole="tbPago" />
           <NavigationProperty Name="tbPedido" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbPedido_fact_Id" FromRole="tbFactura" ToRole="tbPedido" />
           <NavigationProperty Name="tbFacturaDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbFacturaDetalle_tbFactura_fact_Id" FromRole="tbFactura" ToRole="tbFacturaDetalle" />
           <NavigationProperty Name="tbSucursal" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbfactura_suc_Id" FromRole="tbFactura" ToRole="tbSucursal" />
+          <NavigationProperty Name="tbDevolucion" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbDevolucion_fact_Id" FromRole="tbFactura" ToRole="tbDevolucion" />
         </EntityType>
         <EntityType Name="tbFacturaDetalle">
           <Key>
@@ -11166,8 +11169,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbNotaCredito_nocre_UsuarioModifica" FromRole="tbNotaCredito" ToRole="tbUsuario" />
           <NavigationProperty Name="tbCaja" Relationship="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbCaja_cja_Id" FromRole="tbNotaCredito" ToRole="tbCaja" />
           <NavigationProperty Name="tbCliente" Relationship="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbCliente_clte_Id" FromRole="tbNotaCredito" ToRole="tbCliente" />
-          <NavigationProperty Name="tbDevolucion" Relationship="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbDevolucion_dev_Id" FromRole="tbNotaCredito" ToRole="tbDevolucion" />
           <NavigationProperty Name="tbSucursal" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbNotaCredito_suc_Id" FromRole="tbNotaCredito" ToRole="tbSucursal" />
+          <NavigationProperty Name="tbDevolucion" Relationship="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbDevolucion_dev_Id" FromRole="tbNotaCredito" ToRole="tbDevolucion" />
         </EntityType>
         <EntityType Name="tbPago">
           <Key>
@@ -12093,30 +12096,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             </Principal>
             <Dependent Role="tbDenominacionArqueo">
               <PropertyRef Name="arqde_UsuarioModifica" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioCrea">
-          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
-          <End Type="ERP_ZORZALModel.tbDevolucion" Role="tbDevolucion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuario">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbDevolucion">
-              <PropertyRef Name="dev_UsuarioCrea" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioModifica">
-          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
-          <End Type="ERP_ZORZALModel.tbDevolucion" Role="tbDevolucion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuario">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbDevolucion">
-              <PropertyRef Name="dev_UsuarioModifica" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -13884,18 +13863,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Vent_tbCaja_tbDevolucion_cja_Id">
-          <End Type="ERP_ZORZALModel.tbCaja" Role="tbCaja" Multiplicity="1" />
-          <End Type="ERP_ZORZALModel.tbDevolucion" Role="tbDevolucion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbCaja">
-              <PropertyRef Name="cja_Id" />
-            </Principal>
-            <Dependent Role="tbDevolucion">
-              <PropertyRef Name="cja_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Vent_tbCaja_tbFactura_cja_Id">
           <End Type="ERP_ZORZALModel.tbCaja" Role="tbCaja" Multiplicity="1" />
           <End Type="ERP_ZORZALModel.tbFactura" Role="tbFactura" Multiplicity="*" />
@@ -14025,42 +13992,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             </Principal>
             <Dependent Role="tbDenominacionArqueo">
               <PropertyRef Name="mocja_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Vent_tbDevolucion_tbDevolucionDetalle_dev_Id">
-          <End Type="ERP_ZORZALModel.tbDevolucion" Role="tbDevolucion" Multiplicity="1" />
-          <End Type="ERP_ZORZALModel.tbDevolucionDetalle" Role="tbDevolucionDetalle" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbDevolucion">
-              <PropertyRef Name="dev_Id" />
-            </Principal>
-            <Dependent Role="tbDevolucionDetalle">
-              <PropertyRef Name="dev_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Vent_tbFactura_tbDevolucion_fact_Id">
-          <End Type="ERP_ZORZALModel.tbFactura" Role="tbFactura" Multiplicity="1" />
-          <End Type="ERP_ZORZALModel.tbDevolucion" Role="tbDevolucion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbFactura">
-              <PropertyRef Name="fact_Id" />
-            </Principal>
-            <Dependent Role="tbDevolucion">
-              <PropertyRef Name="fact_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Vent_tbNotaCredito_tbDevolucion_dev_Id">
-          <End Type="ERP_ZORZALModel.tbDevolucion" Role="tbDevolucion" Multiplicity="0..1" />
-          <End Type="ERP_ZORZALModel.tbNotaCredito" Role="tbNotaCredito" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbDevolucion">
-              <PropertyRef Name="dev_Id" />
-            </Principal>
-            <Dependent Role="tbNotaCredito">
-              <PropertyRef Name="dev_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -14632,6 +14563,102 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
         </ComplexType>
         <ComplexType Name="UDP_Vent_tbListaPrecio_UltimaFechaVigente_Result">
           <Property Type="DateTime" Name="FECHAVIGENCIAFINAL" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="tbDevolucion">
+          <Key>
+            <PropertyRef Name="dev_Id" />
+          </Key>
+          <Property Name="dev_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fact_Id" Type="Int64" Nullable="false" />
+          <Property Name="cja_Id" Type="Int16" Nullable="false" />
+          <Property Name="nocre_Codigo" Type="String" MaxLength="19" FixedLength="false" Unicode="true" />
+          <Property Name="dev_Estado" Type="Boolean" />
+          <Property Name="dev_Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="dev_UsuarioCrea" Type="Int32" Nullable="false" />
+          <Property Name="dev_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="dev_UsuarioModifica" Type="Int32" />
+          <Property Name="dev_FechaModifica" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioCrea" FromRole="tbDevolucion" ToRole="tbUsuario" />
+          <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioModifica" FromRole="tbDevolucion" ToRole="tbUsuario" />
+          <NavigationProperty Name="tbCaja" Relationship="ERP_ZORZALModel.FK_Vent_tbCaja_tbDevolucion_cja_Id" FromRole="tbDevolucion" ToRole="tbCaja" />
+          <NavigationProperty Name="tbDevolucionDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbDevolucion_tbDevolucionDetalle_dev_Id" FromRole="tbDevolucion" ToRole="tbDevolucionDetalle" />
+          <NavigationProperty Name="tbFactura" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbDevolucion_fact_Id" FromRole="tbDevolucion" ToRole="tbFactura" />
+          <NavigationProperty Name="tbNotaCredito" Relationship="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbDevolucion_dev_Id" FromRole="tbDevolucion" ToRole="tbNotaCredito" />
+        </EntityType>
+        <Association Name="FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioCrea">
+          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
+          <End Type="ERP_ZORZALModel.tbDevolucion" Role="tbDevolucion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbDevolucion">
+              <PropertyRef Name="dev_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioModifica">
+          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
+          <End Type="ERP_ZORZALModel.tbDevolucion" Role="tbDevolucion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbDevolucion">
+              <PropertyRef Name="dev_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vent_tbCaja_tbDevolucion_cja_Id">
+          <End Type="ERP_ZORZALModel.tbCaja" Role="tbCaja" Multiplicity="1" />
+          <End Type="ERP_ZORZALModel.tbDevolucion" Role="tbDevolucion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbCaja">
+              <PropertyRef Name="cja_Id" />
+            </Principal>
+            <Dependent Role="tbDevolucion">
+              <PropertyRef Name="cja_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vent_tbDevolucion_tbDevolucionDetalle_dev_Id">
+          <End Type="ERP_ZORZALModel.tbDevolucion" Role="tbDevolucion" Multiplicity="1" />
+          <End Type="ERP_ZORZALModel.tbDevolucionDetalle" Role="tbDevolucionDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbDevolucion">
+              <PropertyRef Name="dev_Id" />
+            </Principal>
+            <Dependent Role="tbDevolucionDetalle">
+              <PropertyRef Name="dev_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vent_tbFactura_tbDevolucion_fact_Id">
+          <End Type="ERP_ZORZALModel.tbFactura" Role="tbFactura" Multiplicity="1" />
+          <End Type="ERP_ZORZALModel.tbDevolucion" Role="tbDevolucion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbFactura">
+              <PropertyRef Name="fact_Id" />
+            </Principal>
+            <Dependent Role="tbDevolucion">
+              <PropertyRef Name="fact_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vent_tbNotaCredito_tbDevolucion_dev_Id">
+          <End Type="ERP_ZORZALModel.tbDevolucion" Role="tbDevolucion" Multiplicity="0..1" />
+          <End Type="ERP_ZORZALModel.tbNotaCredito" Role="tbNotaCredito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbDevolucion">
+              <PropertyRef Name="dev_Id" />
+            </Principal>
+            <Dependent Role="tbNotaCredito">
+              <PropertyRef Name="dev_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="UDP_Vent_tbDevolucion_NotaCredito_Result">
+          <Property Type="Int32" Name="MensajeError" Nullable="false" />
         </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
@@ -16231,22 +16258,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tbDevolucion">
-            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbDevolucion">
-              <MappingFragment StoreEntitySet="tbDevolucion">
-                <ScalarProperty Name="dev_FechaModifica" ColumnName="dev_FechaModifica" />
-                <ScalarProperty Name="dev_UsuarioModifica" ColumnName="dev_UsuarioModifica" />
-                <ScalarProperty Name="dev_FechaCrea" ColumnName="dev_FechaCrea" />
-                <ScalarProperty Name="dev_UsuarioCrea" ColumnName="dev_UsuarioCrea" />
-                <ScalarProperty Name="dev_Fecha" ColumnName="dev_Fecha" />
-                <ScalarProperty Name="dev_Estado" ColumnName="dev_Estado" />
-                <ScalarProperty Name="nocre_Id" ColumnName="nocre_Id" />
-                <ScalarProperty Name="cja_Id" ColumnName="cja_Id" />
-                <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
-                <ScalarProperty Name="dev_Id" ColumnName="dev_Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tbDevolucionDetalle">
             <EntityTypeMapping TypeName="ERP_ZORZALModel.tbDevolucionDetalle">
               <MappingFragment StoreEntitySet="tbDevolucionDetalle">
@@ -17192,6 +17203,29 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbDevolucion_NotaCredito" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbDevolucion_NotaCredito" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbDevolucion_NotaCredito_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="tbDevolucion">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbDevolucion">
+              <MappingFragment StoreEntitySet="tbDevolucion">
+                <ScalarProperty Name="dev_FechaModifica" ColumnName="dev_FechaModifica" />
+                <ScalarProperty Name="dev_UsuarioModifica" ColumnName="dev_UsuarioModifica" />
+                <ScalarProperty Name="dev_FechaCrea" ColumnName="dev_FechaCrea" />
+                <ScalarProperty Name="dev_UsuarioCrea" ColumnName="dev_UsuarioCrea" />
+                <ScalarProperty Name="dev_Fecha" ColumnName="dev_Fecha" />
+                <ScalarProperty Name="dev_Estado" ColumnName="dev_Estado" />
+                <ScalarProperty Name="nocre_Codigo" ColumnName="nocre_Codigo" />
+                <ScalarProperty Name="cja_Id" ColumnName="cja_Id" />
+                <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
+                <ScalarProperty Name="dev_Id" ColumnName="dev_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

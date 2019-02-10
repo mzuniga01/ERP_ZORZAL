@@ -59,9 +59,9 @@ namespace ERP_ZORZAL.Controllers
             return Json("", JsonRequestBehavior.AllowGet);
         }
 
-       
+
         /// Post
-            // GET: /Devolucion/Details/5
+        // GET: /Devolucion/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -76,13 +76,18 @@ namespace ERP_ZORZAL.Controllers
                 return RedirectToAction("NotFound", "Login");
             }
 
-
+          
             Session["ID"] = tbDevolucion.dev_Id;
             Session["FECHA"] = tbDevolucion.dev_Fecha;
             Session["RTNCLIENTE"] = tbDevolucion.tbFactura.clte_Identificacion;
             Session["IDCLIENTE"] = tbDevolucion.tbFactura.clte_Id;
             Session["NOMBRE"] = tbDevolucion.tbFactura.clte_Nombres;
-            //Session["MONTO"] = tbDevolucionDetalle.devd_Monto;
+            Session["MONTO"] = tbDevolucionDetalle.devd_Monto;
+            var ExiteNotaCredito = db.tbNotaCredito.Where(x => x.dev_Id == tbDevolucion.dev_Id).ToList();
+            if (ExiteNotaCredito.Count() > 0)
+            {
+                ViewBag.NotaCredito = "1";
+            }
             return View(tbDevolucion);
         }
 
@@ -159,7 +164,9 @@ namespace ERP_ZORZAL.Controllers
                                                 Detalle.prod_Codigo,
                                                 Detalle.devd_CantidadProducto,
                                                 Detalle.devd_Descripcion,
-                                                Detalle.devd_Monto);
+                                                Detalle.devd_Monto,
+                                                Detalle.devd_UsuarioCrea,
+                                                Detalle.devd_FechaCrea);
                                             foreach (UDP_Vent_tbDevolucionDetalle_Insert_Result SPDevolucionDetalleDet in listDevolucionDetalle)
                                             {
                                                 MensajeErrorDetalle = SPDevolucionDetalleDet.MensajeError;
@@ -198,26 +205,7 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.Cliente = db.tbCliente.ToList();
             return View(tbDevolucion);
         }
-        // POST: /Devolucion/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create([Bind(Include="dev_Id,fact_Id,cja_Id,dev_Fecha,dev_UsuarioCrea,dev_FechaCrea,dev_UsuarioModifica,dev_FechaModifica")] tbDevolucion tbDevolucion)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.tbDevolucion.Add(tbDevolucion);
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
 
-        //    ViewBag.dev_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbDevolucion.dev_UsuarioCrea);
-        //    ViewBag.dev_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbDevolucion.dev_UsuarioModifica);
-        //    ViewBag.cja_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion", tbDevolucion.cja_Id);
-        //    ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo", tbDevolucion.fact_Id);
-        //    return View(tbDevolucion);
-        //}
         // GET: /Devolucion/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -225,8 +213,8 @@ namespace ERP_ZORZAL.Controllers
             {
                 return RedirectToAction("Index");
             }
-            
-        tbDevolucion tbDevolucion = db.tbDevolucion.Find(id);
+
+            tbDevolucion tbDevolucion = db.tbDevolucion.Find(id);
             tbDevolucionDetalle tbDevolucionDetalle = new tbDevolucionDetalle();
             if (tbDevolucion == null)
             {
@@ -242,9 +230,23 @@ namespace ERP_ZORZAL.Controllers
             Session["RTNCLIENTE"] = tbDevolucion.tbFactura.clte_Identificacion;
             Session["IDCLIENTE"] = tbDevolucion.tbFactura.clte_Id;
             Session["NOMBRE"] = tbDevolucion.tbFactura.clte_Nombres;
-         
+
+
+            var ExiteNotaCredito = db.tbNotaCredito.Where(x => x.dev_Id == tbDevolucion.dev_Id).ToList();
+            if (ExiteNotaCredito.Count() > 0)
+            {
+            //    var NotaCredito = ViewBag.CodigoNC = db.tbNotaCredito.Where(a => a.dev_Id == tbDevolucion.dev_Id)
+            //   .Select(a => new
+            //   {
+            //       aa = a.nocre_Codigo
+                 
+            //});
+
+                var NotaCredito = db.tbNotaCredito.Where(l => l.dev_Id == tbDevolucion.dev_Id).Select(l => l.nocre_Codigo);
+                ViewBag.NotaC = NotaCredito;
+                ViewBag.NotaCredito = "1";
+            }
             //Session["Devolucion"] = null;
-            //Session["MONTO"] = MONTO;
             return View(tbDevolucion);
         }
 
@@ -258,6 +260,11 @@ namespace ERP_ZORZAL.Controllers
             IEnumerable<object> listDevolucion = null;
             IEnumerable<object> listDevolucionDetalle = null;
             tbDevolucionDetalle cDevolucionDetalle = new tbDevolucionDetalle();
+            var ExiteNotaCredito = db.tbNotaCredito.Where(x => x.dev_Id == tbDevolucion.dev_Id).ToList();
+            if (ExiteNotaCredito.Count() > 0)
+            {
+                ViewBag.Validacion = "1";
+            }
             if (ModelState.IsValid)
             {
                 try
@@ -297,7 +304,9 @@ namespace ERP_ZORZAL.Controllers
                                                 Detalle.prod_Codigo,
                                                 Detalle.devd_CantidadProducto,
                                                 Detalle.devd_Descripcion,
-                                                Detalle.devd_Monto);
+                                                Detalle.devd_Monto,
+                                                Detalle.devd_UsuarioCrea,
+                                                Detalle.devd_FechaCrea);
                                             foreach (UDP_Vent_tbDevolucionDetalle_Insert_Result SPDevolucionDetalleDet in listDevolucionDetalle)
                                             {
                                                 MensajeErrorDetalle = SPDevolucionDetalleDet.MensajeError;
@@ -339,21 +348,23 @@ namespace ERP_ZORZAL.Controllers
 
 
 
-       [HttpPost]
+        [HttpPost]
         public ActionResult UpdateDevolucionDetalle(tbDevolucionDetalle EditDevolucionDetalle)
         {
             try
             {
                 var MensajeError = "";
                 IEnumerable<object> list = null;
-                list = db.UDP_Vent_tbDevolucionDetalle_Update( EditDevolucionDetalle.devd_Id,
+                list = db.UDP_Vent_tbDevolucionDetalle_Update(EditDevolucionDetalle.devd_Id,
                                                                 EditDevolucionDetalle.dev_Id,
                                                                 EditDevolucionDetalle.prod_Codigo,
                                                                 EditDevolucionDetalle.devd_CantidadProducto,
                                                                 EditDevolucionDetalle.devd_Descripcion,
                                                                 EditDevolucionDetalle.devd_Monto,
                                                                 EditDevolucionDetalle.devd_UsuarioCrea,
-                                                                EditDevolucionDetalle.devd_FechaCrea);
+                                                                EditDevolucionDetalle.devd_FechaCrea,
+                                                                EditDevolucionDetalle.devd_UsuarioModifica,
+                                                                EditDevolucionDetalle.devd_FechaModifica);
                 foreach (UDP_Vent_tbDevolucionDetalle_Update_Result DevDetalle in list)
                     MensajeError = DevDetalle.MensajeError;
                 if (MensajeError == "-1")
@@ -484,7 +495,7 @@ namespace ERP_ZORZAL.Controllers
         {
             var MONTO = MontoDev;
             Session["MONTO"] = MONTO;
-           //ViewBag.montodev = MONTO;
+            //ViewBag.montodev = MONTO;
             return RedirectToAction("EmitirNotaCredito", "Devolucion");
         }
         public ActionResult EmitirNotaCredito(tbDevolucion Devolucion)
@@ -531,7 +542,7 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.Devolucion = db.tbDevolucionDetalle.ToList();
             ViewBag.Cliente = db.tbCliente.ToList();
 
-          
+
             Session["IDDEVOLUCION"] = null;
             Session["FECHADEV"] = null;
             Session["RTN"] = null;
@@ -546,7 +557,7 @@ namespace ERP_ZORZAL.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CreateNotaCredito([Bind(Include = "nocre_Id,nocre_Codigo,dev_Id,clte_Id,suc_Id,nocre_Anulado,nocre_FechaEmision,nocre_MotivoEmision,nocre_Monto,,nocre_Redimido,nocre_FechaRedimido,nocre_EsImpreso,nocre_UsuarioCrea,nocre_FechaCrea,nocre_UsuarioModifica,nocre_FechaModifica")] tbNotaCredito tbNotaCredito)
         {
-                if (ModelState.IsValid)
+            if (ModelState.IsValid)
 
             {
                 try
@@ -568,6 +579,7 @@ namespace ERP_ZORZAL.Controllers
                                     Function.DatetimeNow());
                     foreach (UDP_Vent_tbNotaCredito_Insert_Result NotaCredito in list)
                         MensajeError = Convert.ToString(NotaCredito.MensajeError);
+
                     if (MensajeError != "-1")
                     {
                         ModelState.AddModelError("", "No se pudo Insertar el registro, favor contacte al administrador.");
@@ -585,12 +597,6 @@ namespace ERP_ZORZAL.Controllers
                     return View(tbNotaCredito);
                 }
             }
-
-            //ViewBag.nocre_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbNotaCredito.nocre_UsuarioCrea);
-            //ViewBag.nocre_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbNotaCredito.nocre_UsuarioModifica);
-            //ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_Identificacion", tbNotaCredito.clte_Id);
-            //ViewBag.dev_Id = new SelectList(db.tbDevolucion, "dev_Id", "dev_Id", tbNotaCredito.dev_Id);
-            //ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo", tbNotaCredito.suc_Id);
             return View(tbNotaCredito);
         }
     }

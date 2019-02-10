@@ -19,11 +19,11 @@ namespace ERP_GMEDINA.Models
         {
             this.tbSalida = new HashSet<tbSalida>();
             this.DatosConsumidorFinal = new HashSet<DatosConsumidorFinal>();
-            this.tbDevolucion = new HashSet<tbDevolucion>();
             this.tbFacturaHistorica = new HashSet<tbFacturaHistorica>();
             this.tbPago = new HashSet<tbPago>();
             this.tbPedido = new HashSet<tbPedido>();
             this.tbFacturaDetalle = new HashSet<tbFacturaDetalle>();
+            this.tbDevolucion = new HashSet<tbDevolucion>();
         }
     
         public long fact_Id { get; set; }
@@ -61,8 +61,6 @@ namespace ERP_GMEDINA.Models
         public virtual ICollection<DatosConsumidorFinal> DatosConsumidorFinal { get; set; }
         public virtual tbCaja tbCaja { get; set; }
         public virtual tbCliente tbCliente { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbDevolucion> tbDevolucion { get; set; }
         public virtual tbEstadoFactura tbEstadoFactura { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbFacturaHistorica> tbFacturaHistorica { get; set; }
@@ -73,5 +71,7 @@ namespace ERP_GMEDINA.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbFacturaDetalle> tbFacturaDetalle { get; set; }
         public virtual tbSucursal tbSucursal { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbDevolucion> tbDevolucion { get; set; }
     }
 }
