@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ERP_GMEDINA.Models;
+using System.IO;
+using System.Data.Entity.Validation;
 
 namespace ERP_GMEDINA.Controllers
 {
@@ -80,15 +82,38 @@ namespace ERP_GMEDINA.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="par_Id,par_NombreEmpresa,par_TelefonoEmpresa,par_CorreoEmpresa,par_PathLogo,mnda_Id,par_RolGerenteTienda,par_RolCreditoCobranza,par_RolSupervisorCaja,par_RolCajero,par_RolAuditor,par_SucursalPrincipal,par_UsuarioCrea,par_FechaCrea,par_UsuarioModifica,par_FechaModifica,par_PorcentajeDescuentoTE,par_IdConsumidorFinal")] tbParametro tbParametro)
+        [HandleError]
+        public ActionResult Create([Bind(Include = "par_Id,par_NombreEmpresa,par_TelefonoEmpresa,par_CorreoEmpresa,par_PathLogo,mnda_Id,par_RolGerenteTienda,par_RolCreditoCobranza,par_RolSupervisorCaja,par_RolCajero,par_RolAuditor,par_SucursalPrincipal,par_UsuarioCrea,par_FechaCrea,par_UsuarioModifica,par_FechaModifica,par_PorcentajeDescuentoTE,par_IdConsumidorFinal")] tbParametro tbParametro,
+            HttpPostedFileBase FotoPath)
         {
+            var path = "";
             if (ModelState.IsValid)
             {
                 try
                 {
+                    if (FotoPath != null)
+                    {
+                        if (FotoPath.ContentLength > 0)
+                        {
+                            if (Path.GetExtension(FotoPath.FileName).ToLower() == ".jpg")
+                            {
+                                string Extension = Path.GetExtension(FotoPath.FileName).ToLower();
+                                string Archivo = tbParametro.par_Id + Extension;
+                                path = Path.Combine(Server.MapPath("~/Logo"), Archivo);
+                                FotoPath.SaveAs(path);
+                                tbParametro.par_PathLogo = "~/Logo" + Archivo;
+                            }
+                            else
+                            {
+                                ModelState.AddModelError("FotoPath", "Formato de archivo incorrecto, favor adjuntar una fotografía con extensión .jpg");
+                                return View("Index");
+                            }
+                        }
+                    }
+
                     IEnumerable<object> List = null;
                     var MsjError = "";
-                    List = db.UDP_Gral_tbParametro_Insert(tbParametro.par_Id,tbParametro.par_NombreEmpresa, tbParametro.par_TelefonoEmpresa, tbParametro.par_CorreoEmpresa, tbParametro.par_PathLogo, tbParametro.mnda_Id, tbParametro.par_RolGerenteTienda, tbParametro.par_RolCreditoCobranza, tbParametro.par_RolSupervisorCaja, tbParametro.par_RolCajero, tbParametro.par_RolAuditor, tbParametro.par_SucursalPrincipal, tbParametro.par_PorcentajeDescuentoTE, tbParametro.par_IdConsumidorFinal);
+                    List = db.UDP_Gral_tbParametro_Insert(tbParametro.par_Id, tbParametro.par_NombreEmpresa, tbParametro.par_TelefonoEmpresa, tbParametro.par_CorreoEmpresa, tbParametro.par_PathLogo, tbParametro.mnda_Id, tbParametro.par_RolGerenteTienda, tbParametro.par_RolCreditoCobranza, tbParametro.par_RolSupervisorCaja, tbParametro.par_RolCajero, tbParametro.par_RolAuditor, tbParametro.par_SucursalPrincipal, tbParametro.par_PorcentajeDescuentoTE, tbParametro.par_IdConsumidorFinal);
                     foreach (UDP_Gral_tbParametro_Insert_Result parametro in List)
                         MsjError = parametro.MensajeError;
 
@@ -100,6 +125,19 @@ namespace ERP_GMEDINA.Controllers
                     {
                         return RedirectToAction("Index");
                     }
+
+
+                }
+                catch (DbEntityValidationException e)
+                {
+                    foreach (var eve in e.EntityValidationErrors)
+                    {
+                        foreach (var ve in eve.ValidationErrors)
+                        {
+                            ModelState.AddModelError("", ve.ErrorMessage.ToString() + " " + ve.PropertyName.ToString());
+                            return View("Index");
+                        }
+                    }
                 }
                 catch (Exception Ex)
                 {
@@ -107,18 +145,17 @@ namespace ERP_GMEDINA.Controllers
                     ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
                     return RedirectToAction("Index");
                 }
-            }
-            else
             {
-                var errors = ModelState.Values.SelectMany(v => v.Errors);
+                    var errors = ModelState.Values.SelectMany(v => v.Errors);
+                }
+
             }
-            
             ViewBag.par_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbParametro.par_UsuarioModifica);
             ViewBag.par_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbParametro.par_UsuarioCrea);
             ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Abreviatura", tbParametro.mnda_Id);
-            return View(tbParametro);
+            return View("Index");
+        
         }
-
         // GET: /Parametro/Edit/5
         public ActionResult Edit(byte? id)
         {
@@ -148,19 +185,49 @@ namespace ERP_GMEDINA.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(byte? id,[Bind(Include="par_Id,par_NombreEmpresa,par_TelefonoEmpresa,par_CorreoEmpresa,par_PathLogo,mnda_Id,par_RolGerenteTienda,par_RolCreditoCobranza,par_RolSupervisorCaja,par_RolCajero,par_RolAuditor,par_SucursalPrincipal,par_UsuarioCrea,par_FechaCrea,par_UsuarioModifica,par_FechaModifica,par_PorcentajeDescuentoTE,par_IdConsumidorFinal")] tbParametro tbParametro)
+        public ActionResult Edit(byte? id,[Bind(Include="par_Id,par_NombreEmpresa,par_TelefonoEmpresa,par_CorreoEmpresa,par_PathLogo,mnda_Id,par_RolGerenteTienda,par_RolCreditoCobranza,par_RolSupervisorCaja,par_RolCajero,par_RolAuditor,par_SucursalPrincipal,par_UsuarioCrea,par_FechaCrea,par_UsuarioModifica,par_FechaModifica,par_PorcentajeDescuentoTE,par_IdConsumidorFinal")] tbParametro tbParametro,
+             HttpPostedFileBase FotoPath)
         {
+            var path = "";
+            var UsFoto = db.tbParametro.Select(s => new { s.par_Id, s.par_PathLogo }).Where(x => x.par_Id == tbParametro.par_Id).ToList();
+            if (UsFoto.Count() != 0 && UsFoto != null)
+            {
+                for (int i = 0; i < UsFoto.Count(); i++)
+                    path = Convert.ToString(UsFoto[i].par_PathLogo);
+            }
             if (ModelState.IsValid)
             {
                 try
                 {
+                    if (FotoPath != null)
+                    {
+                        if (FotoPath.ContentLength > 0)
+                        {
+                            if (Path.GetExtension(FotoPath.FileName).ToLower() == ".jpg" || Path.GetExtension(FotoPath.FileName).ToLower() == ".png")
+                            {
+                                string Extension = Path.GetExtension(FotoPath.FileName).ToLower();
+                                string Archivo = tbParametro.par_Id + Extension;
+                                path = Path.Combine(Server.MapPath("~/Documents/InstructorPhoto"), Archivo);
+                                FotoPath.SaveAs(path);
+                                tbParametro.par_PathLogo = "~/Documents/InstructorPhoto/" + Archivo;
+                            }
+                            else
+                            {
+                                if (path != null)
+                                    tbParametro.par_PathLogo = path;
+                                ModelState.AddModelError("FotoPath", "Formato de archivo incorrecto, favor adjuntar una fotografía con extensión .png ó .jpg");
+                                return View(tbParametro);
+                            }
+                        }
+                    }
                     tbParametro vtbparametro = db.tbParametro.Find(id);
 
                     IEnumerable<object> List = null;
                     var MsjError = "";
-                    //List = db.UDP_Gral_tbParametro_Update(tbParametro.par_Id,tbParametro.par_NombreEmpresa,tbParametro.par_TelefonoEmpresa, tbParametro.par_CorreoEmpresa, tbParametro.par_PathLogo, tbParametro.mnda_Id, tbParametro.par_RolGerenteTienda, tbParametro.par_RolCreditoCobranza, tbParametro.par_RolSupervisorCaja, tbParametro.par_RolCajero, tbParametro.par_RolAuditor, tbParametro.par_SucursalPrincipal, tbParametro.par_UsuarioCrea, tbParametro.par_FechaCrea, tbParametro.par_PorcentajeDescuentoTE, tbParametro.par_IdConsumidorFinal);
-                    //foreach (UDP_Gral_tbParametro_Update_Result parametro in List)
-                        //MsjError = parametro.MensajeError;
+                    tbParametro.par_PathLogo = path;
+                    List = db.UDP_Gral_tbParametro_Update(tbParametro.par_Id, tbParametro.par_NombreEmpresa, tbParametro.par_TelefonoEmpresa, tbParametro.par_CorreoEmpresa, tbParametro.par_PathLogo, tbParametro.mnda_Id, tbParametro.par_RolGerenteTienda, tbParametro.par_RolCreditoCobranza, tbParametro.par_RolSupervisorCaja, tbParametro.par_RolCajero, tbParametro.par_RolAuditor, tbParametro.par_SucursalPrincipal, tbParametro.par_UsuarioCrea, tbParametro.par_FechaCrea, tbParametro.par_PorcentajeDescuentoTE, tbParametro.par_IdConsumidorFinal);
+                    foreach (UDP_Gral_tbParametro_Update_Result parametro in List)
+                        MsjError = parametro.MensajeError;
                     if (MsjError == "-1")
                     {
                         ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
@@ -180,6 +247,8 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.par_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbParametro.par_UsuarioModifica);
             ViewBag.par_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbParametro.par_UsuarioCrea);
             ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Abreviatura", tbParametro.mnda_Id);
+            if (path != null)
+                tbParametro.par_PathLogo = path;
             return View(tbParametro);
         }
 

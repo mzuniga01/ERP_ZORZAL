@@ -654,6 +654,9 @@
     <Compile Include="Models\UDP_Gral_tbParametro_Insert_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UDP_Gral_tbParametro_Update_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UDP_Gral_tbUnidadMedida_Insert_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>

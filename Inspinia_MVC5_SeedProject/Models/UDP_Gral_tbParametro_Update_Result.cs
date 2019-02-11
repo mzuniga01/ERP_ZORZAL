@@ -11,9 +11,8 @@ namespace ERP_GMEDINA.Models
 {
     using System;
     
-    public partial class SPGetResponsableBodega_Result1
+    public partial class UDP_Gral_tbParametro_Update_Result
     {
-        public int bod_Id { get; set; }
-        public string emp_Nombres { get; set; }
+        public string MensajeError { get; set; }
     }
 }

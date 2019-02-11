@@ -28,10 +28,49 @@
                 </div>
                 <div class="ibox-content">
 
-				@using (Html.BeginForm())
-{
+				@using (Html.BeginForm("Edit", "Parametro", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
     @Html.AntiForgeryToken()
-    
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="ibox float-e-margins">
+                                <div class="ibox-content">
+                                    <div class="form-horizontal">
+                                        <div class="form-group">
+                                            <div class="form-group col-md-12">
+                                                @Html.LabelFor(model => model.par_PathLogo, new { @class = "control-label col-md-2" })
+                                                <div class="col-md-4">
+                                                    <img id="imgpreview" height="170" width="170" src="" />
+                                                    <input class="btn btn-primary" type="file" id="CargarFoto" value="Cargar Fotografía" name="FotoPath">
+                                                </div>
+                                                <div class="col-md-1">
+                                                </div>
+                                                <div class="col-md-4">
+                                                    @{
+                                                        if (Model.par_PathLogo != null && Model.par_PathLogo != "")
+                                                        {
+                                                            <img src="@Url.Content(Model.par_PathLogo)" alt="Fotografía" class="img-rounded" width="200" height="200">
+                                                        }
+                                                        else
+                                                        {
+                                                            <img src="~/Content/img/NoImage.png" alt="Sin Fotografía" class="img-rounded" width="200" height="200">
+                                                        }
+                                                    }
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <div class="col-md-10">
+                                                    <p style="color:red">@Html.ValidationMessageFor(model => model.par_PathLogo)</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
     <div class="form-horizontal">
 
         <p style="color:red">
@@ -50,7 +89,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.par_TelefonoEmpresa, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.par_TelefonoEmpresa)
+                @Html.EditorFor(model => model.par_TelefonoEmpresa,new { @maxlength = "15" })
                 <p style="color:red">  @Html.ValidationMessageFor(model => model.par_TelefonoEmpresa)</p>
 </div>
         </div>
@@ -65,14 +104,6 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.par_PathLogo, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.par_PathLogo)
-                <p style="color:red">  @Html.ValidationMessageFor(model => model.par_PathLogo)</p>
-</div>
-        </div>
-
-        <div class="form-group">
             @Html.LabelFor(model => model.mnda_Id, "Moneda", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("mnda_Id", (IEnumerable<SelectListItem>)ViewBag.id_mnda, new { @class = "form-control" })
@@ -83,7 +114,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.par_RolGerenteTienda, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("rol_Id", (IEnumerable<SelectListItem>)ViewBag.Id_Rol3, new { @class = "form-control" })
+                @Html.DropDownList("par_RolGerenteTienda", (IEnumerable<SelectListItem>)ViewBag.Id_Rol3, new { @class = "form-control" })
                 <p style="color:red">   @Html.ValidationMessageFor(model => model.par_RolGerenteTienda) </p>
 </div>
         </div>
@@ -91,7 +122,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.par_RolCreditoCobranza, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("rol_Id", (IEnumerable<SelectListItem>)ViewBag.Id_Rol2, new { @class = "form-control" })
+                @Html.DropDownList("par_RolCreditoCobranza", (IEnumerable<SelectListItem>)ViewBag.Id_Rol2, new { @class = "form-control" })
                 <p style="color:red"> @Html.ValidationMessageFor(model => model.par_RolCreditoCobranza) </p>
 </div>
         </div>
@@ -99,7 +130,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.par_RolSupervisorCaja, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("rol_Id", (IEnumerable<SelectListItem>)ViewBag.Id_Rol4, new { @class = "form-control" })
+                @Html.DropDownList("par_RolSupervisorCaja", (IEnumerable<SelectListItem>)ViewBag.Id_Rol4, new { @class = "form-control" })
                 <p style="color:red">  @Html.ValidationMessageFor(model => model.par_RolSupervisorCaja) </p>
 </div>
         </div>
@@ -107,7 +138,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.par_RolCajero, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("rol_Id", (IEnumerable<SelectListItem>)ViewBag.Id_Rol1, new { @class = "form-control" })
+                @Html.DropDownList("par_RolCajero", (IEnumerable<SelectListItem>)ViewBag.Id_Rol1, new { @class = "form-control" })
                 <p style="color:red"> @Html.ValidationMessageFor(model => model.par_RolCajero) </p>
 </div>
         </div>
@@ -115,7 +146,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.par_RolAuditor, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("rol_Id", (IEnumerable<SelectListItem>)ViewBag.Id_Rol, new { @class = "form-control" })
+                @Html.DropDownList("par_RolAuditor", (IEnumerable<SelectListItem>)ViewBag.Id_Rol, new { @class = "form-control" })
                 <p style="color:red">   @Html.ValidationMessageFor(model => model.par_RolAuditor) </p>
 </div>
         </div>

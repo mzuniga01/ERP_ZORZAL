@@ -24,7 +24,13 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Gral_tbParametro_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbParametro_Update" />
+    <FunctionImportMapping FunctionImportName="UDP_Gral_tbParametro_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbParametro_Update">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbParametro_Update_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="UDP_Inv_tbBodegaDetalle_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBodegaDetalle_Insert">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbBodegaDetalle_Insert_Result">
@@ -382,15 +388,6 @@
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbInventarioFisicoDetalle_Update_Result">
           <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SPGetResponsableBodega" FunctionName="ERP_ZORZALModel.Store.SPGetResponsableBodega">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SPGetResponsableBodega_Result2">
-          <ScalarProperty Name="bod_Id" ColumnName="bod_Id" />
-          <ScalarProperty Name="bod_ResponsableBodega" ColumnName="bod_ResponsableBodega" />
-          <ScalarProperty Name="emp_Nombres" ColumnName="emp_Nombres" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -1179,22 +1176,6 @@
           <ScalarProperty Name="deno_Id" ColumnName="deno_Id" />
           <ScalarProperty Name="mocja_Id" ColumnName="mocja_Id" />
           <ScalarProperty Name="arqde_Id" ColumnName="arqde_Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tbDevolucion">
-      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbDevolucion">
-        <MappingFragment StoreEntitySet="tbDevolucion">
-          <ScalarProperty Name="dev_FechaModifica" ColumnName="dev_FechaModifica" />
-          <ScalarProperty Name="dev_UsuarioModifica" ColumnName="dev_UsuarioModifica" />
-          <ScalarProperty Name="dev_FechaCrea" ColumnName="dev_FechaCrea" />
-          <ScalarProperty Name="dev_UsuarioCrea" ColumnName="dev_UsuarioCrea" />
-          <ScalarProperty Name="dev_Fecha" ColumnName="dev_Fecha" />
-          <ScalarProperty Name="dev_Estado" ColumnName="dev_Estado" />
-          <ScalarProperty Name="nocre_Id" ColumnName="nocre_Id" />
-          <ScalarProperty Name="cja_Id" ColumnName="cja_Id" />
-          <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
-          <ScalarProperty Name="dev_Id" ColumnName="dev_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -2079,5 +2060,31 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SPGetResponsableBodega" FunctionName="ERP_ZORZALModel.Store.SPGetResponsableBodega">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SPGetResponsableBodega_Result">
+          <ScalarProperty Name="bod_Id" ColumnName="bod_Id" />
+          <ScalarProperty Name="bod_ResponsableBodega" ColumnName="bod_ResponsableBodega" />
+          <ScalarProperty Name="emp_Nombres" ColumnName="emp_Nombres" />
+          <ScalarProperty Name="emp_Apellidos" ColumnName="emp_Apellidos" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="tbDevolucion">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbDevolucion">
+        <MappingFragment StoreEntitySet="tbDevolucion">
+          <ScalarProperty Name="dev_FechaModifica" ColumnName="dev_FechaModifica" />
+          <ScalarProperty Name="dev_UsuarioModifica" ColumnName="dev_UsuarioModifica" />
+          <ScalarProperty Name="dev_FechaCrea" ColumnName="dev_FechaCrea" />
+          <ScalarProperty Name="dev_UsuarioCrea" ColumnName="dev_UsuarioCrea" />
+          <ScalarProperty Name="dev_Fecha" ColumnName="dev_Fecha" />
+          <ScalarProperty Name="dev_Estado" ColumnName="dev_Estado" />
+          <ScalarProperty Name="nocre_Codigo" ColumnName="nocre_Codigo" />
+          <ScalarProperty Name="cja_Id" ColumnName="cja_Id" />
+          <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
+          <ScalarProperty Name="dev_Id" ColumnName="dev_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

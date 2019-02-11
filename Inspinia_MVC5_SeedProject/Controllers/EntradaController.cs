@@ -67,7 +67,7 @@ namespace ERP_ZORZAL.Controllers
         public ActionResult ExportReport(int? id)
         {
             ReportDocument rd = new ReportDocument();
-            rd.Load(Path.Combine(Server.MapPath("~/Reports"), "ImprimirEntradaPorId.rpt"));
+             rd.Load(Path.Combine(Server.MapPath("~/Reports"), "ImprimirEntradaPorId.rpt"));
             
             var tbEntrada = db.tbEntrada.ToList();
             var tbProveedor = db.tbProveedor.ToList();
@@ -83,7 +83,7 @@ namespace ERP_ZORZAL.Controllers
                         join bod in tbBodega on r.bod_Id equals bod.bod_Id
                         join esta in tbEstadoMovimiento on r.estm_Id equals esta.estm_Id
                         join tent in tbTipoEntrada on r.tent_Id equals tent.tent_Id
-                        join tdel in tbTipoDevolucion on r.ent_RazonDevolucion equals tdel.tdev_Id
+                        //join tdel in tbTipoDevolucion on r.ent_RazonDevolucion equals tdel.tdev_Id
                         join deta in tbentradadetalle on r.ent_Id equals deta.ent_Id
                         join prod in tbProducto on deta.prod_Codigo equals prod.prod_Codigo
                         join unid in tbUnidadMedida on prod.uni_Id equals unid.uni_Id
@@ -97,11 +97,11 @@ namespace ERP_ZORZAL.Controllers
                             prov_Nombre = pro.prov_Nombre,
                             estm_Descripcion = esta.estm_Descripcion,
                             tent_Descripcion = tent.tent_Descripcion,
-                            ent_FacturaCompra =r.ent_FacturaCompra,
-                            ent_FechaCompra = r.ent_FechaCompra,
-                            tdev_descripcion = tdel.tdev_Descripcion,
-                            fact_Id = r.fact_Id,
-                            ent_BodegaDestino = r.ent_BodegaDestino,
+                            //ent_FacturaCompra =r.ent_FacturaCompra,
+                            //ent_FechaCompra = r.ent_FechaCompra,
+                            //tdev_descripcion = tdel.tdev_Descripcion,
+                            //fact_Id = r.fact_Id,
+                            //ent_BodegaDestino = r.ent_BodegaDestino,
                             entd_Cantidad = deta.entd_Cantidad,
                             prod_Codigo = prod.prod_Codigo,
                             prod_Descripcion = prod.prod_Descripcion,
@@ -276,15 +276,15 @@ namespace ERP_ZORZAL.Controllers
         }
         //para borrar registros en la tabla temporal
         [HttpPost]
-        public JsonResult Eliminardetalleentrada(tbEntradaDetalle EntradaDetalle)
+        public JsonResult Eliminardetalleentrada(tbEntradaDetalle eliminardetalle)
         {
-            var list = (List<tbEntradaDetalle>)Session["CrearDetalleEntrada"];
- 
+            var list = (List<tbEntradaDetalle>)Session["_CrearDetalleEntrada"];
+
             if (list != null)
             {
-                var itemToRemove = list.Single(r => r.entd_Id == EntradaDetalle.entd_Id);
+                var itemToRemove = list.Single(r => r.ent_Id == eliminardetalle.ent_Id);
                 list.Remove(itemToRemove);
-                Session["CrearDetalleEntrada"] = list;
+                Session["_CrearDetalleEntrada"] = list;
             }
             return Json(list, JsonRequestBehavior.AllowGet);
         }

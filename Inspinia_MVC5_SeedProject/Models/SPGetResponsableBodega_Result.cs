@@ -15,5 +15,7 @@ namespace ERP_GMEDINA.Models
     {
         public int bod_Id { get; set; }
         public short bod_ResponsableBodega { get; set; }
+        public string emp_Nombres { get; set; }
+        public string emp_Apellidos { get; set; }
     }
 }

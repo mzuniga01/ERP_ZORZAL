@@ -258,7 +258,11 @@ namespace ERP_GMEDINA.Controllers
                 list = db.UDP_Gral_tbEmpleado_Update_RazonInactivacion(tbEmpleado.emp_Id,
                     tbEmpleado.emp_Estado,
                   
-                    tbEmpleado.emp_RazonInactivacion
+                    tbEmpleado.emp_RazonInactivacion,
+
+                    Function.GetUser(),
+                    
+                    DateTime.Now                    
                     );
                 foreach ( UDP_Gral_tbEmpleado_Update_RazonInactivacion_Result empleado in list)
                     Msj = empleado.MensajeError;
@@ -325,7 +329,7 @@ namespace ERP_GMEDINA.Controllers
                 tbEmpleado empleado = new tbEmpleado();
                 IEnumerable<object> list = null;
                 var MsjError = "";
-                list = db.UDP_Gral_tbEmpleado_Update_Estado(id, Helpers.EmpleadoActivo);
+                list = db.UDP_Gral_tbEmpleado_Update_Estado(id, Helpers.EmpleadoActivo,Function.GetUser(),DateTime.Now);
                 foreach (UDP_Gral_tbEmpleado_Update_Estado_Result obje in list)
                     MsjError = obje.MensajeError;
 

@@ -28,7 +28,7 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                                <tr tr data-html="@item.prod_CodigoBarras", tr data-id="@item.prod_Codigo" , tr data-content="@item.prod_Descripcion" , tr data-container="@item.pscat_Descripcion" , tr data-keyboard="@item.uni_Descripcion">
+                                <tr tr data-html="@item.prod_CodigoBarras" , tr data-id="@item.prod_Codigo" , tr data-content="@item.prod_Descripcion" , tr data-container="@item.pscat_Descripcion" , tr data-keyboard="@item.uni_Descripcion">
                                     <td>
                                         @Html.DisplayFor(modelItem => item.prod_Descripcion)
                                     </td>

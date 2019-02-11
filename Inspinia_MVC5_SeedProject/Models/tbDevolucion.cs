@@ -24,7 +24,7 @@ namespace ERP_GMEDINA.Models
         public int dev_Id { get; set; }
         public long fact_Id { get; set; }
         public short cja_Id { get; set; }
-        public Nullable<short> nocre_Id { get; set; }
+        public string nocre_Codigo { get; set; }
         public Nullable<bool> dev_Estado { get; set; }
         public System.DateTime dev_Fecha { get; set; }
         public int dev_UsuarioCrea { get; set; }

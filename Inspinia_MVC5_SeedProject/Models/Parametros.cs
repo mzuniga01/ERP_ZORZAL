@@ -17,10 +17,11 @@ namespace ERP_GMEDINA.Models
         public byte par_Id { get; set; }
         [Display(Name = "Nombre Empresa")]
         public string par_NombreEmpresa { get; set; }
+        [StringLength(15, ErrorMessage = "Name cannot be longer than 15 characters.")]
         [Display(Name = "Telefono Empresa")]
         public string par_TelefonoEmpresa { get; set; }
         [Display(Name = "Correo Empresa")]
-        [EmailAddress(ErrorMessage = "El email no tiene el formato")]
+        [EmailAddress(ErrorMessage = "El email no tiene el formato correcto")]
         public string par_CorreoEmpresa { get; set; }
         [Display(Name = "Logo")]
         public string par_PathLogo { get; set; }
@@ -36,7 +37,7 @@ namespace ERP_GMEDINA.Models
         public int par_RolCajero { get; set; }
         [Display(Name = "Rol Auditor")]
         public int par_RolAuditor { get; set; }
-        [Display(Name = "Rol Sucursal Principal")]
+        [Display(Name = "Sucursal Principal")]
         public short par_SucursalPrincipal { get; set; }
         public int par_UsuarioCrea { get; set; }
         public System.DateTime par_FechaCrea { get; set; }

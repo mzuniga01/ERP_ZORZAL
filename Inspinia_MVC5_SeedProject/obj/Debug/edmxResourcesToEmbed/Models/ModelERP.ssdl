@@ -602,7 +602,7 @@
     <Property Name="dev_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="fact_Id" Type="bigint" Nullable="false" />
     <Property Name="cja_Id" Type="smallint" Nullable="false" />
-    <Property Name="nocre_Id" Type="smallint" />
+    <Property Name="nocre_Codigo" Type="nvarchar" MaxLength="19" />
     <Property Name="dev_Estado" Type="bit" />
     <Property Name="dev_Fecha" Type="datetime" Nullable="false" />
     <Property Name="dev_UsuarioCrea" Type="int" Nullable="false" />
@@ -3843,11 +3843,15 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
   <Function Name="UDP_Gral_tbEmpleado_Update_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
     <Parameter Name="emp_Id" Type="int" Mode="In" />
     <Parameter Name="emp_Estado" Type="bit" Mode="In" />
+    <Parameter Name="emp_UsuarioModifica" Type="int" Mode="In" />
+    <Parameter Name="emp_FechaModifica" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Gral_tbEmpleado_Update_RazonInactivacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
     <Parameter Name="emp_Id" Type="int" Mode="In" />
     <Parameter Name="emp_Estado" Type="bit" Mode="In" />
     <Parameter Name="emp_RazonInactivacion" Type="nvarchar" Mode="In" />
+    <Parameter Name="obj_UsuarioModifica" Type="int" Mode="In" />
+    <Parameter Name="obj_FechaModifica" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Gral_tbEmpleado_Update_RazonSalida" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
     <Parameter Name="emp_Id" Type="int" Mode="In" />

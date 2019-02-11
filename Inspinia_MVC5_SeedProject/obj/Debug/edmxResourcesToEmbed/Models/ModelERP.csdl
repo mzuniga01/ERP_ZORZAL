@@ -18,7 +18,7 @@
       <Parameter Name="par_PorcentajeDescuentoTE" Mode="In" Type="Decimal" />
       <Parameter Name="par_IdConsumidorFinal" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Gral_tbParametro_Update">
+    <FunctionImport Name="UDP_Gral_tbParametro_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbParametro_Update_Result)">
       <Parameter Name="par_Id" Mode="In" Type="Byte" />
       <Parameter Name="par_NombreEmpresa" Mode="In" Type="String" />
       <Parameter Name="par_TelefonoEmpresa" Mode="In" Type="String" />
@@ -153,6 +153,8 @@
     <FunctionImport Name="UDP_Gral_tbEmpleado_Update_Estado" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbEmpleado_Update_Estado_Result)">
       <Parameter Name="emp_Id" Mode="In" Type="Int32" />
       <Parameter Name="emp_Estado" Mode="In" Type="Boolean" />
+      <Parameter Name="emp_UsuarioModifica" Mode="In" Type="Int32" />
+      <Parameter Name="emp_FechaModifica" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="UDP_Inv_tbBodegaDetalle_CantidadExistente" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbBodegaDetalle_CantidadExistente_Result)">
       <Parameter Name="bod_Id" Mode="In" Type="Int32" />
@@ -242,9 +244,6 @@
       <Parameter Name="invfd_Cantidad" Mode="In" Type="Decimal" />
       <Parameter Name="invfd_CantidadSistema" Mode="In" Type="Decimal" />
       <Parameter Name="uni_Id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="SPGetResponsableBodega" ReturnType="Collection(ERP_ZORZALModel.SPGetResponsableBodega_Result2)">
-      <Parameter Name="bod_id" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="UDP_Acce_tbUsuario_Estado" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbUsuario_Estado_Result)">
       <Parameter Name="usu_Id" Mode="In" Type="String" />
@@ -440,7 +439,6 @@
     <EntitySet Name="tbCliente" EntityType="ERP_ZORZALModel.tbCliente" />
     <EntitySet Name="tbCuponDescuento" EntityType="ERP_ZORZALModel.tbCuponDescuento" />
     <EntitySet Name="tbDenominacionArqueo" EntityType="ERP_ZORZALModel.tbDenominacionArqueo" />
-    <EntitySet Name="tbDevolucion" EntityType="ERP_ZORZALModel.tbDevolucion" />
     <EntitySet Name="tbDevolucionDetalle" EntityType="ERP_ZORZALModel.tbDevolucionDetalle" />
     <EntitySet Name="tbDocumentoFiscal" EntityType="ERP_ZORZALModel.tbDocumentoFiscal" />
     <EntitySet Name="tbEstadoFactura" EntityType="ERP_ZORZALModel.tbEstadoFactura" />
@@ -585,14 +583,6 @@
     <AssociationSet Name="FK_Acce_tbUsuario_tbDenominacionArqueo_arqde_UsuarioModifica" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDenominacionArqueo_arqde_UsuarioModifica">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbDenominacionArqueo" EntitySet="tbDenominacionArqueo" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioCrea" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioCrea">
-      <End Role="tbUsuario" EntitySet="tbUsuario" />
-      <End Role="tbDevolucion" EntitySet="tbDevolucion" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioModifica" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioModifica">
-      <End Role="tbUsuario" EntitySet="tbUsuario" />
-      <End Role="tbDevolucion" EntitySet="tbDevolucion" />
     </AssociationSet>
     <AssociationSet Name="FK_Acce_tbUsuario_tbDevolucionDetalle_devd_UsuarioCrea" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDevolucionDetalle_devd_UsuarioCrea">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
@@ -1098,10 +1088,6 @@
       <End Role="tbFactura" EntitySet="tbFactura" />
       <End Role="DatosConsumidorFinal" EntitySet="DatosConsumidorFinal" />
     </AssociationSet>
-    <AssociationSet Name="FK_Vent_tbCaja_tbDevolucion_cja_Id" Association="ERP_ZORZALModel.FK_Vent_tbCaja_tbDevolucion_cja_Id">
-      <End Role="tbCaja" EntitySet="tbCaja" />
-      <End Role="tbDevolucion" EntitySet="tbDevolucion" />
-    </AssociationSet>
     <AssociationSet Name="FK_Vent_tbCaja_tbFactura_cja_Id" Association="ERP_ZORZALModel.FK_Vent_tbCaja_tbFactura_cja_Id">
       <End Role="tbCaja" EntitySet="tbCaja" />
       <End Role="tbFactura" EntitySet="tbFactura" />
@@ -1145,18 +1131,6 @@
     <AssociationSet Name="FK_Vent_tbMovimientoCaja_tbDenominacionArqueo_mocja_Id" Association="ERP_ZORZALModel.FK_Vent_tbMovimientoCaja_tbDenominacionArqueo_mocja_Id">
       <End Role="tbMovimientoCaja" EntitySet="tbMovimientoCaja" />
       <End Role="tbDenominacionArqueo" EntitySet="tbDenominacionArqueo" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Vent_tbDevolucion_tbDevolucionDetalle_dev_Id" Association="ERP_ZORZALModel.FK_Vent_tbDevolucion_tbDevolucionDetalle_dev_Id">
-      <End Role="tbDevolucion" EntitySet="tbDevolucion" />
-      <End Role="tbDevolucionDetalle" EntitySet="tbDevolucionDetalle" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Vent_tbFactura_tbDevolucion_fact_Id" Association="ERP_ZORZALModel.FK_Vent_tbFactura_tbDevolucion_fact_Id">
-      <End Role="tbFactura" EntitySet="tbFactura" />
-      <End Role="tbDevolucion" EntitySet="tbDevolucion" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Vent_tbNotaCredito_tbDevolucion_dev_Id" Association="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbDevolucion_dev_Id">
-      <End Role="tbDevolucion" EntitySet="tbDevolucion" />
-      <End Role="tbNotaCredito" EntitySet="tbNotaCredito" />
     </AssociationSet>
     <AssociationSet Name="FK_Vent_tbPuntoEmisionDetalle_tbDocumentoFiscal_dfisc_Id" Association="ERP_ZORZALModel.FK_Vent_tbPuntoEmisionDetalle_tbDocumentoFiscal_dfisc_Id">
       <End Role="tbDocumentoFiscal" EntitySet="tbDocumentoFiscal" />
@@ -1426,6 +1400,8 @@
       <Parameter Name="emp_Id" Mode="In" Type="Int32" />
       <Parameter Name="emp_Estado" Mode="In" Type="Boolean" />
       <Parameter Name="emp_RazonInactivacion" Mode="In" Type="String" />
+      <Parameter Name="obj_UsuarioModifica" Mode="In" Type="Int32" />
+      <Parameter Name="obj_FechaModifica" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="UDP_Gral_tbEmpleado_Update_RazonSalida" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbEmpleado_Update_RazonSalida_Result)">
       <Parameter Name="emp_Id" Mode="In" Type="Int32" />
@@ -1639,6 +1615,34 @@
       <Parameter Name="pcat_Id" Mode="In" Type="Int32" />
       <Parameter Name="pscat_ISV" Mode="In" Type="Decimal" />
     </FunctionImport>
+    <FunctionImport Name="SPGetResponsableBodega" ReturnType="Collection(ERP_ZORZALModel.SPGetResponsableBodega_Result)">
+      <Parameter Name="bod_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="tbDevolucion" EntityType="ERP_ZORZALModel.tbDevolucion" />
+    <AssociationSet Name="FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioCrea" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioCrea">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbDevolucion" EntitySet="tbDevolucion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioModifica" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioModifica">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbDevolucion" EntitySet="tbDevolucion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbCaja_tbDevolucion_cja_Id" Association="ERP_ZORZALModel.FK_Vent_tbCaja_tbDevolucion_cja_Id">
+      <End Role="tbCaja" EntitySet="tbCaja" />
+      <End Role="tbDevolucion" EntitySet="tbDevolucion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbDevolucion_tbDevolucionDetalle_dev_Id" Association="ERP_ZORZALModel.FK_Vent_tbDevolucion_tbDevolucionDetalle_dev_Id">
+      <End Role="tbDevolucion" EntitySet="tbDevolucion" />
+      <End Role="tbDevolucionDetalle" EntitySet="tbDevolucionDetalle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbFactura_tbDevolucion_fact_Id" Association="ERP_ZORZALModel.FK_Vent_tbFactura_tbDevolucion_fact_Id">
+      <End Role="tbFactura" EntitySet="tbFactura" />
+      <End Role="tbDevolucion" EntitySet="tbDevolucion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbNotaCredito_tbDevolucion_dev_Id" Association="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbDevolucion_dev_Id">
+      <End Role="tbDevolucion" EntitySet="tbDevolucion" />
+      <End Role="tbNotaCredito" EntitySet="tbNotaCredito" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -1851,10 +1855,6 @@
     <Property Type="String" Name="prod_CodigoBarras" Nullable="false" MaxLength="15" />
     <Property Type="Decimal" Name="sald_Cantidad" Nullable="false" Precision="10" Scale="2" />
   </ComplexType>
-  <ComplexType Name="SPGetResponsableBodega_Result">
-    <Property Type="Int32" Name="bod_Id" Nullable="false" />
-    <Property Type="Int16" Name="bod_ResponsableBodega" Nullable="false" />
-  </ComplexType>
   <ComplexType Name="UDP_Inv_CantidadExistente_Result">
     <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
     <Property Type="Decimal" Name="bodd_CantidadExistente" Nullable="false" Precision="10" Scale="2" />
@@ -1870,15 +1870,6 @@
   </ComplexType>
   <ComplexType Name="UDP_Inv_tbInventarioFisicoDetalle_Update_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="SPGetResponsableBodega_Result1">
-    <Property Type="Int32" Name="bod_Id" Nullable="false" />
-    <Property Type="String" Name="emp_Nombres" Nullable="false" MaxLength="100" />
-  </ComplexType>
-  <ComplexType Name="SPGetResponsableBodega_Result2">
-    <Property Type="Int32" Name="bod_Id" Nullable="false" />
-    <Property Type="Int16" Name="bod_ResponsableBodega" Nullable="false" />
-    <Property Type="String" Name="emp_Nombres" Nullable="false" MaxLength="100" />
   </ComplexType>
   <ComplexType Name="UDP_Acce_tbUsuario_Estado_Result">
     <Property Type="Int32" Name="MensajeError" Nullable="false" />
@@ -2155,8 +2146,6 @@
     <NavigationProperty Name="tbDenominacion1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDenominacion_deno_UsuarioModifica" FromRole="tbUsuario" ToRole="tbDenominacion" />
     <NavigationProperty Name="tbDenominacionArqueo" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDenominacionArqueo_arqde_UsuarioCrea" FromRole="tbUsuario" ToRole="tbDenominacionArqueo" />
     <NavigationProperty Name="tbDenominacionArqueo1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDenominacionArqueo_arqde_UsuarioModifica" FromRole="tbUsuario" ToRole="tbDenominacionArqueo" />
-    <NavigationProperty Name="tbDevolucion" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioCrea" FromRole="tbUsuario" ToRole="tbDevolucion" />
-    <NavigationProperty Name="tbDevolucion1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioModifica" FromRole="tbUsuario" ToRole="tbDevolucion" />
     <NavigationProperty Name="tbDevolucionDetalle" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDevolucionDetalle_devd_UsuarioCrea" FromRole="tbUsuario" ToRole="tbDevolucionDetalle" />
     <NavigationProperty Name="tbDevolucionDetalle1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDevolucionDetalle_devd_UsuarioModifica" FromRole="tbUsuario" ToRole="tbDevolucionDetalle" />
     <NavigationProperty Name="tbDocumentoFiscal" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDocumentoFiscal_dfisc_UsuarioCrea" FromRole="tbUsuario" ToRole="tbDocumentoFiscal" />
@@ -2258,6 +2247,8 @@
     <NavigationProperty Name="tbEmpleado" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_emp_Id" FromRole="tbUsuario" ToRole="tbEmpleado" />
     <NavigationProperty Name="tbEmpleado1" Relationship="ERP_ZORZALModel.FK_Gral_tbEmpleado_emp_UsuarioModifica" FromRole="tbUsuario" ToRole="tbEmpleado" />
     <NavigationProperty Name="tbEmpleado2" Relationship="ERP_ZORZALModel.FK_Gral_tbEmpleado_tbUsuario_emp_UsuarioCrea" FromRole="tbUsuario" ToRole="tbEmpleado" />
+    <NavigationProperty Name="tbDevolucion" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioCrea" FromRole="tbUsuario" ToRole="tbDevolucion" />
+    <NavigationProperty Name="tbDevolucion1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioModifica" FromRole="tbUsuario" ToRole="tbDevolucion" />
   </EntityType>
   <EntityType Name="tbActividadEconomica">
     <Key>
@@ -2735,11 +2726,11 @@
     <Property Name="cja_FechaModifica" Type="DateTime" Precision="3" />
     <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbCaja_cja_UsuarioCrea" FromRole="tbCaja" ToRole="tbUsuario" />
     <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbCaja_cja_UsuarioModifica" FromRole="tbCaja" ToRole="tbUsuario" />
-    <NavigationProperty Name="tbDevolucion" Relationship="ERP_ZORZALModel.FK_Vent_tbCaja_tbDevolucion_cja_Id" FromRole="tbCaja" ToRole="tbDevolucion" />
     <NavigationProperty Name="tbFactura" Relationship="ERP_ZORZALModel.FK_Vent_tbCaja_tbFactura_cja_Id" FromRole="tbCaja" ToRole="tbFactura" />
     <NavigationProperty Name="tbMovimientoCaja" Relationship="ERP_ZORZALModel.FK_Vent_tbCaja_tbMovimientoCaja_cja_Id" FromRole="tbCaja" ToRole="tbMovimientoCaja" />
     <NavigationProperty Name="tbNotaCredito" Relationship="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbCaja_cja_Id" FromRole="tbCaja" ToRole="tbNotaCredito" />
     <NavigationProperty Name="tbSucursal" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbCaja_suc_Id" FromRole="tbCaja" ToRole="tbSucursal" />
+    <NavigationProperty Name="tbDevolucion" Relationship="ERP_ZORZALModel.FK_Vent_tbCaja_tbDevolucion_cja_Id" FromRole="tbCaja" ToRole="tbDevolucion" />
   </EntityType>
   <EntityType Name="tbCliente">
     <Key>
@@ -2828,27 +2819,6 @@
     <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDenominacionArqueo_arqde_UsuarioModifica" FromRole="tbDenominacionArqueo" ToRole="tbUsuario" />
     <NavigationProperty Name="tbDenominacion" Relationship="ERP_ZORZALModel.FK_Vent_tbDenominacion_tbDenominacionArqueo_deno_Id" FromRole="tbDenominacionArqueo" ToRole="tbDenominacion" />
     <NavigationProperty Name="tbMovimientoCaja" Relationship="ERP_ZORZALModel.FK_Vent_tbMovimientoCaja_tbDenominacionArqueo_mocja_Id" FromRole="tbDenominacionArqueo" ToRole="tbMovimientoCaja" />
-  </EntityType>
-  <EntityType Name="tbDevolucion">
-    <Key>
-      <PropertyRef Name="dev_Id" />
-    </Key>
-    <Property Name="dev_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="fact_Id" Type="Int64" Nullable="false" />
-    <Property Name="cja_Id" Type="Int16" Nullable="false" />
-    <Property Name="nocre_Id" Type="Int16" />
-    <Property Name="dev_Estado" Type="Boolean" />
-    <Property Name="dev_Fecha" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="dev_UsuarioCrea" Type="Int32" Nullable="false" />
-    <Property Name="dev_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="dev_UsuarioModifica" Type="Int32" />
-    <Property Name="dev_FechaModifica" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioCrea" FromRole="tbDevolucion" ToRole="tbUsuario" />
-    <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioModifica" FromRole="tbDevolucion" ToRole="tbUsuario" />
-    <NavigationProperty Name="tbCaja" Relationship="ERP_ZORZALModel.FK_Vent_tbCaja_tbDevolucion_cja_Id" FromRole="tbDevolucion" ToRole="tbCaja" />
-    <NavigationProperty Name="tbDevolucionDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbDevolucion_tbDevolucionDetalle_dev_Id" FromRole="tbDevolucion" ToRole="tbDevolucionDetalle" />
-    <NavigationProperty Name="tbFactura" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbDevolucion_fact_Id" FromRole="tbDevolucion" ToRole="tbFactura" />
-    <NavigationProperty Name="tbNotaCredito" Relationship="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbDevolucion_dev_Id" FromRole="tbDevolucion" ToRole="tbNotaCredito" />
   </EntityType>
   <EntityType Name="tbDevolucionDetalle">
     <Key>
@@ -2977,7 +2947,6 @@
     <NavigationProperty Name="DatosConsumidorFinal" Relationship="ERP_ZORZALModel.FK__DatosCons__fact___4DAB2CE2" FromRole="tbFactura" ToRole="DatosConsumidorFinal" />
     <NavigationProperty Name="tbCaja" Relationship="ERP_ZORZALModel.FK_Vent_tbCaja_tbFactura_cja_Id" FromRole="tbFactura" ToRole="tbCaja" />
     <NavigationProperty Name="tbCliente" Relationship="ERP_ZORZALModel.FK_Vent_tbCliente_tbFactura_clte_Id" FromRole="tbFactura" ToRole="tbCliente" />
-    <NavigationProperty Name="tbDevolucion" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbDevolucion_fact_Id" FromRole="tbFactura" ToRole="tbDevolucion" />
     <NavigationProperty Name="tbEstadoFactura" Relationship="ERP_ZORZALModel.FK_Vent_tbEstadoFactura_tbFactura_esfac_codigo" FromRole="tbFactura" ToRole="tbEstadoFactura" />
     <NavigationProperty Name="tbFacturaHistorica" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbFacturaHistorica_fact_Id" FromRole="tbFactura" ToRole="tbFacturaHistorica" />
     <NavigationProperty Name="tbPago" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbPago_fact_Id" FromRole="tbFactura" ToRole="tbPago" />
@@ -2985,6 +2954,7 @@
     <NavigationProperty Name="tbFacturaDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbFacturaDetalle_tbFactura_fact_Id" FromRole="tbFactura" ToRole="tbFacturaDetalle" />
     <NavigationProperty Name="tbSucursal" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbfactura_suc_Id" FromRole="tbFactura" ToRole="tbSucursal" />
     <NavigationProperty Name="tbSalida" Relationship="ERP_ZORZALModel.FK_Inv_tbSalida_tbFactura_fact_Id" FromRole="tbFactura" ToRole="tbSalida" />
+    <NavigationProperty Name="tbDevolucion" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbDevolucion_fact_Id" FromRole="tbFactura" ToRole="tbDevolucion" />
   </EntityType>
   <EntityType Name="tbFacturaDetalle">
     <Key>
@@ -3110,8 +3080,8 @@
     <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbNotaCredito_nocre_UsuarioModifica" FromRole="tbNotaCredito" ToRole="tbUsuario" />
     <NavigationProperty Name="tbCaja" Relationship="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbCaja_cja_Id" FromRole="tbNotaCredito" ToRole="tbCaja" />
     <NavigationProperty Name="tbCliente" Relationship="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbCliente_clte_Id" FromRole="tbNotaCredito" ToRole="tbCliente" />
-    <NavigationProperty Name="tbDevolucion" Relationship="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbDevolucion_dev_Id" FromRole="tbNotaCredito" ToRole="tbDevolucion" />
     <NavigationProperty Name="tbSucursal" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbNotaCredito_suc_Id" FromRole="tbNotaCredito" ToRole="tbSucursal" />
+    <NavigationProperty Name="tbDevolucion" Relationship="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbDevolucion_dev_Id" FromRole="tbNotaCredito" ToRole="tbDevolucion" />
   </EntityType>
   <EntityType Name="tbPago">
     <Key>
@@ -3730,30 +3700,6 @@
       </Principal>
       <Dependent Role="tbDenominacionArqueo">
         <PropertyRef Name="arqde_UsuarioModifica" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioCrea">
-    <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
-    <End Type="ERP_ZORZALModel.tbDevolucion" Role="tbDevolucion" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbUsuario">
-        <PropertyRef Name="usu_Id" />
-      </Principal>
-      <Dependent Role="tbDevolucion">
-        <PropertyRef Name="dev_UsuarioCrea" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioModifica">
-    <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
-    <End Type="ERP_ZORZALModel.tbDevolucion" Role="tbDevolucion" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbUsuario">
-        <PropertyRef Name="usu_Id" />
-      </Principal>
-      <Dependent Role="tbDevolucion">
-        <PropertyRef Name="dev_UsuarioModifica" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -5269,18 +5215,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Vent_tbCaja_tbDevolucion_cja_Id">
-    <End Type="ERP_ZORZALModel.tbCaja" Role="tbCaja" Multiplicity="1" />
-    <End Type="ERP_ZORZALModel.tbDevolucion" Role="tbDevolucion" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbCaja">
-        <PropertyRef Name="cja_Id" />
-      </Principal>
-      <Dependent Role="tbDevolucion">
-        <PropertyRef Name="cja_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Vent_tbCaja_tbFactura_cja_Id">
     <End Type="ERP_ZORZALModel.tbCaja" Role="tbCaja" Multiplicity="1" />
     <End Type="ERP_ZORZALModel.tbFactura" Role="tbFactura" Multiplicity="*" />
@@ -5410,42 +5344,6 @@
       </Principal>
       <Dependent Role="tbDenominacionArqueo">
         <PropertyRef Name="mocja_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Vent_tbDevolucion_tbDevolucionDetalle_dev_Id">
-    <End Type="ERP_ZORZALModel.tbDevolucion" Role="tbDevolucion" Multiplicity="1" />
-    <End Type="ERP_ZORZALModel.tbDevolucionDetalle" Role="tbDevolucionDetalle" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbDevolucion">
-        <PropertyRef Name="dev_Id" />
-      </Principal>
-      <Dependent Role="tbDevolucionDetalle">
-        <PropertyRef Name="dev_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Vent_tbFactura_tbDevolucion_fact_Id">
-    <End Type="ERP_ZORZALModel.tbFactura" Role="tbFactura" Multiplicity="1" />
-    <End Type="ERP_ZORZALModel.tbDevolucion" Role="tbDevolucion" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbFactura">
-        <PropertyRef Name="fact_Id" />
-      </Principal>
-      <Dependent Role="tbDevolucion">
-        <PropertyRef Name="fact_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Vent_tbNotaCredito_tbDevolucion_dev_Id">
-    <End Type="ERP_ZORZALModel.tbDevolucion" Role="tbDevolucion" Multiplicity="0..1" />
-    <End Type="ERP_ZORZALModel.tbNotaCredito" Role="tbNotaCredito" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbDevolucion">
-        <PropertyRef Name="dev_Id" />
-      </Principal>
-      <Dependent Role="tbNotaCredito">
-        <PropertyRef Name="dev_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -6357,4 +6255,106 @@
   <ComplexType Name="UDP_Inv_tbProductoSubcategoria_Insert_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
+  <ComplexType Name="UDP_Gral_tbParametro_Update_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="SPGetResponsableBodega_Result">
+    <Property Type="Int32" Name="bod_Id" Nullable="false" />
+    <Property Type="Int16" Name="bod_ResponsableBodega" Nullable="false" />
+    <Property Type="String" Name="emp_Nombres" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="emp_Apellidos" Nullable="false" MaxLength="100" />
+  </ComplexType>
+  <EntityType Name="tbDevolucion">
+    <Key>
+      <PropertyRef Name="dev_Id" />
+    </Key>
+    <Property Name="dev_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fact_Id" Type="Int64" Nullable="false" />
+    <Property Name="cja_Id" Type="Int16" Nullable="false" />
+    <Property Name="nocre_Codigo" Type="String" MaxLength="19" FixedLength="false" Unicode="true" />
+    <Property Name="dev_Estado" Type="Boolean" />
+    <Property Name="dev_Fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="dev_UsuarioCrea" Type="Int32" Nullable="false" />
+    <Property Name="dev_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="dev_UsuarioModifica" Type="Int32" />
+    <Property Name="dev_FechaModifica" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioCrea" FromRole="tbDevolucion" ToRole="tbUsuario" />
+    <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioModifica" FromRole="tbDevolucion" ToRole="tbUsuario" />
+    <NavigationProperty Name="tbCaja" Relationship="ERP_ZORZALModel.FK_Vent_tbCaja_tbDevolucion_cja_Id" FromRole="tbDevolucion" ToRole="tbCaja" />
+    <NavigationProperty Name="tbDevolucionDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbDevolucion_tbDevolucionDetalle_dev_Id" FromRole="tbDevolucion" ToRole="tbDevolucionDetalle" />
+    <NavigationProperty Name="tbFactura" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbDevolucion_fact_Id" FromRole="tbDevolucion" ToRole="tbFactura" />
+    <NavigationProperty Name="tbNotaCredito" Relationship="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbDevolucion_dev_Id" FromRole="tbDevolucion" ToRole="tbNotaCredito" />
+  </EntityType>
+  <Association Name="FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioCrea">
+    <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
+    <End Type="ERP_ZORZALModel.tbDevolucion" Role="tbDevolucion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbDevolucion">
+        <PropertyRef Name="dev_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioModifica">
+    <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
+    <End Type="ERP_ZORZALModel.tbDevolucion" Role="tbDevolucion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbDevolucion">
+        <PropertyRef Name="dev_UsuarioModifica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vent_tbCaja_tbDevolucion_cja_Id">
+    <End Type="ERP_ZORZALModel.tbCaja" Role="tbCaja" Multiplicity="1" />
+    <End Type="ERP_ZORZALModel.tbDevolucion" Role="tbDevolucion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbCaja">
+        <PropertyRef Name="cja_Id" />
+      </Principal>
+      <Dependent Role="tbDevolucion">
+        <PropertyRef Name="cja_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vent_tbDevolucion_tbDevolucionDetalle_dev_Id">
+    <End Type="ERP_ZORZALModel.tbDevolucion" Role="tbDevolucion" Multiplicity="1" />
+    <End Type="ERP_ZORZALModel.tbDevolucionDetalle" Role="tbDevolucionDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbDevolucion">
+        <PropertyRef Name="dev_Id" />
+      </Principal>
+      <Dependent Role="tbDevolucionDetalle">
+        <PropertyRef Name="dev_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vent_tbFactura_tbDevolucion_fact_Id">
+    <End Type="ERP_ZORZALModel.tbFactura" Role="tbFactura" Multiplicity="1" />
+    <End Type="ERP_ZORZALModel.tbDevolucion" Role="tbDevolucion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbFactura">
+        <PropertyRef Name="fact_Id" />
+      </Principal>
+      <Dependent Role="tbDevolucion">
+        <PropertyRef Name="fact_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vent_tbNotaCredito_tbDevolucion_dev_Id">
+    <End Type="ERP_ZORZALModel.tbDevolucion" Role="tbDevolucion" Multiplicity="0..1" />
+    <End Type="ERP_ZORZALModel.tbNotaCredito" Role="tbNotaCredito" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbDevolucion">
+        <PropertyRef Name="dev_Id" />
+      </Principal>
+      <Dependent Role="tbNotaCredito">
+        <PropertyRef Name="dev_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>
