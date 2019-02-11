@@ -854,19 +854,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbDenominacionArqueo_Update_Result>("UDP_Vent_tbDenominacionArqueo_Update", arqde_IdParameter, mocja_IdParameter, deno_IdParameter, arqde_CantidadDenominacionParameter, arqde_MontoDenominacionParameter, arqde_UsuarioCreaParameter, arqde_FechaCreaParameter, arqde_UsuarioModificaParameter, arqde_FechaModificaParameter);
         }
     
-        public virtual ObjectResult<UDP_Vent_tbSolicitudEfectivo_EsAnulada_Result> UDP_Vent_tbSolicitudEfectivo_EsAnulada(Nullable<int> solef_Id, Nullable<bool> solef_EsAnulada)
-        {
-            var solef_IdParameter = solef_Id.HasValue ?
-                new ObjectParameter("solef_Id", solef_Id) :
-                new ObjectParameter("solef_Id", typeof(int));
-    
-            var solef_EsAnuladaParameter = solef_EsAnulada.HasValue ?
-                new ObjectParameter("solef_EsAnulada", solef_EsAnulada) :
-                new ObjectParameter("solef_EsAnulada", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbSolicitudEfectivo_EsAnulada_Result>("UDP_Vent_tbSolicitudEfectivo_EsAnulada", solef_IdParameter, solef_EsAnuladaParameter);
-        }
-    
         public virtual ObjectResult<SDP_Acce_GetObjetos_Result> SDP_Acce_GetObjetos()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_Acce_GetObjetos_Result>("SDP_Acce_GetObjetos");
@@ -3639,7 +3626,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Inv_tbInventarioFisico_Update_Estado", invf_IdParameter, estif_IdParameter);
         }
     
-        public virtual ObjectResult<string> UDP_Inv_tbProducto_Estado(string prod_Codigo, Nullable<bool> prod_EsActivo, string prod_Razon_Inactivacion, Nullable<int> prod_UsuarioModifica, Nullable<System.DateTime> prod_FechaModifica)
+        public virtual ObjectResult<string> UDP_Inv_tbProducto_Estado(string prod_Codigo, Nullable<bool> prod_EsActivo, string prod_Razon_Inactivacion)
         {
             var prod_CodigoParameter = prod_Codigo != null ?
                 new ObjectParameter("prod_Codigo", prod_Codigo) :
@@ -3653,15 +3640,7 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("prod_Razon_Inactivacion", prod_Razon_Inactivacion) :
                 new ObjectParameter("prod_Razon_Inactivacion", typeof(string));
     
-            var prod_UsuarioModificaParameter = prod_UsuarioModifica.HasValue ?
-                new ObjectParameter("prod_UsuarioModifica", prod_UsuarioModifica) :
-                new ObjectParameter("prod_UsuarioModifica", typeof(int));
-    
-            var prod_FechaModificaParameter = prod_FechaModifica.HasValue ?
-                new ObjectParameter("prod_FechaModifica", prod_FechaModifica) :
-                new ObjectParameter("prod_FechaModifica", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Inv_tbProducto_Estado", prod_CodigoParameter, prod_EsActivoParameter, prod_Razon_InactivacionParameter, prod_UsuarioModificaParameter, prod_FechaModificaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Inv_tbProducto_Estado", prod_CodigoParameter, prod_EsActivoParameter, prod_Razon_InactivacionParameter);
         }
     
         public virtual ObjectResult<UDP_Vent_tbExoneracion_Select_Result> UDP_Vent_tbExoneracion_Select()
@@ -5905,6 +5884,85 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("nocre_Codigo", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbDevolucion_NotaCredito_Result>("UDP_Vent_tbDevolucion_NotaCredito", dev_IdParameter, nocre_CodigoParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbCuponDescuento_EsImpreso_Result> UDP_Vent_tbCuponDescuento_EsImpreso(Nullable<int> cdto_ID, Nullable<bool> cdto_EsImpreso)
+        {
+            var cdto_IDParameter = cdto_ID.HasValue ?
+                new ObjectParameter("cdto_ID", cdto_ID) :
+                new ObjectParameter("cdto_ID", typeof(int));
+    
+            var cdto_EsImpresoParameter = cdto_EsImpreso.HasValue ?
+                new ObjectParameter("cdto_EsImpreso", cdto_EsImpreso) :
+                new ObjectParameter("cdto_EsImpreso", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbCuponDescuento_EsImpreso_Result>("UDP_Vent_tbCuponDescuento_EsImpreso", cdto_IDParameter, cdto_EsImpresoParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbCuponDescuento_Imprimir_Result> UDP_Vent_tbCuponDescuento_Imprimir(Nullable<int> cdto_ID)
+        {
+            var cdto_IDParameter = cdto_ID.HasValue ?
+                new ObjectParameter("cdto_ID", cdto_ID) :
+                new ObjectParameter("cdto_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbCuponDescuento_Imprimir_Result>("UDP_Vent_tbCuponDescuento_Imprimir", cdto_IDParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbNotaCredito_EsImpreso_Result> UDP_Vent_tbNotaCredito_EsImpreso(Nullable<short> nocre_Id, Nullable<bool> nocre_EsImpreso)
+        {
+            var nocre_IdParameter = nocre_Id.HasValue ?
+                new ObjectParameter("nocre_Id", nocre_Id) :
+                new ObjectParameter("nocre_Id", typeof(short));
+    
+            var nocre_EsImpresoParameter = nocre_EsImpreso.HasValue ?
+                new ObjectParameter("nocre_EsImpreso", nocre_EsImpreso) :
+                new ObjectParameter("nocre_EsImpreso", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbNotaCredito_EsImpreso_Result>("UDP_Vent_tbNotaCredito_EsImpreso", nocre_IdParameter, nocre_EsImpresoParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbNotaCredito_Imprimir_Result> UDP_Vent_tbNotaCredito_Imprimir(Nullable<int> nocre_Id)
+        {
+            var nocre_IdParameter = nocre_Id.HasValue ?
+                new ObjectParameter("nocre_Id", nocre_Id) :
+                new ObjectParameter("nocre_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbNotaCredito_Imprimir_Result>("UDP_Vent_tbNotaCredito_Imprimir", nocre_IdParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbFactura_Imprimir_Result> UDP_Vent_tbFactura_Imprimir(Nullable<long> fact_Id)
+        {
+            var fact_IdParameter = fact_Id.HasValue ?
+                new ObjectParameter("fact_Id", fact_Id) :
+                new ObjectParameter("fact_Id", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbFactura_Imprimir_Result>("UDP_Vent_tbFactura_Imprimir", fact_IdParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbSolicitudEfectivo_EsAnulada_Result> UDP_Vent_tbSolicitudEfectivo_EsAnulada(Nullable<int> solef_Id, Nullable<bool> solef_EsAnulada, string motivo)
+        {
+            var solef_IdParameter = solef_Id.HasValue ?
+                new ObjectParameter("solef_Id", solef_Id) :
+                new ObjectParameter("solef_Id", typeof(int));
+    
+            var solef_EsAnuladaParameter = solef_EsAnulada.HasValue ?
+                new ObjectParameter("solef_EsAnulada", solef_EsAnulada) :
+                new ObjectParameter("solef_EsAnulada", typeof(bool));
+    
+            var motivoParameter = motivo != null ?
+                new ObjectParameter("Motivo", motivo) :
+                new ObjectParameter("Motivo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbSolicitudEfectivo_EsAnulada_Result>("UDP_Vent_tbSolicitudEfectivo_EsAnulada", solef_IdParameter, solef_EsAnuladaParameter, motivoParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbSolicitudEfectivo_Imprimir_Result> UDP_Vent_tbSolicitudEfectivo_Imprimir(Nullable<int> sOLEF_ID)
+        {
+            var sOLEF_IDParameter = sOLEF_ID.HasValue ?
+                new ObjectParameter("SOLEF_ID", sOLEF_ID) :
+                new ObjectParameter("SOLEF_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbSolicitudEfectivo_Imprimir_Result>("UDP_Vent_tbSolicitudEfectivo_Imprimir", sOLEF_IDParameter);
         }
     }
 }

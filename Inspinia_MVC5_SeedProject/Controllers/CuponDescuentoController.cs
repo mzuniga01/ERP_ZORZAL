@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CrystalDecisions.CrystalReports.Engine;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -8,6 +9,12 @@ using System.Web;
 using System.Web.Mvc;
 using ERP_GMEDINA.Models;
 using System.Transactions;
+using System.Data.SqlClient;
+using System.Data.Common;
+using System.Data.Entity.Core.Objects;
+using System.IO;
+using System.Reflection;
+using CrystalDecisions.Shared;
 
 namespace ERP_GMEDINA.Controllers
 {
@@ -315,6 +322,63 @@ namespace ERP_GMEDINA.Controllers
         {
             var list = db.UDP_Vent_tbCuponDescuento_Anulado(cdtoId, Anulada).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult ExportReport(int? id)
+        {
+            ReportDocument rd = new ReportDocument();
+            rd.Load(Path.Combine(Server.MapPath("~/Reports"), "ImprimirCuponDescuento.rpt"));
+            var tbcupondescuento = db.UDP_Vent_tbCuponDescuento_Imprimir(id).ToList();
+            var todo = (from CD in tbcupondescuento
+                        where CD.cdto_ID == id
+                        select new
+                        {
+                            cdto_ID = CD.cdto_ID,
+                            cdto_FechaEmision = CD.cdto_FechaEmision,
+                            suc_Telefono = CD.cdto_CantidadCompraMinima,
+                            cdto_FechaVencimiento = CD.cdto_FechaVencimiento,
+                            cdto_PorcentajeDescuento = (Decimal)CD.cdto_PorcentajeDescuento,
+                            cdto_MaximoMontoDescuento = (Decimal)CD.cdto_MaximoMontoDescuento,
+                            cdto_MontoDescuento = (Decimal)CD.cdto_MontoDescuento,
+                            cdto_CantidadCompraMinima = (Decimal)CD.cdto_CantidadCompraMinima,
+                            suc_Correo = CD.suc_Correo,
+                            suc_Descripcion = CD.suc_Descripcion
+                        }).ToList();
+
+            rd.SetDataSource(todo);
+            Response.Buffer = false;
+            Response.ClearContent();
+            Response.ClearHeaders();
+            try
+            {
+                Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+                stream.Seek(0, SeekOrigin.Begin);
+                return File(stream, "application/pdf", "CuponDescuento_List.pdf");
+
+                //rd.PrintOptions.PrinterName = "your printer name";
+                //rd.PrintToPrinter(1, true, 0, 0);
+                //PrinterSettings printerSettings = new PrinterSettings();
+                //PrintDialog printDialog = new PrintDialog();
+                //printDialog.PrinterSettings = printerSettings;
+                //printDialog.AllowPrintToFile = false;
+                //printDialog.AllowSomePages = true;
+                //printDialog.UseEXDialog = true;
+
+                //DialogResult result = printDialog.ShowDialog();
+
+                //if (result == DialogResult.Cancel)
+                //{
+                //    return;
+                //}
+
+                //this.report.PrintOptions.PrinterName = printerSettings.PrinterName;
+                //this.report.PrintToPrinter(printerSettings.Copies, false, 0, 0);
+                //return RedirectToAction("Index");
+            }
+            catch
+            {
+                throw;
+            }
         }
     }
 }

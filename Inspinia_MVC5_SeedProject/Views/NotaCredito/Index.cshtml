@@ -112,13 +112,26 @@
                                             @Html.ActionLink("Detalles", "Details", new { id = item.nocre_Id }, new { @class = "btn btn-primary btn-xs" })
                                             @Html.ActionLink("Editar", "Edit", new { id = item.nocre_Id }, new { @class = "btn btn-white btn-xs" })
 
-                                            <button id="bottonImprimirNC" name="bottonImprimirNC" type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#ImprimirNC">
-                                                Imprimir
-                                            </button>
+                                            @if (item.tbCliente.clte_EsPersonaNatural==true && item.dev_Id != null)
+                                            {
+                                                @Html.ActionLink("Imprimir", "ExportReportclteNaturalxDEV", new { id = item.nocre_Id }, new { @class = "btn btn-info btn-xs" })
+                                            }
+                                            else if (item.tbCliente.clte_EsPersonaNatural == true && item.dev_Id == null)
+                                            {
+                                                @Html.ActionLink("Imprimir", "ExportReportclteNaturalxOtros", new { id = item.nocre_Id }, new { @class = "btn btn-info btn-xs" })
+                                            }
+                                            else if (item.tbCliente.clte_EsPersonaNatural == false && item.dev_Id != null)
+                                            {
+                                                @Html.ActionLink("Imprimir", "ExportReportclteJuridicoxDEV", new { id = item.nocre_Id }, new { @class = "btn btn-info btn-xs" })
+                                            }
+                                            else if (item.tbCliente.clte_EsPersonaNatural == false && item.dev_Id == null)
+                                            {
+                                                @Html.ActionLink("Imprimir", "ExportReportclteJuridicoxOtros", new { id = item.nocre_Id }, new { @class = "btn btn-info btn-xs" })
+                                            }
                                         </td>
-                                    }
-                                    else
-                                    {
+                                            }
+                                            else
+                                            {
                                         <td>
 
                                             @Html.ActionLink("Detalles", "Details", new { id = item.nocre_Id }, new { @class = "btn btn-primary btn-xs" })

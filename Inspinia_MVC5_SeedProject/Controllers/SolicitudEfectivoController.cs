@@ -597,12 +597,12 @@ namespace ERP_GMEDINA.Controllers
             return Json(MensajeEdit, JsonRequestBehavior.AllowGet);
         }
 
-        [HttpPost]
-        public JsonResult AnularSolcitudEfectivo(int solefId, bool Anulada)
-        {
-            var list = db.UDP_Vent_tbSolicitudEfectivo_EsAnulada(solefId, Anulada).ToList();
-            return Json(list, JsonRequestBehavior.AllowGet);
-        }
+        //[HttpPost]
+        //public JsonResult AnularSolcitudEfectivo(int solefId, bool Anulada)
+        //{
+            //var list = db.UDP_Vent_tbSolicitudEfectivo_EsAnulada(solefId, Anulada).ToList();
+            //return Json(list, JsonRequestBehavior.AllowGet);
+        //}
 
         [HttpPost]
         public JsonResult InsertDetalleSolicitudDetalle(List<tbSolicitudEfectivoDetalle> procesoData)
