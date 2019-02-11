@@ -21,7 +21,7 @@ namespace ERP_GMEDINA.Controllers
             {
                 if (Function.GetRol())
                 {
-                    if (Function.GetUserRols("Denominacion/Index"))
+                    if (Function.GetUserRols("DenominacionArqueo/Index"))
                     {
                         var tbdenominacionarqueo = db.tbDenominacionArqueo.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbDenominacion)/*.Include(t => t.tbMovimientoCaja)*/;
                         return View(tbdenominacionarqueo.ToList());
@@ -45,7 +45,7 @@ namespace ERP_GMEDINA.Controllers
             {
                 if (Function.GetRol())
                 {
-                    if (Function.GetUserRols("Denominacion/Index"))
+                    if (Function.GetUserRols("DenominacionArqueo/Index"))
                     {
                         if (id == null)
                         {
@@ -77,7 +77,7 @@ namespace ERP_GMEDINA.Controllers
             {
                 if (Function.GetRol())
                 {
-                    if (Function.GetUserRols("Denominacion/Create"))
+                    if (Function.GetUserRols("DenominacionArqueo/Create"))
                     {
                         ViewBag.arqde_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
                         ViewBag.arqde_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
@@ -105,7 +105,7 @@ namespace ERP_GMEDINA.Controllers
             {
                 if (Function.GetRol())
                 {
-                    if (Function.GetUserRols("Denominacion/Create"))
+                    if (Function.GetUserRols("DenominacionArqueo/Create"))
                     {
                         if (ModelState.IsValid)
                         {
@@ -128,6 +128,7 @@ namespace ERP_GMEDINA.Controllers
                                     ViewBag.arqde_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbDenominacionArqueo.arqde_UsuarioCrea);
                                     ViewBag.arqde_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbDenominacionArqueo.arqde_UsuarioModifica);
                                     ViewBag.deno_Id = new SelectList(db.tbDenominacion, "deno_Id", "deno_Descripcion", tbDenominacionArqueo.deno_Id);
+                                    Function.InsertBitacoraErrores("DenominacionArqueo/Create", MensajeError, "Create");
                                     ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
                                     return View(tbDenominacionArqueo);
                                 }
@@ -144,7 +145,7 @@ namespace ERP_GMEDINA.Controllers
                                 ViewBag.arqde_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbDenominacionArqueo.arqde_UsuarioCrea);
                                 ViewBag.arqde_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbDenominacionArqueo.arqde_UsuarioModifica);
                                 ViewBag.deno_Id = new SelectList(db.tbDenominacion, "deno_Id", "deno_Descripcion", tbDenominacionArqueo.deno_Id);
-                                Function.InsertBitacoraErrores("Denominacion/Create", Ex.Message.ToString(), "Create");
+                                Function.InsertBitacoraErrores("DenominacionArqueo/Create", Ex.Message.ToString(), "Create");
                                 ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
                                 return View(tbDenominacionArqueo);
                             }
@@ -180,7 +181,7 @@ namespace ERP_GMEDINA.Controllers
             {
                 if (Function.GetRol())
                 {
-                    if (Function.GetUserRols("Denominacion/Edit"))
+                    if (Function.GetUserRols("DenominacionArqueo/Edit"))
                     {
                         if (id == null)
                         {
@@ -217,7 +218,7 @@ namespace ERP_GMEDINA.Controllers
             {
                 if (Function.GetRol())
                 {
-                    if (Function.GetUserRols("Denominacion/Edit"))
+                    if (Function.GetUserRols("DenominacionArqueo/Edit"))
                     {
                         if (ModelState.IsValid)
                         {
@@ -241,7 +242,7 @@ namespace ERP_GMEDINA.Controllers
                                     ViewBag.arqde_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbDenominacionArqueo.arqde_UsuarioCrea);
                                     ViewBag.arqde_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbDenominacionArqueo.arqde_UsuarioModifica);
                                     ViewBag.deno_Id = new SelectList(db.tbDenominacion, "deno_Id", "deno_Descripcion", tbDenominacionArqueo.deno_Id);
-                                    Function.InsertBitacoraErrores("Denominacion/Create", MensajeError, "Create");
+                                    Function.InsertBitacoraErrores("DenominacionArqueo/Create", MensajeError, "Create");
                                     ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
                                     return View(tbDenominacionArqueo);
                                 }
@@ -257,7 +258,7 @@ namespace ERP_GMEDINA.Controllers
                                 ViewBag.arqde_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbDenominacionArqueo.arqde_UsuarioCrea);
                                 ViewBag.arqde_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbDenominacionArqueo.arqde_UsuarioModifica);
                                 ViewBag.deno_Id = new SelectList(db.tbDenominacion, "deno_Id", "deno_Descripcion", tbDenominacionArqueo.deno_Id);
-                                Function.InsertBitacoraErrores("Denominacion/Create", Ex.Message.ToString(), "Create");
+                                Function.InsertBitacoraErrores("DenominacionArqueo/Create", Ex.Message.ToString(), "Create");
                                 ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
                                 return View(tbDenominacionArqueo);
                             }
