@@ -17,6 +17,13 @@ namespace ERP_GMEDINA.Controllers
         GeneralFunctions Function = new GeneralFunctions();
 
 
+        public ActionResult Index()
+        {
+            var tbmovimientocaja = db.tbMovimientoCaja.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbCaja);
+            return View(tbmovimientocaja.ToList());
+        }
+
+
         /////////INICIO APERTURA/////////
         // GET: /MovimientoCaja/
 

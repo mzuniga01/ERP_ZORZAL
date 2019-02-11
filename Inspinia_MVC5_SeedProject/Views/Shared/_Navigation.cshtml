@@ -65,6 +65,12 @@
                             <a href="@Url.Action("Index", "DenominacionArqueo")"><i class="fa fa-money"></i> <span class="nav-label">Denominacion Arqueo</span> </a>
                         </li>
                     }
+                    @if (Login.GetUserRols("PagosArqueo/Index"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("Index", "PagosArqueo")"><i class="fa fa-money"></i> <span class="nav-label">Pagos Arqueo</span> </a>
+                        </li>
+                    }
                     @if (Login.GetUserRols("Exoneracion/Index"))
                     {
                         <li class="@Html.IsSelected(action: "Index")">
