@@ -83,10 +83,11 @@
                                     <td>
                                         @Html.ActionLink("Detalle", "Details", new { id = item.pago_Id }, new { @class = "btn btn-primary btn-xs" })
                                         @Html.ActionLink("Editar", "Edit", new { id = item.pago_Id }, new { @class = "btn btn-white btn-xs" })
+                                        @Html.ActionLink("Imprimir", "ExportReport", new { id = item.pago_Id }, new { @class = "btn btn-info btn-xs", @id= "bottonImprimir" ,@name= "bottonImprimir"})
                                         @*@Html.ActionLink("Imprimir", "", new { id = item.pago_Id }, new { @class = "btn btn-white btn-xs", id = "bottonImprimir", name = "bottonImprimir", type = "button", data-toggle='modal' ,data-target='#Imprimir' })*@
-                                        <button id="bottonImprimir" name="bottonImprimir" type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#Imprimir">
+                                        @*<button id="bottonImprimir" name="bottonImprimir" type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#Imprimir">
                                             Imprimir
-                                        </button>
+                                        </button>*@
                                        
                                     </td>
                             }

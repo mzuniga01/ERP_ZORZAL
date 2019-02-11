@@ -2619,6 +2619,9 @@
     <FunctionImport Name="UDP_Vent_tbSolicitudEfectivo_DatosEncabezado" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivo_DatosEncabezado_Result1)">
       <Parameter Name="USER_ID" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbPago_Imprimir" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPago_Imprimir_Result)">
+      <Parameter Name="pago_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -7929,5 +7932,20 @@
     <Property Type="Int16" Name="cja_Id" Nullable="false" />
     <Property Type="String" Name="cja_Descripcion" Nullable="false" MaxLength="10" />
     <Property Type="DateTime" Name="FechaCrea" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbPago_Imprimir_Result">
+    <Property Type="Int32" Name="pago_Id" Nullable="false" />
+    <Property Type="Int64" Name="fact_Id" Nullable="false" />
+    <Property Type="String" Name="fact_Codigo" Nullable="false" MaxLength="19" />
+    <Property Type="String" Name="clte_Identificacion" Nullable="false" MaxLength="26" />
+    <Property Type="String" Name="clte_Nombres" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="tpa_Descripcion" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="pago_FechaElaboracion" Nullable="false" Precision="23" />
+    <Property Type="Decimal" Name="pago_SaldoAnterior" Nullable="false" Precision="10" Scale="0" />
+    <Property Type="Decimal" Name="pago_TotalPago" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="pago_MontoEfectivo" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="pago_TotalCambio" Nullable="true" Precision="10" Scale="2" />
+    <Property Type="String" Name="pago_Emisor" Nullable="true" MaxLength="25" />
+    <Property Type="String" Name="pago_Titular" Nullable="true" MaxLength="50" />
   </ComplexType>
 </Schema>

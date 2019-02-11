@@ -2674,5 +2674,24 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbPago_Imprimir" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbPago_Imprimir">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbPago_Imprimir_Result">
+          <ScalarProperty Name="pago_Id" ColumnName="pago_Id" />
+          <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
+          <ScalarProperty Name="fact_Codigo" ColumnName="fact_Codigo" />
+          <ScalarProperty Name="clte_Identificacion" ColumnName="clte_Identificacion" />
+          <ScalarProperty Name="clte_Nombres" ColumnName="clte_Nombres" />
+          <ScalarProperty Name="tpa_Descripcion" ColumnName="tpa_Descripcion" />
+          <ScalarProperty Name="pago_FechaElaboracion" ColumnName="pago_FechaElaboracion" />
+          <ScalarProperty Name="pago_SaldoAnterior" ColumnName="pago_SaldoAnterior" />
+          <ScalarProperty Name="pago_TotalPago" ColumnName="pago_TotalPago" />
+          <ScalarProperty Name="pago_MontoEfectivo" ColumnName="pago_MontoEfectivo" />
+          <ScalarProperty Name="pago_TotalCambio" ColumnName="pago_TotalCambio" />
+          <ScalarProperty Name="pago_Emisor" ColumnName="pago_Emisor" />
+          <ScalarProperty Name="pago_Titular" ColumnName="pago_Titular" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>
