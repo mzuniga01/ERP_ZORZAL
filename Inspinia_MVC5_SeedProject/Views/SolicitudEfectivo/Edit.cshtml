@@ -128,7 +128,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-2">Total Solicitud</label>
                                 <div class="col-md-3">
-                                    <input id="total" class="form-control" readonly />
+                                    <input id="total" type="number" class="form-control" readonly />
                                 </div>
                             </div>
 
@@ -270,9 +270,6 @@
     </div>
 </div>
 
-
-
-
 @* -------------------Modal Anular---------------- *@
 <div class="modal fade" id="Anular" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -289,13 +286,12 @@
                 <p id="Mensaje" style="color:red"></p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="AnularSolictud();">Si</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary" onclick="AnularSolictud();">Guardar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
             </div>
         </div>
     </div>
 </div>
-
 
 @*<script src="~/Scripts/app/SolicitudEfectivoEsAnulada.js"></script>*@
 
@@ -635,6 +631,7 @@
                         else {
                             $('#mnda_Id').attr("disabled", "disabled");
                             $('#TBDenominacionesSolicitadas').show();
+
                             var suma = 0;
                             var data = [];
 

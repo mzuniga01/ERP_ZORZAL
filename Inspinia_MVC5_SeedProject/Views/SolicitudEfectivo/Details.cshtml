@@ -47,7 +47,7 @@
                     <h5>Detalle Solicitud Efectivo</h5>
                 </div>
                 <div class="ibox-content">
-
+                    @Html.HiddenFor(model => model.solef_Id)
 
                     <dl class="dl-horizontal">
 
@@ -156,10 +156,49 @@
 
 
 
-                    @Html.Partial("_DetailsSolicitudEfectivoDetalle", Model.tbSolicitudEfectivoDetalle)
+                    @*@Html.Partial("_DetailsSolicitudEfectivoDetalle", Model.tbSolicitudEfectivoDetalle)*@
 
 
                     @*@Html.Partial("_IndexDetails", (List<UDP_Vent_SolicituEfectivo_Detalles_Select>)ViewBag.detalles)*@
+
+
+                    <div class="ibox-content">
+
+                        <div class="table table-responsive">
+                            <table class="table table-bordered" id="TBDetalleSolicitud">
+
+                                <thead>
+
+                                    <tr>
+
+                                        <th>
+                                            Denominación
+                                        </th>
+                                        <th>
+                                            Cantidad Solicitada
+                                        </th>
+                                        <th>
+                                            Monto Solicitado
+                                        </th>
+                                        <th>
+                                            Cantidad Entregada
+                                        </th>
+                                        <th>
+                                            Monto Entregado
+                                        </th>
+
+
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+
+                            </table>
+
+                        </div>
+                    </div>
+
+
+
 
 
 
@@ -234,7 +273,70 @@
     </script>
 
 
+    <script type="text/javascript">
 
+        $(document).ready(function () {
+            GetDenominacions()
+        });
+ function GetDenominacions() {
+            var Solictud = $("#solef_Id").val();
+            $.ajax({
+                type: 'GET',
+                url: '/SolicitudEfectivo/GetDtalle',
+                datatype: 'JSON',
+                data: { 'Solictud': Solictud },
+                success: function (data) {
+                    $('#TBDetalleSolicitud tbody').empty();
+                    $.each(data, function (i, item) {
+                        var rows = "<tr data-id=" + item.soled_Id + ">" +
+
+                            "<td hidden>" + item.soled_Id + "</td>" +
+                            "<td>" + item.deno_Descripcion + "</td>" +
+                            "<td>" + item.soled_CantidadSolicitada + "</td>" +
+                            "<td class='sumTotal'>" + item.MontoSolicitado + "</td>" +
+                            "<td>" + item.soled_CantidadEntregada + "</td>" +
+                            "<td class='MontoEntregado'>" + item.MontoEntregado + "</td>" +
+                            "<td hidden>" + item.deno_Id + "</td>" +
+
+
+                           // '<td>' + item.soled_FechaCrea + '</td>' +
+                              "</tr>";
+                        $('#TBDetalleSolicitud tbody').append(rows);
+                        //----------------------------------------------------------
+                            var suma = 0;
+                            var data = [];
+                            //Calculo Total solicitado
+                            $("td.sumTotal").each(function () {
+                                data.push(parseFloat($(this).text()));
+                            });
+                            var suma = data.reduce(function (a, b) { return a + b; }, 0)
+                            $("#montosSolicitado").val(suma);
+
+                            console.log(data);
+                            console.log('Monto Solicitado: ' + suma);
+                        //---------------------------------------------
+                        //Calcilo total Monto entregado
+                            var sumaentregada = 0;
+                            var datos = [];
+
+                            $("td.MontoEntregado").each(function () {
+                                datos.push(parseFloat($(this).text()));
+                            });
+                            var sumaentregada = datos.reduce(function (a, b) { return a + b; }, 0)
+                            $("#montoEntregado").val(sumaentregada);
+
+                            console.log(datos);
+                            console.log('Monto Entregado: ' + sumaentregada);
+                        //-----------------------------------------
+
+
+                    });
+                },
+                error: function (data) { alert(data.responseText); }
+            });
+        };
+
+    </script>
 
 
 
