@@ -275,7 +275,7 @@ namespace ERP_GMEDINA.Controllers
                                     ViewBag.suc_Descripcion = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Descripcion).SingleOrDefault();
                                     ViewBag.suc_Id = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Id).SingleOrDefault();
                                     Function.InsertBitacoraErrores("CuponDescuento/Create", MensajeError, "Create");
-                                    ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                                    ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
                                     return View(tbCuponDescuento);
                                 }
                                 else
@@ -288,7 +288,7 @@ namespace ERP_GMEDINA.Controllers
                                 ViewBag.suc_Descripcion = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Descripcion).SingleOrDefault();
                                 ViewBag.suc_Id = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Id).SingleOrDefault();
                                 Function.InsertBitacoraErrores("CuponDescuento/Create", Ex.Message.ToString(), "Create");
-                                ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                                ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
                                 return View(tbCuponDescuento);
                             }
 
