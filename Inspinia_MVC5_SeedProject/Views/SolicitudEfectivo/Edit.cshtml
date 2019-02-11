@@ -285,30 +285,56 @@
             </div>
             <div class="modal-body">
                 ¿Está seguro de anular esta Solcitud de Efectivo?
+                <textarea rows="4" cols="50" placeholder="Ingrese la razon de anulación" id="Motivo" name="Motivo"></textarea>
+                <p id="Mensaje" style="color:red"></p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="AnularSolictud();" data-dismiss="modal">Si</button>
+                <button type="button" class="btn btn-primary" onclick="AnularSolictud();">Si</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
             </div>
         </div>
     </div>
 </div>
 
-<script src="~/Scripts/app/SolicitudEfectivoEsAnulada.js"></script>
+
+@*<script src="~/Scripts/app/SolicitudEfectivoEsAnulada.js"></script>*@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 
-    <script>
-        function cavbo() {
+   <script>
+        function AnularSolictud() {
+            var solefId = $('#solef_Id').val();
+            var Anulada = 1;
+            var Motivo = $('#Motivo').val();
+            if (Motivo == "") {
+                var valido = document.getElementById('Mensaje');
+                valido.innerText = "La razón anulación es requerida";
+            }
+            else if (Motivo.length < 3) {
+                var valido = document.getElementById('Mensaje');
+                valido.innerText = "No se aceptan menos de tres caracteres";
+            }
+            else {
+                $.ajax({
+                    url: "/SolicitudEfectivo/AnularSolcitudEfectivo",
+                    method: "POST",
+                    dataType: 'json',
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify({ solefId: solefId, Anulada: Anulada, Motivo: Motivo }),
 
-
-        };
-
-    </script>
-
-
-
+                })
+            .done(function (data) {
+                if (data.length > 0) {
+                    window.location.href = "/SolicitudEfectivo/Index";
+                }
+                else {
+                    alert("Registro No Actualizado");
+                }
+            });
+            }
+        }
+</script>
 
     <script>
         var MontoSolicitado = 0;

@@ -1414,7 +1414,6 @@
     <EntitySet Name="tbTipoPago" EntityType="ERP_ZORZALModel.tbTipoPago" />
     <EntitySet Name="UDV_Acce_Usuario_Roles" EntityType="ERP_ZORZALModel.UDV_Acce_Usuario_Roles" />
     <EntitySet Name="V_Objetos" EntityType="ERP_ZORZALModel.V_Objetos" />
-    <EntitySet Name="CARLOS" EntityType="ERP_ZORZALModel.CARLOS" />
     <EntitySet Name="UDV_Vent_FacturaPuntoEmision" EntityType="ERP_ZORZALModel.UDV_Vent_FacturaPuntoEmision" />
     <EntitySet Name="UDV_Inv_Nombre_Empleado" EntityType="ERP_ZORZALModel.UDV_Inv_Nombre_Empleado" />
     <EntitySet Name="UDV_Inv_Consultar_Existencias_Productos" EntityType="ERP_ZORZALModel.UDV_Inv_Consultar_Existencias_Productos" />
@@ -2616,6 +2615,9 @@
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbSolicitudEfectivo_Imprimir" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivo_Imprimir_Result)">
       <Parameter Name="SOLEF_ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbSolicitudEfectivo_DatosEncabezado" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivo_DatosEncabezado_Result1)">
+      <Parameter Name="USER_ID" Mode="In" Type="Int32" />
     </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
@@ -4631,18 +4633,6 @@
     <Property Name="obj_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="obj_UsuarioModifica" Type="Int32" />
     <Property Name="obj_FechaModifica" Type="DateTime" Precision="3" />
-  </EntityType>
-  <EntityType Name="CARLOS">
-    <Key>
-      <PropertyRef Name="solef_Id" />
-      <PropertyRef Name="denoId" />
-      <PropertyRef Name="DenoDescripcion" />
-      <PropertyRef Name="valor" />
-    </Key>
-    <Property Name="solef_Id" Type="Int32" Nullable="false" />
-    <Property Name="denoId" Type="Int16" Nullable="false" />
-    <Property Name="DenoDescripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="valor" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
   </EntityType>
   <EntityType Name="UDV_Vent_FacturaPuntoEmision">
     <Key>
@@ -7921,5 +7911,23 @@
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbSolicitudEfectivo_EsAnulada_Result">
     <Property Type="Int32" Name="MensajeError" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbSolicitudEfectivo_DatosEncabezado_Result">
+    <Property Type="Int32" Name="solef_Id" Nullable="false" />
+    <Property Type="Int32" Name="mocja_Id" Nullable="false" />
+    <Property Type="Int32" Name="solef_UsuarioCrea" Nullable="false" />
+    <Property Type="String" Name="suc_Descripcion" Nullable="false" MaxLength="40" />
+    <Property Type="Int16" Name="cja_Id" Nullable="false" />
+    <Property Type="String" Name="cja_Descripcion" Nullable="false" MaxLength="10" />
+    <Property Type="DateTime" Name="FechaCrea" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbSolicitudEfectivo_DatosEncabezado_Result1">
+    <Property Type="Int32" Name="solef_Id" Nullable="false" />
+    <Property Type="Int32" Name="mocja_Id" Nullable="false" />
+    <Property Type="Int32" Name="solef_UsuarioCrea" Nullable="false" />
+    <Property Type="String" Name="suc_Descripcion" Nullable="false" MaxLength="40" />
+    <Property Type="Int16" Name="cja_Id" Nullable="false" />
+    <Property Type="String" Name="cja_Descripcion" Nullable="false" MaxLength="10" />
+    <Property Type="DateTime" Name="FechaCrea" Nullable="true" Precision="23" />
   </ComplexType>
 </Schema>

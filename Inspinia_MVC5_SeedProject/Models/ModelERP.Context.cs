@@ -92,7 +92,6 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbTipoPago> tbTipoPago { get; set; }
         public virtual DbSet<UDV_Acce_Usuario_Roles> UDV_Acce_Usuario_Roles { get; set; }
         public virtual DbSet<V_Objetos> V_Objetos { get; set; }
-        public virtual DbSet<CARLOS> CARLOS { get; set; }
         public virtual DbSet<UDV_Vent_FacturaPuntoEmision> UDV_Vent_FacturaPuntoEmision { get; set; }
         public virtual DbSet<UDV_Inv_Nombre_Empleado> UDV_Inv_Nombre_Empleado { get; set; }
         public virtual DbSet<UDV_Inv_Consultar_Existencias_Productos> UDV_Inv_Consultar_Existencias_Productos { get; set; }
@@ -5963,6 +5962,15 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("SOLEF_ID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbSolicitudEfectivo_Imprimir_Result>("UDP_Vent_tbSolicitudEfectivo_Imprimir", sOLEF_IDParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbSolicitudEfectivo_DatosEncabezado_Result1> UDP_Vent_tbSolicitudEfectivo_DatosEncabezado(Nullable<int> uSER_ID)
+        {
+            var uSER_IDParameter = uSER_ID.HasValue ?
+                new ObjectParameter("USER_ID", uSER_ID) :
+                new ObjectParameter("USER_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbSolicitudEfectivo_DatosEncabezado_Result1>("UDP_Vent_tbSolicitudEfectivo_DatosEncabezado", uSER_IDParameter);
         }
     }
 }

@@ -1067,20 +1067,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Acce.V_Objetos' does not have a primar
     <Property Name="obj_FechaModifica" Type="datetime" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'ERP_GMEDINA.dbo.CARLOS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-  <EntityType Name="CARLOS">
-    <Key>
-      <PropertyRef Name="solef_Id" />
-      <PropertyRef Name="denoId" />
-      <PropertyRef Name="DenoDescripcion" />
-      <PropertyRef Name="valor" />
-    </Key>
-    <Property Name="solef_Id" Type="int" Nullable="false" />
-    <Property Name="denoId" Type="smallint" Nullable="false" />
-    <Property Name="DenoDescripcion" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="valor" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-  </EntityType>
-  <!--Errors Found During Generation:
 warning 6002: The table/view 'ERP_GMEDINA.dbo.UDV_Vent_FacturaPuntoEmision' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="UDV_Vent_FacturaPuntoEmision">
     <Key>
@@ -5575,6 +5561,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <Parameter Name="mnda_Id" Type="smallint" Mode="In" />
     <Parameter Name="solef_EsAnulada" Type="bit" Mode="In" />
   </Function>
+  <Function Name="UDP_Vent_tbSolicitudEfectivo_DatosEncabezado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="USER_ID" Type="int" Mode="In" />
+  </Function>
   <Function Name="UDP_Vent_tbSolicitudEfectivo_Details" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="IDSOLICITUD" Type="int" Mode="In" />
   </Function>
@@ -5785,14 +5774,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     [V_Objetos].[obj_UsuarioModifica] AS [obj_UsuarioModifica], 
     [V_Objetos].[obj_FechaModifica] AS [obj_FechaModifica]
     FROM [Acce].[V_Objetos] AS [V_Objetos]</DefiningQuery>
-    </EntitySet>
-    <EntitySet Name="CARLOS" EntityType="Self.CARLOS" store:Type="Views" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [CARLOS].[solef_Id] AS [solef_Id], 
-    [CARLOS].[denoId] AS [denoId], 
-    [CARLOS].[DenoDescripcion] AS [DenoDescripcion], 
-    [CARLOS].[valor] AS [valor]
-    FROM [dbo].[CARLOS] AS [CARLOS]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="UDV_Vent_FacturaPuntoEmision" EntityType="Self.UDV_Vent_FacturaPuntoEmision" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 

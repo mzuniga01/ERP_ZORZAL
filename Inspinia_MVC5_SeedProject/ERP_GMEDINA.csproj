@@ -246,9 +246,6 @@
     <Compile Include="Models\Banco.cs" />
     <Compile Include="Models\cActivo.cs" />
     <Compile Include="Models\Cajas.cs" />
-    <Compile Include="Models\CARLOS.cs">
-      <DependentUpon>ModelERP.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\cCuponDescuento.cs" />
     <Compile Include="Models\cDenominacion.cs" />
     <Compile Include="Models\cDepartamento.cs" />
@@ -940,6 +937,12 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Vent_tbSolicitudEfectivo_Apertura_Insert_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Vent_tbSolicitudEfectivo_DatosEncabezado_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Vent_tbSolicitudEfectivo_DatosEncabezado_Result1.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Vent_tbSolicitudEfectivo_Details_Result.cs">

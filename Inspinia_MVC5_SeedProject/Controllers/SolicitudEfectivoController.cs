@@ -18,7 +18,19 @@ namespace ERP_GMEDINA.Controllers
 
         public ActionResult Index()
         {
-            return View(db.UDP_Vent_SolicituEfectivo_Select.Where(a => a.Anulada == false).ToList());
+            if (Function.GetUserLogin())
+            {
+                if (Function.GetUserRols("SolicitudEfectivo/Index"))
+                {
+                    return View(db.UDP_Vent_SolicituEfectivo_Select.Where(a => a.Anulada == false).ToList());
+                }
+                else
+                {
+                    return RedirectToAction("SinAcceso", "Login");
+                }
+            }
+            else
+                return RedirectToAction("Index", "Login");
         }
 
         public ActionResult IndexDetails()
@@ -67,10 +79,54 @@ namespace ERP_GMEDINA.Controllers
             return Json(DenominacionList, JsonRequestBehavior.AllowGet);
         }
 
-       
+
+        [HttpGet]
+        public ActionResult GDatosEncabezado()
+        {
+            if (Function.GetUserLogin())
+            {
+                if (Function.GetUserRols("SolicitudEfectivo/Create"))
+                {
+                    int idUser = 0;
+                    GeneralFunctions Login = new GeneralFunctions();
+                    List<tbUsuario> User = Login.getUserInformation();
+                    foreach (tbUsuario Usuario in User)
+                    {
+                        idUser = Convert.ToInt32(Usuario.emp_Id);
+                    }
+                    var list = db.UDP_Vent_tbSolicitudEfectivo_DatosEncabezado(idUser).ToList();
+                    return Json(list, JsonRequestBehavior.AllowGet);
+
+                }
+                else
+                {
+                    return RedirectToAction("SinAcceso", "Login");
+                }
+            }
+            else
+                return RedirectToAction("Index", "Login");
+        }
+
+
+
+
         public ActionResult Create()
         {
-            ViewBag.solef_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+            if (Function.GetUserLogin())
+            {
+                if (Function.GetUserRols("SolicitudEfectivo/Create"))
+                {
+                    int idUser = 0;
+                    GeneralFunctions Login = new GeneralFunctions();
+                    List<tbUsuario> User = Login.getUserInformation();
+                    foreach (tbUsuario Usuario in User)
+                    {
+                        idUser = Convert.ToInt32(Usuario.emp_Id);
+                    }
+
+                    ViewBag.suc_Descripcion = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.tbSucursal.suc_Descripcion).SingleOrDefault();
+
+                    ViewBag.solef_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             ViewBag.solef_UsuarioEntrega = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             ViewBag.solef_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             //ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre");
@@ -87,6 +143,14 @@ namespace ERP_GMEDINA.Controllers
 
 
             return View();
+                }
+                else
+                {
+                    return RedirectToAction("SinAcceso", "Login");
+                }
+            }
+            else
+                return RedirectToAction("Index", "Login");
         }
 
         // POST: /SolicitudEfectivo/Create
@@ -597,12 +661,12 @@ namespace ERP_GMEDINA.Controllers
             return Json(MensajeEdit, JsonRequestBehavior.AllowGet);
         }
 
-        //[HttpPost]
-        //public JsonResult AnularSolcitudEfectivo(int solefId, bool Anulada)
-        //{
-            //var list = db.UDP_Vent_tbSolicitudEfectivo_EsAnulada(solefId, Anulada).ToList();
-            //return Json(list, JsonRequestBehavior.AllowGet);
-        //}
+        [HttpPost]
+        public JsonResult AnularSolcitudEfectivo(int solefId, bool Anulada, string Motivo)
+        {
+            var list = db.UDP_Vent_tbSolicitudEfectivo_EsAnulada(solefId, Anulada, Motivo).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
 
         [HttpPost]
         public JsonResult InsertDetalleSolicitudDetalle(List<tbSolicitudEfectivoDetalle> procesoData)

@@ -69,7 +69,6 @@
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbTipoPago" Width="1.5" PointX="7.5" PointY="98.5" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.UDV_Acce_Usuario_Roles" Width="1.5" PointX="2.75" PointY="0.75" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.V_Objetos" Width="1.5" PointX="4.75" PointY="0.75" />
-        <EntityTypeShape EntityType="ERP_ZORZALModel.CARLOS" Width="1.5" PointX="4.75" PointY="3.75" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.UDV_Vent_FacturaPuntoEmision" Width="1.5" PointX="6.75" PointY="0.75" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.UDV_Inv_Nombre_Empleado" Width="1.5" PointX="0.75" PointY="6.75" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.UDV_Inv_Consultar_Existencias_Productos" Width="1.5" PointX="2.75" PointY="6.75" />

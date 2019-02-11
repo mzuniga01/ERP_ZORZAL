@@ -1072,20 +1072,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Acce.V_Objetos' does not have a primar
           <Property Name="obj_FechaModifica" Type="datetime" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'ERP_GMEDINA.dbo.CARLOS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="CARLOS">
-          <Key>
-            <PropertyRef Name="solef_Id" />
-            <PropertyRef Name="denoId" />
-            <PropertyRef Name="DenoDescripcion" />
-            <PropertyRef Name="valor" />
-          </Key>
-          <Property Name="solef_Id" Type="int" Nullable="false" />
-          <Property Name="denoId" Type="smallint" Nullable="false" />
-          <Property Name="DenoDescripcion" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="valor" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-        </EntityType>
-        <!--Errors Found During Generation:
 warning 6002: The table/view 'ERP_GMEDINA.dbo.UDV_Vent_FacturaPuntoEmision' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="UDV_Vent_FacturaPuntoEmision">
           <Key>
@@ -5580,6 +5566,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Parameter Name="mnda_Id" Type="smallint" Mode="In" />
           <Parameter Name="solef_EsAnulada" Type="bit" Mode="In" />
         </Function>
+        <Function Name="UDP_Vent_tbSolicitudEfectivo_DatosEncabezado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="USER_ID" Type="int" Mode="In" />
+        </Function>
         <Function Name="UDP_Vent_tbSolicitudEfectivo_Details" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="IDSOLICITUD" Type="int" Mode="In" />
         </Function>
@@ -5790,14 +5779,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     [V_Objetos].[obj_UsuarioModifica] AS [obj_UsuarioModifica], 
     [V_Objetos].[obj_FechaModifica] AS [obj_FechaModifica]
     FROM [Acce].[V_Objetos] AS [V_Objetos]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="CARLOS" EntityType="Self.CARLOS" store:Type="Views" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [CARLOS].[solef_Id] AS [solef_Id], 
-    [CARLOS].[denoId] AS [denoId], 
-    [CARLOS].[DenoDescripcion] AS [DenoDescripcion], 
-    [CARLOS].[valor] AS [valor]
-    FROM [dbo].[CARLOS] AS [CARLOS]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="UDV_Vent_FacturaPuntoEmision" EntityType="Self.UDV_Vent_FacturaPuntoEmision" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -8278,7 +8259,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <EntitySet Name="tbTipoPago" EntityType="ERP_ZORZALModel.tbTipoPago" />
           <EntitySet Name="UDV_Acce_Usuario_Roles" EntityType="ERP_ZORZALModel.UDV_Acce_Usuario_Roles" />
           <EntitySet Name="V_Objetos" EntityType="ERP_ZORZALModel.V_Objetos" />
-          <EntitySet Name="CARLOS" EntityType="ERP_ZORZALModel.CARLOS" />
           <EntitySet Name="UDV_Vent_FacturaPuntoEmision" EntityType="ERP_ZORZALModel.UDV_Vent_FacturaPuntoEmision" />
           <EntitySet Name="UDV_Inv_Nombre_Empleado" EntityType="ERP_ZORZALModel.UDV_Inv_Nombre_Empleado" />
           <EntitySet Name="UDV_Inv_Consultar_Existencias_Productos" EntityType="ERP_ZORZALModel.UDV_Inv_Consultar_Existencias_Productos" />
@@ -9471,7 +9451,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Parameter Name="nocre_Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbFactura_Imprimir" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFactura_Imprimir_Result)">
-            <Parameter Name="fact_Id" Mode="In" Type="Int64" />
+          <Parameter Name="fact_Id" Mode="In" Type="Int64" />
           </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbSolicitudEfectivo_EsAnulada" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivo_EsAnulada_Result)">
             <Parameter Name="solef_Id" Mode="In" Type="Int32" />
@@ -9479,7 +9459,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="Motivo" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbSolicitudEfectivo_Imprimir" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivo_Imprimir_Result)">
-            <Parameter Name="SOLEF_ID" Mode="In" Type="Int32" />
+          <Parameter Name="SOLEF_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbSolicitudEfectivo_DatosEncabezado" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivo_DatosEncabezado_Result1)">
+            <Parameter Name="USER_ID" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
@@ -11495,18 +11478,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Property Name="obj_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="obj_UsuarioModifica" Type="Int32" />
           <Property Name="obj_FechaModifica" Type="DateTime" Precision="3" />
-        </EntityType>
-        <EntityType Name="CARLOS">
-          <Key>
-            <PropertyRef Name="solef_Id" />
-            <PropertyRef Name="denoId" />
-            <PropertyRef Name="DenoDescripcion" />
-            <PropertyRef Name="valor" />
-          </Key>
-          <Property Name="solef_Id" Type="Int32" Nullable="false" />
-          <Property Name="denoId" Type="Int16" Nullable="false" />
-          <Property Name="DenoDescripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="valor" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
         </EntityType>
         <EntityType Name="UDV_Vent_FacturaPuntoEmision">
           <Key>
@@ -14786,6 +14757,24 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
         <ComplexType Name="UDP_Vent_tbSolicitudEfectivo_EsAnulada_Result">
           <Property Type="Int32" Name="MensajeError" Nullable="false" />
         </ComplexType>
+        <ComplexType Name="UDP_Vent_tbSolicitudEfectivo_DatosEncabezado_Result">
+          <Property Type="Int32" Name="solef_Id" Nullable="false" />
+          <Property Type="Int32" Name="mocja_Id" Nullable="false" />
+          <Property Type="Int32" Name="solef_UsuarioCrea" Nullable="false" />
+          <Property Type="String" Name="suc_Descripcion" Nullable="false" MaxLength="40" />
+          <Property Type="Int16" Name="cja_Id" Nullable="false" />
+          <Property Type="String" Name="cja_Descripcion" Nullable="false" MaxLength="10" />
+          <Property Type="DateTime" Name="FechaCrea" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbSolicitudEfectivo_DatosEncabezado_Result1">
+          <Property Type="Int32" Name="solef_Id" Nullable="false" />
+          <Property Type="Int32" Name="mocja_Id" Nullable="false" />
+          <Property Type="Int32" Name="solef_UsuarioCrea" Nullable="false" />
+          <Property Type="String" Name="suc_Descripcion" Nullable="false" MaxLength="40" />
+          <Property Type="Int16" Name="cja_Id" Nullable="false" />
+          <Property Type="String" Name="cja_Descripcion" Nullable="false" MaxLength="10" />
+          <Property Type="DateTime" Name="FechaCrea" Nullable="true" Precision="23" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -16821,16 +16810,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="CARLOS">
-            <EntityTypeMapping TypeName="ERP_ZORZALModel.CARLOS">
-              <MappingFragment StoreEntitySet="CARLOS">
-                <ScalarProperty Name="valor" ColumnName="valor" />
-                <ScalarProperty Name="DenoDescripcion" ColumnName="DenoDescripcion" />
-                <ScalarProperty Name="denoId" ColumnName="denoId" />
-                <ScalarProperty Name="solef_Id" ColumnName="solef_Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="UDV_Vent_FacturaPuntoEmision">
             <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Vent_FacturaPuntoEmision">
               <MappingFragment StoreEntitySet="UDV_Vent_FacturaPuntoEmision">
@@ -17461,6 +17440,19 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
                 <ScalarProperty Name="MontoSolicitado" ColumnName="MontoSolicitado" />
                 <ScalarProperty Name="soled_CantidadEntregada" ColumnName="soled_CantidadEntregada" />
                 <ScalarProperty Name="MontoEntregado" ColumnName="MontoEntregado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudEfectivo_DatosEncabezado" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudEfectivo_DatosEncabezado">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivo_DatosEncabezado_Result1">
+                <ScalarProperty Name="solef_Id" ColumnName="solef_Id" />
+                <ScalarProperty Name="mocja_Id" ColumnName="mocja_Id" />
+                <ScalarProperty Name="solef_UsuarioCrea" ColumnName="solef_UsuarioCrea" />
+                <ScalarProperty Name="suc_Descripcion" ColumnName="suc_Descripcion" />
+                <ScalarProperty Name="cja_Id" ColumnName="cja_Id" />
+                <ScalarProperty Name="cja_Descripcion" ColumnName="cja_Descripcion" />
+                <ScalarProperty Name="FechaCrea" ColumnName="FechaCrea" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

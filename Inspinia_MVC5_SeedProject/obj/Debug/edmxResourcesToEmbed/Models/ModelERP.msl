@@ -2028,16 +2028,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="CARLOS">
-      <EntityTypeMapping TypeName="ERP_ZORZALModel.CARLOS">
-        <MappingFragment StoreEntitySet="CARLOS">
-          <ScalarProperty Name="valor" ColumnName="valor" />
-          <ScalarProperty Name="DenoDescripcion" ColumnName="DenoDescripcion" />
-          <ScalarProperty Name="denoId" ColumnName="denoId" />
-          <ScalarProperty Name="solef_Id" ColumnName="solef_Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="UDV_Vent_FacturaPuntoEmision">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Vent_FacturaPuntoEmision">
         <MappingFragment StoreEntitySet="UDV_Vent_FacturaPuntoEmision">
@@ -2668,6 +2658,19 @@
           <ScalarProperty Name="MontoSolicitado" ColumnName="MontoSolicitado" />
           <ScalarProperty Name="soled_CantidadEntregada" ColumnName="soled_CantidadEntregada" />
           <ScalarProperty Name="MontoEntregado" ColumnName="MontoEntregado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudEfectivo_DatosEncabezado" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudEfectivo_DatosEncabezado">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivo_DatosEncabezado_Result1">
+          <ScalarProperty Name="solef_Id" ColumnName="solef_Id" />
+          <ScalarProperty Name="mocja_Id" ColumnName="mocja_Id" />
+          <ScalarProperty Name="solef_UsuarioCrea" ColumnName="solef_UsuarioCrea" />
+          <ScalarProperty Name="suc_Descripcion" ColumnName="suc_Descripcion" />
+          <ScalarProperty Name="cja_Id" ColumnName="cja_Id" />
+          <ScalarProperty Name="cja_Descripcion" ColumnName="cja_Descripcion" />
+          <ScalarProperty Name="FechaCrea" ColumnName="FechaCrea" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

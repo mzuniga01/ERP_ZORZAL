@@ -6,6 +6,10 @@
 }
 
 @{
+    var test = new ERP_GMEDINA.Models.tbSucursal();
+}
+
+@{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -44,21 +48,22 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => sucursal.suc_Descripcion, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.tbMovimientoCaja.tbCaja.tbSucursal.suc_Descripcion, new { htmlAttributes = new { @Value = "San Pedro Sula", @class = "form-control", @readonly = "readonly" } })
+                                    @Html.EditorFor(model => test.suc_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @Value = ViewBag.suc_Descripcion } })
+                                    @*@Html.EditorFor(model => model.tbMovimientoCaja.tbCaja.tbSucursal.suc_Descripcion, new { htmlAttributes = new { @Value = "San Pedro Sula", @class = "form-control", @readonly = "readonly" } })*@
                                     @Html.ValidationMessageFor(model => model.tbMovimientoCaja.tbCaja.tbSucursal.suc_Descripcion)
                                 </div>
 
                                 @Html.LabelFor(model => model.tbMovimientoCaja.cja_Id, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.tbMovimientoCaja.tbCaja.cja_Descripcion, new { htmlAttributes = new { @Value = "Caja 1", @class = "form-control", @readonly = "readonly" } })
-                                    @Html.ValidationMessageFor(model => model.tbMovimientoCaja.tbCaja.cja_Descripcion)
+                                    <input id="cajas" class="form-control" readonly />
                                 </div>
                             </div>
+
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.tbMovimientoCaja.mocja_Id, "Id Apertura", new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.mocja_Id, new { htmlAttributes = new { @Value = "6", @class = "form-control", @readonly = "readonly" } })
+                                    @Html.EditorFor(model => model.mocja_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     @Html.ValidationMessageFor(model => model.mocja_Id, "", new { style = "Color:red" })
                                 </div>
                                 @Html.LabelFor(model => model.tbMovimientoCaja.tbCaja.tbSucursal.suc_Descripcion, "Moneda", new { @class = "control-label col-md-2" })
@@ -113,6 +118,37 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+
+    @* -------------Caja y id Apertura----------- *@
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                type: 'GET',
+                url: '/SolicitudEfectivo/GDatosEncabezado',
+                datatype: 'JSON',
+                data: {},
+                success: function (data) {
+
+                    console.log(data);
+
+                    $.each(data, function (i, item) {
+
+                        var Caja = item.cja_Descripcion;
+                        var idaperura = item.mocja_Id;
+
+                        $("#cajas").val(Caja);
+                        $("#mocja_Id").val(idaperura);
+
+
+                    });
+                },
+                error: function (data) { alert(data.responseText); }
+            });
+        });
+    </script>
+    @* ------------------------------------------ *@
+
 
 
     <script>
