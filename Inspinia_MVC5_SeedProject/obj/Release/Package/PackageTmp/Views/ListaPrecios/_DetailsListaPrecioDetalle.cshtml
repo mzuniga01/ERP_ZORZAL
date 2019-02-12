@@ -1,0 +1,78 @@
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbListadoPrecioDetalle>
+@using ERP_GMEDINA.Models
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+
+                    <table id="" class="table table table-striped  table-bordered">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Código Producto
+                                    @*@Html.DisplayNameFor(model => model.lispd_PrecioMayorista)*@
+                                </th>
+                                <th>
+                                    Descripción Producto
+                                    @*@Html.DisplayNameFor(model => model.lispd_PrecioMayorista)*@
+                                </th>
+                                <th>Precio Mayorista
+                                    @*@Html.DisplayNameFor(model => model.lispd_PrecioMayorista)*@
+                                </th>
+                                <th>Precio Minorista
+                                   @* @Html.DisplayNameFor(model => model.lispd_PrecioMinorista)*@
+                                </th>
+                                <th>
+                                    Descuento caja
+                                    @*@Html.DisplayNameFor(model => model.lispd_DescCaja)*@
+                                </th>
+                                <th>Descuento Gerente
+                                    @*@Html.DisplayNameFor(model => model.lispd_DescGerente)*@
+                                </th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                   
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.prod_Codigo)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.lispd_PrecioMinorista)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.lispd_PrecioMayorista)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.lispd_DescCaja)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.lispd_DescGerente)
+                                    </td>
+                                   
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*<script src="~/Scripts/app/ProductoFactura.js"></script>*@
+<script src="~/Scripts/app/ProductoListaPrecios.js"></script>
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/DataTableBusquedaGenerica.js"></script>
+
+

@@ -1,0 +1,142 @@
+﻿@model ERP_GMEDINA.Models.tbSucursal
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/css/Auditoria.css" rel="stylesheet" />
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Sucursal</h2>
+
+    </div>
+        <div class="col-sm-8">
+            <div class="title-action">
+                <a href="@Url.Action("Index", "Sucursal")">Regresar</a>
+            </div>
+        </div>
+
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Detalle Sucursal</h5>
+
+                </div>
+                <div class="ibox-content">
+
+
+                    <dl class="dl-horizontal">
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.suc_Descripcion)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.suc_Descripcion)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.tbPuntoEmision.pemi_NumeroCAI)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.tbPuntoEmision.pemi_NumeroCAI)
+                        </dd>
+
+                       
+                        <dt>
+                            Departamento
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.tbMunicipio.tbDepartamento.dep_Nombre)
+                        </dd>
+                        <dt>
+                            Municipio
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.tbMunicipio.mun_Nombre)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.suc_Direccion)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.suc_Direccion)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.bod_Id)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.tbBodega.bod_Nombre)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.suc_Telefono)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.suc_Telefono)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.suc_Correo)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.suc_Correo)
+                        </dd>
+                    </dl>
+
+                    @Html.ActionLink("Editar", "Edit", new { id = Model.suc_Id }, new { @class = "btn btn-primary" })
+                   
+                </div>
+            </div>
+
+            <div class="ibox-content">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Acción</th>
+                        <th>Usuario</th>
+                        <th>Fecha</th>
+                    </tr>
+                    <tr>
+                        <td>Creado</td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                        </td>
+                        <td>@Html.DisplayFor(model => model.suc_FechaCrea)</td>
+                    </tr>
+                    <tr>
+                        <td>Modificado</td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                        </td>
+                        <td>@Html.DisplayFor(model => model.suc_FechaModifica)</td>
+                    </tr>
+                </table>
+            </div>
+
+
+
+        </div>
+    </div>
+ </div>
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,66 @@
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbPedidoDetalle>
+@using ERP_GMEDINA.Models
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+           
+                <div class="ibox-content">
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ped_Id)
+            </th>
+            <th>
+                Descripción Producto
+                @*@Html.DisplayNameFor(model => model.tbProducto.prod_Descripcion)*@
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.pedd_Cantidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.pedd_CantidadFacturada)
+            </th>
+
+    
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ped_Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.pedd_Cantidad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.pedd_CantidadFacturada)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.pedd_Id }, new { @class = "btn btn-white btn-sm" })
+                </td>
+            </tr>
+
+        }
+    </tbody>
+
+
+</table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+

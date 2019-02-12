@@ -1,0 +1,324 @@
+﻿@model ERP_GMEDINA.Models.tbMovimientoCaja
+@{
+    var tbSolicitudEfectivo = new ERP_GMEDINA.Models.tbSolicitudEfectivo();
+    var tbTipoPago = new ERP_GMEDINA.Models.tbTipoPago();
+}
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .validation-error {
+    color: red; 
+    font-size: small;
+}
+</style>
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Arqueo Caja</h2>
+
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            <a href="@Url.Action("Index","MovimientoCaja")">Regresar</a>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Registrar Arqueo Caja</h5>
+                </div>
+                <div class="ibox-content">
+
+				@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true)
+
+        @Html.HiddenFor(model => model.mocja_FechaApertura)
+        @Html.HiddenFor(model => model.mocja_FechaCrea)
+        @Html.HiddenFor(model => model.mocja_UsuarioCrea)
+        
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.cja_Id, "Caja", new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.cja_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                <span class="validation-error">@Html.ValidationMessageFor(model => model.cja_Id)</span>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.mocja_UsuarioApertura, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.mocja_UsuarioApertura)
+                <span class="validation-error">@Html.ValidationMessageFor(model => model.mocja_UsuarioApertura)</span>
+            </div>
+            @Html.LabelFor(model => model.mocja_FechaApertura, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.mocja_FechaApertura, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechaapertura" } })
+                <span style="color:red" class="validation-error">@Html.ValidationMessageFor(model => model.mocja_FechaApertura)</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.mocja_UsuarioArquea, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.mocja_UsuarioArquea)
+                <span class="validation-error">@Html.ValidationMessageFor(model => model.mocja_UsuarioArquea)</span>
+            </div>
+            @Html.LabelFor(model => model.mocja_FechaArqueo, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.mocja_FechaArqueo, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechaarqueo" } })
+                <span class="validation-error">@Html.ValidationMessageFor(model => model.mocja_FechaArqueo)</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.mocja_UsuarioAceptacion, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.mocja_UsuarioAceptacion)
+                <span class="validation-error">@Html.ValidationMessageFor(model => model.mocja_UsuarioAceptacion)</span>
+            </div>
+            @Html.LabelFor(model => model.mocja_FechaAceptacion, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.mocja_FechaAceptacion, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechaaceptacion" } })
+                <span class="validation-error">@Html.ValidationMessageFor(model => model.mocja_FechaAceptacion)</span>
+            </div>            
+        </div>
+
+        <div style="width:50%; float:left;">
+            <div class="form-group m-t-xl">
+                <div class="ibox-title">
+                    <h5>Control de Efectivo</h5>
+                </div>
+
+
+                <label class="control-label col-md-4">Efectivo Inicial</label>
+                <div class="control-label col-md-4">
+                    <input type="text" value="5000" class="form-control" readonly />
+                </div>
+            </div>
+
+            <div class="form-group m-t-n-xs">
+                <label class="control-label col-md-4">Efectivo Recibido</label>
+                <div class="control-label col-md-4">
+                    <input type="text" value="4000" class="form-control" readonly />
+                </div>
+            </div>
+
+            <div class="form-group m-t-n-xs">
+                <label class="control-label col-md-4">Efectivo Pagos</label>
+                <div class="control-label col-md-4">
+                    <input type="text" value="6000" class="form-control" readonly />
+                </div>
+            </div>
+
+            <div class="form-group m-t-n-xs">
+                <label class="control-label col-md-4">Efectivo Entregado</label>
+                <div class="control-label col-md-4">
+                    <input type="text" value="2000" class="form-control" readonly />
+                </div>
+            </div>
+
+            <div class="form-group m-t-n-xs">
+                <label class="control-label col-md-4">Total Efectivo</label>
+                <div class="control-label col-md-4">
+                    <input type="text" value="13,000" class="form-control" readonly />
+                </div>
+            </div>
+        </div>
+
+
+
+        <div style="width:50%; float:right;">
+            <div class="form-group m-t-xl">
+                <div class="ibox-title">
+                    <h5>Control de Pagos</h5>
+                </div>
+
+                <label class="control-label col-md-4">Pagos Efectivo</label>
+                <div class="control-label col-md-4">
+                    <input type="text" value="6000" class="form-control" readonly />
+                </div>
+            </div>
+
+            <div class="form-group m-t-n-xs">
+                <label class="control-label col-md-4">Pagos TC o TD</label>
+                <div class="control-label col-md-4">
+                    <input type="text" value="5500" class="form-control" readonly />
+                </div>
+            </div>
+
+            <div class="form-group m-t-n-xs">
+                <label class="control-label col-md-4">Pagos Cheque</label>
+                <div class="control-label col-md-4">
+                    <input type="text" value="2000" class="form-control" readonly />
+                </div>
+            </div>
+
+            <div class="form-group m-t-n-xs">
+                <label class="control-label col-md-4">Pagos Nota de Credito</label>
+                <div class="control-label col-md-4">
+                    <input type="text" value="3800" class="form-control" readonly />
+                </div>
+            </div>
+
+            <div class="form-group m-t-n-xs">
+                <label class="control-label col-md-4">Pagos Cupón</label>
+                <div class="control-label col-md-4">
+                    <input type="text" value="1910" class="form-control" readonly />
+                </div>
+            </div>
+
+            <div class="form-group m-t-n-xs">
+                <label class="control-label col-md-4">Total Pagos</label>
+                <div class="control-label col-md-4">
+                    <input type="text" value="19,210.00" class="form-control" readonly />
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group m-t-xl">
+            <div class=" col-md-12">
+                <label class="control-label">Detalle Denomonaciòn Efectivo</label><br /><br />
+                <table class="table table-bordered">
+
+                    <tr>
+                        <th class="success">Moneda</th>
+                        <th class="success">Tipo Denominacion</th>
+                        <th class="success">Denominacion</th>
+                        <th class="success">Valor Denominacion</th>
+                        <th class="success">Cantidad</th>
+                        <th class="success">Valor</th>
+                    </tr>
+                    <tr>
+                        <td>L.</td>
+                        <td>Billete</td>
+                        <td>500 Lempiras</td>
+                        <td>500</td>
+                        <td>5</td>
+                        <td>2500</td>
+                    </tr>
+                    <tr>
+                        <td>L.</td>
+                        <td>Billete</td>
+                        <td>100 Lempiras</td>
+                        <td>100</td>
+                        <td>10</td>
+                        <td>1,000</td>
+                    </tr>
+                    <tr>
+                        <td>L.</td>
+                        <td>Billete</td>
+                        <td>50 Lempiras</td>
+                        <td>50</td>
+                        <td>10</td>
+                        <td>500</td>
+                    </tr>
+                    <tr>
+                        <td>L.</td>
+                        <td>Billete</td>
+                        <td>20 Lempiras</td>
+                        <td>20</td>
+                        <td>50</td>
+                        <td>1000</td>
+                    </tr>
+                    <tr>
+                        <td>L.</td>
+                        <td>Billete</td>
+                        <td>10 Lempiras</td>
+                        <td>10</td>
+                        <td>50</td>
+                        <td>500</td>
+                    </tr>
+                    <tr>
+                        <td>L.</td>
+                        <td>Billete</td>
+                        <td>5 Lempiras</td>
+                        <td>5</td>
+                        <td>60</td>
+                        <td>300</td>
+                    </tr>
+                    <tr>
+                        <td>L.</td>
+                        <td>Billete</td>
+                        <td>2 Lempiras</td>
+                        <td>2</td>
+                        <td>50</td>
+                        <td>100</td>
+                    </tr>
+                    <tr>
+                        <td>L.</td>
+                        <td>Billete</td>
+                        <td>1 Lempiras</td>
+                        <td>1</td>
+                        <td>100</td>
+                        <td>100</td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <th class="success">Total Efectivo</th>
+                        <td>6,000</td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-5 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
+            </div>
+        </div>
+    </div>
+}
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    
+    <script>
+        jQuery('input,select').each(function () {
+            var req = jQuery(this).attr('data-val-required');
+            if (undefined != req) {
+                var label = jQuery('label[for="' + jQuery(this).attr('id') + '"]');
+                var text = label.text();
+                if (text.length > 0) {
+                    label.append('<span style="color:red"> *</span>');
+                }
+            }
+        });
+
+</script>
+    
+    
+    }
+
+
+
+ 
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/Datepicker.js"></script>

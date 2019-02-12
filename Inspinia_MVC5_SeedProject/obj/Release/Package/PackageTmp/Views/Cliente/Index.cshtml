@@ -1,0 +1,166 @@
+﻿@model IEnumerable<ERP_GMEDINA.Models.UDV_Vent_Busqueda_Clientes>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Cliente</h2>
+    </div>
+</div>
+
+
+<div class="wrapper wrapper-content">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Listado de Cliente</h5>
+					<div class="ibox-tools">
+                        @Html.ActionLink("Registrar Cliente", "Create", null, new { @class = "btn btn-primary" })
+					</div>
+                </div>
+                <div class="ibox-content">
+                    @using (Html.BeginForm())
+                    {
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Identificación</label>
+                                <div class="col-md-4">
+                                    <input type="text" value="@ViewBag.Ident" id="identificacion" autocomplete="off" onkeyup = "format(this)" name="identificacion" class="form-control" />
+                                </div>
+                                <label class="control-label col-md-1">Nombres</label>
+                                <div class="col-md-4">
+                                    <input type="text" value="@ViewBag.Nombres" id="nombre" name="nombre" autocomplete="off" onkeyup = "format(this)" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Teléfono</label>
+                                <div class="col-md-3">
+                                    <input type="text" value="@ViewBag.Tel" id="telefono" name="telefono" Placeholder = "(Codigo Areá) Telefono" autocomplete="off" class="form-control" />
+                                </div>
+                                <div class="">
+                                    <button id="search" type="submit" class="btn btn-primary btn-sm">Buscar</button>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                    <table class="table table table-striped  table-bordered" id="DataTable1">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tpi_Descripcion)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.clte_Identificacion)
+                                </th> 
+                                <th>
+                                    @Html.DisplayNameFor(model => model.clte_Nombres)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.clte_Telefono)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.clte_EsActivo)
+                                </th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="Cliente">
+
+                            @foreach (var item in Model)
+                            {
+                                if (item.clte_Id == 1)
+                                {
+
+                                }
+                                else
+                                {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tpi_Descripcion)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.clte_Identificacion)
+                                    </td>
+                                    <td>
+                                        @if (item.clte_EsPersonaNatural)
+                                        {
+                                            <p>
+                                                @Html.DisplayFor(modelItem => item.clte_Nombres)&nbsp
+                                                @Html.DisplayFor(modelItem => item.clte_Apellidos)
+                                            </p>
+                                        }
+                                        else
+                                        {
+                                            @Html.DisplayFor(modelItem => item.clte_NombreComercial)
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (item.clte_EsPersonaNatural)
+                                        {
+                                            @Html.DisplayFor(modelItem => item.clte_Telefono)
+                                        }
+                                        else
+                                        {
+                                            @Html.DisplayFor(modelItem => item.clte_ContactoTelefono)
+                                        }
+                                    </td>
+                                    @if (item.clte_EsActivo)
+                                    {
+                                        <td>Sí</td>
+                                    }
+                                    else
+                                    {
+                                        <td>No</td>
+                                    }
+                                    <td>
+                                        @Html.ActionLink("Detalles", "Details", new { id = item.clte_Id }, new { @class = "btn btn-primary btn-xs" })
+                                        @Html.ActionLink("Editar", "Edit", new { id = item.clte_Id }, new { @class = "btn btn-white btn-xs" })
+                                    </td>
+                                   
+                                </tr>
+                                }
+                            }
+                        </tbody>
+                        
+
+
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/DataTableBusquedaGenerica.js"></script>
+<script src="~/Scripts/app/BCliente.js"></script>
+<script>
+    $("#telefono").on("keypress keyup blur", function (event) {
+        var Telefono = $(this).val();
+        console.log(Telefono)
+        if (Telefono == '') {
+            //$(this).val('+');
+        }
+        this.value = this.value.replace(/[a-záéíóúüñ#/=]+/ig, "");
+    });
+    function format(input) {
+        $(input).change(function () {
+            var str = $(input).val();
+            var res = str.toUpperCase();
+            $(input).val(res);
+        });
+        $(input).on("keypress", function () {
+            $input = $(this);
+            setTimeout(function () {
+                $input.val($input.val().toUpperCase());
+            }, 50);
+        })
+    }
+</script>

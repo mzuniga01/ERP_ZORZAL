@@ -1,0 +1,92 @@
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbDevolucionDetalle>
+@using ERP_GMEDINA.Models
+
+@{
+    var test = new ERP_GMEDINA.Models.tbFacturaDetalle();
+}
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                @*<div class="ibox-title">
+                        <h5>List of tbDevolucionDetalle</h5>
+                        <div class="ibox-tools">
+                            @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary btn-xs"})
+                        </div>
+                    </div>*@
+                <div class="ibox-content">
+                    <table id="EditarDetalle" class="table table table-striped  table-bordered">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Producto
+                                    @*@Html.DisplayNameFor(model => model.tbProducto.prod_Descripcion)*@
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.devd_CantidadProducto)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.devd_Descripcion)
+                                </th>
+                                <th>
+
+                                </th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr  data-FactID="@item.tbDevolucion.fact_Id" data-CantidadDev="@item.devd_CantidadProducto" data-ProductoDescripcion="@item.tbProducto.prod_Descripcion" data-CodigoFactura="@item.tbDevolucion.tbFactura.fact_Codigo" data-PorcentajeDescuento="@item.tbDevolucion.tbFactura.fact_PorcentajeDescuento" data-PrecioUnitario="@test.factd_PrecioUnitario">
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
+
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.devd_CantidadProducto)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.devd_Descripcion)
+                                    </td>
+                                    <td id="factID" hidden>@Html.DisplayFor(modelItem => item.tbDevolucion.fact_Id)</td>
+                                    <td hidden>@Html.DisplayFor(modelItem => item.tbDevolucion.tbFactura.fact_Codigo)</td>
+                                    <td>
+                                        <button id="Producto" type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#Editar_@item.devd_Id"  onclick="Calcular(@item.devd_Id);">
+                                            Editar
+                                        </button>
+                                    </td>
+                                </tr>
+                                <!-- Modal -->
+                                <div class="modal fade" id="Editar_@item.devd_Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg " role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Editar Devolucion Detalle</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div id="EditarDevolucionDetalle" class="modal-body">
+                                                @Html.Partial("_EditarDetalleDevolucion", new ERP_GMEDINA.Models.tbDevolucionDetalle() { devd_Id = item.devd_Id, dev_Id = item.dev_Id, prod_Codigo = item.prod_Codigo, devd_CantidadProducto = item.devd_CantidadProducto, devd_Descripcion = item.devd_Descripcion, devd_Monto = item.devd_Monto, devd_UsuarioCrea = item.devd_UsuarioCrea, devd_FechaCrea = item.devd_FechaCrea, devd_UsuarioModifica = item.devd_UsuarioModifica, devd_FechaModifica = item.devd_FechaModifica })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/app/ProductoDevolucion.js"></script>
+
+
+

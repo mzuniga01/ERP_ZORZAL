@@ -1,0 +1,124 @@
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbCliente>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input id="searchCliente" type="text" class="form-control" placeholder="Ingresar Cliente" />
+                            <br />
+                        </div>
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <table id="tbCliente" class="table table table-striped  table-bordered">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.clte_Id)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.clte_Identificacion)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.clte_Nombres)
+                                </th>
+                                <th hidden>
+                                    @Html.DisplayNameFor(model => model.tpi_Id)
+                                </th>
+                                <th hidden>
+                                    @Html.DisplayNameFor(model => model.clte_FechaNacimiento)
+                                </th>
+                                <th hidden>
+                                    @Html.DisplayNameFor(model => model.clte_EsPersonaNatural)
+                                </th>
+                                <th hidden>
+                                    @Html.DisplayNameFor(model => model.clte_ConCredito)
+                                </th>
+                                <th hidden>
+                                    @Html.DisplayNameFor(model => model.clte_DiasCredito)
+                                </th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ClienteTbody">
+
+                           @foreach (var item in Model)
+                           {
+                               if (item.clte_Id == 1)
+                               {
+
+                               }
+                               else
+                               {
+                                   var nombrecliente = (!item.clte_EsPersonaNatural) ? item.clte_NombreComercial : item.clte_Nombres + ' ' + @item.clte_Apellidos;
+                                   var Espersona = (item.clte_EsPersonaNatural) ? "Si" : "No";
+                                   var ConCredito = (item.clte_ConCredito) ? "Si" : "No";
+                            <tr data-id="@item.clte_Id" data-rtn="@item.clte_Identificacion" data-nombrecliente="@nombrecliente" data-tpi="@item.tbTipoIdentificacion.tpi_Descripcion" data-fecha="@item.clte_FechaNacimiento" data-Espersona="@Espersona" data-ConCredito="@ConCredito" data-DiasCredito="@item.clte_DiasCredito">
+
+                                <td >
+                                    @Html.DisplayFor(modelItem => item.clte_Id)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.clte_Identificacion)
+                                </td>
+                                <td>
+                                    @nombrecliente
+                                </td>
+                                <td hidden>
+                                    @Html.DisplayFor(modelItem => item.tbTipoIdentificacion.tpi_Descripcion)
+                                </td>
+                                <td hidden>
+                                    @Html.DisplayFor(modelItem => item.clte_FechaNacimiento)
+                                </td>
+                                <td hidden>
+                                    @Espersona
+                                </td>
+                                <td hidden>
+                                    @ConCredito
+                                </td>
+                                <td hidden>
+                                    @Html.DisplayFor(modelItem => item.clte_DiasCredito)
+                                </td>
+                                <td>
+                                    <button id="seleccionar" type="button" class="btn btn-primary btn-xs">Agregar</button>
+                                </td>
+                            </tr>
+                               }
+                           }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#tbCliente').DataTable(
+        {
+            "searching": false,
+            "lengthChange": false,
+
+            "oLanguage": {
+                "oPaginate": {
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior",
+                },
+                "sEmptyTable": "No hay registros",
+                "sInfoEmpty": "Mostrando 0 de 0 Entradas",
+                "sSearch": "Buscar",
+                "sInfo": "Mostrando _START_ a _END_ Entradas",
+
+            }
+        });
+    });
+</script>
+
+

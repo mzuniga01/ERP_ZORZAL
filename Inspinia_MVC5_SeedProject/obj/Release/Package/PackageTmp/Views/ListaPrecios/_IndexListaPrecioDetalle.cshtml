@@ -1,0 +1,233 @@
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbListadoPrecioDetalle>
+@using ERP_GMEDINA.Models
+
+@{     tbListadoPrecioDetalle ListDetalle = new tbListadoPrecioDetalle(); }
+
+<div class="wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+
+
+            <div class="ibox-tools">
+                <div class="col-md-offset-11">
+                    <button id="AddProducto" value="Mostrar" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalAgregarDetalle"><span>Añadir Detalle</span></button>
+                </div>
+            </div>
+            <div class="ibox">
+                <table id="" class="table table table-striped table-bordered">
+                    <thead>
+                        <tr>
+
+                            <th>
+                         
+                                @Html.DisplayNameFor(model => model.lispd_Id)
+                            </th>
+
+                            <th>
+                                Descripción Producto
+                                @*@Html.DisplayNameFor(model => model.lispd_PrecioMayorista)*@
+                            </th>
+                            <th>
+                                Precio Mayorista
+                                @*@Html.DisplayNameFor(model => model.lispd_PrecioMayorista)*@
+                            </th>
+
+                            <th>
+                                Precio Minorista
+                                @*@Html.DisplayNameFor(model => model.lispd_PrecioMinorista)*@
+                            </th>
+
+                            <th>
+                                Descuento Caja
+                                @*@Html.DisplayNameFor(model => model.lispd_DescCaja)*@
+                            </th>
+
+                            <th>
+                                Descuento Gerente
+                                @*@Html.DisplayNameFor(model => model.lispd_DescGerente)*@
+                            </th>
+
+
+
+                            <th>
+                                Acción
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.prod_Codigo)
+                                </td>
+
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.lispd_PrecioMayorista)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.lispd_PrecioMinorista)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.lispd_DescCaja)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.lispd_DescGerente)
+                                </td>
+
+
+                                <td>
+                                    @if (item.tbListaPrecio.listp_Id != 4)
+                                    {
+                             
+                                        <button type="button" class="btn btn-white btn-xs" onclick="EditListadoPrecioDetalle('@item.lispd_Id')">Editar</button>
+                            
+                                    }
+                                    else
+                                    {
+                                        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal">
+                                            Editar
+                                        </button>
+                                    }
+                                </td>
+                                </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/DataTableBusquedaGenerica.js"></script>
+
+<div class="modal fade" id="EditPedidoDetalle">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h4 id="ModalTitle">Editar Lista Precio Detalle</h4>
+            </div>
+            <div class="modal-body">
+                <form id="form">
+                    <fieldset id="SubmitForm">
+                        <div class="form-horizontal">
+                            <label id="MsjError">
+                            </label>
+                            <div class="form-group">
+                                @Html.LabelFor(m => ListDetalle.lispd_Id, new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-10">
+                                    <input type="text" id="lispd_Id_lisd" name="lispd_Id" class="form-control" />
+                                    @Html.ValidationMessageFor(m => ListDetalle.lispd_Id)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(m => ListDetalle.prod_Codigo, new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-10">
+                                    <input type="text" id="prod_Codigo_lisd" name="prod_Codigo" class="form-control" />
+                                    @Html.ValidationMessageFor(m => ListDetalle.prod_Codigo)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => ListDetalle.lispd_PrecioMayorista, new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-10">
+                                    <input type="text" id="lispd_PrecioMayorista_lisd" name="lispd_PrecioMayorista" class="form-control" />
+                                    @Html.ValidationMessageFor(m => ListDetalle.lispd_PrecioMayorista)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(m => ListDetalle.lispd_PrecioMinorista, new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-10">
+                                    <input type="text" id="lispd_PrecioMinorista_lisd" name="lispd_PrecioMinorista" class="form-control" />
+                                    @Html.ValidationMessageFor(m => ListDetalle.lispd_PrecioMinorista)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(m => ListDetalle.lispd_DescCaja, new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-10">
+                                    <input type="text" id="lispd_DescCaja_lisd" name="lispd_DescCaja" class="form-control" />
+                                    @Html.ValidationMessageFor(m => ListDetalle.lispd_DescCaja)
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                @Html.LabelFor(m => ListDetalle.lispd_DescGerente, new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-10">
+                                    <input type="text" id="lispd_DescGerente_lisd" name="lispd_DescGerente" class="form-control" />
+                                    @Html.ValidationMessageFor(m => ListDetalle.lispd_DescGerente)
+                                </div>
+                            </div>
+
+
+
+                            <input type="hidden" id="lispd_UsuarioCrea_lisd" name="lispd_UsuarioCrea" />
+                            <input type="hidden" id="lispd_FechaCrea_lisd" name="lispd_FechaCrea" />
+                        
+
+
+                            <div class="form-group">
+                                <div class="col-md-12 text-center">
+                                    <button class="btn btn-primary" type="button" id="BtnsubmitMunicipio" tabindex="10"> Guardar </button>
+                                    <button type="button" class="btn btn-white" data-dismiss="modal" aria-label="Close">Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="modal fade" id="ModalAgregarDetalle" tabindex="-1" role="dialog" aria-labelledby="DetalleNumeracion" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">Añadir Lista Precio Detalle</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="AjaxCreatePedidoDetalle">
+                @Html.Partial("_CreateListaPrecioDetalleEdit", new ERP_GMEDINA.Models.tbListadoPrecioDetalle())
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

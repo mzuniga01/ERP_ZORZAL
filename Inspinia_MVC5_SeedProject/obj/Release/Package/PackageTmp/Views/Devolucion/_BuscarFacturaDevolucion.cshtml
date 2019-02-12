@@ -1,0 +1,96 @@
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbFactura>
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input id="searchFactura" type="text" class="form-control" placeholder="Buscar Factura" />
+                            <br />
+                        </div>
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+@*<table class="table table table-striped  table-bordered">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.fact_Codigo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fact_Fecha)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.clte_Identificacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.clte_Nombres)
+             
+            </th>
+               
+           
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr data-Codigo="@item.fact_Codigo" data-idFact="@item.fact_Id"  @*data-Fecha="@item.fact_AlCredito"*@ @*data-desc="@item.tbCliente.clte_Identificacion" data-Cliente="@item.clte_Nombres"*@>
+                @*<td id="CodigoFactura">
+                    @Html.DisplayFor(modelItem => item.fact_Codigo)
+                </td>
+                <td id="FechaF">
+                    @Html.DisplayFor(modelItem => item.fact_Fecha)
+                </td>
+                <td id="ClienteRTN">
+                    @Html.DisplayFor(modelItem => item.clte_Identificacion)
+                </td>
+                <td id="NombreCliente">
+                    @Html.DisplayFor(model => item.clte_Nombres)
+                </td>
+                <td>
+                    <button id="AgregarFactura" class="btn btn-primary btn-xs">Agregar</button>
+                </td>
+            </tr>
+
+        }
+    </tbody>*@
+@*</table>*@
+
+                  
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#DevFactura').DataTable(
+        {
+            "searching": false,
+            "lengthChange": false,
+
+            "oLanguage": {
+                "oPaginate": {
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior",
+                },
+                "sEmptyTable": "No hay registros",
+                "sInfoEmpty": "Mostrando 0 de 0 Entradas",
+                "sSearch": "Buscar",
+                "sInfo": "Mostrando _START_ a _END_ Entradas",
+
+            }
+        });
+    });
+</script>
+
+

@@ -1,0 +1,72 @@
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbMovimientoCaja>
+
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+@{
+    var test = new ERP_GMEDINA.Models.tbCaja();
+}
+
+
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Aperturar Caja</h2>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Listado Caja</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label col-md-1">Sucursal</label>
+                        <div class="col-md-4">
+                            <input type="text" class="form-control " value="San pedro sula" />
+                        </div>
+                    </div>
+                </div>
+                    <table id="DataTable" class="table table table-striped  table-bordered" >
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tbCaja.cja_Id)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tbCaja.cja_Descripcion)
+                                </th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbCaja.cja_Id)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbCaja.cja_Descripcion)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Aperturar", "CreateApertura", null, new { @class = "btn btn-primary btn-xs" })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/Datepicker.js"></script>
+<script src="~/Scripts/app/DataTable.js"></script>

@@ -1,0 +1,32 @@
+﻿@model ERP_GMEDINA.Models.DatosConsumidorFinal
+
+<div class="form-horizontal">
+    <div class="form-group">
+        @Html.LabelFor(model => model.confi_Nombres, "Nombres", new { @class = "control-label col-md-3" })
+        <div class="col-md-6">
+            @Html.EditorFor(model => model.confi_Nombres, new { htmlAttributes = new { @autocomplete = "off", @onkeyup = "format(this)", @style = "text-transform:capitalize;" } })
+            @Html.ValidationMessageFor(model => model.confi_Nombres)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.confi_Telefono, "Telefono", new { @class = "control-label col-md-3" })
+        <div class="col-md-6">
+            @Html.EditorFor(model => model.confi_Telefono)
+            @Html.ValidationMessageFor(model => model.confi_Telefono)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.confi_Correo, "Correo", new { @class = "control-label col-md-3" })
+        <div class="col-md-6">
+            @Html.EditorFor(model => model.confi_Correo)
+            <p id="emailOK1" style="color:red">@Html.ValidationMessageFor(model => model.confi_Correo)</p>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary btn-sm" type="button" id="AgregarConsumidorFinal">Guardar</button>
+        <button type="button" class="btn btn-white btn-sm" data-dismiss="modal" onclick="uncheck3()">Cancelar</button>
+    </div>
+</div>
+

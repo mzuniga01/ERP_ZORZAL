@@ -1,0 +1,311 @@
+﻿@model ERP_GMEDINA.Models.tbDevolucion
+@using ERP_GMEDINA.Models
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Devolución de Producto</h2>
+
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            @Html.ActionLink("Regresar", "Index")
+        </div>
+    </div>
+</div>
+
+
+<div class="wrapper wrapper-content">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Registrar Devolución</h5>
+                </div>
+                <div class="ibox-content">
+
+                   @using (Html.BeginForm("create","Devolucion", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                   {
+                        @Html.AntiForgeryToken()
+
+                       
+                        <div class="form-horizontal">
+
+                            @Html.ValidationSummary(true)
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.tbCaja.tbSucursal.suc_Descripcion, "Sucursal", new { @class = "control-label col-md-2" })
+                                <div class="col-md-3">
+                                    <input type="text" value="San Pedro Sula" class="form-control " readonly />
+                                    @Html.ValidationMessageFor(model => model.tbCaja.tbSucursal.suc_Descripcion)
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.cja_Id, "Caja", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-3">
+                                        <input type="text" id="cja_Id" name="cja_Id" value="4" class="form-control " readonly />
+                                        @Html.ValidationMessageFor(model => model.cja_Id)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">¿Es Consumidor Final?</label>
+                                <div class="col-md-4">
+                                    <input id="consumidorFinal" type="checkbox" class="check-box" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.tbFactura.clte_Identificacion, "RTN Cliente", new { @class = "control-label col-md-2" })
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.tbFactura.clte_Identificacion, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.tbFactura.clte_Identificacion)
+
+                                </div>
+
+                                <div class="col-md-1">
+                                    <button type="button" id="btnCliente" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarCliente"><span class="glyphicon glyphicon-search"></span></button>
+                                </div>
+
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.tbFactura.clte_Nombres, "Cliente", new { @class = "control-label col-md-1" })
+                                    <div class="col-md-3">
+                                        @Html.EditorFor(model => model.tbFactura.clte_Nombres, new
+                               {
+                                   htmlAttributes = new
+                                   {
+                                       @class = "form-control" , @readonly = "readonly" }
+                               })
+                                        @Html.ValidationMessageFor(model => model.tbFactura.clte_Nombres)
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.tbFactura.fact_Codigo, "Factura", new { @class = "control-label col-md-2" })
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.tbFactura.fact_Codigo, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.tbFactura.clte_Identificacion)
+                                    <input type="hidden" class="form-control" id="fact_Id" name="fact_Id" />
+                                    <input type="hidden" class="form-control" id="dev_Estado" name="dev_Estado" value="false" />
+                                </div>
+
+                                <div class="col-md-1">
+                                    <button type="button" id="Factura" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarFactura"><span class="glyphicon glyphicon-search"></span></button>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.dev_Fecha, new { @class = "control-label col-md-1" })
+                                    <div class="col-md-3">
+                                        @Html.EditorFor(model => model.dev_Fecha, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechaDevolucion" } })
+                                        @Html.ValidationMessageFor(model => model.dev_Fecha)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                @Html.Hidden("RedirectTo", Url.Action("CreateNotaCredito", "Devolucion"))
+                                @Html.Partial("_CreateDevolucionDetalle", new tbDevolucionDetalle())
+
+                              
+
+                            </div>
+                        </div>
+
+                        <div class="ibox-content">
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="ibox float-e-margins">
+                                        <div class="ibox-content">
+                                            <div class="form-group">
+                                                <div class="col-md-12 text">
+                                                    <input type="submit" value="Guardar" id="Guardar" class="btn btn-primary btn-ms" />
+                                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white btn-sm" }) 
+                                                </div>
+                                            </div>
+                                            <br />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- Modal de Clientes-->
+<div>
+    <div class="modal fade" id="ModalAgregarCliente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Agregar Cliente</h4>
+                </div>
+                <div class="modal-body" id="frmEditarMunicipios">
+                    @Html.Partial("_IndexCliente", (List<tbCliente>)ViewBag.Cliente)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de Facturas -->
+<div>
+    <div class="modal fade" id="ModalAgregarFactura" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Agregar Cliente</h4>
+                </div>
+                <div class="modal-body" id="frmEditarMunicipios">
+                    <table id="DevFactura" class="table table table-striped  table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Código Factura</th>
+                                <th>Fecha</th>
+                                <th>Codigo Identificacion </th>
+                                <th>Nombres</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="BodyFactura"></tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/app/EmitirNotaCredito.js"></script>
+<script src="~/Scripts/app/Datepicker.js"></script>
+<script src="~/Scripts/app/ProductoDevolucion.js"></script>
+<script src="~/Scripts/app/DevolucionDetalle.js"></script>
+<script src="~/Scripts/app/FacturaDevolucion.js"></script>
+<script src="~/Scripts/app/ClienteDevolucion.js"></script>
+<script>
+ $(document).ready(function () {
+     var x = document.getElementById("Factura").disabled;
+     if (x == true) {
+         document.getElementById("Factura").title = "Primero debe seleccionar un cliente";
+         document.getElementById("tbFactura_fact_Codigo").title = "Primero debe seleccionar un cliente";
+     }
+     else {
+         //console.log('else')
+         //document.getElementById("Factura").title = "";
+         //document.getElementById("tbFactura_fact_Codigo").title = "";
+     }
+ });
+ </script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        jQuery('input,select').each(function () {
+            var req = jQuery(this).attr('data-val-required');
+            if (undefined != req) {
+                var label = jQuery('label[for="' + jQuery(this).attr('id') + '"]');
+                var text = label.text();
+                if (text.length > 0) {
+                    label.append('<span style="color:red"> *</span>');
+                }
+            }
+        });
+
+    </script>
+}
+<script>
+    $("#prod_Codigo").on("keypress keyup blur", function (event) {
+            var Value = $(this).val();
+            if (Value == '') {
+                $('#prod_Codigo').val('');
+                $('#tbProducto_prod_Descripcion').val('');
+                $('#CantidadFacturada').val(0.00);
+                $('#Impuesto').val(0.00);
+                $('#Descuento').val(0.00),
+                $("#PrecioUnitario").val(0.00)
+            }
+        });
+        var contador = 0;
+        $(document).keypress(function (e) {
+            console.log("si entraprod")
+            console.log('Si entraooo', e.target.id);
+            var IDInput = e.target.id;
+            if (e.which == 13) {
+                if (IDInput == 'prod_Codigo') {
+                    ///
+                    $(function () {
+                        var IDFactura = $('#fact_Id').val();
+                        var CodProducto = $('#prod_Codigo').val();
+                        $.ajax({
+                            type: 'POST',
+                            url: '/Factura/BuscarCodigoProducto',
+                            data: JSON.stringify({ IDFactura: IDFactura, CodProducto: CodProducto }),
+                            contentType: 'application/json;',
+                            dataType: 'json',
+
+                        }).done(function (data) {
+                            if (data.length > 0) {
+                                $.each(data, function (key, val) {
+                                    if (val.EXISTE) {
+                                        console.log('each')
+                                        data_producto = val.CODIGOPRODUCTO;
+                                        data_descripcion = val.DESCRIPCIONPRODUCTO;
+                                        data_cantidad = val.CANTIDADFACTURA;
+                                        data_impuesto = val.IMPUESTOPRODUCTO;
+                                        data_descuento = val.DESCUENTOPRODUCTO;
+                                        data_precio = val.PRECIOUNITARIO;
+                                        $('#prod_Codigo').val(data_producto);
+                                        $('#tbProducto_prod_Descripcion').val(data_descripcion);
+                                        $('#CantidadFacturada').val(data_cantidad);
+                                        $('#Impuesto').val(data_impuesto);
+                                        $('#Descuento').val(data_descuento);
+                                        $('#PrecioUnitario').val(data_precio);
+
+                                    }
+                                })
+                            }
+                        })
+                     })
+                    }
+                }
+        })
+
+
+    $(document).ready(function () {
+        $('#DevFactura').DataTable(
+        {
+            "searching": false,
+            "lengthChange": false,
+
+            "oLanguage": {
+                "oPaginate": {
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior",
+                },
+                "sEmptyTable": "No hay registros",
+                "sInfoEmpty": "Mostrando 0 de 0 Entradas",
+                "sSearch": "Buscar",
+                "sInfo": "Mostrando _START_ a _END_ Entradas",
+
+            }
+        });
+    });
+</script>
+
+

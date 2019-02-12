@@ -1,0 +1,344 @@
+﻿@model ERP_GMEDINA.Models.tbListaPrecio
+@*@{tbListadoPrecioDetalle Listo = new tbListadoPrecioDetalle}*@
+
+@using ERP_GMEDINA.Models
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Editar Lista Precio</h2>
+
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            <a href="@Url.Action("Index","ListaPrecios")">Regresar</a>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+    <div class="ibox-title">
+        <h5>Editar Lista Precios</h5>
+    </div>
+    <div class="ibox-content">
+
+        @using (Html.BeginForm("Edit", "ListaPrecios", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+
+            <div class="form-horizontal">
+                @Html.Hidden("RedirectTo", Url.Action("Index", "ListaPrecios"))
+                @Html.ValidationSummary(true)
+                @Html.HiddenFor(model => model.listp_Id)
+                @*@Html.HiddenFor(model => model.lispd_Id)*@
+
+                @*Auditoria*@
+
+                @Html.HiddenFor(model => model.listp_UsuarioCrea)
+                @Html.HiddenFor(model => model.listp_FechaCrea)
+                @Html.HiddenFor(model => model.listp_UsuarioModifica)
+                @Html.HiddenFor(model => model.listp_FechaModifica)
+                @Html.HiddenFor(model => model.tbUsuario.usu_Nombres)
+                @Html.HiddenFor(model => model.tbUsuario.usu_Apellidos)
+                @Html.HiddenFor(model => model.tbUsuario1.usu_Nombres)
+                @Html.HiddenFor(model => model.tbUsuario1.usu_Apellidos)
+
+              
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.listp_Nombre, new { @class = "control-label col-md-2" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.listp_Nombre)
+                        @Html.ValidationMessageFor(model => model.listp_Nombre)
+                    </div>
+                </div>
+                <div class="form-group" id="Activo">
+                    @Html.LabelFor(model => model.listp_EsActivo, new { @class = "control-label col-md-2" })
+                    <div class="col-md-2">
+                        @if (Model.listp_EsActivo)
+                        {
+                            <p>Si</p>
+
+                        }
+                        else
+                        {
+                            <p>No</p>
+
+                        }
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.listp_FechaInicioVigencia, "Fecha Inicio Vigencia", new { @class = "control-label col-md-2" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.listp_FechaInicioVigencia, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechaListaPrecioEdit", @readonly = "readonly" } })
+                        <span class="validation-error">@Html.ValidationMessageFor(model => model.listp_FechaInicioVigencia)</span>
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.listp_FechaFinalVigencia, new { @class = "control-label col-md-2" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.listp_FechaFinalVigencia, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "FFV" } })
+                        @Html.ValidationMessageFor(model => model.listp_FechaFinalVigencia)
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.listp_Prioridad, new { @class = "control-label col-md-2" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.listp_Prioridad, new { htmlAttributes = new { @maxlength = "1", @onkeypress = "return validar(event)" } })
+                        <p id="nprioridad" style="color:red">@Html.ValidationMessageFor(model => model.listp_Prioridad)</p>
+                    </div>
+
+
+                   
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Guardar" class="btn btn-primary" />
+                                @if (Model.listp_EsActivo)
+                                {  
+                                     <button type="button" id="inactivar" name="inactivar" class="btn btn-danger" data-toggle="modal" data-target="#ModalAnular">   Inactivar </button>    }
+
+                                else
+                                {
+                                     <button type="button" id="activar" name="activar" class="btn btn-info" data-toggle="modal" data-target="#ModalAnular1">  Activar</button>   }      
+                                   @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                            </div>
+                        </div>                         <br />
+                    </div>
+
+                 
+                </div>
+            </div>
+
+
+
+
+
+
+
+            <div class="ibox-title">
+                <h5>Listas Precio Detalle</h5>
+            </div>
+
+
+            <div class="ibox-content">
+                @Html.Partial("_IndexListaPrecioDetalle", Model.tbListadoPrecioDetalle)
+            </div>
+
+
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="tabs-container">
+                                    
+                                    <div class="tab-content">
+                                        <div id="tab-1" class="tab-pane active">
+                                            <div class="panel-body">
+                                                
+                                            </div>
+                                       
+                                            <div class="col-lg-12">
+                                                <div class="form-group">
+                                                    <div class="col-md-offset-2 col-md-10">
+                                                        <input type="submit" value="Guardar" class="btn btn-primary" />
+                                                       
+                                                        @if (Model.listp_EsActivo)
+                                                        {
+                                                            <button type="button" id="inactivar" name="inactivar" class="btn btn-danger" data-toggle="modal" data-target="#ModalAnular">
+                                                                Inactivar
+                                                            </button>
+                                                        }
+                                                        else
+                                                        {
+                                                            <button type="button" id="activar" name="activar" class="btn btn-info" data-toggle="modal" data-target="#ModalAnular1">
+                                                                Activar
+                                                            </button>
+                                                        }
+                                                        @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+
+
+                                                    </div>
+                                                                                                    </div>
+                                                <br />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                  
+        }
+              
+            </div>
+            <div class="ibox-content">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Acción</th>
+                        <th>Usuario</th>
+                        <th>Fecha</th>
+                    </tr>
+                    <tr>
+                        <td>Creado</td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                        </td>
+                        <td>@Html.DisplayFor(model => model.listp_FechaCrea)</td>
+                    </tr>
+                    <tr>
+                        <td>Modificado</td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                        </td>
+                        <td>@Html.DisplayFor(model => model.listp_FechaModifica)</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="ModalAnular" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title" id="exampleModalLabel">Inactivar Lista</h5>
+            </div>
+            <div class="modal-body">
+                <p>¿Está seguro de inactivar está Lista?</p>
+
+                <p id="Mensaje" style="color:red"></p>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-primary btn-sm" type="button" id="Inactivar">Guardar</button>
+                @*<button type="button" class="btn btn-primary" name="Si" id="Si" data-dismiss="modal" onclick="InactivarCliente();">Si</button>*@
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="ModalAnular1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title" id="exampleModalLabel">Activar  Lista</h5>
+            </div>
+            <div class="modal-body">
+                ¿Está seguro de activar está Lista?
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary btn-sm" type="button" id="Activar">Guardar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <script>
+    function validar(e) {
+        tecla = (document.all) ? e.keyCode : e.which;
+        tecla = String.fromCharCode(tecla)
+        return /^[0-9\-]+$/.test(tecla);
+    }
+    </script>
+<script src="~/Scripts/app/ActualizarListaPrecioDetalle.js"></script>
+ <script src="~/Scripts/app/GuardarListadoPrecioDetalle.js"></script>
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/app/Datepicker.js"></script>
+<script src="~/Scripts/app/InactivarListaP.js"></script>
+<script src="~/Scripts/app/ProductoFactura.js"></script>
+@*<script src="~/Scripts/app/GetListadoDetalleEdit.js"></script>*@
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script type="text/javascript">
+    $(document).on('click', '#myModalLabel', function () {
+        $('#ModalAgregarProducto').modal('show');
+    });
+
+    $(document).on('click', '#myModalLabe2', function () {
+        $('#ModalAgregarDetalle').modal('show');
+    });
+
+
+
+    $("#listp_Prioridad").blur(function () {
+
+        valido = document.getElementById('nprioridad');
+        var Prioridad = $('#listp_Prioridad').val();
+
+
+
+
+
+        if (parseFloat(Prioridad) < 1 || parseFloat(Prioridad) > 3) {
+
+            valido.innerText = "El valor debe estar entre 1 a 3";
+            $('#listp_Prioridad').val("");
+            $('#listp_Prioridad').focus();
+        }
+        else {
+            //console.log("else")
+            valido.innerText = "";
+
+        }
+
+
+
+
+
+    });
+
+
+
+
+
+
+
+</script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#AddProducto").on("click", function () {
+            $('#create').show(); //muestro mediante id
+
+        });
+
+    });
+</script>
+
+

@@ -1,0 +1,211 @@
+﻿@model ERP_GMEDINA.Models.tbSolicitudEfectivo
+@using ERP_GMEDINA.Models
+
+
+@{
+    var sucursal = new ERP_GMEDINA.Models.tbSucursal();
+    var detalle = new ERP_GMEDINA.Models.tbSolicitudEfectivoDetalle();
+}
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Solicitud de Efectivo</h2>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            <a href="/SolicitudEfectivo/Index">Regresar</a>
+        </div>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Registrar Entrega Efectivo</h5>
+                </div>
+                <div class="ibox-content">
+
+                @using (Html.BeginForm())
+                {
+
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.solef_Id)
+                            @Html.Hidden("RedirectTo", Url.Action("Index", "SolicitudEfectivo"))
+
+
+
+                            @**Auditoria*@
+                            @Html.HiddenFor(model => model.solef_UsuarioCrea)
+                            @Html.HiddenFor(model => model.solef_FechaCrea)
+                            @Html.HiddenFor(model => model.solef_UsuarioModifica)
+                            @Html.HiddenFor(model => model.solef_FechaModifica)
+                            @Html.HiddenFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.HiddenFor(model => model.tbUsuario.usu_Apellidos)
+                            @Html.HiddenFor(model => model.tbUsuario2.usu_Nombres)
+                            @Html.HiddenFor(model => model.tbUsuario2.usu_Apellidos)
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.mocja_Id, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.mocja_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.mocja_Id)
+                                </div>
+                                @Html.LabelFor(model => sucursal.suc_Descripcion, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => sucursal.suc_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @Value = ViewBag.suc_Descripcion } })
+                                    @Html.ValidationMessageFor(model => sucursal.suc_Descripcion)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.tbMovimientoCaja.cja_Id, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.tbMovimientoCaja.tbCaja.cja_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @disabled = "true" } })
+                                    @Html.ValidationMessageFor(model => model.tbMovimientoCaja.tbCaja.cja_Descripcion)
+                                </div>
+                                @Html.LabelFor(model => model.mnda_Id, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.mnda_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.mnda_Id)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.solef_FechaEntrega, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.solef_FechaEntrega, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.solef_FechaEntrega)
+                                </div>
+                                <label class="control-label col-md-2">Usuario Entrega</label>
+                                <div class="col-md-4">
+                                    <input class="form-control" readonly value="@ViewBag.UsuarioEntrega" />
+                                    @Html.ValidationMessageFor(model => model.solef_UsuarioEntrega)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => detalle.soled_MontoEntregado, "Monto Entregado", new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => detalle.soled_MontoEntregado, new { htmlAttributes = new { @class = "form-control" } })
+                                    <p style="color:red">@Html.ValidationMessageFor(model => detalle.soled_MontoEntregado)</p>
+                            </div>
+                            </div>
+
+
+                            <div hidden class="form-group col-md-5">
+                                @Html.LabelFor(model => model.solef_UsuarioEntrega, "Usuario Apertura", new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.solef_UsuarioEntrega, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @Value = ViewBag.solef_UsuarioEntrega } })
+                                    <p id="MensajeErrorDenominacion" style="color:red"> @Html.ValidationMessageFor(model => model.solef_UsuarioEntrega)</p>
+                                </div>
+                            </div>
+
+                           
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    @Html.Partial("_EntregaEfectivoDetalle", Model.tbSolicitudEfectivoDetalle)
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="ibox float-e-margins">
+                                        <div class="ibox-content">
+                                            <div class="form-group">
+                                                <div class="col-md-12 text-center">
+                                                    <input type="submit" value="Guardar" id="btnGuardarEntregaEfectivo" class="btn btn-primary" />
+                                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                                </div>
+                                            </div>
+                                            <br />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+                </div>
+            </div>
+            <div class="ibox-content">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Acción</th>
+                        <th>Usuario</th>
+                        <th>Fecha</th>
+                    </tr>
+                    <tr>
+                        <td>Creado</td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                        </td>
+                        <td>@Html.DisplayFor(model => model.solef_FechaCrea)</td>
+                    </tr>
+                    <tr>
+                        <td>Modificado</td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario2.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario2.usu_Apellidos)
+                        </td>
+                        <td>@Html.DisplayFor(model => model.solef_FechaModifica)</td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<script src="~/Scripts/app/SolicitudEfectivoEsAnulada.js"></script>
+<script src="~/Scripts/app/EntregaEfectivoDetalle.js"></script>
+<script src="~/Scripts/app/ComandoGuardar.js"></script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+<script>
+        $(document).ready(function () {
+            $("#mnda_Id").change(function () {
+                var valor = 0;
+                $.get("/SolicitudEfectivo/GetDenominacionList", { mnda_Id: $("#mnda_Id").val() }, function (data) {
+                    $("#deno_Id").empty("");
+                    $('#deno_Id').append("<option value='0'>Seleccione la Denominación</option>");
+                    $('#idinput').val(valor);
+                    $.each(data, function (index, row) {
+                        $("#deno_Id").append("<option value='" + row.deno_Id + "'>" + row.deno_Descripcion + "</option>")
+                    });
+                });
+
+            })
+        });
+
+</script>
+
+<script type="text/javascript">
+        $.datepicker.regional['es'] = {
+            closeText: 'Cerrar',
+            prevText: '< Ant',
+            nextText: 'Sig >',
+            currentText: 'Hoy',
+            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+            dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+            dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
+            dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+            weekHeader: 'Sm',
+            dateFormat: 'dd/mm/yy',
+            firstDay: 1,
+            isRTL: false,
+            showMonthAfterYear: false,
+            yearSuffix: ''
+        };
+        $.datepicker.setDefaults($.datepicker.regional['es']);
+
+        $(function () {
+            $("#solef_FechaEntrega").datepicker({ dateFormat: 'dd/mm/yy', minDate: 0 }).datepicker('setDate', new Date());
+
+        });
+</script>
+}

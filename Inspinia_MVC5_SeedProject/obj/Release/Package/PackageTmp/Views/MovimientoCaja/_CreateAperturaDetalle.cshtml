@@ -1,0 +1,61 @@
+﻿@model ERP_GMEDINA.Models.tbSolicitudEfectivo
+
+@{
+    var test = new ERP_GMEDINA.Models.tbMoneda();
+}
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Detalle Denominación</h5>
+                </div>
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true)
+
+                    <div class="form-horizontal">
+                        <div class="form-group col-md-12">
+                            <label class="control-label col-md-2">Moneda<span style="color:red"> *</span></label>
+                            @*@Html.LabelFor(mone => test.mnda_Id, "Moneda", new { @class = "control-label col-md-2" })*@
+                            <div class="col-md-4">
+                                @Html.DropDownList("mnda_Id", null, "Seleccione Moneda", new { @class = "form-control" })
+                                <p id="MensajeErrorDenominacion" style="color:red">@Html.ValidationMessageFor(mone => test.mnda_Id)</p>
+                            </div>
+                          </div>                       
+                    </div>
+                </div>
+                <table id="DenominacionDetalle" class="table table-striped table-bordered table-hover dataTables-example">
+                    <thead>
+                        <tr >                           
+                            <th>Denominacion</th>
+                            <th>Cantidad</th>
+                            <th>Valor</th>
+                            <th>Subtotal</th>
+                            <th hidden>Id Denominacion</th>
+                            <th hidden>Id Moneda</th>
+                            @*<th></th>*@
+                        </tr>
+                    </thead>
+                    <tbody id="fbody"></tbody>
+                    <tfoot>
+                        <tr>                        
+                            <td></td>
+                            <td></td>
+                            <td>Total</td>
+                            <td><p id="Total"></p></td>
+                            <td hidden ></td>
+                            <td hidden></td>
+                            @*<td></td>*@
+                        </tr>
+                    </tfoot>
+                </table>
+                <div id="validationSummary">
+                    <p style="color:red"></p>
+                </div>
+
+            </div>
+        </div>
+     </div>
+</div>
+
+

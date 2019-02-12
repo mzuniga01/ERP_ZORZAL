@@ -1,0 +1,151 @@
+﻿@model ERP_GMEDINA.Models.tbExoneracion
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/css/Auditoria.css" rel="stylesheet" />
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Detalle</h2>
+      
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            @Html.ActionLink("Regresar", "Index")
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-10">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Detalle Exoneracion</h5>
+                </div>
+                <div class="ibox-content">
+
+
+				    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tbCliente.clte_Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbCliente.clte_Id)
+        </dd>
+                        <br/>
+                        <dt>
+                            Identificacion
+                            @*@Html.DisplayNameFor(model => model.tbCliente.clte_Identificacion)*@
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.tbCliente.clte_Identificacion)
+                        </dd>
+                        <br />
+                        <dt>
+                            Cliente
+                        </dt>
+
+                        @{ if (Convert.ToInt32(Model.tbCliente.clte_EsPersonaNatural) == 1)
+                            {
+                                <dd>
+                                    @Html.DisplayFor(model => model.tbCliente.clte_Nombres)
+                                </dd>
+                            }
+                            else
+                            {
+                                <dd>
+                                    @Html.DisplayFor(model => model.tbCliente.clte_NombreComercial)
+                                </dd>
+                            }
+                        }
+                        <br />
+        <dt>
+            @Html.DisplayNameFor(model => model.exo_Documento)
+        </dt>
+           
+        <dd>
+            @Html.DisplayFor(model => model.exo_Documento)
+        </dd>
+                        </br>
+        <dt>
+            @Html.DisplayNameFor(model => model.exo_ExoneracionActiva)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.exo_ExoneracionActiva)
+        </dd>
+                        </br>
+        <dt>
+            @Html.DisplayNameFor(model => model.exo_FechaInicialVigencia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.exo_FechaInicialVigencia)
+        </dd>
+                        </br>
+        <dt>
+            @Html.DisplayNameFor(model => model.exo_FechaIFinalVigencia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.exo_FechaIFinalVigencia)
+        </dd>
+                        </br>
+       
+
+        
+
+    </dl>
+
+                    <Center>
+                        @Html.ActionLink("Editar", "Edit", new { id = Model.exo_Id }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-white" })
+                    </Center>
+                    <div class="ibox-content">
+                        <table class="table table-striped">
+                            <tr>
+                                <th>Acción</th>
+                                <th>Usuario</th>
+                                <th>Fecha</th>
+                            </tr>
+                            <tr>
+                                <td>Creado</td>
+                                <td>@Html.DisplayFor(model => model.tbUsuario.usu_Nombres)</td>
+                                <td>@Html.DisplayFor(model => model.exo_FechaCrea)</td>
+                            </tr>
+                            <tr>
+                                <td>Modificado</td>
+                                <td>@Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)</td>
+                                <td>@Html.DisplayFor(model => model.exo_FechaModifica)</td>
+                            </tr>
+                        </table>
+                    </div>
+
+
+                 
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+
+
+
+
+
+
+
+
+

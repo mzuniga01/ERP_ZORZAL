@@ -1,0 +1,266 @@
+﻿@model ERP_GMEDINA.Models.tbListadoPrecioDetalle
+@using ERP_GMEDINA.Models
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Lista Precio Detalle </h5>
+                    <div class="form-group">
+
+                    </div>
+                </div>
+
+                <div class="ibox-content">
+
+
+                    <div class="form-horizontal">
+                        @*@Html.ValidationSummary(true)*@
+
+
+
+
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2 ">Código Barra Producto</label>
+                            @*@Html.LabelFor(model => model.tbProducto.prod_CodigoBarras, "Código Producto Barra", new { @class = "control-label col-md-2" })*@
+                            <div class="col-md-4 ">
+                                @Html.EditorFor(model => model.tbProducto.prod_CodigoBarras, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                <div id="validacionNombreProductoCreate">
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.tbProducto.prod_CodigoBarras)</p>
+                                </div>
+                            </div>
+   
+
+                            <div class="col-md-3">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarProducto"><span class="glyphicon glyphicon-search"></span></button>
+                            </div>
+                            <div class="form-group col-md-1">
+                                <button class="btn btn-primary" type="button" id="AgregarListaPrecioDetalle">Añadir</button>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            <label class="control-label col-md-2 AsteriscoRojo">Código Producto</label>
+                        @*@Html.LabelFor(model => model.prod_Codigo , "Código Producto", new { @class = "control-label col-md-2" })*@
+                        <div class="col-md-4 ">
+                            @Html.EditorFor(model => model.prod_Codigo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                            <div id="validacionCodigoProductoCreate">
+                                <p style="color:red">@Html.ValidationMessageFor(model => model.prod_Codigo)</p>
+                            </div>
+
+                        </div>
+
+
+
+
+                     
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2 AsteriscoRojo">Nombre Producto</label>
+                            @*@Html.LabelFor(model => model.tbProducto.prod_Descripcion, "Nombre Producto", new { @class = "control-label col-md-2" })*@
+                            <div class="col-md-4 ">
+                                @Html.EditorFor(model => model.tbProducto.prod_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                <div id="validacionNombreProductoCreate">
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.tbProducto.prod_Descripcion)</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2 AsteriscoRojo">Precio Mayorista</label>
+                            @*@Html.LabelFor(model => model.lispd_PrecioMayorista, "Precio Mayorista", new { @class = "control-label col-md-2" })*@
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.lispd_PrecioMayorista, new { htmlAttributes = new { @type = "number", @min = "0", @step = "0.01", @value = "0" } })
+                                <div id="validacionPrecioMayoristaCreate">
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.lispd_PrecioMayorista)</p>
+                                </div>
+
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="control-label col-md-2 AsteriscoRojo">Precio Minorista</label>
+                               @* @Html.LabelFor(model => model.lispd_PrecioMinorista, "Precio Minorista", new { @class = "control-label col-md-2" })*@
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.lispd_PrecioMinorista, new { htmlAttributes = new { @type = "number", @min = "0", @step = "0.01", @value = "0"} })
+                                    <div id="validacionPrecioMinoristaCreate">
+                                        <p style="color:red">@Html.ValidationMessageFor(model => model.lispd_PrecioMinorista)</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.lispd_DescCaja, "Descuento Caja (%)", new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.lispd_DescCaja, new { htmlAttributes = new {@type = "number", @min = "0", @max = 100, @step = "0.01", @value = "0" } })
+                                <div id="validacionDescuentoCajaCreate">
+                                    <p id ="smsCantidad" style="color:red"> @Html.ValidationMessageFor(model => model.lispd_DescCaja)</p>
+</div>
+
+
+                            </div>
+
+                            @Html.LabelFor(model => model.lispd_DescGerente, "Descuento Gerente (%)", new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.lispd_DescGerente, new { htmlAttributes = new {  @type = "number", @min = "0", @step = "0.01", @value = "0" } })
+                                <div id="validacionDescuentoGerenteCreate">
+                                    <p id="desccaja" style="color:red">@Html.ValidationMessageFor(model => model.lispd_DescGerente)</p>
+</div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*</div>
+
+    </div>*@
+
+<table id="tbListaPrecioDetalle" class="table table table-striped">
+    <thead>
+        <tr>
+            <th>Código Producto</th>
+            <th>Descripción Producto</th>
+            <th>Precio Mayorista</th>
+            <th>Precio Minorista</th>
+            <th>Descuento Caja</th>
+            <th>Descuento Gerente</th>
+            <th></th>
+
+        </tr>
+    </thead>
+
+    <tbody></tbody>
+</table>
+
+<div id="validationSummary">
+    <p style="color:red"></p>
+</div>
+
+
+
+<div>
+    <div class="modal fade" id="ModalAgregarProducto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Agregar Producto</h4>
+                </div>
+                <div class="modal-body" id="frmEditarMunicipios">
+                    @Html.Partial("_IndexProducto", (List<tbProducto>)ViewBag.Producto)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+        $(document).ready(function () {
+            $('#lispd_DescGerente').val('0.00')
+            $('#lispd_DescCaja').val('0.00')
+        })
+</script>
+
+<script>
+    function comprobar()
+    {
+
+            var PMA = $('#lispd_PrecioMayorista').val();
+            var PMI = $('#lispd_PrecioMinorista').val();
+            if (PMA<PMI)
+            {
+                alert("El precio mayorista debe ser menor que el precio minorista.");
+                return false;
+            }
+            return true;
+        }
+
+
+
+    $("#lispd_DescCaja").blur(function () {
+        valido = document.getElementById('smsCantidad');
+  
+        var DescuentoCaja = $('#lispd_DescCaja').val();
+    
+        
+
+        if (parseFloat(DescuentoCaja) < 0 || parseFloat(DescuentoCaja)> 100) {
+            //console.log("facturada", CantFacturada)
+            //console.log(CantDevolucion)
+            //console.log("if")
+            valido.innerText = "El valor debe estar entre 0 a 100";
+            $('#lispd_DescCaja').val("");
+            $('#lispd_DescCaja').focus();
+        }
+        else {
+            //console.log("else")
+            valido.innerText = "";
+        }
+
+
+    });
+
+    $("#lispd_DescGerente").blur(function () {
+
+        valido1 = document.getElementById('desccaja');
+     
+        var DescuentoGerente = $('#lispd_DescGerente').val();
+
+
+
+
+        if (parseFloat(DescuentoGerente) < 0 || parseFloat(DescuentoGerente) > 100) {
+            //console.log("facturada", CantFacturada)
+            //console.log(CantDevolucion)
+            //console.log("if")
+            valido1.innerText = "El valor debe estar entre 0 a 100";
+            $('#lispd_DescGerente').val("");
+            $('#lispd_DescGerente').focus();
+        }
+        else {
+            //console.log("else")
+            valido1.innerText = "";
+        }
+
+
+   
+
+
+    });
+
+
+
+
+
+    //---------------------------------Ctrl + G (GuardarRegistro)------------------------------
+    $(document).keydown(function (e) {
+        if ((e.key == 'g' || e.key == 'G') && (e.ctrlKey || e.metaKey)) {
+            e.preventDefault();
+            $("form").submit();
+            return false;
+        }
+        return true;
+    });
+
+
+
+
+
+</script>

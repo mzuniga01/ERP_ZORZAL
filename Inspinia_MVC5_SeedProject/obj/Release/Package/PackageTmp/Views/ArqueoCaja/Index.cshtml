@@ -1,0 +1,100 @@
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbArqueoCaja>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Arqueo de Caja</h2>
+        <ol class="breadcrumb">
+            <li class="active">
+                <strong></strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Lista de Arqueo de Caja</h5>
+					<div class="ibox-tools">
+						@Html.ActionLink("Registrar Arqueo de Caja", "Create", null, new { @class = "btn btn-primary btn-xs"})
+					</div>
+                </div>
+                <div class="ibox-content">
+
+<table class="table table-responsive" id="DataTable">
+    <thead>
+        <tr>
+            <th>     
+                @Html.DisplayNameFor(model => model.tbCaja.tbSucursal.suc_Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tbCaja.cja_Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.aqcja_FechaInicio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.aqcja_FechaFin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.aqcja_SaldoInicial)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.aqcja_SaldoFinal)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.tbCaja.tbSucursal.suc_Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayNameFor(model => model.cja_Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.aqcja_FechaInicio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.aqcja_FechaFin)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.aqcja_SaldoInicial)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.aqcja_SaldoFinal)
+                </td>
+               
+                <td>
+                    @Html.ActionLink("Detalle", "Details", new { id = item.aqcja_Id }, new { @class = "btn btn-primary btn-xs" })
+                    @Html.ActionLink("Editar", "Edit", new { id = item.aqcja_Id }, new { @class = "btn btn-white btn-xs" })
+                    @Html.ActionLink("Imprimir Arqueo", "Index", new { id = item.aqcja_Id }, new { @class = "btn btn-white btn-xs" })
+                </td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/DataTable.js"></script>
+

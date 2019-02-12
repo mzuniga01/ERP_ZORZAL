@@ -1,0 +1,178 @@
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbSolicitudCredito>
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Solicitud Credito</h2>
+
+    </div>
+    <div class="title-action">
+        <a href="@Url.Action("Index","SolicitudCredito")">Regresar</a>
+    </div>
+
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Listado Solicitud Credito Por Autorizar</h5>
+
+                </div>
+                <div class="ibox-content">
+
+                    <table id="DataTable1" class="table table table-striped  table-bordered" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th hidden>
+                                    cred_Id
+                                </th>
+                                <th>
+                                    Nombre Cliente
+                                </th>
+
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tbCliente.clte_Identificacion)
+                                </th>
+
+                                <th>
+                                    @Html.DisplayNameFor(model => model.cred_FechaSolicitud)
+                                </th>
+
+                                <th>
+                                    @Html.DisplayNameFor(model => model.cred_MontoSolicitado)
+                                </th>
+
+                                <th>
+                                    @Html.DisplayNameFor(model => model.cred_DiasSolicitado)
+                                </th>
+
+                                
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tbEstadoSolicitudCredito.escre_Descripcion)
+                                </th>
+                                <th>Acciones</th>
+                            </tr>
+                            </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                if (item.escre_Id == 1)
+                                     {
+                                    <tr>
+                                        <td hidden id="cred_Id">@Html.DisplayFor(modelItem => item.cred_Id)</td>
+                                        
+                                            @{ if (item.tbCliente.clte_EsPersonaNatural)
+                                             {
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.tbCliente.clte_Nombres)
+                                                    @Html.DisplayFor(modelItem => item.tbCliente.clte_Apellidos)
+                                                </td>
+                                                }
+                                                else
+                                                {
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.tbCliente.clte_NombreComercial)
+                                                    </td>
+                                                }
+                                            }
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.tbCliente.clte_Identificacion)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.cred_FechaSolicitud)
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.cred_MontoSolicitado)
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.cred_DiasSolicitado)
+                                        </td>
+
+
+                                        <td class="danger" id="estado">
+                                            @Html.DisplayFor(modelItem => item.tbEstadoSolicitudCredito.escre_Descripcion)
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Detalles", "Details", new { id = item.cred_Id }, new { @class = "btn btn-primary btn-xs" })
+                                            @*<button type="button"  id="autorizar" name="autorizar" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalAutorizar_@item.cred_Id">
+                                                Autorizar Crédito
+                                            </button>*@
+                                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#AprobarSolicitud_@item.cred_Id">Aprobar</button>
+                                          
+                                        </td>
+                                    </tr>
+                                    //modal Aprobar
+                                    <div>
+                                        <div class="modal fade" id="AprobarSolicitud_@item.cred_Id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                        <h4 class="modal-title" id="myModalLabel">Aprobar Solicitud de Crédito</h4>
+                                                    </div>
+                                                    <div class="modal-body" id="frmEditarMunicipios">
+
+                                                        @Html.Partial("_AprobarSolicitudCredito", new ERP_GMEDINA.Models.tbSolicitudCredito()
+                                                   {
+                                                       cred_Id = item.cred_Id,
+                                                       escre_Id = item.escre_Id,
+                                                       cred_DiasAprobado = item.cred_DiasAprobado,
+                                                       cred_DiasSolicitado = item.cred_DiasSolicitado,
+                                                       cred_MontoAprobado = item.cred_MontoAprobado,
+                                                       cred_MontoSolicitado = item.cred_MontoSolicitado,
+                                                       cred_UsuarioCrea = item.cred_UsuarioCrea,
+                                                       cred_FechaCrea = item.cred_FechaCrea,
+                                                       cred_FechaAprobacion = item.cred_FechaAprobacion,
+                                                       cred_FechaModifica = item.cred_FechaModifica,
+                                                       cred_UsuarioModifica = item.cred_UsuarioModifica
+                                                   })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @*<div class="modal fade" id="ModalAutorizar_@item.cred_Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Autorizar Credito</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    ¿Esta seguro de Autorizar el Crédito?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-primary" name="Si" id="Si" data-dismiss="modal" onclick="AceptarSolicitud(@item.cred_Id, 2);">Guardar</button>
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>*@
+                                }
+
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/Datepicker.js"></script>
+<script src="~/Scripts/app/DataTableBusquedaGenerica.js"></script>
+<script src="~/Scripts/app/AceptarSolicitudCre.js"></script>
+<script src="~/Scripts/app/SolicitudCredito.js"></script>

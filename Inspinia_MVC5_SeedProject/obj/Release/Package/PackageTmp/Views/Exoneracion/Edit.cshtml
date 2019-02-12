@@ -1,0 +1,304 @@
+﻿@model ERP_GMEDINA.Models.tbExoneracion
+@using ERP_GMEDINA.Models
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Editar</h2>       
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            @Html.ActionLink("Regresar", "Index")
+        </div>
+    </div>
+</div>
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Editar Exoneracion</h5>
+                </div>
+                <div class="ibox-content">
+
+				@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+                   
+
+
+
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true)
+        @Html.Hidden("RedirectTo", Url.Action("Index", "Exoneracion"))
+        @Html.HiddenFor(model => model.exo_Id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.exo_Id, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.exo_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.exo_Id)
+            </div>
+        </div>
+
+       
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.clte_Id, "clte_Id", new { @class = "control-label col-md-2" })*@
+            <div class="col-md-5">
+                @*@Html.DropDownList("clte_RTN_Identidad_Pasaporte", String.Empty)*@
+                @Html.HiddenFor(model => model.clte_Id)
+                @Html.ValidationMessageFor(model => model.clte_Id)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.tbCliente.clte_Identificacion, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.tbCliente.clte_Identificacion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                <p style="color:red">@Html.ValidationMessageFor(model => model.clte_Id)
+            </div>
+            <div class="col-md-1">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarClientes"><span class="glyphicon glyphicon-search"></span></button>
+            </div>
+        </div>
+
+
+
+
+        @{ if (Convert.ToInt32(Model.tbCliente.clte_EsPersonaNatural) == 1)
+            {
+                <div class="form-group">
+                    <label class="control-label col-md-2">Cliente</label>
+                    <div class="col-md-4">
+                        @Html.EditorFor(model => model.tbCliente.clte_Nombres, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.tbCliente.clte_Nombres)
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="form-group">
+                    <label class="control-label col-md-2">Cliente</label>
+                    <div class="col-md-4">
+                        @Html.EditorFor(model => model.tbCliente.clte_NombreComercial, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.tbCliente.clte_NombreComercial)
+                    </div>
+                </div>
+            }
+        }
+
+
+
+
+      
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.exo_Documento, new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.exo_Documento)
+                    @Html.ValidationMessageFor(model => model.exo_Documento)
+                </div>
+            </div>
+
+            @*<div class="form-group" id="Activar">
+                @Html.LabelFor(model => model.exo_ExoneracionActiva, new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.exo_ExoneracionActiva)
+                    @Html.ValidationMessageFor(model => model.exo_ExoneracionActiva)
+                </div>
+            </div>*@
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.exo_FechaInicialVigencia, new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @*<input type="text" name="entrada" id="entrada" value="">*@
+                     
+                     @Html.EditorFor(model => model.exo_FechaInicialVigencia, new { htmlAttributes = new { @readonly = "readonly" } })
+                    <p id="cc" style="color:red">@Html.ValidationMessageFor(model => model.exo_FechaInicialVigencia)</p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.exo_FechaIFinalVigencia, new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @*<input type="text" name="salida" id="salida" value="">*@
+                    @Html.EditorFor(model => model.exo_FechaIFinalVigencia, new { htmlAttributes = new { @readonly = "readonly" } })
+                    <p id="ccc" style="color:red">@Html.ValidationMessageFor(model => model.exo_FechaIFinalVigencia)</p>
+                </div>
+            </div>
+
+
+            
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" id="btnGuardar" class="btn btn-primary" />
+                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                @if (Model.exo_ExoneracionActiva)
+                {
+                    <button type="button" id="inactivar" name="inactivar" class="btn btn-danger" data-toggle="modal" data-target="#ModalAnular">
+                        Inactivar
+                    </button>
+                }
+                else
+                {
+                    <button type="button" id="activar" name="activar" class="btn btn-info" data-toggle="modal" data-target="#ModalAnular1">
+                        Activar
+                    </button>
+                }
+
+
+
+            </div>
+        </div>
+
+
+
+        </div>
+}
+
+
+                </div>
+            </div>
+            <div class="ibox-content">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Acción</th>
+                        <th>Usuario</th>
+                        <th>Fecha</th>
+                    </tr>
+                    <tr>
+                        <td>Creado</td>
+                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_Nombres)</td>
+                        <td>@Html.DisplayFor(model => model.exo_FechaCrea)</td>
+                    </tr>
+                    <tr>
+                        <td>Modificado</td>
+                        <td>@Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)</td>
+                        <td>@Html.DisplayFor(model => model.exo_FechaModifica)</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+<div>
+    <div class="modal fade" id="ModalAgregarClientes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Agregar Cliente</h4>
+                </div>
+                @*ViewBag.Cliente = db.tbCliente.ToList();*@
+                <div class="modal-body" id="frmEditarMunicipios">
+                    @Html.Partial("ClientesnoExonerado", (List<UDP_Vent_listExoneracion_Select>)ViewBag.noExonerado)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ModalAnular" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Inactivar cliente</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>¿Está seguro de inactivar este cliente?</p>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" name="Si" id="Inactivar" data-dismiss="modal" onclick="InactivarCliente();">Si</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="ModalAnular1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Activar cliente</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Está seguro de activar este cliente?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" name="Si" id="Activar" data-dismiss="modal" onclick="ActivarCliente();">Si</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+ $.datepicker.regional['es'] = {
+ closeText: 'Cerrar',
+ prevText: '< Ant',
+ nextText: 'Sig >',
+ currentText: 'Hoy',
+ monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+ monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+ dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+ dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
+ dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+ weekHeader: 'Sm',
+ dateFormat: 'dd/mm/yy',
+ firstDay: 1,
+ isRTL: false,
+ showMonthAfterYear: false,
+ yearSuffix: ''
+ };
+ $.datepicker.setDefaults($.datepicker.regional['es']);
+$(function () {
+    $("#exo_FechaInicialVigencia").datepicker({ dateFormat: 'dd/mm/yy' });
+    $("#exo_FechaIFinalVigencia").datepicker({ dateFormat: 'dd/mm/yy'});
+});
+
+      
+
+    </script>
+
+
+<script>
+    $(document).ready(function () {
+        if (exo_ExoneracionActiva.checked) {
+            $('#inactivar').show();
+            $('#activar').hide();
+           
+        } else {
+            $('#activar').show();
+            $('#inactivar').hide();
+          
+        }
+    });
+</script>
+}
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/DataTable.js"></script>
+<script src="~/Scripts/app/ClienteExoneracion.js"></script>
+<script src="~/Scripts/app/InactivarExoneracion.js"></script>

@@ -1,0 +1,201 @@
+﻿@model ERP_GMEDINA.Models.tbPedido
+@using ERP_GMEDINA.Models
+
+@{
+    ViewBag.Title = "Pedidos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Ingresar Pedido</h2>
+
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            <a href="/Pedido/Index">Regresar</a>
+        </div>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Pedidos</h5>
+                </div>
+                <div class="ibox-content">
+
+                    @using (Html.BeginForm("Create", "Pedido", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true)
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.suc_Id, new { @class = "control-label col-md-2" })
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.suc_Id, "1", new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly" } })
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.suc_Id)</p>
+                                </div>
+
+
+                                @Html.LabelFor(model => model.ped_FechaElaboracion, new { @class = "control-label col-md-3" })
+
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.ped_FechaElaboracion, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly" } })
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.ped_FechaElaboracion)
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-4">
+                                    @Html.HiddenFor(model => model.clte_Id)
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.clte_Id)</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+
+                                @Html.LabelFor(model => model.tbCliente.clte_Identificacion, new { @class = "control-label col-md-2" })
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.tbCliente.clte_Identificacion, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly" } })
+                                    <p style="color:red"><span class="validation-error"> @Html.ValidationMessageFor(model => model.tbCliente.clte_Identificacion)</span></p>
+                                </div>
+                                <div class="col-md-1">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarClientes"><span class="glyphicon glyphicon-search"></span></button>
+                                </div>
+
+                                @Html.LabelFor(model => model.tbCliente.clte_Nombres, new { @class = "control-label col-md-2" })
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.tbCliente.clte_Nombres, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly" } })
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.tbCliente.clte_Nombres)</p>
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+
+
+                                @Html.LabelFor(model => model.ped_FechaEntrega, new { @class = "control-label col-md-2" })
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.ped_FechaEntrega)
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.ped_FechaEntrega)</p>
+                                </div>
+                            </div>
+
+                            @*--------------------OCULTOS--------------------*@
+
+                            <input type="hidden" id="ped_EsAnulado" name="ped_EsAnulado" value="false" />
+                            <input type="hidden" id="esped_Id" name="esped_Id" value="1" />
+                            <input type="hidden" id="ped_RazonAnulado" name="ped_RazonAnulado" value="" />
+                            <input type="hidden" id="suc_Id" name="suc_Id" value="1" />
+
+                            @*-------------------FIN-OCULTOS--------------------*@
+
+                        </div>
+                        @Html.Partial("_ListPedidoDetalle", new tbPedidoDetalle())
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="modal fade" id="ModalAgregarClientes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Agregar Cliente</h4>
+                    </div>
+                    <div class="modal-body" id="frmEditarMunicipios">
+                        @Html.Partial("_IndexCliente", (List<tbCliente>)ViewBag.Cliente)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    jQuery('input,select').each(function () {
+        var req = jQuery(this).attr('data-val-required');
+        var label = jQuery('label[for="' + jQuery(this).attr('id') + '"]');
+        var text = label.text();
+        if (text.length > 0) {
+            label.append('<span style="color:red"> *</span>');
+        }
+    });
+
+    function validar(e) {
+        tecla = (document.all) ? e.keyCode : e.which;
+        tecla = String.fromCharCode(tecla)
+        return /^[0-9\-]+$/.test(tecla);
+    }
+</script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $.datepicker.regional['es'] = {
+            closeText: 'Cerrar',
+            prevText: '< Ant',
+            nextText: 'Sig >',
+            currentText: 'Hoy',
+            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+            dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+            dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
+            dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+            weekHeader: 'Sm',
+            dateFormat: 'dd/mm/yy',
+            firstDay: 1,
+            isRTL: false,
+            showMonthAfterYear: false,
+            yearSuffix: ''
+        };
+        $.datepicker.setDefaults($.datepicker.regional['es']);
+
+        $(function () {
+            $("#ped_FechaElaboracion").datepicker({ dateFormat: 'dd/mm/yy' }).datepicker('setDate', new Date()).datepicker("destroy");
+            $("#ped_FechaEntrega").datepicker({ dateFormat: 'dd/mm/yy', minDate: 0 }).datepicker('setDate', new Date());
+        });
+
+
+    </script>
+
+
+    
+    <script src="~/Scripts/app/Datepicker.js"></script>
+    <script src="~/Scripts/app/FacturaDetalle.js"></script>
+    <script src="~/Scripts/app/ProductoListaPrecios.js"></script>
+
+    <script src="~/Scripts/app/Empleados.js"></script>
+    <script src="~/Scripts/app/Clientes-Pedido-Credito.js"></script>
+    <script>
+        $("#pedd_Cantidad").on("keypress keyup blur", function (event) {
+            this.value = this.value.replace(/[a-záéíóúüñ#/=]+/ig, "");
+            this.value = this.value.replace(/[a-záéíóúüñ#/=\s-+*,.;]+/ig, "");
+        });
+
+    </script>
+
+
+    <script>
+        $("#pedd_Cantidad").on("keypress keyup blur", function (event) {
+            this.value = this.value.replace(/[a-záéíóúüñ#/=]+/ig, "");
+            this.value = this.value.replace(/[a-záéíóúüñ#/=\s-+*,.;]+/ig, "");
+        });
+
+    </script>
+}
+
+
+
+
+
