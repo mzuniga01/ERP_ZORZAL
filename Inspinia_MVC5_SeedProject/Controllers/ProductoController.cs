@@ -9,7 +9,6 @@ using System.Web;
 using System.Web.Mvc;
 using ERP_GMEDINA.Models;
 using System.Data.Entity.Core.Objects;
-using Newtonsoft.Json;
 
 
 namespace ERP_GMEDINA.Controllers
@@ -176,7 +175,7 @@ namespace ERP_GMEDINA.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "prod_Codigo,prod_Descripcion,prod_Marca,prod_Modelo,prod_Talla,prod_Color,pscat_Id,uni_Id,prod_CodigoBarras,pcat_Id")] tbProducto tbProducto, int pcat_Id)
+        public ActionResult Create([Bind(Include = "prod_Codigo,prod_Descripcion,prod_Marca,prod_Modelo,prod_Talla,prod_Color,pscat_Id,uni_Id,prod_CodigoBarras,prod_UsiuarioCrea,prod_FechaCrea,pcat_Id")] tbProducto tbProducto, int pcat_Id)
         {
             if (db.tbProducto.Any(a => a.prod_CodigoBarras == tbProducto.prod_CodigoBarras))
             {
@@ -195,8 +194,11 @@ namespace ERP_GMEDINA.Controllers
                                                                     tbProducto.prod_Talla, 
                                                                     tbProducto.prod_Color, 
                                                                     tbProducto.pscat_Id, 
-                                                                    tbProducto.uni_Id, 
-                                                                    tbProducto.prod_CodigoBarras);
+                                                                    tbProducto.uni_Id,
+                                                                    tbProducto.prod_CodigoBarras,
+                                                                    Function.GetUser(),
+                                                                    DateTime.Now
+                                                                    );
                                 foreach (UDP_Inv_tbProducto_Insert_Result Producto in List)
                                     MsjError = Producto.MensajeError;
 
@@ -305,7 +307,7 @@ namespace ERP_GMEDINA.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(string id,[Bind(Include = "prod_Codigo,prod_Descripcion,prod_Marca,prod_Modelo,prod_Talla,prod_Color,pscat_Id,uni_Id,prod_EsActivo,prod_Razon_Inactivacion,prod_UsuarioCrea,prod_FechaCrea,prod_CodigoBarras,pcat_Id")] tbProducto tbProducto,int pcat_Id)
+        public ActionResult Edit(string id,[Bind(Include = "prod_Codigo,prod_Descripcion,prod_Marca,prod_Modelo,prod_Talla,prod_Color,pscat_Id,uni_Id,prod_EsActivo,prod_Razon_Inactivacion,prod_UsuarioCrea,prod_FechaCrea,prod_UsuarioModifica,prod_FechaModifica,prod_CodigoBarras,pcat_Id")] tbProducto tbProducto,int pcat_Id)
         {
             if (ModelState.IsValid)
             {               
@@ -324,9 +326,12 @@ namespace ERP_GMEDINA.Controllers
                                                         tbProducto.prod_Color, 
                                                         tbProducto.pscat_Id, 
                                                         tbProducto.uni_Id,
+                                                        tbProducto.prod_CodigoBarras,
                                                         vtbProducto.prod_UsuarioCrea, 
                                                         vtbProducto.prod_FechaCrea,
-                                                        tbProducto.prod_CodigoBarras);
+                                                        Function.GetUser(),
+                                                        DateTime.Now
+                                                        );
                     foreach (UDP_Inv_tbProducto_Update_Result producto in List)
                         MsjError = producto.MensajeError;
 
@@ -393,6 +398,20 @@ namespace ERP_GMEDINA.Controllers
             }
             base.Dispose(disposing);
         }
+        //[HttpPost]
+        //public JsonResult EstadoInactivar(string prod_Codigo, bool Activo, string Razon_Inactivacion, int prod_UsuarioModifica, DateTime prod_FechaModifica)
+        //{
+        //    var list = db.UDP_Inv_tbProducto_Estado_Prueba(prod_Codigo, Helpers.ProductoInactivo, Razon_Inactivacion, prod_UsuarioModifica, prod_FechaModifica).ToList();
+        //    return Json(list, JsonRequestBehavior.AllowGet);
+        //}
+
+        //[HttpPost]
+        //public JsonResult Estadoactivar(string prod_Codigo, bool Activo, string Razon_Inactivacion, int prod_UsuarioModifica, DateTime prod_FechaModifica)
+        //{
+        //    var list = db.UDP_Inv_tbProducto_Estado_Prueba(prod_Codigo, Helpers.ProductoActivo, Razon_Inactivacion,prod_UsuarioModifica,prod_FechaModifica).ToList();
+        //    return Json(list, JsonRequestBehavior.AllowGet);
+        //}
+
         [HttpPost]
         public JsonResult EstadoInactivar(string prod_Codigo, bool Activo, string Razon_Inactivacion)
         {
@@ -406,5 +425,7 @@ namespace ERP_GMEDINA.Controllers
             var list = db.UDP_Inv_tbProducto_Estado(prod_Codigo, Helpers.ProductoActivo, Razon_Inactivacion).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
+
+
     }
 }

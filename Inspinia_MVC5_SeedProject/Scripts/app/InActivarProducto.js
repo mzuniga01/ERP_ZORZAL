@@ -5,6 +5,7 @@
     console.log(prod_Codigo)
     console.log(Activo)
     console.log(Razon_Inactivacion)
+    console.log(prod_UsuarioModifica)
     if (Razon_Inactivacion == "") {
         valido = document.getElementById('Mensaje');
         valido.innerText = "La razón inactivación es requerida";
@@ -15,7 +16,7 @@
             method: "POST",
             dataType: 'json',
             contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ prod_Codigo: prod_Codigo, Activo: Activo, Razon_Inactivacion: Razon_Inactivacion }),
+            data: JSON.stringify({ prod_Codigo: prod_Codigo, Activo: Activo, Razon_Inactivacion: Razon_Inactivacion}),
 
         })
     .done(function (data) {
