@@ -11,6 +11,8 @@ using System.Transactions;
 using System.Data.SqlClient;
 using System.Data.Common;
 using System.Data.Entity.Core.Objects;
+using CrystalDecisions.CrystalReports.Engine;
+using System.IO;
 
 namespace ERP_GMEDINA.Controllers
 {
@@ -138,6 +140,49 @@ namespace ERP_GMEDINA.Controllers
                 return View(tbFactura.ToList());
             }
 
+        }
+
+
+        public ActionResult ExportReport(long? id)
+        {
+            ReportDocument rd = new ReportDocument();
+            rd.Load(Path.Combine(Server.MapPath("~/Reports"), "Factura.rpt"));
+            var Factura = db.UDP_Vent_tbFactura_Imprimir(id).ToList();
+            var todo = (from r in Factura
+                        where r.fact_Id == id
+                        select new
+                        {
+                            fact_Codigo = r.fact_Codigo,
+                            fact_Fecha = r.fact_Fecha,
+                            suc_Direccion = r.suc_Direccion,
+                            mun_Nombre = r.mun_Nombre,
+                            dep_Nombre = r.dep_Nombre,
+                            suc_Correo = r.suc_Correo,
+                            pemi_NumeroCAI = r.pemi_NumeroCAI,
+                            clte_Identificacion = r.clte_Identificacion,
+                            clte_Nombres = r.clte_Nombres,
+                            RangoInicial = r.RangoInicial,
+                            RangoFinal = r.RangoFinal,
+                            FechaLimite = r.FechaLimite,
+                            FormaPago = r.FormaPago,
+                            prod_Descripcion = r.prod_Descripcion,
+                            factd_Cantidad = r.factd_Cantidad,
+                            factd_PrecioUnitario = r.factd_PrecioUnitario,
+                        }).ToList();
+
+            rd.SetDataSource(todo);
+            Response.Buffer = false;
+            Response.ClearContent();
+            Response.ClearHeaders();
+            try
+            {
+                Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+                return File(stream, "application/pdf");
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         // GET: /Factura/Details/5

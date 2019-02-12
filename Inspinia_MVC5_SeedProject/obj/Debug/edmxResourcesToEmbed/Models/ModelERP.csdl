@@ -594,6 +594,8 @@
       <Parameter Name="pscat_Id" Mode="In" Type="Int32" />
       <Parameter Name="uni_Id" Mode="In" Type="Int32" />
       <Parameter Name="prod_CodigoBarras" Mode="In" Type="String" />
+      <Parameter Name="prod_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="prod_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="UDP_Inv_tbProducto_Update" ReturnType="Collection(String)">
       <Parameter Name="prod_Codigo" Mode="In" Type="String" />
@@ -604,9 +606,11 @@
       <Parameter Name="prod_Color" Mode="In" Type="String" />
       <Parameter Name="pscat_Id" Mode="In" Type="Int32" />
       <Parameter Name="uni_Id" Mode="In" Type="Int32" />
+      <Parameter Name="prod_CodigoBarras" Mode="In" Type="String" />
       <Parameter Name="prod_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="prod_FechaCrea" Mode="In" Type="DateTime" />
-      <Parameter Name="prod_CodigoBarras" Mode="In" Type="String" />
+      <Parameter Name="prod_UsuarioModifica" Mode="In" Type="Int32" />
+      <Parameter Name="prod_FechaModifica" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="UDP_Inv_tbProductoCategoria_Delete" ReturnType="Collection(String)">
       <Parameter Name="pcat_Id" Mode="In" Type="Int32" />
@@ -2605,9 +2609,6 @@
     <FunctionImport Name="UDP_Vent_tbNotaCredito_Imprimir" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbNotaCredito_Imprimir_Result)">
       <Parameter Name="nocre_Id" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbFactura_Imprimir" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFactura_Imprimir_Result)">
-      <Parameter Name="fact_Id" Mode="In" Type="Int64" />
-    </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbSolicitudEfectivo_EsAnulada" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivo_EsAnulada_Result)">
       <Parameter Name="solef_Id" Mode="In" Type="Int32" />
       <Parameter Name="solef_EsAnulada" Mode="In" Type="Boolean" />
@@ -2621,6 +2622,9 @@
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbPago_Imprimir" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPago_Imprimir_Result)">
       <Parameter Name="pago_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbFactura_Imprimir" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFactura_Imprimir_Result)">
+      <Parameter Name="fact_Id" Mode="In" Type="Int64" />
     </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
@@ -7861,39 +7865,6 @@
     <Property Type="Decimal" Name="nocre_Monto" Nullable="true" Precision="10" Scale="2" />
     <Property Type="Decimal" Name="devd_Monto" Nullable="false" Precision="10" Scale="2" />
   </ComplexType>
-  <ComplexType Name="UDP_Vent_tbFactura_Imprimir_Result">
-    <Property Type="Int64" Name="fact_Id" Nullable="false" />
-    <Property Type="String" Name="fact_Codigo" Nullable="false" MaxLength="19" />
-    <Property Type="DateTime" Name="fact_Fecha" Nullable="false" Precision="23" />
-    <Property Type="String" Name="EstadoFactura" Nullable="false" MaxLength="50" />
-    <Property Type="Int16" Name="cja_Id" Nullable="false" />
-    <Property Type="Decimal" Name="factd_Cantidad" Nullable="false" Precision="5" Scale="2" />
-    <Property Type="Decimal" Name="factd_Impuesto" Nullable="false" Precision="10" Scale="2" />
-    <Property Type="Decimal" Name="factd_PorcentajeDescuento" Nullable="false" Precision="10" Scale="2" />
-    <Property Type="Decimal" Name="factd_MontoDescuento" Nullable="false" Precision="10" Scale="2" />
-    <Property Type="Decimal" Name="factd_PrecioUnitario" Nullable="false" Precision="10" Scale="2" />
-    <Property Type="Decimal" Name="Subtotal" Nullable="true" Precision="16" Scale="4" />
-    <Property Type="String" Name="prod_Descripcion" Nullable="false" MaxLength="100" />
-    <Property Type="String" Name="Departamento" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="Municipio" Nullable="false" MaxLength="150" />
-    <Property Type="String" Name="suc_Direccion" Nullable="false" MaxLength="100" />
-    <Property Type="String" Name="suc_Correo" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="pemi_NumeroCAI" Nullable="false" MaxLength="40" />
-    <Property Type="String" Name="RangoInicial" Nullable="false" MaxLength="20" />
-    <Property Type="String" Name="RangoFinal" Nullable="false" MaxLength="20" />
-    <Property Type="DateTime" Name="FechaLimite" Nullable="false" />
-    <Property Type="String" Name="FormaPago" Nullable="true" MaxLength="8000" />
-    <Property Type="Int32" Name="fact_DiasCredito" Nullable="false" />
-    <Property Type="Decimal" Name="fact_PorcentajeDescuento" Nullable="false" Precision="10" Scale="2" />
-    <Property Type="String" Name="fact_Vendedor" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="clte_Identificacion" Nullable="false" MaxLength="26" />
-    <Property Type="String" Name="clte_Nombres" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="fact_IdentidadTE" Nullable="true" MaxLength="26" />
-    <Property Type="String" Name="fact_NombresTE" Nullable="true" MaxLength="50" />
-    <Property Type="DateTime" Name="fact_FechaNacimientoTE" Nullable="true" />
-    <Property Type="Int32" Name="fact_UsuarioAutoriza" Nullable="true" />
-    <Property Type="DateTime" Name="fact_FechaAutoriza" Nullable="true" Precision="23" />
-  </ComplexType>
   <ComplexType Name="UDP_Vent_tbSolicitudEfectivo_Imprimir_Result">
     <Property Type="Int32" Name="solef_Id" Nullable="false" />
     <Property Type="String" Name="cja_Descripcion" Nullable="false" MaxLength="10" />
@@ -7947,5 +7918,33 @@
     <Property Type="Decimal" Name="pago_TotalCambio" Nullable="true" Precision="10" Scale="2" />
     <Property Type="String" Name="pago_Emisor" Nullable="true" MaxLength="25" />
     <Property Type="String" Name="pago_Titular" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbFactura_Imprimir_Result">
+    <Property Type="String" Name="suc_Direccion" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="mun_Nombre" Nullable="false" MaxLength="150" />
+    <Property Type="String" Name="dep_Nombre" Nullable="false" MaxLength="50" />
+    <Property Type="Int16" Name="cja_Id" Nullable="false" />
+    <Property Type="String" Name="pemi_NumeroCAI" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="RangoInicial" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="RangoFinal" Nullable="false" MaxLength="20" />
+    <Property Type="DateTime" Name="FechaLimite" Nullable="false" />
+    <Property Type="String" Name="suc_Correo" Nullable="false" MaxLength="50" />
+    <Property Type="Int64" Name="fact_Id" Nullable="false" />
+    <Property Type="String" Name="fact_Codigo" Nullable="false" MaxLength="19" />
+    <Property Type="DateTime" Name="fact_Fecha" Nullable="false" Precision="23" />
+    <Property Type="String" Name="clte_Identificacion" Nullable="false" MaxLength="26" />
+    <Property Type="String" Name="clte_Nombres" Nullable="false" MaxLength="50" />
+    <Property Type="Boolean" Name="fact_AlCredito" Nullable="false" />
+    <Property Type="String" Name="FormaPago" Nullable="false" MaxLength="7" />
+    <Property Type="String" Name="prod_Descripcion" Nullable="false" MaxLength="100" />
+    <Property Type="Decimal" Name="factd_PrecioUnitario" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="factd_Cantidad" Nullable="false" Precision="5" Scale="2" />
+    <Property Type="Decimal" Name="Importe" Nullable="true" Precision="16" Scale="4" />
+    <Property Type="Decimal" Name="MontoFactura" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="TotalPagado" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="SaldoFactura" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="IdentidadTE" Nullable="true" MaxLength="26" />
+    <Property Type="String" Name="NombreTE" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="FechaTE" Nullable="true" />
   </ComplexType>
 </Schema>

@@ -20,17 +20,17 @@ namespace ERP_GMEDINA.Dataset {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("Factura")]
+    [global::System.Xml.Serialization.XmlRootAttribute("DsFactura")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class Factura : global::System.Data.DataSet {
+    public partial class DsFactura : global::System.Data.DataSet {
         
-        private tbFacturaDataTable tabletbFactura;
+        private UDP_Vent_tbFactura_ImprimirDataTable tableUDP_Vent_tbFactura_Imprimir;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public Factura() {
+        public DsFactura() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -41,7 +41,7 @@ namespace ERP_GMEDINA.Dataset {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected Factura(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected DsFactura(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -54,8 +54,8 @@ namespace ERP_GMEDINA.Dataset {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["tbFactura"] != null)) {
-                    base.Tables.Add(new tbFacturaDataTable(ds.Tables["tbFactura"]));
+                if ((ds.Tables["UDP_Vent_tbFactura_Imprimir"] != null)) {
+                    base.Tables.Add(new UDP_Vent_tbFactura_ImprimirDataTable(ds.Tables["UDP_Vent_tbFactura_Imprimir"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -79,9 +79,9 @@ namespace ERP_GMEDINA.Dataset {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public tbFacturaDataTable tbFactura {
+        public UDP_Vent_tbFactura_ImprimirDataTable UDP_Vent_tbFactura_Imprimir {
             get {
-                return this.tabletbFactura;
+                return this.tableUDP_Vent_tbFactura_Imprimir;
             }
         }
         
@@ -127,7 +127,7 @@ namespace ERP_GMEDINA.Dataset {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            Factura cln = ((Factura)(base.Clone()));
+            DsFactura cln = ((DsFactura)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -152,8 +152,8 @@ namespace ERP_GMEDINA.Dataset {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["tbFactura"] != null)) {
-                    base.Tables.Add(new tbFacturaDataTable(ds.Tables["tbFactura"]));
+                if ((ds.Tables["UDP_Vent_tbFactura_Imprimir"] != null)) {
+                    base.Tables.Add(new UDP_Vent_tbFactura_ImprimirDataTable(ds.Tables["UDP_Vent_tbFactura_Imprimir"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -188,10 +188,10 @@ namespace ERP_GMEDINA.Dataset {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tabletbFactura = ((tbFacturaDataTable)(base.Tables["tbFactura"]));
+            this.tableUDP_Vent_tbFactura_Imprimir = ((UDP_Vent_tbFactura_ImprimirDataTable)(base.Tables["UDP_Vent_tbFactura_Imprimir"]));
             if ((initTable == true)) {
-                if ((this.tabletbFactura != null)) {
-                    this.tabletbFactura.InitVars();
+                if ((this.tableUDP_Vent_tbFactura_Imprimir != null)) {
+                    this.tableUDP_Vent_tbFactura_Imprimir.InitVars();
                 }
             }
         }
@@ -199,18 +199,18 @@ namespace ERP_GMEDINA.Dataset {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "Factura";
+            this.DataSetName = "DsFactura";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/Factura.xsd";
+            this.Namespace = "http://tempuri.org/DsFactura.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tabletbFactura = new tbFacturaDataTable();
-            base.Tables.Add(this.tabletbFactura);
+            this.tableUDP_Vent_tbFactura_Imprimir = new UDP_Vent_tbFactura_ImprimirDataTable();
+            base.Tables.Add(this.tableUDP_Vent_tbFactura_Imprimir);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializetbFactura() {
+        private bool ShouldSerializeUDP_Vent_tbFactura_Imprimir() {
             return false;
         }
         
@@ -225,7 +225,7 @@ namespace ERP_GMEDINA.Dataset {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            Factura ds = new Factura();
+            DsFactura ds = new DsFactura();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -270,14 +270,32 @@ namespace ERP_GMEDINA.Dataset {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void tbFacturaRowChangeEventHandler(object sender, tbFacturaRowChangeEvent e);
+        public delegate void UDP_Vent_tbFactura_ImprimirRowChangeEventHandler(object sender, UDP_Vent_tbFactura_ImprimirRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class tbFacturaDataTable : global::System.Data.TypedTableBase<tbFacturaRow> {
+        public partial class UDP_Vent_tbFactura_ImprimirDataTable : global::System.Data.TypedTableBase<UDP_Vent_tbFactura_ImprimirRow> {
+            
+            private global::System.Data.DataColumn columnsuc_Direccion;
+            
+            private global::System.Data.DataColumn columnmun_Nombre;
+            
+            private global::System.Data.DataColumn columndep_Nombre;
+            
+            private global::System.Data.DataColumn columncja_Id;
+            
+            private global::System.Data.DataColumn columnpemi_NumeroCAI;
+            
+            private global::System.Data.DataColumn columnRangoInicial;
+            
+            private global::System.Data.DataColumn columnRangoFinal;
+            
+            private global::System.Data.DataColumn columnFechaLimite;
+            
+            private global::System.Data.DataColumn columnsuc_Correo;
             
             private global::System.Data.DataColumn columnfact_Id;
             
@@ -285,54 +303,38 @@ namespace ERP_GMEDINA.Dataset {
             
             private global::System.Data.DataColumn columnfact_Fecha;
             
-            private global::System.Data.DataColumn columnesfac_Id;
-            
-            private global::System.Data.DataColumn columncja_Id;
-            
-            private global::System.Data.DataColumn columnsuc_Id;
-            
-            private global::System.Data.DataColumn columnclte_Id;
-            
-            private global::System.Data.DataColumn columnpemi_NumeroCAI;
-            
-            private global::System.Data.DataColumn columnfact_AlCredito;
-            
-            private global::System.Data.DataColumn columnfact_DiasCredito;
-            
-            private global::System.Data.DataColumn columnfact_PorcentajeDescuento;
-            
-            private global::System.Data.DataColumn columnfact_Vendedor;
-            
             private global::System.Data.DataColumn columnclte_Identificacion;
             
             private global::System.Data.DataColumn columnclte_Nombres;
             
-            private global::System.Data.DataColumn columnfact_IdentidadTE;
+            private global::System.Data.DataColumn columnfact_AlCredito;
             
-            private global::System.Data.DataColumn columnfact_NombresTE;
+            private global::System.Data.DataColumn columnFormaPago;
             
-            private global::System.Data.DataColumn columnfact_FechaNacimientoTE;
+            private global::System.Data.DataColumn columnprod_Descripcion;
             
-            private global::System.Data.DataColumn columnfact_UsuarioAutoriza;
+            private global::System.Data.DataColumn columnfactd_PrecioUnitario;
             
-            private global::System.Data.DataColumn columnfact_FechaAutoriza;
+            private global::System.Data.DataColumn columnfactd_Cantidad;
             
-            private global::System.Data.DataColumn columnfact_EsAnulada;
+            private global::System.Data.DataColumn columnImporte;
             
-            private global::System.Data.DataColumn columnfact_RazonAnulado;
+            private global::System.Data.DataColumn columnMontoFactura;
             
-            private global::System.Data.DataColumn columnfact_UsuarioCrea;
+            private global::System.Data.DataColumn columnTotalPagado;
             
-            private global::System.Data.DataColumn columnfact_FechaCrea;
+            private global::System.Data.DataColumn columnSaldoFactura;
             
-            private global::System.Data.DataColumn columnfact_UsuarioModifica;
+            private global::System.Data.DataColumn columnIdentidadTE;
             
-            private global::System.Data.DataColumn columnfact_FechaModifica;
+            private global::System.Data.DataColumn columnNombreTE;
+            
+            private global::System.Data.DataColumn columnFechaTE;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tbFacturaDataTable() {
-                this.TableName = "tbFactura";
+            public UDP_Vent_tbFactura_ImprimirDataTable() {
+                this.TableName = "UDP_Vent_tbFactura_Imprimir";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -340,7 +342,7 @@ namespace ERP_GMEDINA.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal tbFacturaDataTable(global::System.Data.DataTable table) {
+            internal UDP_Vent_tbFactura_ImprimirDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -357,9 +359,81 @@ namespace ERP_GMEDINA.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected tbFacturaDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected UDP_Vent_tbFactura_ImprimirDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn suc_DireccionColumn {
+                get {
+                    return this.columnsuc_Direccion;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn mun_NombreColumn {
+                get {
+                    return this.columnmun_Nombre;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn dep_NombreColumn {
+                get {
+                    return this.columndep_Nombre;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn cja_IdColumn {
+                get {
+                    return this.columncja_Id;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn pemi_NumeroCAIColumn {
+                get {
+                    return this.columnpemi_NumeroCAI;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn RangoInicialColumn {
+                get {
+                    return this.columnRangoInicial;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn RangoFinalColumn {
+                get {
+                    return this.columnRangoFinal;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn FechaLimiteColumn {
+                get {
+                    return this.columnFechaLimite;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn suc_CorreoColumn {
+                get {
+                    return this.columnsuc_Correo;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -388,78 +462,6 @@ namespace ERP_GMEDINA.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn esfac_IdColumn {
-                get {
-                    return this.columnesfac_Id;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn cja_IdColumn {
-                get {
-                    return this.columncja_Id;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn suc_IdColumn {
-                get {
-                    return this.columnsuc_Id;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn clte_IdColumn {
-                get {
-                    return this.columnclte_Id;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn pemi_NumeroCAIColumn {
-                get {
-                    return this.columnpemi_NumeroCAI;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn fact_AlCreditoColumn {
-                get {
-                    return this.columnfact_AlCredito;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn fact_DiasCreditoColumn {
-                get {
-                    return this.columnfact_DiasCredito;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn fact_PorcentajeDescuentoColumn {
-                get {
-                    return this.columnfact_PorcentajeDescuento;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn fact_VendedorColumn {
-                get {
-                    return this.columnfact_Vendedor;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn clte_IdentificacionColumn {
                 get {
                     return this.columnclte_Identificacion;
@@ -476,89 +478,97 @@ namespace ERP_GMEDINA.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn fact_IdentidadTEColumn {
+            public global::System.Data.DataColumn fact_AlCreditoColumn {
                 get {
-                    return this.columnfact_IdentidadTE;
+                    return this.columnfact_AlCredito;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn fact_NombresTEColumn {
+            public global::System.Data.DataColumn FormaPagoColumn {
                 get {
-                    return this.columnfact_NombresTE;
+                    return this.columnFormaPago;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn fact_FechaNacimientoTEColumn {
+            public global::System.Data.DataColumn prod_DescripcionColumn {
                 get {
-                    return this.columnfact_FechaNacimientoTE;
+                    return this.columnprod_Descripcion;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn fact_UsuarioAutorizaColumn {
+            public global::System.Data.DataColumn factd_PrecioUnitarioColumn {
                 get {
-                    return this.columnfact_UsuarioAutoriza;
+                    return this.columnfactd_PrecioUnitario;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn fact_FechaAutorizaColumn {
+            public global::System.Data.DataColumn factd_CantidadColumn {
                 get {
-                    return this.columnfact_FechaAutoriza;
+                    return this.columnfactd_Cantidad;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn fact_EsAnuladaColumn {
+            public global::System.Data.DataColumn ImporteColumn {
                 get {
-                    return this.columnfact_EsAnulada;
+                    return this.columnImporte;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn fact_RazonAnuladoColumn {
+            public global::System.Data.DataColumn MontoFacturaColumn {
                 get {
-                    return this.columnfact_RazonAnulado;
+                    return this.columnMontoFactura;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn fact_UsuarioCreaColumn {
+            public global::System.Data.DataColumn TotalPagadoColumn {
                 get {
-                    return this.columnfact_UsuarioCrea;
+                    return this.columnTotalPagado;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn fact_FechaCreaColumn {
+            public global::System.Data.DataColumn SaldoFacturaColumn {
                 get {
-                    return this.columnfact_FechaCrea;
+                    return this.columnSaldoFactura;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn fact_UsuarioModificaColumn {
+            public global::System.Data.DataColumn IdentidadTEColumn {
                 get {
-                    return this.columnfact_UsuarioModifica;
+                    return this.columnIdentidadTE;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn fact_FechaModificaColumn {
+            public global::System.Data.DataColumn NombreTEColumn {
                 get {
-                    return this.columnfact_FechaModifica;
+                    return this.columnNombreTE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn FechaTEColumn {
+                get {
+                    return this.columnFechaTE;
                 }
             }
             
@@ -573,100 +583,102 @@ namespace ERP_GMEDINA.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tbFacturaRow this[int index] {
+            public UDP_Vent_tbFactura_ImprimirRow this[int index] {
                 get {
-                    return ((tbFacturaRow)(this.Rows[index]));
+                    return ((UDP_Vent_tbFactura_ImprimirRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event tbFacturaRowChangeEventHandler tbFacturaRowChanging;
+            public event UDP_Vent_tbFactura_ImprimirRowChangeEventHandler UDP_Vent_tbFactura_ImprimirRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event tbFacturaRowChangeEventHandler tbFacturaRowChanged;
+            public event UDP_Vent_tbFactura_ImprimirRowChangeEventHandler UDP_Vent_tbFactura_ImprimirRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event tbFacturaRowChangeEventHandler tbFacturaRowDeleting;
+            public event UDP_Vent_tbFactura_ImprimirRowChangeEventHandler UDP_Vent_tbFactura_ImprimirRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event tbFacturaRowChangeEventHandler tbFacturaRowDeleted;
+            public event UDP_Vent_tbFactura_ImprimirRowChangeEventHandler UDP_Vent_tbFactura_ImprimirRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddtbFacturaRow(tbFacturaRow row) {
+            public void AddUDP_Vent_tbFactura_ImprimirRow(UDP_Vent_tbFactura_ImprimirRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tbFacturaRow AddtbFacturaRow(
+            public UDP_Vent_tbFactura_ImprimirRow AddUDP_Vent_tbFactura_ImprimirRow(
+                        string suc_Direccion, 
+                        string mun_Nombre, 
+                        string dep_Nombre, 
+                        short cja_Id, 
+                        string pemi_NumeroCAI, 
+                        string RangoInicial, 
+                        string RangoFinal, 
+                        System.DateTime FechaLimite, 
+                        string suc_Correo, 
                         string fact_Codigo, 
                         System.DateTime fact_Fecha, 
-                        byte esfac_Id, 
-                        short cja_Id, 
-                        int suc_Id, 
-                        int clte_Id, 
-                        string pemi_NumeroCAI, 
-                        bool fact_AlCredito, 
-                        int fact_DiasCredito, 
-                        decimal fact_PorcentajeDescuento, 
-                        string fact_Vendedor, 
                         string clte_Identificacion, 
                         string clte_Nombres, 
-                        string fact_IdentidadTE, 
-                        string fact_NombresTE, 
-                        System.DateTime fact_FechaNacimientoTE, 
-                        int fact_UsuarioAutoriza, 
-                        System.DateTime fact_FechaAutoriza, 
-                        bool fact_EsAnulada, 
-                        string fact_RazonAnulado, 
-                        int fact_UsuarioCrea, 
-                        System.DateTime fact_FechaCrea, 
-                        int fact_UsuarioModifica, 
-                        System.DateTime fact_FechaModifica) {
-                tbFacturaRow rowtbFacturaRow = ((tbFacturaRow)(this.NewRow()));
+                        bool fact_AlCredito, 
+                        string FormaPago, 
+                        string prod_Descripcion, 
+                        decimal factd_PrecioUnitario, 
+                        decimal factd_Cantidad, 
+                        decimal Importe, 
+                        decimal MontoFactura, 
+                        decimal TotalPagado, 
+                        decimal SaldoFactura, 
+                        string IdentidadTE, 
+                        string NombreTE, 
+                        System.DateTime FechaTE) {
+                UDP_Vent_tbFactura_ImprimirRow rowUDP_Vent_tbFactura_ImprimirRow = ((UDP_Vent_tbFactura_ImprimirRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
+                        suc_Direccion,
+                        mun_Nombre,
+                        dep_Nombre,
+                        cja_Id,
+                        pemi_NumeroCAI,
+                        RangoInicial,
+                        RangoFinal,
+                        FechaLimite,
+                        suc_Correo,
                         null,
                         fact_Codigo,
                         fact_Fecha,
-                        esfac_Id,
-                        cja_Id,
-                        suc_Id,
-                        clte_Id,
-                        pemi_NumeroCAI,
-                        fact_AlCredito,
-                        fact_DiasCredito,
-                        fact_PorcentajeDescuento,
-                        fact_Vendedor,
                         clte_Identificacion,
                         clte_Nombres,
-                        fact_IdentidadTE,
-                        fact_NombresTE,
-                        fact_FechaNacimientoTE,
-                        fact_UsuarioAutoriza,
-                        fact_FechaAutoriza,
-                        fact_EsAnulada,
-                        fact_RazonAnulado,
-                        fact_UsuarioCrea,
-                        fact_FechaCrea,
-                        fact_UsuarioModifica,
-                        fact_FechaModifica};
-                rowtbFacturaRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowtbFacturaRow);
-                return rowtbFacturaRow;
+                        fact_AlCredito,
+                        FormaPago,
+                        prod_Descripcion,
+                        factd_PrecioUnitario,
+                        factd_Cantidad,
+                        Importe,
+                        MontoFactura,
+                        TotalPagado,
+                        SaldoFactura,
+                        IdentidadTE,
+                        NombreTE,
+                        FechaTE};
+                rowUDP_Vent_tbFactura_ImprimirRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowUDP_Vent_tbFactura_ImprimirRow);
+                return rowUDP_Vent_tbFactura_ImprimirRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tbFacturaRow FindByfact_Id(long fact_Id) {
-                return ((tbFacturaRow)(this.Rows.Find(new object[] {
+            public UDP_Vent_tbFactura_ImprimirRow FindByfact_Id(long fact_Id) {
+                return ((UDP_Vent_tbFactura_ImprimirRow)(this.Rows.Find(new object[] {
                             fact_Id})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                tbFacturaDataTable cln = ((tbFacturaDataTable)(base.Clone()));
+                UDP_Vent_tbFactura_ImprimirDataTable cln = ((UDP_Vent_tbFactura_ImprimirDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -674,94 +686,113 @@ namespace ERP_GMEDINA.Dataset {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new tbFacturaDataTable();
+                return new UDP_Vent_tbFactura_ImprimirDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
+                this.columnsuc_Direccion = base.Columns["suc_Direccion"];
+                this.columnmun_Nombre = base.Columns["mun_Nombre"];
+                this.columndep_Nombre = base.Columns["dep_Nombre"];
+                this.columncja_Id = base.Columns["cja_Id"];
+                this.columnpemi_NumeroCAI = base.Columns["pemi_NumeroCAI"];
+                this.columnRangoInicial = base.Columns["RangoInicial"];
+                this.columnRangoFinal = base.Columns["RangoFinal"];
+                this.columnFechaLimite = base.Columns["FechaLimite"];
+                this.columnsuc_Correo = base.Columns["suc_Correo"];
                 this.columnfact_Id = base.Columns["fact_Id"];
                 this.columnfact_Codigo = base.Columns["fact_Codigo"];
                 this.columnfact_Fecha = base.Columns["fact_Fecha"];
-                this.columnesfac_Id = base.Columns["esfac_Id"];
-                this.columncja_Id = base.Columns["cja_Id"];
-                this.columnsuc_Id = base.Columns["suc_Id"];
-                this.columnclte_Id = base.Columns["clte_Id"];
-                this.columnpemi_NumeroCAI = base.Columns["pemi_NumeroCAI"];
-                this.columnfact_AlCredito = base.Columns["fact_AlCredito"];
-                this.columnfact_DiasCredito = base.Columns["fact_DiasCredito"];
-                this.columnfact_PorcentajeDescuento = base.Columns["fact_PorcentajeDescuento"];
-                this.columnfact_Vendedor = base.Columns["fact_Vendedor"];
                 this.columnclte_Identificacion = base.Columns["clte_Identificacion"];
                 this.columnclte_Nombres = base.Columns["clte_Nombres"];
-                this.columnfact_IdentidadTE = base.Columns["fact_IdentidadTE"];
-                this.columnfact_NombresTE = base.Columns["fact_NombresTE"];
-                this.columnfact_FechaNacimientoTE = base.Columns["fact_FechaNacimientoTE"];
-                this.columnfact_UsuarioAutoriza = base.Columns["fact_UsuarioAutoriza"];
-                this.columnfact_FechaAutoriza = base.Columns["fact_FechaAutoriza"];
-                this.columnfact_EsAnulada = base.Columns["fact_EsAnulada"];
-                this.columnfact_RazonAnulado = base.Columns["fact_RazonAnulado"];
-                this.columnfact_UsuarioCrea = base.Columns["fact_UsuarioCrea"];
-                this.columnfact_FechaCrea = base.Columns["fact_FechaCrea"];
-                this.columnfact_UsuarioModifica = base.Columns["fact_UsuarioModifica"];
-                this.columnfact_FechaModifica = base.Columns["fact_FechaModifica"];
+                this.columnfact_AlCredito = base.Columns["fact_AlCredito"];
+                this.columnFormaPago = base.Columns["FormaPago"];
+                this.columnprod_Descripcion = base.Columns["prod_Descripcion"];
+                this.columnfactd_PrecioUnitario = base.Columns["factd_PrecioUnitario"];
+                this.columnfactd_Cantidad = base.Columns["factd_Cantidad"];
+                this.columnImporte = base.Columns["Importe"];
+                this.columnMontoFactura = base.Columns["MontoFactura"];
+                this.columnTotalPagado = base.Columns["TotalPagado"];
+                this.columnSaldoFactura = base.Columns["SaldoFactura"];
+                this.columnIdentidadTE = base.Columns["IdentidadTE"];
+                this.columnNombreTE = base.Columns["NombreTE"];
+                this.columnFechaTE = base.Columns["FechaTE"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
+                this.columnsuc_Direccion = new global::System.Data.DataColumn("suc_Direccion", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnsuc_Direccion);
+                this.columnmun_Nombre = new global::System.Data.DataColumn("mun_Nombre", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmun_Nombre);
+                this.columndep_Nombre = new global::System.Data.DataColumn("dep_Nombre", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndep_Nombre);
+                this.columncja_Id = new global::System.Data.DataColumn("cja_Id", typeof(short), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncja_Id);
+                this.columnpemi_NumeroCAI = new global::System.Data.DataColumn("pemi_NumeroCAI", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnpemi_NumeroCAI);
+                this.columnRangoInicial = new global::System.Data.DataColumn("RangoInicial", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRangoInicial);
+                this.columnRangoFinal = new global::System.Data.DataColumn("RangoFinal", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRangoFinal);
+                this.columnFechaLimite = new global::System.Data.DataColumn("FechaLimite", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFechaLimite);
+                this.columnsuc_Correo = new global::System.Data.DataColumn("suc_Correo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnsuc_Correo);
                 this.columnfact_Id = new global::System.Data.DataColumn("fact_Id", typeof(long), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnfact_Id);
                 this.columnfact_Codigo = new global::System.Data.DataColumn("fact_Codigo", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnfact_Codigo);
                 this.columnfact_Fecha = new global::System.Data.DataColumn("fact_Fecha", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnfact_Fecha);
-                this.columnesfac_Id = new global::System.Data.DataColumn("esfac_Id", typeof(byte), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnesfac_Id);
-                this.columncja_Id = new global::System.Data.DataColumn("cja_Id", typeof(short), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columncja_Id);
-                this.columnsuc_Id = new global::System.Data.DataColumn("suc_Id", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnsuc_Id);
-                this.columnclte_Id = new global::System.Data.DataColumn("clte_Id", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnclte_Id);
-                this.columnpemi_NumeroCAI = new global::System.Data.DataColumn("pemi_NumeroCAI", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnpemi_NumeroCAI);
-                this.columnfact_AlCredito = new global::System.Data.DataColumn("fact_AlCredito", typeof(bool), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnfact_AlCredito);
-                this.columnfact_DiasCredito = new global::System.Data.DataColumn("fact_DiasCredito", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnfact_DiasCredito);
-                this.columnfact_PorcentajeDescuento = new global::System.Data.DataColumn("fact_PorcentajeDescuento", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnfact_PorcentajeDescuento);
-                this.columnfact_Vendedor = new global::System.Data.DataColumn("fact_Vendedor", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnfact_Vendedor);
                 this.columnclte_Identificacion = new global::System.Data.DataColumn("clte_Identificacion", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnclte_Identificacion);
                 this.columnclte_Nombres = new global::System.Data.DataColumn("clte_Nombres", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnclte_Nombres);
-                this.columnfact_IdentidadTE = new global::System.Data.DataColumn("fact_IdentidadTE", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnfact_IdentidadTE);
-                this.columnfact_NombresTE = new global::System.Data.DataColumn("fact_NombresTE", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnfact_NombresTE);
-                this.columnfact_FechaNacimientoTE = new global::System.Data.DataColumn("fact_FechaNacimientoTE", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnfact_FechaNacimientoTE);
-                this.columnfact_UsuarioAutoriza = new global::System.Data.DataColumn("fact_UsuarioAutoriza", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnfact_UsuarioAutoriza);
-                this.columnfact_FechaAutoriza = new global::System.Data.DataColumn("fact_FechaAutoriza", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnfact_FechaAutoriza);
-                this.columnfact_EsAnulada = new global::System.Data.DataColumn("fact_EsAnulada", typeof(bool), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnfact_EsAnulada);
-                this.columnfact_RazonAnulado = new global::System.Data.DataColumn("fact_RazonAnulado", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnfact_RazonAnulado);
-                this.columnfact_UsuarioCrea = new global::System.Data.DataColumn("fact_UsuarioCrea", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnfact_UsuarioCrea);
-                this.columnfact_FechaCrea = new global::System.Data.DataColumn("fact_FechaCrea", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnfact_FechaCrea);
-                this.columnfact_UsuarioModifica = new global::System.Data.DataColumn("fact_UsuarioModifica", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnfact_UsuarioModifica);
-                this.columnfact_FechaModifica = new global::System.Data.DataColumn("fact_FechaModifica", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnfact_FechaModifica);
+                this.columnfact_AlCredito = new global::System.Data.DataColumn("fact_AlCredito", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnfact_AlCredito);
+                this.columnFormaPago = new global::System.Data.DataColumn("FormaPago", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFormaPago);
+                this.columnprod_Descripcion = new global::System.Data.DataColumn("prod_Descripcion", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnprod_Descripcion);
+                this.columnfactd_PrecioUnitario = new global::System.Data.DataColumn("factd_PrecioUnitario", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnfactd_PrecioUnitario);
+                this.columnfactd_Cantidad = new global::System.Data.DataColumn("factd_Cantidad", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnfactd_Cantidad);
+                this.columnImporte = new global::System.Data.DataColumn("Importe", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnImporte);
+                this.columnMontoFactura = new global::System.Data.DataColumn("MontoFactura", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMontoFactura);
+                this.columnTotalPagado = new global::System.Data.DataColumn("TotalPagado", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotalPagado);
+                this.columnSaldoFactura = new global::System.Data.DataColumn("SaldoFactura", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSaldoFactura);
+                this.columnIdentidadTE = new global::System.Data.DataColumn("IdentidadTE", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIdentidadTE);
+                this.columnNombreTE = new global::System.Data.DataColumn("NombreTE", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNombreTE);
+                this.columnFechaTE = new global::System.Data.DataColumn("FechaTE", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFechaTE);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnfact_Id}, true));
+                this.columnsuc_Direccion.AllowDBNull = false;
+                this.columnsuc_Direccion.MaxLength = 100;
+                this.columnmun_Nombre.AllowDBNull = false;
+                this.columnmun_Nombre.MaxLength = 150;
+                this.columndep_Nombre.AllowDBNull = false;
+                this.columndep_Nombre.MaxLength = 50;
+                this.columncja_Id.AllowDBNull = false;
+                this.columnpemi_NumeroCAI.AllowDBNull = false;
+                this.columnpemi_NumeroCAI.MaxLength = 40;
+                this.columnRangoInicial.AllowDBNull = false;
+                this.columnRangoInicial.MaxLength = 20;
+                this.columnRangoFinal.AllowDBNull = false;
+                this.columnRangoFinal.MaxLength = 20;
+                this.columnFechaLimite.AllowDBNull = false;
+                this.columnsuc_Correo.AllowDBNull = false;
+                this.columnsuc_Correo.MaxLength = 50;
                 this.columnfact_Id.AutoIncrement = true;
                 this.columnfact_Id.AutoIncrementSeed = -1;
                 this.columnfact_Id.AutoIncrementStep = -1;
@@ -771,53 +802,52 @@ namespace ERP_GMEDINA.Dataset {
                 this.columnfact_Codigo.AllowDBNull = false;
                 this.columnfact_Codigo.MaxLength = 19;
                 this.columnfact_Fecha.AllowDBNull = false;
-                this.columnesfac_Id.AllowDBNull = false;
-                this.columncja_Id.AllowDBNull = false;
-                this.columnsuc_Id.AllowDBNull = false;
-                this.columnclte_Id.AllowDBNull = false;
-                this.columnpemi_NumeroCAI.AllowDBNull = false;
-                this.columnpemi_NumeroCAI.MaxLength = 40;
-                this.columnfact_AlCredito.AllowDBNull = false;
-                this.columnfact_DiasCredito.AllowDBNull = false;
-                this.columnfact_PorcentajeDescuento.AllowDBNull = false;
-                this.columnfact_Vendedor.AllowDBNull = false;
-                this.columnfact_Vendedor.MaxLength = 50;
                 this.columnclte_Identificacion.AllowDBNull = false;
                 this.columnclte_Identificacion.MaxLength = 26;
                 this.columnclte_Nombres.AllowDBNull = false;
                 this.columnclte_Nombres.MaxLength = 50;
-                this.columnfact_IdentidadTE.MaxLength = 26;
-                this.columnfact_NombresTE.MaxLength = 50;
-                this.columnfact_EsAnulada.AllowDBNull = false;
-                this.columnfact_RazonAnulado.MaxLength = 50;
-                this.columnfact_UsuarioCrea.AllowDBNull = false;
-                this.columnfact_FechaCrea.AllowDBNull = false;
+                this.columnfact_AlCredito.AllowDBNull = false;
+                this.columnFormaPago.ReadOnly = true;
+                this.columnFormaPago.MaxLength = 7;
+                this.columnprod_Descripcion.AllowDBNull = false;
+                this.columnprod_Descripcion.MaxLength = 100;
+                this.columnfactd_PrecioUnitario.AllowDBNull = false;
+                this.columnfactd_Cantidad.AllowDBNull = false;
+                this.columnImporte.ReadOnly = true;
+                this.columnMontoFactura.ReadOnly = true;
+                this.columnTotalPagado.ReadOnly = true;
+                this.columnSaldoFactura.ReadOnly = true;
+                this.columnIdentidadTE.ReadOnly = true;
+                this.columnIdentidadTE.MaxLength = 26;
+                this.columnNombreTE.ReadOnly = true;
+                this.columnNombreTE.MaxLength = 50;
+                this.columnFechaTE.ReadOnly = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tbFacturaRow NewtbFacturaRow() {
-                return ((tbFacturaRow)(this.NewRow()));
+            public UDP_Vent_tbFactura_ImprimirRow NewUDP_Vent_tbFactura_ImprimirRow() {
+                return ((UDP_Vent_tbFactura_ImprimirRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new tbFacturaRow(builder);
+                return new UDP_Vent_tbFactura_ImprimirRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(tbFacturaRow);
+                return typeof(UDP_Vent_tbFactura_ImprimirRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.tbFacturaRowChanged != null)) {
-                    this.tbFacturaRowChanged(this, new tbFacturaRowChangeEvent(((tbFacturaRow)(e.Row)), e.Action));
+                if ((this.UDP_Vent_tbFactura_ImprimirRowChanged != null)) {
+                    this.UDP_Vent_tbFactura_ImprimirRowChanged(this, new UDP_Vent_tbFactura_ImprimirRowChangeEvent(((UDP_Vent_tbFactura_ImprimirRow)(e.Row)), e.Action));
                 }
             }
             
@@ -825,8 +855,8 @@ namespace ERP_GMEDINA.Dataset {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.tbFacturaRowChanging != null)) {
-                    this.tbFacturaRowChanging(this, new tbFacturaRowChangeEvent(((tbFacturaRow)(e.Row)), e.Action));
+                if ((this.UDP_Vent_tbFactura_ImprimirRowChanging != null)) {
+                    this.UDP_Vent_tbFactura_ImprimirRowChanging(this, new UDP_Vent_tbFactura_ImprimirRowChangeEvent(((UDP_Vent_tbFactura_ImprimirRow)(e.Row)), e.Action));
                 }
             }
             
@@ -834,8 +864,8 @@ namespace ERP_GMEDINA.Dataset {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.tbFacturaRowDeleted != null)) {
-                    this.tbFacturaRowDeleted(this, new tbFacturaRowChangeEvent(((tbFacturaRow)(e.Row)), e.Action));
+                if ((this.UDP_Vent_tbFactura_ImprimirRowDeleted != null)) {
+                    this.UDP_Vent_tbFactura_ImprimirRowDeleted(this, new UDP_Vent_tbFactura_ImprimirRowChangeEvent(((UDP_Vent_tbFactura_ImprimirRow)(e.Row)), e.Action));
                 }
             }
             
@@ -843,14 +873,14 @@ namespace ERP_GMEDINA.Dataset {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.tbFacturaRowDeleting != null)) {
-                    this.tbFacturaRowDeleting(this, new tbFacturaRowChangeEvent(((tbFacturaRow)(e.Row)), e.Action));
+                if ((this.UDP_Vent_tbFactura_ImprimirRowDeleting != null)) {
+                    this.UDP_Vent_tbFactura_ImprimirRowDeleting(this, new UDP_Vent_tbFactura_ImprimirRowChangeEvent(((UDP_Vent_tbFactura_ImprimirRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemovetbFacturaRow(tbFacturaRow row) {
+            public void RemoveUDP_Vent_tbFactura_ImprimirRow(UDP_Vent_tbFactura_ImprimirRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -859,7 +889,7 @@ namespace ERP_GMEDINA.Dataset {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                Factura ds = new Factura();
+                DsFactura ds = new DsFactura();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -877,7 +907,7 @@ namespace ERP_GMEDINA.Dataset {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "tbFacturaDataTable";
+                attribute2.FixedValue = "UDP_Vent_tbFactura_ImprimirDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -921,58 +951,47 @@ namespace ERP_GMEDINA.Dataset {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class tbFacturaRow : global::System.Data.DataRow {
+        public partial class UDP_Vent_tbFactura_ImprimirRow : global::System.Data.DataRow {
             
-            private tbFacturaDataTable tabletbFactura;
+            private UDP_Vent_tbFactura_ImprimirDataTable tableUDP_Vent_tbFactura_Imprimir;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal tbFacturaRow(global::System.Data.DataRowBuilder rb) : 
+            internal UDP_Vent_tbFactura_ImprimirRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tabletbFactura = ((tbFacturaDataTable)(this.Table));
+                this.tableUDP_Vent_tbFactura_Imprimir = ((UDP_Vent_tbFactura_ImprimirDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public long fact_Id {
+            public string suc_Direccion {
                 get {
-                    return ((long)(this[this.tabletbFactura.fact_IdColumn]));
+                    return ((string)(this[this.tableUDP_Vent_tbFactura_Imprimir.suc_DireccionColumn]));
                 }
                 set {
-                    this[this.tabletbFactura.fact_IdColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string fact_Codigo {
-                get {
-                    return ((string)(this[this.tabletbFactura.fact_CodigoColumn]));
-                }
-                set {
-                    this[this.tabletbFactura.fact_CodigoColumn] = value;
+                    this[this.tableUDP_Vent_tbFactura_Imprimir.suc_DireccionColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime fact_Fecha {
+            public string mun_Nombre {
                 get {
-                    return ((global::System.DateTime)(this[this.tabletbFactura.fact_FechaColumn]));
+                    return ((string)(this[this.tableUDP_Vent_tbFactura_Imprimir.mun_NombreColumn]));
                 }
                 set {
-                    this[this.tabletbFactura.fact_FechaColumn] = value;
+                    this[this.tableUDP_Vent_tbFactura_Imprimir.mun_NombreColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public byte esfac_Id {
+            public string dep_Nombre {
                 get {
-                    return ((byte)(this[this.tabletbFactura.esfac_IdColumn]));
+                    return ((string)(this[this.tableUDP_Vent_tbFactura_Imprimir.dep_NombreColumn]));
                 }
                 set {
-                    this[this.tabletbFactura.esfac_IdColumn] = value;
+                    this[this.tableUDP_Vent_tbFactura_Imprimir.dep_NombreColumn] = value;
                 }
             }
             
@@ -980,32 +999,10 @@ namespace ERP_GMEDINA.Dataset {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public short cja_Id {
                 get {
-                    return ((short)(this[this.tabletbFactura.cja_IdColumn]));
+                    return ((short)(this[this.tableUDP_Vent_tbFactura_Imprimir.cja_IdColumn]));
                 }
                 set {
-                    this[this.tabletbFactura.cja_IdColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int suc_Id {
-                get {
-                    return ((int)(this[this.tabletbFactura.suc_IdColumn]));
-                }
-                set {
-                    this[this.tabletbFactura.suc_IdColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int clte_Id {
-                get {
-                    return ((int)(this[this.tabletbFactura.clte_IdColumn]));
-                }
-                set {
-                    this[this.tabletbFactura.clte_IdColumn] = value;
+                    this[this.tableUDP_Vent_tbFactura_Imprimir.cja_IdColumn] = value;
                 }
             }
             
@@ -1013,54 +1010,87 @@ namespace ERP_GMEDINA.Dataset {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string pemi_NumeroCAI {
                 get {
-                    return ((string)(this[this.tabletbFactura.pemi_NumeroCAIColumn]));
+                    return ((string)(this[this.tableUDP_Vent_tbFactura_Imprimir.pemi_NumeroCAIColumn]));
                 }
                 set {
-                    this[this.tabletbFactura.pemi_NumeroCAIColumn] = value;
+                    this[this.tableUDP_Vent_tbFactura_Imprimir.pemi_NumeroCAIColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool fact_AlCredito {
+            public string RangoInicial {
                 get {
-                    return ((bool)(this[this.tabletbFactura.fact_AlCreditoColumn]));
+                    return ((string)(this[this.tableUDP_Vent_tbFactura_Imprimir.RangoInicialColumn]));
                 }
                 set {
-                    this[this.tabletbFactura.fact_AlCreditoColumn] = value;
+                    this[this.tableUDP_Vent_tbFactura_Imprimir.RangoInicialColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int fact_DiasCredito {
+            public string RangoFinal {
                 get {
-                    return ((int)(this[this.tabletbFactura.fact_DiasCreditoColumn]));
+                    return ((string)(this[this.tableUDP_Vent_tbFactura_Imprimir.RangoFinalColumn]));
                 }
                 set {
-                    this[this.tabletbFactura.fact_DiasCreditoColumn] = value;
+                    this[this.tableUDP_Vent_tbFactura_Imprimir.RangoFinalColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal fact_PorcentajeDescuento {
+            public System.DateTime FechaLimite {
                 get {
-                    return ((decimal)(this[this.tabletbFactura.fact_PorcentajeDescuentoColumn]));
+                    return ((global::System.DateTime)(this[this.tableUDP_Vent_tbFactura_Imprimir.FechaLimiteColumn]));
                 }
                 set {
-                    this[this.tabletbFactura.fact_PorcentajeDescuentoColumn] = value;
+                    this[this.tableUDP_Vent_tbFactura_Imprimir.FechaLimiteColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string fact_Vendedor {
+            public string suc_Correo {
                 get {
-                    return ((string)(this[this.tabletbFactura.fact_VendedorColumn]));
+                    return ((string)(this[this.tableUDP_Vent_tbFactura_Imprimir.suc_CorreoColumn]));
                 }
                 set {
-                    this[this.tabletbFactura.fact_VendedorColumn] = value;
+                    this[this.tableUDP_Vent_tbFactura_Imprimir.suc_CorreoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public long fact_Id {
+                get {
+                    return ((long)(this[this.tableUDP_Vent_tbFactura_Imprimir.fact_IdColumn]));
+                }
+                set {
+                    this[this.tableUDP_Vent_tbFactura_Imprimir.fact_IdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string fact_Codigo {
+                get {
+                    return ((string)(this[this.tableUDP_Vent_tbFactura_Imprimir.fact_CodigoColumn]));
+                }
+                set {
+                    this[this.tableUDP_Vent_tbFactura_Imprimir.fact_CodigoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime fact_Fecha {
+                get {
+                    return ((global::System.DateTime)(this[this.tableUDP_Vent_tbFactura_Imprimir.fact_FechaColumn]));
+                }
+                set {
+                    this[this.tableUDP_Vent_tbFactura_Imprimir.fact_FechaColumn] = value;
                 }
             }
             
@@ -1068,10 +1098,10 @@ namespace ERP_GMEDINA.Dataset {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string clte_Identificacion {
                 get {
-                    return ((string)(this[this.tabletbFactura.clte_IdentificacionColumn]));
+                    return ((string)(this[this.tableUDP_Vent_tbFactura_Imprimir.clte_IdentificacionColumn]));
                 }
                 set {
-                    this[this.tabletbFactura.clte_IdentificacionColumn] = value;
+                    this[this.tableUDP_Vent_tbFactura_Imprimir.clte_IdentificacionColumn] = value;
                 }
             }
             
@@ -1079,268 +1109,285 @@ namespace ERP_GMEDINA.Dataset {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string clte_Nombres {
                 get {
-                    return ((string)(this[this.tabletbFactura.clte_NombresColumn]));
+                    return ((string)(this[this.tableUDP_Vent_tbFactura_Imprimir.clte_NombresColumn]));
                 }
                 set {
-                    this[this.tabletbFactura.clte_NombresColumn] = value;
+                    this[this.tableUDP_Vent_tbFactura_Imprimir.clte_NombresColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string fact_IdentidadTE {
+            public bool fact_AlCredito {
+                get {
+                    return ((bool)(this[this.tableUDP_Vent_tbFactura_Imprimir.fact_AlCreditoColumn]));
+                }
+                set {
+                    this[this.tableUDP_Vent_tbFactura_Imprimir.fact_AlCreditoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string FormaPago {
                 get {
                     try {
-                        return ((string)(this[this.tabletbFactura.fact_IdentidadTEColumn]));
+                        return ((string)(this[this.tableUDP_Vent_tbFactura_Imprimir.FormaPagoColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'fact_IdentidadTE\' in table \'tbFactura\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'FormaPago\' in table \'UDP_Vent_tbFactura_Imprimir\' is DBNull" +
+                                ".", e);
                     }
                 }
                 set {
-                    this[this.tabletbFactura.fact_IdentidadTEColumn] = value;
+                    this[this.tableUDP_Vent_tbFactura_Imprimir.FormaPagoColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string fact_NombresTE {
+            public string prod_Descripcion {
+                get {
+                    return ((string)(this[this.tableUDP_Vent_tbFactura_Imprimir.prod_DescripcionColumn]));
+                }
+                set {
+                    this[this.tableUDP_Vent_tbFactura_Imprimir.prod_DescripcionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal factd_PrecioUnitario {
+                get {
+                    return ((decimal)(this[this.tableUDP_Vent_tbFactura_Imprimir.factd_PrecioUnitarioColumn]));
+                }
+                set {
+                    this[this.tableUDP_Vent_tbFactura_Imprimir.factd_PrecioUnitarioColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal factd_Cantidad {
+                get {
+                    return ((decimal)(this[this.tableUDP_Vent_tbFactura_Imprimir.factd_CantidadColumn]));
+                }
+                set {
+                    this[this.tableUDP_Vent_tbFactura_Imprimir.factd_CantidadColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal Importe {
                 get {
                     try {
-                        return ((string)(this[this.tabletbFactura.fact_NombresTEColumn]));
+                        return ((decimal)(this[this.tableUDP_Vent_tbFactura_Imprimir.ImporteColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'fact_NombresTE\' in table \'tbFactura\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Importe\' in table \'UDP_Vent_tbFactura_Imprimir\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tabletbFactura.fact_NombresTEColumn] = value;
+                    this[this.tableUDP_Vent_tbFactura_Imprimir.ImporteColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime fact_FechaNacimientoTE {
+            public decimal MontoFactura {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tabletbFactura.fact_FechaNacimientoTEColumn]));
+                        return ((decimal)(this[this.tableUDP_Vent_tbFactura_Imprimir.MontoFacturaColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'fact_FechaNacimientoTE\' in table \'tbFactura\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'MontoFactura\' in table \'UDP_Vent_tbFactura_Imprimir\' is DBN" +
+                                "ull.", e);
                     }
                 }
                 set {
-                    this[this.tabletbFactura.fact_FechaNacimientoTEColumn] = value;
+                    this[this.tableUDP_Vent_tbFactura_Imprimir.MontoFacturaColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int fact_UsuarioAutoriza {
+            public decimal TotalPagado {
                 get {
                     try {
-                        return ((int)(this[this.tabletbFactura.fact_UsuarioAutorizaColumn]));
+                        return ((decimal)(this[this.tableUDP_Vent_tbFactura_Imprimir.TotalPagadoColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'fact_UsuarioAutoriza\' in table \'tbFactura\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'TotalPagado\' in table \'UDP_Vent_tbFactura_Imprimir\' is DBNu" +
+                                "ll.", e);
                     }
                 }
                 set {
-                    this[this.tabletbFactura.fact_UsuarioAutorizaColumn] = value;
+                    this[this.tableUDP_Vent_tbFactura_Imprimir.TotalPagadoColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime fact_FechaAutoriza {
+            public decimal SaldoFactura {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tabletbFactura.fact_FechaAutorizaColumn]));
+                        return ((decimal)(this[this.tableUDP_Vent_tbFactura_Imprimir.SaldoFacturaColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'fact_FechaAutoriza\' in table \'tbFactura\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'SaldoFactura\' in table \'UDP_Vent_tbFactura_Imprimir\' is DBN" +
+                                "ull.", e);
                     }
                 }
                 set {
-                    this[this.tabletbFactura.fact_FechaAutorizaColumn] = value;
+                    this[this.tableUDP_Vent_tbFactura_Imprimir.SaldoFacturaColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool fact_EsAnulada {
-                get {
-                    return ((bool)(this[this.tabletbFactura.fact_EsAnuladaColumn]));
-                }
-                set {
-                    this[this.tabletbFactura.fact_EsAnuladaColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string fact_RazonAnulado {
+            public string IdentidadTE {
                 get {
                     try {
-                        return ((string)(this[this.tabletbFactura.fact_RazonAnuladoColumn]));
+                        return ((string)(this[this.tableUDP_Vent_tbFactura_Imprimir.IdentidadTEColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'fact_RazonAnulado\' in table \'tbFactura\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'IdentidadTE\' in table \'UDP_Vent_tbFactura_Imprimir\' is DBNu" +
+                                "ll.", e);
                     }
                 }
                 set {
-                    this[this.tabletbFactura.fact_RazonAnuladoColumn] = value;
+                    this[this.tableUDP_Vent_tbFactura_Imprimir.IdentidadTEColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int fact_UsuarioCrea {
-                get {
-                    return ((int)(this[this.tabletbFactura.fact_UsuarioCreaColumn]));
-                }
-                set {
-                    this[this.tabletbFactura.fact_UsuarioCreaColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime fact_FechaCrea {
-                get {
-                    return ((global::System.DateTime)(this[this.tabletbFactura.fact_FechaCreaColumn]));
-                }
-                set {
-                    this[this.tabletbFactura.fact_FechaCreaColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int fact_UsuarioModifica {
+            public string NombreTE {
                 get {
                     try {
-                        return ((int)(this[this.tabletbFactura.fact_UsuarioModificaColumn]));
+                        return ((string)(this[this.tableUDP_Vent_tbFactura_Imprimir.NombreTEColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'fact_UsuarioModifica\' in table \'tbFactura\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'NombreTE\' in table \'UDP_Vent_tbFactura_Imprimir\' is DBNull." +
+                                "", e);
                     }
                 }
                 set {
-                    this[this.tabletbFactura.fact_UsuarioModificaColumn] = value;
+                    this[this.tableUDP_Vent_tbFactura_Imprimir.NombreTEColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime fact_FechaModifica {
+            public System.DateTime FechaTE {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tabletbFactura.fact_FechaModificaColumn]));
+                        return ((global::System.DateTime)(this[this.tableUDP_Vent_tbFactura_Imprimir.FechaTEColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'fact_FechaModifica\' in table \'tbFactura\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'FechaTE\' in table \'UDP_Vent_tbFactura_Imprimir\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tabletbFactura.fact_FechaModificaColumn] = value;
+                    this[this.tableUDP_Vent_tbFactura_Imprimir.FechaTEColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool Isfact_IdentidadTENull() {
-                return this.IsNull(this.tabletbFactura.fact_IdentidadTEColumn);
+            public bool IsFormaPagoNull() {
+                return this.IsNull(this.tableUDP_Vent_tbFactura_Imprimir.FormaPagoColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void Setfact_IdentidadTENull() {
-                this[this.tabletbFactura.fact_IdentidadTEColumn] = global::System.Convert.DBNull;
+            public void SetFormaPagoNull() {
+                this[this.tableUDP_Vent_tbFactura_Imprimir.FormaPagoColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool Isfact_NombresTENull() {
-                return this.IsNull(this.tabletbFactura.fact_NombresTEColumn);
+            public bool IsImporteNull() {
+                return this.IsNull(this.tableUDP_Vent_tbFactura_Imprimir.ImporteColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void Setfact_NombresTENull() {
-                this[this.tabletbFactura.fact_NombresTEColumn] = global::System.Convert.DBNull;
+            public void SetImporteNull() {
+                this[this.tableUDP_Vent_tbFactura_Imprimir.ImporteColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool Isfact_FechaNacimientoTENull() {
-                return this.IsNull(this.tabletbFactura.fact_FechaNacimientoTEColumn);
+            public bool IsMontoFacturaNull() {
+                return this.IsNull(this.tableUDP_Vent_tbFactura_Imprimir.MontoFacturaColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void Setfact_FechaNacimientoTENull() {
-                this[this.tabletbFactura.fact_FechaNacimientoTEColumn] = global::System.Convert.DBNull;
+            public void SetMontoFacturaNull() {
+                this[this.tableUDP_Vent_tbFactura_Imprimir.MontoFacturaColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool Isfact_UsuarioAutorizaNull() {
-                return this.IsNull(this.tabletbFactura.fact_UsuarioAutorizaColumn);
+            public bool IsTotalPagadoNull() {
+                return this.IsNull(this.tableUDP_Vent_tbFactura_Imprimir.TotalPagadoColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void Setfact_UsuarioAutorizaNull() {
-                this[this.tabletbFactura.fact_UsuarioAutorizaColumn] = global::System.Convert.DBNull;
+            public void SetTotalPagadoNull() {
+                this[this.tableUDP_Vent_tbFactura_Imprimir.TotalPagadoColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool Isfact_FechaAutorizaNull() {
-                return this.IsNull(this.tabletbFactura.fact_FechaAutorizaColumn);
+            public bool IsSaldoFacturaNull() {
+                return this.IsNull(this.tableUDP_Vent_tbFactura_Imprimir.SaldoFacturaColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void Setfact_FechaAutorizaNull() {
-                this[this.tabletbFactura.fact_FechaAutorizaColumn] = global::System.Convert.DBNull;
+            public void SetSaldoFacturaNull() {
+                this[this.tableUDP_Vent_tbFactura_Imprimir.SaldoFacturaColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool Isfact_RazonAnuladoNull() {
-                return this.IsNull(this.tabletbFactura.fact_RazonAnuladoColumn);
+            public bool IsIdentidadTENull() {
+                return this.IsNull(this.tableUDP_Vent_tbFactura_Imprimir.IdentidadTEColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void Setfact_RazonAnuladoNull() {
-                this[this.tabletbFactura.fact_RazonAnuladoColumn] = global::System.Convert.DBNull;
+            public void SetIdentidadTENull() {
+                this[this.tableUDP_Vent_tbFactura_Imprimir.IdentidadTEColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool Isfact_UsuarioModificaNull() {
-                return this.IsNull(this.tabletbFactura.fact_UsuarioModificaColumn);
+            public bool IsNombreTENull() {
+                return this.IsNull(this.tableUDP_Vent_tbFactura_Imprimir.NombreTEColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void Setfact_UsuarioModificaNull() {
-                this[this.tabletbFactura.fact_UsuarioModificaColumn] = global::System.Convert.DBNull;
+            public void SetNombreTENull() {
+                this[this.tableUDP_Vent_tbFactura_Imprimir.NombreTEColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool Isfact_FechaModificaNull() {
-                return this.IsNull(this.tabletbFactura.fact_FechaModificaColumn);
+            public bool IsFechaTENull() {
+                return this.IsNull(this.tableUDP_Vent_tbFactura_Imprimir.FechaTEColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void Setfact_FechaModificaNull() {
-                this[this.tabletbFactura.fact_FechaModificaColumn] = global::System.Convert.DBNull;
+            public void SetFechaTENull() {
+                this[this.tableUDP_Vent_tbFactura_Imprimir.FechaTEColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -1348,22 +1395,22 @@ namespace ERP_GMEDINA.Dataset {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class tbFacturaRowChangeEvent : global::System.EventArgs {
+        public class UDP_Vent_tbFactura_ImprimirRowChangeEvent : global::System.EventArgs {
             
-            private tbFacturaRow eventRow;
+            private UDP_Vent_tbFactura_ImprimirRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tbFacturaRowChangeEvent(tbFacturaRow row, global::System.Data.DataRowAction action) {
+            public UDP_Vent_tbFactura_ImprimirRowChangeEvent(UDP_Vent_tbFactura_ImprimirRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public tbFacturaRow Row {
+            public UDP_Vent_tbFactura_ImprimirRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -1379,7 +1426,7 @@ namespace ERP_GMEDINA.Dataset {
         }
     }
 }
-namespace ERP_GMEDINA.Dataset.FacturaTableAdapters {
+namespace ERP_GMEDINA.Dataset.DsFacturaTableAdapters {
     
     
     /// <summary>
@@ -1391,7 +1438,7 @@ namespace ERP_GMEDINA.Dataset.FacturaTableAdapters {
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class tbFacturaTableAdapter : global::System.ComponentModel.Component {
+    public partial class UDP_Vent_tbFactura_ImprimirTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -1405,7 +1452,7 @@ namespace ERP_GMEDINA.Dataset.FacturaTableAdapters {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public tbFacturaTableAdapter() {
+        public UDP_Vent_tbFactura_ImprimirTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -1502,102 +1549,41 @@ namespace ERP_GMEDINA.Dataset.FacturaTableAdapters {
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "tbFactura";
+            tableMapping.DataSetTable = "UDP_Vent_tbFactura_Imprimir";
+            tableMapping.ColumnMappings.Add("suc_Direccion", "suc_Direccion");
+            tableMapping.ColumnMappings.Add("mun_Nombre", "mun_Nombre");
+            tableMapping.ColumnMappings.Add("dep_Nombre", "dep_Nombre");
+            tableMapping.ColumnMappings.Add("cja_Id", "cja_Id");
+            tableMapping.ColumnMappings.Add("pemi_NumeroCAI", "pemi_NumeroCAI");
+            tableMapping.ColumnMappings.Add("RangoInicial", "RangoInicial");
+            tableMapping.ColumnMappings.Add("RangoFinal", "RangoFinal");
+            tableMapping.ColumnMappings.Add("FechaLimite", "FechaLimite");
+            tableMapping.ColumnMappings.Add("suc_Correo", "suc_Correo");
             tableMapping.ColumnMappings.Add("fact_Id", "fact_Id");
             tableMapping.ColumnMappings.Add("fact_Codigo", "fact_Codigo");
             tableMapping.ColumnMappings.Add("fact_Fecha", "fact_Fecha");
-            tableMapping.ColumnMappings.Add("esfac_Id", "esfac_Id");
-            tableMapping.ColumnMappings.Add("cja_Id", "cja_Id");
-            tableMapping.ColumnMappings.Add("suc_Id", "suc_Id");
-            tableMapping.ColumnMappings.Add("clte_Id", "clte_Id");
-            tableMapping.ColumnMappings.Add("pemi_NumeroCAI", "pemi_NumeroCAI");
-            tableMapping.ColumnMappings.Add("fact_AlCredito", "fact_AlCredito");
-            tableMapping.ColumnMappings.Add("fact_DiasCredito", "fact_DiasCredito");
-            tableMapping.ColumnMappings.Add("fact_PorcentajeDescuento", "fact_PorcentajeDescuento");
-            tableMapping.ColumnMappings.Add("fact_Vendedor", "fact_Vendedor");
             tableMapping.ColumnMappings.Add("clte_Identificacion", "clte_Identificacion");
             tableMapping.ColumnMappings.Add("clte_Nombres", "clte_Nombres");
-            tableMapping.ColumnMappings.Add("fact_IdentidadTE", "fact_IdentidadTE");
-            tableMapping.ColumnMappings.Add("fact_NombresTE", "fact_NombresTE");
-            tableMapping.ColumnMappings.Add("fact_FechaNacimientoTE", "fact_FechaNacimientoTE");
-            tableMapping.ColumnMappings.Add("fact_UsuarioAutoriza", "fact_UsuarioAutoriza");
-            tableMapping.ColumnMappings.Add("fact_FechaAutoriza", "fact_FechaAutoriza");
-            tableMapping.ColumnMappings.Add("fact_EsAnulada", "fact_EsAnulada");
-            tableMapping.ColumnMappings.Add("fact_RazonAnulado", "fact_RazonAnulado");
-            tableMapping.ColumnMappings.Add("fact_UsuarioCrea", "fact_UsuarioCrea");
-            tableMapping.ColumnMappings.Add("fact_FechaCrea", "fact_FechaCrea");
-            tableMapping.ColumnMappings.Add("fact_UsuarioModifica", "fact_UsuarioModifica");
-            tableMapping.ColumnMappings.Add("fact_FechaModifica", "fact_FechaModifica");
+            tableMapping.ColumnMappings.Add("fact_AlCredito", "fact_AlCredito");
+            tableMapping.ColumnMappings.Add("FormaPago", "FormaPago");
+            tableMapping.ColumnMappings.Add("prod_Descripcion", "prod_Descripcion");
+            tableMapping.ColumnMappings.Add("factd_PrecioUnitario", "factd_PrecioUnitario");
+            tableMapping.ColumnMappings.Add("factd_Cantidad", "factd_Cantidad");
+            tableMapping.ColumnMappings.Add("Importe", "Importe");
+            tableMapping.ColumnMappings.Add("MontoFactura", "MontoFactura");
+            tableMapping.ColumnMappings.Add("TotalPagado", "TotalPagado");
+            tableMapping.ColumnMappings.Add("SaldoFactura", "SaldoFactura");
+            tableMapping.ColumnMappings.Add("IdentidadTE", "IdentidadTE");
+            tableMapping.ColumnMappings.Add("NombreTE", "NombreTE");
+            tableMapping.ColumnMappings.Add("FechaTE", "FechaTE");
             this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [Vent].[tbFactura] WHERE (([fact_Id] = @Original_fact_Id))";
-            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_fact_Id", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "fact_Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Vent].[tbFactura] ([fact_Codigo], [fact_Fecha], [esfac_Id], [cja_Id], [suc_Id], [clte_Id], [pemi_NumeroCAI], [fact_AlCredito], [fact_DiasCredito], [fact_PorcentajeDescuento], [fact_Vendedor], [clte_Identificacion], [clte_Nombres], [fact_IdentidadTE], [fact_NombresTE], [fact_FechaNacimientoTE], [fact_UsuarioAutoriza], [fact_FechaAutoriza], [fact_EsAnulada], [fact_RazonAnulado], [fact_UsuarioCrea], [fact_FechaCrea], [fact_UsuarioModifica], [fact_FechaModifica]) VALUES (@fact_Codigo, @fact_Fecha, @esfac_Id, @cja_Id, @suc_Id, @clte_Id, @pemi_NumeroCAI, @fact_AlCredito, @fact_DiasCredito, @fact_PorcentajeDescuento, @fact_Vendedor, @clte_Identificacion, @clte_Nombres, @fact_IdentidadTE, @fact_NombresTE, @fact_FechaNacimientoTE, @fact_UsuarioAutoriza, @fact_FechaAutoriza, @fact_EsAnulada, @fact_RazonAnulado, @fact_UsuarioCrea, @fact_FechaCrea, @fact_UsuarioModifica, @fact_FechaModifica)";
-            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fact_Codigo", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "fact_Codigo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fact_Fecha", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "fact_Fecha", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@esfac_Id", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "esfac_Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@cja_Id", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "cja_Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@suc_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "suc_Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@clte_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "clte_Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@pemi_NumeroCAI", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pemi_NumeroCAI", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fact_AlCredito", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "fact_AlCredito", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fact_DiasCredito", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "fact_DiasCredito", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fact_PorcentajeDescuento", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "fact_PorcentajeDescuento", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fact_Vendedor", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "fact_Vendedor", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@clte_Identificacion", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "clte_Identificacion", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@clte_Nombres", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "clte_Nombres", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fact_IdentidadTE", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "fact_IdentidadTE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fact_NombresTE", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "fact_NombresTE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fact_FechaNacimientoTE", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "fact_FechaNacimientoTE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fact_UsuarioAutoriza", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "fact_UsuarioAutoriza", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fact_FechaAutoriza", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "fact_FechaAutoriza", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fact_EsAnulada", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "fact_EsAnulada", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fact_RazonAnulado", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "fact_RazonAnulado", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fact_UsuarioCrea", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "fact_UsuarioCrea", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fact_FechaCrea", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "fact_FechaCrea", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fact_UsuarioModifica", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "fact_UsuarioModifica", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fact_FechaModifica", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "fact_FechaModifica", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [Vent].[tbFactura] SET [fact_Codigo] = @fact_Codigo, [fact_Fecha] = @fact_Fecha, [esfac_Id] = @esfac_Id, [cja_Id] = @cja_Id, [suc_Id] = @suc_Id, [clte_Id] = @clte_Id, [pemi_NumeroCAI] = @pemi_NumeroCAI, [fact_AlCredito] = @fact_AlCredito, [fact_DiasCredito] = @fact_DiasCredito, [fact_PorcentajeDescuento] = @fact_PorcentajeDescuento, [fact_Vendedor] = @fact_Vendedor, [clte_Identificacion] = @clte_Identificacion, [clte_Nombres] = @clte_Nombres, [fact_IdentidadTE] = @fact_IdentidadTE, [fact_NombresTE] = @fact_NombresTE, [fact_FechaNacimientoTE] = @fact_FechaNacimientoTE, [fact_UsuarioAutoriza] = @fact_UsuarioAutoriza, [fact_FechaAutoriza] = @fact_FechaAutoriza, [fact_EsAnulada] = @fact_EsAnulada, [fact_RazonAnulado] = @fact_RazonAnulado, [fact_UsuarioCrea] = @fact_UsuarioCrea, [fact_FechaCrea] = @fact_FechaCrea, [fact_UsuarioModifica] = @fact_UsuarioModifica, [fact_FechaModifica] = @fact_FechaModifica WHERE (([fact_Id] = @Original_fact_Id))";
-            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fact_Codigo", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "fact_Codigo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fact_Fecha", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "fact_Fecha", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@esfac_Id", global::System.Data.SqlDbType.TinyInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "esfac_Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@cja_Id", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "cja_Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@suc_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "suc_Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@clte_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "clte_Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@pemi_NumeroCAI", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pemi_NumeroCAI", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fact_AlCredito", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "fact_AlCredito", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fact_DiasCredito", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "fact_DiasCredito", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fact_PorcentajeDescuento", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "fact_PorcentajeDescuento", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fact_Vendedor", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "fact_Vendedor", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@clte_Identificacion", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "clte_Identificacion", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@clte_Nombres", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "clte_Nombres", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fact_IdentidadTE", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "fact_IdentidadTE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fact_NombresTE", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "fact_NombresTE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fact_FechaNacimientoTE", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "fact_FechaNacimientoTE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fact_UsuarioAutoriza", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "fact_UsuarioAutoriza", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fact_FechaAutoriza", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "fact_FechaAutoriza", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fact_EsAnulada", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "fact_EsAnulada", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fact_RazonAnulado", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "fact_RazonAnulado", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fact_UsuarioCrea", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "fact_UsuarioCrea", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fact_FechaCrea", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "fact_FechaCrea", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fact_UsuarioModifica", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "fact_UsuarioModifica", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fact_FechaModifica", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "fact_FechaModifica", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_fact_Id", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "fact_Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ERP_GMEDINAConnectionString1"].ConnectionString;
+            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ERP_GMEDINAConnectionString"].ConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1606,44 +1592,24 @@ namespace ERP_GMEDINA.Dataset.FacturaTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT [fact_Id]
-      ,[fact_Codigo]
-      ,[fact_Fecha]
-      ,[esfac_Id]
-      ,[cja_Id]
-      ,[suc_Id]
-      ,[clte_Id]
-      ,[pemi_NumeroCAI]
-      ,[fact_AlCredito]
-      ,[fact_DiasCredito]
-      ,[fact_PorcentajeDescuento]
-      ,[fact_Vendedor]
-      ,[clte_Identificacion]
-      ,[clte_Nombres]
-      ,[fact_IdentidadTE]
-      ,[fact_NombresTE]
-      ,[fact_FechaNacimientoTE]
-      ,[fact_UsuarioAutoriza]
-      ,[fact_FechaAutoriza]
-      ,[fact_EsAnulada]
-      ,[fact_RazonAnulado]
-      ,[fact_UsuarioCrea]
-      ,[fact_FechaCrea]
-      ,[fact_UsuarioModifica]
-      ,[fact_FechaModifica]
-  FROM [Vent].[tbFactura]
-  Where [fact_Id]= @fact_Id";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fact_Id", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 0, 0, "fact_Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].CommandText = "Vent.UDP_Vent_tbFactura_Imprimir";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fact_Id", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 19, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(Factura.tbFacturaDataTable dataTable, long fact_Id) {
+        public virtual int Fill(DsFactura.UDP_Vent_tbFactura_ImprimirDataTable dataTable, global::System.Nullable<long> fact_Id) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            this.Adapter.SelectCommand.Parameters[0].Value = ((long)(fact_Id));
+            if ((fact_Id.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((long)(fact_Id.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
@@ -1655,333 +1621,17 @@ namespace ERP_GMEDINA.Dataset.FacturaTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual Factura.tbFacturaDataTable GetData(long fact_Id) {
+        public virtual DsFactura.UDP_Vent_tbFactura_ImprimirDataTable GetData(global::System.Nullable<long> fact_Id) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            this.Adapter.SelectCommand.Parameters[0].Value = ((long)(fact_Id));
-            Factura.tbFacturaDataTable dataTable = new Factura.tbFacturaDataTable();
+            if ((fact_Id.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((long)(fact_Id.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            DsFactura.UDP_Vent_tbFactura_ImprimirDataTable dataTable = new DsFactura.UDP_Vent_tbFactura_ImprimirDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(Factura.tbFacturaDataTable dataTable) {
-            return this.Adapter.Update(dataTable);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(Factura dataSet) {
-            return this.Adapter.Update(dataSet, "tbFactura");
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow dataRow) {
-            return this.Adapter.Update(new global::System.Data.DataRow[] {
-                        dataRow});
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow[] dataRows) {
-            return this.Adapter.Update(dataRows);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(long Original_fact_Id) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((long)(Original_fact_Id));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
-            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.DeleteCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.DeleteCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(
-                    string fact_Codigo, 
-                    System.DateTime fact_Fecha, 
-                    byte esfac_Id, 
-                    short cja_Id, 
-                    int suc_Id, 
-                    int clte_Id, 
-                    string pemi_NumeroCAI, 
-                    bool fact_AlCredito, 
-                    int fact_DiasCredito, 
-                    decimal fact_PorcentajeDescuento, 
-                    string fact_Vendedor, 
-                    string clte_Identificacion, 
-                    string clte_Nombres, 
-                    string fact_IdentidadTE, 
-                    string fact_NombresTE, 
-                    global::System.Nullable<global::System.DateTime> fact_FechaNacimientoTE, 
-                    global::System.Nullable<int> fact_UsuarioAutoriza, 
-                    global::System.Nullable<global::System.DateTime> fact_FechaAutoriza, 
-                    bool fact_EsAnulada, 
-                    string fact_RazonAnulado, 
-                    int fact_UsuarioCrea, 
-                    System.DateTime fact_FechaCrea, 
-                    global::System.Nullable<int> fact_UsuarioModifica, 
-                    global::System.Nullable<global::System.DateTime> fact_FechaModifica) {
-            if ((fact_Codigo == null)) {
-                throw new global::System.ArgumentNullException("fact_Codigo");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(fact_Codigo));
-            }
-            this.Adapter.InsertCommand.Parameters[1].Value = ((System.DateTime)(fact_Fecha));
-            this.Adapter.InsertCommand.Parameters[2].Value = ((byte)(esfac_Id));
-            this.Adapter.InsertCommand.Parameters[3].Value = ((short)(cja_Id));
-            this.Adapter.InsertCommand.Parameters[4].Value = ((int)(suc_Id));
-            this.Adapter.InsertCommand.Parameters[5].Value = ((int)(clte_Id));
-            if ((pemi_NumeroCAI == null)) {
-                throw new global::System.ArgumentNullException("pemi_NumeroCAI");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[6].Value = ((string)(pemi_NumeroCAI));
-            }
-            this.Adapter.InsertCommand.Parameters[7].Value = ((bool)(fact_AlCredito));
-            this.Adapter.InsertCommand.Parameters[8].Value = ((int)(fact_DiasCredito));
-            this.Adapter.InsertCommand.Parameters[9].Value = ((decimal)(fact_PorcentajeDescuento));
-            if ((fact_Vendedor == null)) {
-                throw new global::System.ArgumentNullException("fact_Vendedor");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[10].Value = ((string)(fact_Vendedor));
-            }
-            if ((clte_Identificacion == null)) {
-                throw new global::System.ArgumentNullException("clte_Identificacion");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[11].Value = ((string)(clte_Identificacion));
-            }
-            if ((clte_Nombres == null)) {
-                throw new global::System.ArgumentNullException("clte_Nombres");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[12].Value = ((string)(clte_Nombres));
-            }
-            if ((fact_IdentidadTE == null)) {
-                this.Adapter.InsertCommand.Parameters[13].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[13].Value = ((string)(fact_IdentidadTE));
-            }
-            if ((fact_NombresTE == null)) {
-                this.Adapter.InsertCommand.Parameters[14].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[14].Value = ((string)(fact_NombresTE));
-            }
-            if ((fact_FechaNacimientoTE.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[15].Value = ((System.DateTime)(fact_FechaNacimientoTE.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[15].Value = global::System.DBNull.Value;
-            }
-            if ((fact_UsuarioAutoriza.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[16].Value = ((int)(fact_UsuarioAutoriza.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[16].Value = global::System.DBNull.Value;
-            }
-            if ((fact_FechaAutoriza.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[17].Value = ((System.DateTime)(fact_FechaAutoriza.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[17].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.InsertCommand.Parameters[18].Value = ((bool)(fact_EsAnulada));
-            if ((fact_RazonAnulado == null)) {
-                this.Adapter.InsertCommand.Parameters[19].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[19].Value = ((string)(fact_RazonAnulado));
-            }
-            this.Adapter.InsertCommand.Parameters[20].Value = ((int)(fact_UsuarioCrea));
-            this.Adapter.InsertCommand.Parameters[21].Value = ((System.DateTime)(fact_FechaCrea));
-            if ((fact_UsuarioModifica.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[22].Value = ((int)(fact_UsuarioModifica.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[22].Value = global::System.DBNull.Value;
-            }
-            if ((fact_FechaModifica.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[23].Value = ((System.DateTime)(fact_FechaModifica.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[23].Value = global::System.DBNull.Value;
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
-            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.InsertCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.InsertCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(
-                    string fact_Codigo, 
-                    System.DateTime fact_Fecha, 
-                    byte esfac_Id, 
-                    short cja_Id, 
-                    int suc_Id, 
-                    int clte_Id, 
-                    string pemi_NumeroCAI, 
-                    bool fact_AlCredito, 
-                    int fact_DiasCredito, 
-                    decimal fact_PorcentajeDescuento, 
-                    string fact_Vendedor, 
-                    string clte_Identificacion, 
-                    string clte_Nombres, 
-                    string fact_IdentidadTE, 
-                    string fact_NombresTE, 
-                    global::System.Nullable<global::System.DateTime> fact_FechaNacimientoTE, 
-                    global::System.Nullable<int> fact_UsuarioAutoriza, 
-                    global::System.Nullable<global::System.DateTime> fact_FechaAutoriza, 
-                    bool fact_EsAnulada, 
-                    string fact_RazonAnulado, 
-                    int fact_UsuarioCrea, 
-                    System.DateTime fact_FechaCrea, 
-                    global::System.Nullable<int> fact_UsuarioModifica, 
-                    global::System.Nullable<global::System.DateTime> fact_FechaModifica, 
-                    long Original_fact_Id) {
-            if ((fact_Codigo == null)) {
-                throw new global::System.ArgumentNullException("fact_Codigo");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(fact_Codigo));
-            }
-            this.Adapter.UpdateCommand.Parameters[1].Value = ((System.DateTime)(fact_Fecha));
-            this.Adapter.UpdateCommand.Parameters[2].Value = ((byte)(esfac_Id));
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((short)(cja_Id));
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(suc_Id));
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(clte_Id));
-            if ((pemi_NumeroCAI == null)) {
-                throw new global::System.ArgumentNullException("pemi_NumeroCAI");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(pemi_NumeroCAI));
-            }
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((bool)(fact_AlCredito));
-            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(fact_DiasCredito));
-            this.Adapter.UpdateCommand.Parameters[9].Value = ((decimal)(fact_PorcentajeDescuento));
-            if ((fact_Vendedor == null)) {
-                throw new global::System.ArgumentNullException("fact_Vendedor");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(fact_Vendedor));
-            }
-            if ((clte_Identificacion == null)) {
-                throw new global::System.ArgumentNullException("clte_Identificacion");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(clte_Identificacion));
-            }
-            if ((clte_Nombres == null)) {
-                throw new global::System.ArgumentNullException("clte_Nombres");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(clte_Nombres));
-            }
-            if ((fact_IdentidadTE == null)) {
-                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(fact_IdentidadTE));
-            }
-            if ((fact_NombresTE == null)) {
-                this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(fact_NombresTE));
-            }
-            if ((fact_FechaNacimientoTE.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((System.DateTime)(fact_FechaNacimientoTE.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[15].Value = global::System.DBNull.Value;
-            }
-            if ((fact_UsuarioAutoriza.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((int)(fact_UsuarioAutoriza.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
-            }
-            if ((fact_FechaAutoriza.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((System.DateTime)(fact_FechaAutoriza.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[17].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.UpdateCommand.Parameters[18].Value = ((bool)(fact_EsAnulada));
-            if ((fact_RazonAnulado == null)) {
-                this.Adapter.UpdateCommand.Parameters[19].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((string)(fact_RazonAnulado));
-            }
-            this.Adapter.UpdateCommand.Parameters[20].Value = ((int)(fact_UsuarioCrea));
-            this.Adapter.UpdateCommand.Parameters[21].Value = ((System.DateTime)(fact_FechaCrea));
-            if ((fact_UsuarioModifica.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[22].Value = ((int)(fact_UsuarioModifica.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[22].Value = global::System.DBNull.Value;
-            }
-            if ((fact_FechaModifica.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[23].Value = ((System.DateTime)(fact_FechaModifica.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[23].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.UpdateCommand.Parameters[24].Value = ((long)(Original_fact_Id));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
-            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.UpdateCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.UpdateCommand.Connection.Close();
-                }
-            }
         }
     }
     
@@ -1997,8 +1647,6 @@ namespace ERP_GMEDINA.Dataset.FacturaTableAdapters {
         
         private UpdateOrderOption _updateOrder;
         
-        private tbFacturaTableAdapter _tbFacturaTableAdapter;
-        
         private bool _backupDataSetBeforeUpdate;
         
         private global::System.Data.IDbConnection _connection;
@@ -2011,20 +1659,6 @@ namespace ERP_GMEDINA.Dataset.FacturaTableAdapters {
             }
             set {
                 this._updateOrder = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
-            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
-            "a", "System.Drawing.Design.UITypeEditor")]
-        public tbFacturaTableAdapter tbFacturaTableAdapter {
-            get {
-                return this._tbFacturaTableAdapter;
-            }
-            set {
-                this._tbFacturaTableAdapter = value;
             }
         }
         
@@ -2047,10 +1681,6 @@ namespace ERP_GMEDINA.Dataset.FacturaTableAdapters {
                 if ((this._connection != null)) {
                     return this._connection;
                 }
-                if (((this._tbFacturaTableAdapter != null) 
-                            && (this._tbFacturaTableAdapter.Connection != null))) {
-                    return this._tbFacturaTableAdapter.Connection;
-                }
                 return null;
             }
             set {
@@ -2064,9 +1694,6 @@ namespace ERP_GMEDINA.Dataset.FacturaTableAdapters {
         public int TableAdapterInstanceCount {
             get {
                 int count = 0;
-                if ((this._tbFacturaTableAdapter != null)) {
-                    count = (count + 1);
-                }
                 return count;
             }
         }
@@ -2076,17 +1703,8 @@ namespace ERP_GMEDINA.Dataset.FacturaTableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private int UpdateUpdatedRows(Factura dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateUpdatedRows(DsFactura dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._tbFacturaTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.tbFactura.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._tbFacturaTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             return result;
         }
         
@@ -2095,16 +1713,8 @@ namespace ERP_GMEDINA.Dataset.FacturaTableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private int UpdateInsertedRows(Factura dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateInsertedRows(DsFactura dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._tbFacturaTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.tbFactura.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._tbFacturaTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             return result;
         }
         
@@ -2113,16 +1723,8 @@ namespace ERP_GMEDINA.Dataset.FacturaTableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private int UpdateDeletedRows(Factura dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
+        private int UpdateDeletedRows(DsFactura dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
-            if ((this._tbFacturaTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.tbFactura.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._tbFacturaTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             return result;
         }
         
@@ -2155,17 +1757,12 @@ namespace ERP_GMEDINA.Dataset.FacturaTableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public virtual int UpdateAll(Factura dataSet) {
+        public virtual int UpdateAll(DsFactura dataSet) {
             if ((dataSet == null)) {
                 throw new global::System.ArgumentNullException("dataSet");
             }
             if ((dataSet.HasChanges() == false)) {
                 return 0;
-            }
-            if (((this._tbFacturaTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._tbFacturaTableAdapter.Connection) == false))) {
-                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
-                        "tring.");
             }
             global::System.Data.IDbConnection workConnection = this.Connection;
             if ((workConnection == null)) {
@@ -2199,15 +1796,6 @@ namespace ERP_GMEDINA.Dataset.FacturaTableAdapters {
             try {
                 // ---- Prepare for update -----------
                 //
-                if ((this._tbFacturaTableAdapter != null)) {
-                    revertConnections.Add(this._tbFacturaTableAdapter, this._tbFacturaTableAdapter.Connection);
-                    this._tbFacturaTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._tbFacturaTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._tbFacturaTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._tbFacturaTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._tbFacturaTableAdapter.Adapter);
-                    }
-                }
                 // 
                 //---- Perform updates -----------
                 //
@@ -2265,10 +1853,6 @@ namespace ERP_GMEDINA.Dataset.FacturaTableAdapters {
             finally {
                 if (workConnOpened) {
                     workConnection.Close();
-                }
-                if ((this._tbFacturaTableAdapter != null)) {
-                    this._tbFacturaTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tbFacturaTableAdapter]));
-                    this._tbFacturaTableAdapter.Transaction = null;
                 }
                 if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
                     global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];

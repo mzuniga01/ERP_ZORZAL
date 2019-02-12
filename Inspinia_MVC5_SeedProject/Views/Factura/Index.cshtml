@@ -18,7 +18,6 @@
                 <div class="ibox-title">
                     <h5>Listado de Facturas</h5>
                     <div class="ibox-tools">
-                        @*<a href="~/ReportViewer/Factura.aspx" class="btn btn-primary btn-sm">Generar Reporte</a>*@
                        @Html.ActionLink("Registrar Factura", "Create", null, new { @class = "btn btn-primary btn-sm" })
                     </div>
                 </div>
@@ -103,10 +102,7 @@
                                         <td>
                                             @Html.ActionLink("Detalle", "Details", new { id = item.fact_Id }, new { @class = "btn btn-primary btn-xs" })
                                             @Html.ActionLink("Editar", "Edit", new { id = item.fact_Id }, new { @class = "btn btn-primary btn-xs" })
-                                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalImprimir">
-                                                Imprimir
-                                            </button>
-
+                                            @Html.ActionLink("Imprimir", "ExportReport", new { id = item.fact_Id }, new { @class = "btn btn-primary btn-xs" })
                                         </td>
                                     }
                                     else

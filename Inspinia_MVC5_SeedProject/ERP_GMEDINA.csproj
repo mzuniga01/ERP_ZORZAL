@@ -221,6 +221,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DSCuponDescuento.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Dataset\DsFactura.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DsFactura.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Dataset\DSNotaCredito.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -230,11 +235,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>dsPago.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Dataset\Factura.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Factura.xsd</DependentUpon>
     </Compile>
     <Compile Include="Dataset\PuntoEmision.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1020,6 +1020,12 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\Factura.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Factura.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\ImprimirCuponDescuento.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1474,9 +1480,6 @@
     <Content Include="Dataset\PuntoEmision.xsc">
       <DependentUpon>PuntoEmision.xsd</DependentUpon>
     </Content>
-    <Content Include="Dataset\Factura.xsc">
-      <DependentUpon>Factura.xsd</DependentUpon>
-    </Content>
     <Content Include="bin\ERP_GMEDINA.dll.config" />
     <Content Include="Dataset\DSCuponDescuento.xsc">
       <DependentUpon>DSCuponDescuento.xsd</DependentUpon>
@@ -1491,6 +1494,17 @@
     </Content>
     <Content Include="Dataset\DSNotaCredito.xsc">
       <DependentUpon>DSNotaCredito.xsd</DependentUpon>
+    </Content>
+    <Content Include="Dataset\DsFactura.xsc">
+      <DependentUpon>DsFactura.xsd</DependentUpon>
+    </Content>
+    <None Include="Dataset\DsFactura.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsFactura.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Dataset\DsFactura.xss">
+      <DependentUpon>DsFactura.xsd</DependentUpon>
     </Content>
     <None Include="Dataset\DSNotaCredito.xsd">
       <Generator>MSDataSetGenerator</Generator>
@@ -1510,14 +1524,6 @@
     </None>
     <Content Include="Dataset\dsPago.xss">
       <DependentUpon>dsPago.xsd</DependentUpon>
-    </Content>
-    <None Include="Dataset\Factura.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>Factura.Designer.cs</LastGenOutput>
-    </None>
-    <Content Include="Dataset\Factura.xss">
-      <DependentUpon>Factura.xsd</DependentUpon>
     </Content>
     <None Include="Dataset\PuntoEmision.xsd">
       <SubType>Designer</SubType>
@@ -1880,6 +1886,10 @@
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Reports\Factura.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Factura.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\ImprimirCuponDescuento.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ImprimirCuponDescuento.cs</LastGenOutput>
@@ -1904,7 +1914,6 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>PagoImprimir1.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\PrintingFactura.rdlc" />
     <EmbeddedResource Include="Reports\PuntoEmision.rdlc" />
     <EmbeddedResource Include="Reports\SolicitudEfectivo.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
