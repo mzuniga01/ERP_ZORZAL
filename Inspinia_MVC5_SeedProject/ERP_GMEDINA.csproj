@@ -1861,7 +1861,6 @@
     <Content Include="Views\ListaPrecios\_CreateListaPrecioDetalleEdit.cshtml" />
     <Content Include="Views\ListaPrecios\_CreateListaPrecioEdit.cshtml" />
     <Content Include="Views\Exoneracion\ClientesnoExonerado.cshtml" />
-    <Content Include="Views\ListaPrecios\_CreateListaPrecioDetalleModal.cshtml" />
     <Content Include="Views\ListaPrecios\_IndexProductoModal.cshtml" />
     <Content Include="Views\SolicitudEfectivo\_AddDetalle.cshtml" />
     <Content Include="Views\SolicitudEfectivo\_Detalle_Insert.cshtml" />
