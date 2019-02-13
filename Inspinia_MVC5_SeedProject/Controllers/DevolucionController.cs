@@ -18,14 +18,26 @@ namespace ERP_ZORZAL.Controllers
         // GET: /Devolucion/
         public ActionResult Index()
         {
-            //db.Configuration.ProxyCreationEnabled = false;
-
-            var tbdevolucion = db.tbDevolucion.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbCaja).Include(t => t.tbFactura);
-            return View(tbdevolucion.Where(a => a.dev_Estado == false).ToList());
-
-
+            if (Function.GetUserLogin())
+            {
+                if (Function.GetRol())
+                {
+                    if (Function.GetUserRols("Devolucion/Index"))
+                    {
+                        var tbdevolucion = db.tbDevolucion.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbCaja).Include(t => t.tbFactura);
+                        return View(tbdevolucion.Where(a => a.dev_Estado == false).ToList());
+                    }
+                    else
+                    {
+                        return RedirectToAction("SinAcceso", "Login");
+                    }
+                }
+                else
+                    return RedirectToAction("SinRol", "Login");
+            }
+            else
+                return RedirectToAction("Index", "Login");
         }
-
 
         [HttpPost]
         public JsonResult InsertDevolucion(tbDevolucionDetalle DetalleDevolucioncont)
