@@ -102,20 +102,6 @@
     <FunctionImport Name="spGetTipoIdentificacion" ReturnType="Collection(ERP_ZORZALModel.spGetTipoIdentificacion_Result)">
       <Parameter Name="PersonaNatural" Mode="In" Type="Boolean" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbDocumentoFiscal_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDocumentoFiscal_Insert_Result)">
-      <Parameter Name="dfisc_Id" Mode="In" Type="String" />
-      <Parameter Name="dfisc_Descripcion" Mode="In" Type="String" />
-      <Parameter Name="dfisc_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="dfisc_FechaCrea" Mode="In" Type="DateTime" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbDocumentoFiscal_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDocumentoFiscal_Update_Result)">
-      <Parameter Name="dfisc_Id" Mode="In" Type="String" />
-      <Parameter Name="dfisc_Descripcion" Mode="In" Type="String" />
-      <Parameter Name="dfisc_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="dfisc_FechaCrea" Mode="In" Type="DateTime" />
-      <Parameter Name="dfisc_UsuarioModifica" Mode="In" Type="Int32" />
-      <Parameter Name="dfisc_FechaModifica" Mode="In" Type="DateTime" />
-    </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbExoneracion_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbExoneracion_Update_Result)">
       <Parameter Name="exo_Id" Mode="In" Type="Int32" />
       <Parameter Name="exo_Documento" Mode="In" Type="String" />
@@ -141,19 +127,6 @@
       <Parameter Name="clte_Id" Mode="In" Type="Int32" />
       <Parameter Name="clte_EsActivo" Mode="In" Type="Boolean" />
       <Parameter Name="clte_RazonInactivo" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbEstadoFactura_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbEstadoFactura_Insert_Result)">
-      <Parameter Name="esfac_Descripcion" Mode="In" Type="String" />
-      <Parameter Name="esfac_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="esfac_FechaCrea" Mode="In" Type="DateTime" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbEstadoFactura_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbEstadoFactura_Update_Result)">
-      <Parameter Name="esfac_Id" Mode="In" Type="Byte" />
-      <Parameter Name="esfac_Descripcion" Mode="In" Type="String" />
-      <Parameter Name="esfac_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="esfac_FechaCrea" Mode="In" Type="DateTime" />
-      <Parameter Name="esfac_UsuarioModifica" Mode="In" Type="Int32" />
-      <Parameter Name="esfac_FechaModifica" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbMovimientoCaja_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_Insert_Result)">
       <Parameter Name="cja_Id" Mode="In" Type="Int16" />
@@ -2626,6 +2599,33 @@
     <FunctionImport Name="UDP_Vent_tbFactura_Imprimir" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFactura_Imprimir_Result)">
       <Parameter Name="fact_Id" Mode="In" Type="Int64" />
     </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbDocumentoFiscal_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDocumentoFiscal_Insert_Result)">
+      <Parameter Name="dfisc_Id" Mode="In" Type="String" />
+      <Parameter Name="dfisc_Descripcion" Mode="In" Type="String" />
+      <Parameter Name="dfisc_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="dfisc_FechaCrea" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbDocumentoFiscal_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDocumentoFiscal_Update_Result)">
+      <Parameter Name="dfisc_Id" Mode="In" Type="String" />
+      <Parameter Name="dfisc_Descripcion" Mode="In" Type="String" />
+      <Parameter Name="dfisc_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="dfisc_FechaCrea" Mode="In" Type="DateTime" />
+      <Parameter Name="dfisc_UsuarioModifica" Mode="In" Type="Int32" />
+      <Parameter Name="dfisc_FechaModifica" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbEstadoFactura_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbEstadoFactura_Insert_Result)">
+      <Parameter Name="esfac_Descripcion" Mode="In" Type="String" />
+      <Parameter Name="esfac_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="esfac_FechaCrea" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbEstadoFactura_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbEstadoFactura_Update_Result)">
+      <Parameter Name="esfac_Id" Mode="In" Type="Byte" />
+      <Parameter Name="esfac_Descripcion" Mode="In" Type="String" />
+      <Parameter Name="esfac_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="esfac_FechaCrea" Mode="In" Type="DateTime" />
+      <Parameter Name="esfac_UsuarioModifica" Mode="In" Type="Int32" />
+      <Parameter Name="esfac_FechaModifica" Mode="In" Type="DateTime" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -2680,12 +2680,6 @@
     <Property Type="Byte" Name="tpi_Id" Nullable="false" />
     <Property Type="String" Name="tpi_Descripcion" Nullable="false" MaxLength="25" />
   </ComplexType>
-  <ComplexType Name="UDP_Vent_tbDocumentoFiscal_Insert_Result">
-    <Property Type="String" Name="MensajeError" Nullable="false" MaxLength="2" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbDocumentoFiscal_Update_Result">
-    <Property Type="String" Name="MensajeError" Nullable="false" MaxLength="2" />
-  </ComplexType>
   <ComplexType Name="UDP_Vent_tbExoneracion_Update_Result">
     <Property Type="Int32" Name="MensajeError" Nullable="false" />
   </ComplexType>
@@ -2699,12 +2693,6 @@
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbPedido_Update_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="4000" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbEstadoFactura_Insert_Result">
-    <Property Type="Byte" Name="MensajeError" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbEstadoFactura_Update_Result">
-    <Property Type="Byte" Name="MensajeError" Nullable="false" />
   </ComplexType>
   <ComplexType Name="spGetBusquedaCliente_Result">
     <Property Type="String" Name="clte_Identificacion" Nullable="false" MaxLength="26" />
@@ -7946,5 +7934,17 @@
     <Property Type="String" Name="IdentidadTE" Nullable="true" MaxLength="26" />
     <Property Type="String" Name="NombreTE" Nullable="true" MaxLength="50" />
     <Property Type="DateTime" Name="FechaTE" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbDocumentoFiscal_Insert_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="Max" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbDocumentoFiscal_Update_Result">
+    <Property Type="String" Name="MensajeError" Nullable="false" MaxLength="Max" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbEstadoFactura_Insert_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="Max" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbEstadoFactura_Update_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="Max" />
   </ComplexType>
 </Schema>
