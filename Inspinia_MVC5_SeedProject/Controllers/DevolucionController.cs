@@ -224,8 +224,8 @@ namespace ERP_ZORZAL.Controllers
                                                             Detalle.devd_CantidadProducto,
                                                             Detalle.devd_Descripcion,
                                                             Detalle.devd_Monto,
-                                                            Detalle.devd_UsuarioCrea,
-                                                            Detalle.devd_FechaCrea);
+                                                            Function.GetUser(),
+                                                            Function.DatetimeNow());
                                                         foreach (UDP_Vent_tbDevolucionDetalle_Insert_Result SPDevolucionDetalleDet in listDevolucionDetalle)
                                                         {
                                                             MensajeErrorDetalle = SPDevolucionDetalleDet.MensajeError;
