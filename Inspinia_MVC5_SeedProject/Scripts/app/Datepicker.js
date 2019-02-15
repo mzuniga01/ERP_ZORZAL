@@ -1,13 +1,6 @@
 ﻿$(function () {
     //Grupo1
-    //CuentasBanco
-    $("#fechaapertura").datepicker({
-        dateFormat: 'dd-mm-yy',
-        monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-        dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
-        prevText: 'Ant',
-        nextText: 'Sig'
-    }).datepicker('setDate', new Date());
+
 
     //Cliente
     $("#clte_FechaNacimiento").datepicker({
