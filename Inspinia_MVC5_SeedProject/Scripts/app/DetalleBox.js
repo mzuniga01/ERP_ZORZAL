@@ -109,25 +109,11 @@ $('#AgregarDetalleSalida').click(function () {
     var Producto = $('#prod_Descripcion').val();
     var Unidad_Medida = $('#pscat_Id').val();
     var Cantidad = $('#sald_Cantidad').val();
-    
-    
-    if (Producto == '') {
+    if (Cantidad == '') {
         $('#MessageError').text('');
         $('#CodigoError').text('');
         $('#NombreError').text('');
-        $('#ValidationCodigoCreate').after('<ul id="CodigoError" class="validation-summary-errors text-danger">Campo Producto Requerido</ul>');
-    }
-    else if (Unidad_Medida == '') {
-        $('#MessageError').text('');
-        $('#CodigoError').text('');
-        $('#NombreError').text('');
-        $('#ValidationNombreCreate').after('<ul id="NombreError" class="validation-summary-errors text-danger">Unidad Medida Requerido</ul>');
-    }
-    else if (Cantidad == '') {
-        $('#MessageError').text('');
-        $('#CodigoError').text('');
-        $('#NombreError').text('');
-        $('#ValidationNombreCreate').after('<ul id="NombreError" class="validation-summary-errors text-danger">Cantidad Requerido</ul>');
+        $('#validationcantidad').after('<ul id="sald_Cantidad" class="validation-summary-errors text-danger">Cantidad Requerido</ul>');
     }
     else {
         contador = contador + 1;
@@ -306,7 +292,7 @@ $('#btnCreateSalidaDetalle').click(function () {
 
 //VALIDAR SOLO NUMEROS
 $(function () {
-    $("#sald_Cantidad_SD").keydown(function (event) {
+    $("#sald_Cantidad").keydown(function (event) {
         //alert(event.keyCode);
         if ((event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105) && event.keyCode !== 190 && event.keyCode !== 110 && event.keyCode !== 8 && event.keyCode !== 9) {
             return false;
@@ -314,4 +300,14 @@ $(function () {
     });
 });
 
+//VALIDAR CARACTERES
+function soloLetras(e) {
+    tecla = (document.all) ? e.keyCode : e.which;
+    tecla = String.fromCharCode(tecla)
+    return /^[a-zA-ZáéíóúñÁÉÍÓÚÑ ]+$/.test(tecla);
+}
 
+function soloNumeros(e) {
+    var key = window.Event ? e.which : e.keyCode;
+    return ((key >= 48 && key <= 57) || (key == 8))
+}

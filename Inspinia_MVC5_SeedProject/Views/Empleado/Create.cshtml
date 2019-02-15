@@ -51,7 +51,7 @@
 
                                 @Html.LabelFor(model => model.emp_Nombres, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.emp_Nombres, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)" } })
+                                    @Html.EditorFor(model => model.emp_Nombres, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", onblur = "limpia()", id = "miInput" } })
                                     <p style="color:red">
                                         @Html.ValidationMessageFor(model => model.emp_Nombres)
                                     </p>
@@ -59,7 +59,7 @@
 
                                 @Html.LabelFor(model => model.emp_Apellidos, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.emp_Apellidos, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)" } })
+                                    @Html.EditorFor(model => model.emp_Apellidos, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", onblur = "limpiaApellido()", id = "emp_Apellido" } })
                                     <p style="color:red">
                                         @Html.ValidationMessageFor(model => model.emp_Apellidos)
                                     </p>
@@ -96,7 +96,7 @@
 
                                 @Html.LabelFor(model => model.emp_Identificacion, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    @Html.TextBoxFor(model => model.emp_Identificacion,  new {  @class = "form-control", MaxLength = 14 })
+                                    @Html.TextBoxFor(model => model.emp_Identificacion,  new { @class = "form-control", onblur = "limpiaIdentificacion()", id = "emp_Identificacion", MaxLength = 14 })
                                     <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_Identificacion)</p>
                                 </div>
                             </div>
@@ -106,7 +106,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.emp_Telefono, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    @Html.TextBoxFor(model => model.emp_Telefono, new { @class = "form-control", maxlength = 10 })
+                                    @Html.TextBoxFor(model => model.emp_Telefono, new { @class = "form-control", onblur = "limpiaTelefono()", id = "emp_telefono", maxlength = 10 })
                                     <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_Telefono)</p>
                                 </div>
 
@@ -122,7 +122,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.emp_TipoSangre, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.emp_TipoSangre, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)" } })
+                                    @Html.EditorFor(model => model.emp_TipoSangre, new { htmlAttributes = new { @onkeypress = "return TipoSangre(event)", onblur = "limpiaTipoSangre()", id = "emp_TipoSangre",MaxLength =2 } })
                                     <p style="color:red">
                                         @Html.ValidationMessageFor(model => model.emp_TipoSangre)
                                     </p>
@@ -130,7 +130,7 @@
 
                                 @Html.LabelFor(model => model.emp_Puesto, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.emp_Puesto, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)" } })
+                                    @Html.EditorFor(model => model.emp_Puesto, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)" , onblur = "limpiaPuesto()", id = "emp_Puesto", MaxLength = 50 } })
                                     <p style="color:red">
                                         @Html.ValidationMessageFor(model => model.emp_Puesto)
                                     </p>
@@ -145,7 +145,7 @@
 
                                 @Html.LabelFor(model => model.emp_Direccion, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.emp_Direccion, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)" } })
+                                    @Html.EditorFor(model => model.emp_Direccion, new { htmlAttributes = new { @onkeypress = "return Direccion(event)", MaxLength = 250 } })
                                     <p style="color:red">
                                         @Html.ValidationMessageFor(model => model.emp_Direccion)
                                     </p>

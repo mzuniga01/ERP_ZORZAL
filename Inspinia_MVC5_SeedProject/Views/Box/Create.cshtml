@@ -1,7 +1,8 @@
 ﻿@model ERP_GMEDINA.Models.tbBox
-@{ 
-   
-    
+@using ERP_GMEDINA.Models
+@{
+    tbSalidaDetalle tbSalidaDetalle = new tbSalidaDetalle();
+
 }
 
 @{
@@ -43,15 +44,15 @@
                                 @Html.LabelFor(model => model.box_Codigo, new { @class = "control-label col-md-2" })
                                 <div class="col-md-5">
                                     @Html.EditorFor(model => model.box_Codigo, new { @class = "control-label col-md-2" })
-                                    @Html.ValidationMessageFor(model => model.box_Codigo)
+                                    <p style="color:red;">@Html.ValidationMessageFor(model => model.box_Codigo)</p>
                                 </div>
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(model => model.box_Descripcion, new { @class = "control-label col-md-2" })
                                 <div class="col-md-5">
                                     @Html.EditorFor(model => model.box_Descripcion, new { htmlAttributes = new { @class = "form-control col-md-4" } })
-                                    @Html.ValidationMessageFor(model => model.box_Descripcion)
-                                </div>
+                                    <p style="color:red;"> @Html.ValidationMessageFor(model => model.box_Descripcion)</p>
+</div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
@@ -87,7 +88,7 @@
                             </div>
                         </div>
                         <div class="ibox-content collapse" id="Crear">
-                            @Html.Partial("_BoxDetalle", Model)
+                            @Html.Partial("_BoxDetalle", new tbSalidaDetalle())
                         </div>
                     </div>
                 </div>

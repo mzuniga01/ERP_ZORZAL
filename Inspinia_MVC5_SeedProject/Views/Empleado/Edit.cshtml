@@ -55,13 +55,13 @@
         <div class="form-group">
             @Html.LabelFor(model => model.emp_Nombres, new { @class = "control-label col-md-2 , required" })
             <div class="col-md-4">
-                @Html.TextBoxFor(model => model.emp_Nombres,new {@class="single-line", MaxLength=100 })
+                @Html.TextBoxFor(model => model.emp_Nombres,new {@class="single-line", @onkeypress = "return soloLetras(event)", MaxLength =100 })
                 <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_Nombres)</p>
             </div>
             
                 @Html.LabelFor(model => model.emp_Apellidos, new { @class = "control-label col-md-2 , required" })
                 <div class="col-md-4">
-                    @Html.TextBoxFor(model => model.emp_Apellidos, new { @class = "single-line", MaxLength = 100 })
+                    @Html.TextBoxFor(model => model.emp_Apellidos, new { @class = "single-line", @onkeypress = "return soloLetras(event)", MaxLength = 100 })
                     <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_Apellidos)</p>
                 </div>
         </div>
@@ -126,13 +126,13 @@
             
             @Html.LabelFor(model => model.emp_TipoSangre, new { @class = "control-label col-md-2 , required" })
             <div class="col-md-4">
-                @Html.TextBoxFor(model => model.emp_TipoSangre, new { @class = "single-line", MaxLength = 2 })
+                @Html.TextBoxFor(model => model.emp_TipoSangre, new { @class = "single-line", @onkeypress = "return TipoSangre(event)", MaxLength = 2 })
                 <p style="color:red">@Html.ValidationMessageFor(model => model.emp_TipoSangre)</p>
             </div>
 
             @Html.LabelFor(model => model.emp_Puesto, new { @class = "control-label col-md-2 , required" })
             <div class="col-md-4">
-                @Html.TextBoxFor(model => model.emp_Puesto, new { @class = "single-line", MaxLength = 50 })
+                @Html.TextBoxFor(model => model.emp_Puesto, new { @class = "single-line", @onkeypress = "return soloLetras(event)", MaxLength = 50 })
                 <p style="color:red">@Html.ValidationMessageFor(model => model.emp_Puesto)</p>
             </div>
                            
@@ -141,7 +141,7 @@
            
             @Html.LabelFor(model => model.emp_Direccion, new { @class = "control-label col-md-2 , required" })
             <div class="col-md-4">
-                @Html.TextBoxFor(model => model.emp_Direccion, new { @class = "single-line", MaxLength = 250 })
+                @Html.TextBoxFor(model => model.emp_Direccion, new { @class = "single-line", @onkeypress = "return Direccion(event)", MaxLength = 250 })
                 <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_Direccion)</p>
             </div>
 
@@ -297,7 +297,8 @@
 
 
 
-
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/DatepickerEmpleado.js"></script>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

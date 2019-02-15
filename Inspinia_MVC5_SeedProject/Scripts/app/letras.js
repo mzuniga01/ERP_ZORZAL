@@ -58,23 +58,26 @@ function MunicipioUpper(Parametro)
 $(document).ready(function () {
     //QUE SOLO ACEPTE 4 NUMEROS
     $("#mun_Codigo")[0].maxLength = 4;
+
     //VALIDAR SOLO NUMEROS
-    $(function () {
-        $("#mun_Codigo").keydown(function (event) {
-            //alert(event.keyCode);
-            if ((event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105) && event.keyCode !== 190 && event.keyCode !== 110 && event.keyCode !== 8 && event.keyCode !== 9) {
-                return false;
-            }
-        });
+    $('#mun_Codigo').bind('keypress', function (event) {
+        var regex = new RegExp("^[0-9]+$");
+        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+        if (!regex.test(key)) {
+            event.preventDefault();
+            return false;
+        }
     });
-    $(function () {
-        $("#dep_Codigo").keydown(function (event) {
-            //alert(event.keyCode);
-            if ((event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105) && event.keyCode !== 190 && event.keyCode !== 110 && event.keyCode !== 8 && event.keyCode !== 9) {
-                return false;
-            }
-        });
+
+    $('#dep_Codigo').bind('keypress', function (event) {
+        var regex = new RegExp("^[0-9]+$");
+        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+        if (!regex.test(key)) {
+            event.preventDefault();
+            return false;
+        }
     });
+
     //VALIDAR SOLO LETRAS
     $('#mun_Nombre').on('input', function (e) {
         if (!/^[ a-z-áéíóúüñ]*$/i.test(this.value)) {
@@ -86,6 +89,33 @@ $(document).ready(function () {
             this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
         }
     });
+    $('#dep_Nombre').bind('keypress', function (event) {
+        var regex = new RegExp("^[a-zA-Z-]+$");
+        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+        if (!regex.test(key)) {
+            event.preventDefault();
+            return false;
+        }
+    });
 
+   
 })
 
+function soloLetras(e) {
+    key = e.keyCode || e.which;
+    tecla = String.fromCharCode(key).toLowerCase();
+    letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
+    especiales = "8-37-39-46";
+
+    tecla_especial = false
+    for (var i in especiales) {
+        if (key == especiales[i]) {
+            tecla_especial = true;
+            break;
+        }
+    }
+
+    if (letras.indexOf(tecla) == -1 && !tecla_especial) {
+        return false;
+    }
+}

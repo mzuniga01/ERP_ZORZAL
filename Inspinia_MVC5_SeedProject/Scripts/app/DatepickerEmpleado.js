@@ -74,12 +74,118 @@ $("#emp_Identificacion").on("keypress keyup blur", function (event) {
     }
 });
 
+//Validar telefono 
+$("#emp_Telefono").on("keypress keyup blur", function (event) {
+    //this.value = this.value.replace(/[^0-9\.]/g,'');
+    $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
+    if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+        event.preventDefault();
+    }
+});
+
 
 //Validacion de solo letras
 function soloLetras(e) {
     key = e.keyCode || e.which;
     tecla = String.fromCharCode(key).toLowerCase();
     letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
+    especiales = "8-37-39-46";
+
+    tecla_especial = false
+    for (var i in especiales) {
+        if (key == especiales[i]) {
+            tecla_especial = true;
+            break;
+        }
+    }
+
+    if (letras.indexOf(tecla) == -1 && !tecla_especial) {
+        return false;
+    }
+}
+////Validacion de la direccion 
+function Direccion(e) {
+    //$(this).val($(this).val().replace(/[^0-9\.]/g, ''));
+    key = e.keyCode || e.which;
+    tecla = String.fromCharCode(key).toLowerCase();
+    letras = " 1234567890#áéíóúabcdefghijklmnñopqrstuvwxyz";
+    especiales = "8-37-39-46";
+
+    tecla_especial = false
+    for (var i in especiales) {
+        if (key == especiales[i]) {
+            tecla_especial = true;
+            break;
+        }
+    }
+
+    if (letras.indexOf(tecla) == -1 && !tecla_especial) {
+        return false;
+    }
+}
+
+////Limpiar campos de datos copiados y no permitidos por el campo de nombre
+function limpia() {
+    var val = document.getElementById("miInput").value;
+    var tam = val.length;
+    for (i = 0; i < tam; i++) {
+        if (!isNaN(val[i]))
+            document.getElementById("miInput").value = '';        
+    }  
+    
+}
+
+function limpiaApellido() {
+    var val = document.getElementById("emp_Apellido").value;
+    var tam = val.length;
+    for (i = 0; i < tam; i++) {
+        if (!isNaN(val[i]))
+            document.getElementById("emp_Apellido").value = '';
+    }
+
+}
+function limpiaIdentificacion() {
+    var val = document.getElementById("emp_Identificacion").value;
+    var tam = val.length;
+    for (i = 0; i < tam; i++) {
+        if (!isNaN(val[i]))
+            document.getElementById("emp_Identificacion").value = '';
+    }
+
+}
+function limpiaTelefono() {
+    var val = document.getElementById("emp_telefono").value;
+    var tam = val.length;
+    for (i = 0; i < tam; i++) {
+        if (!isNaN(val[i]))
+            document.getElementById("emp_telefono").value = '';
+    }
+
+}
+function limpiaTipoSangre() {
+    var val = document.getElementById("emp_TipoSangre").value;
+    var tam = val.length;
+    for (i = 0; i < tam; i++) {
+        if (!isNaN(val[i]))
+            document.getElementById("emp_TipoSangre").value = '';
+    }
+
+}
+function limpiaPuesto() {
+    var val = document.getElementById("emp_Puesto").value;
+    var tam = val.length;
+    for (i = 0; i < tam; i++) {
+        if (!isNaN(val[i]))
+            document.getElementById("emp_Puesto").value = '';
+    }
+
+}
+
+///Validar tipo sangre
+function TipoSangre(e) {
+    key = e.keyCode || e.which;
+    tecla = String.fromCharCode(key).toLowerCase();
+    letras = " -+abcdefghijklmnñopqrstuvwxyz";
     especiales = "8-37-39-46";
 
     tecla_especial = false

@@ -9,6 +9,11 @@
         color: red;
         font-size: small;
     }
+    .validation-summary-errors
+     {
+        color: red;
+        font-size: small;
+                        }
     .required:after {
         content: "*";
         font-weight: bold;
@@ -48,7 +53,8 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.tent_Descripcion, new { @class = "control-label col-md-2 , required" })
                             <div class="col-md-5">
-                                @Html.EditorFor(model => model.tent_Descripcion)
+                                @*@Html.EditorFor(model => model.tent_Descripcion)*@
+                                <input type="text" id="miInput" name="tent_Descripcion" onblur="limpia()"  class="form-control " Value="" onKeyPress="return soloLetras(event)" autocomplete="off" />
                                 <p style="color:red">@Html.ValidationMessageFor(model => model.tent_Descripcion) </p>
                             </div>
                         </div>
@@ -70,29 +76,20 @@
  </div>
 <script>
     //Validar Los campos Stringg
-    $("#tent_Descripcion").keypress(function (key) {
-        window.console.log(key.charCode)
-        if ((key.charCode < 97 || key.charCode > 122)//letras mayusculas
-            && (key.charCode < 65 || key.charCode > 90) //letras minusculas
-            && (key.charCode != 45) //retroceso
-            && (key.charCode != 241) //ñ
-            && (key.charCode != 209) //Ñ
-            && (key.charCode != 32) //espacio
-            && (key.charCode != 225) //á
-            && (key.charCode != 233) //é
-            && (key.charCode != 237) //í
-            && (key.charCode != 243) //ó
-            && (key.charCode != 250) //ú
-            && (key.charCode != 193) //Á
-            && (key.charCode != 201) //É
-            && (key.charCode != 205) //Í
-            && (key.charCode != 211) //Ó
-            && (key.charCode != 218) //Ú
-
-        )
-
-            return false;
-    });
+    function soloLetras(e) {
+        tecla = (document.all) ? e.keyCode : e.which;
+        tecla = String.fromCharCode(tecla)
+        return /^[a-zA-ZáéíóúñÁÉÍÓÚÑ ]+$/.test(tecla);
+    }
+    ////Limpiar campo de campos copiados y no permitidos por el campo de nombre
+    function limpia() {
+        var val = document.getElementById("miInput").value;
+        var tam = val.length;
+        for (i = 0; i < tam; i++) {
+            if (!isNaN(val[i]))
+                document.getElementById("miInput").value = '';
+        }
+    }
 </script>
  
 

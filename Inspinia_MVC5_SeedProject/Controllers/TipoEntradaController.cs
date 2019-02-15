@@ -79,6 +79,10 @@ namespace ERP_GMEDINA.Controllers
             {
                 if (Function.GetUserRols("TipoEntrada/Create"))
                 {
+                    if (db.tbTipoEntrada.Any(a => a.tent_Descripcion == tbTipoEntrada.tent_Descripcion))
+                    {
+                        ModelState.AddModelError("", "Ya existe este tipo de Entrada, Favor registrar otra");
+                    }
                     if (ModelState.IsValid)
                     {
                         try

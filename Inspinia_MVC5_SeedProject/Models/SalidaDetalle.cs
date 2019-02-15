@@ -19,7 +19,7 @@ namespace ERP_GMEDINA.Models
         [Display(Name = "ID Salida")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int sal_Id { get; set; }
-        [Display(Name = "N# Producto")]
+        [Display(Name = " N# Producto")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string prod_Codigo { get; set; }
         [Display(Name = "Cantidad")]

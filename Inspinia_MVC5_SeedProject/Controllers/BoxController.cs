@@ -88,6 +88,7 @@ namespace ERP_ZORZAL.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "box_Codigo,box_Descripcion")] tbBox tbBox)
         {
+            ViewBag.Producto = db.tbProducto.ToList();
             var list = (List<tbSalidaDetalle>)Session["SalidaDetalle"];
             var MensajeError = "0";
             var MensajeErrorDetalle = "0";
@@ -107,7 +108,7 @@ namespace ERP_ZORZAL.Controllers
                             MensajeError = Box.MensajeError;
                         if (MensajeError == "-1")
                         {
-                            ModelState.AddModelError("", "No se pudo agregar el registro");
+                            ModelState.AddModelError("", "No se pudo agregar el registro, contacte al administrador");
                             return View(tbBox);
                         }
                         else
@@ -240,7 +241,7 @@ namespace ERP_ZORZAL.Controllers
             }
             ViewBag.Cod_Box = id;
             ViewBag.bod_Id = new SelectList(db.tbBodega.Where(x => x.bod_ResponsableBodega == idUser).ToList(), "bod_Id", "bod_Nombre");
-            ViewBag.bod_Prod = db.tbBodega.Where(x => x.bod_ResponsableBodega == idUser).Select(x => x.bod_Id).SingleOrDefault();
+            ViewBag.bod_Prod = db.tbBodega.Where(x => x.bod_ResponsableBodega == idUser).Select(x => x.bod_Id).First();
             
             ViewBag.Producto = db.tbBodegaDetalle.ToList();
 

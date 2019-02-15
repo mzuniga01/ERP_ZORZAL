@@ -40,7 +40,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.pcat_Nombre, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.pcat_Nombre, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)" } })
+                                    @Html.EditorFor(model => model.pcat_Nombre, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)" ,  @maxlength = "50"  } })
                                     <p style="color:red">
                                         @Html.ValidationMessageFor(model => model.pcat_Nombre)
                                     </p>

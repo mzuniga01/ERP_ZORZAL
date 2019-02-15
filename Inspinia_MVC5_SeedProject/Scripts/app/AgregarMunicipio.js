@@ -272,23 +272,25 @@ $("#mun_NombreEdit_").on("keypress", function () {
 $(document).ready(function () {
     //QUE SOLO ACEPTE 4 NUMEROS
     $("#mun_CodigoEdit")[0].maxLength = 4;
+    $("#mun_CodigoEdit_")[0].maxLength = 4;
     //VALIDAR SOLO NUMEROS
-    $(function () {
-        $("#mun_CodigoEdit").keydown(function (event) {
-            //alert(event.keyCode);
-            if ((event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105) && event.keyCode !== 190 && event.keyCode !== 110 && event.keyCode !== 8 && event.keyCode !== 9) {
-                return false;
-            }
-        });
+    $('#mun_CodigoEdit').bind('keypress', function (event) {
+        var regex = new RegExp("^[0-9]+$");
+        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+        if (!regex.test(key)) {
+            event.preventDefault();
+            return false;
+        }
     });
-    $(function () {
-        $("#mun_CodigoEdit_").keydown(function (event) {
-            //alert(event.keyCode);
-            if ((event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105) && event.keyCode !== 190 && event.keyCode !== 110 && event.keyCode !== 8 && event.keyCode !== 9) {
-                return false;
-            }
-        });
+    $('#mun_CodigoEdit_').bind('keypress', function (event) {
+        var regex = new RegExp("^[0-9]+$");
+        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+        if (!regex.test(key)) {
+            event.preventDefault();
+            return false;
+        }
     });
+  
 
     //VALIDAR SOLO LETRAS
     $('#mun_NombreEdit').on('input', function (e) {
@@ -301,7 +303,8 @@ $(document).ready(function () {
             this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
         }
     });
-
+  
    
 
+    
 })
