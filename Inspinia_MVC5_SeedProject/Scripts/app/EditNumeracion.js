@@ -150,13 +150,14 @@
             }
         })
         .done(function (data) {
-            if (data == 'El registro se guardó exitosamente') {
+            if (data == 'No se pudo actualizar el registro, favor contacte al administrador.') {
                 location.reload();
-                //swal("El registro se editó exitosamente!", "", "success"); 
+                swal("El registro  no se editó!", "", "error");
+               
             }
             else {
                 location.reload();
-                //swal("El registro  no se editó!", "", "error");
+                swal("El registro se editó exitosamente!", "", "success"); 
             }
         });
     }
