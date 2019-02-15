@@ -339,7 +339,14 @@ namespace ERP_GMEDINA.Controllers
                     //////////Aqui va la lista//////////////
                     var MensajeError = string.Empty;
                     IEnumerable<object> list = null;
-                    list = db.UDP_Vent_tbMovimientoCaja_Insert(tbMovimientoCaja.cja_Id, tbMovimientoCaja.mocja_UsuarioApertura, tbMovimientoCaja.mocja_FechaArqueo, tbMovimientoCaja.mocja_UsuarioArquea, tbMovimientoCaja.mocja_FechaAceptacion, tbMovimientoCaja.mocja_UsuarioAceptacion);
+                    list = db.UDP_Vent_tbMovimientoCaja_Insert(tbMovimientoCaja.cja_Id, 
+                        tbMovimientoCaja.mocja_UsuarioApertura, 
+                        tbMovimientoCaja.mocja_FechaArqueo,
+                        tbMovimientoCaja.mocja_UsuarioArquea, 
+                        tbMovimientoCaja.mocja_FechaAceptacion, 
+                        tbMovimientoCaja.mocja_UsuarioAceptacion,
+                        Function.GetUser(),
+                                    Function.DatetimeNow());
                     foreach (UDP_Vent_tbMovimientoCaja_Insert_Result denoarq in list)
                         MensajeError = denoarq.MensajeError;
                     if (MensajeError == "-1")
@@ -416,7 +423,9 @@ namespace ERP_GMEDINA.Controllers
                     //////////Aqui va la lista//////////////
                     var MensajeError = string.Empty;
                     IEnumerable<object> list = null;
-                    list = db.UDP_Vent_tbMovimientoCaja_Update(tbMovimientoCaja.mocja_Id);
+                    list = db.UDP_Vent_tbMovimientoCaja_Update(tbMovimientoCaja.mocja_Id, tbMovimientoCaja.mocja_UsuarioCrea, tbMovimientoCaja.mocja_FechaCrea, 
+                        Function.GetUser(),
+                                    Function.DatetimeNow());
                     foreach (UDP_Vent_tbMovimientoCaja_Update_Result denoarq in list)
                         MensajeError = denoarq.MensajeError;
                     if (MensajeError == "-1")

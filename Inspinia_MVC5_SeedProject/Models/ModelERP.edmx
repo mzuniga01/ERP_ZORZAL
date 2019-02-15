@@ -5269,6 +5269,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
           <Parameter Name="lispd_PrecioMinorista" Type="decimal" Mode="In" />
           <Parameter Name="lispd_DescCaja" Type="decimal" Mode="In" />
           <Parameter Name="lispd_DescGerente" Type="decimal" Mode="In" />
+          <Parameter Name="lispd_UsuarioCrea" Type="int" Mode="In" />
+          <Parameter Name="lispd_FechaCrea" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Vent_tbListadoPrecioDetalle_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="IDLISTAPRECIO" Type="int" Mode="In" />
@@ -5282,6 +5284,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
           <Parameter Name="lispd_DescGerente" Type="decimal" Mode="In" />
           <Parameter Name="lispd_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="lispd_FechaCrea" Type="datetime" Mode="In" />
+          <Parameter Name="lispd_UsuarioModifica" Type="int" Mode="In" />
+          <Parameter Name="lispd_FechaModifica" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Vent_tbListaPrecio_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="listp_Id" Type="int" Mode="In" />
@@ -5293,6 +5297,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
           <Parameter Name="listp_FechaInicioVigencia" Type="date" Mode="In" />
           <Parameter Name="listp_FechaFinalVigencia" Type="date" Mode="In" />
           <Parameter Name="listp_Prioridad" Type="smallint" Mode="In" />
+          <Parameter Name="listp_UsuarioCrea" Type="int" Mode="In" />
+          <Parameter Name="listp_FechaCrea" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Vent_tbListaPrecio_UltimaFechaVigente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="PRIORIDAD" Type="smallint" Mode="In" />
@@ -5303,6 +5309,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
           <Parameter Name="listp_EsActivo" Type="bit" Mode="In" />
           <Parameter Name="listp_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="listp_FechaCrea" Type="datetime" Mode="In" />
+          <Parameter Name="listp_UsuarioModifica" Type="int" Mode="In" />
+          <Parameter Name="listp_FechaModifica" Type="datetime" Mode="In" />
           <Parameter Name="listp_FechaInicioVigencia" Type="date" Mode="In" />
           <Parameter Name="listp_FechaFinalVigencia" Type="date" Mode="In" />
           <Parameter Name="listp_Prioridad" Type="smallint" Mode="In" />
@@ -5323,9 +5331,15 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
           <Parameter Name="mocja_UsuarioArquea" Type="int" Mode="In" />
           <Parameter Name="mocja_FechaAceptacion" Type="datetime" Mode="In" />
           <Parameter Name="mocja_UsuarioAceptacion" Type="int" Mode="In" />
+          <Parameter Name="mocja_UsuarioCrea" Type="int" Mode="In" />
+          <Parameter Name="mocja_FechaCrea" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Vent_tbMovimientoCaja_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="mocja_Id" Type="int" Mode="In" />
+          <Parameter Name="mocja_UsuarioCrea" Type="int" Mode="In" />
+          <Parameter Name="mocja_FechaCrea" Type="datetime" Mode="In" />
+          <Parameter Name="mocja_UsuarioModifica" Type="int" Mode="In" />
+          <Parameter Name="mocja_FechaCreaModifica" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Vent_tbNotaCredito_Anulado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="nocre_Id" Type="smallint" Mode="In" />
@@ -5420,6 +5434,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
           <Parameter Name="tpa_Id" Type="smallint" Mode="In" />
           <Parameter Name="arqpg_PagosSistema" Type="decimal" Mode="In" />
           <Parameter Name="arqpg_PagosConteo" Type="decimal" Mode="In" />
+          <Parameter Name="arqpg_UsuarioCrea" Type="int" Mode="In" />
+          <Parameter Name="p_arqpg_FechaCrea" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Vent_tbPagosArqueo_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="arqpg_Id" Type="int" Mode="In" />
@@ -5429,6 +5445,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
           <Parameter Name="arqpg_PagosConteo" Type="decimal" Mode="In" />
           <Parameter Name="arqpg_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="arqpg_FechaCrea" Type="datetime" Mode="In" />
+          <Parameter Name="arqpg_UsuarioModifica" Type="int" Mode="In" />
+          <Parameter Name="arqpg_FechaModifica" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Vent_tbPedido_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="ped_Id" Type="int" Mode="In" />
@@ -6856,11 +6874,6 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
           <FunctionImport Name="spGetMunicipios" ReturnType="Collection(String)">
           <Parameter Name="CodDepartamento" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Vent_tbEstadoSolicitudCredito_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbEstadoSolicitudCredito_Insert_Result)">
-            <Parameter Name="escre_Descripcion" Mode="In" Type="String" />
-            <Parameter Name="escre_UsuarioCrea" Mode="In" Type="Int32" />
-            <Parameter Name="escre_FechaCrea" Mode="In" Type="DateTime" />
-          </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbPuntoEmision_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPuntoEmision_Insert_Result)">
             <Parameter Name="pemi_NumeroCAI" Mode="In" Type="String" />
             <Parameter Name="pemi_UsuarioCrea" Mode="In" Type="Int32" />
@@ -6895,14 +6908,6 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
             <Parameter Name="pemid_FechaLimite" Mode="In" Type="DateTime" />
             <Parameter Name="pemid_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="pemid_FechaCrea" Mode="In" Type="DateTime" />
-          </FunctionImport>
-          <FunctionImport Name="UDP_Vent_tbEstadoSolicitudCredito_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbEstadoSolicitudCredito_Update_Result)">
-            <Parameter Name="escre_Id" Mode="In" Type="Byte" />
-            <Parameter Name="escre_Descripcion" Mode="In" Type="String" />
-            <Parameter Name="escre_UsuarioCrea" Mode="In" Type="Int32" />
-            <Parameter Name="escre_UsuarioModifica" Mode="In" Type="Int32" />
-            <Parameter Name="escre_FechaAgrego" Mode="In" Type="DateTime" />
-            <Parameter Name="escre_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbTipoPago_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbTipoPago_Insert_Result)">
             <Parameter Name="tpa_Descripcion" Mode="In" Type="String" />
@@ -6983,6 +6988,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
             <Parameter Name="mocja_UsuarioArquea" Mode="In" Type="Int32" />
             <Parameter Name="mocja_FechaAceptacion" Mode="In" Type="DateTime" />
             <Parameter Name="mocja_UsuarioAceptacion" Mode="In" Type="Int32" />
+            <Parameter Name="mocja_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="mocja_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="spGetBusquedaCliente" ReturnType="Collection(ERP_ZORZALModel.spGetBusquedaCliente_Result)">
             <Parameter Name="Identificacion" Mode="In" Type="String" />
@@ -7616,6 +7623,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
             <Parameter Name="lispd_PrecioMinorista" Mode="In" Type="Decimal" />
             <Parameter Name="lispd_DescCaja" Mode="In" Type="Decimal" />
             <Parameter Name="lispd_DescGerente" Mode="In" Type="Decimal" />
+            <Parameter Name="lispd_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="lispd_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbListaPrecio_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbListaPrecio_Insert_Result)">
             <Parameter Name="listp_Nombre" Mode="In" Type="String" />
@@ -7623,6 +7632,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
             <Parameter Name="listp_FechaInicioVigencia" Mode="In" Type="DateTime" />
             <Parameter Name="listp_FechaFinalVigencia" Mode="In" Type="DateTime" />
             <Parameter Name="listp_Prioridad" Mode="In" Type="Int16" />
+            <Parameter Name="listp_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="listp_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbListaPrecio_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbListaPrecio_Update_Result)">
             <Parameter Name="listp_Id" Mode="In" Type="Int32" />
@@ -7630,6 +7641,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
             <Parameter Name="listp_EsActivo" Mode="In" Type="Boolean" />
             <Parameter Name="listp_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="listp_FechaCrea" Mode="In" Type="DateTime" />
+            <Parameter Name="listp_UsuarioModifica" Mode="In" Type="Int32" />
+            <Parameter Name="listp_FechaModifica" Mode="In" Type="DateTime" />
             <Parameter Name="listp_FechaInicioVigencia" Mode="In" Type="DateTime" />
             <Parameter Name="listp_FechaFinalVigencia" Mode="In" Type="DateTime" />
             <Parameter Name="listp_Prioridad" Mode="In" Type="Int16" />
@@ -7639,6 +7652,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
             <Parameter Name="tpa_Id" Mode="In" Type="Int16" />
             <Parameter Name="arqpg_PagosSistema" Mode="In" Type="Decimal" />
             <Parameter Name="arqpg_PagosConteo" Mode="In" Type="Decimal" />
+            <Parameter Name="arqpg_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="p_arqpg_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbPagosArqueo_Update">
             <Parameter Name="arqpg_Id" Mode="In" Type="Int32" />
@@ -7648,6 +7663,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
             <Parameter Name="arqpg_PagosConteo" Mode="In" Type="Decimal" />
             <Parameter Name="arqpg_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="arqpg_FechaCrea" Mode="In" Type="DateTime" />
+            <Parameter Name="arqpg_UsuarioModifica" Mode="In" Type="Int32" />
+            <Parameter Name="arqpg_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="SDP_Acce_GetRoles" ReturnType="Collection(ERP_ZORZALModel.SDP_Acce_GetRoles_Result)" />
           <FunctionImport Name="SDP_Acce_GetRolesAsignados" ReturnType="Collection(ERP_ZORZALModel.SDP_Acce_GetRolesAsignados_Result)">
@@ -8225,7 +8242,6 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
           <EntitySet Name="tbListadoPrecioDetalle" EntityType="ERP_ZORZALModel.tbListadoPrecioDetalle" />
           <EntitySet Name="tbListaPrecio" EntityType="ERP_ZORZALModel.tbListaPrecio" />
           <EntitySet Name="tbMovimientoCaja" EntityType="ERP_ZORZALModel.tbMovimientoCaja" />
-          <EntitySet Name="tbNotaCredito" EntityType="ERP_ZORZALModel.tbNotaCredito" />
           <EntitySet Name="tbPago" EntityType="ERP_ZORZALModel.tbPago" />
           <EntitySet Name="tbPagosArqueo" EntityType="ERP_ZORZALModel.tbPagosArqueo" />
           <EntitySet Name="tbPedido" EntityType="ERP_ZORZALModel.tbPedido" />
@@ -8449,14 +8465,6 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
           <AssociationSet Name="FK_Acce_tbUsuario_tbMovimientoCaja_mocja_UsuarioModifica" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbMovimientoCaja_mocja_UsuarioModifica">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbMovimientoCaja" EntitySet="tbMovimientoCaja" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Acce_tbUsuario_tbNotaCredito_nocre_UsuarioCrea" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbNotaCredito_nocre_UsuarioCrea">
-            <End Role="tbUsuario" EntitySet="tbUsuario" />
-            <End Role="tbNotaCredito" EntitySet="tbNotaCredito" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Acce_tbUsuario_tbNotaCredito_nocre_UsuarioModifica" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbNotaCredito_nocre_UsuarioModifica">
-            <End Role="tbUsuario" EntitySet="tbUsuario" />
-            <End Role="tbNotaCredito" EntitySet="tbNotaCredito" />
           </AssociationSet>
           <AssociationSet Name="FK_Acce_tbUsuario_tbPago_pago_UsuarioCrea" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbPago_pago_UsuarioCrea">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
@@ -8970,10 +8978,6 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
             <End Role="tbCaja" EntitySet="tbCaja" />
             <End Role="tbMovimientoCaja" EntitySet="tbMovimientoCaja" />
           </AssociationSet>
-          <AssociationSet Name="FK_Vent_tbNotaCredito_tbCaja_cja_Id" Association="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbCaja_cja_Id">
-            <End Role="tbCaja" EntitySet="tbCaja" />
-            <End Role="tbNotaCredito" EntitySet="tbNotaCredito" />
-          </AssociationSet>
           <AssociationSet Name="FK_Vent_tbSucursal_tbCaja_suc_Id" Association="ERP_ZORZALModel.FK_Vent_tbSucursal_tbCaja_suc_Id">
             <End Role="tbSucursal" EntitySet="tbSucursal" />
             <End Role="tbCaja" EntitySet="tbCaja" />
@@ -8989,10 +8993,6 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
           <AssociationSet Name="FK_Vent_tbCliente_tbPedido_clte_id" Association="ERP_ZORZALModel.FK_Vent_tbCliente_tbPedido_clte_id">
             <End Role="tbCliente" EntitySet="tbCliente" />
             <End Role="tbPedido" EntitySet="tbPedido" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Vent_tbNotaCredito_tbCliente_clte_Id" Association="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbCliente_clte_Id">
-            <End Role="tbCliente" EntitySet="tbCliente" />
-            <End Role="tbNotaCredito" EntitySet="tbNotaCredito" />
           </AssociationSet>
           <AssociationSet Name="FK_Vent_tbSolicitudCredito_tbCliente_clte_Id" Association="ERP_ZORZALModel.FK_Vent_tbSolicitudCredito_tbCliente_clte_Id">
             <End Role="tbCliente" EntitySet="tbCliente" />
@@ -9057,10 +9057,6 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
           <AssociationSet Name="FK_Vent_tbMovimientoCaja_tbSolicitudEfectivo_mocja_Id" Association="ERP_ZORZALModel.FK_Vent_tbMovimientoCaja_tbSolicitudEfectivo_mocja_Id">
             <End Role="tbMovimientoCaja" EntitySet="tbMovimientoCaja" />
             <End Role="tbSolicitudEfectivo" EntitySet="tbSolicitudEfectivo" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Vent_tbSucursal_tbNotaCredito_suc_Id" Association="ERP_ZORZALModel.FK_Vent_tbSucursal_tbNotaCredito_suc_Id">
-            <End Role="tbSucursal" EntitySet="tbSucursal" />
-            <End Role="tbNotaCredito" EntitySet="tbNotaCredito" />
           </AssociationSet>
           <AssociationSet Name="FK_Vent_tbTipoPago_tbPago_tpa_Id" Association="ERP_ZORZALModel.FK_Vent_tbTipoPago_tbPago_tpa_Id">
             <End Role="tbTipoPago" EntitySet="tbTipoPago" />
@@ -9203,7 +9199,11 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
           <Parameter Name="FACTURA_IDD" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbMovimientoCaja_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_Update_Result)">
-          <Parameter Name="mocja_Id" Mode="In" Type="Int32" />
+            <Parameter Name="mocja_Id" Mode="In" Type="Int32" />
+            <Parameter Name="mocja_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="mocja_FechaCrea" Mode="In" Type="DateTime" />
+            <Parameter Name="mocja_UsuarioModifica" Mode="In" Type="Int32" />
+            <Parameter Name="mocja_FechaCreaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbListadoPrecioDetalle_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbListadoPrecioDetalle_Update_Result)">
             <Parameter Name="lispd_Id" Mode="In" Type="Int32" />
@@ -9214,6 +9214,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
             <Parameter Name="lispd_DescGerente" Mode="In" Type="Decimal" />
             <Parameter Name="lispd_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="lispd_FechaCrea" Mode="In" Type="DateTime" />
+            <Parameter Name="lispd_UsuarioModifica" Mode="In" Type="Int32" />
+            <Parameter Name="lispd_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbCuponDescuentoSelect" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbCuponDescuentoSelect_Result)" />
           <FunctionImport Name="UDP_Vent_tbNotaCreditoSelect" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbNotaCreditoSelect_Result)" />
@@ -9295,31 +9297,6 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
             <Parameter Name="cja_FechaCrea" Mode="In" Type="DateTime" />
             <Parameter Name="cja_UsuarioModifica" Mode="In" Type="Int32" />
             <Parameter Name="cja_FechaModifica" Mode="In" Type="DateTime" />
-          </FunctionImport>
-          <FunctionImport Name="UDP_Gral_tbCuentasBanco_Insert" ReturnType="Collection(String)">
-            <Parameter Name="ban_Id" Mode="In" Type="Int16" />
-            <Parameter Name="mnda_Id" Mode="In" Type="Int16" />
-            <Parameter Name="bcta_TipoCuenta" Mode="In" Type="Byte" />
-            <Parameter Name="bcta_TotalCredito" Mode="In" Type="Decimal" />
-            <Parameter Name="bcta_TotalDebito" Mode="In" Type="Decimal" />
-            <Parameter Name="bcta_FechaApertura" Mode="In" Type="DateTime" />
-            <Parameter Name="bcta_Numero" Mode="In" Type="String" />
-            <Parameter Name="bcta_UsuarioCrea" Mode="In" Type="Int32" />
-            <Parameter Name="bcta_FechaCrea" Mode="In" Type="DateTime" />
-          </FunctionImport>
-          <FunctionImport Name="UDP_Gral_tbCuentasBanco_Update" ReturnType="Collection(String)">
-            <Parameter Name="bcta_Id" Mode="In" Type="Int16" />
-            <Parameter Name="ban_Id" Mode="In" Type="Int16" />
-            <Parameter Name="mnda_Id" Mode="In" Type="Int16" />
-            <Parameter Name="bcta_TipoCuenta" Mode="In" Type="Byte" />
-            <Parameter Name="bcta_TotalCredito" Mode="In" Type="Decimal" />
-            <Parameter Name="bcta_TotalDebito" Mode="In" Type="Decimal" />
-            <Parameter Name="bcta_FechaApertura" Mode="In" Type="DateTime" />
-            <Parameter Name="bcta_Numero" Mode="In" Type="String" />
-            <Parameter Name="bcta_UsuarioCrea" Mode="In" Type="Int32" />
-            <Parameter Name="bcta_FechaCrea" Mode="In" Type="DateTime" />
-            <Parameter Name="bcta_UsuarioModifica" Mode="In" Type="Int32" />
-            <Parameter Name="bcta_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbCliente_Insert" ReturnType="Collection(String)">
             <Parameter Name="tpi_Id" Mode="In" Type="Byte" />
@@ -9412,10 +9389,6 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
             <End Role="tbFactura" EntitySet="tbFactura" />
             <End Role="tbDevolucion" EntitySet="tbDevolucion" />
           </AssociationSet>
-          <AssociationSet Name="FK_Vent_tbNotaCredito_tbDevolucion_dev_Id" Association="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbDevolucion_dev_Id">
-            <End Role="tbDevolucion" EntitySet="tbDevolucion" />
-            <End Role="tbNotaCredito" EntitySet="tbNotaCredito" />
-          </AssociationSet>
           <FunctionImport Name="UDP_Vent_tbCuponDescuento_EsImpreso" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbCuponDescuento_EsImpreso_Result)">
             <Parameter Name="cdto_ID" Mode="In" Type="Int32" />
             <Parameter Name="cdto_EsImpreso" Mode="In" Type="Boolean" />
@@ -9474,6 +9447,69 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
             <Parameter Name="esfac_UsuarioModifica" Mode="In" Type="Int32" />
             <Parameter Name="esfac_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
+          <FunctionImport Name="UDP_Gral_tbCuentasBanco_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbCuentasBanco_Insert_Result)">
+            <Parameter Name="ban_Id" Mode="In" Type="Int16" />
+            <Parameter Name="mnda_Id" Mode="In" Type="Int16" />
+            <Parameter Name="bcta_TipoCuenta" Mode="In" Type="Byte" />
+            <Parameter Name="bcta_TotalCredito" Mode="In" Type="Decimal" />
+            <Parameter Name="bcta_TotalDebito" Mode="In" Type="Decimal" />
+            <Parameter Name="bcta_FechaApertura" Mode="In" Type="DateTime" />
+            <Parameter Name="bcta_Numero" Mode="In" Type="String" />
+            <Parameter Name="bcta_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="bcta_FechaCrea" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Gral_tbCuentasBanco_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbCuentasBanco_Update_Result)">
+            <Parameter Name="bcta_Id" Mode="In" Type="Int16" />
+            <Parameter Name="ban_Id" Mode="In" Type="Int16" />
+            <Parameter Name="mnda_Id" Mode="In" Type="Int16" />
+            <Parameter Name="bcta_TipoCuenta" Mode="In" Type="Byte" />
+            <Parameter Name="bcta_TotalCredito" Mode="In" Type="Decimal" />
+            <Parameter Name="bcta_TotalDebito" Mode="In" Type="Decimal" />
+            <Parameter Name="bcta_FechaApertura" Mode="In" Type="DateTime" />
+            <Parameter Name="bcta_Numero" Mode="In" Type="String" />
+            <Parameter Name="bcta_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="bcta_FechaCrea" Mode="In" Type="DateTime" />
+            <Parameter Name="bcta_UsuarioModifica" Mode="In" Type="Int32" />
+            <Parameter Name="bcta_FechaModifica" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <EntitySet Name="tbNotaCredito" EntityType="ERP_ZORZALModel.tbNotaCredito" />
+          <AssociationSet Name="FK_Acce_tbUsuario_tbNotaCredito_nocre_UsuarioCrea" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbNotaCredito_nocre_UsuarioCrea">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbNotaCredito" EntitySet="tbNotaCredito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Acce_tbUsuario_tbNotaCredito_nocre_UsuarioModifica" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbNotaCredito_nocre_UsuarioModifica">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbNotaCredito" EntitySet="tbNotaCredito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vent_tbNotaCredito_tbCaja_cja_Id" Association="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbCaja_cja_Id">
+            <End Role="tbCaja" EntitySet="tbCaja" />
+            <End Role="tbNotaCredito" EntitySet="tbNotaCredito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vent_tbNotaCredito_tbCliente_clte_Id" Association="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbCliente_clte_Id">
+            <End Role="tbCliente" EntitySet="tbCliente" />
+            <End Role="tbNotaCredito" EntitySet="tbNotaCredito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vent_tbNotaCredito_tbDevolucion_dev_Id" Association="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbDevolucion_dev_Id">
+            <End Role="tbDevolucion" EntitySet="tbDevolucion" />
+            <End Role="tbNotaCredito" EntitySet="tbNotaCredito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vent_tbSucursal_tbNotaCredito_suc_Id" Association="ERP_ZORZALModel.FK_Vent_tbSucursal_tbNotaCredito_suc_Id">
+            <End Role="tbSucursal" EntitySet="tbSucursal" />
+            <End Role="tbNotaCredito" EntitySet="tbNotaCredito" />
+          </AssociationSet>
+          <FunctionImport Name="UDP_Vent_tbEstadoSolicitudCredito_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbEstadoSolicitudCredito_Insert_Result)">
+            <Parameter Name="escre_Descripcion" Mode="In" Type="String" />
+            <Parameter Name="escre_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="escre_FechaCrea" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbEstadoSolicitudCredito_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbEstadoSolicitudCredito_Update_Result)">
+            <Parameter Name="escre_Id" Mode="In" Type="Byte" />
+            <Parameter Name="escre_Descripcion" Mode="In" Type="String" />
+            <Parameter Name="escre_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="escre_UsuarioModifica" Mode="In" Type="Int32" />
+            <Parameter Name="escre_FechaAgrego" Mode="In" Type="DateTime" />
+            <Parameter Name="escre_FechaModifica" Mode="In" Type="DateTime" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
           <Key>
@@ -9508,12 +9544,6 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
           <Property Type="DateTime" Name="ped_FechaCrea" Nullable="false" Precision="23" />
           <Property Type="Int32" Name="ped_UsuarioModifica" Nullable="true" />
           <Property Type="DateTime" Name="ped_FechaModifica" Nullable="true" Precision="23" />
-        </ComplexType>
-        <ComplexType Name="UDP_Vent_tbEstadoSolicitudCredito_Insert_Result">
-          <Property Type="Byte" Name="MensajeError" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="UDP_Vent_tbEstadoSolicitudCredito_Update_Result">
-          <Property Type="Byte" Name="MensajeError" Nullable="false" />
         </ComplexType>
         <ComplexType Name="UDP_Vent_tbTipoPago_Insert_Result">
           <Property Type="Int16" Name="MensajeError" Nullable="false" />
@@ -9977,12 +10007,6 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
           <Property Type="String" Name="DenoDescripcion" Nullable="false" MaxLength="50" />
           <Property Type="Decimal" Name="valor" Nullable="false" Precision="10" Scale="2" />
         </ComplexType>
-        <ComplexType Name="UDP_Gral_tbCuentasBanco_Insert_Result">
-          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-        </ComplexType>
-        <ComplexType Name="UDP_Gral_tbCuentasBanco_Update_Result">
-          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-        </ComplexType>
         <ComplexType Name="UDP_Vent_tbMovimientoCaja_Apertura_Insert_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
@@ -10177,8 +10201,6 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
           <NavigationProperty Name="tbMovimientoCaja2" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbMovimientoCaja_mocja_UsuarioArquea" FromRole="tbUsuario" ToRole="tbMovimientoCaja" />
           <NavigationProperty Name="tbMovimientoCaja3" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbMovimientoCaja_mocja_UsuarioCrea" FromRole="tbUsuario" ToRole="tbMovimientoCaja" />
           <NavigationProperty Name="tbMovimientoCaja4" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbMovimientoCaja_mocja_UsuarioModifica" FromRole="tbUsuario" ToRole="tbMovimientoCaja" />
-          <NavigationProperty Name="tbNotaCredito" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbNotaCredito_nocre_UsuarioCrea" FromRole="tbUsuario" ToRole="tbNotaCredito" />
-          <NavigationProperty Name="tbNotaCredito1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbNotaCredito_nocre_UsuarioModifica" FromRole="tbUsuario" ToRole="tbNotaCredito" />
           <NavigationProperty Name="tbPago" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbPago_pago_UsuarioCrea" FromRole="tbUsuario" ToRole="tbPago" />
           <NavigationProperty Name="tbPago1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbPago_pago_UsuarioModifica" FromRole="tbUsuario" ToRole="tbPago" />
           <NavigationProperty Name="tbTipoPago" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbPagoPago_tpa_UsuarioCrea" FromRole="tbUsuario" ToRole="tbTipoPago" />
@@ -10261,6 +10283,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
           <NavigationProperty Name="tbSalidaDetalle" Relationship="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_tbUsuario_sald_UsuarioCrea" FromRole="tbUsuario" ToRole="tbSalidaDetalle" />
           <NavigationProperty Name="tbDevolucion" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioCrea" FromRole="tbUsuario" ToRole="tbDevolucion" />
           <NavigationProperty Name="tbDevolucion1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioModifica" FromRole="tbUsuario" ToRole="tbDevolucion" />
+          <NavigationProperty Name="tbNotaCredito" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbNotaCredito_nocre_UsuarioCrea" FromRole="tbUsuario" ToRole="tbNotaCredito" />
+          <NavigationProperty Name="tbNotaCredito1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbNotaCredito_nocre_UsuarioModifica" FromRole="tbUsuario" ToRole="tbNotaCredito" />
         </EntityType>
         <EntityType Name="tbActividadEconomica">
           <Key>
@@ -10833,9 +10857,9 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
           <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbCaja_cja_UsuarioModifica" FromRole="tbCaja" ToRole="tbUsuario" />
           <NavigationProperty Name="tbFactura" Relationship="ERP_ZORZALModel.FK_Vent_tbCaja_tbFactura_cja_Id" FromRole="tbCaja" ToRole="tbFactura" />
           <NavigationProperty Name="tbMovimientoCaja" Relationship="ERP_ZORZALModel.FK_Vent_tbCaja_tbMovimientoCaja_cja_Id" FromRole="tbCaja" ToRole="tbMovimientoCaja" />
-          <NavigationProperty Name="tbNotaCredito" Relationship="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbCaja_cja_Id" FromRole="tbCaja" ToRole="tbNotaCredito" />
           <NavigationProperty Name="tbSucursal" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbCaja_suc_Id" FromRole="tbCaja" ToRole="tbSucursal" />
           <NavigationProperty Name="tbDevolucion" Relationship="ERP_ZORZALModel.FK_Vent_tbCaja_tbDevolucion_cja_Id" FromRole="tbCaja" ToRole="tbDevolucion" />
+          <NavigationProperty Name="tbNotaCredito" Relationship="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbCaja_cja_Id" FromRole="tbCaja" ToRole="tbNotaCredito" />
         </EntityType>
         <EntityType Name="tbCliente">
           <Key>
@@ -10880,8 +10904,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
           <NavigationProperty Name="tbExoneracion" Relationship="ERP_ZORZALModel.FK_Vent_tbCliente_tbExoneracion_clte_Id" FromRole="tbCliente" ToRole="tbExoneracion" />
           <NavigationProperty Name="tbFactura" Relationship="ERP_ZORZALModel.FK_Vent_tbCliente_tbFactura_clte_Id" FromRole="tbCliente" ToRole="tbFactura" />
           <NavigationProperty Name="tbPedido" Relationship="ERP_ZORZALModel.FK_Vent_tbCliente_tbPedido_clte_id" FromRole="tbCliente" ToRole="tbPedido" />
-          <NavigationProperty Name="tbNotaCredito" Relationship="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbCliente_clte_Id" FromRole="tbCliente" ToRole="tbNotaCredito" />
           <NavigationProperty Name="tbSolicitudCredito" Relationship="ERP_ZORZALModel.FK_Vent_tbSolicitudCredito_tbCliente_clte_Id" FromRole="tbCliente" ToRole="tbSolicitudCredito" />
+          <NavigationProperty Name="tbNotaCredito" Relationship="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbCliente_clte_Id" FromRole="tbCliente" ToRole="tbNotaCredito" />
         </EntityType>
         <EntityType Name="tbCuponDescuento">
           <Key>
@@ -11160,34 +11184,6 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
           <NavigationProperty Name="tbPagosArqueo" Relationship="ERP_ZORZALModel.FK_Vent_tbMovimientoCaja_tbPagosArqueo_mocja_Id" FromRole="tbMovimientoCaja" ToRole="tbPagosArqueo" />
           <NavigationProperty Name="tbSolicitudEfectivo" Relationship="ERP_ZORZALModel.FK_Vent_tbMovimientoCaja_tbSolicitudEfectivo_mocja_Id" FromRole="tbMovimientoCaja" ToRole="tbSolicitudEfectivo" />
         </EntityType>
-        <EntityType Name="tbNotaCredito">
-          <Key>
-            <PropertyRef Name="nocre_Id" />
-          </Key>
-          <Property Name="nocre_Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nocre_Codigo" Type="String" Nullable="false" MaxLength="19" FixedLength="false" Unicode="true" />
-          <Property Name="dev_Id" Type="Int32" />
-          <Property Name="clte_Id" Type="Int32" Nullable="false" />
-          <Property Name="suc_Id" Type="Int32" />
-          <Property Name="cja_Id" Type="Int16" />
-          <Property Name="nocre_Anulado" Type="Boolean" />
-          <Property Name="nocre_FechaEmision" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="nocre_MotivoEmision" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="nocre_Monto" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="nocre_Redimido" Type="Boolean" Nullable="false" />
-          <Property Name="nocre_FechaRedimido" Type="DateTime" Precision="0" />
-          <Property Name="nocre_EsImpreso" Type="Boolean" Nullable="false" />
-          <Property Name="nocre_UsuarioCrea" Type="Int32" Nullable="false" />
-          <Property Name="nocre_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="nocre_UsuarioModifica" Type="Int32" />
-          <Property Name="nocre_FechaModifica" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbNotaCredito_nocre_UsuarioCrea" FromRole="tbNotaCredito" ToRole="tbUsuario" />
-          <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbNotaCredito_nocre_UsuarioModifica" FromRole="tbNotaCredito" ToRole="tbUsuario" />
-          <NavigationProperty Name="tbCaja" Relationship="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbCaja_cja_Id" FromRole="tbNotaCredito" ToRole="tbCaja" />
-          <NavigationProperty Name="tbCliente" Relationship="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbCliente_clte_Id" FromRole="tbNotaCredito" ToRole="tbCliente" />
-          <NavigationProperty Name="tbSucursal" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbNotaCredito_suc_Id" FromRole="tbNotaCredito" ToRole="tbSucursal" />
-          <NavigationProperty Name="tbDevolucion" Relationship="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbDevolucion_dev_Id" FromRole="tbNotaCredito" ToRole="tbDevolucion" />
-        </EntityType>
         <EntityType Name="tbPago">
           <Key>
             <PropertyRef Name="pago_Id" />
@@ -11405,9 +11401,9 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
           <NavigationProperty Name="tbCaja" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbCaja_suc_Id" FromRole="tbSucursal" ToRole="tbCaja" />
           <NavigationProperty Name="tbCuponDescuento" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbCuponDescuento_suc_Id" FromRole="tbSucursal" ToRole="tbCuponDescuento" />
           <NavigationProperty Name="tbFactura" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbfactura_suc_Id" FromRole="tbSucursal" ToRole="tbFactura" />
-          <NavigationProperty Name="tbNotaCredito" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbNotaCredito_suc_Id" FromRole="tbSucursal" ToRole="tbNotaCredito" />
           <NavigationProperty Name="tbPedido" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbPedido_suc_Id" FromRole="tbSucursal" ToRole="tbPedido" />
           <NavigationProperty Name="tbPuntoEmision" Relationship="ERP_ZORZALModel.FK_Vent_tbPuntoEmision_tbSucursal_pemi_Id" FromRole="tbSucursal" ToRole="tbPuntoEmision" />
+          <NavigationProperty Name="tbNotaCredito" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbNotaCredito_suc_Id" FromRole="tbSucursal" ToRole="tbNotaCredito" />
         </EntityType>
         <EntityType Name="tbTipoPago">
           <Key>
@@ -12328,30 +12324,6 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
             </Principal>
             <Dependent Role="tbMovimientoCaja">
               <PropertyRef Name="mocja_UsuarioModifica" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Acce_tbUsuario_tbNotaCredito_nocre_UsuarioCrea">
-          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
-          <End Type="ERP_ZORZALModel.tbNotaCredito" Role="tbNotaCredito" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuario">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbNotaCredito">
-              <PropertyRef Name="nocre_UsuarioCrea" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Acce_tbUsuario_tbNotaCredito_nocre_UsuarioModifica">
-          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
-          <End Type="ERP_ZORZALModel.tbNotaCredito" Role="tbNotaCredito" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbUsuario">
-              <PropertyRef Name="usu_Id" />
-            </Principal>
-            <Dependent Role="tbNotaCredito">
-              <PropertyRef Name="nocre_UsuarioModifica" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -13891,18 +13863,6 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Vent_tbNotaCredito_tbCaja_cja_Id">
-          <End Type="ERP_ZORZALModel.tbCaja" Role="tbCaja" Multiplicity="0..1" />
-          <End Type="ERP_ZORZALModel.tbNotaCredito" Role="tbNotaCredito" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbCaja">
-              <PropertyRef Name="cja_Id" />
-            </Principal>
-            <Dependent Role="tbNotaCredito">
-              <PropertyRef Name="cja_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Vent_tbSucursal_tbCaja_suc_Id">
           <End Type="ERP_ZORZALModel.tbSucursal" Role="tbSucursal" Multiplicity="1" />
           <End Type="ERP_ZORZALModel.tbCaja" Role="tbCaja" Multiplicity="*" />
@@ -13947,18 +13907,6 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
               <PropertyRef Name="clte_Id" />
             </Principal>
             <Dependent Role="tbPedido">
-              <PropertyRef Name="clte_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Vent_tbNotaCredito_tbCliente_clte_Id">
-          <End Type="ERP_ZORZALModel.tbCliente" Role="tbCliente" Multiplicity="1" />
-          <End Type="ERP_ZORZALModel.tbNotaCredito" Role="tbNotaCredito" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbCliente">
-              <PropertyRef Name="clte_Id" />
-            </Principal>
-            <Dependent Role="tbNotaCredito">
               <PropertyRef Name="clte_Id" />
             </Dependent>
           </ReferentialConstraint>
@@ -14152,18 +14100,6 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
             </Principal>
             <Dependent Role="tbSolicitudEfectivo">
               <PropertyRef Name="mocja_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Vent_tbSucursal_tbNotaCredito_suc_Id">
-          <End Type="ERP_ZORZALModel.tbSucursal" Role="tbSucursal" Multiplicity="0..1" />
-          <End Type="ERP_ZORZALModel.tbNotaCredito" Role="tbNotaCredito" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbSucursal">
-              <PropertyRef Name="suc_Id" />
-            </Principal>
-            <Dependent Role="tbNotaCredito">
-              <PropertyRef Name="suc_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -14649,18 +14585,6 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Vent_tbNotaCredito_tbDevolucion_dev_Id">
-          <End Type="ERP_ZORZALModel.tbDevolucion" Role="tbDevolucion" Multiplicity="0..1" />
-          <End Type="ERP_ZORZALModel.tbNotaCredito" Role="tbNotaCredito" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbDevolucion">
-              <PropertyRef Name="dev_Id" />
-            </Principal>
-            <Dependent Role="tbNotaCredito">
-              <PropertyRef Name="dev_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <ComplexType Name="UDP_Vent_tbDevolucion_NotaCredito_Result">
           <Property Type="Int32" Name="MensajeError" Nullable="false" />
         </ComplexType>
@@ -14795,6 +14719,118 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
         <ComplexType Name="UDP_Vent_tbEstadoFactura_Update_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="Max" />
         </ComplexType>
+        <ComplexType Name="UDP_Gral_tbCuentasBanco_Update_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="Max" />
+        </ComplexType>
+        <ComplexType Name="UDP_Gral_tbCuentasBanco_Insert_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="Max" />
+        </ComplexType>
+        <EntityType Name="tbNotaCredito">
+          <Key>
+            <PropertyRef Name="nocre_Id" />
+          </Key>
+          <Property Name="nocre_Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nocre_Codigo" Type="String" Nullable="false" MaxLength="19" FixedLength="false" Unicode="true" />
+          <Property Name="dev_Id" Type="Int32" />
+          <Property Name="clte_Id" Type="Int32" Nullable="false" />
+          <Property Name="suc_Id" Type="Int32" />
+          <Property Name="cja_Id" Type="Int16" />
+          <Property Name="nocre_Anulado" Type="Boolean" />
+          <Property Name="nocre_FechaEmision" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="nocre_MotivoEmision" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="nocre_Monto" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="nocre_Redimido" Type="Boolean" Nullable="false" />
+          <Property Name="nocre_FechaRedimido" Type="DateTime" Precision="0" />
+          <Property Name="nocre_EsImpreso" Type="Boolean" Nullable="false" />
+          <Property Name="nocre_UsuarioCrea" Type="Int32" Nullable="false" />
+          <Property Name="nocre_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="nocre_UsuarioModifica" Type="Int32" />
+          <Property Name="nocre_FechaModifica" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbNotaCredito_nocre_UsuarioCrea" FromRole="tbNotaCredito" ToRole="tbUsuario" />
+          <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbNotaCredito_nocre_UsuarioModifica" FromRole="tbNotaCredito" ToRole="tbUsuario" />
+          <NavigationProperty Name="tbCaja" Relationship="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbCaja_cja_Id" FromRole="tbNotaCredito" ToRole="tbCaja" />
+          <NavigationProperty Name="tbCliente" Relationship="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbCliente_clte_Id" FromRole="tbNotaCredito" ToRole="tbCliente" />
+          <NavigationProperty Name="tbDevolucion" Relationship="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbDevolucion_dev_Id" FromRole="tbNotaCredito" ToRole="tbDevolucion" />
+          <NavigationProperty Name="tbSucursal" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbNotaCredito_suc_Id" FromRole="tbNotaCredito" ToRole="tbSucursal" />
+        </EntityType>
+        <Association Name="FK_Acce_tbUsuario_tbNotaCredito_nocre_UsuarioCrea">
+          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
+          <End Type="ERP_ZORZALModel.tbNotaCredito" Role="tbNotaCredito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbNotaCredito">
+              <PropertyRef Name="nocre_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Acce_tbUsuario_tbNotaCredito_nocre_UsuarioModifica">
+          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
+          <End Type="ERP_ZORZALModel.tbNotaCredito" Role="tbNotaCredito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbNotaCredito">
+              <PropertyRef Name="nocre_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vent_tbNotaCredito_tbCaja_cja_Id">
+          <End Type="ERP_ZORZALModel.tbCaja" Role="tbCaja" Multiplicity="0..1" />
+          <End Type="ERP_ZORZALModel.tbNotaCredito" Role="tbNotaCredito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbCaja">
+              <PropertyRef Name="cja_Id" />
+            </Principal>
+            <Dependent Role="tbNotaCredito">
+              <PropertyRef Name="cja_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vent_tbNotaCredito_tbCliente_clte_Id">
+          <End Type="ERP_ZORZALModel.tbCliente" Role="tbCliente" Multiplicity="1" />
+          <End Type="ERP_ZORZALModel.tbNotaCredito" Role="tbNotaCredito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbCliente">
+              <PropertyRef Name="clte_Id" />
+            </Principal>
+            <Dependent Role="tbNotaCredito">
+              <PropertyRef Name="clte_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vent_tbNotaCredito_tbDevolucion_dev_Id">
+          <End Type="ERP_ZORZALModel.tbDevolucion" Role="tbDevolucion" Multiplicity="0..1" />
+          <End Type="ERP_ZORZALModel.tbNotaCredito" Role="tbNotaCredito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbDevolucion">
+              <PropertyRef Name="dev_Id" />
+            </Principal>
+            <Dependent Role="tbNotaCredito">
+              <PropertyRef Name="dev_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vent_tbSucursal_tbNotaCredito_suc_Id">
+          <End Type="ERP_ZORZALModel.tbSucursal" Role="tbSucursal" Multiplicity="0..1" />
+          <End Type="ERP_ZORZALModel.tbNotaCredito" Role="tbNotaCredito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbSucursal">
+              <PropertyRef Name="suc_Id" />
+            </Principal>
+            <Dependent Role="tbNotaCredito">
+              <PropertyRef Name="suc_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="UDP_Vent_tbEstadoSolicitudCredito_Insert_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="Max" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbEstadoSolicitudCredito_Update_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="Max" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -14820,13 +14856,6 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbPedido_Select" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbPedido_Select">
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="spGetMunicipios" FunctionName="ERP_ZORZALModel.Store.spGetMunicipios" />
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbEstadoSolicitudCredito_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbEstadoSolicitudCredito_Insert" >
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbEstadoSolicitudCredito_Insert_Result">
-                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbPuntoEmision_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbPuntoEmision_Insert" >
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbPuntoEmision_Insert_Result">
@@ -14851,13 +14880,6 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbPuntoEmisionDetalle_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbPuntoEmisionDetalle_Insert" >
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbPuntoEmisionDetalle_Insert_Result">
-                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbEstadoSolicitudCredito_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbEstadoSolicitudCredito_Update" >
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbEstadoSolicitudCredito_Update_Result">
                 <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
               </ComplexTypeMapping>
             </ResultMapping>
@@ -16542,29 +16564,6 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tbNotaCredito">
-            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbNotaCredito">
-              <MappingFragment StoreEntitySet="tbNotaCredito">
-                <ScalarProperty Name="nocre_FechaModifica" ColumnName="nocre_FechaModifica" />
-                <ScalarProperty Name="nocre_UsuarioModifica" ColumnName="nocre_UsuarioModifica" />
-                <ScalarProperty Name="nocre_FechaCrea" ColumnName="nocre_FechaCrea" />
-                <ScalarProperty Name="nocre_UsuarioCrea" ColumnName="nocre_UsuarioCrea" />
-                <ScalarProperty Name="nocre_EsImpreso" ColumnName="nocre_EsImpreso" />
-                <ScalarProperty Name="nocre_FechaRedimido" ColumnName="nocre_FechaRedimido" />
-                <ScalarProperty Name="nocre_Redimido" ColumnName="nocre_Redimido" />
-                <ScalarProperty Name="nocre_Monto" ColumnName="nocre_Monto" />
-                <ScalarProperty Name="nocre_MotivoEmision" ColumnName="nocre_MotivoEmision" />
-                <ScalarProperty Name="nocre_FechaEmision" ColumnName="nocre_FechaEmision" />
-                <ScalarProperty Name="nocre_Anulado" ColumnName="nocre_Anulado" />
-                <ScalarProperty Name="cja_Id" ColumnName="cja_Id" />
-                <ScalarProperty Name="suc_Id" ColumnName="suc_Id" />
-                <ScalarProperty Name="clte_Id" ColumnName="clte_Id" />
-                <ScalarProperty Name="dev_Id" ColumnName="dev_Id" />
-                <ScalarProperty Name="nocre_Codigo" ColumnName="nocre_Codigo" />
-                <ScalarProperty Name="nocre_Id" ColumnName="nocre_Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tbPago">
             <EntityTypeMapping TypeName="ERP_ZORZALModel.tbPago">
               <MappingFragment StoreEntitySet="tbPago">
@@ -17274,8 +17273,6 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Gral_tbCuentasBanco_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbCuentasBanco_Insert" />
-          <FunctionImportMapping FunctionImportName="UDP_Gral_tbCuentasBanco_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbCuentasBanco_Update" />
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbCliente_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbCliente_Insert" />
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbCliente_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbCliente_Update" />
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbListaPrecio_UltimaFechaVigente" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbListaPrecio_UltimaFechaVigente" >
@@ -17478,6 +17475,57 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbEstadoFactura_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbEstadoFactura_Update" >
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbEstadoFactura_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Gral_tbCuentasBanco_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbCuentasBanco_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbCuentasBanco_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Gral_tbCuentasBanco_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbCuentasBanco_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbCuentasBanco_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="tbNotaCredito">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.tbNotaCredito">
+              <MappingFragment StoreEntitySet="tbNotaCredito">
+                <ScalarProperty Name="nocre_FechaModifica" ColumnName="nocre_FechaModifica" />
+                <ScalarProperty Name="nocre_UsuarioModifica" ColumnName="nocre_UsuarioModifica" />
+                <ScalarProperty Name="nocre_FechaCrea" ColumnName="nocre_FechaCrea" />
+                <ScalarProperty Name="nocre_UsuarioCrea" ColumnName="nocre_UsuarioCrea" />
+                <ScalarProperty Name="nocre_EsImpreso" ColumnName="nocre_EsImpreso" />
+                <ScalarProperty Name="nocre_FechaRedimido" ColumnName="nocre_FechaRedimido" />
+                <ScalarProperty Name="nocre_Redimido" ColumnName="nocre_Redimido" />
+                <ScalarProperty Name="nocre_Monto" ColumnName="nocre_Monto" />
+                <ScalarProperty Name="nocre_MotivoEmision" ColumnName="nocre_MotivoEmision" />
+                <ScalarProperty Name="nocre_FechaEmision" ColumnName="nocre_FechaEmision" />
+                <ScalarProperty Name="nocre_Anulado" ColumnName="nocre_Anulado" />
+                <ScalarProperty Name="cja_Id" ColumnName="cja_Id" />
+                <ScalarProperty Name="suc_Id" ColumnName="suc_Id" />
+                <ScalarProperty Name="clte_Id" ColumnName="clte_Id" />
+                <ScalarProperty Name="dev_Id" ColumnName="dev_Id" />
+                <ScalarProperty Name="nocre_Codigo" ColumnName="nocre_Codigo" />
+                <ScalarProperty Name="nocre_Id" ColumnName="nocre_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbEstadoSolicitudCredito_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbEstadoSolicitudCredito_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbEstadoSolicitudCredito_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbEstadoSolicitudCredito_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbEstadoSolicitudCredito_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbEstadoSolicitudCredito_Update_Result">
                 <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
               </ComplexTypeMapping>
             </ResultMapping>

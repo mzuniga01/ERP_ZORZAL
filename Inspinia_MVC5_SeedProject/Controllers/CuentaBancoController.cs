@@ -113,6 +113,7 @@ namespace ERP_GMEDINA.Controllers
                 {
                     if (Function.GetUserRols("CuentaBanco/Create"))
                     {
+                        tbCuentasBanco CuentasBanco = new tbCuentasBanco();
                         if (ModelState.IsValid)
                         {
                             try
@@ -134,6 +135,9 @@ namespace ERP_GMEDINA.Controllers
                                     MensajeError = cuentasbanco.MensajeError;
                                 if (MensajeError.StartsWith("-1"))
                                 {
+                                    ViewBag.ban_Id = new SelectList(db.tbBanco, "ban_Id", "ban_Nombre", tbCuentasBanco.ban_Id);
+                                    ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre", tbCuentasBanco.mnda_Id);
+                                    CuentasBanco.TipoCuentaList = cUtilities.TipoCuentaList();
                                     Function.InsertBitacoraErrores("CuentaBanco/Create", MensajeError, "Create");
                                     ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
                                     return View(tbCuentasBanco);
@@ -145,6 +149,9 @@ namespace ERP_GMEDINA.Controllers
                             }
                             catch (Exception Ex)
                             {
+                                ViewBag.ban_Id = new SelectList(db.tbBanco, "ban_Id", "ban_Nombre", tbCuentasBanco.ban_Id);
+                                ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre", tbCuentasBanco.mnda_Id);
+                                CuentasBanco.TipoCuentaList = cUtilities.TipoCuentaList();
                                 Function.InsertBitacoraErrores("CuentaBanco/Create", Ex.Message.ToString(), "Create");
                                 ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
                                 return View(tbCuentasBanco);
@@ -152,7 +159,6 @@ namespace ERP_GMEDINA.Controllers
                         }
                         ViewBag.ban_Id = new SelectList(db.tbBanco, "ban_Id", "ban_Nombre", tbCuentasBanco.ban_Id);
                         ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre", tbCuentasBanco.mnda_Id);
-                        tbCuentasBanco CuentasBanco = new tbCuentasBanco();
                         CuentasBanco.TipoCuentaList = cUtilities.TipoCuentaList();
                         return View(tbCuentasBanco);
                     }
@@ -217,6 +223,7 @@ namespace ERP_GMEDINA.Controllers
                 {
                     if (Function.GetUserRols("CuentaBanco/Edit"))
                     {
+                        var Lista = cUtilities.TipoCuentaList();
                         if (ModelState.IsValid)
                         {
                             try
@@ -241,6 +248,9 @@ namespace ERP_GMEDINA.Controllers
                                     MensajeError = cuentasbanco.MensajeError;
                                 if (MensajeError.StartsWith("-1"))
                                 {
+                                    ViewBag.TipoCuentaList = new SelectList(Lista, "ID_TIPOCUENTA", "DESCRIPCION", CuentasBanco.bcta_TipoCuenta);
+                                    ViewBag.ban_Id = new SelectList(db.tbBanco, "ban_Id", "ban_Nombre", CuentasBanco.ban_Id);
+                                    ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre", CuentasBanco.mnda_Id);
                                     Function.InsertBitacoraErrores("CuentaBanco/Create", MensajeError, "Create");
                                     ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
                                     return View(CuentasBanco);
@@ -257,11 +267,11 @@ namespace ERP_GMEDINA.Controllers
                                 ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
                                 ViewBag.ban_Id = new SelectList(db.tbBanco, "ban_Id", "ban_Nombre", CuentasBanco.ban_Id);
                                 ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre", CuentasBanco.mnda_Id);
-                                var Lista = cUtilities.TipoCuentaList();
                                 ViewBag.TipoCuentaList = new SelectList(Lista, "ID_TIPOCUENTA", "DESCRIPCION", CuentasBanco.bcta_TipoCuenta);
                                 return View(CuentasBanco);
                             }
                         }
+                        ViewBag.TipoCuentaList = new SelectList(Lista, "ID_TIPOCUENTA", "DESCRIPCION", CuentasBanco.bcta_TipoCuenta);
                         ViewBag.ban_Id = new SelectList(db.tbBanco, "ban_Id", "ban_Nombre", CuentasBanco.ban_Id);
                         ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre", CuentasBanco.mnda_Id);
                         return View(CuentasBanco);
