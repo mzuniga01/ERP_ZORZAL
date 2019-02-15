@@ -62,7 +62,8 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.tbFactura.clte_Identificacion, "RTN Cliente", new { @class = "control-label col-md-2" })
                                 <div class="col-md-3">
-                                    @Html.EditorFor(model => model.tbFactura.clte_Identificacion, new { htmlAttributes = new { @class = "form-control" } })
+                                    <input type="text" id="tbFactura_clte_Identificacion" name="tbFactura_clte_Identificacion" class="form-control " Value="" onKeyPress="return soloNumeros(event)" autocomplete="off" />
+                                    @*@Html.EditorFor(model => model.tbFactura.clte_Identificacion, new { htmlAttributes = new { @class = "form-control" } })*@
                                     @Html.ValidationMessageFor(model => model.tbFactura.clte_Identificacion)
 
                                 </div>
@@ -101,7 +102,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.dev_Fecha, new { @class = "control-label col-md-1" })
                                     <div class="col-md-3">
-                                        @Html.EditorFor(model => model.dev_Fecha, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechaDevolucion" } })
+                                        @Html.EditorFor(model => model.dev_Fecha, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @id = "fechaDevolucion" } })
                                         @Html.ValidationMessageFor(model => model.dev_Fecha)
                                     </div>
                                 </div>

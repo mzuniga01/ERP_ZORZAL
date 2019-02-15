@@ -98,7 +98,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.devd_Descripcion, "Observaciones", new { @class = "control-label col-md-1" })
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.devd_Descripcion, new { @class = "form-control" })
+             
+                <textarea class="form-control" id="devd_Descripcion" name="devd_Descripcion"  onKeyPress = "return soloLetras(event)" autocomplete = "off"></textarea>
                 <div id="validationComentariosCreate">
                     @Html.ValidationMessageFor(model => model.devd_Descripcion)
                 </div>

@@ -1,4 +1,15 @@
-﻿$(document).ready(function () {
+﻿//Maxlenght
+$("#devd_Descripcion")[0].maxLength = 100;
+$("#prod_Codigo")[0].maxLength = 15;
+
+//Validacion de letras//
+function soloLetras(e) {
+    tecla = (document.all) ? e.keyCode : e.which;
+    tecla = String.fromCharCode(tecla)
+    return /^[a-zA-ZáéíóúñÁÉÍÓÚÑ ]+$/.test(tecla);
+}
+
+$(document).ready(function () {
     $("#devd_CantidadProducto,#PrecioUnitario").keyup(function (e) {
         var Cantidad = $("#devd_CantidadProducto").val(),
             Precio = $("#PrecioUnitario").val(),

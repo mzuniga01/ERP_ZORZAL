@@ -370,8 +370,8 @@ namespace ERP_ZORZAL.Controllers
                                         tbDevolucion.dev_Estado,
                                         tbDevolucion.dev_UsuarioCrea,
                                         tbDevolucion.dev_FechaCrea,
-                                        tbDevolucion.dev_UsuarioCrea,
-                                        tbDevolucion.dev_FechaCrea);
+                                        Function.GetUser(),
+                                        Function.DatetimeNow());
                                     foreach (UDP_Vent_tbDevolucion_Update_Result DevolucionL in listDevolucion)
                                         MensajeError = DevolucionL.MensajeError;
                                     if (MensajeError.StartsWith("-1"))
@@ -397,8 +397,8 @@ namespace ERP_ZORZAL.Controllers
                                                             Detalle.devd_CantidadProducto,
                                                             Detalle.devd_Descripcion,
                                                             Detalle.devd_Monto,
-                                                            Detalle.devd_UsuarioCrea,
-                                                            Detalle.devd_FechaCrea);
+                                                            Function.GetUser(),
+                                                            Function.DatetimeNow());
                                                         foreach (UDP_Vent_tbDevolucionDetalle_Insert_Result SPDevolucionDetalleDet in listDevolucionDetalle)
                                                         {
                                                             MensajeErrorDetalle = SPDevolucionDetalleDet.MensajeError;
@@ -472,8 +472,8 @@ namespace ERP_ZORZAL.Controllers
                                                                             EditDevolucionDetalle.devd_Monto,
                                                                             EditDevolucionDetalle.devd_UsuarioCrea,
                                                                             EditDevolucionDetalle.devd_FechaCrea,
-                                                                            EditDevolucionDetalle.devd_UsuarioModifica,
-                                                                            EditDevolucionDetalle.devd_FechaModifica);
+                                                                            Function.GetUser(),
+                                                                            Function.DatetimeNow());
                             foreach (UDP_Vent_tbDevolucionDetalle_Update_Result DevDetalle in list)
                                 MensajeError = DevDetalle.MensajeError;
                             if (MensajeError.StartsWith("-1"))
@@ -505,7 +505,7 @@ namespace ERP_ZORZAL.Controllers
             else
                 return RedirectToAction("Index", "Login");
         }
-        
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

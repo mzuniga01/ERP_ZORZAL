@@ -19,7 +19,6 @@ namespace ERP_GMEDINA.Controllers
     public class FacturaController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
-        private ObjectResult<UDP_Vent_DatosConsumidorFinal_Insert_Result> listConsumidorFinal;
         GeneralFunctions Function = new GeneralFunctions();
         // GET: /Factura/
         public ActionResult Index()
@@ -808,7 +807,7 @@ namespace ERP_GMEDINA.Controllers
                             EditFacturaDetalle.factd_UsuarioAutoriza,
                             EditFacturaDetalle.factd_FechaAutoriza,
                             EditFacturaDetalle.factd_UsuarioCrea,
-                            EditFacturaDetalle.factd_FechaCrea = System.DateTime.Now);
+                            EditFacturaDetalle.factd_FechaCrea);
                 foreach (UDP_Vent_tbFacturaDetalle_Update_Result FacturaDetalle in list)
                     MensajeError = FacturaDetalle.MensajeError;
                 if (MensajeError == "-1")
