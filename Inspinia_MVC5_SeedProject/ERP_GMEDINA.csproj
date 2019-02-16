@@ -1322,6 +1322,7 @@
     <Content Include="Scripts\app\BCliente.js" />
     <Content Include="Scripts\app\CalculoFactura.js" />
     <Content Include="Scripts\app\Cantidad.js" />
+    <Content Include="Scripts\app\CaracteresEspeciales.js" />
     <Content Include="Scripts\app\ClienteDevolucion.js" />
     <Content Include="Scripts\app\ClienteExoneracion.js" />
     <Content Include="Scripts\app\ClienteFactura.js" />
