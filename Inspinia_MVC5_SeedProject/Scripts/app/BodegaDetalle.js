@@ -21,41 +21,17 @@ $('#bod_Correo').change(function (e) {
 });
 //
 
-//Validar Los campos Stringg
-$("#bod_Nombre").keypress(function (key){
-    window.console.log(key.charCode)
-    if ((key.charCode < 97 || key.charCode > 122)//letras mayusculas
-        && (key.charCode < 65 || key.charCode > 90) //letras minusculas
-        && (key.charCode != 45) //retroceso
-        && (key.charCode != 241) //ñ
-        && (key.charCode != 209) //Ñ
-        && (key.charCode != 32) //espacio
-        && (key.charCode != 225) //á
-        && (key.charCode != 233) //é
-        && (key.charCode != 237) //í
-        && (key.charCode != 243) //ó
-        && (key.charCode != 250) //ú
-        && (key.charCode != 193) //Á
-        && (key.charCode != 201) //É
-        && (key.charCode != 205) //Í
-        && (key.charCode != 211) //Ó
-        && (key.charCode != 218) //Ú
-         
-    )
-      
-        return false;
-});
+//Validar Los campos string
+function soloLetras(e) {
+    tecla = (document.all) ? e.keyCode : e.which;
+    tecla = String.fromCharCode(tecla)
+    return /^[a-zA-ZáéíóúñÁÉÍÓÚÑ ]+$/.test(tecla);
+}
 
 //Validar Los campos numericos
-function format(input) {
-    var num = input.value.replace(/\,/g, '');
-    if (!isNaN(num)) {
-        input.value = num;
-    }
-    else {
-        //alert('Solo se permiten numeros');
-        input.value = input.value.replace(/[^\d\.]*/g, '');
-    }
+function soloNumeros(e) {
+    var key = window.Event ? e.which : e.keyCode;
+    return ((key >= 48 && key <= 57) || (key == 8))
 }
 //fin
 
@@ -288,8 +264,6 @@ $(document).on('blur', '#bodd_PuntoReorden', function () {
 $(document).on('blur', '#bodd_CantidadMinima', function () {
     var Mn = $('#bodd_CantidadMinima').val();
     var Pr = $('#bodd_PuntoReorden').val();
-    console.log(Mn)
-    console.log(Pr)
     if (Mn)
 
 
@@ -353,7 +327,7 @@ $('#AgregarBodegaDetalle').click(function () {
         $('#Error_CantidadMaxima').text('');
         $('#Error_Costo').text('');
         $('#Error_CostoPromedioo').text('');
-        $('#ErrorProducto_Create').after('<ul id="Error_Producto" class="validation-summary-errors text-danger">*Codigo De Barra Requerido</ul>');
+        $('#ErrorProducto_Create').after('<ul id="Error_Producto" class="validation-summary-errors text-danger">*Codigo Producto Requerido</ul>');
 
     }
     else if (Cbarras == '') {

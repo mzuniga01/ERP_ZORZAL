@@ -20,6 +20,10 @@
         color: red;
         font-size: small;
     }
+    .validation-summary-errors {
+        color: red;
+        font-size: small;
+    }
     .required:after {
                             content: "*";
                             font-weight: bold;
@@ -121,14 +125,14 @@
 
                                 @Html.LabelFor(model => model.bod_Direccion, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.bod_Direccion)
+                                    @Html.EditorFor(model => model.bod_Direccion, new { htmlAttributes = new { @class = "form-control", @onKeyPress = "return soloLetras(event)" } })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Direccion) </p>
                                 </div>
                             </div>
                             <div class="form-group">
-                                @Html.LabelFor(model => model.bod_Nombre, new { @class = "control-label col-md-2 , required" })
+                                @Html.LabelFor(model => model.bod_Nombre, new { @class = "control-label col-md-2 , required", @onKeyPress = "return soloLetras(event)" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.bod_Nombre)
+                                    @Html.EditorFor(model => model.bod_Nombre, new { htmlAttributes = new { @class = "form-control", @onKeyPress = "return soloLetras(event)" } })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Nombre) </p>
                                 </div>
                                 @Html.LabelFor(model => model.bod_Correo, new { @class = "control-label col-md-2 , required" })
@@ -153,7 +157,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.bod_Telefono, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.bod_Telefono)
+                                    @Html.EditorFor(model => model.bod_Telefono, new { htmlAttributes = new { @class = "form-control", @onKeyPress = "return soloNumeros(event)" } })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Telefono)</p>
                                 </div>
                                 @Html.LabelFor(model => model.bod_ResponsableBodega, new { @class = "control-label col-md-2 , required" })
@@ -478,7 +482,7 @@
             $('#Error_CantidadMaxima').text('');
             $('#Error_Costo').text('');
             $('#Error_CostoPromedioo').text('');
-            $('#ErrorProducto_Create').after('<ul id="Error_Producto" class="validation-summary-errors text-danger">*Codigo De Barra Requerido</ul>');
+            $('#ErrorProducto_Create').after('<ul id="Error_Producto" class="validation-summary-errors text-danger">*Codigo Producto Requerido</ul>');
 
         }
         else if (Cbarras == '') {

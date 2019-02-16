@@ -33,7 +33,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.bodd_CantidadMinima, new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.bodd_CantidadMinima, new { @class = "form-control" })
+                                    @Html.EditorFor(model => model.bodd_CantidadMinima, new { htmlAttributes = new { @class = "form-control", @onkeyup = "format(this)", @onKeyPress = "return soloNumeros(event)" } })
                                     <div id="ErrorCantidadMinima_Create">
                                         @Html.ValidationMessageFor(model => model.bodd_CantidadMinima)
                                     </div>
@@ -43,7 +43,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.bodd_PuntoReorden, new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.bodd_PuntoReorden, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.EditorFor(model => model.bodd_PuntoReorden, new { htmlAttributes = new { @class = "form-control", @onkeyup = "format(this)", @onKeyPress = "return soloNumeros(event)" } })
                                     <div id="ErrorPuntoReorden_Create">
                                         @Html.ValidationMessageFor(model => model.bodd_PuntoReorden)
                                     </div>
@@ -53,7 +53,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.bodd_CantidadMaxima, new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.bodd_CantidadMaxima, new { @class = "form-control" })
+                                    @Html.EditorFor(model => model.bodd_CantidadMaxima, new { htmlAttributes = new { @class = "form-control", @onkeyup = "format(this)", @onKeyPress = "return soloNumeros(event)" } })
                                     <div id="ErrorCantidadMaxima_Create">
                                         @Html.ValidationMessageFor(model => model.bodd_CantidadMaxima)
                                     </div>
@@ -64,7 +64,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.bodd_Costo, new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.bodd_Costo, new { @class = "form-control" })
+                                    @Html.EditorFor(model => model.bodd_Costo, new { htmlAttributes = new { @class = "form-control", @onKeyPress = "return soloNumeros(event)" } })
                                     <div id="ErrorCosto_Create">
                                         @Html.ValidationMessageFor(model => model.bodd_CantidadMaxima)
                                     </div>
@@ -74,7 +74,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.bodd_CostoPromedio, new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.bodd_CostoPromedio, new { @class = "form-control" })
+                                    @Html.EditorFor(model => model.bodd_CostoPromedio, new { htmlAttributes = new { @class = "form-control", @onKeyPress = "return soloNumeros(event)" } })
                                     <div id="ErrorCostoPromedio_Create">
                                         @Html.ValidationMessageFor(model => model.bodd_CostoPromedio)
                                     </div>
@@ -126,6 +126,7 @@
         var Mn = $('#bodd_CantidadMinima').val();
         var Pr = $('#bodd_PuntoReorden').val();
         console.log(Mn)
+        alert('editar modal')
         console.log(Pr)
         if (Mn)
 
