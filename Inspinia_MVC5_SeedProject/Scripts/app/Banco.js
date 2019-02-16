@@ -19,14 +19,7 @@ $(ban_Nombre).on("keypress", function () {
 })
 
 
-jQuery('input,select').each(function () {
-    var req = jQuery(this).attr('data-val-required');
-    var label = jQuery('label[for="' + jQuery(this).attr('id') + '"]');
-    var text = label.text();
-    if (text.length > 0) {
-        label.append('<span style="color:red"> *</span>');
-    }
-});
+
 
 
 
@@ -46,11 +39,13 @@ function format(input) {
 
 
 $(ban_TelefonoContacto).on("keypress keyup blur", function (event) {
-    $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
-    if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+    $(this).val($(this).val().replace(/[^0-9]/g, ""));
+    if ((event.which != 46 || $(this).val().indexOf('') != -1) && (event.which < 48 || event.which > 57)) {
         event.preventDefault();
     }
 });
+
+
 
 
 
