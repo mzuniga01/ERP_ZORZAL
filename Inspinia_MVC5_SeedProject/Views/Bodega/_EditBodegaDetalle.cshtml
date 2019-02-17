@@ -1,107 +1,221 @@
 ﻿@model ERP_GMEDINA.Models.tbBodegaDetalle
-
-
 @using ERP_GMEDINA.Models
-@{
 
-}
+<style>
+    .validation-error {
+        color: red;
+        font-size: small;
+    }
 
-<div class="wrapper wrapper-content animated fadeInRight">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <h5>Detalles</h5>
-                </div>
-                <div class="ibox-content">
+    .validation-summary-errors {
+        color: red;
+        font-size: small;
+    }
 
-                    @using (Html.BeginForm())
-                    {
+    .required:after {
+        content: "*";
+        font-weight: bold;
+        color: red;
+    }
+</style>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="float-e-margins">
+                    <div class="ibox-content">
                         @Html.AntiForgeryToken()
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true)
+                            @Html.HiddenFor(model => model.bodd_Id)
+                            @Html.HiddenFor(model => model.bod_Id)
+                            @Html.HiddenFor(model => model.bodd_UsuarioCrea)
+                            @Html.HiddenFor(model => model.bodd_FechaCrea)
+                            @Html.HiddenFor(model => model.bodd_UsuarioModifica)
+                            @Html.HiddenFor(model => model.bodd_FechaModifica)
+                            @Html.HiddenFor(model => model.prod_Codigo)
+                            @Html.HiddenFor(model => model.bodd_CantidadMinima)
+                            @Html.HiddenFor(model => model.bodd_CantidadMaxima)
+                            @Html.HiddenFor(model => model.bodd_Costo)
+                            @Html.HiddenFor(model => model.bodd_CostoPromedio)
+                            @Html.HiddenFor(model => model.bodd_PuntoReorden)
 
-                    <div class="form-horizontal">
 
-                        @Html.ValidationSummary(true)
-                        @Html.HiddenFor(model => model.bodd_Id)
+                            <div class="form-group">
+                                @{string @Editproducto = "producto_Edit_" + @Model.bodd_Id;}
+                                @Html.LabelFor(model => model.prod_Codigo, new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.prod_Codigo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" , id = @Editproducto } })
+                                    <div id="ErrorProducto_Create">
+                                        @Html.ValidationMessageFor(model => model.prod_Codigo)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @{string @Editcantidadminima = "cantidadminima_Edit_" + @Model.bodd_Id;}
+                                @Html.LabelFor(model => model.bodd_CantidadMinima, new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.bodd_CantidadMinima, new { htmlAttributes = new { @class = "form-control", @onkeyup = "format(this)", @onKeyPress = "return soloNumeros(event)", id = @Editcantidadminima } })
+                                 
+                                    <div id="ValidacionCantidadMinimaEdit_@Model.bodd_Id">
+                                        <p style="color:red">@Html.ValidationMessageFor(model => model.bodd_CantidadMinima)</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @{string @Editpuntoreorden = "puntoreorden_Edit_" + @Model.bodd_Id;}
+                                @Html.LabelFor(model => model.bodd_PuntoReorden, new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.bodd_PuntoReorden, new { htmlAttributes = new { @class = "form-control", name = "hola", @onkeyup = "format(this)", @onKeyPress = "return soloNumeros(event)", id = @Editpuntoreorden } })
+                                    
+                                    <div id="ValidacionPuntoReordenEdit_@Model.bodd_Id">
+                                        <p style="color:red">@Html.ValidationMessageFor(model => model.bodd_PuntoReorden)</p>
+                                    </div>
+                                </div>
+                            </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.tbProducto.prod_Codigo, "prod_Codigo", new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.DropDownList("prod_Codigo", (IEnumerable<SelectListItem>)ViewBag.prod_Codigo, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.prod_Codigo)
+                            <div class="form-group">
+                                @{string @Editcantidadmaxima = "cantidadmaxima_Edit_" + @Model.bodd_Id;}
+                                @Html.LabelFor(model => model.bodd_CantidadMaxima, new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.bodd_CantidadMaxima, new { htmlAttributes = new { @class = "form-control", @onkeyup = "format(this)", @onKeyPress = "return soloNumeros(event)", id = @Editcantidadmaxima } })
+                               
+                                    <div id="ValidacionCantidadmaximaEdit_@Model.bodd_Id">
+                                        <p style="color:red"> @Html.ValidationMessageFor(model => model.bodd_CantidadMaxima)</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @{string @Editcosto = "costo_Edit_" + @Model.bodd_Id;}
+                                @Html.LabelFor(model => model.bodd_Costo, new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.bodd_Costo, new { htmlAttributes = new { @class = "form-control", @onKeyPress = "return soloNumeros(event)", id = @Editcosto } })
+                                   
+                                    <div id="ValidacionCostoEdit_@Model.bodd_Id">
+                                        <p style="color:red"> @Html.ValidationMessageFor(model => model.bodd_Costo)</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @{string @Editcostopromedio = "costopromedio_Edit_" + @Model.bodd_Id;}
+                                @Html.LabelFor(model => model.bodd_CostoPromedio, new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.bodd_CostoPromedio, new { htmlAttributes = new { @class = "form-control", @onKeyPress = "return soloNumeros(event)", id = @Editcostopromedio } })
+                                   <div id="ValidacionCostoPromedioEdit_@Model.bodd_Id">
+                                        <p style="color:red">@Html.ValidationMessageFor(model => model.bodd_CostoPromedio)</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
-                        @*<div class="form-group">
-            @Html.LabelFor(model => model.bod_Id, "bod_Id", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("bod_Id", String.Empty)
-                @Html.ValidationMessageFor(model => model.bod_Id)
-            </div>
-        </div>*@
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.bodd_CantidadMinima, new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.bodd_CantidadMinima)
-                                @Html.ValidationMessageFor(model => model.bodd_CantidadMinima)
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.bodd_CantidadMaxima, new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.bodd_CantidadMaxima)
-                                @Html.ValidationMessageFor(model => model.bodd_CantidadMaxima)
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.bodd_PuntoReorden, new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.bodd_PuntoReorden)
-                                @Html.ValidationMessageFor(model => model.bodd_PuntoReorden)
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.bodd_FechaCrea, new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.bodd_FechaCrea)
-                                @Html.ValidationMessageFor(model => model.bodd_FechaCrea)
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.bodd_Costo, new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.bodd_Costo)
-                                @Html.ValidationMessageFor(model => model.bodd_Costo)
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.bodd_CostoPromedio, new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.bodd_CostoPromedio)
-                                @Html.ValidationMessageFor(model => model.bodd_CostoPromedio)
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-offset-10 col-md-10">
-                                <input type="submit" value="Guardar" class="btn btn-primary" />
-                                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
-                            </div>
-                        </div>
                     </div>
-                    }
-
-
                 </div>
+            </div>
+        </div>
+    </div>
+
+<div class="modal fade" id="ModalEliminarDetalle_@Model.bodd_Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Inactivar Bodega</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Está seguro que quiere Eliminar este Detalle?
+            </div>
+            <div class="modal-footer">
+                @Html.ActionLink("Sí", "DeleteDetalle", new { id = Model.bodd_Id }, new { @class = "btn btn-danger" })
+                @*<input type="button" value="Si" id="btnDeleteDetalle" class="btn btn-danger" />*@
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
             </div>
         </div>
     </div>
 </div>
 
+<script>
+    //Validar Cantidades Bodega Detalle
+    $(document).on('blur', '#bodd_PuntoReorden', function () {
+        var Mn = $('#bodd_CantidadMinima').val();
+        var Pr = $('#bodd_PuntoReorden').val();
+        console.log(Mn)
+        alert('editar modal')
+        console.log(Pr)
+        if (Mn)
 
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+            if (Pr != '' && Mn != '') {
+
+                if (parseFloat(Mn) > parseFloat(Pr)) {
+
+                    $('#Error_PuntoReorden').text('');
+                    $('#ErrorPuntoReorden_Create').after('<ul id="Error_PuntoReorden" class="validation-summary-errors text-danger">Punto Reorden debe ser Mayor de Cantidad Minima</ul>');
+                    console.log('1')
+                }
+                else {
+                    $('#Error_PuntoReorden').text('');
+                    console.log('2')
+                }
+            }
+
+
+    })
+
+    $(document).on('blur', '#bodd_CantidadMinima', function () {
+        var Mn = $('#bodd_CantidadMinima').val();
+        var Pr = $('#bodd_PuntoReorden').val();
+        console.log(Mn)
+        console.log(Pr)
+        if (Mn)
+
+
+            if (Pr != '' && Mn != '') {
+
+                if (parseFloat(Mn) > parseFloat(Pr)) {
+
+                    $('#Error_CantidadMinima').text('');
+                    $('#ErrorCantidadMinima_Create').after('<ul id="Error_CantidadMinima" class="validation-summary-errors text-danger">Cantidad Minima debe ser Menor que Punto Reorden</ul>');
+                    console.log('1')
+                }
+                else {
+                    $('#Error_CantidadMinima').text('');
+                    console.log('2')
+                }
+            }
+
+
+    })
+
+    $(document).on('blur', '#bodd_CantidadMaxima', function () {
+        var Mx = $('#bodd_CantidadMaxima').val();
+        var Pr = $('#bodd_PuntoReorden').val();
+        console.log(Mx)
+        console.log(Pr)
+        if (Mx)
+
+
+            if (Pr != '' && Mx != '') {
+
+                if (parseFloat(Mx) < parseFloat(Pr)) {
+
+                    $('#Error_CantidadMaxima').text('');
+                    $('#ErrorCantidadMaxima_Create').after('<ul id="Error_CantidadMaxima" class="validation-summary-errors text-danger">Cantidad Maxima debe ser Mayor que Punto Reorden</ul>');
+                    console.log('1')
+                }
+                else {
+                    $('#Error_CantidadMaxima').text('');
+                    console.log('2')
+                }
+            }
+
+
+    })
+
+
+
+
+</script>

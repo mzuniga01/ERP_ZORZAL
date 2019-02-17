@@ -67,14 +67,14 @@
                                             <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalDetalles_@item.bodd_Id">
                                                 Detalles
                                             </button>
-                                            <button type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#ModalEditar_@item.bodd_Id">
+                                            <button type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#ModalEditar_@item.bodd_Id" id ="btnEditardetalle" onclick="btnEditardetalle(@item.bodd_Id)">
                                                 Editar
                                             </button>
                                             <input type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#ModalEliminarDetalle_@item.bodd_Id" value="Eliminar" id="btnEliminar" />
                                         }
                                         else
                                         {
-                                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalDetalles_@item.bodd_Id" disabled>
+                                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalDetalles_@item.bodd_Id" id="btnEditardetalle"  disabled>
                                                 Detalles
                                             </button>
                                             <button type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#ModalEditar_@item.bodd_Id" disabled>
@@ -129,24 +129,23 @@
                                                     <h4 class="modal-title" id="myModalLabel">Editar Detalle Bodega</h4>
                                                 </div>
                                                 <div class="modal-body" id="mdlEditBodegaDetalle">
-                                                    @Html.Partial("_EditBodegaDetalleModal", new ERP_GMEDINA.Models.tbBodegaDetalle() {   bodd_Id = item.bodd_Id
+                                                    @Html.Partial("_EditBodegaDetalle", new ERP_GMEDINA.Models.tbBodegaDetalle() {   bodd_Id = item.bodd_Id
+                                                                                          , prod_Codigo = item.prod_Codigo
                                                                                           , bod_Id = item.bod_Id
                                                                                           , bodd_CantidadMinima = item.bodd_CantidadMinima
                                                                                           , bodd_CantidadMaxima = item.bodd_CantidadMaxima
                                                                                           , bodd_PuntoReorden = item.bodd_PuntoReorden
+                                                                                          , bodd_UsuarioCrea = item.bodd_UsuarioCrea
+                                                                                          , bodd_FechaCrea = item.bodd_FechaCrea
                                                                                           , bodd_Costo = item.bodd_Costo
                                                                                           , bodd_CostoPromedio = item.bodd_CostoPromedio
-                                                                                          , bodd_FechaCrea=item.bodd_FechaCrea
-                                                                                          , bodd_UsuarioCrea = item.bodd_UsuarioCrea
                                                                                           , bodd_FechaModifica = item.bodd_FechaModifica
-                                                                                          , bodd_UsuarioModifica = item.bodd_UsuarioModifica
-                                                                                          , prod_Codigo = item.prod_Codigo })
-                                                    @*<div class="form-group">
-                                                        <div class="col-md-12 text-center">
-                                                            <button class="btn btn-primary" data-toggle="modal" data-dismiss="modal" aria-label="Close" type="button" id="btnActualizarBodegaDetalle" onclick="btnActualizarBodegaDetalle(@item.bodd_Id);">Guardar</button>
-                                                            <button type="button" class="btn btn-white" data-dismiss="modal" aria-label="Close">Cancelar</button>
-                                                        </div>
-                                                    </div>*@
+                                                                                          , bodd_UsuarioModifica = item.bodd_UsuarioModifica })
+                                                  
+                                                    <div class="modal-footer">
+                                                        <button class="btn btn-primary" type="button" id="btnActualizarBodegaDetalle" onclick="btnActualizarBodegaDetalle(@item.bodd_Id);">Guardar</button>
+                                                        <button type="button" class="btn btn-white" onclick="btnCerrar()">Cerrar</button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

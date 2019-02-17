@@ -86,7 +86,7 @@
                                 @Html.LabelFor(model => model.bod_Correo, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-lg-4">
                                     @*@Html.TextBoxFor(model => model.bod_Correo, new { @class = "single-line", MaxLength = 5000 })*@
-                                    @Html.TextBoxFor(model => model.bod_Correo, new { @class = "form-control", maxlength = 5000 })
+                                    @Html.TextBoxFor(model => model.bod_Correo, new { @class = "form-control", maxlength = 5000})
                                     <div id="MessageForCorreo">
                                         <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Correo)</p>
                                     </div>
@@ -102,7 +102,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.bod_Direccion, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-lg-10">
-                                    @Html.TextBoxFor(model => model.bod_Direccion, new { @class = "single-line", MaxLength = 200, @onKeyPress = "return soloLetras(event)" })
+                                    @Html.TextBoxFor(model => model.bod_Direccion, new { @class = "single-line", MaxLength = 200 })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Direccion)</p>
                                 </div>
                             </div>
@@ -149,18 +149,18 @@
         $(document).ready(function () {
             $('#mun_Codigo').empty();
             $('#mun_Codigo').append("<option value=''>Seleccione</option>");
-            $("#bod_Telefono").blur(function () {
-                campo = event.target;
-                var reg2 = /^[+]{1}[0-9\s]*$/;
-                if (reg2.test(campo.value)) {
-                    $('#ErrorTelephone').text('');
-                }
-                else {
-                    $('#ErrorTelephone').text('');
-                    $('#MessageForTelephone').after('<ul id="ErrorTelephone" class="validation-summary-errors text-danger">Formato de Télefono: +### ######## </ul>');
-                    $("#bod_Telefono").focus();
-                }
-            });
+            //$("#bod_Telefono").blur(function () {
+            //    campo = event.target;
+            //    var reg2 = /^[+]{1}[0-9\s]*$/;
+            //    if (reg2.test(campo.value)) {
+            //        $('#ErrorTelephone').text('');
+            //    }
+            //    else {
+            //        $('#ErrorTelephone').text('');
+            //        $('#MessageForTelephone').after('<ul id="ErrorTelephone" class="validation-summary-errors text-danger">Formato de Télefono: +### ######## </ul>');
+            //        $("#bod_Telefono").focus();
+            //    }
+            //});
             //Esto lo Agregó Mirian
             //$("#bod_Telefono").on("keypress keyup blur", function (event) {
             //    var Telefono = $(this).val();

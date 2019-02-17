@@ -333,48 +333,55 @@ namespace ERP_GMEDINA.Controllers
         }
 
         [HttpPost]
-        public ActionResult UpdateBodegaDetalle(tbBodegaDetalle ACTUALIZAR_tbBodegaDetalle)
+        public JsonResult UpdateBodegaDetalle(tbBodegaDetalle Editardetalle)
         {
             
             string Msj = "";
             try
             {
-                tbBodegaDetalle obj = db.tbBodegaDetalle.Find(ACTUALIZAR_tbBodegaDetalle.bod_Id);
-                var idbodega = ACTUALIZAR_tbBodegaDetalle.bod_Id;
+                tbBodegaDetalle obj = db.tbBodegaDetalle.Find(Editardetalle.bodd_Id);
+                var MensajeError = "";
+                var idbodega = Editardetalle.bod_Id;
                 IEnumerable<object> list = null;
-                list = db.UDP_Inv_tbBodegaDetalle_Update(ACTUALIZAR_tbBodegaDetalle.bodd_Id
-                                                        , ACTUALIZAR_tbBodegaDetalle.prod_Codigo
-                                                        , ACTUALIZAR_tbBodegaDetalle.bod_Id
-                                                        , ACTUALIZAR_tbBodegaDetalle.bodd_CantidadMinima
-                                                        , ACTUALIZAR_tbBodegaDetalle.bodd_CantidadMaxima
-                                                        , ACTUALIZAR_tbBodegaDetalle.bodd_PuntoReorden
-                                                        , ACTUALIZAR_tbBodegaDetalle.bodd_UsuarioCrea
-                                                        , ACTUALIZAR_tbBodegaDetalle.bodd_FechaCrea
-                                                        , ACTUALIZAR_tbBodegaDetalle.bodd_Costo
-                                                        , ACTUALIZAR_tbBodegaDetalle.bodd_CostoPromedio
+                list = db.UDP_Inv_tbBodegaDetalle_Update(Editardetalle.bodd_Id
+                                                        , Editardetalle.prod_Codigo
+                                                        , Editardetalle.bod_Id
+                                                        , Editardetalle.bodd_CantidadMinima
+                                                        , Editardetalle.bodd_CantidadMaxima
+                                                        , Editardetalle.bodd_PuntoReorden
+                                                        , Editardetalle.bodd_UsuarioCrea
+                                                        , Editardetalle.bodd_FechaCrea
+                                                        , Editardetalle.bodd_Costo
+                                                        , Editardetalle.bodd_CostoPromedio
                                                                             );
                 foreach (UDP_Inv_tbBodegaDetalle_Update_Result bodega in list)
-                    Msj = bodega.MensajeError;
+                    MensajeError = bodega.MensajeError;
 
-                if (Msj == "-1")
+                if (MensajeError.StartsWith("-1"))
                 {
-                    ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
-                    return PartialView("_EditBodegaDetalleModal");
+                    //ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                    //return PartialView("_EditBodegaDetalleModal");
+                    Msj = "No se pudo agregar el registro, favor contacte al administrador.";
+                    ModelState.AddModelError("", Msj);
 
                 }
                 else
                 {
-                    //return View("Edit/" + bod_Id);
+                    //return View("Edit/" + idbodega);
                     //return RedirectToAction("Index");
-                    return RedirectToAction("Edit/" + idbodega);
+                    //return RedirectToAction("Edit/" + idbodega);
+                    Msj = "Exito.";
                 }
             }
             catch (Exception Ex)
             {
-                Ex.Message.ToString();
-                ModelState.AddModelError("", "No se Actualizo el registro");
-                return PartialView("_EditBodegaDetalleModal", ACTUALIZAR_tbBodegaDetalle);
+                //Ex.Message.ToString();
+                //ModelState.AddModelError("", "No se Actualizo el registro");
+                //return PartialView("_EditBodegaDetalleModal", Editardetalle);
+                Msj = Ex.Message.ToString();
+                ModelState.AddModelError("", Msj);
             }
+            return Json(Msj, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
