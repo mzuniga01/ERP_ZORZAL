@@ -134,7 +134,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.nocre_MotivoEmision, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.TextAreaFor(model => model.nocre_MotivoEmision, new { @class = "form-control" })
+                                        @Html.TextAreaFor(model => model.nocre_MotivoEmision, new { @class = "form-control", @onkeypress = "return soloLetras(event)", @onblur = "limpia()" })
                                         <p id="smsMotivoNC" style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.nocre_MotivoEmision)</span></p>
 </div>
                                 </div>
