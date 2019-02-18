@@ -488,9 +488,6 @@ C:\Users\Usuario\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug
 C:\Users\Usuario\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\RdlCompile.compiled
 C:\Users\Usuario\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.dll
 C:\Users\Usuario\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.pdb
-C:\Users\DELL\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.CrystalReports.Engine.dll
-C:\Users\DELL\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.ReportSource.dll
-C:\Users\DELL\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.Shared.dll
 C:\Users\DELL\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.ReportAppServer.DataDefModel.dll
 C:\Users\DELL\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.ReportAppServer.ClientDoc.dll
 C:\Users\DELL\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.ReportAppServer.ReportDefModel.dll
