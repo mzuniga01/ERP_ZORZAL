@@ -152,3 +152,21 @@ function soloLetras(e) {
     tecla = String.fromCharCode(tecla)
     return /^[a-zA-ZáéíóúñÁÉÍÓÚÑ ]+$/.test(tecla);
 }
+//////
+$(document).ready(function () {
+    $("#btnGuardar").click(function () {
+        var monto = $('#exo_Documento').val();
+        //var montoint = parseInt(monto);
+
+        if (monto == '') {
+            valido = document.getElementById('doc');
+            valido.innerText = "El campo Documento es Requerido";
+            return false;
+        }
+        else {
+            valido = document.getElementById('doc');
+            valido.innerText = "";
+        }
+
+    });
+});
