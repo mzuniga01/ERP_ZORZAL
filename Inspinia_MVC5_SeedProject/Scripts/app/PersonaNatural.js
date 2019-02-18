@@ -1,4 +1,5 @@
 ﻿$("#clte_EsPersonaNatural").change(function () {
+    $("p").empty()
     $('#tpi_Id').val('');
     if (this.checked) {
         //Do stuff
@@ -121,23 +122,21 @@ $("#dep_Codigo").change(function () {
 
 
 $("#tpi_Id").change(function () {
-    var d = $("#tpi_Id").val();
+    var tpi_Id = $("#tpi_Id option:selected").text()
+    var Identificacion = $(this).val();
     $("#clte_Identificacion").val('')
 
-    if (d == 4) {
+    if (tpi_Id == 'Identidad') {
         document.getElementById("clte_Identificacion").maxLength = "13";
     }
-    else if (d == 1) {
-        document.getElementById("clte_Identificacion").maxLength = "25";
-    }
-    else if (d == 3) {
+    else if (tpi_Id == 'RTN') {
         document.getElementById("clte_Identificacion").maxLength = "14";
     }
     else {
-
+        document.getElementById("clte_Identificacion").maxLength = "25";
     }
 
-    if (d === '') {
+    if (tpi_Id === '') {
         $('#identificacion').hide();
     }
     else {
@@ -154,6 +153,8 @@ $("#clte_ConCredito").change(function () {
 
 
 $("#tpi_Id").on("change", function () {
+    valido = document.getElementById('CIdentificacion');
+    valido.innerText = "";
     var Identificacion = $("#tpi_Id option:selected").text()
     valido = document.getElementById('label_identificacion');
     $('#identificacion').show();
@@ -225,8 +226,6 @@ $("#clte_Telefono").on("keypress keyup blur", function (event) {
     this.value = this.value.replace(/[a-záéíóúüñ#/=]+/ig, "");
 });
 
-
-
 $("#clte_ContactoEmail").blur(function () {   
         campo = event.target;
         valido = document.getElementById('emailOK');
@@ -242,7 +241,7 @@ $("#clte_ContactoEmail").blur(function () {
 
         } else {
             valido.innerText = "Direccion de Correo Electronico Incorrecta";
-
+            return false
         }
 });
 
@@ -261,7 +260,7 @@ $("#clte_CorreoElectronico").blur(function () {
 
     } else {
         valido.innerText = "Direccion de Correo Electronico Incorrecta";
-
+        return false
     }
 });
 
@@ -304,38 +303,22 @@ function formateo(input) {
     })
 }
 
-$("#clte_MontoCredito").on("keypress keyup blur", function (event) {
-    var Telefono = $(this).val();
-    console.log(Telefono)
-    if (Telefono == '') {
-        //$(this).val('+');
-    }
-    this.value = this.value.replace(/[a-záéíóúüñ#/=\s-+*]+/ig, "");
-});
-$("#clte_DiasCredito").on("keypress keyup blur", function (event) {
-    var Telefono = $(this).val();
-    console.log(Telefono)
-    if (Telefono == '') {
-        //$(this).val('+');
-    }
-    this.value = this.value.replace(/[a-záéíóúüñ#/=\s-+*]+/ig, "");
-});
-
-$("#clte_DiasCredito").on("change", function (event) {
-    var Telefono = $(this).val();
-    console.log(Telefono)
-    if (Telefono == '') {
-        //$(this).val('+');
-    }
-    this.value = this.value.replace(/[a-záéíóúüñ#/=\s-+*]+/ig, "");
-});
-
 $("#clte_Identificacion").on("blur", function (event) {
     var tpi_Id = $("#tpi_Id option:selected").text()
     var Identificacion = $(this).val();
     if (tpi_Id == 'RTN' && Identificacion.length != 14) {
         valido = document.getElementById('CIdentificacion');
         valido.innerText = "RTN debe tener 14 dígitos";
+    }
+    else if (!/^[0-9]*$/i.test(this.value) && tpi_Id=='RTN') {
+        valido = document.getElementById('CIdentificacion');
+        valido.innerText = "Ingresar solo números";
+        $("#clte_Identificacion").val('');
+    }
+    else if (!/^[0-9]*$/i.test(this.value) && tpi_Id == 'Identidad') {
+        valido = document.getElementById('CIdentificacion');
+        valido.innerText = "Ingresar solo números";
+        $("#clte_Identificacion").val('');
     }
     else if (tpi_Id == 'Identidad' && Identificacion.length != 13)
     {
@@ -348,16 +331,20 @@ $("#clte_Identificacion").on("blur", function (event) {
 });
 
 
-$("#clte_Telefono").blur(function () {
-    campo = event.target;
-    valido = document.getElementById('ContactoT');
-    var reg2 = /^[+]{1}[0-9\s]*$/;
-    if (reg2.test(campo.value)) {
-        valido.innerText = "";
-    }
-    else {
-        valido.innerText = "Formato Telefono Incorrecto";
+function validartel(e) {
+    tecla = (document.all) ? e.keyCode : e.which;
+    tecla = String.fromCharCode(tecla)
+    return /^[ 0-9\s]*$/i.test(tecla);
+}
 
+
+$('#clte_Observaciones').on('input', function (e) {
+    if (!/^[ a-z0-9]*$/i.test(this.value)) {
+        this.value = this.value.replace(/[^ a-z0-9áéíóúüñ]+/ig, "");
     }
 });
-
+$('#clte_Direccion').on('input', function (e) {
+    if (!/^[ a-z0-9]*$/i.test(this.value)) {
+        this.value = this.value.replace(/[^ a-z0-9áéíóúüñ]+/ig, "");
+    }
+});
