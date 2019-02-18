@@ -44,9 +44,9 @@
                         <div class="form-group">
                             <label class="control-label col-md-2 AsteriscoRojo">Nombre Lista</label>
                             @*@Html.LabelFor(model => model.listp_EsActivo, new { @class = "control-label col-md-2" })*@
-                            <div class="col-md-8">
-                                @Html.EditorFor(model => model.listp_Nombre)
-                                @Html.ValidationMessageFor(model => model.listp_Nombre)
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.listp_Nombre, new { htmlAttributes = new { @autocomplete = "off", @onkeypress = "return nombre(event)" } })
+                                <p @*id="nombre"*@>@Html.ValidationMessageFor(model => model.listp_Nombre)</p>
                             </div>
 
                             <br /><br /><br />
@@ -115,6 +115,15 @@
 <div id="validationSummary">
     <p style="color:red"></p>
 </div>
+<script>
+
+    function nombre(e) {
+        tecla = (document.all) ? e.keyCode : e.which;
+        tecla = String.fromCharCode(tecla)
+        return /^[a-zñA-ZÑáéíóúÁÉÍÓÚ0-9]+$/.test(tecla);
+    }
+</script>
+
 <script type="text/javascript">
 jQuery('input,select').each(function() {
     var req = jQuery(this).attr('data-val-required');
@@ -149,10 +158,6 @@ $("#listp_Prioridad").blur(function () {
        
     }
 
-
-
-
-
 });
 
 
@@ -168,6 +173,7 @@ $(document).keydown(function (e) {
 });
 
 </script>
+
 
 <script src="~/Scripts/app/Datepicker.js"></script>
 <script src="~/Scripts/jquery-3.1.1.min.js"></script>

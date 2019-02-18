@@ -694,6 +694,9 @@
     <Compile Include="Models\UDP_Vent_tbCaja_Update_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UDP_Vent_tbCliente_Estado_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UDP_Vent_tbCliente_Insert_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -1322,6 +1325,7 @@
     <Content Include="Scripts\app\BCliente.js" />
     <Content Include="Scripts\app\CalculoFactura.js" />
     <Content Include="Scripts\app\Cantidad.js" />
+    <Content Include="Scripts\app\CaracteresEspeciales.js" />
     <Content Include="Scripts\app\ClienteDevolucion.js" />
     <Content Include="Scripts\app\ClienteExoneracion.js" />
     <Content Include="Scripts\app\ClienteFactura.js" />
@@ -1333,6 +1337,7 @@
     <Content Include="Scripts\app\Credito.js" />
     <Content Include="Scripts\app\CreditoCambio.js" />
     <Content Include="Scripts\app\CuentaBanco.js" />
+    <Content Include="Scripts\app\CuponDescuentoEsImpreso.js" />
     <Content Include="Scripts\app\CuponDescuentoAnulado.js" />
     <Content Include="Scripts\app\DataTable.js" />
     <Content Include="Scripts\app\DataTableBusquedaGenerica.js" />
@@ -1340,8 +1345,6 @@
     <Content Include="Scripts\app\Denominacion.js" />
     <Content Include="Scripts\app\DenominacionArqueo.js" />
     <Content Include="Scripts\app\Departamento.js" />
-    <Content Include="Scripts\app\DetalleEditarDevolucion.js" />
-    <Content Include="Scripts\app\DetalleEditarDevolucion1.js" />
     <Content Include="Scripts\app\DevolucionCalculos.js" />
     <Content Include="Scripts\app\DevolucionDetalle.js" />
     <Content Include="Scripts\app\EditNumeracion.js" />
@@ -1377,6 +1380,7 @@
     <Content Include="Scripts\app\MovientoCaja.js" />
     <Content Include="Scripts\app\NotaCredito.js" />
     <Content Include="Scripts\app\NotaCreditoAnulado.js" />
+    <Content Include="Scripts\app\PagoCampoNumerico.js" />
     <Content Include="Scripts\app\PagoClienteFacturas.js" />
     <Content Include="Scripts\app\PagosArqueo.js" />
     <Content Include="Scripts\app\PagoTransacciones.js" />
@@ -1398,6 +1402,7 @@
     <Content Include="Scripts\app\Sucursal.js" />
     <Content Include="Scripts\app\TableDetalleDevolucion.js" />
     <Content Include="Scripts\app\TipoPago.js" />
+    <Content Include="Scripts\app\TipoPagoDescripcionSoloLetras.js" />
     <Content Include="Scripts\app\ValidarPedido.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -1758,7 +1763,6 @@
     <Content Include="Views\TipoPago\Edit.cshtml" />
     <Content Include="Views\TipoPago\Index.cshtml" />
     <Content Include="Views\Pago\_IndexCliente.cshtml" />
-    <Content Include="Views\Devolucion\_BuscarFacturaDevolucion.cshtml" />
     <Content Include="Views\MovimientoCaja\_CreateDenominacion.cshtml" />
     <Content Include="Views\Pago\_BuscarFacturaDevolucion.cshtml" />
     <Content Include="Views\Pedido\_IndexProducto.cshtml" />
