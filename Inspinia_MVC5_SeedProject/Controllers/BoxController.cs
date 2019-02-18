@@ -94,6 +94,11 @@ namespace ERP_ZORZAL.Controllers
             var MensajeErrorDetalle = "0";
             IEnumerable<object> listBox = null;
             IEnumerable<object> listSalidaDetalle = null;
+
+            if (db.tbBox.Any(a => a.box_Codigo == tbBox.box_Codigo))
+            {
+                ModelState.AddModelError("", "Ya existe una caja con ese codigo");
+            }
             if (ModelState.IsValid)
             {
                 try

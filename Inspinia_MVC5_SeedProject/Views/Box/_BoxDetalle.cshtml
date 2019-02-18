@@ -39,7 +39,7 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.sald_Cantidad, "Cantidad", new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                <input type="text" id="sald_Cantidad" placeholder="" class="form-control" onKeyPress="return soloNumeros(event)" />
+                                <input type="text" id="sald_Cantidad" placeholder="" class="form-control"/>
                                 <div id="validationcantidad">
                                     @Html.ValidationMessageFor(model => model.sald_Cantidad)
                                 </div>
@@ -69,7 +69,7 @@
             </div>
         </div>
     </div>
-</div>
+
 
 <div class="modal fade" id="ModalAgregarProducto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
