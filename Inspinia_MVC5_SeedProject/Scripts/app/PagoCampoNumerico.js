@@ -1,6 +1,9 @@
 ﻿$(document).ready(function() {
     //QUE SOLO ACEPTE
     $("#pago_TotalPago")[0].maxLength = 12;
+    $("#efectivo")[0].maxLength = 12;
+  
+
     //VALIDAR SOLO NUMEROS
 
     $(function () {
@@ -15,6 +18,12 @@
 
    
     $('#pago_TotalPago').on('input', function (e) {
+        if (!/^[0-9]+$/.test(this.value)) {
+            this.value = this.value.replace(/[^/^[0-9]+$/, "");
+        }
+    });
+
+    $('#efectivo').on('input', function (e) {
         if (!/^[0-9]+$/.test(this.value)) {
             this.value = this.value.replace(/[^/^[0-9]+$/, "");
         }
