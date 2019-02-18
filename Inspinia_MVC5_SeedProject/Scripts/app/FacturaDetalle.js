@@ -206,7 +206,8 @@ function ponerdecimales(numero) {
     return numero;
 }
 
-function soloNumerosyGuiones(e) {
-    var key = window.Event ? e.which : e.keyCode;
-    return ((key >= 48 && key <= 57) || (key == 8))
+function validar(e) {
+    tecla = (document.all) ? e.keyCode : e.which;
+    tecla = String.fromCharCode(tecla)
+    return /^[a-z0-9A-Z\-]+$/.test(tecla);
 }
