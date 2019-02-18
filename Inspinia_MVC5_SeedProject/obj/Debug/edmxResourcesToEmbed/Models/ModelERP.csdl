@@ -116,14 +116,6 @@
       <Parameter Name="acrol_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="acrol_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Acce_tbRol_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbRol_Insert_Result)">
-      <Parameter Name="rol_Descripcion" Mode="In" Type="String" />
-      <Parameter Name="rol_Estado" Mode="In" Type="Boolean" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Acce_tbRol_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbRol_Update_Result)">
-      <Parameter Name="rol_Id" Mode="In" Type="Int32" />
-      <Parameter Name="rol_Descripcion" Mode="In" Type="String" />
-    </FunctionImport>
     <FunctionImport Name="UDP_Inv_tbProductoSubcategoria_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProductoSubcategoria_Update_Result)">
       <Parameter Name="pscat_Id" Mode="In" Type="Int32" />
       <Parameter Name="pscat_Descripcion" Mode="In" Type="String" />
@@ -1647,6 +1639,21 @@
       <End Role="tbProducto" EntitySet="tbProducto" />
       <End Role="tbPedidoDetalle" EntitySet="tbPedidoDetalle" />
     </AssociationSet>
+    <FunctionImport Name="spGetActividadEconomica" ReturnType="Collection(ERP_ZORZALModel.spGetActividadEconomica_Result)">
+      <Parameter Name="acte_Id" Mode="In" Type="Int16" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Acce_tbRol_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbRol_Insert_Result)">
+      <Parameter Name="rol_Descripcion" Mode="In" Type="String" />
+      <Parameter Name="rol_Estado" Mode="In" Type="Boolean" />
+      <Parameter Name="rol_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="rol_FechaCrea" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Acce_tbRol_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbRol_Update_Result)">
+      <Parameter Name="rol_Id" Mode="In" Type="Int32" />
+      <Parameter Name="rol_Descripcion" Mode="In" Type="String" />
+      <Parameter Name="rol_UsuarioModifica" Mode="In" Type="Int32" />
+      <Parameter Name="rol_FechaModifica" Mode="In" Type="DateTime" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -1726,12 +1733,6 @@
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
   <ComplexType Name="UDP_Acce_tbAccesoRol_Update_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="UDP_Acce_tbRol_Insert_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="UDP_Acce_tbRol_Update_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
   <ComplexType Name="UDP_Inv_tbProductoSubcategoria_Update_Result">
@@ -2619,7 +2620,7 @@
     <Property Name="prov_NombreContacto" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="false" />
     <Property Name="prov_Direccion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="prov_Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="prov_Telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="prov_Telefono" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
     <Property Name="prov_UsuarioCrea" Type="Int32" Nullable="false" />
     <Property Name="prov_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="prov_UsuarioModifica" Type="Int32" />
@@ -6361,4 +6362,14 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <ComplexType Name="spGetActividadEconomica_Result">
+    <Property Type="Int16" Name="acte_Id" Nullable="false" />
+    <Property Type="String" Name="acte_Descripcion" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="UDP_Acce_tbRol_Insert_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Acce_tbRol_Update_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
 </Schema>

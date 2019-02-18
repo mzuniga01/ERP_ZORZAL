@@ -208,46 +208,85 @@
         var nColumnas = $("#example tr:last td").length;
         console.log(nColumnas)
 
-            $('#example thead tr:eq(1) th').each(function (i) {
-                contador++;
-                if (contador != nColumnas)
-                {
-                    var title = $(this).text();
-                    $(this).html('<input type="text"  size="16" placeholder="' + '" />');
+        $('#example thead tr:eq(1) th').each(function (i) {
+            contador++;
+            if (contador != nColumnas) {
+                var title = $(this).text();
+                $(this).html('<input type="text" id="txtPrueba' + contador + '" size="16" placeholder="' + '" />');
+            }
+
+
+            $('input', this).on('keyup change', function () {
+                if (table.column(i).search() !== this.value) {
+                    table
+                        .column(i)
+                        .search(this.value)
+                        .draw();
                 }
-                
-
-                $('input', this).on('keyup change', function () {
-                    if (table.column(i).search() !== this.value) {
-                        table
-                            .column(i)
-                            .search(this.value)
-                            .draw();
-                    }
-                });
             });
-      
+        });
 
-      var table =  $('#example').DataTable(
-        {
-            "searching": false,
 
-            "oLanguage": {
-                "oPaginate": {
-                    "sNext": "Siguiente",
-                    "sPrevious": "Anterior",
-                },
-                "sEmptyTable": "No hay registros",
-                "sInfoEmpty": "Mostrando 0 de 0 Entradas",
-                "sSearch": "Buscar",
-                "sLengthMenu": "Mostrar _MENU_ registros por página",
-                "sInfo": "Mostrando _START_ a _END_ Entradas",
-               
-            },
-            orderCellsTop: true,
-           
-        fixedHeader: true
+        var table = $('#example').DataTable(
+          {
+              "searching": true,
+
+              "oLanguage": {
+                  "oPaginate": {
+                      "sNext": "Siguiente",
+                      "sPrevious": "Anterior",
+                  },
+                  "sEmptyTable": "No hay registros",
+                  "sInfoEmpty": "Mostrando 0 de 0 Entradas",
+                  "sSearch": "Buscar",
+                  "sLengthMenu": "Mostrar _MENU_ registros por página",
+                  "sInfo": "Mostrando _START_ a _END_ Entradas",
+
+              },
+              orderCellsTop: true,
+
+              fixedHeader: true
+          });
+        $('#txtPrueba1').on('input', function (e) {
+            if (!/^[a-z0-9A-ZáéíóúñÁÉÍÓÚÑ ]+$/.test(this.value)) {
+                this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
+            }
+        });
+
+
+        $('#txtPrueba2').on('input', function (e) {
+            if (!/^[ 0-9-]*$/i.test(this.value)) {
+                this.value = this.value.replace(/[^ 0-9-]+/ig, "");
+            }
+        })
+        $('#txtPrueba3').on('input', function (e) {
+            if (!/^[a-z0-9A-ZáéíóúñÁÉÍÓÚÑ ]+$/.test(this.value)) {
+                this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
+            }
+        });
+        $('#txtPrueba4').on('input', function (e) {
+            if (!/^[a-z0-9A-ZáéíóúñÁÉÍÓÚÑ ]+$/.test(this.value)) {
+                this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
+            }
+        });
+       
+        $("#txtPrueba5").on("keypress keyup blur", function (event) {
+            //this.value = this.value.replace(/[^0-9\.]/g,'');
+            $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
+            if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+                event.preventDefault();
+            }
         });
 
     });
+          
+    $("#txtPrueba6").on("keypress keyup blur", function (event) {
+        //this.value = this.value.replace(/[^0-9\.]/g,'');
+        $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
+        if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+            event.preventDefault();
+        }
+    });
+
+
 </script>

@@ -57,7 +57,15 @@ namespace ERP_ZORZAL.Controllers
             return View();
         }
 
-       
+
+        [HttpPost]
+        public JsonResult GetActividadEconomica(short? acte_Id)
+        {
+            var list = db.spGetActividadEconomica(acte_Id).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+
         // GET: /Proveedor/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -67,11 +75,13 @@ namespace ERP_ZORZAL.Controllers
             }
             tbProveedor tbProveedor = db.tbProveedor.Find(id);
          
-            ViewBag.acte_Id = new SelectList(db.tbActividadEconomica, "acte_Id", "acte_Descripcion", tbProveedor.tbActividadEconomica.acte_Descripcion);
+          
             if (tbProveedor == null)
             {
+              
                 return HttpNotFound();
             }
+            ViewBag.Actividad = new SelectList(db.tbActividadEconomica, "acte_Id", "acte_Descripcion", tbProveedor.acte_Id);
             return View(tbProveedor);
         }
 
@@ -132,6 +142,7 @@ namespace ERP_ZORZAL.Controllers
         public JsonResult ActualizarProveedor( int? prov_Id, string prov_RTN, string prov_Nombre, string prov_NombreContacto, string prov_Direccion, string prov_Email, string prov_Telefono, short? acte_Id)
         {
             var MsjError = "";
+            tbProveedor tbProveedor = db.tbProveedor.Find(prov_Id);
             if (ModelState.IsValid)
             {
                 //db.tbUnidadMedida.Add(tbProveedor);
@@ -148,7 +159,7 @@ namespace ERP_ZORZAL.Controllers
 
                     if (MsjError == "-1")
                     {
-                        ViewBag.acte_Id = new SelectList(db.tbActividadEconomica, "acte_Id", "acte_Descripcion");
+                      
                         ModelState.AddModelError("", "No se guardo el registro, Contacte al Administrador");
 
                     }
@@ -168,8 +179,9 @@ namespace ERP_ZORZAL.Controllers
                     Ex.Message.ToString();
                     ModelState.AddModelError("", "No se Guardo el registro, Contacte al Administrador");
                 }
-
+                ViewBag.Actividad = new SelectList(db.tbActividadEconomica, "acte_Id", "acte_Descripcion", tbProveedor.acte_Id);
             }
+
             return Json(MsjError, JsonRequestBehavior.AllowGet);
 
         }

@@ -503,32 +503,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Acce_tbAccesoRol_Update_Result>("UDP_Acce_tbAccesoRol_Update", acrol_IdParameter, rol_IdParameter, obj_IdParameter, acrol_UsuarioCreaParameter, acrol_FechaCreaParameter);
         }
     
-        public virtual ObjectResult<UDP_Acce_tbRol_Insert_Result> UDP_Acce_tbRol_Insert(string rol_Descripcion, Nullable<bool> rol_Estado)
-        {
-            var rol_DescripcionParameter = rol_Descripcion != null ?
-                new ObjectParameter("rol_Descripcion", rol_Descripcion) :
-                new ObjectParameter("rol_Descripcion", typeof(string));
-    
-            var rol_EstadoParameter = rol_Estado.HasValue ?
-                new ObjectParameter("rol_Estado", rol_Estado) :
-                new ObjectParameter("rol_Estado", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Acce_tbRol_Insert_Result>("UDP_Acce_tbRol_Insert", rol_DescripcionParameter, rol_EstadoParameter);
-        }
-    
-        public virtual ObjectResult<UDP_Acce_tbRol_Update_Result> UDP_Acce_tbRol_Update(Nullable<int> rol_Id, string rol_Descripcion)
-        {
-            var rol_IdParameter = rol_Id.HasValue ?
-                new ObjectParameter("rol_Id", rol_Id) :
-                new ObjectParameter("rol_Id", typeof(int));
-    
-            var rol_DescripcionParameter = rol_Descripcion != null ?
-                new ObjectParameter("rol_Descripcion", rol_Descripcion) :
-                new ObjectParameter("rol_Descripcion", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Acce_tbRol_Update_Result>("UDP_Acce_tbRol_Update", rol_IdParameter, rol_DescripcionParameter);
-        }
-    
         public virtual ObjectResult<UDP_Inv_tbProductoSubcategoria_Update_Result> UDP_Inv_tbProductoSubcategoria_Update(Nullable<int> pscat_Id, string pscat_Descripcion, Nullable<int> pcat_Id, Nullable<decimal> pscat_ISV)
         {
             var pscat_IdParameter = pscat_Id.HasValue ?
@@ -2519,6 +2493,57 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("prod_FechaModifica", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbProducto_Update_Result>("UDP_Inv_tbProducto_Update", prod_CodigoParameter, prod_DescripcionParameter, prod_MarcaParameter, prod_ModeloParameter, prod_TallaParameter, prod_ColorParameter, pscat_IdParameter, uni_IdParameter, prod_CodigoBarrasParameter, prod_UsuarioCreaParameter, prod_FechaCreaParameter, prod_UsuarioModificaParameter, prod_FechaModificaParameter);
+        }
+    
+        public virtual ObjectResult<spGetActividadEconomica_Result> spGetActividadEconomica(Nullable<short> acte_Id)
+        {
+            var acte_IdParameter = acte_Id.HasValue ?
+                new ObjectParameter("acte_Id", acte_Id) :
+                new ObjectParameter("acte_Id", typeof(short));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetActividadEconomica_Result>("spGetActividadEconomica", acte_IdParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Acce_tbRol_Insert_Result> UDP_Acce_tbRol_Insert(string rol_Descripcion, Nullable<bool> rol_Estado, Nullable<int> rol_UsuarioCrea, Nullable<System.DateTime> rol_FechaCrea)
+        {
+            var rol_DescripcionParameter = rol_Descripcion != null ?
+                new ObjectParameter("rol_Descripcion", rol_Descripcion) :
+                new ObjectParameter("rol_Descripcion", typeof(string));
+    
+            var rol_EstadoParameter = rol_Estado.HasValue ?
+                new ObjectParameter("rol_Estado", rol_Estado) :
+                new ObjectParameter("rol_Estado", typeof(bool));
+    
+            var rol_UsuarioCreaParameter = rol_UsuarioCrea.HasValue ?
+                new ObjectParameter("rol_UsuarioCrea", rol_UsuarioCrea) :
+                new ObjectParameter("rol_UsuarioCrea", typeof(int));
+    
+            var rol_FechaCreaParameter = rol_FechaCrea.HasValue ?
+                new ObjectParameter("rol_FechaCrea", rol_FechaCrea) :
+                new ObjectParameter("rol_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Acce_tbRol_Insert_Result>("UDP_Acce_tbRol_Insert", rol_DescripcionParameter, rol_EstadoParameter, rol_UsuarioCreaParameter, rol_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Acce_tbRol_Update_Result> UDP_Acce_tbRol_Update(Nullable<int> rol_Id, string rol_Descripcion, Nullable<int> rol_UsuarioModifica, Nullable<System.DateTime> rol_FechaModifica)
+        {
+            var rol_IdParameter = rol_Id.HasValue ?
+                new ObjectParameter("rol_Id", rol_Id) :
+                new ObjectParameter("rol_Id", typeof(int));
+    
+            var rol_DescripcionParameter = rol_Descripcion != null ?
+                new ObjectParameter("rol_Descripcion", rol_Descripcion) :
+                new ObjectParameter("rol_Descripcion", typeof(string));
+    
+            var rol_UsuarioModificaParameter = rol_UsuarioModifica.HasValue ?
+                new ObjectParameter("rol_UsuarioModifica", rol_UsuarioModifica) :
+                new ObjectParameter("rol_UsuarioModifica", typeof(int));
+    
+            var rol_FechaModificaParameter = rol_FechaModifica.HasValue ?
+                new ObjectParameter("rol_FechaModifica", rol_FechaModifica) :
+                new ObjectParameter("rol_FechaModifica", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Acce_tbRol_Update_Result>("UDP_Acce_tbRol_Update", rol_IdParameter, rol_DescripcionParameter, rol_UsuarioModificaParameter, rol_FechaModificaParameter);
         }
     }
 }

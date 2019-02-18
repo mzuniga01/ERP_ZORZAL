@@ -100,12 +100,23 @@ $('#Remove').click(function () {
     })
 })
 
+$('#rol_Descripcion').on('input', function (e) {
+    if (!/^[ a-z-áéíóúüñ]*$/i.test(this.value)) {
+        this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
+    }
+});
+
 $('#btnGuardarRol').click(function () {
     var DescripcionRol = $("#rol_Descripcion").val();
     if (DescripcionRol == '') {
         $('#DescripcionRol').text('');
         $('#errorDescripcionRol').text('');
         $('#validationDescripcionRol').after('<ul id="errorDescripcionRol" class="validation-summary-errors text-danger">Campo Descripción Requerido</ul>');
+    }
+    else if (DescripcionRol.substring(0, 1) == " ") {
+        $('#DescripcionRol').text('');
+        $('#errorDescripcionRol').text('');
+        $('#validationDescripcionRol').after('<ul id="errorDescripcionRol" class="validation-summary-errors text-danger">El primer caracter no puede un espacio en blanco.</ul>');
     }
     else {
 
@@ -141,9 +152,12 @@ $('#btnGuardarRol').click(function () {
                         $('#validationDescripcionRol').after('<ul id="ErrorValidacionGeneral" class="validation-summary-errors text-danger">No se pudo ingresar el registro</ul>');
                     }
                     else {
-                        window.location.href = "Index/Rol";
+                        //swal("El registro se creo exitosamente!", "Será devuelto al Listado", "success");
+                        //setTimeout(
+                        //function () {
+                            window.location.href = '/Rol/Index';
+                        //}, 3000);
                     }
-                    console.log(data);
                 })
     }
 })

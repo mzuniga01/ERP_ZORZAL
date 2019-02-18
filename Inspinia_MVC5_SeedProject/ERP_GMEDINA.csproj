@@ -337,6 +337,9 @@
     <Compile Include="Models\SDP_tbSalidaDetalle_Select_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\spGetActividadEconomica_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\spGetCategoria_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -1356,13 +1359,10 @@
     <Content Include="Views\Departamento\Details.cshtml" />
     <Content Include="Views\Departamento\Edit.cshtml" />
     <Content Include="Views\Departamento\Index.cshtml" />
-    <Content Include="Views\EstadoMovimiento\CrearPrueba.cshtml" />
     <Content Include="Views\EstadoMovimiento\Create.cshtml" />
     <Content Include="Views\EstadoMovimiento\Delete.cshtml" />
     <Content Include="Views\EstadoMovimiento\Details.cshtml" />
-    <Content Include="Views\EstadoMovimiento\DetallePrueba.cshtml" />
     <Content Include="Views\EstadoMovimiento\Edit.cshtml" />
-    <Content Include="Views\EstadoMovimiento\EditarPrueba.cshtml" />
     <Content Include="Views\EstadoMovimiento\Index.cshtml" />
     <Content Include="Views\InventarioFisico\Create.cshtml" />
     <Content Include="Views\InventarioFisico\Delete.cshtml" />
@@ -1374,10 +1374,6 @@
     <Content Include="Views\UnidadMedida\Details.cshtml" />
     <Content Include="Views\UnidadMedida\Edit.cshtml" />
     <Content Include="Views\UnidadMedida\Index.cshtml" />
-    <Content Include="Views\EstadoMovimiento\_Create.cshtml" />
-    <Content Include="Views\EstadoMovimiento\_Details.cshtml" />
-    <Content Include="Views\EstadoMovimiento\_Edit.cshtml" />
-    <Content Include="Views\EstadoMovimiento\_Index.cshtml" />
     <Content Include="Views\InventarioFisico\_IndexInvFisicoDetalle.cshtml" />
     <Content Include="Views\InventarioFisico\_IndexInvFisicoDetalle_Botones.cshtml" />
     <Content Include="Views\Rol\Create.cshtml" />

@@ -428,7 +428,7 @@
     <Property Name="prov_NombreContacto" Type="varchar" MaxLength="75" Nullable="false" />
     <Property Name="prov_Direccion" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="prov_Email" Type="nvarchar" MaxLength="50" />
-    <Property Name="prov_Telefono" Type="nvarchar" MaxLength="10" />
+    <Property Name="prov_Telefono" Type="nvarchar" MaxLength="25" />
     <Property Name="prov_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="prov_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="prov_UsuarioModifica" Type="int" />
@@ -3744,10 +3744,14 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
   <Function Name="UDP_Acce_tbRol_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
     <Parameter Name="rol_Descripcion" Type="varchar" Mode="In" />
     <Parameter Name="rol_Estado" Type="bit" Mode="In" />
+    <Parameter Name="rol_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="rol_FechaCrea" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Acce_tbRol_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
     <Parameter Name="rol_Id" Type="int" Mode="In" />
     <Parameter Name="rol_Descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="rol_UsuarioModifica" Type="int" Mode="In" />
+    <Parameter Name="rol_FechaModifica" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Acce_tbRolEstado_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
     <Parameter Name="rol_Id" Type="int" Mode="In" />
@@ -3981,6 +3985,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
   <Function Name="SP_tbInventariofisico_ProductosRepetidos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="prod_CodigoBarras" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="spGetActividadEconomica" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="acte_Id" Type="smallint" Mode="In" />
+  </Function>
   <Function Name="spGetCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="pcat_id" Type="int" Mode="In" />
   </Function>
@@ -4034,10 +4041,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
   <Function Name="UDP_Inv_tbBodega_Update_Estado_Validacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="bod_Id" Type="int" Mode="In" />
     <Parameter Name="bod_EsActiva" Type="tinyint" Mode="In" />
-  </Function>
-  <Function Name="UDP_Inv_tbBodegaDetalle_CantidadExistente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
-    <Parameter Name="bod_Id" Type="int" Mode="In" />
-    <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="UDP_Inv_tbBodegaDetalle_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="bodd_Id" Type="int" Mode="In" />

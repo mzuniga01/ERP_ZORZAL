@@ -93,6 +93,13 @@ namespace ERP_GMEDINA.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "rol_Descripcion,rol_Estado")] tbRol tbRol)
         {
+            int idUser = 0;
+            GeneralFunctions Login = new GeneralFunctions();
+            List<tbUsuario> User = Login.getUserInformation();
+            foreach (tbUsuario Usuario in User)
+            {
+                idUser = Convert.ToInt32(Usuario.usu_Id);
+            }
             if (ModelState.IsValid)
             {
                 //db.tbRol.Add(tbRol);
@@ -101,7 +108,7 @@ namespace ERP_GMEDINA.Controllers
                 {
                     IEnumerable<Object> List = null;
                     var Msj = "";
-                    List = db.UDP_Acce_tbRol_Insert(tbRol.rol_Descripcion, Helpers.RolActivo);
+                    List = db.UDP_Acce_tbRol_Insert(tbRol.rol_Descripcion, Helpers.RolActivo, idUser, System.DateTime.Now);
                     foreach (UDP_Acce_tbRol_Insert_Result Rol in List)
                         Msj = Rol.MensajeError;
                 }
@@ -351,6 +358,13 @@ namespace ERP_GMEDINA.Controllers
         [HttpPost]
         public JsonResult InsertRol(string DescripcionRol, ICollection<tbAccesoRol> AccesoRol)
         {
+            int idUser = 0;
+            GeneralFunctions Login = new GeneralFunctions();
+            List<tbUsuario> User = Login.getUserInformation();
+            foreach (tbUsuario Usuario in User)
+            {
+                idUser = Convert.ToInt32(Usuario.usu_Id);
+            }
             IEnumerable<Object> Rol = null;
             IEnumerable<Object> RolAcceso = null;
             int idRol = 0;
@@ -363,7 +377,7 @@ namespace ERP_GMEDINA.Controllers
                 {
                     if (DescripcionRol != "")
                     {
-                        Rol = db.UDP_Acce_tbRol_Insert(DescripcionRol, Helpers.RolActivo);
+                        Rol = db.UDP_Acce_tbRol_Insert(DescripcionRol, Helpers.RolActivo, idUser, System.DateTime.Now);
                         foreach (UDP_Acce_tbRol_Insert_Result vRol in Rol)
                             Msj1 = vRol.MensajeError;
                         if (Msj1.Substring(0, 1) != "-")
@@ -424,12 +438,19 @@ namespace ERP_GMEDINA.Controllers
         [HttpPost]
         public JsonResult UpdateRol(int rolId, string Descripcion)
         {
+            int idUser = 0;
+            GeneralFunctions Login = new GeneralFunctions();
+            List<tbUsuario> User = Login.getUserInformation();
+            foreach (tbUsuario Usuario in User)
+            {
+                idUser = Convert.ToInt32(Usuario.usu_Id);
+            }
             var Msj = "";
             try
             {
                 if (Descripcion != null)
                 {
-                   db.UDP_Acce_tbRol_Update(rolId, Descripcion);
+                   db.UDP_Acce_tbRol_Update(rolId, Descripcion, idUser, System.DateTime.Now);
                    Msj = "1";
                 }
             }

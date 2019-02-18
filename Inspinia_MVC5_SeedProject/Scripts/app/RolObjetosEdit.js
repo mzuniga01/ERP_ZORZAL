@@ -188,6 +188,13 @@ $('#Add').click(function () {
         
 
     })
+
+    $('#rol_Descripcion').on('input', function (e) {
+        if (!/^[ a-z-áéíóúüñ]*$/i.test(this.value)) {
+            this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
+        }
+    });
+
     $('#btnActualizarRol').click(function () {
         var rolId = $("#rol_Id").val();
         var Descripcion = $("#rol_Descripcion").val();
@@ -195,6 +202,11 @@ $('#Add').click(function () {
             $('#DescripcionRol').text('');
             $('#errorDescripcionRol').text('');
             $('#validationDescripcionRol').after('<ul id="errorDescripcionRol" class="validation-summary-errors text-danger">Campo Descripción Requerido</ul>');
+        }
+        else if (Descripcion.substring(0, 1) == " ") {
+            $('#DescripcionRol').text('');
+            $('#errorDescripcionRol').text('');
+            $('#validationDescripcionRol').after('<ul id="errorDescripcionRol" class="validation-summary-errors text-danger">El primer caracter no puede un espacio en blanco.</ul>');
         }
         else {
             $.ajax({
@@ -209,7 +221,12 @@ $('#Add').click(function () {
                                 $('#validationDescripcionRol').after('<ul id="ErrorValidacionGeneral" class="validation-summary-errors text-danger">No se pudo actualizar el registro, contacte con el administrador</ul>');
                             }
                             else {
-                                window.location.href = '/Rol/Index';
+                                //swal("El registro se editó exitosamente!", "Será devuelto al Listado", "success");
+                                //setTimeout(
+                                //function () {
+                                    window.location.href = '/Rol/Index';
+                                //}, 3000);
+                                
                             }
                         })
         }
