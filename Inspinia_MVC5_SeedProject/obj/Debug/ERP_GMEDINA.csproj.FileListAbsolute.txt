@@ -792,7 +792,6 @@ C:\Users\Lab 1\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\Microso
 C:\Users\Lab 1\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
 C:\Users\Lab 1\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\Microsoft.Owin.Security.OAuth.dll
 C:\Users\Lab 1\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\Microsoft.Owin.Security.Twitter.dll
-C:\Users\Lab 1\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\Microsoft.ReportViewer.WebForms.dll
 C:\Users\Lab 1\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\Lab 1\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\Newtonsoft.Json.dll
 C:\Users\Lab 1\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\Owin.dll
@@ -806,5 +805,3 @@ C:\Users\Lab 1\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\System.
 C:\Users\Lab 1\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\WebGrease.dll
 C:\Users\Lab 1\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\Antlr3.Runtime.pdb
 C:\Users\Lab 1\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\Newtonsoft.Json.pdb
-C:\Users\Lab 1\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\RdlCompile.cache
-C:\Users\Lab 1\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\RdlCompile.compiled

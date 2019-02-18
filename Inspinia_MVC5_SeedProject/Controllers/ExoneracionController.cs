@@ -145,7 +145,7 @@ namespace ERP_GMEDINA.Controllers
                     IEnumerable<object> list = null;
                     list = db.UDP_Vent_tbExoneracion_Update(tbExoneracion.exo_Id,
                                                             tbExoneracion.exo_Documento,
-                                                            tbExoneracion.exo_ExoneracionActiva,
+                                                            pExoneracion.exo_ExoneracionActiva,
                                                             tbExoneracion.exo_FechaInicialVigencia,
                                                             tbExoneracion.exo_FechaIFinalVigencia,
                                                             tbExoneracion.clte_Id,
