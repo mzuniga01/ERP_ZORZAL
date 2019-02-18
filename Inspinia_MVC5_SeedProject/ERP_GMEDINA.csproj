@@ -1382,6 +1382,7 @@
     <Content Include="Scripts\app\MovientoCaja.js" />
     <Content Include="Scripts\app\NotaCredito.js" />
     <Content Include="Scripts\app\NotaCreditoAnulado.js" />
+    <Content Include="Scripts\app\PagoCampoNumerico.js" />
     <Content Include="Scripts\app\PagoClienteFacturas.js" />
     <Content Include="Scripts\app\PagosArqueo.js" />
     <Content Include="Scripts\app\PagoTransacciones.js" />
@@ -1403,6 +1404,7 @@
     <Content Include="Scripts\app\Sucursal.js" />
     <Content Include="Scripts\app\TableDetalleDevolucion.js" />
     <Content Include="Scripts\app\TipoPago.js" />
+    <Content Include="Scripts\app\TipoPagoDescripcionSoloLetras.js" />
     <Content Include="Scripts\app\ValidarPedido.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
