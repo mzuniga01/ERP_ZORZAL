@@ -524,18 +524,18 @@ namespace ERP_GMEDINA.Controllers
                 if (MensajeError == "-1")
                 {
                     ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
-                    return PartialView("_PedidoDetalleEditar");
+                    return RedirectToAction("Edit", "Pedido");
                 }
                 else
                 {
-                    return RedirectToAction("Edit" , "Pedido", EditPedidoDetalle.ped_Id);
+                    return RedirectToAction("Edit" , "Pedido");
                 }
             }
             catch (Exception Ex)
             {
                 Ex.Message.ToString();
                 ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al programador.");
-                return PartialView("_PedidoDetalleEditar", EditPedidoDetalle);
+                return RedirectToAction("Edit", "Pedido");
             }
         }
 

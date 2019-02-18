@@ -26,7 +26,7 @@
                             @Html.LabelFor(model => model.tbProducto.prod_Descripcion, "Descripcion", new { @class = "control-label col-md-1" })
                             <div class="col-md-5">
                                 @Html.EditorFor(model => model.tbProducto.prod_Descripcion, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })
-                                <div id="validationProductoDevolucionCreate">
+                                <div id="validationDescripcionCreate">
                                     @Html.ValidationMessageFor(model => model.tbProducto.prod_Descripcion)
                                 </div>
 
@@ -89,7 +89,7 @@
                             @Html.LabelFor(model => model.devd_Monto, "Monto Total", new { @class = "col-md-1" })
                             <div class="col-md-offset col-md-3">
                                 @Html.EditorFor(model => model.devd_Monto, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })
-                                <div id="validationProductoDevolucionCreate">
+                                <div id="ErrorMontoCreate">
                                     @Html.ValidationMessageFor(model => model.devd_Monto)
                                 </div>
 
