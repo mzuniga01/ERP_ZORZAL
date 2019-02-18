@@ -105,6 +105,10 @@ namespace ERP_GMEDINA.Controllers
                 {
                     if (Function.GetUserRols("EstadoFactura/Create"))
                     {
+                        if (db.tbEstadoFactura.Any(a => a.esfac_Descripcion == tbEstadoFactura.esfac_Descripcion))
+                        {
+                            ModelState.AddModelError("", "Ya existe este estado de factura, Favor registrar otro");
+                        }
                         if (ModelState.IsValid)
                         {
                             try

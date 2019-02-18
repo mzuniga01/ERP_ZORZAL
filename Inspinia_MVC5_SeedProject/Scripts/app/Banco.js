@@ -19,10 +19,6 @@ $(ban_Nombre).on("keypress", function () {
 })
 
 
-
-
-
-
 function format(input) {
     $(input).change(function () {
         var str = $(input).val();

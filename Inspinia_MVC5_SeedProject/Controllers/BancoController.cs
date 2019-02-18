@@ -102,9 +102,17 @@ namespace ERP_GMEDINA.Controllers
                 {
                     if (Function.GetUserRols("Banco/Create"))
                     {
+                       
                         if (ModelState.IsValid)
                         {
                             try
+                            {
+                                if (db.tbBanco.Any(a => a.ban_Nombre == tbBanco.ban_Nombre))
+                            {
+                                ModelState.AddModelError("", "Ya existe este Banco.");
+                                return View(tbBanco);
+                            }
+                            else
                             {
                                 //////////Aqui va la lista//////////////
                                 string MensajeError = "";
@@ -122,6 +130,7 @@ namespace ERP_GMEDINA.Controllers
                                 {
                                     return RedirectToAction("Index");
                                 }
+                            }
                             }
                             catch (Exception Ex)
                             {
