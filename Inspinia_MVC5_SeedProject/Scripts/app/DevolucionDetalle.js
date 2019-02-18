@@ -17,26 +17,26 @@ $('#AgregarDetalleDevolucion').click(function () {
         $('#MessageError').text('');
         $('#ErrorDescripcion').text('');
         $('#ErrorFecha').text('');
-        $('#validationComentariosCreate').after('<ul id="ErrorProductoDescripcionCreate" class="validation-summary-errors text-danger">Campo Descripìon Requerido</ul>');
+        $('#validationComentariosCreate').after('<ul id="ErrorProductoDescripcionCreate" class="validation-summary-errors text-danger">Campo Descripción Producto Requerido</ul>');
     }
      else if ($('#devd_CantidadProducto').val() == '') {
                 $('#MessageError').text('');
                 $('#ErrorDescripcion').text('');
                 $('#ErrorFecha').text('');
-                $('#validationCantidadCreate').after('<ul id="ErrorDescripcionCreate" class="validation-summary-errors text-danger">Campo Descripción Requerido</ul>');
+                $('#validationCantidadCreate').after('<ul id="validationCantidadCreate" class="validation-summary-errors text-danger">Campo Cantidad Requerido</ul>');
 
      }
      else if ($('#devd_Descripcion').val() == '') {
          $('#MessageError').text('');
          $('#ErrorDescripcion').text('');
          $('#ErrorFecha').text('');
-         $('#validationComentariosCreate').after('<ul id="ErrorProductoComentarioCreate" class="validation-summary-errors text-danger">Campo Descripìon Requerido</ul>');
+         $('#validationComentariosCreate').after('<ul id="ErrorProductoComentarioCreate" class="validation-summary-errors text-danger">Campo Descripción Requerido</ul>');
      }
      else if ($('#devd_Monto').val() == '') {
          $('#MessageError').text('');
          $('#ErrorDescripcion').text('');
          $('#ErrorFecha').text('');
-         $('#validationComentariosCreate').after('<ul id="ErrorProductoComentarioCreate" class="validation-summary-errors text-danger">Campo Descripìon Requerido</ul>');
+         $('#validationComentariosCreate').after('<ul id="ErrorProductoComentarioCreate" class="validation-summary-errors text-danger">Campo Monto Requerido</ul>');
      }
     else {
         contador = contador + 1;

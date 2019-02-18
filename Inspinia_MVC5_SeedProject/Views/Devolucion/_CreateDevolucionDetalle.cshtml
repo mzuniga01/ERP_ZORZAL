@@ -13,7 +13,7 @@
             @Html.LabelFor(model => model.prod_Codigo,"Codigo Producto", new { @class = "col-md-1" })
             <div class="col-md-3">
                 <input type="hidden" id="fact_Id" name="fact_Id" value="" class="form-control " />
-                <input type="text" id="prod_Codigo" name="prod_Codigo" value="" class="form-control " />
+                <input type="text" id="prod_Codigo" name="prod_Codigo" value="" class="form-control " onkeypress = "return Numeros(event)" />
                 <div id="validationCodigoProductoCreate">
                     <p id="smsProducto" style="color:red">@Html.ValidationMessageFor(model => model.prod_Codigo)</p>
                 </div>
