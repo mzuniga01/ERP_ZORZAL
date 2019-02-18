@@ -1334,6 +1334,7 @@
     <Content Include="Scripts\app\Credito.js" />
     <Content Include="Scripts\app\CreditoCambio.js" />
     <Content Include="Scripts\app\CuentaBanco.js" />
+    <Content Include="Scripts\app\CuponDescuentoEsImpreso.js" />
     <Content Include="Scripts\app\CuponDescuentoAnulado.js" />
     <Content Include="Scripts\app\DataTable.js" />
     <Content Include="Scripts\app\DataTableBusquedaGenerica.js" />
