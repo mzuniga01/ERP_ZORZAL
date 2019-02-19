@@ -14,6 +14,7 @@
     }))*@
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
+    @Html.HiddenFor(model => model.sal_Id)
     @Html.HiddenFor(model => model.sald_Id)
     <div class="form-horizontal">
         @*<div class="form-group">

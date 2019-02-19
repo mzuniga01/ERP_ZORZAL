@@ -1,4 +1,11 @@
-﻿$('#prov_Email').change(function (e) {
+﻿$(document).ready(function () {
+  
+    $("#prov_RTN")[0].minLength = "2";
+})
+
+
+
+$('#prov_Email').change(function (e) {
     var emailRegex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     var EmailId = this.value;
     if (emailRegex.test(EmailId)) {
@@ -16,18 +23,24 @@
 
 });
 
-function verificar_RTM() {
-    var txtRTN = document.getElementById("prov_RTN").value;
-    var Numerocaracteres = txtRTN.length;
-    if (Numerocaracteres < 14) {
-        alert("El Numero de RTN es Incorrecto");
-        document.getElementById("prov_RTN").value = "";
+
+$('#prov_RTN').change(function (e) {
+ 
+    var RTN = $("#prov_RTN").val();
+    console.log(RTN);
+    if (RTN < 14) {
+        $('#ErrorCorreo').text('');
+        $('#validationRTN').after('<ul id="ErrorCorreo" class="validation-summary-errors text-danger">RTN debe tener 14 dígitos</ul>');
     }
 
-}
+
+});
+
+
+
 $("#prov_Telefono").on("keypress keyup blur", function (event) {
     var Telefono = $(this).val();
-   
+    console.log(Telefono)
     if (Telefono == '') {
         $(this).val('+');
     }
@@ -41,9 +54,7 @@ function soloLetras(e) {
     return /^[a-z0-9A-ZáéíóúñÁÉÍÓÚÑ ]+$/.test(tecla);
 }
 
-function mayus(e) {
-    e.value = e.value.toUppercase();
-}
+
 $("#prov_RTN").on("keypress keyup blur", function (event) {
 
     $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
@@ -55,6 +66,7 @@ $("#prov_RTN").on("keypress keyup blur", function (event) {
 
 
 $('#btnGuardar').click(function () {
+    $("#prov_RTN")[0].minLength = 14;
     $("#errorRTN").remove();
     $("#errorNombre").remove();
     $("#errorContacto").remove();
@@ -71,8 +83,9 @@ $('#btnGuardar').click(function () {
     var Email = $("#prov_Email").val();
     var Telefono = $("#prov_Telefono").val();
     var Actividad = $("#acte_Id").find('option:selected').val();
-    console.log(Actividad);
-    if (RTN == '') {
+
+
+    if (RTN == '' ) {
 
         $("#errorRTN").remove();
         $('#RTN').text('');
@@ -84,8 +97,7 @@ $('#btnGuardar').click(function () {
         $('#Nombre').text('');
         $('#errorNombre').text('');
         $('#validationNombre').after('<ul id="errorNombre" class="validation-summary-errors text-danger">Campo Nombre Requerido</ul>');
-     }
-    
+    }
 
    if (Contacto == '') {
         $('#Contacto').text('');
@@ -112,48 +124,9 @@ $('#btnGuardar').click(function () {
         $('#Actividad').text('');
         $('#errorActividad').text('');
         $('#validationActividad').after('<ul id="errorActividad" class="validation-summary-errors text-danger">Campo Actividad Economica Requerido</ul>');
-    }
-     if (Nombre.substring(0, 1) == " ") {
-        
-          $('#Nombre').text('');
-          $('#errorNombre').text('');
-          $('#validationNombre').after('<ul id="errorNombre" class="validation-summary-errors text-danger">El primer caracter no puede un espacio en blanco.</ul>');
       }
-     if (Contacto.substring(0, 1) == " ") {
-       
-          $('#Contacto').text('');
-          $('#errorContacto').text('');
-          $('#validationContacto').after('<ul id="errorContacto" class="validation-summary-errors text-danger">El primer caracter no puede un espacio en blanco.</ul>');
-     }
+    
 
-     if (Direccion.substring(0, 1) == " ") {
-
-         $('#Direccion').text('');
-         $('#errorDireccion').text('');
-         $('#validationDireccion').after('<ul id="errorDireccion" class="validation-summary-errors text-danger">El primer caracter no puede un espacio en blanco.</ul>');
-     }
-
-     if (Email.substring(0, 1) == " ") {
-
-         $('#Email').text('');
-         $('#errorEmail').text('');
-         $('#validationEmail').after('<ul id="errorEmail" class="validation-summary-errors text-danger">El primer caracter no puede un espacio en blanco.</ul>');
-     }
-
-
-     if (Telefono.substring(0, 1) == " ") {
-
-         $('#Telefono').text('');
-         $('#errorTelefono').text('');
-         $('#validationTelefono').after('<ul id="errorTelefono" class="validation-summary-errors text-danger">El primer caracter no puede un espacio en blanco.</ul>');
-     }
-
-     if (Actividad.substring(0, 1) == " ") {
-
-         $('#Actividad').text('');
-         $('#errorActividad').text('');
-         $('#validationActividad').after('<ul id="errorActividad" class="validation-summary-errors text-danger">El primer caracter no puede un espacio en blanco.</ul>');
-     }
     else {
 
 
@@ -179,6 +152,14 @@ $('#btnGuardar').click(function () {
                 })
     }
 });
+function limpia() {
+    var val = document.getElementById("miInput").value;
+    var tam = val.length;
+    for (i = 0; i < tam; i++) {
+        if (!isNaN(val[i]))
+            document.getElementById("miInput").value = '';
+    }
+}
 
 
 
@@ -237,47 +218,7 @@ $('#btnActualizar').click(function () {
         $('#Actividad').text('');
         $('#errorActividad').text('');
         $('#validationActividad').after('<ul id="errorTelefono" class="validation-summary-errors text-danger">Campo Descripción Requerido</ul>');
- } if (Nombre.substring(0, 1) == " ") {
-
-     $('#Nombre').text('');
-     $('#errorNombre').text('');
-     $('#validationNombre').after('<ul id="errorNombre" class="validation-summary-errors text-danger">El primer caracter no puede un espacio en blanco.</ul>');
- }
- if (Contacto.substring(0, 1) == " ") {
-
-     $('#Contacto').text('');
-     $('#errorContacto').text('');
-     $('#validationContacto').after('<ul id="errorContacto" class="validation-summary-errors text-danger">El primer caracter no puede un espacio en blanco.</ul>');
- }
-
- if (Direccion.substring(0, 1) == " ") {
-
-     $('#Direccion').text('');
-     $('#errorDireccion').text('');
-     $('#validationDireccion').after('<ul id="errorDireccion" class="validation-summary-errors text-danger">El primer caracter no puede un espacio en blanco.</ul>');
- }
-
- if (Email.substring(0, 1) == " ") {
-
-     $('#Email').text('');
-     $('#errorEmail').text('');
-     $('#validationEmail').after('<ul id="errorEmail" class="validation-summary-errors text-danger">El primer caracter no puede un espacio en blanco.</ul>');
- }
-
-
- if (Telefono.substring(0, 1) == " ") {
-
-     $('#Telefono').text('');
-     $('#errorTelefono').text('');
-     $('#validationTelefono').after('<ul id="errorTelefono" class="validation-summary-errors text-danger">El primer caracter no puede un espacio en blanco.</ul>');
- }
-
- if (Actividad.substring(0, 1) == " ") {
-
-     $('#Actividad').text('');
-     $('#errorActividad').text('');
-     $('#validationActividad').after('<ul id="errorActividad" class="validation-summary-errors text-danger">El primer caracter no puede un espacio en blanco.</ul>');
- }
+    }
 
 
     else {

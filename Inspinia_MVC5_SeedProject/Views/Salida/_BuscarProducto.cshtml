@@ -7,6 +7,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-content">
+                    <input type="text" id="search" placeholder="Buscar Producto" class="form-control" />
                     <table id="Table_BuscarProducto" class="table table-hover">
                         <thead>
                             <tr>
@@ -17,10 +18,16 @@
                                     @Html.DisplayNameFor(model => model.tbProducto.prod_Descripcion)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.tbProducto.prod_Marca)
+                                    @Html.DisplayNameFor(model => model.tbProducto.tbProductoSubcategoria.tbProductoCategoria.pcat_Nombre)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.tbProducto.prod_Modelo)
+                                    @Html.DisplayNameFor(model => model.tbProducto.tbProductoSubcategoria.pscat_Descripcion)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tbProducto.tbUnidadMedida.uni_Descripcion)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tbProducto.prod_CodigoBarras)
                                 </th>
                                 <th>
                                     Acciones
@@ -28,30 +35,7 @@
                             </tr>
                         </thead>
 
-                        <tbody>
-                            @foreach (var item in Model.Where(x => x.bod_Id == ViewBag.bod_Prod))
-                            {
-                               
-                                    <tr tr data-id="@item.prod_Codigo" , tr data-content="@item.tbProducto.prod_Descripcion" , tr data-container="@item.tbProducto.tbProductoSubcategoria.pscat_Descripcion" , tr data-keyboard="@item.tbProducto.tbUnidadMedida.uni_Descripcion" , tr data-pcat="@item.tbProducto.tbProductoSubcategoria.tbProductoCategoria.pcat_Nombre" , tr data-cod_Barras="@item.tbProducto.prod_CodigoBarras">
-                                     <td>
-                                        @Html.DisplayFor(modelItem => item.prod_Codigo)
-                                    </td>
-                                      <td>
-                                        @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.tbProducto.prod_Marca)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.tbProducto.prod_Modelo)
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-primary btn-xs" value="@item.prod_Codigo" id="seleccionar" data-dismiss="modal">Seleccionar</button>
-                                        @*@Html.ActionLink("", "_DetallesProductos", new { id = item.prod_Codigo }, new { @class = "btn btn-white btn-xs" })*@
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
+                        <tbody id="Body_BuscarProducto"></tbody>
                     </table>
                 </div>
             </div>

@@ -129,13 +129,7 @@ $(document).ready(function () {
 
 
 //DatePicker
-$(function () {
-    $("#sal_FechaElaboracion").datepicker({
-        dateFormat: 'yy-mm-dd',
-        monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-        dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá']
-    }).datepicker("setDate", new Date());
-});
+
 
 function GetSalidaDetalle() {
     var SalidaDetalle = {
@@ -161,12 +155,6 @@ $('#AgregarSalidaDetalle').click(function () {
         $('#CodigoError').text('');
         $('#NombreError').text('');
         $('#ValidationCodigoCreate').after('<ul id="CodigoError" class="validation-summary-errors text-danger">Campo Producto Requerido</ul>');
-    }
-    else if (Unidad_Medida == '') {
-        $('#MessageError').text('');
-        $('#CodigoError').text('');
-        $('#NombreError').text('');
-        $('#ValidationNombreCreate').after('<ul id="NombreError" class="validation-summary-errors text-danger">Unidad Medida Requerido</ul>');
     }
     else if (Cantidad == '') {
         $('#MessageError').text('');
@@ -231,7 +219,19 @@ $(document).on("click", "#tblSalidaDetalle tbody tr td button#removeSalidaDetall
 });
 
 
-
+function DeleteSalidaDetalle(sald_Id) {
+    $.ajax({
+        url: "/Salida/DeleteSalidaDetalle",
+        method: "POST",
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({ sald_Id: sald_Id }),
+    })
+        .done(function (data) {
+            console.log(data);
+            location.reload();
+            })
+        }
 
 function EditSalidaDetalles(sald_Id) {
     $.ajax({
@@ -246,6 +246,8 @@ function EditSalidaDetalles(sald_Id) {
             console.log(data);
             if (data.length > 0) {
                 $.each(data, function (i, item) {
+                    console.log(item);
+                    $("#sal_Id_SD").val(item.sal_Id);
                     $("#sald_Id_SD").val(item.sald_Id);
                     $("#prod_Codigo_SD").val(item.prod_Codigo);
                     $("#sald_Cantidad_SD").val(item.sald_Cantidad);
@@ -269,7 +271,8 @@ $("#BtnsubmitMunicipio").click(function () {
             if (result == '-1')
                 $("#MsjError").text("No se pudo actualizar el registro, contacte al administrador");
             else
-                window.location.href = '/Salida/Edit/' + sal_id;
+                console.log(result);
+            window.location.href = '/Salida/Edit/' + result;
         }
         
     });
@@ -277,9 +280,86 @@ $("#BtnsubmitMunicipio").click(function () {
 
 
 
+
+//////////////////////////////////////////////////////////////////////////////////////
+//Edit
+
+
+function GetSalidaDetalle() {
+    var SalidaDetalle = {
+        prod_Codigo: $('#prod_Codigo').val(),
+        sald_Cantidad: $('#sald_Cantidad').val(),
+        sal_Id: $('#sal_Id').val(),
+        sald_UsuarioCrea: contador
+    };
+    return SalidaDetalle;
+}
+
+
+
+$('#AgregarSalidaDetalleEdit').click(function () {
+    var Producto = $('#prod_CodigoBarras').val();
+    var Cantidad = $('#sald_Cantidad').val();
+
+
+    if (Producto == '') {
+        $('#MessageError').text('');
+        $('#CodigoError').text('');
+        $('#NombreError').text('');
+        $('#validationprod_CodigoBarras').after('<ul id="CodigoError" class="validation-summary-errors text-danger">Campo Producto Requerido</ul>');
+    }
+    else if (Cantidad == '') {
+        $('#MessageError').text('');
+        $('#CodigoError').text('');
+        $('#NombreError').text('');
+        $('#sald_Cantidad').after('<ul id="NombreError" class="validation-summary-errors text-danger">Cantidad Requerido</ul>');
+    }
+    else {
+        contador = contador + 1;
+        copiar = "<tr data-id=" + contador + ">";
+        //copiar += "<td>" + $('#CodTipoCasoExitoCreate option:selected').text() + "</td>";
+        copiar += "<td id = 'Cod_Producto'>" + $('#prod_Codigo').val() + "</td>";
+        copiar += "<td id = 'Producto'>" + $('#prod_Descripcion').val() + "</td>";
+        copiar += "<td id = 'Unidad_Medida'>" + $('#uni_Id').val() + "</td>";
+        copiar += "<td id = 'Cantidad'>" + $('#sald_Cantidad').val() + "</td>";
+        copiar += "<td>" + '<button id="removeSalidaDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
+        copiar += "</tr>";
+        $('#tblSalidaDetalleEdit').append(copiar);
+
+
+        var tbSalidaDetalle = GetSalidaDetalle();
+        $.ajax({
+            url: "/Salida/SaveSalidaDetalle",
+            method: "POST",
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ SalidaDetalle: tbSalidaDetalle }),
+        })
+            .done(function (data) {
+                $('#prod_Codigo').val('');
+                $('#prod_Descripcion').val('');
+                $('#pscat_Id').val('');
+                $('#uni_Id').val('');
+                $('#pcat_Id').val('');
+
+                $("#prod_CodigoBarras").val('');
+                $('#sald_Cantidad').val('0.00');
+                $('#MessageError').text('');
+                $('#NombreError').text('');
+                console.log(data);
+            });
+
+
+
+    }
+
+});
+
+
+
 function GetNewSalidaDetalle() {
     var SalidaDetalle = {
-        sal_Id : $('#sal_Id').val(),
+        sal_Id: $('#sal_Id').val(),
         prod_Codigo: $('#prod_Codigo').val(),
         sald_Cantidad: $('#sald_Cantidad').val(),
         sald_UsuarioCrea: contador
@@ -291,49 +371,26 @@ function GetNewSalidaDetalle() {
 $('#btnCreateSalidaDetalle').click(function () {
     var Cod_Producto = $('#prod_Codigo').val();
     var Producto = $('#prod_Descripcion').val();
-    var Unidad_Medida = $('#pscat_Id').val();
     var Cantidad = $('#sald_Cantidad').val();
-    var sal_Id = $('#sal_Id').val();
+    console.log('Funca');
+    var tbSalidaDetalle = GetNewSalidaDetalle();
+    $.ajax({
+        url: "/Salida/SaveNewDatail",
+        method: "POST",
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({ SalidaDetalle: tbSalidaDetalle }),
+    })
+    .done(function (data) {
+        if (data == 'El registro se guardo exitosamente') {
+            location.reload();
+            swal("El registro se almacenó exitosamente!", "", "success");
+        }
+        else {
+            location.reload();
+            swal("El registro  no se almacenó!", "", "error");
+        }
+    });
+})
 
-    if (Producto == '') {
-        $('#MessageError').text('');
-        $('#CodigoError').text('');
-        $('#NombreError').text('');
-        $('#ValidationCodigoCreate').after('<ul id="CodigoError" class="validation-summary-errors text-danger">Campo Producto Requerido</ul>');
-    }
-    else if (Unidad_Medida == '') {
-        $('#MessageError').text('');
-        $('#CodigoError').text('');
-        $('#NombreError').text('');
-        $('#ValidationNombreCreate').after('<ul id="NombreError" class="validation-summary-errors text-danger">Unidad Medida Requerido</ul>');
-    }
-    else if (Cantidad == '') {
-        $('#MessageError').text('');
-        $('#CodigoError').text('');
-        $('#NombreError').text('');
-        $('#sald_Cantidad').after('<ul id="NombreError" class="validation-summary-errors text-danger">Cantidad Requerido</ul>');
-    }
 
-    else {
-        var tbSalidaDetalle = GetNewSalidaDetalle();
-        $.ajax({
-            url: "/Salida/SaveNewDatail",
-            method: "POST",
-            dataType: 'json',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ SalidaDetalle: tbSalidaDetalle }),
-        })
-        .done(function (data) {
-            if (data == 'El registro se guardo exitosamente') {
-                location.reload();
-                swal("El registro se almacenó exitosamente!", "", "success");
-            }
-            else {
-                location.reload();
-                swal("El registro  no se almacenó!", "", "error");
-            }
-        });
-
-    }
-
-});

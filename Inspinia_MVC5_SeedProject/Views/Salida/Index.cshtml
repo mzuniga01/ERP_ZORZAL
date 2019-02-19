@@ -69,7 +69,7 @@
                                         @Html.DisplayFor(modelItem => item.tbEstadoMovimiento.estm_Descripcion)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.tbBodega.bod_ResponsableBodega)
+                                        @Html.DisplayFor(modelItem => item.tbBodega.tbEmpleado.emp_Nombres)  @Html.DisplayFor(modelItem => item.tbBodega.tbEmpleado.emp_Apellidos)
                                     </td>
                                     <td>
                                         @{ if (item.estm_Id == 2)

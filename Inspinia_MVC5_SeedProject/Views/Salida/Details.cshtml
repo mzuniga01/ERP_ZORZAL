@@ -47,28 +47,73 @@
                             @Html.DisplayFor(model => model.tbBodega.bod_Nombre)
                         </dd>
                         <dt>
-                            @Html.DisplayNameFor(model => model.tbEstadoMovimiento.estm_Descripcion)
+                            @Html.DisplayNameFor(model => model.estm_Id)
                         </dt>
 
                         <dd>
                             @Html.DisplayFor(model => model.tbEstadoMovimiento.estm_Descripcion)
                         </dd>
+                        @if (Model.tsal_Id == 1)
+                        {
+
+                        }
+                        else if (Model.tsal_Id == 2)
+                        {
+                            <dt>
+                                @Html.DisplayNameFor(model => model.fact_Codigo)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.tbFactura.fact_Codigo)
+                            </dd>
+                        }
+                        else if (Model.tsal_Id == 3)
+                        {
+                            <dt>
+                                @Html.DisplayNameFor(model => model.fact_Codigo)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.tbFactura.fact_Codigo)
+                            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.sal_RazonDevolucion)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.sal_RazonDevolucion)
+                            </dd>
+                        }
+
 
                         <dt>
-                            @Html.DisplayNameFor(model => model.tbFactura.fact_Codigo)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.tbFactura.fact_Codigo)
-                        </dd>
-
-                        <dt>
-                            @Html.DisplayNameFor(model => model.tbTipoSalida.tsal_Descripcion)
+                            @Html.DisplayNameFor(model => model.tsal_Id)
                         </dt>
 
                         <dd>
                             @Html.DisplayFor(model => model.tbTipoSalida.tsal_Descripcion)
                         </dd>
+                        @if (Model.sal_EsAnulada)
+                        {
+                            <dt>
+                                @Html.DisplayNameFor(model => model.sal_EsAnulada)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.sal_EsAnulada)
+                            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.sal_RazonAnulada)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.sal_RazonAnulada)
+                            </dd>
+                        }
+                        else
+                        {
+
+                        }
 
                     </dl>
 

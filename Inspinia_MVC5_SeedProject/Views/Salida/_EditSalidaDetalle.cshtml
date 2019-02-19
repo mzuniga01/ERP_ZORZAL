@@ -33,7 +33,7 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                            <tr tr data-id="@item.prod_Codigo" , tr data-content="@item.tbProducto.prod_Descripcion" , tr data-container="@item.tbProducto.tbProductoSubcategoria.pscat_Descripcion" , tr data-keyboard="@item.tbProducto.tbUnidadMedida.uni_Descripcion" , tr data-pcat="@item.tbProducto.tbProductoSubcategoria.tbProductoCategoria.pcat_Nombre">
+                            <tr tr data-id="@item.prod_Codigo" , tr data-content="@item.tbProducto.prod_Descripcion" , tr data-container="@item.tbProducto.tbProductoSubcategoria.pscat_Descripcion" , tr data-keyboard="@item.tbProducto.tbUnidadMedida.uni_Descripcion" , tr data-pcat="@item.tbProducto.tbProductoSubcategoria.tbProductoCategoria.pcat_Nombre" , tr data-sal_Id="@item.sal_Id">
                                 <td>
                                     @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
                                 </td>
@@ -48,6 +48,7 @@
                                 </th>
                                 <td>
                                     <button type="button" class="btn btn-white btn-xs" onclick="EditSalidaDetalles('@item.sald_Id')">Editar</button>
+                                    <button type="button" class="btn btn-danger btn-xs" onclick="DeleteSalidaDetalle('@item.sald_Id')">-</button>
                                 </td>
                                 <!-- Modal -->
                                 @*<div class="modal fade" id="Editar_@item.sald_Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -89,6 +90,7 @@
                         <div class="form-horizontal">
                             <label id="MsjError">
                             </label>
+                            <input type="hidden" id="sal_Id_SD" name="sal_Id" class="form-control" />
                             <input type="hidden" id="sald_Id_SD" name="sald_Id" class="form-control" />
                             <div class="form-group">
                                 @Html.LabelFor(m => SalidaDetalle.prod_Codigo, new { @class = "control-label col-sm-2" })
@@ -112,9 +114,6 @@
                                     @Html.ValidationMessageFor(m => SalidaDetalle.sald_Cantidad)
                                 </div>
                             </div>
-
-
-
 
 
                             <input type="hidden" id="sald_FechaCrea_SD" name="sald_FechaCrea" />
