@@ -3968,7 +3968,16 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
     <Parameter Name="uni_UsuarioModifica" Type="int" Mode="In" />
     <Parameter Name="uni_FechaModifica" Type="datetime" Mode="In" />
   </Function>
+  <Function Name="SDP_Inv_Salida_Imprimir" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="sal_Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SDP_Inv_tbBodegaDetalle_Select_Producto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="bod_Id" Type="int" Mode="In" />
+  </Function>
   <Function Name="SDP_Inv_tbProducto_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv" />
+  <Function Name="SDP_Inv_tbSalida_Factura_Exist" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="fact_Codigo" Type="nvarchar" Mode="In" />
+  </Function>
   <Function Name="SDP_Inv_tbSalidaDetalle_Edit_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="sald_Id" Type="int" Mode="In" />
   </Function>

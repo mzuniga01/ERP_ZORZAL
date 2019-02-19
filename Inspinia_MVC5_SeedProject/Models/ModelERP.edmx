@@ -3973,7 +3973,16 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
           <Parameter Name="uni_UsuarioModifica" Type="int" Mode="In" />
           <Parameter Name="uni_FechaModifica" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="SDP_Inv_Salida_Imprimir" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+          <Parameter Name="sal_Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SDP_Inv_tbBodegaDetalle_Select_Producto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+          <Parameter Name="bod_Id" Type="int" Mode="In" />
+        </Function>
         <Function Name="SDP_Inv_tbProducto_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv" />
+        <Function Name="SDP_Inv_tbSalida_Factura_Exist" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+          <Parameter Name="fact_Codigo" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="SDP_Inv_tbSalidaDetalle_Edit_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="sald_Id" Type="int" Mode="In" />
         </Function>
@@ -7013,7 +7022,16 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
             <Parameter Name="FechaElaboracion" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Inv_tbProducto_GetSubCategoria" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProducto_GetSubCategoria_Result)">
-            <Parameter Name="CodCategoria" Mode="In" Type="Int32" />
+          <Parameter Name="CodCategoria" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SDP_Inv_Salida_Imprimir" ReturnType="Collection(ERP_ZORZALModel.SDP_Inv_Salida_Imprimir_Result)">
+            <Parameter Name="sal_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SDP_Inv_tbBodegaDetalle_Select_Producto" ReturnType="Collection(ERP_ZORZALModel.SDP_Inv_tbBodegaDetalle_Select_Producto_Result)">
+            <Parameter Name="bod_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SDP_Inv_tbSalida_Factura_Exist" ReturnType="Collection(Int64)">
+            <Parameter Name="fact_Codigo" Mode="In" Type="String" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
@@ -11172,6 +11190,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
           <Property Type="Decimal" Name="sald_Cantidad" Nullable="false" Precision="10" Scale="2" />
           <Property Type="String" Name="box_Codigo" Nullable="true" MaxLength="20" />
           <Property Type="String" Name="prod_CodigoBarras" Nullable="false" MaxLength="15" />
+          <Property Type="Int32" Name="sal_Id" Nullable="false" />
         </ComplexType>
         <ComplexType Name="SDP_Inv_tbSalidaDetalle_Select_Result1">
           <Property Type="Int32" Name="sald_Id" Nullable="false" />
@@ -11745,6 +11764,31 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
         <ComplexType Name="UDP_Inv_tbProducto_GetSubCategoria_Result">
           <Property Type="Int32" Name="pscat_Id" Nullable="false" />
           <Property Type="String" Name="pscat_Descripcion" Nullable="true" MaxLength="150" />
+        </ComplexType>
+        <ComplexType Name="SDP_Inv_Salida_Imprimir_Result">
+          <Property Type="DateTime" Name="sal_FechaElaboracion" Nullable="true" Precision="23" />
+          <Property Type="String" Name="tsal_Descripcion" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="bod_Nombre" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="sal_BodDestino" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="fact_Codigo" Nullable="false" MaxLength="19" />
+          <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="prod_Descripcion" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="prod_Marca" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="prod_Modelo" Nullable="false" MaxLength="25" />
+          <Property Type="String" Name="prod_Talla" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="prod_Color" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="pscat_Descripcion" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="pcat_Nombre" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="uni_Descripcion" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="prod_CodigoBarras" Nullable="false" MaxLength="15" />
+        </ComplexType>
+        <ComplexType Name="SDP_Inv_tbBodegaDetalle_Select_Producto_Result">
+          <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="prod_Descripcion" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="pcat_Nombre" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="pscat_Descripcion" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="uni_Descripcion" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="prod_CodigoBarras" Nullable="false" MaxLength="15" />
         </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
@@ -13450,6 +13494,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
                 <ScalarProperty Name="sald_Cantidad" ColumnName="sald_Cantidad" />
                 <ScalarProperty Name="box_Codigo" ColumnName="box_Codigo" />
                 <ScalarProperty Name="prod_CodigoBarras" ColumnName="prod_CodigoBarras" />
+                <ScalarProperty Name="sal_Id" ColumnName="sal_Id" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -13854,6 +13899,40 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SDP_Inv_Salida_Imprimir" FunctionName="ERP_ZORZALModel.Store.SDP_Inv_Salida_Imprimir">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_Inv_Salida_Imprimir_Result">
+                <ScalarProperty Name="sal_FechaElaboracion" ColumnName="sal_FechaElaboracion" />
+                <ScalarProperty Name="tsal_Descripcion" ColumnName="tsal_Descripcion" />
+                <ScalarProperty Name="bod_Nombre" ColumnName="bod_Nombre" />
+                <ScalarProperty Name="sal_BodDestino" ColumnName="sal_BodDestino" />
+                <ScalarProperty Name="fact_Codigo" ColumnName="fact_Codigo" />
+                <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+                <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
+                <ScalarProperty Name="prod_Marca" ColumnName="prod_Marca" />
+                <ScalarProperty Name="prod_Modelo" ColumnName="prod_Modelo" />
+                <ScalarProperty Name="prod_Talla" ColumnName="prod_Talla" />
+                <ScalarProperty Name="prod_Color" ColumnName="prod_Color" />
+                <ScalarProperty Name="pscat_Descripcion" ColumnName="pscat_Descripcion" />
+                <ScalarProperty Name="pcat_Nombre" ColumnName="pcat_Nombre" />
+                <ScalarProperty Name="uni_Descripcion" ColumnName="uni_Descripcion" />
+                <ScalarProperty Name="prod_CodigoBarras" ColumnName="prod_CodigoBarras" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SDP_Inv_tbBodegaDetalle_Select_Producto" FunctionName="ERP_ZORZALModel.Store.SDP_Inv_tbBodegaDetalle_Select_Producto">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_Inv_tbBodegaDetalle_Select_Producto_Result">
+                <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+                <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
+                <ScalarProperty Name="pcat_Nombre" ColumnName="pcat_Nombre" />
+                <ScalarProperty Name="pscat_Descripcion" ColumnName="pscat_Descripcion" />
+                <ScalarProperty Name="uni_Descripcion" ColumnName="uni_Descripcion" />
+                <ScalarProperty Name="prod_CodigoBarras" ColumnName="prod_CodigoBarras" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SDP_Inv_tbSalida_Factura_Exist" FunctionName="ERP_ZORZALModel.Store.SDP_Inv_tbSalida_Factura_Exist" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

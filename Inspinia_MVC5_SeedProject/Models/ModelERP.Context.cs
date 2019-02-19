@@ -2566,5 +2566,32 @@ namespace ERP_GMEDINA.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbProducto_GetSubCategoria_Result>("UDP_Inv_tbProducto_GetSubCategoria", codCategoriaParameter);
         }
+    
+        public virtual ObjectResult<SDP_Inv_Salida_Imprimir_Result> SDP_Inv_Salida_Imprimir(Nullable<int> sal_Id)
+        {
+            var sal_IdParameter = sal_Id.HasValue ?
+                new ObjectParameter("sal_Id", sal_Id) :
+                new ObjectParameter("sal_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_Inv_Salida_Imprimir_Result>("SDP_Inv_Salida_Imprimir", sal_IdParameter);
+        }
+    
+        public virtual ObjectResult<SDP_Inv_tbBodegaDetalle_Select_Producto_Result> SDP_Inv_tbBodegaDetalle_Select_Producto(Nullable<int> bod_Id)
+        {
+            var bod_IdParameter = bod_Id.HasValue ?
+                new ObjectParameter("bod_Id", bod_Id) :
+                new ObjectParameter("bod_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_Inv_tbBodegaDetalle_Select_Producto_Result>("SDP_Inv_tbBodegaDetalle_Select_Producto", bod_IdParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<long>> SDP_Inv_tbSalida_Factura_Exist(string fact_Codigo)
+        {
+            var fact_CodigoParameter = fact_Codigo != null ?
+                new ObjectParameter("fact_Codigo", fact_Codigo) :
+                new ObjectParameter("fact_Codigo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<long>>("SDP_Inv_tbSalida_Factura_Exist", fact_CodigoParameter);
+        }
     }
 }

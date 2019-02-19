@@ -304,6 +304,12 @@
     <Compile Include="Models\SDP_Gral_tbEmpleado_Select_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SDP_Inv_Salida_Imprimir_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SDP_Inv_tbBodegaDetalle_Select_Producto_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SDP_Inv_tbProducto_Select_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>

@@ -1660,6 +1660,15 @@
     <FunctionImport Name="UDP_Inv_tbProducto_GetSubCategoria" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProducto_GetSubCategoria_Result)">
       <Parameter Name="CodCategoria" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="SDP_Inv_Salida_Imprimir" ReturnType="Collection(ERP_ZORZALModel.SDP_Inv_Salida_Imprimir_Result)">
+      <Parameter Name="sal_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SDP_Inv_tbBodegaDetalle_Select_Producto" ReturnType="Collection(ERP_ZORZALModel.SDP_Inv_tbBodegaDetalle_Select_Producto_Result)">
+      <Parameter Name="bod_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SDP_Inv_tbSalida_Factura_Exist" ReturnType="Collection(Int64)">
+      <Parameter Name="fact_Codigo" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -5817,6 +5826,7 @@
     <Property Type="Decimal" Name="sald_Cantidad" Nullable="false" Precision="10" Scale="2" />
     <Property Type="String" Name="box_Codigo" Nullable="true" MaxLength="20" />
     <Property Type="String" Name="prod_CodigoBarras" Nullable="false" MaxLength="15" />
+    <Property Type="Int32" Name="sal_Id" Nullable="false" />
   </ComplexType>
   <ComplexType Name="SDP_Inv_tbSalidaDetalle_Select_Result1">
     <Property Type="Int32" Name="sald_Id" Nullable="false" />
@@ -6390,5 +6400,30 @@
   <ComplexType Name="UDP_Inv_tbProducto_GetSubCategoria_Result">
     <Property Type="Int32" Name="pscat_Id" Nullable="false" />
     <Property Type="String" Name="pscat_Descripcion" Nullable="true" MaxLength="150" />
+  </ComplexType>
+  <ComplexType Name="SDP_Inv_Salida_Imprimir_Result">
+    <Property Type="DateTime" Name="sal_FechaElaboracion" Nullable="true" Precision="23" />
+    <Property Type="String" Name="tsal_Descripcion" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="bod_Nombre" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="sal_BodDestino" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="fact_Codigo" Nullable="false" MaxLength="19" />
+    <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="prod_Descripcion" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="prod_Marca" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="prod_Modelo" Nullable="false" MaxLength="25" />
+    <Property Type="String" Name="prod_Talla" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="prod_Color" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="pscat_Descripcion" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="pcat_Nombre" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="uni_Descripcion" Nullable="false" MaxLength="150" />
+    <Property Type="String" Name="prod_CodigoBarras" Nullable="false" MaxLength="15" />
+  </ComplexType>
+  <ComplexType Name="SDP_Inv_tbBodegaDetalle_Select_Producto_Result">
+    <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="prod_Descripcion" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="pcat_Nombre" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="pscat_Descripcion" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="uni_Descripcion" Nullable="false" MaxLength="150" />
+    <Property Type="String" Name="prod_CodigoBarras" Nullable="false" MaxLength="15" />
   </ComplexType>
 </Schema>
