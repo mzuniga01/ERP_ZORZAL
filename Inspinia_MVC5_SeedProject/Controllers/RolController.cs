@@ -29,12 +29,10 @@ namespace ERP_GMEDINA.Controllers
 
             return View(db.tbRol.ToList());
         }
-
         public ActionResult _IndexAccesoRol()
         {
             return View();
         }
-
         // GET: /Rol/Details/5
         public ActionResult Details(int? id)
         {
@@ -69,7 +67,6 @@ namespace ERP_GMEDINA.Controllers
             }
             return View(tbRol);
         }
-
         // GET: /Rol/Create
         public ActionResult Create()
         {
@@ -85,7 +82,6 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.obj_Id = new SelectList(db.tbObjeto, "obj_Id", "obj_Pantalla");
             return View();
         }
-
         // POST: /Rol/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -102,8 +98,6 @@ namespace ERP_GMEDINA.Controllers
             }
             if (ModelState.IsValid)
             {
-                //db.tbRol.Add(tbRol);
-                //db.SaveChanges();
                 try
                 {
                     IEnumerable<Object> List = null;
@@ -119,10 +113,8 @@ namespace ERP_GMEDINA.Controllers
                 }
                 return RedirectToAction("Index");
             }
-
             return View(tbRol);
         }
-
         // GET: /Rol/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -146,7 +138,6 @@ namespace ERP_GMEDINA.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             ViewBag.obj_Id = new SelectList(db.tbObjeto, "obj_Id", "obj_Pantalla");
-            ViewBag.ListEstado = ListEstado();
 
             tbRol tbRol = db.tbRol.Find(id);
             ViewBag.UsuarioCrea = db.tbUsuario.Find(tbRol.rol_UsuarioCrea).usu_Nombres;
@@ -165,7 +156,6 @@ namespace ERP_GMEDINA.Controllers
             }
             return View(tbRol);
         }
-
         // POST: /Rol/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -191,11 +181,8 @@ namespace ERP_GMEDINA.Controllers
                     //}
                     //return RedirectToAction("Index");
                 }
-                
-            
             return View(tbRol);
         }
-
         // GET: /Rol/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -210,7 +197,6 @@ namespace ERP_GMEDINA.Controllers
             }
             return View(tbRol);
         }
-
         // POST: /Rol/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -221,7 +207,6 @@ namespace ERP_GMEDINA.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -230,7 +215,6 @@ namespace ERP_GMEDINA.Controllers
             }
             base.Dispose(disposing);
         }
-
         public ActionResult EstadoRolInactivo(int id)
         {
             try
@@ -249,7 +233,6 @@ namespace ERP_GMEDINA.Controllers
             }
             return RedirectToAction("Edit/" + id);
         }
-
         public ActionResult EstadoRolActivo(int id)
         {
             try
@@ -268,7 +251,6 @@ namespace ERP_GMEDINA.Controllers
             }
             return RedirectToAction("Edit/" + id);
         }
-
         public ActionResult Inactivar(int id)
         {
             try
@@ -295,24 +277,6 @@ namespace ERP_GMEDINA.Controllers
             }
             return RedirectToAction("Edit/" + id);
         }
-
-        public List<SelectListItem> ListEstado()
-        {
-            return new List<SelectListItem>()
-            {
-                new SelectListItem()
-                {
-                    Text = "Activo",
-                    Value = "1"
-                },
-                new SelectListItem()
-                {
-                    Text = "Inactivo",
-                    Value = "0"
-                }
-            };
-        }
-
         [HttpPost]
         public JsonResult AgregarObjeto(int idRol, ICollection<tbAccesoRol> RolAcceso)
         {
@@ -320,14 +284,8 @@ namespace ERP_GMEDINA.Controllers
             IEnumerable<Object> Acceso = null;
             using (TransactionScope Tran = new TransactionScope())
             {
-
                 try
                 {
-                    //Rol = db.UDP_Acce_tbAccesoRol_Insert(idRol, AccesoRol);
-                    //foreach (UDP_Acce_tbAccesoRol_Update_Result vRol in Rol)
-                    //    Msj1 = vRol.MensajeError;
-                    //if (Msj1.Substring(0, 1) != "-")
-                    //{
                     if (RolAcceso != null)
                     {
                         if (RolAcceso.Count > 0)
@@ -351,10 +309,8 @@ namespace ERP_GMEDINA.Controllers
                     Msj = "-1";
                 }
                 return Json(Msj, JsonRequestBehavior.AllowGet);
-
             }
         }
-
         [HttpPost]
         public JsonResult InsertRol(string DescripcionRol, ICollection<tbAccesoRol> AccesoRol)
         {
@@ -410,17 +366,10 @@ namespace ERP_GMEDINA.Controllers
             }
             return Json(Msj1, JsonRequestBehavior.AllowGet);
         }
-
         [HttpPost]
         public JsonResult GetObjetosDisponibles(int rolId)
         {
             var list = db.SDP_Acce_GetObjetosDisponibles(rolId).ToList();
-            return Json(list, JsonRequestBehavior.AllowGet);
-        }
-        [HttpPost]
-        public JsonResult GetObjetosDisponibles2(int rolId1)
-        {
-            var list = db.SDP_Acce_GetObjetosDisponibles(rolId1).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
@@ -460,23 +409,14 @@ namespace ERP_GMEDINA.Controllers
             }
             return Json(Msj, JsonRequestBehavior.AllowGet);
         }
-
-        
         [HttpPost]
         public JsonResult QuitarObjeto(int idRol, ICollection<tbAccesoRol> RolAcceso)
         {
             var Msj = "";
-            //IEnumerable<Object> Acceso = null;
             using (TransactionScope Tran = new TransactionScope())
             {
-
                 try
                 {
-                    //Rol = db.UDP_Acce_tbAccesoRol_Insert(idRol, AccesoRol);
-                    //foreach (UDP_Acce_tbAccesoRol_Update_Result vRol in Rol)
-                    //    Msj1 = vRol.MensajeError;
-                    //if (Msj1.Substring(0, 1) != "-")
-                    //{
                     if (RolAcceso != null)
                     {
                         if (RolAcceso.Count > 0)

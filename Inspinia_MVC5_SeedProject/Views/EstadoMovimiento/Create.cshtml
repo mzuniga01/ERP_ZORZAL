@@ -37,7 +37,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.estm_Descripcion, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.TextBoxFor(model => model.estm_Descripcion, new { @class = "form-control", maxlength = 50 })
+                                    @Html.EditorFor(model => model.estm_Descripcion, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @maxlength = "50" } })
                                     <div id="validationDescripcion">
                                         <p style="color:red"></p>
                                     </div>

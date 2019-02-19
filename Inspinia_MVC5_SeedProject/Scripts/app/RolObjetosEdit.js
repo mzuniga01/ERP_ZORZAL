@@ -1,4 +1,5 @@
 ﻿$(document).ready(function () {
+    $("#rol_Descripcion")[0].maxLength = 100;
     $.ajax({
         url: "/Rol/GetObjetosDisponibles",
         method: "POST",
@@ -35,6 +36,8 @@
                     "sSearch": "Buscar",
                     "sLengthMenu": "Mostrar _MENU_ registros por página",
                     "sInfo": "Mostrando _START_ a _END_ Entradas",
+                    "sZeroRecords": "No se encontraron resultados",
+                    "sInfoFiltered": "(Filtrado de _MAX_ total entradas)",
 
                 },
 
@@ -66,6 +69,8 @@
                     "sSearch": "Buscar",
                     "sLengthMenu": "Mostrar _MENU_ registros por página",
                     "sInfo": "Mostrando _START_ a _END_ Entradas",
+                    "sZeroRecords": "No se encontraron resultados",
+                    "sInfoFiltered": "(Filtrado de _MAX_ total entradas)",
 
                 },
 
@@ -100,6 +105,8 @@
                     "sSearch": "Buscar",
                     "sLengthMenu": "Mostrar _MENU_ registros por página",
                     "sInfo": "Mostrando _START_ a _END_ Entradas",
+                    "sZeroRecords": "No se encontraron resultados",
+                    "sInfoFiltered": "(Filtrado de _MAX_ total entradas)",
 
                 },
 

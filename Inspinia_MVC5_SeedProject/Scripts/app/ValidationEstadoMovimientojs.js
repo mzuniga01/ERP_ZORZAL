@@ -40,7 +40,7 @@
 function soloLetras(e) {
     tecla = (document.all) ? e.keyCode : e.which;
     tecla = String.fromCharCode(tecla)
-    return /^[a-z0-9A-ZáéíóúñÁÉÍÓÚÑ ]+$/.test(tecla);
+    return /^[a-zA-ZáéíóúñÁÉÍÓÚÑ]+$/.test(tecla);
 }
 $('#btnActualizar').click(function () {
     console.log('hola')
