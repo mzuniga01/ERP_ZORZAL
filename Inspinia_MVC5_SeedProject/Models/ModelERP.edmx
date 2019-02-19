@@ -5663,10 +5663,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
             <Parameter Name="invfd_CantidadSistema" Mode="In" Type="Decimal" />
             <Parameter Name="uni_Id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Acce_tbRolesUsuario_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbRolesUsuario_Insert_Result)">
-            <Parameter Name="usu_Id" Mode="In" Type="Int32" />
-            <Parameter Name="rol_Id" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="UDP_Gral_tbDepartamento_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbDepartamento_Insert_Result)">
             <Parameter Name="dep_Codigo" Mode="In" Type="String" />
             <Parameter Name="dep_Nombre" Mode="In" Type="String" />
@@ -5721,9 +5717,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
             <Parameter Name="obj_Estado" Mode="In" Type="Boolean" />
             <Parameter Name="obj_UsuarioModifica" Mode="In" Type="Int32" />
             <Parameter Name="obj_FechaModifica" Mode="In" Type="DateTime" />
-          </FunctionImport>
-          <FunctionImport Name="SDP_Gral_tbEmpleado_Select" ReturnType="Collection(ERP_ZORZALModel.SDP_Gral_tbEmpleado_Select_Result)">
-          <Parameter Name="emp_Id" Mode="In" Type="Int16" />
           </FunctionImport>
           <FunctionImport Name="UDP_Inv_tbProductoSubCategoria_Delete_test" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProductoSubCategoria_Delete_test_Result)">
             <Parameter Name="pscat_Id" Mode="In" Type="Int32" />
@@ -7025,13 +7018,20 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
           <Parameter Name="CodCategoria" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SDP_Inv_Salida_Imprimir" ReturnType="Collection(ERP_ZORZALModel.SDP_Inv_Salida_Imprimir_Result)">
-            <Parameter Name="sal_Id" Mode="In" Type="Int32" />
+          <Parameter Name="sal_Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SDP_Inv_tbBodegaDetalle_Select_Producto" ReturnType="Collection(ERP_ZORZALModel.SDP_Inv_tbBodegaDetalle_Select_Producto_Result)">
-            <Parameter Name="bod_Id" Mode="In" Type="Int32" />
+          <Parameter Name="bod_Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SDP_Inv_tbSalida_Factura_Exist" ReturnType="Collection(Int64)">
-            <Parameter Name="fact_Codigo" Mode="In" Type="String" />
+          <Parameter Name="fact_Codigo" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Acce_tbRolesUsuario_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbRolesUsuario_Insert_Result)">
+            <Parameter Name="usu_Id" Mode="In" Type="Int32" />
+            <Parameter Name="rol_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SDP_Gral_tbEmpleado_Select" ReturnType="Collection(ERP_ZORZALModel.SDP_Gral_tbEmpleado_Select_Result)">
+            <Parameter Name="emp_Id" Mode="In" Type="Int16" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
@@ -7329,9 +7329,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
         <ComplexType Name="UDP_Inv_tbInventarioFisicoDetalle_Insert_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
-        <ComplexType Name="UDP_Acce_tbRolesUsuario_Insert_Result">
-          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-        </ComplexType>
         <ComplexType Name="UDP_Acce_tbObjeto_Insert_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
@@ -7374,27 +7371,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
           <Property Type="Int32" Name="obj_UsuarioModifica" Nullable="true" />
           <Property Type="DateTime" Name="obj_FechaModifica" Nullable="true" Precision="23" />
           <Property Type="Boolean" Name="obj_Estado" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="SDP_Gral_tbEmpleado_Select_Result">
-          <Property Type="Int16" Name="emp_Id" Nullable="false" />
-          <Property Type="String" Name="emp_Nombres" Nullable="false" MaxLength="100" />
-          <Property Type="String" Name="emp_Apellidos" Nullable="false" MaxLength="100" />
-          <Property Type="String" Name="emp_Sexo" Nullable="false" MaxLength="1" />
-          <Property Type="DateTime" Name="emp_FechaNacimiento" Nullable="false" Precision="23" />
-          <Property Type="Byte" Name="tpi_Id" Nullable="false" />
-          <Property Type="String" Name="emp_Identificacion" Nullable="false" MaxLength="14" />
-          <Property Type="String" Name="emp_Telefono" Nullable="false" MaxLength="25" />
-          <Property Type="String" Name="emp_Correoelectronico" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="emp_TipoSangre" Nullable="false" MaxLength="2" />
-          <Property Type="String" Name="emp_Puesto" Nullable="false" MaxLength="50" />
-          <Property Type="DateTime" Name="emp_FechaIngreso" Nullable="false" />
-          <Property Type="String" Name="emp_Direccion" Nullable="false" MaxLength="250" />
-          <Property Type="String" Name="emp_Observaciones" Nullable="true" MaxLength="500" />
-          <Property Type="Int32" Name="emp_UsuarioCrea" Nullable="false" />
-          <Property Type="DateTime" Name="emp_FechaCrea" Nullable="false" Precision="23" />
-          <Property Type="Int32" Name="emp_UsuarioModifica" Nullable="true" />
-          <Property Type="DateTime" Name="emp_FechaModifica" Nullable="true" Precision="23" />
-          <Property Type="Boolean" Name="emp_Estado" Nullable="false" />
         </ComplexType>
         <ComplexType Name="UDP_Inv_tbProductoSubCategoria_Delete_test_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="4000" />
@@ -11790,6 +11766,32 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
           <Property Type="String" Name="uni_Descripcion" Nullable="false" MaxLength="150" />
           <Property Type="String" Name="prod_CodigoBarras" Nullable="false" MaxLength="15" />
         </ComplexType>
+        <ComplexType Name="SDP_Gral_tbEmpleado_Select_Result">
+          <Property Type="Int16" Name="emp_Id" Nullable="false" />
+          <Property Type="String" Name="emp_Nombres" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="emp_Apellidos" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="emp_Sexo" Nullable="false" MaxLength="1" />
+          <Property Type="DateTime" Name="emp_FechaNacimiento" Nullable="false" Precision="23" />
+          <Property Type="Byte" Name="tpi_Id" Nullable="false" />
+          <Property Type="String" Name="emp_Identificacion" Nullable="false" MaxLength="14" />
+          <Property Type="String" Name="emp_Telefono" Nullable="false" MaxLength="25" />
+          <Property Type="String" Name="emp_Correoelectronico" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="emp_TipoSangre" Nullable="false" MaxLength="2" />
+          <Property Type="String" Name="emp_Puesto" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="emp_FechaIngreso" Nullable="false" />
+          <Property Type="String" Name="emp_Direccion" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="emp_RazonInactivacion" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="emp_UsuarioCrea" Nullable="false" />
+          <Property Type="DateTime" Name="emp_FechaCrea" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="emp_UsuarioModifica" Nullable="true" />
+          <Property Type="DateTime" Name="emp_FechaModifica" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="emp_Estado" Nullable="false" />
+          <Property Type="String" Name="emp_RazonSalida" Nullable="true" MaxLength="250" />
+          <Property Type="DateTime" Name="emp_FechaDeSalida" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="UDP_Acce_tbRolesUsuario_Insert_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -12295,13 +12297,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Acce_tbRolesUsuario_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbRolesUsuario_Insert" >
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_tbRolesUsuario_Insert_Result">
-                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UDP_Gral_tbDepartamento_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbDepartamento_Insert" >
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbDepartamento_Insert_Result">
@@ -12349,31 +12344,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_tbObjeto_Update_Estado_Result">
                 <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SDP_Gral_tbEmpleado_Select" FunctionName="ERP_ZORZALModel.Store.SDP_Gral_tbEmpleado_Select">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_Gral_tbEmpleado_Select_Result">
-                <ScalarProperty Name="emp_Id" ColumnName="emp_Id" />
-                <ScalarProperty Name="emp_Nombres" ColumnName="emp_Nombres" />
-                <ScalarProperty Name="emp_Apellidos" ColumnName="emp_Apellidos" />
-                <ScalarProperty Name="emp_Sexo" ColumnName="emp_Sexo" />
-                <ScalarProperty Name="emp_FechaNacimiento" ColumnName="emp_FechaNacimiento" />
-                <ScalarProperty Name="tpi_Id" ColumnName="tpi_Id" />
-                <ScalarProperty Name="emp_Identificacion" ColumnName="emp_Identificacion" />
-                <ScalarProperty Name="emp_Telefono" ColumnName="emp_Telefono" />
-                <ScalarProperty Name="emp_Correoelectronico" ColumnName="emp_Correoelectronico" />
-                <ScalarProperty Name="emp_TipoSangre" ColumnName="emp_TipoSangre" />
-                <ScalarProperty Name="emp_Puesto" ColumnName="emp_Puesto" />
-                <ScalarProperty Name="emp_FechaIngreso" ColumnName="emp_FechaIngreso" />
-                <ScalarProperty Name="emp_Direccion" ColumnName="emp_Direccion" />
-                <ScalarProperty Name="emp_Observaciones" ColumnName="emp_Observaciones" />
-                <ScalarProperty Name="emp_UsuarioCrea" ColumnName="emp_UsuarioCrea" />
-                <ScalarProperty Name="emp_FechaCrea" ColumnName="emp_FechaCrea" />
-                <ScalarProperty Name="emp_UsuarioModifica" ColumnName="emp_UsuarioModifica" />
-                <ScalarProperty Name="emp_FechaModifica" ColumnName="emp_FechaModifica" />
-                <ScalarProperty Name="emp_Estado" ColumnName="emp_Estado" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -13933,6 +13903,40 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SDP_Inv_tbSalida_Factura_Exist" FunctionName="ERP_ZORZALModel.Store.SDP_Inv_tbSalida_Factura_Exist" />
+          <FunctionImportMapping FunctionImportName="UDP_Acce_tbRolesUsuario_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbRolesUsuario_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_tbRolesUsuario_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SDP_Gral_tbEmpleado_Select" FunctionName="ERP_ZORZALModel.Store.SDP_Gral_tbEmpleado_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_Gral_tbEmpleado_Select_Result">
+                <ScalarProperty Name="emp_Id" ColumnName="emp_Id" />
+                <ScalarProperty Name="emp_Nombres" ColumnName="emp_Nombres" />
+                <ScalarProperty Name="emp_Apellidos" ColumnName="emp_Apellidos" />
+                <ScalarProperty Name="emp_Sexo" ColumnName="emp_Sexo" />
+                <ScalarProperty Name="emp_FechaNacimiento" ColumnName="emp_FechaNacimiento" />
+                <ScalarProperty Name="tpi_Id" ColumnName="tpi_Id" />
+                <ScalarProperty Name="emp_Identificacion" ColumnName="emp_Identificacion" />
+                <ScalarProperty Name="emp_Telefono" ColumnName="emp_Telefono" />
+                <ScalarProperty Name="emp_Correoelectronico" ColumnName="emp_Correoelectronico" />
+                <ScalarProperty Name="emp_TipoSangre" ColumnName="emp_TipoSangre" />
+                <ScalarProperty Name="emp_Puesto" ColumnName="emp_Puesto" />
+                <ScalarProperty Name="emp_FechaIngreso" ColumnName="emp_FechaIngreso" />
+                <ScalarProperty Name="emp_Direccion" ColumnName="emp_Direccion" />
+                <ScalarProperty Name="emp_RazonInactivacion" ColumnName="emp_RazonInactivacion" />
+                <ScalarProperty Name="emp_UsuarioCrea" ColumnName="emp_UsuarioCrea" />
+                <ScalarProperty Name="emp_FechaCrea" ColumnName="emp_FechaCrea" />
+                <ScalarProperty Name="emp_UsuarioModifica" ColumnName="emp_UsuarioModifica" />
+                <ScalarProperty Name="emp_FechaModifica" ColumnName="emp_FechaModifica" />
+                <ScalarProperty Name="emp_Estado" ColumnName="emp_Estado" />
+                <ScalarProperty Name="emp_RazonSalida" ColumnName="emp_RazonSalida" />
+                <ScalarProperty Name="emp_FechaDeSalida" ColumnName="emp_FechaDeSalida" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

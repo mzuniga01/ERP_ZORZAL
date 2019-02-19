@@ -1117,19 +1117,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbInventarioFisicoDetalle_Insert_Result>("UDP_Inv_tbInventarioFisicoDetalle_Insert", invf_IdParameter, prod_CodigoParameter, invfd_CantidadParameter, invfd_CantidadSistemaParameter, uni_IdParameter);
         }
     
-        public virtual ObjectResult<UDP_Acce_tbRolesUsuario_Insert_Result> UDP_Acce_tbRolesUsuario_Insert(Nullable<int> usu_Id, Nullable<int> rol_Id)
-        {
-            var usu_IdParameter = usu_Id.HasValue ?
-                new ObjectParameter("usu_Id", usu_Id) :
-                new ObjectParameter("usu_Id", typeof(int));
-    
-            var rol_IdParameter = rol_Id.HasValue ?
-                new ObjectParameter("rol_Id", rol_Id) :
-                new ObjectParameter("rol_Id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Acce_tbRolesUsuario_Insert_Result>("UDP_Acce_tbRolesUsuario_Insert", usu_IdParameter, rol_IdParameter);
-        }
-    
         public virtual ObjectResult<UDP_Gral_tbDepartamento_Insert_Result> UDP_Gral_tbDepartamento_Insert(string dep_Codigo, string dep_Nombre, Nullable<int> dep_UsuarioCrea, Nullable<System.DateTime> dep_FechaCrea)
         {
             var dep_CodigoParameter = dep_Codigo != null ?
@@ -1324,15 +1311,6 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("obj_FechaModifica", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Acce_tbObjeto_Update_Estado_Result>("UDP_Acce_tbObjeto_Update_Estado", obj_IdParameter, obj_EstadoParameter, obj_UsuarioModificaParameter, obj_FechaModificaParameter);
-        }
-    
-        public virtual ObjectResult<SDP_Gral_tbEmpleado_Select_Result> SDP_Gral_tbEmpleado_Select(Nullable<short> emp_Id)
-        {
-            var emp_IdParameter = emp_Id.HasValue ?
-                new ObjectParameter("emp_Id", emp_Id) :
-                new ObjectParameter("emp_Id", typeof(short));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_Gral_tbEmpleado_Select_Result>("SDP_Gral_tbEmpleado_Select", emp_IdParameter);
         }
     
         public virtual ObjectResult<UDP_Inv_tbProductoSubCategoria_Delete_test_Result> UDP_Inv_tbProductoSubCategoria_Delete_test(Nullable<int> pscat_Id)
@@ -2592,6 +2570,28 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("fact_Codigo", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<long>>("SDP_Inv_tbSalida_Factura_Exist", fact_CodigoParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Acce_tbRolesUsuario_Insert_Result> UDP_Acce_tbRolesUsuario_Insert(Nullable<int> usu_Id, Nullable<int> rol_Id)
+        {
+            var usu_IdParameter = usu_Id.HasValue ?
+                new ObjectParameter("usu_Id", usu_Id) :
+                new ObjectParameter("usu_Id", typeof(int));
+    
+            var rol_IdParameter = rol_Id.HasValue ?
+                new ObjectParameter("rol_Id", rol_Id) :
+                new ObjectParameter("rol_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Acce_tbRolesUsuario_Insert_Result>("UDP_Acce_tbRolesUsuario_Insert", usu_IdParameter, rol_IdParameter);
+        }
+    
+        public virtual ObjectResult<SDP_Gral_tbEmpleado_Select_Result> SDP_Gral_tbEmpleado_Select(Nullable<short> emp_Id)
+        {
+            var emp_IdParameter = emp_Id.HasValue ?
+                new ObjectParameter("emp_Id", emp_Id) :
+                new ObjectParameter("emp_Id", typeof(short));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_Gral_tbEmpleado_Select_Result>("SDP_Gral_tbEmpleado_Select", emp_IdParameter);
         }
     }
 }

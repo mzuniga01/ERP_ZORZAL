@@ -174,12 +174,7 @@
                         <a href="@Url.Action("Index", "Usuario")"><i class="fa fa-users fa-fw"></i>Usuario <span class="nav-label"></span> </a>
                         </li>
                     }
-                    @if (Login.GetUserRols("AccesoRol/Index"))
-                    {
-                    <li class="@Html.IsSelected(action: "Index")">
-                        <a href="@Url.Action("Index", "AccesoRol")"><i class="fa fa-ticket fa-fw"></i> Acceso Rol<span class="nav-label"></span> </a>
-                    </li>
-                    }
+                    
                     @if (Login.GetUserRols("Rol/Index"))
                     {
                     <li class="@Html.IsSelected(action: "Index")">

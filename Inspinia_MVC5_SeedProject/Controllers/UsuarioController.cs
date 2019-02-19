@@ -264,7 +264,7 @@ namespace ERP_GMEDINA.Controllers
                                         {
                                             foreach (tbRolesUsuario URoles in listRoles)
                                             {
-                                                Roles = db.UDP_Acce_tbRolesUsuario_Insert(URoles.rol_Id, Convert.ToInt32(MsjError));
+                                                Roles = db.UDP_Acce_tbRolesUsuario_Insert(Convert.ToInt32(MsjError),URoles.rol_Id);
                                                 foreach (UDP_Acce_tbRolesUsuario_Insert_Result Resultado in Roles)
                                                     MsjErrorRoles = Resultado.MensajeError;
                                                 if (MsjError.StartsWith("-1"))

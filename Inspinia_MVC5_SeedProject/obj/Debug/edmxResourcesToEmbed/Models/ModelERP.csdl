@@ -299,10 +299,6 @@
       <Parameter Name="invfd_CantidadSistema" Mode="In" Type="Decimal" />
       <Parameter Name="uni_Id" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Acce_tbRolesUsuario_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbRolesUsuario_Insert_Result)">
-      <Parameter Name="usu_Id" Mode="In" Type="Int32" />
-      <Parameter Name="rol_Id" Mode="In" Type="Int32" />
-    </FunctionImport>
     <FunctionImport Name="UDP_Gral_tbDepartamento_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbDepartamento_Insert_Result)">
       <Parameter Name="dep_Codigo" Mode="In" Type="String" />
       <Parameter Name="dep_Nombre" Mode="In" Type="String" />
@@ -357,9 +353,6 @@
       <Parameter Name="obj_Estado" Mode="In" Type="Boolean" />
       <Parameter Name="obj_UsuarioModifica" Mode="In" Type="Int32" />
       <Parameter Name="obj_FechaModifica" Mode="In" Type="DateTime" />
-    </FunctionImport>
-    <FunctionImport Name="SDP_Gral_tbEmpleado_Select" ReturnType="Collection(ERP_ZORZALModel.SDP_Gral_tbEmpleado_Select_Result)">
-      <Parameter Name="emp_Id" Mode="In" Type="Int16" />
     </FunctionImport>
     <FunctionImport Name="UDP_Inv_tbProductoSubCategoria_Delete_test" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProductoSubCategoria_Delete_test_Result)">
       <Parameter Name="pscat_Id" Mode="In" Type="Int32" />
@@ -1669,6 +1662,13 @@
     <FunctionImport Name="SDP_Inv_tbSalida_Factura_Exist" ReturnType="Collection(Int64)">
       <Parameter Name="fact_Codigo" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="UDP_Acce_tbRolesUsuario_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbRolesUsuario_Insert_Result)">
+      <Parameter Name="usu_Id" Mode="In" Type="Int32" />
+      <Parameter Name="rol_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SDP_Gral_tbEmpleado_Select" ReturnType="Collection(ERP_ZORZALModel.SDP_Gral_tbEmpleado_Select_Result)">
+      <Parameter Name="emp_Id" Mode="In" Type="Int16" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -1965,9 +1965,6 @@
   <ComplexType Name="UDP_Inv_tbInventarioFisicoDetalle_Insert_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
-  <ComplexType Name="UDP_Acce_tbRolesUsuario_Insert_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
   <ComplexType Name="UDP_Acce_tbObjeto_Insert_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
@@ -2010,27 +2007,6 @@
     <Property Type="Int32" Name="obj_UsuarioModifica" Nullable="true" />
     <Property Type="DateTime" Name="obj_FechaModifica" Nullable="true" Precision="23" />
     <Property Type="Boolean" Name="obj_Estado" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="SDP_Gral_tbEmpleado_Select_Result">
-    <Property Type="Int16" Name="emp_Id" Nullable="false" />
-    <Property Type="String" Name="emp_Nombres" Nullable="false" MaxLength="100" />
-    <Property Type="String" Name="emp_Apellidos" Nullable="false" MaxLength="100" />
-    <Property Type="String" Name="emp_Sexo" Nullable="false" MaxLength="1" />
-    <Property Type="DateTime" Name="emp_FechaNacimiento" Nullable="false" Precision="23" />
-    <Property Type="Byte" Name="tpi_Id" Nullable="false" />
-    <Property Type="String" Name="emp_Identificacion" Nullable="false" MaxLength="14" />
-    <Property Type="String" Name="emp_Telefono" Nullable="false" MaxLength="25" />
-    <Property Type="String" Name="emp_Correoelectronico" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="emp_TipoSangre" Nullable="false" MaxLength="2" />
-    <Property Type="String" Name="emp_Puesto" Nullable="false" MaxLength="50" />
-    <Property Type="DateTime" Name="emp_FechaIngreso" Nullable="false" />
-    <Property Type="String" Name="emp_Direccion" Nullable="false" MaxLength="250" />
-    <Property Type="String" Name="emp_Observaciones" Nullable="true" MaxLength="500" />
-    <Property Type="Int32" Name="emp_UsuarioCrea" Nullable="false" />
-    <Property Type="DateTime" Name="emp_FechaCrea" Nullable="false" Precision="23" />
-    <Property Type="Int32" Name="emp_UsuarioModifica" Nullable="true" />
-    <Property Type="DateTime" Name="emp_FechaModifica" Nullable="true" Precision="23" />
-    <Property Type="Boolean" Name="emp_Estado" Nullable="false" />
   </ComplexType>
   <ComplexType Name="UDP_Inv_tbProductoSubCategoria_Delete_test_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="4000" />
@@ -6425,5 +6401,31 @@
     <Property Type="String" Name="pscat_Descripcion" Nullable="true" MaxLength="150" />
     <Property Type="String" Name="uni_Descripcion" Nullable="false" MaxLength="150" />
     <Property Type="String" Name="prod_CodigoBarras" Nullable="false" MaxLength="15" />
+  </ComplexType>
+  <ComplexType Name="SDP_Gral_tbEmpleado_Select_Result">
+    <Property Type="Int16" Name="emp_Id" Nullable="false" />
+    <Property Type="String" Name="emp_Nombres" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="emp_Apellidos" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="emp_Sexo" Nullable="false" MaxLength="1" />
+    <Property Type="DateTime" Name="emp_FechaNacimiento" Nullable="false" Precision="23" />
+    <Property Type="Byte" Name="tpi_Id" Nullable="false" />
+    <Property Type="String" Name="emp_Identificacion" Nullable="false" MaxLength="14" />
+    <Property Type="String" Name="emp_Telefono" Nullable="false" MaxLength="25" />
+    <Property Type="String" Name="emp_Correoelectronico" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="emp_TipoSangre" Nullable="false" MaxLength="2" />
+    <Property Type="String" Name="emp_Puesto" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="emp_FechaIngreso" Nullable="false" />
+    <Property Type="String" Name="emp_Direccion" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="emp_RazonInactivacion" Nullable="true" MaxLength="500" />
+    <Property Type="Int32" Name="emp_UsuarioCrea" Nullable="false" />
+    <Property Type="DateTime" Name="emp_FechaCrea" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="emp_UsuarioModifica" Nullable="true" />
+    <Property Type="DateTime" Name="emp_FechaModifica" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="emp_Estado" Nullable="false" />
+    <Property Type="String" Name="emp_RazonSalida" Nullable="true" MaxLength="250" />
+    <Property Type="DateTime" Name="emp_FechaDeSalida" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="UDP_Acce_tbRolesUsuario_Insert_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
 </Schema>
