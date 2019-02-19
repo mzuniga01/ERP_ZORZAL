@@ -11,7 +11,7 @@ namespace ERP_GMEDINA.Models
 {
     using System;
     
-    public partial class UDP_Vent_tbDevolucion_Insert_Result
+    public partial class UDP_Vent_tbExoneracion_Estado_Result1
     {
         public string MensajeError { get; set; }
     }

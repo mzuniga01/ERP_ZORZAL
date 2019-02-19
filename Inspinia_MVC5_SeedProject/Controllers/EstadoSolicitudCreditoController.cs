@@ -112,7 +112,8 @@ namespace ERP_GMEDINA.Controllers
                             {
                                 string MensajeError = "";
                                 IEnumerable<object> list = null;
-                                list = db.UDP_Vent_tbEstadoSolicitudCredito_Insert(tbEstadoSolicitudCredito.escre_Descripcion, Function.GetUser(),
+                                list = db.UDP_Vent_tbEstadoSolicitudCredito_Insert(tbEstadoSolicitudCredito.escre_Descripcion, 
+                                                Function.GetUser(),
                                                 Function.DatetimeNow());
                                 foreach (UDP_Vent_tbEstadoSolicitudCredito_Insert_Result EstadoSolicitudCredito in list)
                                     MensajeError = EstadoSolicitudCredito.MensajeError;

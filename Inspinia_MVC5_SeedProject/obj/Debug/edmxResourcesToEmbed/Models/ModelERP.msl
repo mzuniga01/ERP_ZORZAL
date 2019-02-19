@@ -54,13 +54,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Vent_tbExoneracion_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbExoneracion_Insert">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbExoneracion_Insert_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbDevolucion_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbDevolucion_Insert">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbDevolucion_Insert_Result">
@@ -87,13 +80,6 @@
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.spGetTipoIdentificacion_Result">
           <ScalarProperty Name="tpi_Id" ColumnName="tpi_Id" />
           <ScalarProperty Name="tpi_Descripcion" ColumnName="tpi_Descripcion" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Vent_tbExoneracion_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbExoneracion_Update">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbExoneracion_Update_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -411,7 +397,6 @@
     <FunctionImportMapping FunctionImportName="UDP_Inv_ConsultarExistenciaProductos" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_ConsultarExistenciaProductos" />
     <FunctionImportMapping FunctionImportName="UDP_Inv_tbEstadoMovimiento_Delete" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEstadoMovimiento_Delete" />
     <FunctionImportMapping FunctionImportName="UDP_Inv_ValidacionCantidadExistente" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_ValidacionCantidadExistente" />
-    <FunctionImportMapping FunctionImportName="UDP_Vent_tbExoneracion_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbExoneracion_Estado" />
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_BuscarListaPrecio" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_BuscarListaPrecio" />
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudEfectivoDetalle_Select" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudEfectivoDetalle_Select">
       <ResultMapping>
@@ -2706,6 +2691,27 @@
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbExoneracion_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbExoneracion_Estado">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbExoneracion_Estado_Result1">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbExoneracion_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbExoneracion_Insert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbExoneracion_Insert_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbExoneracion_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbExoneracion_Update">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbExoneracion_Update_Result">
           <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
         </ComplexTypeMapping>
       </ResultMapping>

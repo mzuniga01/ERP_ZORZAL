@@ -52,15 +52,6 @@
       <Parameter Name="tpa_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="tpa_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbExoneracion_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbExoneracion_Insert_Result)">
-      <Parameter Name="exo_Documento" Mode="In" Type="String" />
-      <Parameter Name="exo_ExoneracionActiva" Mode="In" Type="Boolean" />
-      <Parameter Name="exo_FechaInicialVigencia" Mode="In" Type="DateTime" />
-      <Parameter Name="exo_FechaIFinalVigencia" Mode="In" Type="DateTime" />
-      <Parameter Name="clte_Id" Mode="In" Type="Int32" />
-      <Parameter Name="exo_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="exo_FechaCrea" Mode="In" Type="DateTime" />
-    </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbDevolucion_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDevolucion_Insert_Result)">
       <Parameter Name="fact_Id" Mode="In" Type="Int64" />
       <Parameter Name="cja_Id" Mode="In" Type="Int16" />
@@ -92,18 +83,6 @@
     </FunctionImport>
     <FunctionImport Name="spGetTipoIdentificacion" ReturnType="Collection(ERP_ZORZALModel.spGetTipoIdentificacion_Result)">
       <Parameter Name="PersonaNatural" Mode="In" Type="Boolean" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbExoneracion_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbExoneracion_Update_Result)">
-      <Parameter Name="exo_Id" Mode="In" Type="Int32" />
-      <Parameter Name="exo_Documento" Mode="In" Type="String" />
-      <Parameter Name="exo_ExoneracionActiva" Mode="In" Type="Boolean" />
-      <Parameter Name="exo_FechaInicialVigencia" Mode="In" Type="DateTime" />
-      <Parameter Name="exo_FechaIFinalVigencia" Mode="In" Type="DateTime" />
-      <Parameter Name="clte_Id" Mode="In" Type="Int32" />
-      <Parameter Name="exo_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="exo_FechaCrea" Mode="In" Type="DateTime" />
-      <Parameter Name="exo_UsuarioModifa" Mode="In" Type="Int32" />
-      <Parameter Name="exo_FechaModifica" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="spGetDepartamento" ReturnType="Collection(ERP_ZORZALModel.spGetDepartamento_Result)">
       <Parameter Name="CodMunicipio" Mode="In" Type="String" />
@@ -888,10 +867,6 @@
       <Parameter Name="FechaElaboracion" Mode="In" Type="DateTime" />
       <Parameter Name="BodegaDestino" Mode="In" Type="Int32" />
       <Parameter Name="CantidadDisponible" Mode="In" Type="Decimal" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbExoneracion_Estado" ReturnType="Collection(Int32)">
-      <Parameter Name="exo_Id" Mode="In" Type="Int32" />
-      <Parameter Name="exo_ExoneracionActiva" Mode="In" Type="Boolean" />
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbFactura_BuscarListaPrecio" ReturnType="Collection(Decimal)">
       <Parameter Name="IDCLIENTE" Mode="In" Type="Int32" />
@@ -2662,6 +2637,33 @@
       <Parameter Name="soled_CantidadEntregada" Mode="In" Type="Int16" />
       <Parameter Name="soled_MontoEntregado" Mode="In" Type="Decimal" />
     </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbExoneracion_Estado" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbExoneracion_Estado_Result1)">
+      <Parameter Name="exo_Id" Mode="In" Type="Int32" />
+      <Parameter Name="exo_ExoneracionActiva" Mode="In" Type="Boolean" />
+      <Parameter Name="exo_UsuarioModifa" Mode="In" Type="Int32" />
+      <Parameter Name="exo_FechaModifica" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbExoneracion_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbExoneracion_Insert_Result)">
+      <Parameter Name="exo_Documento" Mode="In" Type="String" />
+      <Parameter Name="exo_ExoneracionActiva" Mode="In" Type="Boolean" />
+      <Parameter Name="exo_FechaInicialVigencia" Mode="In" Type="DateTime" />
+      <Parameter Name="exo_FechaIFinalVigencia" Mode="In" Type="DateTime" />
+      <Parameter Name="clte_Id" Mode="In" Type="Int32" />
+      <Parameter Name="exo_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="exo_FechaCrea" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbExoneracion_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbExoneracion_Update_Result)">
+      <Parameter Name="exo_Id" Mode="In" Type="Int32" />
+      <Parameter Name="exo_Documento" Mode="In" Type="String" />
+      <Parameter Name="exo_ExoneracionActiva" Mode="In" Type="Boolean" />
+      <Parameter Name="exo_FechaInicialVigencia" Mode="In" Type="DateTime" />
+      <Parameter Name="exo_FechaIFinalVigencia" Mode="In" Type="DateTime" />
+      <Parameter Name="clte_Id" Mode="In" Type="Int32" />
+      <Parameter Name="exo_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="exo_FechaCrea" Mode="In" Type="DateTime" />
+      <Parameter Name="exo_UsuarioModifa" Mode="In" Type="Int32" />
+      <Parameter Name="exo_FechaModifica" Mode="In" Type="DateTime" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -2700,18 +2702,12 @@
   <ComplexType Name="UDP_Vent_tbTipoPago_Insert_Result">
     <Property Type="Int16" Name="MensajeError" Nullable="false" />
   </ComplexType>
-  <ComplexType Name="UDP_Vent_tbExoneracion_Insert_Result">
-    <Property Type="Int32" Name="MensajeError" Nullable="false" />
-  </ComplexType>
   <ComplexType Name="UDP_Vent_tbTipoPago_Update_Result">
     <Property Type="Int16" Name="MensajeError" Nullable="false" />
   </ComplexType>
   <ComplexType Name="spGetTipoIdentificacion_Result">
     <Property Type="Byte" Name="tpi_Id" Nullable="false" />
     <Property Type="String" Name="tpi_Descripcion" Nullable="false" MaxLength="25" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbExoneracion_Update_Result">
-    <Property Type="Int32" Name="MensajeError" Nullable="false" />
   </ComplexType>
   <ComplexType Name="spGetDepartamento_Result">
     <Property Type="String" Name="dep_Codigo" Nullable="false" MaxLength="2" />
@@ -7984,6 +7980,18 @@
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbExoneracion_Estado_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbExoneracion_Estado_Result1">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbExoneracion_Insert_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbExoneracion_Update_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
 </Schema>

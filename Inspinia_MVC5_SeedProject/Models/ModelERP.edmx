@@ -1018,8 +1018,8 @@
           <Property Name="tpa_UsuarioModifica" Type="int" />
           <Property Name="tpa_FechaModifica" Type="datetime" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'ERP_GMEDINA.Acce.UDV_Acce_Usuario_Roles' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'ERP_GMEDINA.Acce.UDV_Acce_Usuario_Roles' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="UDV_Acce_Usuario_Roles">
           <Key>
             <PropertyRef Name="rolu_Id" />
@@ -1056,8 +1056,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Acce.UDV_Acce_Usuario_Roles' does not 
           <Property Name="obj_FechaModifica" Type="datetime" />
           <Property Name="obj_Estado" Type="bit" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'ERP_GMEDINA.Acce.V_Objetos' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'ERP_GMEDINA.Acce.V_Objetos' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="V_Objetos">
           <Key>
             <PropertyRef Name="obj_Id" />
@@ -1071,8 +1071,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Acce.V_Objetos' does not have a primar
           <Property Name="obj_UsuarioModifica" Type="int" />
           <Property Name="obj_FechaModifica" Type="datetime" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'ERP_GMEDINA.dbo.UDV_Vent_FacturaPuntoEmision' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'ERP_GMEDINA.dbo.UDV_Vent_FacturaPuntoEmision' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="UDV_Vent_FacturaPuntoEmision">
           <Key>
             <PropertyRef Name="cja_Id" />
@@ -1093,8 +1093,8 @@ warning 6002: The table/view 'ERP_GMEDINA.dbo.UDV_Vent_FacturaPuntoEmision' does
           <Property Name="pemid_FechaLimite" Type="date" Nullable="false" />
           <Property Name="dfisc_Id" Type="char" MaxLength="2" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="UDV_Inv_Nombre_Empleado">
           <Key>
             <PropertyRef Name="emp_Id" />
@@ -1103,8 +1103,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not
           <Property Name="emp_Id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Empleados" Type="nvarchar" MaxLength="201" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Productos' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Productos' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="UDV_Inv_Consultar_Existencias_Productos">
           <Key>
             <PropertyRef Name="prod_Descripcion" />
@@ -1125,8 +1125,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
           <Property Name="bodd_Id" Type="int" Nullable="false" />
           <Property Name="prod_Codigo" Type="nvarchar" MaxLength="15" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'ERP_GMEDINA.Vent.UDP_Vent_listExoneracion_Select' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDP_Vent_listExoneracion_Select' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="UDP_Vent_listExoneracion_Select">
           <Key>
             <PropertyRef Name="Id" />
@@ -1143,8 +1143,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDP_Vent_listExoneracion_Select' 
           <Property Name="persona comercial" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="apellido" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivo_Detalles_Select' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivo_Detalles_Select' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="UDP_Vent_SolicituEfectivo_Detalles_Select">
           <Key>
             <PropertyRef Name="soled_Id" />
@@ -1171,8 +1171,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivo_Detalle
           <Property Name="soled_UsuarioModifica" Type="int" />
           <Property Name="soled_FechaModifica" Type="datetime" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivo_Select' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivo_Select' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="UDP_Vent_SolicituEfectivo_Select">
           <Key>
             <PropertyRef Name="IdSolicitud" />
@@ -1191,8 +1191,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivo_Select'
           <Property Name="Apertura" Type="bit" Nullable="false" />
           <Property Name="Anulada" Type="bit" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivoDetalle_Denominacion' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivoDetalle_Denominacion' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="UDP_Vent_SolicituEfectivoDetalle_Denominacion">
           <Key>
             <PropertyRef Name="denoId" />
@@ -1203,8 +1203,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivoDetalle_
           <Property Name="DenoDescripcion" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="valor" Type="decimal" Precision="10" Scale="2" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Clientes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Clientes' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="UDV_Vent_Busqueda_Clientes">
           <Key>
             <PropertyRef Name="clte_Id" />
@@ -1257,8 +1257,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Clientes' does 
           <Property Name="clte_UsuarioModifica" Type="int" />
           <Property Name="clte_FechaModifica" Type="datetime" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="UDV_Vent_Busqueda_Factura">
           <Key>
             <PropertyRef Name="fact_Id" />
@@ -1308,8 +1308,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
           <Property Name="fact_UsuarioModifica" Type="int" />
           <Property Name="fact_FechaModifica" Type="datetime" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_FacturaPuntoEmision' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_FacturaPuntoEmision' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="UDV_Vent_FacturaPuntoEmision1">
           <Key>
             <PropertyRef Name="cja_Id" />
@@ -1332,8 +1332,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_FacturaPuntoEmision' doe
           <Property Name="pemid_FechaLimite" Type="date" Nullable="false" />
           <Property Name="dfisc_Id" Type="char" MaxLength="2" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="V_Vent_FacturaPago">
           <Key>
             <PropertyRef Name="fact_Id" />
@@ -5139,6 +5139,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
         <Function Name="UDP_Vent_tbExoneracion_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="exo_Id" Type="int" Mode="In" />
           <Parameter Name="exo_ExoneracionActiva" Type="bit" Mode="In" />
+          <Parameter Name="exo_UsuarioModifa" Type="int" Mode="In" />
+          <Parameter Name="exo_FechaModifica" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Vent_tbExoneracion_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="exo_Documento" Type="nvarchar" Mode="In" />
@@ -6936,15 +6938,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="tpa_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="tpa_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Vent_tbExoneracion_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbExoneracion_Insert_Result)">
-            <Parameter Name="exo_Documento" Mode="In" Type="String" />
-            <Parameter Name="exo_ExoneracionActiva" Mode="In" Type="Boolean" />
-            <Parameter Name="exo_FechaInicialVigencia" Mode="In" Type="DateTime" />
-            <Parameter Name="exo_FechaIFinalVigencia" Mode="In" Type="DateTime" />
-            <Parameter Name="clte_Id" Mode="In" Type="Int32" />
-            <Parameter Name="exo_UsuarioCrea" Mode="In" Type="Int32" />
-            <Parameter Name="exo_FechaCrea" Mode="In" Type="DateTime" />
-          </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbDevolucion_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDevolucion_Insert_Result)">
             <Parameter Name="fact_Id" Mode="In" Type="Int64" />
             <Parameter Name="cja_Id" Mode="In" Type="Int16" />
@@ -6976,18 +6969,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           </FunctionImport>
           <FunctionImport Name="spGetTipoIdentificacion" ReturnType="Collection(ERP_ZORZALModel.spGetTipoIdentificacion_Result)">
           <Parameter Name="PersonaNatural" Mode="In" Type="Boolean" />
-          </FunctionImport>
-          <FunctionImport Name="UDP_Vent_tbExoneracion_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbExoneracion_Update_Result)">
-            <Parameter Name="exo_Id" Mode="In" Type="Int32" />
-            <Parameter Name="exo_Documento" Mode="In" Type="String" />
-            <Parameter Name="exo_ExoneracionActiva" Mode="In" Type="Boolean" />
-            <Parameter Name="exo_FechaInicialVigencia" Mode="In" Type="DateTime" />
-            <Parameter Name="exo_FechaIFinalVigencia" Mode="In" Type="DateTime" />
-            <Parameter Name="clte_Id" Mode="In" Type="Int32" />
-            <Parameter Name="exo_UsuarioCrea" Mode="In" Type="Int32" />
-            <Parameter Name="exo_FechaCrea" Mode="In" Type="DateTime" />
-            <Parameter Name="exo_UsuarioModifa" Mode="In" Type="Int32" />
-            <Parameter Name="exo_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="spGetDepartamento" ReturnType="Collection(ERP_ZORZALModel.spGetDepartamento_Result)">
           <Parameter Name="CodMunicipio" Mode="In" Type="String" />
@@ -7772,10 +7753,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="FechaElaboracion" Mode="In" Type="DateTime" />
             <Parameter Name="BodegaDestino" Mode="In" Type="Int32" />
             <Parameter Name="CantidadDisponible" Mode="In" Type="Decimal" />
-          </FunctionImport>
-          <FunctionImport Name="UDP_Vent_tbExoneracion_Estado" ReturnType="Collection(Int32)">
-            <Parameter Name="exo_Id" Mode="In" Type="Int32" />
-            <Parameter Name="exo_ExoneracionActiva" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbFactura_BuscarListaPrecio" ReturnType="Collection(Decimal)">
             <Parameter Name="IDCLIENTE" Mode="In" Type="Int32" />
@@ -9546,6 +9523,33 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="soled_CantidadEntregada" Mode="In" Type="Int16" />
             <Parameter Name="soled_MontoEntregado" Mode="In" Type="Decimal" />
           </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbExoneracion_Estado" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbExoneracion_Estado_Result1)">
+            <Parameter Name="exo_Id" Mode="In" Type="Int32" />
+            <Parameter Name="exo_ExoneracionActiva" Mode="In" Type="Boolean" />
+            <Parameter Name="exo_UsuarioModifa" Mode="In" Type="Int32" />
+            <Parameter Name="exo_FechaModifica" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbExoneracion_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbExoneracion_Insert_Result)">
+            <Parameter Name="exo_Documento" Mode="In" Type="String" />
+            <Parameter Name="exo_ExoneracionActiva" Mode="In" Type="Boolean" />
+            <Parameter Name="exo_FechaInicialVigencia" Mode="In" Type="DateTime" />
+            <Parameter Name="exo_FechaIFinalVigencia" Mode="In" Type="DateTime" />
+            <Parameter Name="clte_Id" Mode="In" Type="Int32" />
+            <Parameter Name="exo_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="exo_FechaCrea" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbExoneracion_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbExoneracion_Update_Result)">
+            <Parameter Name="exo_Id" Mode="In" Type="Int32" />
+            <Parameter Name="exo_Documento" Mode="In" Type="String" />
+            <Parameter Name="exo_ExoneracionActiva" Mode="In" Type="Boolean" />
+            <Parameter Name="exo_FechaInicialVigencia" Mode="In" Type="DateTime" />
+            <Parameter Name="exo_FechaIFinalVigencia" Mode="In" Type="DateTime" />
+            <Parameter Name="clte_Id" Mode="In" Type="Int32" />
+            <Parameter Name="exo_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="exo_FechaCrea" Mode="In" Type="DateTime" />
+            <Parameter Name="exo_UsuarioModifa" Mode="In" Type="Int32" />
+            <Parameter Name="exo_FechaModifica" Mode="In" Type="DateTime" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
           <Key>
@@ -9584,18 +9588,12 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
         <ComplexType Name="UDP_Vent_tbTipoPago_Insert_Result">
           <Property Type="Int16" Name="MensajeError" Nullable="false" />
         </ComplexType>
-        <ComplexType Name="UDP_Vent_tbExoneracion_Insert_Result">
-          <Property Type="Int32" Name="MensajeError" Nullable="false" />
-        </ComplexType>
         <ComplexType Name="UDP_Vent_tbTipoPago_Update_Result">
           <Property Type="Int16" Name="MensajeError" Nullable="false" />
         </ComplexType>
         <ComplexType Name="spGetTipoIdentificacion_Result">
           <Property Type="Byte" Name="tpi_Id" Nullable="false" />
           <Property Type="String" Name="tpi_Descripcion" Nullable="false" MaxLength="25" />
-        </ComplexType>
-        <ComplexType Name="UDP_Vent_tbExoneracion_Update_Result">
-          <Property Type="Int32" Name="MensajeError" Nullable="false" />
         </ComplexType>
         <ComplexType Name="spGetDepartamento_Result">
           <Property Type="String" Name="dep_Codigo" Nullable="false" MaxLength="2" />
@@ -14870,6 +14868,18 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
         <ComplexType Name="UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
+        <ComplexType Name="UDP_Vent_tbExoneracion_Estado_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbExoneracion_Estado_Result1">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbExoneracion_Insert_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbExoneracion_Update_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -14930,13 +14940,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbExoneracion_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbExoneracion_Insert" >
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbExoneracion_Insert_Result">
-                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbDevolucion_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbDevolucion_Insert" >
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbDevolucion_Insert_Result">
@@ -14963,13 +14966,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.spGetTipoIdentificacion_Result">
                 <ScalarProperty Name="tpi_Id" ColumnName="tpi_Id" />
                 <ScalarProperty Name="tpi_Descripcion" ColumnName="tpi_Descripcion" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbExoneracion_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbExoneracion_Update" >
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbExoneracion_Update_Result">
-                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -15288,7 +15284,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <FunctionImportMapping FunctionImportName="UDP_Inv_ConsultarExistenciaProductos" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_ConsultarExistenciaProductos" />
           <FunctionImportMapping FunctionImportName="UDP_Inv_tbEstadoMovimiento_Delete" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEstadoMovimiento_Delete" />
           <FunctionImportMapping FunctionImportName="UDP_Inv_ValidacionCantidadExistente" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_ValidacionCantidadExistente" />
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbExoneracion_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbExoneracion_Estado" />
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_BuscarListaPrecio" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_BuscarListaPrecio" />
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudEfectivoDetalle_Select" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudEfectivoDetalle_Select">
             <ResultMapping>
@@ -17583,6 +17578,27 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert" >
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbExoneracion_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbExoneracion_Estado" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbExoneracion_Estado_Result1">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbExoneracion_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbExoneracion_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbExoneracion_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbExoneracion_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbExoneracion_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbExoneracion_Update_Result">
                 <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
               </ComplexTypeMapping>
             </ResultMapping>
