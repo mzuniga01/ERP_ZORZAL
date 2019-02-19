@@ -45,7 +45,8 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.tsal_Descripcion, new { @class = "control-label col-md-2" })
                                     <div class="col-md-5">
-                                        @Html.EditorFor(model => model.tsal_Descripcion , new { @class = "text-danger", id = "TipoSalida_Descripcion" })
+                                        @*@Html.EditorFor(model => model.tsal_Descripcion , new { @class = "text-danger", id = "TipoSalida_Descripcion" })*@
+                                        <input type="text" id="miInput" name="tsal_Descripcion" onblur="limpia()" class="form-control " Value="" onKeyPress="return soloLetras(event)" autocomplete="off" />
                                         <span style="color:red">@Html.ValidationSummary(true)</span>
                                         <p style="color:red">@Html.ValidationMessageFor(model => model.tsal_Descripcion)</p>
 
@@ -69,6 +70,54 @@
             </div>
         </div>
     </div>
+<script>
+    //Validar Los campos Stringg
+    function soloLetras(e) {
+        tecla = (document.all) ? e.keyCode : e.which;
+        tecla = String.fromCharCode(tecla)
+        return /^[a-zA-ZáéíóúñÁÉÍÓÚÑ ]+$/.test(tecla);
+    }
+    ////Limpiar campo de campos copiados y no permitidos por el campo de nombre
+    function limpia() {
+        var val = document.getElementById("miInput").value;
+        var tam = val.length;
+        for (i = 0; i < tam; i++) {
+            if (!isNaN(val[i]))
+                document.getElementById("miInput").value = '';
+        }
+    }
+    ///validar not copy paste///
+    window.onload =
+        function () {
+        var myInput = document.getElementById('miInput');
+        myInput.onpaste = function (e) {
+            e.preventDefault();
+            //alert("esta acción está prohibida");
+        }
+
+        myInput.oncopy = function (e) {
+            e.preventDefault();
+            //alert("esta acción está prohibida");
+        }
+        }
+    //validar campo requerido//
+    $('#btnTipoSalida').click(function () {
+  
+        var Descripcion = $("#tsal_Descripcion").val();
+   
+        if (Descripcion == '') {
+            $('#Descripcion').text('');
+            $('#errorDescripcion').text('');
+            $('#validationDescripcion').after('<ul id="errorDescripcion" class="validation-summary-errors text-danger">Campo Descripción Requerido</ul>');
+        }
+
+        else {
+            window.location.href = "Index/TipoSalida";
+        }
+        console.log(data);})
+
+</script>
+
  <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/DataTable.js"></script>
 

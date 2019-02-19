@@ -112,6 +112,11 @@ namespace ERP_GMEDINA.Controllers
             {
                 if (Function.GetUserRols("UnidadMedida/Create"))
                 {
+                    if (db.tbUnidadMedida.Any(a => a.uni_Descripcion == tbUnidadMedida.uni_Descripcion))
+                    {
+                        ModelState.AddModelError("", "La Unidad de Medida ya Existe.");
+
+                    }
                     if (ModelState.IsValid)
                     {
                         try
@@ -122,36 +127,64 @@ namespace ERP_GMEDINA.Controllers
                             foreach (UDP_Gral_tbUnidadMedida_Insert_Result uni in List)
                                 MsjError = uni.MensajeError;
 
+                            //        if (MsjError.StartsWith("-1"))
+                            //        {
+                            //            ModelState.AddModelError("", "No se guardó el registro, Contacte al Administrador");
+                            //            return View(tbUnidadMedida);
+                            //        }
+                            //        else if (MsjError.StartsWith("0"))
+                            //        {
+                            //            ModelState.AddModelError("", "La Unidad de Medida ya Existe");
+                            //            return View(tbUnidadMedida);
+                            //        }
+
+                            //            return RedirectToAction("Index");
+
+                            //    }
+                            //    catch (Exception Ex)
+                            //    {
+                            //        Ex.Message.ToString();
+                            //        ModelState.AddModelError("", "No se guardó el registro, Contacte al Administrador");
+                            //        return View(tbUnidadMedida);
+                            //    }
+
+                            //}
+                            //else
+                            //{
+                            //    var errors = ModelState.Values.SelectMany(v => v.Errors);
+                            //    return RedirectToAction("Index");
+                            //}
+                            //return View(tbUnidadMedida);
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////                           
                             if (MsjError.StartsWith("-1"))
                             {
-                                ModelState.AddModelError("", "No se guardó el registro, Contacte al Administrador");
+                                ModelState.AddModelError("Error", "No se Guardo el registro , Contacte al Administrador");
                                 return View(tbUnidadMedida);
                             }
-                            else if (MsjError.StartsWith("0"))
+
+                            else
                             {
-                                ModelState.AddModelError("", "La Unidad de Medida ya Existe");
-                                return View(tbUnidadMedida);
-                            }
-                            
                                 return RedirectToAction("Index");
-                            
+                            }
+
                         }
                         catch (Exception Ex)
                         {
                             Ex.Message.ToString();
-                            ModelState.AddModelError("", "No se guardó el registro, Contacte al Administrador");
+                            ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
+
                             return View(tbUnidadMedida);
                         }
-                        
+
                     }
                     else
                     {
                         var errors = ModelState.Values.SelectMany(v => v.Errors);
-                        return RedirectToAction("Index");
                     }
                     return View(tbUnidadMedida);
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 }
-                
+
                 else
                 {
                     var errors = ModelState.Values.SelectMany(v => v.Errors);

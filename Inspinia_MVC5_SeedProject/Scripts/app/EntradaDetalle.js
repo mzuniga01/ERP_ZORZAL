@@ -1,4 +1,27 @@
 ﻿var contador = 0;
+//para q solo acepte letras(todo)
+function soloLetras(e) {
+    tecla = (document.all) ? e.keyCode : e.which;
+    tecla = String.fromCharCode(tecla)
+    return /^[a-zA-ZáéíóúñÁÉÍÓÚÑ ]+$/.test(tecla);
+}
+
+//para q prod_CodigoBarras acepte numeros(create y editar)
+$("#prod_CodigoBarras").on("keypress keyup blur", function (event) {
+    //this.value = this.value.replace(/[^0-9\.]/g,'');
+    $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
+    if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+        event.preventDefault();
+    }
+});
+//para q ent_FacturaCompra acepte numeros(create)
+$("#ent_FacturaCompra").on("keypress keyup blur", function (event) {
+    //this.value = this.value.replace(/[^0-9\.]/g,'');
+    $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
+    if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+        event.preventDefault();
+    }
+});
 //para q cantidad acepte numeros(editar detalle)
     $("#cantidadEdit").on("keypress keyup blur", function (event) {
         //this.value = this.value.replace(/[^0-9\.]/g,'');
@@ -35,10 +58,15 @@ $(document).ready(function () {
                     "sNext": "Siguiente",
                     "sPrevious": "Anterior",
                 },
+                "sProcessing": "Procesando...",
+                "sLengthMenu": "Mostrar _MENU_ registros",
+                "sZeroRecords": "No se encontraron resultados",
+                "sEmptyTable": "Ningún dato disponible en esta tabla",
                 "sEmptyTable": "No hay registros",
                 "sInfoEmpty": "Mostrando 0 de 0 Entradas",
                 "sSearch": "Buscar",
                 "sInfo": "Mostrando _START_ a _END_ Entradas",
+                "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
 
             }
         });
@@ -183,32 +211,30 @@ $('#AgregarDetalleEntrada_Craete').click(function () {
     var unimedida = $("#uni_IdtItem").val();
     var desprod = $("#prod_Descripcion").val();
 
-    if (entrada == '') {
-        //$('#Errorentrada').text('');
-        //$('#Errorcodigoproducto').text('');
-        //$('#Errorcantidad').text('');
-        console.log("entrada");
+        if (entrada == '') {
+            //$('#Errorentrada').text('');
+            //$('#Errorcodigoproducto').text('');
+            //$('#Errorcantidad').text('');
+            console.log("entrada");
         }
-        else
-        if (codigoproducto == '') {
+        else if (codigoproducto == '') {
             $('#Mensajecodigo').text('');
             $('#Mensajecantidad').text('');
             $('#validationcodigoproducto').after('<ul id="Mensajecodigo" class="validation-summary-errors text-danger">Campo codigo producto Requerido</ul>');
             console.log("codigoproducto");
-    }
-    else if (cantidad == '') {
-        $('#Mensajecodigo').text('');
-        $('#Mensajecantidad').text('');
-        $('#validationcantidad').after('<ul id="Mensajecantidad" class="validation-summary-errors text-danger">Campo cantidad Requerido</ul>');
-        console.log("cantidad");
-
-        //}
-        //else if (unimedida == '') {
-        //    $('#Errorentrada').text('');
-        //    $('#Errorcodigoproducto').text('');
-        //    $('#validationcodigoproducto').after('<ul id="validationunimedida" class="validation-summary-errors text-danger">Campo codigo producto Requerido</ul>');
-        //    console.log("codigoproducto");
-    }
+        }
+        else if (cantidad == '') {
+            $('#Mensajecodigo').text('');
+            $('#Mensajecantidad').text('');
+            $('#validationcantidad').after('<ul id="Mensajecantidad" class="validation-summary-errors text-danger">Campo cantidad Requerido</ul>');
+            console.log("cantidad");
+        }
+        else if (cantidad == 0) {
+            $('#Mensajecodigo').text('');
+            $('#Mensajecantidad').text('');
+            $('#validationcantidad').after('<ul id="Mensajecantidad" class="validation-summary-errors text-danger">La cantidad No debe ser 0.</ul>');
+            console.log("cantidad");
+        }
     else {
         contador = contador + 1;
         copiar = "<tr data-id=" + contador + ">";
@@ -278,8 +304,7 @@ $('#AgregarDetalleEntrada').click(function () {
         //$('#Errorcantidad').text('');
         console.log("entrada");
         }
-        else
-        if (codigoproducto == '') {
+        else if (codigoproducto == '') {
             $('#Mensajecodigo').text('');
             $('#Mensajecantidad').text('');
             $('#validationcodigoproducto').after('<ul id="Mensajecodigo" class="validation-summary-errors text-danger">Campo codigo producto Requerido</ul>');
@@ -290,13 +315,12 @@ $('#AgregarDetalleEntrada').click(function () {
         $('#Mensajecantidad').text('');
         $('#validationcantidad').after('<ul id="Mensajecantidad" class="validation-summary-errors text-danger">Campo cantidad Requerido</ul>');
         console.log("cantidad");
-
-        //}
-        //else if (unimedida == '') {
-        //    $('#Errorentrada').text('');
-        //    $('#Errorcodigoproducto').text('');
-        //    $('#validationcodigoproducto').after('<ul id="validationunimedida" class="validation-summary-errors text-danger">Campo codigo producto Requerido</ul>');
-        //    console.log("codigoproducto");
+    }
+    else if (cantidad == 0) {
+        $('#Mensajecodigo').text('');
+        $('#Mensajecantidad').text('');
+        $('#validationcantidad').after('<ul id="Mensajecantidad" class="validation-summary-errors text-danger">La cantidad No debe ser 0.</ul>');
+        console.log("cantidad");
     }
     else {
         contador = contador + 1;
@@ -372,7 +396,11 @@ $(document).on("click", "#Table_BuscarProducto tbody tr td button#seleccionar", 
 //actualizar Detalle Entrada
 
 function EditStudentRecord(entd_Id) {
-
+    //var cantidad = $("#entd_Cantidad").val();
+    //console.log(cantidad);
+    //if (cantidad == "") {
+    //    $("#Msjcantidad").text("No se puede Guardar UNA CANTIDAD EN 0.");
+    //} else {
 
     $("#MsjError").text("");
 
@@ -399,24 +427,33 @@ function EditStudentRecord(entd_Id) {
         console.log('textStatus', textStatus);
         console.log('errorThrown', errorThrown);
     })
+    
 }
 
 $("#Btnsubmit").click(function () {
     var data = $("#SubmitForm").serializeArray();
-   
-
-    $.ajax({
-        type: "Post",
-        url: "/Entrada/UpdateEntradaDetalle",
-        data: data,
-        success: function (result) {
-            if (result == '-1')
-                $("#MsjError").text("No se pudo actualizar el registro, contacte al administrador");
-            else
-                //$("#MyModal").modal("hide");
-            location.reload();
-        }
-    });
+    var canti = $("#cantidadEdit").val();
+    if (canti == 0) {
+        $("#Msjcantidad").text("No se puede Guardar UNA CANTIDAD EN 0.");
+    }
+    else if (canti == null) {
+        $("#Msjcantidad").text("No se puede Guardar UNA CANTIDAD EN 0.");
+    }
+    else {
+        $.ajax({
+            type: "Post",
+            url: "/Entrada/UpdateEntradaDetalle",
+            data: data,
+            success: function (result) {
+                if (result == '-1')
+                    $("#MsjError").text("No se pudo actualizar el registro, contacte al administrador");
+                else
+                    //$("#MyModal").modal("hide");
+                    location.reload();
+            }
+        });
+    }
+    
 })
 
 

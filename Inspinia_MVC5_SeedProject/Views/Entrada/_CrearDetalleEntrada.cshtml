@@ -15,7 +15,7 @@
                         <div class="form-group">
                         <label class = "control-label col-md-2">Código Barra<span style="color:red">*</span></label>
                             <div class="col-md-4">
-                                <input type="text" id="prod_CodigoBarras" placeholder="" class="form-control" />
+                                <input type="text" id="prod_CodigoBarras" placeholder="" class="form-control" name="prod_CodigoBarras" />
                                 <div id="validationcodigoproducto">
                                     @Html.ValidationMessageFor(model => model.prod_Codigo)
                                 </div>
@@ -51,10 +51,10 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            @*<label class="control-label col-md-2">Cantidad<span style="color:red">*</span></label>*@
-                            @Html.LabelFor(model => model.entd_Cantidad,"Cantidad", new { @class = "control-label col-md-2 , required" })
+                            <label class="control-label col-md-2">Cantidad<span style="color:red">*</span></label>
+                            @*@Html.LabelFor(model => model.entd_Cantidad,"Cantidad", new { @class = "control-label col-md-2 , required" })*@
                             <div class="col-md-4">
-                                <input type="number" id="entd_Cantidad" placeholder="" class="form-control" name="entd_Cantidad" />
+                                <input type="text" id="entd_Cantidad" placeholder="" class="form-control" name="entd_Cantidad" />
                                 @*@Html.EditorFor(model => model.entd_Cantidad)*@
                                 <div id="validationcantidad">
                                     @Html.ValidationMessageFor(model => model.entd_Cantidad)

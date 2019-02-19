@@ -4,7 +4,18 @@
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    .validation-error {
+        color: red;
+        font-size: small;
+    }
 
+    .required:after {
+        content: "*";
+        font-weight: bold;
+        color: red;
+    }
+</style>
 <link href="~/Content/css/Auditoria.css" rel="stylesheet" />
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
@@ -57,7 +68,7 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.uni_Descripcion, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                @Html.EditorFor(model => model.uni_Descripcion)
+                                @Html.EditorFor(model => model.uni_Descripcion, new { htmlAttributes = new { @autocomplete = "off", @onKeyPress = "return soloLetras(event)" } })
                                 <span style="color:red">@Html.ValidationSummary(true)</span>
                                 <p style="color:red">@Html.ValidationMessageFor(model => model.uni_Descripcion)</p>
                             </div>
@@ -66,7 +77,7 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.uni_Abreviatura, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                @Html.EditorFor(model => model.uni_Abreviatura)
+                                @Html.EditorFor(model => model.uni_Abreviatura, new { htmlAttributes = new { @autocomplete = "off", @onKeyPress = "return soloLetras(event)" } })
                                 <p style="color:red">@Html.ValidationMessageFor(model => model.uni_Abreviatura)</p>
                             </div>
                         </div>
@@ -111,7 +122,30 @@
     </div>
  </div>
 </div>
+<script>
+    //Validar Los campos Stringg
+    //Validar Los campos Stringg
+    function soloLetras(e) {
+        tecla = (document.all) ? e.keyCode : e.which;
+        tecla = String.fromCharCode(tecla)
+        return /^[a-zA-ZáéíóúñÁÉÍÓÚÑ ]+$/.test(tecla);
+    }
+    ///validar not copy paste///
+    window.onload =
+        function () {
+            var myInput = document.getElementById('uni_Descripcion');
+            var myInput = document.getElementById('uni_Abreviatura');
+            myInput.onpaste = function (e) {
+                e.preventDefault();
+                //alert("esta acción está prohibida");
+            }
 
+            myInput.oncopy = function (e) {
+                e.preventDefault();
+                //alert("esta acción está prohibida");
+            }
+        }
+</script>
 
 
 @section Scripts {

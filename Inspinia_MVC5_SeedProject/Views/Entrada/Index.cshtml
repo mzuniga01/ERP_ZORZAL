@@ -5,149 +5,144 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<div class="row wrapper border-bottom white-bg page-heading">
-    <div class="col-sm-4">
-        <h2>Entradas</h2>
-        @*<ol class="breadcrumb">
-                <li class="active">
-                    <strong>tbBanco</strong>
-                </li>
-            </ol>*@
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-sm-4">
+            <h2>Entradas</h2>
+            @*<ol class="breadcrumb">
+                    <li class="active">
+                        <strong>tbBanco</strong>
+                    </li>
+                </ol>*@
+        </div>
     </div>
-</div>
 
-<div class="wrapper wrapper-content animated fadeInRight">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <h5>Listado de Entradas</h5>
-                    <div class="ibox-tools">
-                        <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalImprimir" value="Generar Reportes" />
-                        @Html.ActionLink("Registrar Entrada", "Create", null, new { @class = "btn btn-primary" })
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Listado de Entradas</h5>
+                        <div class="ibox-tools">
+                            <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalImprimir" id="Imprimir" value="Generar Reportes" />
+                            @Html.ActionLink("Registrar Entrada", "Create", null, new { @class = "btn btn-primary" })
+                        </div>
                     </div>
-                </div>
-                <div class="ibox-content">
-                    <table class="table table-responsive" style="width:100%" id="tbEntrada">
-                        <thead>
-                            <tr>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.bod_Id)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.ent_NumeroFormato)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.ent_FechaElaboracion)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.tent_Id)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.estm_Id)
-                                </th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model)
-                            {
+                    <div class="ibox-content">
+                        <table class="table table-responsive" style="width:100%" id="tbEntrada">
+                            <thead>
                                 <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.tbBodega1.bod_Nombre)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.ent_NumeroFormato)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.ent_FechaElaboracion)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.tbTipoEntrada.tent_Descripcion)
-                                    </td>
-                                    <td>
-                                        @if (item.estm_Id == Helpers.EntradaEmitida)
-                                        {
-                                            <p>Emitida</p>
-                                        }
-                                        else if (item.estm_Id == Helpers.EntradaInactivada)
-                                        {
-                                            <p>Inactiva</p>
-                                        }
-                                        else if (item.estm_Id == Helpers.EntradaAplicada)
-                                        {
-                                            <p style="color:maroon">Aplicada</p>
-                                        }
-                                        else if (item.estm_Id == Helpers.EntradaEstadoAnulada)
-                                        {
-                                            <p style="color:maroon">Anulada</p>
-                                        }
-                                    </td>
-                                    <td>
-                                       
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.bod_Id)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.ent_NumeroFormato)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.ent_FechaElaboracion)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.tent_Id)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.estm_Id)
+                                    </th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.tbBodega1.bod_Nombre)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ent_NumeroFormato)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ent_FechaElaboracion)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.tbTipoEntrada.tent_Descripcion)
+                                        </td>
+                                        <td>
+                                            @if (item.estm_Id == Helpers.EntradaEmitida)
+                                            {
+                                                <p>Emitida</p>
+                                            }
+                                            else if (item.estm_Id == Helpers.EntradaInactivada)
+                                            {
+                                                <p>Inactiva</p>
+                                            }
+                                            else if (item.estm_Id == Helpers.EntradaAplicada)
+                                            {
+                                                <p style="color:green">Aplicada</p>
+                                            }
+                                            else if (item.estm_Id == Helpers.EntradaEstadoAnulada)
+                                            {
+                                                <p style="color:maroon">Anulada</p>
+                                            }
+                                        </td>
+                                        <td>
+
                                             @Html.ActionLink("Detalles", "Details", new { id = item.ent_Id }, new { @class = "btn btn-primary btn-xs" })
                                             @Html.ActionLink("Editar", "Edit", new { id = item.ent_Id }, new { @class = "btn btn-white btn-xs" })
-                                            
-                                           @*modal para imprimir*@
-                                        <div class="modal fade" id="ModalImprimir" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Reportes De Entrada</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <p style="font-size:15px;color:maroon";>¿El Reporte que se genera es general?</p>
-                                                        @*¿Desea Generar reporte Entrada?*@
-                                                        <select class="form-control" id="Entrada" name="Entrada">
-                                                            <option value="0">Seleccione Tipo Reporte</option>
-                                                            <option id="Compra" value="Compra">Compra</option>
-                                                            <option id="Devolucion" value="Devolucion">Devolucion</option>
-                                                            <option id="Traslado" value="Traslado">Traslado</option>
-                                                        </select>
-                                                        
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        @*<a href="@Url.Action("Create","Entrada")" class="btn btn-primary">Si</a>*@
-                                                        <div class="form-group">
-                                                            <div id="botoncompra" style="display:none">
-                                                                <a href="~/ReportViewer/ImprimirEntrada.aspx" class="btn btn-primary">Generar Reporte</a>
-                                                            </div>
-                                                            <div id="botondevolucion" style="display:none">
-                                                                <a href="~/ReportViewer/ImprimirEntradaDevolucion.aspx" class="btn btn-primary">Generar Reporte</a>
-                                                            </div>
-                                                            <div id="botontraslado" style="display:none">
-                                                                <a href="~/ReportViewer/ImprimirEntradaTraslado.aspx" class="btn btn-primary">Generar Reporte</a>
-                                                            </div>
 
-                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                            @*modal para imprimir*@
+                                            <div class="modal fade" id="ModalImprimir" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Reportes De Entrada</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
                                                         </div>
-                                                        
+                                                            <div class="modal-body">
+                                                                <p style="font-size:15px;color:maroon" ;>¿El Reporte que se genera es general?</p>
+                                                                <div class="form-group">
+                                                                    <div class="col-md-4">
+                                                                        <select class="form-control" id="Entrada" name="Entrada">
+                                                                            <option value="0">Seleccione Tipo Reporte</option>
+                                                                            <option id="1" value="1">Compra</option>
+                                                                            <option id="2" value="2">Devolucion</option>
+                                                                            <option id="3" value="3">Traslado</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <label class="control-label col-md-2">Rango Fecha<span style="color:red">*</span></label>
+                                                                    <div class="col-md-4">
+                                                                        <input type="date" name="rangofechaimprimir" id="rangofechaimprimir" class="form-control" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                @*<button type="button" id="GenerarImprimirEntrada" onclick="ClickDrop()" class="btn btn-primary" data-dismiss="modal">Generar Reporte</button>*@
+                                                                <button type="submit" id="GenerarImprimirEntrada" onclick="ClickDrop()" class="btn btn-primary" data-dismiss="modal">Generar Reporte</button>
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                                            </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
 
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+
+
 @**********************************************************************************MODALES*****************************************************************************@
 @**********************************************************************************MODALES*****************************************************************************@
 @**********************************************************************************MODALES*****************************************************************************@
 
-
-<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/Datepicker.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         $('#tbEntrada').DataTable(
@@ -159,42 +154,92 @@
                     "sNext": "Siguiente",
                     "sPrevious": "Anterior",
                 },
+                "sProcessing": "Procesando...",
+                "sLengthMenu": "Mostrar _MENU_ registros",
+                "sZeroRecords": "No se encontraron resultados",
+                "sEmptyTable": "Ningún dato disponible en esta tabla",
                 "sEmptyTable": "No hay registros",
+                "sInfoEmpty": "Mostrando 0 de 0 Entradas",
                 "sSearch": "Buscar",
-                "sLengthMenu": "Mostrar _MENU_ registros por página",
                 "sInfo": "Mostrando _START_ a _END_ Entradas",
+                "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
             }
         });
     });
+        $(function () {
+            $("#rangofecha").datepicker({
+                dateFormat: 'yy-mm-dd',
+                monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá']
+            }).datepicker();
+
+        });
+
 </script>
+
 <script>
-    $('#Entrada').click(function () {
+    function ClickDrop() {
         var valorid = document.getElementById('Entrada').value;
+        var rangofecha = document.getElementById('rangofechaimprimir').value;
+        $.ajax({
+            url: "/Entrada/ExportReportGeneral",
+            method: "POST",
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ TipoEntrada: valorid, FechaElaboracion: rangofecha }),
 
-        if (valorid ==0)
-        {
-            console.log('hola 0');
-            
-        } else if (valorid == 'Compra') {
-            document.getElementById("botoncompra").style.display = 'block';
-            document.getElementById("botontraslado").style.display = 'none';
-            document.getElementById("botondevolucion").style.display = 'none';
-            console.log('hola 1');
-        }
-        else if (valorid == "Devolucion") {
-            document.getElementById("botondevolucion").style.display = 'block';
-            document.getElementById("botoncompra").style.display = 'none';
-            document.getElementById("botontraslado").style.display = 'none';
-            console.log('hola 2');
-        }
-        else if (valorid == "Traslado") {
-            document.getElementById("botontraslado").style.display = 'block';
-            document.getElementById("botoncompra").style.display = 'none';
-            document.getElementById("botondevolucion").style.display = 'none';
-            console.log('hola 3');
-        }
+        })
+        .done(function (data) {
+            //if (valorid == 0) {
+            //    console.log('hola 0');
 
-    });
-        
+            //} else if (valorid == 'Compra') {
+            //    var url = "Reports/ImprimirEntradaCompra.rpt";
+            //    abrirEnPestana(url)
+            //    console.log('hola 1');
+            //    console.log(rangofecha);
+            //}
+            //else if (valorid == "Devolucion") {
+            //    var url = "Reports/ImprimirEntradaDevolucion.rpt";
+            //    abrirEnPestana(url)
+            //    console.log('hola 2');
+            //    console.log(rangofecha);
+            //}
+            //else if (valorid == "Traslado") {
+            //    var url = "Reports/ImprimirEntradaTraslado.rpt";
+            //    abrirEnPestana(url)
+            //    console.log('hola 3');
+            //    console.log(rangofecha);
+            //}
+        });
+        //if (valorid == 0) {
+        //    console.log('hola 0');
 
+        //} else if (valorid == 'Compra') {
+        //    var url = "Reports/ImprimirEntradaCompra.rpt";
+        //    abrirEnPestana(url)
+        //    console.log('hola 1');
+        //    console.log(rangofecha);
+        //}
+        //else if (valorid == "Devolucion") {
+        //    var url = "Reports/ImprimirEntradaDevolucion.rpt";
+        //    abrirEnPestana(url)
+        //    console.log('hola 2');
+        //    console.log(rangofecha);
+        //}
+        //else if (valorid == "Traslado") {
+        //    var url = "Reports/ImprimirEntradaTraslado.rpt";
+        //    abrirEnPestana(url)
+        //    console.log('hola 3');
+        //    console.log(rangofecha);
+        //}
+        function abrirEnPestana(url) {
+            var a = document.createElement("a");
+            a.target = "_blank";
+            a.href = url;
+            a.click();
+
+            location.reload();
+        }
+    };
 </script>

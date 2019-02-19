@@ -115,8 +115,8 @@
                                     @Html.LabelFor(model => model.ent_FacturaCompra, new { @class = "control-label col-md-2 , required" })
                                     @*<label class="control-label col-md-2">Factura Compra<span style="color:red">*</span></label>*@
                                     <div class="col-md-4">
-                                        @Html.EditorFor(model => model.ent_FacturaCompra)
-
+                                        @*@Html.EditorFor(model => model.ent_FacturaCompra)*@
+                                        <input type="text" id="ent_FacturaCompra" placeholder="" class="form-control" name="ent_FacturaCompra" />
                                         <div class="col-md-10">
                                             <p style="color:red">@Html.ValidationMessageFor(model => model.ent_FacturaCompra)</p>
                                         </div>

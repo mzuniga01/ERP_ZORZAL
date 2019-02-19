@@ -58,12 +58,13 @@
 
                                 @Html.DropDownList("pcat_Id", null, "Seleccione una Categoria", new { @class = "form-control" })
                                 <p style="color:red">@Html.ValidationMessageFor(subcat => test.pcat_Id)</p>
+
                             </div>
                             @Html.LabelFor(model => model.pscat_Descripcion, new { @class = "control-label col-md-2 , required" })                       
                             <div class="col-md-4">
 
                                 @Html.DropDownList("pscat_Id",null, "Seleccione una Subcategoria", new { @class = "single-line" })
-                                <p style="color:red">@Html.ValidationMessageFor(model => model.pscat_Id)</p>
+                                <p style="color:red">@Html.ValidationMessageFor(model => model.pscat_Id)</p>                  
                             </div>
 
                         </div>
@@ -79,7 +80,7 @@
                                 @Html.LabelFor(model => model.prod_CodigoBarras, new { @class = "control-label col-md-2" })
                                   
                                     <div class="col-md-4">
-                                        @Html.EditorFor(model => model.prod_CodigoBarras, new { @class = "form-control" })                                                                                
+                                        @Html.EditorFor(model => model.prod_CodigoBarras, new { htmlAttributes = new { @class = "form-control", @maxlength = "15" } })                                                                                
                                         <p style="color:red">@Html.ValidationMessageFor(model => model.prod_CodigoBarras)</p>                                                                                
                                     </div>
                         </div>
@@ -88,13 +89,13 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.prod_Descripcion, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.prod_Descripcion, new { @class = "form-control"})
+                                    @Html.EditorFor(model => model.prod_Descripcion, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @maxlength = "40" } })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.prod_Descripcion)</p>
                                 </div>
 
                                 @Html.LabelFor(model => model.prod_Marca, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.prod_Marca, new { @class = "form-control col-md" })
+                                    @Html.EditorFor(model => model.prod_Marca, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @maxlength = "30" } })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.prod_Marca)</p>
                                 </div>
                              
@@ -104,13 +105,13 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.prod_Modelo, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.prod_Modelo, new { @class = "form-control" })
+                                    @Html.EditorFor(model => model.prod_Modelo, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @maxlength = "30" } })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.prod_Modelo)</p>
                                 </div>
                               
                                 @Html.LabelFor(model => model.prod_Color, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.prod_Color)
+                                    @Html.EditorFor(model => model.prod_Color, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)",@maxlength = "20" } })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.prod_Color)</p>
                                 </div>                              
                             </div>
@@ -118,7 +119,7 @@
                             <div class="form-group">
                                @Html.LabelFor(model => model.prod_Talla, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                @Html.EditorFor(model => model.prod_Talla, new { @class = "form-control" })
+                                @Html.EditorFor(model => model.prod_Talla, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @maxlength = "15" } })
                                 <p style="color:red">@Html.ValidationMessageFor(model => model.prod_Talla)</p>
                             </div>
                                 @Html.LabelFor(model => model.uni_Descripcion, new { @class = "control-label col-md-2 , required" })
@@ -153,6 +154,7 @@
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 <script src="~/Scripts/app/SubCategoriaProducto.js"></script>
+@*<script src="~/Scripts/app/ValorCodigo.js"></script>*@
 
 
 <script>

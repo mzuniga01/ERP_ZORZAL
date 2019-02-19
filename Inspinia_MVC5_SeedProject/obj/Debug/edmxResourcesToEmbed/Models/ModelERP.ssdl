@@ -3978,6 +3978,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
   <Function Name="SDP_tbentradadetalle_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="entd_Id" Type="int" Mode="In" />
   </Function>
+  <Function Name="SDP_tbentradaImprimir_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="TipoEntrada" Type="int" Mode="In" />
+    <Parameter Name="FechaElaboracion" Type="datetime" Mode="In" />
+  </Function>
   <Function Name="SDP_tbInventarioFisicoDetalle_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="invfd_Id" Type="int" Mode="In" />
   </Function>
@@ -4187,7 +4191,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
   <Function Name="UDP_Inv_tbProducto_GetCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="codsubcategoria" Type="int" Mode="In" />
   </Function>
-  <Function Name="UDP_Inv_tbProducto_GetSubCategoia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+  <Function Name="UDP_Inv_tbProducto_GetSubCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="CodCategoria" Type="int" Mode="In" />
   </Function>
   <Function Name="UDP_Inv_tbProducto_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">

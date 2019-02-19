@@ -1809,15 +1809,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbProducto_GetCategoria_Result>("UDP_Inv_tbProducto_GetCategoria", codsubcategoriaParameter);
         }
     
-        public virtual ObjectResult<UDP_Inv_tbProducto_GetSubCategoia_Result> UDP_Inv_tbProducto_GetSubCategoia(Nullable<int> codCategoria)
-        {
-            var codCategoriaParameter = codCategoria.HasValue ?
-                new ObjectParameter("CodCategoria", codCategoria) :
-                new ObjectParameter("CodCategoria", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbProducto_GetSubCategoia_Result>("UDP_Inv_tbProducto_GetSubCategoia", codCategoriaParameter);
-        }
-    
         public virtual ObjectResult<UDP_Inv_tbProducto_ValorCodigo_Result> UDP_Inv_tbProducto_ValorCodigo(Nullable<int> pcat_Id, Nullable<int> pscat_Id, ObjectParameter prod_Codigo)
         {
             var pcat_IdParameter = pcat_Id.HasValue ?
@@ -2552,6 +2543,28 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("emp_FechaModifica", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbEmpleado_Update_RazonSalida_Result>("UDP_Gral_tbEmpleado_Update_RazonSalida", emp_IdParameter, emp_EstadoParameter, emp_RazonSalidaParameter, emp_UsuarioModificaParameter, emp_FechaModificaParameter);
+        }
+    
+        public virtual ObjectResult<SDP_tbentradaImprimir_Select_Result> SDP_tbentradaImprimir_Select(Nullable<int> tipoEntrada, Nullable<System.DateTime> fechaElaboracion)
+        {
+            var tipoEntradaParameter = tipoEntrada.HasValue ?
+                new ObjectParameter("TipoEntrada", tipoEntrada) :
+                new ObjectParameter("TipoEntrada", typeof(int));
+    
+            var fechaElaboracionParameter = fechaElaboracion.HasValue ?
+                new ObjectParameter("FechaElaboracion", fechaElaboracion) :
+                new ObjectParameter("FechaElaboracion", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_tbentradaImprimir_Select_Result>("SDP_tbentradaImprimir_Select", tipoEntradaParameter, fechaElaboracionParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Inv_tbProducto_GetSubCategoria_Result> UDP_Inv_tbProducto_GetSubCategoria(Nullable<int> codCategoria)
+        {
+            var codCategoriaParameter = codCategoria.HasValue ?
+                new ObjectParameter("CodCategoria", codCategoria) :
+                new ObjectParameter("CodCategoria", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbProducto_GetSubCategoria_Result>("UDP_Inv_tbProducto_GetSubCategoria", codCategoriaParameter);
         }
     }
 }

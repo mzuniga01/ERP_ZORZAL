@@ -325,6 +325,9 @@
     <Compile Include="Models\SDP_tbentradadetalle_Select_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SDP_tbentradaImprimir_Select_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SDP_tbInventarioFisicoDetalle_Select_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -778,7 +781,7 @@
     <Compile Include="Models\UDP_Inv_tbProducto_GetCategoria_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\UDP_Inv_tbProducto_GetSubCategoia_Result.cs">
+    <Compile Include="Models\UDP_Inv_tbProducto_GetSubCategoria_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Inv_tbProducto_Insert_Result.cs">
@@ -845,10 +848,28 @@
       <DependentUpon>ImprimirConciliacion.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\ImprimirEntradaCompra.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImprimirEntradaCompra.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\ImprimirEntradaDevolucion.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImprimirEntradaDevolucion.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\ImprimirEntradaPorId1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ImprimirEntradaPorId.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\ImprimirEntradaTraslado.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImprimirEntradaTraslado.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportViewer\ImprimirEntrada.aspx.cs">
@@ -1550,12 +1571,25 @@
       <LastGenOutput>ImprimirConciliacion2.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\ImprimirEntrada.rdlc" />
+    <EmbeddedResource Include="Reports\ImprimirEntradaCompra.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ImprimirEntradaCompra.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\ImprimirEntradaDevolucion.rdlc" />
+    <EmbeddedResource Include="Reports\ImprimirEntradaDevolucion.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ImprimirEntradaDevolucion.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\ImprimirEntradaPorId.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ImprimirEntradaPorId1.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\ImprimirEntradaTraslado.rdlc" />
+    <EmbeddedResource Include="Reports\ImprimirEntradaTraslado.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ImprimirEntradaTraslado.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ImprimirPorId.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

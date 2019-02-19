@@ -83,54 +83,94 @@ namespace ERP_ZORZAL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include= "tsal_Id,tsal_Descripcion,tsal_UsuarioCrea,tsal_FechaCrea,tsal_UsarioModifica,tsal_FechaCrea")] tbTipoSalida tbTipoSalida)
+        public ActionResult Create([Bind(Include = "tsal_Id,tsal_Descripcion,tsal_UsuarioCrea,tsal_FechaCrea,tsal_UsarioModifica,tsal_FechaCrea")] tbTipoSalida tbTipoSalida)
         {
-            if (ModelState.IsValid)
+            if (Function.GetUserLogin())
             {
-                //db.tbTipoSalida.Add(tbTipoSalida);
-                //db.SaveChanges();
-                try
+                if (Function.GetUserRols("TipoSalida/Create"))
                 {
-                    IEnumerable<object> List = null;
-                    var MsjError = "0";
-                    List = db.UDP_Inv_tbTipoSalida_Insert(tbTipoSalida.tsal_Descripcion, Function.GetUser(), DateTime.Now);
-                    foreach (UDP_Inv_tbTipoSalida_Insert_Result TipoSalida in List)
-                        MsjError = TipoSalida.MensajeError;
-
-                    if (MsjError.StartsWith("-1"))
+                    if (db.tbTipoSalida.Any(a => a.tsal_Descripcion == tbTipoSalida.tsal_Descripcion))
                     {
-                        ModelState.AddModelError("Error", "No se Guardo el registro , Contacte al Administrador");
-                        return View(tbTipoSalida);
+                        ModelState.AddModelError("", "La Descripcion ya Existe.");
+
                     }
-                    else if (MsjError.StartsWith("0"))
+                    if (ModelState.IsValid)
                     {
-                        ModelState.AddModelError("", "La Descripcion ya Existe");
-                        return View(tbTipoSalida);
+                        //db.tbTipoSalida.Add(tbTipoSalida);
+                        //db.SaveChanges();
+                        try
+                        {
+                            IEnumerable<object> List = null;
+                            var MsjError = "0";
+                            List = db.UDP_Inv_tbTipoSalida_Insert(tbTipoSalida.tsal_Descripcion, Function.GetUser(), DateTime.Now);
+                            foreach (UDP_Inv_tbTipoSalida_Insert_Result TipoSalida in List)
+                                MsjError = TipoSalida.MensajeError;
+
+                            //        if (MsjError.StartsWith("-1"))
+                            //        {
+                            //            ModelState.AddModelError("Error", "No se Guardo el registro , Contacte al Administrador");
+                            //            return View("Create");
+                            //        }
+                            //        else if (MsjError.StartsWith("0"))
+                            //        {
+                            //            ModelState.AddModelError("", "La Descripcion ya Existe");
+                            //            return View(tbTipoSalida);
+                            //        }
+                            //        return RedirectToAction("Index");
+                            //    }
+                            //    catch (Exception Ex)
+                            //    {
+                            //        Ex.Message.ToString();
+                            //        ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
+
+                            //        return View(tbTipoSalida);
+                            //    }
+
+                            //}
+                            //else
+                            //{
+                            //    var errors = ModelState.Values.SelectMany(v => v.Errors);
+                            //    return RedirectToAction("Index");
+                            //}
+
+ /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////                           
+                            if (MsjError.StartsWith("-1"))
+                            {
+                                ModelState.AddModelError("Error", "No se Guardo el registro , Contacte al Administrador");
+                                return View(tbTipoSalida);
+                            }
+                          
+                            else
+                            {
+                                return RedirectToAction("Index");
+                            }
+
+                        }
+                        catch (Exception Ex)
+                        {
+                            Ex.Message.ToString();
+                            ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
+
+                            return View(tbTipoSalida);
+                        }
+
                     }
-                    //else
-                    //{
-                    return RedirectToAction("Index");
-                    //}
-
-                }
-                catch (Exception Ex)
-                {
-                    Ex.Message.ToString();
-                    ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
-
+                    else
+                    {
+                        var errors = ModelState.Values.SelectMany(v => v.Errors);
+                    }
                     return View(tbTipoSalida);
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 }
-
+                else
+                {
+                    return RedirectToAction("SinAcceso", "Login");
+                }
             }
             else
-            {
-                var errors = ModelState.Values.SelectMany(v => v.Errors);
-                return RedirectToAction("Index");
-            }
-           
-
-           
+                return RedirectToAction("Index", "Login");
         }
+
 
         // GET: /TipoSalida/Edit/5
         public ActionResult Edit(byte? id)
@@ -267,5 +307,7 @@ namespace ERP_ZORZAL.Controllers
             var list = db.tbTipoSalida.Where(s => s.tsal_Descripcion == Descripcion).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
+     
+
     }
 }

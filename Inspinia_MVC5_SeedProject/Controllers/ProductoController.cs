@@ -122,7 +122,7 @@ namespace ERP_GMEDINA.Controllers
                 }
                 if (Function.GetUserRols("Producto/Create"))
                 {
-                    ViewBag.pcat_Id = new SelectList(db.tbProductoCategoria, "pcat_Id", "pcat_Nombre");
+                    ViewBag.pcat_Id = new SelectList(db.tbProductoCategoria.Where(x => x.pcat_EsActivo == 1), "pcat_Id", "pcat_Nombre");
                     ViewBag.prod_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
                     ViewBag.prod_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");                                      
                     ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion");
@@ -155,17 +155,17 @@ namespace ERP_GMEDINA.Controllers
         [HttpPost]
         public JsonResult GetSubCategoriaProducto(int CodCategoria)
         {
-            var list = db.UDP_Inv_tbProducto_GetSubCategoia(CodCategoria).ToList();
+            var list = db.UDP_Inv_tbProducto_GetSubCategoria(CodCategoria).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
-        [HttpPost]
-        public JsonResult GetScatList(int pcat_Id)
-        {
-            db.Configuration.ProxyCreationEnabled = false;
-            List<tbProductoSubcategoria> tbProductoSubcategoriaList = db.tbProductoSubcategoria.Where(x => x.pcat_Id == pcat_Id).ToList();
-            return Json(tbProductoSubcategoriaList, JsonRequestBehavior.AllowGet);
-        }
+        //[HttpPost]
+        //public JsonResult GetScatList(int pcat_Id)
+        //{
+        //    db.Configuration.ProxyCreationEnabled = false;
+        //    List<tbProductoSubcategoria> tbProductoSubcategoriaList = db.tbProductoSubcategoria.Where(x => x.pcat_Id == pcat_Id).ToList();
+        //    return Json(tbProductoSubcategoriaList, JsonRequestBehavior.AllowGet);
+        //}
 
 
 
@@ -271,7 +271,7 @@ namespace ERP_GMEDINA.Controllers
                   
                     ViewBag.prod_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbProducto.prod_UsuarioModifica);
                     ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion", tbProducto.uni_Id);                    
-                    ViewBag.pcat_Id = new SelectList(db.tbProductoCategoria, "pcat_Id", "pcat_Nombre", tbProducto.tbProductoSubcategoria.tbProductoCategoria.pcat_Id);
+                    ViewBag.pcat_Id = new SelectList(db.tbProductoCategoria.Where(x => x.pcat_EsActivo == 1), "pcat_Id", "pcat_Nombre", tbProducto.tbProductoSubcategoria.tbProductoCategoria.pcat_Id);
                     var Categoria = tbProducto.tbProductoSubcategoria.tbProductoCategoria.pcat_Id; ;
                     var Sucategoria = db.tbProductoSubcategoria.Select(s => new
                     {

@@ -9,7 +9,7 @@ namespace ERP_GMEDINA.Models
     [MetadataType(typeof(EntradaMetaData))]
     public partial class tbEntrada
     {
-
+        
     }
     public class EntradaMetaData
     {
@@ -22,7 +22,7 @@ namespace ERP_GMEDINA.Models
         public string ent_NumeroFormato { get; set; }
 
         [Display(Name = "Fecha Elaboracion")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         //[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public System.DateTime ent_FechaElaboracion { get; set; }
 
@@ -43,6 +43,7 @@ namespace ERP_GMEDINA.Models
         public string ent_FacturaCompra { get; set; }
 
         [Display(Name = "Fecha Compra")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public System.DateTime ent_FechaCompra { get; set; }
 

@@ -35,7 +35,8 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.uni_Descripcion, new { @class = "control-label col-md-2" })
                                 <div class="col-md-5">
-                                    @Html.EditorFor(model => model.uni_Descripcion)
+                                    @*@Html.EditorFor(model => model.uni_Descripcion)*@
+                                    <input type="text" id="miInput" name="uni_Descripcion" onblur="limpia()" class="form-control " Value="" onKeyPress="return soloLetras(event)" autocomplete="off" />
                                     <span style="color:red">@Html.ValidationSummary(true)</span>
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.uni_Descripcion)</p>
                                  </div>
@@ -44,7 +45,8 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.uni_Abreviatura, new { @class = "control-label col-md-2" })
                                 <div class="col-md-5">
-                                    @Html.EditorFor(model => model.uni_Abreviatura)
+                                    @*@Html.EditorFor(model => model.uni_Abreviatura)*@
+                                    <input type="text" id="miPut" name="uni_Abreviatura" onblur="limpia()" class="form-control " Value="" onKeyPress="return soloLetras(event)" autocomplete="off" />
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.uni_Abreviatura)</p>
                                  </div>
                             </div>
@@ -62,7 +64,54 @@
         </div>
     </div>
 </div>
+<script>
+    //Validar Los campos Stringg
+    function soloLetras(e) {
+        tecla = (document.all) ? e.keyCode : e.which;
+        tecla = String.fromCharCode(tecla)
+        return /^[a-zA-ZáéíóúñÁÉÍÓÚÑ ]+$/.test(tecla);
+    }
+    ////Limpiar campo de campos copiados y no permitidos por el campo de nombre
+    function limpia() {
+        var val = document.getElementById("miInput").value;
+        var tam = val.length;
+        for (i = 0; i < tam; i++) {
+            if (!isNaN(val[i]))
+                document.getElementById("miInput").value = '';
+        }
+    }
+    ///validar not copy paste uni_Descripcion///
+    window.onload =
+        function () {
+            var myInput = document.getElementById('miInput');
+            myInput.onpaste = function (e) {
+                e.preventDefault();
+                //alert("esta acción está prohibida");
+            }
 
+            myInput.oncopy = function (e) {
+                e.preventDefault();
+                //alert("esta acción está prohibida");
+            }
+        };
+
+    ///validar not copy paste uni_Abreviatura///
+    //window.onload =
+    //    function () {
+    //        var myPut = document.getElementById('miPut');
+    //        myPut.onpaste = function (e) {
+    //            e.preventDefault();
+    //            //alert("esta acción está prohibida");
+    //        }
+
+    //        myPut.oncopy = function (e) {
+    //            e.preventDefault();
+    //            //alert("esta acción está prohibida");
+    //        }
+    //    };
+
+
+</script>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

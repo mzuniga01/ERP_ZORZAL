@@ -21,8 +21,8 @@
                         <thead>
                             <tr>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.prod_Codigo)
-                                    @*Código Producto*@
+                                    @*@Html.DisplayNameFor(model => model.prod_Codigo)*@
+                                    Código Producto
                                 </th>
                                 <th>
                                     Nombre Producto
@@ -31,8 +31,8 @@
                                     Código Barra
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.entd_Cantidad)
-                                    @*Cantidad*@
+                                    @*@Html.DisplayNameFor(model => model.entd_Cantidad)*@
+                                    Cantidad
                                 </th>
                                 <th>
                                     Acciones
@@ -168,11 +168,12 @@
                                 </div>
                             </div>
                             <div class="form-group">
-
                                @Html.LabelFor(model => Detalles.entd_Cantidad, "Cantidad", new { @class = "control-label col-md-4" })
                             <div class="col-md-6">
-                                <input type="text" id="cantidadEdit" name="entd_Cantidad" class="form-control" />
-                                @Html.ValidationMessageFor(model => Detalles.entd_Cantidad)
+                                <input type="text" id="cantidadEdit" name="entd_Cantidad" class="form-control"  />
+                                <div id="validationcantidadeditar">
+                                    <label id="Msjcantidad" class="text-danger"></label>
+                                </div>
                             </div>
 
                             </div>
@@ -209,10 +210,15 @@
                     "sNext": "Siguiente",
                     "sPrevious": "Anterior",
                 },
+                "sProcessing": "Procesando...",
+                "sLengthMenu": "Mostrar _MENU_ registros",
+                "sZeroRecords": "No se encontraron resultados",
+                "sEmptyTable": "Ningún dato disponible en esta tabla",
                 "sEmptyTable": "No hay registros",
+                "sInfoEmpty": "Mostrando 0 de 0 Entradas",
                 "sSearch": "Buscar",
-                "sLengthMenu": "Mostrar _MENU_ registros por página",
                 "sInfo": "Mostrando _START_ a _END_ Entradas",
+                "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
             }
         });
     });

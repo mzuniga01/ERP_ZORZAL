@@ -1349,9 +1349,6 @@
     <FunctionImport Name="UDP_Inv_tbProducto_GetCategoria" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProducto_GetCategoria_Result)">
       <Parameter Name="codsubcategoria" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Inv_tbProducto_GetSubCategoia" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProducto_GetSubCategoia_Result)">
-      <Parameter Name="CodCategoria" Mode="In" Type="Int32" />
-    </FunctionImport>
     <FunctionImport Name="UDP_Inv_tbProducto_ValorCodigo" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProducto_ValorCodigo_Result)">
       <Parameter Name="pcat_Id" Mode="In" Type="Int32" />
       <Parameter Name="pscat_Id" Mode="In" Type="Int32" />
@@ -1655,6 +1652,13 @@
       <Parameter Name="emp_RazonSalida" Mode="In" Type="String" />
       <Parameter Name="emp_UsuarioModifica" Mode="In" Type="Int32" />
       <Parameter Name="emp_FechaModifica" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="SDP_tbentradaImprimir_Select" ReturnType="Collection(ERP_ZORZALModel.SDP_tbentradaImprimir_Select_Result)">
+      <Parameter Name="TipoEntrada" Mode="In" Type="Int32" />
+      <Parameter Name="FechaElaboracion" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Inv_tbProducto_GetSubCategoria" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProducto_GetSubCategoria_Result)">
+      <Parameter Name="CodCategoria" Mode="In" Type="Int32" />
     </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
@@ -5876,10 +5880,6 @@
     <Property Type="Int32" Name="pcat_Id" Nullable="false" />
     <Property Type="String" Name="pcat_Nombre" Nullable="false" MaxLength="50" />
   </ComplexType>
-  <ComplexType Name="UDP_Inv_tbProducto_GetSubCategoia_Result">
-    <Property Type="Int32" Name="pscat_Id" Nullable="false" />
-    <Property Type="String" Name="pscat_Descripcion" Nullable="true" MaxLength="150" />
-  </ComplexType>
   <ComplexType Name="UDP_Inv_tbProducto_ValorCodigo_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
@@ -6373,5 +6373,22 @@
   </ComplexType>
   <ComplexType Name="UDP_Gral_tbEmpleado_Update_RazonSalida_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="SDP_tbentradaImprimir_Select_Result">
+    <Property Type="String" Name="ent_NumeroFormato" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="bod_Nombre" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="ent_FechaElaboracion" Nullable="false" Precision="23" />
+    <Property Type="String" Name="prov_Nombre" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="estm_Descripcion" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="tent_Descripcion" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ent_FacturaCompra" Nullable="false" MaxLength="20" />
+    <Property Type="DateTime" Name="ent_FechaCompra" Nullable="false" Precision="23" />
+    <Property Type="String" Name="tdev_descripcion" Nullable="false" MaxLength="100" />
+    <Property Type="Int32" Name="fact_Id" Nullable="false" />
+    <Property Type="Int32" Name="ent_BodegaDestino" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UDP_Inv_tbProducto_GetSubCategoria_Result">
+    <Property Type="Int32" Name="pscat_Id" Nullable="false" />
+    <Property Type="String" Name="pscat_Descripcion" Nullable="true" MaxLength="150" />
   </ComplexType>
 </Schema>

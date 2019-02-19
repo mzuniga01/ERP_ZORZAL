@@ -64,6 +64,78 @@ namespace ERP_ZORZAL.Controllers
             return Json(list, JsonRequestBehavior.AllowGet);
         }
         //para imprimir entra por id
+       
+        [HttpPost]
+        public ActionResult ExportReportGeneral(string TipoEntrada, DateTime? FechaElaboracion)
+        {
+            ReportDocument rd = new ReportDocument();
+            if (TipoEntrada == "1")
+            {
+                var pathr = "ImprimirEntradaCompra.rpt";
+                rd.Load(Path.Combine(Server.MapPath("~/Reports"), pathr));
+            }
+            else if (TipoEntrada == "2")
+            {
+                var pathr = "ImprimirEntradaDevolucion.rpt";
+                rd.Load(Path.Combine(Server.MapPath("~/Reports"), pathr));
+            }
+            else if (TipoEntrada == "3")
+            {
+                var pathr = "ImprimirEntradaTraslado.rpt";
+                rd.Load(Path.Combine(Server.MapPath("~/Reports"), pathr));
+            }
+            //rd.Load(Path.Combine(Server.MapPath("~/Reports"), "ImprimirEntradaCompra.rpt"));
+            //var todo = (from r in db.tbEntrada
+            //            where r.tent_Id == 1
+            //            select new
+            //            {
+            //                ent_Id = r.ent_Id
+            //            }).ToList();
+
+            var tbEntrada2 = db.SDP_tbentradaImprimir_Select(Convert.ToInt32(TipoEntrada), FechaElaboracion).ToList();
+            rd.SetDataSource(tbEntrada2);
+            Response.Buffer = false;
+            Response.ClearContent();
+            Response.ClearHeaders();
+            //Response.Write("<script>");
+            //Response.Write("window.open('~/ImprimirEntradaCompra.rpt.pdf', '_newtab');");
+            //Response.Write("</script>");
+
+            try
+            {
+                Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+                stream.Seek(0, SeekOrigin.Begin);
+                string fileName = "Entrada_List.pdf";
+                Response.AppendHeader("Content-Disposition", "inline; filename=" + fileName);
+                return File(stream, "application/pdf");
+
+
+                //Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+                //stream.Seek(0, SeekOrigin.Begin);
+                //return File(stream, "application/pdf", "Entrada_List.pdf");
+
+
+                //{
+                //    PageMargins margins = rd.PrintOptions.PageMargins;/* TODO ERROR: Skipped SkippedTokensTrivia */
+                //    margins.bottomMargin = 200;/* TODO ERROR: Skipped SkippedTokensTrivia */
+                //    margins.leftMargin = 200;/* TODO ERROR: Skipped SkippedTokensTrivia */
+                //    margins.rightMargin = 50;/* TODO ERROR: Skipped SkippedTokensTrivia */
+                //    margins.topMargin = 100;/* TODO ERROR: Skipped SkippedTokensTrivia */
+                //    rd.PrintOptions.ApplyPageMargins(margins);/* TODO ERROR: Skipped SkippedTokensTrivia */
+                //}
+
+
+                //rd.PrintToPrinter(1, false, 0, 0);
+                //return View();
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                throw;
+            }
+        }
+
+        //para imprimir entra por id
         public ActionResult ExportReport(int? id)
         {
             ReportDocument rd = new ReportDocument();
@@ -107,7 +179,6 @@ namespace ERP_ZORZAL.Controllers
                             prod_Descripcion = prod.prod_Descripcion,
                             uni_Descripcion = unid.uni_Descripcion
                         }).ToList();
-
             rd.SetDataSource(todo);
             Response.Buffer = false;
             Response.ClearContent();
@@ -116,7 +187,10 @@ namespace ERP_ZORZAL.Controllers
             {
                 Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
                 stream.Seek(0, SeekOrigin.Begin);
-                return File(stream, "application/pdf", "Entrada_List.pdf");
+                string fileName = "Entrada_List.pdf";
+                Response.AppendHeader("Content-Disposition", "inline; filename=" + fileName);
+                //window.open('pagpdf.php', '_blank');
+                return File(stream, "application/pdf");
                 //{
                 //    PageMargins margins = rd.PrintOptions.PageMargins;/* TODO ERROR: Skipped SkippedTokensTrivia */
                 //    margins.bottomMargin = 200;/* TODO ERROR: Skipped SkippedTokensTrivia */
@@ -363,10 +437,11 @@ namespace ERP_ZORZAL.Controllers
             //}
             IEnumerable<object> ENTRADA = null;
             IEnumerable<object> DETALLE = null;
-            tbEntrada.estm_Id = 2;
+            tbEntrada.estm_Id = Helpers.EntradaEmitida;
             var idMaster = 0;
             var MensajeError = "";
             var MsjError = "";
+            
             var listaDetalle = (List<tbEntradaDetalle>)Session["CrearDetalleEntrada"];
 
             ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbEntrada.bod_Id);
@@ -452,12 +527,12 @@ namespace ERP_ZORZAL.Controllers
                             //return View(tbBodega);
                             MsjError = "-1";
                         }
-                        ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbEntrada.bod_Id);
-                        ViewBag.tdev_Id = new SelectList(db.tbTipoDevolucion, "tdev_Id", "tdev_Descripcion", tbEntrada.ent_RazonDevolucion);
-                        ViewBag.prov_Id = new SelectList(db.tbProveedor, "prov_Id", "prov_Nombre", tbEntrada.prov_Id);
-                        ViewBag.tent_Id = new SelectList(db.tbTipoEntrada, "tent_Id", "tent_Descripcion", tbEntrada.tent_Id);
-                        ViewBag.ent_BodegaDestino = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbEntrada.ent_BodegaDestino);
-                        ViewBag.Producto = db.SDP_Inv_tbProducto_Select().ToList();
+                        //ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbEntrada.bod_Id);
+                        //ViewBag.tdev_Id = new SelectList(db.tbTipoDevolucion, "tdev_Id", "tdev_Descripcion", tbEntrada.ent_RazonDevolucion);
+                        //ViewBag.prov_Id = new SelectList(db.tbProveedor, "prov_Id", "prov_Nombre", tbEntrada.prov_Id);
+                        //ViewBag.tent_Id = new SelectList(db.tbTipoEntrada, "tent_Id", "tent_Descripcion", tbEntrada.tent_Id);
+                        //ViewBag.ent_BodegaDestino = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbEntrada.ent_BodegaDestino);
+                        //ViewBag.Producto = db.SDP_Inv_tbProducto_Select().ToList();
                     }
                 }
                 
@@ -480,7 +555,6 @@ namespace ERP_ZORZAL.Controllers
             var MensajeError = "";
             var MsjError = "";
             var listaDetalle = (List<tbEntradaDetalle>)Session["CrearDetalleEntrada"];
-
             ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbEntrada.bod_Id);
             ViewBag.ent_RazonDevolucion = new SelectList(db.tbTipoDevolucion, "tdev_Id", "tdev_Descripcion", tbEntrada.ent_RazonDevolucion);
             ViewBag.prov_Id = new SelectList(db.tbProveedor, "prov_Id", "prov_Nombre", tbEntrada.prov_Id);
@@ -565,15 +639,15 @@ namespace ERP_ZORZAL.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbEntrada.bod_Id);
-            ViewBag.estm_Id = new SelectList(db.tbEstadoMovimiento, "estm_Id", "estm_Descripcion", tbEntrada.estm_Id);
-            ViewBag.prov_Id = new SelectList(db.tbProveedor, "prov_Id", "prov_Nombre", tbEntrada.prov_Id);
-            ViewBag.tent_Id = new SelectList(db.tbTipoEntrada, "tent_Id", "tent_Descripcion", tbEntrada.tent_Id);
-            ViewBag.ent_BodegaDestino = new SelectList(db.tbBodega, "bod_Id", "bod_ResponsableBodega", tbEntrada.ent_BodegaDestino);
-            ViewBag.prod_Codigo = new SelectList(db.tbProducto, "prod_Codigo", "prod_Descripcion");
-            ViewBag.ent_RazonDevolucion = new SelectList(db.tbTipoDevolucion, "tdev_Id", "tdev_Descripcion", tbEntrada.ent_RazonDevolucion);
-            ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion");
-            ViewBag.Producto = db.SDP_Inv_tbProducto_Select().ToList();
+            //ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbEntrada.bod_Id);
+            //ViewBag.estm_Id = new SelectList(db.tbEstadoMovimiento, "estm_Id", "estm_Descripcion", tbEntrada.estm_Id);
+            //ViewBag.prov_Id = new SelectList(db.tbProveedor, "prov_Id", "prov_Nombre", tbEntrada.prov_Id);
+            //ViewBag.tent_Id = new SelectList(db.tbTipoEntrada, "tent_Id", "tent_Descripcion", tbEntrada.tent_Id);
+            //ViewBag.ent_BodegaDestino = new SelectList(db.tbBodega, "bod_Id", "bod_ResponsableBodega", tbEntrada.ent_BodegaDestino);
+            //ViewBag.prod_Codigo = new SelectList(db.tbProducto, "prod_Codigo", "prod_Descripcion");
+            //ViewBag.ent_RazonDevolucion = new SelectList(db.tbTipoDevolucion, "tdev_Id", "tdev_Descripcion", tbEntrada.ent_RazonDevolucion);
+            //ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion");
+            //ViewBag.Producto = db.SDP_Inv_tbProducto_Select().ToList();
             return View(tbEntrada);
         }
 

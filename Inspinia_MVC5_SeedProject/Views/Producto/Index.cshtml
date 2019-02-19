@@ -105,13 +105,12 @@
 
                                                 if (count > 0)
                                                 {
-                                                    <button class = "btn btn-white btn-xs" title = "Producto en Bodega Detalle"  disabled >Editar</button>                                                   
+                                                    <button class = "btn btn-white btn-xs" title = "El Producto Ya esta en Uso"  disabled >Editar</button>                                                   
                                                 }
                                                 else
                                                 {
                                                     @Html.ActionLink("Editar", "Edit", new { id = item.prod_Codigo }, new { @class = "btn btn-white btn-xs" })
                                                 }
-
                                             }
                                         </td>
                                     </tr>
@@ -124,8 +123,6 @@
         </div>
     </div>
 </div>
-
-
 @section scripts
 {
 
@@ -134,7 +131,6 @@
         $('#DataTable').DataTable(
         {
             "searching": true,
-
             "oLanguage": {
                 "oPaginate": {
                     "sNext": "Siguiente",
@@ -142,6 +138,7 @@
                 },
                 "sSearch": "Buscar",
                 "sLengthMenu": "Mostrar _MENU_ registros por página",
+                "sZeroRecords": "No se encontraron resultados",
                 "sInfo": "Mostrando _START_ a _END_ Entradas",
             }
         });
