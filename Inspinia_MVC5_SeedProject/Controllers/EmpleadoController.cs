@@ -297,7 +297,9 @@ namespace ERP_GMEDINA.Controllers
 
                 list = db.UDP_Gral_tbEmpleado_Update_RazonSalida(tbEmpleado.emp_Id,
                     tbEmpleado.emp_Estado,
-                    tbEmpleado.emp_RazonSalida
+                    tbEmpleado.emp_RazonSalida,
+                    Function.GetUser(),
+                    DateTime.Now
                     );
                 foreach (UDP_Gral_tbEmpleado_Update_RazonSalida_Result empleado in list)
                     Msj = empleado.MensajeError;

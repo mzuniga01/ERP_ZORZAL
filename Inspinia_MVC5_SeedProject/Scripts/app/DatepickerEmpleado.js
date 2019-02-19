@@ -65,7 +65,7 @@ $('#emp_Correoelectronico').change(function (e) {
 
 });
 
-//Validar telefono 
+//Validar Identificacion y telefono
 $("#emp_Identificacion").on("keypress keyup blur", function (event) {
     //this.value = this.value.replace(/[^0-9\.]/g,'');
     $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
@@ -73,15 +73,14 @@ $("#emp_Identificacion").on("keypress keyup blur", function (event) {
         event.preventDefault();
     }
 });
-
-//Validar telefono 
 $("#emp_Telefono").on("keypress keyup blur", function (event) {
     //this.value = this.value.replace(/[^0-9\.]/g,'');
     $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
-    if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+    if ((event.which != 46 || $(this).val().indexOf('') != -1) && (event.which < 48 || event.which > 57)) {
         event.preventDefault();
     }
 });
+
 
 
 //Validacion de solo letras
@@ -125,12 +124,12 @@ function Direccion(e) {
 }
 
 ////Limpiar campos de datos copiados y no permitidos por el campo de nombre
-function limpia() {
-    var val = document.getElementById("miInput").value;
+function limpiaNombre() {
+    var val = document.getElementById("emp_Nombres").value;
     var tam = val.length;
     for (i = 0; i < tam; i++) {
         if (!isNaN(val[i]))
-            document.getElementById("miInput").value = '';        
+            document.getElementById("emp_Nombres").value = '';
     }  
     
 }
@@ -144,24 +143,24 @@ function limpiaApellido() {
     }
 
 }
-function limpiaIdentificacion() {
-    var val = document.getElementById("emp_Identificacion").value;
-    var tam = val.length;
-    for (i = 0; i < tam; i++) {
-        if (!isNaN(val[i]))
-            document.getElementById("emp_Identificacion").value = '';
-    }
+//function limpiaIdentificacion() {
+//    var val = document.getElementById("emp_Identificacion").value;
+//    var tam = val.length;
+//    for (i = 0; i < tam; i++) {
+//        if (!isNaN(val[i]))
+//            document.getElementById("emp_Identificacion").value = '';
+//    }
 
-}
-function limpiaTelefono() {
-    var val = document.getElementById("emp_telefono").value;
-    var tam = val.length;
-    for (i = 0; i < tam; i++) {
-        if (!isNaN(val[i]))
-            document.getElementById("emp_telefono").value = '';
-    }
+//}
+//function limpiaTelefono() {
+//    var val = document.getElementById("emp_telefono").value;
+//    var tam = val.length;
+//    for (i = 0; i < tam; i++) {
+//        if (!isNaN(val[i]))
+//            document.getElementById("emp_telefono").value = '';
+//    }
 
-}
+//}
 function limpiaTipoSangre() {
     var val = document.getElementById("emp_TipoSangre").value;
     var tam = val.length;
@@ -242,24 +241,59 @@ function EditStudentRecord(emp_Id) {
         console.log('errorThrown', errorThrown);
     })
 }
+$('#Btnsubmit').click(function () {
+    //var data = $("#SubmitForm").serializeArray();
+    var emp_Id = $('#emp_Id_Edit').val();
+    var emp_Estado = 0
+    var emp_RazonInactivacion = $('#emp_RazonInactivacion_Edit').val();
+    var emp_UsuarioModifica = $('#emp_UsuarioModifica_Edit').val();
+    var emp_FechaModifica = $('#emp_FechaModifica_Edit').val();
+    console.log(emp_Id)
+    console.log(emp_Estado)
+    console.log(emp_RazonInactivacion)
+    console.log(emp_UsuarioModifica)
+    if (emp_RazonInactivacion == "") {
+        valido = document.getElementById('Mensaje');
+        valido.innerText = "La razón inactivación es requerida";
+    }
+    else {
+        $.ajax({
+            url: "/Empleado/EstadoEmpleadoRazon",
+            method: "POST",
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ emp_Id: emp_Id, emp_Estado: emp_Estado, emp_RazonInactivacion: emp_RazonInactivacion, emp_UsuarioModifica: emp_UsuarioModifica, emp_FechaModifica: emp_FechaModifica }),
 
-$("#Btnsubmit").click(function () {
-    var data = $("#SubmitForm").serializeArray();
-   
-
-    $.ajax({
-        type: "Post",
-        url: "/Empleado/EstadoEmpleadoRazon",
-        data: data,
-        success: function (result) {
-            if (result == '-1')
-                $("#MsjError").text("No se pudo actualizar el registro, contacte al administrador");
-            else
-                $("#MyModal").modal("hide");
-            location.reload();
+        })
+    .done(function (data) {
+        if (data.length > 0) {
+            var url = $("#RedirectTo").val();
+            location.href = url;
+        }
+        else {
+            alert("Registro No Actualizado");
         }
     });
+    }
+
 })
+//$("#Btnsubmit").click(function () {
+//    var data = $("#SubmitForm").serializeArray();
+   
+
+//    $.ajax({
+//        type: "Post",
+//        url: "/Empleado/EstadoEmpleadoRazon",
+//        data: data,
+//        success: function (result) {
+//            if (result == '-1')
+//                $("#MsjError").text("No se pudo actualizar el registro, contacte al administrador");
+//            else
+//                $("#MyModal").modal("hide");
+//            location.reload();
+//        }
+//    });
+//})
 
 
 function RazonSalida(emp_Id) {
@@ -290,20 +324,56 @@ function RazonSalida(emp_Id) {
         console.log('errorThrown', errorThrown);
     })
 }
-$("#BtnRazon").click(function () {
-    var data = $("#DatosRazon").serializeArray();
 
+$('#BtnRazon').click(function () {
+    //var data = $("#SubmitForm").serializeArray();
+    var emp_Id = $('#emp_Id_Edit_Razon').val();
+    var emp_Estado = 0
+    var emp_RazonSalida = $('#emp_RazonSalida_Edit_Razon').val();
+    var emp_UsuarioModifica = $('#emp_UsuarioModifica_Edit').val();
+    console.log(emp_Id)
+    console.log(emp_Estado)
+    console.log(emp_RazonSalida)
+    if (emp_RazonSalida == "") {
+        valido = document.getElementById('ErrorMessage');
+        valido.innerText = "La razón Salida es requerida";
+    }
+    else {
+        $.ajax({
+            url: "/Empleado/RazonSalida",
+            method: "POST",
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ emp_Id: emp_Id, emp_Estado: emp_Estado, emp_RazonSalida: emp_RazonSalida }),
 
-    $.ajax({
-        type: "Post",
-        url: "/Empleado/RazonSalida",
-        data: data,
-        success: function (result) {
-            if (result == '-1')
-                $("#MsjError").text("No se pudo actualizar el registro, contacte al administrador");
-            else
-                $("#Editarmodales").modal("hide");
-            location.reload();
+        })
+    .done(function (data) {
+        if (data.length > 0) {
+            var url = $("#RedirectTo").val();
+            location.href = url;
+        }
+        else {
+            alert("Registro No Actualizado");
         }
     });
+    }
+
 })
+
+//$("#BtnRazon").click(function () {
+//    var data = $("#DatosRazon").serializeArray();
+
+
+//    $.ajax({
+//        type: "Post",
+//        url: "/Empleado/RazonSalida",
+//        data: data,
+//        success: function (result) {
+//            if (result == '-1')
+//                $("#MsjError").text("No se pudo actualizar el registro, contacte al administrador");
+//            else
+//                $("#Editarmodales").modal("hide");
+//            location.reload();
+//        }
+//    });
+//})

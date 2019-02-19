@@ -47,6 +47,7 @@
     <div class="form-horizontal">
 
         @Html.ValidationSummary(true)
+        @Html.Hidden("RedirectTo", Url.Action("Edit", "Empleado"))
         @Html.HiddenFor(model => model.emp_Id)
         @Html.HiddenFor(model => model.emp_UsuarioCrea)
         @Html.HiddenFor(model => model.emp_FechaCrea)
@@ -55,13 +56,13 @@
         <div class="form-group">
             @Html.LabelFor(model => model.emp_Nombres, new { @class = "control-label col-md-2 , required" })
             <div class="col-md-4">
-                @Html.TextBoxFor(model => model.emp_Nombres,new {@class="single-line", @onkeypress = "return soloLetras(event)", MaxLength =100 })
+                @Html.TextBoxFor(model => model.emp_Nombres,new {@class="single-line", @onkeypress = "return soloLetras(event)", onblur = "limpia()", id = "miInput", MaxLength =100 })
                 <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_Nombres)</p>
             </div>
             
                 @Html.LabelFor(model => model.emp_Apellidos, new { @class = "control-label col-md-2 , required" })
                 <div class="col-md-4">
-                    @Html.TextBoxFor(model => model.emp_Apellidos, new { @class = "single-line", @onkeypress = "return soloLetras(event)", MaxLength = 100 })
+                    @Html.TextBoxFor(model => model.emp_Apellidos, new { @class = "single-line", @onkeypress = "return soloLetras(event)", onblur = "limpiaApellido()", id = "emp_Apellido", MaxLength = 100 })
                     <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_Apellidos)</p>
                 </div>
         </div>
@@ -111,7 +112,7 @@
 
             @Html.LabelFor(model => model.emp_Telefono, new { @class = "control-label col-md-2 , required" })
             <div class="col-md-4">
-                @Html.TextBoxFor(model => model.emp_Telefono, new { @class = "single-line", MaxLength = 25 })
+                @Html.EditorFor(model => model.emp_Telefono, new { @class = "single-line",  MaxLength = 25 })
                 <p style="color:red">@Html.ValidationMessageFor(model => model.emp_Telefono)</p>
             </div>
 
@@ -126,13 +127,13 @@
             
             @Html.LabelFor(model => model.emp_TipoSangre, new { @class = "control-label col-md-2 , required" })
             <div class="col-md-4">
-                @Html.TextBoxFor(model => model.emp_TipoSangre, new { @class = "single-line", @onkeypress = "return TipoSangre(event)", MaxLength = 2 })
+                @Html.EditorFor(model => model.emp_TipoSangre, new { htmlAttributes = new { @onkeypress = "return TipoSangre(event)", onblur = "limpiaTipoSangre()", id = "emp_TipoSangre", MaxLength = 2 } })
                 <p style="color:red">@Html.ValidationMessageFor(model => model.emp_TipoSangre)</p>
             </div>
 
             @Html.LabelFor(model => model.emp_Puesto, new { @class = "control-label col-md-2 , required" })
             <div class="col-md-4">
-                @Html.TextBoxFor(model => model.emp_Puesto, new { @class = "single-line", @onkeypress = "return soloLetras(event)", MaxLength = 50 })
+                @Html.EditorFor(model => model.emp_Puesto, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", MaxLength = 50 } })
                 <p style="color:red">@Html.ValidationMessageFor(model => model.emp_Puesto)</p>
             </div>
                            
@@ -199,11 +200,13 @@
                             <div class="form-horizontal">
                                 <input type="hidden" id="emp_Id_Edit" name="emp_Id" />
                                 <input type="hidden" id="emp_Estado_Edit" name="emp_Estado" />
+                                <input type="hidden" id="emp_UsuarioModifica_Edit" name="emp_UsuarioModifica" />
+                                <input type="hidden" id="emp_FechaModifica_Edit" name="emp_FechaModifica" />
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.emp_RazonInactivacion, new { @class = "control-label col-md-2" })
                                     <div class="col-md-10">
                                         <input type="text" onkeypress="return soloLetras(event)" id="emp_RazonInactivacion_Edit" name="emp_RazonInactivacion" class="form-control  , required" />
-                                        <p style="color:red">@Html.ValidationMessageFor(model => model.emp_RazonInactivacion)</p>
+                                        <p style="color:red" id="Mensaje">@Html.ValidationMessageFor(model => model.emp_RazonInactivacion)</p>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -245,7 +248,7 @@
                                                     @Html.LabelFor(model => model.emp_RazonSalida, new { @class = "control-label col-md-2" })
                                                     <div class="col-md-10">
                                                         <input type="text" onkeypress="return soloLetras(event)" id="emp_RazonSalida_Edit_Razon" name="emp_RazonSalida" class="form-control" />
-                                                        <p style="color:red">@Html.ValidationMessageFor(model => model.emp_RazonSalida)</p>
+                                                        <p style="color:red" id="ErrorMessage">@Html.ValidationMessageFor(model => model.emp_RazonSalida)</p>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">

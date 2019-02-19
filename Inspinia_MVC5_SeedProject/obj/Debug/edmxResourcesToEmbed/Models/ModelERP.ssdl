@@ -3861,6 +3861,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
     <Parameter Name="emp_Id" Type="int" Mode="In" />
     <Parameter Name="emp_Estado" Type="bit" Mode="In" />
     <Parameter Name="emp_RazonSalida" Type="nchar" Mode="In" />
+    <Parameter Name="emp_UsuarioModifica" Type="int" Mode="In" />
+    <Parameter Name="emp_FechaModifica" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Gral_tbEmpleados_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
     <Parameter Name="emp_Nombres" Type="nvarchar" Mode="In" />

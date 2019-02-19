@@ -1800,23 +1800,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbEmpleado_Update_RazonInactivacion_Result>("UDP_Gral_tbEmpleado_Update_RazonInactivacion", emp_IdParameter, emp_EstadoParameter, emp_RazonInactivacionParameter, obj_UsuarioModificaParameter, obj_FechaModificaParameter);
         }
     
-        public virtual ObjectResult<UDP_Gral_tbEmpleado_Update_RazonSalida_Result> UDP_Gral_tbEmpleado_Update_RazonSalida(Nullable<int> emp_Id, Nullable<bool> emp_Estado, string emp_RazonSalida)
-        {
-            var emp_IdParameter = emp_Id.HasValue ?
-                new ObjectParameter("emp_Id", emp_Id) :
-                new ObjectParameter("emp_Id", typeof(int));
-    
-            var emp_EstadoParameter = emp_Estado.HasValue ?
-                new ObjectParameter("emp_Estado", emp_Estado) :
-                new ObjectParameter("emp_Estado", typeof(bool));
-    
-            var emp_RazonSalidaParameter = emp_RazonSalida != null ?
-                new ObjectParameter("emp_RazonSalida", emp_RazonSalida) :
-                new ObjectParameter("emp_RazonSalida", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbEmpleado_Update_RazonSalida_Result>("UDP_Gral_tbEmpleado_Update_RazonSalida", emp_IdParameter, emp_EstadoParameter, emp_RazonSalidaParameter);
-        }
-    
         public virtual ObjectResult<UDP_Inv_tbProducto_GetCategoria_Result> UDP_Inv_tbProducto_GetCategoria(Nullable<int> codsubcategoria)
         {
             var codsubcategoriaParameter = codsubcategoria.HasValue ?
@@ -2544,6 +2527,31 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("rol_FechaModifica", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Acce_tbRol_Update_Result>("UDP_Acce_tbRol_Update", rol_IdParameter, rol_DescripcionParameter, rol_UsuarioModificaParameter, rol_FechaModificaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Gral_tbEmpleado_Update_RazonSalida_Result> UDP_Gral_tbEmpleado_Update_RazonSalida(Nullable<int> emp_Id, Nullable<bool> emp_Estado, string emp_RazonSalida, Nullable<int> emp_UsuarioModifica, Nullable<System.DateTime> emp_FechaModifica)
+        {
+            var emp_IdParameter = emp_Id.HasValue ?
+                new ObjectParameter("emp_Id", emp_Id) :
+                new ObjectParameter("emp_Id", typeof(int));
+    
+            var emp_EstadoParameter = emp_Estado.HasValue ?
+                new ObjectParameter("emp_Estado", emp_Estado) :
+                new ObjectParameter("emp_Estado", typeof(bool));
+    
+            var emp_RazonSalidaParameter = emp_RazonSalida != null ?
+                new ObjectParameter("emp_RazonSalida", emp_RazonSalida) :
+                new ObjectParameter("emp_RazonSalida", typeof(string));
+    
+            var emp_UsuarioModificaParameter = emp_UsuarioModifica.HasValue ?
+                new ObjectParameter("emp_UsuarioModifica", emp_UsuarioModifica) :
+                new ObjectParameter("emp_UsuarioModifica", typeof(int));
+    
+            var emp_FechaModificaParameter = emp_FechaModifica.HasValue ?
+                new ObjectParameter("emp_FechaModifica", emp_FechaModifica) :
+                new ObjectParameter("emp_FechaModifica", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbEmpleado_Update_RazonSalida_Result>("UDP_Gral_tbEmpleado_Update_RazonSalida", emp_IdParameter, emp_EstadoParameter, emp_RazonSalidaParameter, emp_UsuarioModificaParameter, emp_FechaModificaParameter);
         }
     }
 }
