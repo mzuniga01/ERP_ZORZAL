@@ -449,7 +449,7 @@
     <Property Name="prov_NombreContacto" Type="varchar" MaxLength="75" Nullable="false" />
     <Property Name="prov_Direccion" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="prov_Email" Type="nvarchar" MaxLength="50" />
-    <Property Name="prov_Telefono" Type="nvarchar" MaxLength="10" />
+    <Property Name="prov_Telefono" Type="nvarchar" MaxLength="25" />
     <Property Name="prov_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="prov_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="prov_UsuarioModifica" Type="int" />
@@ -1013,8 +1013,8 @@
     <Property Name="tpa_UsuarioModifica" Type="int" />
     <Property Name="tpa_FechaModifica" Type="datetime" />
   </EntityType>
-  <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'ERP_GMEDINA.Acce.UDV_Acce_Usuario_Roles' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.Acce.UDV_Acce_Usuario_Roles' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="UDV_Acce_Usuario_Roles">
     <Key>
       <PropertyRef Name="rolu_Id" />
@@ -1051,8 +1051,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Acce.UDV_Acce_Usuario_Roles' no 
     <Property Name="obj_FechaModifica" Type="datetime" />
     <Property Name="obj_Estado" Type="bit" Nullable="false" />
   </EntityType>
-  <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'ERP_GMEDINA.Acce.V_Objetos' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.Acce.V_Objetos' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="V_Objetos">
     <Key>
       <PropertyRef Name="obj_Id" />
@@ -1066,8 +1066,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Acce.V_Objetos' no tiene definid
     <Property Name="obj_UsuarioModifica" Type="int" />
     <Property Name="obj_FechaModifica" Type="datetime" />
   </EntityType>
-  <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'ERP_GMEDINA.dbo.UDV_Vent_FacturaPuntoEmision' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.dbo.UDV_Vent_FacturaPuntoEmision' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="UDV_Vent_FacturaPuntoEmision">
     <Key>
       <PropertyRef Name="cja_Id" />
@@ -1088,8 +1088,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.dbo.UDV_Vent_FacturaPuntoEmision
     <Property Name="pemid_FechaLimite" Type="date" Nullable="false" />
     <Property Name="dfisc_Id" Type="char" MaxLength="2" Nullable="false" />
   </EntityType>
-  <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="UDV_Inv_Nombre_Empleado">
     <Key>
       <PropertyRef Name="emp_Id" />
@@ -1098,8 +1098,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' no
     <Property Name="emp_Id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Empleados" Type="nvarchar" MaxLength="201" Nullable="false" />
   </EntityType>
-  <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Productos' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Productos' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="UDV_Inv_Consultar_Existencias_Productos">
     <Key>
       <PropertyRef Name="prod_Descripcion" />
@@ -1120,8 +1120,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
     <Property Name="bodd_Id" Type="int" Nullable="false" />
     <Property Name="prod_Codigo" Type="nvarchar" MaxLength="15" Nullable="false" />
   </EntityType>
-  <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDP_Vent_listExoneracion_Select' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.Vent.UDP_Vent_listExoneracion_Select' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="UDP_Vent_listExoneracion_Select">
     <Key>
       <PropertyRef Name="Id" />
@@ -1138,8 +1138,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDP_Vent_listExoneracion_Se
     <Property Name="persona comercial" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="apellido" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
-  <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivo_Detalles_Select' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivo_Detalles_Select' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="UDP_Vent_SolicituEfectivo_Detalles_Select">
     <Key>
       <PropertyRef Name="soled_Id" />
@@ -1166,8 +1166,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivo_D
     <Property Name="soled_UsuarioModifica" Type="int" />
     <Property Name="soled_FechaModifica" Type="datetime" />
   </EntityType>
-  <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivo_Select' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivo_Select' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="UDP_Vent_SolicituEfectivo_Select">
     <Key>
       <PropertyRef Name="IdSolicitud" />
@@ -1186,8 +1186,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivo_S
     <Property Name="Apertura" Type="bit" Nullable="false" />
     <Property Name="Anulada" Type="bit" Nullable="false" />
   </EntityType>
-  <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivoDetalle_Denominacion' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivoDetalle_Denominacion' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="UDP_Vent_SolicituEfectivoDetalle_Denominacion">
     <Key>
       <PropertyRef Name="denoId" />
@@ -1198,8 +1198,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivoDe
     <Property Name="DenoDescripcion" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="valor" Type="decimal" Precision="10" Scale="2" Nullable="false" />
   </EntityType>
-  <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Clientes' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Clientes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="UDV_Vent_Busqueda_Clientes">
     <Key>
       <PropertyRef Name="clte_Id" />
@@ -1252,8 +1252,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Clientes'
     <Property Name="clte_UsuarioModifica" Type="int" />
     <Property Name="clte_FechaModifica" Type="datetime" />
   </EntityType>
-  <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="UDV_Vent_Busqueda_Factura">
     <Key>
       <PropertyRef Name="fact_Id" />
@@ -1303,8 +1303,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' 
     <Property Name="fact_UsuarioModifica" Type="int" />
     <Property Name="fact_FechaModifica" Type="datetime" />
   </EntityType>
-  <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_FacturaPuntoEmision' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_FacturaPuntoEmision' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="UDV_Vent_FacturaPuntoEmision1">
     <Key>
       <PropertyRef Name="cja_Id" />
@@ -1327,8 +1327,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_FacturaPuntoEmisio
     <Property Name="pemid_FechaLimite" Type="date" Nullable="false" />
     <Property Name="dfisc_Id" Type="char" MaxLength="2" Nullable="false" />
   </EntityType>
-  <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="V_Vent_FacturaPago">
     <Key>
       <PropertyRef Name="fact_Id" />
@@ -4100,10 +4100,14 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
   <Function Name="UDP_Acce_tbRol_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
     <Parameter Name="rol_Descripcion" Type="varchar" Mode="In" />
     <Parameter Name="rol_Estado" Type="bit" Mode="In" />
+    <Parameter Name="rol_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="rol_FechaCrea" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Acce_tbRol_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
     <Parameter Name="rol_Id" Type="int" Mode="In" />
     <Parameter Name="rol_Descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="rol_UsuarioModifica" Type="int" Mode="In" />
+    <Parameter Name="rol_FechaModifica" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Acce_tbRolEstado_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
     <Parameter Name="rol_Id" Type="int" Mode="In" />
@@ -5199,6 +5203,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
     <Parameter Name="fact_FechaNacimientoTE" Type="date" Mode="In" />
     <Parameter Name="fact_EsAnulada" Type="bit" Mode="In" />
     <Parameter Name="fact_RazonAnulado" Type="nvarchar" Mode="In" />
+    <Parameter Name="fact_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="fact_FechaCrea" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbFactura_ObtenerCai_CodigoFactura" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="IDSucursal" Type="int" Mode="In" />
@@ -5226,6 +5232,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
     <Parameter Name="fact_RazonAnulado" Type="nvarchar" Mode="In" />
     <Parameter Name="fact_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="fact_FechaCrea" Type="datetime" Mode="In" />
+    <Parameter Name="fact_UsuarioModifica" Type="int" Mode="In" />
+    <Parameter Name="fact_FechaModifica" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbFacturaDetalle_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="fact_Id" Type="bigint" Mode="In" />
@@ -5235,6 +5243,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
     <Parameter Name="factd_PorcentajeDescuento" Type="decimal" Mode="In" />
     <Parameter Name="factd_Impuesto" Type="decimal" Mode="In" />
     <Parameter Name="factd_PrecioUnitario" Type="decimal" Mode="In" />
+    <Parameter Name="factd_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="factd_FechaCrea" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbFacturaDetalle_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="factd_Id" Type="smallint" Mode="In" />
@@ -5247,6 +5257,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
     <Parameter Name="factd_FechaAutoriza" Type="datetime" Mode="In" />
     <Parameter Name="factd_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="factd_FechaCrea" Type="datetime" Mode="In" />
+    <Parameter Name="factd_UsuarioModifica" Type="int" Mode="In" />
+    <Parameter Name="factd_FechaModifica" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbFacturaHistorica_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="fact_Id" Type="bigint" Mode="In" />
@@ -5318,6 +5330,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
     <Parameter Name="mocja_UsuarioArquea" Type="int" Mode="In" />
     <Parameter Name="mocja_FechaAceptacion" Type="datetime" Mode="In" />
     <Parameter Name="mocja_UsuarioAceptacion" Type="int" Mode="In" />
+    <Parameter Name="mocja_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="mocja_FechaCrea" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbMovimientoCaja_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="cja_Id" Type="smallint" Mode="In" />
@@ -5683,6 +5697,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
     <Parameter Name="tpa_Cuenta" Type="bit" Mode="In" />
     <Parameter Name="tpa_FechaVencimiento" Type="bit" Mode="In" />
     <Parameter Name="tpa_Titular" Type="bit" Mode="In" />
+    <Parameter Name="tpa_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="tpa_FechaCrea" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbTipoPago_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="tpa_Id" Type="smallint" Mode="In" />
@@ -5693,6 +5709,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
     <Parameter Name="tpa_Titular" Type="bit" Mode="In" />
     <Parameter Name="tpa_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="tpa_FechaCrea" Type="datetime" Mode="In" />
+    <Parameter Name="tpa_UsuarioModifica" Type="int" Mode="In" />
+    <Parameter Name="tpa_FechaModifica" Type="datetime" Mode="In" />
   </Function>
   <EntityContainer Name="ERP_ZORZALModelStoreContainer">
     <EntitySet Name="tbAccesoRol" EntityType="Self.tbAccesoRol" Schema="Acce" store:Type="Tables" />

@@ -3,6 +3,8 @@ var MontoInicial = 0;
 var Monto = 0;
 ////Funcion denominacion
 $('#mnda_Id').on("change", function () {
+    valido = document.getElementById('MensajeError');
+    valido.innerText = "";
     total = 0;
     MontoInicial = 0;
     Monto = 0;
@@ -105,3 +107,18 @@ function validar(e) {
     tecla = String.fromCharCode(tecla)
     return /^[0-9\s]*$/i.test(tecla);
 }
+
+
+$("#guardar").click(function () {
+    moneda = $("#mnda_Id").val();
+    if (moneda == "") {
+        valido = document.getElementById('MensajeError');
+        valido.innerText = "El campo moneda es requerido";
+        return false
+    }
+})
+
+$('#cja_Id').on("change", function () {
+    valido = document.getElementById('MensajeErrorDenominacion');
+    valido.innerText = "";
+});
