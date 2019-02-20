@@ -1,0 +1,332 @@
+﻿@model ERP_GMEDINA.Models.tbDevolucion
+@using ERP_GMEDINA.Models
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Devolución de Producto</h2>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            @Html.ActionLink("Regresar", "Index")
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Editar Devolucion</h5>
+                </div>
+                <div class="ibox-content">
+                    @using (Html.BeginForm("Edit", "Devolucion", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.dev_Id)
+                            @*Auditoria*@
+                            @Html.HiddenFor(model => model.dev_UsuarioCrea)
+                            @Html.HiddenFor(model => model.dev_FechaCrea)
+                            @Html.HiddenFor(model => model.dev_UsuarioModifica)
+                            @Html.HiddenFor(model => model.dev_FechaModifica)
+                            @Html.HiddenFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.HiddenFor(model => model.tbUsuario.usu_Apellidos)
+                            @Html.HiddenFor(model => model.tbUsuario1.usu_Nombres)
+                            @Html.HiddenFor(model => model.tbUsuario1.usu_Apellidos)
+
+                            @if (ViewBag.NotaCredito == "1")
+                            {
+                                <div class="form-group">
+                                        <h3 class="control-label col-md-6" style="color:red">No se puede editar porque ya se registro una nota Crédito</h3>   
+                                </div>
+                                 <div class="form-group">
+                                    @Html.LabelFor(model => model.tbCaja.tbSucursal.suc_Descripcion, "Sucursal", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-3">
+                                        @Html.EditorFor(model => model.tbCaja.tbSucursal.suc_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                        @Html.ValidationMessageFor(model => model.tbCaja.tbSucursal.suc_Descripcion)
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.tbCaja.cja_Descripcion, "Caja", new { @class = "control-label col-md-2" })
+                                        <div class="col-md-3">
+                                            @Html.EditorFor(model => model.tbCaja.cja_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                            @Html.HiddenFor(model => model.cja_Id, new { htmlAttributes = new { @class = "form-control" } })
+
+                                            @Html.ValidationMessageFor(model => model.tbCaja.cja_Descripcion)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.tbFactura.fact_Codigo, "Codigo Factura", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-3">
+                                        <input id="Dev_Monto" type="hidden" />
+                                        @Html.HiddenFor(model => model.fact_Id, new { htmlAttributes = new { @class = "form-control" } })
+                                        <input type="hidden" class="form-control" id="dev_Estado" name="dev_Estado" value="false" />
+                                        @Html.EditorFor(model => model.tbFactura.fact_Codigo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                                        @Html.ValidationMessageFor(model => model.tbFactura.fact_Codigo)
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.dev_Fecha, new { @class = "control-label col-md-2" })
+                                        <div class="col-md-3">
+                                            @Html.EditorFor(model => model.dev_Fecha, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechafacturaEdit", @readonly = "readonly" } })
+                                            @Html.ValidationMessageFor(model => model.dev_Fecha)
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.tbFactura.clte_Identificacion, "Codigo Cliente", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-3">
+                                        @Html.EditorFor(model => model.tbFactura.clte_Identificacion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                        @Html.ValidationMessageFor(model => model.tbFactura.clte_Identificacion)
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.tbFactura.clte_Nombres, "Cliente", new { @class = "control-label col-md-2" })
+                                        <div class="col-md-3">
+                                            @{ if (Convert.ToInt32(Model.tbFactura.tbCliente.clte_EsPersonaNatural) == 1)
+                                                {
+                                                    @Html.EditorFor(model => model.tbFactura.clte_Nombres, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                    @Html.ValidationMessageFor(model => model.tbFactura.clte_Nombres)
+                                                }
+                                                else
+                                                {
+                                                    @Html.EditorFor(model => model.tbFactura.tbCliente.clte_NombreComercial, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                    @Html.ValidationMessageFor(model => model.tbFactura.tbCliente.clte_NombreComercial)
+                                                }
+                                            }
+
+                                        </div>
+                                    </div>
+                                </div>
+                                @*<div class="form-group">
+                                    @Html.LabelFor(model => model.tbFactura.clte_Identificacion, "Codigo Nota Credito", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-3">
+                                        <input type="text" id="CodigoNotaCredito" value="@ViewBag.NotaC" class="form-control " readonly />
+                                        @Html.ValidationMessageFor(model => model.tbFactura.clte_Identificacion)
+                                    </div>
+                                </div>*@
+
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="ibox float-e-margins">
+                                                @Html.Partial("_IndexDetalleDevolucion", Model.tbDevolucionDetalle)
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <div class="col-md-12 text-center">
+                                                    @*<input type="submit" value="Guardar" id="Guardar" class="btn btn-primary btn-ms" />*@
+                                                    @*@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white btn-sm" })*@
+                                                </div>
+                                            </div>
+                                            <br />
+                                        </div>
+                                    </div>
+                                                    //Aqui termina el if
+                                                }
+
+                                                else
+                                                {
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.tbCaja.tbSucursal.suc_Descripcion, "Sucursal", new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-3">
+                                                            @Html.EditorFor(model => model.tbCaja.tbSucursal.suc_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                            @Html.ValidationMessageFor(model => model.tbCaja.tbSucursal.suc_Descripcion)
+                                                        </div>
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.tbCaja.cja_Descripcion, "Caja", new { @class = "control-label col-md-2" })
+                                                            <div class="col-md-3">
+                                                                @Html.EditorFor(model => model.tbCaja.cja_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                                @Html.HiddenFor(model => model.cja_Id, new { htmlAttributes = new { @class = "form-control" } })
+
+                                                                @Html.ValidationMessageFor(model => model.tbCaja.cja_Descripcion)
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.tbFactura.fact_Codigo, "Codigo Factura", new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-3">
+                                                            <input id="Dev_Monto" type="hidden" />
+                                                            @Html.HiddenFor(model => model.fact_Id, new { htmlAttributes = new { @class = "form-control" } })
+                                                            <input type="hidden" class="form-control" id="dev_Estado" name="dev_Estado" value="false" />
+                                                            @Html.EditorFor(model => model.tbFactura.fact_Codigo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                                                            @Html.ValidationMessageFor(model => model.tbFactura.fact_Codigo)
+                                                        </div>
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.dev_Fecha, new { @class = "control-label col-md-2" })
+                                                            <div class="col-md-3">
+                                                                @Html.EditorFor(model => model.dev_Fecha, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechafacturaEdit" } })
+                                                                @Html.ValidationMessageFor(model => model.dev_Fecha)
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(model => model.tbFactura.clte_Identificacion, "Codigo Cliente", new { @class = "control-label col-md-2" })
+                                                        <div class="col-md-3">
+                                                            @Html.EditorFor(model => model.tbFactura.clte_Identificacion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                            @Html.ValidationMessageFor(model => model.tbFactura.clte_Identificacion)
+                                                        </div>
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(model => model.tbFactura.clte_Nombres, "Cliente", new { @class = "control-label col-md-2" })
+                                                            <div class="col-md-3">
+                                                                @{ if (Convert.ToInt32(Model.tbFactura.tbCliente.clte_EsPersonaNatural) == 1)
+                                                                    {
+                                                                        @Html.EditorFor(model => model.tbFactura.clte_Nombres, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                                        @Html.ValidationMessageFor(model => model.tbFactura.clte_Nombres)
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        @Html.EditorFor(model => model.tbFactura.tbCliente.clte_NombreComercial, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                                        @Html.ValidationMessageFor(model => model.tbFactura.tbCliente.clte_NombreComercial)
+                                                                    }
+                                                                }
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    @*@{ if (Model.dev_Estado == true)
+                                                            {
+                                                                <div class="form-group">
+                                                                    @Html.LabelFor(model => model.dev_Estado, "Estado", new { @class = "control-label col-md-2" })
+                                                                    <div class="col-md-3">
+                                                                        <input type="text" id="dev_Estado" name="dev_Estado" value="Anulado" class="form-control " readonly />
+                                                                        @Html.ValidationMessageFor(model => model.dev_Estado)
+                                                                    </div>
+                                                                </div>
+                                                            }
+
+                                                        }*@
+                                                                    <div class="row">
+                                                                        <div class="col-lg-12">
+                                                                            <div class="ibox float-e-margins">
+                                                                                @Html.Hidden("RedirectTo", Url.Action("CreateNotaCredito", "Devolucion", new { id = Model.dev_Id }))
+                                                                                @Html.Hidden("Redireccionar", Url.Action("Index", "Devolucion"))
+
+
+
+
+                                                                                @Html.Partial("_CreateDevolucionDetalle1", new tbDevolucionDetalle())
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-lg-12">
+                                                                            <div class="form-group">
+                                                                                <div class="col-md-12 text-center">
+                                                                                    <button id="bottonNotaCredito" name="bottonNotaCredito" type="button" class="btn btn-primary btn-ms" data-toggle="modal" data-target="#ModalNotaCredito">
+                                                                                        Emitir Nota de Credito
+                                                                                    </button>
+                                                                                    <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-danger" data-toggle="modal" data-target="#Anular">Anular</button>
+
+
+                                                                                    <input type="submit" value="Guardar" id="Guardar" class="btn btn-primary btn-ms" />
+                                                                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white btn-sm" })
+                                                                                </div>
+                                                                            </div>
+                                                                            <br />
+                                                                        </div>
+                                                                    </div>
+                                                                        //Aqui termina el else
+                                                                    }
+                        </div>
+
+                                                                    }
+                </div>
+                <div class="ibox-content">
+                    <table class="table table-striped">
+                        <tr>
+                            <th></th>
+                            <th>Usuario</th>
+                            <th>Fecha</th>
+                        </tr>
+                        <tr>
+                            <td>Creado</td>
+                            <td>
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                            </td>
+                            <td>@Html.DisplayFor(model => model.dev_FechaCrea)</td>
+                        </tr>
+                        <tr>
+                            <td>Modificado</td>
+                            <td>
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                            </td>
+                            <td>@Html.DisplayFor(model => model.dev_FechaModifica)</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @* -------------------Modal Anular----------------*@
+    <div class="modal fade" id="Anular" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Anular Devolución</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ¿Está seguro de Anular esta Devolución?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="AnularDevolucion();" data-dismiss="modal">Si</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*Modal de emision nota credito*@
+    <div class="modal fade" id="ModalNotaCredito" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="exampleModalLabel">Emitir Nota Credito</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h3>
+                        <strong>
+                            ¿Esta seguro que desea crear una Nota de Credito? <br /><br />
+                            Recuerde que no podra volver hacerlo, esta acción es irreversible.
+                        </strong>
+                    </h3>
+                </div>
+                <div class="modal-footer">
+                    @Html.ActionLink("Si", "EmitirNotaCredito", null, new { @class = "btn btn-primary btn-sm" })
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/app/Datepicker.js"></script>
+    <script src="~/Scripts/app/EmitirNotaCredito.js"></script>
+    <script src="~/Scripts/app/AnularDevolucion.js"></script>
+    <script src="~/Scripts/app/DevolucionCalculos.js"></script>
+    <script src="~/Scripts/app/FacturaDevolucion.js"></script>
+    <script src="~/Scripts/app/TableDetalleDevolucion.js"></script>
+    <script src="~/Scripts/app/DevolucionDetalle.js"></script>

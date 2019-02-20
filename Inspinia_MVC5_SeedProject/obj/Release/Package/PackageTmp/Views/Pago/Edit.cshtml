@@ -1,0 +1,370 @@
+﻿@model ERP_GMEDINA.Models.tbPago
+@using ERP_GMEDINA.Models
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Pago</h2>
+        
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+			@Html.ActionLink("Regresar", "Index", null, new { @class = ""})
+        </div>
+    </div>
+</div>
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Editar Pago</h5>
+                </div>
+                <div class="ibox-content">
+
+				@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.pago_Id)
+        @*Auditoria*@
+        @Html.HiddenFor(model => model.pago_UsuarioCrea)
+        @Html.HiddenFor(model => model.pago_FechaCrea)
+        @Html.HiddenFor(model => model.pago_UsuarioModifica)
+        @Html.HiddenFor(model => model.pago_FechaModifica)
+        @Html.HiddenFor(model => model.tbUsuario.usu_Nombres)
+        @Html.HiddenFor(model => model.tbUsuario.usu_Apellidos)
+        @Html.HiddenFor(model => model.tbUsuario1.usu_Nombres)
+        @Html.HiddenFor(model => model.tbUsuario1.usu_Apellidos)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.pago_Id, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.pago_Id, String.Empty, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.pago_Id)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.pago_FechaElaboracion, new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.pago_FechaElaboracion, "{0:yyyy-MM-dd H:mm:ss tt}", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @id = "FechaPago" } })
+                    @Html.ValidationMessageFor(model => model.pago_FechaElaboracion)
+                </div>
+            </div>
+        </div>
+
+        
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.tbFactura.clte_Identificacion, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.tbFactura.clte_Identificacion, String.Empty, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.tbFactura.clte_Identificacion)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.tbFactura.clte_Nombres, new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.tbFactura.clte_Nombres, String.Empty, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.tbFactura.clte_Nombres)
+                </div>
+            </div>
+        </div>
+       
+       
+        <div class="form-group">
+            @Html.LabelFor(model => model.tbFactura.fact_Codigo, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.tbFactura.fact_Codigo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.tbFactura.fact_Codigo, "", new { @style = "color:red" })
+            </div>
+            <div class="col-md-1">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregaFacturaPago"><span class="glyphicon glyphicon-search"></span></button>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        <div class="form-group">
+            @*@Html.Label("Monto Factura", new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                @Html.Editor("Monto", String.Empty, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @id = "MontoFactura", @value = "number", @onkeyup = "format(this)", @autocomplete = "off" } })
+            </div>
+            @Html.Label("Total Pagado", new { @class = "control-label col-md-1 " })
+            <div class="col-md-2">
+                @Html.Editor("Total", String.Empty, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @id = "TotalPagado", @value = "number", @onkeyup = "format(this)", @autocomplete = "off" } })
+            </div>*@
+           
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.pago_TotalPago, "Monto Pago",new { @class = "control-label col-md-3" })
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.pago_TotalPago, String.Empty, new { htmlAttributes = new { @class = "form-control",  @onkeyup = "format(this)", @autocomplete = "off" } })
+                @Html.ValidationMessageFor(model => model.pago_TotalPago, "", new { @style = "color:red" })
+            </div>
+            @Html.LabelFor(model => model.pago_SaldoAnterior, "Saldo Actual", new { @class = "control-label col-md-3" })
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.pago_SaldoAnterior, String.Empty, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @value = "number", @onkeyup = "format(this)", @autocomplete = "off" } })
+                @Html.ValidationMessageFor(model => model.pago_SaldoAnterior, "", new { @style = "color:red" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-4">
+                @Html.HiddenFor(model => model.fact_Id)
+                @Html.ValidationMessageFor(model => model.fact_Id)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.tpa_Id, "Tipo de Pago", new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+               @Html.DropDownList("tpa_Id", null, "Seleccionar Tipo de Pago", new { @class = "form-control",  @id = "TipoPago" })
+                @*@Html.DropDownList("tpa_id", new SelectList(Model.TPList, "ID_TP", "DESCRIPCION_TP"), "Seleccionar Tipo Pago", new { @class = "form-control", @id = "TipoPago" })*@
+                @Html.ValidationMessageFor(model => model.tpa_Id, "", new { @style = "color:red" })
+            </div>
+        </div>
+
+
+        <div id="Efectivo" name="Efectivo">
+            <div class="form-group">
+                @Html.Label("Total Efectivo", new { @class = "control-label col-md-3" })
+                <div class="col-md-2">
+                    @Html.Editor("Efectivo", String.Empty, new { htmlAttributes = new { @class = "form-control", @id = "efectivo", @value = "number", @onkeyup = "format(this)", @autocomplete = "off" } })
+                    @Html.ValidationMessage("", new { @style = "color:red" })
+                </div>
+                @Html.LabelFor(model => model.pago_TotalCambio, "Cambio Efectivo", new { @class = "control-label col-md-3" })
+                <div class="col-md-2">
+                    @Html.EditorFor(model => model.pago_TotalCambio, String.Empty, new { htmlAttributes = new { @class = "form-control", @id = "cambio", @value = "number", @onkeyup = "format(this)", @autocomplete = "off", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.pago_TotalCambio, "", new { @style = "color:red" })
+                </div>
+            </div>
+
+        </div>
+
+        <div id="TCD" name="TCD">
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.pago_Titular, new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.pago_Titular)
+                    @Html.ValidationMessageFor(model => model.pago_Titular)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.pago_Emisor, new { @class = "control-label col-md-3" })
+                <div class="col-md-2">
+                    @Html.EditorFor(model => model.pago_Emisor)
+                    @Html.ValidationMessageFor(model => model.pago_Emisor, "", new { @style = "color:red" })
+                </div>
+                @Html.LabelFor(model => model.pago_FechaVencimiento, new { @class = "control-label col-md-3" })
+                <div class="col-md-2">
+                    @Html.EditorFor(model => model.pago_FechaVencimiento)
+                    @Html.ValidationMessageFor(model => model.pago_FechaVencimiento)
+                </div>
+            </div>
+
+
+
+        </div>
+        <div id="Cheque" name="Cheque">
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.pago_Titular, new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.pago_Titular)
+                    @Html.ValidationMessageFor(model => model.pago_Titular)
+                </div>
+                @Html.LabelFor(model => model.pago_Emisor, new { @class = "control-label col-md-3" })
+                <div class="col-md-2">
+                    @Html.EditorFor(model => model.pago_Emisor)
+                    @Html.ValidationMessageFor(model => model.pago_Emisor, "", new { @style = "color:red" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.bcta_Id, "Cuenta Banco", new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownList("bcta_Id", null, "Seleccionar Cuenta Banco", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.bcta_Id)
+                </div>
+            </div>
+
+        </div>
+      
+
+      
+
+      
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
+
+                <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal">
+                    Anular
+                </button>
+            </div>
+      
+        </div>
+    </div>
+}
+
+
+                </div>
+            </div>
+            <div class="ibox-content">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Acción</th>
+                        <th>Usuario</th>
+                        <th>Fecha</th>
+                    </tr>
+                    <tr>
+                        <td>Creado</td>
+                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_Nombres)</td>
+                        <td>@Html.DisplayFor(model => model.pago_FechaCrea)</td>
+                    </tr>
+                    <tr>
+                        <td>Modificado</td>
+                        <td>@Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)</td>
+                        <td>@Html.DisplayFor(model => model.pago_FechaModifica)</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+ </div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Anular Pago</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>¿Está seguro de anular este pago?</p>
+                <textarea rows="4" cols="50" placeholder="Ingrese la razon de Anular" id="razonAnular" name="razonAnular"></textarea>
+                <p id="Mensaje" style="color:red"></p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary btn-sm" type="button" id="Anular">Guardar</button>
+                <button type="button" class="btn btn-white btn-sm" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/TipoPago.js"></script>
+
+<script src="~/Scripts/app/PagoClienteFacturas.js"></script>
+<script>
+    $(function () {
+
+        $("#pago_TotalPago").change(function (e) {
+            var totalpagar = $("#pago_TotalPago").val();
+
+            var saldoActual = $("#pago_SaldoAnterior").val();
+
+
+            result = 0.00;
+
+            if (totalpagar == '' || totalpagar < 0 || totalpagar >= saldoActual) {
+
+
+                alert('Monto Incorrecto');
+                $("#pago_SaldoAnterior").val(parseFloat(saldoActual) + parseFloat(totalpagar));
+            }
+
+
+
+            else {
+                var saldoActualizado = (parseFloat(saldoActual) - parseFloat(totalpagar));
+                var pagoActual = parseFloat(totalpagar);
+                $("#pago_SaldoAnterior").val(saldoActualizado);
+                $("#TotalPagado").val(pagoActual);
+
+
+
+            }
+
+        });
+    });
+
+    $(function () {
+
+        $("#efectivo").change(function (e) {
+            var efectivo = $("#efectivo").val();
+            var cambio = $("#cambio").val();
+            var totalpagar = $("#pago_TotalPago").val();
+
+            var cambioefectivo = (parseFloat(efectivo) - parseFloat(totalpagar));
+            result = 0;
+
+            if (totalpagar == '' || totalpagar == 0) {
+
+                $("#efectivo").val(result);
+                $("#cambio").val(result);
+
+            }
+            else {
+                $("#efectivo").val(efectivo);
+                $("#cambio").val(cambioefectivo);
+
+            }
+
+        });
+    });
+
+</script>
+<script>
+$('#Anular').click(function () {
+    var pago_Id = $('#pago_Id').val();
+    var PagoAnulado = 1
+    var RazonAnulado = $('#razonAnular').val();
+    if (RazonAnulado == "") {
+        valido = document.getElementById('Mensaje');
+        valido.innerText = "La razón Anular es requerida";
+    }else
+    {
+        $.ajax({
+            url: "/Factura/AnularPago",
+            method: "POST",
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ pago_Id: pago_Id, PagoAnulado: PagoAnulado, RazonAnulado: RazonAnulado }),
+
+        })
+            .done(function (data) {
+                if (data.length > 0) {
+                    var url = $("#RedirectTo").val();
+                    location.href = url;
+                }
+                else {
+                    alert("Registro No Actualizado");
+                }
+            });
+    }
+
+})
+</script>

@@ -1,0 +1,89 @@
+﻿@model ERP_GMEDINA.Models.tbDenominacionArqueo
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Denominacion Arqueo</h2>
+
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+           @Html.ActionLink("Regresar","Index")
+        </div>
+    </div>
+</div>
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Registrar Denominacion Arqueo</h5>
+                </div>
+                <div class="ibox-content">
+
+				@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true)
+
+        @Html.HiddenFor(model => model.arqde_FechaCrea)
+        @Html.HiddenFor(model => model.arqde_UsuarioCrea)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.mocja_Id, "Movimiento Caja", new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DropDownList("mocja_Id",(IEnumerable<SelectListItem>)ViewBag.mocja_Id, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.mocja_Id)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.deno_Id, "Denominacion", new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DropDownList("deno_Id", (IEnumerable<SelectListItem>)ViewBag.deno_Id, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.deno_Id)
+            </div>
+        </div>
+      
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.arqde_CantidadDenominacion, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.arqde_CantidadDenominacion)
+                @Html.ValidationMessageFor(model => model.arqde_CantidadDenominacion)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.arqde_MontoDenominacion, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.arqde_MontoDenominacion)
+                @Html.ValidationMessageFor(model => model.arqde_MontoDenominacion)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-5 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
+            </div>
+        </div>
+    </div>
+}
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+

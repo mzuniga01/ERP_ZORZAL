@@ -1,0 +1,264 @@
+﻿@model ERP_GMEDINA.Models.tbListadoPrecioDetalle
+@using ERP_GMEDINA.Models
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+
+                <div class="ibox-content">
+
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true)
+                        <input name="ped_Id" id="ped_Id" type="hidden" value="@ViewBag.ped_idd">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.tbProducto.prod_CodigoBarras, "Código Barra", new { @class = "control-label col-md-3" })
+                                <div class="col-md-6">
+                                    @Html.EditorFor(model => model.tbProducto.prod_CodigoBarras, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.tbProducto.prod_CodigoBarras)
+                                </div>
+                            
+
+
+
+                                <div class="col-md-1">
+                                    <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#ModalAgregarProducto"><span class="glyphicon glyphicon-search"></span></button>
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group">
+
+
+                                @Html.LabelFor(model => model.prod_Codigo, new { @class = "control-label col-md-3" })
+
+                                <div class="col-md-6">
+                                    @Html.EditorFor(model => model.prod_Codigo, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly" } })
+                                    <p style="color:red">
+                                        @Html.ValidationMessageFor(model => model.prod_Codigo)
+                                </div></div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.tbProducto.prod_Descripcion, new { @class = "control-label col-md-3" })
+                                    <div class="col-md-6">
+                                        @Html.EditorFor(model => model.tbProducto.prod_Descripcion, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly" } })
+                                        @Html.ValidationMessageFor(model => model.tbProducto.prod_Descripcion)
+                                    </div>
+                                </div>
+
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.lispd_PrecioMayorista, new { @class = "control-label col-md-3" })
+                                <div class="col-md-6">
+                                    @Html.EditorFor(model => model.lispd_PrecioMayorista, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control" } })
+                                    @*@Html.ValidationMessageFor(model => model.lispd_PrecioMayorista)*@
+                                    <div id="validacionPrecioMayoristaCreate">
+                                        <p style="color:red">@Html.ValidationMessageFor(model => model.lispd_PrecioMayorista)</p>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.lispd_PrecioMinorista, new { @class = "control-label col-md-3" })
+                                <div class="col-md-6">
+                                    @Html.EditorFor(model => model.lispd_PrecioMinorista, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control" } })
+                                    @*@Html.ValidationMessageFor(model => model.lispd_PrecioMayorista)*@
+                                    <div id="validacionPrecioMinoristaCreate">
+                                        <p style="color:red" id="validacionPreciosMM">@Html.ValidationMessageFor(model => model.lispd_PrecioMinorista)</p>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                     
+
+            
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.lispd_DescCaja, new { @class = "control-label col-md-3", @id = "pedd_Cantidad_Ped" })
+
+                                    <div class="col-md-6">
+                                        @Html.EditorFor(model => model.lispd_DescCaja, new { @class = "form-control" })
+                                        @*@Html.ValidationMessageFor(model => model.lispd_DescCaja)*@
+                                        <p id="smsCantidad" style="color:red"> @Html.ValidationMessageFor(model => model.lispd_DescCaja)</p>
+
+                                    </div>
+                                </div>
+                                     
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.lispd_DescGerente, new { @class = "control-label col-md-3", @id = "pedd_Cantidad_Ped" })
+
+                                    <div class="col-md-6">
+                                        @Html.EditorFor(model => model.lispd_DescGerente, new { @class = "form-control" })
+                                        @*@Html.ValidationMessageFor(model => model.lispd_DescGerente)*@
+                                        <p id="desccaja" style="color:red">@Html.ValidationMessageFor(model => model.lispd_DescGerente)</p>
+
+                                    </div>
+                                </div>
+
+
+
+
+                                <input type="hidden" id="lispd_UsuarioCrea_Lp" name="lispd_UsuarioCrea" />
+                                <input type="hidden" id="lispd_FechaCrea_Lp" name="lispd_FechaCrea" />
+
+
+                                <br />
+                                <br />
+
+
+
+
+                                <div class="form-group">
+                                    <div class="col-md-offset-5 col-md-10">
+                                        <button class="btn btn-primary" type="submit" id="BtnGuardarDetalle" tabindex="10"> Guardar </button>
+                                        @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<div>
+    <div class="modal fade" id="ModalAgregarProducto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Agregar Producto</h4>
+                </div>
+                <div class="modal-body" id="frmEditarMunicipios">
+                    @Html.Partial("_IndexProducto", (List<tbProducto>)ViewBag.Producto)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        <div id="validationSummary">
+            <p style="color:red"></p>
+        </div>
+        <script type="text/javascript">
+        $(document).ready(function () {
+            $('#lispd_DescGerente').val('0.00')
+            $('#lispd_DescCaja').val('0.00')
+        })
+        </script>
+
+        <script>
+
+    $("#lispd_PrecioMinorista").blur(function () {
+        valido = document.getElementById('validacionPreciosMM');
+
+      
+        var PrecioMinorista = $('#lispd_PrecioMinorista').val();
+        var PrecioMayorista = $('#lispd_PrecioMayorista').val();
+
+
+
+        if (parseFloat(PrecioMinorista) < parseFloat(PrecioMayorista)) {
+     
+            valido.innerText = "El precio minorista debe ser mayor a precio mayorista.";
+            $('#lispd_PrecioMinorista').val("");
+            $('#lispd_PrecioMinorista').focus();
+          
+        }
+        else {
+          
+            valido.innerText = "";
+        }
+
+
+    });
+
+
+
+    $("#lispd_DescCaja").blur(function () {
+        valido = document.getElementById('smsCantidad');
+
+        var DescuentoCaja = $('#lispd_DescCaja').val();
+
+
+
+        if (parseFloat(DescuentoCaja) < 0 || parseFloat(DescuentoCaja)> 100) {
+            //console.log("facturada", CantFacturada)
+            //console.log(CantDevolucion)
+            //console.log("if")
+            valido.innerText = "El valor debe estar entre 0 a 100";
+            $('#lispd_DescCaja').val("");
+            $('#lispd_DescCaja').focus();
+        }
+        else {
+            //console.log("else")
+            valido.innerText = "";
+        }
+
+
+    });
+
+    $("#lispd_DescGerente").blur(function () {
+
+        valido1 = document.getElementById('desccaja');
+
+        var DescuentoGerente = $('#lispd_DescGerente').val();
+
+
+
+
+        if (parseFloat(DescuentoGerente) < 0 || parseFloat(DescuentoGerente) > 100) {
+            //console.log("facturada", CantFacturada)
+            //console.log(CantDevolucion)
+            //console.log("if")
+            valido1.innerText = "El valor debe estar entre 0 a 100";
+            $('#lispd_DescGerente').val("");
+            $('#lispd_DescGerente').focus();
+        }
+        else {
+            //console.log("else")
+            valido1.innerText = "";
+        }
+
+
+
+
+
+    });
+
+
+
+
+
+    //---------------------------------Ctrl + G (GuardarRegistro)------------------------------
+    $(document).keydown(function (e) {
+        if ((e.key == 'g' || e.key == 'G') && (e.ctrlKey || e.metaKey)) {
+            e.preventDefault();
+            $("form").submit();
+            return false;
+        }
+        return true;
+    });
+
+
+
+
+
+        </script>
+
+
+
+

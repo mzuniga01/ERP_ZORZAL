@@ -61,7 +61,7 @@
                                 <label class="control-label col-md-2">Abreviatura</label>
 
                                 <div class="col-md-5">
-                                    @Html.EditorFor(model => model.mnda_Abreviatura)
+                                    @Html.EditorFor(model => model.mnda_Abreviatura, new { htmlAttributes = new { @autocomplete = "off", onkeypress = "return validar(event)" } })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.mnda_Abreviatura)</p>
                                 </div>
                             </div>
@@ -69,7 +69,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-2">Nombre</label>
                                 <div class="col-md-5">
-                                    @Html.EditorFor(model => model.mnda_Nombre)
+                                    @Html.EditorFor(model => model.mnda_Nombre, new { htmlAttributes = new { @autocomplete = "off", onkeypress = "return validar(event)" } })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.mnda_Nombre)</p>
 </div>
                             </div>
@@ -119,8 +119,11 @@
         </div>
     </div>
  </div>
+
+<script src="~/Scripts/app/CaracteresEspeciales.js"></script>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/Monedas.js"></script>
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
-<script src="~/Scripts/jquery-3.3.1.js"></script>
-<script src="~/Scripts/app/Monedas.js"></script>

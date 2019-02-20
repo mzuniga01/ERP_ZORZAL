@@ -58,39 +58,87 @@
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.mocja_UsuarioApertura, new { @class = "control-label col-md-2" })
-            <div class="col-md-3">
-                @Html.EditorFor(model => model.mocja_UsuarioApertura)
-                <span class="validation-error">@Html.ValidationMessageFor(model => model.mocja_UsuarioApertura)</span>
+            <div class="form-group col-md-5">
+                <label class="control-label col-md-5">Usuario Apertura</label>
+                <div class="col-md-5">
+                    <input class="form-control" readonly value="@ViewBag.UsuarioApertura" />
+                    <p id="MensajeErrorDenominacion" style="color:red"> @Html.ValidationMessageFor(model => model.mocja_UsuarioApertura)</p>
+                </div>
             </div>
+
+            <div hidden class="form-group col-md-5">
+                @Html.LabelFor(model => model.mocja_UsuarioApertura, "Usuario Apertura", new { @class = "control-label col-md-2" })
+                <div class="col-md-5">
+                    @Html.EditorFor(model => model.mocja_UsuarioApertura, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @Value = ViewBag.mocja_UsuarioApertura } })
+                    <p id="MensajeErrorDenominacion" style="color:red"> @Html.ValidationMessageFor(model => model.mocja_UsuarioApertura)</p>
+                </div>
+            </div>
+
             @Html.LabelFor(model => model.mocja_FechaApertura, new { @class = "control-label col-md-2" })
-            <div class="col-md-3">
+            <div class="col-md-2">
                 @Html.EditorFor(model => model.mocja_FechaApertura, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechaapertura" } })
                 <span style="color:red" class="validation-error">@Html.ValidationMessageFor(model => model.mocja_FechaApertura)</span>
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.mocja_UsuarioArquea, new { @class = "control-label col-md-2" })
+            @*@Html.LabelFor(model => model.mocja_UsuarioArquea, new { @class = "control-label col-md-2" })
             <div class="col-md-3">
-                @Html.EditorFor(model => model.mocja_UsuarioArquea)
+                @Html.EditorFor(model => model.mocja_UsuarioArquea, new { htmlAttributes = new { @min = "1" } }) 
                 <span class="validation-error">@Html.ValidationMessageFor(model => model.mocja_UsuarioArquea)</span>
+            </div>*@
+
+            <div class="form-group col-md-5">
+                <label class="control-label col-md-5">Usuario Arquea</label>
+                <div class="col-md-5">
+                    <input class="form-control" readonly value="@ViewBag.UsuarioArquea" />
+                    <p id="MensajeErrorDenominacion" style="color:red"> @Html.ValidationMessageFor(model => model.mocja_UsuarioArquea)</p>
+                </div>
             </div>
+
+            <div hidden class="form-group col-md-5">
+                @Html.LabelFor(model => model.mocja_UsuarioArquea, "Usuario Apertura", new { @class = "control-label col-md-2" })
+                <div class="col-md-5">
+                    @Html.EditorFor(model => model.mocja_UsuarioArquea, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @Value = ViewBag.mocja_UsuarioArquea } })
+                    <p id="MensajeErrorDenominacion" style="color:red"> @Html.ValidationMessageFor(model => model.mocja_UsuarioArquea)</p>
+                </div>
+            </div>
+
+
             @Html.LabelFor(model => model.mocja_FechaArqueo, new { @class = "control-label col-md-2" })
-            <div class="col-md-3">
+            <div class="col-md-2">
                 @Html.EditorFor(model => model.mocja_FechaArqueo, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechaarqueo" } })
                 <span class="validation-error">@Html.ValidationMessageFor(model => model.mocja_FechaArqueo)</span>
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.mocja_UsuarioAceptacion, new { @class = "control-label col-md-2" })
+            @*@Html.LabelFor(model => model.mocja_UsuarioAceptacion, new { @class = "control-label col-md-2" })
             <div class="col-md-3">
-                @Html.EditorFor(model => model.mocja_UsuarioAceptacion)
+                @Html.EditorFor(model => model.mocja_UsuarioAceptacion, new { htmlAttributes = new { @min = "1" } })
                 <span class="validation-error">@Html.ValidationMessageFor(model => model.mocja_UsuarioAceptacion)</span>
+            </div>*@
+
+            <div class="form-group col-md-5">
+                <label class="control-label col-md-5">Usuario Aceptacion</label>
+                <div class="col-md-5">
+                    <input class="form-control" readonly value="@ViewBag.UsuarioAceptacion" />
+                    <p id="MensajeErrorDenominacion" style="color:red"> @Html.ValidationMessageFor(model => model.mocja_UsuarioAceptacion)</p>
+                </div>
             </div>
+
+            <div hidden class="form-group col-md-5">
+                @Html.LabelFor(model => model.mocja_UsuarioAceptacion, "Usuario Apertura", new { @class = "control-label col-md-2" })
+                <div class="col-md-5">
+                    @Html.EditorFor(model => model.mocja_UsuarioAceptacion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @Value = ViewBag.mocja_UsuarioAceptacion } })
+                    <p id="MensajeErrorDenominacion" style="color:red"> @Html.ValidationMessageFor(model => model.mocja_UsuarioAceptacion)</p>
+                </div>
+            </div>
+
+
+
             @Html.LabelFor(model => model.mocja_FechaAceptacion, new { @class = "control-label col-md-2" })
-            <div class="col-md-3">
+            <div class="col-md-2">
                 @Html.EditorFor(model => model.mocja_FechaAceptacion, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechaaceptacion" } })
                 <span class="validation-error">@Html.ValidationMessageFor(model => model.mocja_FechaAceptacion)</span>
             </div>            
@@ -312,6 +360,7 @@
         });
 
 </script>
+
     
     
     }

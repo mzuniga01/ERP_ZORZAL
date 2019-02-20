@@ -1,0 +1,86 @@
+﻿@model ERP_GMEDINA.Models.tbSolicitudCredito
+@using (Ajax.BeginForm("UpdateSolicitudCredito", "SolicitudCredito", new AjaxOptions {
+    HttpMethod = "POST",
+    UpdateTargetId = "EditSolicitudCredito"
+}))
+{
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.cred_Id)
+        @Html.HiddenFor(model => model.escre_Id)
+         @**Auditoria*@
+        @Html.HiddenFor(model => model.cred_UsuarioCrea)
+        @Html.HiddenFor(model => model.cred_FechaCrea)
+        @Html.HiddenFor(model => model.cred_UsuarioModifica)
+        @Html.HiddenFor(model => model.cred_FechaModifica)
+
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Usuario</label>
+            <div class="col-md-10">
+                <input class="col-md-5 form-control" id="" type="text"  />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Contraseña</label>
+            <div class="col-md-10">
+                <input class="col-md-5 form-control" id="" type="password"  />
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.cred_MontoSolicitado, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.cred_MontoSolicitado, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.cred_MontoSolicitado)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.cred_MontoAprobado, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.cred_MontoAprobado, new { htmlAttributes = new { @onkeypress = "return validar(event)" } })
+                <p id="AcepSolicitud2" style="color:red"> @Html.ValidationMessageFor(model => model.cred_MontoAprobado)</p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.cred_DiasSolicitado, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.cred_DiasSolicitado, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.cred_DiasSolicitado)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.cred_DiasAprobado, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.cred_DiasAprobado, new { htmlAttributes = new { @onkeypress = "return validar(event)" } })
+                <p id="AcepSolicitud" style="color:red"> @Html.ValidationMessageFor(model => model.cred_DiasAprobado)
+</div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Aceptar" class="btn btn-primary" id="AceptarAprobacion" />
+                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+            </div>
+        </div>
+    </div>
+}
+<script>
+    function validar(e) {
+        tecla = (document.all) ? e.keyCode : e.which;
+        tecla = String.fromCharCode(tecla)
+        return /^[0-9\-]+$/.test(tecla);
+    }
+</script>   
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+}

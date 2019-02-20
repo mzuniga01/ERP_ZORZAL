@@ -67,7 +67,7 @@ namespace ERP_GMEDINA.Models
 
         [Display(Name = "Días Aprobados")]
         //[Required]
-        [RegularExpression("^\\d+$", ErrorMessage = "El campo {0} permite números iguales o mayores que cero")]
+        //[RegularExpression("^\\d+$", ErrorMessage = "El campo {0} permite números iguales o mayores que cero")]
         public int cred_DiasAprobado { get; set; }
         [Display(Name = "Usuario Crea")]
 

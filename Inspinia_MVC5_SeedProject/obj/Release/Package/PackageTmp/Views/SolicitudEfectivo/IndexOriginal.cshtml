@@ -1,0 +1,122 @@
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbSolicitudEfectivo>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Solicitud de Efectivo</h2>       
+    </div>
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Listado de Solicitud Efectivo</h5>
+					<div class="ibox-tools">
+						@Html.ActionLink("Registrar Solicitud Efectivo", "Create", null, new { @class = "btn btn-primary"})
+					</div>
+                </div>
+                <div class="ibox-content">
+                    <div class="table-responsive">
+                        <table class="table table-striped" id="SolicitudEfectivo">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Id Solicitud
+                                    </th>
+                                    <th>
+                                        Fecha Solicitud
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.tbMovimientoCaja.tbCaja.tbSucursal.suc_Descripcion)
+                                    </th>
+                                    <th>
+                                        @*@Html.DisplayNameFor(model => model.tbMovimientoCaja.tbCaja.cja_Descripcion)*@
+                                        Caja
+                                    </th>                                                                                                                  
+                                    <th>
+                                        @*@Html.DisplayNameFor(model => model.tbMoneda.mnda_Nombre)*@
+                                        Moneda
+                                    </th>  
+                                    <th>
+                                       Monto Solicitado
+                                    </th>
+                                    <th>
+                                        Monto Entregado
+                                    </th>                                    
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.solef_Id)                                           
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.solef_FechaCrea)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.tbMovimientoCaja.tbCaja.tbSucursal.suc_Descripcion)
+                                        </td>                                       
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.tbMovimientoCaja.tbCaja.cja_Descripcion)
+                                        </td>                                                                             
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.tbMoneda.mnda_Nombre)
+                                        </td>  
+                                        <td>0.00</td> 
+                                        <td>0.00</td>                                      
+                                        <td>
+                                            @Html.ActionLink("Detalle", "Details", new { id = item.solef_Id }, new { @class = "btn btn-primary btn-xs" })
+                                            @Html.ActionLink("Editar", "Edit", new { id = item.solef_Id }, new { @class = "btn btn-white btn-xs" })
+                                            @*@Html.ActionLink("Delete", "Delete", new { id = item.solef_Id }, new { @class = "btn btn-white btn-sm" })*@
+                                            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalImprimir">
+                                                Imprimir
+                                            </button>
+                                            @*<button type="button" class="btn btn-primary btn-xs">
+                                                Anular
+                                            </button>*@
+                                         </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/SolicitudEfectivo.js"></script>
+
+
+<div class="modal fade" id="ModalImprimir" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Imprimir Solicitud Efectivo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Desea Imprimir Esta Solicitud de Efectivo?
+            </div>
+            <div class="modal-footer">
+                <a href="@Url.Action("Index","SolicitudEfectivo")" class="btn btn-primary">Si</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+

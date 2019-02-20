@@ -102,8 +102,8 @@
                 @Html.LabelFor(model => model.exo_Documento, new { @class = "control-label col-md-2" })
                 <div class="col-md-4">
                     @Html.EditorFor(model => model.exo_Documento)
-                    @Html.ValidationMessageFor(model => model.exo_Documento)
-                </div>
+                    <p id="doc" style="color:red">@Html.ValidationMessageFor(model => model.exo_Documento)
+</div>
             </div>
 
             @*<div class="form-group" id="Activar">

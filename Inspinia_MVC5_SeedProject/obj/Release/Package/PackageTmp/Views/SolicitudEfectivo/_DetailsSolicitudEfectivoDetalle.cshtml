@@ -1,0 +1,104 @@
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbSolicitudEfectivoDetalle>
+@using ERP_GMEDINA.Models
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">               
+                <div class="ibox-content">
+
+<table class="table table-striped" id="mitabla">
+    <thead>
+        <tr>
+            <th class="hide">
+                @Html.DisplayNameFor(model => model.tbSolicitudEfectivo.solef_Id)
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.tbDenominacion.deno_Descripcion)*@
+                Denominación           
+             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.soled_CantidadSolicitada)
+            </th>
+            <th>
+               Monto Solictada
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.soled_CantidadEntregada)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.soled_MontoEntregado)   
+            </th> 
+            <th class="hide">
+                @Html.DisplayNameFor(model => model.tbDenominacion.deno_valor)
+            </th>          
+           
+            
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="hidden">
+                    @Html.DisplayFor(modelItem => item.tbSolicitudEfectivo.solef_Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tbDenominacion.deno_Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.soled_CantidadSolicitada)
+                </td>
+               
+                    @{
+                        decimal montoSolicitud = 0;
+                        montoSolicitud = Convert.ToDecimal(item.tbDenominacion.deno_valor) * Convert.ToDecimal(item.soled_CantidadSolicitada);
+                      
+                    }
+                
+                <td>
+                    @Html.DisplayFor(modelItem => montoSolicitud)
+                </td>
+                
+                <td>
+                    @Html.DisplayFor(modelItem => item.soled_CantidadEntregada)
+                </td>
+
+                @{
+                    decimal MontoEntregado = 0;
+                    MontoEntregado = Convert.ToDecimal(item.tbDenominacion.deno_valor) * Convert.ToDecimal(item.soled_CantidadEntregada);
+                }
+                <td>
+                    @Html.DisplayFor(modelItem => MontoEntregado)
+                </td> 
+                <td class="hidden">
+                    @Html.DisplayFor(modelItem => item.tbDenominacion.deno_valor)
+                </td> 
+                               
+                <td></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+                   
+
+
+
+                    
+
+                    
+                  
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+
+

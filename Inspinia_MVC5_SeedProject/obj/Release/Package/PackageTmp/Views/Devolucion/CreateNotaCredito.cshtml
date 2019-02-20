@@ -1,0 +1,232 @@
+﻿@model ERP_GMEDINA.Models.tbNotaCredito
+@using ERP_GMEDINA.Models
+@{
+    var vtbMvimientoCaja = new ERP_GMEDINA.Models.tbMovimientoCaja();
+    ViewBag.Title = "Registrar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Nota Crédito</h2>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            @Html.ActionLink("Regresar", "Index")
+        </div>
+    </div>
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Registrar Nota Crédito</h5>
+                </div>
+                <div class="ibox-content">
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true)
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.suc_Id, new { @class = "control-label required col-md-2" })
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.suc_Id, new
+                               {
+                                   htmlAttributes = new
+                                   {
+                                       @class = "form-control"@*, @readonly = "readonly"*@ }
+                               })
+                                    <span class="validation-error">  @Html.ValidationMessageFor(model => model.suc_Id)</span>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.cja_Id, new { @class = "control-label required col-md-2" })
+                                    <div class="col-md-3">
+                                        <input type="text" id="cja_Id" name="cja_Id" value="4" class="form-control " readonly />
+                                        <span class="validation-error">@Html.ValidationMessageFor(model => model.cja_Id)</span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.nocre_Codigo, new { @class = "control-label col-md-2" })
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.nocre_Codigo , new { @class = "control-label", @readonly = "readonly" } )
+                                    <p style="color:red"><span class="validation-error"> @Html.ValidationMessageFor(model => model.nocre_Codigo)</span></p>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.tbDevolucion.tbCaja.cja_Descripcion, "Cajero", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-3">
+                                        @Html.EditorFor(model => model.tbDevolucion.tbCaja.cja_Descripcion)
+                                        @*<p style="color:red"><span class="validation-error"> @Html.ValidationMessageFor(model => model.tbDevolucion.tbCaja.cja_Descripcion)</span></p>*@
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="divDevolucion">
+                                @Html.LabelFor(model => model.dev_Id, new { @class = "control-label col-md-2" })
+                                @*<label class="control-label col-md-2" id="labeldev" name="labeldev">Devolución</label>*@
+                                <div class="col-md-3">
+                                    <input id="dev_Id" type="text" name="dev_Id" value="@ViewBag.IdDev" class="form-control " readonly />
+                                    <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.dev_Id)</span></p>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.nocre_Monto, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-3">
+                                        <input id="nocre_Monto" type="text" name="nocre_Monto" value="@ViewBag.montodev" class="form-control " readonly />
+                                        @*@Html.EditorFor(model => model.nocre_Monto, new { htmlAttributes = new { @style = "text-align:right", @type = "number", @min = "0", @step = "0.01", @value = "0", @readonly = "readonly" } })*@
+                                        <p id="smsMontoNC" style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.nocre_Monto)</span></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.tbCliente.clte_Identificacion, "Identificación Cliente", new { @class = "control-label col-md-2" })
+                                <div class="col-md-3">
+                                    <input id="clte_Id" type="hidden" name="clte_Id" value="@ViewBag.IdCtll" class="form-control "/>
+                                    <input id="tbCliente_clte_Identificacion" type="text" name="tbCliente_clte_Identificacion" value="@ViewBag.Identificacion" class="form-control " readonly />
+                                    <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.tbCliente.clte_Identificacion)</span></p>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.tbCliente.clte_Nombres, "Cliente", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-3">
+                                        <input id="tbCliente_clte_Nombres" type="text" name="tbCliente_clte_Nombres" value="@ViewBag.Nombres" class="form-control " readonly />
+                                        <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.tbCliente.clte_Nombres)</span></p>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="form-group" id="divFechaDev">
+                                @Html.LabelFor(model => model.tbDevolucion.dev_Fecha, new { @class = "control-label col-md-2" })
+                                <div class="col-md-3">
+                                    <input id="tbDevolucion_dev_Fecha" type="text" name="tbDevolucion_dev_Fecha" value="@ViewBag.fechaDev" class="form-control " readonly />
+                                    <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.tbDevolucion.dev_Fecha)</span></p>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.nocre_FechaEmision, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-3">
+                                        @Html.EditorFor(model => model.nocre_FechaEmision, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @readonly = "readonly" } })
+                                        <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.nocre_FechaEmision)</span></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.nocre_MotivoEmision, new { @class = "control-label col-md-2" })
+                                <div class="col-md-8">
+                                    @Html.TextAreaFor(model => model.nocre_MotivoEmision, new { @class = "form-control" })
+                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.nocre_MotivoEmision)</span>
+                                </div>
+                            </div>
+                            @*clte_Id NotaCredito*@
+                            <div class="form-group">
+                                <input type="hidden" id="cdto_Anulado" name="nocre_Anulado" value="false" />
+                            </div>
+                            @*clte_Id NotaCredito fin*@
+                            <div class="form-group">
+                                <div class="col-md-12 text-center">
+                                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*------------------------------------------FINAL MODAL AUTORIZAR NOTA CREDITO--------------------------------------*@
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $.datepicker.regional['es'] = {
+            closeText: 'Cerrar',
+            prevText: '< Ant',
+            nextText: 'Sig >',
+            currentText: 'Hoy',
+            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+            dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+            dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
+            dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+            weekHeader: 'Sm',
+            dateFormat: 'dd/mm/yy',
+            firstDay: 1,
+            isRTL: false,
+            showMonthAfterYear: false,
+            yearSuffix: ''
+        };
+        $.datepicker.setDefaults($.datepicker.regional['es']);
+        $(function () {
+            $("#nocre_FechaEmision").datepicker({ dateFormat: 'dd/mm/yy' }).datepicker('setDate', new Date()).datepicker("destroy");
+
+            $("#tbDevolucion_dev_Fecha").datepicker({ dateFormat: 'dd/mm/yy' }).datepicker("destroy")
+        });
+    </script>
+    <script>
+        $("#cdto_FechaEmision").datepicker({
+        }).datepicker('setDate', new Date());
+    </script>
+    <script src="~/Scripts/app/NotaCredito.js"></script>
+    <script src="~/Scripts/app/GetCodigoNotaCredito.js"></script>
+  
+    <script>
+        //---------------------------------Ctrl + G (GuardarRegistro)------------------------------
+        $(document).keydown(function (e) {
+            if ((e.key == 'g' || e.key == 'G') && (e.ctrlKey || e.metaKey)) {
+                e.preventDefault();
+                $("form").submit();
+                return false;
+            }
+            return true;
+        });
+
+
+        //--------------------------------Asterisco Rojo---------------------------------
+        jQuery('input,select').each(function () {
+            var req = jQuery(this).attr('data-val-required');
+            if (undefined != req) {
+                var label = jQuery('label[for="' + jQuery(this).attr('id') + '"]');
+                var text = label.text();
+                if (text.length > 0) {
+                    label.append('<span style="color:red">*</span>');
+                }
+            }
+        });
+
+
+        $('#nocre_Monto').blur(function () {
+            valido = document.getElementById('smsMontoNC');
+            var montoNC = $('#nocre_Monto').val();
+            if (montoNC <= 0) {
+                $('#nocre_Monto').val('').focus();
+                valido.innerText = "El valor debe ser mayor a 0.";
+            } else {
+                valido.innerText = "";
+            }
+        });
+
+
+        //--------------------mascara-----------------------------
+
+    </script>
+
+}

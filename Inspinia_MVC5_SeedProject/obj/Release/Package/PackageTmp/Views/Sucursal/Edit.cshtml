@@ -1,0 +1,158 @@
+﻿@model ERP_GMEDINA.Models.tbSucursal
+
+@using ERP_GMEDINA.Models
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    var test = new ERP_GMEDINA.Models.tbMunicipio();
+}
+<link href="~/Content/css/Auditoria.css" rel="stylesheet" />
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Sucursal</h2>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+			@Html.ActionLink("Regresar", "Index")
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Editar Sucursal</h5>
+                </div>
+                <div class="ibox-content">
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+
+                        <div class="form-horizontal">
+
+                            @Html.ValidationSummary(true)
+                            @Html.HiddenFor(model => model.suc_Id)
+                            @Html.ValidationSummary(true)
+                            @Html.Hidden("RedirectTo", Url.Action("Index", "Sucursal"))
+                            @Html.HiddenFor(model => model.suc_FechaCrea)
+                            @Html.HiddenFor(model => model.suc_UsuarioCrea)
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.suc_Descripcion, "Sucursal", new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.suc_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.suc_Descripcion)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Departamento<span style="color:red"> *</span></label>
+                                <div class="col-md-4">
+                                    @Html.DropDownList("dep_Codigo", null, "Seleccione Departamento", new { @class = "form-control" })
+                                    <p id="Departamento" style="color:red">@Html.ValidationMessageFor(muni => test.dep_Codigo)</p>
+                                </div>
+                                @Html.LabelFor(model => model.mun_Codigo, "Municipio", new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.DropDownList("mun_Codigo", null, "Seleccione Municipio", new { @class = "form-control" })
+                                    <p id="Municipio" style="color:red">@Html.ValidationMessageFor(model => model.mun_Codigo)</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.suc_Direccion, new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.TextAreaFor(model => model.suc_Direccion, new { @autocomplete = "off", @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.suc_Direccion)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.bod_Id, "Bodega", new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.DropDownList("bod_Id", null, "Seleccione Bodega", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.bod_Id)
+                                </div>
+                                @Html.LabelFor(model => model.pemi_Id, "Punto Emision", new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.DropDownList("pemi_Id", null, "Seleccione Punto Emision", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.pemi_Id)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.suc_Telefono, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.suc_Telefono, new { htmlAttributes = new { @autocomplete = "off" } })
+                                    @Html.ValidationMessageFor(model => model.suc_Telefono)
+                                </div>
+                                @Html.LabelFor(model => model.suc_Correo, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.suc_Correo)
+                                    @Html.ValidationMessageFor(model => model.suc_Correo)
+                                </div>
+                            </div>
+
+                           
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="ibox-content">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Acción</th>
+                        <th>Usuario</th>
+                        <th>Fecha</th>
+                    </tr>
+                    <tr>
+                        <td>Creado</td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                        </td>
+                        <td>@Html.DisplayFor(model => model.suc_FechaCrea)</td>
+                    </tr>
+                    <tr>
+                        <td>Modificado</td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                        </td>
+                        <td>@Html.DisplayFor(model => model.suc_FechaModifica)</td>
+                    </tr>
+                </table>
+            </div>
+
+
+        </div>
+    </div>
+ </div>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/Sucursal.js"></script>
+
+<script type="text/javascript">
+jQuery('input,select').each(function() {
+    var req = jQuery(this).attr('data-val-required');
+     var label = jQuery('label[for="' + jQuery(this).attr('id') + '"]');
+     var text = label.text();
+     if (text.length > 0) {
+      label.append('<span style="color:red"> *</span>');
+    }
+});
+</script>

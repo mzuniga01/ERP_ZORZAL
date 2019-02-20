@@ -1,0 +1,309 @@
+﻿@model ERP_GMEDINA.Models.tbCliente
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/css/Auditoria.css" rel="stylesheet" />
+
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Detalles Cliente</h2>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            <a href="@Url.Action("Index","Cliente")">Regresar</a>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Detalles Cliente</h5>
+                </div>
+                <div class="ibox-content">
+
+
+                    <div class="row">
+                        <div class="row">
+                            <div class="col-md-6" id="natural" name="natural">
+                                <dl class="dl-horizontal">
+                                    <dt>
+                                       Tipo Identificación
+                                    </dt>
+                                    <dd>
+                                        @Html.DisplayFor(model => model.tbTipoIdentificacion.tpi_Descripcion)
+                                    </dd>
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.clte_Identificacion)
+                                    </dt>
+                                    <dd>
+                                        @Html.DisplayFor(model => model.clte_Identificacion)
+                                    </dd>
+                                    @if (Model.clte_EsPersonaNatural)
+                                    {
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.clte_Nombres)
+                                        </dt>
+                                        <dd>
+                                            @Html.DisplayFor(model => model.clte_Nombres)
+                                            @Html.DisplayFor(model => model.clte_Apellidos)
+                                        </dd>
+
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.clte_FechaNacimiento)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.clte_FechaNacimiento)
+                                        </dd>
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.clte_Sexo)
+                                        </dt>
+                                        if (Model.clte_Sexo=="H")
+                                        {
+                                            <dd>Hombre</dd>
+                                        }
+                                        else
+                                        {
+                                            <dd>Mujer</dd>
+                                        }
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.clte_Telefono)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.clte_Telefono)
+                                        </dd>                                        
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.clte_CorreoElectronico)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.clte_CorreoElectronico)
+                                        </dd>
+                                    }
+                                    else
+                                    {
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.clte_Nacionalidad)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.clte_Nacionalidad)
+                                        </dd>
+
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.clte_NombreComercial)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.clte_NombreComercial)
+                                        </dd>
+
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.clte_RazonSocial)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.clte_RazonSocial)
+                                        </dd>
+
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.clte_ContactoNombre)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.clte_ContactoNombre)
+                                        </dd>
+
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.clte_ContactoEmail)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.clte_ContactoEmail)
+                                        </dd>
+
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.clte_ContactoTelefono)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.clte_ContactoTelefono)
+                                        </dd>
+
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.clte_FechaConstitucion)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.clte_FechaConstitucion)
+                                        </dd>
+                                    }
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.clte_Direccion)
+                                    </dt>
+
+                                    @if (Model.clte_Direccion == null)
+                                    {
+                                        <dd>Ninguna</dd>
+                                    }
+                                    else
+                                    {
+                                        <dd>
+                                            @Html.DisplayFor(model => model.clte_Direccion)
+                                        </dd>
+                                    }                    
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.clte_EsActivo)
+                                    </dt>
+                                    @if (Model.clte_EsActivo)
+                                    {
+                                        <dd>Sí</dd>
+                                    }
+                                    else
+                                    {
+                                        <dd>No</dd>
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.clte_RazonInactivo)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.clte_RazonInactivo)
+                                        </dd>
+                                    }
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.clte_ConCredito)
+                                    </dt>
+
+                                    @if (Model.clte_ConCredito)
+                                    {
+                                        <dd>Sí</dd>
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.clte_MontoCredito)
+                                        </dt>
+                                        <dd>
+                                            @Html.DisplayFor(model => model.clte_MontoCredito)
+                                        </dd>
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.clte_DiasCredito)
+                                        </dt>
+                                        <dd>
+                                            @Html.DisplayFor(model => model.clte_DiasCredito)
+                                        </dd>
+                                    }
+                                    else
+                                    {
+                                        <dd>No</dd>
+                                    }
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.clte_Exonerado)
+                                    </dt>
+                                    @if (Model.clte_Exonerado)
+                                    {
+                                        <dd>Sí</dd>
+                                    }
+                                    else
+                                    {
+                                        <dd>No</dd>
+                                    }
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.clte_EsMinorista)
+                                    </dt>
+                                    @if (Model.clte_EsMinorista)
+                                    {
+                                        <dd>Sí</dd>
+                                    }
+                                    else
+                                    {
+                                        <dd>No</dd>
+                                    }
+
+                                    <dt>
+                                        Departamento
+                                    </dt>
+
+                                    <dd>
+                                        @Html.DisplayFor(model => model.tbMunicipio.tbDepartamento.dep_Nombre)
+                                    </dd>
+
+
+                                    <dt>
+                                        Municipio
+                                    </dt>
+                                    <dd>
+                                        @Html.DisplayFor(model => model.tbMunicipio.mun_Nombre)
+                                    </dd>
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.clte_Observaciones)
+                                    </dt>
+
+                                    @if (Model.clte_Observaciones==null)
+                                    {
+                                        <dd>Ninguna</dd>
+                                    }
+                                    else
+                                    {
+                                        <dd>
+                                            @Html.DisplayFor(model => model.clte_Observaciones)
+                                        </dd>
+                                    }
+
+                                </dl>  
+                            </div>
+                        </div>
+                        @Html.ActionLink("Editar", "Edit", new { id = Model.clte_Id }, new { @class = "btn btn-primary" })
+                    </div>
+
+                </div>
+            </div>
+            <div class="ibox-content">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Acción</th>
+                        <th>Usuario</th>
+                        <th>Fecha</th>
+                    </tr>
+                    <tr>
+                        <td>Creado</td>
+                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                        @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)</td>
+                        <td>@Html.DisplayFor(model => model.clte_FechaCrea)</td>
+                    </tr>
+                    <tr>
+                        <td>Modificado</td>
+                        <td>@Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                        @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)</td>
+                        <td>@Html.DisplayFor(model => model.clte_FechaModifica)</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/Activo.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+

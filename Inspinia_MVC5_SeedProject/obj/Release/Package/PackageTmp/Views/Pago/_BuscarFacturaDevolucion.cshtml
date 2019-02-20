@@ -1,0 +1,72 @@
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbFactura>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input id="searchFactura" type="text" class="form-control" placeholder="Ingresar Cliente" />
+                            <br />
+                        </div>
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+<table id="DataTable" class="table table table-striped  table-bordered">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.fact_Codigo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fact_Fecha)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.clte_Identificacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.clte_Nombres)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.tbEstadoFactura.esfac_Descripcion)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr data-id="@item.fact_Codigo" data-desc="@item.tbCliente.clte_Identificacion" data-Cliente="@item.clte_Nombres">
+                <td>
+                    @Html.DisplayFor(modelItem => item.fact_Codigo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fact_Fecha)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.clte_Identificacion)
+                </td>
+                <th>
+                    @Html.DisplayFor(model => item.clte_Nombres)
+                </th>
+                <td>
+                    <button id="AgregarFactura" class="btn btn-primary btn-xs">Agregar</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+

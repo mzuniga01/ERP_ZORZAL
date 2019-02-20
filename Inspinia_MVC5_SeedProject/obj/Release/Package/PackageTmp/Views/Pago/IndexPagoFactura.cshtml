@@ -1,0 +1,104 @@
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbPago>
+
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Factura</h2>
+
+    </div>
+    <div class="title-action">
+        <a href="@Url.Action("Index","Factura")">Regresar</a>
+    </div>
+
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Listado Factura por pagar</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-md-offset-6 col-md-5">
+                                <input type="text" class="form-control " id="rtn" />
+                            </div>
+                            <div class="col-md-offset-6">
+                                <input type="button" id="Pagar" value="Buscar" class="btn btn-primary btn-sm" />
+                            </div>
+                        </div>
+
+                    </div>
+                    <table id="Factura" class="table table table-striped  table-bordered">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tbFactura.fact_Codigo)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tbFactura.fact_Fecha)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tbFactura.clte_Nombres)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tbFactura.clte_Identificacion)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tbFactura.cja_Id)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tbFactura.esfac_Id)
+                                </th>
+                                <th> Acciones</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="Facturatbody">
+                            @foreach (var item in Model)
+                            {
+                                if (item.tbFactura.esfac_Id == 2)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.tbFactura.fact_Codigo)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.tbFactura.fact_Fecha)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.tbFactura.clte_Nombres)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.tbFactura.clte_Identificacion)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(model => item.tbFactura.tbCaja.cja_Descripcion)
+                                        </td>
+                                        <td class="danger">
+                                            @Html.DisplayFor(model => item.tbFactura.tbEstadoFactura.esfac_Descripcion)
+                                        </td>
+
+                                        <td>
+                                            @Html.ActionLink("Detalle", "Details", new { id = item.fact_Id }, new { @class = "btn btn-primary btn-xs" })
+                                            @Html.ActionLink("Pagar", "Edit", new { id = item.pago_Id }, new { @class = "btn btn-primary btn-xs" })
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/Datepicker.js"></script>
+<script src="~/Scripts/app/DataTableBusquedaGenerica.js"></script>
+<script src="~/Scripts/app/FacturaPagar.js"></script>

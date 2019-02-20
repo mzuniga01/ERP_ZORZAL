@@ -1,0 +1,99 @@
+﻿@model ERP_GMEDINA.Models.tbUnidadesMedida
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        
+    </div>
+</div>
+
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Detalles de Unidad de Medida</h5>
+                </div>
+                <div class="ibox-content">
+
+
+				    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.uni_Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.uni_Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.uni_Abreviacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.uni_Abreviacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.uni_UsuarioCrea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.uni_UsuarioCrea)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.uni_FechaCrea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.uni_FechaCrea)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.uni_UsuarioModifica)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.uni_UsuarioModifica)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.uni_FechaModifica)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.uni_FechaModifica)
+        </dd>
+
+    </dl>
+
+
+	    @Html.ActionLink("Editar", "Edit", new { id = Model.uni_Id }, new { @class = "btn btn-primary"})
+    @Html.ActionLink("Regresar al Listado", "Index", null, new { @class = "btn btn-white"})
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+
+
+
+
+
+
+
+
+
+
+

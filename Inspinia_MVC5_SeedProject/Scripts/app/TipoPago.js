@@ -1,11 +1,13 @@
 ﻿$(document).ready(function () {
-
+ 
     $('#Efectivo').hide();
     $('#TCD').hide();
     $('#Cheque').hide();
     $('#NC').hide();
 
 });
+
+
 
 $(document).ready(function () {
     $("#TipoPago").change(function (evt) {
@@ -45,6 +47,8 @@ $(document).ready(function () {
     });
 });
 
+
+
 //Busqueda de nota Credito-----------
 $(document).ready(function () {
     var $rows = $('#BodyNC tr');
@@ -65,7 +69,7 @@ $(document).ready(function () {
 });
 
 //Seleccinar----------------------
-$(document).on("click", "#PagoNC tbody tr td button#AgregarNotaCredito", function () {
+$(document).on("click", "#PagoNC tbody tr td button#AgregarNotaCredito", function() {
     IdItem = $(this).closest('tr').data('nocre_Id');
     CodigoItem = $(this).closest('tr').data('nocre_Codigo');
     MontoItem = $(this).closest('tr').data('nocre_Monto');
@@ -82,4 +86,4 @@ $(document).on("click", "#PagoNC tbody tr td button#AgregarNotaCredito", functio
     //        GetIDFactura(idFactitem);
     //    }
     //});
-})
+});

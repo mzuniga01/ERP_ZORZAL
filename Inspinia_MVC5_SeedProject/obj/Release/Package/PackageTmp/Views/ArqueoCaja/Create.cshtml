@@ -1,0 +1,218 @@
+﻿@model ERP_GMEDINA.Models.tbArqueoCaja
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .validation-error {
+        color: red;
+        font-size: small;
+    }
+</style>
+
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Arqueo de Caja</h2>
+
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            <a href="@Url.Action("Index","ArqueoCaja")">Regresar</a>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Registrar Arqueo de Caja</h5>
+                </div>
+                <div class="ibox-content">
+
+				@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.tbCaja.tbSucursal.suc_Id, "Sucursal", new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.tbCaja.tbSucursal.suc_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                <span class="validation-error">@Html.ValidationMessageFor(model => model.tbCaja.tbSucursal.suc_Id)</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.cja_Id, "Caja", new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.cja_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                <span class="validation-error">@Html.ValidationMessageFor(model => model.cja_Id)</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.aqcja_Fecha, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.aqcja_Fecha, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechasarqueo" } })
+                <span class="validation-error">@Html.ValidationMessageFor(model => model.aqcja_Fecha)</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.aqcja_FechaInicio, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.aqcja_FechaInicio, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechainicio" } })
+                <span class="validation-error">@Html.ValidationMessageFor(model => model.aqcja_FechaInicio)</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.aqcja_FechaFin, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.aqcja_FechaFin, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechafin" } })
+                <span class="validation-error">@Html.ValidationMessageFor(model => model.aqcja_FechaFin)</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.aqcja_SaldoInicial, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.aqcja_SaldoInicial, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                <span class="validation-error">@Html.ValidationMessageFor(model => model.aqcja_SaldoInicial)</span>
+            </div>
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalDetalle">Detalle</button>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.aqcja_MontoEfectivo, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.aqcja_MontoEfectivo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                <span class="validation-error">@Html.ValidationMessageFor(model => model.aqcja_MontoEfectivo)</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.aqcja_MontoCheque, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.aqcja_MontoCheque, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                <span class="validation-error">@Html.ValidationMessageFor(model => model.aqcja_MontoCheque)</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.aqcja_MontoTCoTD, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.aqcja_MontoTCoTD, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                <span class="validation-error">@Html.ValidationMessageFor(model => model.aqcja_MontoTCoTD)</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.aqcja_MontoNotaCredito, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.aqcja_MontoNotaCredito, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                <span class="validation-error">@Html.ValidationMessageFor(model => model.aqcja_MontoNotaCredito)</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.aqcja_MontoCupon, new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.aqcja_MontoCupon, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                <span class="validation-error">@Html.ValidationMessageFor(model => model.aqcja_MontoCupon)</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.aqcja_SaldoFinal, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.aqcja_SaldoFinal, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                <span class="validation-error">@Html.ValidationMessageFor(model => model.aqcja_SaldoFinal)</span>
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-1 col-md-9">
+                <label class="control-label">Detalle Denomonaciòn Efectivo</label>
+                <table class="table table-bordered">
+                                  
+                    <tr>
+                        <th class="warning">Moneda</th>
+                        <th class="warning">0.05 ctv</th>
+                        <th class="warning">0.10 ctv</th>
+                        <th class="warning">0.20 ctv</th>
+                        <th class="warning">0.50 ctv</th>
+                    </tr>
+                    <tr>
+                        <td>Unid.</td>
+                        <td>10</td>
+                        <td>15</td>
+                        <td>20</td>
+                        <td>25</td>
+                    </tr>
+                    <tr>
+                        <th class="warning">Billete</th>
+                        <th class="warning">1 LP</th>
+                        <th class="warning">2 LP</th>
+                        <th class="warning">5 LP</th>
+                        <th class="warning">10 LP</th>
+                    </tr>
+                    <tr>
+                        <td>Unid.</td>
+                        <td>10</td>
+                        <td>15</td>
+                        <td>20</td>
+                        <td>25</td>
+                    </tr>
+                </table>
+            </div>
+            
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-primary btn-xs" />
+				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white btn-xs" })
+            </div>
+        </div>
+    </div>
+}
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/Datepicker.js"></script>
+
+<div>
+    <div class="modal fade" id="ModalDetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog  " role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Detalle Apertura Caja</h4>
+                </div>
+                <div class="modal-body" id="frmEditarMunicipios">
+                    @Html.Partial("_IndexDenominacion")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

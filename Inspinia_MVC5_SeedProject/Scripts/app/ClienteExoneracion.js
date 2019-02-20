@@ -48,3 +48,125 @@ $(document).on("click", "#tbCliente tbody tr td button#seleccionar", function ()
     $("#tbCliente_clte_Nombres").val(NombreCliente)
     $("#tbCliente_clte_NombreComercial").val(NombreCliente);
 });
+
+
+
+
+//Validacion campos Caracteres especiales
+
+
+//Exoneracion
+$('#exo_Documento').on('input', function (e) {
+    if (!/^[ a-z0-9áéíóúüñ]*$/i.test(this.value)) {
+        this.value = this.value.replace(/[^ a-z0-9áéíóúüñ]+/ig, "");
+    }
+});
+
+
+//Documento fiscal
+
+
+function soloNumeros(e) {
+    var key = window.Event ? e.which : e.keyCode;
+    return ((key >= 48 && key <= 57) || (key == 8))
+}
+
+//$('#dfisc_Descripcion').on('input', function (e) {
+//    if (!/^[ a-z0-9áéíóúüñ]*$/i.test(this.value)) {
+//        this.value = this.value.replace(/[^ a-z0-9áéíóúüñ]+/ig, "");
+//    }
+//});
+
+//Documento fiscal
+
+$('#dfisc_Id').on('input', function (e) {
+    if (!/^[ a-z0-9áéíóúüñ]*$/i.test(this.value)) {
+        this.value = this.value.replace(/[^ a-z0-9áéíóúüñ]+/ig, "");
+    }
+});
+
+
+$('#dfisc_Descripcion').on('input', function (e) {
+    if (!/^[ a-z0-9áéíóúüñ]*$/i.test(this.value)) {
+        this.value = this.value.replace(/[^ a-z0-9áéíóúüñ]+/ig, "");
+    }
+});
+
+
+
+
+onload = function () {
+    var ele = document.querySelectorAll('.validanumericos')[0];
+    ele.onkeypress = function (e) {
+        if (isNaN(this.value + String.fromCharCode(e.charCode)))
+            return false;
+    }
+    ele.onpaste = function (e) {
+        e.preventDefault();
+    }
+}
+
+//correo
+
+$("#suc_Correo").blur(function () {
+    campo = event.target;
+    valido = document.getElementById('emailOK');
+
+    var reg = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    var regOficial = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+    //Se muestra un texto a modo de ejemplo, luego va a ser un icono
+    if (reg.test(campo.value) && regOficial.test(campo.value)) {
+        valido.innerText = "";
+    } else if (reg.test(campo.value)) {
+        valido.innerText = "";
+
+    } else {
+        valido.innerText = "Direccion de Correo Electronico Incorrecta";
+
+    }
+});
+
+$("#suc_Correo").blur(function () {
+    campo = event.target;
+    valido = document.getElementById('emailOK1');
+
+    var reg = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    var regOficial = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+    //Se muestra un texto a modo de ejemplo, luego va a ser un icono
+    if (reg.test(campo.value) && regOficial.test(campo.value)) {
+        valido.innerText = "";
+    } else if (reg.test(campo.value)) {
+        valido.innerText = "";
+
+    } else {
+        valido.innerText = "Direccion de Correo Electronico Incorrecta";
+
+    }
+});
+
+//Validacion de letras//
+function soloLetras(e) {
+    tecla = (document.all) ? e.keyCode : e.which;
+    tecla = String.fromCharCode(tecla)
+    return /^[a-zA-ZáéíóúñÁÉÍÓÚÑ ]+$/.test(tecla);
+}
+//////
+$(document).ready(function () {
+    $("#btnGuardar").click(function () {
+        var monto = $('#exo_Documento').val();
+        //var montoint = parseInt(monto);
+
+        if (monto == '') {
+            valido = document.getElementById('doc');
+            valido.innerText = "El campo Documento es Requerido";
+            return false;
+        }
+        else {
+            valido = document.getElementById('doc');
+            valido.innerText = "";
+        }
+
+    });
+});

@@ -5,7 +5,12 @@
     ViewBag.Title = "Registrar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<style>
+    .AsteriscoRojo:after {
+        content: "*";
+        color: red;
+    }
+</style>
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Nota Crédito</h2>
@@ -46,8 +51,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.cja_Id, new { @class = "control-label required col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.cja_Id, new { htmlAttributes = new { @class = "form-control"@*, @readonly = "readonly"*@ }
-                               })
+                                    @Html.EditorFor(model => model.cja_Id, new { htmlAttributes = new { @class = "form-control"@*, @readonly = "readonly"*@ }})
                                     <span class="validation-error">@Html.ValidationMessageFor(model => model.cja_Id)</span>
                                 </div>
                             </div>
@@ -123,11 +127,11 @@
                             </div>
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.nocre_MotivoEmision, new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.nocre_MotivoEmision, new { @class = "control-label col-md-2 AsteriscoRojo" })
                                 <div class="col-md-4">
-                                    @Html.TextAreaFor(model => model.nocre_MotivoEmision, new { @class = "form-control" })
-                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.nocre_MotivoEmision)</span>
-                                </div>
+                                    @Html.TextAreaFor(model => model.nocre_MotivoEmision, new { @class = "form-control", @onkeypress = "return soloLetras(event)", @onblur = "limpia()" })
+                                    <p id="smsMotivoNC" style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.nocre_MotivoEmision)</span></p>
+</div>
                             </div>
 
                             <div class="form-group">
@@ -347,8 +351,46 @@
         });
 
 
+        $('#nocre_MotivoEmision').blur(function () {
+            valido = document.getElementById('smsMotivoNC');
+            var motivoNC = $('#nocre_MotivoEmision').val();
+            if (motivoNC == "") {
+                $('#nocre_MotivoEmision').val('').focus();
+                valido.innerText = "*El campo Motivo Emisión es requerido";
+            } else {
+                valido.innerText = "";
+            }
+        });
         //--------------------mascara-----------------------------
 
     </script>
 
+<script>
+function soloLetras(e) {
+    key = e.keyCode || e.which;
+    tecla = String.fromCharCode(key).toLowerCase();
+    letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
+    especiales = [8, 37, 39, 46];
+
+    tecla_especial = false
+    for(var i in especiales) {
+        if(key == especiales[i]) {
+            tecla_especial = true;
+            break;
+        }
+    }
+
+    if(letras.indexOf(tecla) == -1 && !tecla_especial)
+        return false;
+}
+
+function limpia() {
+    var val = document.getElementById("#nocre_MotivoEmision").value;
+    var tam = val.length;
+    for(i = 0; i < tam; i++) {
+        if(!isNaN(val[i]))
+            document.getElementById("#nocre_MotivoEmision").value = '';
+    }
+}
+</script>
 }

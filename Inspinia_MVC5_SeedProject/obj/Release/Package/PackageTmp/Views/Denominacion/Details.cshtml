@@ -1,0 +1,109 @@
+﻿@model ERP_GMEDINA.Models.tbDenominacion
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2> Denominación</h2>
+
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            <a href="/Denominacion/Index">Regresar</a>
+        </div>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Detalle Denominación</h5>
+                </div>
+                <div class="ibox-content">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.deno_Id)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.deno_Id)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.mnda_Id)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.tbMoneda.mnda_Nombre)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.deno_Descripcion)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.deno_Descripcion)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.deno_Tipo)
+                        </dt>
+
+                        @if (Model.deno_Tipo == 1)
+                        {
+                            <dd>Billete</dd>
+                        }
+                        else
+                        {
+                            <dd>Moneda</dd>
+                        }
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.deno_valor)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.deno_valor)
+                        </dd>
+                    </dl>
+
+
+                    @Html.ActionLink("Editar", "Edit", new { id = Model.deno_Id }, new { @class = "btn btn-primary" })
+
+
+                </div>
+            </div>
+        </div>
+        <div class="ibox-content">
+            <table class="table table-striped">
+                <tr>
+                    <th>Acción</th>
+                    <th>Usuario</th>
+                    <th>Fecha</th>
+                </tr>
+                <tr>
+                    <td>Creado</td>
+                    <td>
+                        @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                        @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                    </td>
+                    <td>@Html.DisplayFor(model => model.deno_FechaCrea)</td>
+                </tr>
+                <tr>
+                    <td>Modificado</td>
+                    <td>
+                        @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                        @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                    </td>
+                    <td>@Html.DisplayFor(model => model.deno_FechaModifica)</td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+</div>

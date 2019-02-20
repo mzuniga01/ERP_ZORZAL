@@ -19,7 +19,7 @@
                             @*@Html.LabelFor(mone => test.mnda_Id, "Moneda", new { @class = "control-label col-md-2" })*@
                             <div class="col-md-4">
                                 @Html.DropDownList("mnda_Id", null, "Seleccione Moneda", new { @class = "form-control" })
-                                <p id="MensajeErrorDenominacion" style="color:red">@Html.ValidationMessageFor(mone => test.mnda_Id)</p>
+                                <p id="MensajeError" style="color:red">@Html.ValidationMessageFor(mone => test.mnda_Id)</p>
                             </div>
                           </div>                       
                     </div>
@@ -57,5 +57,7 @@
         </div>
      </div>
 </div>
+
+
 
 

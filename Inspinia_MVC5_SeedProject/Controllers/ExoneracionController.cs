@@ -16,44 +16,88 @@ namespace ERP_GMEDINA.Controllers
         GeneralFunctions Function = new GeneralFunctions();
         public ActionResult ClientesnoExonerado()
         {
-
             return View(db.UDP_Vent_listExoneracion_Select);
         }
-
-
+        
         // GET: /Exoneracion/
         public ActionResult Index()
         {
-            var tbexoneracion = db.tbExoneracion.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbCliente);
-
-            return View(tbexoneracion.ToList());
+            if (Function.GetUserLogin())
+            {
+                if (Function.GetRol())
+                {
+                    if (Function.GetUserRols("Exoneracion/Index"))
+                    {
+                        var tbexoneracion = db.tbExoneracion.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbCliente);
+                        return View(tbexoneracion.ToList());
+                    }
+                    else
+                    {
+                        return RedirectToAction("SinAcceso", "Login");
+                    }
+                }
+                else
+                    return RedirectToAction("SinRol", "Login");
+            }
+            else
+                return RedirectToAction("Index", "Login");
         }
 
         // GET: /Exoneracion/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            if (Function.GetUserLogin())
             {
-                return RedirectToAction("Index");
+                if (Function.GetRol())
+                {
+                    if (Function.GetUserRols("Exoneracion/Details"))
+                    {
+                        if (id == null)
+                        {
+                            return RedirectToAction("Index");
+                        }
+                        tbExoneracion tbExoneracion = db.tbExoneracion.Find(id);
+                        if (tbExoneracion == null)
+                        {
+                            return RedirectToAction("NotFound", "Login");
+                        }
+                        return View(tbExoneracion);
+                    }
+                    else
+                    {
+                        return RedirectToAction("SinAcceso", "Login");
+                    }
+                }
+                else
+                    return RedirectToAction("SinRol", "Login");
             }
-            tbExoneracion tbExoneracion = db.tbExoneracion.Find(id);
-            if (tbExoneracion == null)
-            {
-                return RedirectToAction("NotFound", "Login");
-            }
-            return View(tbExoneracion);
+            else
+                return RedirectToAction("Index", "Login");
         }
 
         // GET: /Exoneracion/Create
         public ActionResult Create()
         {
-            //ViewBag.exo_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
-            //ViewBag.exo_UsuarioModifa = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
-            //ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte");
-            //return View();
-            ViewBag.Cliente = db.tbCliente.ToList();
-            ViewBag.noExonerado = db.UDP_Vent_listExoneracion_Select.ToList();
-            return View();
+            if (Function.GetUserLogin())
+            {
+                if (Function.GetRol())
+                {
+                    if (Function.GetUserRols("Exoneracion/Create"))
+                    {
+                        ViewBag.Cliente = db.tbCliente.ToList();
+                        ViewBag.noExonerado = db.UDP_Vent_listExoneracion_Select.ToList();
+                        return View();
+                    }
+                    else
+                    {
+                        return RedirectToAction("SinAcceso", "Login");
+                    }
+                }
+                else
+                    return RedirectToAction("SinRol", "Login");
+            }
+            else
+                return RedirectToAction("Index", "Login");
         }
 
         // POST: /Exoneracion/Create
@@ -63,70 +107,103 @@ namespace ERP_GMEDINA.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include="exo_Id,exo_Documento,exo_ExoneracionActiva,exo_FechaInicialVigencia,exo_FechaIFinalVigencia,clte_Id,exo_UsuarioCrea,exo_FechaCrea,exo_UsuarioModifa,exo_FechaModifica")] tbExoneracion tbExoneracion)
         {
-            try
+            if (Function.GetUserLogin())
             {
-                if (ModelState.IsValid)
+                if (Function.GetRol())
                 {
-
-                    var MensajeError = 0;
-                    IEnumerable<object> list = null;
-                    list = db.UDP_Vent_tbExoneracion_Insert(tbExoneracion.exo_Documento,
-                                                            tbExoneracion.exo_ExoneracionActiva,
-                                                            tbExoneracion.exo_FechaInicialVigencia,
-                                                            tbExoneracion.exo_FechaIFinalVigencia,
-                                                            tbExoneracion.clte_Id, Function.GetUser(),
-                                    Function.DatetimeNow());
-                    foreach (UDP_Vent_tbExoneracion_Insert_Result Exoneracion in list)
-                        MensajeError = Exoneracion.MensajeError;
-                    if (MensajeError == -1)
+                    if (Function.GetUserRols("Exoneracion/Create"))
                     {
+                        try
+                        {
+                            if (ModelState.IsValid)
+                            {
+                                string MensajeError = "";
+                                IEnumerable<object> list = null;
+                                list = db.UDP_Vent_tbExoneracion_Insert(tbExoneracion.exo_Documento,
+                                                                        Helpers.ExoneracionActiva,
+                                                                        tbExoneracion.exo_FechaInicialVigencia,
+                                                                        tbExoneracion.exo_FechaIFinalVigencia,
+                                                                        tbExoneracion.clte_Id, 
+                                                                        Function.GetUser(),
+                                                                        Function.DatetimeNow());
+                                foreach (UDP_Vent_tbExoneracion_Insert_Result Exoneracion in list)
+                                    MensajeError = Exoneracion.MensajeError;
+                                if (MensajeError.StartsWith("-1"))
+                                {
+                                    ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte", tbExoneracion.clte_Id);
+                                    ViewBag.Cliente = db.tbCliente.ToList();
+                                    ViewBag.noExonerado = db.UDP_Vent_listExoneracion_Select.ToList();
+                                    Function.InsertBitacoraErrores("Exoneracion/Create", MensajeError, "Create");
+                                    ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                                    return View(tbExoneracion);
+                                }
+                                else
+                                {
+                                    return RedirectToAction("Index");
+                                }
+                            }
+                            ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte", tbExoneracion.clte_Id);
+                            ViewBag.Cliente = db.tbCliente.ToList();
+                            ViewBag.noExonerado = db.UDP_Vent_listExoneracion_Select.ToList();
+                            return View(tbExoneracion);
+                        }
+                        catch (Exception Ex)
+                        {
+                            Function.InsertBitacoraErrores("Exoneracion/Create", Ex.Message.ToString(), "Create");
+                            ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                            ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte", tbExoneracion.clte_Id);
+                            ViewBag.Cliente = db.tbCliente.ToList();
+                            ViewBag.noExonerado = db.UDP_Vent_listExoneracion_Select.ToList();
+                            return View(tbExoneracion);
+                        }
                     }
                     else
                     {
-                        return RedirectToAction("Index");
+                        return RedirectToAction("SinAcceso", "Login");
                     }
-                    db.tbExoneracion.Add(tbExoneracion);
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
-
                 }
+                else
+                    return RedirectToAction("SinRol", "Login");
             }
-            catch (Exception Ex)
-            {
-                ModelState.AddModelError("", "Error al Agregar Registro " + Ex.Message.ToString());
-                ViewBag.Cliente = db.tbCliente.ToList();
-                ViewBag.noExonerado = db.UDP_Vent_listExoneracion_Select.ToList();
-                return View(tbExoneracion);
-            }
-
-            ViewBag.exo_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbExoneracion.exo_UsuarioCrea);
-            ViewBag.exo_UsuarioModifa = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbExoneracion.exo_UsuarioModifa);
-            ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte", tbExoneracion.clte_Id);
-            ViewBag.Cliente = db.tbCliente.ToList();
-            ViewBag.noExonerado = db.UDP_Vent_listExoneracion_Select.ToList();
-            return View(tbExoneracion);
+            else
+                return RedirectToAction("Index", "Login");
         }
 
         // GET: /Exoneracion/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            if (Function.GetUserLogin())
             {
-                return RedirectToAction("Index");
+                if (Function.GetRol())
+                {
+                    if (Function.GetUserRols("Exoneracion/Edit"))
+                    {
+                        if (id == null)
+                        {
+                            return RedirectToAction("Index");
+                        }
+                        tbExoneracion tbExoneracion = db.tbExoneracion.Find(id);
+                        if (tbExoneracion == null)
+                        {
+                            return RedirectToAction("NotFound", "Login");
+                        }
+                        ViewBag.exo_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbExoneracion.exo_UsuarioCrea);
+                        ViewBag.exo_UsuarioModifa = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbExoneracion.exo_UsuarioModifa);
+                        ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte", tbExoneracion.clte_Id);
+                        ViewBag.Cliente = db.tbCliente.ToList();
+                        ViewBag.noExonerado = db.UDP_Vent_listExoneracion_Select.ToList();
+                        return View(tbExoneracion);
+                    }
+                    else
+                    {
+                        return RedirectToAction("SinAcceso", "Login");
+                    }
+                }
+                else
+                    return RedirectToAction("SinRol", "Login");
             }
-            tbExoneracion tbExoneracion = db.tbExoneracion.Find(id);
-            if (tbExoneracion == null)
-            {
-                return RedirectToAction("NotFound", "Login");
-            }
-            ViewBag.exo_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbExoneracion.exo_UsuarioCrea);
-            ViewBag.exo_UsuarioModifa = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbExoneracion.exo_UsuarioModifa);
-            ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte", tbExoneracion.clte_Id);
-            ViewBag.Cliente = db.tbCliente.ToList();
-            ViewBag.noExonerado = db.UDP_Vent_listExoneracion_Select.ToList();
-            return View(tbExoneracion);
-            
-            //return View();
+            else
+                return RedirectToAction("Index", "Login");
         }
 
         // POST: /Exoneracion/Edit/5
@@ -136,75 +213,69 @@ namespace ERP_GMEDINA.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int? id,[Bind(Include= "exo_Id,exo_Documento,exo_ExoneracionActiva,exo_FechaInicialVigencia,exo_FechaIFinalVigencia,clte_Id,exo_UsuarioCrea,exo_FechaCrea")] tbExoneracion tbExoneracion)
         {
-            try
+            if (Function.GetUserLogin())
             {
-                if (ModelState.IsValid)
+                if (Function.GetRol())
                 {
-                    tbExoneracion pExoneracion = db.tbExoneracion.Find(id);
-                    var MensajeError = 0;
-                    IEnumerable<object> list = null;
-                    list = db.UDP_Vent_tbExoneracion_Update(tbExoneracion.exo_Id,
-                                                            tbExoneracion.exo_Documento,
-                                                            tbExoneracion.exo_ExoneracionActiva,
-                                                            tbExoneracion.exo_FechaInicialVigencia,
-                                                            tbExoneracion.exo_FechaIFinalVigencia,
-                                                            tbExoneracion.clte_Id,
-                                                            pExoneracion.exo_UsuarioCrea,
-                                                            pExoneracion.exo_FechaCrea, Function.GetUser(),
-                                    Function.DatetimeNow());
-                    foreach (UDP_Vent_tbExoneracion_Update_Result Exoneracion in list)
-                        MensajeError = Exoneracion.MensajeError;
-                    if (MensajeError == -1)
+                    if (Function.GetUserRols("Exoneracion/Edit"))
                     {
+                        try
+                        {
+                            if (ModelState.IsValid)
+                            {
+                                tbExoneracion pExoneracion = db.tbExoneracion.Find(id);
+                                string MensajeError = "";
+                                IEnumerable<object> list = null;
+                                list = db.UDP_Vent_tbExoneracion_Update(tbExoneracion.exo_Id,
+                                                                        tbExoneracion.exo_Documento,
+                                                                        pExoneracion.exo_ExoneracionActiva,
+                                                                        tbExoneracion.exo_FechaInicialVigencia,
+                                                                        tbExoneracion.exo_FechaIFinalVigencia,
+                                                                        tbExoneracion.clte_Id,
+                                                                        pExoneracion.exo_UsuarioCrea,
+                                                                        pExoneracion.exo_FechaCrea, Function.GetUser(),
+                                                Function.DatetimeNow());
+                                foreach (UDP_Vent_tbExoneracion_Update_Result Exoneracion in list)
+                                    MensajeError = Exoneracion.MensajeError;
+                                if (MensajeError.StartsWith("-1"))
+                                {
+                                    ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte", tbExoneracion.clte_Id);
+                                    ViewBag.Cliente = db.tbCliente.ToList();
+                                    ViewBag.noExonerado = db.UDP_Vent_listExoneracion_Select.ToList();
+                                    Function.InsertBitacoraErrores("Exoneracion/Create", MensajeError, "Create");
+                                    ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                                    return View(tbExoneracion);
+                                }
+                                else
+                                {
+                                    return RedirectToAction("Index");
+                                }
+                            }
+                            ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte", tbExoneracion.clte_Id);
+                            ViewBag.Cliente = db.tbCliente.ToList();
+                            ViewBag.noExonerado = db.UDP_Vent_listExoneracion_Select.ToList();
+                            return View(tbExoneracion);
+                        }
+                        catch (Exception Ex)
+                        {
+                            Function.InsertBitacoraErrores("Exoneracion/Create", Ex.Message.ToString(), "Create");
+                            ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                            ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte", tbExoneracion.clte_Id);
+                            ViewBag.Cliente = db.tbCliente.ToList();
+                            ViewBag.noExonerado = db.UDP_Vent_listExoneracion_Select.ToList();
+                            return View(tbExoneracion);
+                        }
                     }
                     else
                     {
-                        return RedirectToAction("Index");
+                        return RedirectToAction("SinAcceso", "Login");
                     }
-                    
-                    return RedirectToAction("Index");
-
                 }
+                else
+                    return RedirectToAction("SinRol", "Login");
             }
-            catch (Exception Ex)
-            {
-                ModelState.AddModelError("", "Error al Agregar Registro " + Ex.Message.ToString());
-                ViewBag.Cliente = db.tbCliente.ToList();
-                ViewBag.noExonerado = db.UDP_Vent_listExoneracion_Select.ToList();
-                return View(tbExoneracion);
-            }
-            ViewBag.exo_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbExoneracion.exo_UsuarioCrea);
-            ViewBag.exo_UsuarioModifa = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbExoneracion.exo_UsuarioModifa);
-            ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte", tbExoneracion.clte_Id);
-            ViewBag.Cliente = db.tbCliente.ToList();
-            ViewBag.noExonerado = db.UDP_Vent_listExoneracion_Select.ToList();
-            return View(tbExoneracion);
-        }
-
-        // GET: /Exoneracion/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return RedirectToAction("Index");
-            }
-            tbExoneracion tbExoneracion = db.tbExoneracion.Find(id);
-            if (tbExoneracion == null)
-            {
-                return RedirectToAction("NotFound", "Login");
-            }
-            return View(tbExoneracion);
-        }
-
-        // POST: /Exoneracion/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            tbExoneracion tbExoneracion = db.tbExoneracion.Find(id);
-            db.tbExoneracion.Remove(tbExoneracion);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            else
+                return RedirectToAction("Index", "Login");
         }
 
         protected override void Dispose(bool disposing)
@@ -216,18 +287,18 @@ namespace ERP_GMEDINA.Controllers
             base.Dispose(disposing);
         }
 
-
+        
         [HttpPost]
         public JsonResult InactivarCliente(int CodExoneracion, bool Activo)
         {
-            var list = db.UDP_Vent_tbExoneracion_Estado(CodExoneracion, Helpers.ClienteInactivo).ToList();
+            var list = db.UDP_Vent_tbExoneracion_Estado(CodExoneracion, Helpers.ExoneracionInactiva, Function.GetUser(), Function.DatetimeNow()).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
         public JsonResult ActivarCliente(int CodExoneracion, bool Activo)
         {
-            var list = db.UDP_Vent_tbExoneracion_Estado(CodExoneracion, Helpers.ClienteActivo).ToList();
+            var list = db.UDP_Vent_tbExoneracion_Estado(CodExoneracion, Helpers.ExoneracionActiva, Function.GetUser(), Function.DatetimeNow()).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
     }

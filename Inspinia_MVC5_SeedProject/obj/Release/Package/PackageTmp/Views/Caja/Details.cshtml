@@ -1,0 +1,103 @@
+﻿@model ERP_GMEDINA.Models.tbCaja
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/css/Auditoria.css" rel="stylesheet" />
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Caja</h2>
+    </div>
+
+    <div class="col-sm-8">
+        <div class="title-action">
+            <a href="@Url.Action("Index","Caja")">Regresar</a>            
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Detalle de Caja</h5>
+                </div>
+                <div class="ibox-content">
+
+
+				    <dl class="dl-horizontal">
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbSucursal.suc_Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbSucursal.suc_Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cja_Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cja_Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cja_Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cja_Descripcion)
+        </dd>
+    </dl>
+
+	    @Html.ActionLink("Editar", "Edit", new { id = Model.cja_Id }, new { @class = "btn btn-primary"})
+
+                </div>
+            </div>
+            <div class="ibox-content">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Acción</th>
+                        <th>Usuario</th>
+                        <th>Fecha</th>
+                    </tr>
+                    <tr>
+                        <td>Creado</td>
+                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)</td>
+                        <td>@Html.DisplayFor(model => model.cja_FechaCrea)</td>
+                    </tr>
+                    <tr>
+                        <td>Modificado</td>
+                        <td>@Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)</td>
+                        <td>@Html.DisplayFor(model => model.cja_FechaModifica)</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+
+
+
+
+
+
+
+
+
+
+

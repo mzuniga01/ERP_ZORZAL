@@ -1,0 +1,158 @@
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbPago>
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Pagos</h2>
+        
+    </div>
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Listado de Pago</h5>
+					<div class="ibox-tools">
+						@Html.ActionLink("Registrar Pago", "Create", null, new { @class = "btn btn-primary "})
+					</div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="table table-striped table-responsive table-bordered" id="DataTable">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.pago_FechaElaboracion)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tbFactura.fact_Codigo)
+                                </th>
+                                <th>
+                                    Tipo Pago    
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.pago_SaldoAnterior)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.pago_TotalPago)
+                                </th>
+                                <th>
+                                    Cliente
+                                </th>
+                              
+
+
+
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr data-id="@item.pago_Id"
+                                    data-anulado="@item.pago_EstaAnulado">
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.pago_FechaElaboracion)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbFactura.fact_Codigo)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbTipoPago.tpa_Descripcion)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.pago_SaldoAnterior)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.pago_TotalPago)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbFactura.clte_Nombres)
+                                    </td>
+
+                            @if (item.pago_EstaAnulado == false)
+                            {
+                                    <td>
+                                        @Html.ActionLink("Detalle", "Details", new { id = item.pago_Id }, new { @class = "btn btn-primary btn-xs" })
+                                        @Html.ActionLink("Editar", "Edit", new { id = item.pago_Id }, new { @class = "btn btn-white btn-xs" })
+                                        @Html.ActionLink("Imprimir", "ExportReport", new { id = item.pago_Id }, new { @class = "btn btn-info btn-xs", @id= "bottonImprimir" ,@name= "bottonImprimir"})
+                                        @*@Html.ActionLink("Imprimir", "", new { id = item.pago_Id }, new { @class = "btn btn-white btn-xs", id = "bottonImprimir", name = "bottonImprimir", type = "button", data-toggle='modal' ,data-target='#Imprimir' })*@
+                                        @*<button id="bottonImprimir" name="bottonImprimir" type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#Imprimir">
+                                            Imprimir
+                                        </button>*@
+                                       
+                                    </td>
+                            }
+                            else
+                            {
+
+                                <td>
+                                    @Html.ActionLink("Detalles", "Details", new { id = item.pago_Id }, new { @class = "btn btn-primary btn-xs" })
+
+                                    @*btn no update ya esta anulado*@
+                                    <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="No se puede Editar, esta Anulado">
+                                        <button class="btn btn-white btn-xs" style="pointer-events: none;" type="button" disabled>Editar</button>
+                                    </span>
+
+                                    <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="No se puede Imprimir, esta Anulado">
+                                        <button id="bottonImprimir" class="btn btn-info btn-xs" style="pointer-events: none;" type="button" disabled>Imprimir</button>
+                                    </span>
+                                </td>
+                            }
+
+
+
+                                </tr>
+                            }
+                        </tbody>
+
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+ </div>
+
+
+
+@* -------------------Modal Imprimir---------------- *@
+<div class="modal fade" id="Imprimir" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Imprimir Comprobante Pago</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Deseas Imprimir el Comprobante de Pago?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" @*onclick="Anular();"*@ data-dismiss="modal">Si</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/DataTable.js"></script>
+<script>
+    $('#btnImprimir').click(function () {
+        confirm('¿Deseas Imprimir Comproante Pago?');
+    });
+
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    });
+</script>

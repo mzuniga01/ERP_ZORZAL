@@ -3,6 +3,8 @@ var MontoInicial = 0;
 var Monto = 0;
 ////Funcion denominacion
 $('#mnda_Id').on("change", function () {
+    valido = document.getElementById('MensajeError');
+    valido.innerText = "";
     total = 0;
     MontoInicial = 0;
     Monto = 0;
@@ -45,7 +47,7 @@ function GetDenominacion() {
                     contador = contador + 1;
                     copiar = "<tr data-id=" + contador + ">";
                     copiar += "<td id = 'DenominacionCreate'>"  + val.deno_Descripcion + "</td>";
-                    copiar += "<td>" + '<input type="number" min="0" id="name" name="name" class="form-control" size="3">' + "</td>";
+                    copiar += "<td>" + '<input type="number" min="0" id="name" name="name" class="form-control" size="3" onkeypress = "return validar(event)"  >' + "</td>";
                     copiar += "<td id = 'ValorCreate'>" + val.deno_valor + "</td>";
                     copiar += "<td id = 'SuntotalCreate'></td>";
                     copiar += "<td id = 'deno_Id' hidden>" + val.deno_Id + "</td>";
@@ -98,3 +100,25 @@ $(document).on("change", "#DenominacionDetalle tbody tr td input#name", function
    
 });
 
+
+//Validación Sólo letras
+function validar(e) {
+    tecla = (document.all) ? e.keyCode : e.which;
+    tecla = String.fromCharCode(tecla)
+    return /^[0-9\s]*$/i.test(tecla);
+}
+
+
+$("#guardar").click(function () {
+    moneda = $("#mnda_Id").val();
+    if (moneda == "") {
+        valido = document.getElementById('MensajeError');
+        valido.innerText = "El campo moneda es requerido";
+        return false
+    }
+})
+
+$('#cja_Id').on("change", function () {
+    valido = document.getElementById('MensajeErrorDenominacion');
+    valido.innerText = "";
+});
