@@ -221,11 +221,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DSCuponDescuento.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Dataset\DsFactura.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DsFactura.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Dataset\DSNotaCredito.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -235,6 +230,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>dsPago.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dataset\Factura.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Factura.xsd</DependentUpon>
     </Compile>
     <Compile Include="Dataset\PuntoEmision.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -416,9 +416,6 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Sucursal.cs" />
-    <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>ModelERP.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\tbAccesoRol.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -694,9 +691,6 @@
     <Compile Include="Models\UDP_Vent_tbCaja_Update_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\UDP_Vent_tbCliente_Estado_Result.cs">
-      <DependentUpon>ModelERP.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\UDP_Vent_tbCliente_Insert_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -767,12 +761,6 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Vent_tbEstadoSolicitudCredito_Update_Result.cs">
-      <DependentUpon>ModelERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\UDP_Vent_tbExoneracion_Estado_Result.cs">
-      <DependentUpon>ModelERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\UDP_Vent_tbExoneracion_Estado_Result1.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Vent_tbExoneracion_Insert_Result.cs">
@@ -1029,12 +1017,6 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reports\Factura.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Factura.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Reports\ImprimirCuponDescuento.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1080,6 +1062,38 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Antlr3.Runtime.dll" />
+    <Content Include="bin\EntityFramework.dll" />
+    <Content Include="bin\EntityFramework.SqlServer.dll" />
+    <Content Include="bin\ERP_GMEDINA.dll" />
+    <Content Include="bin\ERP_GMEDINA.pdb" />
+    <Content Include="bin\Microsoft.AspNet.Identity.Core.dll" />
+    <Content Include="bin\Microsoft.AspNet.Identity.EntityFramework.dll" />
+    <Content Include="bin\Microsoft.AspNet.Identity.Owin.dll" />
+    <Content Include="bin\Microsoft.Owin.dll" />
+    <Content Include="bin\Microsoft.Owin.Host.SystemWeb.dll" />
+    <Content Include="bin\Microsoft.Owin.Security.Cookies.dll" />
+    <Content Include="bin\Microsoft.Owin.Security.dll" />
+    <Content Include="bin\Microsoft.Owin.Security.Facebook.dll" />
+    <Content Include="bin\Microsoft.Owin.Security.Google.dll" />
+    <Content Include="bin\Microsoft.Owin.Security.MicrosoftAccount.dll" />
+    <Content Include="bin\Microsoft.Owin.Security.OAuth.dll" />
+    <Content Include="bin\Microsoft.Owin.Security.Twitter.dll" />
+    <Content Include="bin\Microsoft.ReportViewer.WebForms.dll" />
+    <Content Include="bin\Microsoft.SqlServer.Types.dll" />
+    <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
+    <Content Include="bin\Newtonsoft.Json.dll" />
+    <Content Include="bin\Owin.dll" />
+    <Content Include="bin\System.Web.Helpers.dll" />
+    <Content Include="bin\System.Web.Mvc.dll" />
+    <Content Include="bin\System.Web.Mvc.Extensions.dll" />
+    <Content Include="bin\System.Web.Mvc.xml" />
+    <Content Include="bin\System.Web.Optimization.dll" />
+    <Content Include="bin\System.Web.Razor.dll" />
+    <Content Include="bin\System.Web.WebPages.Deployment.dll" />
+    <Content Include="bin\System.Web.WebPages.dll" />
+    <Content Include="bin\System.Web.WebPages.Razor.dll" />
+    <Content Include="bin\WebGrease.dll" />
     <Content Include="Content\animate.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -1331,7 +1345,6 @@
     <Content Include="Scripts\app\BCliente.js" />
     <Content Include="Scripts\app\CalculoFactura.js" />
     <Content Include="Scripts\app\Cantidad.js" />
-    <Content Include="Scripts\app\CaracteresEspeciales.js" />
     <Content Include="Scripts\app\ClienteDevolucion.js" />
     <Content Include="Scripts\app\ClienteExoneracion.js" />
     <Content Include="Scripts\app\ClienteFactura.js" />
@@ -1343,7 +1356,6 @@
     <Content Include="Scripts\app\Credito.js" />
     <Content Include="Scripts\app\CreditoCambio.js" />
     <Content Include="Scripts\app\CuentaBanco.js" />
-    <Content Include="Scripts\app\CuponDescuentoEsImpreso.js" />
     <Content Include="Scripts\app\CuponDescuentoAnulado.js" />
     <Content Include="Scripts\app\DataTable.js" />
     <Content Include="Scripts\app\DataTableBusquedaGenerica.js" />
@@ -1351,6 +1363,8 @@
     <Content Include="Scripts\app\Denominacion.js" />
     <Content Include="Scripts\app\DenominacionArqueo.js" />
     <Content Include="Scripts\app\Departamento.js" />
+    <Content Include="Scripts\app\DetalleEditarDevolucion.js" />
+    <Content Include="Scripts\app\DetalleEditarDevolucion1.js" />
     <Content Include="Scripts\app\DevolucionCalculos.js" />
     <Content Include="Scripts\app\DevolucionDetalle.js" />
     <Content Include="Scripts\app\EditNumeracion.js" />
@@ -1386,7 +1400,6 @@
     <Content Include="Scripts\app\MovientoCaja.js" />
     <Content Include="Scripts\app\NotaCredito.js" />
     <Content Include="Scripts\app\NotaCreditoAnulado.js" />
-    <Content Include="Scripts\app\PagoCampoNumerico.js" />
     <Content Include="Scripts\app\PagoClienteFacturas.js" />
     <Content Include="Scripts\app\PagosArqueo.js" />
     <Content Include="Scripts\app\PagoTransacciones.js" />
@@ -1408,7 +1421,6 @@
     <Content Include="Scripts\app\Sucursal.js" />
     <Content Include="Scripts\app\TableDetalleDevolucion.js" />
     <Content Include="Scripts\app\TipoPago.js" />
-    <Content Include="Scripts\app\TipoPagoDescripcionSoloLetras.js" />
     <Content Include="Scripts\app\ValidarPedido.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -1459,6 +1471,10 @@
     <Content Include="Dataset\PuntoEmision.xsc">
       <DependentUpon>PuntoEmision.xsd</DependentUpon>
     </Content>
+    <Content Include="Dataset\Factura.xsc">
+      <DependentUpon>Factura.xsd</DependentUpon>
+    </Content>
+    <Content Include="bin\ERP_GMEDINA.dll.config" />
     <Content Include="Dataset\DSCuponDescuento.xsc">
       <DependentUpon>DSCuponDescuento.xsd</DependentUpon>
     </Content>
@@ -1472,17 +1488,6 @@
     </Content>
     <Content Include="Dataset\DSNotaCredito.xsc">
       <DependentUpon>DSNotaCredito.xsd</DependentUpon>
-    </Content>
-    <Content Include="Dataset\DsFactura.xsc">
-      <DependentUpon>DsFactura.xsd</DependentUpon>
-    </Content>
-    <None Include="Dataset\DsFactura.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DsFactura.Designer.cs</LastGenOutput>
-    </None>
-    <Content Include="Dataset\DsFactura.xss">
-      <DependentUpon>DsFactura.xsd</DependentUpon>
     </Content>
     <None Include="Dataset\DSNotaCredito.xsd">
       <Generator>MSDataSetGenerator</Generator>
@@ -1502,6 +1507,14 @@
     </None>
     <Content Include="Dataset\dsPago.xss">
       <DependentUpon>dsPago.xsd</DependentUpon>
+    </Content>
+    <None Include="Dataset\Factura.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Factura.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Dataset\Factura.xss">
+      <DependentUpon>Factura.xsd</DependentUpon>
     </Content>
     <None Include="Dataset\PuntoEmision.xsd">
       <SubType>Designer</SubType>
@@ -1737,12 +1750,14 @@
     <Content Include="Views\PuntoEmision\_DetailsNumeracion.cshtml" />
     <Content Include="Views\NotaCredito\_IndexCliente.cshtml" />
     <Content Include="Views\SolicitudCredito\_IndexCliente.cshtml" />
+    <Content Include="Views\SolicitudCredito\_ListAprobacion.cshtml" />
     <Content Include="Views\SolicitudCredito\IndexSolicitud.cshtml" />
     <Content Include="Views\Pedido\Create.cshtml" />
     <Content Include="Views\Pedido\Delete.cshtml" />
     <Content Include="Views\Pedido\Details.cshtml" />
     <Content Include="Views\Pedido\Edit.cshtml" />
     <Content Include="Views\Pedido\Index.cshtml" />
+    <Content Include="Views\Pedido\_CreatePedidoDetalle.cshtml" />
     <Content Include="Views\Pedido\_IndexCliente.cshtml" />
     <Content Include="Views\Pedido\_ListPedidoDetalle.cshtml" />
     <Content Include="Views\MovimientoCaja\Create.cshtml" />
@@ -1769,6 +1784,7 @@
     <Content Include="Views\TipoPago\Edit.cshtml" />
     <Content Include="Views\TipoPago\Index.cshtml" />
     <Content Include="Views\Pago\_IndexCliente.cshtml" />
+    <Content Include="Views\Devolucion\_BuscarFacturaDevolucion.cshtml" />
     <Content Include="Views\MovimientoCaja\_CreateDenominacion.cshtml" />
     <Content Include="Views\Pago\_BuscarFacturaDevolucion.cshtml" />
     <Content Include="Views\Pedido\_IndexProducto.cshtml" />
@@ -1838,6 +1854,8 @@
     <Content Include="Views\ListaPrecios\_CreateListaPrecioDetalleEdit.cshtml" />
     <Content Include="Views\ListaPrecios\_CreateListaPrecioEdit.cshtml" />
     <Content Include="Views\Exoneracion\ClientesnoExonerado.cshtml" />
+    <Content Include="Views\ListaPrecios\_CreateListaPrecioDetalleModal.cshtml" />
+    <Content Include="Views\ListaPrecios\_IndexProductoModal.cshtml" />
     <Content Include="Views\SolicitudEfectivo\_AddDetalle.cshtml" />
     <Content Include="Views\SolicitudEfectivo\_Detalle_Insert.cshtml" />
     <Content Include="Views\SolicitudEfectivo\IndexOriginal.cshtml" />
@@ -1859,10 +1877,6 @@
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Reports\Factura.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>Factura.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="Reports\ImprimirCuponDescuento.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ImprimirCuponDescuento.cs</LastGenOutput>
@@ -1887,6 +1901,7 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>PagoImprimir1.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\PrintingFactura.rdlc" />
     <EmbeddedResource Include="Reports\PuntoEmision.rdlc" />
     <EmbeddedResource Include="Reports\SolicitudEfectivo.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

@@ -169,7 +169,7 @@
                                                         <div class="form-group">
                                                             @Html.LabelFor(model => model.dev_Fecha, new { @class = "control-label col-md-2" })
                                                             <div class="col-md-3">
-                                                                @Html.EditorFor(model => model.dev_Fecha, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @id = "fechafacturaEdit" } })
+                                                                @Html.EditorFor(model => model.dev_Fecha, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechafacturaEdit" } })
                                                                 @Html.ValidationMessageFor(model => model.dev_Fecha)
                                                             </div>
                                                         </div>
@@ -184,8 +184,18 @@
                                                         <div class="form-group">
                                                             @Html.LabelFor(model => model.tbFactura.clte_Nombres, "Cliente", new { @class = "control-label col-md-2" })
                                                             <div class="col-md-3">
+                                                                @{ if (Convert.ToInt32(Model.tbFactura.tbCliente.clte_EsPersonaNatural) == 1)
+                                                                    {
                                                                         @Html.EditorFor(model => model.tbFactura.clte_Nombres, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                                                         @Html.ValidationMessageFor(model => model.tbFactura.clte_Nombres)
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        @Html.EditorFor(model => model.tbFactura.tbCliente.clte_NombreComercial, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                                        @Html.ValidationMessageFor(model => model.tbFactura.tbCliente.clte_NombreComercial)
+                                                                    }
+                                                                }
+
                                                             </div>
                                                         </div>
                                                     </div>

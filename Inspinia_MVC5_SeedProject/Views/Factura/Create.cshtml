@@ -152,7 +152,7 @@
                                 </div>
                                 @Html.LabelFor(model => model.fact_Vendedor, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.fact_Vendedor, new { htmlAttributes = new { @autocomplete = "off", @onkeyup = "format(this)", @onkeypress = "return soloLetras(event)" } })
+                                    @Html.EditorFor(model => model.fact_Vendedor)
                                     <span class="validation-error">@Html.ValidationMessageFor(model => model.fact_Vendedor)</span>
                                 </div>
                             </div>

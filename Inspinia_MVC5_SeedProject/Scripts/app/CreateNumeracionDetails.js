@@ -128,13 +128,13 @@
             }
         })
         .done(function (data) {
-            if (data == 'No se pudo guardar el registro, favor contacte al administrador.') {
+            if (data == 'El registro se guardo exitosamente') {
                 location.reload();
-                swal("El registro  no se guardó!", "", "error");
+                swal("El registro se guardó exitosamente!", "", "success");
             }
             else {
                 location.reload();
-                swal("El registro se guardó exitosamente!", "", "success");
+                swal("El registro  no se guardó!", "", "error");
             }
         });
     }

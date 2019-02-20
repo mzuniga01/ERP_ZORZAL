@@ -17,80 +17,31 @@ namespace ERP_GMEDINA.Controllers
         // GET: /EstadoSolicitudCredito/
         public ActionResult Index()
         {
-            if (Function.GetUserLogin())
-            {
-                if (Function.GetRol())
-                {
-                    if (Function.GetUserRols("EstadoSolicitudCredito/Index"))
-                    {
-                        var tbestadosolicitudcredito = db.tbEstadoSolicitudCredito.Include(t => t.tbUsuario).Include(t => t.tbUsuario1);
-                        return View(tbestadosolicitudcredito.ToList());
-                    }
-                    else
-                    {
-                        return RedirectToAction("SinAcceso", "Login");
-                    }
-                }
-                else
-                    return RedirectToAction("SinRol", "Login");
-            }
-            else
-                return RedirectToAction("Index", "Login");
+            var tbestadosolicitudcredito = db.tbEstadoSolicitudCredito.Include(t => t.tbUsuario).Include(t => t.tbUsuario1);
+            return View(tbestadosolicitudcredito.ToList());
         }
 
         // GET: /EstadoSolicitudCredito/Details/5
         public ActionResult Details(byte? id)
         {
-            if (Function.GetUserLogin())
+            if (id == null)
             {
-                if (Function.GetRol())
-                {
-                    if (Function.GetUserRols("EstadoSolicitudCredito/Index"))
-                    {
-                        if (id == null)
-                        {
-                            return RedirectToAction("Index");
-                        }
-                        tbEstadoSolicitudCredito tbEstadoSolicitudCredito = db.tbEstadoSolicitudCredito.Find(id);
-                        if (tbEstadoSolicitudCredito == null)
-                        {
-                            return RedirectToAction("NotFound", "Login");
-                        }
-                        return View(tbEstadoSolicitudCredito);
-                    }
-                    else
-                    {
-                        return RedirectToAction("SinAcceso", "Login");
-                    }
-                }
-                else
-                    return RedirectToAction("SinRol", "Login");
+                return RedirectToAction("Index");
             }
-            else
-                return RedirectToAction("Index", "Login");
+            tbEstadoSolicitudCredito tbEstadoSolicitudCredito = db.tbEstadoSolicitudCredito.Find(id);
+            if (tbEstadoSolicitudCredito == null)
+            {
+                return RedirectToAction("NotFound", "Login");
+            }
+            return View(tbEstadoSolicitudCredito);
         }
 
         // GET: /EstadoSolicitudCredito/Create
         public ActionResult Create()
         {
-            if (Function.GetUserLogin())
-            {
-                if (Function.GetRol())
-                {
-                    if (Function.GetUserRols("EstadoSolicitudCredito/Index"))
-                    {
-                        return View();
-                    }
-                    else
-                    {
-                        return RedirectToAction("SinAcceso", "Login");
-                    }
-                }
-                else
-                    return RedirectToAction("SinRol", "Login");
-            }
-            else
-                return RedirectToAction("Index", "Login");
+            //ViewBag.escre_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+            //ViewBag.escre_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+            return View();
         }
 
         // POST: /EstadoSolicitudCredito/Create
@@ -100,55 +51,40 @@ namespace ERP_GMEDINA.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include="escre_Id,escre_Descripcion,escre_UsuarioCrea,escre_UsuarioModifica,escre_FechaAgrego,escre_FechaModifica")] tbEstadoSolicitudCredito tbEstadoSolicitudCredito)
         {
-            if (Function.GetUserLogin())
+
+            try
             {
-                if (Function.GetRol())
+                if (ModelState.IsValid)
                 {
-                    if (Function.GetUserRols("EstadoSolicitudCredito/Index"))
+                    //db.tbTipoIdentificacion.Add(tbTipoIdentificacion);
+                    //db.SaveChanges();
+                    //return RedirectToAction("Index");
+
+                    var MensajeError = 0;
+                    IEnumerable<object> list = null;
+                    list = db.UDP_Vent_tbEstadoSolicitudCredito_Insert(tbEstadoSolicitudCredito.escre_Descripcion, Function.GetUser(),
+                                    Function.DatetimeNow());
+                    foreach (UDP_Vent_tbEstadoSolicitudCredito_Insert_Result EstadoSolicitudCredito in list)
+                        MensajeError = EstadoSolicitudCredito.MensajeError;
+                    if (MensajeError == -1)
                     {
-                        try
-                        {
-                            if (ModelState.IsValid)
-                            {
-                                string MensajeError = "";
-                                IEnumerable<object> list = null;
-                                list = db.UDP_Vent_tbEstadoSolicitudCredito_Insert(tbEstadoSolicitudCredito.escre_Descripcion, 
-                                                Function.GetUser(),
-                                                Function.DatetimeNow());
-                                foreach (UDP_Vent_tbEstadoSolicitudCredito_Insert_Result EstadoSolicitudCredito in list)
-                                    MensajeError = EstadoSolicitudCredito.MensajeError;
-                                if (MensajeError.StartsWith("-1"))
-                                {
-                                    Function.InsertBitacoraErrores("EstadoSolicitudCredito/Create", MensajeError, "Create");
-                                    ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
-                                    return View(tbEstadoSolicitudCredito);
-                                }
-                                else
-                                {
-                                    return RedirectToAction("Index");
-                                }
-
-                            }
-
-                        }
-                        catch (Exception Ex)
-                        {
-                            Function.InsertBitacoraErrores("EstadoSolicitudCredito/Create", Ex.Message.ToString(), "Create");
-                            ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
-                            return View(tbEstadoSolicitudCredito);
-                        }
-                        return View(tbEstadoSolicitudCredito);
                     }
                     else
                     {
-                        return RedirectToAction("SinAcceso", "Login");
+                        return RedirectToAction("Index");
                     }
+
                 }
-                else
-                    return RedirectToAction("SinRol", "Login");
+
             }
-            else
-                return RedirectToAction("Index", "Login");
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+            }
+
+
+
+            return View(tbEstadoSolicitudCredito);
         }
         // POST: /EstadoSolicitudCredito/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -156,33 +92,18 @@ namespace ERP_GMEDINA.Controllers
         // GET: /EstadoSolicitudCredito/Edit/5
         public ActionResult Edit(byte? id)
         {
-            if (Function.GetUserLogin())
+            if (id == null)
             {
-                if (Function.GetRol())
-                {
-                    if (Function.GetUserRols("EstadoSolicitudCredito/Index"))
-                    {
-                        if (id == null)
-                        {
-                            return RedirectToAction("Index");
-                        }
-                        tbEstadoSolicitudCredito tbEstadoSolicitudCredito = db.tbEstadoSolicitudCredito.Find(id);
-                        if (tbEstadoSolicitudCredito == null)
-                        {
-                            return RedirectToAction("NotFound", "Login");
-                        }
-                        return View(tbEstadoSolicitudCredito);
-                    }
-                    else
-                    {
-                        return RedirectToAction("SinAcceso", "Login");
-                    }
-                }
-                else
-                    return RedirectToAction("SinRol", "Login");
+                return RedirectToAction("Index");
             }
-            else
-                return RedirectToAction("Index", "Login");
+            tbEstadoSolicitudCredito tbEstadoSolicitudCredito = db.tbEstadoSolicitudCredito.Find(id);
+            if (tbEstadoSolicitudCredito == null)
+            {
+                return RedirectToAction("NotFound", "Login");
+            }
+            //ViewBag.escre_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbEstadoSolicitudCredito.escre_UsuarioCrea);
+            //ViewBag.escre_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbEstadoSolicitudCredito.escre_UsuarioModifica);
+            return View(tbEstadoSolicitudCredito);
         }
 
         // POST: /EstadoSolicitudCredito/Edit/5
@@ -191,58 +112,75 @@ namespace ERP_GMEDINA.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "escre_Id,escre_Descripcion,escre_UsuarioCrea,escre_UsuarioModifica,escre_FechaAgrego,escre_FechaModifica,tbUsuario,tbUsuario1")] tbEstadoSolicitudCredito tbEstadoSolicitudCredito)
+            
         {
-            if (Function.GetUserLogin())
+            try
             {
-                if (Function.GetRol())
+                if (ModelState.IsValid)
                 {
-                    if (Function.GetUserRols("EstadoSolicitudCredito/Index"))
+                    //////////Aqui va la lista//////////////
+
+                    var MensajeError = 0;
+                    IEnumerable<object> list = null;
+                    list = db.UDP_Vent_tbEstadoSolicitudCredito_Update(tbEstadoSolicitudCredito.escre_Id,
+                        tbEstadoSolicitudCredito.escre_Descripcion,
+                        tbEstadoSolicitudCredito.escre_UsuarioCrea,
+                        tbEstadoSolicitudCredito.escre_UsuarioModifica,
+                        tbEstadoSolicitudCredito.escre_FechaAgrego,
+                        tbEstadoSolicitudCredito.escre_FechaModifica);
+                    foreach (UDP_Vent_tbEstadoSolicitudCredito_Update_Result EstadoSolicitudCredito in list)
+                        MensajeError = EstadoSolicitudCredito.MensajeError;
+                    if (MensajeError == -1)
                     {
-                        try
-                        {
-                            if (ModelState.IsValid)
-                            {
-                                //////////Aqui va la lista//////////////
-                                string MensajeError = "";
-                                IEnumerable<object> list = null;
-                                list = db.UDP_Vent_tbEstadoSolicitudCredito_Update(tbEstadoSolicitudCredito.escre_Id,
-                                    tbEstadoSolicitudCredito.escre_Descripcion,
-                                    tbEstadoSolicitudCredito.escre_UsuarioCrea,
-                                    tbEstadoSolicitudCredito.escre_UsuarioModifica,
-                                    tbEstadoSolicitudCredito.escre_FechaAgrego,
-                                    tbEstadoSolicitudCredito.escre_FechaModifica);
-                                foreach (UDP_Vent_tbEstadoSolicitudCredito_Update_Result EstadoSolicitudCredito in list)
-                                    MensajeError = EstadoSolicitudCredito.MensajeError;
-                                if (MensajeError.StartsWith("-1"))
-                                {
-                                    Function.InsertBitacoraErrores("EstadoSolicitudCredito/Edit", MensajeError, "Edit");
-                                    ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
-                                    return View(tbEstadoSolicitudCredito);
-                                }
-                                else
-                                {
-                                    return RedirectToAction("Index");
-                                }
-                            }
-                        }
-                        catch (Exception Ex)
-                        {
-                            Function.InsertBitacoraErrores("EstadoSolicitudCredito/Edit", Ex.Message.ToString(), "Edit");
-                            ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
-                            return View(tbEstadoSolicitudCredito);
-                        }
-                        return View(tbEstadoSolicitudCredito);
                     }
                     else
                     {
-                        return RedirectToAction("SinAcceso", "Login");
+                        return RedirectToAction("Index");
                     }
                 }
-                else
-                    return RedirectToAction("SinRol", "Login");
             }
-            else
-                return RedirectToAction("Index", "Login");
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+            }
+
+            return View(tbEstadoSolicitudCredito);
+            //if (ModelState.IsValid)
+            //{
+            //    db.Entry(tbEstadoSolicitudCredito).State = EntityState.Modified;
+            //    db.SaveChanges();
+            //    return RedirectToAction("Index");
+            //}
+            //ViewBag.escre_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbEstadoSolicitudCredito.escre_UsuarioCrea);
+            //ViewBag.escre_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbEstadoSolicitudCredito.escre_UsuarioModifica);
+            //return View(tbEstadoSolicitudCredito);
+        }
+
+
+        // GET: /EstadoSolicitudCredito/Delete/5
+        public ActionResult Delete(byte? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction("Index");
+            }
+            tbEstadoSolicitudCredito tbEstadoSolicitudCredito = db.tbEstadoSolicitudCredito.Find(id);
+            if (tbEstadoSolicitudCredito == null)
+            {
+                return RedirectToAction("NotFound", "Login");
+            }
+            return View(tbEstadoSolicitudCredito);
+        }
+
+        // POST: /EstadoSolicitudCredito/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(byte id)
+        {
+            tbEstadoSolicitudCredito tbEstadoSolicitudCredito = db.tbEstadoSolicitudCredito.Find(id);
+            db.tbEstadoSolicitudCredito.Remove(tbEstadoSolicitudCredito);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

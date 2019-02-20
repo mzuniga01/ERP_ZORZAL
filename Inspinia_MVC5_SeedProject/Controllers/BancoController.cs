@@ -102,22 +102,15 @@ namespace ERP_GMEDINA.Controllers
                 {
                     if (Function.GetUserRols("Banco/Create"))
                     {
-                       
                         if (ModelState.IsValid)
                         {
                             try
                             {
-                                if (db.tbBanco.Any(a => a.ban_Nombre == tbBanco.ban_Nombre))
-                            {
-                                ModelState.AddModelError("", "Ya existe este Banco.");
-                                return View(tbBanco);
-                            }
-                            else
-                            {
                                 //////////Aqui va la lista//////////////
                                 string MensajeError = "";
                                 IEnumerable<object> list = null;
-                                list = db.UDP_Gral_tbBanco_Insert(tbBanco.ban_Nombre, tbBanco.ban_NombreContacto, tbBanco.ban_TelefonoContacto, Function.GetUser(), Function.DatetimeNow());
+                                list = db.UDP_Gral_tbBanco_Insert(tbBanco.ban_Nombre, tbBanco.ban_NombreContacto, tbBanco.ban_TelefonoContacto, tbBanco.ban_UsuarioCrea,
+                                                tbBanco.ban_FechaCrea);
                                 foreach (UDP_Gral_tbBanco_Insert_Result banco in list)
                                     MensajeError = banco.MensajeError.ToString();
                                 if (MensajeError.StartsWith("-1"))
@@ -130,7 +123,6 @@ namespace ERP_GMEDINA.Controllers
                                 {
                                     return RedirectToAction("Index");
                                 }
-                            }
                             }
                             catch (Exception Ex)
                             {
@@ -202,14 +194,14 @@ namespace ERP_GMEDINA.Controllers
                                 //////////Aqui va la lista//////////////
                                 string MensajeError = "";
                                 IEnumerable<object> list = null;
-                                list = db.UDP_Gral_tbBanco_Update(tbBanco.ban_Id, 
-                                    tbBanco.ban_Nombre, 
-                                    tbBanco.ban_NombreContacto, 
-                                    tbBanco.ban_TelefonoContacto, 
-                                    tbBanco.ban_UsuarioCrea, 
-                                    tbBanco.ban_FechaCrea, 
-                                    Function.GetUser(), 
-                                    Function.DatetimeNow());
+                                list = db.UDP_Gral_tbBanco_Update(tbBanco.ban_Id,
+                                    tbBanco.ban_Nombre,
+                                    tbBanco.ban_NombreContacto,
+                                    tbBanco.ban_TelefonoContacto,
+                                    tbBanco.ban_UsuarioCrea,
+                                    tbBanco.ban_FechaCrea,
+                                    tbBanco.ban_UsuarioModifica,
+                                    tbBanco.ban_FechaModifica);
                                 foreach (UDP_Gral_tbBanco_Update_Result banco in list)
                                     MensajeError = banco.MensajeError.ToString();
                                 if (MensajeError.StartsWith("-1"))

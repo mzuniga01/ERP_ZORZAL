@@ -13,7 +13,7 @@
             @Html.LabelFor(model => model.prod_Codigo,"Codigo Producto", new { @class = "col-md-1" })
             <div class="col-md-3">
                 <input type="hidden" id="fact_Id" name="fact_Id" value="" class="form-control " />
-                <input type="text" id="prod_Codigo" name="prod_Codigo" value="" class="form-control " onkeypress = "return Numeros(event)" />
+                <input type="text" id="prod_Codigo" name="prod_Codigo" value="" class="form-control " />
                 <div id="validationCodigoProductoCreate">
                     <p id="smsProducto" style="color:red">@Html.ValidationMessageFor(model => model.prod_Codigo)</p>
                 </div>
@@ -98,8 +98,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.devd_Descripcion, "Observaciones", new { @class = "control-label col-md-1" })
             <div class="col-md-10">
-             
-                <textarea class="form-control" id="devd_Descripcion" name="devd_Descripcion"  onKeyPress = "return soloLetras(event)" autocomplete = "off"></textarea>
+                @Html.TextAreaFor(model => model.devd_Descripcion, new { @class = "form-control" })
                 <div id="validationComentariosCreate">
                     @Html.ValidationMessageFor(model => model.devd_Descripcion)
                 </div>

@@ -4,7 +4,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.confi_Nombres, "Nombres", new { @class = "control-label col-md-3" })
         <div class="col-md-6">
-            @Html.EditorFor(model => model.confi_Nombres, new { htmlAttributes = new { @autocomplete = "off", @onkeyup = "format(this)", @style = "text-transform:capitalize;", @onkeypress = "return soloLetras(event)" } })
+            @Html.EditorFor(model => model.confi_Nombres, new { htmlAttributes = new { @autocomplete = "off", @onkeyup = "format(this)", @style = "text-transform:capitalize;" } })
             @Html.ValidationMessageFor(model => model.confi_Nombres)
         </div>
     </div>

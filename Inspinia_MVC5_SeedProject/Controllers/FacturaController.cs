@@ -11,14 +11,13 @@ using System.Transactions;
 using System.Data.SqlClient;
 using System.Data.Common;
 using System.Data.Entity.Core.Objects;
-using CrystalDecisions.CrystalReports.Engine;
-using System.IO;
 
 namespace ERP_GMEDINA.Controllers
 {
     public class FacturaController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
+        private ObjectResult<UDP_Vent_DatosConsumidorFinal_Insert_Result> listConsumidorFinal;
         GeneralFunctions Function = new GeneralFunctions();
         // GET: /Factura/
         public ActionResult Index()
@@ -139,49 +138,6 @@ namespace ERP_GMEDINA.Controllers
                 return View(tbFactura.ToList());
             }
 
-        }
-
-
-        public ActionResult ExportReport(long? id)
-        {
-            ReportDocument rd = new ReportDocument();
-            rd.Load(Path.Combine(Server.MapPath("~/Reports"), "Factura.rpt"));
-            var Factura = db.UDP_Vent_tbFactura_Imprimir(id).ToList();
-            var todo = (from r in Factura
-                        where r.fact_Id == id
-                        select new
-                        {
-                            fact_Codigo = r.fact_Codigo,
-                            fact_Fecha = r.fact_Fecha,
-                            suc_Direccion = r.suc_Direccion,
-                            mun_Nombre = r.mun_Nombre,
-                            dep_Nombre = r.dep_Nombre,
-                            suc_Correo = r.suc_Correo,
-                            pemi_NumeroCAI = r.pemi_NumeroCAI,
-                            clte_Identificacion = r.clte_Identificacion,
-                            clte_Nombres = r.clte_Nombres,
-                            RangoInicial = r.RangoInicial,
-                            RangoFinal = r.RangoFinal,
-                            FechaLimite = r.FechaLimite,
-                            FormaPago = r.FormaPago,
-                            prod_Descripcion = r.prod_Descripcion,
-                            factd_Cantidad = r.factd_Cantidad,
-                            factd_PrecioUnitario = r.factd_PrecioUnitario,
-                        }).ToList();
-
-            rd.SetDataSource(todo);
-            Response.Buffer = false;
-            Response.ClearContent();
-            Response.ClearHeaders();
-            try
-            {
-                Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
-                return File(stream, "application/pdf");
-            }
-            catch
-            {
-                throw;
-            }
         }
 
         // GET: /Factura/Details/5
@@ -332,9 +288,7 @@ namespace ERP_GMEDINA.Controllers
                                                 tbFactura.fact_NombresTE,
                                                 tbFactura.fact_FechaNacimientoTE,
                                                 tbFactura.fact_EsAnulada,
-                                                tbFactura.fact_RazonAnulado,
-                                                tbFactura.fact_UsuarioCrea,
-                                                tbFactura.fact_FechaCrea);
+                                                tbFactura.fact_RazonAnulado);
                         foreach (UDP_Vent_tbFactura_Insert_Result Factura in listFactura)
                             MensajeError = Factura.MensajeError;
                         if (MensajeError == "-1")
@@ -361,9 +315,7 @@ namespace ERP_GMEDINA.Controllers
                                                 Detalle.factd_MontoDescuento,
                                                 Detalle.factd_PorcentajeDescuento,
                                                 Detalle.factd_Impuesto,
-                                                Detalle.factd_PrecioUnitario,
-                                                Detalle.factd_UsuarioCrea,
-                                                Detalle.factd_FechaCrea
+                                                Detalle.factd_PrecioUnitario
                                                 );
                                             foreach (UDP_Vent_tbFacturaDetalle_Insert_Result SPfacturadet in listFacturaDetalle)
                                             {
@@ -540,9 +492,7 @@ namespace ERP_GMEDINA.Controllers
                                                 tbFactura.fact_EsAnulada,
                                                 tbFactura.fact_RazonAnulado,
                                                 tbFactura.fact_UsuarioCrea,
-                                                tbFactura.fact_FechaCrea,
-                                                tbFactura.fact_UsuarioModifica,
-                                                tbFactura.fact_FechaModifica);
+                                                tbFactura.fact_FechaCrea);
                         foreach (UDP_Vent_tbFactura_Update_Result Factura in listFactura)
                             MensajeError = Factura.MensajeError;
                         if (MensajeError == "-1")
@@ -569,9 +519,7 @@ namespace ERP_GMEDINA.Controllers
                                                 Detalle.factd_MontoDescuento,
                                                 Detalle.factd_PorcentajeDescuento,
                                                 Detalle.factd_Impuesto,
-                                                Detalle.factd_PrecioUnitario,
-                                                Detalle.factd_UsuarioCrea,
-                                                Detalle.factd_FechaCrea
+                                                Detalle.factd_PrecioUnitario
                                                 );
                                             foreach (UDP_Vent_tbFacturaDetalle_Insert_Result SPfacturadet in listFacturaDetalle)
                                             {
@@ -815,9 +763,7 @@ namespace ERP_GMEDINA.Controllers
                             EditFacturaDetalle.factd_UsuarioAutoriza,
                             EditFacturaDetalle.factd_FechaAutoriza,
                             EditFacturaDetalle.factd_UsuarioCrea,
-                            EditFacturaDetalle.factd_FechaCrea,
-                            EditFacturaDetalle.factd_UsuarioModifica,
-                            EditFacturaDetalle.factd_FechaModifica);
+                            EditFacturaDetalle.factd_FechaCrea = System.DateTime.Now);
                 foreach (UDP_Vent_tbFacturaDetalle_Update_Result FacturaDetalle in list)
                     MensajeError = FacturaDetalle.MensajeError;
                 if (MensajeError == "-1")

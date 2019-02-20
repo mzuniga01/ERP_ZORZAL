@@ -7,7 +7,7 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Denominaciones</h2>
+        <h2>Denominaciones</h2>        
     </div>
     <div class="col-sm-8">
         <div class="title-action">
@@ -26,287 +26,104 @@
                 </div>
                 <div class="ibox-content">
 
-                    @using (Html.BeginForm())
-                    {
-                        @Html.AntiForgeryToken()
+				@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true)
 
-                        <div class="form-horizontal">
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.deno_Tipo, new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-                                    @Html.DropDownListFor(model => model.deno_Tipo, new List<SelectListItem>
+        <div class="form-group">
+            @Html.LabelFor(model => model.deno_Tipo, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DropDownListFor(model => model.deno_Tipo, new List<SelectListItem>
     {
                         new SelectListItem() {Text = "Billete", Value="1"},
                         new SelectListItem() {Text = "Moneda", Value="2"},
-    }, "Seleccione Tipo Denominación", new { @class = "form-control" })
-                                    <p id="tipodeno" style="color:red">@Html.ValidationMessageFor(model => model.deno_Tipo, "", new { @style = "color:red" })</p>
-                                </div>
-                            </div>
+    }, "Seleccione Tipo Denominación", new { @class = "form-control" })               
+                @Html.ValidationMessageFor(model => model.deno_Tipo, "", new { @style = "color:red" })
+            </div>
+        </div>
 
+                 
+        <div class="form-group">
+            @Html.LabelFor(model => model.mnda_Id, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DropDownList("mnda_Id", @*String.Empty*@ null, "Seleccione la Moneda", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.mnda_Id, "", new { @style = "color:red" })
+            </div>
+        </div>
 
-                            <div class="form-group">
-                                @*@Html.LabelFor(model => model.mnda_Id, new { @class = "control-label col-md-2" })*@
-                                <label class="control-label col-md-2" id="moneda">Moneda</label>
-                                <div class="col-md-4">
-                                    @Html.DropDownList("mnda_Id", null, "Seleccione la Moneda", new { @class = "form-control" })
-                                    @*<select id="mnda_Id" name="mnda_Id" class="form-control select2 select2-hidden-accessible"
-                                                style="width: 100%;" tabindex="-1" aria-hidden="true">
-                                            <option value="0">Seleccione la Moneda</option>
-                                        </select>*@
-                                    <p id="monedass" style="color:red">@Html.ValidationMessageFor(model => model.mnda_Id, "", new { @style = "color:red" })</p>
-                                </div>
-                            </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.deno_Descripcion, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.deno_Descripcion)
+                @Html.ValidationMessageFor(model => model.deno_Descripcion, "", new { @style = "color:red" })
+            </div>
+        </div>
+       
+        <div class="form-group">
+            @Html.LabelFor(model => model.deno_valor, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.deno_valor)
+                @Html.ValidationMessageFor(model => model.deno_valor, "", new { @style = "color:red" })
+            </div>
+        </div>
 
-                            <div class="form-group">
-                                @*@Html.LabelFor(model => model.deno_Descripcion, new { @class = "control-label col-md-2" })*@
-                                <label class="control-label col-md-2" id="descr">Descripción</label>
-                                <div class="col-md-4">
-                                    @Html.EditorFor(model => model.deno_Descripcion, new { htmlAttributes = new { @autocomplete = "off", placeholder = "ejm: 100 Lempiras", @onkeyup = "format(this)", @style = "text-transform:capitalize;", onkeypress = "return validar(event)", Title = "si escribe decimales porfavor separelos con un '.' " } })
-                                    <p id="descriptions" style="color:red">@Html.ValidationMessageFor(model => model.deno_Descripcion, "", new { @style = "color:red" })</p>
-                                </div>
-                            </div>
+        
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.deno_UsuarioCrea, "deno_UsuarioCrea", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("deno_UsuarioCrea", String.Empty)
+                @Html.ValidationMessageFor(model => model.deno_UsuarioCrea)
+            </div>
+        </div>
 
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.deno_valor, new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-                                    @Html.EditorFor(model => model.deno_valor, new { htmlAttributes = new { @autocomplete = "off", @onkeyup = "format(this)", onkeypress = "return  filterFloat(event,this);", Title = "Separe los decimales con una ',' " } })
-                                    <p id="valoress" style="color:red"> @Html.ValidationMessageFor(model => model.deno_valor, "", new { @style = "color:red" })</p>
+        <div class="form-group">
+            @Html.LabelFor(model => model.deno_FechaCrea, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.deno_FechaCrea)
+                @Html.ValidationMessageFor(model => model.deno_FechaCrea)
+            </div>
+        </div>
 
-                                </div>
-                            </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.deno_UsuarioModifica, "deno_UsuarioModifica", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("deno_UsuarioModifica", String.Empty)
+                @Html.ValidationMessageFor(model => model.deno_UsuarioModifica)
+            </div>
+        </div>
 
-                            <div class="form-group">
-                                <div class="col-md-12 text-center">
-                                    <input type="submit" value="Guardar" id="guardar" class="btn btn-primary" />
-
-                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
-                                </div>
-                            </div>
-                        </div>
-                    }
+        <div class="form-group">
+            @Html.LabelFor(model => model.deno_FechaModifica, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.deno_FechaModifica)
+                @Html.ValidationMessageFor(model => model.deno_FechaModifica)
+            </div>
+        </div>*@
+        <div class="form-group">
+            <div class="col-md-12 text-center">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+            </div>
+        </div>
+    </div>
+}
 
                 </div>
             </div>
         </div>
     </div>
-</div>
+ </div>
 
-<script src="~/Scripts/jquery-3.3.1.js"></script>
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-    @*<script>
-            $(document).ready(function () {
-                modenadalist()
-            });
-
-            function modenadalist() {
-                $.ajax({
-                    type: 'GET',
-                    url: '/Denominacion/GetModena',
-                    datatype: 'JSON',
-                    data: {},
-                    success: function (data) {
-                        $('#mnda_Id').empty();
-                        $('#mnda_Id').append("<option value='0'>Seleccione la Moneda</option>");
-                        $.each(data, function (i, item) {
-                            $('#mnda_Id').append("<option value='" + item.mnda_Id + "'>" + item.Text + "</option>");
-
-                        });
-                    },
-                    error: function (data) { alert(data.responseText); }
-                });
-            };
-
-        </script>*@
-    <script>
-    //$(document).ready(function () {
-    //    var cero = 0;
-
-    //    $("#deno_valor").val(cero);
-    //});
-
-
-
-    $('#deno_Tipo').click(function () {
-        var tipodeno = $('#deno_Tipo').val();
-        if (tipodeno > 0) {
-            valido = document.getElementById('tipodeno');
-            valido.innerText = "";
-            return false;
-        }
-    });
-
-    $('#mnda_Id').click(function () {
-        var monedas = $('#mnda_Id').val();
-        if (monedas > 0) {
-            valido = document.getElementById('monedass');
-            valido.innerText = "";
-            return false;
-        }
-    });
-
-    $('#deno_Descripcion').click(function () {
-        var description = $('#deno_Descripcion').val();
-        if (description <! "") {
-            valido = document.getElementById('descriptions');
-            valido.innerText = "";
-            return false;
-        }
-    });
-
-    $('#deno_valor').click(function () {
-        var valores = $('#deno_valor').val();
-        if (valores < ! "") {
-            valido = document.getElementById('valoress');
-            valido.innerText = "";
-            return false;
-        }
-    });
-
-
-
-
-
-    $('#guardar').click(function () {
-       // var Data = [];
-
-        var tipodeno = $('#deno_Tipo').val();
-        var monedas = $('#mnda_Id').val();
-        var description = $('#deno_Descripcion').val();
-        var valores = $('#deno_valor').val();
-        console.log("Tipo deno :" + tipodeno);
-        console.log("Moneda :" + monedas);
-        console.log("Descripcion :" + description);
-        console.log("Valores :" + valores);
-        console.log('___________________________');
-        if (tipodeno <= 0) {
-            valido = document.getElementById('tipodeno');
-            valido.innerText = "El Campo Tipo Denominación es Requierido";
-            return false;
-        }
-        else if (monedas <= 0) {
-            valido = document.getElementById('monedass');
-            valido.innerText = "El Campo Moneda es Requierido";
-            return false;
-        }
-        else if (description == "") {
-            valido = document.getElementById('descriptions');
-            valido.innerText = "El Campo Descripción es Requierido";
-            return false;
-        }
-        else if (valores == "") {
-            valido = document.getElementById('valoress');
-            valido.innerText = "El Campo Valor es Requierido";
-            return false;
-        }
-        else if (valores == 0) {
-            valido = document.getElementById('valoress');
-            valido.innerText = "El valor no  puede ser cero.";
-            return false;
-        }
-        else if (valores <= 0,00) {
-            valido = document.getElementById('valoress');
-            valido.innerText = "El valor no  puede ser cero.";
-            return false;
-        }
-
-
-        else {
-
-           return true;
-
-             }
-    });
-
-
-    //$(document).on('keyup', '#deno_valor', function () {
-
-    //    $.ajax({
-    //        url: "/Denominacion/DenominacionExist",
-    //        method: "POST",
-    //        dataType: 'json',
-    //        contentType: "application/json; charset=utf-8",
-    //        data: JSON.stringify({ idmoneda: $('#mnda_Id').val(), value: $('#deno_valor').val() }),
-    //    })
-    //    .done(function (data) {
-    //        if (data.length >= 1) {
-    //            alert('ya existe');
-    //            //valido.innerText = "Usuario ya existe";
-
-    //        }
-    //        else {
-    //            alert('no existe');
-
-    //            // valido.innerText = "";
-    //        }
-    //    })
-
-    //});
-    //____________________
-
-        //Letras Mayusculas
-
-        function format(input) {
-            $(input).change(function () {
-                var str = $(input).val();
-                var res = str.toUpperCase();
-                $(input).val(res);
-            });
-            $(input).on("keypress", function () {
-                $input = $(this);
-                setTimeout(function () {
-                    $input.val($input.val().toUpperCase());
-                }, 0);
-            })
-        }//_____________________________-
-
-        //Validación Sólo letras
-        function validar(e) {
-            tecla = (document.all) ? e.keyCode : e.which;
-            tecla = String.fromCharCode(tecla)
-            return /^[[A-Za-z0-9 .]+]*$/i.test(tecla);
-            /^([0-9]+\.?[0-9]{0,2})$/
-
-
-
-        }//_______________________________
-
-
-    //Validación 2 Decimal y coma
-        function filterFloat(e, field) {
-            key = e.keyCode ? e.keyCode : e.which;
-            if (key === 8)
-                return true;
-            if (field.value !== "") {
-                if ((field.value.indexOf(",")) > 0) {
-                    if (key > 47 && key < 58) {
-                        if (field.value === "")
-                            return true;
-                        regexp = /[0-9]{1,10}[,][0-9]{1,3}$/;
-                        regexp = /[0-9]{2}$/;
-                        return !(regexp.test(field.value))
-                    }
-                }
-            }
-            if (key > 47 && key < 58) {
-                if (field.value === "")
-                    return true;
-                regexp = /[0-9]{10}/;
-                return !(regexp.test(field.value));
-            }
-            if (key === 44) {
-                if (field.value === "")
-                    return false;
-                regexp = /^[0-9]+$/;
-                return regexp.test(field.value);
-
-            }
-
-            return false;
-        }
-
-
-    </script>
-}
+ @*<script>
+$('#AgregarDetalleSolicitudEfectico').click(function () {
+    var SolicitudEfectivoDetalle = $('#deno_valor').val();
+    
+    if (SolicitudEfectivoDetalle == '') {
+        $('#ErrorSolicitudEfectivoDetalleCreate').text('');        
+        $('#validationSolicitudEfectivoDetalleCreate').after('<ul id="ErrorSolicitudEfectivoDetalleCreate" class="validation-summary-errors text-danger">Campo Solicitud Efectivo Detalle requerido</ul>');
+    }    
+});
+</script>*@

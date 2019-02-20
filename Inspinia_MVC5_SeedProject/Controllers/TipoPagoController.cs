@@ -56,28 +56,19 @@ namespace ERP_GMEDINA.Controllers
             {
                 try
                 {
-                    if (db.tbTipoPago.Any(a => a.tpa_Descripcion == tbTipoPago.tpa_Descripcion))
+                    var MensajeError = 0;
+                    IEnumerable<object> list = null;
+                    list = db.UDP_Vent_tbTipoPago_Insert(tbTipoPago.tpa_Descripcion,  tbTipoPago.tpa_Emisor, tbTipoPago.tpa_Cuenta, tbTipoPago.tpa_FechaVencimiento, tbTipoPago.tpa_Titular);
+                    foreach (UDP_Vent_tbTipoPago_Insert_Result tipopago in list)
+                        MensajeError = tipopago.MensajeError;
+                    if (MensajeError == -1)
                     {
-                        
-                        ModelState.AddModelError("", "Ya existe este tipo de pago.");
-                        return View(tbTipoPago);
+
                     }
                     else
                     {
-                        var MensajeError = 0;
-                        IEnumerable<object> list = null;
-                        list = db.UDP_Vent_tbTipoPago_Insert(tbTipoPago.tpa_Descripcion, tbTipoPago.tpa_Emisor, tbTipoPago.tpa_Cuenta, tbTipoPago.tpa_FechaVencimiento, tbTipoPago.tpa_Titular, tbTipoPago.tpa_UsuarioCrea,tbTipoPago.tpa_FechaCrea);
-                        foreach (UDP_Vent_tbTipoPago_Insert_Result tipopago in list)
-                            MensajeError = tipopago.MensajeError;
-                        if (MensajeError == -1)
-                        {
+                        return RedirectToAction("Index");
 
-                        }
-                        else
-                        {
-                            return RedirectToAction("Index");
-
-                        }
                     }
                 }
                 catch (Exception Ex)
@@ -124,26 +115,18 @@ namespace ERP_GMEDINA.Controllers
             {
                 try
                 {
-                    if (db.tbTipoPago.Any(a => a.tpa_Descripcion == tbTipoPago.tpa_Descripcion))
+                    var MensajeError = 0;
+                    IEnumerable<object> list = null;
+                    list = db.UDP_Vent_tbTipoPago_Update(tbTipoPago.tpa_Id, tbTipoPago.tpa_Descripcion, tbTipoPago.tpa_Emisor, tbTipoPago.tpa_Cuenta, tbTipoPago.tpa_FechaVencimiento, tbTipoPago.tpa_Titular, tbTipoPago.tpa_UsuarioCrea, tbTipoPago.tpa_FechaCrea);
+                    foreach (UDP_Vent_tbTipoPago_Update_Result tipopago in list)
+                        MensajeError = tipopago.MensajeError;
+                    if (MensajeError == -1)
                     {
-                        ModelState.AddModelError("", "Ya existe este tipo de pago.");
-                        return View(tbTipoPago);
+
                     }
                     else
                     {
-                        var MensajeError = 0;
-                        IEnumerable<object> list = null;
-                        list = db.UDP_Vent_tbTipoPago_Update(tbTipoPago.tpa_Id, tbTipoPago.tpa_Descripcion, tbTipoPago.tpa_Emisor, tbTipoPago.tpa_Cuenta, tbTipoPago.tpa_FechaVencimiento, tbTipoPago.tpa_Titular, tbTipoPago.tpa_UsuarioCrea, tbTipoPago.tpa_FechaCrea,tbTipoPago.tpa_UsuarioModifica, tbTipoPago.tpa_FechaModifica);
-                        foreach (UDP_Vent_tbTipoPago_Update_Result tipopago in list)
-                            MensajeError = tipopago.MensajeError;
-                        if (MensajeError == -1)
-                        {
-
-                        }
-                        else
-                        {
-                            return RedirectToAction("Index");
-                        }
+                        return RedirectToAction("Index");
                     }
                 }
                 catch (Exception Ex)

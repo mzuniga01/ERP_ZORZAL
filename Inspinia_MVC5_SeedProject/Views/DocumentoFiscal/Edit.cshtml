@@ -56,10 +56,10 @@
 
 
         <div class="form-group">
-            @Html.LabelFor(model => model.dfisc_Id, "Codigo Documento Fiscal", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.dfisc_Id, new { @class = "control-label col-md-2" })
             <div class="col-md-5">
                 @Html.EditorFor(model => model.dfisc_Id)
-                <p style="color:red">@Html.ValidationMessageFor(model => model.dfisc_Id)</p>
+                @Html.ValidationMessageFor(model => model.dfisc_Id)
             </div>
         </div>
         <div class="form-group">
@@ -114,7 +114,7 @@
  </div>
 
 
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    <script src="~/Scripts/app/ClienteExoneracion.js"></script>
 }

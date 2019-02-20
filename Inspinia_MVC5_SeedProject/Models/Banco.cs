@@ -14,6 +14,7 @@ namespace ERP_GMEDINA.Models
     public class BancoMetaData
     {
         [Display(Name = "Número")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public short ban_Id { get; set; }
         [Display(Name = "Banco")]
         [StringLength(50, ErrorMessage = "El nombre no puede tener más de 50 caracteres")]

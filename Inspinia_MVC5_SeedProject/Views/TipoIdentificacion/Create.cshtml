@@ -65,25 +65,4 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-
-<script>
-    $(document).ready(function () {
-
-
-        //VALIDAR SOLO LETRAS
-        $('#tpi_Descripcion').on('input', function (e) {
-            if (!/^[ a-z-áéíóúüñ]*$/i.test(this.value)) {
-                this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
-            }
-        });
-        $('#tpi_Descripcion').on('input', function (e) {
-            if (!/^[ a-z-áéíóúüñ]*$/i.test(this.value)) {
-                this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
-            }
-        });
-
-
-    });
-</script>
-
 }

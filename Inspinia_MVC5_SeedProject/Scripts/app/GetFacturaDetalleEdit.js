@@ -61,29 +61,22 @@ function GetDetalle() {
 //Show The Popup Modal For Edit Student Record
 function EditStudentRecord(StudentId) {
     var url = "/Factura/GetDetalleEdit?StudentId=" + StudentId;
+    $("#ModalTitle").html("Update Student Record");
     $("#FacturaDetalleEdit").modal();
     $.ajax({
         type: "GET",
         url: url,
         success: function (data) {
-            $.each(data, function (key, arn) {
-
-                var fechaString = arn.factd_FechaCrea.substr(6);
-                var fechaActual = new Date(parseInt(fechaString));
-                var mes = fechaActual.getMonth() + 1;
-                var dia = fechaActual.getDate();
-                var anio = fechaActual.getFullYear();
-                var FechaCrea = dia + "/" + mes + "/" + anio;
-
-                $("#factdd").val(arn.factd_Id);
-                $("#IDProducto").val(arn.prod_Codigo);
-                $("#DescProducto").val(arn.prod_Descripcion);
-                $("#MontoDescuentoEdit").val(arn.factd_MontoDescuento);
-                $("#CantidadEdit").val(arn.factd_Cantidad);
-                $("#ImpuestoEdit").val(arn.factd_Impuesto);
-                $("#PrecioUnitarioEdit").val(arn.factd_PrecioUnitario);
-                $("#UsuCrea").val(arn.factd_UsuarioCrea);
-                $("#FechaCrea").val(FechaCrea);
+            $.each(data, function (key, val) {
+                $("#factdd").val(val.factd_Id);
+                $("#IDProducto").val(val.prod_Codigo);
+                $("#DescProducto").val(val.prod_Descripcion);
+                $("#MontoDescuentoEdit").val(val.factd_MontoDescuento);
+                $("#CantidadEdit").val(val.factd_Cantidad);
+                $("#ImpuestoEdit").val(val.factd_Impuesto);
+                $("#PrecioUnitarioEdit").val(val.factd_PrecioUnitario);
+                $("#UsuCrea").val(val.factd_UsuarioCrea);
+                $("#FechaCrea").val(val.factd_FechaCrea);
                 var Cantidad = document.getElementById("CantidadEdit").value;
                 var Precio = document.getElementById("PrecioUnitarioEdit").value;
                 var Descuento = document.getElementById("MontoDescuentoEdit").value;

@@ -13,7 +13,7 @@ namespace ERP_GMEDINA.Controllers
     public class PagosArqueoController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
-        GeneralFunctions Function = new GeneralFunctions();
+
         // GET: /PagosArqueo/
         public ActionResult Index()
         {
@@ -62,12 +62,7 @@ namespace ERP_GMEDINA.Controllers
                     //////////Aqui va la lista//////////////
                     var MensajeError = string.Empty;
                     IEnumerable<object> list = null;
-                    list = db.UDP_Vent_tbPagosArqueo_Insert(tbPagosArqueo.mocja_Id, 
-                        tbPagosArqueo.tpa_Id, 
-                        tbPagosArqueo.arqpg_PagosSistema, 
-                        tbPagosArqueo.arqpg_PagosConteo,
-                        Function.GetUser(),
-                                    Function.DatetimeNow());
+                    list = db.UDP_Vent_tbPagosArqueo_Insert(tbPagosArqueo.mocja_Id, tbPagosArqueo.tpa_Id, tbPagosArqueo.arqpg_PagosSistema, tbPagosArqueo.arqpg_PagosConteo);
                     foreach (UDP_Vent_tbPagosArqueo_Insert_Result denoarq in list)
                         MensajeError = denoarq.MensajeError;
                     if (MensajeError == "-1")

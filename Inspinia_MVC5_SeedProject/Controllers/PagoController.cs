@@ -74,6 +74,25 @@ namespace ERP_GMEDINA.Controllers
                 //stream.Seek(0, SeekOrigin.Begin);
                 return File(stream, "application/pdf");
 
+                //rd.PrintOptions.PrinterName = "your printer name";
+                //rd.PrintToPrinter(1, true, 0, 0);
+                //PrinterSettings printerSettings = new PrinterSettings();
+                //PrintDialog printDialog = new PrintDialog();
+                //printDialog.PrinterSettings = printerSettings;
+                //printDialog.AllowPrintToFile = false;
+                //printDialog.AllowSomePages = true;
+                //printDialog.UseEXDialog = true;
+
+                //DialogResult result = printDialog.ShowDialog();
+
+                //if (result == DialogResult.Cancel)
+                //{
+                //    return;
+                //}
+
+                //this.report.PrintOptions.PrinterName = printerSettings.PrinterName;
+                //this.report.PrintToPrinter(printerSettings.Copies, false, 0, 0);
+                //return RedirectToAction("Index");
             }
             catch
             {

@@ -121,7 +121,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.pago_TotalPago, "Monto Pagar", new { @class = "control-label col-md-3" })
             <div class="col-md-2">
-                @Html.EditorFor(model => model.pago_TotalPago, String.Empty, new { htmlAttributes = new { @class = "form-control", @onkeyup = "format(this)", @autocomplete = "off", @style = "text-transform:capitalize;", onkeypress = "return validar(event)" } })
+                @Html.EditorFor(model => model.pago_TotalPago, String.Empty, new { htmlAttributes = new { @class = "form-control", @onkeyup = "format(this)", @autocomplete = "off" } })
                 @Html.ValidationMessageFor(model => model.pago_TotalPago, "", new { @style = "color:red", @id = "msgMontoPagar" })
             </div>
 
@@ -324,8 +324,6 @@
 <script src="~/Scripts/app/PagoClienteFacturas.js"></script>
 <script src="~/Scripts/app/PagoTransacciones.js"></script>
 <script src="~/Scripts/app/FacturaDevolucion.js"></script>
-<script src="~/Scripts/app/PagoCampoNumerico.js"></script>
-
 <script>
  $(document).ready(function () {
      var x = document.getElementById("Factura").disabled;

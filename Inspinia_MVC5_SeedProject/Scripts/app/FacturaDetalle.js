@@ -189,6 +189,7 @@ $(document).on("click", "#tblDetalleFactura tbody tr td button#removeFacturaDeta
     });
 });
 
+//Validacion de numeros//
 function soloNumeros(e) {
     var key = window.Event ? e.which : e.keyCode;
     return ((key >= 48 && key <= 57) || (key == 8))
@@ -206,8 +207,16 @@ function ponerdecimales(numero) {
     return numero;
 }
 
-function validar(e) {
-    tecla = (document.all) ? e.keyCode : e.which;
-    tecla = String.fromCharCode(tecla)
-    return /^[a-z0-9A-Z\-]+$/.test(tecla);
-}
+//$('#AgregarDetalleFactura').click(function () {
+//    console.log(total);
+//    if (document.getElementById("total").innerHTML == '') {
+//        totalProducto = $('#TotalProducto').val();
+//        document.getElementById("total").innerHTML = parseFloat(totalProducto);
+//    }
+//    else {
+//        document.getElementById("total").innerHTML = parseFloat(subtotal) + parseFloat(totalProducto);
+//    }
+
+//})
+
+

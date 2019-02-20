@@ -18,13 +18,6 @@
 </div>
 
 
-<style>
-    .validation-error {
-        color: red;
-        font-size: small;
-    }
-</style>
-
 
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
@@ -49,16 +42,16 @@
             @Html.LabelFor(model => model.mocja_Id, "Movimiento Caja", new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 @Html.DropDownList("mocja_Id",(IEnumerable<SelectListItem>)ViewBag.mocja_Id, new { @class = "form-control" })
-                <span class="validation-error">@Html.ValidationMessageFor(model => model.mocja_Id)</span>
-        </div>
+                @Html.ValidationMessageFor(model => model.mocja_Id)
+            </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.deno_Id, "Denominacion", new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 @Html.DropDownList("deno_Id", (IEnumerable<SelectListItem>)ViewBag.deno_Id, new { @class = "form-control" })
-                <span class="validation-error">@Html.ValidationMessageFor(model => model.deno_Id)</span>
-        </div>
+                @Html.ValidationMessageFor(model => model.deno_Id)
+            </div>
         </div>
       
 
@@ -66,16 +59,16 @@
             @Html.LabelFor(model => model.arqde_CantidadDenominacion, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 @Html.EditorFor(model => model.arqde_CantidadDenominacion)
-                <span class="validation-error">@Html.ValidationMessageFor(model => model.arqde_CantidadDenominacion)</span>
-        </div>
+                @Html.ValidationMessageFor(model => model.arqde_CantidadDenominacion)
+            </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.arqde_MontoDenominacion, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 @Html.EditorFor(model => model.arqde_MontoDenominacion)
-                <span class="validation-error">@Html.ValidationMessageFor(model => model.arqde_MontoDenominacion)</span>
-        </div>
+                @Html.ValidationMessageFor(model => model.arqde_MontoDenominacion)
+            </div>
         </div>
 
         <div class="form-group">

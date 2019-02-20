@@ -17,79 +17,28 @@ namespace ERP_GMEDINA.Controllers
         // GET: /EstadoFactura/
         public ActionResult Index()
         {
-            if (Function.GetUserLogin())
-            {
-                if (Function.GetRol())
-                {
-                    if (Function.GetUserRols("EstadoFactura/Index"))
-                    {
-                        return View(db.tbEstadoFactura.ToList());
-                    }
-                    else
-                    {
-                        return RedirectToAction("SinAcceso", "Login");
-                    }
-                }
-                else
-                    return RedirectToAction("SinRol", "Login");
-            }
-            else
-                return RedirectToAction("Index", "Login");
+            return View(db.tbEstadoFactura.ToList());
         }
 
         // GET: /EstadoFactura/Details/5
         public ActionResult Details(byte? id)
         {
-            if (Function.GetUserLogin())
+            if (id == null)
             {
-                if (Function.GetRol())
-                {
-                    if (Function.GetUserRols("EstadoFactura/Details"))
-                    {
-                        if (id == null)
-                        {
-                            return RedirectToAction("Index");
-                        }
-                        tbEstadoFactura tbEstadoFactura = db.tbEstadoFactura.Find(id);
-                        if (tbEstadoFactura == null)
-                        {
-                            return RedirectToAction("NotFound", "Login");
-                        }
-                        return View(tbEstadoFactura);
-                    }
-                    else
-                    {
-                        return RedirectToAction("SinAcceso", "Login");
-                    }
-                }
-                else
-                    return RedirectToAction("SinRol", "Login");
+                return RedirectToAction("Index");
             }
-            else
-                return RedirectToAction("Index", "Login");
+            tbEstadoFactura tbEstadoFactura = db.tbEstadoFactura.Find(id);
+            if (tbEstadoFactura == null)
+            {
+                return RedirectToAction("NotFound", "Login");
+            }
+            return View(tbEstadoFactura);
         }
 
         // GET: /EstadoFactura/Create
         public ActionResult Create()
         {
-            if (Function.GetUserLogin())
-            {
-                if (Function.GetRol())
-                {
-                    if (Function.GetUserRols("EstadoFactura/Create"))
-                    {
-                        return View();
-                    }
-                    else
-                    {
-                        return RedirectToAction("SinAcceso", "Login");
-                    }
-                }
-                else
-                    return RedirectToAction("SinRol", "Login");
-            }
-            else
-                return RedirectToAction("Index", "Login");
+            return View();
         }
 
         // POST: /EstadoFactura/Create
@@ -99,89 +48,50 @@ namespace ERP_GMEDINA.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include= "esfac_Id,esfac_Descripcion,esfac_UsuarioCrea,esfac_UsuarioModifico,esfac_FechaCrea,esfac_FechaModifico")] tbEstadoFactura tbEstadoFactura)
         {
-            if (Function.GetUserLogin())
+            if (ModelState.IsValid)
             {
-                if (Function.GetRol())
+                try
                 {
-                    if (Function.GetUserRols("EstadoFactura/Create"))
+                    //////////Aqui va la lista//////////////
+                    var MensajeError = 0;
+                    IEnumerable<object> list = null;
+                    list = db.UDP_Vent_tbEstadoFactura_Insert(tbEstadoFactura.esfac_Descripcion, Function.GetUser(),
+                                    Function.DatetimeNow());
+                    foreach (UDP_Vent_tbEstadoFactura_Insert_Result estado in list)
+                        MensajeError = estado.MensajeError;
+                    if (MensajeError == -1)
                     {
-                        if (db.tbEstadoFactura.Any(a => a.esfac_Descripcion == tbEstadoFactura.esfac_Descripcion))
-                        {
-                            ModelState.AddModelError("", "Ya existe este estado de factura, Favor registrar otro");
-                        }
-                        if (ModelState.IsValid)
-                        {
-                            try
-                            {
-                                //////////Aqui va la lista//////////////
-                                string MensajeError = "";
-                                IEnumerable<object> list = null;
-                                list = db.UDP_Vent_tbEstadoFactura_Insert(tbEstadoFactura.esfac_Descripcion, Function.GetUser(),
-                                                Function.DatetimeNow());
-                                foreach (UDP_Vent_tbEstadoFactura_Insert_Result estado in list)
-                                    MensajeError = estado.MensajeError;
-                                if (MensajeError.StartsWith("-1"))
-                                {
-                                    Function.InsertBitacoraErrores("EstadoFactura/Create", MensajeError, "Create");
-                                    ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
-                                    return View(tbEstadoFactura);
-                                }
-                                else
-                                {
-                                    return RedirectToAction("Index");
-                                }
-                            }
-                            catch (Exception Ex)
-                            {
-                                Function.InsertBitacoraErrores("EstadoFactura/Create", Ex.Message.ToString(), "Create");
-                                ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
-                                return View(tbEstadoFactura);
-                            }
-                        }
+                        ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
                         return View(tbEstadoFactura);
                     }
                     else
                     {
-                        return RedirectToAction("SinAcceso", "Login");
+                        return RedirectToAction("Index");
                     }
                 }
-                else
-                    return RedirectToAction("SinRol", "Login");
+                catch (Exception Ex)
+                {
+                    Ex.Message.ToString();
+                    ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                    return View(tbEstadoFactura);
+                }
             }
-            else
-                return RedirectToAction("Index", "Login");
+            return View(tbEstadoFactura);
         }
 
         // GET: /EstadoFactura/Edit/5
         public ActionResult Edit(byte? id)
         {
-            if (Function.GetUserLogin())
+            if (id == null)
             {
-                if (Function.GetRol())
-                {
-                    if (Function.GetUserRols("EstadoFactura/Edit"))
-                    {
-                        if (id == null)
-                        {
-                            return RedirectToAction("Index");
-                        }
-                        tbEstadoFactura tbEstadoFactura = db.tbEstadoFactura.Find(id);
-                        if (tbEstadoFactura == null)
-                        {
-                            return RedirectToAction("NotFound", "Login");
-                        }
-                        return View(tbEstadoFactura); 
-                    }
-                    else
-                    {
-                        return RedirectToAction("SinAcceso", "Login");
-                    }
-                }
-                else
-                    return RedirectToAction("SinRol", "Login");
+                return RedirectToAction("Index");
             }
-            else
-                return RedirectToAction("Index", "Login");
+            tbEstadoFactura tbEstadoFactura = db.tbEstadoFactura.Find(id);
+            if (tbEstadoFactura == null)
+            {
+                return RedirectToAction("NotFound", "Login");
+            }
+            return View(tbEstadoFactura);
         }
 
         // POST: /EstadoFactura/Edit/5
@@ -191,57 +101,67 @@ namespace ERP_GMEDINA.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include= "esfac_Id,esfac_Descripcion,esfac_UsuarioCrea,esfac_UsuarioModifico,esfac_FechaCrea,esfac_FechaModifico, tbUsuario, tbUsuario1")] tbEstadoFactura tbEstadoFactura)
         {
-            if (Function.GetUserLogin())
+            if (ModelState.IsValid)
             {
-                if (Function.GetRol())
+                try
                 {
-                    if (Function.GetUserRols("EstadoFactura/Edit"))
+
+                    //////////Aqui va la lista//////////////
+                    var MensajeError = 0;
+                    IEnumerable<object> list = null;
+                    list = db.UDP_Vent_tbEstadoFactura_Update(tbEstadoFactura.esfac_Id, 
+                        tbEstadoFactura.esfac_Descripcion, 
+                        tbEstadoFactura.esfac_UsuarioCrea, 
+                        tbEstadoFactura.esfac_FechaCrea,
+                        Function.GetUser(),
+                                    Function.DatetimeNow());
+                    foreach (UDP_Vent_tbEstadoFactura_Update_Result estado in list)
+                        MensajeError = estado.MensajeError;
+                    if (MensajeError == -1)
                     {
-                        if (ModelState.IsValid)
-                        {
-                            try
-                            {
-                                //////////Aqui va la lista//////////////
-                                string MensajeError = "";
-                                IEnumerable<object> list = null;
-                                list = db.UDP_Vent_tbEstadoFactura_Update(tbEstadoFactura.esfac_Id,
-                                    tbEstadoFactura.esfac_Descripcion,
-                                    tbEstadoFactura.esfac_UsuarioCrea,
-                                    tbEstadoFactura.esfac_FechaCrea,
-                                    Function.GetUser(),
-                                                Function.DatetimeNow());
-                                foreach (UDP_Vent_tbEstadoFactura_Update_Result estado in list)
-                                    MensajeError = estado.MensajeError;
-                                if (MensajeError.StartsWith("-1"))
-                                {
-                                    Function.InsertBitacoraErrores("EstadoFactura/Edit", MensajeError, "Edit");
-                                    ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
-                                    return View(tbEstadoFactura);
-                                }
-                                else
-                                {
-                                    return RedirectToAction("Index");
-                                }
-                            }
-                            catch (Exception Ex)
-                            {
-                                Function.InsertBitacoraErrores("EstadoFactura/Edit", Ex.Message.ToString(), "Edit");
-                                ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
-                                return View(tbEstadoFactura);
-                            }
-                        }
+                        ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
                         return View(tbEstadoFactura);
                     }
                     else
                     {
-                        return RedirectToAction("SinAcceso", "Login");
+                        return RedirectToAction("Index");
                     }
                 }
-                else
-                    return RedirectToAction("SinRol", "Login");
+                catch (Exception Ex)
+                {
+                    Ex.Message.ToString();
+                    ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                    return View(tbEstadoFactura);
+                }
             }
-            else
-                return RedirectToAction("Index", "Login");
+            return View(tbEstadoFactura);
+        }
+
+
+        // GET: /EstadoFactura/Delete/5
+        public ActionResult Delete(byte? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction("Index");
+            }
+            tbEstadoFactura tbEstadoFactura = db.tbEstadoFactura.Find(id);
+            if (tbEstadoFactura == null)
+            {
+                return RedirectToAction("NotFound", "Login");
+            }
+            return View(tbEstadoFactura);
+        }
+
+        // POST: /EstadoFactura/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(byte id)
+        {
+            tbEstadoFactura tbEstadoFactura = db.tbEstadoFactura.Find(id);
+            db.tbEstadoFactura.Remove(tbEstadoFactura);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

@@ -39,6 +39,22 @@ namespace ERP_GMEDINA.Models
                 Retorno = false;
             }
             return Retorno;
+            //List<tbUsuario> Usuario = getUserInformation(); 
+            //foreach(tbUsuario User in Usuario)
+            //{
+            //    UserID = User.usu_Id;
+            //    EsAdmin = User.usu_EsAdministrador;
+            //}
+            //if (EsAdmin)
+            //    Retorno = true;
+            //else
+            //{
+            //    var Roles = db.SDP_Acce_GetUserRols(UserID, sPantalla);
+            //    if (Roles.Count() > 0)
+            //    {
+            //        Retorno = true;
+            //    }
+            //}
 
         }
 
@@ -120,19 +136,12 @@ namespace ERP_GMEDINA.Models
         public bool GetRol()
         {
             bool state = false;
-            bool EsAdmin = false;
             int Rol = 0;
             try
             {
                 Rol = (int)HttpContext.Current.Session["UserRol"];
-                EsAdmin = (bool)HttpContext.Current.Session["UserLoginEsAdmin"];
-                if (EsAdmin)
+                if (Rol != 0)
                     state = true;
-                else
-                {
-                    if (Rol != 0)
-                        state = true;
-                }
             }
             catch (Exception Ex)
             {

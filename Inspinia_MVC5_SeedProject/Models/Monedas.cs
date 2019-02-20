@@ -24,7 +24,6 @@ namespace ERP_GMEDINA.Models
         [Display(Name = "Abreviatura")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         [StringLength(4)]
-
         public string mnda_Abreviatura { get; set; }
 
 

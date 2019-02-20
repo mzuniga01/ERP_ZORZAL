@@ -107,10 +107,6 @@ namespace ERP_GMEDINA.Controllers
                 {
                     if (Function.GetUserRols("Denominacion/Create"))
                     {
-                        if (db.tbDenominacion.Any(a => a.mnda_Id == tbDenominacion.mnda_Id && a.deno_valor == tbDenominacion.deno_valor))
-                        {
-                            ModelState.AddModelError("", "Ya Existe Una Moneda con  denominación de este valor.");
-                        }
                         if (ModelState.IsValid)
                         {
                             try

@@ -111,9 +111,8 @@
                                 @Html.LabelFor(model => model.cred_MontoSolicitado, new { @class = "control-label col-md-2" })
                                 <div class="col-md-5">
                                     @Html.EditorFor(model => model.cred_MontoSolicitado, new { htmlAttributes = new {  @onkeypress = "return validar(event)" } })
-                                    <p id="Monto" style="color:red">@Html.ValidationMessageFor(model => model.cred_MontoSolicitado)
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.cred_MontoSolicitado)
 </div>
-
                             </div>
 
                             <div class="form-group">
@@ -128,7 +127,7 @@
                                 @Html.LabelFor(model => model.cred_DiasSolicitado, new { @class = "control-label col-md-2" })
                                 <div class="col-md-5">
                                     @Html.EditorFor(model => model.cred_DiasSolicitado)
-                                    <p id="Dias" style="color:red">@Html.ValidationMessageFor(model => model.cred_DiasSolicitado)
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.cred_DiasSolicitado)
 </div>
                             </div>
 
@@ -151,7 +150,7 @@
                             </div>
                            <div class="form-group">
                                 <div class="col-md-12 text-center">
-                                    <input type="submit" value="Guardar" id="btnGuardar" class="btn btn-primary" />
+                                    <input type="submit" value="Guardar" class="btn btn-primary" />
 
                                  
                                     @*<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AprobarSolicitud">Aprobar</button>*@
@@ -278,7 +277,6 @@
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/SolicituCreditoDenegar.js"></script>
 <script src="~/Scripts/app/Clientes-Pedido-Credito.js"></script>
-<script src="~/Scripts/app/SolicitudCredito.js"></script>
 <script src="~/Scripts/app/Datepicker.js"></script>
 
 <script>
