@@ -149,6 +149,7 @@ namespace ERP_GMEDINA.Controllers
                                 tbMovimientoCaja.cja_Id,
                                 tbMovimientoCaja.mocja_FechaApertura,
                                 tbMovimientoCaja.mocja_UsuarioApertura,
+                                tbMovimientoCaja.usu_Id,
                                 tbMovimientoCaja.mocja_FechaArqueo,
                                 tbMovimientoCaja.mocja_UsuarioArquea,
                                 tbMovimientoCaja.mocja_FechaAceptacion,
@@ -169,11 +170,12 @@ namespace ERP_GMEDINA.Controllers
                                     listSolicitudEfectivo = db.UDP_Vent_tbSolicitudEfectivo_Apertura_Insert(
                                             Convert.ToInt32(MensajeError),
                                             solef_EsApertura,
+                                            Function.DatetimeNow(),
+                                            Function.GetUser(),
                                             moneda,
-                                            solef_EsAnulada
-                          
-
-                                            );
+                                            solef_EsAnulada,
+                                            Function.GetUser(),
+                                            Function.DatetimeNow());
                                     foreach (UDP_Vent_tbSolicitudEfectivo_Apertura_Insert_Result SolicitudEfectivoMon in listSolicitudEfectivo)
                                         MensajeErrorSolicitud = SolicitudEfectivoMon.MensajeError;
                                     if (MensajeErrorSolicitud == "-1")
@@ -201,8 +203,9 @@ namespace ERP_GMEDINA.Controllers
                                                            efectivodetalle.deno_Id,
                                                            efectivodetalle.soled_CantidadSolicitada,
                                                            efectivodetalle.soled_CantidadEntregada,
-                                                           efectivodetalle.soled_MontoEntregado
-                                                            );
+                                                           efectivodetalle.soled_MontoEntregado,
+                                                           Function.GetUser(),
+                                                           Function.DatetimeNow());
                                                         foreach (UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert_Result SolicitudEfectivoDet in listSolicitudEfectivoDetalle)
                                                         {
                                                             MensajeErrorSolicitudDetalle = SolicitudEfectivoDet.MensajeError;

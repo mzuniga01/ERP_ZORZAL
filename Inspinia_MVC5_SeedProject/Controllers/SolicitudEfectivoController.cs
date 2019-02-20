@@ -81,6 +81,36 @@ namespace ERP_GMEDINA.Controllers
             return Json(DenominacionList, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpGet]
+        public ActionResult GDatosEncabezados()
+        {
+            if (Function.GetUserLogin())
+            {
+                if (Function.GetUserRols("SolicitudEfectivo/Create"))
+                {
+                    int idUser = 0;
+                    GeneralFunctions Login = new GeneralFunctions();
+                    List<tbUsuario> User = Login.getUserInformation();
+                    foreach (tbUsuario Usuario in User)
+                    {
+                        idUser = Convert.ToInt32(Usuario.emp_Id);
+                    }
+                    var list = db.UDP_Vent_tbSolicitudEfectivo_Recargo(idUser).ToList();
+                    return Json(list, JsonRequestBehavior.AllowGet);
+
+                }
+                else
+                {
+                    return RedirectToAction("SinAcceso", "Login");
+                }
+            }
+            else
+                return RedirectToAction("Index", "Login");
+        }
+
+
+
+
 
         [HttpGet]
         public ActionResult GDatosEncabezado()
@@ -116,19 +146,21 @@ namespace ERP_GMEDINA.Controllers
         {
             if (Function.GetUserLogin())
             {
-                if (Function.GetUserRols("SolicitudEfectivo/Create"))
+                if (Function.GetRol())
                 {
-                    int idUser = 0;
-                    GeneralFunctions Login = new GeneralFunctions();
-                    List<tbUsuario> User = Login.getUserInformation();
-                    foreach (tbUsuario Usuario in User)
+                    if (Function.GetUserRols("SolicitudEfectivo/Create"))
                     {
-                        idUser = Convert.ToInt32(Usuario.emp_Id);
-                    }
+                        //int idUser = 0;
+                        //GeneralFunctions Login = new GeneralFunctions();
+                        //List<tbUsuario> User = Login.getUserInformation();
+                        //foreach (tbUsuario Usuario in User)
+                        //{
+                        //    idUser = Convert.ToInt32(Usuario.emp_Id);
+                        //}
 
-                    ViewBag.suc_Descripcion = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.tbSucursal.suc_Descripcion).SingleOrDefault();
+                        //ViewBag.suc_Descripcion = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.tbSucursal.suc_Descripcion).SingleOrDefault();
 
-                    ViewBag.solef_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+                        ViewBag.solef_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             ViewBag.solef_UsuarioEntrega = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             ViewBag.solef_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             //ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre");
@@ -145,11 +177,14 @@ namespace ERP_GMEDINA.Controllers
 
 
             return View();
+                    }
+                    else
+                    {
+                        return RedirectToAction("SinAcceso", "Login");
+                    }
                 }
                 else
-                {
-                    return RedirectToAction("SinAcceso", "Login");
-                }
+                    return RedirectToAction("SinRol", "Login");
             }
             else
                 return RedirectToAction("Index", "Login");
@@ -162,8 +197,13 @@ namespace ERP_GMEDINA.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "solef_Id,mocja_Id,solef_EsApertura,solef_FechaEntrega,solef_UsuarioEntrega,mnda_Id,solef_EsAnulada,solef_UsuarioCrea,solef_FechaCrea,solef_UsuarioModifica,solef_FechaModifica")] tbSolicitudEfectivo tbSolicitudEfectivo, List<tbSolicitudEfectivoDetalle> procesoData)
         {
-
-            ViewBag.Denominacion = db.tbDenominacion.ToList();
+            if (Function.GetUserLogin())
+            {
+                if (Function.GetRol())
+                {
+                    if (Function.GetUserRols("SolicitudEfectivo/Create"))
+                    {
+                        ViewBag.Denominacion = db.tbDenominacion.ToList();
             var list = (List<tbSolicitudEfectivoDetalle>)Session["Solicitud"];
             string MensajeError = "";
             var MensajeErrorDetalle = "";
@@ -177,20 +217,21 @@ namespace ERP_GMEDINA.Controllers
                     {
                         listSolicitudEfectivo = db.UDP_Vent_tbSolicitudEfectivo_Insert(
                                                 tbSolicitudEfectivo.mocja_Id,
-                                                tbSolicitudEfectivo.mnda_Id
-
+                                                tbSolicitudEfectivo.mnda_Id,
+                                                Function.GetUser(),
+                                                Function.DatetimeNow()
                                                 );
                         foreach (UDP_Vent_tbSolicitudEfectivo_Insert_Result SolicitudE in listSolicitudEfectivo)
                             MensajeError = SolicitudE.MensajeError;
-                        if (MensajeError == "-1")
-                        {
+                                    if (MensajeError.StartsWith("-1"))
+                                    {
                             ModelState.AddModelError("", "No se pudo agregar el registro");
                             return View(tbSolicitudEfectivo);
                         }
                         else
                         {
-                            if (MensajeError != "-1")
-                            {
+                                        if (!MensajeError.StartsWith("-1"))
+                                        {
                                 if (list != null)
                                 {
                                     if (list.Count != 0)
@@ -202,13 +243,15 @@ namespace ERP_GMEDINA.Controllers
                                             listSolicitudEfectivoDetalle = db.UDP_Vent_tbSolicitudEfectivoDetalle_Insert(
                                                 Detalle.solef_Id,
                                                 Detalle.deno_Id,
-                                                Detalle.soled_CantidadSolicitada
+                                                Detalle.soled_CantidadSolicitada,
+                                                 Function.GetUser(),
+                                                 Function.DatetimeNow()
                                                 );
                                             foreach (UDP_Vent_tbSolicitudEfectivoDetalle_Insert_Result spDetalle in listSolicitudEfectivoDetalle)
                                             {
                                                 MensajeErrorDetalle = spDetalle.MensajeError;
-                                                if (MensajeError == "-1")
-                                                {
+                                                            if (MensajeError.StartsWith("-1"))
+                                                            {
                                                     ModelState.AddModelError("", "No se pudo agregar el registro detalle");
                                                     return View(tbSolicitudEfectivo);
                                                 }
@@ -257,7 +300,17 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.MonedaLists = new SelectList(MonedaLists, "mnda_Id", "mnda_Nombre");
             ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre");
             return View(tbSolicitudEfectivo);
-
+                    }
+                    else
+                    {
+                        return RedirectToAction("SinAcceso", "Login");
+                    }
+                }
+                else
+                    return RedirectToAction("SinRol", "Login");
+            }
+            else
+                return RedirectToAction("Index", "Login");
         }
 
 
@@ -392,7 +445,13 @@ namespace ERP_GMEDINA.Controllers
         // GET: /SolicitudEfectivo/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            if (Function.GetUserLogin())
+            {
+                if (Function.GetRol())
+                {
+                    if (Function.GetUserRols("SolicitudEfectivo/Edit"))
+                    {
+                        if (id == null)
             {
                 return RedirectToAction("Index");
             }
@@ -416,10 +475,18 @@ namespace ERP_GMEDINA.Controllers
             //ViewBag.MonedaList = new SelectList(MonedaList, "mnda_Id", "mnda_Nombre");
 
             ViewBag.SolicitudEdectivoDetalle = db.tbSolicitudEfectivoDetalle.ToList();
-
-
-
-            return View(tbSolicitudEfectivo);
+             return View(tbSolicitudEfectivo);
+                    }
+                    else
+                    {
+                        return RedirectToAction("SinAcceso", "Login");
+                    }
+                }
+                else
+                    return RedirectToAction("SinRol", "Login");
+            }
+            else
+                return RedirectToAction("Index", "Login");
         }
 
         // POST: /SolicitudEfectivo/Edit/5
@@ -429,6 +496,12 @@ namespace ERP_GMEDINA.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "solef_Id,mocja_Id,solef_EsApertura,solef_FechaEntrega,solef_UsuarioEntrega,mnda_Id,solef_EsAnulada,solef_UsuarioCrea,solef_FechaCrea,solef_UsuarioModifica,solef_FechaModifica,tbUsuario,tbUsuario2")] tbSolicitudEfectivo tbSolicitudEfectivo)
         {
+            if (Function.GetUserLogin())
+            {
+                if (Function.GetRol())
+                {
+                    if (Function.GetUserRols("Devolucion/Edit"))
+                    {
             ViewBag.Denominacion = db.tbDenominacion.ToList();
             var list = (List<tbSolicitudEfectivoDetalle>)Session["Solicitud"];
             string MensajeError = "";
@@ -448,20 +521,21 @@ namespace ERP_GMEDINA.Controllers
                                                 tbSolicitudEfectivo.mnda_Id,
                                                 tbSolicitudEfectivo.solef_EsAnulada,
                                                 tbSolicitudEfectivo.solef_UsuarioCrea,
-                                                tbSolicitudEfectivo.solef_FechaCrea
-
+                                                tbSolicitudEfectivo.solef_FechaCrea,
+                                                Function.GetUser(),
+                                        Function.DatetimeNow()
                                                 );
                         foreach (UDP_Vent_tbSolicitudEfectivo_Update_Result SolicitudE in listSolicitudEfectivo)
                             MensajeError = SolicitudE.MensajeError;
-                        if (MensajeError == "-1")
-                        {
+                        if (MensajeError.StartsWith("-1"))
+                                    {
                             ModelState.AddModelError("", "No se pudo agregar el registro");
                             return View(tbSolicitudEfectivo);
                         }
                         else
                         {
-                            if (MensajeError != "-1")
-                            {
+                            if (!MensajeError.StartsWith("-1"))
+                                        {
                                 if (list != null)
                                 {
                                     if (list.Count != 0)
@@ -473,9 +547,10 @@ namespace ERP_GMEDINA.Controllers
                                             listSolicitudEfectivoDetalle = db.UDP_Vent_tbSolicitudEfectivoDetalle_Insert(
                                                 Detalle.solef_Id,
                                                 Detalle.deno_Id,
-                                                Detalle.soled_CantidadSolicitada
-                                                );
-                                            foreach (UDP_Vent_tbSolicitudEfectivoDetalle_Insert_Result spDetalle in listSolicitudEfectivoDetalle)
+                                                Detalle.soled_CantidadSolicitada,
+                                                Function.GetUser(),
+                                                Function.DatetimeNow());
+                                                foreach (UDP_Vent_tbSolicitudEfectivoDetalle_Insert_Result spDetalle in listSolicitudEfectivoDetalle)
                                             {
                                                 MensajeErrorDetalle = spDetalle.MensajeError;
                                                 if (MensajeError == "-1")
@@ -529,7 +604,17 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre");
             return View(tbSolicitudEfectivo);
 
-
+                    }
+                    else
+                    {
+                        return RedirectToAction("SinAcceso", "Login");
+                    }
+                }
+                else
+                    return RedirectToAction("SinRol", "Login");
+            }
+            else
+                return RedirectToAction("Index", "Login");
 
         }
 
@@ -603,8 +688,9 @@ namespace ERP_GMEDINA.Controllers
                             EditarSolicitudEfectivoDetalle.soled_CantidadEntregada,
                             EditarSolicitudEfectivoDetalle.soled_MontoEntregado,
                             EditarSolicitudEfectivoDetalle.soled_UsuarioCrea,
-                            EditarSolicitudEfectivoDetalle.soled_FechaCrea
-                            );
+                            EditarSolicitudEfectivoDetalle.soled_FechaCrea,
+                            Function.GetUser(),
+                            Function.DatetimeNow());
                 foreach (UDP_Vent_tbSolicitudEfectivoDetalle_Update_Result SolicitudDetalle in list)
                     MensajeError = SolicitudDetalle.MensajeError;
                 if (MensajeError == "-1")
@@ -645,7 +731,9 @@ namespace ERP_GMEDINA.Controllers
                             tbSolicitudEfectivoDetalle.soled_CantidadEntregada,
                             tbSolicitudEfectivoDetalle.soled_MontoEntregado,
                             tbSolicitudEfectivoDetalle.soled_UsuarioCrea,
-                            tbSolicitudEfectivoDetalle.soled_FechaCrea);
+                            tbSolicitudEfectivoDetalle.soled_FechaCrea,
+                            Function.GetUser(),
+                            Function.DatetimeNow());
                 foreach (UDP_Vent_tbSolicitudEfectivoDetalle_Update_Result solicitudefectivodetalle in list)
                     MensajeError = solicitudefectivodetalle.MensajeError;
                 MensajeEdit = "El registro se guardó exitosamente";

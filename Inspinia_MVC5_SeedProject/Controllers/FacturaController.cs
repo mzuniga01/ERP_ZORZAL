@@ -333,12 +333,13 @@ namespace ERP_GMEDINA.Controllers
                                                 tbFactura.fact_FechaNacimientoTE,
                                                 tbFactura.fact_EsAnulada,
                                                 tbFactura.fact_RazonAnulado,
-                                                tbFactura.fact_UsuarioCrea,
-                                                tbFactura.fact_FechaCrea);
+                                                Function.GetUser(),
+                                                Function.DatetimeNow());
                         foreach (UDP_Vent_tbFactura_Insert_Result Factura in listFactura)
                             MensajeError = Factura.MensajeError;
                         if (MensajeError == "-1")
                         {
+                            Function.InsertBitacoraErrores("Factura/Create", MensajeError, "Create");
                             ModelState.AddModelError("", "No se pudo agregar el registro");
                             return View(tbFactura);
                         }
@@ -362,14 +363,14 @@ namespace ERP_GMEDINA.Controllers
                                                 Detalle.factd_PorcentajeDescuento,
                                                 Detalle.factd_Impuesto,
                                                 Detalle.factd_PrecioUnitario,
-                                                Detalle.factd_UsuarioCrea,
-                                                Detalle.factd_FechaCrea
-                                                );
+                                                Function.GetUser(),
+                                                Function.DatetimeNow());
                                             foreach (UDP_Vent_tbFacturaDetalle_Insert_Result SPfacturadet in listFacturaDetalle)
                                             {
                                                 MensajeErrorDetalle = SPfacturadet.MensajeError;
                                                 if (MensajeError.StartsWith("-1"))
                                                 {
+                                                    Function.InsertBitacoraErrores("Factura/Create", MensajeError, "Create");
                                                     ModelState.AddModelError("", "No se pudo agregar el registro detalle");
                                                     return View(tbFactura);
                                                 }
@@ -395,6 +396,7 @@ namespace ERP_GMEDINA.Controllers
                                                 MensajeErrorConsumidor = SPConsumidordet.MensajeError;
                                                 if (MensajeError.StartsWith("-1"))
                                                 {
+                                                    Function.InsertBitacoraErrores("Factura/Create", MensajeError, "Create");
                                                     ModelState.AddModelError("", "No se pudo agregar el registro detalle");
                                                     return View(tbFactura);
                                                 }
@@ -541,12 +543,13 @@ namespace ERP_GMEDINA.Controllers
                                                 tbFactura.fact_RazonAnulado,
                                                 tbFactura.fact_UsuarioCrea,
                                                 tbFactura.fact_FechaCrea,
-                                                tbFactura.fact_UsuarioModifica,
-                                                tbFactura.fact_FechaModifica);
+                                                Function.GetUser(),
+                                                Function.DatetimeNow());
                         foreach (UDP_Vent_tbFactura_Update_Result Factura in listFactura)
                             MensajeError = Factura.MensajeError;
                         if (MensajeError == "-1")
                         {
+                            Function.InsertBitacoraErrores("Factura/Edit", MensajeError, "Edit");
                             ModelState.AddModelError("", "No se pudo agregar el registro");
                             return View(tbFactura);
                         }
@@ -569,15 +572,15 @@ namespace ERP_GMEDINA.Controllers
                                                 Detalle.factd_MontoDescuento,
                                                 Detalle.factd_PorcentajeDescuento,
                                                 Detalle.factd_Impuesto,
-                                                Detalle.factd_PrecioUnitario,
-                                                Detalle.factd_UsuarioCrea,
-                                                Detalle.factd_FechaCrea
-                                                );
+                                                Detalle.factd_PrecioUnitario,                                            
+                                                Function.GetUser(),
+                                                Function.DatetimeNow());
                                             foreach (UDP_Vent_tbFacturaDetalle_Insert_Result SPfacturadet in listFacturaDetalle)
                                             {
                                                 MensajeErrorDetalle = SPfacturadet.MensajeError;
                                                 if (MensajeError.StartsWith("-1"))
                                                 {
+                                                    Function.InsertBitacoraErrores("Factura/Edit", MensajeError, "Edit");
                                                     ModelState.AddModelError("", "No se pudo agregar el registro detalle");
                                                     return View(tbFactura);
                                                 }
@@ -588,6 +591,7 @@ namespace ERP_GMEDINA.Controllers
                             }
                             else
                             {
+                                Function.InsertBitacoraErrores("Factura/Edit", MensajeError, "Edit");
                                 ModelState.AddModelError("", "No se pudo agregar el registro");
                                 return View(tbFactura);
                             }
@@ -599,6 +603,7 @@ namespace ERP_GMEDINA.Controllers
                 }
                 catch (Exception Ex)
                 {
+                    Function.InsertBitacoraErrores("Factura/Edit", MensajeError, "Edit");
                     ModelState.AddModelError("", "No se pudo agregar el registros" + Ex.Message.ToString());
                     ViewBag.fact_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbFactura.fact_UsuarioCrea);
                     ViewBag.fact_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbFactura.fact_UsuarioModifica);
@@ -816,12 +821,13 @@ namespace ERP_GMEDINA.Controllers
                             EditFacturaDetalle.factd_FechaAutoriza,
                             EditFacturaDetalle.factd_UsuarioCrea,
                             EditFacturaDetalle.factd_FechaCrea,
-                            EditFacturaDetalle.factd_UsuarioModifica,
-                            EditFacturaDetalle.factd_FechaModifica);
+                            Function.GetUser(),
+                            Function.DatetimeNow());
                 foreach (UDP_Vent_tbFacturaDetalle_Update_Result FacturaDetalle in list)
                     MensajeError = FacturaDetalle.MensajeError;
                 if (MensajeError == "-1")
                 {
+                    Function.InsertBitacoraErrores("Factura/Edit", MensajeError, "Edit");
                     ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
                     return RedirectToAction("Edit", "Factura");
                 }
@@ -832,6 +838,7 @@ namespace ERP_GMEDINA.Controllers
             }
             catch (Exception Ex)
             {
+
                 Ex.Message.ToString();
                 ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
                 return RedirectToAction("Edit", "Factura");
