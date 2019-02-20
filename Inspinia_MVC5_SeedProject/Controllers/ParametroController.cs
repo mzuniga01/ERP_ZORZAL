@@ -95,13 +95,13 @@ namespace ERP_GMEDINA.Controllers
                     {
                         if (FotoPath.ContentLength > 0)
                         {
-                            if (Path.GetExtension(FotoPath.FileName).ToLower() == ".jpg")
+                            if (Path.GetExtension(FotoPath.FileName).ToLower() == ".jpg" || Path.GetExtension(FotoPath.FileName).ToLower() == ".png")
                             {
                                 string Extension = Path.GetExtension(FotoPath.FileName).ToLower();
                                 string Archivo = tbParametro.par_Id + Extension;
                                 path = Path.Combine(Server.MapPath("~/Logo"), Archivo);
                                 FotoPath.SaveAs(path);
-                                tbParametro.par_PathLogo = "~/Logo" + Archivo;
+                                tbParametro.par_PathLogo = "~/Logo/" + Archivo;
                             }
                             else
                             {
@@ -207,9 +207,9 @@ namespace ERP_GMEDINA.Controllers
                             {
                                 string Extension = Path.GetExtension(FotoPath.FileName).ToLower();
                                 string Archivo = tbParametro.par_Id + Extension;
-                                path = Path.Combine(Server.MapPath("~/Documents/InstructorPhoto"), Archivo);
+                                path = Path.Combine(Server.MapPath("~/Logo"), Archivo);
                                 FotoPath.SaveAs(path);
-                                tbParametro.par_PathLogo = "~/Documents/InstructorPhoto/" + Archivo;
+                                tbParametro.par_PathLogo = "~/Logo/" + Archivo;
                             }
                             else
                             {
@@ -224,7 +224,6 @@ namespace ERP_GMEDINA.Controllers
 
                     IEnumerable<object> List = null;
                     var MsjError = "";
-                    tbParametro.par_PathLogo = path;
                     List = db.UDP_Gral_tbParametro_Update(tbParametro.par_Id, tbParametro.par_NombreEmpresa, tbParametro.par_TelefonoEmpresa, tbParametro.par_CorreoEmpresa, tbParametro.par_PathLogo, tbParametro.mnda_Id, tbParametro.par_RolGerenteTienda, tbParametro.par_RolCreditoCobranza, tbParametro.par_RolSupervisorCaja, tbParametro.par_RolCajero, tbParametro.par_RolAuditor, tbParametro.par_SucursalPrincipal, tbParametro.par_UsuarioCrea, tbParametro.par_FechaCrea, tbParametro.par_PorcentajeDescuentoTE, tbParametro.par_IdConsumidorFinal);
                     foreach (UDP_Gral_tbParametro_Update_Result parametro in List)
                         MsjError = parametro.MensajeError;
@@ -244,9 +243,16 @@ namespace ERP_GMEDINA.Controllers
                 }
                 return RedirectToAction("Index");
             }
+
             ViewBag.par_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbParametro.par_UsuarioModifica);
             ViewBag.par_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbParametro.par_UsuarioCrea);
             ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Abreviatura", tbParametro.mnda_Id);
+            ViewBag.Id_Rol = new SelectList(db.tbRol, "rol_Id", "rol_Descripcion", tbParametro.par_RolAuditor);
+            ViewBag.Id_Rol1 = new SelectList(db.tbRol, "rol_Id", "rol_Descripcion", tbParametro.par_RolCajero);
+            ViewBag.Id_Rol2 = new SelectList(db.tbRol, "rol_Id", "rol_Descripcion", tbParametro.par_RolCreditoCobranza);
+            ViewBag.Id_Rol3 = new SelectList(db.tbRol, "rol_Id", "rol_Descripcion", tbParametro.par_RolGerenteTienda);
+            ViewBag.Id_Rol4 = new SelectList(db.tbRol, "rol_Id", "rol_Descripcion", tbParametro.par_RolSupervisorCaja);
+            ViewBag.consumidor = new SelectList(db.tbCliente, "clte_Id", "clte_Identificacion", tbParametro.par_IdConsumidorFinal);
             if (path != null)
                 tbParametro.par_PathLogo = path;
             return View(tbParametro);

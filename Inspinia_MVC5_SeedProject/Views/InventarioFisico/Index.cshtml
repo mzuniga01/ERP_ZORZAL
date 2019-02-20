@@ -73,7 +73,6 @@
  </div>
 
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-<script src="~/Scripts/app/parametro.js"></script>
 <script>
     $(document).ready(function () {
         $('#DataTable').DataTable({
@@ -84,9 +83,15 @@
                 "sNext": "Siguiente",
                 "sPrevious": "Anterior",
             },
+            "sProcessing": "Procesando...",
+            "sLengthMenu": "Mostrar _MENU_ registros",
+            "sZeroRecords": "No se encontraron resultados",
+            "sEmptyTable": "Ningún dato disponible en esta tabla",
+            "sEmptyTable": "No hay registros",
+            "sInfoEmpty": "Mostrando 0 de 0 Entradas",
             "sSearch": "Buscar",
-            "sLengthMenu": "Mostrar _MENU_Registros Por Página",
-            "sInfo": "Mostrando _START_ a _END_ Entradas"
+            "sInfo": "Mostrando _START_ a _END_ Entradas",
+            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
 
         },
 

@@ -10,6 +10,7 @@ using ERP_GMEDINA.Models;
 using System.Transactions;
 using CrystalDecisions.CrystalReports.Engine;
 using System.IO;
+using System.Net.Mime;
 
 namespace ERP_GMEDINA.Controllers
 {
@@ -98,31 +99,31 @@ namespace ERP_GMEDINA.Controllers
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
-        [HttpPost]
-        public JsonResult ProductosRepetidos(string data_producto)
-        {
-            var datos = "";
-            if (Session["tbInventarioFisicoDetalle"] == null)
-            {
+        //[HttpPost]
+        //public JsonResult ProductosRepetidos(string data_producto)
+        //{
+        //    var datos = "";
+        //    if (Session["tbInventarioFisicoDetalle"] == null)
+        //    {
 
-            }
-            else
-            {
-                var menu = Session["tbInventarioFisicoDetalle"] as List<tbInventarioFisicoDetalle>;
+        //    }
+        //    else
+        //    {
+        //        var menu = Session["tbInventarioFisicoDetalle"] as List<tbInventarioFisicoDetalle>;
 
-                foreach (var t in menu)
-                {
-                    if (t.prod_Codigo == data_producto)
-                        datos = data_producto;
-                }
+        //        foreach (var t in menu)
+        //        {
+        //            if (t.prod_Codigo == data_producto)
+        //                datos = data_producto;
+        //        }
 
 
-            }
+        //    }
 
-            return Json(datos);
-        }
+        //    return Json(datos);
+        //}
 
-        public ActionResult ExportReport(int? id)
+        public FileResult ExportReport(int? id)
         {
             ReportDocument rd = new ReportDocument();
             rd.Load(Path.Combine(Server.MapPath("~/Reports"), "ImprimirConciliacion.rpt"));
@@ -164,27 +165,29 @@ namespace ERP_GMEDINA.Controllers
             Response.ClearHeaders();
             try
             {
+                var fileName = "Inventario Fisico.pdf";
                 Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
-                stream.Seek(0, SeekOrigin.Begin);
-                return File(stream, "application/pdf", "InventarioFisico_List.pdf");
-                //{
-                //    PageMargins margins = rd.PrintOptions.PageMargins;/* TODO ERROR: Skipped SkippedTokensTrivia */
-                //    margins.bottomMargin = 200;/* TODO ERROR: Skipped SkippedTokensTrivia */
-                //    margins.leftMargin = 200;/* TODO ERROR: Skipped SkippedTokensTrivia */
-                //    margins.rightMargin = 50;/* TODO ERROR: Skipped SkippedTokensTrivia */
-                //    margins.topMargin = 100;/* TODO ERROR: Skipped SkippedTokensTrivia */
-                //    rd.PrintOptions.ApplyPageMargins(margins);/* TODO ERROR: Skipped SkippedTokensTrivia */
-                //}
-
-
-                //rd.PrintToPrinter(1, false, 0, 0);
-                //return View();
+                return File(stream, "application/pdf",fileName);
             }
             catch
             {
                 throw;
             }
         }
+
+        //public class PdfResult : FileResult
+        //{
+        //    private const String DefaultFileName = "ImprimirConciliacion.pdf";
+        //    private readonly Byte[] _byteArray;
+
+        //    public PdfResult(Byte[] byteArray, String fileName = DefaultFileName)
+        //        : base(MediaTypeNames.Application.Pdf)
+        //    {
+        //        _byteArray = byteArray;
+        //        FileDownloadName = fileName;
+        //    }
+        //    protected override void WriteFile(HttpResponseBase response) { response.BinaryWrite(_byteArray); }
+        //}
 
         // GET: /InventarioFisico/Create
         public ActionResult Create()
@@ -206,6 +209,7 @@ namespace ERP_GMEDINA.Controllers
                 ex.Message.ToString();
             }
             this.listas();
+            Session["tbInventarioFisicoDetalle"] = null;
             return View();
         }
 
@@ -228,6 +232,8 @@ namespace ERP_GMEDINA.Controllers
                 {
                     TempData["smserror"] = " No Puede Ingresar Una Entrada Sin Detalle.";
                     ViewBag.smserror = TempData["smserror"];
+                    ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbInventarioFisico.bod_Id);
+                    this.listas();
                     return View();
                 }
                 else
@@ -330,8 +336,13 @@ namespace ERP_GMEDINA.Controllers
 
         //Inventario Fisico Detalle
         [HttpPost]
-        public JsonResult GuardarInventarioDetalle(tbInventarioFisicoDetalle invfd)
+        public JsonResult GuardarInventarioDetalle(tbInventarioFisicoDetalle invfd,string data_producto)
         {
+            var datos = "";
+            decimal cantvieja = 0;
+            decimal cantnueva = 0;
+            data_producto = invfd.prod_Codigo;
+            decimal data_cantidad = invfd.invfd_Cantidad;
             List<tbInventarioFisicoDetalle> sessionInventarioFisicoDetalle = new List<tbInventarioFisicoDetalle>();
             var list = (List<tbInventarioFisicoDetalle>)Session["tbInventarioFisicoDetalle"];
             if (list == null)
@@ -341,10 +352,22 @@ namespace ERP_GMEDINA.Controllers
             }
             else
             {
-                list.Add(invfd);
-                    Session["tbInventarioFisicoDetalle"] = list;
-            }
-            return Json("Exito", JsonRequestBehavior.AllowGet);
+                foreach (var t in list)
+                    if (t.prod_Codigo == data_producto)
+                        {
+                            datos = data_producto;
+                        foreach (var viejo in list)
+                            if (viejo.prod_Codigo == invfd.prod_Codigo)
+                                cantvieja = viejo.invfd_Cantidad;
+                        cantnueva = cantvieja + data_cantidad;
+                        t.invfd_Cantidad = cantnueva;
+                        return Json(datos, JsonRequestBehavior.AllowGet);
+                    }
+                            list.Add(invfd);
+                            Session["tbInventarioFisicoDetalle"] = list;
+                        return Json(datos, JsonRequestBehavior.AllowGet);
+                    }
+            return Json(datos, JsonRequestBehavior.AllowGet);
         }
 
         // GET: /InventarioFisico/Edit/5
@@ -541,6 +564,25 @@ namespace ERP_GMEDINA.Controllers
                 return HttpNotFound();
             }
             return View(tbInventarioFisico);
+        }
+
+        [HttpPost]
+        public JsonResult removeInvFisicoDetalle(tbInventarioFisicoDetalle detalle)
+        {
+            var list = (List<tbInventarioFisicoDetalle>)Session["tbInventarioFisicoDetalle"];
+            if (list != null)
+            {
+                var itemToRemove = list.Single(r => r.prod_Codigo == detalle.prod_Codigo);
+                list.Remove(itemToRemove);
+                Session["tbInventarioFisicoDetalle"] = list;
+               if(list.Count == 0)
+                {
+                    Session["tbInventarioFisicoDetalle"] = null;
+                }
+            }
+            //return Json(list, JsonRequestBehavior.AllowGet);
+            return Json(list, JsonRequestBehavior.AllowGet);
+
         }
 
         // POST: /InventarioFisico/Delete/5

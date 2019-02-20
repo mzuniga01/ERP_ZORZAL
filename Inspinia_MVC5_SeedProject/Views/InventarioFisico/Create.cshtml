@@ -28,7 +28,7 @@
                 <span aria-hidden="true">&times;</span>
             </button>
             <h4><i class="icon fa fa-warning"></i>Alerta</h4>
-            <h2>No Puede Guardar una Entrada Sin Detalle</h2>
+            <h2>No Puede Guardar un Inventario fisico Sin Detalle</h2>
         </div>
     </div>
 }
@@ -50,7 +50,7 @@
                         @Html.ValidationSummary(true)
 
                         <div class="form-group">
-                            <label class="control-label col-md-2">Fecha del Inventario<span style="color:red">*</span></label>
+                            <label class="control-label col-md-2">Fecha del Inventario</label>
                             <div class="col-md-10">
                                 @Html.EditorFor(model => model.invf_FechaInventario,  new { htmlAttributes = new { @class = "form-control", @id = "FechaElaboracion" , @readonly = "readonly"} })
                                 <p style="color:red">@Html.ValidationMessageFor(model => model.invf_FechaInventario)</p>
@@ -58,7 +58,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label col-md-2">Bodega<span style="color:red">*</span></label>
+                            <label class="control-label col-md-2">Bodega</label>
                             <div class="col-md-10">
                                 @Html.DropDownList("bod_Id", (IEnumerable<SelectListItem>)ViewBag.bod_Id, "Seleccione",  new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.tbBodega.bod_Id)

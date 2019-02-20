@@ -86,7 +86,9 @@
 
                                             }
                                         }
-                                        @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                        @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })   
+                                        @*@using (Html.BeginForm("Edit", "Inventario Fisico"))
+                                        { <input type="button" value="click" onclick="return showfile();" />}*@
                                         @Html.ActionLink("Imprimir", "ExportReport", new { id = Model.invf_Id }, new { @class = "btn btn-primary", @Id = "Imprimir" })
 
                                     </div>

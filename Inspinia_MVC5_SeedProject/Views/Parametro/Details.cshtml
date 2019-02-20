@@ -27,6 +27,23 @@
 
 
 				    <dl class="dl-horizontal">
+
+       <dt>
+           @Html.DisplayNameFor(model => model.par_PathLogo)
+       </dt>
+       <dd>
+        @{
+        if (Model.par_PathLogo != null && Model.par_PathLogo != "")
+        {
+            <img src="@Url.Content(Model.par_PathLogo)" alt="Fotografía" class="img-rounded" width="200" height="200">
+        }
+        else
+        {
+            <img src="~/Content/img/NoImage.png" alt="Sin Fotografía" class="img-rounded" width="200" height="200">
+        }
+        }
+       </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.par_NombreEmpresa)
         </dt>
@@ -50,15 +67,6 @@
         <dd>
             @Html.DisplayFor(model => model.par_CorreoEmpresa)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.par_PathLogo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.par_PathLogo)
-        </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.par_RolGerenteTienda)
         </dt>

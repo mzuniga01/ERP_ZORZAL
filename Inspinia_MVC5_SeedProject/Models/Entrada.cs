@@ -9,7 +9,7 @@ namespace ERP_GMEDINA.Models
     [MetadataType(typeof(EntradaMetaData))]
     public partial class tbEntrada
     {
-        
+
     }
     public class EntradaMetaData
     {
@@ -35,7 +35,7 @@ namespace ERP_GMEDINA.Models
         public byte estm_Id { get; set; }
 
         [Display(Name = "Nombre Proveedor")]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int prov_Id { get; set; }
 
         [Display(Name = "Factura Compra")]
@@ -60,7 +60,7 @@ namespace ERP_GMEDINA.Models
         public int ent_BodegaDestino { get; set; }
 
         [Display(Name = "Tipo Entrada")]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public byte tent_Id { get; set; }
 
         [Display(Name = "Creado por")]
