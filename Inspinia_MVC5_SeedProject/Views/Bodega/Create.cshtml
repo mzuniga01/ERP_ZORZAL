@@ -61,7 +61,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.bod_Nombre, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    @Html.TextBoxFor(model => model.bod_Nombre, new { @class = "single-line", MaxLength = 100, @onKeyPress = "return soloLetras(event)" })
+                                    @Html.TextBoxFor(model => model.bod_Nombre, new { @class = "single-line", MaxLength = 100, @onKeyPress = "return soloLetras(event)", @autocomplete = "off" })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Nombre) </p>
                                 </div>
                                 @Html.LabelFor(model => model.bod_ResponsableBodega, new { @class = "control-label col-md-2 , required" })
@@ -83,17 +83,19 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                               
                                 @Html.LabelFor(model => model.bod_Correo, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-lg-4">
                                     @*@Html.TextBoxFor(model => model.bod_Correo, new { @class = "single-line", MaxLength = 5000 })*@
-                                    @Html.TextBoxFor(model => model.bod_Correo, new { @class = "form-control", maxlength = 5000})
+                                    @Html.TextBoxFor(model => model.bod_Correo, new { @class = "form-control", type = "email", maxlength = 5000, @autocomplete = "off", @onkeyup = "this.value=CorreoElectronico(this.value)" })
                                     <div id="MessageForCorreo">
                                         <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Correo)</p>
                                     </div>
+                                    
                                 </div>
                                 @Html.LabelFor(model => model.bod_Telefono, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-lg-4">
-                                    @Html.TextBoxFor(model => model.bod_Telefono, new { @class = "single-line", MaxLength = 13, @onKeyPress = "return soloNumeros(event)" })
+                                    @Html.TextBoxFor(model => model.bod_Telefono, new { @class = "single-line", MaxLength = 13, @onKeyPress = "return soloNumeros(event)", @autocomplete = "off" })
                                     <div id="MessageForTelephone">
                                         <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Telefono)</p>
                                     </div>
@@ -102,7 +104,8 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.bod_Direccion, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-lg-10">
-                                    @Html.TextBoxFor(model => model.bod_Direccion, new { @class = "single-line", MaxLength = 200 })
+                                    @Html.TextAreaFor(model => model.bod_Direccion, new { @class = "single-line", MaxLength = 200, @autocomplete = "off" , @onkeyup = "this.value=NumText(this.value)" })
+                                    @*<input type="text" value="" onkeyup="this.value=NumText(this.value)" />*@
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Direccion)</p>
                                 </div>
                             </div>

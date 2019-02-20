@@ -125,19 +125,19 @@
 
                                 @Html.LabelFor(model => model.bod_Direccion, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.bod_Direccion, new { htmlAttributes = new { @class = "form-control", @onKeyPress = "return soloLetras(event)" } })
+                                    @Html.EditorFor(model => model.bod_Direccion, new { htmlAttributes = new { @class = "form-control", @onkeyup = "this.value=NumText(this.value)", @autocomplete = "off" } })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Direccion) </p>
                                 </div>
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(model => model.bod_Nombre, new { @class = "control-label col-md-2 , required", @onKeyPress = "return soloLetras(event)" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.bod_Nombre, new { htmlAttributes = new { @class = "form-control", @onKeyPress = "return soloLetras(event)" } })
+                                    @Html.EditorFor(model => model.bod_Nombre, new { htmlAttributes = new { @class = "form-control", @onKeyPress = "return soloLetras(event)", @autocomplete = "off" } })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Nombre) </p>
                                 </div>
                                 @Html.LabelFor(model => model.bod_Correo, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.bod_Correo)
+                                    @Html.EditorFor(model => model.bod_Correo,new { htmlAttributes = new { @class = "form-control", @onKeyPress = "this.value=CorreoElectronico(this.value)", @autocomplete = "off" } })
                                     @*<p style="color:red"> @Html.ValidationMessageFor(model => model.bod_Correo)</p>*@
                                     <div id="MessageForCorreo">
                                         <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Correo)</p>
@@ -152,15 +152,22 @@
                                 </div>
                                 @Html.LabelFor(model => model.mun_Codigo, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    @Html.DropDownList("mun_Codigo", null, "Seleccione Municipio", new { @class = "form-control" })
+                                    @Html.DropDownList("mun_Codigo", @*null, "Seleccione Municipio",*@  (IEnumerable<SelectListItem>)ViewBag.municipio_Edit, new { @class = "form-control" })
                                     <p id="Municipio" style="color:red">@Html.ValidationMessageFor(model => model.mun_Codigo)</p>
                                 </div>
+                                @*<div class="form-group">
+                                    @Html.LabelFor(model => model.mun_Codigo, "mun_Codigo", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownList("mun_Codigo", String.Empty)
+                                        @Html.ValidationMessageFor(model => model.mun_Codigo)
+                                    </div>
+                                </div>*@
                             </div>
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.bod_Telefono, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.bod_Telefono, new { htmlAttributes = new { @class = "form-control", @onKeyPress = "return soloNumeros(event)" } })
+                                    @Html.EditorFor(model => model.bod_Telefono, new { htmlAttributes = new { @class = "form-control", @onKeyPress = "return soloNumeros(event)", @autocomplete = "off" } })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Telefono)</p>
                                 </div>
                                 @Html.LabelFor(model => model.bod_ResponsableBodega, new { @class = "control-label col-md-2 , required" })

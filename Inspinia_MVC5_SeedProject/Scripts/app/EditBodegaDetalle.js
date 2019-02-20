@@ -1,6 +1,6 @@
 ﻿function btnActualizarBodegaDetalle(bodd_Id) {
      var bodega_id = $('#bod_Id').val();
-    var bodegadetalle_id = $('#bodd_Id').val();
+    var bodegadetalle_id = $('#detalle_Edit_' + bodd_Id).val();
     var producto_codigo = $('#producto_Edit_' + bodd_Id ).val();
     var puntoreorden = $('#puntoreorden_Edit_' + bodd_Id ).val();
     var cantidadminima = $('#cantidadminima_Edit_' + bodd_Id ).val();
@@ -58,7 +58,7 @@
     else {
         var tbBodegaDetalle = {
             bod_Id: $('#bod_Id').val(),
-            bodd_Id: $('#bodd_Id').val(),
+            bodd_Id: bodegadetalle_id,
             prod_Codigo: producto_codigo,
             bodd_PuntoReorden: puntoreorden,
             bodd_CantidadMinima: cantidadminima,

@@ -18,6 +18,10 @@
         color: red;
     }
 </style>
+<script runat="server">
+    
+
+</script>
     <div class="wrapper wrapper-content animated fadeInRight">
         <div class="row">
             <div class="col-lg-12">
@@ -32,19 +36,28 @@
                             @Html.HiddenFor(model => model.bodd_FechaCrea)
                             @Html.HiddenFor(model => model.bodd_UsuarioModifica)
                             @Html.HiddenFor(model => model.bodd_FechaModifica)
-                            @Html.HiddenFor(model => model.prod_Codigo)
+                            @*@Html.HiddenFor(model => model.prod_Codigo)
                             @Html.HiddenFor(model => model.bodd_CantidadMinima)
                             @Html.HiddenFor(model => model.bodd_CantidadMaxima)
                             @Html.HiddenFor(model => model.bodd_Costo)
                             @Html.HiddenFor(model => model.bodd_CostoPromedio)
-                            @Html.HiddenFor(model => model.bodd_PuntoReorden)
+                            @Html.HiddenFor(model => model.bodd_PuntoReorden)*@
 
-
+                        <div class="form-group" style="display:none">
+                            @{string @Editdetalle= "detalle_Edit_" + @Model.bodd_Id;}
+                            @Html.LabelFor(model => model.bodd_Id, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.bodd_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", id = @Editdetalle } })
+                                <div id="ErrorProducto_Create">
+                                    @Html.ValidationMessageFor(model => model.bodd_Id)
+                                </div>
+                            </div>
+                        </div>
                             <div class="form-group">
                                 @{string @Editproducto = "producto_Edit_" + @Model.bodd_Id;}
                                 @Html.LabelFor(model => model.prod_Codigo, new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.prod_Codigo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" , id = @Editproducto } })
+                                    @Html.EditorFor(model => model.prod_Codigo, new { htmlAttributes = new { @class = "form-control",  @readonly = "readonly" , id = @Editproducto } })
                                     <div id="ErrorProducto_Create">
                                         @Html.ValidationMessageFor(model => model.prod_Codigo)
                                     </div>
@@ -54,8 +67,8 @@
                                 @{string @Editcantidadminima = "cantidadminima_Edit_" + @Model.bodd_Id;}
                                 @Html.LabelFor(model => model.bodd_CantidadMinima, new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.bodd_CantidadMinima, new { htmlAttributes = new { @class = "form-control", @onkeyup = "format(this)", @onKeyPress = "return soloNumeros(event)", id = @Editcantidadminima } })
-                                 
+                                    @Html.EditorFor(model => model.bodd_CantidadMinima, new { htmlAttributes = new { @class = "form-control, validar", @onkeyup = "format(this)",  runat="server" ,id = @Editcantidadminima, @autocomplete = "off" } })
+
                                     <div id="ValidacionCantidadMinimaEdit_@Model.bodd_Id">
                                         <p style="color:red">@Html.ValidationMessageFor(model => model.bodd_CantidadMinima)</p>
                                     </div>
@@ -63,9 +76,9 @@
                             </div>
                             <div class="form-group">
                                 @{string @Editpuntoreorden = "puntoreorden_Edit_" + @Model.bodd_Id;}
-                                @Html.LabelFor(model => model.bodd_PuntoReorden, new { @class = "control-label col-md-2" })
+                                        @Html.LabelFor(model => model.bodd_PuntoReorden, new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.bodd_PuntoReorden, new { htmlAttributes = new { @class = "form-control", name = "hola", @onkeyup = "format(this)", @onKeyPress = "return soloNumeros(event)", id = @Editpuntoreorden } })
+                                    @Html.EditorFor(model => model.bodd_PuntoReorden, new { htmlAttributes = new { @class = "form-control, validar", name = "hola", @onkeyup = "format(this)", id = @Editpuntoreorden, @autocomplete = "off" } })
                                     
                                     <div id="ValidacionPuntoReordenEdit_@Model.bodd_Id">
                                         <p style="color:red">@Html.ValidationMessageFor(model => model.bodd_PuntoReorden)</p>
@@ -77,7 +90,7 @@
                                 @{string @Editcantidadmaxima = "cantidadmaxima_Edit_" + @Model.bodd_Id;}
                                 @Html.LabelFor(model => model.bodd_CantidadMaxima, new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.bodd_CantidadMaxima, new { htmlAttributes = new { @class = "form-control", @onkeyup = "format(this)", @onKeyPress = "return soloNumeros(event)", id = @Editcantidadmaxima } })
+                                    @Html.EditorFor(model => model.bodd_CantidadMaxima, new { htmlAttributes = new { @class = "form-control, validar", @onkeyup = "format(this)", id = @Editcantidadmaxima, @autocomplete = "off" } })
                                
                                     <div id="ValidacionCantidadmaximaEdit_@Model.bodd_Id">
                                         <p style="color:red"> @Html.ValidationMessageFor(model => model.bodd_CantidadMaxima)</p>
@@ -89,7 +102,7 @@
                                 @{string @Editcosto = "costo_Edit_" + @Model.bodd_Id;}
                                 @Html.LabelFor(model => model.bodd_Costo, new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.bodd_Costo, new { htmlAttributes = new { @class = "form-control", @onKeyPress = "return soloNumeros(event)", id = @Editcosto } })
+                                    @Html.EditorFor(model => model.bodd_Costo, new { htmlAttributes = new { @class = "form-control, validar", id = @Editcosto, @autocomplete = "off" } })
                                    
                                     <div id="ValidacionCostoEdit_@Model.bodd_Id">
                                         <p style="color:red"> @Html.ValidationMessageFor(model => model.bodd_Costo)</p>
@@ -101,7 +114,7 @@
                                 @{string @Editcostopromedio = "costopromedio_Edit_" + @Model.bodd_Id;}
                                 @Html.LabelFor(model => model.bodd_CostoPromedio, new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.bodd_CostoPromedio, new { htmlAttributes = new { @class = "form-control", @onKeyPress = "return soloNumeros(event)", id = @Editcostopromedio } })
+                                    @Html.EditorFor(model => model.bodd_CostoPromedio, new { htmlAttributes = new { @class = "form-control, validar", id = @Editcostopromedio, @autocomplete = "off" } })
                                    <div id="ValidacionCostoPromedioEdit_@Model.bodd_Id">
                                         <p style="color:red">@Html.ValidationMessageFor(model => model.bodd_CostoPromedio)</p>
                                     </div>
