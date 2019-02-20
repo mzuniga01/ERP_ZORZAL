@@ -71,21 +71,6 @@
                 @Html.ValidationMessageFor(model => model.exo_Documento)
             </div>
         </div>
-        @*<div class="form-group" id="Activo">
-            @Html.LabelFor(model => model.exo_ExoneracionActiva, new { @class = "control-label col-md-2" })
-            <div class="col-md-2">
-                @Html.EditorFor(model => model.exo_ExoneracionActiva, new { htmlAttributes = new { @type = "checkbox", @checked = "true", @disabled = "disabled" } })
-                <p style="color:red">@Html.ValidationMessageFor(model => model.exo_ExoneracionActiva)</p>
-            </div>
-        </div>*@
-
-        @*<div class="form-group" id="Activo">
-            @Html.LabelFor(model => model.exo_ExoneracionActiva, new { @class = "control-label col-md-2" })
-            <div class="col-md-2">
-                @Html.EditorFor(model => model.exo_ExoneracionActiva, new { @readonly = "readonly"  })
-                <p style="color:red">@Html.ValidationMessageFor(model => model.exo_ExoneracionActiva)</p>
-            </div>
-        </div>*@
 
         <div class="form-group" >
             @Html.LabelFor(model => model.exo_FechaInicialVigencia, new { @class = "control-label col-md-2" })
@@ -127,7 +112,7 @@
 
 <div>
     <div class="modal fade" id="ModalAgregarClientes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -135,7 +120,6 @@
                     </button>
                     <h4 class="modal-title" id="myModalLabel">Agregar Cliente</h4>
                 </div>
-                @*ViewBag.Cliente = db.tbCliente.ToList();*@
                 <div class="modal-body" id="frmEditarMunicipios">
                     @Html.Partial("ClientesnoExonerado", (List<UDP_Vent_listExoneracion_Select>)ViewBag.noExonerado)
                 </div>
@@ -174,12 +158,28 @@
             $("#exo_FechaIFinalVigencia").datepicker({ dateFormat: 'dd/mm/yy' });
 
         });
-
-       
-
         </script>
 
     <script>
+        //Busqueda de Cliente en Devolucion-----------
+        $(document).ready(function () {
+            var $rows = $('#BodyCliente tr');
+            $("#searchCliente").keyup(function () {
+                var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+                if (val.length >= 3) {
+                    $rows.show().filter(function () {
+                        var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+                        return !~text.indexOf(val);
+                    }).hide();
+                }
+                else if (val.length >= 1) {
+                    $rows.show().filter(function () {
+                    }).hide();
+                }
+
+            })
+        });
+
         $('#exo_ExoneracionActiva').attr('checked', true);
     </script>
 

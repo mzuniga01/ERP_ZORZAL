@@ -175,12 +175,18 @@
                     </tr>
                     <tr>
                         <td>Creado</td>
-                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_Nombres)</td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                        </td>
                         <td>@Html.DisplayFor(model => model.exo_FechaCrea)</td>
                     </tr>
                     <tr>
                         <td>Modificado</td>
-                        <td>@Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)</td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                        </td>
                         <td>@Html.DisplayFor(model => model.exo_FechaModifica)</td>
                     </tr>
                 </table>
@@ -295,6 +301,27 @@ $(function () {
           
         }
     });
+
+
+    //Busqueda de Cliente en Devolucion-----------
+    $(document).ready(function () {
+        var $rows = $('#BodyCliente tr');
+        $("#searchCliente").keyup(function () {
+            var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+            if (val.length >= 3) {
+                $rows.show().filter(function () {
+                    var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+                    return !~text.indexOf(val);
+                }).hide();
+            }
+            else if (val.length >= 1) {
+                $rows.show().filter(function () {
+                }).hide();
+            }
+
+        })
+    });
+
 </script>
 }
 

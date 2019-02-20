@@ -64,6 +64,7 @@
                                         {
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.tbCliente.clte_Nombres)
+                                                @Html.DisplayFor(modelItem => item.tbCliente.clte_Apellidos)
                                             </td>
                                         }
                                         else
@@ -80,9 +81,19 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.exo_Documento)
                                     </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.exo_ExoneracionActiva)
-                                    </td>
+                                    @{ if (item.exo_ExoneracionActiva)
+                                        {
+                                            <td>
+                                                Si
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td>
+                                                No
+                                            </td>
+                                        }
+                                    }
                                     <td>
                                         @Html.DisplayFor(modelItem => item.exo_FechaInicialVigencia)
                                     </td>
