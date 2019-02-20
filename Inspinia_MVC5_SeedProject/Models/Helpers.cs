@@ -31,5 +31,9 @@ namespace ERP_GMEDINA.Models
         public const int SolicitudPendiente = 1;
         public const int SolicitudAprobado = 2;
         public const int SolicitudDenegado = 3;
+
+        //Exoneracion Estados
+        public const bool ExoneracionInactiva = true;
+        public const bool ExoneracionActiva = false;
     }
 }

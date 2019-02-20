@@ -13,7 +13,7 @@ namespace ERP_GMEDINA.Controllers
     public class TipoPagoController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
-
+        GeneralFunctions Function = new GeneralFunctions();
         // GET: /TipoPago/
         public ActionResult Index()
         {
@@ -58,7 +58,8 @@ namespace ERP_GMEDINA.Controllers
                 {
                     var MensajeError = 0;
                     IEnumerable<object> list = null;
-                    list = db.UDP_Vent_tbTipoPago_Insert(tbTipoPago.tpa_Descripcion,  tbTipoPago.tpa_Emisor, tbTipoPago.tpa_Cuenta, tbTipoPago.tpa_FechaVencimiento, tbTipoPago.tpa_Titular);
+                    list = db.UDP_Vent_tbTipoPago_Insert(tbTipoPago.tpa_Descripcion,  tbTipoPago.tpa_Emisor, tbTipoPago.tpa_Cuenta, tbTipoPago.tpa_FechaVencimiento, tbTipoPago.tpa_Titular, Function.GetUser(),
+                                                Function.DatetimeNow());
                     foreach (UDP_Vent_tbTipoPago_Insert_Result tipopago in list)
                         MensajeError = tipopago.MensajeError;
                     if (MensajeError == -1)
@@ -117,7 +118,8 @@ namespace ERP_GMEDINA.Controllers
                 {
                     var MensajeError = 0;
                     IEnumerable<object> list = null;
-                    list = db.UDP_Vent_tbTipoPago_Update(tbTipoPago.tpa_Id, tbTipoPago.tpa_Descripcion, tbTipoPago.tpa_Emisor, tbTipoPago.tpa_Cuenta, tbTipoPago.tpa_FechaVencimiento, tbTipoPago.tpa_Titular, tbTipoPago.tpa_UsuarioCrea, tbTipoPago.tpa_FechaCrea);
+                    list = db.UDP_Vent_tbTipoPago_Update(tbTipoPago.tpa_Id, tbTipoPago.tpa_Descripcion, tbTipoPago.tpa_Emisor, tbTipoPago.tpa_Cuenta, tbTipoPago.tpa_FechaVencimiento, tbTipoPago.tpa_Titular, tbTipoPago.tpa_UsuarioCrea, tbTipoPago.tpa_FechaCrea, Function.GetUser(),
+                                                Function.DatetimeNow());
                     foreach (UDP_Vent_tbTipoPago_Update_Result tipopago in list)
                         MensajeError = tipopago.MensajeError;
                     if (MensajeError == -1)

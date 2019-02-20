@@ -288,7 +288,9 @@ namespace ERP_GMEDINA.Controllers
                                                 tbFactura.fact_NombresTE,
                                                 tbFactura.fact_FechaNacimientoTE,
                                                 tbFactura.fact_EsAnulada,
-                                                tbFactura.fact_RazonAnulado);
+                                                tbFactura.fact_RazonAnulado,
+                                                Function.GetUser(), 
+                                                Function.DatetimeNow());
                         foreach (UDP_Vent_tbFactura_Insert_Result Factura in listFactura)
                             MensajeError = Factura.MensajeError;
                         if (MensajeError == "-1")
@@ -315,7 +317,9 @@ namespace ERP_GMEDINA.Controllers
                                                 Detalle.factd_MontoDescuento,
                                                 Detalle.factd_PorcentajeDescuento,
                                                 Detalle.factd_Impuesto,
-                                                Detalle.factd_PrecioUnitario
+                                                Detalle.factd_PrecioUnitario,
+                                                Function.GetUser(), 
+                                                Function.DatetimeNow()
                                                 );
                                             foreach (UDP_Vent_tbFacturaDetalle_Insert_Result SPfacturadet in listFacturaDetalle)
                                             {
@@ -492,7 +496,9 @@ namespace ERP_GMEDINA.Controllers
                                                 tbFactura.fact_EsAnulada,
                                                 tbFactura.fact_RazonAnulado,
                                                 tbFactura.fact_UsuarioCrea,
-                                                tbFactura.fact_FechaCrea);
+                                                tbFactura.fact_FechaCrea,
+                                                Function.GetUser(), 
+                                                Function.DatetimeNow());
                         foreach (UDP_Vent_tbFactura_Update_Result Factura in listFactura)
                             MensajeError = Factura.MensajeError;
                         if (MensajeError == "-1")
@@ -519,7 +525,9 @@ namespace ERP_GMEDINA.Controllers
                                                 Detalle.factd_MontoDescuento,
                                                 Detalle.factd_PorcentajeDescuento,
                                                 Detalle.factd_Impuesto,
-                                                Detalle.factd_PrecioUnitario
+                                                Detalle.factd_PrecioUnitario,
+                                                Function.GetUser(), 
+                                                Function.DatetimeNow()
                                                 );
                                             foreach (UDP_Vent_tbFacturaDetalle_Insert_Result SPfacturadet in listFacturaDetalle)
                                             {
@@ -763,7 +771,9 @@ namespace ERP_GMEDINA.Controllers
                             EditFacturaDetalle.factd_UsuarioAutoriza,
                             EditFacturaDetalle.factd_FechaAutoriza,
                             EditFacturaDetalle.factd_UsuarioCrea,
-                            EditFacturaDetalle.factd_FechaCrea = System.DateTime.Now);
+                            EditFacturaDetalle.factd_FechaCrea,
+                            Function.GetUser(), 
+                            Function.DatetimeNow());
                 foreach (UDP_Vent_tbFacturaDetalle_Update_Result FacturaDetalle in list)
                     MensajeError = FacturaDetalle.MensajeError;
                 if (MensajeError == "-1")
