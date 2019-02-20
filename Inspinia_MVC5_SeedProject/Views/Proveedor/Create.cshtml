@@ -61,6 +61,7 @@
                                 @Html.LabelFor(model => model.prov_Nombre, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.prov_Nombre, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @maxlength = "50" } })
+                                    @Html.ValidationMessageFor(model => model.prov_Nombre)
                                     <div id="validationNombre">
                                         <p style="color:red"></p>
                                     </div>
@@ -72,6 +73,7 @@
                                 @Html.LabelFor(model => model.prov_NombreContacto, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.prov_NombreContacto, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @maxlength = "50" } })
+                                    @Html.ValidationMessageFor(model => model.prov_NombreContacto)
                                     <div id="validationContacto">
                                         <p style="color:red"></p>
                                     </div>

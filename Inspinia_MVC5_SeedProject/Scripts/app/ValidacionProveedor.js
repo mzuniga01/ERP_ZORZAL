@@ -1,11 +1,4 @@
-﻿$(document).ready(function () {
-  
-    $("#prov_RTN")[0].minLength = "2";
-})
-
-
-
-$('#prov_Email').change(function (e) {
+﻿$('#prov_Email').change(function (e) {
     var emailRegex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     var EmailId = this.value;
     if (emailRegex.test(EmailId)) {
@@ -24,10 +17,44 @@ $('#prov_Email').change(function (e) {
 });
 
 
+function soloLetras(e) {
+    tecla = (document.all) ? e.keyCode : e.which;
+    tecla = String.fromCharCode(tecla)
+    return /^[a-z0-9A-ZáéíóúñÁÉÍÓÚÑ ]+$/.test(tecla);
+}
+
+
+$("#prov_Telefono").on("keypress keyup blur", function (event) {
+    //this.value = this.value.replace(/[^0-9\.]/g,'');
+    $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
+    if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+        event.preventDefault();
+    }
+});
+
+
+$("#prov_Telefono").on("keypress keyup blur", function (event) {
+    var Telefono = $(this).val();
+  
+    if (Telefono == '') {
+        $(this).val('+');
+    }
+    this.value = this.value.replace(/[a-záéíóúüñ#/=]+/ig, "");
+});
+
+
+$("#prov_RTN").on("keypress keyup blur", function (event) {
+    //this.value = this.value.replace(/[^0-9\.]/g,'');
+    $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
+    if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+        event.preventDefault();
+    }
+});
+
 $('#prov_RTN').change(function (e) {
  
     var RTN = $("#prov_RTN").val();
-    console.log(RTN);
+    $("#ErrorCorreo").remove();
     if (RTN < 14) {
         $('#ErrorCorreo').text('');
         $('#validationRTN').after('<ul id="ErrorCorreo" class="validation-summary-errors text-danger">RTN debe tener 14 dígitos</ul>');
@@ -37,36 +64,9 @@ $('#prov_RTN').change(function (e) {
 });
 
 
-
-$("#prov_Telefono").on("keypress keyup blur", function (event) {
-    var Telefono = $(this).val();
-    console.log(Telefono)
-    if (Telefono == '') {
-        $(this).val('+');
-    }
-    this.value = this.value.replace(/[a-záéíóúüñ#/=]+/ig, "");
-});
-
-
-function soloLetras(e) {
-    tecla = (document.all) ? e.keyCode : e.which;
-    tecla = String.fromCharCode(tecla)
-    return /^[a-z0-9A-ZáéíóúñÁÉÍÓÚÑ ]+$/.test(tecla);
-}
-
-
-$("#prov_RTN").on("keypress keyup blur", function (event) {
-
-    $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
-    if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
-        event.preventDefault();
-    }
-});
-
-
-
 $('#btnGuardar').click(function () {
-    $("#prov_RTN")[0].minLength = 14;
+
+
     $("#errorRTN").remove();
     $("#errorNombre").remove();
     $("#errorContacto").remove();
@@ -75,7 +75,6 @@ $('#btnGuardar').click(function () {
     $("#errorEmail").remove();
     $("#errorTelefono").remove();
     $("#errorActividad").remove();
-    
     var RTN = $("#prov_RTN").val();
     var Nombre = $("#prov_Nombre").val();
     var Contacto = $("#prov_NombreContacto").val();
@@ -83,50 +82,46 @@ $('#btnGuardar').click(function () {
     var Email = $("#prov_Email").val();
     var Telefono = $("#prov_Telefono").val();
     var Actividad = $("#acte_Id").find('option:selected').val();
-
-
-    if (RTN == '' ) {
-
-        $("#errorRTN").remove();
+    //console.log(Actividad);
+    if (RTN == '') {
         $('#RTN').text('');
         $('#errorRTN').text('');
         $('#validationRTN').after('<ul id="errorRTN" class="validation-summary-errors text-danger">Campo RTN Requerido</ul>');
     }
 
-     if (Nombre == '') {
+    if (Nombre == '') {
         $('#Nombre').text('');
         $('#errorNombre').text('');
         $('#validationNombre').after('<ul id="errorNombre" class="validation-summary-errors text-danger">Campo Nombre Requerido</ul>');
     }
 
-   if (Contacto == '') {
+    if (Contacto == '') {
         $('#Contacto').text('');
         $('#errorContacto').text('');
         $('#validationContacto').after('<ul id="errorContacto" class="validation-summary-errors text-danger">Campo Contacto Requerido</ul>');
     }
 
-     if (Direccion == '') {
+    if (Direccion == '') {
         $('#Direccion').text('');
         $('#errorDireccion').text('');
         $('#validationDireccion').after('<ul id="errorDireccion" class="validation-summary-errors text-danger">Campo Direccion Requerido</ul>');
     }
-     if (Email == '') {
+    if (Email == '') {
         $('#Email').text('');
         $('#errorEmail').text('');
         $('#validationEmail').after('<ul id="errorEmail" class="validation-summary-errors text-danger">Campo Email Requerido</ul>');
     }
-     if (Telefono == '') {
+    if (Telefono == '') {
         $('#Telefono').text('');
         $('#errorTelefono').text('');
         $('#validationTelefono').after('<ul id="errorTelefono" class="validation-summary-errors text-danger">Campo Telefono Requerido</ul>');
     }
-      if (Actividad == '') {
+    if (Actividad == '') {
         $('#Actividad').text('');
         $('#errorActividad').text('');
         $('#validationActividad').after('<ul id="errorActividad" class="validation-summary-errors text-danger">Campo Actividad Economica Requerido</ul>');
-      }
-    
-
+    }
+  
     else {
 
 
@@ -149,20 +144,9 @@ $('#btnGuardar').click(function () {
                         window.location.href = "Index/Proveedor";
                     }
                     console.log(data);
-                })
+            })
     }
 });
-function limpia() {
-    var val = document.getElementById("miInput").value;
-    var tam = val.length;
-    for (i = 0; i < tam; i++) {
-        if (!isNaN(val[i]))
-            document.getElementById("miInput").value = '';
-    }
-}
-
-
-
 $('#btnActualizar').click(function () {
     $("#errorRTN").remove();
     $("#errorNombre").remove();
@@ -184,43 +168,41 @@ $('#btnActualizar').click(function () {
     if (RTN == '') {
         $('#RTN').text('');
         $('#errorRTN').text('');
-        $('#validationRTN').after('<ul id="errorRTN" class="validation-summary-errors text-danger">Campo Descripción Requerido</ul>');
+        $('#validationRTN').after('<ul id="errorRTN" class="validation-summary-errors text-danger">Campo RTN Requerido</ul>');
     }
 
-  if (Nombre == '') {
+    if (Nombre == '') {
         $('#Nombre').text('');
         $('#errorNombre').text('');
-        $('#validationNombre').after('<ul id="errorNombre" class="validation-summary-errors text-danger">Campo Descripción Requerido</ul>');
+        $('#validationNombre').after('<ul id="errorNombre" class="validation-summary-errors text-danger">Campo Nombre Requerido</ul>');
     }
 
-   if (Contacto == '') {
+    if (Contacto == '') {
         $('#Contacto').text('');
         $('#errorContacto').text('');
-        $('#validationContacto').after('<ul id="errorContacto" class="validation-summary-errors text-danger">Campo Descripción Requerido</ul>');
+        $('#validationContacto').after('<ul id="errorContacto" class="validation-summary-errors text-danger">Campo Contacto Requerido</ul>');
     }
 
-   if (Direccion == '') {
+    if (Direccion == '') {
         $('#Direccion').text('');
         $('#errorDireccion').text('');
-        $('#validationDireccion').after('<ul id="errorDireccion" class="validation-summary-errors text-danger">Campo Descripción Requerido</ul>');
+        $('#validationDireccion').after('<ul id="errorDireccion" class="validation-summary-errors text-danger">Campo Direccion Requerido</ul>');
     }
-   if (Email == '') {
+    if (Email == '') {
         $('#Email').text('');
         $('#errorEmail').text('');
-        $('#validationEmail').after('<ul id="errorEmail" class="validation-summary-errors text-danger">Campo Descripción Requerido</ul>');
+        $('#validationEmail').after('<ul id="errorEmail" class="validation-summary-errors text-danger">Campo Email Requerido</ul>');
     }
- if (Telefono == '') {
+    if (Telefono == '') {
         $('#Telefono').text('');
         $('#errorTelefono').text('');
-        $('#validationTelefono').after('<ul id="errorTelefono" class="validation-summary-errors text-danger">Campo Descripción Requerido</ul>');
+        $('#validationTelefono').after('<ul id="errorTelefono" class="validation-summary-errors text-danger">Campo Telefono Requerido</ul>');
     }
     if (Actividad == '') {
         $('#Actividad').text('');
         $('#errorActividad').text('');
-        $('#validationActividad').after('<ul id="errorTelefono" class="validation-summary-errors text-danger">Campo Descripción Requerido</ul>');
+        $('#validationActividad').after('<ul id="errorActividad" class="validation-summary-errors text-danger">Campo Actividad Economica Requerido</ul>');
     }
-
-
     else {
 
 
