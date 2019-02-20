@@ -34,7 +34,7 @@
 
                         <div class="form-horizontal">
 
-                            @Html.ValidationSummary(true)
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             @Html.HiddenFor(model => model.deno_Id)
                             @*Auditoria*@
                             @Html.HiddenFor(model => model.deno_UsuarioCrea)
@@ -50,7 +50,7 @@
                             @* -----Valida usuavilidad----- *@
                             @*@Html.TextBoxFor(model => model.deno_Id, new { style = "display:none" })*@
                             @* ------------------------------------- *@
-
+                            <div class="alert alert-success text-center text-uppercase" id="alerta" style="display:none;">... Esta denominación esta en uso no la puedes editar...</div>
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.deno_Id, new { @class = "control-label col-md-2" })
@@ -111,24 +111,7 @@
                                 </div>
                             </div>
 
-                            <div class="table table-responsive">
-                                <table class="table table-bordered" id="TBDetalleSolicitud">
-
-                                    <thead>
-
-                                        <tr>
-
-                                            <th>
-                                                Denominación
-                                            </th>
-
-                                        </tr>
-                                    </thead>
-                                    <tbody></tbody>
-
-                                </table>
-
-                            </div>
+                           
 
 
 
@@ -176,45 +159,63 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+<script type="text/javascript">
+        $(document).ready(function () {
+            GetDenominacions()
 
-    @*<script type="text/javascript">
+        });
 
-                $(document).ready(function () {
-                    GetDenominacions()
-                });
-         function GetDenominacions() {
-             var denominacion = 16;
-             console.log(denominacion);
+                function GetDenominacions() {
+
+                    var usos = $('#ids').val();
+
+
+                    var uso = usos;
+
                     $.ajax({
                         type: 'GET',
-                        url: '/Denominacion/GetExist',
+                        url: '/Denominacion/GDatosEncabezado',
                         datatype: 'JSON',
-                        data: { 'denominacion': denominacion },
+                        data: { 'uso': uso },
                         success: function (data) {
-                            $('#TBDetalleSolicitud tbody').empty();
-                            $.each(data, function (i, item) {
-                                var rows = "<tr data-id=" + item.deno_Id + ">" +
-                                    "<td>" + item.deno_Id + "</td>" +
-                                      "</tr>";
-                                $('#TBDetalleSolicitud tbody').append(rows);
+
+                            if (data.length > 0) {
+                               // alert('no puedes')
+                                console.log(data)
+
+                                $("#deno_Tipo").prop("disabled", true);
+                                $("#mnda_Id").prop("disabled", true);
+                                $("#deno_Descripcion").prop("disabled", true);
+                                $("#deno_valor").prop("disabled", true);
+                                $("#guardar").prop("disabled", true);
+                                $('#alerta').show();
+
+                            }
+                            else {
+                                //alert('si')
+                                console.log(data)
+                               // $('#alerta').hidden()
+                            }
+                            //$.each(data, function (i, item) {
+
+                            //    var idaperura = item.deno_Id;
+                            //    console.log(idaperura + " " + "csacascas");
+                            //    if (idaperura > 0) {
+                            //        alert('No  puedes editar');
+                            //    }
+
                                 //----------------------------------------------------------
-                            });
+                            //});
                         },
                         error: function (data) { alert(data.responseText); }
                     });
                 };
 
-        </script>*@
+</script>
+    
 
 
     <script>
-
-
-
-
-
-
-
 
 
         $('#deno_Tipo').click(function () {

@@ -41,9 +41,9 @@
                         @Html.AntiForgeryToken()
 
                         <div class="form-horizontal">
-                            @Html.ValidationSummary(true)
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-
+                            <div class="alert alert-success text-center text-uppercase" id="alerta" style="display:none;">...No hay ninguna apertura realizada por favor aperture caja...</div>
 
                             <div class="form-group">
                                 @Html.LabelFor(model => sucursal.suc_Descripcion, new { @class = "control-label col-md-2" })
@@ -125,7 +125,7 @@
         $(document).ready(function () {
             $.ajax({
                 type: 'GET',
-                url: '/SolicitudEfectivo/GDatosEncabezado',
+                url: '/SolicitudEfectivo/GDatosEncabezados',
                 datatype: 'JSON',
                 data: {},
                 success: function (data) {
@@ -133,20 +133,35 @@
                     console.log(data);
 
                     $.each(data, function (i, item) {
-
-                        var Caja = item.cja_Descripcion;
                         var idaperura = item.mocja_Id;
+                        var Caja = item.cja_Descripcion;
+                        var sucursal = item.suc_Descripcion;
+                        console.log(sucursal)
 
                         $("#cajas").val(Caja);
                         $("#mocja_Id").val(idaperura);
+                        $("#suc_Descripcion").val(sucursal);
 
 
                     });
+                    if (data.length > 0) {
+                       // alert('si')
+                        console.log(data)
+
+                    }
+                    else {
+                        //alert('no')
+                        console.log(data)
+                        $("#mnda_Id").prop("disabled", true);
+                        $("#guardar").prop("disabled", true);
+                        $('#alerta').show();
+                    }
                 },
                 error: function (data) { alert(data.responseText); }
             });
         });
     </script>
+  
     @* ------------------------------------------ *@
 
 

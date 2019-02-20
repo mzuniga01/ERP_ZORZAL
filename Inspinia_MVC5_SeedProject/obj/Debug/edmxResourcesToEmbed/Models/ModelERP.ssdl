@@ -1123,7 +1123,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDP_Vent_listExoneracion_Select' 
       <PropertyRef Name="apellido" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="101" Nullable="false" />
     <Property Name="RTN/Identificacion" Type="nvarchar" MaxLength="26" Nullable="false" />
     <Property Name="persona natural" Type="bit" Nullable="false" />
     <Property Name="persona comercial" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -4295,6 +4295,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <Parameter Name="deno_FechaCrea" Type="datetime" Mode="In" />
     <Parameter Name="deno_UsuarioModifica" Type="int" Mode="In" />
     <Parameter Name="deno_FechaModifica" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="UDP_Gral_tbDenominacion_using" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
+    <Parameter Name="DENO_ID" Type="int" Mode="In" />
   </Function>
   <Function Name="UDP_Gral_tbDepartamento_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
     <Parameter Name="dep_Codigo" Type="char" Mode="In" />

@@ -2685,6 +2685,9 @@
       <Parameter Name="soled_UsuarioModifica" Mode="In" Type="Int32" />
       <Parameter Name="soled_FechaModifica" Mode="In" Type="DateTime" />
     </FunctionImport>
+    <FunctionImport Name="UDP_Gral_tbDenominacion_using" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbDenominacion_using_Result)">
+      <Parameter Name="DENO_ID" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -5103,7 +5106,7 @@
       <PropertyRef Name="apellido" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="true" />
     <Property Name="RTN_Identificacion" Type="String" Nullable="false" MaxLength="26" FixedLength="false" Unicode="true" />
     <Property Name="persona_natural" Type="Boolean" Nullable="false" />
     <Property Name="persona_comercial" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -8037,5 +8040,8 @@
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbSolicitudEfectivoDetalle_Update_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Gral_tbDenominacion_using_Result">
+    <Property Type="Int16" Name="deno_Id" Nullable="false" />
   </ComplexType>
 </Schema>

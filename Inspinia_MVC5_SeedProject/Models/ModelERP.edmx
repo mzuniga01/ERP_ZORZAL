@@ -1128,7 +1128,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDP_Vent_listExoneracion_Select' 
             <PropertyRef Name="apellido" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="101" Nullable="false" />
           <Property Name="RTN/Identificacion" Type="nvarchar" MaxLength="26" Nullable="false" />
           <Property Name="persona natural" Type="bit" Nullable="false" />
           <Property Name="persona comercial" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -4300,6 +4300,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Parameter Name="deno_FechaCrea" Type="datetime" Mode="In" />
           <Parameter Name="deno_UsuarioModifica" Type="int" Mode="In" />
           <Parameter Name="deno_FechaModifica" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="UDP_Gral_tbDenominacion_using" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
+          <Parameter Name="DENO_ID" Type="int" Mode="In" />
         </Function>
         <Function Name="UDP_Gral_tbDepartamento_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
           <Parameter Name="dep_Codigo" Type="char" Mode="In" />
@@ -9595,6 +9598,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="soled_UsuarioModifica" Mode="In" Type="Int32" />
             <Parameter Name="soled_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
+          <FunctionImport Name="UDP_Gral_tbDenominacion_using" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbDenominacion_using_Result)">
+            <Parameter Name="DENO_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
           <Key>
@@ -12013,7 +12019,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <PropertyRef Name="apellido" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="true" />
           <Property Name="RTN_Identificacion" Type="String" Nullable="false" MaxLength="26" FixedLength="false" Unicode="true" />
           <Property Name="persona_natural" Type="Boolean" Nullable="false" />
           <Property Name="persona_comercial" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -14948,6 +14954,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
         <ComplexType Name="UDP_Vent_tbSolicitudEfectivoDetalle_Update_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
+        <ComplexType Name="UDP_Gral_tbDenominacion_using_Result">
+          <Property Type="Int16" Name="deno_Id" Nullable="false" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -17671,6 +17680,13 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivoDetalle_Update_Result">
                 <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Gral_tbDenominacion_using" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbDenominacion_using" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbDenominacion_using_Result">
+                <ScalarProperty Name="deno_Id" ColumnName="deno_Id" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

@@ -258,6 +258,12 @@ namespace ERP_GMEDINA.Controllers
             else
                 return RedirectToAction("Index", "Login");
         }
+        [HttpGet]
+        public ActionResult GDatosEncabezado(short uso)
+        {
+            var list = db.UDP_Gral_tbDenominacion_using(uso).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
 
         protected override void Dispose(bool disposing)
         {

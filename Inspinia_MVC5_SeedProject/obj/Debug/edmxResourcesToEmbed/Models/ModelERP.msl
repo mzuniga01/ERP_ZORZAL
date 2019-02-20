@@ -2719,5 +2719,12 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Gral_tbDenominacion_using" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbDenominacion_using">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbDenominacion_using_Result">
+          <ScalarProperty Name="deno_Id" ColumnName="deno_Id" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>
