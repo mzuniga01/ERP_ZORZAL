@@ -18,7 +18,7 @@ namespace ERP_GMEDINA.Controllers
     public class ListaPreciosController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
-        GeneralFunctions Function = new GeneralFunctions();
+
         // GET: /ListaPrecios/
         public ActionResult Index()
         {
@@ -84,8 +84,7 @@ namespace ERP_GMEDINA.Controllers
                                                                    tbListaPrecio.listp_EsActivo = true,
                                                                  tbListaPrecio.listp_FechaInicioVigencia,
                                                                  tbListaPrecio.listp_FechaFinalVigencia,
-                                                                tbListaPrecio.listp_Prioridad, Function.GetUser(),
-                                                Function.DatetimeNow());
+                                                                tbListaPrecio.listp_Prioridad);
                    
                         foreach (UDP_Vent_tbListaPrecio_Insert_Result Precio in listPrecio)
                             MensajeError = Precio.MensajeError;
@@ -115,8 +114,7 @@ namespace ERP_GMEDINA.Controllers
                                               PrecioDetalle.lispd_PrecioMayorista,
                                               PrecioDetalle.lispd_PrecioMinorista,
                                               PrecioDetalle.lispd_DescCaja,
-                                              PrecioDetalle.lispd_DescGerente, Function.GetUser(),
-                                                Function.DatetimeNow());
+                                              PrecioDetalle.lispd_DescGerente);
                                             foreach (UDP_Vent_tbListadoPrecioDetalle_Insert_Result SPpreciodetalle in listPrecioDetalle)
                                             {
                                                 MensajeErrorDetalle = SPpreciodetalle.MensajeError;
@@ -247,8 +245,6 @@ namespace ERP_GMEDINA.Controllers
                                                                    tbListaPrecio.listp_EsActivo,
                                                                        tbListaPrecio.listp_UsuarioCrea,
                                                                    tbListaPrecio.listp_FechaCrea,
-                                                                   Function.GetUser(),
-                                                                    Function.DatetimeNow(),
                                                                    tbListaPrecio.listp_FechaInicioVigencia,
                                                                    tbListaPrecio.listp_FechaFinalVigencia,
                                                                Convert.ToInt16(tbListaPrecio.listp_Prioridad)
@@ -283,9 +279,7 @@ namespace ERP_GMEDINA.Controllers
                                               PrecioDetalle.lispd_PrecioMayorista,
                                               PrecioDetalle.lispd_PrecioMinorista,
                                               PrecioDetalle.lispd_DescCaja,
-                                              PrecioDetalle.lispd_DescGerente,
-                                              Function.GetUser(),
-                                                Function.DatetimeNow());
+                                              PrecioDetalle.lispd_DescGerente);
                                             foreach (UDP_Vent_tbListadoPrecioDetalle_Insert_Result SPpreciodetalle in listDetalle)
                                             {
                                                 MensajeErrorDetalle = SPpreciodetalle.MensajeError;
@@ -635,9 +629,7 @@ namespace ERP_GMEDINA.Controllers
                            ListadoPrecioDetalles.lispd_PrecioMayorista,
                            ListadoPrecioDetalles.lispd_PrecioMinorista,
                            ListadoPrecioDetalles.lispd_DescCaja,
-                            ListadoPrecioDetalles.lispd_DescGerente,
-                            Function.GetUser(),
-                                                Function.DatetimeNow());
+                            ListadoPrecioDetalles.lispd_DescGerente);
                 foreach (UDP_Vent_tbListadoPrecioDetalle_Insert_Result ListadoDetalleD in list)
                     MensajeError = ListadoDetalleD.MensajeError;
                 Msj = "El registro se guardo exitosamente";
@@ -676,9 +668,7 @@ namespace ERP_GMEDINA.Controllers
                             EditListadoPrecioDetalle.lispd_DescCaja,
                             EditListadoPrecioDetalle.lispd_DescGerente,
                             VListaPrecio.lispd_UsuarioCrea,
-                            VListaPrecio.lispd_FechaCrea,
-                            Function.GetUser(),
-                                                Function.DatetimeNow());
+                            VListaPrecio.lispd_FechaCrea);
 
                 foreach (UDP_Vent_tbListadoPrecioDetalle_Update_Result ListaDetalle in list)
                     MensajeError = ListaDetalle.MensajeError;

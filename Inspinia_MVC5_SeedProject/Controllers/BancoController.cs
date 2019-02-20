@@ -109,7 +109,8 @@ namespace ERP_GMEDINA.Controllers
                                 //////////Aqui va la lista//////////////
                                 string MensajeError = "";
                                 IEnumerable<object> list = null;
-                                list = db.UDP_Gral_tbBanco_Insert(tbBanco.ban_Nombre, tbBanco.ban_NombreContacto, tbBanco.ban_TelefonoContacto, Function.GetUser(), Function.DatetimeNow());
+                                list = db.UDP_Gral_tbBanco_Insert(tbBanco.ban_Nombre, tbBanco.ban_NombreContacto, tbBanco.ban_TelefonoContacto, tbBanco.ban_UsuarioCrea,
+                                                tbBanco.ban_FechaCrea);
                                 foreach (UDP_Gral_tbBanco_Insert_Result banco in list)
                                     MensajeError = banco.MensajeError.ToString();
                                 if (MensajeError.StartsWith("-1"))
@@ -199,8 +200,8 @@ namespace ERP_GMEDINA.Controllers
                                     tbBanco.ban_TelefonoContacto,
                                     tbBanco.ban_UsuarioCrea,
                                     tbBanco.ban_FechaCrea,
-                                    Function.GetUser(), 
-                                    Function.DatetimeNow());
+                                    tbBanco.ban_UsuarioModifica,
+                                    tbBanco.ban_FechaModifica);
                                 foreach (UDP_Gral_tbBanco_Update_Result banco in list)
                                     MensajeError = banco.MensajeError.ToString();
                                 if (MensajeError.StartsWith("-1"))
