@@ -151,6 +151,7 @@ namespace ERP_GMEDINA.Controllers
                 return RedirectToAction("NotFound", "Login");
             }
             this.AllLists();
+            ResponsableBodega(tbBodega.bod_ResponsableBodega);
             ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre", tbBodega.dep_Codigo);
             ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbBodega.mun_Codigo);
             Session["tbBodegaDetalle"] = null;
@@ -190,6 +191,7 @@ namespace ERP_GMEDINA.Controllers
                         if (MsjError.StartsWith("-1"))
                         {
                             this.AllLists();
+                            ResponsableBodega(tbBodega.bod_ResponsableBodega);
                             Function.InsertBitacoraErrores("Bodega/Edit", MsjError, "Edit");
                             ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
                             return RedirectToAction("Edit/" + idMaster);
@@ -215,6 +217,7 @@ namespace ERP_GMEDINA.Controllers
                                         if (MensajeError.StartsWith("-1"))
                                         {
                                             this.AllLists();
+                                            ResponsableBodega(tbBodega.bod_ResponsableBodega);
                                             ViewBag.deparatamento_Edit = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre", tbBodega.dep_Codigo);
                                             ViewBag.municipio_Edit = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbBodega.mun_Codigo);
                                             Function.InsertBitacoraErrores("Bodega/Edit", MsjError, "Edit");
@@ -231,6 +234,7 @@ namespace ERP_GMEDINA.Controllers
                     catch (Exception Ex)
                     {
                         this.AllLists();
+                        ResponsableBodega(tbBodega.bod_ResponsableBodega);
                         ViewBag.deparatamento_Edit = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre", tbBodega.dep_Codigo);
                         ViewBag.municipio_Edit = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbBodega.mun_Codigo);
                         Function.InsertBitacoraErrores("Bodega/Create", Ex.Message.ToString(), "Create");
@@ -240,6 +244,7 @@ namespace ERP_GMEDINA.Controllers
                 }
             }
             this.AllLists();
+            ResponsableBodega(tbBodega.bod_ResponsableBodega);
             ViewBag.deparatamento_Edit = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre", tbBodega.dep_Codigo);
             ViewBag.municipio_Edit = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbBodega.mun_Codigo);
             ViewBag.bod_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbBodega.bod_UsuarioCrea);
@@ -528,6 +533,32 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.ResponsableBodegaList = new SelectList(NotInRecord, "emp_Id", "emp_Apellidos");
         }
 
+        private void ResponsableBodega(int ID)
+        {
+            var _EncargadoBodega = db.tbEmpleado.Select(s => new
+            {
+                emp_Id = s.emp_Id,
+                emp_Nombres = s.emp_Nombres,
+                emp_Apellidos = string.Concat(s.emp_Nombres + " " + s.emp_Apellidos)
+            }).ToList();
+
+            var _Empleado = db.tbBodega.Select(s => new {
+                bod_ResponsableBodega = s.bod_ResponsableBodega
+            }).ToList();
+
+            var NotInRecord = _EncargadoBodega.Where(p => !_Empleado.Any(p2 => p2.bod_ResponsableBodega == p.emp_Id)).ToList();
+
+            var Actual = db.tbEmpleado.Select(s => new
+            {
+                emp_Id = s.emp_Id,
+                emp_Nombres = s.emp_Nombres,
+                emp_Apellidos = string.Concat(s.emp_Nombres + " " + s.emp_Apellidos)
+            }).Where(s => s.emp_Id == ID).First();
+
+            NotInRecord.Add(Actual);
+
+            ViewBag.ResponsableBodegaList = new SelectList(NotInRecord, "emp_Id", "emp_Apellidos", ID);
+        }
         [HttpPost]
         public JsonResult removeBodegaDetalle(tbBodegaDetalle BorrarItem)
         {
