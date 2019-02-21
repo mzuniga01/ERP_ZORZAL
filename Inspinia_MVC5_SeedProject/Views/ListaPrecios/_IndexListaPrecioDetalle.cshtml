@@ -124,24 +124,34 @@
                 <form id="form">
                     <fieldset id="SubmitForm">
                         <div class="form-horizontal">
+                            @Html.HiddenFor(model => ListDetalle.lispd_Id)
                             <label id="MsjError">
                             </label>
-                    
+                            <div class="form-group">
+                                @Html.LabelFor(m => ListDetalle.lispd_Id, new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-10">
+                                    <input type="text" id="lispd_Id_lisd" name="lispd_Id" class="form-control" readonly="readonly" />
+                                    @Html.ValidationMessageFor(m => ListDetalle.lispd_Id)
+                                </div>
+                            </div>
                             <div class="form-group">
                                 @Html.LabelFor(m => ListDetalle.prod_Codigo, new { @class = "control-label col-sm-2" })
                                 <div class="col-sm-10">
-                                    <input type="text" id="prod_Codigo_lisd" name="prod_Codigo" class="form-control" readonly="readonly"/>
+                                    <input type="text" id="prod_Codigo_lisd" name="prod_Codigo" class="form-control" readonly="readonly" />
                                     @Html.ValidationMessageFor(m => ListDetalle.prod_Codigo)
                                 </div>
                             </div>
-                        
+
                             <div class="form-group">
                                 @Html.LabelFor(m => ListDetalle.lispd_PrecioMayorista, new { @class = "control-label col-sm-2" })
                                 <div class="col-sm-10">
                                     <input type="text" id="lispd_PrecioMayorista_lisd" name="lispd_PrecioMayorista" class="form-control" />
-                                  <p style="color:red" >@Html.ValidationMessageFor(m => ListDetalle.lispd_PrecioMayorista)</p> 
+                                    <p id="lispd_PrecioMayorista_lisd">@Html.ValidationMessageFor(m => ListDetalle.lispd_PrecioMayorista)</p>
                                 </div>
                             </div>
+
+
+
 
                             <div class="form-group">
                                 @Html.LabelFor(m => ListDetalle.lispd_PrecioMinorista, new { @class = "control-label col-sm-2" })
@@ -150,46 +160,48 @@
                                     <p style="color:red" id="validacionPreciosMM">@Html.ValidationMessageFor(m => ListDetalle.lispd_PrecioMinorista)</p>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="form-group">
-                                @Html.LabelFor(m => ListDetalle.lispd_DescCaja, new { @class = "control-label col-sm-2" })
-                                <div class="col-sm-10">
-                                    <input type="text" id="lispd_DescCaja_lisd" name="lispd_DescCaja" class="form-control" />
-                                    @Html.ValidationMessageFor(m => ListDetalle.lispd_DescCaja)
-                                    <p id="smsCantidad" style="color:red"> @Html.ValidationMessageFor(model => ListDetalle.lispd_DescCaja)</p>
-                                </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => ListDetalle.lispd_DescCaja, new { @class = "control-label col-sm-2" })
+                            <div class="col-sm-10">
+                                <input type="text" id="lispd_DescCaja_lisd" name="lispd_DescCaja" class="form-control" />
+                                @Html.ValidationMessageFor(m => ListDetalle.lispd_DescCaja)
+                                <p id="smsCantidad" style="color:red"> @Html.ValidationMessageFor(model => ListDetalle.lispd_DescCaja)</p>
                             </div>
+                        </div>
 
 
-                            <div class="form-group">
-                                @Html.LabelFor(m => ListDetalle.lispd_DescGerente, new { @class = "control-label col-sm-2" })
-                                <div class="col-sm-10">
-                                    <input type="text" id="lispd_DescGerente_lisd" name="lispd_DescGerente" class="form-control" />
-                                    @Html.ValidationMessageFor(m => ListDetalle.lispd_DescGerente)
-                                    <p id="desccaja" style="color:red">@Html.ValidationMessageFor(model => ListDetalle.lispd_DescGerente)</p>
-                                </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => ListDetalle.lispd_DescGerente, new { @class = "control-label col-sm-2" })
+                            <div class="col-sm-10">
+                                <input type="text" id="lispd_DescGerente_lisd" name="lispd_DescGerente" class="form-control" />
+                                @Html.ValidationMessageFor(m => ListDetalle.lispd_DescGerente)
+                                <p id="desccaja" style="color:red">@Html.ValidationMessageFor(model => ListDetalle.lispd_DescGerente)</p>
                             </div>
+                        </div>
 
 
 
-                            <input type="hidden" id="lispd_UsuarioCrea_lisd" name="lispd_UsuarioCrea" />
-                            <input type="hidden" id="lispd_FechaCrea_lisd" name="lispd_FechaCrea" />
-                        
+                        <input type="hidden" id="lispd_UsuarioCrea_lisd" name="lispd_UsuarioCrea" />
+                        <input type="hidden" id="lispd_FechaCrea_lisd" name="lispd_FechaCrea" />
 
 
-                            <div class="form-group">
-                                <div class="col-md-12 text-center">
-                                    <button class="btn btn-primary" type="button" id="BtnsubmitMunicipio" tabindex="10"> Guardar </button>
-                                    <button type="button" class="btn btn-white" data-dismiss="modal" aria-label="Close">Cancelar</button>
-                                </div>
+
+                        <div class="form-group">
+                            <div class="col-md-12 text-center">
+                                <button class="btn btn-primary" type="button" id="BtnsubmitMunicipio" tabindex="10"> Guardar </button>
+                                <button type="button" class="btn btn-white" data-dismiss="modal" aria-label="Close">Cancelar</button>
                             </div>
                         </div>
                     </fieldset>
                 </form>
             </div>
+              
+            </div>
         </div>
     </div>
-</div>
+
 
 
 
