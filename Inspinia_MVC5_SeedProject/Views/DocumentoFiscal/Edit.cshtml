@@ -128,4 +128,25 @@
 });
 
 </script>
+
+
+<script>
+    $(document).ready(function () {
+
+
+        //VALIDAR SOLO LETRAS
+        $('#dfisc_Descripcion').on('input', function (e) {
+            if (!/^[ a-z-áéíóúüñ]*$/i.test(this.value)) {
+                this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
+            }
+        });
+        $('#dfisc_Descripcion').on('input', function (e) {
+            if (!/^[ a-z-áéíóúüñ]*$/i.test(this.value)) {
+                this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
+            }
+        });
+
+
+    });
+</script>
 }
