@@ -170,3 +170,161 @@ $(document).ready(function () {
 
     });
 });
+
+
+
+
+////////////////////////Sucursal///////////////////////////////
+
+
+$(document).ready(function () {
+    $("#btnGuardar").click(function () {
+        var monto = $('#dep_Codigo').val();
+        //var montoint = parseInt(monto);
+
+        if (monto == '') {
+            valido = document.getElementById('Departamento');
+            valido.innerText = "El campo Documento es Requerido";
+            return false;
+        }
+        else {
+            valido = document.getElementById('Departamento');
+            valido.innerText = "";
+        }
+
+    });
+});
+
+
+
+
+$(document).ready(function () {
+    $("#btnGuardar").click(function () {
+        var monto = $('#mun_Codigo').val();
+        //var montoint = parseInt(monto);
+
+        if (monto == '') {
+            valido = document.getElementById('Municipio');
+            valido.innerText = "El campo Documento es Requerido";
+            return false;
+        }
+        else {
+            valido = document.getElementById('Municipio');
+            valido.innerText = "";
+        }
+
+    });
+});
+
+
+$(document).ready(function () {
+    $("#btnGuardar").click(function () {
+        var monto = $('#suc_Direccion').val();
+        //var montoint = parseInt(monto);
+
+        if (monto == '') {
+            valido = document.getElementById('direccion');
+            valido.innerText = "El campo Documento es Requerido";
+            return false;
+        }
+        else {
+            valido = document.getElementById('direccion');
+            valido.innerText = "";
+        }
+
+    });
+});
+
+
+$(document).ready(function () {
+    $("#btnGuardar").click(function () {
+        var monto = $('#bod_Id').val();
+        //var montoint = parseInt(monto);
+
+        if (monto == '') {
+            valido = document.getElementById('bod');
+            valido.innerText = "El campo Documento es Requerido";
+            return false;
+        }
+        else {
+            valido = document.getElementById('bod');
+            valido.innerText = "";
+        }
+
+    });
+});
+
+
+
+$(document).ready(function () {
+    $("#btnGuardar").click(function () {
+        var monto = $('#pemi_Id').val();
+        //var montoint = parseInt(monto);
+
+        if (monto == '') {
+            valido = document.getElementById('pemi');
+            valido.innerText = "El campo Documento es Requerido";
+            return false;
+        }
+        else {
+            valido = document.getElementById('pemi');
+            valido.innerText = "";
+        }
+
+    });
+});
+
+
+
+$(document).ready(function () {
+    $("#btnGuardar").click(function () {
+        var monto = $('#suc_Telefono').val();
+        //var montoint = parseInt(monto);
+
+        if (monto == '') {
+            valido = document.getElementById('telefono');
+            valido.innerText = "El campo Documento es Requerido";
+            return false;
+        }
+        else {
+            valido = document.getElementById('telefono');
+            valido.innerText = "";
+        }
+
+    });
+});
+
+
+
+
+$(document).ready(function () {
+    $("#btnGuardar").click(function () {
+        var monto = $('#suc_Correo').val();
+        //var montoint = parseInt(monto);
+
+        if (monto == '') {
+            valido = document.getElementById('correo');
+            valido.innerText = "El campo Documento es Requerido";
+            return false;
+        }
+        else {
+            valido = document.getElementById('correo');
+            valido.innerText = "";
+        }
+
+    });
+});
+
+
+$('#suc_Descripcion').on('input', function (e) {
+    if (!/^[ a-z0-9áéíóúüñ]*$/i.test(this.value)) {
+        this.value = this.value.replace(/[^ a-z0-9áéíóúüñ]+/ig, "");
+    }
+});
+
+
+
+
+
+
+

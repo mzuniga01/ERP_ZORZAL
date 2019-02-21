@@ -36,9 +36,11 @@
         <div class="form-group">
             @Html.LabelFor(model => model.dfisc_Id, "Codigo Documento Fiscal", new { @class = "control-label col-md-2" })
             <div class="col-md-5">
-                <input type="text" id="dfisc_Id" class="form-control " Value="" onKeyPress="return soloNumeros(event)" autocomplete="off" />
-                @*@Html.EditorFor(model => model.dfisc_Id)*@
+                @Html.EditorFor(model => model.dfisc_Id, new { htmlAttributes = new { @autocomplete = "off"} })
                 <p style="color:red">@Html.ValidationMessageFor(model => model.dfisc_Id)</p>
+                @*<input type="text" id="dfisc_Id" class="form-control " Value="" onKeyPress="return soloNumeros(event)" autocomplete="off" />*@
+                @*@Html.EditorFor(model => model.dfisc_Id)*@
+                @*<p style="color:red">@Html.ValidationMessageFor(model => model.dfisc_Id)</p>*@
 </div>
         </div>
 
@@ -71,4 +73,16 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 <script src="~/Scripts/app/ClienteExoneracion.js"></script>
+
+<script>
+    $("#dfisc_Id").on("keypress keyup blur", function (event) {
+    var Telefono = $(this).val();
+    console.log(Telefono)
+    if (Telefono == '') {
+        $(this).val('');
+    }
+    this.value = this.value.replace(/[a-záéíóúüñ#/=]+/ig, "");
+});
+
+</script>
 }
