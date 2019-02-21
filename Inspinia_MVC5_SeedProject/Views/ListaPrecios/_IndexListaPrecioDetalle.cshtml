@@ -145,7 +145,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(m => ListDetalle.lispd_PrecioMayorista, new { @class = "control-label col-sm-2" })
                                 <div class="col-sm-10">
-                                    <input type="text" id="lispd_PrecioMayorista_lisd" name="lispd_PrecioMayorista" class="form-control" />
+                                    <input type="text" id="lispd_PrecioMayorista_lisd" name="lispd_PrecioMayorista" class="form-control" onkeypress='return solonum(event)' />
                                     <p id="lispd_PrecioMayorista_lisd">@Html.ValidationMessageFor(m => ListDetalle.lispd_PrecioMayorista)</p>
                                 </div>
                             </div>
@@ -156,7 +156,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(m => ListDetalle.lispd_PrecioMinorista, new { @class = "control-label col-sm-2" })
                                 <div class="col-sm-10">
-                                    <input type="text" id="lispd_PrecioMinorista_lisd" name="lispd_PrecioMinorista" class="form-control" />
+                                    <input type="text" id="lispd_PrecioMinorista_lisd" name="lispd_PrecioMinorista" class="form-control" onkeypress='return solonum(event)'  />
                                     <p style="color:red" id="validacionPreciosMM">@Html.ValidationMessageFor(m => ListDetalle.lispd_PrecioMinorista)</p>
                                 </div>
                             </div>
@@ -165,7 +165,11 @@
                         <div class="form-group">
                             @Html.LabelFor(m => ListDetalle.lispd_DescCaja, new { @class = "control-label col-sm-2" })
                             <div class="col-sm-10">
-                                <input type="text" id="lispd_DescCaja_lisd" name="lispd_DescCaja" class="form-control" />
+
+                                @*<p id="lispd_DescCaja_lisd" name="lispd_DescCaja_lisd">@Html.EditorFor(model => ListDetalle.lispd_DescGerente, new { htmlAttributes = new { @autocomplete = "off", @onkeypress = "return solonum(event)" } })</p>*@
+
+
+                                <input type="text" id="lispd_DescCaja_lisd" name="lispd_DescCaja" class="form-control" onkeypress='return solonum(event)' />
                                 @Html.ValidationMessageFor(m => ListDetalle.lispd_DescCaja)
                                 <p id="smsCantidad" style="color:red"> @Html.ValidationMessageFor(model => ListDetalle.lispd_DescCaja)</p>
                             </div>
@@ -175,7 +179,7 @@
                         <div class="form-group">
                             @Html.LabelFor(m => ListDetalle.lispd_DescGerente, new { @class = "control-label col-sm-2" })
                             <div class="col-sm-10">
-                                <input type="text" id="lispd_DescGerente_lisd" name="lispd_DescGerente" class="form-control" />
+                                <input type="text" id="lispd_DescGerente_lisd" name="lispd_DescGerente" class="form-control" onkeypress='return solonum(event)' />
                                 @Html.ValidationMessageFor(m => ListDetalle.lispd_DescGerente)
                                 <p id="desccaja" style="color:red">@Html.ValidationMessageFor(model => ListDetalle.lispd_DescGerente)</p>
                             </div>
@@ -323,6 +327,11 @@
         }
         return true;
     });
+    function solonum(e) {
+        tecla = (document.all) ? e.keyCode : e.which;
+        tecla = String.fromCharCode(tecla)
+        return /^[0-9]+$/.test(tecla);
+    }
 
 
 
