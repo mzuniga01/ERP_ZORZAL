@@ -409,7 +409,7 @@
                             var rows = "<tr data-id=" + item.deno_Id + ">" +
                                        "<td hidden>" + item.deno_Id + "</td>" +
                                        "<td>" + item.deno_Descripcion + "</td>" +
-                                        "<td>" + '<input type="text" id="cantidad" name="name" onKeyPress="return soloNumeros(event)" onKeyUp="pierdeFoco(this)" autocomplete="off" class="form-control" ize="3">' + "</td>" +
+                                        "<td>" + '<input type="text" id="cantidad" name="name" maxlength="3" onKeyPress="return soloNumeros(event)" onKeyUp="pierdeFoco(this)" autocomplete="off" class="form-control" ize="3">' + "</td>" +
                                         "<td class='sumTotal'>" + 0 + "</td>" +
                                          "<td>" +  0 +   "</td>" +
                                         "<td >" + 0+ "</td>" +
@@ -450,7 +450,7 @@
                         var rows = "<tr data-id=" + item.denoId + ">" +
                                    "<td hidden>" + item.denoId + "</td>" +
                                    "<td>" + item.DenoDescripcion + "</td>" +
-                                    "<td>" + '<input type="text" id="cantidad" name="name" onKeyPress="return soloNumeros(event)" onKeyUp="pierdeFoco(this)" autocomplete="off" class="form-control" ize="3">' + "</td>" +
+                                    "<td>" + '<input type="text" id="cantidad" maxlength="3" name="name" onKeyPress="return soloNumeros(event)" onKeyUp="pierdeFoco(this)" autocomplete="off" class="form-control" ize="3">' + "</td>" +
                                     "<td>" + 0 + "</td>" +
                                      "<td>" + 0 + "</td>" +
                                     "<td >" + 0 + "</td>" +
@@ -614,7 +614,7 @@
 
                             "<td hidden>" + item.soled_Id + "</td>" +
                             "<td>" + item.deno_Descripcion + "</td>" +
-                            '<td><input type="text" id="csolicitada" min="1" onKeyPress="return soloNumeros(event)" onKeyUp="pierdeFoco(this)" autocomplete="off" class="form-control" ize="3"  value="' + item.soled_CantidadSolicitada + '"  /></td>' +
+                            '<td><input type="text" id="csolicitada" min="1" maxlength="3" onKeyPress="return soloNumeros(event)" onKeyUp="pierdeFoco(this)" autocomplete="off" class="form-control" ize="3"  value="' + item.soled_CantidadSolicitada + '"  /></td>' +
                             "<td class='sumTotal'>" + item.MontoSolicitado + "</td>" +
                             "<td>" + item.soled_CantidadEntregada + "</td>" +
                             "<td>" + item.MontoEntregado + "</td>" +

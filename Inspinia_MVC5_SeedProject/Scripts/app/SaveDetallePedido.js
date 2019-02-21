@@ -83,7 +83,7 @@ function GetPedidoDetalle() {
 }
 
 
-
+$("#pedd_Cantidad")[0].maxLength = 10;
 
 $(document).on("click", "#tblPedidoDetalle tbody tr td button#QuitarDetalle", function () {
     $(this).closest('tr').remove();
