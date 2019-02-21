@@ -31,8 +31,17 @@ namespace ERP_GMEDINA.Controllers
         {
             if (Function.GetUserLogin())
             {
-                if (Function.GetUserRols("MovimientoCaja/Index"))
+                if (Function.GetUserRols("MovimientoCaja/IndexApertura"))
                 {
+                    int idUser = 0;
+                    GeneralFunctions Login = new GeneralFunctions();
+                    List<tbUsuario> User = Login.getUserInformation();
+                    foreach (tbUsuario Usuario in User)
+                    {
+                        idUser = Convert.ToInt32(Usuario.emp_Id);
+                    }
+                    ViewBag.suc_Descripcion = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.tbSucursal.suc_Descripcion).SingleOrDefault();
+                    var suc_Id = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.tbSucursal.suc_Id).SingleOrDefault();
                     return View(db.tbMovimientoCaja.ToList());
                 }
                 else
@@ -52,13 +61,11 @@ namespace ERP_GMEDINA.Controllers
                 {
                     int idUser = 0;
                     GeneralFunctions Login = new GeneralFunctions();
-                    List<tbUsuario> User = Login.getUserInformation();                
+                    List<tbUsuario> User = Login.getUserInformation();
                     foreach (tbUsuario Usuario in User)
                     {
                         idUser = Convert.ToInt32(Usuario.emp_Id);
                     }
-
-
 
                     //////Solicitud Efectivo
                     tbMovimientoCaja MovimientoCaja = new tbMovimientoCaja();
@@ -66,18 +73,13 @@ namespace ERP_GMEDINA.Controllers
                     //////Solicitud Efectivo
                     tbSolicitudEfectivo SolicitudEfectivo = new tbSolicitudEfectivo();
                     ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre", SolicitudEfectivo.mnda_Id);
+                    ViewBag.usu_Id = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", MovimientoCaja.usu_Id);
+
                     ViewBag.suc_Descripcion = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.tbSucursal.suc_Descripcion).SingleOrDefault();
                     var suc_Id = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.tbSucursal.suc_Id).SingleOrDefault();
                     ViewBag.UsuarioApertura = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.usu_NombreUsuario).SingleOrDefault();
                     ViewBag.mocja_UsuarioApertura = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.usu_Id).SingleOrDefault();
-
-                    var Cajas = db.tbCaja.Select(s => new {
-                        cja_Id = s.cja_Id,
-                        cja_Descripcion = s.cja_Descripcion,
-                        suc_Id = s.suc_Id
-                    }).Where(x => x.suc_Id == suc_Id).ToList();
-
-
+                    var Cajas = db.tbCaja.Select(s => new { cja_Id = s.cja_Id, cja_Descripcion = s.cja_Descripcion, suc_Id = s.suc_Id}).Where(x => x.suc_Id == x.suc_Id).ToList();                
                     ViewBag.cja_Id = new SelectList(Cajas, "cja_Id", "cja_Descripcion", MovimientoCaja.cja_Id);
 
                     /////Vistas Parciales
@@ -100,7 +102,7 @@ namespace ERP_GMEDINA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateApertura([Bind(Include = "mocja_Id,cja_Id,mocja_FechaApetura,mocja_UsuarioApertura,mocja_UsuarioCrea,mocja_FechaCrea")] tbMovimientoCaja tbMovimientoCaja)
+        public ActionResult CreateApertura([Bind(Include = "mocja_Id,cja_Id,mocja_FechaApetura,mocja_UsuarioApertura,usu_Id,mocja_UsuarioCrea,mocja_FechaCrea")] tbMovimientoCaja tbMovimientoCaja)
         {
             int idUser = 0;
             GeneralFunctions Login = new GeneralFunctions();
@@ -117,9 +119,7 @@ namespace ERP_GMEDINA.Controllers
             ModelState.Remove("mocja_FechaArqueo");
             ModelState.Remove("mocja_FechaAceptacion");
             ModelState.Remove("mocja_UsuarioAceptacion");
-            /////////VAR//////////
-            tbMovimientoCaja.mocja_UsuarioArquea = 1;
-            tbMovimientoCaja.mocja_UsuarioAceptacion = 1;
+            /////////VAR//////////;
             bool solef_EsApertura = true;
             bool solef_EsAnulada = false;
             tbMovimientoCaja.mocja_FechaApertura = DateTime.Now;
@@ -151,9 +151,9 @@ namespace ERP_GMEDINA.Controllers
                                 tbMovimientoCaja.mocja_UsuarioApertura,
                                 tbMovimientoCaja.usu_Id,
                                 tbMovimientoCaja.mocja_FechaArqueo,
-                                tbMovimientoCaja.mocja_UsuarioArquea,
+                                Function.GetUser(),
                                 tbMovimientoCaja.mocja_FechaAceptacion,
-                                tbMovimientoCaja.mocja_UsuarioAceptacion,
+                                Function.GetUser(),
                                 Function.GetUser(),
                                 Function.DatetimeNow());
                                 foreach (UDP_Vent_tbMovimientoCaja_Apertura_Insert_Result apertura in listMovimientoCaja)
@@ -242,6 +242,9 @@ namespace ERP_GMEDINA.Controllers
                             ///
 
                             Function.InsertBitacoraErrores("MovimientoCaja/CreateApertura", MensajeError, "CreateApertura");
+
+                            //Usuario
+                            ViewBag.usu_Id = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbMovimientoCaja.usu_Id);
                             //Caja
                             ViewBag.cja_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion", tbMovimientoCaja.cja_Id);
                             ///Sucursal
@@ -249,7 +252,6 @@ namespace ERP_GMEDINA.Controllers
                             ///Moneda
                             ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre", tbSolicitudEfectivo.mnda_Id);
 
-                            //ViewBag.MovimientoCaja = db.tbMovimientoCaja.ToList();
                             Ex.Message.ToString();
                             ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador." + Ex.Message);
                             return View(tbMovimientoCaja);
@@ -261,6 +263,10 @@ namespace ERP_GMEDINA.Controllers
                     ViewBag.UsuarioApertura = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.usu_NombreUsuario).SingleOrDefault();
                     ViewBag.mocja_UsuarioApertura = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.usu_Id).SingleOrDefault();
 
+
+
+                    //Usuario
+                    ViewBag.usu_Id = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbMovimientoCaja.usu_Id);
                     ///Sucursal
                     ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "suc_Descripcion");
                     //Caja

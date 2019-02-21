@@ -122,3 +122,27 @@ $('#cja_Id').on("change", function () {
     valido = document.getElementById('MensajeErrorDenominacion');
     valido.innerText = "";
 });
+
+
+("#guardar").click(function () {
+    moneda = $("#name").val();
+    if (moneda == "") {
+        valido = document.getElementById('MensajeErrorDenominacion');
+        valido.innerText = "Debe ingresar una cantidad";
+        return false
+    }
+})
+
+//("#guardar").click(function () {
+//    moneda = $("#usu_Id").val();
+//    if (moneda == "") {
+//        valido = document.getElementById('MensajeErrorUsuario');
+//        valido.innerText = "El campo cajero es requerido";
+//        return false
+//    }
+//})
+
+//$('#usu_Id').on("change", function () {
+//    valido = document.getElementById('MensajeErrorUsuario');
+//    valido.innerText = "";
+//});

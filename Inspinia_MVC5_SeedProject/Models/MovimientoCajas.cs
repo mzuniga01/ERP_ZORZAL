@@ -34,6 +34,9 @@ namespace ERP_GMEDINA.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public Nullable<int> mocja_UsuarioApertura { get; set; }
 
+        [Display(Name = "Cajero")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
+        public Nullable<int> usu_Id { get; set; }
 
         [Display(Name = "Fecha Arqueo")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
