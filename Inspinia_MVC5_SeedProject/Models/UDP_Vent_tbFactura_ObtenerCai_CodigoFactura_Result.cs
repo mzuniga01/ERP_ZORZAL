@@ -15,5 +15,6 @@ namespace ERP_GMEDINA.Models
     {
         public string CODFACTURA { get; set; }
         public string CAI { get; set; }
+        public string ERRORMSJ { get; set; }
     }
 }

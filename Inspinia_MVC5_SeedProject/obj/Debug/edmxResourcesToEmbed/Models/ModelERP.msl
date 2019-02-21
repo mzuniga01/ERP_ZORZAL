@@ -666,14 +666,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_ObtenerCai_CodigoFactura" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_ObtenerCai_CodigoFactura">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbFactura_ObtenerCai_CodigoFactura_Result">
-          <ScalarProperty Name="CODFACTURA" ColumnName="CODFACTURA" />
-          <ScalarProperty Name="CAI" ColumnName="CAI" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="sp_GetDetallePedido" FunctionName="ERP_ZORZALModel.Store.sp_GetDetallePedido">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.sp_GetDetallePedido_Result">
@@ -2731,6 +2723,15 @@
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.UPD_Vent_tbUsuario_Rol_Result">
           <ScalarProperty Name="usu_Id" ColumnName="usu_Id" />
           <ScalarProperty Name="usu_NombreUsuario" ColumnName="usu_NombreUsuario" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_ObtenerCai_CodigoFactura" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_ObtenerCai_CodigoFactura">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbFactura_ObtenerCai_CodigoFactura_Result">
+          <ScalarProperty Name="CODFACTURA" ColumnName="CODFACTURA" />
+          <ScalarProperty Name="CAI" ColumnName="CAI" />
+          <ScalarProperty Name="ERRORMSJ" ColumnName="ERRORMSJ" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

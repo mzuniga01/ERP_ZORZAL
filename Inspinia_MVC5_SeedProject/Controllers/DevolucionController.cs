@@ -125,12 +125,23 @@ namespace ERP_ZORZAL.Controllers
                 {
                     if (Function.GetUserRols("Devolucion/Create"))
                     {
+                        int idUser = 0;
+                        GeneralFunctions Login = new GeneralFunctions();
+                        List<tbUsuario> User = Login.getUserInformation();
+                        foreach (tbUsuario Usuario in User)
+                        {
+                            idUser = Convert.ToInt32(Usuario.emp_Id);
+                        }
                         tbFacturaDetalle FacturaDetalle = new tbFacturaDetalle();
+                        ViewBag.suc_Descripcion = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Descripcion).SingleOrDefault();
+                        ViewBag.suc_Id = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Id).SingleOrDefault();
                         ViewBag.FacturaDetalle = db.tbFacturaDetalle.ToList();
                         ViewBag.Factura = db.tbFactura.ToList();
                         ViewBag.Cliente = db.tbCliente.ToList();
                         Session["Devolucion"] = null;
                         return View();
+                        
+     
                     }
                     else
                     {

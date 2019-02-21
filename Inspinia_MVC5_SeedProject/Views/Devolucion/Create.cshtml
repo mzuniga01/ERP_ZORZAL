@@ -40,15 +40,23 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.tbCaja.tbSucursal.suc_Descripcion, "Sucursal", new { @class = "control-label col-md-2" })
                                 <div class="col-md-3">
-                                    <input type="text" value="San Pedro Sula" class="form-control " readonly />
-                                    @Html.ValidationMessageFor(model => model.tbCaja.tbSucursal.suc_Descripcion)
+                                    <input class="form-control" readonly value="@ViewBag.suc_Descripcion" name="suc_Descripcion" id="suc_Descripcion" />
+                                    <input class="form-control" readonly value="@ViewBag.suc_Id" id="suc_Id" name="suc_Id" type="hidden" />
+                                    @*<input type="text" value="San Pedro Sula" class="form-control " readonly />*@
+                                    <div id="validationSucursalCreate">
+                                        <p id="SmSuc_Descripcion" style="color:red">@Html.ValidationMessageFor(model => model.tbCaja.tbSucursal.suc_Descripcion)</p>
+                                    </div>
+                                    
                                 </div>
 
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.cja_Id, "Caja", new { @class = "control-label col-md-2" })
                                     <div class="col-md-3">
                                         <input type="text" id="cja_Id" name="cja_Id" value="4" class="form-control " readonly />
-                                        @Html.ValidationMessageFor(model => model.cja_Id)
+                                        <div id="validationCajaCreate">
+                                            <p id="Smscja_Id" style="color:red">@Html.ValidationMessageFor(model => model.cja_Id)</p>
+                                        </div>
+                                      
                                     </div>
                                 </div>
                             </div>
@@ -62,9 +70,12 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.tbFactura.clte_Identificacion, "RTN Cliente", new { @class = "control-label col-md-2" })
                                 <div class="col-md-3">
-                                    <input type="text" id="tbFactura_clte_Identificacion" name="tbFactura_clte_Identificacion" class="form-control " Value="" onKeyPress="return soloNumeros(event)" autocomplete="off" />
-                                    @*@Html.EditorFor(model => model.tbFactura.clte_Identificacion, new { htmlAttributes = new { @class = "form-control" } })*@
-                                    @Html.ValidationMessageFor(model => model.tbFactura.clte_Identificacion)
+                                    @*<input type="text" id="tbFactura_clte_Identificacion" name="tbFactura_clte_Identificacion" class="form-control " Value="" onKeyPress="return soloNumeros(event)" autocomplete="off" />*@
+                                    @Html.EditorFor(model => model.tbFactura.clte_Identificacion, new { htmlAttributes = new { @class = "form-control" ,  @onkeypress = "return soloNumeros(event)" } })
+                                    <div id="validationRTNClienteCreate">
+                                        <p id="Smsclte_Identificacion" style="color:red">@Html.ValidationMessageFor(model => model.tbFactura.clte_Identificacion)</p>
+                                    </div>
+                                      
 
                                 </div>
 
@@ -232,66 +243,26 @@
             return /^[0-9\-]+$/.test(tecla);
         }
 
+        ///Validaciones 
+        $('#Guardar').click(function () {
+            validacion = document.getElementById('Smsclte_Identificacion');
+            var RTNCliente = $('#tbFactura_clte_Identificacion').val();
+            //var CantDevolucion = $('#devd_CantidadProducto').val();
+            //var CodProducto = $('#prod_Codigo').val();
+
+            if (RTNCliente == "") {
+                console.log("if")
+                validacion.innerText = "Campo Identificacion Cliente requerido";
+            }
+            else {
+                console.log("else")
+                validacion.innerText = "";
+            }
+        });
+
     </script>
 }
 <script>
-    $("#prod_Codigo").on("keypress keyup blur", function (event) {
-            var Value = $(this).val();
-            if (Value == '') {
-                $('#prod_Codigo').val('');
-                $('#tbProducto_prod_Descripcion').val('');
-                $('#CantidadFacturada').val(0.00);
-                $('#Impuesto').val(0.00);
-                $('#Descuento').val(0.00),
-                $("#PrecioUnitario").val(0.00)
-            }
-        });
-        var contador = 0;
-        $(document).keypress(function (e) {
-            console.log("si entraprod")
-            console.log('Si entraooo', e.target.id);
-            var IDInput = e.target.id;
-            if (e.which == 13) {
-                if (IDInput == 'prod_Codigo') {
-                    ///
-                    $(function () {
-                        var IDFactura = $('#fact_Id').val();
-                        var CodProducto = $('#prod_Codigo').val();
-                        $.ajax({
-                            type: 'POST',
-                            url: '/Factura/BuscarCodigoProducto',
-                            data: JSON.stringify({ IDFactura: IDFactura, CodProducto: CodProducto }),
-                            contentType: 'application/json;',
-                            dataType: 'json',
-
-                        }).done(function (data) {
-                            if (data.length > 0) {
-                                $.each(data, function (key, val) {
-                                    if (val.EXISTE) {
-                                        console.log('each')
-                                        data_producto = val.CODIGOPRODUCTO;
-                                        data_descripcion = val.DESCRIPCIONPRODUCTO;
-                                        data_cantidad = val.CANTIDADFACTURA;
-                                        data_impuesto = val.IMPUESTOPRODUCTO;
-                                        data_descuento = val.DESCUENTOPRODUCTO;
-                                        data_precio = val.PRECIOUNITARIO;
-                                        $('#prod_Codigo').val(data_producto);
-                                        $('#tbProducto_prod_Descripcion').val(data_descripcion);
-                                        $('#CantidadFacturada').val(data_cantidad);
-                                        $('#Impuesto').val(data_impuesto);
-                                        $('#Descuento').val(data_descuento);
-                                        $('#PrecioUnitario').val(data_precio);
-
-                                    }
-                                })
-                            }
-                        })
-                     })
-                    }
-                }
-        })
-
-
     $(document).ready(function () {
         $('#DevFactura').DataTable(
         {

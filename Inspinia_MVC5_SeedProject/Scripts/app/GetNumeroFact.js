@@ -1,12 +1,9 @@
-﻿$(document).ready(function(){
-    GetNumeroFact(1, 4)
-    $("#suc_Id").val(1);
+﻿$(document).ready(function () {
+    var Suc= $("#suc_Id").val();
+    GetNumeroFact(Suc,4)
     $("#cja_Id").val(4);
 })
     function GetNumeroFact(CodSucursal,CodCaja) {
-        //var CodSucursal = $('#suc_Id').val();
-        //var CodCaja = $('#cja_Id').val();   
-
         $.ajax({
             url: "/Factura/GetNumeroFact",
             method: "POST",
@@ -18,21 +15,20 @@
             if (data.length > 0) {
                 var Mensaje = data;
                 if (Mensaje == -1) {
-                    alert("El Numero CAI no tiene numeracion")
+                    alert("Fecha limite de Emisión Vencida")
                     var url = $("#RedirectTo").val();
                     location.href = url;
-                }
+                } else if(Mensaje == -2) {
+                    alert("El Numero CAI no tiene numeracion")
+                    var url = $("#RedirectTo").val();
+                   console.log("hola") 
+                    location.href = url;
+                } 
                 else {
                     $('#pemi_NumeroCAI').val(data[0]['CAI']);
                     $('#fact_Codigo').val(data[0]['CODFACTURA']);
                 }
-                //$.each(data, function (key, val) {
-                   
-                //});
-                //console.log(data)
-            }
-            else {
-            
+
             }
         });
     }

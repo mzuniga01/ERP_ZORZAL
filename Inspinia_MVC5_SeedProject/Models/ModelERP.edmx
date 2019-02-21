@@ -7942,10 +7942,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Parameter Name="sald_Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="spGetParametro" ReturnType="Collection(ERP_ZORZALModel.spGetParametro_Result)" />
-          <FunctionImport Name="UDP_Vent_tbFactura_ObtenerCai_CodigoFactura" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFactura_ObtenerCai_CodigoFactura_Result)">
-            <Parameter Name="IDSucursal" Mode="In" Type="Int32" />
-            <Parameter Name="IDCAJA" Mode="In" Type="Int16" />
-          </FunctionImport>
           <FunctionImport Name="sp_GetDetallePedido" ReturnType="Collection(ERP_ZORZALModel.sp_GetDetallePedido_Result)">
           <Parameter Name="ped_Id" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -9605,6 +9601,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Parameter Name="DENO_ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="UPD_Vent_tbUsuario_Rol" ReturnType="Collection(ERP_ZORZALModel.UPD_Vent_tbUsuario_Rol_Result)" />
+          <FunctionImport Name="UDP_Vent_tbFactura_ObtenerCai_CodigoFactura" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFactura_ObtenerCai_CodigoFactura_Result)">
+            <Parameter Name="IDSucursal" Mode="In" Type="Int32" />
+            <Parameter Name="IDCAJA" Mode="In" Type="Int16" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
           <Key>
@@ -10025,10 +10025,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
           <Property Type="Decimal" Name="pedd_Cantidad" Nullable="false" Precision="10" Scale="2" />
           <Property Type="Decimal" Name="pedd_CantidadFacturada" Nullable="false" Precision="10" Scale="2" />
-        </ComplexType>
-        <ComplexType Name="UDP_Vent_tbFactura_ObtenerCai_CodigoFactura_Result">
-          <Property Type="String" Name="CODFACTURA" Nullable="true" MaxLength="19" />
-          <Property Type="String" Name="CAI" Nullable="true" MaxLength="40" />
         </ComplexType>
         <ComplexType Name="UDP_Vent_tbNotaCredito_CodigoNotaCredito_Result">
           <Property Type="String" Name="CODNOTACREDITO" Nullable="true" MaxLength="19" />
@@ -14965,6 +14961,11 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Property Type="Int32" Name="usu_Id" Nullable="false" />
           <Property Type="String" Name="usu_NombreUsuario" Nullable="false" MaxLength="100" />
         </ComplexType>
+        <ComplexType Name="UDP_Vent_tbFactura_ObtenerCai_CodigoFactura_Result">
+          <Property Type="String" Name="CODFACTURA" Nullable="true" MaxLength="19" />
+          <Property Type="String" Name="CAI" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="ERRORMSJ" Nullable="true" MaxLength="40" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -15635,14 +15636,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
                 <ScalarProperty Name="par_FechaModifica" ColumnName="par_FechaModifica" />
                 <ScalarProperty Name="par_PorcentajeDescuentoTE" ColumnName="par_PorcentajeDescuentoTE" />
                 <ScalarProperty Name="par_IdConsumidorFinal" ColumnName="par_IdConsumidorFinal" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_ObtenerCai_CodigoFactura" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_ObtenerCai_CodigoFactura" >
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbFactura_ObtenerCai_CodigoFactura_Result">
-                <ScalarProperty Name="CODFACTURA" ColumnName="CODFACTURA" />
-                <ScalarProperty Name="CAI" ColumnName="CAI" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -17703,6 +17696,15 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UPD_Vent_tbUsuario_Rol_Result">
                 <ScalarProperty Name="usu_Id" ColumnName="usu_Id" />
                 <ScalarProperty Name="usu_NombreUsuario" ColumnName="usu_NombreUsuario" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_ObtenerCai_CodigoFactura" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_ObtenerCai_CodigoFactura">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbFactura_ObtenerCai_CodigoFactura_Result">
+                <ScalarProperty Name="CODFACTURA" ColumnName="CODFACTURA" />
+                <ScalarProperty Name="CAI" ColumnName="CAI" />
+                <ScalarProperty Name="ERRORMSJ" ColumnName="ERRORMSJ" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
