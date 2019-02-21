@@ -1028,6 +1028,9 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UnidadesMedida.cs" />
+    <Compile Include="Models\UPD_Vent_tbUsuario_Rol_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\V_Objetos.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>

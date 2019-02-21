@@ -446,11 +446,15 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbCliente_Estado_Result>("UDP_Vent_tbCliente_Estado", clte_IdParameter, clte_EsActivoParameter, clte_RazonInactivoParameter);
         }
     
-        public virtual ObjectResult<UDP_Vent_tbMovimientoCaja_Insert_Result> UDP_Vent_tbMovimientoCaja_Insert(Nullable<short> cja_Id, Nullable<int> mocja_UsuarioApertura, Nullable<System.DateTime> mocja_FechaArqueo, Nullable<int> mocja_UsuarioArquea, Nullable<System.DateTime> mocja_FechaAceptacion, Nullable<int> mocja_UsuarioAceptacion, Nullable<int> mocja_UsuarioCrea, Nullable<System.DateTime> mocja_FechaCrea)
+        public virtual ObjectResult<UDP_Vent_tbMovimientoCaja_Insert_Result> UDP_Vent_tbMovimientoCaja_Insert(Nullable<short> cja_Id, Nullable<int> usu_Id, Nullable<int> mocja_UsuarioApertura, Nullable<System.DateTime> mocja_FechaArqueo, Nullable<int> mocja_UsuarioArquea, Nullable<System.DateTime> mocja_FechaAceptacion, Nullable<int> mocja_UsuarioAceptacion, Nullable<int> mocja_UsuarioCrea, Nullable<System.DateTime> mocja_FechaCrea)
         {
             var cja_IdParameter = cja_Id.HasValue ?
                 new ObjectParameter("cja_Id", cja_Id) :
                 new ObjectParameter("cja_Id", typeof(short));
+    
+            var usu_IdParameter = usu_Id.HasValue ?
+                new ObjectParameter("usu_Id", usu_Id) :
+                new ObjectParameter("usu_Id", typeof(int));
     
             var mocja_UsuarioAperturaParameter = mocja_UsuarioApertura.HasValue ?
                 new ObjectParameter("mocja_UsuarioApertura", mocja_UsuarioApertura) :
@@ -480,7 +484,7 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("mocja_FechaCrea", mocja_FechaCrea) :
                 new ObjectParameter("mocja_FechaCrea", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbMovimientoCaja_Insert_Result>("UDP_Vent_tbMovimientoCaja_Insert", cja_IdParameter, mocja_UsuarioAperturaParameter, mocja_FechaArqueoParameter, mocja_UsuarioArqueaParameter, mocja_FechaAceptacionParameter, mocja_UsuarioAceptacionParameter, mocja_UsuarioCreaParameter, mocja_FechaCreaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbMovimientoCaja_Insert_Result>("UDP_Vent_tbMovimientoCaja_Insert", cja_IdParameter, usu_IdParameter, mocja_UsuarioAperturaParameter, mocja_FechaArqueoParameter, mocja_UsuarioArqueaParameter, mocja_FechaAceptacionParameter, mocja_UsuarioAceptacionParameter, mocja_UsuarioCreaParameter, mocja_FechaCreaParameter);
         }
     
         public virtual ObjectResult<spGetBusquedaCliente_Result> spGetBusquedaCliente(string identificacion, string nombre, string telefono)
@@ -6225,6 +6229,11 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("DENO_ID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbDenominacion_using_Result>("UDP_Gral_tbDenominacion_using", dENO_IDParameter);
+        }
+    
+        public virtual ObjectResult<UPD_Vent_tbUsuario_Rol_Result> UPD_Vent_tbUsuario_Rol()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UPD_Vent_tbUsuario_Rol_Result>("UPD_Vent_tbUsuario_Rol");
         }
     }
 }

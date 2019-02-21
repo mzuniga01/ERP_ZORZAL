@@ -69,8 +69,6 @@ namespace ERP_GMEDINA.Controllers
 
                     //////Solicitud Efectivo
                     tbMovimientoCaja MovimientoCaja = new tbMovimientoCaja();
-
-                    //////Solicitud Efectivo
                     tbSolicitudEfectivo SolicitudEfectivo = new tbSolicitudEfectivo();
                     ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre", SolicitudEfectivo.mnda_Id);
                     ViewBag.usu_Id = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", MovimientoCaja.usu_Id);
@@ -79,7 +77,7 @@ namespace ERP_GMEDINA.Controllers
                     var suc_Id = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.tbSucursal.suc_Id).SingleOrDefault();
                     ViewBag.UsuarioApertura = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.usu_NombreUsuario).SingleOrDefault();
                     ViewBag.mocja_UsuarioApertura = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.usu_Id).SingleOrDefault();
-                    var Cajas = db.tbCaja.Select(s => new { cja_Id = s.cja_Id, cja_Descripcion = s.cja_Descripcion, suc_Id = s.suc_Id}).Where(x => x.suc_Id == x.suc_Id).ToList();                
+                    var Cajas = db.tbCaja.Select(s => new { cja_Id = s.cja_Id, cja_Descripcion = s.cja_Descripcion, suc_Id = s.suc_Id}).Where(x => x.suc_Id == suc_Id).ToList();                
                     ViewBag.cja_Id = new SelectList(Cajas, "cja_Id", "cja_Descripcion", MovimientoCaja.cja_Id);
 
                     /////Vistas Parciales
@@ -259,11 +257,9 @@ namespace ERP_GMEDINA.Controllers
                     }
 
                     ViewBag.suc_Descripcion = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.tbSucursal.suc_Descripcion).SingleOrDefault();
-                    var suc_Id2 = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.tbSucursal.suc_Id).SingleOrDefault();
+                    var suc_ID = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.tbSucursal.suc_Id).SingleOrDefault();
                     ViewBag.UsuarioApertura = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.usu_NombreUsuario).SingleOrDefault();
                     ViewBag.mocja_UsuarioApertura = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.usu_Id).SingleOrDefault();
-
-
 
                     //Usuario
                     ViewBag.usu_Id = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbMovimientoCaja.usu_Id);
@@ -273,7 +269,6 @@ namespace ERP_GMEDINA.Controllers
                     ViewBag.cja_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion", tbMovimientoCaja.cja_Id);
                     ///Moneda
                     ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre", tbSolicitudEfectivo.mnda_Id);
-                    //ViewBag.MovimientoCaja = db.tbMovimientoCaja.ToList();
                     return View(tbMovimientoCaja);
                 }
 
@@ -313,6 +308,20 @@ namespace ERP_GMEDINA.Controllers
             return Json("Exito", JsonRequestBehavior.AllowGet);
         }
 
+        
+        [HttpPost]
+        public JsonResult GetDenominacion(int CodMoneda)
+        {
+            var list = db.spGetDenominacionesMoneda(CodMoneda).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult GetRol()
+        {
+            var list = db.UPD_Vent_tbUsuario_Rol().ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
 
         ////////////TERMINO APERTURA////////////
 
@@ -386,13 +395,14 @@ namespace ERP_GMEDINA.Controllers
                     var MensajeError = string.Empty;
                     IEnumerable<object> list = null;
                     list = db.UDP_Vent_tbMovimientoCaja_Insert(tbMovimientoCaja.cja_Id, 
+                        tbMovimientoCaja.usu_Id,
                         tbMovimientoCaja.mocja_UsuarioApertura, 
                         tbMovimientoCaja.mocja_FechaArqueo,
                         tbMovimientoCaja.mocja_UsuarioArquea, 
                         tbMovimientoCaja.mocja_FechaAceptacion, 
                         tbMovimientoCaja.mocja_UsuarioAceptacion,
                         Function.GetUser(),
-                                    Function.DatetimeNow());
+                        Function.DatetimeNow());
                     foreach (UDP_Vent_tbMovimientoCaja_Insert_Result denoarq in list)
                         MensajeError = denoarq.MensajeError;
                     if (MensajeError == "-1")
@@ -546,13 +556,8 @@ namespace ERP_GMEDINA.Controllers
             }
             base.Dispose(disposing);
         }
+       
 
-        [HttpPost]
-        public JsonResult GetDenominacion(int CodMoneda)
-        {
-            var list = db.spGetDenominacionesMoneda(CodMoneda).ToList();
-            return Json(list, JsonRequestBehavior.AllowGet);
-        }
 
     }
 }

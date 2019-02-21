@@ -100,6 +100,7 @@
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbMovimientoCaja_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_Insert_Result)">
       <Parameter Name="cja_Id" Mode="In" Type="Int16" />
+      <Parameter Name="usu_Id" Mode="In" Type="Int32" />
       <Parameter Name="mocja_UsuarioApertura" Mode="In" Type="Int32" />
       <Parameter Name="mocja_FechaArqueo" Mode="In" Type="DateTime" />
       <Parameter Name="mocja_UsuarioArquea" Mode="In" Type="Int32" />
@@ -2688,6 +2689,7 @@
     <FunctionImport Name="UDP_Gral_tbDenominacion_using" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbDenominacion_using_Result)">
       <Parameter Name="DENO_ID" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="UPD_Vent_tbUsuario_Rol" ReturnType="Collection(ERP_ZORZALModel.UPD_Vent_tbUsuario_Rol_Result)" />
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -8043,5 +8045,9 @@
   </ComplexType>
   <ComplexType Name="UDP_Gral_tbDenominacion_using_Result">
     <Property Type="Int16" Name="deno_Id" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UPD_Vent_tbUsuario_Rol_Result">
+    <Property Type="Int32" Name="usu_Id" Nullable="false" />
+    <Property Type="String" Name="usu_NombreUsuario" Nullable="false" MaxLength="100" />
   </ComplexType>
 </Schema>

@@ -3,6 +3,10 @@ var MontoInicial = 0;
 var Monto = 0;
 ////Funcion denominacion
 $('#mnda_Id').on("change", function () {
+    moneda = $("#mnda_Id").val();
+    if (moneda == "") {
+        $("#alerta").hide();
+    }
     valido = document.getElementById('MensajeError');
     valido.innerText = "";
     total = 0;
@@ -111,10 +115,18 @@ function validar(e) {
 
 $("#guardar").click(function () {
     moneda = $("#mnda_Id").val();
+    campo = $("#Monto").val();
     if (moneda == "") {
         valido = document.getElementById('MensajeError');
         valido.innerText = "El campo moneda es requerido";
         return false
+    }  
+    else if (campo == "") {
+        $("#alerta").show();
+        return false
+    }
+    else {
+        $("#alerta").hide();
     }
 })
 
@@ -123,26 +135,43 @@ $('#cja_Id').on("change", function () {
     valido.innerText = "";
 });
 
+$('#usu_Id').on("change", function () {
+    valido = document.getElementById('MensajeErrorUsuario');
+    valido.innerText = "";
+});
 
-("#guardar").click(function () {
-    moneda = $("#name").val();
-    if (moneda == "") {
-        valido = document.getElementById('MensajeErrorDenominacion');
-        valido.innerText = "Debe ingresar una cantidad";
-        return false
-    }
+$(document).ready(function () {
+    $("#alerta").hide();
 })
 
-//("#guardar").click(function () {
-//    moneda = $("#usu_Id").val();
-//    if (moneda == "") {
-//        valido = document.getElementById('MensajeErrorUsuario');
-//        valido.innerText = "El campo cajero es requerido";
-//        return false
-//    }
-//})
 
-//$('#usu_Id').on("change", function () {
-//    valido = document.getElementById('MensajeErrorUsuario');
-//    valido.innerText = "";
-//});
+
+$(document).ready(function () {
+    GetRol();
+})
+
+function GetRol() {
+        $.ajax({
+            url: "/MovimientoCaja/GetRol",
+            method: "POST",
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ }),
+        })
+        .done(function (data) {
+            console.log(data)
+            if (data.length > 0) {
+                $('#usu_Id').empty();
+                $('#usu_Id').append("<option value=''>Seleccione Cajero </option>");
+                $.each(data, function (key, val) {
+                    $('#usu_Id').append("<option value=" + val.usu_Id + ">" + val.usu_NombreUsuario + "</option>");
+                    console.log(key)
+                    console.log(val)
+                });
+            }
+            else {
+                $('#usu_Id').empty();
+                $('#usu_Id').append("<option value=''>Seleccione Cajero </option>");
+            }
+        });
+}
