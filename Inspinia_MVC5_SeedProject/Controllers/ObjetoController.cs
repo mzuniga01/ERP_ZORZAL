@@ -112,8 +112,13 @@ namespace ERP_GMEDINA.Controllers
             {
                 if (Function.GetUserRols("Objeto/Create"))
                 {
+                    if (db.tbObjeto.Any(a => a.obj_Pantalla == tbObjeto.obj_Pantalla))
+                    {
+                        ModelState.AddModelError("", "Ya existe esta pantalla, Favor registrar otra");
+                    }
                     if (ModelState.IsValid)
                     {
+                      
                         try
                         {
                             IEnumerable<object> list = null;
@@ -123,6 +128,7 @@ namespace ERP_GMEDINA.Controllers
                                 MsjError = obejto.MensajeError;
                             if (MsjError.StartsWith("-1"))
                             {
+                           
                                 ModelState.AddModelError("", "No se guardó el registro");
                             }
                             else
@@ -198,8 +204,14 @@ namespace ERP_GMEDINA.Controllers
             {
                 if (Function.GetUserRols("Objeto/Edit"))
                 {
+                    //if (db.tbObjeto.Any(a => a.obj_Pantalla == tbObjeto.obj_Pantalla))
+                    //{
+                    //    ModelState.AddModelError("", "Ya existe esta pantalla, Favor registrar otra");
+                    //}
+                    
                     if (ModelState.IsValid)
                     {
+                       
                         try
                         {
                             tbObjeto obj = db.tbObjeto.Find(id);
@@ -237,6 +249,7 @@ namespace ERP_GMEDINA.Controllers
                         }
 
                     }
+                    
                     ViewBag.obj_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbObjeto.obj_UsuarioModifica);
                     ViewBag.obj_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbObjeto.obj_UsuarioCrea);
                     return View(tbObjeto);
@@ -338,12 +351,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return RedirectToAction("Index");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             tbObjeto tbObjeto = db.tbObjeto.Find(id);
             if (tbObjeto == null)
             {
-                return RedirectToAction("NotFound", "Login");
+                return HttpNotFound();
             }
             return View(tbObjeto);
         }

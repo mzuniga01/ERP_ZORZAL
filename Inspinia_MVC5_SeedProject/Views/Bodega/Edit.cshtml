@@ -35,7 +35,7 @@
     <div class="col-md-12" id="mensaje">
         <div class="alert alert-warning alert-danger">
 
-            <button type="button" class="close" data-dissmiss="alert" aria-hidden="true">@Html.ActionLink("X", "index", new { @class = "btn btn-primary " })</button>
+            <button type="button" class="close" data-dissmiss="alert" aria-hidden="true">@Html.ActionLink("X", "Edit", new { id = Model.bod_Id }, new { @class = "btn btn-white btn-xs" })</button>
             <h4><i class="icon fa fa-warning"></i>Alerta</h4>
             <h2>@ViewBag.smserror</h2>
 
@@ -125,7 +125,7 @@
 
                                 @Html.LabelFor(model => model.bod_Direccion, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.bod_Direccion, new { htmlAttributes = new { @class = "form-control", @onkeyup = "this.value=NumText(this.value)", @autocomplete = "off" } })
+                                    @Html.EditorFor(model => model.bod_Direccion, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @onKeyPress = "return controlCaracteres(event)", @onkeyup = "this.value=NumText(this.value)" } })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Direccion) </p>
                                 </div>
                             </div>
@@ -137,7 +137,7 @@
                                 </div>
                                 @Html.LabelFor(model => model.bod_Correo, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.bod_Correo,new { htmlAttributes = new { @class = "form-control", @onKeyPress = "this.value=CorreoElectronico(this.value)", @autocomplete = "off" } })
+                                    @Html.EditorFor(model => model.bod_Correo,new { htmlAttributes = new { @class = "form-control", @autocomplete = "off" , @onKeyPress = "return Caracteres_Email(event)", @onkeyup = "this.value=CorreoElectronico(this.value)" } })
                                     @*<p style="color:red"> @Html.ValidationMessageFor(model => model.bod_Correo)</p>*@
                                     <div id="MessageForCorreo">
                                         <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Correo)</p>
@@ -167,7 +167,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.bod_Telefono, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.bod_Telefono, new { htmlAttributes = new { @class = "form-control", @onKeyPress = "return soloNumeros(event)", @autocomplete = "off" } })
+                                    @Html.EditorFor(model => model.bod_Telefono, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @onKeyPress = "return CaracteresTelefono(event)", @onkeyup = "this.value=CaracteresTelefono_borrar(this.value)" } })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Telefono)</p>
                                 </div>
                                 @Html.LabelFor(model => model.bod_ResponsableBodega, new { @class = "control-label col-md-2 , required" })

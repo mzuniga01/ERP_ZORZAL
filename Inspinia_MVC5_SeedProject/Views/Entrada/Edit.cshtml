@@ -175,7 +175,7 @@
                                 <div class="col-md-4">
                                     @*@Html.EditorFor(model => model.tbTipoDevolucion.tdev_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     <div style="display:none" class="col-md-4">*@
-                                        @Html.DropDownListFor(model => model.ent_RazonDevolucion, (SelectList)ViewBag.tdev_Id, new { @class = "form-control", @readonly = "readonly" })
+                                        @Html.DropDownListFor(model => model.ent_RazonDevolucion, (SelectList)ViewBag.tdev_Id, new { @class = "form-control"})
                                     @*</div>*@
                                     @*@Html.EditorFor(model => model.ent_RazonDevolucion)*@
                                     @Html.ValidationMessageFor(model => model.ent_RazonDevolucion)

@@ -22,14 +22,12 @@ $('#bod_Correo').change(function (e) {
 
 });
 //
-
 //Validar Los campos string
 function soloLetras(e) {
     tecla = (document.all) ? e.keyCode : e.which;
     tecla = String.fromCharCode(tecla)
     return /^[a-zA-ZáéíóúñÁÉÍÓÚÑ ]+$/.test(tecla);
 }
-
 //Validar Los campos numericos
 function soloNumeros(e) {
     var key = window.Event ? e.which : e.keyCode;
@@ -53,7 +51,6 @@ $(function () {
         }
     });
 });
-
 function onKeyDecimal(e, thix) {
     var keynum = window.event ? window.event.keyCode : e.which;
     if (document.getElementById(thix.id).value.indexOf('.') != -1 && keynum == 46)
@@ -63,10 +60,7 @@ function onKeyDecimal(e, thix) {
     if (keynum <= 47 || keynum >= 58) return false;
     return /\d/.test(String.fromCharCode(keynum));
 }
-
 //fin
-
-
 //js Todas las tablas
 $(document).ready(function () {
     $('#tbBodega').DataTable({
@@ -88,7 +82,6 @@ $(document).ready(function () {
 
 });
 //Fin
-
 ///Busqueda products
 $(document).ready(function () {
     $('#Table_BuscarProductoBodega').DataTable({
@@ -140,9 +133,6 @@ $(document).on("click", "#Table_BuscarProductoBodega tbody tr td button#seleccio
     
 });
 ///Fin
-
-
-
 //Remover Detalle
 $(document).on("click", "#tblBodega tbody tr td button#removeBodegaDetalle", function () {
     $(this).closest('tr').remove();
@@ -159,8 +149,6 @@ $(document).on("click", "#tblBodega tbody tr td button#removeBodegaDetalle", fun
     });
 });
 //Fin
-
-
 function formateo(input) {
     $(input).change(function () {
         var str = $(input).val();
@@ -175,14 +163,14 @@ function formateo(input) {
     })
 }
 
-$("#bod_Telefono").on("keypress keyup blur", function (event) {
-    var Telefono = $(this).val();
-    console.log(Telefono)
-    if (Telefono == '') {
-        $(this).val('+');
-    }
-    this.value = this.value.replace(/[a-záéíóúüñ#/=]+/ig, "");
-});
+//$("#bod_Telefono").on("keypress keyup blur", function (event) {
+//    var Telefono = $(this).val();
+//    console.log(Telefono)
+//    if (Telefono == '') {
+//        $(this).val('+');
+//    }
+//    this.value = this.value.replace(/[a-záéíóúüñ#/=]+/ig, "");
+//});
 $("#bod_Correo").blur(function () {
     campo = event.target;
     valido = document.getElementById('emailOK1');
@@ -215,83 +203,56 @@ function NumText(string) {//solo letras y numeros
     for (var i = 0; i < string.length; i++)
         if (filtro.indexOf(string.charAt(i)) != -1)
             out += string.charAt(i);
+
     return out;
+}
+
+function controlCaracteres(e) {
+  
+    tecla = (document.all) ? e.keyCode : e.which;
+    tecla = String.fromCharCode(tecla)
+    return /^[a-zA-ZáéíóúñÁÉÍÓÚÑ1234567890# ,.]+$/.test(tecla);
+
+}
+
+function Caracteres_Email(e) {
+
+    tecla = (document.all) ? e.keyCode : e.which;
+    tecla = String.fromCharCode(tecla)
+    return /^[a-zA-ZáéíóúñÁÉÍÓÚÑ1234567890@ .-_]+$/.test(tecla);
+
 }
 
 function CorreoElectronico(string) {//Algunos caracteres especiales para el correo
     var out = '';
     //Se añaden las letras validas
-    var filtro = 'abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ1234567890@-_.';//Caracteres validos
+    var filtro = 'abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ1234567890@ .-_';//Caracteres validos
 
     for (var i = 0; i < string.length; i++)
         if (filtro.indexOf(string.charAt(i)) != -1)
             out += string.charAt(i);
+
     return out;
 }
 
+function CaracteresTelefono(e) {
 
+    tecla = (document.all) ? e.keyCode : e.which;
+    tecla = String.fromCharCode(tecla)
+    return /^[1234567890+-]+$/.test(tecla);
 
+}
+function CaracteresTelefono_borrar(string) {//solo letras y numeros
+    var out = '';
+    //Se añaden las letras validas
+    var filtro = '1234567890-+';//Caracteres validos
 
+    for (var i = 0; i < string.length; i++)
+        if (filtro.indexOf(string.charAt(i)) != -1)
+            out += string.charAt(i);
 
-
-
-
-
-
-
-
-
-
-
-////Actualizar Detalle Bodega
-//function btnActualizarBodegaDetalle(bodd_Id) {
-//    console.log('actualizar btn')
-//    console.log(bodd_Id);
-
-//        var tbBodegaDetalle = Getbodegadetalle_UPDATE();
-
-//        $.ajax({
-//            url: "/Bodega/UpdateBodegaDetalle",
-//            method: "POST",
-//            dataType: 'json',
-//            contentType: "application/json; charset=utf-8",
-//            data: JSON.stringify({ ACTUALIZAR_tbBodegaDetalle: tbBodegaDetalle }),
-//        }).done(function (data) {
-//            if (data == '') {
-//                location.reload();
-//            }
-//            else if (data == '-1') {
-//                $('#MensajeError' + bodd_Id).text('');
-//                $('#ValidationMessageFor' + bodd_Id).after('<ul id="MensajeError' + bodd_Id + '" class="validation-summary-errors text-danger">No se ha podido Actualizar el registro.</ul>');
-//            }
-//            else {
-//                $('#MensajeError' + bodd_Id).text('');
-//                $('#ValidationMessageFor' + bodd_Id).after('<ul id="MensajeError' + bodd_Id + '" class="validation-summary-errors text-danger">Campo Requerido</ul>');
-//            }
-//        });
-    
-//}
-//function Getbodegadetalle_UPDATE() {
-//    var ACTUALIZAR_tbBodegaDetalle = {
-//        bod_Id: $('#bod_Id').val(),
-//        bodd_Id: $('#bodd_Id').val(),
-//        prod_Codigo: $('#prod_Codigo').val(),
-//        bodd_puntoReorden: $('#bodd_PuntoReorden').val(),
-//        bodd_cantidadMinima: $('#bodd_CantidadMinima').val(),
-//        bodd_cantidadMaxima: $('#bodd_CantidadMaxima').val(),
-//        bodd_UsuarioCrea: $('#bodd_UsuarioCrea').val(),
-//        bodd_FechaCrea: $('#bodd_FechaCrea').val(),
-//        bodd_UsuarioModifica: $('#bodd_UsuarioModifica').val(),
-//        bodd_FechaModifica: $('#bodd_FechaModifica').val(),
-//        bodd_costo: $('#bodd_Costo').val(),
-//        bodd_costoPromedio: $('#bodd_CostoPromedio').val(),
-        
-//        //Fecha: $('#fechaCreate').val(),
-//    };
-//    return ACTUALIZAR_tbBodegaDetalle;
-//}
-//Fin
-
+    return out;
+}
 
 //Crear Nuevo Detalle Bodega Atraves de Modal
 $('#btnGuardarNuevoDetalle').click(function () {
@@ -755,7 +716,54 @@ $(document).on("click", "#tbBodega tbody tr td button#removeBodegaDetalle", func
 
 
 
+////Actualizar Detalle Bodega
+//function btnActualizarBodegaDetalle(bodd_Id) {
+//    console.log('actualizar btn')
+//    console.log(bodd_Id);
 
+//        var tbBodegaDetalle = Getbodegadetalle_UPDATE();
+
+//        $.ajax({
+//            url: "/Bodega/UpdateBodegaDetalle",
+//            method: "POST",
+//            dataType: 'json',
+//            contentType: "application/json; charset=utf-8",
+//            data: JSON.stringify({ ACTUALIZAR_tbBodegaDetalle: tbBodegaDetalle }),
+//        }).done(function (data) {
+//            if (data == '') {
+//                location.reload();
+//            }
+//            else if (data == '-1') {
+//                $('#MensajeError' + bodd_Id).text('');
+//                $('#ValidationMessageFor' + bodd_Id).after('<ul id="MensajeError' + bodd_Id + '" class="validation-summary-errors text-danger">No se ha podido Actualizar el registro.</ul>');
+//            }
+//            else {
+//                $('#MensajeError' + bodd_Id).text('');
+//                $('#ValidationMessageFor' + bodd_Id).after('<ul id="MensajeError' + bodd_Id + '" class="validation-summary-errors text-danger">Campo Requerido</ul>');
+//            }
+//        });
+
+//}
+//function Getbodegadetalle_UPDATE() {
+//    var ACTUALIZAR_tbBodegaDetalle = {
+//        bod_Id: $('#bod_Id').val(),
+//        bodd_Id: $('#bodd_Id').val(),
+//        prod_Codigo: $('#prod_Codigo').val(),
+//        bodd_puntoReorden: $('#bodd_PuntoReorden').val(),
+//        bodd_cantidadMinima: $('#bodd_CantidadMinima').val(),
+//        bodd_cantidadMaxima: $('#bodd_CantidadMaxima').val(),
+//        bodd_UsuarioCrea: $('#bodd_UsuarioCrea').val(),
+//        bodd_FechaCrea: $('#bodd_FechaCrea').val(),
+//        bodd_UsuarioModifica: $('#bodd_UsuarioModifica').val(),
+//        bodd_FechaModifica: $('#bodd_FechaModifica').val(),
+//        bodd_costo: $('#bodd_Costo').val(),
+//        bodd_costoPromedio: $('#bodd_CostoPromedio').val(),
+
+//        //Fecha: $('#fechaCreate').val(),
+//    };
+//    return ACTUALIZAR_tbBodegaDetalle;
+//}
+//Fin
 
 ////Agregar Detalle a Bodega
 //$('#AgregarBodegaDetalle').click(function () {
