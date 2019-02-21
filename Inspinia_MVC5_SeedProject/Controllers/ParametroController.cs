@@ -26,7 +26,7 @@ namespace ERP_GMEDINA.Controllers
             var tbparametro = db.tbParametro.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbMoneda);
             if(tbparametro == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             else
             {
@@ -51,12 +51,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbParametro tbParametro = db.tbParametro.Find(id);
             if (tbParametro == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbParametro);
         }
@@ -161,12 +161,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbParametro tbParametro = db.tbParametro.Find(id);
             if (tbParametro == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             ViewBag.par_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbParametro.par_UsuarioModifica);
             ViewBag.par_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbParametro.par_UsuarioCrea);
@@ -263,12 +263,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbParametro tbParametro = db.tbParametro.Find(id);
             if (tbParametro == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbParametro);
         }

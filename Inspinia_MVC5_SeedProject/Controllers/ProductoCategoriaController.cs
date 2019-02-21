@@ -32,12 +32,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbProductoCategoria tbProductoCategoria = db.tbProductoCategoria.Find(id);
             if (tbProductoCategoria == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbProductoCategoria);
         }
@@ -200,12 +200,12 @@ namespace ERP_GMEDINA.Controllers
                     catch { }
                     if (id == null)
                     {
-                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                        return RedirectToAction("Index");
                     }
                     tbProductoCategoria tbProductoCategoria = db.tbProductoCategoria.Find(id);
                     if (tbProductoCategoria == null)
                     {
-                        return HttpNotFound();
+                        return RedirectToAction("NotFound", "Login");
                     }
                    
                     Session["tbProductoSubcategoria"] = null;

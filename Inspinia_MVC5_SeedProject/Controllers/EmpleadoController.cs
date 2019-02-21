@@ -43,12 +43,12 @@ namespace ERP_GMEDINA.Controllers
             }
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbEmpleado tbEmpleado = db.tbEmpleado.Find(id);
             if (tbEmpleado == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbEmpleado);
         }
@@ -150,12 +150,12 @@ namespace ERP_GMEDINA.Controllers
             }
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbEmpleado tbEmpleado = db.tbEmpleado.Find(id);
             if (tbEmpleado == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
 
             
@@ -359,12 +359,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbEmpleado tbEmpleado = db.tbEmpleado.Find(id);
             if (tbEmpleado == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbEmpleado);
         }

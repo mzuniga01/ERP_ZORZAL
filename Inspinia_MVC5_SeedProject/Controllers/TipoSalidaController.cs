@@ -43,7 +43,7 @@ namespace ERP_ZORZAL.Controllers
 
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbTipoSalida tbTipoSalida = db.tbTipoSalida.Find(id);
             //ViewBag.UsuarioCrea = db.tbUsuario.Find(tbTipoSalida.tsal_UsuarioCrea).usu_NombreUsuario;
@@ -58,7 +58,7 @@ namespace ERP_ZORZAL.Controllers
             //};
             if (tbTipoSalida == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbTipoSalida);
         }
@@ -186,13 +186,13 @@ namespace ERP_ZORZAL.Controllers
 
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbTipoSalida tbTipoSalida = db.tbTipoSalida.Find(id);
            
             if (tbTipoSalida == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbTipoSalida);
         }
@@ -272,12 +272,12 @@ namespace ERP_ZORZAL.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbTipoSalida tbTipoSalida = db.tbTipoSalida.Find(id);
             if (tbTipoSalida == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbTipoSalida);
         }

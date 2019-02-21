@@ -237,7 +237,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Attribute\SessionManager.cs" />
     <Compile Include="Controllers\BodegaController.cs" />
     <Compile Include="Controllers\BoxController.cs" />
     <Compile Include="Controllers\ConsultarExistenciaProductosController.cs" />
@@ -626,6 +626,9 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Acce_tbAccesoRol_Update_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Acce_tbBitacoraErrores_Insert_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Acce_tbObjeto_Insert_Result.cs">
@@ -1413,15 +1416,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Account\_RemoveAccountPartial.cshtml" />
-    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
-    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Manage.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\Minor.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
@@ -1608,6 +1602,7 @@
     <Content Include="Views\Box\_EditSalidaDetalle.cshtml" />
     <Content Include="Views\Box\_SalidaDetalle.cshtml" />
     <Content Include="Views\Usuario\Edit.cshtml" />
+    <Content Include="Views\Login\SinRol.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

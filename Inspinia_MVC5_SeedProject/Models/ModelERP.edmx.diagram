@@ -287,6 +287,7 @@
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbFacturaDetalle_tbProducto_prod_Codigo" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbListado_tbProducto_prod_Codigo" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbPedidoDetalle_tbProducto_prod_Codigo" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbMovimientoCaja_usu_Id" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -1669,6 +1669,17 @@
     <FunctionImport Name="SDP_Gral_tbEmpleado_Select" ReturnType="Collection(ERP_ZORZALModel.SDP_Gral_tbEmpleado_Select_Result)">
       <Parameter Name="emp_Id" Mode="In" Type="Int16" />
     </FunctionImport>
+    <AssociationSet Name="FK_Acce_tbUsuario_tbMovimientoCaja_usu_Id" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbMovimientoCaja_usu_Id">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbMovimientoCaja" EntitySet="tbMovimientoCaja" />
+    </AssociationSet>
+    <FunctionImport Name="UDP_Acce_tbBitacoraErrores_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbBitacoraErrores_Insert_Result)">
+      <Parameter Name="obj_Id" Mode="In" Type="Int32" />
+      <Parameter Name="bite_Usuario" Mode="In" Type="Int32" />
+      <Parameter Name="bite_Fecha" Mode="In" Type="DateTime" />
+      <Parameter Name="bite_MensajeError" Mode="In" Type="String" />
+      <Parameter Name="bite_Accion" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -2245,6 +2256,7 @@
     <NavigationProperty Name="tbDevolucion1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioModifica" FromRole="tbUsuario" ToRole="tbDevolucion" />
     <NavigationProperty Name="tbProducto" Relationship="ERP_ZORZALModel.FK_Inv_tbProducto_prod_UsuarioModifica" FromRole="tbUsuario" ToRole="tbProducto" />
     <NavigationProperty Name="tbProducto1" Relationship="ERP_ZORZALModel.FK_Inv_tbProducto_tbUsuario_prod_UsuarioCrea" FromRole="tbUsuario" ToRole="tbProducto" />
+    <NavigationProperty Name="tbMovimientoCaja5" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbMovimientoCaja_usu_Id" FromRole="tbUsuario" ToRole="tbMovimientoCaja" />
   </EntityType>
   <EntityType Name="tbActividadEconomica">
     <Key>
@@ -3017,6 +3029,8 @@
     <NavigationProperty Name="tbDenominacionArqueo" Relationship="ERP_ZORZALModel.FK_Vent_tbMovimientoCaja_tbDenominacionArqueo_mocja_Id" FromRole="tbMovimientoCaja" ToRole="tbDenominacionArqueo" />
     <NavigationProperty Name="tbPagosArqueo" Relationship="ERP_ZORZALModel.FK_Vent_tbMovimientoCaja_tbPagosArqueo_mocja_Id" FromRole="tbMovimientoCaja" ToRole="tbPagosArqueo" />
     <NavigationProperty Name="tbSolicitudEfectivo" Relationship="ERP_ZORZALModel.FK_Vent_tbMovimientoCaja_tbSolicitudEfectivo_mocja_Id" FromRole="tbMovimientoCaja" ToRole="tbSolicitudEfectivo" />
+    <Property Name="usu_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tbUsuario5" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbMovimientoCaja_usu_Id" FromRole="tbMovimientoCaja" ToRole="tbUsuario" />
   </EntityType>
   <EntityType Name="tbNotaCredito">
     <Key>
@@ -6427,5 +6441,20 @@
   </ComplexType>
   <ComplexType Name="UDP_Acce_tbRolesUsuario_Insert_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <Association Name="FK_Acce_tbUsuario_tbMovimientoCaja_usu_Id">
+    <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
+    <End Type="ERP_ZORZALModel.tbMovimientoCaja" Role="tbMovimientoCaja" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbMovimientoCaja">
+        <PropertyRef Name="usu_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="UDP_Acce_tbBitacoraErrores_Insert_Result">
+    <Property Type="String" Name="Column1" Nullable="true" MaxLength="30" />
   </ComplexType>
 </Schema>

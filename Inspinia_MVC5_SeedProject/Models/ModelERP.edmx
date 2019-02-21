@@ -786,6 +786,7 @@
           <Property Name="cja_Id" Type="smallint" Nullable="false" />
           <Property Name="mocja_FechaApertura" Type="datetime" />
           <Property Name="mocja_UsuarioApertura" Type="int" Nullable="false" />
+          <Property Name="usu_Id" Type="int" Nullable="false" />
           <Property Name="mocja_FechaArqueo" Type="datetime" />
           <Property Name="mocja_UsuarioArquea" Type="int" Nullable="false" />
           <Property Name="mocja_FechaAceptacion" Type="datetime" />
@@ -997,8 +998,8 @@
           <Property Name="tpa_UsuarioModifica" Type="int" />
           <Property Name="tpa_FechaModifica" Type="datetime" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Productos' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Productos' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="UDV_Inv_Consultar_Existencias_Productos">
           <Key>
             <PropertyRef Name="prod_Descripcion" />
@@ -1592,6 +1593,18 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
             </Principal>
             <Dependent Role="tbMovimientoCaja">
               <PropertyRef Name="mocja_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Acce_tbUsuario_tbMovimientoCaja_usu_Id">
+          <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+          <End Role="tbMovimientoCaja" Type="Self.tbMovimientoCaja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbMovimientoCaja">
+              <PropertyRef Name="usu_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3722,6 +3735,13 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
           <Parameter Name="acrol_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="acrol_FechaCrea" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="UDP_Acce_tbBitacoraErrores_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
+          <Parameter Name="obj_Id" Type="int" Mode="In" />
+          <Parameter Name="bite_Usuario" Type="int" Mode="In" />
+          <Parameter Name="bite_Fecha" Type="datetime" Mode="In" />
+          <Parameter Name="bite_MensajeError" Type="varchar(max)" Mode="In" />
+          <Parameter Name="bite_Accion" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="UDP_Acce_tbObjeto_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
           <Parameter Name="obj_Pantalla" Type="nvarchar" Mode="In" />
           <Parameter Name="obj_Referencia" Type="varchar" Mode="In" />
@@ -4660,6 +4680,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
             <End Role="tbMovimientoCaja" EntitySet="tbMovimientoCaja" />
           </AssociationSet>
           <AssociationSet Name="FK_Acce_tbUsuario_tbMovimientoCaja_mocja_UsuarioModifica" Association="Self.FK_Acce_tbUsuario_tbMovimientoCaja_mocja_UsuarioModifica">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbMovimientoCaja" EntitySet="tbMovimientoCaja" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Acce_tbUsuario_tbMovimientoCaja_usu_Id" Association="Self.FK_Acce_tbUsuario_tbMovimientoCaja_usu_Id">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbMovimientoCaja" EntitySet="tbMovimientoCaja" />
           </AssociationSet>
@@ -7031,7 +7055,18 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
             <Parameter Name="rol_Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SDP_Gral_tbEmpleado_Select" ReturnType="Collection(ERP_ZORZALModel.SDP_Gral_tbEmpleado_Select_Result)">
-            <Parameter Name="emp_Id" Mode="In" Type="Int16" />
+          <Parameter Name="emp_Id" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <AssociationSet Name="FK_Acce_tbUsuario_tbMovimientoCaja_usu_Id" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbMovimientoCaja_usu_Id">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbMovimientoCaja" EntitySet="tbMovimientoCaja" />
+          </AssociationSet>
+          <FunctionImport Name="UDP_Acce_tbBitacoraErrores_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbBitacoraErrores_Insert_Result)">
+            <Parameter Name="obj_Id" Mode="In" Type="Int32" />
+            <Parameter Name="bite_Usuario" Mode="In" Type="Int32" />
+            <Parameter Name="bite_Fecha" Mode="In" Type="DateTime" />
+            <Parameter Name="bite_MensajeError" Mode="In" Type="String" />
+            <Parameter Name="bite_Accion" Mode="In" Type="String" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
@@ -7609,6 +7644,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
           <NavigationProperty Name="tbDevolucion1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbDevolucion_dev_UsuarioModifica" FromRole="tbUsuario" ToRole="tbDevolucion" />
           <NavigationProperty Name="tbProducto" Relationship="ERP_ZORZALModel.FK_Inv_tbProducto_prod_UsuarioModifica" FromRole="tbUsuario" ToRole="tbProducto" />
           <NavigationProperty Name="tbProducto1" Relationship="ERP_ZORZALModel.FK_Inv_tbProducto_tbUsuario_prod_UsuarioCrea" FromRole="tbUsuario" ToRole="tbProducto" />
+          <NavigationProperty Name="tbMovimientoCaja5" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbMovimientoCaja_usu_Id" FromRole="tbUsuario" ToRole="tbMovimientoCaja" />
         </EntityType>
         <EntityType Name="tbActividadEconomica">
           <Key>
@@ -8381,6 +8417,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
           <NavigationProperty Name="tbDenominacionArqueo" Relationship="ERP_ZORZALModel.FK_Vent_tbMovimientoCaja_tbDenominacionArqueo_mocja_Id" FromRole="tbMovimientoCaja" ToRole="tbDenominacionArqueo" />
           <NavigationProperty Name="tbPagosArqueo" Relationship="ERP_ZORZALModel.FK_Vent_tbMovimientoCaja_tbPagosArqueo_mocja_Id" FromRole="tbMovimientoCaja" ToRole="tbPagosArqueo" />
           <NavigationProperty Name="tbSolicitudEfectivo" Relationship="ERP_ZORZALModel.FK_Vent_tbMovimientoCaja_tbSolicitudEfectivo_mocja_Id" FromRole="tbMovimientoCaja" ToRole="tbSolicitudEfectivo" />
+          <Property Name="usu_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tbUsuario5" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbMovimientoCaja_usu_Id" FromRole="tbMovimientoCaja" ToRole="tbUsuario" />
         </EntityType>
         <EntityType Name="tbNotaCredito">
           <Key>
@@ -11792,6 +11830,21 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
         <ComplexType Name="UDP_Acce_tbRolesUsuario_Insert_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
+        <Association Name="FK_Acce_tbUsuario_tbMovimientoCaja_usu_Id">
+          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
+          <End Type="ERP_ZORZALModel.tbMovimientoCaja" Role="tbMovimientoCaja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbMovimientoCaja">
+              <PropertyRef Name="usu_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="UDP_Acce_tbBitacoraErrores_Insert_Result">
+          <Property Type="String" Name="Column1" Nullable="true" MaxLength="30" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -13077,6 +13130,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
           <EntitySetMapping Name="tbMovimientoCaja">
             <EntityTypeMapping TypeName="ERP_ZORZALModel.tbMovimientoCaja">
               <MappingFragment StoreEntitySet="tbMovimientoCaja">
+                <ScalarProperty Name="usu_Id" ColumnName="usu_Id" />
                 <ScalarProperty Name="mocja_FechaModifica" ColumnName="mocja_FechaModifica" />
                 <ScalarProperty Name="mocja_UsuarioModifica" ColumnName="mocja_UsuarioModifica" />
                 <ScalarProperty Name="mocja_FechaCrea" ColumnName="mocja_FechaCrea" />
@@ -13934,6 +13988,13 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
                 <ScalarProperty Name="emp_Estado" ColumnName="emp_Estado" />
                 <ScalarProperty Name="emp_RazonSalida" ColumnName="emp_RazonSalida" />
                 <ScalarProperty Name="emp_FechaDeSalida" ColumnName="emp_FechaDeSalida" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Acce_tbBitacoraErrores_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbBitacoraErrores_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_tbBitacoraErrores_Insert_Result">
+                <ScalarProperty Name="Column1" ColumnName="Column1" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

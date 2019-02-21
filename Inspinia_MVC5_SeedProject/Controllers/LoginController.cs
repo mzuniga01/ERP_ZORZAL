@@ -23,13 +23,15 @@ namespace ERP_GMEDINA.Controllers
         public ActionResult Index(tbUsuario Login, string txtPassword)
         {
             try
-            { 
+            {
                 var Usuario = db.UDP_Acce_Login(Login.usu_NombreUsuario, txtPassword).ToList();
-                if(Usuario.Count>0)
+                if (Usuario.Count > 0)
                 {
                     foreach (UDP_Acce_Login_Result UserLogin in Usuario)
                     {
                         var Listado = db.SDP_Acce_GetUserRols(UserLogin.usu_Id, "").ToList();
+                        var ListadoRol = db.SDP_Acce_GetRolesAsignados(UserLogin.usu_Id).ToList();
+                        Session["UserRol"] = ListadoRol.Count();
                         Session["UserLogin"] = UserLogin.usu_Id;
                         Session["UserLoginRols"] = Listado;
                         Session["UserLoginEsAdmin"] = UserLogin.usu_EsAdministrador;
@@ -39,14 +41,13 @@ namespace ERP_GMEDINA.Controllers
                             ModelState.AddModelError("usu_NombreUsuario", "Usuario inactivo, contacte al Administrador");
                             return View(Login);
                         }
-                        if (UserLogin.usu_SesionesValidas ==0)
+                        if (UserLogin.usu_SesionesValidas == 0)
                         {
-                            ModelState.AddModelError("usu_NombreUsuario", "Su contraseña expiro, contacte al Administrador");
+                            ModelState.AddModelError("usu_NombreUsuario", "Su contraseña expiró, contacte al Administrador");
                             return View(Login);
                         }
-                        if (UserLogin.usu_SesionesValidas ==1)
+                        if (UserLogin.usu_SesionesValidas == 1)
                         {
-                           
                             return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
                         }
                     }
@@ -58,7 +59,7 @@ namespace ERP_GMEDINA.Controllers
                     return View(Login);
                 }
             }
-            catch(Exception Ex)
+            catch (Exception Ex)
             {
                 Ex.Message.ToString();
                 return View(Login);

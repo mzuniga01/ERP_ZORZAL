@@ -175,12 +175,12 @@ namespace ERP_GMEDINA.Controllers
                 {
                     if (id == null)
                     {
-                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                        return RedirectToAction("Index");
                     }
                     tbUsuario tbUsuario = db.tbUsuario.Find(id);
                     if (tbUsuario == null)
                     {
-                        return HttpNotFound();
+                        return RedirectToAction("NotFound", "Login");
                     }
                     return View(tbUsuario);
                 }
@@ -326,14 +326,14 @@ namespace ERP_GMEDINA.Controllers
                 {
                     if (id == null)
                     {
-                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                        return RedirectToAction("Index");
                     }
                     tbUsuario tbUsuario = db.tbUsuario.Find(id);
                     ViewBag.User_ID = id;
                     ViewBag.ConfirmarPassword = "Password";
                     if (tbUsuario == null)
                     {
-                        return HttpNotFound();
+                        return RedirectToAction("NotFound", "Login");
                     }
                     return View(tbUsuario);
                 }
@@ -415,7 +415,7 @@ namespace ERP_GMEDINA.Controllers
                 {
                     if (id == null)
                     {
-                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                        return RedirectToAction("Index");
                     }
                     tbUsuario tbUsuario = db.tbUsuario.Find(id);
                     ViewBag.User_ID = id;
@@ -423,7 +423,7 @@ namespace ERP_GMEDINA.Controllers
                     ViewBag.Sucursal = new SelectList(db.tbSucursal, "suc_Id", "suc_Descripcion");
                     if (tbUsuario == null)
                     {
-                        return HttpNotFound();
+                        return RedirectToAction("NotFound", "Login");
                     }
 
                     ViewData["Razon"] = tbUsuario.usu_RazonInactivo;
@@ -592,12 +592,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbUsuario tbUsuario = db.tbUsuario.Find(id);
             if (tbUsuario == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbUsuario);
         }

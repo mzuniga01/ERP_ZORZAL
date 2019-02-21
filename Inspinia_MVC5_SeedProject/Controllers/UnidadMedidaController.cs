@@ -295,12 +295,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbUnidadMedida tbUnidadMedida = db.tbUnidadMedida.Find(id);
             if (tbUnidadMedida == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbUnidadMedida);
         }

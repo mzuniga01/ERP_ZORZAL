@@ -129,7 +129,7 @@
                             </div>
                             @*////*@
                             <div class="form-group">
-                                <div class="col-md-offset-9 col-md-10">
+                                <div class="col-md-12 text-center">
                                     <input type="submit" value="Guardar" class="btn btn-primary" />
                                     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                                 </div>
@@ -152,26 +152,6 @@
         $(document).ready(function () {
             $('#mun_Codigo').empty();
             $('#mun_Codigo').append("<option value=''>Seleccione</option>");
-            //$("#bod_Telefono").blur(function () {
-            //    campo = event.target;
-            //    var reg2 = /^[+]{1}[0-9\s]*$/;
-            //    if (reg2.test(campo.value)) {
-            //        $('#ErrorTelephone').text('');
-            //    }
-            //    else {
-            //        $('#ErrorTelephone').text('');
-            //        $('#MessageForTelephone').after('<ul id="ErrorTelephone" class="validation-summary-errors text-danger">Formato de Télefono: +### ######## </ul>');
-            //        $("#bod_Telefono").focus();
-            //    }
-            //});
-            //Esto lo Agregó Mirian
-            //$("#bod_Telefono").on("keypress keyup blur", function (event) {
-            //    var Telefono = $(this).val();
-            //    if (Telefono == '') {
-            //        $(this).val('+');
-            //    }
-            //    this.value = this.value.replace(/[a-záéíóúüñ#/=]+/ig, "");
-            //});
 
             var depto = $('#dep_Codigo').val();
             if (depto === '') {

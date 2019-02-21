@@ -25,7 +25,7 @@ namespace ERP_ZORZAL.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbProveedor tbProveedor = db.tbProveedor.Find(id);
             ViewBag.UsuarioCrea = db.tbUsuario.Find(tbProveedor.prov_UsuarioCrea).usu_NombreUsuario;
@@ -40,7 +40,7 @@ namespace ERP_ZORZAL.Controllers
             };
             if (tbProveedor == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbProveedor);
         }
@@ -71,7 +71,7 @@ namespace ERP_ZORZAL.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbProveedor tbProveedor = db.tbProveedor.Find(id);
          
@@ -79,7 +79,7 @@ namespace ERP_ZORZAL.Controllers
             if (tbProveedor == null)
             {
               
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             ViewBag.Actividad = new SelectList(db.tbActividadEconomica, "acte_Id", "acte_Descripcion", tbProveedor.acte_Id);
             return View(tbProveedor);
@@ -190,12 +190,12 @@ namespace ERP_ZORZAL.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbProveedor tbProveedor = db.tbProveedor.Find(id);
             if (tbProveedor == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbProveedor);
         }

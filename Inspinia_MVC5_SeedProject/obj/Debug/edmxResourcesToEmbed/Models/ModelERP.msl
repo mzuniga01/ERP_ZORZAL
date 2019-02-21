@@ -1280,6 +1280,7 @@
     <EntitySetMapping Name="tbMovimientoCaja">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbMovimientoCaja">
         <MappingFragment StoreEntitySet="tbMovimientoCaja">
+          <ScalarProperty Name="usu_Id" ColumnName="usu_Id" />
           <ScalarProperty Name="mocja_FechaModifica" ColumnName="mocja_FechaModifica" />
           <ScalarProperty Name="mocja_UsuarioModifica" ColumnName="mocja_UsuarioModifica" />
           <ScalarProperty Name="mocja_FechaCrea" ColumnName="mocja_FechaCrea" />
@@ -2137,6 +2138,13 @@
           <ScalarProperty Name="emp_Estado" ColumnName="emp_Estado" />
           <ScalarProperty Name="emp_RazonSalida" ColumnName="emp_RazonSalida" />
           <ScalarProperty Name="emp_FechaDeSalida" ColumnName="emp_FechaDeSalida" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Acce_tbBitacoraErrores_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbBitacoraErrores_Insert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_tbBitacoraErrores_Insert_Result">
+          <ScalarProperty Name="Column1" ColumnName="Column1" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

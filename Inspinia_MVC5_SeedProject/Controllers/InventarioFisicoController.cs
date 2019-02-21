@@ -49,12 +49,12 @@ namespace ERP_GMEDINA.Controllers
             }
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbInventarioFisico tbInventarioFisico = db.tbInventarioFisico.Find(id);
             if(tbInventarioFisico == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             ViewBag.bodega_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
             this.listas();
@@ -383,13 +383,13 @@ namespace ERP_GMEDINA.Controllers
             }
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbInventarioFisico tbInventarioFisico = db.tbInventarioFisico.Find(id);
             ViewBag.UsuarioCrea = db.tbUsuario.Find(tbInventarioFisico.invf_UsuarioCrea).usu_NombreUsuario;
             if (tbInventarioFisico == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             ViewBag.bodegas = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbInventarioFisico.bod_Id);
             this.listas();
@@ -556,12 +556,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbInventarioFisico tbInventarioFisico = db.tbInventarioFisico.Find(id);
             if (tbInventarioFisico == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbInventarioFisico);
         }

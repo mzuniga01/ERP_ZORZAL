@@ -43,7 +43,7 @@ namespace ERP_GMEDINA.Controllers
             }
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbEstadoMovimiento tbEstadoMovimiento = db.tbEstadoMovimiento.Find(id);
             ViewBag.UsuarioCrea = db.tbUsuario.Find(tbEstadoMovimiento.estm_UsuarioCrea).usu_NombreUsuario;
@@ -58,7 +58,7 @@ namespace ERP_GMEDINA.Controllers
             };
             if (tbEstadoMovimiento == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbEstadoMovimiento);
         }
@@ -126,7 +126,7 @@ namespace ERP_GMEDINA.Controllers
             catch { }
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbEstadoMovimiento tbEstadoMovimiento = db.tbEstadoMovimiento.Find(id);
             ViewBag.UsuarioCrea = db.tbUsuario.Find(tbEstadoMovimiento.estm_UsuarioCrea).usu_NombreUsuario;
@@ -141,7 +141,7 @@ namespace ERP_GMEDINA.Controllers
             };
             if (tbEstadoMovimiento == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbEstadoMovimiento);
         }
@@ -184,12 +184,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbEstadoMovimiento tbEstadoMovimiento = db.tbEstadoMovimiento.Find(id);
             if (tbEstadoMovimiento == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbEstadoMovimiento);
         }

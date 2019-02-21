@@ -46,12 +46,12 @@ namespace ERP_ZORZAL.Controllers
             }
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbBox tbBox = db.tbBox.Find(id);
             if (tbBox == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbBox);
         }
@@ -227,12 +227,12 @@ namespace ERP_ZORZAL.Controllers
             }
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbBox tbBox = db.tbBox.Find(id);
             if (tbBox == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             string UserName = "";
             int idUser = 0;
@@ -356,12 +356,12 @@ namespace ERP_ZORZAL.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbBox tbBox = db.tbBox.Find(id);
             if (tbBox == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbBox);
         }

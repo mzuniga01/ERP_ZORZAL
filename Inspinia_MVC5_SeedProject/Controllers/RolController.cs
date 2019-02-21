@@ -47,7 +47,7 @@ namespace ERP_GMEDINA.Controllers
 
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbRol tbRol = db.tbRol.Find(id);
 
@@ -63,7 +63,7 @@ namespace ERP_GMEDINA.Controllers
             };
             if (tbRol == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbRol);
         }
@@ -135,7 +135,7 @@ namespace ERP_GMEDINA.Controllers
 
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             ViewBag.obj_Id = new SelectList(db.tbObjeto, "obj_Id", "obj_Pantalla");
 
@@ -152,7 +152,7 @@ namespace ERP_GMEDINA.Controllers
             };
             if (tbRol == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbRol);
         }
@@ -188,12 +188,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbRol tbRol = db.tbRol.Find(id);
             if (tbRol == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbRol);
         }

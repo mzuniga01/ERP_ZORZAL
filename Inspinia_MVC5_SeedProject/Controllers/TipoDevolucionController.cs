@@ -64,12 +64,12 @@ namespace ERP_GMEDINA.Controllers
                 {
                     if (id == null)
                     {
-                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                        return RedirectToAction("Index");
                     }
                     tbTipoDevolucion tbTipoDevolucion = db.tbTipoDevolucion.Find(id);
                     if (tbTipoDevolucion == null)
                     {
-                        return HttpNotFound();
+                        return RedirectToAction("NotFound", "Login");
                     }
                     return View(tbTipoDevolucion);
                 }
@@ -183,12 +183,12 @@ namespace ERP_GMEDINA.Controllers
                 {
                     if (id == null)
                     {
-                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                        return RedirectToAction("Index");
                     }
                     tbTipoDevolucion tbTipoDevolucion = db.tbTipoDevolucion.Find(id);
                     if (tbTipoDevolucion == null)
                     {
-                        return HttpNotFound();
+                        return RedirectToAction("NotFound", "Login");
                     }
                     ViewBag.tdev_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbTipoDevolucion.tdev_UsuarioCrea);
                     ViewBag.tdev_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbTipoDevolucion.tdev_UsuarioModifica);
@@ -274,12 +274,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbTipoDevolucion tbTipoDevolucion = db.tbTipoDevolucion.Find(id);
             if (tbTipoDevolucion == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbTipoDevolucion);
         }

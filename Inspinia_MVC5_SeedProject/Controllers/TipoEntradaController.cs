@@ -44,12 +44,12 @@ namespace ERP_GMEDINA.Controllers
 
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbTipoEntrada tbTipoEntrada = db.tbTipoEntrada.Find(id);
             if (tbTipoEntrada == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbTipoEntrada);
         }
@@ -140,7 +140,7 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.id = id;
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbTipoEntrada tbTipoEntrada = db.tbTipoEntrada.Find(id);
             ViewBag.UsuarioCrea_N = db.tbUsuario.Find(tbTipoEntrada.tent_UsuarioCrea).usu_NombreUsuario;
@@ -157,7 +157,7 @@ namespace ERP_GMEDINA.Controllers
             };
             if (tbTipoEntrada == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             ViewBag.tent_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbTipoEntrada.tent_UsuarioCrea);
             ViewBag.tent_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbTipoEntrada.tent_UsuarioModifica);
@@ -234,12 +234,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbTipoEntrada tbTipoEntrada = db.tbTipoEntrada.Find(id);
             if (tbTipoEntrada == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             return View(tbTipoEntrada);
         }

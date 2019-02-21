@@ -31,7 +31,7 @@ namespace ERP_ZORZAL.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbEntrada tbEntrada = await db.tbEntrada.FindAsync(id);
             ViewBag.UsuarioCrea = db.tbUsuario.Find(tbEntrada.ent_UsuarioCrea).usu_NombreUsuario;
@@ -46,7 +46,7 @@ namespace ERP_ZORZAL.Controllers
             };
             if (tbEntrada == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             //vista parcial de entrada detalle
             ViewBag.ent_Id = new SelectList(db.tbEntrada, "ent_Id", "ent_Id");
@@ -248,13 +248,13 @@ namespace ERP_ZORZAL.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             tbEntrada tbEntrada = db.tbEntrada.Find(id);
             
             if (tbEntrada == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("NotFound", "Login");
             }
             //*****PuntoEmisionDetalle
             string cas = "uni_IdList";
