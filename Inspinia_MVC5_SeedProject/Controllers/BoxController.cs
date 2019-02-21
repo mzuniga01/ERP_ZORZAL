@@ -107,7 +107,8 @@ namespace ERP_ZORZAL.Controllers
                     {
                         listBox = db.UDP_Inv_tbBox_Insert(
                                                 tbBox.box_Codigo,
-                                                tbBox.box_Descripcion
+                                                tbBox.box_Descripcion,
+                                                Function.GetUser(), Function.DatetimeNow()
                                                 );
                         foreach (UDP_Inv_tbBox_Insert_Result Box in listBox)
                             MensajeError = Box.MensajeError;
@@ -133,7 +134,7 @@ namespace ERP_ZORZAL.Controllers
                                                 Detalle.prod_Codigo,
                                                 Detalle.sald_Cantidad,
                                                 tbBox.box_Codigo
-                                                );
+                                                , Function.GetUser(), Function.DatetimeNow());
                                             foreach (UDP_Inv_tbSalidaDetalle_Insert_Result spDetalle in listSalidaDetalle)
                                             {
                                                 MensajeErrorDetalle = spDetalle.MensajeError;
@@ -195,7 +196,7 @@ namespace ERP_ZORZAL.Controllers
                         SalidaDetalle.prod_Codigo,
                         SalidaDetalle.sald_Cantidad,
                         box_Codigo
-                        );
+                        , Function.GetUser(), Function.DatetimeNow());
                     foreach (UDP_Inv_tbSalidaDetalle_Insert_Result spDetalle in listSalidaDetalle)
                     {
                         MensajeErrorDetalle = spDetalle.MensajeError;
@@ -280,7 +281,7 @@ namespace ERP_ZORZAL.Controllers
                                                     pSalidaDetalle.sal_Id,
                                                     data.prod_Codigo,
                                                     data.sald_Cantidad,
-                                                    data.box_Codigo);
+                                                    data.box_Codigo, data.sald_UsuarioCrea, data.sald_FechaCrea, Function.GetUser(), Function.DatetimeNow());
 
                 foreach (UDP_Inv_tbSalidaDetalle_Update_Result RSSalidaDetalle in list)
                     MensajeError = RSSalidaDetalle.MensajeError;
@@ -316,7 +317,7 @@ namespace ERP_ZORZAL.Controllers
                     tbBox vBox = db.tbBox.Find(id);
                     IEnumerable<object> List = null;
                     var MsjError = "";
-                    List = db.UDP_Inv_tbBox_Update(tbBox.box_Codigo, tbBox.box_Descripcion, tbBox.box_Estado, vBox.box_UsuarioCrea, vBox.box_FechaCrea);
+                    List = db.UDP_Inv_tbBox_Update(tbBox.box_Codigo, tbBox.box_Descripcion, tbBox.box_Estado, vBox.box_UsuarioCrea, vBox.box_FechaCrea, Function.GetUser(), Function.DatetimeNow());
 
                     foreach (UDP_Inv_tbBox_Update_Result Box in List)
                         MsjError = Box.MensajeError;
@@ -424,7 +425,9 @@ namespace ERP_ZORZAL.Controllers
                                                          EditarSalidaDetalle.sald_Id, 
                                                          EditarSalidaDetalle.prod_Codigo,
                                                         EditarSalidaDetalle.sald_Cantidad, 
-                                                        EditarSalidaDetalle.box_Codigo);
+                                                        EditarSalidaDetalle.box_Codigo,
+                                                        EditarSalidaDetalle.sald_UsuarioCrea,
+                                                        EditarSalidaDetalle.sald_FechaCrea, Function.GetUser(), Function.DatetimeNow());
                 foreach (UDP_Inv_tbSalidaDetalle_Update_Result salida in list)
                     Msj = salida.MensajeError;
 
@@ -502,7 +505,8 @@ namespace ERP_ZORZAL.Controllers
                     list = db.UDP_Inv_tbSalidaDetalle_Insert(GuardarSalidas.sal_Id,
                                                             GuardarSalidas.prod_Codigo,
                                                             GuardarSalidas.sald_Cantidad,
-                                                            GuardarSalidas.box_Codigo);
+                                                            GuardarSalidas.box_Codigo,
+                                                            Function.GetUser(), Function.DatetimeNow());
 
 
                     foreach (UDP_Inv_tbSalidaDetalle_Insert_Result sal in list)

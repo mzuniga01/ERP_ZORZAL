@@ -246,7 +246,8 @@ namespace ERP_GMEDINA.Controllers
                                                                                     , tbInventarioFisico.invf_ResponsableBodega
                                                                                     , tbInventarioFisico.bod_Id
                                                                                     , tbInventarioFisico.estif_Id
-                                                                                    , tbInventarioFisico.invf_FechaInventario);
+                                                                                    , tbInventarioFisico.invf_FechaInventario,
+                                                                                    Function.GetUser(), Function.DatetimeNow());
                             foreach (UDP_Inv_tbInventarioFisico_Insert_Result InventarioFisico in INVENTARIOFISICO)
                                 id = Convert.ToInt32(InventarioFisico.MensajeError);
                             if (MsjError == "-")
@@ -266,7 +267,7 @@ namespace ERP_GMEDINA.Controllers
                                                                                                             , invfd.prod_Codigo
                                                                                                             , invfd.invfd_Cantidad
                                                                                                             , invfd.invfd_CantidadSistema
-                                                                                                            , invfd.uni_Id);
+                                                                                                            , invfd.uni_Id, Function.GetUser(), Function.DatetimeNow());
                                             foreach (UDP_Inv_tbInventarioFisicoDetalle_Insert_Result invfdetalle in INVFISICODETALLE)
                                                 MsjError = invfdetalle.MensajeError;
                                             {
@@ -310,7 +311,7 @@ namespace ERP_GMEDINA.Controllers
                                                          , guardar_detalle.invfd_Cantidad
                                                          , guardar_detalle.invfd_CantidadSistema
                                                          , guardar_detalle.uni_Id
-                                                                            );
+                                                                            , Function.GetUser(), Function.DatetimeNow());
                 foreach (UDP_Inv_tbInventarioFisicoDetalle_Insert_Result invfd in list)
                     Msj = invfd.MensajeError;
 
@@ -422,7 +423,8 @@ namespace ERP_GMEDINA.Controllers
                             tbInventarioFisico.estif_Id, 
                             tbInventarioFisico.invf_FechaInventario, 
                             tbInventarioFisico.invf_UsuarioCrea,
-                            tbInventarioFisico.invf_FechaCrea);
+                            tbInventarioFisico.invf_FechaCrea,
+                            Function.GetUser(), Function.DatetimeNow());
                         foreach (UDP_Inv_tbInventarioFisico_Update_Result InventarioFisico in Inv)
                             idMaster = Convert.ToInt32(InventarioFisico.MensajeError);
 
@@ -443,7 +445,7 @@ namespace ERP_GMEDINA.Controllers
                                                                                                invd.prod_Codigo,
                                                                                                invd.invfd_Cantidad,
                                                                                                invd.invfd_CantidadSistema,
-                                                                                               invd.uni_Id);
+                                                                                               invd.uni_Id, Function.GetUser(), Function.DatetimeNow());
                                         foreach (UDP_Inv_tbInventarioFisicoDetalle_Insert_Result inv_detalle in Detalle)
                                         //    MsjError = inv_detalle.MensajeError;
 
@@ -527,7 +529,7 @@ namespace ERP_GMEDINA.Controllers
                                                         , actualizardetalle.invfd_Cantidad
                                                         , actualizardetalle.invfd_CantidadSistema
                                                         , actualizardetalle.uni_Id
-                                                                            );
+                                                                            , Function.GetUser(), Function.DatetimeNow());
                 foreach (UDP_Inv_tbInventarioFisicoDetalle_Update_Result invfd in list)
                     Msj = invfd.MensajeError;
 
@@ -613,7 +615,7 @@ namespace ERP_GMEDINA.Controllers
                 tbInventarioFisico obj = db.tbInventarioFisico.Find(id);
                 IEnumerable<object> list = null;
                 var MsjError = "";
-                list = db.UDP_Inv_tbInventarioFisico_Update_Estado(id, Helpers.InvFisicoConciliado );
+                list = db.UDP_Inv_tbInventarioFisico_Update_Estado(id, Helpers.InvFisicoConciliado, Function.GetUser(), Function.DatetimeNow());
                 foreach (UDP_Inv_tbInventarioFisico_Update_Estado_Result obje in list)
                     MsjError = obje.MensajeError;
 

@@ -185,7 +185,7 @@ namespace ERP_GMEDINA.Controllers
                                                             , tbBodega.bod_UsuarioCrea
                                                             , tbBodega.bod_FechaCrea,
                                                             Function.GetUser()
-                                                        , DateTime.Now);
+                                                        , Function.DatetimeNow());
                         foreach (UDP_Inv_tbBodega_Update_Result bodega in BODEGA)
                             idMaster = Convert.ToInt32(bodega.MensajeError);
                         if (MsjError.StartsWith("-1"))
@@ -238,7 +238,7 @@ namespace ERP_GMEDINA.Controllers
                         ViewBag.deparatamento_Edit = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre", tbBodega.dep_Codigo);
                         ViewBag.municipio_Edit = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbBodega.mun_Codigo);
                         Function.InsertBitacoraErrores("Bodega/Create", Ex.Message.ToString(), "Create");
-                        ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                        ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
                         return RedirectToAction("Edit/" + idMaster);
                     }
                 }
@@ -265,7 +265,7 @@ namespace ERP_GMEDINA.Controllers
                 tbBodega obj = db.tbBodega.Find(id);
                 IEnumerable<object> list = null;
                 var MsjError = "";
-                list = db.UDP_Inv_tbBodega_Update_Estado_Validacion(id, EstadoBodega.Inactivo);
+                list = db.UDP_Inv_tbBodega_Update_Estado_Validacion(id, EstadoBodega.Inactivo, Function.GetUser(), Function.DatetimeNow());
                 foreach (UDP_Inv_tbBodega_Update_Estado_Validacion_Result obje in list)
                     MsjError = obje.MensajeError;
 
@@ -303,7 +303,7 @@ namespace ERP_GMEDINA.Controllers
                 tbBodega obj = db.tbBodega.Find(id);
                 IEnumerable<object> list = null;
                 var MsjError = "";
-                list = db.UDP_Inv_tbBodega_Update_Estado_Validacion(id, EstadoBodega.Activo);
+                list = db.UDP_Inv_tbBodega_Update_Estado_Validacion(id, EstadoBodega.Activo, Function.GetUser(), Function.DatetimeNow());
                 foreach (UDP_Inv_tbBodega_Update_Estado_Validacion_Result obje in list)
                     MsjError = obje.MensajeError;
 
@@ -403,9 +403,10 @@ namespace ERP_GMEDINA.Controllers
                                                         , Editardetalle.bodd_PuntoReorden
                                                         , Editardetalle.bodd_UsuarioCrea
                                                         , Editardetalle.bodd_FechaCrea
+                                                        , Function.GetUser(), Function.DatetimeNow()
                                                         , Editardetalle.bodd_Costo
                                                         , Editardetalle.bodd_CostoPromedio
-                                                                            );
+                                                        );
                 foreach (UDP_Inv_tbBodegaDetalle_Update_Result bodega in list)
                     MensajeError = bodega.MensajeError;
 

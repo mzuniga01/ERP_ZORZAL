@@ -203,7 +203,7 @@ namespace ERP_GMEDINA.Controllers
                     {
                         var vFactura = db.tbFactura.Where(x => x.fact_Codigo == tbSalida.fact_Codigo).Select(x => x.fact_Id).SingleOrDefault();
                         //tbSalida.bod_Id
-                        listSalida = db.UDP_Inv_tbSalida_Insert(tbSalida.bod_Id, vFactura, tbSalida.sal_FechaElaboracion, tbSalida.estm_Id, tbSalida.tsal_Id, tbSalida.sal_BodDestino, tbSalida.sal_EsAnulada, tbSalida.sal_RazonAnulada, tbSalida.sal_RazonDevolucion);
+                        listSalida = db.UDP_Inv_tbSalida_Insert(tbSalida.bod_Id, vFactura, tbSalida.sal_FechaElaboracion, tbSalida.estm_Id, tbSalida.tsal_Id, tbSalida.sal_BodDestino, tbSalida.sal_EsAnulada, tbSalida.sal_RazonAnulada, tbSalida.sal_RazonDevolucion, Function.GetUser(), Function.DatetimeNow());
                         foreach (UDP_Inv_tbSalida_Insert_Result Salida in listSalida)
                             MensajeError = Salida.MensajeError;
                         if (MensajeError == "-1")
@@ -229,7 +229,7 @@ namespace ERP_GMEDINA.Controllers
                                                 Detalle.prod_Codigo,
                                                 Detalle.sald_Cantidad,
                                                 box_Codigo
-                                                );
+                                                , Function.GetUser(), Function.DatetimeNow());
                                             foreach (UDP_Inv_tbSalidaDetalle_Insert_Result spDetalle in listSalidaDetalle)
                                             {
                                                 MensajeErrorDetalle = spDetalle.MensajeError;
@@ -294,7 +294,7 @@ namespace ERP_GMEDINA.Controllers
                                 Detalle.prod_Codigo,
                                 Detalle.sald_Cantidad,
                                 box_Codigo
-                                );
+                                , Function.GetUser(), Function.DatetimeNow());
                             foreach (UDP_Inv_tbSalidaDetalle_Insert_Result spDetalle in listSalidaDetalle)
                             {
                                 MensajeErrorDetalle = spDetalle.MensajeError;
@@ -431,7 +431,7 @@ namespace ERP_GMEDINA.Controllers
                                                     data.sal_Id,
                                                     data.prod_Codigo,
                                                     data.sald_Cantidad,
-                                                    data.box_Codigo);
+                                                    data.box_Codigo, data.sald_UsuarioCrea, data.sald_FechaCrea, Function.GetUser(), Function.DatetimeNow());
 
                 foreach (UDP_Inv_tbSalidaDetalle_Update_Result RSSalidaDetalle in list)
                     MensajeError = RSSalidaDetalle.MensajeError;
@@ -491,7 +491,8 @@ namespace ERP_GMEDINA.Controllers
                                                     tbSalida.sal_RazonAnulada, 
                                                     tbSalida.sal_RazonDevolucion,
                                                     pSalida.sal_UsuarioCrea,
-                                                    pSalida.sal_FechaCrea);
+                                                    pSalida.sal_FechaCrea,
+                                                    Function.GetUser(), Function.DatetimeNow());
 
                     foreach (UDP_Inv_tbSalida_Update_Result ListaPrecio in list)
                         MensajeError = ListaPrecio.MensajeError;
@@ -586,7 +587,8 @@ namespace ERP_GMEDINA.Controllers
                                                     tbSalida.sal_RazonAnulada,
                                                     tbSalida.sal_RazonDevolucion,
                                                     tbSalida.sal_UsuarioCrea,
-                                                    tbSalida.sal_FechaCrea);
+                                                    tbSalida.sal_FechaCrea,
+                                                    Function.GetUser(), Function.DatetimeNow());
 
                     foreach (UDP_Inv_tbSalida_Update_Result Salida in list)
                         MensajeError = Salida.MensajeError;
@@ -634,7 +636,8 @@ namespace ERP_GMEDINA.Controllers
                                                     tbSalida.sal_RazonAnulada,
                                                     tbSalida.sal_RazonDevolucion,
                                                     tbSalida.sal_UsuarioCrea,
-                                                    tbSalida.sal_FechaCrea);
+                                                    tbSalida.sal_FechaCrea,
+                                                    Function.GetUser(), Function.DatetimeNow());
 
                     foreach (UDP_Inv_tbSalida_Update_Result Salida in list)
                         MensajeError = Salida.MensajeError;
@@ -681,7 +684,8 @@ namespace ERP_GMEDINA.Controllers
                                                     vSalida.sal_RazonDevolucion,
                                                     Salida.sal_RazonAnulada,
                                                     vSalida.sal_UsuarioCrea,
-                                                    vSalida.sal_FechaCrea);
+                                                    vSalida.sal_FechaCrea,
+                                                    Function.GetUser(), Function.DatetimeNow());
 
                     foreach (UDP_Inv_tbSalida_Update_Result RSSalida in list)
                         MensajeError = RSSalida.MensajeError;
@@ -749,7 +753,7 @@ namespace ERP_GMEDINA.Controllers
                     tbSalidaDetalle.prod_Codigo,
                     tbSalidaDetalle.sald_Cantidad,
                     box_Codigo
-                    );
+                    , Function.GetUser(), Function.DatetimeNow());
                 foreach (UDP_Inv_tbSalidaDetalle_Insert_Result spDetalle in listSalidaDetalle)
                 {
                     MensajeError = spDetalle.MensajeError;

@@ -130,6 +130,7 @@ namespace ERP_GMEDINA.Controllers
                                             {
                                                 sub = db.UDP_Inv_tbProductoSubcategoria_Insert(subcategoria.pscat_Descripcion
                                                                                             , idMaster,
+                                                                                            Function.GetUser(), Function.DatetimeNow(),
                                                                                             subcategoria.pscat_ISV
                                                                                             );
                                                 foreach (UDP_Inv_tbProductoSubcategoria_Insert_Result ProdSubCate in sub)
@@ -258,7 +259,9 @@ namespace ERP_GMEDINA.Controllers
                                                         EditarSubCategoria.pscat_Id,
                                                         EditarSubCategoria.pscat_Descripcion,
                                                        EditarSubCategoria.pcat_Id,
-                                                      
+                                                      EditarSubCategoria.pscat_UsuarioCrea,
+                                                      EditarSubCategoria.pscat_FechaCrea,
+                                                      Function.GetUser(), Function.DatetimeNow(),
                                                       EditarSubCategoria.pscat_ISV
                     );
                 foreach (UDP_Inv_tbProductoSubcategoria_Update_Result subcate in list)
@@ -333,9 +336,9 @@ namespace ERP_GMEDINA.Controllers
                                                
 
                                                 subcate = db.UDP_Inv_tbProductoSubcategoria_Insert(subcategoria.pscat_Descripcion
-                                                                                            , idMaster,
-                                                                                            subcategoria.pscat_ISV
-                                                                                            );
+                                                                                            , idMaster
+                                                                                            , Function.GetUser(), Function.DatetimeNow(),
+                                                                                            subcategoria.pscat_ISV);
 
                                                 foreach (UDP_Inv_tbProductoSubcategoria_Insert_Result ProdSubCate in subcate)
 

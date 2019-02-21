@@ -42,7 +42,7 @@ namespace ERP_GMEDINA.Controllers
                 using (TransactionScope Tran = new TransactionScope())
                 {
                     var FechaPedido = DateTime.Now;
-                    listSalida = db.UDP_Inv_ValidacionCantidadExistente(CantidadSolicitada, IDBodega, IDProducto, FechaPedido, BodegaDestino, CantidadDisponible);
+                    listSalida = db.UDP_Inv_ValidacionCantidadExistente(CantidadSolicitada, IDBodega, IDProducto, FechaPedido, BodegaDestino, CantidadDisponible, Function.GetUser(), Function.DatetimeNow());
                     foreach (UDP_Inv_ValidacionCantidadExistente_Result Salida in listSalida)
                         MensajeError = Salida.MensajeError;
                     if (MensajeError == "-1")
@@ -56,7 +56,7 @@ namespace ERP_GMEDINA.Controllers
                     else
                     {
                         var IDSalida = Convert.ToInt32(MensajeError);
-                        listSalidaDetalle = db.UDP_Inv_tbSalidaDetalle_Insert(IDSalida, IDProducto, CantidadSolicitada, null);
+                        listSalidaDetalle = db.UDP_Inv_tbSalidaDetalle_Insert(IDSalida, IDProducto, CantidadSolicitada, null, Function.GetUser(), Function.DatetimeNow());
 
                         foreach (UDP_Inv_tbSalidaDetalle_Insert_Result spDetalle in listSalidaDetalle)
                         {

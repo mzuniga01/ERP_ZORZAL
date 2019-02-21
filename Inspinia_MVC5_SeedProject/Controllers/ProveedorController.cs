@@ -13,7 +13,7 @@ namespace ERP_ZORZAL.Controllers
     public class ProveedorController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
-
+        GeneralFunctions Function = new GeneralFunctions();
         // GET: /Proveedor/
         public ActionResult Index()
         {
@@ -103,7 +103,7 @@ namespace ERP_ZORZAL.Controllers
                    
 
 
-                    List = db.UDP_Inv_tbProveedor_Insert(prov_Nombre, prov_NombreContacto, prov_Direccion, prov_Email, prov_Telefono, prov_RTN, acte_Id);
+                    List = db.UDP_Inv_tbProveedor_Insert(prov_Nombre, prov_NombreContacto, prov_Direccion, prov_Email, prov_Telefono, prov_RTN, acte_Id, Function.GetUser(), Function.DatetimeNow());
                     foreach (UDP_Inv_tbProveedor_Insert_Result Proveedor in List)
                         MsjError = Proveedor.MensajeError;
 
@@ -153,7 +153,7 @@ namespace ERP_ZORZAL.Controllers
 
 
 
-                    List = db.UDP_Inv_tbProveedor_Update(prov_Id,prov_Nombre, prov_NombreContacto, prov_Direccion, prov_Email, prov_Telefono, prov_RTN, acte_Id);
+                    List = db.UDP_Inv_tbProveedor_Update(prov_Id,prov_Nombre, prov_NombreContacto, prov_Direccion, prov_Email, prov_Telefono, prov_RTN, acte_Id, Function.GetUser(), Function.DatetimeNow(), Function.GetUser(), Function.DatetimeNow());
                     foreach (UDP_Inv_tbProveedor_Update_Result Proveedor in List)
                         MsjError = Proveedor.MensajeError;
 

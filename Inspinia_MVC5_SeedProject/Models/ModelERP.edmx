@@ -3727,6 +3727,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
         <Function Name="UDP_Acce_tbAccesoRol_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
           <Parameter Name="rol_Id" Type="int" Mode="In" />
           <Parameter Name="obj_Id" Type="int" Mode="In" />
+          <Parameter Name="UsuarioCrea" Type="int" Mode="In" />
+          <Parameter Name="FechaCrea" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Acce_tbAccesoRol_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
           <Parameter Name="acrol_Id" Type="int" Mode="In" />
@@ -3765,6 +3767,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
         </Function>
         <Function Name="UDP_Acce_tbRol_Inactivar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
           <Parameter Name="IDRol" Type="int" Mode="In" />
+          <Parameter Name="rol_UsuarioModifica" Type="int" Mode="In" />
+          <Parameter Name="rol_FechaModifica" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Acce_tbRol_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
           <Parameter Name="rol_Descripcion" Type="varchar" Mode="In" />
@@ -3941,6 +3945,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
           <Parameter Name="mun_Codigo" Type="char" Mode="In" />
           <Parameter Name="dep_Codigo" Type="char" Mode="In" />
           <Parameter Name="mun_Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="mun_UsuarioCrea" Type="int" Mode="In" />
+          <Parameter Name="mun_FechaCrea" Type="datetime" Mode="In" />
           <Parameter Name="mun_UsuarioModifica" Type="int" Mode="In" />
           <Parameter Name="mun_FechaModifica" Type="datetime" Mode="In" />
         </Function>
@@ -3959,6 +3965,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
           <Parameter Name="par_SucursalPrincipal" Type="smallint" Mode="In" />
           <Parameter Name="par_PorcentajeDescuentoTE" Type="decimal" Mode="In" />
           <Parameter Name="par_IdConsumidorFinal" Type="int" Mode="In" />
+          <Parameter Name="par_UsuarioCrea" Type="int" Mode="In" />
+          <Parameter Name="par_FechaCrea" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Gral_tbParametro_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
           <Parameter Name="par_Id" Type="tinyint" Mode="In" />
@@ -3977,6 +3985,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
           <Parameter Name="par_FechaCrea" Type="datetime" Mode="In" />
           <Parameter Name="par_PorcentajeDescuentoTE" Type="decimal" Mode="In" />
           <Parameter Name="par_IdConsumidorFinal" Type="int" Mode="In" />
+          <Parameter Name="par_UsuarioModifica" Type="int" Mode="In" />
+          <Parameter Name="par_FechaModifica" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Gral_tbUnidadMedida_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
           <Parameter Name="uni_Descripcion" Type="varchar" Mode="In" />
@@ -4077,10 +4087,14 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
         <Function Name="UDP_Inv_tbBodega_Update_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="bod_Id" Type="int" Mode="In" />
           <Parameter Name="bod_EsActiva" Type="tinyint" Mode="In" />
+          <Parameter Name="bodd_UsuarioModifica" Type="int" Mode="In" />
+          <Parameter Name="bodd_FechaModifica" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Inv_tbBodega_Update_Estado_Validacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="bod_Id" Type="int" Mode="In" />
           <Parameter Name="bod_EsActiva" Type="tinyint" Mode="In" />
+          <Parameter Name="bodd_UsuarioModifica" Type="int" Mode="In" />
+          <Parameter Name="bodd_FechaModifica" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Inv_tbBodegaDetalle_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="bodd_Id" Type="int" Mode="In" />
@@ -4103,6 +4117,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
           <Parameter Name="bodd_PuntoReorden" Type="decimal" Mode="In" />
           <Parameter Name="bodd_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="bodd_FechaCrea" Type="datetime" Mode="In" />
+          <Parameter Name="bodd_UsuarioModifica" Type="int" Mode="In" />
+          <Parameter Name="bodd_FechaModifica" Type="datetime" Mode="In" />
           <Parameter Name="bodd_Costo" Type="decimal" Mode="In" />
           <Parameter Name="bodd_CostoPromedio" Type="decimal" Mode="In" />
         </Function>
@@ -4112,6 +4128,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
         <Function Name="UDP_Inv_tbBox_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="box_Codigo" Type="varchar" Mode="In" />
           <Parameter Name="box_Descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="box_UsuarioCrea" Type="int" Mode="In" />
+          <Parameter Name="box_FechaCrea" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Inv_tbBox_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="box_Codigo" Type="varchar" Mode="In" />
@@ -4119,6 +4137,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
           <Parameter Name="box_Estado" Type="bit" Mode="In" />
           <Parameter Name="box_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="box_FechaCrea" Type="datetime" Mode="In" />
+          <Parameter Name="box_UsuarioModifica" Type="int" Mode="In" />
+          <Parameter Name="box_FechaModifica" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Inv_tbEntrada_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="ent_FechaElaboracion" Type="datetime" Mode="In" />
@@ -4131,6 +4151,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
           <Parameter Name="ent_RazonDevolucion" Type="int" Mode="In" />
           <Parameter Name="ent_BodegaDestino" Type="int" Mode="In" />
           <Parameter Name="tent_Id" Type="tinyint" Mode="In" />
+          <Parameter Name="ent_UsuarioCrea" Type="int" Mode="In" />
+          <Parameter Name="ent_FechaCrea" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Inv_tbEntrada_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="ent_Id" Type="int" Mode="In" />
@@ -4146,26 +4168,38 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
           <Parameter Name="tent_Id" Type="tinyint" Mode="In" />
           <Parameter Name="ent_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="ent_FechaCrea" Type="datetime" Mode="In" />
+          <Parameter Name="ent_UsuarioModifica" Type="int" Mode="In" />
+          <Parameter Name="ent_FechaModifica" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Inv_tbEntrada_Update_Anular" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="ent_Id" Type="int" Mode="In" />
           <Parameter Name="entd_EsAnulada" Type="tinyint" Mode="In" />
           <Parameter Name="entd_RazonAnulada" Type="varchar" Mode="In" />
+          <Parameter Name="entd_UsuarioModifica" Type="int" Mode="In" />
+          <Parameter Name="entd_FechaModifica" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Inv_tbEntrada_Update_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="ent_Id" Type="int" Mode="In" />
           <Parameter Name="estm_Id" Type="tinyint" Mode="In" />
+          <Parameter Name="entd_UsuarioModifica" Type="int" Mode="In" />
+          <Parameter Name="entd_FechaModifica" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Inv_tbEntradaDetalle_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="ent_Id" Type="int" Mode="In" />
           <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
           <Parameter Name="entd_Cantidad" Type="decimal" Mode="In" />
+          <Parameter Name="ent_UsuarioCrea" Type="int" Mode="In" />
+          <Parameter Name="ent_FechaCrea" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Inv_tbEntradaDetalle_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="entd_Id" Type="int" Mode="In" />
           <Parameter Name="ent_Id" Type="int" Mode="In" />
           <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
           <Parameter Name="entd_Cantidad" Type="decimal" Mode="In" />
+          <Parameter Name="entd_UsuarioCrea" Type="int" Mode="In" />
+          <Parameter Name="entd_FechaCrea" Type="datetime" Mode="In" />
+          <Parameter Name="entd_UsuarioModifica" Type="int" Mode="In" />
+          <Parameter Name="entd_FechaModifica" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Inv_tbEstadoMovimiento_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="estm_Id" Type="int" Mode="In" />
@@ -4173,10 +4207,14 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
         <Function Name="UDP_Inv_tbEstadoMovimiento_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="estm_Id" Type="tinyint" Mode="In" />
           <Parameter Name="estm_Descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="estm_UsuarioCrea" Type="int" Mode="In" />
+          <Parameter Name="estm_FechaCrea" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Inv_tbEstadoMovimiento_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="estm_Id" Type="tinyint" Mode="In" />
           <Parameter Name="estm_Descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="estm_UsuarioCrea" Type="int" Mode="In" />
+          <Parameter Name="estm_FechaCrea" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Inv_tbInventarioFisico_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="invf_Descripcion" Type="varchar" Mode="In" />
@@ -4184,6 +4222,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
           <Parameter Name="bod_Id" Type="int" Mode="In" />
           <Parameter Name="estif_Id" Type="tinyint" Mode="In" />
           <Parameter Name="invf_FechaInventario" Type="datetime" Mode="In" />
+          <Parameter Name="invf_UsuarioCrea" Type="int" Mode="In" />
+          <Parameter Name="invf_FechaCrea" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Inv_tbInventarioFisico_ListaProductos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="bod_Id" Type="int" Mode="In" />
@@ -4197,10 +4237,14 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
           <Parameter Name="invf_FechaInventario" Type="datetime" Mode="In" />
           <Parameter Name="invf_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="invf_FechaCrea" Type="datetime" Mode="In" />
+          <Parameter Name="invf_UsuarioModifica" Type="int" Mode="In" />
+          <Parameter Name="invf_FechaModifica" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Inv_tbInventarioFisico_Update_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="invf_Id" Type="int" Mode="In" />
           <Parameter Name="estif_Id" Type="tinyint" Mode="In" />
+          <Parameter Name="invf_UsuarioModifica" Type="int" Mode="In" />
+          <Parameter Name="invf_FechaModifica" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Inv_tbInventarioFisicoDetalle_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="invf_Id" Type="int" Mode="In" />
@@ -4208,6 +4252,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
           <Parameter Name="invfd_Cantidad" Type="decimal" Mode="In" />
           <Parameter Name="invfd_CantidadSistema" Type="decimal" Mode="In" />
           <Parameter Name="uni_Id" Type="int" Mode="In" />
+          <Parameter Name="invfd_UsuarioCrea" Type="int" Mode="In" />
+          <Parameter Name="invfd_FechaCrea" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Inv_tbInventarioFisicoDetalle_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="invfd_Id" Type="int" Mode="In" />
@@ -4216,6 +4262,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
           <Parameter Name="invfd_Cantidad" Type="decimal" Mode="In" />
           <Parameter Name="invfd_CantidadSistema" Type="decimal" Mode="In" />
           <Parameter Name="uni_Id" Type="int" Mode="In" />
+          <Parameter Name="invfd_UsuarioModifica" Type="int" Mode="In" />
+          <Parameter Name="invfd_FechaModifica" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Inv_tbProducto_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
@@ -4287,12 +4335,18 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
         <Function Name="UDP_Inv_tbProductoSubcategoria_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="pscat_Descripcion" Type="varchar" Mode="In" />
           <Parameter Name="pcat_Id" Type="int" Mode="In" />
+          <Parameter Name="pscat_UsuarioCrea" Type="int" Mode="In" />
+          <Parameter Name="pscat_FechaCrea" Type="datetime" Mode="In" />
           <Parameter Name="pscat_ISV" Type="decimal" Mode="In" />
         </Function>
         <Function Name="UDP_Inv_tbProductoSubcategoria_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="pscat_Id" Type="int" Mode="In" />
           <Parameter Name="pscat_Descripcion" Type="varchar" Mode="In" />
           <Parameter Name="pcat_Id" Type="int" Mode="In" />
+          <Parameter Name="pscat_UsuarioCrea" Type="int" Mode="In" />
+          <Parameter Name="pscat_FechaCrea" Type="datetime" Mode="In" />
+          <Parameter Name="pscat_UsuarioModifica" Type="int" Mode="In" />
+          <Parameter Name="pscat_FechaModifica" Type="datetime" Mode="In" />
           <Parameter Name="pscat_ISV" Type="decimal" Mode="In" />
         </Function>
         <Function Name="UDP_Inv_tbProductoSubCategoria_Update_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
@@ -4307,6 +4361,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
           <Parameter Name="prov_Telefono" Type="nvarchar" Mode="In" />
           <Parameter Name="prov_RTN" Type="nvarchar" Mode="In" />
           <Parameter Name="acte_Id" Type="smallint" Mode="In" />
+          <Parameter Name="prov_UsuarioCrea" Type="int" Mode="In" />
+          <Parameter Name="prov_FechaCrea" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Inv_tbProveedor_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="prov_Id" Type="int" Mode="In" />
@@ -4317,6 +4373,10 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
           <Parameter Name="prov_Telefono" Type="nvarchar" Mode="In" />
           <Parameter Name="prov_RTN" Type="nvarchar" Mode="In" />
           <Parameter Name="acte_Id" Type="smallint" Mode="In" />
+          <Parameter Name="prov_UsuarioCrea" Type="int" Mode="In" />
+          <Parameter Name="prov_FechaCrea" Type="datetime" Mode="In" />
+          <Parameter Name="prov_UsuarioModifica" Type="int" Mode="In" />
+          <Parameter Name="prov_FechaModifica" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Inv_tbSalida_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="bod_Id" Type="int" Mode="In" />
@@ -4328,6 +4388,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
           <Parameter Name="sal_EsAnulada" Type="bit" Mode="In" />
           <Parameter Name="sal_RazonDevolucion" Type="varchar" Mode="In" />
           <Parameter Name="sal_RazonAnulada" Type="varchar" Mode="In" />
+          <Parameter Name="sal_UsuarioCrea" Type="int" Mode="In" />
+          <Parameter Name="sal_FechaCrea" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Inv_tbSalida_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="sal_Id" Type="int" Mode="In" />
@@ -4342,6 +4404,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
           <Parameter Name="sal_RazonAnulada" Type="varchar" Mode="In" />
           <Parameter Name="sal_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="sal_FechaCrea" Type="datetime" Mode="In" />
+          <Parameter Name="sal_UsuarioModifica" Type="int" Mode="In" />
+          <Parameter Name="sal_FechaModifica" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Inv_tbSalidaDetalle_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="sald_Id" Type="int" Mode="In" />
@@ -4351,6 +4415,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
           <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
           <Parameter Name="sald_Cantidad" Type="decimal" Mode="In" />
           <Parameter Name="box_Codigo" Type="varchar" Mode="In" />
+          <Parameter Name="sald_UsuarioCrea" Type="int" Mode="In" />
+          <Parameter Name="sald_FechaCrea" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Inv_tbSalidaDetalle_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="sald_Id" Type="int" Mode="In" />
@@ -4358,6 +4424,10 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
           <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
           <Parameter Name="sald_Cantidad" Type="decimal" Mode="In" />
           <Parameter Name="box_Codigo" Type="varchar" Mode="In" />
+          <Parameter Name="sald_UsuarioCrea" Type="int" Mode="In" />
+          <Parameter Name="sald_FechaCrea" Type="datetime" Mode="In" />
+          <Parameter Name="sald_UsuarioModifica" Type="int" Mode="In" />
+          <Parameter Name="sald_FechaModifica" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Inv_tbTipoDevolucion_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="tdev_Descripcion" Type="varchar" Mode="In" />
@@ -4405,6 +4475,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
           <Parameter Name="FechaElaboracion" Type="datetime" Mode="In" />
           <Parameter Name="BodegaDestino" Type="int" Mode="In" />
           <Parameter Name="CantidadDisponible" Type="decimal" Mode="In" />
+          <Parameter Name="UsuarioCrea" Type="int" Mode="In" />
+          <Parameter Name="FechaCrea" Type="datetime" Mode="In" />
         </Function>
         <Function Name="spGetDepartamento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="CodMunicipio" Type="char" Mode="In" />
@@ -5405,6 +5477,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
             <Parameter Name="par_SucursalPrincipal" Mode="In" Type="Int16" />
             <Parameter Name="par_PorcentajeDescuentoTE" Mode="In" Type="Decimal" />
             <Parameter Name="par_IdConsumidorFinal" Mode="In" Type="Int32" />
+            <Parameter Name="par_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="par_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Gral_tbParametro_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbParametro_Update_Result)">
             <Parameter Name="par_Id" Mode="In" Type="Byte" />
@@ -5423,6 +5497,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
             <Parameter Name="par_FechaCrea" Mode="In" Type="DateTime" />
             <Parameter Name="par_PorcentajeDescuentoTE" Mode="In" Type="Decimal" />
             <Parameter Name="par_IdConsumidorFinal" Mode="In" Type="Int32" />
+            <Parameter Name="par_UsuarioModifica" Mode="In" Type="Int32" />
+            <Parameter Name="par_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Inv_tbBodegaDetalle_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbBodegaDetalle_Insert_Result)">
             <Parameter Name="prod_Codigo" Mode="In" Type="String" />
@@ -5443,6 +5519,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
           <FunctionImport Name="UDP_Inv_tbBox_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbBox_Insert_Result)">
             <Parameter Name="box_Codigo" Mode="In" Type="String" />
             <Parameter Name="box_Descripcion" Mode="In" Type="String" />
+            <Parameter Name="box_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="box_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Inv_tbBox_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbBox_Update_Result)">
             <Parameter Name="box_Codigo" Mode="In" Type="String" />
@@ -5450,6 +5528,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
             <Parameter Name="box_Estado" Mode="In" Type="Boolean" />
             <Parameter Name="box_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="box_FechaCrea" Mode="In" Type="DateTime" />
+            <Parameter Name="box_UsuarioModifica" Mode="In" Type="Int32" />
+            <Parameter Name="box_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="SDP_Acce_GetObjetos" ReturnType="Collection(ERP_ZORZALModel.SDP_Acce_GetObjetos_Result)" />
           <FunctionImport Name="SDP_Acce_GetObjetosDisponibles" ReturnType="Collection(ERP_ZORZALModel.SDP_Acce_GetObjetosDisponibles_Result)">
@@ -5465,10 +5545,14 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
           <FunctionImport Name="UDP_Inv_tbEstadoMovimiento_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEstadoMovimiento_Insert_Result)">
             <Parameter Name="estm_Id" Mode="In" Type="Byte" />
             <Parameter Name="estm_Descripcion" Mode="In" Type="String" />
+            <Parameter Name="estm_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="estm_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Inv_tbEstadoMovimiento_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEstadoMovimiento_Update_Result)">
             <Parameter Name="estm_Id" Mode="In" Type="Byte" />
             <Parameter Name="estm_Descripcion" Mode="In" Type="String" />
+            <Parameter Name="estm_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="estm_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Inv_tbProveedor_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProveedor_Insert_Result)">
             <Parameter Name="prov_Nombre" Mode="In" Type="String" />
@@ -5478,16 +5562,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
             <Parameter Name="prov_Telefono" Mode="In" Type="String" />
             <Parameter Name="prov_RTN" Mode="In" Type="String" />
             <Parameter Name="acte_Id" Mode="In" Type="Int16" />
-          </FunctionImport>
-          <FunctionImport Name="UDP_Inv_tbProveedor_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProveedor_Update_Result)">
-            <Parameter Name="prov_Id" Mode="In" Type="Int32" />
-            <Parameter Name="prov_Nombre" Mode="In" Type="String" />
-            <Parameter Name="prov_NombreContacto" Mode="In" Type="String" />
-            <Parameter Name="prov_Direccion" Mode="In" Type="String" />
-            <Parameter Name="prov_Email" Mode="In" Type="String" />
-            <Parameter Name="prov_Telefono" Mode="In" Type="String" />
-            <Parameter Name="prov_RTN" Mode="In" Type="String" />
-            <Parameter Name="acte_Id" Mode="In" Type="Int16" />
+            <Parameter Name="prov_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="prov_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Acce_tbAccesoRol_Delete">
             <Parameter Name="rol_Id" Mode="In" Type="Int32" />
@@ -5496,6 +5572,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
           <FunctionImport Name="UDP_Acce_tbAccesoRol_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbAccesoRol_Insert_Result)">
             <Parameter Name="rol_Id" Mode="In" Type="Int32" />
             <Parameter Name="obj_Id" Mode="In" Type="Int32" />
+            <Parameter Name="UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Acce_tbAccesoRol_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbAccesoRol_Update_Result)">
             <Parameter Name="acrol_Id" Mode="In" Type="Int32" />
@@ -5508,6 +5586,10 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
             <Parameter Name="pscat_Id" Mode="In" Type="Int32" />
             <Parameter Name="pscat_Descripcion" Mode="In" Type="String" />
             <Parameter Name="pcat_Id" Mode="In" Type="Int32" />
+            <Parameter Name="pscat_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="pscat_FechaCrea" Mode="In" Type="DateTime" />
+            <Parameter Name="pscat_UsuarioModifica" Mode="In" Type="Int32" />
+            <Parameter Name="pscat_FechaModifica" Mode="In" Type="DateTime" />
             <Parameter Name="pscat_ISV" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="UDP_Inv_tbProductoSubCategoria_Update_Estado" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProductoSubCategoria_Update_Estado_Result)">
@@ -5517,6 +5599,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
           <FunctionImport Name="UDP_Inv_tbBodega_Update_Estado" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbBodega_Update_Estado_Result)">
             <Parameter Name="bod_Id" Mode="In" Type="Int32" />
             <Parameter Name="bod_EsActiva" Mode="In" Type="Byte" />
+            <Parameter Name="bodd_UsuarioModifica" Mode="In" Type="Int32" />
+            <Parameter Name="bodd_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Inv_tbBodegaDetalle_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbBodegaDetalle_Update_Result)">
             <Parameter Name="bodd_Id" Mode="In" Type="Int32" />
@@ -5527,6 +5611,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
             <Parameter Name="bodd_PuntoReorden" Mode="In" Type="Decimal" />
             <Parameter Name="bodd_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="bodd_FechaCrea" Mode="In" Type="DateTime" />
+            <Parameter Name="bodd_UsuarioModifica" Mode="In" Type="Int32" />
+            <Parameter Name="bodd_FechaModifica" Mode="In" Type="DateTime" />
             <Parameter Name="bodd_Costo" Mode="In" Type="Decimal" />
             <Parameter Name="bodd_CostoPromedio" Mode="In" Type="Decimal" />
           </FunctionImport>
@@ -5602,6 +5688,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
             <Parameter Name="bod_Id" Mode="In" Type="Int32" />
             <Parameter Name="estif_Id" Mode="In" Type="Byte" />
             <Parameter Name="invf_FechaInventario" Mode="In" Type="DateTime" />
+            <Parameter Name="invf_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="invf_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Inv_tbInventarioFisico_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbInventarioFisico_Update_Result)">
             <Parameter Name="invf_Id" Mode="In" Type="Int32" />
@@ -5612,10 +5700,14 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
             <Parameter Name="invf_FechaInventario" Mode="In" Type="DateTime" />
             <Parameter Name="invf_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="invf_FechaCrea" Mode="In" Type="DateTime" />
+            <Parameter Name="invf_UsuarioModifica" Mode="In" Type="Int32" />
+            <Parameter Name="invf_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Inv_tbInventarioFisico_Update_Estado" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbInventarioFisico_Update_Estado_Result)">
             <Parameter Name="invf_Id" Mode="In" Type="Int32" />
             <Parameter Name="estif_Id" Mode="In" Type="Byte" />
+            <Parameter Name="invf_UsuarioModifica" Mode="In" Type="Int32" />
+            <Parameter Name="invf_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Inv_tbInventarioFisicoDetalle_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbInventarioFisicoDetalle_Update_Result)">
             <Parameter Name="invfd_Id" Mode="In" Type="Int32" />
@@ -5624,6 +5716,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
             <Parameter Name="invfd_Cantidad" Mode="In" Type="Decimal" />
             <Parameter Name="invfd_CantidadSistema" Mode="In" Type="Decimal" />
             <Parameter Name="uni_Id" Mode="In" Type="Int32" />
+            <Parameter Name="invfd_UsuarioModifica" Mode="In" Type="Int32" />
+            <Parameter Name="invfd_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Acce_tbUsuario_Estado" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbUsuario_Estado_Result)">
             <Parameter Name="usu_Id" Mode="In" Type="String" />
@@ -5651,21 +5745,31 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
             <Parameter Name="ent_Id" Mode="In" Type="Int32" />
             <Parameter Name="entd_EsAnulada" Mode="In" Type="Byte" />
             <Parameter Name="entd_RazonAnulada" Mode="In" Type="String" />
+            <Parameter Name="entd_UsuarioModifica" Mode="In" Type="Int32" />
+            <Parameter Name="entd_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Inv_tbEntrada_Update_Estado" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEntrada_Update_Estado_Result)">
             <Parameter Name="ent_Id" Mode="In" Type="Int32" />
             <Parameter Name="estm_Id" Mode="In" Type="Byte" />
+            <Parameter Name="entd_UsuarioModifica" Mode="In" Type="Int32" />
+            <Parameter Name="entd_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Inv_tbEntradaDetalle_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEntradaDetalle_Insert_Result)">
             <Parameter Name="ent_Id" Mode="In" Type="Int32" />
             <Parameter Name="prod_Codigo" Mode="In" Type="String" />
             <Parameter Name="entd_Cantidad" Mode="In" Type="Decimal" />
+            <Parameter Name="ent_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="ent_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Inv_tbEntradaDetalle_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEntradaDetalle_Update_Result)">
             <Parameter Name="entd_Id" Mode="In" Type="Int32" />
             <Parameter Name="ent_Id" Mode="In" Type="Int32" />
             <Parameter Name="prod_Codigo" Mode="In" Type="String" />
             <Parameter Name="entd_Cantidad" Mode="In" Type="Decimal" />
+            <Parameter Name="entd_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="entd_FechaCrea" Mode="In" Type="DateTime" />
+            <Parameter Name="entd_UsuarioModifica" Mode="In" Type="Int32" />
+            <Parameter Name="entd_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="SDP_tbInventarioFisicoDetalle_Select" ReturnType="Collection(ERP_ZORZALModel.SDP_tbInventarioFisicoDetalle_Select_Result)">
           <Parameter Name="invfd_Id" Mode="In" Type="Int32" />
@@ -5686,6 +5790,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
             <Parameter Name="invfd_Cantidad" Mode="In" Type="Decimal" />
             <Parameter Name="invfd_CantidadSistema" Mode="In" Type="Decimal" />
             <Parameter Name="uni_Id" Mode="In" Type="Int32" />
+            <Parameter Name="invfd_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="invfd_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Gral_tbDepartamento_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbDepartamento_Insert_Result)">
             <Parameter Name="dep_Codigo" Mode="In" Type="String" />
@@ -5733,6 +5839,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
             <Parameter Name="mun_Codigo" Mode="In" Type="String" />
             <Parameter Name="dep_Codigo" Mode="In" Type="String" />
             <Parameter Name="mun_Nombre" Mode="In" Type="String" />
+            <Parameter Name="mun_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="mun_FechaCrea" Mode="In" Type="DateTime" />
             <Parameter Name="mun_UsuarioModifica" Mode="In" Type="Int32" />
             <Parameter Name="mun_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
@@ -5773,9 +5881,13 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
             <Parameter Name="tent_Id" Mode="In" Type="Byte" />
             <Parameter Name="ent_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="ent_FechaCrea" Mode="In" Type="DateTime" />
+            <Parameter Name="ent_UsuarioModifica" Mode="In" Type="Int32" />
+            <Parameter Name="ent_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Acce_tbRol_Inactivar" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbRol_Inactivar_Result)">
-          <Parameter Name="IDRol" Mode="In" Type="Int32" />
+            <Parameter Name="IDRol" Mode="In" Type="Int32" />
+            <Parameter Name="rol_UsuarioModifica" Mode="In" Type="Int32" />
+            <Parameter Name="rol_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
           <EntitySet Name="tbAccesoRol" EntityType="ERP_ZORZALModel.tbAccesoRol" />
           <EntitySet Name="tbObjeto" EntityType="ERP_ZORZALModel.tbObjeto" />
@@ -6551,6 +6663,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
           <FunctionImport Name="UDP_Inv_tbBodega_Update_Estado_Validacion" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbBodega_Update_Estado_Validacion_Result)">
             <Parameter Name="bod_Id" Mode="In" Type="Int32" />
             <Parameter Name="bod_EsActiva" Mode="In" Type="Byte" />
+            <Parameter Name="bodd_UsuarioModifica" Mode="In" Type="Int32" />
+            <Parameter Name="bodd_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
           <EntitySet Name="tbEntrada" EntityType="ERP_ZORZALModel.tbEntrada" />
           <AssociationSet Name="FK_Inv_tbEntrada_ent_UsuarioModifica" Association="ERP_ZORZALModel.FK_Inv_tbEntrada_ent_UsuarioModifica">
@@ -6610,6 +6724,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
             <Parameter Name="sal_EsAnulada" Mode="In" Type="Boolean" />
             <Parameter Name="sal_RazonDevolucion" Mode="In" Type="String" />
             <Parameter Name="sal_RazonAnulada" Mode="In" Type="String" />
+            <Parameter Name="sal_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="sal_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Inv_tbSalida_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbSalida_Update_Result)">
             <Parameter Name="sal_Id" Mode="In" Type="Int32" />
@@ -6624,12 +6740,16 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
             <Parameter Name="sal_RazonAnulada" Mode="In" Type="String" />
             <Parameter Name="sal_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="sal_FechaCrea" Mode="In" Type="DateTime" />
+            <Parameter Name="sal_UsuarioModifica" Mode="In" Type="Int32" />
+            <Parameter Name="sal_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Inv_tbSalidaDetalle_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbSalidaDetalle_Insert_Result)">
             <Parameter Name="sal_Id" Mode="In" Type="Int32" />
             <Parameter Name="prod_Codigo" Mode="In" Type="String" />
             <Parameter Name="sald_Cantidad" Mode="In" Type="Decimal" />
             <Parameter Name="box_Codigo" Mode="In" Type="String" />
+            <Parameter Name="sald_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="sald_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Inv_tbSalidaDetalle_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbSalidaDetalle_Update_Result)">
             <Parameter Name="sald_Id" Mode="In" Type="Int32" />
@@ -6637,6 +6757,10 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
             <Parameter Name="prod_Codigo" Mode="In" Type="String" />
             <Parameter Name="sald_Cantidad" Mode="In" Type="Decimal" />
             <Parameter Name="box_Codigo" Mode="In" Type="String" />
+            <Parameter Name="sald_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="sald_FechaCrea" Mode="In" Type="DateTime" />
+            <Parameter Name="sald_UsuarioModifica" Mode="In" Type="Int32" />
+            <Parameter Name="sald_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
           <EntitySet Name="tbSalida" EntityType="ERP_ZORZALModel.tbSalida" />
           <AssociationSet Name="FK_Inv_tbSalida_Sal_UsuarioModifica" Association="ERP_ZORZALModel.FK_Inv_tbSalida_Sal_UsuarioModifica">
@@ -6716,6 +6840,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
             <Parameter Name="ent_RazonDevolucion" Mode="In" Type="Int32" />
             <Parameter Name="ent_BodegaDestino" Mode="In" Type="Int32" />
             <Parameter Name="tent_Id" Mode="In" Type="Byte" />
+            <Parameter Name="ent_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="ent_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="SDP_tbEmpleado_Consulta" ReturnType="Collection(ERP_ZORZALModel.SDP_tbEmpleado_Consulta_Result)">
           <Parameter Name="emp_Id" Mode="In" Type="Int32" />
@@ -6750,6 +6876,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
             <Parameter Name="FechaElaboracion" Mode="In" Type="DateTime" />
             <Parameter Name="BodegaDestino" Mode="In" Type="Int32" />
             <Parameter Name="CantidadDisponible" Mode="In" Type="Decimal" />
+            <Parameter Name="UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="SPGetRTNproveedor" ReturnType="Collection(ERP_ZORZALModel.SPGetRTNproveedor_Result)">
           <Parameter Name="prov_Id" Mode="In" Type="Int32" />
@@ -6900,6 +7028,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
           <FunctionImport Name="UDP_Inv_tbProductoSubcategoria_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProductoSubcategoria_Insert_Result)">
             <Parameter Name="pscat_Descripcion" Mode="In" Type="String" />
             <Parameter Name="pcat_Id" Mode="In" Type="Int32" />
+            <Parameter Name="pscat_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="pscat_FechaCrea" Mode="In" Type="DateTime" />
             <Parameter Name="pscat_ISV" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="SPGetResponsableBodega" ReturnType="Collection(ERP_ZORZALModel.SPGetResponsableBodega_Result)">
@@ -7067,6 +7197,20 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
             <Parameter Name="bite_Fecha" Mode="In" Type="DateTime" />
             <Parameter Name="bite_MensajeError" Mode="In" Type="String" />
             <Parameter Name="bite_Accion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Inv_tbProveedor_Update" ReturnType="Collection(String)">
+            <Parameter Name="prov_Id" Mode="In" Type="Int32" />
+            <Parameter Name="prov_Nombre" Mode="In" Type="String" />
+            <Parameter Name="prov_NombreContacto" Mode="In" Type="String" />
+            <Parameter Name="prov_Direccion" Mode="In" Type="String" />
+            <Parameter Name="prov_Email" Mode="In" Type="String" />
+            <Parameter Name="prov_Telefono" Mode="In" Type="String" />
+            <Parameter Name="prov_RTN" Mode="In" Type="String" />
+            <Parameter Name="acte_Id" Mode="In" Type="Int16" />
+            <Parameter Name="prov_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="prov_FechaCrea" Mode="In" Type="DateTime" />
+            <Parameter Name="prov_UsuarioModifica" Mode="In" Type="Int32" />
+            <Parameter Name="prov_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
@@ -11973,13 +12117,6 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Inv_tbProveedor_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProveedor_Update" >
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProveedor_Update_Result">
-                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UDP_Acce_tbAccesoRol_Delete" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbAccesoRol_Delete" />
           <FunctionImportMapping FunctionImportName="UDP_Acce_tbAccesoRol_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbAccesoRol_Insert" >
             <ResultMapping>
@@ -13998,6 +14135,7 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbProveedor_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProveedor_Update" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

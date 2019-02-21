@@ -15,7 +15,7 @@ namespace ERP_GMEDINA.Controllers
     public class ParametroController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
-
+        GeneralFunctions Function = new GeneralFunctions();
         // GET: /Parametro/
         public ActionResult Index()
         {
@@ -113,7 +113,7 @@ namespace ERP_GMEDINA.Controllers
 
                     IEnumerable<object> List = null;
                     var MsjError = "";
-                    List = db.UDP_Gral_tbParametro_Insert(tbParametro.par_Id, tbParametro.par_NombreEmpresa, tbParametro.par_TelefonoEmpresa, tbParametro.par_CorreoEmpresa, tbParametro.par_PathLogo, tbParametro.mnda_Id, tbParametro.par_RolGerenteTienda, tbParametro.par_RolCreditoCobranza, tbParametro.par_RolSupervisorCaja, tbParametro.par_RolCajero, tbParametro.par_RolAuditor, tbParametro.par_SucursalPrincipal, tbParametro.par_PorcentajeDescuentoTE, tbParametro.par_IdConsumidorFinal);
+                    List = db.UDP_Gral_tbParametro_Insert(tbParametro.par_Id, tbParametro.par_NombreEmpresa, tbParametro.par_TelefonoEmpresa, tbParametro.par_CorreoEmpresa, tbParametro.par_PathLogo, tbParametro.mnda_Id, tbParametro.par_RolGerenteTienda, tbParametro.par_RolCreditoCobranza, tbParametro.par_RolSupervisorCaja, tbParametro.par_RolCajero, tbParametro.par_RolAuditor, tbParametro.par_SucursalPrincipal, tbParametro.par_PorcentajeDescuentoTE, tbParametro.par_IdConsumidorFinal, Function.GetUser(), Function.DatetimeNow());
                     foreach (UDP_Gral_tbParametro_Insert_Result parametro in List)
                         MsjError = parametro.MensajeError;
 
@@ -224,7 +224,7 @@ namespace ERP_GMEDINA.Controllers
 
                     IEnumerable<object> List = null;
                     var MsjError = "";
-                    List = db.UDP_Gral_tbParametro_Update(tbParametro.par_Id, tbParametro.par_NombreEmpresa, tbParametro.par_TelefonoEmpresa, tbParametro.par_CorreoEmpresa, tbParametro.par_PathLogo, tbParametro.mnda_Id, tbParametro.par_RolGerenteTienda, tbParametro.par_RolCreditoCobranza, tbParametro.par_RolSupervisorCaja, tbParametro.par_RolCajero, tbParametro.par_RolAuditor, tbParametro.par_SucursalPrincipal, tbParametro.par_UsuarioCrea, tbParametro.par_FechaCrea, tbParametro.par_PorcentajeDescuentoTE, tbParametro.par_IdConsumidorFinal);
+                    List = db.UDP_Gral_tbParametro_Update(tbParametro.par_Id, tbParametro.par_NombreEmpresa, tbParametro.par_TelefonoEmpresa, tbParametro.par_CorreoEmpresa, tbParametro.par_PathLogo, tbParametro.mnda_Id, tbParametro.par_RolGerenteTienda, tbParametro.par_RolCreditoCobranza, tbParametro.par_RolSupervisorCaja, tbParametro.par_RolCajero, tbParametro.par_RolAuditor, tbParametro.par_SucursalPrincipal, tbParametro.par_UsuarioCrea, tbParametro.par_FechaCrea, tbParametro.par_PorcentajeDescuentoTE, tbParametro.par_IdConsumidorFinal, Function.GetUser(), Function.DatetimeNow());
                     foreach (UDP_Gral_tbParametro_Update_Result parametro in List)
                         MsjError = parametro.MensajeError;
                     if (MsjError == "-1")

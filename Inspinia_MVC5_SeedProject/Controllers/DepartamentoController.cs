@@ -367,7 +367,7 @@ namespace ERP_GMEDINA.Controllers
             try
             {
                 IEnumerable<object> list = null;
-                list = db.UDP_Gral_tbMunicipio_Update(Municipio.mun_Codigo, depCodigo, Municipio.mun_Nombre, Function.GetUser(), DateTime.Now);
+                list = db.UDP_Gral_tbMunicipio_Update(Municipio.mun_Codigo, depCodigo, Municipio.mun_Nombre, Municipio.mun_UsuarioCrea, Municipio.mun_FechaCrea, Function.GetUser(), Function.DatetimeNow());
                 foreach (UDP_Gral_tbMunicipio_Update_Result mun in list)
                     MsjError = (mun.MensajeError);
             }
@@ -387,7 +387,7 @@ namespace ERP_GMEDINA.Controllers
                 try
                 {
                     IEnumerable<object> list = null;
-                    list = db.UDP_Gral_tbMunicipio_Insert(GuardarMunicipios.mun_Codigo, GuardarMunicipios.dep_Codigo, GuardarMunicipios.mun_Nombre, Function.GetUser(), DateTime.Now);
+                    list = db.UDP_Gral_tbMunicipio_Insert(GuardarMunicipios.mun_Codigo, GuardarMunicipios.dep_Codigo, GuardarMunicipios.mun_Nombre, Function.GetUser(), Function.DatetimeNow());
                     foreach (UDP_Gral_tbMunicipio_Insert_Result mun in list)
                         MsjError = (mun.MensajeError);
 
@@ -417,7 +417,7 @@ namespace ERP_GMEDINA.Controllers
             try
             {
                 IEnumerable<object> list = null;
-                list = db.UDP_Gral_tbMunicipio_Insert(tbMunicipio.mun_Codigo, tbMunicipio.dep_Codigo, tbMunicipio.mun_Nombre, Function.GetUser(), DateTime.Now);
+                list = db.UDP_Gral_tbMunicipio_Insert(tbMunicipio.mun_Codigo, tbMunicipio.dep_Codigo, tbMunicipio.mun_Nombre, Function.GetUser(), Function.DatetimeNow());
 
                 foreach (UDP_Gral_tbMunicipio_Insert_Result Municipio in list)
                     Msj = Municipio.MensajeError;
@@ -496,7 +496,7 @@ namespace ERP_GMEDINA.Controllers
                 {
                     foreach (tbMunicipio mun in listMunicipios)
                     {
-                        list = db.UDP_Gral_tbMunicipio_Insert(mun.mun_Codigo, depCodigo, mun.mun_Nombre, Function.GetUser(), DateTime.Now);
+                        list = db.UDP_Gral_tbMunicipio_Insert(mun.mun_Codigo, depCodigo, mun.mun_Nombre, Function.GetUser(), Function.DatetimeNow());
                         foreach (UDP_Gral_tbMunicipio_Insert_Result municipios in list)
                         {
                             MsjError = municipios.MensajeError;

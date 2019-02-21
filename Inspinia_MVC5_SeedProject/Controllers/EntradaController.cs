@@ -17,7 +17,7 @@ namespace ERP_ZORZAL.Controllers
     public class EntradaController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
-
+        GeneralFunctions Function = new GeneralFunctions();
         // GET: /Entrada/
         public ActionResult Index()
         {
@@ -329,6 +329,9 @@ namespace ERP_ZORZAL.Controllers
                                                             , Editardetalle.ent_Id
                                                            , Editardetalle.prod_Codigo
                                                            , Editardetalle.entd_Cantidad
+                                                           ,Editardetalle.entd_UsuarioCrea,
+                                                           Editardetalle.entd_FechaCrea,
+                                                           Function.GetUser(), Function.DatetimeNow()
                                     );
                  foreach (UDP_Inv_tbEntradaDetalle_Update_Result detalle in list)
                     Msj = detalle.MensajeError;
@@ -477,7 +480,8 @@ namespace ERP_ZORZAL.Controllers
                                                                 tbEntrada.fact_Id,
                                                                 tbEntrada.ent_RazonDevolucion,
                                                                 tbEntrada.ent_BodegaDestino,
-                                                                tbEntrada.tent_Id);
+                                                                tbEntrada.tent_Id,
+                                                                Function.GetUser(), Function.DatetimeNow());
                             foreach (UDP_Inv_tbEntrada_Insert_Result Entrada in ENTRADA)
                                 idMaster = Convert.ToInt32(Entrada.MensajeError);
 
@@ -496,7 +500,8 @@ namespace ERP_ZORZAL.Controllers
                                         {
                                             DETALLE = db.UDP_Inv_tbEntradaDetalle_Insert(idMaster
                                                                                         , entd.prod_Codigo
-                                                                                        , entd.entd_Cantidad);
+                                                                                        , entd.entd_Cantidad,
+                                                                                        Function.GetUser(), Function.DatetimeNow());
                                             foreach (UDP_Inv_tbEntradaDetalle_Insert_Result B_detalle in DETALLE)
 
                                             //if (MensajeError == "-1")
@@ -583,7 +588,8 @@ namespace ERP_ZORZAL.Controllers
                                                                         tbEntrada.ent_BodegaDestino,
                                                                         tbEntrada.tent_Id,
                                                                         tbEntrada.ent_UsuarioCrea,
-                                                                        tbEntrada.ent_FechaCrea);
+                                                                        tbEntrada.ent_FechaCrea,
+                                                                        Function.GetUser(), Function.DatetimeNow());
                         foreach (UDP_Inv_tbEntrada_Update_Result Entrada in ENTRADA)
                             idMaster = Convert.ToInt32(Entrada.MensajeError);
 
@@ -605,7 +611,8 @@ namespace ERP_ZORZAL.Controllers
 
                                         DETALLE = db.UDP_Inv_tbEntradaDetalle_Insert(idMaster
                                                                                     ,entd.prod_Codigo
-                                                                                    ,entd.entd_Cantidad);
+                                                                                    ,entd.entd_Cantidad,
+                                                                                    Function.GetUser(), Function.DatetimeNow());
                                         foreach (UDP_Inv_tbEntradaDetalle_Insert_Result B_detalle in DETALLE)
 
                                         //if (MensajeError == "-1")
@@ -664,7 +671,7 @@ namespace ERP_ZORZAL.Controllers
                 tbEntrada obj = db.tbEntrada.Find(id);
                 IEnumerable<object> list = null;
                 var MsjError = "";
-                list = db.UDP_Inv_tbEntrada_Update_Estado(id, Helpers.EntradaInactivada);
+                list = db.UDP_Inv_tbEntrada_Update_Estado(id, Helpers.EntradaInactivada, Function.GetUser(), Function.DatetimeNow());
                 foreach (UDP_Inv_tbEntrada_Update_Estado_Result obje in list)
                     MsjError = obje.MensajeError;
 
@@ -697,7 +704,7 @@ namespace ERP_ZORZAL.Controllers
                 tbEntrada obj = db.tbEntrada.Find(id);
                 IEnumerable<object> list = null;
                 var MsjError = "";
-                list = db.UDP_Inv_tbEntrada_Update_Estado(id, Helpers.EntradaEmitida);
+                list = db.UDP_Inv_tbEntrada_Update_Estado(id, Helpers.EntradaEmitida, Function.GetUser(), Function.DatetimeNow());
                 foreach (UDP_Inv_tbEntrada_Update_Estado_Result obje in list)
                     MsjError = obje.MensajeError;
 
@@ -736,7 +743,7 @@ namespace ERP_ZORZAL.Controllers
 
                 IEnumerable<object> list = null;
                 var MsjError = "";
-                list = db.UDP_Inv_tbEntrada_Update_Anular(cambiaAnular.ent_Id, Helpers.EntradaAnulada, cambiaAnular.entd_RazonAnulada);
+                list = db.UDP_Inv_tbEntrada_Update_Anular(cambiaAnular.ent_Id, Helpers.EntradaAnulada, cambiaAnular.entd_RazonAnulada, Function.GetUser(), Function.DatetimeNow());
                 foreach (UDP_Inv_tbEntrada_Update_Anular_Result obje in list)
                     MsjError = obje.MensajeError;
 
@@ -768,7 +775,7 @@ namespace ERP_ZORZAL.Controllers
                 tbEntrada obj = db.tbEntrada.Find(id);
                 IEnumerable<object> list = null;
                 var MsjError = "";
-                list = db.UDP_Inv_tbEntrada_Update_Estado(id, Helpers.EntradaAplicada);
+                list = db.UDP_Inv_tbEntrada_Update_Estado(id, Helpers.EntradaAplicada, Function.GetUser(), Function.DatetimeNow());
                 foreach (UDP_Inv_tbEntrada_Update_Estado_Result obje in list)
                     MsjError = obje.MensajeError;
 

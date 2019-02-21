@@ -258,7 +258,7 @@ namespace ERP_GMEDINA.Controllers
                 IEnumerable<Object> List = null;
                 var Msj = "";
                 tbRol tbRol = db.tbRol.Find(id);
-                List = db.UDP_Acce_tbRol_Inactivar(id);
+                List = db.UDP_Acce_tbRol_Inactivar(id, Function.GetUser(), Function.DatetimeNow());
                 foreach (UDP_Acce_tbRol_Inactivar_Result Rol in List)
                     Msj = Rol.MensajeError;
                 if (Msj.StartsWith("-1"))
@@ -292,7 +292,7 @@ namespace ERP_GMEDINA.Controllers
                         {
                             foreach (tbAccesoRol vAccesoRol in RolAcceso)
                             {
-                                Acceso = db.UDP_Acce_tbAccesoRol_Insert(idRol, vAccesoRol.obj_Id);
+                                Acceso = db.UDP_Acce_tbAccesoRol_Insert(idRol, vAccesoRol.obj_Id, Function.GetUser(), Function.DatetimeNow());
                                 foreach (UDP_Acce_tbAccesoRol_Insert_Result item in Acceso)
                                 {
                                     Msj = Convert.ToString(item.MensajeError);
@@ -345,7 +345,7 @@ namespace ERP_GMEDINA.Controllers
                                     idRol = Convert.ToInt32(Msj1);
                                     foreach (tbAccesoRol vAccesoRol in AccesoRol)
                                     {
-                                        RolAcceso = db.UDP_Acce_tbAccesoRol_Insert(idRol, vAccesoRol.obj_Id);
+                                        RolAcceso = db.UDP_Acce_tbAccesoRol_Insert(idRol, vAccesoRol.obj_Id, Function.GetUser(), Function.DatetimeNow());
                                         foreach (UDP_Acce_tbAccesoRol_Insert_Result item in RolAcceso)
                                         {
                                             Msj2 = Convert.ToString(item.MensajeError);
