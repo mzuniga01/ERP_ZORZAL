@@ -4,7 +4,15 @@
     ViewBag.Title = "Editar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@{
+    string UserName = "";
+    GeneralFunctions Login = new GeneralFunctions();
+    List<tbUsuario> User = Login.getUserInformation();
+    foreach (tbUsuario Usuario in User)
+    {
+        UserName = Usuario.usu_Nombres + " " + Usuario.usu_Apellidos;
+    }
+}
 <style>
     .uppercase {
   text-transform:uppercase;
@@ -70,7 +78,8 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.tbUsuario.tbEmpleado.emp_Nombres, "Cajero", new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.tbUsuario.tbEmpleado.emp_Nombres, new { htmlAttributes = new { @*@readonly = "readonly"*@ } })
+                                    <input class="form-control" readonly value="@UserName"/>
+                                    @*@Html.EditorFor(model => model.tbUsuario.tbEmpleado.emp_Nombres, new { htmlAttributes = new { @readonly = "readonly" } })*@
                                     <p style="color:red"><span class="validation-error"> @Html.ValidationMessageFor(model => model.tbDevolucion.tbCaja.cja_Descripcion)</span></p>
                                 </div>
                             </div>
@@ -82,7 +91,7 @@
                                     <p style="color:red"><span class="validation-error"> @Html.ValidationMessageFor(model => model.nocre_Codigo)</span></p>
                                 </div>
                             </div>
-
+                            @* -------------------------- Si dev_Id es != null mostrar todo lo de devolución------------------ *@
                             @if (Model.dev_Id != null)
                             {
                                 <div class="form-group">
@@ -155,7 +164,7 @@
                                     </div>
                                 </div>
                             }
-                            else  /*------------------De lo contrario------------------*/
+                            else  /*----------------------- De lo contrario mostrar todo excepto Devoluciones -------------------------------*/
                             {
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.tbCliente.clte_Identificacion, "Identificación Cliente", new { @class = "control-label col-md-2" })

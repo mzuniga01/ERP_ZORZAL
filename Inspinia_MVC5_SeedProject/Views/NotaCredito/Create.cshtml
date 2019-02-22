@@ -5,6 +5,15 @@
     ViewBag.Title = "Registrar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@{
+    string UserName = "";
+    GeneralFunctions Login = new GeneralFunctions();
+    List<tbUsuario> User = Login.getUserInformation();
+    foreach (tbUsuario Usuario in User)
+    {
+        UserName = Usuario.usu_Nombres + " " + Usuario.usu_Apellidos;
+    }
+}
 <style>
     .AsteriscoRojo:after {
         content: "*";
@@ -42,8 +51,8 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.suc_Id, new { @class = "control-label required col-md-2" })
                                 <div class="col-md-4">
-                                    <input class="form-control" readonly value="@ViewBag.suc_Descripcion" name="suc_Descripcion" id="suc_Descripcion"/>
-                                    <input class="form-control" readonly value="@ViewBag.suc_Id" id="suc_Id" name="suc_Id" type="hidden" />
+                                    <input class="form-control" readonly value="@ViewBag.suc_Descripcion" id="descripcion"/>
+                                    <input class="form-control" value="@ViewBag.suc_Id" id="suc_Id" name="suc_Id" type="hidden" />
                                     <span class="validation-error">  @Html.ValidationMessageFor(model => model.suc_Id)</span>
                                 </div>
                             </div>
@@ -57,17 +66,17 @@
                             </div>
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.tbDevolucion.tbCaja.cja_Descripcion, "Cajero", new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.tbUsuario.tbEmpleado.emp_Nombres, "Cajero", new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.tbDevolucion.tbCaja.cja_Descripcion)
-                                    @*<p style="color:red"><span class="validation-error"> @Html.ValidationMessageFor(model => model.tbDevolucion.tbCaja.cja_Descripcion)</span></p>*@
+                                    
+                                    <input class="form-control" readonly value="@UserName"/>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.nocre_Codigo, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.nocre_Codigo)
+                                    @Html.EditorFor(model => model.nocre_Codigo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     <p style="color:red"><span class="validation-error"> @Html.ValidationMessageFor(model => model.nocre_Codigo)</span></p>
                                 </div>
                             </div>
@@ -91,7 +100,7 @@
                                 @*<label class="control-label col-md-2" id="labeldev" name="labeldev">Devolución</label>*@
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.dev_Id, new { htmlAttributes = new { @readonly = "readonly" } })
-                                    <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.dev_Id)</span></p>
+                                    <p id="valido" style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.dev_Id)</span></p>
                                 </div>
                                 <div class="col-md-">
                                     <button type="button" id="buscarDev" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarDevolucion"><span class="glyphicon glyphicon-search"></span></button>
@@ -102,7 +111,7 @@
                                 @Html.LabelFor(model => model.tbCliente.clte_Identificacion, "Identificación Cliente", new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.tbCliente.clte_Identificacion, new { htmlAttributes = new { @readonly = "readonly" } })
-                                    <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.tbCliente.clte_Identificacion)</span></p>
+                                    <p id="valido" style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.tbCliente.clte_Identificacion)</span></p>
                                 </div>
 
                                 <div class="col-md-">
@@ -159,7 +168,7 @@
                             @*clte_Id NotaCredito fin*@
                             <div class="form-group">
                                 <div class="col-md-12 text-center">
-                                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                                    <input type="submit" value="Guardar" id="guardar" class="btn btn-primary" />
                                     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                                 </div>
                             </div>
@@ -222,24 +231,27 @@
                 <div class="modal-body" id="frmAutorizarDescuento">
                     <div class="ibox-content">
                         <div class="form-horizontal">
-                            <form>
+                            @using (Html.BeginForm())
+                            {
                                 <div class="form-group">
-                                    <label class="control-label col-md-4">Usuario</label>
-                                    <div class="col-md-6">
-                                        <input id="Username" type="text" name="Username" class="form-control" placeholder="Usuario">
-                                    </div>
+                                   
+                                        <label class="control-label col-md-4">Usuario</label>
+                                        <div class="col-md-6">
+                                            @Html.EditorFor(model => model.tbUsuario.usu_NombreUsuario)
+                                        </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-4">Contraseña</label>
                                     <div class="col-md-6">
-                                        <input name="txtPassword" class="form-control" type="text" placeholder="Contraseña" />
+                                        <input type="password" name="txtPassword" class="form-control" placeholder="Password" />
+                                        <p style="color:red;">@Html.ValidationMessageFor(model => model.tbUsuario.usu_NombreUsuario)</p>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button class="btn btn-primary btn-sm" type="button" data-dismiss="modal" onclick="otros();" id="Autorizar">Autorizar</button>
                                     <button type="button" class="btn btn-white btn-sm" data-dismiss="modal" onclick="devolucionNC();">Cancelar</button>
-                                </div>
-                            </form>
+                                 </div>
+                            }
                         </div>
                     </div>
                 </div>
@@ -392,5 +404,43 @@ function limpia() {
             document.getElementById("#nocre_MotivoEmision").value = '';
     }
 }
+
+    //---------------------No limpiar textos---------------------------
+$('#guardar').click(function () {
+    var sucursal = $('#descripcion').val();
+    var codigoNC = $('#nocre_Codigo').val();
+    var IDdev = $('#dev_Id').val();
+    var identificacion = $('#tbCliente_clte_Identificacion').val();
+    var cliente = $('#tbCliente_clte_Nombres').val();
+    var monto = $('#nocre_Monto').val();
+    var motivo = $('#nocre_MotivoEmision').val();
+    var fechaEmision = $('#nocre_FechaEmision').val();
+    var fechaDevolucion = $('#tbDevolucion_dev_Fecha').val();
+
+    if (sucursal == "") {
+        valido = document.getElementById('sucursal');
+        valido.innerText = "El Campo Sucursal es Requierido";
+        return false;
+    } else if (codigoNC == ""){
+        valido = document.getElementById('codigoNC');
+        valido.innerText = "El Campo Sucursal es Requierido";
+        return false;
+    } else if (identificacion == "") {
+        valido = document.getElementById('identificacion');
+        valido.innerText = "El Campo Identificación es Requierido";
+        return false;
+    } else if (cliente == "") {
+        valido = document.getElementById('cliente');
+        valido.innerText = "El Campo Cliente es Requierido";
+        return false;
+    } else if (IDdev <= 0 || IDdev == "") {
+        valido = document.getElementById('IDdev');
+        valido.innerText = "El Campo Devolución es Requierido, porfavor seleccione una devolución";
+        return false;
+    }else
+    {
+        return true;
+    }
+});
 </script>
 }
