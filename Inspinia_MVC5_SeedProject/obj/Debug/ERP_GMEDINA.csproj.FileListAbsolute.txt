@@ -895,7 +895,6 @@ C:\Users\Lab 1\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\E
 C:\Users\Lab 1\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.CrystalReports.Engine.dll
 C:\Users\Lab 1\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.ReportSource.dll
 C:\Users\Lab 1\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.Shared.dll
-C:\Users\Lab 1\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\Microsoft.ReportViewer.WebForms.dll
 C:\Users\Lab 1\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.ReportAppServer.DataDefModel.dll
 C:\Users\Lab 1\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.ReportAppServer.ClientDoc.dll
 C:\Users\Lab 1\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.ReportAppServer.ReportDefModel.dll
@@ -908,5 +907,5 @@ C:\Users\Lab 1\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\Crystal
 C:\Users\Lab 1\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
 C:\Users\Lab 1\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
 C:\Users\Lab 1\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
-C:\Users\Lab 1\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\RdlCompile.cache
-C:\Users\Lab 1\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\RdlCompile.compiled
+C:\Users\Lab 1\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\Antlr3.Runtime.pdb
+C:\Users\Lab 1\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\Newtonsoft.Json.pdb

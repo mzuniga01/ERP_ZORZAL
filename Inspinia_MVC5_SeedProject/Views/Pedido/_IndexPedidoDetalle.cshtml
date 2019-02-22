@@ -105,7 +105,7 @@
                                 @Html.LabelFor(m => PedDetalle.pedd_Cantidad, new { @class = "control-label col-sm-2" })
                                 <div class="col-sm-10">
                                     <input type="text" id="pedd_Cantidad_Ped" name="pedd_Cantidad" class="form-control" onkeypress = "return validar(event)"/>
-                                    @Html.ValidationMessageFor(m => PedDetalle.pedd_Cantidad)
+                                    <p id="PCantidad" style="color:red">@Html.ValidationMessageFor(m => PedDetalle.pedd_Cantidad)</p>
                                 </div>
                             </div>
 
@@ -148,4 +148,7 @@
     </div>
 </div>
 
-
+@section Scripts
+{
+<script src="~/Scripts/app/SaveDetallePedido.js"></script>    
+    }

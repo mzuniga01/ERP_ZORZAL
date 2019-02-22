@@ -83,7 +83,22 @@ function GetPedidoDetalle() {
 }
 
 
-$("#pedd_Cantidad")[0].maxLength = 10;
+$("#pedd_Cantidad")[0].maxLength = 10; 
+$("#pedd_Cantidad_Ped")[0].maxLength = 10;
+
+
+
+
+$('#pedd_Cantidad_Ped').blur(function () {
+    valido = document.getElementById('PCantidad');
+    var motivoNC = $('#pedd_Cantidad_Ped').val();
+    if (motivoNC == "") {
+        $('#pedd_Cantidad_Ped').val('').focus();
+        valido.innerText = "*El campo Cantidad es requerido";
+    } else {
+        valido.innerText = "";
+    }
+});
 
 $(document).on("click", "#tblPedidoDetalle tbody tr td button#QuitarDetalle", function () {
     $(this).closest('tr').remove();

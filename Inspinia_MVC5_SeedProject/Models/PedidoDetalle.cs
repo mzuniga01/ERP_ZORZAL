@@ -21,6 +21,7 @@ namespace ERP_GMEDINA.Models
         [Display(Name = "Código Producto")]
         public string prod_Codigo { get; set; }
         [Display(Name = "Cantidad")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Los datos son requeridos")]
         public decimal pedd_Cantidad { get; set; }
         [Display(Name = "Cantidad Facturada ")]
         public decimal pedd_CantidadFacturada { get; set; }
