@@ -7,7 +7,7 @@ using System.Net;
 using System.Transactions;
 using System.Web.Mvc;
 using Newtonsoft.Json;
-
+using ERP_GMEDINA.Attribute;
 
 namespace ERP_ZORZAL.Controllers
 {
@@ -19,31 +19,17 @@ namespace ERP_ZORZAL.Controllers
         public object ACTUALIZAR_tbSalidaDetalle { get; private set; }
 
         // GET: /Box/
+        [SessionManager("Box/Index")]
         public ActionResult Index()
         {
-            if (Function.Sesiones("Box/Index"))
-            {
-
-            }
-            else
-            {
-                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
-            }
             ViewBag.Salida = new tbSalida();
             return View(db.tbBox.ToList());
         }
 
         // GET: /Box/Details/5
+        [SessionManager("Box/Details")]
         public ActionResult Details(string id)
         {
-            if (Function.Sesiones("Box/Details"))
-            {
-
-            }
-            else
-            {
-                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
-            }
             if (id == null)
             {
                 return RedirectToAction("Index");
@@ -57,23 +43,15 @@ namespace ERP_ZORZAL.Controllers
         }
 
         // GET: /Box/Create
+        [SessionManager("Box/Create")]
         public ActionResult Create()
         {
-            if (Function.Sesiones("Box/Create"))
-            {
-
-            }
-            else
-            {
-                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
-            }
             ViewBag.ent_Id = new SelectList(db.tbEntrada, "ent_Id", "ent_Id");
             ViewBag.prod_Codigo = new SelectList(db.tbProducto, "prod_Codigo", "prod_Descripcion");
             ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion");
             ViewBag.bod_Idd = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
             ViewBag.Producto = db.tbProducto.ToList();
             return View();
-
         }
 
         public ActionResult _Producto()
@@ -86,18 +64,19 @@ namespace ERP_ZORZAL.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [SessionManager("Box/Create")]
         public ActionResult Create([Bind(Include = "box_Codigo,box_Descripcion")] tbBox tbBox)
         {
             ViewBag.Producto = db.tbProducto.ToList();
             var list = (List<tbSalidaDetalle>)Session["SalidaDetalle"];
-            var MensajeError = "0";
-            var MensajeErrorDetalle = "0";
+            string MensajeError = "0";
+            string MensajeErrorDetalle = "0";
             IEnumerable<object> listBox = null;
             IEnumerable<object> listSalidaDetalle = null;
 
             if (db.tbBox.Any(a => a.box_Codigo == tbBox.box_Codigo))
             {
-                ModelState.AddModelError("", "Ya existe una caja con ese codigo");
+                ModelState.AddModelError("", "Ya existe una caja con ese código");
             }
             if (ModelState.IsValid)
             {
@@ -112,48 +91,43 @@ namespace ERP_ZORZAL.Controllers
                                                 );
                         foreach (UDP_Inv_tbBox_Insert_Result Box in listBox)
                             MensajeError = Box.MensajeError;
-                        if (MensajeError == "-1")
+                        if (MensajeError.StartsWith("-1"))
                         {
-                            ModelState.AddModelError("", "No se pudo agregar el registro, contacte al administrador");
+                            LlenarListas();
+                            Function.InsertBitacoraErrores("Box/Create", MensajeError, "Create");
+                            ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
                             return View(tbBox);
                         }
                         else
                         {
-                            if (MensajeError == tbBox.box_Codigo)
+                            if (list != null)
                             {
-                                if (list != null)
+                                if (list.Count != 0)
                                 {
-                                    if (list.Count != 0)
+                                    foreach (tbSalidaDetalle Detalle in list)
                                     {
-                                        foreach (tbSalidaDetalle Detalle in list)
+                                        var Sal = 0;
+                                        Detalle.box_Codigo = MensajeError;
+                                        listSalidaDetalle = db.UDP_Inv_tbSalidaDetalle_Insert(
+                                            Sal,
+                                            Detalle.prod_Codigo,
+                                            Detalle.sald_Cantidad,
+                                            tbBox.box_Codigo
+                                            , Function.GetUser(), Function.DatetimeNow());
+                                        foreach (UDP_Inv_tbSalidaDetalle_Insert_Result spDetalle in listSalidaDetalle)
                                         {
-                                            var Sal = 0;
-                                            Detalle.box_Codigo = MensajeError;
-                                            listSalidaDetalle = db.UDP_Inv_tbSalidaDetalle_Insert(
-                                                Sal,
-                                                Detalle.prod_Codigo,
-                                                Detalle.sald_Cantidad,
-                                                tbBox.box_Codigo
-                                                , Function.GetUser(), Function.DatetimeNow());
-                                            foreach (UDP_Inv_tbSalidaDetalle_Insert_Result spDetalle in listSalidaDetalle)
+                                            MensajeErrorDetalle = spDetalle.MensajeError;
+                                            if (MensajeErrorDetalle.StartsWith("-1"))
                                             {
-                                                MensajeErrorDetalle = spDetalle.MensajeError;
-                                                if (MensajeError == "-1")
-                                                {
-                                                    ModelState.AddModelError("", "No se pudo agregar el registro detalle");
-                                                    return View(tbBox);
-                                                }
+                                                LlenarListas();
+                                                Function.InsertBitacoraErrores("Box/Create", MensajeErrorDetalle, "Create");
+                                                ModelState.AddModelError("", "No se pudo insertar el registro detalle, favor contacte al administrador.");
+                                                return View(tbBox);
                                             }
                                         }
                                     }
                                 }
                             }
-                            else
-                            {
-                                ModelState.AddModelError("", "No se pudo agregar el registro");
-                                return View(tbBox);
-                            }
-
                         }
                         Tran.Complete();
                         return RedirectToAction("Index");
@@ -161,20 +135,12 @@ namespace ERP_ZORZAL.Controllers
                 }
                 catch (Exception Ex)
                 {
-                    ModelState.AddModelError("", "No se pudo agregar el registros" + Ex.Message.ToString());
-                    ViewBag.solef_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
-                    ViewBag.solef_UsuarioEntrega = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
-                    ViewBag.solef_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
-
-                    ViewBag.Denominacion = db.tbDenominacion.ToList();
-                    List<tbMoneda> MonedaList = db.tbMoneda.ToList();
-                    ViewBag.MonedaList = new SelectList(MonedaList, "mnda_Id", "mnda_Nombre");
-
-                    ViewBag.SolicitudEdectivoDetalle = db.tbSolicitudEfectivoDetalle.ToList();
+                    Function.InsertBitacoraErrores("Box/Create", Ex.Message.ToString(), "Create");
+                    ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                    LlenarListas();
+                    return View(tbBox);
                 }
-
             }
-
             return View(tbBox);
         }
 
@@ -216,16 +182,9 @@ namespace ERP_ZORZAL.Controllers
         }
 
         // GET: /Box/Edit/5
+        [SessionManager("Box/Edit")]
         public ActionResult Edit(string id)
         {
-            if (Function.Sesiones("Box/Edit"))
-            {
-
-            }
-            else
-            {
-                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
-            }
             if (id == null)
             {
                 return RedirectToAction("Index");
@@ -248,9 +207,7 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.Cod_Box = id;
             ViewBag.bod_Id = new SelectList(db.tbBodega.Where(x => x.bod_ResponsableBodega == idUser).ToList(), "bod_Id", "bod_Nombre");
             ViewBag.bod_Prod = db.tbBodega.Where(x => x.bod_ResponsableBodega == idUser).Select(x => x.bod_Id).First();
-            
             ViewBag.Producto = db.tbBodegaDetalle.ToList();
-
             return View(tbBox);
         }
 
@@ -308,7 +265,8 @@ namespace ERP_ZORZAL.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(string id,[Bind(Include = "box_Codigo,box_Descripcion,box_UsuarioCrea,box_FechaCrea")] tbBox tbBox)
+        [SessionManager("Box/Edit")]
+        public ActionResult Edit(string id, [Bind(Include = "box_Codigo,box_Descripcion,box_UsuarioCrea,box_FechaCrea")] tbBox tbBox)
         {
             if (ModelState.IsValid)
             {
@@ -316,66 +274,36 @@ namespace ERP_ZORZAL.Controllers
                 {
                     tbBox vBox = db.tbBox.Find(id);
                     IEnumerable<object> List = null;
-                    var MsjError = "";
+                    string MsjError = "";
                     List = db.UDP_Inv_tbBox_Update(tbBox.box_Codigo, tbBox.box_Descripcion, tbBox.box_Estado, vBox.box_UsuarioCrea, vBox.box_FechaCrea, Function.GetUser(), Function.DatetimeNow());
 
                     foreach (UDP_Inv_tbBox_Update_Result Box in List)
                         MsjError = Box.MensajeError;
-
-                    if (MsjError == "-1")
+                    if (MsjError.StartsWith("-1"))
                     {
-                        ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
+                        LlenarListas();
+                        Function.InsertBitacoraErrores("Box/Edit", MsjError, "Edit");
+                        ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
                         return RedirectToAction("Index");
                     }
                     else
                     {
                         return RedirectToAction("Index");
                     }
-
                 }
                 catch (Exception Ex)
                 {
-                    Ex.Message.ToString();
-                    ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
+                    LlenarListas();
+                    Function.InsertBitacoraErrores("Box/Create", Ex.Message.ToString(), "Create");
+                    ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
                     return RedirectToAction("Index");
                 }
             }
             else
             {
-             
-       var errors = ModelState.Values.SelectMany(v => v.Errors);
-    }
-            ViewBag.box_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbBox.box_UsuarioModifica);
-            ViewBag.box_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbBox.box_UsuarioCrea);
-            return View(tbBox);
-        }
-
-      
-        
-        // GET: /Box/Delete/5
-        public ActionResult Delete(string id)
-        {
-            if (id == null)
-            {
-                return RedirectToAction("Index");
-            }
-            tbBox tbBox = db.tbBox.Find(id);
-            if (tbBox == null)
-            {
-                return RedirectToAction("NotFound", "Login");
+                var errors = ModelState.Values.SelectMany(v => v.Errors);
             }
             return View(tbBox);
-        }
-
-        // POST: /Box/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
-        {
-            tbBox tbBox = db.tbBox.Find(id);
-            db.tbBox.Remove(tbBox);
-            db.SaveChanges();
-            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
@@ -492,8 +420,6 @@ namespace ERP_ZORZAL.Controllers
 
         }
 
-
-
         public JsonResult GuardarSalidaDetalle(tbSalidaDetalle GuardarSalidas)
         {
             {
@@ -530,6 +456,17 @@ namespace ERP_ZORZAL.Controllers
                 }
                 return Json("Index");
             }
+        }
+
+        private void LlenarListas()
+        {
+            ViewBag.solef_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+            ViewBag.solef_UsuarioEntrega = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+            ViewBag.solef_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+            ViewBag.Denominacion = db.tbDenominacion.ToList();
+            List<tbMoneda> MonedaList = db.tbMoneda.ToList();
+            ViewBag.MonedaList = new SelectList(MonedaList, "mnda_Id", "mnda_Nombre");
+            ViewBag.SolicitudEdectivoDetalle = db.tbSolicitudEfectivoDetalle.ToList();
         }
     }
 }

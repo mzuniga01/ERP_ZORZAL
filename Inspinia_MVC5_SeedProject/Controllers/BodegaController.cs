@@ -230,7 +230,7 @@ namespace ERP_GMEDINA.Controllers
                                             ViewBag.deparatamento_Edit = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre", tbBodega.dep_Codigo);
                                             ViewBag.municipio_Edit = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbBodega.mun_Codigo);
                                             Function.InsertBitacoraErrores("Bodega/Edit", MsjError, "Edit");
-                                            ModelState.AddModelError("", "No se pudo actualizar el registro detalle, favor contacte al administrador.");
+                                            ModelState.AddModelError("", "No se pudo insertar el registro detalle, favor contacte al administrador.");
                                             return RedirectToAction("Edit/" + idMaster);
                                         }
                                     }

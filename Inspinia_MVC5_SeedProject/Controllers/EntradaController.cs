@@ -11,6 +11,7 @@ using ERP_GMEDINA.Models;
 using System.Transactions;
 using CrystalDecisions.CrystalReports.Engine;
 using System.IO;
+using ERP_GMEDINA.Attribute;
 
 namespace ERP_ZORZAL.Controllers
 {
@@ -19,6 +20,7 @@ namespace ERP_ZORZAL.Controllers
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
         GeneralFunctions Function = new GeneralFunctions();
         // GET: /Entrada/
+        [SessionManager("Entrada/Index")]
         public ActionResult Index()
         {
             
@@ -27,6 +29,7 @@ namespace ERP_ZORZAL.Controllers
         }
 
         // GET: /Entrada/Details/5
+        [SessionManager("Entrada/Details")]
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
@@ -210,7 +213,7 @@ namespace ERP_ZORZAL.Controllers
             }
         }
 
-
+        [SessionManager("Entrada/Create")]
         public ActionResult Create()
         {
             try { ViewBag.smserror = TempData["smserror"].ToString(); } catch { }
@@ -227,7 +230,6 @@ namespace ERP_ZORZAL.Controllers
 
             ViewBag.bod_Id = new SelectList(db.tbBodega.Where(x => x.bod_ResponsableBodega == idUser).ToList(), "bod_Id", "bod_Nombre");
             ViewBag.tdev_Id = new SelectList(db.tbTipoDevolucion, "tdev_Id", "tdev_Descripcion");
-            //ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
             ViewBag.estm_Id = new SelectList(db.tbEstadoMovimiento, "estm_Id", "estm_Descripcion");
             ViewBag.prov_Id = new SelectList(db.tbProveedor, "prov_Id", "prov_Nombre");
             ViewBag.tent_Id = new SelectList(db.tbTipoEntrada, "tent_Id", "tent_Descripcion");
@@ -242,8 +244,9 @@ namespace ERP_ZORZAL.Controllers
             Session["CrearDetalleEntrada"] =null;
             return View();
         }
-        
+
         // GET: /Entrada/Edit/5
+        [SessionManager("Entrada/Edit")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -314,7 +317,6 @@ namespace ERP_ZORZAL.Controllers
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
-
         //para q actualize la tabla
         [HttpPost]
         public JsonResult UpdateEntradaDetalle(tbEntradaDetalle Editardetalle)
@@ -365,85 +367,17 @@ namespace ERP_ZORZAL.Controllers
             }
             return Json(list, JsonRequestBehavior.AllowGet);
         }
-        
-        // POST: /Entrada/Create
-        //Para inserte en la master y la detalle
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [SessionManager("Entrada/Create")]
         public ActionResult Create([Bind(Include = "ent_FechaElaboracion,bod_Id,estm_Id,prov_Id,ent_FacturaCompra,ent_FechaCompra,fact_Id,ent_RazonDevolucion,ent_BodegaDestino,tent_Id")] tbEntrada tbEntrada)
         {
-            //var tipoEntrada = tbEntrada.tent_Id;
-            //if (tipoEntrada == 1)
-            //{
-            //    Campos de Traslado
-            //    if (tbEntrada.ent_BodegaDestino != null)
-            //    {
-            //        tbEntrada.ent_BodegaDestino = 9999;
-            //    }
-
-            //    campos de devolucion
-            //    if (tbEntrada.ent_RazonDevolucion == null)
-            //    {
-            //        tbEntrada.ent_RazonDevolucion = "##";
-            //    }
-            //    if (tbEntrada.fact_Id == null)
-            //    {
-            //        tbEntrada.fact_Id = 9999;
-            //    }
-            //}
-            //if (tipoEntrada == 2)
-            //{
-            //    campos de Compra
-            //    if (tbEntrada.fact_Id == null)
-            //    {
-            //        tbEntrada.fact_Id = 9999;
-            //    }
-            //    if (tbEntrada.ent_FacturaCompra == null)
-            //    {
-            //        tbEntrada.ent_FacturaCompra = "99";
-            //    }
-            //    if (tbEntrada.ent_FechaCompra == null)
-            //    {
-            //        tbEntrada.ent_FechaCompra = Convert.ToDateTime("####-##-##");
-            //    }
-            //    campos de Traslado
-            //    if (tbEntrada.ent_BodegaDestino != null)
-            //    {
-            //        tbEntrada.ent_BodegaDestino = 9999;
-            //    }
-            //}
-            //if (tipoEntrada == 3)
-            //{
-            //    campos de Compra
-            //    if (tbEntrada.fact_Id == null)
-            //    {
-            //        tbEntrada.fact_Id = 9999;
-            //    }
-            //    if (tbEntrada.ent_FacturaCompra == null)
-            //    {
-            //        tbEntrada.ent_FacturaCompra = "####";
-            //    }
-            //    if (tbEntrada.ent_FechaCompra == null)
-            //    {
-            //        tbEntrada.ent_FechaCompra = Convert.ToDateTime("####-##-##");
-            //    }
-            //    campos de devolucion
-            //    if (tbEntrada.ent_RazonDevolucion == null)
-            //    {
-            //        tbEntrada.ent_RazonDevolucion = "##";
-            //    }
-            //    if (tbEntrada.fact_Id == null)
-            //    {
-            //        tbEntrada.fact_Id = 9999;
-            //    }
-            //}
             IEnumerable<object> ENTRADA = null;
             IEnumerable<object> DETALLE = null;
             tbEntrada.estm_Id = Helpers.EntradaEmitida;
-            var idMaster = 0;
-            var MensajeError = "";
-            var MsjError = "";
+            string MensajeError = "";
+            string MsjError = "";
             
             var listaDetalle = (List<tbEntradaDetalle>)Session["CrearDetalleEntrada"];
 
@@ -453,8 +387,7 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.tent_Id = new SelectList(db.tbTipoEntrada, "tent_Id", "tent_Descripcion", tbEntrada.tent_Id);
             ViewBag.ent_BodegaDestino = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbEntrada.ent_BodegaDestino);
             ViewBag.Producto = db.SDP_Inv_tbProducto_Select().ToList();
-
-
+            
             if (ModelState.IsValid)
             {
                 if (listaDetalle == null)
@@ -469,7 +402,6 @@ namespace ERP_ZORZAL.Controllers
                     {
                         try
                         {
-
                             ENTRADA = db.UDP_Inv_tbEntrada_Insert(
                                                                 tbEntrada.ent_FechaElaboracion,
                                                                 tbEntrada.bod_Id,
@@ -483,11 +415,12 @@ namespace ERP_ZORZAL.Controllers
                                                                 tbEntrada.tent_Id,
                                                                 Function.GetUser(), Function.DatetimeNow());
                             foreach (UDP_Inv_tbEntrada_Insert_Result Entrada in ENTRADA)
-                                idMaster = Convert.ToInt32(Entrada.MensajeError);
+                                MsjError = Entrada.MensajeError;
 
-                            if (MsjError == "-")
+                            if (MsjError.StartsWith("-1"))
                             {
-                                ModelState.AddModelError("", "No se guardo el registro");
+                                Function.InsertBitacoraErrores("Entrada/Create", MsjError, "Create");
+                                ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
                                 return View(tbEntrada);
                             }
                             else
@@ -498,39 +431,29 @@ namespace ERP_ZORZAL.Controllers
                                     {
                                         foreach (tbEntradaDetalle entd in listaDetalle)
                                         {
-                                            DETALLE = db.UDP_Inv_tbEntradaDetalle_Insert(idMaster
+                                            DETALLE = db.UDP_Inv_tbEntradaDetalle_Insert(Convert.ToInt16(MsjError)
                                                                                         , entd.prod_Codigo
                                                                                         , entd.entd_Cantidad,
                                                                                         Function.GetUser(), Function.DatetimeNow());
                                             foreach (UDP_Inv_tbEntradaDetalle_Insert_Result B_detalle in DETALLE)
-
-                                            //if (MensajeError == "-1")
+                                                MensajeError = B_detalle.MensajeError;
+                                            if (MensajeError.StartsWith("-1"))
                                             {
-                                                ModelState.AddModelError("", "No se Guardo el Registro");
-                                                //return View(tbEntrada);
-                                                //}
-                                                //else
-                                                //{
-                                                //    _Tran.Complete();
-                                                //    return RedirectToAction("Index");
+                                                Function.InsertBitacoraErrores("Entrada/Create", MsjError, "Create");
+                                                ModelState.AddModelError("", "No se pudo insertar el registro detalle, favor contacte al administrador.");
+                                                return View(tbEntrada);
                                             }
                                         }
                                     }
                                 }
-                                {
-                                    _Tran.Complete();
-                                    //return RedirectToAction("Index");
-                                }
-
+                                _Tran.Complete();
                             }
-
                         }
                         catch (Exception Ex)
                         {
-                            Ex.Message.ToString();
-                            //ModelState.AddModelError("", "No se Guardo el Registro");
-                            //return View(tbBodega);
-                            MsjError = "-1";
+                            Function.InsertBitacoraErrores("Entrada/Create", Ex.Message.ToString(), "Create");
+                            ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                            return View(tbEntrada);
                         }
                         //ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbEntrada.bod_Id);
                         //ViewBag.tdev_Id = new SelectList(db.tbTipoDevolucion, "tdev_Id", "tdev_Descripcion", tbEntrada.ent_RazonDevolucion);
@@ -540,10 +463,8 @@ namespace ERP_ZORZAL.Controllers
                         //ViewBag.Producto = db.SDP_Inv_tbProducto_Select().ToList();
                     }
                 }
-                
                 return RedirectToAction("Index");
             }
-            
             return View(tbEntrada);
         }
 
@@ -551,14 +472,14 @@ namespace ERP_ZORZAL.Controllers
         //Para q edite la master y el detalle
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [SessionManager("Entrada/Edit")]
         public ActionResult Edit(int? id, [Bind(Include = "ent_Id,ent_NumeroFormato,ent_FechaElaboracion,bod_Id,prov_Id,ent_FacturaCompra,ent_FechaCompra,fact_Id,ent_RazonDevolucion,ent_BodegaDestino,tent_Id,ent_usuarioCrea,ent_FechaCrea,ent_UsuarioModifica,ent_FechaModifica")] tbEntrada tbEntrada)
         {
             
             IEnumerable<object> ENTRADA = null;
             IEnumerable<object> DETALLE = null;
-            var idMaster = 0;
-            var MensajeError = "";
-            var MsjError = "";
+            string MensajeError = "";
+            string MsjError = "";
             var listaDetalle = (List<tbEntradaDetalle>)Session["CrearDetalleEntrada"];
             ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbEntrada.bod_Id);
             ViewBag.ent_RazonDevolucion = new SelectList(db.tbTipoDevolucion, "tdev_Id", "tdev_Descripcion", tbEntrada.ent_RazonDevolucion);
@@ -591,11 +512,12 @@ namespace ERP_ZORZAL.Controllers
                                                                         tbEntrada.ent_FechaCrea,
                                                                         Function.GetUser(), Function.DatetimeNow());
                         foreach (UDP_Inv_tbEntrada_Update_Result Entrada in ENTRADA)
-                            idMaster = Convert.ToInt32(Entrada.MensajeError);
+                            MsjError = Entrada.MensajeError;
 
-                        if (MsjError == "-")
+                        if (MsjError.StartsWith("-1"))
                         {
-                            ModelState.AddModelError("", "No se guardo el registro");
+                            Function.InsertBitacoraErrores("Entrada/Edit", MsjError, "Edit");
+                            ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
                             return View(tbEntrada);
                         }
                         else
@@ -609,39 +531,29 @@ namespace ERP_ZORZAL.Controllers
                                         entd.entd_UsuarioCrea = 1;
                                         entd.entd_FechaCrea = DateTime.Now;
 
-                                        DETALLE = db.UDP_Inv_tbEntradaDetalle_Insert(idMaster
-                                                                                    ,entd.prod_Codigo
-                                                                                    ,entd.entd_Cantidad,
+                                        DETALLE = db.UDP_Inv_tbEntradaDetalle_Insert(Convert.ToInt16(MsjError)
+                                                                                    , entd.prod_Codigo
+                                                                                    , entd.entd_Cantidad,
                                                                                     Function.GetUser(), Function.DatetimeNow());
                                         foreach (UDP_Inv_tbEntradaDetalle_Insert_Result B_detalle in DETALLE)
-
-                                        //if (MensajeError == "-1")
+                                            MensajeError = B_detalle.MensajeError;
+                                        if (MensajeError.StartsWith("-1"))
                                         {
-                                            ModelState.AddModelError("", "No se Guardo el Registro");
-                                            //return View(tbEntrada);
-                                            //}
-                                            //else
-                                            //{
-                                            //    _Tran.Complete();
-                                            //    return RedirectToAction("Index");
+                                            Function.InsertBitacoraErrores("Entrada/Edit", MsjError, "Edit");
+                                            ModelState.AddModelError("", "No se pudo insertar el registro detalle, favor contacte al administrador.");
+                                            return View(tbEntrada);
                                         }
                                     }
                                 }
                             }
-                            {
-                                _Tran.Complete();
-                                //return RedirectToAction("Index");
-                            }
-
+                            _Tran.Complete();
                         }
-
                     }
                     catch (Exception Ex)
                     {
-                        Ex.Message.ToString();
-                        //ModelState.AddModelError("", "No se Guardo el Registro");
-                        //return View(tbBodega);
-                        MsjError = "-1";
+                        Function.InsertBitacoraErrores("Entrada/Create", Ex.Message.ToString(), "Create");
+                        ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                        return View(tbEntrada);
                     }
                 }
                 return RedirectToAction("Index");
@@ -657,11 +569,6 @@ namespace ERP_ZORZAL.Controllers
             //ViewBag.Producto = db.SDP_Inv_tbProducto_Select().ToList();
             return View(tbEntrada);
         }
-
-
-
-
-
 
         public ActionResult EstadoInactivar(int? id)
         {
@@ -729,10 +636,6 @@ namespace ERP_ZORZAL.Controllers
             //return RedirectToAction("Index");
         }
 
-
-
-
-
         //para que Anular una entrada
         public ActionResult EstadoAnular(tbEntrada cambiaAnular)
         {
@@ -797,8 +700,5 @@ namespace ERP_ZORZAL.Controllers
             }
 
         }
-
-
-
     }
 }

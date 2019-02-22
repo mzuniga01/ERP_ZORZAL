@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Transactions;
-
+using ERP_GMEDINA.Attribute;
 
 namespace ERP_GMEDINA.Controllers
 {
@@ -14,29 +14,20 @@ namespace ERP_GMEDINA.Controllers
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
         GeneralFunctions Function = new GeneralFunctions();
         // GET: ConsultarExistenciaProductos
+        [SessionManager("ConsultarExistenciaProductos/Index")]
         public ActionResult Index()
         {
-            if (Function.Sesiones("ConsultarExistenciaProductos/Index"))
-            {
-
-            }
-            else
-            {
-                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
-            }
-
             return View(db.UDV_Inv_Consultar_Existencias_Productos);
         }
 
         [HttpPost]
         public JsonResult InsertPedido(int IDBodega, string IDProducto, decimal CantidadSolicitada, int BodegaDestino, decimal CantidadDisponible)
         {
-            var MensajeError = "0";
-            var MensajeErrorDetalle = "0";
+            string MensajeError = "0";
+            string MensajeErrorDetalle = "0";
             IEnumerable<object> listSalida = null;
             IEnumerable<object> listSalidaDetalle = null;
-            //if (ModelState.IsValid)
-            //{
+
             try
             {
                 using (TransactionScope Tran = new TransactionScope())

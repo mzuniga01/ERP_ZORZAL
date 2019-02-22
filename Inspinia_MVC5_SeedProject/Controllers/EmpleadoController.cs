@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ERP_GMEDINA.Models;
+using ERP_GMEDINA.Attribute;
 
 namespace ERP_GMEDINA.Controllers
 {
@@ -16,31 +17,17 @@ namespace ERP_GMEDINA.Controllers
         GeneralFunctions Function = new GeneralFunctions();
 
         // GET: /Empleado/
+        [SessionManager("Empleado/Index")]
         public ActionResult Index()
         {
-            if (Function.Sesiones("Empleado/Index"))
-            {
-
-            }
-            else
-            {
-                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
-            }
             var tbempleado = db.tbEmpleado.Include(t => t.tbUsuario).Include(t => t.tbTipoIdentificacion);
             return View(tbempleado.ToList());
         }
 
         // GET: /Empleado/Details/5
+        [SessionManager("Empleado/Details")]
         public ActionResult Details(short? id)
         {
-            if (Function.Sesiones("Empleado/Details"))
-            {
-
-            }
-            else
-            {
-                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
-            }
             if (id == null)
             {
                 return RedirectToAction("Index");
@@ -55,21 +42,11 @@ namespace ERP_GMEDINA.Controllers
 
 
         // GET: /Empleado/Create
+        [SessionManager("Empleado/Create")]
         public ActionResult Create()
         {
-            
-            if (Function.Sesiones("Empleado/Create"))
-            {
-
-            }
-            else
-            {
-                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
-            }
-            ViewBag.emp_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             ViewBag.tpi_Id = new SelectList(db.tbEmpleado, "emp_Id", "tpi_Id");
             ViewBag.TipoIList = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion", "Seleccione");
-            //ViewBag.listaIdentidficacion = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion", "Seleccione");
             return View();
         }
 
@@ -78,15 +55,18 @@ namespace ERP_GMEDINA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [SessionManager("Empleado/Create")]
         public ActionResult Create([Bind(Include= "emp_Id,emp_Nombres,emp_Apellidos,emp_Sexo,emp_FechaNacimiento,tpi_Id,emp_Identificacion,emp_Telefono,emp_Correoelectronico,emp_TipoSangre,emp_Puesto,emp_FechaIngreso,emp_Direccion,emp_RazonInactivacion,emp_UsuarioCrea,emp_FechaCrea,emp_UsuarioModifica,emp_FechaModifica,emp_Estado,emp_RazonSalida,emp_FechaDeSalida")] tbEmpleado tbEmpleado)
         {
-            if (db.tbEmpleado.Any(a => a.emp_Identificacion == tbEmpleado.emp_Identificacion))
-            {
-                ModelState.AddModelError("", "Ya existe un empleado con el mismo numero de identidad");
-            }
             if (ModelState.IsValid)
             {
-               
+                if (db.tbEmpleado.Any(a => a.emp_Identificacion == tbEmpleado.emp_Identificacion))
+                {
+                    ViewBag.tpi_Id = new SelectList(db.tbEmpleado, "emp_Id", "tpi_Id", tbEmpleado.tpi_Id);
+                    ViewBag.TipoIList = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion", "Seleccione");
+                    ModelState.AddModelError("", "Ya existe un empleado con el mismo numero de identidad");
+                    return View(tbEmpleado);
+                }
                 try
                 {
                     IEnumerable<object> list = null;
@@ -109,28 +89,28 @@ namespace ERP_GMEDINA.Controllers
                     foreach (UDP_Gral_tbEmpleados_Insert_Result empleados in list)
                         MsjError = empleados.MensajeError;
 
-                    if (MsjError.Substring(0, 2) == "-1")
+                    if (MsjError.StartsWith("-1"))
                     {
-                        ModelState.AddModelError("", "No se pudo registrar el Dato");
+                        ViewBag.tpi_Id = new SelectList(db.tbEmpleado, "emp_Id", "tpi_Id", tbEmpleado.tpi_Id);
+                        ViewBag.TipoIList = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion", "Seleccione");
+                        Function.InsertBitacoraErrores("Empleado/Create", MsjError, "Create");
+                        ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
                         return View(tbEmpleado);
                     }
                     else
                     {
-                        //db.tbEmpleado.Add(tbEmpleado);
-                        //db.SaveChanges();
                         return RedirectToAction("Index");
                     }
                 }
                 catch (Exception Ex) {
-                    //ViewBag.emp_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbEmpleado.emp_UsuarioCrea);
-                    //ViewBag.tpi_Id = new SelectList(db.tbEmpleado, "emp_Id", "tpi_Id", tbEmpleado.tpi_Id);
-                    //ViewBag.TipoIList = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion", "Seleccione");
-                    ModelState.AddModelError("", "No se pudo ingresar el registro" + " " + Ex);
+                    ViewBag.tpi_Id = new SelectList(db.tbEmpleado, "emp_Id", "tpi_Id", tbEmpleado.tpi_Id);
+                    ViewBag.TipoIList = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion", "Seleccione");
+                    Function.InsertBitacoraErrores("Empleado/Create", Ex.Message.ToString(), "Create");
+                    ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
                     return View(tbEmpleado);
                 }
                 
             }
-            ViewBag.emp_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbEmpleado.emp_UsuarioCrea);
             ViewBag.tpi_Id = new SelectList(db.tbEmpleado, "emp_Id", "tpi_Id", tbEmpleado.tpi_Id);
             ViewBag.TipoIList = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion", "Seleccione");
 
@@ -138,16 +118,9 @@ namespace ERP_GMEDINA.Controllers
         }
 
         // GET: /Empleado/Edit/5
+        [SessionManager("Empleado/Edit")]
         public ActionResult Edit(short? id)
         {
-            if (Function.Sesiones("Empleado/Edit"))
-            {
-
-            }
-            else
-            {
-                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
-            }
             if (id == null)
             {
                 return RedirectToAction("Index");
@@ -157,11 +130,7 @@ namespace ERP_GMEDINA.Controllers
             {
                 return RedirectToAction("NotFound", "Login");
             }
-
-            
-            ViewBag.emp_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbEmpleado.emp_UsuarioCrea);
             ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion", tbEmpleado.tpi_Id);
-           
             return View(tbEmpleado);
         }
 
@@ -170,12 +139,18 @@ namespace ERP_GMEDINA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [SessionManager("Empleado/Edit")]
         public ActionResult Edit([Bind(Include= "emp_Id,emp_Nombres,emp_Apellidos,emp_Sexo,emp_FechaNacimiento,tpi_Id,emp_Identificacion,emp_Telefono,emp_Correoelectronico,emp_TipoSangre,emp_Puesto,emp_FechaIngreso,emp_Direccion,emp_RazonInactivacion,emp_UsuarioCrea,emp_FechaCrea,emp_UsuarioModifica,emp_FechaModifica")] tbEmpleado tbEmpleado)
         {
-           
             if (ModelState.IsValid)
             {
-
+                if (db.tbEmpleado.Any(a => a.emp_Identificacion == tbEmpleado.emp_Identificacion))
+                {
+                    ViewBag.tpi_Id = new SelectList(db.tbEmpleado, "emp_Id", "tpi_Id", tbEmpleado.tpi_Id);
+                    ViewBag.TipoIList = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion", "Seleccione");
+                    ModelState.AddModelError("", "Ya existe un empleado con el mismo numero de identidad");
+                    return View(tbEmpleado);
+                }
                 try
                 {
                     IEnumerable<object> list = null;
@@ -202,41 +177,31 @@ namespace ERP_GMEDINA.Controllers
                                                         DateTime.Now);
                     foreach (UDP_Gral_tbEmpleados_Update_Result empleado in list)
                         MsjError = empleado.MensajeError;                    
-                    if (MsjError.Substring(0, 2) == "-1")
+                    if (MsjError.StartsWith("-1"))
                     {
-                        ModelState.AddModelError("", "Error al actualizar el registro");
+                        Function.InsertBitacoraErrores("Empleado/Edit", MsjError, "Edit");
+                        ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
                         return View(tbEmpleado);
                     }
                     else
                     {
-                        //db.Entry(tbEmpleado).State = EntityState.Modified;
-                        //db.SaveChanges();
                         return RedirectToAction("Index");
                     }
-
                 }
                 catch(Exception Ex)
                 {
-                    ViewBag.emp_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbEmpleado.emp_UsuarioCrea);
                     ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion", tbEmpleado.tpi_Id);
                     ViewBag.TipoIList = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion", "Seleccione");
                     ModelState.AddModelError("", "Error al actualizar el registro" + " " + Ex.Message.ToString());
                     return View(tbEmpleado);
-                    Ex.Message.ToString();
-                    ModelState.AddModelError("", "No se guardo el cambio");
-                    return View("tbEmpleado");
-
                 }                
             }
             else
             {
                 var errors = ModelState.Values.SelectMany(v => v.Errors);
             }
-            ViewBag.emp_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbEmpleado.emp_UsuarioCrea);
             ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion", tbEmpleado.tpi_Id);
             ViewBag.TipoIList = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion", "Seleccione");
-            //ViewBag.Macho = "H";
-            //ViewBag.Hembra = "M";
             return View(tbEmpleado);
         }
 
@@ -318,11 +283,7 @@ namespace ERP_GMEDINA.Controllers
             return Json(Msj, JsonRequestBehavior.AllowGet);
 
         }
-
-
-
-
-
+        
         public ActionResult EstadoActivar(int? id)
         {
             try
@@ -352,34 +313,7 @@ namespace ERP_GMEDINA.Controllers
                 return RedirectToAction("Edit/" + id);
             }
             //return RedirectToAction("Index");
-        }
-
-        // GET: /Empleado/Delete/5
-        public ActionResult Delete(short? id)
-        {
-            if (id == null)
-            {
-                return RedirectToAction("Index");
-            }
-            tbEmpleado tbEmpleado = db.tbEmpleado.Find(id);
-            if (tbEmpleado == null)
-            {
-                return RedirectToAction("NotFound", "Login");
-            }
-            return View(tbEmpleado);
-        }
-
-        // POST: /Empleado/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(short id)
-        {
-            tbEmpleado tbEmpleado = db.tbEmpleado.Find(id);
-            db.tbEmpleado.Remove(tbEmpleado);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-       
+        }       
 
         protected override void Dispose(bool disposing)
         {
@@ -389,5 +323,6 @@ namespace ERP_GMEDINA.Controllers
             }
             base.Dispose(disposing);
         }
+
     }
 }

@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using ERP_GMEDINA.Models;
 using System.Transactions;
+using ERP_GMEDINA.Attribute;
 
 namespace ERP_GMEDINA.Controllers
 {
@@ -16,281 +17,27 @@ namespace ERP_GMEDINA.Controllers
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
         GeneralFunctions Function = new GeneralFunctions();
         // GET: /Departamento/
+        [SessionManager("Departamento/Index")]
         public ActionResult Index()
         {
-            if (Function.GetUserLogin())
+            try
             {
-                if (Function.Sesiones("Departamento/Index"))
-                {
-
-                }
-                else
-                {
-                    return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
-                }
-                if (Function.GetUserRols("Departamento/Index"))
-                {
-                    try
-                    {
-                        return View(db.tbDepartamento.ToList());
-                    }
-                    catch (Exception Ex)
-                    {
-                        Ex.Message.ToString();
-                        ModelState.AddModelError("", "Conexión fállida, intente de nuevo");
-                        return RedirectToAction("Index", "Home");
-                    }
-                }
-                else
-                {
-                    return RedirectToAction("SinAcceso", "Login");
-                }
+                return View(db.tbDepartamento.ToList());
             }
-            else
-                return RedirectToAction("Index", "Login");
-        }
-        public ActionResult _IndexMunicipio()
-        {
-            return View();
+            catch (Exception Ex)
+            {
+                Function.InsertBitacoraErrores("Departamento/Index", Ex.Message.ToString(), "Index");
+                ModelState.AddModelError("", "Conexión fállida, intente de nuevo");
+                return RedirectToAction("Index", "Home");
+            }
         }
         public ActionResult _IndexMunicipio_Botones()
         {
             return View();
         }
         // GET: /Departamento/Details/5
+        [SessionManager("Departamento/Details")]
         public ActionResult Details(string id)
-        {
-            //Validar Inicio de Sesión
-            if (Function.GetUserLogin())
-            {
-                if (Function.Sesiones("Departamento/Details"))
-                {
-
-                }
-                else
-                {
-                    return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
-                }
-                if (Function.GetUserRols("Departamento/Details"))
-                {
-
-                    if (id == null)
-                    {
-                        return RedirectToAction("Index");
-                    }
-                    tbDepartamento tbDepartamento = db.tbDepartamento.Find(id);
-                    if (tbDepartamento == null)
-                    {
-                        return RedirectToAction("NotFound", "Login");
-                    }
-                    return View(tbDepartamento);
-                }
-                else
-                {
-                    return RedirectToAction("SinAcceso", "Login");
-                }
-            }
-            else
-                return RedirectToAction("Index", "Login");
-        }
-        // GET: /Departamento/Create
-        public ActionResult Create()
-        {
-            //Validar Inicio de Sesión
-            if (Function.GetUserLogin())
-            {
-                if (Function.Sesiones("Departamento/Create"))
-                {
-
-                }
-                else
-                {
-                    return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
-                }
-                if (Function.GetUserRols("Departamento/Create"))
-                {
-                    ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre", "Seleccione");
-                    ViewBag.dep_Codigo = new SelectList(db.tbMunicipio, "dep_Codigo", "dep_Nombre", "Seleccione");
-                    Session["tbMunicipio"] = null;
-                    return View();
-                }
-                else
-                {
-                    return RedirectToAction("SinAcceso", "Login");
-                }
-            }
-            else
-                return RedirectToAction("Index", "Login");
-            
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "dep_Codigo,dep_Nombre,dep_UsuarioCrea,dep_FechaCrea,dep_UsuarioModifica,dep_FechaModifica")] tbDepartamento tbDepartamento)
-        {
-            //Validar Inicio de Sesión
-            if (Function.GetUserLogin())
-            {
-                if (Function.GetUserRols("Departamento/Create"))
-                {
-                    IEnumerable<object> list = null;
-                    IEnumerable<object> lista = null;
-                    string MensajeError = "";
-                    string MsjError = "";
-                    var listMunicipios = (List<tbMunicipio>)Session["tbMunicipio"];
-                    if (ModelState.IsValid)
-                    {
-                        using (TransactionScope _Tran = new TransactionScope())
-                        {
-                            try
-                            {
-                                list = db.UDP_Gral_tbDepartamento_Insert(tbDepartamento.dep_Codigo, tbDepartamento.dep_Nombre, Function.GetUser(), DateTime.Now);
-                                foreach (UDP_Gral_tbDepartamento_Insert_Result departamento in list)
-                                    MsjError = departamento.MensajeError;
-                                if (MsjError.StartsWith("-1"))
-                                {
-                                    ModelState.AddModelError("", "No se guardó el registro, contacte al Administrador.");
-                                    return View(tbDepartamento);
-                                }
-                                else
-                                {
-                                    if (listMunicipios != null)
-                                    {
-                                        if (listMunicipios.Count > 0)
-                                        {
-                                            foreach (tbMunicipio mun in listMunicipios)
-                                            {
-                                                lista = db.UDP_Gral_tbMunicipio_Insert(mun.mun_Codigo, tbDepartamento.dep_Codigo, mun.mun_Nombre, Function.GetUser(), DateTime.Now);
-                                                foreach (UDP_Gral_tbMunicipio_Insert_Result municipios in lista)
-                                                    MensajeError = municipios.MensajeError;
-                                                if (MsjError.StartsWith("-1"))
-                                                {
-                                                    ModelState.AddModelError("", "No se guardó el registro, contacte al aAdministrador.");
-                                                    return View(tbDepartamento);
-                                                }
-                                            }
-                                        }
-                                    }
-                                    _Tran.Complete();
-                                }
-                            }
-                            catch (Exception Ex)
-                            {
-                                Ex.Message.ToString();
-                                ModelState.AddModelError("", "No se guardó el registro, contacte al aAdministrador.");
-                                return View(tbDepartamento);
-                            }
-                        }
-                        return RedirectToAction("Index");
-                    }
-                    return View(tbDepartamento);
-                }
-                else
-                {
-                    return RedirectToAction("SinAcceso", "Login");
-                }
-            }
-            else
-                return RedirectToAction("Index", "Login");
-        }
-
-        // GET: /Departamento/Edit/5
-        public ActionResult Edit(string id)
-        {
-            //Validar Inicio de Sesión
-            if (Function.GetUserLogin())
-            {
-                if (Function.Sesiones("Departamento/Edit"))
-                {
-
-                }
-                else
-                {
-                    return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
-                }
-                if (Function.GetUserRols("Departamento/Edit"))
-                {
-                    Session["tbMunicipio"] = null;
-                    if (id == null)
-                    {
-                        return RedirectToAction("Index");
-                    }
-                    tbDepartamento tbDepartamento = db.tbDepartamento.Find(id);
-                    //ViewBag.UsuarioCrea = db.tbUsuario.Find(tbDepartamento.dep_UsuarioCrea).usu_NombreUsuario;
-                    //var UsuarioModfica = tbDepartamento.dep_UsuarioModifica;
-                    //if (UsuarioModfica == null)
-                    //{
-                    //    ViewBag.UsuarioModifica = "";
-                    //}
-                    //else
-                    //{
-                    //    ViewBag.UsuarioModifica = db.tbUsuario.Find(UsuarioModfica).usu_NombreUsuario;
-                    //};
-                    if (tbDepartamento == null)
-                    {
-                        return RedirectToAction("NotFound", "Login");
-                    }
-                    return View(tbDepartamento);
-                }
-                else
-                {
-                    return RedirectToAction("SinAcceso", "Login");
-                }
-            }
-            else
-                return RedirectToAction("Index", "Login");
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(string id, [Bind(Include = "dep_Codigo,dep_Nombre,dep_UsuarioCrea,dep_FechaCrea,dep_UsuarioModifica,dep_FechaModifica")] tbDepartamento tbDepartamento)
-        {
-            //Validar Inicio de Sesión
-            if (Function.GetUserLogin())
-            {
-                if (Function.GetUserRols("Departamento/Edit"))
-                {
-                    if (ModelState.IsValid)
-                    {
-                        IEnumerable<object> list = null;
-                        string MsjError = "";
-                        {
-                            try
-                            {
-                                list = db.UDP_Gral_tbDepartamento_Update(tbDepartamento.dep_Codigo, tbDepartamento.dep_Nombre, tbDepartamento.dep_UsuarioCrea, tbDepartamento.dep_FechaCrea, Function.GetUser(), DateTime.Now);
-                                foreach (UDP_Gral_tbDepartamento_Update_Result dep in list)
-                                    MsjError = dep.MensajeError;
-                                if (MsjError.StartsWith("-1"))
-                                {
-                                    ModelState.AddModelError("", "No se guardó el registro, contacte al aAdministrador.");
-                                    return View(tbDepartamento);
-                                }
-                                else
-                                {
-                                    return RedirectToAction("Edit/"+ tbDepartamento.dep_Codigo);
-                                }
-                            }
-                            catch (Exception Ex)
-                            {
-                                Ex.Message.ToString();
-                                ModelState.AddModelError("", "No se guardó el registro, contacte al aAdministrador.");
-                                                    return View(tbDepartamento);
-                            }
-                        }
-                    }
-                    return View(tbDepartamento);
-                }
-                else
-                {
-                    return RedirectToAction("SinAcceso", "Login");
-                }
-            }
-            else
-                return RedirectToAction("Index", "Login");
-        }
-
-        // GET: /Departamento/Delete/5
-        public ActionResult Delete(string id)
         {
             if (id == null)
             {
@@ -303,16 +50,128 @@ namespace ERP_GMEDINA.Controllers
             }
             return View(tbDepartamento);
         }
-
-        // POST: /Departamento/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        // GET: /Departamento/Create
+        [SessionManager("Departamento/Create")]
+        public ActionResult Create()
         {
+            ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre", "Seleccione");
+            ViewBag.dep_Codigo = new SelectList(db.tbMunicipio, "dep_Codigo", "dep_Nombre", "Seleccione");
+            Session["tbMunicipio"] = null;
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [SessionManager("Departamento/Create")]
+        public ActionResult Create([Bind(Include = "dep_Codigo,dep_Nombre,dep_UsuarioCrea,dep_FechaCrea,dep_UsuarioModifica,dep_FechaModifica")] tbDepartamento tbDepartamento)
+        {
+            IEnumerable<object> list = null;
+            IEnumerable<object> lista = null;
+            string MensajeError = "";
+            string MsjError = "";
+            var listMunicipios = (List<tbMunicipio>)Session["tbMunicipio"];
+            if (ModelState.IsValid)
+            {
+                using (TransactionScope _Tran = new TransactionScope())
+                {
+                    try
+                    {
+                        list = db.UDP_Gral_tbDepartamento_Insert(tbDepartamento.dep_Codigo, tbDepartamento.dep_Nombre, Function.GetUser(), DateTime.Now);
+                        foreach (UDP_Gral_tbDepartamento_Insert_Result departamento in list)
+                            MsjError = departamento.MensajeError;
+                        if (MsjError.StartsWith("-1"))
+                        {
+                            Function.InsertBitacoraErrores("Departamento/Create", MsjError, "Create");
+                            ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                            return View(tbDepartamento);
+                        }
+                        else
+                        {
+                            if (listMunicipios != null)
+                            {
+                                if (listMunicipios.Count > 0)
+                                {
+                                    foreach (tbMunicipio mun in listMunicipios)
+                                    {
+                                        lista = db.UDP_Gral_tbMunicipio_Insert(mun.mun_Codigo, tbDepartamento.dep_Codigo, mun.mun_Nombre, Function.GetUser(), DateTime.Now);
+                                        foreach (UDP_Gral_tbMunicipio_Insert_Result municipios in lista)
+                                            MensajeError = municipios.MensajeError;
+                                        if (MensajeError.StartsWith("-1"))
+                                        {
+                                            Function.InsertBitacoraErrores("Departamento/Create", MensajeError, "Create");
+                                            ModelState.AddModelError("", "No se pudo insertar el registro detalle, favor contacte al administrador.");
+                                            return View(tbDepartamento);
+                                        }
+                                    }
+                                }
+                            }
+                            _Tran.Complete();
+                        }
+                    }
+                    catch (Exception Ex)
+                    {
+                        Function.InsertBitacoraErrores("Departamento/Create", Ex.Message.ToString(), "Create");
+                        ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                        return View(tbDepartamento);
+                    }
+                }
+                return RedirectToAction("Index");
+            }
+            return View(tbDepartamento);
+        }
+
+        // GET: /Departamento/Edit/5
+        [SessionManager("Departamento/Edit")]
+        public ActionResult Edit(string id)
+        {
+            Session["tbMunicipio"] = null;
+            if (id == null)
+            {
+                return RedirectToAction("Index");
+            }
             tbDepartamento tbDepartamento = db.tbDepartamento.Find(id);
-            db.tbDepartamento.Remove(tbDepartamento);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if (tbDepartamento == null)
+            {
+                return RedirectToAction("NotFound", "Login");
+            }
+            return View(tbDepartamento);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [SessionManager("Departamento/Edit")]
+        public ActionResult Edit(string id, [Bind(Include = "dep_Codigo,dep_Nombre,dep_UsuarioCrea,dep_FechaCrea,dep_UsuarioModifica,dep_FechaModifica")] tbDepartamento tbDepartamento)
+        {
+            if (ModelState.IsValid)
+            {
+                IEnumerable<object> list = null;
+                string MsjError = "";
+                {
+                    try
+                    {
+                        list = db.UDP_Gral_tbDepartamento_Update(tbDepartamento.dep_Codigo, tbDepartamento.dep_Nombre, tbDepartamento.dep_UsuarioCrea, tbDepartamento.dep_FechaCrea, Function.GetUser(), DateTime.Now);
+                        foreach (UDP_Gral_tbDepartamento_Update_Result dep in list)
+                            MsjError = dep.MensajeError;
+                        if (MsjError.StartsWith("-1"))
+                        {
+                            Function.InsertBitacoraErrores("Departamento/Edit", MsjError, "Edit");
+                            ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                            return View(tbDepartamento);
+                        }
+                        else
+                        {
+                            return RedirectToAction("Edit/" + tbDepartamento.dep_Codigo);
+                        }
+                    }
+                    catch (Exception Ex)
+                    {
+                        Function.InsertBitacoraErrores("Departamento/Create", Ex.Message.ToString(), "Create");
+                        ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                        return View(tbDepartamento);
+                    }
+                }
+            }
+            return View(tbDepartamento);
         }
 
         protected override void Dispose(bool disposing)
