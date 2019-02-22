@@ -32,12 +32,12 @@ namespace ERP_GMEDINA.Controllers
         {
             if (id == null)
             {
-                return RedirectToAction("Index");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             tbProductoCategoria tbProductoCategoria = db.tbProductoCategoria.Find(id);
             if (tbProductoCategoria == null)
             {
-                return RedirectToAction("NotFound", "Login");
+                return HttpNotFound();
             }
             return View(tbProductoCategoria);
         }
@@ -201,12 +201,12 @@ namespace ERP_GMEDINA.Controllers
                     catch { }
                     if (id == null)
                     {
-                        return RedirectToAction("Index");
+                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                     }
                     tbProductoCategoria tbProductoCategoria = db.tbProductoCategoria.Find(id);
                     if (tbProductoCategoria == null)
                     {
-                        return RedirectToAction("NotFound", "Login");
+                        return HttpNotFound();
                     }
                    
                     Session["tbProductoSubcategoria"] = null;
@@ -259,8 +259,8 @@ namespace ERP_GMEDINA.Controllers
                                                         EditarSubCategoria.pscat_Id,
                                                         EditarSubCategoria.pscat_Descripcion,
                                                        EditarSubCategoria.pcat_Id,
-                                                      EditarSubCategoria.pscat_UsuarioCrea,
-                                                      EditarSubCategoria.pscat_FechaCrea,
+                                                       EditarSubCategoria.pscat_UsuarioCrea,
+                                                       EditarSubCategoria.pscat_FechaCrea,
                                                       Function.GetUser(), Function.DatetimeNow(),
                                                       EditarSubCategoria.pscat_ISV
                     );
@@ -336,9 +336,10 @@ namespace ERP_GMEDINA.Controllers
                                                
 
                                                 subcate = db.UDP_Inv_tbProductoSubcategoria_Insert(subcategoria.pscat_Descripcion
-                                                                                            , idMaster
-                                                                                            , Function.GetUser(), Function.DatetimeNow(),
-                                                                                            subcategoria.pscat_ISV);
+                                                                                            , idMaster,
+                                                                                            Function.GetUser(), Function.DatetimeNow(),
+                                                                                            subcategoria.pscat_ISV
+                                                                                            );
 
                                                 foreach (UDP_Inv_tbProductoSubcategoria_Insert_Result ProdSubCate in subcate)
 
@@ -466,7 +467,7 @@ namespace ERP_GMEDINA.Controllers
 
         }
 
-        public ActionResult ActivarCate(int? id)
+        public ActionResult ActivarCateValidacion(int? id)
         {
 
             try
@@ -474,12 +475,15 @@ namespace ERP_GMEDINA.Controllers
                 tbProductoCategoria obj = db.tbProductoCategoria.Find(id);
                 IEnumerable<object> list = null;
                 var MsjError = "";
-                list = db.UDP_Inv_tbProductoCategoria_Update_Estado(id, Helpers.CategoriaActivo);
-                foreach (UDP_Inv_tbProductoCategoria_Update_Estado_Result obje in list)
+                list = db.UDP_Inv_tbProductoCategoria_Update_Estado_Validacion(id, Function.GetUser(), Function.DatetimeNow(), Helpers.CategoriaActivo);
+                foreach (UDP_Inv_tbProductoCategoria_Update_Estado_Validacion_Result obje in list)
                     MsjError = obje.MensajeError;
 
-                if (MsjError == "-1")
+                if (MsjError.StartsWith("-2"))
                 {
+                    TempData["smserror"] = " No se puede eliminar el dato porque tiene dependencia.";
+                    ViewBag.smserror = TempData["smserror"];
+
                     ModelState.AddModelError("", "No se Actualizo el registro");
                     return RedirectToAction("Edit/" + id);
                 }
@@ -499,9 +503,70 @@ namespace ERP_GMEDINA.Controllers
             //return RedirectToAction("Index");
         }
 
+        public ActionResult ActivarSubValidacion(int? id)
+        {
+
+            try
+            {
+                tbProductoSubcategoria obj = db.tbProductoSubcategoria.Find(id);
+                IEnumerable<object> list = null;
+                var MsjError = "";
+                list = db.UDP_Inv_tbProductoSubCategoria_Update_Estado_Validacion(id, Helpers.SubcategoriaActivo, Function.GetUser(), Function.DatetimeNow());
+                foreach (UDP_Inv_tbProductoSubCategoria_Update_Estado_Validacion_Result obje in list)
+                    MsjError = obje.MensajeError;
+
+                if (MsjError == "-1")
+                {
+                    ModelState.AddModelError("", "No se Actualizo el registro");
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                ModelState.AddModelError("", "No se Actualizo el registro");
+                return RedirectToAction("Index");
+            }
+        }
+
+        public ActionResult InactivarSubValidacion(int? id)
+        {
+
+            try
+            {
+                tbProductoSubcategoria obj = db.tbProductoSubcategoria.Find(id);
+                IEnumerable<object> list = null;
+                var MsjError = "";
+                list = db.UDP_Inv_tbProductoSubCategoria_Update_Estado_Validacion(id,Helpers.SubcategoriaInactivo, Function.GetUser(), Function.DatetimeNow());
+                foreach (UDP_Inv_tbProductoSubCategoria_Update_Estado_Validacion_Result obje in list)
+                    MsjError = obje.MensajeError;
+
+                if (MsjError.StartsWith("-1"))
+                {
+                    TempData["smserror"] = " No se puede cambiar el estado del dato porque tiene dependencia.";
+                    ViewBag.smserror = TempData["smserror"];
+                    ModelState.AddModelError("", "No se Actualizo el registro");
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                ModelState.AddModelError("", "No se Actualizo el registro");
+                return RedirectToAction("Index");
+            }
+        }
 
 
-        public ActionResult InactivarCate(int? id)
+        public ActionResult InactivarCateValidacion(int? id)
         {
 
             try
@@ -509,12 +574,15 @@ namespace ERP_GMEDINA.Controllers
                 tbProductoCategoria obj = db.tbProductoCategoria.Find(id);
                 IEnumerable<object> list = null;
                 var MsjError = "";
-                list = db.UDP_Inv_tbProductoCategoria_Update_Estado(id, Helpers.CategoriaInactivo);
-                foreach (UDP_Inv_tbProductoCategoria_Update_Estado_Result obje in list)
+                list = db.UDP_Inv_tbProductoCategoria_Update_Estado_Validacion(id, Function.GetUser(), Function.DatetimeNow(), Helpers.CategoriaInactivo);
+                foreach (UDP_Inv_tbProductoCategoria_Update_Estado_Validacion_Result obje in list)
                     MsjError = obje.MensajeError;
 
-                if (MsjError == "-1")
+                if (MsjError.StartsWith("-2"))
                 {
+                    TempData["smserror"] = " No se puede cambiar el estado del dato porque tiene dependencia.";
+                    ViewBag.smserror = TempData["smserror"];
+
                     ModelState.AddModelError("", "No se Actualizo el registro");
                     return RedirectToAction("Edit/" + id);
                 }
@@ -531,65 +599,6 @@ namespace ERP_GMEDINA.Controllers
             }
         }
 
-        public ActionResult InactivarSub(int? id)
-        {
-
-            try
-            {
-                tbProductoSubcategoria obj = db.tbProductoSubcategoria.Find(id);
-                IEnumerable<object> list = null;
-                var MsjError = "";
-                list = db.UDP_Inv_tbProductoSubCategoria_Update_Estado(id, Helpers.SubcategoriaInactivo);
-                foreach (UDP_Inv_tbProductoSubCategoria_Update_Estado_Result obje in list)
-                    MsjError = obje.MensajeError;
-
-                if (MsjError == "-1")
-                {
-                    ModelState.AddModelError("", "No se Actualizo el registro");
-                    return RedirectToAction("Index");
-                }
-                else
-                {
-                    return RedirectToAction("Index");
-                }
-            }
-            catch (Exception Ex)
-            {
-                Ex.Message.ToString();
-                ModelState.AddModelError("", "No se Actualizo el registro");
-                return RedirectToAction("Index");
-            }
-        }
-
-        public ActionResult ActivarSub(int? id)
-        {
-
-            try
-            {
-                tbProductoSubcategoria obj = db.tbProductoSubcategoria.Find(id);
-                IEnumerable<object> list = null;
-                var MsjError = "";
-                list = db.UDP_Inv_tbProductoSubCategoria_Update_Estado(id, Helpers.SubcategoriaActivo);
-                foreach (UDP_Inv_tbProductoSubCategoria_Update_Estado_Result obje in list)
-                    MsjError = obje.MensajeError;
-
-                if (MsjError == "-1")
-                {
-                    ModelState.AddModelError("", "No se Actualizo el registro");
-                    return RedirectToAction("Index");
-                }
-                else
-                {
-                    return RedirectToAction("Index");
-                }
-            }
-            catch (Exception Ex)
-            {
-                Ex.Message.ToString();
-                ModelState.AddModelError("", "No se Actualizo el registro");
-                return RedirectToAction("Index");
-            }
-          }
 
     }
 

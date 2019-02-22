@@ -240,7 +240,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbParametro_Update_Result>("UDP_Gral_tbParametro_Update", par_IdParameter, par_NombreEmpresaParameter, par_TelefonoEmpresaParameter, par_CorreoEmpresaParameter, par_PathLogoParameter, mnda_IdParameter, par_RolGerenteTiendaParameter, par_RolCreditoCobranzaParameter, par_RolSupervisorCajaParameter, par_RolCajeroParameter, par_RolAuditorParameter, par_SucursalPrincipalParameter, par_UsuarioCreaParameter, par_FechaCreaParameter, par_PorcentajeDescuentoTEParameter, par_IdConsumidorFinalParameter, par_UsuarioModificaParameter, par_FechaModificaParameter);
         }
     
-        public virtual ObjectResult<UDP_Inv_tbBodegaDetalle_Insert_Result> UDP_Inv_tbBodegaDetalle_Insert(string prod_Codigo, Nullable<int> bod_Id, Nullable<decimal> bodd_CantidadMinima, Nullable<decimal> bodd_CantidadMaxima, Nullable<decimal> bodd_PuntoReorden, Nullable<decimal> bodd_Costo, Nullable<decimal> bodd_CostoPromedio)
+        public virtual ObjectResult<UDP_Inv_tbBodegaDetalle_Insert_Result> UDP_Inv_tbBodegaDetalle_Insert(string prod_Codigo, Nullable<int> bod_Id, Nullable<decimal> bodd_CantidadMinima, Nullable<decimal> bodd_CantidadMaxima, Nullable<decimal> bodd_PuntoReorden, Nullable<decimal> bodd_Costo, Nullable<decimal> bodd_CostoPromedio, Nullable<int> bodd_UsuarioCrea, Nullable<System.DateTime> bodd_FechaCrea)
         {
             var prod_CodigoParameter = prod_Codigo != null ?
                 new ObjectParameter("prod_Codigo", prod_Codigo) :
@@ -270,7 +270,15 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("bodd_CostoPromedio", bodd_CostoPromedio) :
                 new ObjectParameter("bodd_CostoPromedio", typeof(decimal));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbBodegaDetalle_Insert_Result>("UDP_Inv_tbBodegaDetalle_Insert", prod_CodigoParameter, bod_IdParameter, bodd_CantidadMinimaParameter, bodd_CantidadMaximaParameter, bodd_PuntoReordenParameter, bodd_CostoParameter, bodd_CostoPromedioParameter);
+            var bodd_UsuarioCreaParameter = bodd_UsuarioCrea.HasValue ?
+                new ObjectParameter("bodd_UsuarioCrea", bodd_UsuarioCrea) :
+                new ObjectParameter("bodd_UsuarioCrea", typeof(int));
+    
+            var bodd_FechaCreaParameter = bodd_FechaCrea.HasValue ?
+                new ObjectParameter("bodd_FechaCrea", bodd_FechaCrea) :
+                new ObjectParameter("bodd_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbBodegaDetalle_Insert_Result>("UDP_Inv_tbBodegaDetalle_Insert", prod_CodigoParameter, bod_IdParameter, bodd_CantidadMinimaParameter, bodd_CantidadMaximaParameter, bodd_PuntoReordenParameter, bodd_CostoParameter, bodd_CostoPromedioParameter, bodd_UsuarioCreaParameter, bodd_FechaCreaParameter);
         }
     
         public virtual ObjectResult<UDP_Acce_tbRolesUsuario_Update_Result> UDP_Acce_tbRolesUsuario_Update(Nullable<int> rolu_Id, Nullable<int> rol_Id, Nullable<int> usu_Id, Nullable<int> rolu_UsuarioCrea, Nullable<System.DateTime> rolu_FechaCrea)
@@ -2905,6 +2913,48 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("prov_FechaModifica", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Inv_tbProveedor_Update", prov_IdParameter, prov_NombreParameter, prov_NombreContactoParameter, prov_DireccionParameter, prov_EmailParameter, prov_TelefonoParameter, prov_RTNParameter, acte_IdParameter, prov_UsuarioCreaParameter, prov_FechaCreaParameter, prov_UsuarioModificaParameter, prov_FechaModificaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Inv_tbProductoCategoria_Update_Estado_Validacion_Result> UDP_Inv_tbProductoCategoria_Update_Estado_Validacion(Nullable<int> pcat_Id, Nullable<int> pcat_UsuarioModifica, Nullable<System.DateTime> pcat_FechaModifica, Nullable<byte> eSTADO)
+        {
+            var pcat_IdParameter = pcat_Id.HasValue ?
+                new ObjectParameter("pcat_Id", pcat_Id) :
+                new ObjectParameter("pcat_Id", typeof(int));
+    
+            var pcat_UsuarioModificaParameter = pcat_UsuarioModifica.HasValue ?
+                new ObjectParameter("pcat_UsuarioModifica", pcat_UsuarioModifica) :
+                new ObjectParameter("pcat_UsuarioModifica", typeof(int));
+    
+            var pcat_FechaModificaParameter = pcat_FechaModifica.HasValue ?
+                new ObjectParameter("pcat_FechaModifica", pcat_FechaModifica) :
+                new ObjectParameter("pcat_FechaModifica", typeof(System.DateTime));
+    
+            var eSTADOParameter = eSTADO.HasValue ?
+                new ObjectParameter("ESTADO", eSTADO) :
+                new ObjectParameter("ESTADO", typeof(byte));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbProductoCategoria_Update_Estado_Validacion_Result>("UDP_Inv_tbProductoCategoria_Update_Estado_Validacion", pcat_IdParameter, pcat_UsuarioModificaParameter, pcat_FechaModificaParameter, eSTADOParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Inv_tbProductoSubCategoria_Update_Estado_Validacion_Result> UDP_Inv_tbProductoSubCategoria_Update_Estado_Validacion(Nullable<int> pscat_Id, Nullable<byte> pscat_EsActiva, Nullable<int> pscat_UsuarioModifica, Nullable<System.DateTime> pscat_FechaModifica)
+        {
+            var pscat_IdParameter = pscat_Id.HasValue ?
+                new ObjectParameter("pscat_Id", pscat_Id) :
+                new ObjectParameter("pscat_Id", typeof(int));
+    
+            var pscat_EsActivaParameter = pscat_EsActiva.HasValue ?
+                new ObjectParameter("pscat_EsActiva", pscat_EsActiva) :
+                new ObjectParameter("pscat_EsActiva", typeof(byte));
+    
+            var pscat_UsuarioModificaParameter = pscat_UsuarioModifica.HasValue ?
+                new ObjectParameter("pscat_UsuarioModifica", pscat_UsuarioModifica) :
+                new ObjectParameter("pscat_UsuarioModifica", typeof(int));
+    
+            var pscat_FechaModificaParameter = pscat_FechaModifica.HasValue ?
+                new ObjectParameter("pscat_FechaModifica", pscat_FechaModifica) :
+                new ObjectParameter("pscat_FechaModifica", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbProductoSubCategoria_Update_Estado_Validacion_Result>("UDP_Inv_tbProductoSubCategoria_Update_Estado_Validacion", pscat_IdParameter, pscat_EsActivaParameter, pscat_UsuarioModificaParameter, pscat_FechaModificaParameter);
         }
     }
 }

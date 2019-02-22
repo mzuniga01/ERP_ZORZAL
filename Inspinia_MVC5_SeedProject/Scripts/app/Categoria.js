@@ -1,6 +1,7 @@
 ﻿var contador = 0;
 
 
+
 $("#pscat_ISV").on("keypress keyup blur", function (event) {
     //this.value = this.value.replace(/[^0-9\.]/g,'');
     $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
@@ -167,6 +168,12 @@ $('#AgregarSubCategorias').click(function () {
         $('#ErrorISV').text('');
         $('#ErrorISV_Create').after('<ul id="ErrorISV" class="validation-summary-errors text-danger">Campo ISV Requerido</ul>');
     }
+    else if (ISV > 100) {
+        $('#MessageError').text('');
+        $('#ErrorDescripcion').text('');
+        $('#ErrorISV').text('');
+        $('#ErrorISV_Create').after('<ul id="ErrorISV" class="validation-summary-errors text-danger">Campo ISV solo Permite un Rango de 0 a 100</ul>');
+    }
     else {
         contador = contador + 1;
         copiar = "<tr data-id=" + contador + ">";
@@ -230,6 +237,13 @@ $('#CrearSubCategoria').click(function () {
         $('#ErrorISV').text('');
         $('#ErrorISV_Create').after('<ul id="ErrorISV" class="validation-summary-errors text-danger">Campo ISV Requerido</ul>');
     }
+    else if (ISV > 100) {
+        $('#MessageError').text('');
+        $('#ErrorDescripcion').text('');
+        $('#ErrorISV').text('');
+        $('#ErrorISV_Create').after('<ul id="ErrorISV" class="validation-summary-errors text-danger">Campo ISV solo Permite un Rango de 0 a 100</ul>');
+    }
+
     else {
         contador = contador + 1;
         copiar = "<tr data-id=" + contador + ">";

@@ -21,14 +21,12 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.pscat_ISV, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                <input type="number" id="pscat_ISV" placeholder="" class="form-control" />
+                                <input type="number" id="pscat_ISV" placeholder="" class="form-control" min="1" />
                                 <div id="ErrorISV_Create">
                                     @Html.ValidationMessageFor(model => model.pscat_ISV)
                                 </div>
                             </div>
-                            @*<div class="form-group col-md-1">
-                                <button class="btn btn-primary" type="button" id="AgregarSubCategorias">Añadir</button>
-                            </div>*@
+                          
                             <div class="col-md-offset-4">
                                 <input type="button" value="Agregar" id="AgregarSubCategorias" class="btn btn btn-primary" />
                             </div>

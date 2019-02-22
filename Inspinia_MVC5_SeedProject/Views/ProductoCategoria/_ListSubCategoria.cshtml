@@ -86,9 +86,9 @@
                                                 <button type="button" class="btn btn-danger btn-xs" disabled data-toggle="modal" data-target="#ModalEstado_@item.pscat_Id">
                                                     Eliminar
                                                 </button>
-                                               
+                                                @Html.ActionLink("Activar", "ActivarSubValidacion", new { id = item.pscat_Id }, new { @class = "btn btn-primary btn-xs" })
                                             }
-                                                         
+
 
                                         }
 
@@ -134,7 +134,7 @@
                                                 ¿Está seguro que quiere Inactivar esta SubCategoría?
                                             </div>
                                             <div class="modal-footer">
-                                                @Html.ActionLink("Sí", "InactivarSub", new { id = item.pscat_Id }, new { @class = "btn btn-danger" })
+                                                @Html.ActionLink("Sí", "InactivarSubValidacion", new { id = item.pscat_Id }, new { @class = "btn btn-danger" })
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
                                             </div>
                                         </div>

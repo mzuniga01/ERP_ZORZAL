@@ -165,7 +165,7 @@
                                             else
                                             {
                                                 <input type="submit" value="Guardar" class="btn btn-primary" disabled />
-                                                @Html.ActionLink("Activar", "ActivarCate", new { id = Model.pcat_Id }, new { @class = "btn btn-primary" })
+                                                @Html.ActionLink("Activar", "ActivarCateValidacion", new { id = Model.pcat_Id }, new { @class = "btn btn-primary" })
 
                                             }
 
@@ -239,7 +239,7 @@
                     ¿Está seguro que quiere Inactivar esta Categoría?
                 </div>
                 <div class="modal-footer">
-                    @Html.ActionLink("Sí", "InactivarCate", new { id = Model.pcat_Id }, new { @class = "btn btn-danger" })
+                    @Html.ActionLink("Sí", "InactivarCateValidacion", new { id = Model.pcat_Id }, new { @class = "btn btn-danger" })
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
                 </div>
             </div>

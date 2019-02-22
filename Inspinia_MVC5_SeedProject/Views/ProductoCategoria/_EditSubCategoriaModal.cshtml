@@ -50,11 +50,9 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.pcat_Id, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.EditorFor(model => model.pcat_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                        <p style="color:red">
-                                            @Html.ValidationMessageFor(model => model.pcat_Id)
-                                        </p>
-
+                                        @Html.EditorFor(model => model.pcat_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @min ="1" } })
+                                            @Html.ValidationMessageFor(model => model.pscat_ISV)
+                                    
                                     </div>
                                 </div>
 
