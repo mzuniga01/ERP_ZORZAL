@@ -2663,14 +2663,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UPD_Vent_tbUsuario_Rol" FunctionName="ERP_ZORZALModel.Store.UPD_Vent_tbUsuario_Rol">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UPD_Vent_tbUsuario_Rol_Result">
-          <ScalarProperty Name="usu_Id" ColumnName="usu_Id" />
-          <ScalarProperty Name="usu_NombreUsuario" ColumnName="usu_NombreUsuario" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_ObtenerCai_CodigoFactura" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_ObtenerCai_CodigoFactura">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbFactura_ObtenerCai_CodigoFactura_Result">
@@ -2744,6 +2736,14 @@
           <ScalarProperty Name="suc_Correo" ColumnName="suc_Correo" />
           <ScalarProperty Name="suc_Direccion" ColumnName="suc_Direccion" />
           <ScalarProperty Name="suc_Telefono" ColumnName="suc_Telefono" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UPD_Vent_tbUsuario_Rol" FunctionName="ERP_ZORZALModel.Store.UPD_Vent_tbUsuario_Rol">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UPD_Vent_tbUsuario_Rol_Result">
+          <ScalarProperty Name="usu_Id" ColumnName="usu_Id" />
+          <ScalarProperty Name="usu_NombreUsuario" ColumnName="usu_NombreUsuario" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

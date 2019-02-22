@@ -161,30 +161,31 @@
                 </div>
             </div>
 
-            <div class="form-group " >
+            <div class="form-group ">
                 <table class="table table-striped table-bordered " style="border-radius: 10px;">
                     <tr style="background-color:#EDE8E7"><td colspan="2"><label class="control-label col-md-2">Datos de Residencia</label></td></tr>
                     <tr>
-                        <td>
+                        <td class="col-md-6">
                             <label class="control-label col-md-4">Departamento<span style="color:red"> *</span></label>
                             @*@Html.LabelFor(muni => test.dep_Codigo, "Departamento", new { @class = "control-label col-md-2" })*@
-                            <div class="col-md-7">
+                            <div class="col-md-8">
                                 @Html.DropDownList("dep_Codigo", null, "Seleccione Departamento", new { @class = "form-control" })
                                 <p id="Departamento" style="color:red">@Html.ValidationMessageFor(muni => test.dep_Codigo)</p>
                             </div>
                         </td>
                         <td>
-                            @Html.LabelFor(model => model.mun_Codigo, "Municipio", new { @class = "control-label col-md-3" })
+                            @Html.LabelFor(model => model.mun_Codigo, "Municipio", new { @class = "control-label col-md-4" })
                             <div class="col-md-8">
                                 @Html.DropDownList("mun_Codigo", null, "Seleccione Municipio", new { @class = "form-control" })
                                 <p id="Municipio" style="color:red">@Html.ValidationMessageFor(model => model.mun_Codigo)</p>
                             </div>
                         </td>
                     </tr>
-                    <tr><td colspan="2">
+                    <tr>
+                        <td colspan="2">
                             @Html.LabelFor(model => model.clte_Direccion, new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
-                                @Html.TextAreaFor(model => model.clte_Direccion , new { @autocomplete = "off", @class = "form-control", onkeypress = "return validarI(event)" })
+                                @Html.TextAreaFor(model => model.clte_Direccion, new { @autocomplete = "off", @class = "form-control" })
                                 <p style="color:red">@Html.ValidationMessageFor(model => model.clte_Direccion)</p>
                             </div>
                         </td>

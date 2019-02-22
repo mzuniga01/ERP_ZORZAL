@@ -151,12 +151,13 @@ $(document).ready(function () {
 })
 
 function GetRol() {
+    var Sucursal=$("#suc_Id").val();
         $.ajax({
             url: "/MovimientoCaja/GetRol",
             method: "POST",
             dataType: 'json',
             contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ }),
+            data: JSON.stringify({ Sucursal: Sucursal }),
         })
         .done(function (data) {
             console.log(data)

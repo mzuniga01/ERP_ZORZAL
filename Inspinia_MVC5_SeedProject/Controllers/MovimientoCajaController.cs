@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using ERP_GMEDINA.Models;
 using System.Transactions;
-//ESTE//
+//ESTE es//
 namespace ERP_GMEDINA.Controllers
 {
     public class MovimientoCajaController : Controller
@@ -317,9 +317,9 @@ namespace ERP_GMEDINA.Controllers
         }
 
         [HttpPost]
-        public JsonResult GetRol()
+        public JsonResult GetRol(int Usuario)
         {
-            var list = db.UPD_Vent_tbUsuario_Rol().ToList();
+            var list = db.UPD_Vent_tbUsuario_Rol(Usuario).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
