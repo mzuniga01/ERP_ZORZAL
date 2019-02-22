@@ -238,6 +238,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Attribute\SessionManager.cs" />
+    <Compile Include="Controllers\BodegaController.cs" />
     <Compile Include="Controllers\BoxController.cs" />
     <Compile Include="Controllers\ConsultarExistenciaProductosController.cs" />
     <Compile Include="Controllers\DepartamentoController.cs" />

@@ -40,17 +40,6 @@
       <Parameter Name="par_UsuarioModifica" Mode="In" Type="Int32" />
       <Parameter Name="par_FechaModifica" Mode="In" Type="DateTime" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Inv_tbBodegaDetalle_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbBodegaDetalle_Insert_Result)">
-      <Parameter Name="prod_Codigo" Mode="In" Type="String" />
-      <Parameter Name="bod_Id" Mode="In" Type="Int32" />
-      <Parameter Name="bodd_CantidadMinima" Mode="In" Type="Decimal" />
-      <Parameter Name="bodd_CantidadMaxima" Mode="In" Type="Decimal" />
-      <Parameter Name="bodd_PuntoReorden" Mode="In" Type="Decimal" />
-      <Parameter Name="bodd_Costo" Mode="In" Type="Decimal" />
-      <Parameter Name="bodd_CostoPromedio" Mode="In" Type="Decimal" />
-      <Parameter Name="bodd_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="bodd_FechaCrea" Mode="In" Type="DateTime" />
-    </FunctionImport>
     <FunctionImport Name="UDP_Acce_tbRolesUsuario_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbRolesUsuario_Update_Result)">
       <Parameter Name="rolu_Id" Mode="In" Type="Int32" />
       <Parameter Name="rol_Id" Mode="In" Type="Int32" />
@@ -143,20 +132,6 @@
       <Parameter Name="bod_EsActiva" Mode="In" Type="Byte" />
       <Parameter Name="bodd_UsuarioModifica" Mode="In" Type="Int32" />
       <Parameter Name="bodd_FechaModifica" Mode="In" Type="DateTime" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Inv_tbBodegaDetalle_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbBodegaDetalle_Update_Result)">
-      <Parameter Name="bodd_Id" Mode="In" Type="Int32" />
-      <Parameter Name="prod_Codigo" Mode="In" Type="String" />
-      <Parameter Name="bod_Id" Mode="In" Type="Int32" />
-      <Parameter Name="bodd_CantidadMinima" Mode="In" Type="Decimal" />
-      <Parameter Name="bodd_CantidadMaxima" Mode="In" Type="Decimal" />
-      <Parameter Name="bodd_PuntoReorden" Mode="In" Type="Decimal" />
-      <Parameter Name="bodd_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="bodd_FechaCrea" Mode="In" Type="DateTime" />
-      <Parameter Name="bodd_UsuarioModifica" Mode="In" Type="Int32" />
-      <Parameter Name="bodd_FechaModifica" Mode="In" Type="DateTime" />
-      <Parameter Name="bodd_Costo" Mode="In" Type="Decimal" />
-      <Parameter Name="bodd_CostoPromedio" Mode="In" Type="Decimal" />
     </FunctionImport>
     <FunctionImport Name="UDP_Gral_tbEmpleado_Update_Estado" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbEmpleado_Update_Estado_Result)">
       <Parameter Name="emp_Id" Mode="In" Type="Int32" />
@@ -1202,12 +1177,6 @@
       <End Role="tbSolicitudEfectivo" EntitySet="tbSolicitudEfectivo" />
       <End Role="tbSolicitudEfectivoDetalle" EntitySet="tbSolicitudEfectivoDetalle" />
     </AssociationSet>
-    <FunctionImport Name="UDP_Inv_tbBodega_Update_Estado_Validacion" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbBodega_Update_Estado_Validacion_Result)">
-      <Parameter Name="bod_Id" Mode="In" Type="Int32" />
-      <Parameter Name="bod_EsActiva" Mode="In" Type="Byte" />
-      <Parameter Name="bodd_UsuarioModifica" Mode="In" Type="Int32" />
-      <Parameter Name="bodd_FechaModifica" Mode="In" Type="DateTime" />
-    </FunctionImport>
     <EntitySet Name="tbEntrada" EntityType="ERP_ZORZALModel.tbEntrada" />
     <AssociationSet Name="FK_Inv_tbEntrada_ent_UsuarioModifica" Association="ERP_ZORZALModel.FK_Inv_tbEntrada_ent_UsuarioModifica">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
@@ -1766,6 +1735,37 @@
       <Parameter Name="pscat_UsuarioModifica" Mode="In" Type="Int32" />
       <Parameter Name="pscat_FechaModifica" Mode="In" Type="DateTime" />
     </FunctionImport>
+    <FunctionImport Name="UDP_Inv_tbBodega_Update_Estado_Validacion" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbBodega_Update_Estado_Validacion_Result)">
+      <Parameter Name="bod_Id" Mode="In" Type="Int32" />
+      <Parameter Name="bod_EsActiva" Mode="In" Type="Byte" />
+      <Parameter Name="bodd_UsuarioModifica" Mode="In" Type="Int32" />
+      <Parameter Name="bodd_FechaModifica" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Inv_tbBodegaDetalle_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbBodegaDetalle_Insert_Result)">
+      <Parameter Name="prod_Codigo" Mode="In" Type="String" />
+      <Parameter Name="bod_Id" Mode="In" Type="Int32" />
+      <Parameter Name="bodd_CantidadMinima" Mode="In" Type="Decimal" />
+      <Parameter Name="bodd_CantidadMaxima" Mode="In" Type="Decimal" />
+      <Parameter Name="bodd_PuntoReorden" Mode="In" Type="Decimal" />
+      <Parameter Name="bodd_Costo" Mode="In" Type="Decimal" />
+      <Parameter Name="bodd_CostoPromedio" Mode="In" Type="Decimal" />
+      <Parameter Name="bodd_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="bodd_FechaCrea" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Inv_tbBodegaDetalle_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbBodegaDetalle_Update_Result)">
+      <Parameter Name="bodd_Id" Mode="In" Type="Int32" />
+      <Parameter Name="prod_Codigo" Mode="In" Type="String" />
+      <Parameter Name="bod_Id" Mode="In" Type="Int32" />
+      <Parameter Name="bodd_CantidadMinima" Mode="In" Type="Decimal" />
+      <Parameter Name="bodd_CantidadMaxima" Mode="In" Type="Decimal" />
+      <Parameter Name="bodd_PuntoReorden" Mode="In" Type="Decimal" />
+      <Parameter Name="bodd_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="bodd_FechaCrea" Mode="In" Type="DateTime" />
+      <Parameter Name="bodd_UsuarioModifica" Mode="In" Type="Int32" />
+      <Parameter Name="bodd_FechaModifica" Mode="In" Type="DateTime" />
+      <Parameter Name="bodd_Costo" Mode="In" Type="Decimal" />
+      <Parameter Name="bodd_CostoPromedio" Mode="In" Type="Decimal" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -1788,9 +1788,6 @@
     <NavigationProperty Name="tbInventarioFisicoDetalle" Relationship="ERP_ZORZALModel.FK_Inv_tbInventarioFisicoDetalle_tbInventarioFisico_invf_Id" FromRole="tbInventarioFisico" ToRole="tbInventarioFisicoDetalle" />
   </EntityType>
   <ComplexType Name="UDP_Gral_tbParametro_Insert_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="UDP_Inv_tbBodegaDetalle_Insert_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
   <ComplexType Name="UDP_Acce_tbRolesUsuario_Update_Result">
@@ -1854,9 +1851,6 @@
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
   <ComplexType Name="UDP_Inv_tbBodega_Update_Estado_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="UDP_Inv_tbBodegaDetalle_Update_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
   <ComplexType Name="UDP_Gral_tbEmpleado_Update_Estado_Result">
@@ -5542,9 +5536,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <ComplexType Name="UDP_Inv_tbBodega_Update_Estado_Validacion_Result">
-    <Property Type="String" Name="MensajeError" Nullable="false" MaxLength="44" />
-  </ComplexType>
   <EntityType Name="tbEntrada">
     <Key>
       <PropertyRef Name="ent_Id" />
@@ -6547,6 +6538,15 @@
     <Property Type="String" Name="MensajeError" Nullable="false" MaxLength="73" />
   </ComplexType>
   <ComplexType Name="UDP_Inv_tbProductoSubCategoria_Update_Estado_Validacion_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Inv_tbBodega_Update_Estado_Validacion_Result">
+    <Property Type="String" Name="MensajeError" Nullable="false" MaxLength="44" />
+  </ComplexType>
+  <ComplexType Name="UDP_Inv_tbBodegaDetalle_Insert_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Inv_tbBodegaDetalle_Update_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
 </Schema>

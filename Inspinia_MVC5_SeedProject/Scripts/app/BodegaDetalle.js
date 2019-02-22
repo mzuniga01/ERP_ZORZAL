@@ -5,14 +5,14 @@ $('#bod_Correo').change(function (e) {
     var emailRegex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     var EmailId = this.value;
     if (emailRegex.test(EmailId)) {
-        $('#MessageForCorreo').text('');
+        $('#ErrorCorreo').text('');
         this.style.backgroundColor = "";
     }
        
     else
     {
        
-        $('#MessageForCorreo').text('');
+        $('#ErrorCorreo').text('');
         $('#MessageForCorreo').after('<p id="ErrorCorreo" class="validation-summary-errors text-danger">Correo Electronico Es Incorrecto </p>');
         //$('#ErrorCorreoCreate_').text('');
         //$('#ValidacionCorreoCreate_').after('<p id="ErrorCorreoCreate_'  + '" style="color:red">Corrrek;dkg</p>');
@@ -21,6 +21,7 @@ $('#bod_Correo').change(function (e) {
     
 
 });
+
 //
 //Validar Los campos string
 function soloLetras(e) {
@@ -206,7 +207,13 @@ function NumText(string) {//solo letras y numeros
 
     return out;
 }
+function camposDecimales(e) {
 
+    tecla = (document.all) ? e.keyCode : e.which;
+    tecla = String.fromCharCode(tecla)
+    return /^[1234567890]+$/.test(tecla);
+
+}
 function controlCaracteres(e) {
   
     tecla = (document.all) ? e.keyCode : e.which;

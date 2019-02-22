@@ -101,7 +101,9 @@ namespace ERP_GMEDINA.Controllers
                                                                                     , bodd.bodd_CantidadMaxima
                                                                                     , bodd.bodd_PuntoReorden
                                                                                     , bodd.bodd_Costo
-                                                                                    , bodd.bodd_CostoPromedio);
+                                                                                    , bodd.bodd_CostoPromedio
+                                                                                    , Function.GetUser()
+                                                                                    , Function.DatetimeNow());
                                         foreach (UDP_Inv_tbBodegaDetalle_Insert_Result B_detalle in DETALLE)
                                             MensajeError = B_detalle.MensajeError;
                                         if (MensajeError.StartsWith("-1"))
@@ -138,6 +140,11 @@ namespace ERP_GMEDINA.Controllers
             try
             {
                 ViewBag.smserror = TempData["smserror"].ToString();
+            }
+            catch { }
+            try
+            {
+                ViewBag.smserror_Estado = TempData["smserror_Estado"].ToString();
             }
             catch { }
             if (id == null)
@@ -211,7 +218,9 @@ namespace ERP_GMEDINA.Controllers
                                                                                     , bodd.bodd_CantidadMaxima
                                                                                     , bodd.bodd_PuntoReorden
                                                                                     , bodd.bodd_Costo
-                                                                                    , bodd.bodd_CostoPromedio);
+                                                                                    , bodd.bodd_CostoPromedio
+                                                                                    , Function.GetUser()
+                                                                                    , Function.DatetimeNow());
                                         foreach (UDP_Inv_tbBodegaDetalle_Insert_Result B_detalle in DETALLE)
                                             MensajeError = B_detalle.MensajeError;
                                         if (MensajeError.StartsWith("-1"))
@@ -269,10 +278,10 @@ namespace ERP_GMEDINA.Controllers
                 foreach (UDP_Inv_tbBodega_Update_Estado_Validacion_Result obje in list)
                     MsjError = obje.MensajeError;
 
-                if (MsjError.StartsWith("-2"))
+                if (MsjError.StartsWith("-5"))
                 {
-                    TempData["smserror"] = "No se puede Inactivar Bodegas Con Detalles";
-                    ViewBag.smserror_Estado = TempData["smserror"];
+                    TempData["smserror_Estado"] = "No se puede Inactivar Bodegas Con Detalles";
+                    ViewBag.smserror_Estado = TempData["smserror_Estado"];
 
                     ModelState.AddModelError("", "No se Actualizo el registro");
                     return RedirectToAction("Edit/" + id);
@@ -343,7 +352,7 @@ namespace ERP_GMEDINA.Controllers
 
                 if (MsjError.StartsWith("-2"))
                 {
-                    TempData["smserror"] = "Nose puede eliminar el detalle tiene Cantidad Existente en bodega.";
+                    TempData["smserror"] = "No se puede eliminar el detalle, tiene Cantidad Existente en bodega.";
                     ViewBag.smserror = TempData["smserror"];
 
                     ModelState.AddModelError("", "No se puede Borrar el registro");

@@ -62,14 +62,14 @@
                         <label class="control-label col-md-2">Cantidad Miníma<span style="color:red">*</span></label>
                         <div class="col-md-4">
                             @*@Html.EditorFor(model => model.bodd_CantidadMinima, new { htmlAttributes = new { @Value = "", @onkeyup = "format(this)", onKeyPress = "return soloNumeros(event)", @autocomplete = "off" } })*@
-                            <input type="number" id="bodd_CantidadMinima" placeholder="" class="form-control" autocomplete = "off" />
+                            <input type="text" id="bodd_CantidadMinima" placeholder="" class="form-control" autocomplete = "off", onKeyPress = "return camposDecimales(event)" />
                             <div id="ErrorCantidadMinima_Create">@Html.ValidationMessageFor(model => model.bodd_CantidadMinima)</div>
 
                         </div>
                         <label class="control-label col-md-2">Punto Reorden<span style="color:red">*</span></label>
                         <div class="col-md-4">
                             @*@Html.EditorFor(model => model.bodd_PuntoReorden, new { htmlAttributes = new { @Value = "", @onkeyup = "format(this)", @autocomplete = "off" , onKeyPress = "return soloNumeros(event)" } })*@
-                            <input type="number" id="bodd_PuntoReorden" placeholder="" class="form-control" autocomplete = "off" />
+                            <input type="text" id="bodd_PuntoReorden" placeholder="" class="form-control" autocomplete = "off", onKeyPress = "return camposDecimales(event)" />
                             <div id="ErrorPuntoReorden_Create">@Html.ValidationMessageFor(model => model.bodd_PuntoReorden)</div>
 
                         </div>
@@ -78,7 +78,7 @@
                         <label class="control-label col-md-2">Cantidad Máxima<span style="color:red">*</span></label>
                         <div class="col-md-4">
                             @*@Html.EditorFor(model => model.bodd_CantidadMaxima, new { htmlAttributes = new { @Value = "", @onkeyup = "format(this)", @autocomplete = "off" , onKeyPress = "return soloNumeros(event)" } })*@
-                            <input type="number" id="bodd_CantidadMaxima" placeholder="" class="form-control" autocomplete = "off" />
+                            <input type="text" id="bodd_CantidadMaxima" placeholder="" class="form-control" autocomplete = "off" , onKeyPress = "return camposDecimales(event)"/>
                             @Html.ValidationMessageFor(model => model.bodd_CantidadMaxima)
                             <div id="ErrorCantidadMaxima_Create">@Html.ValidationMessageFor(model => model.bodd_CantidadMaxima)</div>
                         </div>
@@ -86,7 +86,7 @@
                         <label class="control-label col-md-2">Costo<span style="color:red">*</span></label>
                         <div class="col-md-4">
                             @*@Html.EditorFor(model => model.bodd_Costo, new { htmlAttributes = new { @Value = "", @onkeyup = "format(this)", @autocomplete = "off" , onKeyPress = "return soloNumeros(event)" } })*@
-                            <input type="number" id="bodd_Costo" placeholder="" class="form-control" autocomplete = "off" />
+                            <input type="text" id="bodd_Costo" placeholder="" class="form-control" autocomplete = "off", onKeyPress = "return camposDecimales(event)" />
                             @Html.ValidationMessageFor(model => model.bodd_Costo)
                             <div id="ErrorCosto_Create">@Html.ValidationMessageFor(model => model.bodd_CantidadMaxima)</div>
 
@@ -97,7 +97,7 @@
                         <label class="control-label col-md-2">Costo Promedio<span style="color:red">*</span></label>
                         <div class="col-md-4">
                             @*@Html.EditorFor(model => model.bodd_CostoPromedio, new { htmlAttributes = new { @Value = "", @onkeyup = "format(this)", @autocomplete = "off", onKeyPress = "return soloNumeros(event)" } })*@
-                            <input type="number" id="bodd_CostoPromedio" placeholder="" class="form-control" autocomplete = "off"/>
+                            <input type="text" id="bodd_CostoPromedio" placeholder="" class="form-control" autocomplete = "off", onKeyPress = "return camposDecimales(event)"/>
                             <div id="ErrorCostoPromedio_Create"><p style="color:red">@Html.ValidationMessageFor(model => model.bodd_CostoPromedio)</p> </div>
                             <div id="ErrorNumerico"></div>
                         </div>

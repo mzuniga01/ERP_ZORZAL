@@ -48,7 +48,7 @@
     <div class="col-md-12" id="mensaje">
         <div class="alert alert-warning alert-danger">
 
-            <button type="button" class="close" data-dissmiss="alert" aria-hidden="true">@Html.ActionLink("X", "index", new { @class = "btn btn-primary " })</button>
+            <button type="button" class="close" data-dissmiss="alert" aria-hidden="true">@Html.ActionLink("X", "Edit", new { id = Model.bod_Id }, new { @class = "btn btn-white btn-xs" })</button>
             <h4><i class="icon fa fa-warning"></i>Alerta</h4>
             <h2>@ViewBag.smserror_Estado</h2>
 

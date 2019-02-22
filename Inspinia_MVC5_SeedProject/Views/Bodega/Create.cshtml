@@ -12,15 +12,17 @@
         color: red;
         font-size: small;
     }
+
     .validation-summary-errors {
         color: red;
         font-size: small;
     }
-      .required:after {
-                            content: "*";
-                            font-weight: bold;
-                            color: red; 
-                        }
+
+    .required:after {
+        content: "*";
+        font-weight: bold;
+        color: red;
+    }
 </style>
 @{
     var ListadoMunicipio = new ERP_GMEDINA.Models.tbMunicipio();
@@ -61,43 +63,45 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.bod_Nombre, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    @Html.TextBoxFor(model => model.bod_Nombre, new { @class = "single-line", type ="text",MaxLength = 100, @onKeyPress = "return soloLetras(event)", @autocomplete = "off" })
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Nombre) </p>
+                                    @Html.TextBoxFor(model => model.bod_Nombre, new { @class = "single-line", type = "text", MaxLength = 100, @onKeyPress = "return soloLetras(event)", @autocomplete = "off" })
+                                    <p style="color:red" id="nombre_error">@Html.ValidationMessageFor(model => model.bod_Nombre) </p>
                                 </div>
                                 @Html.LabelFor(model => model.bod_ResponsableBodega, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
                                     @Html.DropDownList("bod_ResponsableBodega", (IEnumerable<SelectListItem>)ViewBag.ResponsableBodegaList, "Seleccione", new { @class = "form-control" })
-                                    <p id="Departamento" style="color:red">@Html.ValidationMessageFor(muni => Model.bod_ResponsableBodega)</p>
+                                    <p id="responsable_error" style="color:red">@Html.ValidationMessageFor(muni => Model.bod_ResponsableBodega)</p>
                                 </div>
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(model => model.dep_Codigo, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
                                     @Html.DropDownList("dep_Codigo", (IEnumerable<SelectListItem>)ViewBag.DepartamentoList, "Seleccione", new { @class = "form-control" })
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.tbMunicipio.dep_Codigo)</p>
+                                    <p style="color:red" id="depto_error">@Html.ValidationMessageFor(model => model.dep_Codigo)</p>
                                 </div>
                                 @Html.LabelFor(model => model.mun_Codigo, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
                                     @Html.DropDownList("mun_Codigo", (IEnumerable<SelectListItem>)ViewBag.MunicipioList, "Seleccione", new { @class = "single-line" })
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.mun_Codigo)</p>
+                                    <p style="color:red" id="municipio_error">@Html.ValidationMessageFor(model => model.mun_Codigo)</p>
                                 </div>
                             </div>
+
+
                             <div class="form-group">
-                               
+
                                 @Html.LabelFor(model => model.bod_Correo, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-lg-4">
                                     @*@Html.TextBoxFor(model => model.bod_Correo, new { @class = "single-line", MaxLength = 5000 })*@
                                     @Html.TextBoxFor(model => model.bod_Correo, new { @class = "form-control", type = "email", maxlength = 5000, @autocomplete = "off", @onKeyPress = "return Caracteres_Email(event)", @onkeyup = "this.value=CorreoElectronico(this.value)" })
                                     <div id="MessageForCorreo">
-                                        <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Correo)</p>
+                                        <p style="color:red" id="correo_error">@Html.ValidationMessageFor(model => model.bod_Correo)</p>
                                     </div>
-                                    
+
                                 </div>
                                 @Html.LabelFor(model => model.bod_Telefono, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-lg-4">
                                     @Html.TextBoxFor(model => model.bod_Telefono, new { @class = "single-line", MaxLength = 13, @onKeyPress = "return CaracteresTelefono(event)", @autocomplete = "off", @onkeyup = "this.value=CaracteresTelefono_borrar(this.value)" })
                                     <div id="MessageForTelephone">
-                                        <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Telefono)</p>
+                                        <p style="color:red" id="telefono_error">@Html.ValidationMessageFor(model => model.bod_Telefono)</p>
                                     </div>
                                 </div>
                             </div>
@@ -106,7 +110,7 @@
                                 <div class="col-lg-10">
                                     @Html.TextAreaFor(model => model.bod_Direccion, new { @class = "single-line", MaxLength = 200, @autocomplete = "off", @onKeyPress = "return controlCaracteres(event)", @onkeyup = "this.value=NumText(this.value)" })
                                     @*<input type="text" value="" id="direccion" name="direccion" />*@
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Direccion)</p>
+                                    <p style="color:red" id="direccion_error">@Html.ValidationMessageFor(model => model.bod_Direccion)</p>
                                 </div>
                             </div>
 
@@ -130,7 +134,7 @@
                             @*////*@
                             <div class="form-group">
                                 <div class="col-md-offset-9 col-md-10">
-                                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                                    <input type="submit" value="Guardar" class="btn btn-primary" id="guardar" />
                                     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                                 </div>
                             </div>
@@ -145,6 +149,7 @@
     <script src="~/Scripts/jquery-3.1.1.min.js"></script>
     <script src="~/Scripts/app/BodegaDetalle.js"></script>
     <script src="~/Scripts/app/Municipio.js"></script>
+
 
 
     <script>
@@ -207,7 +212,7 @@
                 document.getElementById("mun_Codigo").title = "";
                 document.getElementById("mun_Codigo").style.backgroundColor = "";
             }
-        });  
+        });
 
         //Esto lo agrego Mirian
         var contador = 0;
@@ -219,69 +224,69 @@
                     /////
                     $(function () {
                         $("#prod_CodigoBarras").val();
-                                var CBarras_Nuevo = $("#prod_CodigoBarras").val();
+                        var CBarras_Nuevo = $("#prod_CodigoBarras").val();
+                        $.ajax({
+                            url: "/Bodega/BuscarProductos",
+                            method: "POST",
+                            dataType: 'json',
+                            contentType: "application/json; charset=utf-8",
+                            data: JSON.stringify({
+                                GET_Barras_Nuevo: CBarras_Nuevo,
+                            }),
+                        }).done(function (data) {
+                            if (data.length > 0) {
+                                $.each(data, function (key, val) {
+                                    console.log('each')
+                                    data_producto = val.prod_Codigo;
+                                    data_categoria = val.pcat_Nombre;
+                                    data_subcate = val.pscat_Descripcion;
+                                    data_unidad = val.uni_Descripcion;
+                                    data_pDescripcion = val.prod_Descripcion;
+                                    console.log(data_producto)
+                                    $('#prod_Codigo').val(data_producto);
+                                    $('#pcat_Id').val(data_categoria);
+                                    $('#pscat_Id').val(data_subcate);
+                                    $('#uni_Id').val(data_unidad);
+                                    $('#prod_Descripcion').val(data_pDescripcion);
+                                })
+                                $('#Error_Barras').text('');
+                                $("#bodd_CantidadMinima").focus();
+                                ///--
                                 $.ajax({
-                                    url: "/Bodega/BuscarProductos",
+                                    url: "/Bodega/ProductosRepetidos",
                                     method: "POST",
                                     dataType: 'json',
                                     contentType: "application/json; charset=utf-8",
-                                    data: JSON.stringify({
-                                        GET_Barras_Nuevo: CBarras_Nuevo,
-                                    }),
-                                }).done(function (data) {
-                                    if (data.length > 0) {
-                                        $.each(data, function (key, val) {
-                                            console.log('each')
-                                            data_producto = val.prod_Codigo;
-                                            data_categoria = val.pcat_Nombre;
-                                            data_subcate = val.pscat_Descripcion;
-                                            data_unidad = val.uni_Descripcion;
-                                            data_pDescripcion = val.prod_Descripcion;
-                                            console.log(data_producto)
-                                            $('#prod_Codigo').val(data_producto);
-                                            $('#pcat_Id').val(data_categoria);
-                                            $('#pscat_Id').val(data_subcate);
-                                            $('#uni_Id').val(data_unidad);
-                                            $('#prod_Descripcion').val(data_pDescripcion);
-                                        })
-                                        $('#Error_Barras').text('');
-                                        $("#bodd_CantidadMinima").focus();
-                                        ///--
-                                        $.ajax({
-                                            url: "/Bodega/ProductosRepetidos",
-                                            method: "POST",
-                                            dataType: 'json',
-                                            contentType: "application/json; charset=utf-8",
-                                            data: JSON.stringify({ data_producto: data_producto }),
-                                        })
-                                            .done(function (datos) {
-                                                //if (datos.length > 0) {
-                                                if (datos == data_producto) {
-                                                    //alert('Es Igual.')
-                                                    $('#prod_Codigo').val('');
-                                                    $('#prod_CodigoBarras').val('');
-                                                    $('#prod_Descripcion').val('');
-                                                    $('#pcat_Id').val('');
-                                                    $('#pscat_Id').val('');
-                                                    $('#uni_Id').val('');
-                                                    $('#Error_Barras').text('');
-                                                    $('#ErrorBarras_Create').after('<ul id="Error_Barras" class="validation-summary-errors text-danger">*El Codigo ya ha sido ingresado</ul>');
-                                                    $("#prod_CodigoBarras").focus();
-                                                }
-                                                else {
-                                                    //alert('NO ES IGUAL')
-                                                   
-                                                    }
+                                    data: JSON.stringify({ data_producto: data_producto }),
+                                })
+                                    .done(function (datos) {
+                                        //if (datos.length > 0) {
+                                        if (datos == data_producto) {
+                                            //alert('Es Igual.')
+                                            $('#prod_Codigo').val('');
+                                            $('#prod_CodigoBarras').val('');
+                                            $('#prod_Descripcion').val('');
+                                            $('#pcat_Id').val('');
+                                            $('#pscat_Id').val('');
+                                            $('#uni_Id').val('');
+                                            $('#Error_Barras').text('');
+                                            $('#ErrorBarras_Create').after('<ul id="Error_Barras" class="validation-summary-errors text-danger">*El Codigo ya ha sido ingresado</ul>');
+                                            $("#prod_CodigoBarras").focus();
+                                        }
+                                        else {
+                                            //alert('NO ES IGUAL')
+
+                                        }
 
 
-                                            })
+                                    })
 
-                                    }
-                                    else {
-                                        $('#Error_Barras').text('');
-                                        $('#ErrorBarras_Create').after('<ul id="Error_Barras" class="validation-summary-errors text-danger">*Producto no existe</ul>');
-                                    }
-                                });
+                            }
+                            else {
+                                $('#Error_Barras').text('');
+                                $('#ErrorBarras_Create').after('<ul id="Error_Barras" class="validation-summary-errors text-danger">*Producto no existe</ul>');
+                            }
+                        });
                         return false;
                     });
                     return false;
@@ -432,7 +437,7 @@
                         $('#Error_CantidadMaxima').text('');
                         $('#Error_Costo').text('');
                         $('#Error_CostoPromedioo').text('');
-                       
+
                     });
 
 
