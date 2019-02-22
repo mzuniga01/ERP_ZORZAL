@@ -3780,6 +3780,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
   <Function Name="UDP_Acce_tbRolEstado_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
     <Parameter Name="rol_Id" Type="int" Mode="In" />
     <Parameter Name="rol_Estado" Type="bit" Mode="In" />
+    <Parameter Name="rol_UsuarioModifica" Type="int" Mode="In" />
+    <Parameter Name="rol_FechaModifica" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Acce_tbRolesUsuario_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
     <Parameter Name="usu_Id" Type="int" Mode="In" />
@@ -4029,6 +4031,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
   </Function>
   <Function Name="SP_tbInventariofisico_ProductosRepetidos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="prod_CodigoBarras" Type="varchar" Mode="In" />
+    <Parameter Name="bod_Id" Type="int" Mode="In" />
   </Function>
   <Function Name="spGetActividadEconomica" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="acte_Id" Type="smallint" Mode="In" />

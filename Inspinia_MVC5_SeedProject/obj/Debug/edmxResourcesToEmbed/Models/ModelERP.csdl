@@ -66,10 +66,6 @@
     <FunctionImport Name="SDP_Acce_GetObjetosDisponibles" ReturnType="Collection(ERP_ZORZALModel.SDP_Acce_GetObjetosDisponibles_Result)">
       <Parameter Name="rol_Id" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Acce_tbRolEstado_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbRolEstado_Update_Result)">
-      <Parameter Name="rol_Id" Mode="In" Type="Int32" />
-      <Parameter Name="rol_Estado" Mode="In" Type="Boolean" />
-    </FunctionImport>
     <FunctionImport Name="SDP_Acce_GetObjetosAsignados" ReturnType="Collection(ERP_ZORZALModel.SDP_Acce_GetObjetosAsignados_Result)">
       <Parameter Name="rol_Id" Mode="In" Type="Int32" />
     </FunctionImport>
@@ -1532,6 +1528,7 @@
     </FunctionImport>
     <FunctionImport Name="SP_tbInventariofisico_ProductosRepetidos" ReturnType="Collection(ERP_ZORZALModel.SP_tbInventariofisico_ProductosRepetidos_Result)">
       <Parameter Name="prod_CodigoBarras" Mode="In" Type="String" />
+      <Parameter Name="bod_Id" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="UDP_Inv_tbInventarioFisico_ListaProductos" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbInventarioFisico_ListaProductos_Result)">
       <Parameter Name="bod_Id" Mode="In" Type="Int32" />
@@ -1766,6 +1763,12 @@
       <Parameter Name="bodd_Costo" Mode="In" Type="Decimal" />
       <Parameter Name="bodd_CostoPromedio" Mode="In" Type="Decimal" />
     </FunctionImport>
+    <FunctionImport Name="UDP_Acce_tbRolEstado_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbRolEstado_Update_Result)">
+      <Parameter Name="rol_Id" Mode="In" Type="Int32" />
+      <Parameter Name="rol_Estado" Mode="In" Type="Boolean" />
+      <Parameter Name="rol_UsuarioModifica" Mode="In" Type="Int32" />
+      <Parameter Name="rol_FechaModifica" Mode="In" Type="DateTime" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -1814,9 +1817,6 @@
     <Property Type="DateTime" Name="obj_FechaCrea" Nullable="false" Precision="23" />
     <Property Type="Int32" Name="obj_UsuarioModifica" Nullable="true" />
     <Property Type="DateTime" Name="obj_FechaModifica" Nullable="true" Precision="23" />
-  </ComplexType>
-  <ComplexType Name="UDP_Acce_tbRolEstado_Update_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
   <ComplexType Name="SDP_Acce_GetObjetosAsignados_Result">
     <Property Type="Int32" Name="obj_Id" Nullable="false" />
@@ -6547,6 +6547,9 @@
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
   <ComplexType Name="UDP_Inv_tbBodegaDetalle_Update_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Acce_tbRolEstado_Update_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
 </Schema>

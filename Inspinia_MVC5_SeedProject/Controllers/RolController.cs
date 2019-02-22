@@ -222,7 +222,7 @@ namespace ERP_GMEDINA.Controllers
                 IEnumerable<Object> List = null;
                 var Msj = "";
                 tbRol tbRol = db.tbRol.Find(id);
-                List = db.UDP_Acce_tbRolEstado_Update(id, Helpers.RolInactivo);
+                List = db.UDP_Acce_tbRolEstado_Update(id, Helpers.RolInactivo, Function.GetUser(), Function.DatetimeNow());
                 foreach (UDP_Acce_tbRolEstado_Update_Result Rol in List)
                     Msj = Rol.MensajeError;
             }
@@ -240,7 +240,7 @@ namespace ERP_GMEDINA.Controllers
                 IEnumerable<Object> List = null;
                 var Msj = "";
                 tbRol tbRol = db.tbRol.Find(id);
-                List = db.UDP_Acce_tbRolEstado_Update(id, Helpers.RolActivo);
+                List = db.UDP_Acce_tbRolEstado_Update(id, Helpers.RolActivo, Function.GetUser(), Function.DatetimeNow());
                 foreach (UDP_Acce_tbRolEstado_Update_Result Rol in List)
                     Msj = Rol.MensajeError;
             }
@@ -326,14 +326,21 @@ namespace ERP_GMEDINA.Controllers
             int idRol = 0;
             var Msj1 = "";
             var Msj2 = "";
-            using (TransactionScope Tran = new TransactionScope())
+            if (db.tbRol.Any(a => a.rol_Descripcion == DescripcionRol))
+            {
+                ModelState.AddModelError("", "Ya existe un rol con el mismo nombre");
+                Msj1 = "-2";
+            }
+            else
+            {
+                using (TransactionScope Tran = new TransactionScope())
             {
 
                 try
                 {
                     if (DescripcionRol != "")
                     {
-                        Rol = db.UDP_Acce_tbRol_Insert(DescripcionRol, Helpers.RolActivo, idUser, System.DateTime.Now);
+                        Rol = db.UDP_Acce_tbRol_Insert(DescripcionRol, Helpers.RolActivo, Function.GetUser(), Function.DatetimeNow());
                         foreach (UDP_Acce_tbRol_Insert_Result vRol in Rol)
                             Msj1 = vRol.MensajeError;
                         if (Msj1.Substring(0, 1) != "-")
@@ -364,6 +371,7 @@ namespace ERP_GMEDINA.Controllers
                 }
 
             }
+            }
             return Json(Msj1, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
@@ -387,25 +395,33 @@ namespace ERP_GMEDINA.Controllers
         [HttpPost]
         public JsonResult UpdateRol(int rolId, string Descripcion)
         {
-            int idUser = 0;
-            GeneralFunctions Login = new GeneralFunctions();
-            List<tbUsuario> User = Login.getUserInformation();
-            foreach (tbUsuario Usuario in User)
-            {
-                idUser = Convert.ToInt32(Usuario.usu_Id);
-            }
             var Msj = "";
-            try
+            if (db.tbRol.Any(a => a.rol_Descripcion == Descripcion && a.rol_Id != rolId))
             {
-                if (Descripcion != null)
-                {
-                   db.UDP_Acce_tbRol_Update(rolId, Descripcion, idUser, System.DateTime.Now);
-                   Msj = "1";
-                }
+                ModelState.AddModelError("", "Ya existe un rol con el mismo nombre");
+                Msj = "-2";
             }
-            catch (Exception)
+            else
             {
-                Msj = "-1";
+                int idUser = 0;
+                GeneralFunctions Login = new GeneralFunctions();
+                List<tbUsuario> User = Login.getUserInformation();
+                foreach (tbUsuario Usuario in User)
+                {
+                    idUser = Convert.ToInt32(Usuario.usu_Id);
+                }
+                try
+                {
+                    if (Descripcion != null)
+                    {
+                        db.UDP_Acce_tbRol_Update(rolId, Descripcion, Function.GetUser(), Function.DatetimeNow());
+                        Msj = "1";
+                    }
+                }
+                catch (Exception)
+                {
+                    Msj = "-1";
+                }
             }
             return Json(Msj, JsonRequestBehavior.AllowGet);
         }

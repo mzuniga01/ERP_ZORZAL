@@ -224,7 +224,10 @@ $('#Add').click(function () {
                 data: JSON.stringify({ rolId: rolId, Descripcion: Descripcion }),
             })
                         .done(function (data) {
-                            if (data == '') {
+                            if (data == '-2') {
+                                $('#validationDescripcionRol').after('<ul id="ErrorValidacionGeneral" class="validation-summary-errors text-danger">Ya existe un rol con el mismo nombre</ul>');
+                            }
+                            else if (data == '-1') {
                                 $('#validationDescripcionRol').after('<ul id="ErrorValidacionGeneral" class="validation-summary-errors text-danger">No se pudo actualizar el registro, contacte con el administrador</ul>');
                             }
                             else {
@@ -238,9 +241,3 @@ $('#Add').click(function () {
                         })
         }
     });
-
-    function soloLetras(e) {
-        tecla = (document.all) ? e.keyCode : e.which;
-        tecla = String.fromCharCode(tecla)
-        return /^[a-zA-ZáéíóúñÁÉÍÓÚÑ ]+$/.test(tecla);
-    }

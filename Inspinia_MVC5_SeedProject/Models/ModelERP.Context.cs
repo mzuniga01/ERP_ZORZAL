@@ -333,19 +333,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_Acce_GetObjetosDisponibles_Result>("SDP_Acce_GetObjetosDisponibles", rol_IdParameter);
         }
     
-        public virtual ObjectResult<UDP_Acce_tbRolEstado_Update_Result> UDP_Acce_tbRolEstado_Update(Nullable<int> rol_Id, Nullable<bool> rol_Estado)
-        {
-            var rol_IdParameter = rol_Id.HasValue ?
-                new ObjectParameter("rol_Id", rol_Id) :
-                new ObjectParameter("rol_Id", typeof(int));
-    
-            var rol_EstadoParameter = rol_Estado.HasValue ?
-                new ObjectParameter("rol_Estado", rol_Estado) :
-                new ObjectParameter("rol_Estado", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Acce_tbRolEstado_Update_Result>("UDP_Acce_tbRolEstado_Update", rol_IdParameter, rol_EstadoParameter);
-        }
-    
         public virtual ObjectResult<SDP_Acce_GetObjetosAsignados_Result> SDP_Acce_GetObjetosAsignados(Nullable<int> rol_Id)
         {
             var rol_IdParameter = rol_Id.HasValue ?
@@ -2400,13 +2387,17 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbTipoSalida_Update_Result>("UDP_Inv_tbTipoSalida_Update", tsal_IdParameter, tsal_DescripcionParameter, tsal_UsuarioCreaParameter, tsal_FechaCreaParameter, tsal_UsuarioModificaParameter, tsal_FechaModificaParameter);
         }
     
-        public virtual ObjectResult<SP_tbInventariofisico_ProductosRepetidos_Result> SP_tbInventariofisico_ProductosRepetidos(string prod_CodigoBarras)
+        public virtual ObjectResult<SP_tbInventariofisico_ProductosRepetidos_Result> SP_tbInventariofisico_ProductosRepetidos(string prod_CodigoBarras, Nullable<int> bod_Id)
         {
             var prod_CodigoBarrasParameter = prod_CodigoBarras != null ?
                 new ObjectParameter("prod_CodigoBarras", prod_CodigoBarras) :
                 new ObjectParameter("prod_CodigoBarras", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_tbInventariofisico_ProductosRepetidos_Result>("SP_tbInventariofisico_ProductosRepetidos", prod_CodigoBarrasParameter);
+            var bod_IdParameter = bod_Id.HasValue ?
+                new ObjectParameter("bod_Id", bod_Id) :
+                new ObjectParameter("bod_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_tbInventariofisico_ProductosRepetidos_Result>("SP_tbInventariofisico_ProductosRepetidos", prod_CodigoBarrasParameter, bod_IdParameter);
         }
     
         public virtual ObjectResult<UDP_Inv_tbInventarioFisico_ListaProductos_Result> UDP_Inv_tbInventarioFisico_ListaProductos(Nullable<int> bod_Id)
@@ -2955,6 +2946,27 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("bodd_CostoPromedio", typeof(decimal));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbBodegaDetalle_Update_Result>("UDP_Inv_tbBodegaDetalle_Update", bodd_IdParameter, prod_CodigoParameter, bod_IdParameter, bodd_CantidadMinimaParameter, bodd_CantidadMaximaParameter, bodd_PuntoReordenParameter, bodd_UsuarioCreaParameter, bodd_FechaCreaParameter, bodd_UsuarioModificaParameter, bodd_FechaModificaParameter, bodd_CostoParameter, bodd_CostoPromedioParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Acce_tbRolEstado_Update_Result> UDP_Acce_tbRolEstado_Update(Nullable<int> rol_Id, Nullable<bool> rol_Estado, Nullable<int> rol_UsuarioModifica, Nullable<System.DateTime> rol_FechaModifica)
+        {
+            var rol_IdParameter = rol_Id.HasValue ?
+                new ObjectParameter("rol_Id", rol_Id) :
+                new ObjectParameter("rol_Id", typeof(int));
+    
+            var rol_EstadoParameter = rol_Estado.HasValue ?
+                new ObjectParameter("rol_Estado", rol_Estado) :
+                new ObjectParameter("rol_Estado", typeof(bool));
+    
+            var rol_UsuarioModificaParameter = rol_UsuarioModifica.HasValue ?
+                new ObjectParameter("rol_UsuarioModifica", rol_UsuarioModifica) :
+                new ObjectParameter("rol_UsuarioModifica", typeof(int));
+    
+            var rol_FechaModificaParameter = rol_FechaModifica.HasValue ?
+                new ObjectParameter("rol_FechaModifica", rol_FechaModifica) :
+                new ObjectParameter("rol_FechaModifica", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Acce_tbRolEstado_Update_Result>("UDP_Acce_tbRolEstado_Update", rol_IdParameter, rol_EstadoParameter, rol_UsuarioModificaParameter, rol_FechaModificaParameter);
         }
     }
 }

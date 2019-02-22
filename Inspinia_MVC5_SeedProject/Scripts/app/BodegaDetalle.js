@@ -221,7 +221,7 @@ function Caracteres_Email(e) {
 
     tecla = (document.all) ? e.keyCode : e.which;
     tecla = String.fromCharCode(tecla)
-    return /^[a-zA-ZáéíóúñÁÉÍÓÚÑ1234567890@ .-_]+$/.test(tecla);
+    return /^[a-zA-ZáéíóúñÁÉÍÓÚÑ1234567890@.-_]+$/.test(tecla);
 
 }
 

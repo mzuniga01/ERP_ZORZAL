@@ -156,7 +156,10 @@ $('#btnGuardarRol').click(function () {
             data: JSON.stringify({ DescripcionRol: DescripcionRol, AccesoRol: AccesoRol }),
         })
                 .done(function (data) {
-                    if (data == '') {
+                    if (data == '-2') {
+                        $('#validationDescripcionRol').after('<ul id="ErrorValidacionGeneral" class="validation-summary-errors text-danger">Ya existe un rol con el mismo nombre</ul>');
+                    }
+                    else if (data == '-1') {
                         $('#validationDescripcionRol').after('<ul id="ErrorValidacionGeneral" class="validation-summary-errors text-danger">No se pudo ingresar el registro</ul>');
                     }
                     else {

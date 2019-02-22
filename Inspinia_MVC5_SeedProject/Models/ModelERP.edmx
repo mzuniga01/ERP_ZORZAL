@@ -3785,6 +3785,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
         <Function Name="UDP_Acce_tbRolEstado_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
           <Parameter Name="rol_Id" Type="int" Mode="In" />
           <Parameter Name="rol_Estado" Type="bit" Mode="In" />
+          <Parameter Name="rol_UsuarioModifica" Type="int" Mode="In" />
+          <Parameter Name="rol_FechaModifica" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Acce_tbRolesUsuario_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
           <Parameter Name="usu_Id" Type="int" Mode="In" />
@@ -4034,6 +4036,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
         </Function>
         <Function Name="SP_tbInventariofisico_ProductosRepetidos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="prod_CodigoBarras" Type="varchar" Mode="In" />
+          <Parameter Name="bod_Id" Type="int" Mode="In" />
         </Function>
         <Function Name="spGetActividadEconomica" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="acte_Id" Type="smallint" Mode="In" />
@@ -5540,10 +5543,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
           <FunctionImport Name="SDP_Acce_GetObjetosDisponibles" ReturnType="Collection(ERP_ZORZALModel.SDP_Acce_GetObjetosDisponibles_Result)">
           <Parameter Name="rol_Id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Acce_tbRolEstado_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbRolEstado_Update_Result)">
-            <Parameter Name="rol_Id" Mode="In" Type="Int32" />
-            <Parameter Name="rol_Estado" Mode="In" Type="Boolean" />
-          </FunctionImport>
           <FunctionImport Name="SDP_Acce_GetObjetosAsignados" ReturnType="Collection(ERP_ZORZALModel.SDP_Acce_GetObjetosAsignados_Result)">
           <Parameter Name="rol_Id" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -7006,6 +7005,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
           </FunctionImport>
           <FunctionImport Name="SP_tbInventariofisico_ProductosRepetidos" ReturnType="Collection(ERP_ZORZALModel.SP_tbInventariofisico_ProductosRepetidos_Result)">
           <Parameter Name="prod_CodigoBarras" Mode="In" Type="String" />
+            <Parameter Name="bod_Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="UDP_Inv_tbInventarioFisico_ListaProductos" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbInventarioFisico_ListaProductos_Result)">
           <Parameter Name="bod_Id" Mode="In" Type="Int32" />
@@ -7240,6 +7240,12 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
             <Parameter Name="bodd_Costo" Mode="In" Type="Decimal" />
             <Parameter Name="bodd_CostoPromedio" Mode="In" Type="Decimal" />
           </FunctionImport>
+          <FunctionImport Name="UDP_Acce_tbRolEstado_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbRolEstado_Update_Result)">
+            <Parameter Name="rol_Id" Mode="In" Type="Int32" />
+            <Parameter Name="rol_Estado" Mode="In" Type="Boolean" />
+            <Parameter Name="rol_UsuarioModifica" Mode="In" Type="Int32" />
+            <Parameter Name="rol_FechaModifica" Mode="In" Type="DateTime" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
           <Key>
@@ -7288,9 +7294,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
           <Property Type="DateTime" Name="obj_FechaCrea" Nullable="false" Precision="23" />
           <Property Type="Int32" Name="obj_UsuarioModifica" Nullable="true" />
           <Property Type="DateTime" Name="obj_FechaModifica" Nullable="true" Precision="23" />
-        </ComplexType>
-        <ComplexType Name="UDP_Acce_tbRolEstado_Update_Result">
-          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
         <ComplexType Name="SDP_Acce_GetObjetosAsignados_Result">
           <Property Type="Int32" Name="obj_Id" Nullable="false" />
@@ -12023,6 +12026,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
         <ComplexType Name="UDP_Inv_tbBodegaDetalle_Update_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
+        <ComplexType Name="UDP_Acce_tbRolEstado_Update_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -12101,13 +12107,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
                 <ScalarProperty Name="obj_FechaCrea" ColumnName="obj_FechaCrea" />
                 <ScalarProperty Name="obj_UsuarioModifica" ColumnName="obj_UsuarioModifica" />
                 <ScalarProperty Name="obj_FechaModifica" ColumnName="obj_FechaModifica" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Acce_tbRolEstado_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbRolEstado_Update" >
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_tbRolEstado_Update_Result">
-                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -14180,6 +14179,13 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
           <FunctionImportMapping FunctionImportName="UDP_Inv_tbBodegaDetalle_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBodegaDetalle_Update" >
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbBodegaDetalle_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Acce_tbRolEstado_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbRolEstado_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_tbRolEstado_Update_Result">
                 <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
               </ComplexTypeMapping>
             </ResultMapping>

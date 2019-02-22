@@ -92,12 +92,7 @@ namespace ERP_GMEDINA.Controllers
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
-        [HttpPost]
-        public JsonResult ProductosEnter(string cod_Barras)
-        {
-            var list = db.SP_tbInventariofisico_ProductosRepetidos(cod_Barras).ToList();
-            return Json(list, JsonRequestBehavior.AllowGet);
-        }
+
 
         //[HttpPost]
         //public JsonResult ProductosRepetidos(string data_producto)

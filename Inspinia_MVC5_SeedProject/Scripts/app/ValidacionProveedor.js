@@ -1,25 +1,12 @@
-﻿$(document).ready(function () {
-    $("#btnGuardar").click(function () {
-        var nombre = $('#prov_Nombre').val();
+﻿
+//NombreDeProveedor
+function CaracteresNombre(e) {
+    tecla = (document.all) ? e.keyCode : e.which;
+    tecla = String.fromCharCode(tecla)
+    return /^[a-zA-ZáéíóúñÁÉÍÓÚÑ1234567890 ]+$/.test(tecla);
 
-
-
-        if (nombre == '') {
-            valido = document.getElementById('nombre');
-            valido.innerText = "El campo Días Solicitados es requerido";
-            return false;
-        }
-        else {
-            valido = document.getElementById('nombre');
-            valido.innerText = "";
-
-        }
-
-    });
-});
-
-
-
+}
+//////////////////////////////////////////////////////////
 $("#prov_Telefono").on("keypress keyup blur", function (event) {
     //this.value = this.value.replace(/[^0-9\.]/g,'');
     $(this).val($(this).val().replace(/[^0-9\+.]/g, ''));
@@ -27,8 +14,7 @@ $("#prov_Telefono").on("keypress keyup blur", function (event) {
         event.preventDefault();
     }
 });
-
-
+///SoloNumerosy+Telefono
 $("#prov_Telefono").on("keypress keyup blur", function (event) {
     var Telefono = $(this).val();
   
@@ -37,8 +23,7 @@ $("#prov_Telefono").on("keypress keyup blur", function (event) {
     }
     this.value = this.value.replace(/[a-záéíóúüñ#/=]+/ig, "");
 });
-
-
+///SoloNumerosRTN
 $("#prov_RTN").on("keypress keyup blur", function (event) {
   
     $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
@@ -46,23 +31,11 @@ $("#prov_RTN").on("keypress keyup blur", function (event) {
         event.preventDefault();
     }
 });
-
-$('#prov_RTN').change(function (e) {
- 
-    var RTN = $("#prov_RTN").val();
-    $("#ErrorCorreo").remove();
-    if (RTN < 9999999999999) {
-        $('#ErrorCorreo').text('');
-        $('#validationRTN').after('<ul id="ErrorCorreo" class="validation-summary-errors text-danger">RTN debe tener 14 dígitos</ul>');
-    }
-
-
-});
-
-
+////Accion Guardar
 $('#btnGuardar').click(function () {
 
-
+    
+    $("#ErrorValidacionGeneral").remove();
     $("#errorRTN").remove();
     $("#errorNombre").remove();
     $("#errorContacto").remove();
@@ -133,6 +106,8 @@ $('#btnGuardar').click(function () {
                         $('#prov_RTN').after('<ul id="ErrorValidacionGeneral" class="validation-summary-errors text-danger">No se Puede Guardar Contacte Al Administrador</ul>');
                     }
                     else if (data == "-2") {
+                        $('#RTN').text('');
+                        $('#ErrorValidacionGeneral').text('');
                         $('#prov_RTN').after('<ul id="ErrorValidacionGeneral" class="validation-summary-errors text-danger">Este RTN Ya existe</ul>');
                     }
 
@@ -143,7 +118,10 @@ $('#btnGuardar').click(function () {
             })
     }
 });
+////Accion Actualizar
 $('#btnActualizar').click(function () {
+
+    $("#ErrorValidacionGeneral").remove();
     $("#errorRTN").remove();
     $("#errorNombre").remove();
     $("#errorContacto").remove();
@@ -222,9 +200,10 @@ $('#btnActualizar').click(function () {
                     $('#prov_RTN').after('<ul id="ErrorValidacionGeneral" class="validation-summary-errors text-danger">No se Guardo el registro, Contacte al Administrador.</ul>');
                 }
                 else if (data == "-2") {
-                    $('#prov_Nombre').after('<ul id="ErrorValidacionGeneral" class="validation-summary-errors text-danger">Ya Existe Un Proveedor Con El Mismo Nombre.</ul>');
+                    $('#RTN').text('');
+                    $('#ErrorValidacionGeneral').text('');
+                    $('#prov_RTN').after('<ul id="ErrorValidacionGeneral" class="validation-summary-errors text-danger">Este RTN Ya existe</ul>');
                 }
-
                 else {
                     window.location.href = "/Proveedor/Index";
                 }
@@ -241,25 +220,33 @@ $('#prov_Email').change(function (e) {
         $('#ErrorCorreo').text('');
         this.style.backgroundColor = "";
     }
-
     else {
 
         $('#ErrorCorreo').text('');
         $('#MessageForCorreo').after('<ul id="ErrorCorreo" class="validation-summary-errors text-danger">Correo Electronico Es Incorrecto </ul>');
         $("#prov_Email").focus();
     }
-
-
 });
-
 ////Validacion De solo letras 
 function soloLetras(e) {
     tecla = (document.all) ? e.keyCode : e.which;
     tecla = String.fromCharCode(tecla)
     return /^[a-zA-ZáéíóúñÁÉÍÓÚÑ ]+$/.test(tecla);
 }
+/////Validacion de RTN<14
+$('#prov_RTN').change(function (e) {
+   
+    var RTN = $("#prov_RTN").val();
+    $("#ErrorCorreo").remove();
+    if (RTN < 9999999999999) {
+
+        $('#ErrorCorreo').text('');
+        $('#validationRTN').after('<ul id="ErrorCorreo" class="validation-summary-errors text-danger">RTN debe tener 14 dígitos</ul>');
+    }
 
 
+});
+/////Validacion De Space
 $('#prov_Nombre,#prov_NombreContacto,#prov_Direccion,#prov_Email').change(function () {
  
     //alert("el input cambio");
@@ -284,4 +271,11 @@ $('#prov_Nombre,#prov_NombreContacto,#prov_Direccion,#prov_Email').change(functi
 
     }
 });
+/////ValidacionDireccion
+function controlCaracteres(e) {
 
+    tecla = (document.all) ? e.keyCode : e.which;
+    tecla = String.fromCharCode(tecla)
+    return /^[a-zA-ZáéíóúñÁÉÍÓÚÑ1234567890# ,.]+$/.test(tecla);
+
+}
