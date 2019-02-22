@@ -89,25 +89,25 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.clte_FechaNacimiento, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.EditorFor(model => model.clte_FechaNacimiento, "{0:MM/dd/yyyy}", new { htmlAttributes = new { @autocomplete = "off" } })
+                                        @Html.EditorFor(model => model.clte_FechaNacimiento, "{0:MM/dd/yyyy}", new { htmlAttributes = new { @autocomplete = "off", @maxlength = "10" } })
                                         <p style="color:red" id="fechaN">@Html.ValidationMessageFor(model => model.clte_FechaNacimiento)</p>
                                     </div>
                                     @Html.LabelFor(model => model.clte_Sexo, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.DropDownList("clte_Sexo", (IEnumerable<SelectListItem>)ViewBag.GeneroList, new { @class = "form-control" })
-                                        <p style="color:red" id="sexo">@Html.ValidationMessageFor(model => model.clte_Sexo)</p>
+                                        @Html.DropDownList("clte_Sexo", (IEnumerable<SelectListItem>)ViewBag.GeneroList,"Seleccione Sexo", new { @class = "form-control" })
+                                        <p style="color:red" id="Sexo">@Html.ValidationMessageFor(model => model.clte_Sexo)</p>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.clte_Telefono, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.EditorFor(model => model.clte_Telefono, new { htmlAttributes = new { @autocomplete = "off", @Placeholder = "(Codigo Areá) Telefono" } })
+                                        @Html.EditorFor(model => model.clte_Telefono, new { htmlAttributes = new { @autocomplete = "off", @Placeholder = "(Codigo Areá) Telefono", onkeypress = "return validartel(event)" } })
                                         <p id="TelefonoCN" style="color:red">@Html.ValidationMessageFor(model => model.clte_Telefono)</p>
                                     </div>
                                     @Html.LabelFor(model => model.clte_CorreoElectronico, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.TextBoxFor(model => model.clte_CorreoElectronico, new { @autocomplete = "off", type = "email", @class = "form-control", @onkeyup = "formateo(this)" })
+                                        @Html.TextBoxFor(model => model.clte_CorreoElectronico, new { @autocomplete = "off", type = "email", @class = "form-control", @onkeyup = "formateo(this)", onkeypress = "return correo(event)" })
                                         <p id="emailOK1" style="color:red">@Html.ValidationMessageFor(model => model.clte_CorreoElectronico)</p>
                                     </div>
                                 </div>
@@ -117,7 +117,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.clte_NombreComercial, new { @class = "control-label col-md-2" })
                                     <div class="col-md-10">
-                                        @Html.EditorFor(model => model.clte_NombreComercial, new { htmlAttributes = new { @autocomplete = "off", @onkeyup = "format(this)", @style = "text-transform:uppercase;", onkeypress = "return validar(event)" } })
+                                        @Html.EditorFor(model => model.clte_NombreComercial, new { htmlAttributes = new { @autocomplete = "off", @onkeyup = "format(this)", @style = "text-transform:uppercase;", onkeypress = "return validarJ(event)" } })
                                         <p id="NombreC" style="color:red">@Html.ValidationMessageFor(model => model.clte_NombreComercial)</p>
                                     </div>
                                 </div>
@@ -125,7 +125,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.clte_RazonSocial, new { @class = "control-label col-md-2" })
                                     <div class="col-md-10">
-                                        @Html.EditorFor(model => model.clte_RazonSocial, new { htmlAttributes = new { @autocomplete = "off", @onkeyup = "format(this)", @style = "text-transform:uppercase;", onkeypress = "return validar(event)" } })
+                                        @Html.EditorFor(model => model.clte_RazonSocial, new { htmlAttributes = new { @autocomplete = "off", @onkeyup = "format(this)", @style = "text-transform:uppercase;", onkeypress = "return validarJ(event)" } })
                                         <p id="RazonS" style="color:red">@Html.ValidationMessageFor(model => model.clte_RazonSocial)</p>
                                     </div>
                                 </div>
@@ -133,7 +133,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.clte_ContactoNombre, new { @class = "control-label col-md-2" })
                                     <div class="col-md-10">
-                                        @Html.EditorFor(model => model.clte_ContactoNombre, new { htmlAttributes = new { @autocomplete = "off", @onkeyup = "format(this)", @style = "text-transform:uppercase;", onkeypress = "return validar(event)" } })
+                                        @Html.EditorFor(model => model.clte_ContactoNombre, new { htmlAttributes = new { @autocomplete = "off", @onkeyup = "format(this)", @style = "text-transform:uppercase;", onkeypress = "return validarJ(event)" } })
                                         <p id="ContactoN" style="color:red">@Html.ValidationMessageFor(model => model.clte_ContactoNombre)</p>
                                     </div>
                                 </div>
@@ -141,7 +141,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.clte_ContactoEmail, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.TextBoxFor(model => model.clte_ContactoEmail, new { @autocomplete = "off", type = "email", @class = "form-control", @onkeyup = "formateo(this)" })
+                                        @Html.TextBoxFor(model => model.clte_ContactoEmail, new { @autocomplete = "off", type = "email", @class = "form-control", @onkeyup = "formateo(this)", onkeypress = "return correo(event)" })
                                         <p id="emailOK" style="color:red">@Html.ValidationMessageFor(model => model.clte_ContactoEmail)</p>
                                     </div>
                                     @Html.LabelFor(model => model.clte_ContactoTelefono, new { @class = "control-label col-md-2" })
@@ -154,7 +154,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.clte_FechaConstitucion, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.EditorFor(model => model.clte_FechaConstitucion, "{0:MM/dd/yyyy}", new { htmlAttributes = new { @autocomplete = "off" } })
+                                        @Html.EditorFor(model => model.clte_FechaConstitucion, "{0:MM/dd/yyyy}", new { htmlAttributes = new { @autocomplete = "off", @maxlength = "10" } })
                                         <p style="color:red" id="fechaJ">@Html.ValidationMessageFor(model => model.clte_FechaConstitucion)</p>
                                     </div>
                                 </div>
@@ -399,5 +399,30 @@
             source: "/Cliente/GetNacionalidades",
             minLength: 3
         });
+
+
+        $(document).ready(function () {
+            var tpi_Id = $("#tpi_Id option:selected").text()
+            console.log(tpi_Id)
+
+            if (tpi_Id == 'Identidad') {
+                document.getElementById("clte_Identificacion").maxLength = "13";
+            }
+            else if (tpi_Id == 'RTN') {
+                document.getElementById("clte_Identificacion").maxLength = "14";
+            }
+            else {
+                document.getElementById("clte_Identificacion").maxLength = "25";
+            }
+
+            if (tpi_Id === '') {
+                $('#identificacion').hide();
+            }
+            else {
+                $('#identificacion').show();
+            }
+
+        });
+
     </script>
 }

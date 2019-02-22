@@ -39,6 +39,7 @@
         $('#identificacion').hide();
     }
 });
+
 $(document).ready(function () {
 
     var Identificacion = $("#tpi_Id option:selected").text()
@@ -62,7 +63,6 @@ $(document).ready(function () {
     $("#clte_Identificacion")[0].maxLength = 26;
     $("#clte_Nombres")[0].maxLength = 50;
     $("#clte_Apellidos")[0].maxLength = 50;
-    $("#clte_FechaNacimiento")[0].maxLength = 10;
     $("#clte_Nacionalidad")[0].maxLength = 30;
     $("#clte_Telefono")[0].maxLength = 25;
     $("#clte_NombreComercial")[0].maxLength = 50;
@@ -70,7 +70,6 @@ $(document).ready(function () {
     $("#clte_ContactoNombre")[0].maxLength = 100;
     $("#clte_ContactoEmail")[0].maxLength = 50;
     $("#clte_ContactoTelefono")[0].maxLength = 25;
-    $("#clte_FechaConstitucion")[0].maxLength = 10;
     $("#clte_Direccion")[0].maxLength = 100;
     $("#clte_CorreoElectronico")[0].maxLength = 50;
     $("#clte_Observaciones")[0].maxLength = 250;
@@ -109,7 +108,6 @@ $(document).ready(function () {
 
 });
 
-
 $("#dep_Codigo").change(function () {
     var depto = $('#dep_Codigo').val();
     if (depto != '') {
@@ -119,7 +117,6 @@ $("#dep_Codigo").change(function () {
 
     }
 });
-
 
 $("#tpi_Id").change(function () {
     var tpi_Id = $("#tpi_Id option:selected").text()
@@ -150,7 +147,6 @@ $("#clte_ConCredito").change(function () {
     $("#clte_DiasCredito").val('')
 
 });
-
 
 $("#tpi_Id").on("change", function () {
     valido = document.getElementById('CIdentificacion');
@@ -217,6 +213,7 @@ $("#clte_ContactoTelefono").on("keypress keyup blur", function (event) {
         }
         this.value = this.value.replace(/[a-záéíóúüñ#/=]+/ig, "");
 });
+
 $("#clte_Telefono").on("keypress keyup blur", function (event) {
     var Telefono = $(this).val();
     console.log(Telefono)
@@ -269,6 +266,7 @@ $('#clte_Identificacion').on('input', function (e) {
         this.value = this.value.replace(/[^ a-z0-9áéíóúüñ]+/ig, "");
     }
 });
+
 $('#identificacion').on('input', function (e) {
     if (!/^[ a-z0-9]*$/i.test(this.value)) {
         this.value = this.value.replace(/[^ a-z0-9áéíóúüñ]+/ig, "");
@@ -330,21 +328,8 @@ $("#clte_Identificacion").on("blur", function (event) {
     }
 });
 
-
 function validartel(e) {
     tecla = (document.all) ? e.keyCode : e.which;
     tecla = String.fromCharCode(tecla)
     return /^[ 0-9\s]*$/i.test(tecla);
 }
-
-
-$('#clte_Observaciones').on('input', function (e) {
-    if (!/^[ a-z0-9]*$/i.test(this.value)) {
-        this.value = this.value.replace(/[^ a-z0-9áéíóúüñ]+/ig, "");
-    }
-});
-$('#clte_Direccion').on('input', function (e) {
-    if (!/^[ a-z0-9]*$/i.test(this.value)) {
-        this.value = this.value.replace(/[^ a-z0-9áéíóúüñ]+/ig, "");
-    }
-});

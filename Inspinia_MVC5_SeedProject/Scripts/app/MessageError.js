@@ -17,12 +17,24 @@ $("#clte_Identificacion").change(function () {
     if (tpi_Id == 'RTN' && Identificacion.length == 14) {
         valido = document.getElementById('CIdentificacion');
         valido.innerText = "RTN debe tener 14 dígitos";
+        document.getElementById("clte_Identificacion").focus();
+
     }
     else if (tpi_Id == 'Identidad' && Identificacion.length == 13) {
         valido = document.getElementById('CIdentificacion');
         valido.innerText = "Identidad debe tener 13 dígitos";
+        document.getElementById("#clte_Identificacion").focus();
     }
 });
+//$("#clte_Identificacion").blur(function () {
+//    valido = document.getElementById('CIdentificacion');
+//    if (valido == "") {
+//        document.getElementById("clte_Identificacion").blur();
+//    }
+//    else {
+//        document.getElementById("clte_Identificacion").focus();
+//    }
+//});
 //Cliente Juridico
 $("#clte_NombreComercial").change(function () {
     var clte_NombreComercial = $("#clte_NombreComercial").val();
@@ -152,6 +164,7 @@ $("#guardar").click(function () {
     Sexos = $("#clte_Sexo").val();
     telefono = $("#clte_Telefono").val();
     telefonoJ = $("#clte_ContactoTelefono").val();
+
     if (clte_EsPersonaNatural.checked) {
         if (fechaN == "") {
             valido = document.getElementById('fechaN');
