@@ -183,7 +183,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-lg-offset-5 col-md-10">
-                                    <input type="submit" value="Guardar" class="btn btn-primary btn-sm" id="guardar"/>
+                                    <input type="submit" value="Guardar" class="btn btn-primary btn-sm" id="guardar" />
                                     @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-white btn-sm" })
                                 </div>
                             </div>
@@ -343,6 +343,19 @@
 <script src="~/Scripts/app/GetNumeroFact.js"></script>
 <script src="~/Scripts/app/ValidarPedido.js"></script>
 <script src="~/Scripts/app/FacturaPedido.js"></script>
+<script>
+    $('#guardar').click(function () {
+        var Identificacion = $('#cliente_Identificacionxx').val();
+        if (Identificacion == "") {
+            valido = document.getElementById('err_cliente');
+            valido.innerText = "Seleccione un cliente";
+            return false;
+        }
+        else {
+            return true;
+        }
+    });
+</script>
 <script>
     document.getElementById("esfac_Id").disabled = true;
     function myFunction() {
@@ -898,19 +911,5 @@
             else
                 return false;
         }
-    });
-
-    $('#guardar').click(function () {
-        var Identificacion = $('#cliente_Identificacionxx').val();
-        console.log(Identificacion)
-        if (Identificacion == "") {
-            valido = document.getElementById('err_cliente');
-            valido.innerText = "Seleccione un cliente";
-            return false;
-        }     
-       else {
-           return true;         
-
-        }
-    });
+    });    
 </script>

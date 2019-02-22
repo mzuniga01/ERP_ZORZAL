@@ -23,13 +23,16 @@ $(document).on("click", "#tbCliente tbody tr td button#seleccionar", function ()
     idItem = $(this).closest('tr').data('id');
 
     rtnItem = $(this).closest('tr').data('rtn');
-    nombreItem = $(this).closest('tr').data('nombrecliente'); sss
+    nombreItem = $(this).closest('tr').data('nombrecliente');
     $("#tbFactura_clte_Id").val(idItem);
     $("#tbFactura_clte_Identificacion").val(rtnItem);
     $("#tbFactura_clte_Nombres").val(nombreItem);
     $('#ModalAgregarCliente').modal('hide');
-
-
+    console.log(idItem)
+    if (idItem != '') {
+        document.getElementById("Factura").disabled = false;
+        document.getElementById("tbFactura_fact_Codigo").disabled = false;
+    }
 });
 
 

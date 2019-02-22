@@ -285,6 +285,13 @@ namespace ERP_GMEDINA.Controllers
             {
                 tbFactura.fact_Vendedor = "Ninguno";
             }
+            int idUser = 0;
+            GeneralFunctions Login = new GeneralFunctions();
+            List<tbUsuario> User = Login.getUserInformation();
+            foreach (tbUsuario Usuario in User)
+            {
+                idUser = Convert.ToInt32(Usuario.emp_Id);
+            }
 
             var list = (List<tbFacturaDetalle>)Session["Factura"];
             var listTercera = (List<tbFactura>)Session["TerceraEdad"];
@@ -438,6 +445,7 @@ namespace ERP_GMEDINA.Controllers
                     ViewBag.clte_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
                     ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre");
                     ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion");
+                    ViewBag.usu_Id = idUser;
                     ViewBag.Cliente = db.tbCliente.ToList();
                     ViewBag.Producto = db.tbProducto.ToList();
                 }
@@ -456,13 +464,7 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion");
             ViewBag.Cliente = db.tbCliente.ToList();
             ViewBag.Producto = db.tbProducto.ToList();
-            int idUser = 0;
-            GeneralFunctions Login = new GeneralFunctions();
-            List<tbUsuario> User = Login.getUserInformation();
-            foreach (tbUsuario Usuario in User)
-            {
-                idUser = Convert.ToInt32(Usuario.emp_Id);
-            }
+            ViewBag.usu_Id = idUser;
             ViewBag.suc_Descripcion = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.tbSucursal.suc_Descripcion).SingleOrDefault();
             ViewBag.suc_Id = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.tbSucursal.suc_Id).SingleOrDefault();
             Session["IDCLIENTE"] = null;

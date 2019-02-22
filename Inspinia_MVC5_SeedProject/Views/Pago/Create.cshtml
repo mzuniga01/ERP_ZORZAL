@@ -36,46 +36,30 @@
         @Html.ValidationSummary(true)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.pago_Id, new { @class = "control-label col-md-2" })
-            <div class="col-md-3">
-                @Html.EditorFor(model => model.pago_Id, " ", new { htmlAttributes = new { @disabled = "disabled", @class = "form-control", @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.pago_Id)
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(model => model.pago_FechaElaboracion, new { @class = "control-label col-md-2" })
-                <div class="col-md-3">
-                    @Html.EditorFor(model => model.pago_FechaElaboracion, "{0:yyyy-MM-dd H:mm:ss tt}", new { htmlAttributes = new { @class = "form-control", @id = "FechaPago", @readonly = "readonly" } })
-                    @Html.ValidationMessageFor(model => model.pago_FechaElaboracion, "", new { @style = "color:red" })
-                </div>
-            </div>
-        </div>
-
-
-      
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.tbFactura.clte_Identificacion, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.tbFactura.clte_Identificacion, new { @class = "control-label col-md-1" })
             <div class="col-md-3">
                 @Html.EditorFor(model => model.tbFactura.clte_Identificacion)
-               @Html.ValidationMessageFor(model => model.tbFactura.clte_Identificacion, "", new { @style = "color:red" })
+                @Html.ValidationMessageFor(model => model.tbFactura.clte_Identificacion, "", new { @style = "color:red" })
             </div>
             <div class="col-md-1">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarCliente"><span class="glyphicon glyphicon-search"></span></button>
             </div>
-            <div class="form-group">
-                @Html.LabelFor(model => model.tbFactura.clte_Nombres, new { @class = "control-label col-md-1" })
+                @Html.LabelFor(model => model.pago_FechaElaboracion, new { @class = "control-label col-md-1" })
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.pago_FechaElaboracion, "{0:yyyy-MM-dd H:mm:ss tt}", new { htmlAttributes = new { @class = "form-control", @id = "FechaPago", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.pago_FechaElaboracion, "", new { @style = "color:red" })
+                </div>
+        </div>
+
+
+
+        <div class="form-group">
+                @Html.LabelFor(model => model.tbFactura.clte_Nombres, new { @class = "control-label col-lg-1" })
                 <div class="col-md-3">
                     @Html.EditorFor(model => model.tbFactura.clte_Nombres, String.Empty, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                     @Html.ValidationMessageFor(model => model.tbFactura.clte_Nombres, "", new { @style = "color:red" })
                 </div>
-            </div>
         </div>
-
-      
-
-
-
-
 
         <div class="form-group">
             <div class="col-md-4">
@@ -83,9 +67,7 @@
                 @Html.ValidationMessageFor(model => model.fact_Id)
             </div>
         </div>
-        
-
-
+ 
         <div class="form-group">
             @Html.LabelFor(model => model.tbFactura.fact_Codigo, new { @class = "control-label col-md-2" })
             <div class="col-md-3">
@@ -323,20 +305,17 @@
 <script src="~/Scripts/app/Datepicker.js"></script>
 <script src="~/Scripts/app/PagoClienteFacturas.js"></script>
 <script src="~/Scripts/app/PagoTransacciones.js"></script>
-<script src="~/Scripts/app/FacturaDevolucion.js"></script>
 <script src="~/Scripts/app/PagoCampoNumerico.js"></script>
 
 <script>
- $(document).ready(function () {
-     var x = document.getElementById("Factura").disabled;
-     if (x == true) {
+    $(document).ready(function () {
+        x = document.getElementById("Factura").disabled = true;
+        document.getElementById("tbFactura_fact_Codigo").disabled = true;
+        if (x == true) {
          document.getElementById("Factura").title = "Primero debe seleccionar un cliente";
          document.getElementById("tbFactura_fact_Codigo").title = "Primero debe seleccionar un cliente";
      }
      else {
-         //console.log('else')
-         //document.getElementById("Factura").title = "";
-         //document.getElementById("tbFactura_fact_Codigo").title = "";
      }
  });
 </script>
@@ -359,7 +338,7 @@
 </script>
 
 
-
+ 
 
 
 
