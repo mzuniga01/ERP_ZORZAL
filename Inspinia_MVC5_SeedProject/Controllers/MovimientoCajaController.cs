@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using ERP_GMEDINA.Models;
 using System.Transactions;
+using CrystalDecisions.CrystalReports.Engine;
+using System.IO;
 //ESTE es//
 namespace ERP_GMEDINA.Controllers
 {
@@ -566,5 +568,58 @@ namespace ERP_GMEDINA.Controllers
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
+
+
+        //---------------------Imprimición----------------------//
+
+        public ActionResult ExportReport(int? id)
+        {
+            ReportDocument rd = new ReportDocument();
+            rd.Load(Path.Combine(Server.MapPath("~/Reports"), "ArqueoCaja.rpt"));
+            var tbMovimientoCaja = db.UDP_Vent_tbMovimientoCaja_Imprimir(id).ToList();
+            var todo = (from r in tbMovimientoCaja
+                        where r.mocja_Id == id
+                        select new
+                        {
+                            mocja_Id = r.mocja_Id,
+                            cja_Descripcion = r.cja_Descripcion,
+                            suc_Descripcion = r.suc_Descripcion,
+                            Usuario_Apertura = r.Usuario_Apertura,
+                            Usuario_Arquea = r.Usuario_Arquea,
+                            Usuario_Aceptacion = r.Usuario_Aceptacion,
+
+                            solef_FechaEntrega = DateTime.Parse(r.mocja_FechaApertura.ToString()).ToString("dd / MM / yyyy  hh: mm tt"),
+                            mocja_FechaArqueo = DateTime.Parse(r.mocja_FechaArqueo.ToString()).ToString("dd / MM / yyyy  hh: mm tt"),
+                            mocja_FechaAceptacion = DateTime.Parse(r.mocja_FechaAceptacion.ToString()).ToString("dd / MM / yyyy  hh: mm tt"),
+
+
+
+                            deno_Descripcion = r.deno_Descripcion,
+                            deno_valor = r.deno_valor,
+                            arqde_CantidadDenominacion = r.arqde_CantidadDenominacion,
+                            arqde_MontoDenominacion = r.arqde_MontoDenominacion,
+
+                            tpa_Descripcion = r.tpa_Descripcion,
+                            arqpg_PagosSistema = r.arqpg_PagosSistema,
+                            arqpg_PagosConteo = r.arqpg_PagosConteo
+
+
+
+                        }).ToList();
+
+            rd.SetDataSource(todo);
+            Response.Buffer = false;
+            Response.ClearContent();
+            Response.ClearHeaders();
+            try
+            {
+                Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+                return File(stream, "application/pdf");
+            }
+            catch
+            {
+                throw;
+            }
+        }
     }
 }

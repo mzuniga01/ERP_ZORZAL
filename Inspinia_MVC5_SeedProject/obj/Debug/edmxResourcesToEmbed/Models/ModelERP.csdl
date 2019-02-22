@@ -2766,6 +2766,9 @@
     <FunctionImport Name="spGetCaja" ReturnType="Collection(ERP_ZORZALModel.spGetCaja_Result)">
       <Parameter Name="CodUsuario" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbMovimientoCaja_Imprimir" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_Imprimir_Result1)">
+      <Parameter Name="mocja_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -8130,5 +8133,47 @@
   <ComplexType Name="spGetCaja_Result">
     <Property Type="Int16" Name="cja_Id" Nullable="false" />
     <Property Type="String" Name="cja_Descripcion" Nullable="false" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbMovimientoCaja_Imprimir_Result">
+    <Property Type="Int32" Name="mocja_Id" Nullable="false" />
+    <Property Type="DateTime" Name="mocja_FechaApertura" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="mocja_UsuarioApertura" Nullable="false" />
+    <Property Type="DateTime" Name="mocja_FechaArqueo" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="mocja_UsuarioArquea" Nullable="false" />
+    <Property Type="DateTime" Name="mocja_FechaAceptacion" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="mocja_UsuarioAceptacion" Nullable="false" />
+    <Property Type="String" Name="cja_Descripcion" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="suc_Descripcion" Nullable="false" MaxLength="40" />
+    <Property Type="Int16" Name="arqde_CantidadDenominacion" Nullable="false" />
+    <Property Type="Decimal" Name="arqde_MontoDenominacion" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="String" Name="deno_Descripcion" Nullable="false" MaxLength="50" />
+    <Property Type="Decimal" Name="deno_valor" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="arqpg_PagosSistema" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="arqpg_PagosConteo" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="String" Name="tpa_Descripcion" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Usuario_Apertura" Nullable="false" MaxLength="301" />
+    <Property Type="String" Name="Usuario_Arquea" Nullable="false" MaxLength="301" />
+    <Property Type="String" Name="Usuario_Aceptacion" Nullable="false" MaxLength="301" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbMovimientoCaja_Imprimir_Result1">
+    <Property Type="Int32" Name="mocja_Id" Nullable="false" />
+    <Property Type="DateTime" Name="mocja_FechaApertura" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="mocja_UsuarioApertura" Nullable="false" />
+    <Property Type="DateTime" Name="mocja_FechaArqueo" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="mocja_UsuarioArquea" Nullable="false" />
+    <Property Type="DateTime" Name="mocja_FechaAceptacion" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="mocja_UsuarioAceptacion" Nullable="false" />
+    <Property Type="String" Name="cja_Descripcion" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="suc_Descripcion" Nullable="false" MaxLength="40" />
+    <Property Type="Int16" Name="arqde_CantidadDenominacion" Nullable="false" />
+    <Property Type="Decimal" Name="arqde_MontoDenominacion" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="String" Name="deno_Descripcion" Nullable="false" MaxLength="50" />
+    <Property Type="Decimal" Name="deno_valor" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="arqpg_PagosSistema" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="arqpg_PagosConteo" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="String" Name="tpa_Descripcion" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Usuario_Apertura" Nullable="false" MaxLength="301" />
+    <Property Type="String" Name="Usuario_Arquea" Nullable="false" MaxLength="301" />
+    <Property Type="String" Name="Usuario_Aceptacion" Nullable="false" MaxLength="301" />
   </ComplexType>
 </Schema>
