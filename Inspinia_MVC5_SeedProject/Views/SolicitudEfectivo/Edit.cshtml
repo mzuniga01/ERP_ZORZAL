@@ -38,7 +38,7 @@
 
                         <div class="form-horizontal">
 
-                            @Html.ValidationSummary(true)
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             @Html.HiddenFor(model => model.solef_Id)
                             @Html.Hidden("RedirectTo", Url.Action("Index", "SolicitudEfectivo"))
 
@@ -98,42 +98,32 @@
                                     @Html.ValidationMessageFor(model => model.mnda_Id, "", new { style = "Color:red" })
                                 </div>
 
-                                @Html.LabelFor(model => model.solef_FechaEntrega, "Fecha de Entrega", new { @class = "control-label col-md-2" })
-                                <div class="col-md-3">
-                                    @Html.EditorFor(model => model.solef_FechaEntrega, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                    @Html.ValidationMessageFor(model => model.solef_FechaEntrega, "", new { style = "Color:red" })
-                                </div>
+                                @*@Html.LabelFor(model => model.solef_FechaEntrega, "Fecha de Entrega", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-3">
+                                        @Html.EditorFor(model => model.solef_FechaEntrega, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                        @Html.ValidationMessageFor(model => model.solef_FechaEntrega, "", new { style = "Color:red" })
+                                    </div>*@
 
                             </div>
 
-
-                            @*<div class="form-group">
-                                    @Html.LabelFor(model => model.solef_EsApertura, new { @class = "control-label col-md-2" })
+                            <div class="ibox-content">
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Total Solicitud</label>
                                     <div class="col-md-3">
-                                        @Html.CheckBoxFor(model => model.solef_EsApertura, new { onclick = "return false" })
-                                        @Html.DisplayFor(model => model.solef_EsApertura)
-                                        @Html.ValidationMessageFor(model => model.solef_EsApertura)
+                                        <input id="total" type="number" class="form-control" readonly />
                                     </div>
-                                </div>*@
-                            @*<div class="form-group">
-                                    @Html.LabelFor(model => model.solef_EsAnulada, new { @class = "control-label col-md-2" })
-                                    <div class="col-md-3">
-                                        @Html.EditorFor(model => model.solef_EsApertura)
-                                        @Html.CheckBoxFor(model => model.solef_EsAnulada)
-                                        @Html.CheckBoxFor(model => model.solef_EsAnulada, new { onclick = "return false" })
-                                        @Html.ValidationMessageFor(model => model.solef_EsAnulada)
-                                    </div>
-                                </div>*@
 
-                            <div class="form-group">
-                                <label class="control-label col-md-2">Total Solicitud</label>
-                                <div class="col-md-3">
-                                    <input id="total" type="number" class="form-control" readonly />
+                                    <input id="Monto1" class="hidden" />
+                                    <input id="Monto2" class="hidden" />
+
+
+                                    <label class="control-label col-md-2">Monto actual a Solicitud</label>
+                                    <div class="col-md-3">
+                                        <input id="MontoNuevo" type="number" class="form-control" readonly />
+                                    </div>
+
                                 </div>
                             </div>
-
-
-
 
 
                             @*<div class="form-group">
@@ -144,76 +134,80 @@
 
 
                             @*@Html.Partial("_IndexEditSolicitudEfectivoDetalle", Model.tbSolicitudEfectivoDetalle)*@
-                            <br />
-                            <div class="table table-responsive">
-                                <table class="table table-bordered" id="TBDenominacionesSolicitadas">
+                            <div class="ibox-content">
+                                <h4 style="color:dodgerblue">Denominaciones Solicitadas</h4>
 
-                                    <thead>
+                                <div class="table table-responsive">
+                                    <table class="table table-bordered" id="TBDenominacionesSolicitadas">
 
-                                        <tr>
+                                        <thead>
 
-                                            <th class="hidden">
-                                                Id Solicitud Detalle
-                                            </th>
-                                            <th>
-                                                Denominación
-                                            </th>
-                                            <th>
-                                                Cantidad Solicitada
-                                            </th>
-                                            <th>
-                                                Monto Solicitado
-                                            </th>
-                                            <th>
-                                                Cantidad Entregada
-                                            </th>
-                                            <th>
-                                                Monto Entregado
-                                            </th>
-                                            <th class="hidden">
-                                                Id Denominación
-                                            </th>
+                                            <tr>
 
-                                        </tr>
-                                    </thead>
-                                    <tbody></tbody>
-                                </table>
+                                                <th class="hidden">
+                                                    Id Solicitud Detalle
+                                                </th>
+                                                <th>
+                                                    Denominación
+                                                </th>
+                                                <th>
+                                                    Cantidad Solicitada
+                                                </th>
+                                                <th>
+                                                    Monto Solicitado
+                                                </th>
+                                                <th>
+                                                    Cantidad Entregada
+                                                </th>
+                                                <th>
+                                                    Monto Entregado
+                                                </th>
+                                                <th class="hidden">
+                                                    Id Denominación
+                                                </th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
                             </div>
 
-                            <h4 style="color:dodgerblue">Solicitar Denominación</h4>
 
-                            <div class="table table-responsive">
-                                <table class="table table-bordered" id="TBSolicitarDenominacion">
+                            <div class="ibox-content">
+                                <h4 style="color:dodgerblue">Solicitar Denominación</h4>
+                                <div class="table table-responsive">
+                                    <table class="table table-bordered" id="TBSolicitarDenominacion">
 
-                                    <thead>
+                                        <thead>
 
-                                        <tr>
+                                            <tr>
 
-                                            <th>
-                                                Denominación
-                                            </th>
-                                            <th>
-                                                Cantidad Solicitada
-                                            </th>
-                                            <th>
-                                                Monto Solicitado
-                                            </th>
-                                            <th>
-                                                Cantidad Entregada
-                                            </th>
-                                            <th>
-                                                Monto Entregado
-                                            </th>
+                                                <th>
+                                                    Denominación
+                                                </th>
+                                                <th>
+                                                    Cantidad Solicitada
+                                                </th>
+                                                <th>
+                                                    Monto Solicitado
+                                                </th>
+                                                <th>
+                                                    Cantidad Entregada
+                                                </th>
+                                                <th>
+                                                    Monto Entregado
+                                                </th>
 
 
-                                        </tr>
-                                    </thead>
-                                    <tbody></tbody>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
 
-                                </table>
+                                    </table>
 
+                                </div>
                             </div>
-
 
 
 
@@ -282,7 +276,7 @@
             </div>
             <div class="modal-body">
                 ¿Está seguro de anular esta Solcitud de Efectivo?
-                <textarea rows="4" cols="50" placeholder="Ingrese la razon de anulación" id="Motivo" name="Motivo"></textarea>
+                <textarea rows="4" cols="50" placeholder="Ingrese la razon de anulación" id="Motivo" name="Motivo" onkeyup="format(this)" , style="text-transform:capitalize;" onkeypress="return validar(event)"></textarea>
                 <p id="Mensaje" style="color:red"></p>
             </div>
             <div class="modal-footer">
@@ -298,7 +292,98 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 
-   <script>
+    @* ----------Calculos Monto 1-------------- *@
+    <script>
+        $(document).on("keyup", "#TBDenominacionesSolicitadas tbody tr td input#csolicitada", function () {
+            var row = $(this).closest("tr");
+            var Cantidad = $(this).val();
+            var ValorDenominacion = $(this).parents("tr").find("td")[7].innerHTML;
+            var montosoli = parseFloat(Cantidad * ValorDenominacion);
+            var suma = 0;
+            var montoss1 = $("#Monto1").val();
+            var montoss2 = $("#Monto2").val();
+            var Montoactualizado = 0;
+            var mostrarmonto = 0;
+            var data = [];
+            MontoInicial = 0;
+            $(this).parents("tr").find("td")[3].innerHTML = montosoli;
+            if (montosoli != 0) {
+                MontoInicial += montosoli;
+
+               //Calculo Total
+
+                $("td.sumTotal").each(function () {
+                    data.push(parseFloat($(this).text()));                });
+                var suma = data.reduce(function (a, b) { return a + b; }, 0);
+                $("#Monto1").val(suma);
+
+                Montoactualizado = parseFloat(montoss2) + parseFloat(suma);
+                mostrarmonto = parseFloat(Montoactualizado);
+                $("#MontoNuevo").val(mostrarmonto);
+
+                console.log(data);
+                console.log(suma);
+
+
+                //---------------------------------------------
+            }
+            else {
+                MontoInicial = 0;
+                $("#TBDenominacionesSolicitadas tbody tr  td label#MontoSolicitado").each(function (index) {
+                    Monto = $(this).children("td:eq(3)").html();
+                    if (Monto != '') {
+                        Monto = parseFloat(Monto);
+                        MontoInicial += Monto;
+                    }
+                })
+            }
+        });
+    </script>
+    @* ----------------------------Monto 2----------------------------------------------- *@
+    @* ________________________________________Calculos_____________________________________ *@
+    <script>
+        $(document).on("keyup", "#TBSolicitarDenominacion tbody tr td input#cantidad", function () {
+            var row = $(this).closest("tr");
+            var Cantidad = $(this).val();
+            var ValorDenominacion = $(this).parents("tr").find("td")[6].innerHTML;
+            var montosoli = parseFloat(Cantidad * ValorDenominacion);
+            var data = [];
+            var montos1 = $("#Monto1").val();
+            var montos2 = $("#Monto2").val();
+            var Montoactualizado = 0;
+            var mostrarmonto = 0;
+            MontoInicial = 0;
+
+            $(this).parents("tr").find("td")[3].innerHTML = montosoli;
+            if (montosoli != 0) {
+                MontoInicial += montosoli;
+                $("td.monto").each(function () {
+                    data.push(parseFloat($(this).text()));
+                });
+                var suma = data.reduce(function (a, b) { return a + b; }, 0);
+
+
+                $("#Monto2").val(suma);
+
+                Montoactualizado = parseFloat(montos1) + parseFloat(suma);
+                mostrarmonto = parseFloat(Montoactualizado);
+                $("#MontoNuevo").val(mostrarmonto);
+            }
+            else {
+                MontoInicial = 0;
+                $("#TBSolicitarDenominacion tbody tr  td label#MontoSolicitado").each(function (index) {
+                    Monto = $(this).children("td:eq(3)").html();
+                    if (Monto != '') {
+                        Monto = parseFloat(Monto);
+                        MontoInicial += Monto;
+                    }
+                })
+            }
+        });
+    </script>
+
+
+    <script>
         function AnularSolictud() {
             var solefId = $('#solef_Id').val();
             var Anulada = 1;
@@ -330,7 +415,7 @@
             });
             }
         }
-</script>
+    </script>
 
     <script>
         var MontoSolicitado = 0;
@@ -346,10 +431,16 @@
 
     <script>
         $(document).ready(function () {
-            if ($('#solef_FechaEntrega').val() == '') {
 
-                $("#solef_FechaEntrega").val();
-            }
+            var montoprimero = 0;
+            var montosegunto = 0
+            var montofinal = 0;
+            $("#Monto1").val(montoprimero);
+            $("#Monto2").val(montosegunto);
+            $("#MontoNuevo").val(montofinal);
+            //if ($('#solef_FechaEntrega').val() == '') {
+            //    $("#solef_FechaEntrega").val();
+            //}
 
         });
 
@@ -451,7 +542,7 @@
                                    "<td hidden>" + item.denoId + "</td>" +
                                    "<td>" + item.DenoDescripcion + "</td>" +
                                     "<td>" + '<input type="text" id="cantidad" maxlength="3" name="name" onKeyPress="return soloNumeros(event)" onKeyUp="pierdeFoco(this)" autocomplete="off" class="form-control" ize="3">' + "</td>" +
-                                    "<td>" + 0 + "</td>" +
+                                    "<td class='monto'>" + 0 + "</td>" +
                                      "<td>" + 0 + "</td>" +
                                     "<td >" + 0 + "</td>" +
                                    "<td hidden>" + item.valor + "</td>" +
@@ -476,31 +567,7 @@
 
     </script>
 
-    @* ________________________________________Calculos_____________________________________ *@
-    <script>
-        $(document).on("keyup", "#TBSolicitarDenominacion tbody tr td input#cantidad", function () {
-            var row = $(this).closest("tr");
-            var Cantidad = $(this).val();
-            var ValorDenominacion = $(this).parents("tr").find("td")[6].innerHTML;
-            var montosoli = parseFloat(Cantidad * ValorDenominacion);
-            MontoInicial = 0;
 
-            $(this).parents("tr").find("td")[3].innerHTML = montosoli;
-            if (montosoli != 0) {
-                MontoInicial += montosoli;
-            }
-            else {
-                MontoInicial = 0;
-                $("#TBSolicitarDenominacion tbody tr  td label#MontoSolicitado").each(function (index) {
-                    Monto = $(this).children("td:eq(3)").html();
-                    if (Monto != '') {
-                        Monto = parseFloat(Monto);
-                        MontoInicial += Monto;
-                    }
-                })
-            }
-        });
-    </script>
     @* ___________________________________________Guardar mas Detalle Denominación________________________________ *@
 
     <script>
@@ -619,6 +686,8 @@
                             "<td>" + item.soled_CantidadEntregada + "</td>" +
                             "<td>" + item.MontoEntregado + "</td>" +
                             "<td hidden>" + item.deno_Id + "</td>" +
+                            "<td hidden>" + item.deno_valor + "</td>" +
+
 
 
                            // '<td>' + item.soled_FechaCrea + '</td>' +
@@ -643,6 +712,7 @@
                             });
                             var suma = data.reduce(function (a, b) { return a + b; }, 0)
                             $("#total").val(suma);
+                            $("#Monto1").val(suma);
 
                             console.log(data);
                             console.log('Monto Solicitado: ' + suma);
@@ -704,10 +774,10 @@
             })
             .done(function (data) {
                 if (data == 'El registro se guardó exitosamente') {
-                    swal("El registro se editó exitosamente!", "", "success");
+                    //swal("El registro se editó exitosamente!", "", "success");
                 }
                 else {
-                    swal("El registro  no se editó!", "", "error");
+
                 }
             });
 
@@ -728,8 +798,15 @@
 
 
     </script>
-
-
+    @* ----CARACTERES ESPECIALES*@
+    <script>
+        function validar(e) {
+            tecla = (document.all) ? e.keyCode : e.which;
+            tecla = String.fromCharCode(tecla)
+            return /^[[A-Za-z0-9 .,]+]*$/i.test(tecla);
+            /^([0-9]+\.?[0-9]{0,2})$/
+        }
+    </script>
 
 
 

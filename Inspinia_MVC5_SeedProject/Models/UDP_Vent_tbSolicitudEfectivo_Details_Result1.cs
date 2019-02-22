@@ -20,5 +20,6 @@ namespace ERP_GMEDINA.Models
         public short soled_CantidadEntregada { get; set; }
         public Nullable<decimal> MontoEntregado { get; set; }
         public short deno_Id { get; set; }
+        public decimal deno_valor { get; set; }
     }
 }
