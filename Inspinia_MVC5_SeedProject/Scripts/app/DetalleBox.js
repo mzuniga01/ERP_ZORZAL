@@ -115,7 +115,14 @@ $('#AgregarDetalleSalida').click(function () {
         $('#NombreError').text('');
         $('#validationcantidad').after('<ul id="sald_Cantidad" class="validation-summary-errors text-danger">Cantidad Requerido</ul>');
     }
-    else {
+    else if (Producto =='' )
+        {
+        $('#MessageError').text('');
+        $('#CodigoError').text('');
+        $('#NombreError').text('');
+        $('#validationproducto').after('<ul id="prod_Descripcion" class="validation-summary-errors text-danger">Producto Requerido</ul>');
+    }
+    else  {
         contador = contador + 1;
         copiar = "<tr data-id=" + contador + ">";
         //copiar += "<td>" + $('#CodTipoCasoExitoCreate option:selected').text() + "</td>";
@@ -311,6 +318,12 @@ function soloNumeros(e) {
     var key = window.Event ? e.which : e.keyCode;
     return ((key >= 48 && key <= 57) || (key == 8))
 }
+
+//Validar Solo caracteres 
+function soloLetrasYNumeros(e) {
+    tecla = (document.all) ? e.keyCode : e.which;
+    tecla = String.fromCharCode(tecla)
+    return /^[a-z0-9A-ZáéíóúñÁÉÍÓÚÑ ]+$/.test(tecla); }  
 
 $("#sald_Cantidad").on("keypress keyup blur", function (event) {
     //this.value = this.value.replace(/[^0-9\.]/g,'');

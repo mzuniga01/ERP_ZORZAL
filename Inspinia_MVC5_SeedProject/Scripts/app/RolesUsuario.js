@@ -181,6 +181,10 @@ $('#AgregarRol').click(function () {
         idItem = $(this).data('id');
         if ($('#check' + idItem).is(':checked')) {
             active = $(this);
+            $('#NoAsignados tbody').append(active)
+            $('#check' + idItem).prop('checked', false);
+            $(this).remove();
+            $('#Asignados tbody').append(active)
             var RolesUsuario = {
                 rol_Id: idItem,
             };
@@ -213,30 +217,13 @@ $('#QuitarRol').click(function () {
         idItem = $(this).data('id');
         if ($('#check' + idItem).is(':checked')) {
             active = $(this);
-            var RolesUsuario = {
-                rol_Id: idItem,
+            $('#check' + idItem).prop('checked', false);
+            $(this).remove();
+            $('#NoAsignados tbody').append(active)
             };
 
-            $.ajax({
-                url: "/Usuario/removeRol",
-                method: "POST",
-                dataType: 'json',
-                contentType: "application/json; charset=utf-8",
-                data: JSON.stringify({ Roles: RolesUsuario }),
-            })
-            .done(function (data) {
-                if (data == '') {
-                    $('#validationDescripcionRol').after('<ul id="ErrorValidacionGeneral" class="validation-summary-errors text-danger">No se pudo ingresar el registro</ul>');
-                }
-                else {
-                    $('#check' + idItem).prop('checked', false);
-                    $(this).remove();
-                    $('#NoAsignados tbody').append(active);
-                }
-            })
-        }
+        })
     })
-})
 
 //////////////////////////////////////////////////////////
 function Seleccionar(emp_Id)
@@ -286,3 +273,5 @@ function Reemplazar(s) {
     r = r.replace(new RegExp("\\W", 'g'), "");
     return r;
 };
+
+

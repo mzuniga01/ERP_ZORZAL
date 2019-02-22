@@ -16,11 +16,11 @@ namespace ERP_GMEDINA.Models
 
     public class BoxMetaData
     {
-        [Display(Name = "Codigo de Caja")]
+        [Display(Name = "Código de Caja")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string box_Codigo { get; set; }
 
-        [Display(Name = "Descripcion")]
+        [Display(Name = "Descripción")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string box_Descripcion { get; set; }
 

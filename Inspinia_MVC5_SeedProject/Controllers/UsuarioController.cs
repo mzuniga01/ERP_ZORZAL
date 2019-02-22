@@ -234,6 +234,11 @@ namespace ERP_GMEDINA.Controllers
             {
                 if (Function.GetUserRols("Usuario/Create"))
                 {
+                    if (db.tbUsuario.Any(a => a.usu_NombreUsuario == tbUsuario.usu_NombreUsuario))
+                    {
+                        ModelState.AddModelError("", "Ya existe un Usuario con ese nombre de usuario");
+                    }
+
                     IEnumerable<object> List = null;
                     IEnumerable<object> Roles = null;
                     var listRoles = (List<tbRolesUsuario>)Session["tbRolesUsuario"];

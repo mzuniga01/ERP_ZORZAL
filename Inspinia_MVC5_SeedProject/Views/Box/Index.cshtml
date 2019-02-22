@@ -50,25 +50,8 @@
                                     </td>
                                     <td>
                                         @Html.ActionLink("Detalles", "Details", new { id = item.box_Codigo }, new { @class = "btn btn-primary btn-xs" })
-                                        @*@Html.ActionLink("Editar", "Edit", new { id = item.box_Codigo }, new { @class = "btn btn-white btn-xs" })*@
+                                        @Html.ActionLink("Editar", "Edit", new { id = item.box_Codigo }, new { @class = "btn btn-white btn-xs" })
 
-                                        @{
-                                            ERP_ZORZALEntities db2 = new ERP_ZORZALEntities();
-                                            var id2 = item.box_Codigo;
-                                            string query = "SELECT COUNT(box_Codigo) FROM Inv.tbSalidaDetalle WHERE box_Codigo ='" + id2 + "'";
-                                            var count = db2.Database.SqlQuery<int>(query, id2).Single();
-
-                                            if (count > 0)
-                                            {
-                                                <button class="btn btn-white btn-xs" title="Producto en Salida Detalle" disabled>Editar</button>
-                                            }
-                                            else
-                                            {
-                                                @Html.ActionLink("Editar", "Edit", new { id = item.box_Codigo }, new { @class = "btn btn-white btn-xs" })
-                                            }
-
-                                        }
-                                       
                                     </td>
                                 </tr>
                             }
