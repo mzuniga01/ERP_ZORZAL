@@ -115,10 +115,12 @@ namespace ERP_GMEDINA.Controllers
                                 cate = db.UDP_Inv_tbProductoCategoria_Insert(tbProductoCategoria.pcat_Nombre, Function.GetUser(), DateTime.Now);
                                 foreach (UDP_Inv_tbProductoCategoria_Insert_Result categoria in cate)
                                     idMaster = Convert.ToInt32(categoria.MensajeError);
-                                if (MsjError == "-")
+                                if (MsjError.StartsWith("-1"))
                                 {
-                                    ModelState.AddModelError("", "No se Guardo el Registro");
+                                    Function.InsertBitacoraErrores("ProductoCategoria/Create", MsjError, "Create");
+                                    ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
                                     return View(tbProductoCategoria);
+                                    
                                 }
                                 else
                                 {
@@ -134,36 +136,28 @@ namespace ERP_GMEDINA.Controllers
                                                                                             subcategoria.pscat_ISV
                                                                                             );
                                                 foreach (UDP_Inv_tbProductoSubcategoria_Insert_Result ProdSubCate in sub)
-
-                                                //if (MensajeError == "-1")
+                                                    MsjError = ProdSubCate.MensajeError;
+                                                if (MsjError.StartsWith("-1"))
                                                 {
-                                                    ModelState.AddModelError("", "No se Guardo el Registro");
-                                                    //return View(tbProductoCategoria);
-                                                    //}
-                                                    //else
-                                                    //{
-                                                    //    _Tran.Complete();
-                                                    //    return RedirectToAction("Index");
+                                                    
+                                                    Function.InsertBitacoraErrores("ProductoCategoria/Create", MsjError, "Create");
+                                                    ModelState.AddModelError("", "No se pudo insertar el registro detalle, favor contacte al administrador.");
+                                                    return View(tbProductoCategoria);
                                                 }
                                             }
                                         }
                                     }
-
-                                    //else
-                                    {
                                         _Tran.Complete();
-                                        //return RedirectToAction("Index");
+                                        
                                     }
 
                                 }
-
-                            }
                             catch (Exception Ex)
                             {
                                 Ex.Message.ToString();
-                                //ModelState.AddModelError("", "No se Guardo el Registro");
-                                //return View(tbProductoCategoria);
-                                MsjError = "-1";
+                                Function.InsertBitacoraErrores("ProductoCategoria/Create", Ex.Message.ToString(), "Create");
+                                ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                                return View(tbProductoCategoria);
                             }
                         }
                         return RedirectToAction("Index");
@@ -253,14 +247,14 @@ namespace ERP_GMEDINA.Controllers
             try
             {
                 IEnumerable<object> list = null;
-                
-                    
+
+                tbProductoSubcategoria subcater = db.tbProductoSubcategoria.Find(EditarSubCategoria.pscat_Id); 
                 list = db.UDP_Inv_tbProductoSubcategoria_Update(
                                                         EditarSubCategoria.pscat_Id,
                                                         EditarSubCategoria.pscat_Descripcion,
                                                        EditarSubCategoria.pcat_Id,
                                                        EditarSubCategoria.pscat_UsuarioCrea,
-                                                       EditarSubCategoria.pscat_FechaCrea,
+                                                       subcater.pscat_FechaCrea,
                                                       Function.GetUser(), Function.DatetimeNow(),
                                                       EditarSubCategoria.pscat_ISV
                     );

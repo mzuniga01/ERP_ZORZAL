@@ -1226,6 +1226,7 @@
     <Content Include="Scripts\app\MostrarCamposSalida.js" />
     <Content Include="Scripts\app\MostrarOcultar.js" />
     <Content Include="Scripts\app\Municipio.js" />
+    <Content Include="Scripts\app\Objeto.js" />
     <Content Include="Scripts\app\Parametro.js" />
     <Content Include="Scripts\app\PartialViewGetObjectos.js" />
     <Content Include="Scripts\app\PersonaNatural.js" />
@@ -1239,6 +1240,7 @@
     <Content Include="Scripts\app\search.js" />
     <Content Include="Scripts\app\SolicitarProducto.js" />
     <Content Include="Scripts\app\SubCategoriaProducto.js" />
+    <Content Include="Scripts\app\TipoDevolucion.js" />
     <Content Include="Scripts\app\ValidacionProveedor.js" />
     <Content Include="Scripts\app\ValidationEmail.js" />
     <Content Include="Scripts\app\ValidationErrorsBodega.js" />

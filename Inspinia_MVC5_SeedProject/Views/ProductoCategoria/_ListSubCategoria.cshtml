@@ -188,7 +188,7 @@
                     <fieldset id="SubmitForm">
                         <div class="form-horizontal">
                             <div class="form-group">
-                               
+
 
                                 @Html.LabelFor(m => subcategoria.pscat_Id, new { @class = "control-label col-sm-2" })
                                 <div class="col-sm-10">
@@ -200,17 +200,20 @@
                             <div class="form-group">
                                 @Html.LabelFor(m => subcategoria.pscat_Descripcion, new { @class = "control-label col-sm-2" })
                                 <div class="col-sm-10">
-                                    <input type="text"  onkeypress="return soloLetras(event)" id="pscat_Descripcion_edit" name="pscat_Descripcion" class="form-control" />
+                                    <input type="text" onkeypress="return soloLetras(event)" id="pscat_Descripcion_edit" name="pscat_Descripcion" class="form-control" />
+                                    <div id="ValidationDes">
                                     @Html.ValidationMessageFor(m => subcategoria.pscat_Descripcion)
+                                    </div>
                                 </div>
                             </div>
 
-                            
-                            <input  type="hidden" id="pcat_id_Edit"  name="pcat_Id"/>
+
+                            <input type="hidden" id="pcat_id_Edit" name="pcat_Id" />
 
                             <input type="hidden" id="pscat_UsuarioCrea_Edit" name="pscat_UsuarioCrea" />
 
-                            <input type="hidden" id="pscat_FechaCrea_Edit" name="pscat_FechaCrea"  {dd-mm-yyyy hh:mm:ss}/>
+
+                            <input type="hidden" id="pscat_FechaCrea_Edit" name="pscat_FechaCrea" />
 
                             <div class="form-group">
                                 @Html.LabelFor(m => subcategoria.pscat_ISV, new { @class = "control-label col-sm-2" })

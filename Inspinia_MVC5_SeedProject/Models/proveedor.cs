@@ -24,7 +24,7 @@ namespace ERP_GMEDINA.Models
         public string prov_Nombre { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
-        [Display(Name = "Contacto")]
+        [Display(Name = "Nombre Contacto")]
         [StringLength(75, ErrorMessage = "Máximo {1} caracteres")]
         public string prov_NombreContacto { get; set; }
 

@@ -80,7 +80,7 @@
         <div class="form-group">
             <label class="control-label col-md-2">Descripcion<span style="color:red">*</span></label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.tdev_Descripcion)
+                @Html.EditorFor(model => model.tdev_Descripcion, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @maxlength = "100", @autocomplete = "off" } })
                 <p style="color:red"> @Html.ValidationMessageFor(model => model.tdev_Descripcion)</p>
 </div>
         </div>
@@ -139,4 +139,4 @@
     @Scripts.Render("~/bundles/jqueryval")
 }
 
-
+<script src="~/Scripts/app/TipoDevolucion.js"></script>

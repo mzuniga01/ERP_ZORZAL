@@ -208,7 +208,10 @@ namespace ERP_GMEDINA.Controllers
                     //{
                     //    ModelState.AddModelError("", "Ya existe esta pantalla, Favor registrar otra");
                     //}
-                    
+                    if (db.tbObjeto.Any(a => a.obj_Pantalla == tbObjeto.obj_Pantalla && a.obj_Id != tbObjeto.obj_Id))
+                    {
+                        ModelState.AddModelError("", "Ya existe una pantalla con el mismo nombre");
+                    }
                     if (ModelState.IsValid)
                     {
                        

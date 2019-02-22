@@ -21,7 +21,7 @@ $("#pscat_ISV_Edit").on("keypress keyup blur", function (event) {
 function soloLetras(e) {
     key = e.keyCode || e.which;
     tecla = String.fromCharCode(key).toLowerCase();
-    letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
+    letras = "áéíóúabcdefghijklmnñopqrstuvwxyz ";
     especiales = "8-37-39-46";
 
     tecla_especial = false
@@ -67,8 +67,12 @@ function EditStudentRecord(pscat_Id) {
             $("#pscat_Id").val(item.pscat_Id);
             $("#pscat_Descripcion_edit").val(item.pscat_Descripcion);
             $("#pcat_id_Edit").val(item.pcat_Id);
+
+
             $("#pscat_UsuarioCrea_Edit").val(item.pscat_UsuarioCrea);
             $("#pscat_FechaCrea_Edit").val(item.pscat_FechaCrea);
+
+
             $("#pscat_ISV_Edit").val(item.pscat_ISV);
             $("#MyModal").modal();
             
@@ -159,6 +163,13 @@ $('#AgregarSubCategorias').click(function () {
         $('#ErrorDescripcion').text('');
         $('#ErrorISV').text('');
         $('#ErroDescripcion_Create').after('<ul id="ErrorDescripcion" class="validation-summary-errors text-danger">Campo Descripción Requerido</ul>');
+
+    }
+    else if (Descripcion < '                                       ') {
+        $('#MessageError').text('');
+        $('#ErrorDescripcion').text('');
+        $('#ErrorISV').text('');
+        $('#ErroDescripcion_Create').after('<ul id="ErrorDescripcion" class="validation-summary-errors text-danger">Campo Descripción Tiene Espacios Vacios</ul>');
 
     }
 
@@ -318,3 +329,24 @@ $(document).on("click", "#TablaSub tbody tr td button#removerSubCategoria", func
         data: JSON.stringify({ borrado: borrar }),
     });
 })
+
+$('#pscat_Descripcion').change(function () {
+
+    //alert("el input cambio");
+    if ($(this).val() == 0) { //si el input es cero
+        $('#btnGuardar').attr('disabled', 'disabled');
+        alert("No puede llevar Solo Espacios")
+    }
+    else if ($(this).val() == 0) { //si el input es cero
+        $('#btnGuardar').attr('disabled', 'disabled');
+
+    }
+    else if ($(this).val() == 0) { //si el input es cero
+        $('#btnGuardar').attr('disabled', 'disabled');
+
+    }
+    else { // si tiene un valor diferente a cero
+        $('#btnGuardar').removeAttr("disabled");
+
+    }
+});

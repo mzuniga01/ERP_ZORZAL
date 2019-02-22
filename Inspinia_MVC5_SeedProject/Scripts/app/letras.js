@@ -1,7 +1,9 @@
 ﻿$(document).ready(function ()
 {
-    $("#dep_Nombre")[0].maxLength = 50;
+    $("#dep_Nombre")[0].maxLength = 30;
+    $("#dep_Nombre")[0].minLength = 30;
     $("#dep_Codigo")[0].maxLength = 2;
+    $("#dep_Codigo")[0].minLength = 2;
 })
 
 $("#dep_Nombre").change(function () {
@@ -58,6 +60,10 @@ function MunicipioUpper(Parametro)
 $(document).ready(function () {
     //QUE SOLO ACEPTE 4 NUMEROS
     $("#mun_Codigo")[0].maxLength = 4;
+    $("#mun_Codigo")[0].minLength = 4;
+    $("#mun_Nombre")[0].maxLength = 30;
+    $("#mun_Nombre")[0].minLength = 30;
+
 
     //VALIDAR SOLO NUMEROS
     $('#mun_Codigo').bind('keypress', function (event) {
@@ -80,42 +86,25 @@ $(document).ready(function () {
 
     //VALIDAR SOLO LETRAS
     $('#mun_Nombre').on('input', function (e) {
-        if (!/^[ a-z-áéíóúüñ]*$/i.test(this.value)) {
-            this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
+        if (!/^[ a-záéíóúüñ]*$/i.test(this.value)) {
+            this.value = this.value.replace(/[^ a-záéíóúüñ]+/ig, "");
         }
     });
     $('#dep_Nombre').on('input', function (e) {
-        if (!/^[ a-z-áéíóúüñ]*$/i.test(this.value)) {
-            this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
+        if (!/^[ a-záéíóúüñ]*$/i.test(this.value)) {
+            this.value = this.value.replace(/[^ a-záéíóúüñ]+/ig, "");
         }
     });
-    $('#dep_Nombre').bind('keypress', function (event) {
-        var regex = new RegExp("^[a-zA-Z-]+$");
-        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
-        if (!regex.test(key)) {
-            event.preventDefault();
-            return false;
-        }
+    //Copiar y Pegar//
+    $(document).ready(function () {
+        $('#dep_Codigo').bind("cut copy paste", function (e) {
+            e.preventDefault();
+        });
     });
-
-   
+    $(document).ready(function () {
+        $('#mun_Codigo').bind("cut copy paste", function (e) {
+            e.preventDefault();
+        });
+    });
 })
 
-function soloLetras(e) {
-    key = e.keyCode || e.which;
-    tecla = String.fromCharCode(key).toLowerCase();
-    letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
-    especiales = "8-37-39-46";
-
-    tecla_especial = false
-    for (var i in especiales) {
-        if (key == especiales[i]) {
-            tecla_especial = true;
-            break;
-        }
-    }
-
-    if (letras.indexOf(tecla) == -1 && !tecla_especial) {
-        return false;
-    }
-}

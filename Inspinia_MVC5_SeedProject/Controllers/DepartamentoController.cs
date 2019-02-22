@@ -226,7 +226,14 @@ namespace ERP_GMEDINA.Controllers
             try
             {
                 IEnumerable<object> list = null;
-                list = db.UDP_Gral_tbMunicipio_Update(Municipio.mun_Codigo, depCodigo, Municipio.mun_Nombre, Municipio.mun_UsuarioCrea, Municipio.mun_FechaCrea, Function.GetUser(), Function.DatetimeNow());
+                tbMunicipio munl = db.tbMunicipio.Find(Municipio.mun_Codigo);
+                list = db.UDP_Gral_tbMunicipio_Update(Municipio.mun_Codigo, 
+                    depCodigo,
+                    Municipio.mun_Nombre,
+                    munl.mun_UsuarioCrea,
+                    munl.mun_FechaCrea,
+                    Function.GetUser(),
+                    Function.DatetimeNow());
                 foreach (UDP_Gral_tbMunicipio_Update_Result mun in list)
                     MsjError = (mun.MensajeError);
             }

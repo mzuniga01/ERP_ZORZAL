@@ -127,6 +127,10 @@ namespace ERP_GMEDINA.Controllers
             {
                 if (Function.GetUserRols("TipoDevolucion/Create"))
                 {
+                    if (db.tbTipoDevolucion.Any(a => a.tdev_Descripcion == tbTipoDevolucion.tdev_Descripcion))
+                    {
+                        ModelState.AddModelError("", "Ya existe este tipo Devolucion, Favor registrar otra");
+                    }
                     if (ModelState.IsValid)
                     {
                         try
@@ -215,6 +219,10 @@ namespace ERP_GMEDINA.Controllers
             {
                 if (Function.GetUserRols("TipoDevolucion/Edit"))
                 {
+                    if (db.tbTipoDevolucion.Any(a => a.tdev_Descripcion == tbTipoDevolucion.tdev_Descripcion && a.tdev_Id != tbTipoDevolucion.tdev_Id))
+                    {
+                        ModelState.AddModelError("", "Ya existe una pantalla con el mismo nombre");
+                    }
                     if (ModelState.IsValid)
                     {
                         try

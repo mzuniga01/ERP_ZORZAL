@@ -18,19 +18,35 @@ $(document).on("click", "#tblMunicipios tbody tr td button#removeMunicipios", fu
 $('#AgregarMunicipios').click(function () {
     var MunCodigo = $('#mun_Codigo').val();
     var MunNombre = $('#mun_Nombre').val();
+    
 
-    if( MunCodigo =='')
-    {
-        $('#MessageError').text('');
-        $('#CodigoError').text('');
-        $('#NombreError').text('');
-        $('#ValidationCodigoCreate').after('<ul id="CodigoError" class="validation-summary-errors text-danger">Campo Codigo Municipio Requerido</ul>');
-    }
+     if( MunCodigo =='')
+        {
+            $('#MessageError').text('');
+            $('#CodigoError').text('');
+            $('#NombreError').text('');
+            $('#ValidationCodigoCreate').after('<ul id="CodigoError" class="validation-summary-errors text-danger">Campo Codigo Municipio Requerido</ul>');
+     }
+     else if (MunCodigo.length < 4) {
+         $('#ValidationCreate').text('');
+         $('#CodigoError').text('');
+         $('#NombreError').text('');
+         $('#ValidationCodigoCreate').after('<ul id="CodigoError" class="validation-summary-errors text-danger">No se Aceptan menos de 4 números.</ul>');
+     }
+       
     else if (MunNombre == '') {
         $('#MessageError').text('');
         $('#CodigoError').text('');
         $('#NombreError').text('');
         $('#ValidationNombreCreate').after('<ul id="NombreError" class="validation-summary-errors text-danger">Campo Municipio Requerido</ul>');
+    }
+
+    else if (MunNombre.substring(0, 1) == " ") {
+        $('#ValidationCreate').text('');
+        $('#MessageError').text('');
+        $('#CodigoError').text('');
+        $('#NombreError').text('');
+        $('#ValidationNombreCreate').after('<ul id="NombreError" class="validation-summary-errors text-danger">No se Aceptan Espacios en blanco.</ul>');
     }
     else {
         contador = contador + 1;
@@ -57,13 +73,13 @@ $('#AgregarMunicipios').click(function () {
                     $('#mun_Nombre').val('');
                     $('#MessageError').text('');
                     $('#NombreError').text('');
-                    console.log('Hola');
+                   
                 });
 
 
 
     }
-
+  
 });
 
 //GUARDAR MUNICIPIOS
@@ -78,6 +94,7 @@ $('#btnGuardar').click(function () {
         $('#ValidationNombre').after('<ul id="errorNombre" class="validation-summary-errors text-danger">Campo Municipio Requerido</ul>');
 
     }
+
 
     else if (munCodigo == '') {
         $('#mun_Nombre').text('');
@@ -123,47 +140,61 @@ $('#AgregarMunicipiosEdit').click(function () {
     var MunCodigo = $('#mun_CodigoEdit').val();
     var MunNombre = $('#mun_NombreEdit').val();
 
-    if (MunCodigo == '') {
-        $('#ValidationCreate').text('');
-        $('#CodigoError').text('');
-        $('#NombreError').text('');
-        $('#ValidacionMunCodigoEdit').after('<ul id="CodigoError" class="validation-summary-errors text-danger">Campo Requerido</ul>');
-    }
-    else if (MunNombre == '') {
-        $('#ValidationCreate').text('');
-        $('#CodigoError').text('');
-        $('#NombreError').text('');
-        $('#ValidacionMunNombreEdit').after('<ul id="NombreError" class="validation-summary-errors text-danger">Campo Requerido</ul>');
-    }
-    else {
-        contadorEdit = contadorEdit + 1;
-        copiar = "<tr data-id=" + contadorEdit + ">";
-        copiar += "<td id = 'MunCodigo'>" + $('#mun_CodigoEdit').val() + "</td>";
-        copiar += "<td id = 'MunNombre'>" + $('#mun_NombreEdit').val() + "</td>";
-        copiar += "<td>" + '<button id="removeMunicipiosEdit" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
-        copiar += "</tr>";
-        $('#tblMunicipiosEdit').append(copiar);
-
-        var Municipio = {
-            mun_Codigo: $('#mun_CodigoEdit').val(),
-            mun_Nombre: $('#mun_NombreEdit').val(),
-            mun_UsuarioCrea: contadorEdit,
-        };
-        $.ajax({
-            url: "/Departamento/AnadirMunicipio",
-            method: "POST",
-            dataType: 'json',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ Municipio: Municipio }),
-        })
-        .done(function (data) {
+   
+        if (MunCodigo == '') {
             $('#ValidationCreate').text('');
-            $('#mun_CodigoEdit').val('');
-            $('#mun_NombreEdit').val('');
             $('#CodigoError').text('');
             $('#NombreError').text('');
-        });
-    }
+            $('#ValidacionMunCodigoEdit').after('<ul id="CodigoError" class="validation-summary-errors text-danger">Campo Requerido</ul>');
+        }
+        else if (MunCodigo.length < 4 ) {
+            $('#ValidationCreate').text('');
+            $('#CodigoError').text('');
+            $('#NombreError').text('');
+            $('#ValidacionMunCodigoEdit').after('<ul id="CodigoError" class="validation-summary-errors text-danger">No se Aceptan menos de 4 números.</ul>');
+        }
+        else if (MunNombre == '') {
+            $('#ValidationCreate').text('');
+            $('#CodigoError').text('');
+            $('#NombreError').text('');
+            $('#ValidacionMunNombreEdit').after('<ul id="NombreError" class="validation-summary-errors text-danger">Campo Requerido</ul>');
+        }
+        else if (MunNombre.substring(0, 1) == " ") {
+            $('#ValidationCreate').text('');
+            $('#CodigoError').text('');
+            $('#NombreError').text('');
+            $('#ValidacionMunNombreEdit').after('<ul id="NombreError" class="validation-summary-errors text-danger">No se Aceptan Espacios en blanco.</ul>');
+        }
+        else {
+            contadorEdit = contadorEdit + 1;
+            copiar = "<tr data-id=" + contadorEdit + ">";
+            copiar += "<td id = 'MunCodigo'>" + $('#mun_CodigoEdit').val() + "</td>";
+            copiar += "<td id = 'MunNombre'>" + $('#mun_NombreEdit').val() + "</td>";
+            copiar += "<td>" + '<button id="removeMunicipiosEdit" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
+            copiar += "</tr>";
+            $('#tblMunicipiosEdit').append(copiar);
+
+            var Municipio = {
+                mun_Codigo: $('#mun_CodigoEdit').val(),
+                mun_Nombre: $('#mun_NombreEdit').val(),
+                mun_UsuarioCrea: contadorEdit,
+            };
+            $.ajax({
+                url: "/Departamento/AnadirMunicipio",
+                method: "POST",
+                dataType: 'json',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ Municipio: Municipio }),
+            })
+            .done(function (data) {
+                $('#ValidationCreate').text('');
+                $('#mun_CodigoEdit').val('');
+                $('#mun_NombreEdit').val('');
+                $('#CodigoError').text('');
+                $('#NombreError').text('');
+            });
+        }
+ 
 });
 
 
@@ -273,6 +304,10 @@ $(document).ready(function () {
     //QUE SOLO ACEPTE 4 NUMEROS
     $("#mun_CodigoEdit")[0].maxLength = 4;
     $("#mun_CodigoEdit_")[0].maxLength = 4;
+    $("#mun_CodigoEdit")[0].minLength = 4;
+    $("#mun_CodigoEdit_")[0].minLength = 4;
+
+   
     //VALIDAR SOLO NUMEROS
     $('#mun_CodigoEdit').bind('keypress', function (event) {
         var regex = new RegExp("^[0-9]+$");
@@ -290,21 +325,60 @@ $(document).ready(function () {
             return false;
         }
     });
-  
+
+    //Que solo acepte 30 letras
+    $("#mun_NombreEdit")[0].maxLength = 30;
+    $("#mun_NombreEdit_")[0].maxLength = 30;
+    $("#mun_NombreEdit")[0].minLength = 30;
+    $("#mun_NombreEdit_")[0].minLength = 30;
+
 
     //VALIDAR SOLO LETRAS
-    $('#mun_NombreEdit').on('input', function (e) {
-        if (!/^[ a-z-áéíóúüñ]*$/i.test(this.value)) {
-            this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
+
+    $('#dep_Nombre').on('input', function (e) {
+        if (!/^[ a-záéíóúüñ]*$/i.test(this.value)) {
+            this.value = this.value.replace(/[^ a-záéíóúüñ]+/ig, "");
         }
     });
+
+    $('#mun_NombreEdit').on('input', function (e) {
+        if (!/^[ a-záéíóúüñ]*$/i.test(this.value)) {
+            this.value = this.value.replace(/[^ a-záéíóúüñ]+/ig, "");
+        }
+    });
+
     $('#mun_NombreEdit_').on('input', function (e) {
-        if (!/^[ a-z-áéíóúüñ]*$/i.test(this.value)) {
-            this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
+        if (!/^[ a-záéíóúüñ]*$/i.test(this.value)) {
+            this.value = this.value.replace(/[^ a-záéíóúüñ]+/ig, "");
         }
     });
   
-   
-
     
+
+    //Bloqueo de Botón//
+    $('#mun_NombreEdit_').change(function () { 
+        if ($(this).val() == 0) { 
+            $('#BtnsubmitMunicipio').attr('disabled', 'disabled');
+        }
+        else {
+            $('#BtnsubmitMunicipio').removeAttr("disabled");
+        }
+    });
+
+
+// Copiar y Pegar///
+    $(document).ready(function () {
+        $('#mun_CodigoEdit_').bind("cut copy paste", function (e) {
+            e.preventDefault();
+        });
+    });
+
+    $(document).ready(function () {
+        $('#mun_CodigoEdit').bind("cut copy paste", function (e) {
+            e.preventDefault();
+        });
+    });
 })
+
+
+
