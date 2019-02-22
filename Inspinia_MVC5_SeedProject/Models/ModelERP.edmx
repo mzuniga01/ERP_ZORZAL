@@ -5815,7 +5815,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Parameter Name="tpa_UsuarioModifica" Type="int" Mode="In" />
           <Parameter Name="tpa_FechaModifica" Type="datetime" Mode="In" />
         </Function>
-        <Function Name="UPD_Vent_tbUsuario_Rol" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent" />
+        <Function Name="UPD_Vent_tbUsuario_Rol" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="suc_Id" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="ERP_ZORZALModelStoreContainer">
           <EntitySet Name="tbAccesoRol" EntityType="Self.tbAccesoRol" Schema="Acce" store:Type="Tables" />
           <EntitySet Name="tbBitacoraErrores" EntityType="Self.tbBitacoraErrores" Schema="Acce" store:Type="Tables" />
@@ -8565,9 +8567,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="nocre_Id" Mode="In" Type="Int16" />
             <Parameter Name="nocre_EsImpreso" Mode="In" Type="Boolean" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Vent_tbNotaCredito_Imprimir" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbNotaCredito_Imprimir_Result)">
-          <Parameter Name="nocre_Id" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbSolicitudEfectivo_EsAnulada" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivo_EsAnulada_Result)">
             <Parameter Name="solef_Id" Mode="In" Type="Int32" />
             <Parameter Name="solef_EsAnulada" Mode="In" Type="Boolean" />
@@ -9724,7 +9723,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <FunctionImport Name="UDP_Gral_tbDenominacion_using" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbDenominacion_using_Result)">
           <Parameter Name="DENO_ID" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="UPD_Vent_tbUsuario_Rol" ReturnType="Collection(ERP_ZORZALModel.UPD_Vent_tbUsuario_Rol_Result)" />
+          <FunctionImport Name="UPD_Vent_tbUsuario_Rol" ReturnType="Collection(ERP_ZORZALModel.UPD_Vent_tbUsuario_Rol_Result)" >
+          <Parameter Name="suc_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbFactura_ObtenerCai_CodigoFactura" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFactura_ObtenerCai_CodigoFactura_Result)">
             <Parameter Name="IDSucursal" Mode="In" Type="Int32" />
             <Parameter Name="IDCAJA" Mode="In" Type="Int16" />
@@ -9746,6 +9747,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="mocja_UsuarioAceptacion" Mode="In" Type="Int32" />
             <Parameter Name="mocja_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="mocja_FechaCrea" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbNotaCredito_Imprimir" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbNotaCredito_Imprimir_Result)">
+            <Parameter Name="nocre_Id" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
@@ -10453,24 +10457,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
         </ComplexType>
         <ComplexType Name="UDP_Vent_tbNotaCredito_EsImpreso_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-        </ComplexType>
-        <ComplexType Name="UDP_Vent_tbNotaCredito_Imprimir_Result">
-          <Property Type="Int16" Name="nocre_Id" Nullable="false" />
-          <Property Type="String" Name="nocre_Codigo" Nullable="false" MaxLength="19" />
-          <Property Type="Int32" Name="dev_Id" Nullable="false" />
-          <Property Type="String" Name="clte_Identificacion" Nullable="false" MaxLength="26" />
-          <Property Type="String" Name="clte_Nombres" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="clte_Apellidos" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="clte_NombreComercial" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="suc_Descripcion" Nullable="false" MaxLength="40" />
-          <Property Type="String" Name="suc_Correo" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="suc_Direccion" Nullable="false" MaxLength="100" />
-          <Property Type="String" Name="suc_Telefono" Nullable="false" MaxLength="9" />
-          <Property Type="String" Name="cja_Descripcion" Nullable="false" MaxLength="10" />
-          <Property Type="DateTime" Name="nocre_FechaEmision" Nullable="false" Precision="23" />
-          <Property Type="String" Name="nocre_MotivoEmision" Nullable="false" MaxLength="250" />
-          <Property Type="Decimal" Name="nocre_Monto" Nullable="true" Precision="10" Scale="2" />
-          <Property Type="Decimal" Name="devd_Monto" Nullable="false" Precision="10" Scale="2" />
         </ComplexType>
         <ComplexType Name="UDP_Vent_tbSolicitudEfectivo_Imprimir_Result">
           <Property Type="Int32" Name="solef_Id" Nullable="false" />
@@ -15109,6 +15095,23 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
         <ComplexType Name="UDP_Vent_tbMovimientoCaja_Insert_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
+        <ComplexType Name="UDP_Vent_tbNotaCredito_Imprimir_Result">
+          <Property Type="Int16" Name="nocre_Id" Nullable="false" />
+          <Property Type="String" Name="nocre_Codigo" Nullable="false" MaxLength="19" />
+          <Property Type="String" Name="nocre_MotivoEmision" Nullable="false" MaxLength="250" />
+          <Property Type="Decimal" Name="nocre_Monto" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Int32" Name="dev_Id" Nullable="false" />
+          <Property Type="String" Name="clte_Identificacion" Nullable="false" MaxLength="26" />
+          <Property Type="String" Name="clte_Nombres" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="clte_Apellidos" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="nocre_FechaEmision" Nullable="false" Precision="23" />
+          <Property Type="String" Name="clte_NombreComercial" Nullable="false" MaxLength="50" />
+          <Property Type="Decimal" Name="devd_Monto" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="String" Name="suc_Descripcion" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="suc_Correo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="suc_Direccion" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="suc_Telefono" Nullable="false" MaxLength="9" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -16273,28 +16276,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbNotaCredito_EsImpreso_Result">
                 <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbNotaCredito_Imprimir" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbNotaCredito_Imprimir">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbNotaCredito_Imprimir_Result">
-                <ScalarProperty Name="nocre_Id" ColumnName="nocre_Id" />
-                <ScalarProperty Name="nocre_Codigo" ColumnName="nocre_Codigo" />
-                <ScalarProperty Name="dev_Id" ColumnName="dev_Id" />
-                <ScalarProperty Name="clte_Identificacion" ColumnName="clte_Identificacion" />
-                <ScalarProperty Name="clte_Nombres" ColumnName="clte_Nombres" />
-                <ScalarProperty Name="clte_Apellidos" ColumnName="clte_Apellidos" />
-                <ScalarProperty Name="clte_NombreComercial" ColumnName="clte_NombreComercial" />
-                <ScalarProperty Name="suc_Descripcion" ColumnName="suc_Descripcion" />
-                <ScalarProperty Name="suc_Correo" ColumnName="suc_Correo" />
-                <ScalarProperty Name="suc_Direccion" ColumnName="suc_Direccion" />
-                <ScalarProperty Name="suc_Telefono" ColumnName="suc_Telefono" />
-                <ScalarProperty Name="cja_Descripcion" ColumnName="cja_Descripcion" />
-                <ScalarProperty Name="nocre_FechaEmision" ColumnName="nocre_FechaEmision" />
-                <ScalarProperty Name="nocre_MotivoEmision" ColumnName="nocre_MotivoEmision" />
-                <ScalarProperty Name="nocre_Monto" ColumnName="nocre_Monto" />
-                <ScalarProperty Name="devd_Monto" ColumnName="devd_Monto" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -17861,6 +17842,27 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_Insert_Result">
                 <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbNotaCredito_Imprimir" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbNotaCredito_Imprimir">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbNotaCredito_Imprimir_Result">
+                <ScalarProperty Name="nocre_Id" ColumnName="nocre_Id" />
+                <ScalarProperty Name="nocre_Codigo" ColumnName="nocre_Codigo" />
+                <ScalarProperty Name="nocre_MotivoEmision" ColumnName="nocre_MotivoEmision" />
+                <ScalarProperty Name="nocre_Monto" ColumnName="nocre_Monto" />
+                <ScalarProperty Name="dev_Id" ColumnName="dev_Id" />
+                <ScalarProperty Name="clte_Identificacion" ColumnName="clte_Identificacion" />
+                <ScalarProperty Name="clte_Nombres" ColumnName="clte_Nombres" />
+                <ScalarProperty Name="clte_Apellidos" ColumnName="clte_Apellidos" />
+                <ScalarProperty Name="nocre_FechaEmision" ColumnName="nocre_FechaEmision" />
+                <ScalarProperty Name="clte_NombreComercial" ColumnName="clte_NombreComercial" />
+                <ScalarProperty Name="devd_Monto" ColumnName="devd_Monto" />
+                <ScalarProperty Name="suc_Descripcion" ColumnName="suc_Descripcion" />
+                <ScalarProperty Name="suc_Correo" ColumnName="suc_Correo" />
+                <ScalarProperty Name="suc_Direccion" ColumnName="suc_Direccion" />
+                <ScalarProperty Name="suc_Telefono" ColumnName="suc_Telefono" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

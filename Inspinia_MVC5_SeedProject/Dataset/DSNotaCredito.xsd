@@ -10,7 +10,7 @@
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="UDP_Vent_tbNotaCredito_ImprimirTableAdapter" GeneratorDataComponentClassName="UDP_Vent_tbNotaCredito_ImprimirTableAdapter" Name="UDP_Vent_tbNotaCredito_Imprimir" UserDataComponentName="UDP_Vent_tbNotaCredito_ImprimirTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="ERP_GMEDINAConnectionString (Web.config)" DbObjectName="ERP_GMEDINA.Vent.UDP_Vent_tbNotaCredito_Imprimir" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="ERP_GMEDINAConnectionString1 (Web.config)" DbObjectName="ERP_GMEDINA.Vent.UDP_Vent_tbNotaCredito_Imprimir" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>Vent.UDP_Vent_tbNotaCredito_Imprimir</CommandText>
@@ -25,20 +25,19 @@
             <Mappings>
               <Mapping SourceColumn="nocre_Id" DataSetColumn="nocre_Id" />
               <Mapping SourceColumn="nocre_Codigo" DataSetColumn="nocre_Codigo" />
+              <Mapping SourceColumn="nocre_MotivoEmision" DataSetColumn="nocre_MotivoEmision" />
+              <Mapping SourceColumn="nocre_Monto" DataSetColumn="nocre_Monto" />
               <Mapping SourceColumn="dev_Id" DataSetColumn="dev_Id" />
               <Mapping SourceColumn="clte_Identificacion" DataSetColumn="clte_Identificacion" />
               <Mapping SourceColumn="clte_Nombres" DataSetColumn="clte_Nombres" />
               <Mapping SourceColumn="clte_Apellidos" DataSetColumn="clte_Apellidos" />
+              <Mapping SourceColumn="nocre_FechaEmision" DataSetColumn="nocre_FechaEmision" />
               <Mapping SourceColumn="clte_NombreComercial" DataSetColumn="clte_NombreComercial" />
+              <Mapping SourceColumn="devd_Monto" DataSetColumn="devd_Monto" />
               <Mapping SourceColumn="suc_Descripcion" DataSetColumn="suc_Descripcion" />
               <Mapping SourceColumn="suc_Correo" DataSetColumn="suc_Correo" />
               <Mapping SourceColumn="suc_Direccion" DataSetColumn="suc_Direccion" />
               <Mapping SourceColumn="suc_Telefono" DataSetColumn="suc_Telefono" />
-              <Mapping SourceColumn="cja_Descripcion" DataSetColumn="cja_Descripcion" />
-              <Mapping SourceColumn="nocre_FechaEmision" DataSetColumn="nocre_FechaEmision" />
-              <Mapping SourceColumn="nocre_MotivoEmision" DataSetColumn="nocre_MotivoEmision" />
-              <Mapping SourceColumn="nocre_Monto" DataSetColumn="nocre_Monto" />
-              <Mapping SourceColumn="devd_Monto" DataSetColumn="devd_Monto" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -61,6 +60,14 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="nocre_MotivoEmision" msprop:Generator_ColumnVarNameInTable="columnnocre_MotivoEmision" msprop:Generator_ColumnPropNameInRow="nocre_MotivoEmision" msprop:Generator_ColumnPropNameInTable="nocre_MotivoEmisionColumn" msprop:Generator_UserColumnName="nocre_MotivoEmision">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="nocre_Monto" msprop:Generator_ColumnVarNameInTable="columnnocre_Monto" msprop:Generator_ColumnPropNameInRow="nocre_Monto" msprop:Generator_ColumnPropNameInTable="nocre_MontoColumn" msprop:Generator_UserColumnName="nocre_Monto" type="xs:decimal" minOccurs="0" />
               <xs:element name="dev_Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columndev_Id" msprop:Generator_ColumnPropNameInRow="dev_Id" msprop:Generator_ColumnPropNameInTable="dev_IdColumn" msprop:Generator_UserColumnName="dev_Id" type="xs:int" />
               <xs:element name="clte_Identificacion" msprop:Generator_ColumnVarNameInTable="columnclte_Identificacion" msprop:Generator_ColumnPropNameInRow="clte_Identificacion" msprop:Generator_ColumnPropNameInTable="clte_IdentificacionColumn" msprop:Generator_UserColumnName="clte_Identificacion">
                 <xs:simpleType>
@@ -83,6 +90,7 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="nocre_FechaEmision" msprop:Generator_ColumnVarNameInTable="columnnocre_FechaEmision" msprop:Generator_ColumnPropNameInRow="nocre_FechaEmision" msprop:Generator_ColumnPropNameInTable="nocre_FechaEmisionColumn" msprop:Generator_UserColumnName="nocre_FechaEmision" type="xs:dateTime" />
               <xs:element name="clte_NombreComercial" msprop:Generator_ColumnVarNameInTable="columnclte_NombreComercial" msprop:Generator_ColumnPropNameInRow="clte_NombreComercial" msprop:Generator_ColumnPropNameInTable="clte_NombreComercialColumn" msprop:Generator_UserColumnName="clte_NombreComercial">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -90,6 +98,7 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="devd_Monto" msprop:Generator_ColumnVarNameInTable="columndevd_Monto" msprop:Generator_ColumnPropNameInRow="devd_Monto" msprop:Generator_ColumnPropNameInTable="devd_MontoColumn" msprop:Generator_UserColumnName="devd_Monto" type="xs:decimal" />
               <xs:element name="suc_Descripcion" msprop:Generator_ColumnVarNameInTable="columnsuc_Descripcion" msprop:Generator_ColumnPropNameInRow="suc_Descripcion" msprop:Generator_ColumnPropNameInTable="suc_DescripcionColumn" msprop:Generator_UserColumnName="suc_Descripcion">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -118,23 +127,6 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="cja_Descripcion" msprop:Generator_ColumnVarNameInTable="columncja_Descripcion" msprop:Generator_ColumnPropNameInRow="cja_Descripcion" msprop:Generator_ColumnPropNameInTable="cja_DescripcionColumn" msprop:Generator_UserColumnName="cja_Descripcion">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="10" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="nocre_FechaEmision" msprop:Generator_ColumnVarNameInTable="columnnocre_FechaEmision" msprop:Generator_ColumnPropNameInRow="nocre_FechaEmision" msprop:Generator_ColumnPropNameInTable="nocre_FechaEmisionColumn" msprop:Generator_UserColumnName="nocre_FechaEmision" type="xs:dateTime" />
-              <xs:element name="nocre_MotivoEmision" msprop:Generator_ColumnVarNameInTable="columnnocre_MotivoEmision" msprop:Generator_ColumnPropNameInRow="nocre_MotivoEmision" msprop:Generator_ColumnPropNameInTable="nocre_MotivoEmisionColumn" msprop:Generator_UserColumnName="nocre_MotivoEmision">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="250" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="nocre_Monto" msprop:Generator_ColumnVarNameInTable="columnnocre_Monto" msprop:Generator_ColumnPropNameInRow="nocre_Monto" msprop:Generator_ColumnPropNameInTable="nocre_MontoColumn" msprop:Generator_UserColumnName="nocre_Monto" type="xs:decimal" minOccurs="0" />
-              <xs:element name="devd_Monto" msprop:Generator_ColumnVarNameInTable="columndevd_Monto" msprop:Generator_ColumnPropNameInRow="devd_Monto" msprop:Generator_ColumnPropNameInTable="devd_MontoColumn" msprop:Generator_UserColumnName="devd_Monto" type="xs:decimal" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

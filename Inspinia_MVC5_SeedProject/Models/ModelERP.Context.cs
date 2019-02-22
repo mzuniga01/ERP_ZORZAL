@@ -5790,15 +5790,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbNotaCredito_EsImpreso_Result>("UDP_Vent_tbNotaCredito_EsImpreso", nocre_IdParameter, nocre_EsImpresoParameter);
         }
     
-        public virtual ObjectResult<UDP_Vent_tbNotaCredito_Imprimir_Result> UDP_Vent_tbNotaCredito_Imprimir(Nullable<int> nocre_Id)
-        {
-            var nocre_IdParameter = nocre_Id.HasValue ?
-                new ObjectParameter("nocre_Id", nocre_Id) :
-                new ObjectParameter("nocre_Id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbNotaCredito_Imprimir_Result>("UDP_Vent_tbNotaCredito_Imprimir", nocre_IdParameter);
-        }
-    
         public virtual ObjectResult<UDP_Vent_tbSolicitudEfectivo_EsAnulada_Result> UDP_Vent_tbSolicitudEfectivo_EsAnulada(Nullable<int> solef_Id, Nullable<bool> solef_EsAnulada, string motivo)
         {
             var solef_IdParameter = solef_Id.HasValue ?
@@ -6439,9 +6430,13 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbDenominacion_using_Result>("UDP_Gral_tbDenominacion_using", dENO_IDParameter);
         }
     
-        public virtual ObjectResult<UPD_Vent_tbUsuario_Rol_Result> UPD_Vent_tbUsuario_Rol()
+        public virtual ObjectResult<UPD_Vent_tbUsuario_Rol_Result> UPD_Vent_tbUsuario_Rol(Nullable<int> suc_Id)
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UPD_Vent_tbUsuario_Rol_Result>("UPD_Vent_tbUsuario_Rol");
+            var suc_IdParameter = suc_Id.HasValue ?
+                new ObjectParameter("suc_Id", suc_Id) :
+                new ObjectParameter("suc_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UPD_Vent_tbUsuario_Rol_Result>("UPD_Vent_tbUsuario_Rol", suc_IdParameter);
         }
     
         public virtual ObjectResult<UDP_Vent_tbFactura_ObtenerCai_CodigoFactura_Result> UDP_Vent_tbFactura_ObtenerCai_CodigoFactura(Nullable<int> iDSucursal, Nullable<short> iDCAJA)
@@ -6519,6 +6514,15 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("mocja_FechaCrea", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbMovimientoCaja_Insert_Result>("UDP_Vent_tbMovimientoCaja_Insert", cja_IdParameter, usu_IdParameter, mocja_UsuarioAperturaParameter, mocja_FechaArqueoParameter, mocja_UsuarioArqueaParameter, mocja_FechaAceptacionParameter, mocja_UsuarioAceptacionParameter, mocja_UsuarioCreaParameter, mocja_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbNotaCredito_Imprimir_Result> UDP_Vent_tbNotaCredito_Imprimir(Nullable<int> nocre_Id)
+        {
+            var nocre_IdParameter = nocre_Id.HasValue ?
+                new ObjectParameter("nocre_Id", nocre_Id) :
+                new ObjectParameter("nocre_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbNotaCredito_Imprimir_Result>("UDP_Vent_tbNotaCredito_Imprimir", nocre_IdParameter);
         }
     }
 }

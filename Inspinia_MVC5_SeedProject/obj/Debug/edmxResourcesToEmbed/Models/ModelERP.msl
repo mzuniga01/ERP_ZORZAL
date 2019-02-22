@@ -1160,28 +1160,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Vent_tbNotaCredito_Imprimir" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbNotaCredito_Imprimir">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbNotaCredito_Imprimir_Result">
-          <ScalarProperty Name="nocre_Id" ColumnName="nocre_Id" />
-          <ScalarProperty Name="nocre_Codigo" ColumnName="nocre_Codigo" />
-          <ScalarProperty Name="dev_Id" ColumnName="dev_Id" />
-          <ScalarProperty Name="clte_Identificacion" ColumnName="clte_Identificacion" />
-          <ScalarProperty Name="clte_Nombres" ColumnName="clte_Nombres" />
-          <ScalarProperty Name="clte_Apellidos" ColumnName="clte_Apellidos" />
-          <ScalarProperty Name="clte_NombreComercial" ColumnName="clte_NombreComercial" />
-          <ScalarProperty Name="suc_Descripcion" ColumnName="suc_Descripcion" />
-          <ScalarProperty Name="suc_Correo" ColumnName="suc_Correo" />
-          <ScalarProperty Name="suc_Direccion" ColumnName="suc_Direccion" />
-          <ScalarProperty Name="suc_Telefono" ColumnName="suc_Telefono" />
-          <ScalarProperty Name="cja_Descripcion" ColumnName="cja_Descripcion" />
-          <ScalarProperty Name="nocre_FechaEmision" ColumnName="nocre_FechaEmision" />
-          <ScalarProperty Name="nocre_MotivoEmision" ColumnName="nocre_MotivoEmision" />
-          <ScalarProperty Name="nocre_Monto" ColumnName="nocre_Monto" />
-          <ScalarProperty Name="devd_Monto" ColumnName="devd_Monto" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudEfectivo_EsAnulada" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudEfectivo_EsAnulada">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivo_EsAnulada_Result">
@@ -2745,6 +2723,27 @@
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_Insert_Result">
           <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbNotaCredito_Imprimir" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbNotaCredito_Imprimir">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbNotaCredito_Imprimir_Result">
+          <ScalarProperty Name="nocre_Id" ColumnName="nocre_Id" />
+          <ScalarProperty Name="nocre_Codigo" ColumnName="nocre_Codigo" />
+          <ScalarProperty Name="nocre_MotivoEmision" ColumnName="nocre_MotivoEmision" />
+          <ScalarProperty Name="nocre_Monto" ColumnName="nocre_Monto" />
+          <ScalarProperty Name="dev_Id" ColumnName="dev_Id" />
+          <ScalarProperty Name="clte_Identificacion" ColumnName="clte_Identificacion" />
+          <ScalarProperty Name="clte_Nombres" ColumnName="clte_Nombres" />
+          <ScalarProperty Name="clte_Apellidos" ColumnName="clte_Apellidos" />
+          <ScalarProperty Name="nocre_FechaEmision" ColumnName="nocre_FechaEmision" />
+          <ScalarProperty Name="clte_NombreComercial" ColumnName="clte_NombreComercial" />
+          <ScalarProperty Name="devd_Monto" ColumnName="devd_Monto" />
+          <ScalarProperty Name="suc_Descripcion" ColumnName="suc_Descripcion" />
+          <ScalarProperty Name="suc_Correo" ColumnName="suc_Correo" />
+          <ScalarProperty Name="suc_Direccion" ColumnName="suc_Direccion" />
+          <ScalarProperty Name="suc_Telefono" ColumnName="suc_Telefono" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

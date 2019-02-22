@@ -52,7 +52,7 @@
                                 @Html.LabelFor(model => model.suc_Id, new { @class = "control-label required col-md-2" })
                                 <div class="col-md-4">
                                     <input class = "form-control" readonly value="@ViewBag.suc_Descripcion" />
-                                    <input class="form-control" readonly value="@ViewBag.suc_Id" id="suc_Id" name="suc_Id" type="text" />
+                                    <input class="form-control" readonly value="@ViewBag.suc_Id" id="suc_Id" name="suc_Id" type="hidden" />
                                     <span class="validation-error">  @Html.ValidationMessageFor(model => model.suc_Id)</span>
                                 </div>
                                 @Html.LabelFor(model => model.cja_Id, new { @class = "control-label required col-md-2" })

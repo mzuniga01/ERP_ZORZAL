@@ -15,19 +15,18 @@ namespace ERP_GMEDINA.Models
     {
         public short nocre_Id { get; set; }
         public string nocre_Codigo { get; set; }
+        public string nocre_MotivoEmision { get; set; }
+        public Nullable<decimal> nocre_Monto { get; set; }
         public int dev_Id { get; set; }
         public string clte_Identificacion { get; set; }
         public string clte_Nombres { get; set; }
         public string clte_Apellidos { get; set; }
+        public System.DateTime nocre_FechaEmision { get; set; }
         public string clte_NombreComercial { get; set; }
+        public decimal devd_Monto { get; set; }
         public string suc_Descripcion { get; set; }
         public string suc_Correo { get; set; }
         public string suc_Direccion { get; set; }
         public string suc_Telefono { get; set; }
-        public string cja_Descripcion { get; set; }
-        public System.DateTime nocre_FechaEmision { get; set; }
-        public string nocre_MotivoEmision { get; set; }
-        public Nullable<decimal> nocre_Monto { get; set; }
-        public decimal devd_Monto { get; set; }
     }
 }

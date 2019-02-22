@@ -5810,7 +5810,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <Parameter Name="tpa_UsuarioModifica" Type="int" Mode="In" />
     <Parameter Name="tpa_FechaModifica" Type="datetime" Mode="In" />
   </Function>
-  <Function Name="UPD_Vent_tbUsuario_Rol" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent" />
+  <Function Name="UPD_Vent_tbUsuario_Rol" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="suc_Id" Type="int" Mode="In" />
+  </Function>
   <EntityContainer Name="ERP_ZORZALModelStoreContainer">
     <EntitySet Name="tbAccesoRol" EntityType="Self.tbAccesoRol" Schema="Acce" store:Type="Tables" />
     <EntitySet Name="tbBitacoraErrores" EntityType="Self.tbBitacoraErrores" Schema="Acce" store:Type="Tables" />
