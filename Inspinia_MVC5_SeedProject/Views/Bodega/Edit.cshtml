@@ -20,15 +20,17 @@
         color: red;
         font-size: small;
     }
+
     .validation-summary-errors {
         color: red;
         font-size: small;
     }
+
     .required:after {
-                            content: "*";
-                            font-weight: bold;
-                            color: red; 
-                        }
+        content: "*";
+        font-weight: bold;
+        color: red;
+    }
 </style>
 @if (ViewBag.smserror != "" && ViewBag.smserror != null)
 {
@@ -116,7 +118,7 @@
                             <div class="form-group">
                                 @*<label class="control-label col-md-2">Número<span style="color:red">*</span></label>*@
                                 @*@Html.LabelFor(model => model.bod_Id,new { @class = "control-label col-md-2"})*@
-                                @Html.LabelFor(model => model.bod_Id,new { @class = "control-label col-md-2 , required" })
+                                @Html.LabelFor(model => model.bod_Id, new { @class = "control-label col-md-2 , required" })
                                 @*<span style="position:absolute ; color:red"> *</span>*@
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.bod_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
@@ -126,21 +128,21 @@
                                 @Html.LabelFor(model => model.bod_Direccion, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.bod_Direccion, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @onKeyPress = "return controlCaracteres(event)", @onkeyup = "this.value=NumText(this.value)" } })
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Direccion) </p>
+                                    <p style="color:red" id="direccion_error">@Html.ValidationMessageFor(model => model.bod_Direccion) </p>
                                 </div>
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(model => model.bod_Nombre, new { @class = "control-label col-md-2 , required", @onKeyPress = "return soloLetras(event)" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.bod_Nombre, new { htmlAttributes = new { @class = "form-control", @onKeyPress = "return soloLetras(event)", @autocomplete = "off" } })
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Nombre) </p>
+                                    <p style="color:red" id="nombre_error">@Html.ValidationMessageFor(model => model.bod_Nombre) </p>
                                 </div>
                                 @Html.LabelFor(model => model.bod_Correo, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.bod_Correo,new { htmlAttributes = new { @class = "form-control", @autocomplete = "off" , @onKeyPress = "return Caracteres_Email(event)", @onkeyup = "this.value=CorreoElectronico(this.value)" } })
+                                    @Html.EditorFor(model => model.bod_Correo, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @onKeyPress = "return Caracteres_Email(event)", @onkeyup = "this.value=CorreoElectronico(this.value)" } })
                                     @*<p style="color:red"> @Html.ValidationMessageFor(model => model.bod_Correo)</p>*@
                                     <div id="MessageForCorreo">
-                                        <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Correo)</p>
+                                        <p style="color:red" id="correo_error">@Html.ValidationMessageFor(model => model.bod_Correo)</p>
                                     </div>
                                 </div>
                             </div>
@@ -152,23 +154,25 @@
                                 </div>
                                 @Html.LabelFor(model => model.mun_Codigo, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    @Html.DropDownList("mun_Codigo", @*null, "Seleccione Municipio",*@  (IEnumerable<SelectListItem>)ViewBag.municipio_Edit, new { @class = "form-control" })
+                                    @Html.DropDownList("mun_Codigo",@*null, "Seleccione Municipio",*@         /**/
+                                                                                                                                                  /**/
+                                                                                                                                                  (IEnumerable<SelectListItem>)ViewBag.municipio_Edit, new { @class = "form-control" })
                                     <p id="Municipio" style="color:red">@Html.ValidationMessageFor(model => model.mun_Codigo)</p>
                                 </div>
                                 @*<div class="form-group">
-                                    @Html.LabelFor(model => model.mun_Codigo, "mun_Codigo", new { @class = "control-label col-md-2" })
-                                    <div class="col-md-10">
-                                        @Html.DropDownList("mun_Codigo", String.Empty)
-                                        @Html.ValidationMessageFor(model => model.mun_Codigo)
-                                    </div>
-                                </div>*@
+                                        @Html.LabelFor(model => model.mun_Codigo, "mun_Codigo", new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.DropDownList("mun_Codigo", String.Empty)
+                                            @Html.ValidationMessageFor(model => model.mun_Codigo)
+                                        </div>
+                                    </div>*@
                             </div>
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.bod_Telefono, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.bod_Telefono, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @onKeyPress = "return CaracteresTelefono(event)", @onkeyup = "this.value=CaracteresTelefono_borrar(this.value)" } })
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Telefono)</p>
+                                    <p style="color:red" id="telefono_error">@Html.ValidationMessageFor(model => model.bod_Telefono)</p>
                                 </div>
                                 @Html.LabelFor(model => model.bod_ResponsableBodega, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
@@ -321,6 +325,7 @@
 <script src="~/Scripts/app/BusquedaGenerica.js"></script>
 <script src="~/Scripts/app/BodegaDetalle.js"></script>
 <script src="~/Scripts/app/EditBodegaDetalle.js"></script>
+<script src="~/Scripts/app/ValidationErrorsBodega.js"></script>
 @*<script src="~/Scripts/app/disableSubmits.js"></script>*@
 @*<script language="javascript" type="text/javascript" src="disableSubmits.js"></script>*@
 @*<script src="~/Scripts/jquery.validate.min.js"></script>
@@ -376,7 +381,7 @@
                     $("#prod_CodigoBarras").val();
                     var Bod_Id = $('#bod_Id').val();
                     var Barras = $('#prod_CodigoBarras').val();
-                    
+
                     $.ajax({
                         type: 'POST',
                         url: '/Bodega/BuscarCodigoBarras',
@@ -569,7 +574,7 @@
 
         else {
             //Aqui importa el orden
-            console.log(Cbarras , 'prueba');
+            console.log(Cbarras, 'prueba');
             contador = contador + 1;
             copiar = "<tr data-id=" + contador + ">";
             copiar += "<td id = 'Cbarras'>" + Cbarras + "</td>";
@@ -584,7 +589,7 @@
             copiar += "<td>" + '<button id="removeBodegaDetalle" class="btn btn-danger btn-xs eliminar" type="button">Quitar</button>' + "</td>";
             copiar += "</tr>";
             $('#tbBodega').append(copiar);
-            
+
             var tbBodegaDetalle = Getbodegadetalle();
             $.ajax({
                 url: "/Bodega/SaveBodegaDetalle",
@@ -613,7 +618,7 @@
                     $('#Error_CantidadMaxima').text('');
                     $('#Error_Costo').text('');
                     $('#Error_CostoPromedioo').text('');
-                    
+
                 });
         }
     });

@@ -4,23 +4,26 @@
 $('#bod_Correo').change(function (e) {
     var emailRegex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     var EmailId = this.value;
+        correo = $("#bod_Correo").val();
+  
     if (emailRegex.test(EmailId)) {
-        $('#ErrorCorreo').text('');
+        $('#correo_error').text('');
         this.style.backgroundColor = "";
     }
        
     else
     {
-       
-        $('#ErrorCorreo').text('');
-        $('#MessageForCorreo').after('<p id="ErrorCorreo" class="validation-summary-errors text-danger">Correo Electronico Es Incorrecto </p>');
-        //$('#ErrorCorreoCreate_').text('');
-        //$('#ValidacionCorreoCreate_').after('<p id="ErrorCorreoCreate_'  + '" style="color:red">Corrrek;dkg</p>');
-        $("#bod_Correo").focus();
+        if (correo != "") {
+            valido = document.getElementById('correo_error');
+            valido.innerText = "Corro Electronico Incorrecto";
+            return false
+            
+        }
     }
     
 
 });
+//Limpriar Validation Erros
 
 //
 //Validar Los campos string
@@ -164,32 +167,24 @@ function formateo(input) {
     })
 }
 
-//$("#bod_Telefono").on("keypress keyup blur", function (event) {
-//    var Telefono = $(this).val();
-//    console.log(Telefono)
-//    if (Telefono == '') {
-//        $(this).val('+');
+//$("#bod_Correo").blur(function () {
+//    campo = event.target;
+//    valido = document.getElementById('emailOK1');
+
+//    var reg = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+//    var regOficial = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+//    //Se muestra un texto a modo de ejemplo, luego va a ser un icono
+//    if (reg.test(campo.value) && regOficial.test(campo.value)) {
+//        valido.innerText = "";
+//    } else if (reg.test(campo.value)) {
+//        valido.innerText = "";
+
+//    } else {
+//        valido.innerText = "Direccion de Correo Electronico Incorrecta";
+//        return false
 //    }
-//    this.value = this.value.replace(/[a-záéíóúüñ#/=]+/ig, "");
 //});
-$("#bod_Correo").blur(function () {
-    campo = event.target;
-    valido = document.getElementById('emailOK1');
-
-    var reg = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-    var regOficial = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
-    //Se muestra un texto a modo de ejemplo, luego va a ser un icono
-    if (reg.test(campo.value) && regOficial.test(campo.value)) {
-        valido.innerText = "";
-    } else if (reg.test(campo.value)) {
-        valido.innerText = "";
-
-    } else {
-        valido.innerText = "Direccion de Correo Electronico Incorrecta";
-        return false
-    }
-});
 
 function BlockChars(event) {
     if (event.keyCode < 65 && event.keyCode > 90)//los numeros son codigos ASCII
@@ -199,7 +194,7 @@ function BlockChars(event) {
 function NumText(string) {//solo letras y numeros
     var out = '';
     //Se añaden las letras validas
-    var filtro = 'abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ1234567890# ,.';//Caracteres validos
+    var filtro = 'abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ1234567890áéíóúÁÉÍÓÚ# ,.';//Caracteres validos
 
     for (var i = 0; i < string.length; i++)
         if (filtro.indexOf(string.charAt(i)) != -1)

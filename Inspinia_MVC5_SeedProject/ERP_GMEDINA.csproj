@@ -1241,6 +1241,7 @@
     <Content Include="Scripts\app\SubCategoriaProducto.js" />
     <Content Include="Scripts\app\ValidacionProveedor.js" />
     <Content Include="Scripts\app\ValidationEmail.js" />
+    <Content Include="Scripts\app\ValidationErrorsBodega.js" />
     <Content Include="Scripts\app\ValidationEstadoMovimientojs.js" />
     <Content Include="Scripts\app\ValidationNumber.js" />
     <Content Include="Scripts\bootstrap.js" />
