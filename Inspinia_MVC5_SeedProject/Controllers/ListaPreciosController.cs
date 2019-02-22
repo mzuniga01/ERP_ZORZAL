@@ -53,13 +53,6 @@ namespace ERP_GMEDINA.Controllers
 
         }
 
-    
-
-
-
-
-
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -73,8 +66,13 @@ namespace ERP_GMEDINA.Controllers
             var MensajeErrorDetalle = "";
             IEnumerable<object> listPrecio = null;
             IEnumerable<object> listPrecioDetalle = null;
-            if (ModelState.IsValid)
+
+            if (db.tbListaPrecio.Any(a => a.listp_Nombre == tbListaPrecio.listp_Nombre))
             {
+                ModelState.AddModelError("", "Ya existe una Lista Precio con este mismo nombre.");
+            }
+            if (ModelState.IsValid)
+            {                
                 try
                 {
                     using (TransactionScope Tran = new TransactionScope())
@@ -94,7 +92,7 @@ namespace ERP_GMEDINA.Controllers
                         {
                             ModelState.AddModelError("", "No se pudo agregar el registro");
                            
-                            TempData["message"] = "No se pudo agregar el registro,ya existe nombre de lista";
+                            //TempData["message"] = "No se pudo agregar el registro,ya existe nombre de lista";
                             return View(tbListaPrecio);
                         }
                         else
@@ -241,6 +239,10 @@ namespace ERP_GMEDINA.Controllers
             IEnumerable<object> listDetalle = null;
             if (ModelState.IsValid)
             {
+
+
+
+
                 try
                 {                    using (TransactionScope Tran = new TransactionScope())
                     {
@@ -322,9 +324,9 @@ namespace ERP_GMEDINA.Controllers
                     ViewBag.Producto = db.tbProducto.ToList();
 
                     ModelState.AddModelError("", "No se pudo agregar el registro");
+                    ModelState.AddModelError("", "Ya existe un producto con este mismo nombre.");
+                    //TempData["message"] = "No se pudo agregar el registro,ya existe producto";
 
-                    TempData["message"] = "No se pudo agregar el registro,ya existe producto";
-   
                 }
 
                 return RedirectToAction("Index");
@@ -523,7 +525,7 @@ namespace ERP_GMEDINA.Controllers
             catch (Exception Ex)
             {
                 Ex.Message.ToString();
-                ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al programador.");
+                ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
                 return PartialView("_EditListaPrecioDetalle", EditListadoPrecioDetalle);
             }
         }
@@ -542,18 +544,6 @@ namespace ERP_GMEDINA.Controllers
             }
             return Json(list, JsonRequestBehavior.AllowGet);
         }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -54,35 +54,53 @@ namespace ERP_GMEDINA.Controllers
         public ActionResult Create([Bind(Include = "acte_Id,acte_Descripcion,acte_UsuarioCrea,acte_FechaCrea,acte_UsuarioModifica,acte_FechaModifica")] tbActividadEconomica tbActividadEconomica)
         {
 
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    var MensajeError = "";
-                    IEnumerable<object> list = null;
-                    list = db.UDP_Gral_tbActividadEconomica_Insert(tbActividadEconomica.acte_Descripcion, Function.GetUser(), Function.DatetimeNow());
 
-                    foreach (UDP_Gral_tbActividadEconomica_Insert_Result ActividadEconomica in list)
-                        MensajeError = ActividadEconomica.MensajeError;
-                    if (MensajeError.StartsWith("-1"))
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    if (db.tbActividadEconomica.Any(a => a.acte_Descripcion == tbActividadEconomica.acte_Descripcion))
                     {
-                        Function.InsertBitacoraErrores("ActividadEconomica/Create", MensajeError, "Create");
-                        ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+
+                        ModelState.AddModelError("", "Ya existe este tipo de Actividad Económica.");
+                        //var colores =
                         return View(tbActividadEconomica);
                     }
+
                     else
                     {
-                        return RedirectToAction("Index");
+
+                        var MensajeError = "";
+                        IEnumerable<object> list = null;
+                        list = db.UDP_Gral_tbActividadEconomica_Insert(tbActividadEconomica.acte_Descripcion, Function.GetUser(), Function.DatetimeNow());
+
+                        foreach (UDP_Gral_tbActividadEconomica_Insert_Result ActividadEconomica in list)
+                            MensajeError = ActividadEconomica.MensajeError;
+                        if (MensajeError.StartsWith("-1"))
+                        {
+                            Function.InsertBitacoraErrores("ActividadEconomica/Create", MensajeError, "Create");
+                            ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                            return View(tbActividadEconomica);
+                        }
+                        else
+                        {
+                            return RedirectToAction("Index");
+                        }
                     }
                 }
-                return View(tbActividadEconomica);
+                catch (Exception Ex)
+                {
+                    ModelState.AddModelError("", "No se ha podido ingresar el registro, favor contacte al administrador " + Ex.Message.ToString());
+                    return View(tbActividadEconomica);
+                }
+                //db.tbTipoPago.Add(tbTipoPago);
+                //db.SaveChanges();
+                //return RedirectToAction("Index");
             }
-            catch (Exception Ex)
-            {
-                Function.InsertBitacoraErrores("ActividadEconomica/Create", Ex.Message.ToString(), "Create");
-                ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
-                return View(tbActividadEconomica);
-            }
+
+            return View(tbActividadEconomica);
+
         }
 
         // GET: /ActividadEconomica/Edit/5

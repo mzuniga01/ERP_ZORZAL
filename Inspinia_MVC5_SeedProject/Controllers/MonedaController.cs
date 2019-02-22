@@ -51,34 +51,49 @@ namespace ERP_GMEDINA.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include="mnda_Id,mnda_Abreviatura,mnda_Nombre,mnda_UsuarioCrea,mnda_FechaCrea,mnda_UsuarioModifica,mnda_FechaModifica")] tbMoneda tbMoneda)
         {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    //////////Aqui va la lista//////////////
 
-                    var MensajeError = "";
-                    IEnumerable<object> list = null;
-                    list = db.UDP_Gral_tbMoneda_Insert(tbMoneda.mnda_Abreviatura, tbMoneda.mnda_Nombre, Function.GetUser(),
-                                    Function.DatetimeNow());
-                    foreach (UDP_Gral_tbMoneda_Insert_Result Moneda in list)
-                        MensajeError = Moneda.MensajeError;
-                    if (MensajeError == "-1")
+
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    if (db.tbMoneda.Any(a => a.mnda_Abreviatura == tbMoneda.mnda_Abreviatura) || (db.tbMoneda.Any(a => a.mnda_Nombre == tbMoneda.mnda_Nombre)))
                     {
-                    }
+                 
+                        ModelState.AddModelError("", "Ya existe este tipo de Moneda.");
+                        //var colores =
+                        return View(tbMoneda);
+                    } 
+             
                     else
                     {
-                        return RedirectToAction("Index");
+                        var MensajeError = "";
+                        IEnumerable<object> list = null;
+                        list = db.UDP_Gral_tbMoneda_Insert(tbMoneda.mnda_Abreviatura, tbMoneda.mnda_Nombre, Function.GetUser(),
+                                        Function.DatetimeNow());
+                        foreach (UDP_Gral_tbMoneda_Insert_Result Moneda in list)
+                            MensajeError = Moneda.MensajeError;
+                        if (MensajeError == "-1")
+                        {
+                        }
+                        else
+                        {
+                            return RedirectToAction("Index");
+                        }
                     }
                 }
+                catch (Exception Ex)
+                {
+                    ModelState.AddModelError("", "No se ha podido ingresar el registro, favor contacte al administrador " + Ex.Message.ToString());
+                    return View(tbMoneda);
+                }
+                //db.tbTipoPago.Add(tbTipoPago);
+                //db.SaveChanges();
+                //return RedirectToAction("Index");
             }
-            catch (Exception Ex)
-            {
-                Ex.Message.ToString();
-            }
-
+     
             return View(tbMoneda);
-
 
         }
 

@@ -35,7 +35,7 @@
         @using (Html.BeginForm("Edit", "ListaPrecios", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             @Html.AntiForgeryToken()
-
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
             <div class="form-horizontal">
                 @Html.Hidden("RedirectTo", Url.Action("Index", "ListaPrecios"))
