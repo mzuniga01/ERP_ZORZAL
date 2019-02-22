@@ -152,10 +152,8 @@ namespace ERP_GMEDINA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(short? id,[Bind(Include= "suc_Id,mun_Codigo,bod_Id,pemi_Id,suc_Descripcion,suc_Correo,suc_Direccion,suc_Telefono,suc_UsuarioCrea,suc_FechaCrea")] tbSucursal tbSucursal)
+        public ActionResult Edit(short? id, [Bind(Include = "suc_Id,mun_Codigo,bod_Id,pemi_Id,suc_Descripcion,suc_Correo,suc_Direccion,suc_Telefono,suc_UsuarioCrea,suc_FechaCrea")] tbSucursal tbSucursal)
         {
-          
-
             try
             {
                 if (ModelState.IsValid)
@@ -182,30 +180,54 @@ namespace ERP_GMEDINA.Controllers
                     {
                         return RedirectToAction("Index");
                     }
-                  
+
                     return RedirectToAction("Index");
 
                 }
+                var direccion = tbSucursal.suc_Direccion;
+                var telefono = tbSucursal.suc_Telefono;
+                var municipio = tbSucursal.mun_Codigo;
+                var correo = tbSucursal.suc_Correo;
+                var bodega = tbSucursal.bod_Id;
+                var Emision = tbSucursal.pemi_Id;
+                if (direccion == null && telefono == null)
+                {
+                    ModelState.AddModelError("", "No se pudo Editar el registro, Campos Requeridos.");
+                    return RedirectToAction("Edit");
+                }
+                else if (correo == null)
+                {
+                    ModelState.AddModelError("", "No se pudo Editar el registro, Campos Requeridos.");
+                    return RedirectToAction("Edit");
+                }
+               
+                else
+                {
+                    return View(tbSucursal);
+                }
+
+               
             }
             catch (Exception Ex)
             {
+                
+                ViewBag.suc_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSucursal.suc_UsuarioCrea);
+                ViewBag.suc_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSucursal.suc_UsuarioModifica);
+                ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre", tbSucursal.tbMunicipio.tbDepartamento.dep_Codigo);
+                ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbSucursal.mun_Codigo);
+                ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbSucursal.bod_Id);
+                ViewBag.pemi_Id = new SelectList(db.tbPuntoEmision, "pemi_Id", "pemi_NumeroCAI", tbSucursal.pemi_Id);
+                var Bodegas = db.tbBodega.Select(s => new
+                {
+                    bod_Id = s.bod_Id,
+                    bod_Nombre = string.Concat(s.mun_Codigo + " - " + s.bod_Nombre)
+                }).ToList();
+
+                ViewBag.bod_Id = new SelectList(Bodegas, "bod_Id", "bod_Nombre", tbSucursal.bod_Id);
                 ModelState.AddModelError("", "Error al Agregar Registro " + Ex.Message.ToString());
                 return View(tbSucursal);
-            }
-            ViewBag.suc_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSucursal.suc_UsuarioCrea);
-            ViewBag.suc_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSucursal.suc_UsuarioModifica);
-            ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre", tbSucursal.tbMunicipio.tbDepartamento.dep_Codigo);
-            ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbSucursal.mun_Codigo);
-            ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbSucursal.bod_Id);
-            ViewBag.pemi_Id = new SelectList(db.tbPuntoEmision, "pemi_Id", "pemi_NumeroCAI", tbSucursal.pemi_Id);
-            var Bodegas = db.tbBodega.Select(s => new
-            {
-                bod_Id = s.bod_Id,
-                bod_Nombre = string.Concat(s.mun_Codigo + " - " + s.bod_Nombre)
-            }).ToList();
-
-            ViewBag.bod_Id = new SelectList(Bodegas, "bod_Id", "bod_Nombre", tbSucursal.bod_Id);
-            return View(tbSucursal);
+            } 
+            
         }
 
         // GET: /Sucursal/Delete/5

@@ -100,7 +100,7 @@
             @Html.LabelFor(model => model.suc_Correo, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 @Html.EditorFor(model => model.suc_Correo, new { @autocomplete = "off", type = "email", @class = "form-control", @onkeyup = "formateo(this)" })
-                <p style="color:red"> @Html.ValidationMessageFor(model => model.suc_Correo)</p>
+                <p id="emailOK1" style="color:red"> @Html.ValidationMessageFor(model => model.suc_Correo)</p>
             </div>
         </div>
 
@@ -126,6 +126,7 @@
 <script src="~/Scripts/app/Sucursal.js"></script>
 <script src="~/Scripts/app/Departamento.js"></script>
 <script src="~/Scripts/app/ClienteExoneracion.js"></script>
+<script src="~/Scripts/app/PersonaNatural.js"></script>
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 jQuery('input,select').each(function() {
@@ -144,7 +145,7 @@ jQuery('input,select').each(function() {
     var Telefono = $(this).val();
     console.log(Telefono)
     if (Telefono == '') {
-        $(this).val('+');
+        $(this).val('');
     }
     this.value = this.value.replace(/[a-záéíóúüñ#/=]+/ig, "");
 });
