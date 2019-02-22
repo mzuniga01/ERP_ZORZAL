@@ -10,26 +10,58 @@ namespace ERP_GMEDINA.Models
     public class GeneralFunctions
     {
         ERP_ZORZALEntities db = new ERP_ZORZALEntities();
-        public bool GetUserRols(string sPantalla)
+
+        public bool Sesiones(string sPantalla)
         {
             int UserID = 0;
-            bool EsAdmin = false;
             bool Retorno = false;
-            
+            byte Sesion = 0;
+
             try
             {
                 UserID = (int)HttpContext.Current.Session["UserLogin"];
-                EsAdmin = (bool)HttpContext.Current.Session["UserLoginEsAdmin"];
-                if(EsAdmin)
+                Sesion = (byte)HttpContext.Current.Session["UserLoginSesion"];
+                if (Sesion > 1)
                 {
                     Retorno = true;
                 }
                 else
                 {
                     var list = (IEnumerable<SDP_Acce_GetUserRols_Result>)HttpContext.Current.Session["UserLoginRols"];
-                    var BuscarList = list.Where(x=> x.obj_Referencia == sPantalla);
+                    var BuscarList = list.Where(x => x.obj_Referencia == sPantalla);
                     int Conteo = BuscarList.Count();
-                    if (Conteo>0)
+                    if (Conteo > 0)
+                        Retorno = true;
+                }
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                Retorno = false;
+            }
+            return Retorno;
+        }
+
+        public bool GetUserRols(string sPantalla)
+        {
+            int UserID = 0;
+            bool EsAdmin = false;
+            bool Retorno = false;
+
+            try
+            {
+                UserID = (int)HttpContext.Current.Session["UserLogin"];
+                EsAdmin = (bool)HttpContext.Current.Session["UserLoginEsAdmin"];
+                if (EsAdmin)
+                {
+                    Retorno = true;
+                }
+                else
+                {
+                    var list = (IEnumerable<SDP_Acce_GetUserRols_Result>)HttpContext.Current.Session["UserLoginRols"];
+                    var BuscarList = list.Where(x => x.obj_Referencia == sPantalla);
+                    int Conteo = BuscarList.Count();
+                    if (Conteo > 0)
                         Retorno = true;
                 }
             }
@@ -70,9 +102,9 @@ namespace ERP_GMEDINA.Models
             {
                 user = (int)HttpContext.Current.Session["UserLogin"];
                 if (user != 0)
-                   state = true;
+                    state = true;
             }
-            catch(Exception Ex)
+            catch (Exception Ex)
             {
                 Ex.Message.ToString();
                 state = false;
@@ -91,7 +123,7 @@ namespace ERP_GMEDINA.Models
             {
                 Ex.Message.ToString();
             }
-            return user;            
+            return user;
         }
 
         public DateTime DatetimeNow()
@@ -111,7 +143,7 @@ namespace ERP_GMEDINA.Models
                     objID = Obj.obj_Id;
                 List = db.UDP_Acce_tbBitacoraErrores_Insert(objID, GetUser(), DatetimeNow(), biteMensajeError, biteAccion);
             }
-            catch(Exception Ex)
+            catch (Exception Ex)
             {
                 Ex.Message.ToString();
             }
@@ -141,5 +173,6 @@ namespace ERP_GMEDINA.Models
             }
             return state;
         }
+
     }
 }
