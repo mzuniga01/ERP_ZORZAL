@@ -244,6 +244,12 @@ function CaracteresTelefono(e) {
     return /^[1234567890+-]+$/.test(tecla);
 
 }
+function CaracteresNombre(e) {
+    tecla = (document.all) ? e.keyCode : e.which;
+    tecla = String.fromCharCode(tecla)
+    return /^[a-zA-ZáéíóúñÁÉÍÓÚÑ1234567890 ]+$/.test(tecla);
+
+}
 function CaracteresTelefono_borrar(string) {//solo letras y numeros
     var out = '';
     //Se añaden las letras validas

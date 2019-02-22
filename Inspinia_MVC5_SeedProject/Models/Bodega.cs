@@ -12,8 +12,8 @@ namespace ERP_GMEDINA.Models
     {
         [NotMapped]
         [Display(Name = "Departamento")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string dep_Codigo { get; set; }
-
     }
 
     public class BodegaMetadata
@@ -35,7 +35,7 @@ namespace ERP_GMEDINA.Models
         public short bod_ResponsableBodega { get; set; }
 
         [Display(Name = "Dirección ")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
         public string bod_Direccion { get; set; }
 
         [Display(Name = "Email")]
@@ -56,9 +56,9 @@ namespace ERP_GMEDINA.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
         public string mun_Codigo { get; set; }
 
-        [Display(Name = "Departamento")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
-        public string dep_Codigo { get; set; }
+        //[Display(Name = "Departamento")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
+        //public string dep_Codigo { get; set; }
 
         [Display(Name = "Estado")]
         //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]

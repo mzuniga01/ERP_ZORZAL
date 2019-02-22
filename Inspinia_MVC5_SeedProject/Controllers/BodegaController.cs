@@ -56,7 +56,7 @@ namespace ERP_GMEDINA.Controllers
         [SessionManager("Bodega/Create")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "bod_Id,bod_Nombre,bod_ResponsableBodega,bod_Direccion,bod_Correo,bod_Telefono,usu_Id,mun_Codigo,bod_EsActiva")] tbBodega tbBodega)
+        public ActionResult Create([Bind(Include = "bod_Id,bod_Nombre,bod_ResponsableBodega,bod_Direccion,bod_Correo,bod_Telefono,usu_Id,mun_Codigo,bod_EsActiva,dep_Codigo")] tbBodega tbBodega)
         {
             IEnumerable<object> BODEGA = null;
             IEnumerable<object> DETALLE = null;
