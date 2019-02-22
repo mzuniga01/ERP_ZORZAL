@@ -4533,6 +4533,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <Parameter Name="bodd_PuntoReorden" Type="decimal" Mode="In" />
     <Parameter Name="bodd_Costo" Type="decimal" Mode="In" />
     <Parameter Name="bodd_CostoPromedio" Type="decimal" Mode="In" />
+    <Parameter Name="bodd_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="bodd_FechaCrea" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Inv_tbBodegaDetalle_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="bodd_Id" Type="int" Mode="In" />
@@ -5096,6 +5098,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     <Parameter Name="arqde_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="arqde_FechaCrea" Type="datetime" Mode="In" />
   </Function>
+  <Function Name="UDP_Vent_tbDenominacionArqueo_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent" />
   <Function Name="UDP_Vent_tbDenominacionArqueo_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="arqde_Id" Type="int" Mode="In" />
     <Parameter Name="mocja_Id" Type="int" Mode="In" />

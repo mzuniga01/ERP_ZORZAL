@@ -56,6 +56,23 @@
                 @Html.EditorFor(model => model.cja_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 <span class="validation-error">@Html.ValidationMessageFor(model => model.cja_Id)</span>
             </div>
+
+
+            <div class="form-group col-md-5">
+                <label class="control-label col-md-5">Cajero</label>
+                <div class="col-md-5">
+                    <input class="form-control" readonly value="@ViewBag.Cajero" />
+                    <p id="MensajeErrorDenominacion" style="color:red"> @Html.ValidationMessageFor(model => model.usu_Id)</p>
+                </div>
+            </div>
+
+            <div hidden class="form-group col-md-5">
+                @Html.LabelFor(model => model.usu_Id, "Cajero", new { @class = "control-label col-md-2" })
+                <div class="col-md-5">
+                    @Html.EditorFor(model => model.usu_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @Value = ViewBag.usu_Id } })
+                    <p id="MensajeErrorDenominacion" style="color:red"> @Html.ValidationMessageFor(model => model.usu_Id)</p>
+                </div>
+            </div>
         </div>
         <div class="form-group">
             <div class="form-group col-md-5">
@@ -113,12 +130,6 @@
         </div>
 
         <div class="form-group">
-            @*@Html.LabelFor(model => model.mocja_UsuarioAceptacion, new { @class = "control-label col-md-2" })
-            <div class="col-md-3">
-                @Html.EditorFor(model => model.mocja_UsuarioAceptacion, new { htmlAttributes = new { @min = "1" } })
-                <span class="validation-error">@Html.ValidationMessageFor(model => model.mocja_UsuarioAceptacion)</span>
-            </div>*@
-
             <div class="form-group col-md-5">
                 <label class="control-label col-md-5">Usuario Aceptacion</label>
                 <div class="col-md-5">
@@ -238,91 +249,24 @@
 
 
         <div class="form-group m-t-xl">
-            <div class=" col-md-12">
-                <label class="control-label">Detalle Denomonaciòn Efectivo</label><br /><br />
-                <table class="table table-bordered">
+            <div class="table table-responsive">
+                <table class="table table-bordered" id="tbdenominacion">
 
-                    <tr>
-                        <th class="success">Moneda</th>
-                        <th class="success">Tipo Denominacion</th>
-                        <th class="success">Denominacion</th>
-                        <th class="success">Valor Denominacion</th>
-                        <th class="success">Cantidad</th>
-                        <th class="success">Valor</th>
-                    </tr>
-                    <tr>
-                        <td>L.</td>
-                        <td>Billete</td>
-                        <td>500 Lempiras</td>
-                        <td>500</td>
-                        <td>5</td>
-                        <td>2500</td>
-                    </tr>
-                    <tr>
-                        <td>L.</td>
-                        <td>Billete</td>
-                        <td>100 Lempiras</td>
-                        <td>100</td>
-                        <td>10</td>
-                        <td>1,000</td>
-                    </tr>
-                    <tr>
-                        <td>L.</td>
-                        <td>Billete</td>
-                        <td>50 Lempiras</td>
-                        <td>50</td>
-                        <td>10</td>
-                        <td>500</td>
-                    </tr>
-                    <tr>
-                        <td>L.</td>
-                        <td>Billete</td>
-                        <td>20 Lempiras</td>
-                        <td>20</td>
-                        <td>50</td>
-                        <td>1000</td>
-                    </tr>
-                    <tr>
-                        <td>L.</td>
-                        <td>Billete</td>
-                        <td>10 Lempiras</td>
-                        <td>10</td>
-                        <td>50</td>
-                        <td>500</td>
-                    </tr>
-                    <tr>
-                        <td>L.</td>
-                        <td>Billete</td>
-                        <td>5 Lempiras</td>
-                        <td>5</td>
-                        <td>60</td>
-                        <td>300</td>
-                    </tr>
-                    <tr>
-                        <td>L.</td>
-                        <td>Billete</td>
-                        <td>2 Lempiras</td>
-                        <td>2</td>
-                        <td>50</td>
-                        <td>100</td>
-                    </tr>
-                    <tr>
-                        <td>L.</td>
-                        <td>Billete</td>
-                        <td>1 Lempiras</td>
-                        <td>1</td>
-                        <td>100</td>
-                        <td>100</td>
-                    </tr>
-                    <tr>
-                        <th></th>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <th class="success">Total Efectivo</th>
-                        <td>6,000</td>
-                    </tr>
+                    <thead>
+
+                        <tr>
+                            <th class="success">Moneda</th>
+                            <th class="success">Tipo Denominacion</th>
+                            <th class="success">Denominacion</th>
+                            <th class="success">Valor Denominacion</th>
+                            <th class="success">Cantidad</th>
+                            <th class="success">Sub Total</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+
                 </table>
+
             </div>
 
         </div>
@@ -358,6 +302,125 @@
                 }
             }
         });
+
+</script>
+
+
+
+
+<script>
+    $(document).on("keyup", "#tbdenominacion tbody tr td input#sumTotal", function () {
+        var row = $(this).closest("tr");
+        var Cantidad = $(this).val();
+        var ValorDenominacion = $(this).parents("tr").find("td")[6].innerHTML;
+        var subtotal = parseFloat(Cantidad * ValorDenominacion);
+        var suma = 0;
+        var data = [];
+
+        SubTotal = 0;
+
+        $(this).parents("tr").find("td")[3].innerHTML = subtotal;
+        if (subtotal != 0) {
+            SubTotal += subtotal;
+
+            //Calculo Total
+
+            $("td.sumTotal").each(function () {
+                data.push(parseFloat($(this).text()));
+            });
+            var suma = data.reduce(function (a, b) { return a + b; }, 0);
+
+
+            $("#total").val(suma);
+
+            console.log(data);
+            console.log(suma);
+           
+
+
+
+
+        }
+        else {
+            SubTotal = 0;
+            $("#tbdenominacion tbody tr  td label#sumTotal").each(function (index) {
+                Sub = $(this).children("td:eq(3)").html();
+                if (Sub != '') {
+                    Sub = parseFloat(Sub);
+                    SubTotal += Sub;
+                }
+            })
+        }
+
+
+
+    });
+
+
+</script>
+
+
+
+
+<script>
+
+              $(document).ready(function () {
+            $.ajax({
+                type: 'GET',
+                url: '/MovimientoCaja/Denominaciones',
+                datatype: 'JSON',
+                data: {},
+                success: function (data) {
+
+                    console.log(data);
+
+                    $('#tbdenominacion tbody').empty();
+                    $.each(data, function (i, item) {
+                        var rows = "<tr data-id=" + item.deno_Id + ">" +
+                                        "<td hidden>" + item.deno_Id + "</td>" +
+                                        "<td>" + item.mnda_Abreviatura + "</td>" +
+                                        "<td>" + item.TipoDenominacion + "</td>" +
+                                         "<td>" + item.deno_Descripcion + "</td>" +
+                                         "<td>" + item.deno_valor + "</td>" +
+                                        // "<td>" + item.mnda_Nombre + "</td>" +
+                        "<td>" + '<input type="text" id="cantidad" name="name" onKeyPress="return soloNumeros(event)" onKeyUp="pierdeFoco(this)" autocomplete="off" class="form-control" ize="3">' + "</td>" +
+                                          "<td>" + 0 + "</td>" +
+                                      
+                                      
+                                        "</tr>";
+
+                        $('#tbdenominacion tbody').append(rows);
+                    });
+
+                },
+                error: function (data) { alert(data.responseText); }
+            });
+              });
+
+              function soloNumeros(e) {
+                  var key = window.Event ? e.which : e.keyCode;
+                  return ((key >= 48 && key <= 57) || (key == 8))
+              }
+
+              function pierdeFoco(e) {
+                  var valor = e.value.replace(/^0*/, '');
+                  e.value = valor;
+
+
+              }
+
+
+
+
+
+
+    //-----------------------------------------------------------------
+
+
+
+
+
+              
 
 </script>
 

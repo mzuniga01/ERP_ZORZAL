@@ -98,17 +98,6 @@
       <Parameter Name="clte_EsActivo" Mode="In" Type="Boolean" />
       <Parameter Name="clte_RazonInactivo" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbMovimientoCaja_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_Insert_Result)">
-      <Parameter Name="cja_Id" Mode="In" Type="Int16" />
-      <Parameter Name="usu_Id" Mode="In" Type="Int32" />
-      <Parameter Name="mocja_UsuarioApertura" Mode="In" Type="Int32" />
-      <Parameter Name="mocja_FechaArqueo" Mode="In" Type="DateTime" />
-      <Parameter Name="mocja_UsuarioArquea" Mode="In" Type="Int32" />
-      <Parameter Name="mocja_FechaAceptacion" Mode="In" Type="DateTime" />
-      <Parameter Name="mocja_UsuarioAceptacion" Mode="In" Type="Int32" />
-      <Parameter Name="mocja_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="mocja_FechaCrea" Mode="In" Type="DateTime" />
-    </FunctionImport>
     <FunctionImport Name="spGetBusquedaCliente" ReturnType="Collection(ERP_ZORZALModel.spGetBusquedaCliente_Result)">
       <Parameter Name="Identificacion" Mode="In" Type="String" />
       <Parameter Name="Nombre" Mode="In" Type="String" />
@@ -438,6 +427,8 @@
       <Parameter Name="bodd_PuntoReorden" Mode="In" Type="Decimal" />
       <Parameter Name="bodd_Costo" Mode="In" Type="Decimal" />
       <Parameter Name="bodd_CostoPromedio" Mode="In" Type="Decimal" />
+      <Parameter Name="bodd_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="bodd_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="UDP_Inv_tbBodegaDetalle_Update" ReturnType="Collection(String)">
       <Parameter Name="bodd_Id" Mode="In" Type="Int32" />
@@ -2758,6 +2749,18 @@
     <FunctionImport Name="UDP_Vent_tbSolicitudEfectivo_Details" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivo_Details_Result1)">
       <Parameter Name="IDSOLICITUD" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbDenominacionArqueo_Select" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDenominacionArqueo_Select_Result)" />
+    <FunctionImport Name="UDP_Vent_tbMovimientoCaja_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_Insert_Result)">
+      <Parameter Name="cja_Id" Mode="In" Type="Int16" />
+      <Parameter Name="usu_Id" Mode="In" Type="Int32" />
+      <Parameter Name="mocja_UsuarioApertura" Mode="In" Type="Int32" />
+      <Parameter Name="mocja_FechaArqueo" Mode="In" Type="DateTime" />
+      <Parameter Name="mocja_UsuarioArquea" Mode="In" Type="Int32" />
+      <Parameter Name="mocja_FechaAceptacion" Mode="In" Type="DateTime" />
+      <Parameter Name="mocja_UsuarioAceptacion" Mode="In" Type="Int32" />
+      <Parameter Name="mocja_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="mocja_FechaCrea" Mode="In" Type="DateTime" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -3045,9 +3048,6 @@
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbSucursal_Insert_Result">
     <Property Type="Int32" Name="MensajeError" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbMovimientoCaja_Insert_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbFacturaDetalle_Insert_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
@@ -8111,5 +8111,16 @@
     <Property Type="Decimal" Name="MontoEntregado" Nullable="true" Precision="16" Scale="2" />
     <Property Type="Int16" Name="deno_Id" Nullable="false" />
     <Property Type="Decimal" Name="deno_valor" Nullable="false" Precision="10" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbDenominacionArqueo_Select_Result">
+    <Property Type="Int16" Name="deno_Id" Nullable="false" />
+    <Property Type="String" Name="mnda_Abreviatura" Nullable="false" MaxLength="4" />
+    <Property Type="String" Name="TipoDenominacion" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="deno_Descripcion" Nullable="false" MaxLength="50" />
+    <Property Type="Decimal" Name="deno_valor" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="String" Name="mnda_Nombre" Nullable="false" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbMovimientoCaja_Insert_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
 </Schema>

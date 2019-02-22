@@ -370,6 +370,8 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.UsuarioAceptacion = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.usu_NombreUsuario).SingleOrDefault();
             ViewBag.mocja_UsuarioAceptacion = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.usu_Id).SingleOrDefault();
 
+            ViewBag.Cajero = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.usu_NombreUsuario).SingleOrDefault();
+            ViewBag.usu_Id = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.usu_Id).SingleOrDefault();
 
 
             tbMovimientoCaja MC = new tbMovimientoCaja();
@@ -556,8 +558,13 @@ namespace ERP_GMEDINA.Controllers
             }
             base.Dispose(disposing);
         }
-       
 
+        [HttpGet]
+        public ActionResult Denominaciones()
+        {
+            var list = db.UDP_Vent_tbDenominacionArqueo_Select().ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
 
     }
 }
