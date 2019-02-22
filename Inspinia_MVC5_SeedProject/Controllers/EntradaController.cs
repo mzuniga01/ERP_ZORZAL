@@ -326,13 +326,13 @@ namespace ERP_ZORZAL.Controllers
             try
             {
                 IEnumerable<object> list = null;
-
+                tbEntradaDetalle entr = db.tbEntradaDetalle.Find(Editardetalle.entd_Id);
                 list = db.UDP_Inv_tbEntradaDetalle_Update(Editardetalle.entd_Id
                                                             , Editardetalle.ent_Id
                                                            , Editardetalle.prod_Codigo
                                                            , Editardetalle.entd_Cantidad
                                                            ,Editardetalle.entd_UsuarioCrea,
-                                                           Editardetalle.entd_FechaCrea,
+                                                           entr.entd_FechaCrea,
                                                            Function.GetUser(), Function.DatetimeNow()
                                     );
                  foreach (UDP_Inv_tbEntradaDetalle_Update_Result detalle in list)
@@ -349,7 +349,7 @@ namespace ERP_ZORZAL.Controllers
                 ModelState.AddModelError("", "No se Guardo el registro");
                 Msj = "-1";
             }
-            //return Json(Msj, JsonRequestBehavior.AllowGet);
+           
             return Json("Edit/" + maestro);
 
         }
@@ -421,6 +421,12 @@ namespace ERP_ZORZAL.Controllers
                             {
                                 Function.InsertBitacoraErrores("Entrada/Create", MsjError, "Create");
                                 ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                                return View(tbEntrada);
+                            }
+                            else if (MsjError.StartsWith("-2"))
+                            {
+                                Function.InsertBitacoraErrores("Entrada/Create", MsjError, "Create");
+                                ModelState.AddModelError("", "El codigo de la FACTURA ya Existe.");
                                 return View(tbEntrada);
                             }
                             else
@@ -570,6 +576,13 @@ namespace ERP_ZORZAL.Controllers
             return View(tbEntrada);
         }
 
+        [HttpPost]
+        public JsonResult ProductosEnter(string cod_Barras)
+        {
+            var list = db.SP_tbEntrada_ProductosRepetidos(cod_Barras).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult EstadoInactivar(int? id)
         {
 
@@ -639,6 +652,7 @@ namespace ERP_ZORZAL.Controllers
         //para que Anular una entrada
         public ActionResult EstadoAnular(tbEntrada cambiaAnular)
         {
+             
             //var maestro = cambiaAnular.ent_Id;
             tbEntrada obj = db.tbEntrada.Find(cambiaAnular.ent_Id);
             try

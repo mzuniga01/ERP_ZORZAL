@@ -12,7 +12,7 @@
                 <div class="ibox-content">
                     <div class="form-horizontal">
                         <div class="form-group">
-                            @Html.LabelFor(model => model.tbProducto.prod_CodigoBarras, "Codigo de Barra", new { @class = "control-label col-md-2" })
+                            @Html.LabelFor(model => model.tbProducto.prod_CodigoBarras, "Codigo de Barra", new { @class = "control-label col-md-2 required" })
                             <div class="col-md-4">
                                 <input type="text" id="prod_CodigoBarras" placeholder="" class="form-control" />
                                 <div id="validationprod_CodigoBarras">
@@ -20,7 +20,7 @@
                                 </div>
                             </div>
                             <div class="col-md-1">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarProducto"><span class="glyphicon glyphicon-search"></span></button>
+                                <button type="button" id="Productos" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarProducto"><span class="glyphicon glyphicon-search"></span></button>
                             </div>
                             @Html.LabelFor(model => model.prod_Codigo, "Producto", new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
@@ -43,7 +43,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            @Html.LabelFor(model => model.sald_Cantidad, "Cantidad", new { @class = "control-label col-md-2" })
+                            @Html.LabelFor(model => model.sald_Cantidad, "Cantidad", new { @class = "control-label col-md-2 required" })
                             <div class="col-md-4">
                                 @Html.EditorFor(model => model.sald_Cantidad, new { HtmlAttribute = new { name = "sald_Cantidad" }})
                                 <div id="validationcantidad">

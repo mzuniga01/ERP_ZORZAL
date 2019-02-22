@@ -72,7 +72,14 @@ namespace ERP_GMEDINA.Models
         public const int SubcategoriaActivo = 1;
         public const int SubcategoriaInactivo = 2;
 
+        //Estado Salida
+        public const int Emitida = 1;
+        public const int Aplicada = 2;
+        public const int Impresa = 3;
 
+        public const int Activa = 4;
+
+        public const int Inactiva = 5;
 
     }
 }

@@ -55,7 +55,7 @@
                     <div class="ibox-content">
                         @Html.AntiForgeryToken()
                         <div class="form-horizontal">
-                            @Html.ValidationSummary(true)
+                            <div style="color:red;">@Html.ValidationSummary(true)</div>
                             <fieldset class="box-border">
                                 <legend class="box-border">Datos Generales</legend>
                                 <div class="form-group">

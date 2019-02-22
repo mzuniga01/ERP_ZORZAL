@@ -1,17 +1,17 @@
 ﻿@model ERP_GMEDINA.Models.tbSalidaDetalle
 @using ERP_GMEDINA.Models
-@{ 
+@{
     tbProducto tbProducto = new tbProducto();
 }
 
 @using (Ajax.BeginForm("EditSalidaDetalle", "Salida", new AjaxOptions() { HttpMethod = "POST", UpdateTargetId = "EditarProductoSalidaDetalle" }))
 {
     @*@using (Ajax.BeginForm("GetPatients", "Patient", new AjaxOptions
-    {//GetPatients is name of method in PatientController
-        InsertionMode = InsertionMode.Replace, //target element(#patientList) will be replaced
-        UpdateTargetId = "patientList",
-        LoadingElementId = "loader" // div with .gif loader - that is shown when data are loading
-    }))*@
+        {//GetPatients is name of method in PatientController
+            InsertionMode = InsertionMode.Replace, //target element(#patientList) will be replaced
+            UpdateTargetId = "patientList",
+            LoadingElementId = "loader" // div with .gif loader - that is shown when data are loading
+        }))*@
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
     @Html.HiddenFor(model => model.sal_Id)

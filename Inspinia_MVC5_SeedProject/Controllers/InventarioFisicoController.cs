@@ -92,7 +92,12 @@ namespace ERP_GMEDINA.Controllers
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
-
+        [HttpPost]
+        public JsonResult ProductosEnter(string cod_Barras,int bod_Id)
+        {
+            var list = db.SP_tbInventariofisico_ProductosRepetidos(cod_Barras, bod_Id).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
 
         //[HttpPost]
         //public JsonResult ProductosRepetidos(string data_producto)
@@ -118,7 +123,7 @@ namespace ERP_GMEDINA.Controllers
         //    return Json(datos);
         //}
 
-        public FileResult ExportReport(int? id)
+        public ActionResult ExportReport(int? id)
         {
             ReportDocument rd = new ReportDocument();
             rd.Load(Path.Combine(Server.MapPath("~/Reports"), "ImprimirConciliacion.rpt"));
@@ -160,9 +165,8 @@ namespace ERP_GMEDINA.Controllers
             Response.ClearHeaders();
             try
             {
-                var fileName = "Inventario Fisico.pdf";
                 Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
-                return File(stream, "application/pdf",fileName);
+                return File(stream, "application/pdf");
             }
             catch
             {

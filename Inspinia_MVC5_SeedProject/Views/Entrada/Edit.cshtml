@@ -233,7 +233,7 @@
                                     }
                                     else if (Model.estm_Id == Helpers.EntradaAplicada)
                                     {
-                                        @Html.ActionLink("Imprimir", "ExportReport", new { id = Model.ent_Id }, new { @class = "btn btn-primary" })
+                                        @Html.ActionLink("Imprimir", "ExportReport", new { id = Model.ent_Id }, new { @class = "btn btn-primary",  @Id="Imprimir" })
                                         @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                                     }
                                     else
@@ -404,8 +404,8 @@
                         <p style="color:maroon">Recuerde que si Anula esta Entrada no la podrá editar despues.</p>
                         <p><span style="color:red">*</span>¿Porque desea anular esta entrada?</p>
                         <div class="col-md-12">
-                            @Html.EditorFor(model => model.entd_RazonAnulada, new { htmlAttributes = new { @class = "form-control", @placeholder = "Razón Anulación" } })
-                            <p style="color:red">@Html.ValidationMessageFor(model => model.entd_RazonAnulada)</p>
+                            @Html.EditorFor(model => model.entd_RazonAnulada, new { htmlAttributes = new { @class = "form-control", @placeholder = "Razón Anulación"} })
+                            <p style="color:red" id="RazonANULADA"></p>
                         </div>
                     </div>
                 </div>
@@ -467,12 +467,6 @@
 </div>
 
 
-
-
-
-
-
-
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/Datepicker.js"></script>
@@ -504,7 +498,15 @@
             {
                 alert("Entrada Seeccionada no Disponible");
             }
-
     };
+    //para inprimir
+    $('#Imprimir').click(function () {
+        var a = document.createElement("a");
+        a.target = "_blank";
+        a.href = url;
+        a.click();
+    })
+
+    var url = "";
 
 </script>

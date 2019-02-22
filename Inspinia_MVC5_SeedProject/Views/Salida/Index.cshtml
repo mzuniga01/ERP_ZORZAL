@@ -1,16 +1,16 @@
 ﻿@model IEnumerable<ERP_GMEDINA.Models.tbSalida>
-
+@using ERP_GMEDINA.Models
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Listado De Salidas";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Index</h2>
+        <h2>Salida</h2>
         <ol class="breadcrumb">
             <li class="active">
-                <strong>Salida</strong>
+                <strong></strong>
             </li>
         </ol>
     </div>
@@ -24,25 +24,26 @@
                 <div class="ibox-title">
                     <h5>Listado de Salida</h5>
                     <div class="ibox-tools">
+                        <input type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalGenReporte" value="Generar Reporte" />
                         @Html.ActionLink("Registrar Salida", "Create", null, new { @class = "btn btn-primary" })
                     </div>
                 </div>
                 <div class="ibox-content">
 
-                    <table class="table table-responsive" style="width:100%" id="Datatable">
+                    <table class="table table table-striped  table-bordered" style="width:100%" id="Datatable">
                         <thead>
                             <tr>
                                 <th>
                                     @Html.DisplayNameFor(model => model.sal_FechaElaboracion)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.tbBodega.bod_Nombre)
+                                    @Html.DisplayNameFor(model => model.bod_Id)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.tbTipoSalida.tsal_Descripcion)
+                                    @Html.DisplayNameFor(model => model.tsal_Id)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.tbEstadoMovimiento.estm_Descripcion)
+                                    @Html.DisplayNameFor(model => model.estm_Id)
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.tbBodega.bod_ResponsableBodega)
@@ -69,19 +70,26 @@
                                         @Html.DisplayFor(modelItem => item.tbEstadoMovimiento.estm_Descripcion)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.tbBodega.tbEmpleado.emp_Nombres)  @Html.DisplayFor(modelItem => item.tbBodega.tbEmpleado.emp_Apellidos)
+                                        @Html.DisplayFor(modelItem => item.tbBodega.tbEmpleado.emp_Nombres) @Html.DisplayFor(modelItem => item.tbBodega.tbEmpleado.emp_Apellidos)
                                     </td>
                                     <td>
-                                        @{ if (item.estm_Id == 2)
+                                        @{
+                                            if (item.sal_EsAnulada)
                                             {
-                                                <label style="color:green">Aplicada</label>;
+                                                <input type="button" class="btn btn-xs" style="background-color:red;color:white" value="Anulada">
                                             }
                                             else
                                             {
-                                                @Html.ActionLink("Editar", "Edit", new { id = item.sal_Id }, new { @class = "btn btn-primary btn-xs" });
+                                                if (item.estm_Id == Helpers.Aplicada)
+                                                {
+                                                    <input type="button" class="btn  btn-xs" style="background-color:green;color:white" value="Aplicada">
+                                                }
+                                                else
+                                                {
+                                                    @Html.ActionLink("Editar", "Edit", new { id = item.sal_Id }, new { @class = "btn btn-primary btn-xs" });
+                                                }
                                             }
                                         }
-
                                         @Html.ActionLink("Detalles", "Details", new { id = item.sal_Id }, new { @class = "btn btn-white btn-xs" })
                                     </td>
                                 </tr>
@@ -92,6 +100,56 @@
 
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ModalGenReporte" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Desea Aplicar la Salida</h4>
+            </div>
+            <div id="GenReporte">
+                <div class="modal-body">
+                    @using (Ajax.BeginForm("GenReporte", "Salida", new AjaxOptions() { HttpMethod = "POST", UpdateTargetId = "GenReporte" }))
+                    {
+                        <div class="ibox-content">
+                            <div class="form-horizontal">
+                                @*//UpdateTargetId = "EditarProductoSalidaDetalle"*@
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Tipo De Salida</label>
+
+                                    <div class="col-sm-10">
+                                        <select class="form-control" id="bod_Id">
+                                            <option value="1">Prestamo</option>
+                                            <option value="2">Venta</option>
+                                            <option value="3">Devolucion</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Fecha De Elboracion</label>
+
+                                    <div class="col-sm-10">
+                                        <input class="form-control" id="Fecha" type="date">
+                                    </div>
+                                </div>
+                                <p style="color:maroon"></p>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" id="sal_FechaElaboracion" type="submit" id="btnAnularSalida">Generar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                </div>
+
+            </div>
+
         </div>
     </div>
 </div>

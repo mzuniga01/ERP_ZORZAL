@@ -14,7 +14,7 @@
                     <input name="sal_Id" id="txtsal_Id" type="hidden" value="@ViewBag.IdSal">
                     <div class="form-horizontal">
                         <div class="form-group">
-                            @Html.LabelFor(model => model.tbProducto.prod_CodigoBarras, "Codigo de Barras", new { @class = "control-label col-md-2" })
+                            @Html.LabelFor(model => model.tbProducto.prod_CodigoBarras, "Codigo de Barras", new { @class = "control-label col-md-2 required" })
                             <div class="col-md-4">
                                 <input type="text" id="prod_CodigoBarras" placeholder="" class="form-control" />
                                 <div id="validationprod_CodigoBarras">
@@ -29,8 +29,7 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.prod_Codigo, "Producto", new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                <input type="text" id="prod_Codigo" placeholder="" class="form-control" />
-
+                                <input type="text" id="prod_Codigo" placeholder="" class="form-control" readonly/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -46,7 +45,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            @Html.LabelFor(model => model.sald_Cantidad, "Cantidad", new { @class = "control-label col-md-2" })
+                            @Html.LabelFor(model => model.sald_Cantidad, "Cantidad", new { @class = "control-label col-md-2 required" })
                             <div class="col-md-4">
                                 @Html.EditorFor(model => model.sald_Cantidad, new { HtmlAttribute = new { name = "sald_Cantidad" } })
                                 <div id="validationcantidad">
@@ -72,7 +71,7 @@
                         </div>
                     </div>
 
-                    <table id="tblSalidaDetalleEdit" class="table table table-striped">
+                    <table id="tblSalidaDetalleEdit" class="table table table-striped table-bordered">
                         <thead>
                             <tr>
                                 <th>Codigo Producto</th>

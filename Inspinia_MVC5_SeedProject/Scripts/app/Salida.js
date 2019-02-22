@@ -18,9 +18,45 @@
 //        }
 //    });
 
-//})
+////})
+//var masked = IMask.createMask({
+//    mask: '000-000-00-00000000'
+//    // ...and other options
+//});
+//var maskedValue = masked.resolve('71234567890');
 
-$('#fact_Codigo').change(function () {
+//// mask keeps state after resolving
+//console.log(masked.value);  // same as maskedValue
+//// get unmasked value
+//console.log(masked.unmaskedValue);
+
+function sald_Cantidad() {
+    //this.value = this.value.replace(/[^0-9\.]/g,'');
+    $(this).val($(this).val().replace(/[^0-9.\.]/g, ''));
+    if ((event.which != 46 || $(this).val().indexOf('') != -1) && (event.which < 48 || event.which > 57)) {
+        event.preventDefault();
+    }
+}
+
+$("#sald_Cantidad").on("keypress keyup blur", function (event) {
+    sald_Cantidad()
+});
+
+
+//$(document).ready(function () {
+//    $("#fact_Codigo").mask('999-999-99-99999999');
+//});
+
+
+//var dateMask = new IMask(
+//    document.getElementById('fact_Codigo'),
+//    {
+//        mask: Date,
+//        min: new Date(1990, 0, 1),
+//        max: new Date(2020, 0, 1),
+//        lazy: false
+//    });
+function FaturaExist() {
 
     $.ajax({
         url: "/Salida/FacturaExist",
@@ -30,29 +66,99 @@ $('#fact_Codigo').change(function () {
         data: JSON.stringify({ fact_Codigo: $('#fact_Codigo').val() }),
     })
         .done(function (data) {
-            console.log(data);
             $('#CodigoError').text('');
-            $('#validationFactura').after('<ul id="CodigoError" class="validation-summary-errors text-danger">'+data+'</ul>');
+            $('#validationFactura').after('<ul id="CodigoError" class="validation-summary-errors text-danger">' + data + '</ul>');
         })
+}
+
+function GetProdCodBar() {
+    var Producto = {
+        prod_CodigoBarras: $('#prod_Codigo').val(),
+        bod_Id: $('#sald_Cantidad').val(),
+        sald_UsuarioCrea: contador
+    };
+    return Producto;
+}
+
+//function GetProdCodBar() {
+//    var bod_Id = $('#bod_Id').val()
+//    var prod_CodigoBarras = $('#prod_CodigoBarras').val()
+//    $.ajax({
+//        url: "/Salida/GetProdCodBar",
+//        method: "POST",
+//        dataType: 'json',
+//        contentType: "application/json; charset=utf-8",
+//        data: JSON.stringify({ bod_Id: bod_Id, prod_CodigoBarras: prod_CodigoBarras }),
+//    })
+//        .done(function (data) {
+//            $('#CodigoError').text('');
+//            $('#validationFactura').after('<ul id="CodigoError" class="validation-summary-errors text-danger">' + data + '</ul>');
+//        })
+//}
+
+$('#fact_Codigo').change(function () {
+    FaturaExist()
 })
+function BodegaDestino() {
+    $.ajax({
+        method: "POST",
+        url: "/Salida/BodegaDestino",
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json', data: JSON.stringify({ id: $('#bod_Id').val() }),
+    }).done(function (data) {
+        console.log(data);
+        $("#sal_BodDestino").empty();
+        $("#sal_BodDestino").append("<option placeholder='Seleccione una Bodega de Destino'>Seleccione una Bodega de Destino</option>")
+        $.each(data, function (index, row) {
+            $("#sal_BodDestino").append("<option value ='" + row.bod_Id + "'>" + row.bod_Nombre + "</option>")
+        });
+    })
+};
 
+
+function test() {
+    $.ajax({
+        method: "POST",
+        url: "/Salida/GetProdList",
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
+    }).done(function (info) {
+        console.log(info);
+    });
+}
+//function ListaProductos() {
+//    var table = $('#Table_BuscarProductoD').dataTable({
+//        destroy: true,
+//        resposive: true,
+//        ajax: {
+//                method: "POST",
+//                url: "/Salida/GetProdList",
+//                contentType: "application/json; charset=utf-8",
+//                dataType: 'json',
+//                dataSrc: "d"
+//        },
+//        columns: [
+//                     { "d": ".prod_Codigo"}
+//                 ]
+//    })
+//}
 function ListaProductos() {
-
+    var bod = $('#bod_Id').val()
     $.ajax({
         url: "/Salida/GetProdList",
         method: "POST",
         dataType: 'json',
         contentType: "application/json; charset=utf-8",
-        data: JSON.stringify({ id: $('#bod_Id').val() }),
+        data: JSON.stringify({ id: bod }),
     })
-      .done(function (data) {
-          if (data.length > 0) {
-              $("#Body_BuscarProducto").html("");
-              $.each(data, function (key, val) {
-                  data.pcat_Nombre, data.prod_Codigo, data.prod_CodigoBarras, data.prod_Descripcion, data.pscat_Descripcion, data.uni_Descripcion
-                  //<tr tr data-id="val.prod_Codigo" , tr data-content="val.prod_Descripcion" , tr data-container="val.pscat_Descripcion" , tr data-keyboard="val.uni_Descripcion" , tr data-pcat="valCategoria.pcat_Nombre" , tr data-cod_Barras="val.prod_CodigoBarras">
+        .done(function (data) {
+            if (data.length > 0) {
+                $("#Body_BuscarProducto").html("");
+                $.each(data, function (key, val) {
+                    //data.pcat_Nombre, data.prod_Codigo, data.prod_CodigoBarras, data.prod_Descripcion, data.pscat_Descripcion, data.uni_Descripcion
+                    //<tr tr data-id="val.prod_Codigo" , tr data-content="val.prod_Descripcion" , tr data-container="val.pscat_Descripcion" , tr data-keyboard="val.uni_Descripcion" , tr data-pcat="valCategoria.pcat_Nombre" , tr data-cod_Barras="val.prod_CodigoBarras">
 
-                  var tr = `<tr tr data-id=`+ val.prod_Codigo + ` , tr data-content=` + val.prod_Descripcion + ` , tr data-container=` + val.pscat_Descripcion + `, tr data-keyboard=` + val.uni_Descripcion + ` , tr data-pcat=` + val.pcat_Nombre + ` , tr data-cod_Barras=` + val.prod_CodigoBarras + `>
+                    var tr = `<tr tr data-id=` + val.prod_Codigo + ` , tr data-content=` + val.prod_Descripcion + ` , tr data-container=` + val.pscat_Descripcion + `, tr data-keyboard=` + val.uni_Descripcion + ` , tr data-pcat=` + val.pcat_Nombre + ` , tr data-cod_Barras=` + val.prod_CodigoBarras + `>
                   <td > `+ val.prod_Codigo + ` </td>
                   <td> `+ val.prod_Descripcion + ` </td>
                   <td> `+ val.pcat_Nombre + ` </td>
@@ -61,22 +167,26 @@ function ListaProductos() {
                   <td> `+ val.prod_CodigoBarras + ` </td>
                   <td ><button class ="btn btn-primary btn-xs" value= `+ val.prod_Codigo + ` id="seleccionar" data-dismiss="modal">Seleccionar</button> </td>
                 </tr>`;
-                  $("#Body_BuscarProducto").append(tr)
+                    $("#Body_BuscarProducto").append(tr)
 
-              })
-          }
-      })
+                })
+            }
+        })
 }
+function LimpiarTable() { $("#Body_BuscarProducto").removeData() }
 
-function LimpiarTable() { $("#Body_BuscarProducto").remove() }
-
-$(document).ready(function () {
-    console.log("ready")
-    ListaProductos()
+//$(document).ready(function () {
+//    console.log("ready")
+//    ListaProductos()
+//});
+$(document).change("#bod_Id", function () {
+    LimpiarTable();
+    BodegaDestino()
 });
 
-$('#bod_Id').change(function () {
-    LimpiarTable();
+$('#Productos').click(function () {
+    ListaProductos()
+    test()
 });
 
 //$.when(LimpiarTable()).then(function () {
@@ -88,15 +198,17 @@ $('#bod_Id').change(function () {
 //});
 
 function TipodeSalida() {
+    //$('#submit').attr('value = "SICambio"')
+    $('#fact_Codigo').val('***-***-**-********');
     var TipoSal = $("#tsal_Id").val()
-    console.log(TipoSal);
     if (TipoSal == "1") {
         $('#fact_Codigo').val('***-***-**-********');
         $('#sal_RazonDevolucion').val('*****');
-
+        
         $("#Prestamo").css("display", "block");
 
         $("#VentaoDevolucion").css("display", "none");
+        BodegaDestino()
 
     }
     else {
@@ -141,6 +253,8 @@ function TipodeSalida() {
         }
 
     }
+
+    FaturaExist()
 }
 
 //$(document).ready( function () {
@@ -151,21 +265,21 @@ function TipodeSalida() {
 
 //});
 
-$(document).ready(function () {
-    var e = document.getElementById("estm_Id");
-    var strUser = e.options[e.selectedIndex].text;
-    console.log(strUser)
-    $("#tbEstadoMovimiento_estm_Descripcion").val(strUser)
+//$(document).ready(function () {
+//    var e = document.getElementById("estm_Id");
+//    var strUser = e.options[e.selectedIndex].text;
+//    console.log(strUser)
+//    $("#tbEstadoMovimiento_estm_Descripcion").val(strUser)
 
-});
+//});
 
-$(document).ready(function () {
-    var e = document.getElementById("fact_Id");
-    var strUser = e.options[e.selectedIndex].text;
-    console.log(strUser)
-    $("#tbFactura_fact_Codigo").val(strUser)
+//$(document).ready(function () {
+//    var e = document.getElementById("tbFactura_fact_Codigo");
+//    var strUser = e.options[e.selectedIndex].text;
+//    console.log(strUser)
+//    $("#tbFactura_fact_Codigo").val(strUser)
 
-});
+//});
 $(document).ready(function () {
     var e = document.getElementById("tsal_Id");
     var strUser = e.options[e.selectedIndex].text;
@@ -176,7 +290,7 @@ $(document).ready(function () {
 //Tipo de Salida
 
 $(document).ready(function () {
-   TipodeSalida()
+    TipodeSalida()
 });
 $("#tsal_Id").change(function () {
     TipodeSalida()
@@ -261,16 +375,15 @@ function soloNumeros(e) {
         return Salida;
     }
 
-
     $('#btnAnularSalida').click(function () {
         var sal_Id = $('#sal_Id').val();
         var sal_RazonAnulada = $('#sal_RazonAnulada').val();
 
-        if (sal_RazonAnulada == '') {
+        if (sal_RazonAnulada == '' || sal_RazonAnulada == '*****') {
             $('#MessageError').text('');
             $('#CodigoError').text('');
             $('#NombreError').text('');
-            $('#ValidationCodigoCreate').after('<ul id="CodigoError" class="validation-summary-errors text-danger">Descripcion Requerido</ul>');
+            $('#sal_RazonAnulada').after('<ul id="MessageError" class="validation-summary-errors text-danger">Campo Requerido</ul>');
         }
 
         else {
@@ -283,7 +396,7 @@ function soloNumeros(e) {
                 data: JSON.stringify({ Salida: tbSalida }),
             })
             .done(function (data) {
-                window.location.href = "/Salida/Edit" + data.sal_Id
+                window.location.href = "/Salida/Index"
                  
             });
 

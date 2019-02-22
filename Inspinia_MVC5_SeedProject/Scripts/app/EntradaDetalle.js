@@ -105,41 +105,56 @@ $(document).on("click", "#Table_BuscarProducto tbody tr td button#seleccionar", 
 
 });
 
-//prueba de enter
-$(function () {
-    $('#prod_CodigoBarras').keydown(function (e) {
-        if (e.keyCode == 13) {
-            $("#seleccionar").focus().click();
-            
-                $(document).on("click", "#Table_BuscarProducto tbody tr td button#seleccionar", function () {
-                    prod_CodigoBarrasItem = $(this).closest('tr').data('html');
-                    idItem = $(this).closest('tr').data('id');
-                    contentItem = $(this).closest('tr').data('content');
-                    uni_IdtItem = $(this).closest('tr').data('keyboard');
-                    psubctItem = $(this).closest('tr').data('container');
-                    pcatItem = $(this).closest('tr').data('interval');
-                    $("#prod_CodigoBarras").val(prod_CodigoBarrasItem);
-                    $("#prod_Codigo").val(idItem);
-                    $("#prod_Descripcion").val(contentItem);
-                    $("#uni_Id").val(uni_IdtItem);
-                    $("#pscat_Id").val(psubctItem);
-                    $("#pcat_Id").val(pcatItem);
-                    $("#entd_Cantidad").focus();
-                    //$("#cod").val(idItem);
-
+//prueba de enter(Create)
+$(document).keypress(function (e) {
+    console.log('Hola', e.target.id);
+    var IDInput = e.target.id;
+    if (e.which == 13) {
+        if (IDInput == 'prod_CodigoBarras') {
+            /////
+            $(function () {
+                var cod_Barras = $("#prod_CodigoBarras").val();
+                $.ajax({
+                    url: "/Entrada/ProductosEnter",
+                    method: "POST",
+                    dataType: 'json',
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify({
+                        cod_Barras: cod_Barras,
+                    }),
+                }).done(function (data) {
+                    if (data.length > 0) {
+                        $.each(data, function (key, val) {
+                            console.log('each')
+                            data_producto = val.prod_Codigo;
+                            data_cantidadsistema = val.bodd_CantidadExistente;
+                            data_cantidadfisica = val.invfd_Cantidad;
+                            data_unidad = val.uni_Descripcion;
+                            data_Descripcion = val.prod_Descripcion;
+                            categoria = val.pscat_Descripcion;
+                            Subcategoria = val.pscat_Id;
+                            $("#prod_Codigo").val(data_producto);
+                            $("#prod_Descripcion").val(data_Descripcion);
+                            $("#uni_Id").val(data_unidad);
+                            //$("#pscat_Id").val(Subcategoria);
+                            $("#pscat_Id").val(categoria);
+                            $("#entd_Cantidad").focus();
+                        })
+                    }
+                    else {
+                        $('#Error_Barras').text('');
+                        $('#validationcodigoproducto').after('<ul id="Error_Barras" class="validation-summary-errors text-danger">*Producto no existe</ul>');
+                    }
                 });
-                console.log('prueba');
-                $("#prod_CodigoBarras").val(prod_CodigoBarrasItem);
-                $("#prod_Codigo").val(idItem);
-                $("#prod_Descripcion").val(contentItem);
-                $("#uni_Id").val(uni_IdtItem);
-                $("#pscat_Id").val(psubctItem);
-                $("#pcat_Id").val(pcatItem);
-                $("#entd_Cantidad").focus();
                 return false;
+            });
+            return false;
         }
-    });
+        else
+            return false;
+    }
 });
+
 
 //Para mostrar datos en el modal de editar detalle entrada
 
@@ -235,6 +250,12 @@ $('#AgregarDetalleEntrada_Craete').click(function () {
             $('#validationcantidad').after('<ul id="Mensajecantidad" class="validation-summary-errors text-danger">La cantidad No debe ser 0.</ul>');
             console.log("cantidad");
         }
+        else if (cantidad == 0.00) {
+            $('#Mensajecodigo').text('');
+            $('#Mensajecantidad').text('');
+            $('#validationcantidad').after('<ul id="Mensajecantidad" class="validation-summary-errors text-danger">La cantidad No debe ser 0.</ul>');
+            console.log("cantidad");
+        }
     else {
         contador = contador + 1;
         copiar = "<tr data-id=" + contador + ">";
@@ -317,6 +338,12 @@ $('#AgregarDetalleEntrada').click(function () {
         console.log("cantidad");
     }
     else if (cantidad == 0) {
+        $('#Mensajecodigo').text('');
+        $('#Mensajecantidad').text('');
+        $('#validationcantidad').after('<ul id="Mensajecantidad" class="validation-summary-errors text-danger">La cantidad No debe ser 0.</ul>');
+        console.log("cantidad");
+    }
+    else if (cantidad == 0.00) {
         $('#Mensajecodigo').text('');
         $('#Mensajecantidad').text('');
         $('#validationcantidad').after('<ul id="Mensajecantidad" class="validation-summary-errors text-danger">La cantidad No debe ser 0.</ul>');
@@ -457,32 +484,6 @@ $("#Btnsubmit").click(function () {
 })
 
 
-//para inprimir
-$('#btnImprimir').click(function () {
-    // Function available at https://gist.github.com/sixlive/55b9630cc105676f842c  
-    $.fn.printDiv = function () {
-        var printContents = $(this).html();
-        var originalContents = $('body').html();
-        $('body').html(printContents);
-        $('body').addClass('js-print');
-        window.print();
-        $('body').html(originalContents);
-        $('body').removeClass('js-print');
-    };
-
-    // Print
-    $('[data-print]').click(function () {
-        $('[data-print-content]').printDiv();
-    });
-});
-
-
-
-
-
-
-
-
 
 
 
@@ -490,7 +491,11 @@ $('#btnImprimir').click(function () {
 $('#AnularEntrada').click(function () {
     var anular = $("#entd_RazonAnulada").val();
     console.log(anular);
-    
+    if (anular == '')
+    {
+        valido = document.getElementById('RazonANULADA');
+        valido.innerText = "La razón Anulado es requerida";
+    } else {
         var anularentrada = GetAnualarEntrada();
         $.ajax({
             url: "/Entrada/EstadoAnular",
@@ -505,8 +510,8 @@ $('#AnularEntrada').click(function () {
             location.reload();
             //window.location.reload();
         });
-        
-            window.location.reload();
+    }
+     window.location.reload();
 })
 function GetAnualarEntrada() {
 
