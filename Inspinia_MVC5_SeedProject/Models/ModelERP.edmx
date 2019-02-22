@@ -4933,6 +4933,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
         <Function Name="sp_GetDetallePedido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent" StoreFunctionName="sp.GetDetallePedido">
           <Parameter Name="ped_Id" Type="int" Mode="In" />
         </Function>
+        <Function Name="spGetCaja" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="CodUsuario" Type="int" Mode="In" />
+        </Function>
         <Function Name="spGetDenominacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="IdDenominacion" Type="int" Mode="In" />
         </Function>
@@ -9749,7 +9752,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Parameter Name="nocre_Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="UPD_Vent_tbUsuario_Rol" ReturnType="Collection(ERP_ZORZALModel.UPD_Vent_tbUsuario_Rol_Result)">
-            <Parameter Name="suc_Id" Mode="In" Type="Int32" />
+          <Parameter Name="suc_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spGetCaja" ReturnType="Collection(ERP_ZORZALModel.spGetCaja_Result)">
+            <Parameter Name="CodUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
@@ -15112,6 +15118,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Property Type="Int32" Name="usu_Id" Nullable="false" />
           <Property Type="String" Name="usu_NombreUsuario" Nullable="false" MaxLength="100" />
         </ComplexType>
+        <ComplexType Name="spGetCaja_Result">
+          <Property Type="Int16" Name="cja_Id" Nullable="false" />
+          <Property Type="String" Name="cja_Descripcion" Nullable="false" MaxLength="10" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -17863,6 +17873,14 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UPD_Vent_tbUsuario_Rol_Result">
                 <ScalarProperty Name="usu_Id" ColumnName="usu_Id" />
                 <ScalarProperty Name="usu_NombreUsuario" ColumnName="usu_NombreUsuario" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGetCaja" FunctionName="ERP_ZORZALModel.Store.spGetCaja">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.spGetCaja_Result">
+                <ScalarProperty Name="cja_Id" ColumnName="cja_Id" />
+                <ScalarProperty Name="cja_Descripcion" ColumnName="cja_Descripcion" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

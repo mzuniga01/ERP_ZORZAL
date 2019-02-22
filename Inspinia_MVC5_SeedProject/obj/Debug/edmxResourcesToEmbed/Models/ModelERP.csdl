@@ -2763,6 +2763,9 @@
     <FunctionImport Name="UPD_Vent_tbUsuario_Rol" ReturnType="Collection(ERP_ZORZALModel.UPD_Vent_tbUsuario_Rol_Result)">
       <Parameter Name="suc_Id" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="spGetCaja" ReturnType="Collection(ERP_ZORZALModel.spGetCaja_Result)">
+      <Parameter Name="CodUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -8123,5 +8126,9 @@
   <ComplexType Name="UPD_Vent_tbUsuario_Rol_Result">
     <Property Type="Int32" Name="usu_Id" Nullable="false" />
     <Property Type="String" Name="usu_NombreUsuario" Nullable="false" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="spGetCaja_Result">
+    <Property Type="Int16" Name="cja_Id" Nullable="false" />
+    <Property Type="String" Name="cja_Descripcion" Nullable="false" MaxLength="10" />
   </ComplexType>
 </Schema>

@@ -4928,6 +4928,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
   <Function Name="sp_GetDetallePedido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent" StoreFunctionName="sp.GetDetallePedido">
     <Parameter Name="ped_Id" Type="int" Mode="In" />
   </Function>
+  <Function Name="spGetCaja" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="CodUsuario" Type="int" Mode="In" />
+  </Function>
   <Function Name="spGetDenominacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="IdDenominacion" Type="int" Mode="In" />
   </Function>

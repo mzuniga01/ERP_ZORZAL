@@ -371,6 +371,9 @@
     <Compile Include="Models\spGetBusquedaCliente_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\spGetCaja_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\spGetCategoriaProducto_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>

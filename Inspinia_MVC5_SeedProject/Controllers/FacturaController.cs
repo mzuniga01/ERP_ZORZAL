@@ -50,6 +50,9 @@ namespace ERP_GMEDINA.Controllers
                         while (reader.Read())
                         {
                             UDV_Vent_Busqueda_Factura tbFactura = new UDV_Vent_Busqueda_Factura();
+                            if (!reader.IsDBNull(reader.GetOrdinal("fact_Id")))
+                                tbFactura.fact_Id = Convert.ToInt16(reader["fact_Id"]);
+
                             if (!reader.IsDBNull(reader.GetOrdinal("fact_Codigo")))
                                 tbFactura.fact_Codigo = Convert.ToString(reader["fact_Codigo"]);
 
@@ -244,6 +247,7 @@ namespace ERP_GMEDINA.Controllers
             {
                 idUser = Convert.ToInt32(Usuario.emp_Id);
             }
+            ViewBag.usu_Id = idUser;
             var Fact_Id = db.tbFactura.OrderBy(x => x.fact_Id).Select(x => x.fact_Id).ToList().LastOrDefault();
             ViewBag.fact_Id = Fact_Id + 1;
             ViewBag.suc_Descripcion = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Descripcion).SingleOrDefault();
@@ -863,6 +867,12 @@ namespace ERP_GMEDINA.Controllers
         public JsonResult GetPrecio(int Cliente, string idItem)
         {
             var list = db.UDP_Vent_tbFactura_BuscarListaPrecio(Cliente, idItem).ToArray();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public JsonResult GetCaja(int CodUsuario)
+        {
+            var list = db.spGetCaja(CodUsuario).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 

@@ -6524,5 +6524,14 @@ namespace ERP_GMEDINA.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UPD_Vent_tbUsuario_Rol_Result>("UPD_Vent_tbUsuario_Rol", suc_IdParameter);
         }
+    
+        public virtual ObjectResult<spGetCaja_Result> spGetCaja(Nullable<int> codUsuario)
+        {
+            var codUsuarioParameter = codUsuario.HasValue ?
+                new ObjectParameter("CodUsuario", codUsuario) :
+                new ObjectParameter("CodUsuario", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetCaja_Result>("spGetCaja", codUsuarioParameter);
+        }
     }
 }

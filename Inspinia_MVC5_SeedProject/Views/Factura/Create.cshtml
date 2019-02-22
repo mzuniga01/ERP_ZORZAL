@@ -57,7 +57,7 @@
                                 </div>
                                 @Html.LabelFor(model => model.cja_Id, new { @class = "control-label required col-md-2" })
                                 <div class="col-md-4">
-                                    <input class="form-control" readonly value="Caja 1" />
+                                    <input class="form-control" id="cja_Descripcion" readonly />
                                     @Html.EditorFor(model => model.cja_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @type="hidden" } })
                                     <span class="validation-error">@Html.ValidationMessageFor(model => model.cja_Id)</span>
                                 </div>
@@ -90,7 +90,7 @@
                                 @Html.LabelFor(model => model.clte_Identificacion, new { @class = "control-label col-md-2", id = "label_identificacion" })
                                 <div class="col-md-3">
                                     <input name="clte_Identificacion" id="cliente_Identificacionxx" type="text" class="form-control" value="@ViewBag.Identificacion" readonly />
-                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.clte_Identificacion)</span>
+                                    <span class="validation-error" id="err_cliente">@Html.ValidationMessageFor(model => model.clte_Identificacion)</span>
                                 </div>
                                 <div class="col-md-1" style="width: 12.499999995%; padding:0">
                                     <div id="ocultar">
@@ -172,6 +172,7 @@
                                 <div class="col-md-4">
                                     <input id="ped_Id" name="ped_Id" type="hidden" class="form-control"/>
                                     <input id="fact_Id" name="fact_Id" type="hidden" class="form-control" value="@ViewBag.fact_Id" />
+                                    <input id="usu_Id" name="usu_Id" type="hidden" class="form-control" value="@ViewBag.usu_Id" />
                                 </div>
                             </div>
 
@@ -896,6 +897,20 @@
             }
             else
                 return false;
+        }
+    });
+
+    $('#guardar').click(function () {
+        var Identificacion = $('#cliente_Identificacionxx').val();
+        console.log(Identificacion)
+        if (Identificacion == "") {
+            valido = document.getElementById('err_cliente');
+            valido.innerText = "Seleccione un cliente";
+            return false;
+        }     
+       else {
+           return true;         
+
         }
     });
 </script>

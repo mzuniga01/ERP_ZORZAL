@@ -1,7 +1,5 @@
 ﻿$(document).ready(function () {
-    var Suc= $("#suc_Id").val();
-    GetNumeroFact(Suc,4)
-    $("#cja_Id").val(4);
+    GetCaja();
 })
     function GetNumeroFact(CodSucursal,CodCaja) {
         $.ajax({
@@ -29,6 +27,32 @@
                     $('#fact_Codigo').val(data[0]['CODFACTURA']);
                 }
 
+            }
+        });
+    }
+
+
+
+
+    function GetCaja() {
+        var CodUsuario = $("#usu_Id").val();
+        $.ajax({
+            url: "/Factura/GetCaja",
+            method: "POST",
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ CodUsuario: CodUsuario }),
+        })
+        .done(function (data) {
+            if (data.length > 0) {
+                $.each(data, function (key, val) {
+                    $("#cja_Id").val(val.cja_Id);
+                    $("#cja_Descripcion").val(val.cja_Descripcion);
+
+                    var Suc = $("#suc_Id").val();
+                    GetNumeroFact(Suc, val.cja_Id)
+
+                });
             }
         });
     }
