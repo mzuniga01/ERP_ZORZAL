@@ -317,9 +317,9 @@ namespace ERP_GMEDINA.Controllers
         }
 
         [HttpPost]
-        public JsonResult GetRol(int Usuario)
+        public JsonResult GetRol(int Sucursal)
         {
-            var list = db.UPD_Vent_tbUsuario_Rol(Usuario).ToList();
+            var list = db.UPD_Vent_tbUsuario_Rol(Sucursal).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
