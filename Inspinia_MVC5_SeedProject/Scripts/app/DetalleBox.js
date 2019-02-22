@@ -113,16 +113,15 @@ $('#AgregarDetalleSalida').click(function () {
         $('#MessageError').text('');
         $('#CodigoError').text('');
         $('#NombreError').text('');
-        $('#validationcantidad').after('<ul id="sald_Cantidad" class="validation-summary-errors text-danger">Cantidad Requerido</ul>');
+        $('#validationcantidad').text('Cantidad Requerido');
     }
-    else if (Producto =='' )
-        {
+    else if (Producto == '') {
         $('#MessageError').text('');
         $('#CodigoError').text('');
         $('#NombreError').text('');
-        $('#validationproducto').after('<ul id="prod_Descripcion" class="validation-summary-errors text-danger">Producto Requerido</ul>');
+        $('#validationproducto').text('Producto Requerido');
     }
-    else  {
+    else {
         contador = contador + 1;
         copiar = "<tr data-id=" + contador + ">";
         //copiar += "<td>" + $('#CodTipoCasoExitoCreate option:selected').text() + "</td>";
@@ -153,7 +152,8 @@ $('#AgregarDetalleSalida').click(function () {
                     $('#sald_Cantidad').val('');
                     $('#MessageError').text('');
                     $('#NombreError').text('');
-                    console.log('Hola');
+                    $('#validationcantidad').text('');
+                    $('#validationproducto').text('');
                 });
 
 
@@ -323,7 +323,28 @@ function soloNumeros(e) {
 function soloLetrasYNumeros(e) {
     tecla = (document.all) ? e.keyCode : e.which;
     tecla = String.fromCharCode(tecla)
-    return /^[a-z0-9A-ZáéíóúñÁÉÍÓÚÑ ]+$/.test(tecla); }  
+    return /^[a-z0-9A-ZáéíóúñÁÉÍÓÚÑ ]+$/.test(tecla);
+}
+
+function controlCaracteres(e) {
+
+    tecla = (document.all) ? e.keyCode : e.which;
+    tecla = String.fromCharCode(tecla)
+    return /^[a-zA-ZáéíóúñÁÉÍÓÚÑ1234567890# ,.]+$/.test(tecla);
+
+}
+
+function NumText(string) {//solo letras y numeros
+    var out = '';
+    //Se añaden las letras validas
+    var filtro = 'abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ1234567890áéíóúÁÉÍÓÚ# ,.';//Caracteres validos
+
+    for (var i = 0; i < string.length; i++)
+        if (filtro.indexOf(string.charAt(i)) != -1)
+            out += string.charAt(i);
+
+    return out;
+}
 
 $("#sald_Cantidad").on("keypress keyup blur", function (event) {
     //this.value = this.value.replace(/[^0-9\.]/g,'');
