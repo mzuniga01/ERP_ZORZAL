@@ -41,13 +41,13 @@ $('#AgregarDetalleFactura').click(function () {
     }
     else {
         //ajax para el controlador
-        var FacturaDetalle = GetFacturaDetalle();
+        var FacturaDetalleEdit = GetFacturaDetalleEdit();
         $.ajax({
-            url: "/Factura/SaveFacturaDetalle",
+            url: "/Factura/SaveFacturaDetalleEdit",
             method: "POST",
             dataType: 'json',
             contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ FacturaDetalleC: FacturaDetalle, data_producto: CodigoProducto })
+            data: JSON.stringify({ FacturaDetalleEdit: FacturaDetalleEdit, data_producto: CodigoProducto })
         })
             .done(function (datos) {
                 if (datos == CodigoProducto) {
@@ -87,7 +87,7 @@ $('#AgregarDetalleFactura').click(function () {
                     copiar += "<td id = 'ImpuestoCreate' align='right'>" + Impuesto + "</td>";
                     copiar += "<td id = 'factd_MontoDescuentoCreate' align='right'>" + MontoDescuento + "</td>";
                     copiar += "<td id = 'TotalProductoCreate' align='right'>" + Total + "</td>";
-                    copiar += "<td>" + '<button id="removeFacturaDetalle" class="btn btn-danger glyphicon glyphicon-trash btn-xs eliminar" type="button"></button>' + "</td>";
+                    copiar += "<td>" + '<button id="removeFacturaDetalleEdit" class="btn btn-danger glyphicon glyphicon-trash btn-xs eliminar" type="button"></button>' + "</td>";
                     copiar += "</tr>";
                     $('#tblDetalleFactura').append(copiar);
                 }
@@ -162,9 +162,9 @@ $('#AgregarDetalleFactura').click(function () {
     }
 })
 
-function GetFacturaDetalle() {
+function GetFacturaDetalleEdit() {
 
-    var FacturaDetalle = {
+    var FacturaDetalleEdit = {
         prod_Codigo: $('#prod_Codigo').val(),
         factd_PorcentajeDescuento: $('#factd_PorcentajeDescuento').val(),
         factd_MontoDescuento: $('#factd_MontoDescuento').val(),
@@ -176,10 +176,10 @@ function GetFacturaDetalle() {
         TotalProducto: $('#TotalProducto').val(),
         factd_Id: contador
     }
-    return FacturaDetalle
+    return FacturaDetalleEdit
 };
 
-$(document).on("click", "#tblDetalleFactura tbody tr td button#removeFacturaDetalle", function () {
+$(document).on("click", "#tblDetalleFactura tbody tr td button#removeFacturaDetalleEdit", function () {
 
     //Descuento
     var Descuento = $(this).parents("tr").find("td")[5].innerHTML;

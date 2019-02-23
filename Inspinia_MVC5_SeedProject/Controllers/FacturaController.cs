@@ -682,8 +682,13 @@ namespace ERP_GMEDINA.Controllers
         }
 
         [HttpPost]
-        public JsonResult SaveFacturaDetalleEdit(tbFacturaDetalle FacturaDetalleEdit)
+        public JsonResult SaveFacturaDetalleEdit(tbFacturaDetalle FacturaDetalleEdit, string data_producto)
         {
+            var datos = "";
+            decimal cantvieja = 0;
+            decimal cantnueva = 0;
+            data_producto = FacturaDetalleEdit.prod_Codigo;
+            decimal data_cantidad = FacturaDetalleEdit.factd_Cantidad;
             List<tbFacturaDetalle> sessionFacturaDetalle = new List<tbFacturaDetalle>();
             var listEdit = (List<tbFacturaDetalle>)Session["FacturaEdit"];
             if (listEdit == null)
@@ -693,6 +698,17 @@ namespace ERP_GMEDINA.Controllers
             }
             else
             {
+                foreach (var t in listEdit)
+                    if (t.prod_Codigo == data_producto)
+                    {
+                        datos = data_producto;
+                        foreach (var viejo in listEdit)
+                            if (viejo.prod_Codigo == FacturaDetalleEdit.prod_Codigo)
+                                cantvieja = viejo.factd_Cantidad;
+                        cantnueva = cantvieja + data_cantidad;
+                        t.factd_Cantidad = cantnueva;
+                        return Json(datos, JsonRequestBehavior.AllowGet);
+                    }
                 listEdit.Add(FacturaDetalleEdit);
                 Session["FacturaEdit"] = listEdit;
             }
@@ -800,6 +816,29 @@ namespace ERP_GMEDINA.Controllers
             return Json("", JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
+        public JsonResult IncrementarProducto(string data_producto)
+        {
+            var Datos = "";
+            if (Session["Factura"] == null)
+            {
+
+            }
+            else
+            {
+                var menu = Session["Factura"] as List<tbFacturaDetalle>;
+
+                foreach (var t in menu)
+                {
+                    if (t.prod_Codigo == data_producto)
+                        Datos = data_producto;
+                }
+
+
+            }
+
+            return Json(Datos);
+        }
         [HttpPost]
         public ActionResult UpdateFacturaDetalle(tbFacturaDetalle EditFacturaDetalle)
         {
