@@ -491,5 +491,50 @@ namespace ERP_GMEDINA.Controllers
                 throw;
             }
         }
+        //public ActionResult AutorizarNotaCredito(tbUsuario Login, string txtPassword)
+        //{
+        //    try
+        //    {
+        //        var Usuario = db.UDP_Acce_Login(Login.usu_NombreUsuario, txtPassword).ToList();
+        //        if (Usuario.Count > 0)
+        //        {
+        //            foreach (UDP_Acce_Login_Result UserLogin in Usuario)
+        //            {
+        //                var Listado = db.SDP_Acce_GetUserRols(UserLogin.usu_Id, "").ToList();
+        //                var ListadoRol = db.SDP_Acce_GetRolesAsignados(UserLogin.usu_Id).ToList();
+        //                Session["UserRol"] = ListadoRol.Count();
+        //                Session["UserLogin"] = UserLogin.usu_Id;
+        //                Session["UserLoginRols"] = Listado;
+        //                Session["UserLoginEsAdmin"] = UserLogin.usu_EsAdministrador;
+        //                Session["UserLoginSesion"] = UserLogin.usu_SesionesValidas;
+        //                if (!UserLogin.usu_EsActivo)
+        //                {
+        //                    ModelState.AddModelError("usu_NombreUsuario", "Usuario inactivo, contacte al Administrador");
+        //                    return View(Login);
+        //                }
+        //                if (UserLogin.usu_SesionesValidas == 0)
+        //                {
+        //                    ModelState.AddModelError("usu_NombreUsuario", "Su contraseña expiró, contacte al Administrador");
+        //                    return View(Login);
+        //                }
+        //                if (UserLogin.usu_SesionesValidas == 1)
+        //                {
+        //                    return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
+        //                }
+        //            }
+        //            return RedirectToAction("Index", "Home");
+        //        }
+        //        else
+        //        {
+        //            ModelState.AddModelError("usu_NombreUsuario", "Usuario o Password incorrecto");
+        //            return View(Login);
+        //        }
+        //    }
+        //    catch (Exception Ex)
+        //    {
+        //        Ex.Message.ToString();
+        //        return View(Login);
+        //    }
+        //}
     }
 }

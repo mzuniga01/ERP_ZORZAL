@@ -205,6 +205,8 @@
     <FunctionImport Name="UDP_Acce_tbRolEstado_Update" ReturnType="Collection(String)">
       <Parameter Name="rol_Id" Mode="In" Type="Int32" />
       <Parameter Name="rol_Estado" Mode="In" Type="Boolean" />
+      <Parameter Name="rol_UsuarioModifica" Mode="In" Type="Int32" />
+      <Parameter Name="rol_FechaModifica" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="UDP_Acce_tbRolesUsuario_Insert" ReturnType="Collection(String)">
       <Parameter Name="usu_Id" Mode="In" Type="Int32" />

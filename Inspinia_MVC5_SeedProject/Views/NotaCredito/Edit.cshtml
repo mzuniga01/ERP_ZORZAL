@@ -196,7 +196,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.nocre_Monto, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.EditorFor(model => model.nocre_Monto, new { htmlAttributes = new { @style = "text-align:right", @class = "form-control", @type = "number", @min = "0", @step = "0.01", @value = "0", maxlength = "4" } })
+                                        @Html.EditorFor(model => model.nocre_Monto, new { htmlAttributes = new { @style = "text-align:right", @class = "form-control", @type = "number", @min = "0", @step = "0.01", @value = "0", maxlength = "4", @onkeypress = "return filterFloat(event,this);" } })
                                         <p id="smsMontoNC" style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.nocre_Monto)</span></p>
                                     </div>
                                 </div>
@@ -391,5 +391,40 @@ function limpia() {
         if(!isNaN(val[i]))
             document.getElementById("#nocre_MotivoEmision").value = '';
     }
+}
+
+function filterFloat(evt, input) {
+    // Backspace = 8, Enter = 13, ‘0′ = 48, ‘9′ = 57, ‘.’ = 46, ‘-’ = 43
+    var key = window.Event ? evt.which : evt.keyCode;
+    var chark = String.fromCharCode(key);
+    var tempValue = input.value + chark;
+    if (key >= 48 && key <= 57) {
+        if (filter(tempValue) === false) {
+            return false;
+        } else {
+            return true;
+        }
+    } else {
+        if (key == 8 || key == 13 || key == 0) {
+            return true;
+        } else if (key == 46) {
+            if (filter(tempValue) === false) {
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            return false;
+        }
+    }
+}
+function filter(__val__) {
+    var preg = /^([0-9]+\.?[0-9]{0,2})$/;
+    if (preg.test(__val__) === true) {
+        return true;
+    } else {
+        return false;
+    }
+
 }
 </script>

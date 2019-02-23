@@ -4122,6 +4122,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
         <Function Name="UDP_Acce_tbRolEstado_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
           <Parameter Name="rol_Id" Type="int" Mode="In" />
           <Parameter Name="rol_Estado" Type="bit" Mode="In" />
+          <Parameter Name="rol_UsuarioModifica" Type="int" Mode="In" />
+          <Parameter Name="rol_FechaModifica" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Acce_tbRolesUsuario_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
           <Parameter Name="usu_Id" Type="int" Mode="In" />
@@ -7199,6 +7201,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <FunctionImport Name="UDP_Acce_tbRolEstado_Update" ReturnType="Collection(String)">
             <Parameter Name="rol_Id" Mode="In" Type="Int32" />
             <Parameter Name="rol_Estado" Mode="In" Type="Boolean" />
+            <Parameter Name="rol_UsuarioModifica" Mode="In" Type="Int32" />
+            <Parameter Name="rol_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Acce_tbRolesUsuario_Insert" ReturnType="Collection(String)">
             <Parameter Name="usu_Id" Mode="In" Type="Int32" />
@@ -9761,7 +9765,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Parameter Name="CodUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbMovimientoCaja_Imprimir" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_Imprimir_Result1)">
-            <Parameter Name="mocja_Id" Mode="In" Type="Int32" />
+          <Parameter Name="mocja_Id" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">

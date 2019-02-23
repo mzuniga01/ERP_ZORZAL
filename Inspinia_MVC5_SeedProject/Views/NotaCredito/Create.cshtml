@@ -123,14 +123,14 @@
                                 @Html.LabelFor(model => model.tbCliente.clte_Nombres, "Cliente", new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.tbCliente.clte_Nombres, new { htmlAttributes = new { @readonly = "readonly" } })
-                                    <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.tbCliente.clte_Nombres)</span></p>
+                                    <p id="valido" style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.tbCliente.clte_Nombres)</span></p>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.nocre_Monto, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.nocre_Monto, new { htmlAttributes = new { @style = "text-align:right", @type = "number", @min = "0", @step = "0.01", @value = "0", @readonly = "readonly" } })
+                                    @Html.EditorFor(model => model.nocre_Monto, new { htmlAttributes = new { @style = "text-align:right", @type = "number", @min = "0", @step = "0.01", @value = "0", @readonly = "readonly", @onkeypress = "return filterFloat(event,this);" } })
                                     <p id="smsMontoNC" style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.nocre_Monto)</span></p>
                                 </div>
                             </div>
@@ -248,6 +248,7 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
+                                    @*@Html.ActionLink("Autorizar", "AutorizarNotaCredito", new { @class = "btn btn-primary btn-sm", @onclick = "otros();", @id = "Autorizar" })*@
                                     <button class="btn btn-primary btn-sm" type="button" data-dismiss="modal" onclick="otros();" id="Autorizar">Autorizar</button>
                                     <button type="button" class="btn btn-white btn-sm" data-dismiss="modal" onclick="devolucionNC();">Cancelar</button>
                                  </div>
@@ -442,5 +443,40 @@ $('#guardar').click(function () {
         return true;
     }
 });
+
+function filterFloat(evt, input) {
+    // Backspace = 8, Enter = 13, ‘0′ = 48, ‘9′ = 57, ‘.’ = 46, ‘-’ = 43
+    var key = window.Event ? evt.which : evt.keyCode;
+    var chark = String.fromCharCode(key);
+    var tempValue = input.value + chark;
+    if (key >= 48 && key <= 57) {
+        if (filter(tempValue) === false) {
+            return false;
+        } else {
+            return true;
+        }
+    } else {
+        if (key == 8 || key == 13 || key == 0) {
+            return true;
+        } else if (key == 46) {
+            if (filter(tempValue) === false) {
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            return false;
+        }
+    }
+}
+function filter(__val__) {
+    var preg = /^([0-9]+\.?[0-9]{0,2})$/;
+    if (preg.test(__val__) === true) {
+        return true;
+    } else {
+        return false;
+    }
+
+}
 </script>
 }
