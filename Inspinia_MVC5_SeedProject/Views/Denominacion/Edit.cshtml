@@ -46,10 +46,6 @@
                             @Html.HiddenFor(model => model.tbUsuario1.usu_Nombres)
                             @Html.HiddenFor(model => model.tbUsuario1.usu_Apellidos)
 
-
-                            @* -----Valida usuavilidad----- *@
-                            @*@Html.TextBoxFor(model => model.deno_Id, new { style = "display:none" })*@
-                            @* ------------------------------------- *@
                             <div class="alert alert-success text-center text-uppercase" id="alerta" style="display:none;">... Esta denominación esta en uso no la puedes editar...</div>
 
                             <div class="form-group">
@@ -60,33 +56,21 @@
                                 </div>
                             </div>
 
-                            @*<div class="form-group">
-                                    @Html.LabelFor(model => model.deno_Tipo, new { @class = "control-label col-md-2" })
-                                    <div class="col-md-4">
-                                        @Html.DropDownListFor(model => model.deno_Tipo, new SelectList(Model.DenominacionList, "ID_TipoDenominacion", "Tipo_Denominacion"), new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.deno_Tipo, "", new { @style = "color:red" })
-                                    </div>
-                                </div>*@
-
-
-
                             <div class="form-group">
                                 @Html.LabelFor(model => model.deno_Tipo, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.DropDownListFor(model => model.deno_Tipo, new List<SelectListItem>
-    {
-                        new SelectListItem() {Text = "Billete", Value="1"},
-                        new SelectListItem() {Text = "Moneda", Value="2"},
-    }, "Seleccione Tipo Denominación", new { @class = "form-control" })
+                                    {
+                                    new SelectListItem() {Text = "Billete", Value="1"},
+                                    new SelectListItem() {Text = "Moneda", Value="2"},
+                                    }, "Seleccione Tipo Denominación", new { @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.deno_Tipo, "", new { @style = "color:red" })
                                     <p id="tipodeno" style="color:red">@Html.ValidationMessageFor(model => model.deno_Tipo, "", new { @style = "color:red" })</p>
                                 </div>
                             </div>
 
-
                             <div class="form-group">
                                 <label class="control-label col-md-2" id="moneda">Moneda</label>
-                                @*@Html.LabelFor(model => model.mnda_Id, new { @class = "control-label col-md-2" })*@
                                 <div class="col-md-4">
                                     @Html.DropDownList("mnda_Id", @*String.Empty*@ null, new { @class = "form-control" })
                                     <p id="monedass" style="color:red">@Html.ValidationMessageFor(model => model.mnda_Id, "", new { @style = "color:red" })</p>
@@ -94,26 +78,20 @@
                             </div>
 
                             <div class="form-group">
-                                @*@Html.LabelFor(model => model.deno_Descripcion, new { @class = "control-label col-md-2" })*@
                                 <label class="control-label col-md-2" id="descr">Descripción</label>
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.deno_Descripcion, new { htmlAttributes = new { @autocomplete = "off", placeholder = "ejm: 100 Lempiras", @onkeyup = "format(this)", @style = "text-transform:capitalize;", onkeypress = "return validar(event)", Title = "si escribe decimales porfavor separelos con un '.' " } })
+                                    @Html.EditorFor(model => model.deno_Descripcion, new { htmlAttributes = new { @maxlength = "50", @autocomplete = "off", placeholder = "ejm: 100 Lempiras", @onkeyup = "format(this)", @style = "text-transform:capitalize;", onkeypress = "return validar(event)", Title = "si escribe decimales porfavor separelos con un '.' " } })
                                     <p id="descriptions" style="color:red">@Html.ValidationMessageFor(model => model.deno_Descripcion, "", new { @style = "color:red" })</p>
                                 </div>
                             </div>
 
-
                             <div class="form-group">
                                 @Html.LabelFor(model => model.deno_valor, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.deno_valor, new { htmlAttributes = new { @autocomplete = "off", @onkeyup = "format(this)", onkeypress = "return filterFloat(event,this);", Title = "Separe los decimales con una ',' " } })
+                                    @Html.EditorFor(model => model.deno_valor, new { htmlAttributes = new { @maxlength = "10", @autocomplete = "off", @onkeyup = "format(this)", onkeypress = "return  filterFloat(event,this);", Title = "Separe los decimales con una ',' " } })
                                     <p id="valoress" style="color:red"> @Html.ValidationMessageFor(model => model.deno_valor, "", new { @style = "color:red" })</p>
                                 </div>
                             </div>
-
-                           
-
-
 
                             <div class="form-group">
                                 <div class="col-md-12 text-center">
@@ -123,8 +101,6 @@
                             </div>
                         </div>
                     }
-
-
                 </div>
             </div>
         </div>
@@ -159,65 +135,44 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-<script type="text/javascript">
+    <script type="text/javascript">
         $(document).ready(function () {
             GetDenominacions()
 
         });
 
-                function GetDenominacions() {
+        function GetDenominacions() {
+            var usos = $('#ids').val();
+            var uso = usos;
+            $.ajax({
+                type: 'GET',
+                url: '/Denominacion/GDatosEncabezado',
+                datatype: 'JSON',
+                data: { 'uso': uso },
+                success: function (data) {
 
-                    var usos = $('#ids').val();
+                    if (data.length > 0) {
+                        // alert('no puedes')
+                        console.log(data)
+                        $("#deno_Tipo").prop("disabled", true);
+                        $("#mnda_Id").prop("disabled", true);
+                        $("#deno_Descripcion").prop("disabled", true);
+                        $("#deno_valor").prop("disabled", true);
+                        $("#guardar").prop("disabled", true);
+                        $('#alerta').show();
 
-
-                    var uso = usos;
-
-                    $.ajax({
-                        type: 'GET',
-                        url: '/Denominacion/GDatosEncabezado',
-                        datatype: 'JSON',
-                        data: { 'uso': uso },
-                        success: function (data) {
-
-                            if (data.length > 0) {
-                               // alert('no puedes')
-                                console.log(data)
-
-                                $("#deno_Tipo").prop("disabled", true);
-                                $("#mnda_Id").prop("disabled", true);
-                                $("#deno_Descripcion").prop("disabled", true);
-                                $("#deno_valor").prop("disabled", true);
-                                $("#guardar").prop("disabled", true);
-                                $('#alerta').show();
-
-                            }
-                            else {
-                                //alert('si')
-                                console.log(data)
-                               // $('#alerta').hidden()
-                            }
-                            //$.each(data, function (i, item) {
-
-                            //    var idaperura = item.deno_Id;
-                            //    console.log(idaperura + " " + "csacascas");
-                            //    if (idaperura > 0) {
-                            //        alert('No  puedes editar');
-                            //    }
-
-                                //----------------------------------------------------------
-                            //});
-                        },
-                        error: function (data) { alert(data.responseText); }
-                    });
-                };
-
-</script>
-    
-
-
+                    }
+                    else {
+                        //alert('si')
+                        console.log(data)
+                        // $('#alerta').hidden()
+                    }
+                },
+                error: function (data) { alert(data.responseText); }
+            });
+        };
+    </script>
     <script>
-
-
         $('#deno_Tipo').click(function () {
             var tipodeno = $('#deno_Tipo').val();
             if (tipodeno > 0) {
@@ -254,12 +209,7 @@
             }
         });
 
-
-
-
-
         $('#guardar').click(function () {
-
             var tipodeno = $('#deno_Tipo').val();
             var monedas = $('#mnda_Id').val();
             var description = $('#deno_Descripcion').val();
@@ -306,12 +256,7 @@
                 return true;
             }
         });
-
-
         //_________________________________________
-
-
-
         //Ateriscos
         $('#moneda').append('<span style="color:red"> *</span>');
         $('#descr').append('<span style="color:red"> *</span>');
@@ -323,7 +268,6 @@
                 var text = label.text();
                 if (text.length > 0) {
                     label.append('<span style="color:red"> *</span>');
-
                 }
             }
         }); //____________________
@@ -349,85 +293,41 @@
             tecla = String.fromCharCode(tecla)
             return /^[[A-Za-z0-9 .]+]*$/i.test(tecla);
         }//_______________________________
-
-
-        //Validación 2 Decimal y coma
-        function filterFloat(e, field) {
-            key = e.keyCode ? e.keyCode : e.which;
-            if (key === 8)
-                return true;
-            if (field.value !== "") {
-                if ((field.value.indexOf(",")) > 0) {
-                    if (key > 47 && key < 58) {
-                        if (field.value === "")
-                            return true;
-                        regexp = /[0-9]{1,10}[,][0-9]{1,3}$/;
-                        regexp = /[0-9]{2}$/;
-                        return !(regexp.test(field.value))
+    </script>
+    <script type="text/javascript">
+        //validar 2  decimales
+        function filterFloat(evt, input) {
+            // Backspace = 8, Enter = 13, ‘0′ = 48, ‘9′ = 57, ‘.’ = 46, ‘-’ = 43
+            var key = window.Event ? evt.which : evt.keyCode;
+            var chark = String.fromCharCode(key);
+            var tempValue = input.value + chark;
+            if (key >= 48 && key <= 57) {
+                if (filter(tempValue) === false) {
+                    return false;
+                } else {
+                    return true;
+                }
+            } else {
+                if (key == 8 || key == 13 || key == 0) {
+                    return true;
+                } else if (key == 46) {
+                    if (filter(tempValue) === false) {
+                        return false;
+                    } else {
+                        return true;
                     }
+                } else {
+                    return false;
                 }
             }
-            if (key > 47 && key < 58) {
-                if (field.value === "")
-                    return true;
-                regexp = /[0-9]{10}/;
-                return !(regexp.test(field.value));
-            }
-            if (key === 44) {
-                if (field.value === "")
-                    return false;
-                regexp = /^[0-9]+$/;
-                return regexp.test(field.value);
-
-            }
-
-            return false;
         }
-
-
-        ////Validación 2 Decimal
-        //function filterFloat(evt, input) {
-        //    // Backspace = 8, Enter = 13, ‘0′ = 48, ‘9′ = 57, ‘.’ = 46, ‘-’ = 43
-        //    var key = window.Event ? evt.which : evt.keyCode;
-        //    var chark = String.fromCharCode(key);
-        //    var tempValue = input.value + chark;
-        //    if (key >= 48 && key <= 57) {
-        //        if (filter(tempValue) === false) {
-        //            return false;
-        //        } else {
-        //            return true;
-        //        }
-        //    } else {
-        //        if (key == 8 || key == 13 || key == 0) {
-        //            return true;
-        //        } else if (key == 46) {
-        //            if (filter(tempValue) === false) {
-        //                return false;
-        //            } else {
-        //                return true;
-        //            }
-        //        } else {
-        //            return false;
-        //        }
-        //    }
-        //}
-        //function filter(__val__) {
-        //    var preg = /^([0-9]+\.?[0-9]{0,2})$/;
-        //    if (preg.test(__val__) === true) {
-        //        return true;
-        //    } else {
-        //        return false;
-        //    }
-
-        //}
-
-
-
-
-
+        function filter(__val__) {
+            var preg = /^([0-9]+\.?[0-9]{0,2})$/;
+            if (preg.test(__val__) === true) {
+                return true;
+            } else {
+                return false;
+            }
+        }
     </script>
-
-
-
-
 }

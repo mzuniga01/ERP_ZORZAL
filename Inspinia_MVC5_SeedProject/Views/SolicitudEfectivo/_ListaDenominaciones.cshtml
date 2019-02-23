@@ -1,7 +1,4 @@
 ﻿@model IEnumerable<ERP_GMEDINA.Models.tbDenominacion>
-   
-
-
 
 @*<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "hsttp://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">*@
 @*<html xmlns="hsttp://www.w3.org/1999/xhtml">
@@ -13,11 +10,8 @@
 <body>
     <div class="table table-responsive">
         <table class="table table-bordered" id="example1">
-
             <thead>
-
                 <tr>
-
                     <th>
                         Denominación
                     </th>
@@ -32,40 +26,13 @@
                     </th>
                     <th>
                         Monto Entregado
-                    </th>
-
-
+                    </th>                    
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model)
             {
-                    <tr>
-                        @*<td>
-                                    @Html.DisplayFor(modelItem => item.deno_Id)
-                                </td>
-
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.tbMoneda.mnda_Nombre)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.deno_Descripcion)
-                                </td>
-                                @if (item.deno_Tipo == 1)
-                            {
-                                    <td>Billete</td>
-                                }
-                                else
-                                {
-                                    <td>Moneda</td>
-                                }
-
-
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.deno_valor)
-                                </td>*@
-
-
+                    <tr>                       
                     </tr>
                 }
             </tbody>
@@ -73,4 +40,3 @@
         </table>
     </div>
 </body>
-@*</html>*@

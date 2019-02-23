@@ -7,11 +7,27 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ERP_GMEDINA.Models;
+using System.Globalization;
+using System.Threading;
 
 namespace ERP_GMEDINA.Controllers
 {
     public class DenominacionController : Controller
     {
+        //__________Cultura___________
+        protected override void Initialize(System.Web.Routing.RequestContext requestContext)
+        {
+            base.Initialize(requestContext);
+
+            const string culture = "es-HN";
+            CultureInfo ci = CultureInfo.GetCultureInfo(culture);
+
+            Thread.CurrentThread.CurrentCulture = ci;
+            Thread.CurrentThread.CurrentUICulture = ci;
+        }
+
+        //____________________________
+
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
         GeneralFunctions Function = new GeneralFunctions();
         tbDenominacion TipoDenominacion = new tbDenominacion();

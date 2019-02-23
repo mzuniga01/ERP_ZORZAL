@@ -39,7 +39,7 @@ namespace ERP_GMEDINA.Controllers
         {
             return View(db.UDP_Vent_SolicituEfectivo_Detalles_Select);
         }
-                  
+
         // GET: /SolicitudEfectivo/Details/5
         public ActionResult Details(int? id)
         {
@@ -66,18 +66,15 @@ namespace ERP_GMEDINA.Controllers
         public JsonResult GetDenominacion(short moneda)
         {
             ERP_ZORZALEntities db = new ERP_ZORZALEntities();
-
             db.Configuration.ProxyCreationEnabled = false;
             List<tbDenominacion> Denomination = db.tbDenominacion.Where(x => x.mnda_Id == moneda).OrderByDescending(x => x.deno_valor).ToList();
-
-
             return Json(Denomination, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetDenominacionList(int mnda_Id)
         {
             db.Configuration.ProxyCreationEnabled = false;
-            List<tbDenominacion> DenominacionList = db.tbDenominacion.Where(x => x.mnda_Id == mnda_Id).ToList();            
+            List<tbDenominacion> DenominacionList = db.tbDenominacion.Where(x => x.mnda_Id == mnda_Id).ToList();
             return Json(DenominacionList, JsonRequestBehavior.AllowGet);
         }
 
@@ -97,7 +94,6 @@ namespace ERP_GMEDINA.Controllers
                     }
                     var list = db.UDP_Vent_tbSolicitudEfectivo_Recargo(idUser).ToList();
                     return Json(list, JsonRequestBehavior.AllowGet);
-
                 }
                 else
                 {
@@ -107,10 +103,6 @@ namespace ERP_GMEDINA.Controllers
             else
                 return RedirectToAction("Index", "Login");
         }
-
-
-
-
 
         [HttpGet]
         public ActionResult GDatosEncabezado()
@@ -128,7 +120,6 @@ namespace ERP_GMEDINA.Controllers
                     }
                     var list = db.UDP_Vent_tbSolicitudEfectivo_DatosEncabezado(idUser).ToList();
                     return Json(list, JsonRequestBehavior.AllowGet);
-
                 }
                 else
                 {
@@ -139,9 +130,6 @@ namespace ERP_GMEDINA.Controllers
                 return RedirectToAction("Index", "Login");
         }
 
-
-
-
         public ActionResult Create()
         {
             if (Function.GetUserLogin())
@@ -150,33 +138,15 @@ namespace ERP_GMEDINA.Controllers
                 {
                     if (Function.GetUserRols("SolicitudEfectivo/Create"))
                     {
-                        //int idUser = 0;
-                        //GeneralFunctions Login = new GeneralFunctions();
-                        //List<tbUsuario> User = Login.getUserInformation();
-                        //foreach (tbUsuario Usuario in User)
-                        //{
-                        //    idUser = Convert.ToInt32(Usuario.emp_Id);
-                        //}
-
-                        //ViewBag.suc_Descripcion = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.tbSucursal.suc_Descripcion).SingleOrDefault();
-
                         ViewBag.solef_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
-            ViewBag.solef_UsuarioEntrega = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
-            ViewBag.solef_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
-            //ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre");
-            //ViewBag.mocja_Id = new SelectList(db.tbMovimientoCaja, "mocja_Id", "mocja_Id");            
-
-            ViewBag.Denominacion = db.tbDenominacion.ToList();
-
-            List<tbMoneda> MonedaList = db.tbMoneda.ToList();
-            ViewBag.MonedaList = new SelectList(MonedaList, "mnda_Id", "mnda_Nombre");
-
-            ViewBag.SolicitudEdectivoDetalle = db.tbSolicitudEfectivoDetalle.ToList();
-
-            Session["Solicitud"] = null;
-
-
-            return View();
+                        ViewBag.solef_UsuarioEntrega = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+                        ViewBag.solef_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+                        ViewBag.Denominacion = db.tbDenominacion.ToList();
+                        List<tbMoneda> MonedaList = db.tbMoneda.ToList();
+                        ViewBag.MonedaList = new SelectList(MonedaList, "mnda_Id", "mnda_Nombre");
+                        ViewBag.SolicitudEdectivoDetalle = db.tbSolicitudEfectivoDetalle.ToList();
+                        Session["Solicitud"] = null;
+                        return View();
                     }
                     else
                     {
@@ -204,102 +174,96 @@ namespace ERP_GMEDINA.Controllers
                     if (Function.GetUserRols("SolicitudEfectivo/Create"))
                     {
                         ViewBag.Denominacion = db.tbDenominacion.ToList();
-            var list = (List<tbSolicitudEfectivoDetalle>)Session["Solicitud"];
-            string MensajeError = "";
-            var MensajeErrorDetalle = "";
-            IEnumerable<object> listSolicitudEfectivo = null;
-            IEnumerable<object> listSolicitudEfectivoDetalle = null;
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    using (TransactionScope Tran = new TransactionScope())
-                    {
-                        listSolicitudEfectivo = db.UDP_Vent_tbSolicitudEfectivo_Insert(
-                                                tbSolicitudEfectivo.mocja_Id,
-                                                tbSolicitudEfectivo.mnda_Id,
-                                                Function.GetUser(),
-                                                Function.DatetimeNow()
-                                                );
-                        foreach (UDP_Vent_tbSolicitudEfectivo_Insert_Result SolicitudE in listSolicitudEfectivo)
-                            MensajeError = SolicitudE.MensajeError;
+                        var list = (List<tbSolicitudEfectivoDetalle>)Session["Solicitud"];
+                        string MensajeError = "";
+                        var MensajeErrorDetalle = "";
+                        IEnumerable<object> listSolicitudEfectivo = null;
+                        IEnumerable<object> listSolicitudEfectivoDetalle = null;
+                        if (ModelState.IsValid)
+                        {
+                            try
+                            {
+                                using (TransactionScope Tran = new TransactionScope())
+                                {
+                                    listSolicitudEfectivo = db.UDP_Vent_tbSolicitudEfectivo_Insert(
+                                                            tbSolicitudEfectivo.mocja_Id,
+                                                            tbSolicitudEfectivo.mnda_Id,
+                                                            Function.GetUser(),
+                                                            Function.DatetimeNow()
+                                                            );
+                                    foreach (UDP_Vent_tbSolicitudEfectivo_Insert_Result SolicitudE in listSolicitudEfectivo)
+                                        MensajeError = SolicitudE.MensajeError;
                                     if (MensajeError.StartsWith("-1"))
                                     {
-                            ModelState.AddModelError("", "No se pudo agregar el registro");
-                            return View(tbSolicitudEfectivo);
-                        }
-                        else
-                        {
+                                        ModelState.AddModelError("", "No se pudo agregar el registro");
+                                        return View(tbSolicitudEfectivo);
+                                    }
+                                    else
+                                    {
                                         if (!MensajeError.StartsWith("-1"))
                                         {
-                                if (list != null)
-                                {
-                                    if (list.Count != 0)
-                                    {
-                                        foreach (tbSolicitudEfectivoDetalle Detalle in list)
-                                        {
-
-                                            Detalle.solef_Id = Convert.ToInt32(MensajeError);
-                                            listSolicitudEfectivoDetalle = db.UDP_Vent_tbSolicitudEfectivoDetalle_Insert(
-                                                Detalle.solef_Id,
-                                                Detalle.deno_Id,
-                                                Detalle.soled_CantidadSolicitada,
-                                                 Function.GetUser(),
-                                                 Function.DatetimeNow()
-                                                );
-                                            foreach (UDP_Vent_tbSolicitudEfectivoDetalle_Insert_Result spDetalle in listSolicitudEfectivoDetalle)
+                                            if (list != null)
                                             {
-                                                MensajeErrorDetalle = spDetalle.MensajeError;
+                                                if (list.Count != 0)
+                                                {
+                                                    foreach (tbSolicitudEfectivoDetalle Detalle in list)
+                                                    {
+
+                                                        Detalle.solef_Id = Convert.ToInt32(MensajeError);
+                                                        listSolicitudEfectivoDetalle = db.UDP_Vent_tbSolicitudEfectivoDetalle_Insert(
+                                                            Detalle.solef_Id,
+                                                            Detalle.deno_Id,
+                                                            Detalle.soled_CantidadSolicitada,
+                                                             Function.GetUser(),
+                                                             Function.DatetimeNow()
+                                                            );
+                                                        foreach (UDP_Vent_tbSolicitudEfectivoDetalle_Insert_Result spDetalle in listSolicitudEfectivoDetalle)
+                                                        {
+                                                            MensajeErrorDetalle = spDetalle.MensajeError;
                                                             if (MensajeError.StartsWith("-1"))
                                                             {
-                                                    ModelState.AddModelError("", "No se pudo agregar el registro detalle");
-                                                    return View(tbSolicitudEfectivo);
+                                                                ModelState.AddModelError("", "No se pudo agregar el registro detalle");
+                                                                return View(tbSolicitudEfectivo);
+                                                            }
+                                                        }
+                                                    }
                                                 }
                                             }
                                         }
+                                        else
+                                        {
+                                            ModelState.AddModelError("", "No se pudo agregar el registro");
+                                            return View(tbSolicitudEfectivo);
+                                        }
                                     }
+                                    Tran.Complete();
+                                    return RedirectToAction("Index");
                                 }
                             }
-                            else
+                            catch (Exception Ex)
                             {
-                                ModelState.AddModelError("", "No se pudo agregar el registro");
-                                return View(tbSolicitudEfectivo);
+                                ModelState.AddModelError("", "No se pudo agregar el registros" + Ex.Message.ToString());
+                                ViewBag.solef_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+                                ViewBag.solef_UsuarioEntrega = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+                                ViewBag.solef_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+                                ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre");
+                                ViewBag.Denominacion = db.tbDenominacion.ToList();
+                                List<tbMoneda> MonedaList = db.tbMoneda.ToList();
+                                ViewBag.MonedaList = new SelectList(MonedaList, "mnda_Id", "mnda_Nombre");
+                                ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre");
+                                ViewBag.SolicitudEdectivoDetalle = db.tbSolicitudEfectivoDetalle.ToList();
+                                ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre", tbSolicitudEfectivo.mnda_Id);
                             }
-
                         }
-                        Tran.Complete();
-                        return RedirectToAction("Index");
-                    }
-                }
-                catch (Exception Ex)
-                {
-                    ModelState.AddModelError("", "No se pudo agregar el registros" + Ex.Message.ToString());
-                    ViewBag.solef_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
-                    ViewBag.solef_UsuarioEntrega = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
-                    ViewBag.solef_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
-                    ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre");
-                    ViewBag.Denominacion = db.tbDenominacion.ToList();
-                    List<tbMoneda> MonedaList = db.tbMoneda.ToList();
-                    ViewBag.MonedaList = new SelectList(MonedaList, "mnda_Id", "mnda_Nombre");
-                    ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre");
-                    ViewBag.SolicitudEdectivoDetalle = db.tbSolicitudEfectivoDetalle.ToList();
-
-                    ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre", tbSolicitudEfectivo.mnda_Id);
-                }
-
-            }
-
-            ViewBag.solef_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSolicitudEfectivo.solef_UsuarioCrea);
-            ViewBag.solef_UsuarioEntrega = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSolicitudEfectivo.solef_UsuarioEntrega);
-            ViewBag.solef_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSolicitudEfectivo.solef_UsuarioModifica);
-            ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre", tbSolicitudEfectivo.mnda_Id);
-            ViewBag.mocja_Id = new SelectList(db.tbMovimientoCaja, "mocja_Id", "mocja_Id", tbSolicitudEfectivo.mocja_Id);
-
-
-            List<tbMoneda> MonedaLists = db.tbMoneda.ToList();
-            ViewBag.MonedaLists = new SelectList(MonedaLists, "mnda_Id", "mnda_Nombre");
-            ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre");
-            return View(tbSolicitudEfectivo);
+                        ViewBag.solef_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSolicitudEfectivo.solef_UsuarioCrea);
+                        ViewBag.solef_UsuarioEntrega = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSolicitudEfectivo.solef_UsuarioEntrega);
+                        ViewBag.solef_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSolicitudEfectivo.solef_UsuarioModifica);
+                        ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre", tbSolicitudEfectivo.mnda_Id);
+                        ViewBag.mocja_Id = new SelectList(db.tbMovimientoCaja, "mocja_Id", "mocja_Id", tbSolicitudEfectivo.mocja_Id);
+                        List<tbMoneda> MonedaLists = db.tbMoneda.ToList();
+                        ViewBag.MonedaLists = new SelectList(MonedaLists, "mnda_Id", "mnda_Nombre");
+                        ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre");
+                        return View(tbSolicitudEfectivo);
                     }
                     else
                     {
@@ -312,8 +276,6 @@ namespace ERP_GMEDINA.Controllers
             else
                 return RedirectToAction("Index", "Login");
         }
-
-
 
         public ActionResult EditEntregaEfectivo(int? id)
         {
@@ -341,7 +303,7 @@ namespace ERP_GMEDINA.Controllers
                     }
                     ViewBag.solef_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSolicitudEfectivo.solef_UsuarioCrea);
                     ViewBag.solef_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSolicitudEfectivo.solef_UsuarioModifica);
-                   //// ViewBag.solef_UsuarioEntrega = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSolicitudEfectivo.solef_UsuarioEntrega);
+                    //// ViewBag.solef_UsuarioEntrega = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSolicitudEfectivo.solef_UsuarioEntrega);
                     ViewBag.solef_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSolicitudEfectivo.solef_UsuarioModifica);
                     //   ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre", tbSolicitudEfectivo.mnda_Id);
                     ViewBag.mocja_Id = new SelectList(db.tbMovimientoCaja, "mocja_Id", "mocja_Id", tbSolicitudEfectivo.mocja_Id);
@@ -379,60 +341,60 @@ namespace ERP_GMEDINA.Controllers
                 if (Function.GetUserRols("SolicitudEfectivo/EditEntregaEfectivo"))
                 {
                     if (ModelState.IsValid)
-            {
+                    {
 
-                try
-                {
-                    string MensajeError = "";
-                    IEnumerable<object> list = null;
-                    list = db.UDP_Vent_tbSolicitudEfectivo_Update_Entrega(
-                        tbSolicitudEfectivo.solef_Id,
-                        tbSolicitudEfectivo.mocja_Id,
-                        tbSolicitudEfectivo.solef_EsApertura,
-                        tbSolicitudEfectivo.solef_FechaEntrega,
-                        tbSolicitudEfectivo.solef_UsuarioEntrega,
-                        tbSolicitudEfectivo.mnda_Id,
-                        tbSolicitudEfectivo.solef_EsAnulada,
-                        tbSolicitudEfectivo.solef_UsuarioCrea,
-                        tbSolicitudEfectivo.solef_FechaCrea);
-                    foreach (UDP_Vent_tbSolicitudEfectivo_Update_Entrega_Result solicitud in list)
-                        MensajeError = solicitud.MensajeError;
-                    if (MensajeError == "-1")
-                    {
-                        ModelState.AddModelError("", "No se pudo actualizar el registro detalle");
-                        return View(tbSolicitudEfectivo);
-                    }
-                    else
-                    {
+                        try
+                        {
+                            string MensajeError = "";
+                            IEnumerable<object> list = null;
+                            list = db.UDP_Vent_tbSolicitudEfectivo_Update_Entrega(
+                                tbSolicitudEfectivo.solef_Id,
+                                tbSolicitudEfectivo.mocja_Id,
+                                tbSolicitudEfectivo.solef_EsApertura,
+                                tbSolicitudEfectivo.solef_FechaEntrega,
+                                tbSolicitudEfectivo.solef_UsuarioEntrega,
+                                tbSolicitudEfectivo.mnda_Id,
+                                tbSolicitudEfectivo.solef_EsAnulada,
+                                tbSolicitudEfectivo.solef_UsuarioCrea,
+                                tbSolicitudEfectivo.solef_FechaCrea);
+                            foreach (UDP_Vent_tbSolicitudEfectivo_Update_Entrega_Result solicitud in list)
+                                MensajeError = solicitud.MensajeError;
+                            if (MensajeError == "-1")
+                            {
+                                ModelState.AddModelError("", "No se pudo actualizar el registro detalle");
+                                return View(tbSolicitudEfectivo);
+                            }
+                            else
+                            {
+                                return RedirectToAction("Index");
+                            }
+                        }
+                        catch (Exception Ex)
+                        {
+                            ModelState.AddModelError("", "No se pudo actualizar el registros" + Ex.Message.ToString());
+                            ViewBag.solef_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSolicitudEfectivo.solef_UsuarioCrea);
+                            ViewBag.solef_UsuarioEntrega = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSolicitudEfectivo.solef_UsuarioEntrega);
+                            ViewBag.solef_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSolicitudEfectivo.solef_UsuarioModifica);
+                            ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre", tbSolicitudEfectivo.mnda_Id);
+                            ViewBag.mocja_Id = new SelectList(db.tbMovimientoCaja, "mocja_Id", "mocja_Id", tbSolicitudEfectivo.mocja_Id);
+
+                            ViewBag.Denominacion = db.tbDenominacion.ToList();
+
+
+                            ViewBag.SolicitudEdectivoDetalle = db.tbSolicitudEfectivoDetalle.ToList();
+                        }
+
                         return RedirectToAction("Index");
                     }
-                }
-                catch (Exception Ex)
-                {
-                    ModelState.AddModelError("", "No se pudo actualizar el registros" + Ex.Message.ToString());
                     ViewBag.solef_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSolicitudEfectivo.solef_UsuarioCrea);
                     ViewBag.solef_UsuarioEntrega = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSolicitudEfectivo.solef_UsuarioEntrega);
                     ViewBag.solef_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSolicitudEfectivo.solef_UsuarioModifica);
                     ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre", tbSolicitudEfectivo.mnda_Id);
                     ViewBag.mocja_Id = new SelectList(db.tbMovimientoCaja, "mocja_Id", "mocja_Id", tbSolicitudEfectivo.mocja_Id);
+                    return View(tbSolicitudEfectivo);
 
-                    ViewBag.Denominacion = db.tbDenominacion.ToList();
 
-
-                    ViewBag.SolicitudEdectivoDetalle = db.tbSolicitudEfectivoDetalle.ToList();
                 }
-
-                return RedirectToAction("Index");
-            }
-            ViewBag.solef_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSolicitudEfectivo.solef_UsuarioCrea);
-            ViewBag.solef_UsuarioEntrega = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSolicitudEfectivo.solef_UsuarioEntrega);
-            ViewBag.solef_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSolicitudEfectivo.solef_UsuarioModifica);
-            ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre", tbSolicitudEfectivo.mnda_Id);
-            ViewBag.mocja_Id = new SelectList(db.tbMovimientoCaja, "mocja_Id", "mocja_Id", tbSolicitudEfectivo.mocja_Id);
-            return View(tbSolicitudEfectivo);
-
-
-        }
                 else
                 {
                     return RedirectToAction("SinAcceso", "Login");
@@ -452,30 +414,23 @@ namespace ERP_GMEDINA.Controllers
                     if (Function.GetUserRols("SolicitudEfectivo/Edit"))
                     {
                         if (id == null)
-            {
-                return RedirectToAction("Index");
-            }
-            tbSolicitudEfectivo tbSolicitudEfectivo = db.tbSolicitudEfectivo.Find(id);
-            if (tbSolicitudEfectivo == null)
-            {
-                return RedirectToAction("NotFound", "Login");
-            }
-            ViewBag.solef_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSolicitudEfectivo.solef_UsuarioCrea);
-            ViewBag.solef_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSolicitudEfectivo.solef_UsuarioModifica);
-            ViewBag.solef_UsuarioEntrega = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSolicitudEfectivo.solef_UsuarioEntrega);
-            ViewBag.solef_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSolicitudEfectivo.solef_UsuarioModifica);
-            ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre", tbSolicitudEfectivo.mnda_Id);
-            ViewBag.mocja_Id = new SelectList(db.tbMovimientoCaja, "mocja_Id", "mocja_Id", tbSolicitudEfectivo.mocja_Id);
-
-
-
-            ViewBag.Denominacion = db.tbDenominacion.ToList();
-
-            //List<tbMoneda> MonedaList = db.tbMoneda.ToList();
-            //ViewBag.MonedaList = new SelectList(MonedaList, "mnda_Id", "mnda_Nombre");
-
-            ViewBag.SolicitudEdectivoDetalle = db.tbSolicitudEfectivoDetalle.ToList();
-             return View(tbSolicitudEfectivo);
+                        {
+                            return RedirectToAction("Index");
+                        }
+                        tbSolicitudEfectivo tbSolicitudEfectivo = db.tbSolicitudEfectivo.Find(id);
+                        if (tbSolicitudEfectivo == null)
+                        {
+                            return RedirectToAction("NotFound", "Login");
+                        }
+                        ViewBag.solef_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSolicitudEfectivo.solef_UsuarioCrea);
+                        ViewBag.solef_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSolicitudEfectivo.solef_UsuarioModifica);
+                        ViewBag.solef_UsuarioEntrega = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSolicitudEfectivo.solef_UsuarioEntrega);
+                        ViewBag.solef_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSolicitudEfectivo.solef_UsuarioModifica);
+                        ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre", tbSolicitudEfectivo.mnda_Id);
+                        ViewBag.mocja_Id = new SelectList(db.tbMovimientoCaja, "mocja_Id", "mocja_Id", tbSolicitudEfectivo.mocja_Id);
+                        ViewBag.Denominacion = db.tbDenominacion.ToList();
+                        ViewBag.SolicitudEdectivoDetalle = db.tbSolicitudEfectivoDetalle.ToList();
+                        return View(tbSolicitudEfectivo);
                     }
                     else
                     {
@@ -502,108 +457,102 @@ namespace ERP_GMEDINA.Controllers
                 {
                     if (Function.GetUserRols("Devolucion/Edit"))
                     {
-            ViewBag.Denominacion = db.tbDenominacion.ToList();
-            var list = (List<tbSolicitudEfectivoDetalle>)Session["Solicitud"];
-            string MensajeError = "";
-            var MensajeErrorDetalle = "";
-            IEnumerable<object> listSolicitudEfectivo = null;
-            IEnumerable<object> listSolicitudEfectivoDetalle = null;
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    using (TransactionScope Tran = new TransactionScope())
-                    {
-                        listSolicitudEfectivo = db.UDP_Vent_tbSolicitudEfectivo_Update(
-                                                tbSolicitudEfectivo.solef_Id,
-                                                tbSolicitudEfectivo.mocja_Id,
-                                                tbSolicitudEfectivo.solef_EsApertura,
-                                                tbSolicitudEfectivo.mnda_Id,
-                                                tbSolicitudEfectivo.solef_EsAnulada,
-                                                tbSolicitudEfectivo.solef_UsuarioCrea,
-                                                tbSolicitudEfectivo.solef_FechaCrea,
-                                                Function.GetUser(),
-                                        Function.DatetimeNow()
-                                                );
-                        foreach (UDP_Vent_tbSolicitudEfectivo_Update_Result SolicitudE in listSolicitudEfectivo)
-                            MensajeError = SolicitudE.MensajeError;
-                        if (MensajeError.StartsWith("-1"))
-                                    {
-                            ModelState.AddModelError("", "No se pudo agregar el registro");
-                            return View(tbSolicitudEfectivo);
-                        }
-                        else
+                        ViewBag.Denominacion = db.tbDenominacion.ToList();
+                        var list = (List<tbSolicitudEfectivoDetalle>)Session["Solicitud"];
+                        string MensajeError = "";
+                        var MensajeErrorDetalle = "";
+                        IEnumerable<object> listSolicitudEfectivo = null;
+                        IEnumerable<object> listSolicitudEfectivoDetalle = null;
+                        if (ModelState.IsValid)
                         {
-                            if (!MensajeError.StartsWith("-1"))
-                                        {
-                                if (list != null)
+                            try
+                            {
+                                using (TransactionScope Tran = new TransactionScope())
                                 {
-                                    if (list.Count != 0)
+                                    listSolicitudEfectivo = db.UDP_Vent_tbSolicitudEfectivo_Update(
+                                                            tbSolicitudEfectivo.solef_Id,
+                                                            tbSolicitudEfectivo.mocja_Id,
+                                                            tbSolicitudEfectivo.solef_EsApertura,
+                                                            tbSolicitudEfectivo.mnda_Id,
+                                                            tbSolicitudEfectivo.solef_EsAnulada,
+                                                            tbSolicitudEfectivo.solef_UsuarioCrea,
+                                                            tbSolicitudEfectivo.solef_FechaCrea,
+                                                            Function.GetUser(),
+                                                    Function.DatetimeNow()
+                                                            );
+                                    foreach (UDP_Vent_tbSolicitudEfectivo_Update_Result SolicitudE in listSolicitudEfectivo)
+                                        MensajeError = SolicitudE.MensajeError;
+                                    if (MensajeError.StartsWith("-1"))
                                     {
-                                        foreach (tbSolicitudEfectivoDetalle Detalle in list)
+                                        ModelState.AddModelError("", "No se pudo agregar el registro");
+                                        return View(tbSolicitudEfectivo);
+                                    }
+                                    else
+                                    {
+                                        if (!MensajeError.StartsWith("-1"))
                                         {
-
-                                            Detalle.solef_Id = Convert.ToInt32(MensajeError);
-                                            listSolicitudEfectivoDetalle = db.UDP_Vent_tbSolicitudEfectivoDetalle_Insert(
-                                                Detalle.solef_Id,
-                                                Detalle.deno_Id,
-                                                Detalle.soled_CantidadSolicitada,
-                                                Function.GetUser(),
-                                                Function.DatetimeNow());
-                                                foreach (UDP_Vent_tbSolicitudEfectivoDetalle_Insert_Result spDetalle in listSolicitudEfectivoDetalle)
+                                            if (list != null)
                                             {
-                                                MensajeErrorDetalle = spDetalle.MensajeError;
-                                                if (MensajeError == "-1")
+                                                if (list.Count != 0)
                                                 {
-                                                    ModelState.AddModelError("", "No se pudo agregar el registro detalle");
-                                                    return View(tbSolicitudEfectivo);
+                                                    foreach (tbSolicitudEfectivoDetalle Detalle in list)
+                                                    {
+
+                                                        Detalle.solef_Id = Convert.ToInt32(MensajeError);
+                                                        listSolicitudEfectivoDetalle = db.UDP_Vent_tbSolicitudEfectivoDetalle_Insert(
+                                                            Detalle.solef_Id,
+                                                            Detalle.deno_Id,
+                                                            Detalle.soled_CantidadSolicitada,
+                                                            Function.GetUser(),
+                                                            Function.DatetimeNow());
+                                                        foreach (UDP_Vent_tbSolicitudEfectivoDetalle_Insert_Result spDetalle in listSolicitudEfectivoDetalle)
+                                                        {
+                                                            MensajeErrorDetalle = spDetalle.MensajeError;
+                                                            if (MensajeError == "-1")
+                                                            {
+                                                                ModelState.AddModelError("", "No se pudo agregar el registro detalle");
+                                                                return View(tbSolicitudEfectivo);
+                                                            }
+                                                        }
+                                                    }
                                                 }
                                             }
                                         }
+                                        else
+                                        {
+                                            ModelState.AddModelError("", "No se pudo agregar el registro");
+                                            return View(tbSolicitudEfectivo);
+                                        }
+
                                     }
+                                    Tran.Complete();
+                                    return RedirectToAction("Index");
                                 }
                             }
-                            else
+                            catch (Exception Ex)
                             {
-                                ModelState.AddModelError("", "No se pudo agregar el registro");
-                                return View(tbSolicitudEfectivo);
+                                ModelState.AddModelError("", "No se pudo agregar el registros" + Ex.Message.ToString());
+                                ViewBag.solef_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+                                ViewBag.solef_UsuarioEntrega = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+                                ViewBag.solef_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+                                ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre");
+                                ViewBag.Denominacion = db.tbDenominacion.ToList();
+                                List<tbMoneda> MonedaList = db.tbMoneda.ToList();
+                                ViewBag.MonedaList = new SelectList(MonedaList, "mnda_Id", "mnda_Nombre");
+                                ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre");
+                                ViewBag.SolicitudEdectivoDetalle = db.tbSolicitudEfectivoDetalle.ToList();
+                                ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre", tbSolicitudEfectivo.mnda_Id);
                             }
-
                         }
-                        Tran.Complete();
-                        return RedirectToAction("Index");
-                    }
-                }
-                catch (Exception Ex)
-                {
-                    ModelState.AddModelError("", "No se pudo agregar el registros" + Ex.Message.ToString());
-                    ViewBag.solef_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
-                    ViewBag.solef_UsuarioEntrega = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
-                    ViewBag.solef_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
-                    ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre");
-                    ViewBag.Denominacion = db.tbDenominacion.ToList();
-                    List<tbMoneda> MonedaList = db.tbMoneda.ToList();
-                    ViewBag.MonedaList = new SelectList(MonedaList, "mnda_Id", "mnda_Nombre");
-                    ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre");
-                    ViewBag.SolicitudEdectivoDetalle = db.tbSolicitudEfectivoDetalle.ToList();
-
-                    ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre", tbSolicitudEfectivo.mnda_Id);
-                }
-
-            }
-
-            ViewBag.solef_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSolicitudEfectivo.solef_UsuarioCrea);
-            ViewBag.solef_UsuarioEntrega = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSolicitudEfectivo.solef_UsuarioEntrega);
-            ViewBag.solef_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSolicitudEfectivo.solef_UsuarioModifica);
-            ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre", tbSolicitudEfectivo.mnda_Id);
-            ViewBag.mocja_Id = new SelectList(db.tbMovimientoCaja, "mocja_Id", "mocja_Id", tbSolicitudEfectivo.mocja_Id);
-
-
-            List<tbMoneda> MonedaLists = db.tbMoneda.ToList();
-            ViewBag.MonedaLists = new SelectList(MonedaLists, "mnda_Id", "mnda_Nombre");
-            ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre");
-            return View(tbSolicitudEfectivo);
-
+                        ViewBag.solef_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSolicitudEfectivo.solef_UsuarioCrea);
+                        ViewBag.solef_UsuarioEntrega = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSolicitudEfectivo.solef_UsuarioEntrega);
+                        ViewBag.solef_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSolicitudEfectivo.solef_UsuarioModifica);
+                        ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre", tbSolicitudEfectivo.mnda_Id);
+                        ViewBag.mocja_Id = new SelectList(db.tbMovimientoCaja, "mocja_Id", "mocja_Id", tbSolicitudEfectivo.mocja_Id);
+                        List<tbMoneda> MonedaLists = db.tbMoneda.ToList();
+                        ViewBag.MonedaLists = new SelectList(MonedaLists, "mnda_Id", "mnda_Nombre");
+                        ViewBag.mnda_Id = new SelectList(db.tbMoneda, "mnda_Id", "mnda_Nombre");
+                        return View(tbSolicitudEfectivo);
                     }
                     else
                     {
@@ -643,7 +592,6 @@ namespace ERP_GMEDINA.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -652,7 +600,6 @@ namespace ERP_GMEDINA.Controllers
             }
             base.Dispose(disposing);
         }
-
 
         [HttpPost]
         public JsonResult SaveSolicitudEfectivoDetalle(tbSolicitudEfectivoDetalle SolicitudEfeDetalleC)
@@ -671,8 +618,6 @@ namespace ERP_GMEDINA.Controllers
             }
             return Json("Exito", JsonRequestBehavior.AllowGet);
         }
-
-
 
         [HttpPost]
         public ActionResult UpdateSolicitudEfectivoDetalle(tbSolicitudEfectivoDetalle EditarSolicitudEfectivoDetalle)
@@ -702,10 +647,7 @@ namespace ERP_GMEDINA.Controllers
                 else
                 {
                     return RedirectToAction("Index");
-                    //return PartialView("_EditarSolicitudEfectivoDetalle");
-
-                    //return RedirectToAction("Edit", new { selectedRoleId = EditarSolicitudEfectivoDetalle.soled_Id });
-                }
+                    }
             }
             catch (Exception Ex)
             {
@@ -719,7 +661,6 @@ namespace ERP_GMEDINA.Controllers
         public JsonResult SaveEditSolicitudEfectivoDetalle(tbSolicitudEfectivoDetalle tbSolicitudEfectivoDetalle)
         {
             string MensajeEdit = "";
-
             try
             {
                 string MensajeError = "";
@@ -769,13 +710,8 @@ namespace ERP_GMEDINA.Controllers
             {
                 Session["Solicitud"] = procesoData;
             }
-
-
             return Json("Exito", JsonRequestBehavior.AllowGet);
-
-
         }
-
 
         //______________________________Añadir Detalle_______________________________________//
         [HttpGet]
@@ -784,9 +720,7 @@ namespace ERP_GMEDINA.Controllers
             var list = db.UDP_Vent_tbSolicitudEfectivoDetalle_Detalle(DENOID).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
-
-
-
+        
         //__________________DETALLES_____SOLICITUD____________
         [HttpGet]
         public ActionResult GetDtalle(short Solictud)
@@ -801,7 +735,6 @@ namespace ERP_GMEDINA.Controllers
         public JsonResult SaveEditSolicitudEfectivoDetalleCantidad(tbSolicitudEfectivoDetalle tbSolicitudEfectivoDetalle)
         {
             string MensajeEdit = "";
-
             try
             {
                 string MensajeError = "";
@@ -843,21 +776,15 @@ namespace ERP_GMEDINA.Controllers
                             suc_Descripcion = r.suc_Descripcion,
                             mocja_Id = r.mocja_Id,
                             TipoSolicitus = r.TipoSolicitus,
-
                             UsuarioEntrega = r.UsuarioEntrega,
                             Cajero = r.Cajero,
                             mnda_Nombre = r.mnda_Nombre,
                             solef_FechaEntrega = DateTime.Parse(r.solef_FechaEntrega.ToString()).ToString("dd / MM / yyyy  hh: mm tt"),
-
                             MontoSolicitado = (decimal)r.MontoSolicitado,
-
                             deno_Descripcion = r.deno_Descripcion,
                             soled_CantidadSolicitada = r.soled_CantidadSolicitada,
                             MontoEntregado = (decimal)r.MontoEntregado,
                             soled_CantidadEntregada = r.soled_CantidadEntregada
-
-
-
                         }).ToList();
             // list = db.UDP_Vent_tbSolicitudEfectivo_Details(Solictud).ToList();
             rd.SetDataSource(todo);
@@ -866,8 +793,8 @@ namespace ERP_GMEDINA.Controllers
             Response.ClearHeaders();
             try
             {
-                Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);                             
-                return File(stream, "application/pdf");                                
+                Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+                return File(stream, "application/pdf");
             }
             catch
             {
