@@ -500,7 +500,6 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.cja_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion", tbFactura.cja_Id);
             ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_Identificacion", tbFactura.clte_Id);
             ViewBag.esfac_Id = new SelectList(db.tbEstadoFactura, "esfac_Id", "esfac_Descripcion", tbFactura.esfac_Id);
-            ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo", tbFactura.suc_Id);
             ViewBag.Cliente = db.tbCliente.ToList();
             ViewBag.Producto = db.tbProducto.ToList();
             Session["FacturaEdit"] = null;
@@ -702,8 +701,14 @@ namespace ERP_GMEDINA.Controllers
 
 
         [HttpPost]
-        public JsonResult SaveFacturaDetalle(tbFacturaDetalle FacturaDetalleC)
+
+        public JsonResult SaveFacturaDetalle(tbFacturaDetalle FacturaDetalleC, string data_producto)
         {
+            var datos = "";
+            decimal cantvieja = 0;
+            decimal cantnueva = 0;
+            data_producto = FacturaDetalleC.prod_Codigo;
+            decimal data_cantidad = FacturaDetalleC.factd_Cantidad;
             List<tbFacturaDetalle> sessionFacturaDetalle = new List<tbFacturaDetalle>();
             var list = (List<tbFacturaDetalle>)Session["Factura"];
             if (list == null)
@@ -713,6 +718,17 @@ namespace ERP_GMEDINA.Controllers
             }
             else
             {
+                foreach (var t in list)
+                    if (t.prod_Codigo == data_producto)
+                    {
+                        datos = data_producto;
+                        foreach (var viejo in list)
+                            if (viejo.prod_Codigo == FacturaDetalleC.prod_Codigo)
+                                cantvieja = viejo.factd_Cantidad;
+                        cantnueva = cantvieja + data_cantidad;
+                        t.factd_Cantidad = cantnueva;
+                        return Json(datos, JsonRequestBehavior.AllowGet);
+                    }
                 list.Add(FacturaDetalleC);
                 Session["Factura"] = list;
             }
@@ -721,32 +737,7 @@ namespace ERP_GMEDINA.Controllers
 
 
 
-        [HttpPost]
-        public JsonResult IncrementarProducto(string data_producto)
-        {
-            var Datos = "";
-            if (Session["Factura"] == null)
-            {
-
-            }
-            else
-            {
-                var menu = Session["Factura"] as List<tbFacturaDetalle>;
-
-                foreach (var t in menu)
-                {
-                    if (t.prod_Codigo == data_producto)
-                        Datos = data_producto;
-                }
-
-
-            }
-
-            return Json(Datos);
-        }
-
-
-        [HttpPost]
+       [HttpPost]
         public JsonResult SaveTerceraEdad(tbFactura TerceraEdadC)
         {
             List<tbFactura> sessionTercera = new List<tbFactura>();
