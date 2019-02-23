@@ -37,7 +37,8 @@
             <label class="col-md-2">Contraseña Actual</label>
             <div class="col-md-4">
                
-                <input class="form-control" data-val="true"  id="txtPassword" name="txtPassword" type="password"  maxlength="64" value="">
+                <input class="form-control" data-val="true"  id="txtPassword" name="txtPassword" type="password" 
+                        maxlength="64" value="" onKeyPress = "return Contraseña(event)">
                 <p style="color:red;">@Html.ValidationMessageFor(model => model.usu_NombreUsuario)</p>
             </div>
         </div>
@@ -47,7 +48,8 @@
             <label class="col-md-2">Contraseña Nueva</label>
             <div class="col-md-4">
         
-                <input class="text-box single-line" data-val="true" data-val-required="El campo Usuario es requerido" id="usu_Password" maxlength="64" name="usu_Password" type="password" value="">
+                <input class="text-box single-line" data-val="true" data-val-required="El campo Usuario es requerido" id="usu_Password" maxlength="64"
+                        name="usu_Password" type="password" value="" onKeyPress = "return Contraseña(event)">
                 @Html.ValidationMessageFor(model => model.usu_Password)
             </div>
         </div>
@@ -55,7 +57,8 @@
         <div class="form-group">
             <label class="col-md-2">Vuelve a escribir la contraseña nueva</label>
             <div class="col-md-4">
-                <input class="form-control" data-val="true" data-val-required="El campo Usuario es requerido" id="confirmar-pass" name="confirmar" type="password" maxlength="64" value="">
+                <input class="form-control" data-val="true" data-val-required="El campo Usuario es requerido" id="confirmar-pass" name="confirmar" type="password" 
+                       maxlength="64" value="" onKeyPress = "return Contraseña(event)">
                 <label id="msg"></label><br>
             </div>
         </div>

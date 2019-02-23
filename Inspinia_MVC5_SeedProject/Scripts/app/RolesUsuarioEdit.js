@@ -197,3 +197,23 @@ function soloLetras(e) {
     tecla = String.fromCharCode(tecla)
     return /^[a-zA-ZáéíóúñÁÉÍÓÚÑ ]+$/.test(tecla);
 }
+
+function Caracteres_Email(e) {
+
+    tecla = (document.all) ? e.keyCode : e.which;
+    tecla = String.fromCharCode(tecla)
+    return /^[a-zA-ZáéíóúñÁÉÍÓÚÑ1234567890@._-]+$/.test(tecla);
+
+}
+
+function CorreoElectronico(string) {//Algunos caracteres especiales para el correo
+    var out = '';
+    //Se añaden las letras validas
+    var filtro = 'abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ1234567890@ .-_';//Caracteres validos
+
+    for (var i = 0; i < string.length; i++)
+        if (filtro.indexOf(string.charAt(i)) != -1)
+            out += string.charAt(i);
+
+    return out;
+}

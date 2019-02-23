@@ -363,9 +363,10 @@ namespace ERP_GMEDINA.Controllers
                     {
                         try
                         {
+                            var usu_EsActivo = true;
                             IEnumerable<object> List = null;
                             var MsjError = "0";
-                            List = db. UDP_Acce_tbUsuario_Update(tbUsuario.usu_Id, tbUsuario.usu_NombreUsuario, tbUsuario.usu_Nombres, tbUsuario.usu_Apellidos, tbUsuario.usu_Correo, tbUsuario.usu_EsActivo, tbUsuario.usu_RazonInactivo, tbUsuario.usu_EsAdministrador,
+                            List = db. UDP_Acce_tbUsuario_Update(tbUsuario.usu_Id, tbUsuario.usu_NombreUsuario, tbUsuario.usu_Nombres, tbUsuario.usu_Apellidos, tbUsuario.usu_Correo, usu_EsActivo, tbUsuario.usu_RazonInactivo, tbUsuario.usu_EsAdministrador,
                                 tbUsuario.suc_Id, tbUsuario.emp_Id);
                             foreach (UDP_Acce_tbUsuario_Update_Result Usuario in List)
                                 MsjError = Usuario.MensajeError;

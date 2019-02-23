@@ -274,4 +274,16 @@ function Reemplazar(s) {
     return r;
 };
 
+function soloLetras(e) {
+    tecla = (document.all) ? e.keyCode : e.which;
+    tecla = String.fromCharCode(tecla)
+    return /^[0-9a-zA-Z-_.#*]+$/.test(tecla);
+}
+
+function nombreusuario(e) {
+    tecla = (document.all) ? e.keyCode : e.which;
+    tecla = String.fromCharCode(tecla)
+    return /^[a-zA-Z-.]+$/.test(tecla);
+}
+
 

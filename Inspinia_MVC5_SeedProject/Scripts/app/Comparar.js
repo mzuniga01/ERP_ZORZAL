@@ -29,3 +29,9 @@
         });
     });
 });
+
+function Contraseña(e) {
+    tecla = (document.all) ? e.keyCode : e.which;
+    tecla = String.fromCharCode(tecla)
+    return /^[0-9a-zA-Z-_.#*]+$/.test(tecla);
+}

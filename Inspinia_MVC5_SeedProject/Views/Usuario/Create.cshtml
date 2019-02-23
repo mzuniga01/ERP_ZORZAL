@@ -56,7 +56,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.usu_NombreUsuario, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.TextBoxFor(model => model.usu_NombreUsuario, new { @class = "form-control", maxlength = "100", placeholder="nombre.apellido"})
+                @Html.TextBoxFor(model => model.usu_NombreUsuario, new { @class = "form-control", maxlength = "100", placeholder="nombre.apellido", @autocomplete = "off", @onKeyPress = "return nombreusuario(event)" })
                     @Html.ValidationMessageFor(model => model.usu_NombreUsuario, "", new { @class = "text-danger", id = "NombreUsuario" })
                     <label id="msgUsuario"></label><br>
             </div>
@@ -72,21 +72,23 @@
         <div class="form-group">
             @Html.LabelFor(model => model.usu_Password, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                <input class="text-box single-line" data-val="true" data-val-required="El campo Password es requerido" id="usu_Password" maxlength="64" name="usu_Password" type="password" value="">
+                <input class="text-box single-line" data-val="true" data-val-required="El campo Password es requerido" id="usu_Password" maxlength="64" name="usu_Password"
+                        type="password" value="" autocomplete="off" onKeyPress = "return soloLetras(event)">
                 @Html.ValidationMessageFor(model => model.usu_Password, "", new { @class = "text-danger", id="Password" })
                 <label id="msg"></label><br>
             </div>
 
             @Html.LabelFor(model => model.ConfirmarPassword, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                <input class="text-box single-line" data-val="true" data-val-required="El campo Confirmar Password es requerido" id="confirmar-pass" maxlength="64" name="ConfirmarPassword" type="password" value="">
+                <input class="text-box single-line" data-val="true" data-val-required="El campo Confirmar Password es requerido" id="confirmar-pass" maxlength="64" name="ConfirmarPassword"
+                        type="password" value=""  onKeyPress = "return soloLetras(event)" autocomplete="off"> 
                 @Html.ValidationMessageFor(model => model.ConfirmarPassword, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
             @Html.LabelFor(model => model.suc_Id, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.DropDownList("suc_Id", (IEnumerable<SelectListItem>)ViewBag.Sucursal, new { @class = "form-control" })
+                @Html.DropDownList("suc_Id", (IEnumerable<SelectListItem>)ViewBag.Sucursal, "Seleccione",new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.suc_Id, "", new { @class = "text-danger" })
             </div>
         </div>

@@ -37,21 +37,20 @@
                             @Html.ValidationSummary(true)
                             @Html.HiddenFor(model => model.usu_Id)
                             @Html.HiddenFor(model => model.emp_Id)
-                            @Html.HiddenFor(model => model.emp_Id)
                             @Html.Hidden("RedirectTo", Url.Action("Index", "Usuario"))
                             @Html.Hidden("ConfirmarPassword", (string)ViewBag.ConfirmarPassword)
                             <div><br /><br /></div>
                             <div class="form-group">
                                 @Html.LabelFor(model => model.usu_NombreUsuario, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.TextBoxFor(model => model.usu_NombreUsuario, new { @class = "form-control", maxlength = "100" })
+                                    @Html.TextBoxFor(model => model.usu_NombreUsuario, new { @class = "form-control", maxlength = "100", @readonly = "readonly" })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.usu_NombreUsuario)
                                 </div>
 
 
                                 @Html.LabelFor(model => model.usu_Correo, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.TextBoxFor(model => model.usu_Correo, new { @class = "form-control", maxlength = "150" })
+                                    @Html.TextBoxFor(model => model.usu_Correo, new { @class = "form-control", maxlength = "150", @autocomplete = "off", @onKeyPress = "return Caracteres_Email(event)", @onkeyup = "this.value=CorreoElectronico(this.value)" })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.usu_Correo)</p>
                                 </div>
                             </div>
