@@ -1783,6 +1783,21 @@
       <Parameter Name="prod_CodigoBarras" Mode="In" Type="String" />
       <Parameter Name="bod_Id" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="UDP_Inv_tbProducto_Estado_Prueba" ReturnType="Collection(String)">
+      <Parameter Name="prod_Codigo" Mode="In" Type="String" />
+      <Parameter Name="prod_EsActivo" Mode="In" Type="Boolean" />
+      <Parameter Name="prod_UsuarioModifica" Mode="In" Type="Int32" />
+      <Parameter Name="prod_FechaModifica" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Inv_tbProducto_Update_RazonInactivacion" ReturnType="Collection(String)">
+      <Parameter Name="prod_Codigo" Mode="In" Type="String" />
+      <Parameter Name="prod_EsActivo" Mode="In" Type="Boolean" />
+      <Parameter Name="prod_Razon_Inactivacion" Mode="In" Type="String" />
+      <Parameter Name="prod_Usuario_Crea" Mode="In" Type="Int32" />
+      <Parameter Name="prod_Fecha_Crea" Mode="In" Type="DateTime" />
+      <Parameter Name="prod_UsuarioModifica" Mode="In" Type="Int32" />
+      <Parameter Name="prod_FechaModifica" Mode="In" Type="DateTime" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>

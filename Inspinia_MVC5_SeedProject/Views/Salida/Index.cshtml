@@ -113,42 +113,10 @@
                 </button>
                 <h4 class="modal-title" id="myModalLabel">Desea Aplicar la Salida</h4>
             </div>
-            <div id="GenReporte">
-                <div class="modal-body">
-                    @using (Ajax.BeginForm("GenReporte", "Salida", new AjaxOptions() { HttpMethod = "POST", UpdateTargetId = "GenReporte" }))
-                    {
-                        <div class="ibox-content">
-                            <div class="form-horizontal">
-                                @*//UpdateTargetId = "EditarProductoSalidaDetalle"*@
-                                <div class="form-group">
-                                    <label class="control-label col-md-2">Tipo De Salida</label>
-
-                                    <div class="col-sm-10">
-                                        <select class="form-control" id="bod_Id">
-                                            <option value="1">Prestamo</option>
-                                            <option value="2">Venta</option>
-                                            <option value="3">Devolucion</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-2">Fecha De Elboracion</label>
-
-                                    <div class="col-sm-10">
-                                        <input class="form-control" id="Fecha" type="date">
-                                    </div>
-                                </div>
-                                <p style="color:maroon"></p>
-                            </div>
-                        </div>
-                    }
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-primary" id="sal_FechaElaboracion" type="submit" id="btnAnularSalida">Generar</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                </div>
-
+            <div id="GenerarReporte" class="modal-body">
+                @Html.Partial("_GenReporte", new ERP_GMEDINA.Models.tbSalida())
             </div>
+            
 
         </div>
     </div>

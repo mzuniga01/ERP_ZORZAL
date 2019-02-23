@@ -22,7 +22,7 @@
                                 </div>
                             </div>
                             <div class="col-md-1">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarProducto"><span class="glyphicon glyphicon-search"></span></button>
+                                <button type="button" id="Productos" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarProducto"><span class="glyphicon glyphicon-search"></span></button>
                             </div>
 
                         </div>
@@ -47,7 +47,7 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.sald_Cantidad, "Cantidad", new { @class = "control-label col-md-2 required" })
                             <div class="col-md-4">
-                                @Html.EditorFor(model => model.sald_Cantidad, new { HtmlAttribute = new { name = "sald_Cantidad" } })
+                                @Html.EditorFor(model => model.sald_Cantidad, new { HtmlAttributes = new { name = "sald_Cantidad", @onkeypress = "return filterFloat(event,this);" } })
                                 <div id="validationcantidad">
                                     @Html.ValidationMessageFor(model => model.sald_Cantidad)
                                 </div>
@@ -71,7 +71,7 @@
                         </div>
                     </div>
 
-                    <table id="tblSalidaDetalleEdit" class="table table table-striped table-bordered">
+                    <table id="tblSalidaDetalle" class="table table table-striped table-bordered">
                         <thead>
                             <tr>
                                 <th>Codigo Producto</th>

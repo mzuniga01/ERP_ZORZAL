@@ -53,8 +53,7 @@
 
                         @Html.ValidationSummary(true)
                         @Html.HiddenFor(model => model.prod_Codigo)
-                        @Html.Hidden("RedirectTo", Url.Action("Index", "Producto"))
-
+                        @Html.Hidden("RedirectTo", Url.Action("edit", "Producto"))
                         @Html.HiddenFor(model => model.prod_UsuarioCrea)
                         @Html.HiddenFor(model => model.prod_FechaCrea)
                         @Html.HiddenFor(model => model.prod_UsuarioModifica)
@@ -84,7 +83,7 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.prod_Codigo, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                @Html.EditorFor(model => model.prod_Codigo, new { htmlAttributes = new  { @class = "form-control", @readonly = "readonly" }})
+                                @Html.EditorFor(model => model.prod_Codigo, new { htmlAttributes = new { @id = "CodigoPro", @class = "form-control"} })
                                 <p style="color:red">@Html.ValidationMessageFor(model => model.prod_Codigo)</p>
                             </div>
 
@@ -92,8 +91,7 @@
                             <div class="col-md-4">
                                 @Html.EditorFor(model => model.prod_CodigoBarras, new { htmlAttributes = new { @class = "form-control",@onkeypress = "return soloLetras(event)", @maxlength = "15", @readonly = "readonly" } })
                                 <p style="color:red">@Html.ValidationMessageFor(model => model.prod_CodigoBarras)</p>
-                            </div>
-                            
+                            </div>                            
                         </div>
 
                         <div class="form-group">
@@ -141,7 +139,7 @@
                             </div>                                                                       
                         </div>    
 
-                        <div class="form-group" id="Activo" >
+                        <div class="form-group" id="" >
                             @Html.LabelFor(model => model.prod_EsActivo, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
                                 @if (Model.prod_EsActivo == Helpers.ProductoActivo)
@@ -171,97 +169,62 @@
 
                         </div>
                                                                        
-                            <div class="ibox-content">
-                                <table class="table table-striped">
-                                    <tr>
-                                        <th>Acción</th>
-                                        <th>Usuario</th>
-                                        <th>Fecha</th>
-                                    </tr>
-                                    <tr>
-                                        <td>Creado</td>
-                                        <td>@Html.DisplayFor(model => model.tbUsuario1.usu_Nombres) 
-                                            @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)</td>
-                                        <td>@Html.DisplayFor(model => model.prod_FechaCrea)</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Modificado</td>
-                                        <td> @Html.DisplayFor(model => model.tbUsuario.usu_Nombres) 
-                                             @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)</td>
-                                        <td>@Html.DisplayFor(model => model.prod_FechaModifica)</td>
-                                    </tr>
-                                </table>
-                            </div>
+                           
 
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
-                                    @{
-                                        ERP_ZORZALEntities db2 = new ERP_ZORZALEntities();
-                                        var id2 = Model.prod_Codigo;
-                                        string query = "SELECT COUNT(prod_Codigo) FROM Inv.tbBodegaDetalle WHERE prod_Codigo ='" + id2 + "'";
-                                        var count = db2.Database.SqlQuery<int>(query, id2).Single();
-
-                                        if (count > 0)
-                                        {
-                                            <input type="submit" value="Guardar" class="btn btn-primary" disabled/>
-                                            if (Model.prod_EsActivo == Helpers.ProductoActivo) {
-                                            <button type="button" id="inactivar" name="inactivar" class="btn btn-danger" data-toggle="modal" data-target="#ModalAnular" disabled>
-                                                Inactivar
-                                            </button>
-                                            }
-                                            else
-                                            {
-                                                <button type="button" id="activar" name="activar" class="btn btn-info" data-toggle="modal" data-target="#ModalAnular1" disabled>
-                                                    Activar
-                                                </button>
-                                            }
-                                        }
-                                        else
-                                        {
-                                            <input type="submit" value="Guardar" class="btn btn-primary" />
-                                            if (Model.prod_EsActivo == Helpers.ProductoInactivo)
-                                            {
-                                                <button type="button" id="activar" name="activar" class="btn btn-info" data-toggle="modal" data-target="#ModalAnular1">
-                                                    Activar
-                                                </button>
-                                            }
-                                            else
-                                            {
-                                                <button type="button" id="inactivar" name="inactivar" class="btn btn-danger" data-toggle="modal" data-target="#ModalAnular">
-                                                    Inactivar
-                                                </button>
-                                                
-                                            }
-                                        }
-
-                                    }                                                                     
-                                  
-                                    @*<input type="submit" value="Guardar" class="btn btn-primary" />
-                                    @if (Model.prod_EsActivo)
+                                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                                    @if (Model.prod_EsActivo == Helpers.ProductoActivo)
                                     {
-                                    <button type="button" id="inactivar" name="inactivar" class="btn btn-danger" data-toggle="modal" data-target="#ModalAnular">
-                                        Inactivar
-                                    </button>
+                                        <button type="button" id="inactivar" name="inactivar" class="btn btn-danger" data-toggle="modal" data-target="#ModalAnular">
+                                            Inactivar
+                                        </button>                                        
                                     }
                                     else
                                     {
-                                    <button type="button" id="activar" name="activar" class="btn btn-info" data-toggle="modal" data-target="#ModalAnular1">
-                                        Activar
-                                    </button>
-                                    }*@
+                                        @Html.ActionLink("Activar", "Estadoactivar", new { id = Model.prod_Codigo }, new { @class = "btn btn-success" })
+                                    }                                                 
                                     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
 
 
                                 </div>
                             </div>
                         
-                        </div>
+                        </div>                      
                 }
                 </div>
             </div>
+            <div class="ibox-content">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Acción</th>
+                        <th>Usuario</th>
+                        <th>Fecha</th>
+                    </tr>
+                    <tr>
+                        <td>Creado</td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                    </td>
+                    <td>@Html.DisplayFor(model => model.prod_FechaCrea)</td>
+                </tr>
+                <tr>
+                    <td>Modificado</td>
+                    <td>
+                        @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                        @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                    </td>
+                    <td>@Html.DisplayFor(model => model.prod_FechaModifica)</td>
+                </tr>
+            </table>
+        </div>
         </div>
     </div>
  </div>
+
+
+
 
 <div class="modal fade" id="ModalAnular" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -287,28 +250,18 @@
 </div>
 
 
-<div class="modal fade" id="ModalAnular1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h5 class="modal-title" id="exampleModalLabel">Activar Producto</h5>
-            </div>
-            <div class="modal-body">
-                ¿Está seguro de Volver a activar este Producto?
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-primary btn-sm" type="button" id="Activar">Si</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-            </div>
-        </div>
-    </div>
-</div>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/Scripts/app/InActivarProducto.js"></script>
+<script src="~/Scripts/app/SubCategoriaProducto.js"></script>
 
 @section Scripts{
 @Scripts.Render("~/bundles/jqueryval")
+<script src="~/Scripts/app/InActivarProducto.js"></script>
     <script>
         jQuery('input,select').each(function () {
             var req = jQuery(this).attr('data-val-required');
@@ -324,13 +277,7 @@
     </script>  
 
 }
-<script src="~/Scripts/jquery-3.3.1.min.js"></script>
-<script src="~/Scripts/jquery-3.3.1.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
-<script src="~/Scripts/app/InActivarProducto.js"></script>
-<script src="~/Scripts/app/SubCategoriaProducto.js"></script>
+
 
 
 

@@ -1,36 +1,31 @@
-﻿using System;
+﻿using CrystalDecisions.CrystalReports.Engine;
+using ERP_GMEDINA.Models;
+using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
-using ERP_GMEDINA.Models;
-using System.Transactions;
-using CrystalDecisions.CrystalReports.Engine;
 using System.IO;
-using System.Web.Routing;
+using System.Linq;
+using System.Transactions;
+using System.Web.Mvc;
 
 namespace ERP_GMEDINA.Controllers
 {
     public class SalidaController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
-        GeneralFunctions Function = new GeneralFunctions();
+        private GeneralFunctions Function = new GeneralFunctions();
 
         // GET: /Salida/
         public ActionResult Index()
         {
             if (Function.Sesiones("Salida/Index"))
             {
-
             }
             else
             {
                 return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
             }
-
+            ViewBag.tsal_Id = new SelectList(db.tbTipoSalida, "tsal_Id", "tsal_Descripcion");
             var tbsalida = db.tbSalida;
             //.Include(t => t.tbUsuario).Include(t => t.tbBodega).Include(t => t.tbEstadoMovimiento).Include(t => t.tbTipoSalida)
             return View(tbsalida.ToList());
@@ -65,14 +60,13 @@ namespace ERP_GMEDINA.Controllers
                 throw;
             }
             //.Include(t => t.tbUsuario).Include(t => t.tbBodega).Include(t => t.tbEstadoMovimiento).Include(t => t.tbTipoSalida)
-
         }
+
         // GET: /Salida/Details/5
         public ActionResult Details(int? id)
         {
             if (Function.Sesiones("Salida/Details"))
             {
-
             }
             else
             {
@@ -96,160 +90,68 @@ namespace ERP_GMEDINA.Controllers
         {
             if (Function.Sesiones("Salida/Create"))
             {
-
             }
             else
             {
                 return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
             }
-
-            string UserName = "";
             int idUser = 0;
-            GeneralFunctions Login = new GeneralFunctions();
-            List<tbUsuario> User = Login.getUserInformation();
-            tbBodega tbBod = new tbBodega();
-            foreach (tbUsuario Usuario in User)
-            {
-                UserName = Usuario.usu_Nombres + " " + Usuario.usu_Apellidos;
-                idUser = Convert.ToInt32(Usuario.emp_Id);
-            }
 
-            ViewBag.bod_Id = new SelectList(db.tbBodega.Where(x => x.bod_ResponsableBodega == idUser).ToList(), "bod_Id", "bod_Nombre");
-            //ViewBag.bod_Prod = db.tbBodega.Where(x => x.bod_ResponsableBodega == idUser).Select(x => x.bod_Id).SingleOrDefault();
-            ViewBag.sal_BodDestinosa = new SelectList(db.tbBodega.Where(x => x.bod_ResponsableBodega != idUser), "bod_Id", "bod_Nombre");
-            ViewBag.estm_Id = new SelectList(db.tbEstadoMovimiento, "estm_Id", "estm_Descripcion");
-            ViewBag.prov_Id = new SelectList(db.tbProveedor, "prov_Id", "prov_Nombre");
-            ViewBag.tsal_Id = new SelectList(db.tbTipoSalida, "tsal_Id", "tsal_Descripcion");
-            ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo");
-            ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion");
-            ViewBag.box_Codigo = new SelectList(db.tbSalidaDetalle, "sald_Id", "box_Codigo");
-
-            ViewBag.sal_Id = new SelectList(db.tbProductoSubcategoria, "sal_Id", "sal_Id");
-            ViewBag.prod_Codigo = new SelectList(db.tbProducto, "prod_Codigo", "prod_Descripcion");
-            ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion");
-            ViewBag.Producto = db.tbBodegaDetalle.ToList();
-
-
-            //var result = (from a in db.tbBodega
-            //              where a.bod_ResponsableBodega.Equals(idUser)
-            //              select a.bod_ResponsableBodega).ToList();
-
-            return View();
-        }
-
-        //public JsonResult GetProdList()
-        //{
-        //    db.Configuration.ProxyCreationEnabled = false;
-        //    List<tbProducto> tbProducto = db.tbProducto.ToList();
-        //    return Json(tbProducto, JsonRequestBehavior.AllowGet);
-        //}
-
-        public ActionResult GenReporte(int? id, DateTime Fecha)
-        {
-            ReportDocument rd = new ReportDocument();
-            rd.Load(Path.Combine(Server.MapPath("~/Reports"), "Salida.rpt"));
-            var tbsalida = db.tbSalida.ToList();
-            var todo = db.SDP_Inv_Salida_Imprimir(13).ToList();
-
-            rd.SetDataSource(todo);
-            Response.Buffer = false;
-            Response.ClearContent();
-            Response.ClearHeaders();
             try
             {
-                Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
-                stream.Seek(0, SeekOrigin.Begin);
-                return File(stream, "application/pdf", "Salida_List.pdf");
-            }
-            catch
-            {
-                throw;
-            }
-            //.Include(t => t.tbUsuario).Include(t => t.tbBodega).Include(t => t.tbEstadoMovimiento).Include(t => t.tbTipoSalida)
+                Session["SalidaDetalle"] = null;
+                ViewBag.sal_BodDestino = db.SDP_tbBodega_Listado(3).ToList();
+                GeneralFunctions Login = new GeneralFunctions();
+                List<tbUsuario> User = Login.getUserInformation();
+                foreach (tbUsuario Usuario in User)
+                {
+                    idUser = Convert.ToInt32(Usuario.emp_Id);
+                }
 
-        }
-        public JsonResult BodegaDestino(int? id)
-        {
-            IEnumerable<object> list = null;
-            try
-            {
-                list = db.SDP_tbBodega_Listado(id).ToList();
+                ViewBag.bod_Id = new SelectList(db.tbBodega.Where(x => x.bod_ResponsableBodega == idUser).ToList(), "bod_Id", "bod_Nombre");
+                ViewBag.sal_BodDestino = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
+                ViewBag.estm_Id = new SelectList(db.tbEstadoMovimiento, "estm_Id", "estm_Descripcion");
+                ViewBag.tsal_Id = new SelectList(db.tbTipoSalida, "tsal_Id", "tsal_Descripcion");
+                ViewBag.Producto = db.tbBodegaDetalle.ToList();
+                return View();
             }
             catch (Exception Ex)
             {
                 Ex.Message.ToString();
+                return RedirectToAction("Index");
             }
-            return Json(list, JsonRequestBehavior.AllowGet);
-        }
-        public JsonResult GetProdList(int? id)
-        {
-            IEnumerable<object> list = null;
-            try
-            {
-                list = db.SDP_Inv_tbBodegaDetalle_Select_Producto(id).ToList();
-            }
-            catch (Exception Ex)
-            {
-                Ex.Message.ToString();
-            }
-            object jsonlist = new { d = list };
-            return Json(list, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetProdCodBar(string prod_CodigoBarras, int bod_Id)
-        {
-            IEnumerable<object> list = null;
-            try
-            {
-                list = db.SDP_Inv_tbProducto_Select_CodBar(prod_CodigoBarras, bod_Id).ToList();
-            }
-            catch (Exception Ex)
-            {
-                Ex.Message.ToString();
-            }
-            return Json(list, JsonRequestBehavior.AllowGet);
-        }
         // POST: /Salida/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "bod_Id,fact_Id,fact_Codigo,sal_FechaElaboracion,estm_Id,tsal_Id,sal_RazonDevolucion, sal_BodDestino, sal_EsAnulada, sal_RazonAnulada")] tbSalida tbSalida)
         {
-            string UserName = "";
             int idUser = 0;
-            GeneralFunctions Login = new GeneralFunctions();
-            List<tbUsuario> User = Login.getUserInformation();
-            tbBodega tbBod = new tbBodega();
-            foreach (tbUsuario Usuario in User)
+            try
             {
-                UserName = Usuario.usu_Nombres + " " + Usuario.usu_Apellidos;
-                idUser = Convert.ToInt32(Usuario.emp_Id);
-            }
+                GeneralFunctions Login = new GeneralFunctions();
+                List<tbUsuario> User = Login.getUserInformation();
+                foreach (tbUsuario Usuario in User)
+                {
+                    idUser = Convert.ToInt32(Usuario.emp_Id);
+                }
+                ViewBag.Producto = db.tbBodegaDetalle.ToList();
+                ViewBag.bod_Id = new SelectList(db.tbBodega.Where(x => x.bod_ResponsableBodega == idUser).ToList(), "bod_Id", "bod_Nombre");
+                ViewBag.sal_BodDestinosa = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
+                ViewBag.estm_Id = new SelectList(db.tbEstadoMovimiento, "estm_Id", "estm_Descripcion");
+                ViewBag.tsal_Id = new SelectList(db.tbTipoSalida, "tsal_Id", "tsal_Descripcion");
+                ViewBag.prod_Codigo = new SelectList(db.tbProducto, "prod_Codigo", "prod_Descripcion");
+                ViewBag.sal_BodDestino = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
+                var list = (List<tbSalidaDetalle>)Session["SalidaDetalle"];
 
-            ViewBag.bod_Id = new SelectList(db.tbBodega.Where(x => x.bod_ResponsableBodega == idUser).ToList(), "bod_Id", "bod_Nombre");
-            //ViewBag.bod_Prod = db.tbBodega.Where(x => x.bod_ResponsableBodega == idUser).Select(x => x.bod_Id).SingleOrDefault();
-            ViewBag.sal_BodDestinosa = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
-            ViewBag.estm_Id = new SelectList(db.tbEstadoMovimiento, "estm_Id", "estm_Descripcion");
-            ViewBag.prov_Id = new SelectList(db.tbProveedor, "prov_Id", "prov_Nombre");
-            ViewBag.tsal_Id = new SelectList(db.tbTipoSalida, "tsal_Id", "tsal_Descripcion");
-            ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo");
-            ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion");
-            ViewBag.box_Codigo = new SelectList(db.tbSalidaDetalle, "sald_Id", "box_Codigo");
-
-            ViewBag.sal_Id = new SelectList(db.tbProductoSubcategoria, "sal_Id", "sal_Id");
-            ViewBag.prod_Codigo = new SelectList(db.tbProducto, "prod_Codigo", "prod_Descripcion");
-            ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion");
-            ViewBag.Producto = db.tbBodegaDetalle.ToList();
-
-            var list = (List<tbSalidaDetalle>)Session["SalidaDetalle"];
-            var MensajeError = "0";
-            var MensajeErrorDetalle = "0";
-            IEnumerable<object> listSalida = null;
-            IEnumerable<object> listSalidaDetalle = null;
-            if (ModelState.IsValid)
-            {
-                try
+                var MensajeError = "0";
+                var MensajeErrorDetalle = "0";
+                IEnumerable<object> listSalida = null;
+                IEnumerable<object> listSalidaDetalle = null;
+                if (ModelState.IsValid)
                 {
                     using (TransactionScope Tran = new TransactionScope())
                     {
@@ -298,34 +200,101 @@ namespace ERP_GMEDINA.Controllers
                             else
                             {
                                 ModelState.AddModelError("", "No se pudo agregar el registro");
+                                Session["SalidaDetalle"] = null;
                                 return View(tbSalida);
                             }
-
                         }
                         Tran.Complete();
+                        Session["SalidaDetalle"] = null;
                         return RedirectToAction("Index");
                     }
                 }
-                catch (Exception Ex)
+                else
                 {
-                    ModelState.AddModelError("", "No se pudo agregar el registros" + Ex.Message.ToString());
-
                     ViewBag.Producto = db.tbBodegaDetalle.ToList();
+                    var errors = ModelState.Values.SelectMany(v => v.Errors);
+                    return View(tbSalida);
                 }
-
             }
-            else
+            catch (Exception Ex)
             {
+                ModelState.AddModelError("", "No se pudo agregar el registros" + Ex.Message.ToString());
+
                 ViewBag.Producto = db.tbBodegaDetalle.ToList();
-                var errors = ModelState.Values.SelectMany(v => v.Errors);
             }
+            Session["SalidaDetalle"] = null;
             return View(tbSalida);
         }
 
+        public ActionResult GenReporte(tbSalida tbSalida)
+        {
+            ReportDocument rd = new ReportDocument();
+            rd.Load(Path.Combine(Server.MapPath("~/Reports"), "Salida.rpt"));
+            var tbsalida = db.tbSalida.ToList();
+            var todo = db.SDP_Inv_Salida_Imprimir(13).ToList();
+
+            rd.SetDataSource(todo);
+            Response.Buffer = false;
+            Response.ClearContent();
+            Response.ClearHeaders();
+            try
+            {
+                Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+                stream.Seek(0, SeekOrigin.Begin);
+                return File(stream, "application/pdf", "Salida_List.pdf");
+            }
+            catch
+            {
+                throw;
+            }
+            //.Include(t => t.tbUsuario).Include(t => t.tbBodega).Include(t => t.tbEstadoMovimiento).Include(t => t.tbTipoSalida)
+        }
+
+        public JsonResult BodegaDestino(int? id)
+        {
+            IEnumerable<object> list = null;
+            try
+            {
+                list = db.SDP_tbBodega_Listado(id).ToList();
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+            }
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetProdList(tbBodegaDetalle tbBodegaDetalle)
+        {
+            IEnumerable<object> list = null;
+            try
+            {
+                list = db.SDP_Inv_tbBodegaDetalle_Select_Producto(tbBodegaDetalle.bod_Id).ToList();
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+            }
+            object jsonlist = new { d = list };
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetProdCodBar(string prod_CodigoBarras, int bod_Id)
+        {
+            IEnumerable<object> list = null;
+            try
+            {
+                list = db.SDP_Inv_tbProducto_Select_CodBar(prod_CodigoBarras, bod_Id).ToList();
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+            }
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
 
         public JsonResult SaveNewDatail(tbSalidaDetalle SalidaDetalle)
         {
-
             var list = (List<tbSalidaDetalle>)Session["SalidaDetalle"];
             var MensajeError = "0";
             var MensajeErrorDetalle = "0";
@@ -369,17 +338,14 @@ namespace ERP_GMEDINA.Controllers
                 Ex.Message.ToString();
             }
 
-
             return Json("", JsonRequestBehavior.AllowGet);
         }
-
 
         // GET: /Salida/Edit
         public ActionResult Edit(int? id)
         {
             if (Function.Sesiones("Salida/Edit"))
             {
-
             }
             else
             {
@@ -391,16 +357,7 @@ namespace ERP_GMEDINA.Controllers
                 return RedirectToAction("Index");
             }
             tbSalida tbSalida = db.tbSalida.Find(id);
-            //ViewBag.UsuarioCrea = db.tbUsuario.Find(tbSalida.sal_UsuarioCrea).usu_NombreUsuario;
-            var UsuarioModifica = tbSalida.sal_UsuarioModifica;
-            if (UsuarioModifica == null)
-            {
-                ViewBag.UsuarioModifica = "";
-            }
-            else
-            {
-                ViewBag.UsuarioModifica = db.tbUsuario.Find(UsuarioModifica).usu_NombreUsuario;
-            };
+            Session["SalidaDetalle"] = null;
             if (tbSalida == null)
             {
                 return RedirectToAction("NotFound", "Login");
@@ -431,7 +388,6 @@ namespace ERP_GMEDINA.Controllers
 
             ViewBag.sal_Id = new SelectList(db.tbProductoSubcategoria, "sal_Id", "sal_Id", tbSalida.sal_Id);
             ViewBag.Producto = db.tbBodegaDetalle.ToList();
-
 
             return View(tbSalida);
         }
@@ -467,15 +423,15 @@ namespace ERP_GMEDINA.Controllers
             }
             return Json(list, JsonRequestBehavior.AllowGet);
         }
+
         // POST: /Salida/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         public JsonResult EditSalidaDetalle(tbSalidaDetalle data)
         {
             try
             {
-
                 tbSalidaDetalle pSalidaDetalle = db.tbSalidaDetalle.Find(data.sald_Id);
                 var MensajeError = "";
                 IEnumerable<object> list = null;
@@ -508,7 +464,7 @@ namespace ERP_GMEDINA.Controllers
         }
 
         // POST: /Salida/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -519,6 +475,7 @@ namespace ERP_GMEDINA.Controllers
             {
                 try
                 {
+                    ViewBag.sal_BodDestino = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbSalida.sal_BodDestino);
                     ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion");
                     ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_ResponsableBodega", tbSalida.bod_Id);
                     ViewBag.bod_Nombre = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
@@ -550,7 +507,6 @@ namespace ERP_GMEDINA.Controllers
                         MensajeError = ListaPrecio.MensajeError;
                     if (MensajeError == "-1")
                     {
-
                     }
                     else
                     {
@@ -564,7 +520,7 @@ namespace ERP_GMEDINA.Controllers
                     ViewBag.sal_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSalida.sal_UsuarioModifica);
                     ViewBag.Producto = db.tbBodegaDetalle.ToList();
                 }
-
+                Session["SalidaDetalle"] = null;
                 return RedirectToAction("Index");
             }
             else
@@ -579,8 +535,8 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo", tbSalida.fact_Id);
             ViewBag.tsal_Id = new SelectList(db.tbTipoSalida, "tsal_Id", "tsal_Descripcion", tbSalida.tsal_Id);
             ViewBag.Producto = db.tbBodegaDetalle.ToList();
+            Session["SalidaDetalle"] = null;
             return View(tbSalida);
-
         }
 
         public JsonResult FacturaExist(string fact_Codigo)
@@ -597,7 +553,6 @@ namespace ERP_GMEDINA.Controllers
                 {
                     if (fact_Codigo == "***-***-**-********")
                     {
-
                     }
                     else
                     {
@@ -626,8 +581,6 @@ namespace ERP_GMEDINA.Controllers
             }
             catch (Exception Ex)
             {
-
-
                 return Json(Ex, JsonRequestBehavior.AllowGet);
             }
         }
@@ -660,7 +613,6 @@ namespace ERP_GMEDINA.Controllers
                         MensajeError = Salida.MensajeError;
                     if (MensajeError == "-1")
                     {
-
                     }
                     else
                     {
@@ -675,61 +627,30 @@ namespace ERP_GMEDINA.Controllers
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Index");
-
         }
 
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Imprimir(int? id)
         {
-            if (ModelState.IsValid)
+            ReportDocument rd = new ReportDocument();
+            rd.Load(Path.Combine(Server.MapPath("~/Reports"), "Salida.rpt"));
+            var tbsalida = db.tbSalida.ToList();
+            var todo = db.SDP_Inv_Salida_Imprimir(13).ToList();
+
+            rd.SetDataSource(todo);
+            Response.Buffer = false;
+            Response.ClearContent();
+            Response.ClearHeaders();
+            try
             {
-                try
-                {
-                    var MensajeError = "";
-                    byte Estado = 3;
-                    IEnumerable<object> list = null;
-                    tbSalida tbSalida = db.tbSalida.Find(id);
-                    list = db.UDP_Inv_tbSalida_Update(tbSalida.sal_Id,
-                                                    tbSalida.bod_Id,
-                                                    tbSalida.fact_Id,
-                                                    tbSalida.sal_FechaElaboracion,
-                                                    Estado,
-                                                    tbSalida.tsal_Id,
-                                                    tbSalida.sal_BodDestino,
-                                                    tbSalida.sal_EsAnulada,
-                                                    tbSalida.sal_RazonAnulada,
-                                                    tbSalida.sal_RazonDevolucion,
-                                                    tbSalida.sal_UsuarioCrea,
-                                                    tbSalida.sal_FechaCrea,
-                                                    Function.GetUser(), Function.DatetimeNow());
-
-                    foreach (UDP_Inv_tbSalida_Update_Result Salida in list)
-                        MensajeError = Salida.MensajeError;
-                    if (MensajeError == "-1")
-                    {
-
-                    }
-                    else
-                    {
-                        return RedirectToAction("Index");
-                    }
-                }
-                catch (Exception Ex)
-                {
-                    ModelState.AddModelError("", "No se pudo agregar el registros" + Ex.Message.ToString());
-                }
-
-                return RedirectToAction("Index");
+                Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+                stream.Seek(0, SeekOrigin.Begin);
+                return File(stream, "application/pdf", "Salida_List.pdf");
             }
-            return RedirectToAction("Index");
-
+            catch
+            {
+                throw;
+            }
         }
-
-
-
-
 
         public JsonResult Anular(tbSalida Salida)
         {
@@ -757,7 +678,6 @@ namespace ERP_GMEDINA.Controllers
                     MensajeError = RSSalida.MensajeError;
                 if (MensajeError == "-1")
                 {
-
                 }
                 else
                 {
@@ -768,14 +688,17 @@ namespace ERP_GMEDINA.Controllers
                 ModelState.AddModelError("", "No se pudo agregar el registros" + Ex.Message.ToString());
             }
 
-
             return Json("", JsonRequestBehavior.AllowGet);
-
         }
 
         [HttpPost]
-        public JsonResult SaveSalidaDetalle(tbSalidaDetalle SalidaDetalle)
+        public JsonResult SaveSalidaDetalle(tbSalidaDetalle SalidaDetalle, string data_producto)
         {
+            var datos = "";
+            decimal cantvieja = 0;
+            decimal cantnueva = 0;
+            data_producto = SalidaDetalle.prod_Codigo;
+            decimal data_cantidad = SalidaDetalle.sald_Cantidad;
             List<tbSalidaDetalle> sessionSalidaDetalle = new List<tbSalidaDetalle>();
             var list = (List<tbSalidaDetalle>)Session["SalidaDetalle"];
             if (list == null)
@@ -785,10 +708,22 @@ namespace ERP_GMEDINA.Controllers
             }
             else
             {
+                foreach (var t in list)
+                    if (t.prod_Codigo == data_producto)
+                    {
+                        datos = data_producto;
+                        foreach (var viejo in list)
+                            if (viejo.prod_Codigo == SalidaDetalle.prod_Codigo)
+                                cantvieja = viejo.sald_Cantidad;
+                        cantnueva = cantvieja + data_cantidad;
+                        t.sald_Cantidad = cantnueva;
+                        return Json(datos, JsonRequestBehavior.AllowGet);
+                    }
                 list.Add(SalidaDetalle);
                 Session["SalidaDetalle"] = list;
+                return Json(datos, JsonRequestBehavior.AllowGet);
             }
-            return Json("Exito", JsonRequestBehavior.AllowGet);
+            return Json(datos, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -804,7 +739,6 @@ namespace ERP_GMEDINA.Controllers
             }
             return Json("", JsonRequestBehavior.AllowGet);
         }
-
 
         [HttpPost]
         public JsonResult SaveCreateSalidaDetalle(tbSalidaDetalle tbSalidaDetalle)
@@ -838,7 +772,6 @@ namespace ERP_GMEDINA.Controllers
             }
             return Json(MensajeError, JsonRequestBehavior.AllowGet);
         }
-
 
         // GET: /Salida/Delete/5
         public ActionResult Delete(int? id)

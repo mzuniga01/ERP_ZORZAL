@@ -3012,5 +3012,59 @@ namespace ERP_GMEDINA.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_Inv_tbProducto_Select_CodBar_Result>("SDP_Inv_tbProducto_Select_CodBar", prod_CodigoBarrasParameter, bod_IdParameter);
         }
+    
+        public virtual ObjectResult<UDP_Inv_tbProducto_Estado_Prueba_Result> UDP_Inv_tbProducto_Estado_Prueba(string prod_Codigo, Nullable<bool> prod_EsActivo, Nullable<int> prod_UsuarioModifica, Nullable<System.DateTime> prod_FechaModifica)
+        {
+            var prod_CodigoParameter = prod_Codigo != null ?
+                new ObjectParameter("prod_Codigo", prod_Codigo) :
+                new ObjectParameter("prod_Codigo", typeof(string));
+    
+            var prod_EsActivoParameter = prod_EsActivo.HasValue ?
+                new ObjectParameter("prod_EsActivo", prod_EsActivo) :
+                new ObjectParameter("prod_EsActivo", typeof(bool));
+    
+            var prod_UsuarioModificaParameter = prod_UsuarioModifica.HasValue ?
+                new ObjectParameter("prod_UsuarioModifica", prod_UsuarioModifica) :
+                new ObjectParameter("prod_UsuarioModifica", typeof(int));
+    
+            var prod_FechaModificaParameter = prod_FechaModifica.HasValue ?
+                new ObjectParameter("prod_FechaModifica", prod_FechaModifica) :
+                new ObjectParameter("prod_FechaModifica", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbProducto_Estado_Prueba_Result>("UDP_Inv_tbProducto_Estado_Prueba", prod_CodigoParameter, prod_EsActivoParameter, prod_UsuarioModificaParameter, prod_FechaModificaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Inv_tbProducto_Update_RazonInactivacion_Result> UDP_Inv_tbProducto_Update_RazonInactivacion(string prod_Codigo, Nullable<bool> prod_EsActivo, string prod_Razon_Inactivacion, Nullable<int> prod_Usuario_Crea, Nullable<System.DateTime> prod_Fecha_Crea, Nullable<int> prod_UsuarioModifica, Nullable<System.DateTime> prod_FechaModifica)
+        {
+            var prod_CodigoParameter = prod_Codigo != null ?
+                new ObjectParameter("prod_Codigo", prod_Codigo) :
+                new ObjectParameter("prod_Codigo", typeof(string));
+    
+            var prod_EsActivoParameter = prod_EsActivo.HasValue ?
+                new ObjectParameter("prod_EsActivo", prod_EsActivo) :
+                new ObjectParameter("prod_EsActivo", typeof(bool));
+    
+            var prod_Razon_InactivacionParameter = prod_Razon_Inactivacion != null ?
+                new ObjectParameter("prod_Razon_Inactivacion", prod_Razon_Inactivacion) :
+                new ObjectParameter("prod_Razon_Inactivacion", typeof(string));
+    
+            var prod_Usuario_CreaParameter = prod_Usuario_Crea.HasValue ?
+                new ObjectParameter("prod_Usuario_Crea", prod_Usuario_Crea) :
+                new ObjectParameter("prod_Usuario_Crea", typeof(int));
+    
+            var prod_Fecha_CreaParameter = prod_Fecha_Crea.HasValue ?
+                new ObjectParameter("prod_Fecha_Crea", prod_Fecha_Crea) :
+                new ObjectParameter("prod_Fecha_Crea", typeof(System.DateTime));
+    
+            var prod_UsuarioModificaParameter = prod_UsuarioModifica.HasValue ?
+                new ObjectParameter("prod_UsuarioModifica", prod_UsuarioModifica) :
+                new ObjectParameter("prod_UsuarioModifica", typeof(int));
+    
+            var prod_FechaModificaParameter = prod_FechaModifica.HasValue ?
+                new ObjectParameter("prod_FechaModifica", prod_FechaModifica) :
+                new ObjectParameter("prod_FechaModifica", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbProducto_Update_RazonInactivacion_Result>("UDP_Inv_tbProducto_Update_RazonInactivacion", prod_CodigoParameter, prod_EsActivoParameter, prod_Razon_InactivacionParameter, prod_Usuario_CreaParameter, prod_Fecha_CreaParameter, prod_UsuarioModificaParameter, prod_FechaModificaParameter);
+        }
     }
 }

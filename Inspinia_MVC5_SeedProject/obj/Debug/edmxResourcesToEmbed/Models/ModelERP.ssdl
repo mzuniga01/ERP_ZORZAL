@@ -4284,6 +4284,12 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
     <Parameter Name="prod_EsActivo" Type="bit" Mode="In" />
     <Parameter Name="prod_Razon_Inactivacion" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="UDP_Inv_tbProducto_Estado_Prueba" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
+    <Parameter Name="prod_EsActivo" Type="bit" Mode="In" />
+    <Parameter Name="prod_UsuarioModifica" Type="int" Mode="In" />
+    <Parameter Name="prod_FechaModifica" Type="datetime" Mode="In" />
+  </Function>
   <Function Name="UDP_Inv_tbProducto_GetCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="codsubcategoria" Type="int" Mode="In" />
   </Function>
@@ -4315,6 +4321,15 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
     <Parameter Name="prod_CodigoBarras" Type="varchar" Mode="In" />
     <Parameter Name="prod_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="prod_FechaCrea" Type="datetime" Mode="In" />
+    <Parameter Name="prod_UsuarioModifica" Type="int" Mode="In" />
+    <Parameter Name="prod_FechaModifica" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="UDP_Inv_tbProducto_Update_RazonInactivacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
+    <Parameter Name="prod_EsActivo" Type="bit" Mode="In" />
+    <Parameter Name="prod_Razon_Inactivacion" Type="varchar" Mode="In" />
+    <Parameter Name="prod_Usuario_Crea" Type="int" Mode="In" />
+    <Parameter Name="prod_Fecha_Crea" Type="datetime" Mode="In" />
     <Parameter Name="prod_UsuarioModifica" Type="int" Mode="In" />
     <Parameter Name="prod_FechaModifica" Type="datetime" Mode="In" />
   </Function>

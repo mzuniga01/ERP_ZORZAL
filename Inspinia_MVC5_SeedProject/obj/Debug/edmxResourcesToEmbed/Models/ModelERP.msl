@@ -2209,5 +2209,7 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbProducto_Estado_Prueba" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProducto_Estado_Prueba" />
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbProducto_Update_RazonInactivacion" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProducto_Update_RazonInactivacion" />
   </EntityContainerMapping>
 </Mapping>

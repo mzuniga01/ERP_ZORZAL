@@ -61,7 +61,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.sald_Cantidad, "Cantidad", new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.sald_Cantidad)
+                @Html.EditorFor(model => model.sald_Cantidad, new { HtmlAttributes = new { name = "sald_Cantidad", @onkeypress = "return filterFloat(event,this);" } })
                 <div id="validationcantidad">
                     @Html.ValidationMessageFor(model => model.sald_Cantidad)
                 </div>

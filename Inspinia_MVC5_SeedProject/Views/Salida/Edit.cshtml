@@ -34,18 +34,18 @@
     </div>
 </div>
 @{
-//string UserName = "";
-//int idUser = 0;
-//int czx = 0;
-//GeneralFunctions Login = new GeneralFunctions();
-//List<tbUsuario> User = Login.getUserInformation();
-//tbBodega tbBod = new tbBodega();
-//foreach (tbUsuario Usuario in User)
-//{
-//    UserName = Usuario.usu_Nombres + " " + Usuario.usu_Apellidos;
-//    idUser = Convert.ToInt32(Usuario.emp_Id);
-//    int czx = Usuario.tbBodega.Where(x => x.bod_ResponsableBodega == idUser).Select(x => x.bod_Id).SingleOrDefault();
-//}
+    //string UserName = "";
+    //int idUser = 0;
+    //int czx = 0;
+    //GeneralFunctions Login = new GeneralFunctions();
+    //List<tbUsuario> User = Login.getUserInformation();
+    //tbBodega tbBod = new tbBodega();
+    //foreach (tbUsuario Usuario in User)
+    //{
+    //    UserName = Usuario.usu_Nombres + " " + Usuario.usu_Apellidos;
+    //    idUser = Convert.ToInt32(Usuario.emp_Id);
+    //    int czx = Usuario.tbBodega.Where(x => x.bod_ResponsableBodega == idUser).Select(x => x.bod_Id).SingleOrDefault();
+    //}
 
 
 }
@@ -118,21 +118,21 @@
                                 @{
                                     if (Model.sal_EsAnulada)
                                     {
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.sal_EsAnulada, "Es Anulada?", new { @class = "control-label col-md-2 required" })
-                                    <div class="col-md-4">
-                                        <p>@Html.EditorFor(model => model.sal_EsAnulada, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })</p>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.sal_RazonAnulada, "Razon de Anulacion", new { @class = "control-label col-md-2 required" })
-                                    <div class="col-md-4">
-                                        @Html.EditorFor(model => model.sal_RazonAnulada, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                    </div>
-                                    </div >
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.sal_EsAnulada, "Es Anulada?", new { @class = "control-label col-md-2 required" })
+                                            <div class="col-md-4">
+                                                <p>@Html.EditorFor(model => model.sal_EsAnulada, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })</p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.sal_RazonAnulada, "Razon de Anulacion", new { @class = "control-label col-md-2 required" })
+                                            <div class="col-md-4">
+                                                @Html.EditorFor(model => model.sal_RazonAnulada, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                            </div>
+                                        </div>
                                     }
-                                    }
-                                </fieldset>
+                                }
+                            </fieldset>
                         </div>
 
                         <div class="form-horizontal" id="VentaoDevolucion" style="display:none">
@@ -199,7 +199,7 @@
                                     }
                                     if (Activo == Helpers.Aplicada)
                                     {
-                                        @Html.ActionLink("Imprimir", "ImprimirSalida", new { id = Model.sal_Id }, new { @class = "btn btn-success" })
+                                        @Html.ActionLink("Imprimir", "Imprimir", new { id = Model.sal_Id }, new { @class = "btn btn-success" })
                                     }
                                     if (!Model.sal_EsAnulada)
                                     {
@@ -277,9 +277,9 @@
                                                         </button>
                                                     </div>
                                                 }
-                                                    <legend class="box-border">SalidaDetalle</legend>
-                                                    @Html.Partial("_EditSalidaDetalle", Model.tbSalidaDetalle, new ViewDataDictionary(new { clave = Model.sal_Id }))
-                                                </fieldset>
+                                                <legend class="box-border">SalidaDetalle</legend>
+                                                @Html.Partial("_EditSalidaDetalle", Model.tbSalidaDetalle, new ViewDataDictionary(new { clave = Model.sal_Id }))
+                                            </fieldset>
                                         </div>
                                     </div>
                                 </div>
@@ -341,6 +341,65 @@
             $('#sal_RazonAnulada').val('');
         }
     })
+</script>
+
+<script>
+    //$(":input").inputmask();
+
+    //$("#sald_Cantidad").inputmask({ "mask": "999.99" });
+
+    var selector = "#fact_Codigo";
+    $(selector).val('');
+    $(selector).mask("999-999-99-99999999", { reverse: true });
+    //Output is shown as: 1,000,000
+
+    var value = $(selector).cleanVal();
+    //Mask will be removed on next line
+    $(selector).val('');
+
+    $(function () {
+        $("#sal_FechaElaboracion").datepicker({
+            dateFormat: 'yy-mm-dd',
+            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá']
+        }).datepicker("setDate", new Date());
+    });
+
+    function filterFloat(evt, input) {
+        // Backspace = 8, Enter = 13, ‘0′ = 48, ‘9′ = 57, ‘.’ = 46, ‘-’ = 43
+        var key = window.Event ? evt.which : evt.keyCode;
+        var chark = String.fromCharCode(key);
+        var tempValue = input.value + chark;
+        if (key >= 48 && key <= 57) {
+            if (filter(tempValue) === false) {
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            if (key == 8 || key == 13 || key == 0) {
+                return true;
+            } else if (key == 46) {
+                if (filter(tempValue) === false) {
+                    return false;
+                } else {
+                    return true;
+                }
+            } else {
+                return false;
+            }
+        }
+    }
+    function filter(__val__) {
+        var preg = /^([0-9]+\.?[0-9]{0,2})$/;
+        if (preg.test(__val__) === true) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
 </script>
 @*<script type="text/javascript">
         var contadorp = 0;

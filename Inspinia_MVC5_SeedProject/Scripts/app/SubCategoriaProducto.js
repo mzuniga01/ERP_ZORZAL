@@ -1,7 +1,7 @@
 ﻿////Get SubCategoria
-$(document).on("change", "#pcat_Id", function () {
-    GetSubCategoriaProducto();   
-});
+//$(document).on("change", "#pcat_Id", function () {
+//    GetSubCategoriaProducto();   
+//});
 
 function GetSubCategoriaProducto() {
     var CodCategoria = $('#pcat_Id').val();
@@ -54,30 +54,6 @@ $('#pscat_Id').change(function () {
     })
 });
 
-//$(document).ready(function () {
-//    GetCategoriaProducto()
-//});
-
-$(document).keydown(function (e) {
-    if ((e.key == 'g' || e.key == 'G') && (e.ctrlKey || e.metaKey)) {
-        e.preventDefault();
-        //alert("Ctrl-g pressed");
-        $("form").submit();
-        return false;
-    }
-    return true;
-});
-
-
-//$(document).ready(function () {
-//var cate = $('#pcat_Id').val();
-//if (depto === '') {
-//    document.getElementById("pscat_Id").disabled = true;
-//}
-//else {
-
-//}
-//});
 
 //Validacion de solo letras
 function soloLetras(e) {
