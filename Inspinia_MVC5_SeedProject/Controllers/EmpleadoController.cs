@@ -144,13 +144,7 @@ namespace ERP_GMEDINA.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (db.tbEmpleado.Any(a => a.emp_Identificacion == tbEmpleado.emp_Identificacion))
-                {
-                    ViewBag.tpi_Id = new SelectList(db.tbEmpleado, "emp_Id", "tpi_Id", tbEmpleado.tpi_Id);
-                    ViewBag.TipoIList = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion", "Seleccione");
-                    ModelState.AddModelError("", "Ya existe un empleado con el mismo numero de identidad");
-                    return View(tbEmpleado);
-                }
+              
                 try
                 {
                     IEnumerable<object> list = null;

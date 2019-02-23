@@ -96,7 +96,7 @@
         <div class="form-group">
            @Html.LabelFor(model => model.emp_Identificacion, new { @class = "control-label col-md-2 , required" })
         <div class="col-md-4">
-            @Html.EditorFor(model => model.emp_Identificacion,new {@class="single-line", MaxLength=14 })
+            @Html.EditorFor(model => model.emp_Identificacion, new { htmlAttributes = new { MaxLength = 14 } })
             <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_Identificacion)</p>
         </div>
 
@@ -112,7 +112,7 @@
 
             @Html.LabelFor(model => model.emp_Telefono, new { @class = "control-label col-md-2 , required" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.emp_Telefono, new { @class = "single-line",  MaxLength = 25 })
+                @Html.EditorFor(model => model.emp_Telefono, new { htmlAttributes = new { MaxLength = 10 } })
                 <p style="color:red">@Html.ValidationMessageFor(model => model.emp_Telefono)</p>
             </div>
 

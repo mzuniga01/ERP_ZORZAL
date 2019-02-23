@@ -12,7 +12,9 @@
     
         //Factura
     $("#emp_FechaNacimientoEdit").datepicker({
-        dateFormat: 'dd-mm-yy',
+       dateFormat: 'dd-mm-yy',               
+        changeMonth: true,
+        monthNamesShort: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         changeYear: true,
         yearRange: '1980:2000',
@@ -134,15 +136,15 @@ function limpiaNombre() {
     
 }
 
-function limpiaApellido() {
-    var val = document.getElementById("emp_Apellido").value;
-    var tam = val.length;
-    for (i = 0; i < tam; i++) {
-        if (!isNaN(val[i]))
-            document.getElementById("emp_Apellido").value = '';
-    }
+//function limpiaApellido() {
+//    var val = document.getElementById("emp_Apellido").value;
+//    var tam = val.length;
+//    for (i = 0; i < tam; i++) {
+//        if (!isNaN(val[i]))
+//            document.getElementById("emp_Apellido").value = '';
+//    }
 
-}
+//}
 //function limpiaIdentificacion() {
 //    var val = document.getElementById("emp_Identificacion").value;
 //    var tam = val.length;
