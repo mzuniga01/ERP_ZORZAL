@@ -39,6 +39,7 @@
 
                     @using (Html.BeginForm())
                     {
+                    
                         @Html.AntiForgeryToken()
 
                         <div class="form-horizontal">
@@ -48,8 +49,9 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.prov_RTN, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.prov_RTN, new { htmlAttributes = new { @maxlength = "14" , @autocomplete = "off" } })
-                                    @Html.ValidationMessageFor(model => model.prov_RTN)
+                                    @Html.EditorFor(model => model.prov_RTN, new { htmlAttributes = new { @maxlength = "14", @autocomplete = "off" } })
+                                    <p style="color:red" id="Rtn_Error">@Html.ValidationMessageFor(model => model.prov_RTN)</p>
+                                  
                                     <div id="validationRTN">
                                         <p style="color:red"></p>
                                     </div>
@@ -60,8 +62,8 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.prov_Nombre, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.prov_Nombre, new { htmlAttributes = new { @onkeypress = "return CaracteresNombre(event)", @maxlength = "50", @autocomplete = "off" } })
-                                    @Html.ValidationMessageFor(model => model.prov_Nombre)
+                                    @Html.EditorFor(model => model.prov_Nombre, new { htmlAttributes = new { @maxlength = "50", @onKeyPress = "return CaracteresNombre(event)", @onkeyup = "this.value=NumText(this.value)", @autocomplete = "off" } })
+                                    <p style="color:red" id="NombreError">@Html.ValidationMessageFor(model => model.prov_Nombre)</p>
                                     <div id="validationNombre">
                                         <p style="color:red"></p>
                                     </div>
@@ -72,12 +74,12 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.prov_NombreContacto, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.prov_NombreContacto, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @maxlength = "50", @autocomplete = "off" } })
-                                    @Html.ValidationMessageFor(model => model.prov_NombreContacto)
+                                    @Html.EditorFor(model => model.prov_NombreContacto, new { htmlAttributes = new { @maxlength = "50", @onKeyPress = "return soloLetras(event)", @onkeyup = "this.value=NumText(this.value)", @autocomplete = "off" } })
+                                    <p style="color:red" id="ContactoError"> @Html.ValidationMessageFor(model => model.prov_NombreContacto)</p>
+
                                     <div id="validationContacto">
                                         <p style="color:red"></p>
                                     </div>
-
                                 </div>
                             </div>
 
@@ -86,19 +88,22 @@
                                 <label class="control-label col-md-2">Direccion<span style="color:red">*</span></label>
                                 <div class="col-md-4">
 
-                                    @Html.TextAreaFor(model => model.prov_Direccion, new { @class = "form-control", MaxLength = 200, @autocomplete = "off", @onKeyPress = "return controlCaracteres(event)" })
+                                    @Html.TextAreaFor(model => model.prov_Direccion, new { @class = "form-control", MaxLength = 200, @onKeyPress = "return CaracteresNombre(event)", @onkeyup = "this.value=NumText1(this.value)", @autocomplete = "off" })
+                                    <p style="color:red" id="DireccionError">
+                                        @Html.ValidationMessageFor(model => model.prov_Direccion)
+                                    </p>
                                     <div id="validationDireccion">
                                         <p style="color:red"></p>
                                     </div>
-
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.prov_Email, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.TextBoxFor(model => model.prov_Email, new { @class = "form-control", @autocomplete = "off", maxlength = 50 })
+                                    @Html.TextBoxFor(model => model.prov_Email, new { @class = "form-control", @onKeyPress = "return CaracteresNombre(event)", @onkeyup = "this.value=NumText(this.value)", @autocomplete = "off" })
 
+                                  
                                     <div id="validationEmail">
                                         <p style="color:red"></p>
                                     </div>
@@ -113,7 +118,11 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.prov_Telefono, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.prov_Telefono, new { htmlAttributes = new { @maxlength = "25", @autocomplete = "off" } })
+                                    @Html.EditorFor(model => model.prov_Telefono, new { htmlAttributes = new { @maxlength = "25", @onKeyPress = "return CaracteresNombre(event)", @onkeyup = "this.value=NumText(this.value)", @autocomplete = "off" } })
+                                    <p style="color:red" id="TelefonoError">
+                                        @Html.ValidationMessageFor(model => model.prov_Telefono)
+                                    </p>
+
                                     <div id="validationTelefono">
                                         <p style="color:red"></p>
                                     </div>
@@ -125,14 +134,15 @@
                                 <div class="col-md-4">
 
                                     @Html.DropDownList("acte_Id", (IEnumerable<SelectListItem>)ViewBag.Actividad, "Seleccione", new { @class = "form-control" })
-                                    <div id="validationActividad">
-                                        <p style="color:red"></p>
-                                    </div>
+                                    <p style="color:red">
+                                        @Html.ValidationMessageFor(model => model.acte_Id)
+                                    </p>
 
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
+                                    @*<input type="submit" value="Guardar" class="btn btn-primary" />*@
                                     <button type="button" id="btnGuardar" class="btn btn-primary">Guardar</button>
                                     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                                 </div>

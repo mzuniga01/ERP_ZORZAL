@@ -86,8 +86,52 @@ namespace ERP_ZORZAL.Controllers
         }
 
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "prov_RTN, prov_Nombre, prov_NombreContacto,prov_Direccion, prov_Email, prov_Telefono,acte_Id")] tbProveedor tbProveedor)
+        {
 
 
+
+
+            if (ModelState.IsValid)
+            {
+
+
+                try
+                {
+                    IEnumerable<Object> List = null;
+                    string Msj = "";
+                    ViewBag.Actividad = new SelectList(db.tbActividadEconomica, "acte_Id", "acte_Descripcion", tbProveedor.acte_Id);
+                    List = db.UDP_Inv_tbProveedor_Insert(tbProveedor.prov_RTN, tbProveedor.prov_Nombre,tbProveedor.prov_NombreContacto,tbProveedor.prov_Direccion, tbProveedor.prov_Email, tbProveedor.prov_Telefono, tbProveedor.acte_Id, Function.GetUser(), Function.DatetimeNow());
+                    foreach (UDP_Inv_tbProveedor_Insert_Result Proveedores in List)
+                        Msj = Proveedores.MensajeError;
+                    if (Msj.StartsWith("-1"))
+                    {
+                        Function.InsertBitacoraErrores("Proveedor/Create", Msj, "Create");
+                        ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                        return View(tbProveedor);
+                    }
+                    if (Msj.StartsWith("-2"))
+                    {
+                        Function.InsertBitacoraErrores("Proveedor/Create", Msj, "Create");
+                        ModelState.AddModelError("", "Ya existe un estado con el mismo nombre.");
+                        return View(tbProveedor);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+                catch (Exception Ex)
+                {
+                    Function.InsertBitacoraErrores("EstadoMovimiento/Create", Ex.Message.ToString(), "Create");
+                    ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                    return View(tbProveedor);
+                }
+            }
+            return View(tbProveedor);
+        }
 
         [HttpPost]
         public JsonResult GuardarProveedor(string prov_RTN, string prov_Nombre, string prov_NombreContacto, string prov_Direccion, string prov_Email, string prov_Telefono,short? acte_Id)

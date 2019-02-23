@@ -84,7 +84,7 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.prov_RTN, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                @Html.TextBoxFor(model => model.prov_RTN, new { @class = "form-control"})
+                                @Html.TextBoxFor(model => model.prov_RTN, new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.prov_Id)   
                                 <div id="validationRTN">
                                     <p style="color:red"></p>
@@ -94,7 +94,7 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.prov_Nombre, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                @Html.EditorFor(model => model.prov_Nombre, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @maxlength = "100" } })
+                                @Html.EditorFor(model => model.prov_Nombre, new { htmlAttributes = new { @maxlength = "100", @onKeyPress = "return CaracteresNombre(event)", @onkeyup = "this.value=NumText(this.value)" } })
                                 <div id="validationNombre">
                                     <p style="color:red"></p>
                                 </div>
@@ -105,7 +105,7 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.prov_NombreContacto, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                @Html.EditorFor(model => model.prov_NombreContacto, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @maxlength = "100" } })
+                                @Html.EditorFor(model => model.prov_NombreContacto, new { htmlAttributes = new { @maxlength = "100", @onKeyPress = "return soloLetras(event)", @onkeyup = "this.value=NumText(this.value)" } })
                                 <div id="validationContacto">
                                     <p style="color:red"></p>
                                 </div>
@@ -116,7 +116,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-2">Direccion<span style="color:red">*</span></label>
                             <div class="col-md-4">
-                                <span>@Html.TextAreaFor(model => model.prov_Direccion, new { @class = "form-control", maxlength = 100 })</span>
+                                <span>@Html.TextAreaFor(model => model.prov_Direccion, new { @class = "form-control", MaxLength = 200, @onKeyPress = "return CaracteresNombre(event)", @onkeyup = "this.value=NumText1(this.value)" })</span>
                                 <div id="validationDireccion">
                                     <p style="color:red"></p>
                                 </div>
@@ -127,7 +127,7 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.prov_Email, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                @Html.TextBoxFor(model => model.prov_Email, new { @class = "form-control", maxlength = 50 })
+                                @Html.TextBoxFor(model => model.prov_Email, new { @class = "form-control", @onKeyPress = "return CaracteresNombre(event)", @onkeyup = "this.value=NumText(this.value)", maxlength = 50 })
                                 <div id="validationEmail">
                                     <p style="color:red"></p>
                                 </div>
@@ -138,7 +138,7 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.prov_Telefono, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                @Html.EditorFor(model => model.prov_Telefono, new { @class = "form-control", maxlength = 12 })
+                                @Html.EditorFor(model => model.prov_Telefono, new { htmlAttributes = new { @maxlength = "25", @onKeyPress = "return CaracteresNombre(event)", @onkeyup = "this.value=NumText(this.value)" } })
                                 <div id="validationTelefono">
                                     <p style="color:red"></p>
                                 </div>
