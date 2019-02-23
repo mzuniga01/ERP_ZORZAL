@@ -262,9 +262,22 @@
                             <th class="success">Cantidad</th>
                             <th class="success">Sub Total</th>
                         </tr>
+
+                        
                     </thead>
                     <tbody></tbody>
-
+                    <tfoot>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <th class="success">Total</th>
+                            <td></td>
+                            
+                            @*<td></td>*@
+                        </tr>
+                    </tfoot>
                 </table>
 
             </div>
@@ -308,56 +321,7 @@
 
 
 
-<script>
-    $(document).on("keyup", "#tbdenominacion tbody tr td input#sumTotal", function () {
-        var row = $(this).closest("tr");
-        var Cantidad = $(this).val();
-        var ValorDenominacion = $(this).parents("tr").find("td")[6].innerHTML;
-        var subtotal = parseFloat(Cantidad * ValorDenominacion);
-        var suma = 0;
-        var data = [];
 
-        SubTotal = 0;
-
-        $(this).parents("tr").find("td")[3].innerHTML = subtotal;
-        if (subtotal != 0) {
-            SubTotal += subtotal;
-
-            //Calculo Total
-
-            $("td.sumTotal").each(function () {
-                data.push(parseFloat($(this).text()));
-            });
-            var suma = data.reduce(function (a, b) { return a + b; }, 0);
-
-
-            $("#total").val(suma);
-
-            console.log(data);
-            console.log(suma);
-           
-
-
-
-
-        }
-        else {
-            SubTotal = 0;
-            $("#tbdenominacion tbody tr  td label#sumTotal").each(function (index) {
-                Sub = $(this).children("td:eq(3)").html();
-                if (Sub != '') {
-                    Sub = parseFloat(Sub);
-                    SubTotal += Sub;
-                }
-            })
-        }
-
-
-
-    });
-
-
-</script>
 
 
 
@@ -414,9 +378,47 @@
 
 
 
-    //-----------------------------------------------------------------
+    //---------------------------------------Subtotal-----------------------------------------------
 
 
+
+
+
+              $(document).on("keyup", "#tbdenominacion tbody tr td input#cantidad", function () {
+                  var row = $(this).closest("tr");
+                  var Cantidad = $(this).val();
+                  var deno_valor = $(this).parents("tr").find("td")[4].innerHTML;
+                  var sub = parseFloat(Cantidad * deno_valor);
+                  var suma = 0;
+                  var data = [];
+
+                  SubTotal = 0;
+
+                  $(this).parents("tr").find("td")[6].innerHTML = sub;
+                  if (sub != 0) {
+                      SubTotal += sub;
+
+                      //Calculo Total
+
+                      $("td.sumTotal").each(function () {
+                          data.push(parseFloat($(this).text()));
+                      });
+                      var suma = data.reduce(function (a, b) { return a + b; }, 0);
+
+
+                      $("#Total").val(suma);
+
+                      console.log(data);
+                      console.log(suma);
+                      //---------------------------------------------
+
+
+                  }
+                  
+
+
+
+              });
 
 
 
