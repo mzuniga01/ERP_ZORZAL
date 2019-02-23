@@ -396,7 +396,8 @@ function GetCantidadExistente() {
 
 
 //Productos Por Bodega
-$(document).change("#bod_Id", function () {
+$("#bod_Id").change(function () {
+    $('#detalle tbody').empty();
     productos();
     cambiobodega();
 });
@@ -694,11 +695,6 @@ function cambiobodega() {
         dataType: 'json',
         contentType: "application/json; charset=utf-8",
         data: JSON.stringify({ bod_Id: bod_Id }),
-    }).done(function () {
-            $('#detalle td').each(function () {
-                $(this).closest('tr').remove();
-        });
-        
     })
 
 }
