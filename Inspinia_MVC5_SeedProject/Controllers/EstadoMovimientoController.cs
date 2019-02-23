@@ -55,9 +55,15 @@ namespace ERP_GMEDINA.Controllers
         [SessionManager("EstadoMovimiento/Create")]
         public ActionResult Create([Bind(Include = "estm_Descripcion")] tbEstadoMovimiento tbEstadoMovimiento)
         {
+
+            
+
+
                 if (ModelState.IsValid)
                 {
-                    try
+
+          
+                try
                     {
                         IEnumerable<Object> List = null;
                         string Msj = "";
@@ -70,7 +76,13 @@ namespace ERP_GMEDINA.Controllers
                             ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
                             return View(tbEstadoMovimiento);
                         }
-                        else
+                    if (Msj.StartsWith("-2"))
+                    {
+                        Function.InsertBitacoraErrores("EstadoMovimiento/Create", Msj, "Create");
+                        ModelState.AddModelError("", "Ya existe un estado con el mismo nombre.");
+                        return View(tbEstadoMovimiento);
+                    }
+                    else
                         {
                             return RedirectToAction("Index");
                         }
@@ -134,6 +146,12 @@ namespace ERP_GMEDINA.Controllers
                     {
                         Function.InsertBitacoraErrores("EstadoMovimiento/Edit", Msj, "Edit");
                         ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                        return View(tbEstadoMovimiento);
+                    }
+                    if (Msj.StartsWith("-2"))
+                    {
+                        Function.InsertBitacoraErrores("EstadoMovimiento/Create", Msj, "Create");
+                        ModelState.AddModelError("", "Ya existe un estado con el mismo nombre.");
                         return View(tbEstadoMovimiento);
                     }
                     else
