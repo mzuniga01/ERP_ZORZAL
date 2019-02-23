@@ -1,0 +1,55 @@
+﻿@model ERP_GMEDINA.Models.tbEntrada
+    <style>
+    .validation-error {
+        color: red;
+        font-size: small;
+    }
+
+    .required:after {
+        content: "*";
+        font-weight: bold;
+        color: red;
+    }
+</style>
+@using (Ajax.BeginForm("ExportReportGeneral", "Entrada", new AjaxOptions() { HttpMethod = "POST", UpdateTargetId = "GenerarReporte" }))
+{
+    <div class="ibox-content">
+        <div class="form-horizontal">
+            @*//UpdateTargetId = "EditarProductoSalidaDetalle"*@
+            <div class="form-group">
+                @Html.LabelFor(model => model.tent_Id, "Tipo de Entarda", new { @class = "control-label col-md-5 , required" })
+                <div class="col-md-5">
+                    @Html.DropDownList("tent_Id", (IEnumerable<SelectListItem>)ViewBag.tent_Id, "Seleccionar", new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.ent_FechaElaboracion, new { @class = "control-label col-md-5 , required" })
+                <div class="col-md-5">
+                    @Html.EditorFor(model => model.ent_FechaElaboracion, new { @class = "form-control", @ID="FECHAELABORACION" })
+                    @Html.ValidationMessageFor(model => model.ent_FechaElaboracion)
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="submit" id="btnIMPRIMIR">Generar</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        </div>
+}
+<script src="~/Scripts/app/Datepicker.js"></script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script>
+    //para inprimir
+    $('#btnIMPRIMIR').click(function () {
+        var a = document.createElement("a");
+        a.target = "_blank";
+        a.href = url;
+        a.click();
+    })
+
+    var url = "";
+
+</script>

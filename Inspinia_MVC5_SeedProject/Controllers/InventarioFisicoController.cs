@@ -64,7 +64,15 @@ namespace ERP_GMEDINA.Controllers
         [HttpPost]
         public JsonResult GetResponsableBodega(int invf_responsable)
         {
-            var list = db.SPGetResponsableBodega(invf_responsable).ToList();
+            IEnumerable<object> list = null;
+            try
+            {
+                list = db.SPGetResponsableBodega(invf_responsable).ToList();
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+            }
             return Json(list, JsonRequestBehavior.AllowGet);
         }
         private void listas()
@@ -81,47 +89,47 @@ namespace ERP_GMEDINA.Controllers
         [HttpPost]
         public JsonResult CantidadExistencias(tbBodegaDetalle CantidadExistencias)
         {
-            var list = db.UDP_Inv_CantidadExistente(CantidadExistencias.bod_Id,CantidadExistencias.prod_Codigo).ToList();
+            IEnumerable<object> list = null;
+            try
+            {
+                 list = db.UDP_Inv_CantidadExistente(CantidadExistencias.bod_Id, CantidadExistencias.prod_Codigo).ToList();
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+            }
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
         public JsonResult ProductosBodega(tbBodegaDetalle productos)
         {
-            var list = db.UDP_Inv_tbInventarioFisico_ListaProductos(productos.bod_Id).ToList();
+            IEnumerable<object> list = null;
+            try
+            {
+                 list = db.UDP_Inv_tbInventarioFisico_ListaProductos(productos.bod_Id).ToList();
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+            }
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
         public JsonResult ProductosEnter(string cod_Barras,int bod_Id)
         {
-            var list = db.SP_tbInventariofisico_ProductosRepetidos(cod_Barras, bod_Id).ToList();
+            IEnumerable<object> list = null;
+            try
+            {
+                 list = db.SP_tbInventariofisico_ProductosRepetidos(cod_Barras, bod_Id).ToList();
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+            }
             return Json(list, JsonRequestBehavior.AllowGet);
         }
-
-        //[HttpPost]
-        //public JsonResult ProductosRepetidos(string data_producto)
-        //{
-        //    var datos = "";
-        //    if (Session["tbInventarioFisicoDetalle"] == null)
-        //    {
-
-        //    }
-        //    else
-        //    {
-        //        var menu = Session["tbInventarioFisicoDetalle"] as List<tbInventarioFisicoDetalle>;
-
-        //        foreach (var t in menu)
-        //        {
-        //            if (t.prod_Codigo == data_producto)
-        //                datos = data_producto;
-        //        }
-
-
-        //    }
-
-        //    return Json(datos);
-        //}
 
         public ActionResult ExportReport(int? id)
         {
@@ -173,20 +181,6 @@ namespace ERP_GMEDINA.Controllers
                 throw;
             }
         }
-
-        //public class PdfResult : FileResult
-        //{
-        //    private const String DefaultFileName = "ImprimirConciliacion.pdf";
-        //    private readonly Byte[] _byteArray;
-
-        //    public PdfResult(Byte[] byteArray, String fileName = DefaultFileName)
-        //        : base(MediaTypeNames.Application.Pdf)
-        //    {
-        //        _byteArray = byteArray;
-        //        FileDownloadName = fileName;
-        //    }
-        //    protected override void WriteFile(HttpResponseBase response) { response.BinaryWrite(_byteArray); }
-        //}
 
         // GET: /InventarioFisico/Create
         public ActionResult Create()
@@ -295,43 +289,6 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
             this.listas();
             return View(tbInventarioFisico);
-        }
-
-
-        [HttpPost]
-        public JsonResult NuevoDetallemodal(tbInventarioFisicoDetalle guardar_detalle)
-        {
-            string Msj = "";
-            try
-            {
-                IEnumerable<object> list = null;
-                list = db.UDP_Inv_tbInventarioFisicoDetalle_Insert(guardar_detalle.invf_Id
-                                                           , guardar_detalle.prod_Codigo
-                                                         , guardar_detalle.invfd_Cantidad
-                                                         , guardar_detalle.invfd_CantidadSistema
-                                                         , guardar_detalle.uni_Id
-                                                                            , Function.GetUser(), Function.DatetimeNow());
-                foreach (UDP_Inv_tbInventarioFisicoDetalle_Insert_Result invfd in list)
-                    Msj = invfd.MensajeError;
-
-                if (Msj.Substring(0, 2) == "-1")
-                {
-                    ModelState.AddModelError("", "No se Actualizo el registro");
-
-
-                }
-                else
-                {
-                    //return View("Edit/" + bod_Id);
-                    return Json("Index");
-                }
-            }
-            catch (Exception Ex)
-            {
-                Ex.Message.ToString();
-                ModelState.AddModelError("", "No se Actualizo el registro");
-            }
-            return Json("Index");
         }
 
         //Inventario Fisico Detalle
@@ -444,26 +401,21 @@ namespace ERP_GMEDINA.Controllers
                                                                                                invd.prod_Codigo,
                                                                                                invd.invfd_Cantidad,
                                                                                                invd.invfd_CantidadSistema,
-                                                                                               invd.uni_Id, Function.GetUser(), Function.DatetimeNow());
+                                                                                               invd.uni_Id, 
+                                                                                               Function.GetUser(), 
+                                                                                               Function.DatetimeNow());
                                         foreach (UDP_Inv_tbInventarioFisicoDetalle_Insert_Result inv_detalle in Detalle)
-                                        //    MsjError = inv_detalle.MensajeError;
-
-                                        //if (MsjError == "-1")
+                                            MsjError = inv_detalle.MensajeError;
+                                        if (MsjError == "-1")
                                         {
                                             ModelState.AddModelError("", "No se Actualizó el Registro");
-                                        //    ViewBag.bodegas = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbInventarioFisico.bod_Id);
-                                        //    this.listas();
-                                        //    return View(tbInventarioFisico);
-                                        //}
-                                        //else
-                                        //{
-                                        //    _Tran.Complete();
-                                        //    return RedirectToAction("Index");
+                                            ViewBag.bodegas = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbInventarioFisico.bod_Id);
+                                            this.listas();
+                                            return RedirectToAction("Edit/" + idMaster);
                                         }
                                     }
                                 }
                             }
-                            //else
                             {
                                 _Tran.Complete();
                                 return RedirectToAction("Index");
@@ -489,30 +441,37 @@ namespace ERP_GMEDINA.Controllers
             this.listas();
             return View(tbInventarioFisico);
         }
-        //public ActionResult ExportToExcel()
-        //{
-        //    List<tbInventarioFisico> Inventario = db.tbInventarioFisico.ToList();
-        //    if (Inventario == null || Inventario.Count() == 0)
-        //    {
-        //        return RedirectToAction("Index", "InventarioFisico");
-        //    }
-        //    string[] columns = { "CodIntructor", "Nombre", "Apellido", "Identidad",
-        //                        "Departamento", "CodMunicipio", "NombreMadre",
-        //                        "NombrePadre", "CodGradoPolicial", "Sexo", "Correo",
-        //                        "Celular", "Telefono", "CodBanco", "CtaBanco", "CodUnidadDepartamental",
-        //                        "CodUnidadMetropolitana", "CodAldea", "CodEstado",
-        //                        "CodTipoCuenta", "DistritoUnidad", "UsuarioCreacion",
-        //                        "FechaCreacion", "UsuarioModifica", "FechaModifica" };
-
-        //    byte[] filecontent = ExcelExportHelper.ExportExcel(Inventario, "Inventario", false, columns);
-        //    return File(filecontent, ExcelExportHelper.ExcelContentType, "Conciliacion de Inventario Fisico.xlsx");
-        //}
 
         [HttpPost]
         public JsonResult GetInventarioDetalle(int invfd_Id)
         {
-            var list = db.SDP_tbInventarioFisicoDetalle_Select(invfd_Id).ToList();
+            IEnumerable<object> list = null;
+            try
+            {
+                 list = db.SDP_tbInventarioFisicoDetalle_Select(invfd_Id).ToList();
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+            }
             return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult cambiobodega(int bod_Id)
+        {
+            var list = (List<tbInventarioFisicoDetalle>)Session["tbInventarioFisicoDetalle"];
+            try
+            {
+                if (list != null)
+                {
+                    Session["tbInventarioFisicoDetalle"] = null;
+                }
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+            }
+            return Json(bod_Id);
         }
 
         [HttpPost]

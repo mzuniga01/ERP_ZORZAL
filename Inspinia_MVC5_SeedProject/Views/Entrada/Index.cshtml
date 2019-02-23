@@ -23,7 +23,7 @@
                     <div class="ibox-title">
                         <h5>Listado de Entradas</h5>
                         <div class="ibox-tools">
-                            <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalImprimir" id="Imprimir" value="Generar Reportes" />
+                            <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalGenReporte" value="Generar Reporte" />
                             @Html.ActionLink("Registrar Entrada", "Create", null, new { @class = "btn btn-primary" })
                         </div>
                     </div>
@@ -88,41 +88,6 @@
                                             @Html.ActionLink("Detalles", "Details", new { id = item.ent_Id }, new { @class = "btn btn-primary btn-xs" })
                                             @Html.ActionLink("Editar", "Edit", new { id = item.ent_Id }, new { @class = "btn btn-white btn-xs" })
 
-                                            @*modal para imprimir*@
-                                            <div class="modal fade" id="ModalImprimir" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Reportes De Entrada</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                            <div class="modal-body">
-                                                                <p style="font-size:15px;color:maroon" ;>¿El Reporte que se genera es general?</p>
-                                                                <div class="form-group">
-                                                                    <div class="col-md-4">
-                                                                        <select class="form-control" id="Entrada" name="Entrada">
-                                                                            <option value="0">Seleccione Tipo Reporte</option>
-                                                                            <option id="1" value="1">Compra</option>
-                                                                            <option id="2" value="2">Devolucion</option>
-                                                                            <option id="3" value="3">Traslado</option>
-                                                                        </select>
-                                                                    </div>
-                                                                    <label class="control-label col-md-2">Rango Fecha<span style="color:red">*</span></label>
-                                                                    <div class="col-md-4">
-                                                                        <input type="date" name="rangofechaimprimir" id="rangofechaimprimir" class="form-control" />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                @*<button type="button" id="GenerarImprimirEntrada" onclick="ClickDrop()" class="btn btn-primary" data-dismiss="modal">Generar Reporte</button>*@
-                                                                <button type="submit" id="GenerarImprimirEntrada" onclick="ClickDrop()" class="btn btn-primary" data-dismiss="modal">Generar Reporte</button>
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                                                            </div>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </td>
                                     </tr>
                                 }
@@ -134,7 +99,23 @@
             </div>
         </div>
     </div>
+<div class="modal fade" id="ModalGenReporte" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Generar Reportes Generales de Entrada</h4>
+            </div>
+            <div id="GenerarReporte" class="modal-body">
+                @Html.Partial("_GenerarReportes", new ERP_GMEDINA.Models.tbEntrada())
+            </div>
 
+
+        </div>
+    </div>
+</div>
 
 @**********************************************************************************MODALES*****************************************************************************@
 @**********************************************************************************MODALES*****************************************************************************@
@@ -190,56 +171,15 @@
 
         })
         .done(function (data) {
-            //if (valorid == 0) {
-            //    console.log('hola 0');
-
-            //} else if (valorid == 'Compra') {
-            //    var url = "Reports/ImprimirEntradaCompra.rpt";
-            //    abrirEnPestana(url)
-            //    console.log('hola 1');
-            //    console.log(rangofecha);
-            //}
-            //else if (valorid == "Devolucion") {
-            //    var url = "Reports/ImprimirEntradaDevolucion.rpt";
-            //    abrirEnPestana(url)
-            //    console.log('hola 2');
-            //    console.log(rangofecha);
-            //}
-            //else if (valorid == "Traslado") {
-            //    var url = "Reports/ImprimirEntradaTraslado.rpt";
-            //    abrirEnPestana(url)
-            //    console.log('hola 3');
-            //    console.log(rangofecha);
-            //}
         });
-        //if (valorid == 0) {
-        //    console.log('hola 0');
-
-        //} else if (valorid == 'Compra') {
-        //    var url = "Reports/ImprimirEntradaCompra.rpt";
-        //    abrirEnPestana(url)
-        //    console.log('hola 1');
-        //    console.log(rangofecha);
-        //}
-        //else if (valorid == "Devolucion") {
-        //    var url = "Reports/ImprimirEntradaDevolucion.rpt";
-        //    abrirEnPestana(url)
-        //    console.log('hola 2');
-        //    console.log(rangofecha);
-        //}
-        //else if (valorid == "Traslado") {
-        //    var url = "Reports/ImprimirEntradaTraslado.rpt";
-        //    abrirEnPestana(url)
-        //    console.log('hola 3');
-        //    console.log(rangofecha);
-        //}
-        function abrirEnPestana(url) {
+        //para inprimir
+        $('#btnIMPRIMIR').click(function () {
             var a = document.createElement("a");
             a.target = "_blank";
             a.href = url;
             a.click();
+        })
 
-            location.reload();
-        }
+        var url = "";
     };
 </script>

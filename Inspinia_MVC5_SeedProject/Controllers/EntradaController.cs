@@ -23,7 +23,7 @@ namespace ERP_ZORZAL.Controllers
         [SessionManager("Entrada/Index")]
         public ActionResult Index()
         {
-            
+            ViewBag.tent_Id = new SelectList(db.tbTipoEntrada, "tent_Id", "tent_Descripcion");
             var tbentrada = db.tbEntrada.Include(t => t.tbBodega).Include(t => t.tbEstadoMovimiento).Include(t => t.tbProveedor).Include(t => t.tbTipoEntrada);
             return View(tbentrada.ToList());
         }
@@ -67,10 +67,11 @@ namespace ERP_ZORZAL.Controllers
             return Json(list, JsonRequestBehavior.AllowGet);
         }
         //para imprimir entra por id
-       
         [HttpPost]
-        public ActionResult ExportReportGeneral(string TipoEntrada, DateTime? FechaElaboracion)
+        public ActionResult ExportReportGeneral(tbEntrada tbentrada)
         {
+            var TipoEntrada = Convert.ToString(tbentrada.tent_Id);
+            var FechaElaboracion = tbentrada.ent_FechaElaboracion;
             ReportDocument rd = new ReportDocument();
             if (TipoEntrada == "1")
             {
@@ -87,13 +88,6 @@ namespace ERP_ZORZAL.Controllers
                 var pathr = "ImprimirEntradaTraslado.rpt";
                 rd.Load(Path.Combine(Server.MapPath("~/Reports"), pathr));
             }
-            //rd.Load(Path.Combine(Server.MapPath("~/Reports"), "ImprimirEntradaCompra.rpt"));
-            //var todo = (from r in db.tbEntrada
-            //            where r.tent_Id == 1
-            //            select new
-            //            {
-            //                ent_Id = r.ent_Id
-            //            }).ToList();
 
             var tbEntrada2 = db.SDP_tbentradaImprimir_Select(Convert.ToInt32(TipoEntrada), FechaElaboracion).ToList();
             rd.SetDataSource(tbEntrada2);
@@ -137,6 +131,7 @@ namespace ERP_ZORZAL.Controllers
                 throw;
             }
         }
+        
 
         //para imprimir entra por id
         public ActionResult ExportReport(int? id)
@@ -309,7 +304,7 @@ namespace ERP_ZORZAL.Controllers
             return Json("Exito", JsonRequestBehavior.AllowGet);
         }
 
-            //para actualizar detalle de la entrada del modal
+        //para actualizar detalle de la entrada del modal
         [HttpPost]
         public ActionResult GetDetalleEntrada(int? entd_Id)
         {
@@ -471,6 +466,7 @@ namespace ERP_ZORZAL.Controllers
                 }
                 return RedirectToAction("Index");
             }
+            //listaDetalle = (List<tbEntradaDetalle>)Session["CrearDetalleEntrada"];
             return View(tbEntrada);
         }
 

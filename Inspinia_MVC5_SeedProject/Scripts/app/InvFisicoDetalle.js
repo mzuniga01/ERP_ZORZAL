@@ -398,6 +398,7 @@ function GetCantidadExistente() {
 //Productos Por Bodega
 $(document).change("#bod_Id", function () {
     productos();
+    cambiobodega();
 });
 
 function productos() {
@@ -470,7 +471,7 @@ function producto() {
 
 //Agregar Detalle
 $('#AgregarNuevoDetalle').click(function () {
-    var producto = $("#prod_Codigo").val();
+    var data_producto = $("#prod_Codigo").val();
     var barras = $("#prod_CodigoBarras").val();
     var Descripcion = $("#prod_Descripcion").val();
     var UnidadMedida = $("#uni_Id").val();
@@ -500,41 +501,73 @@ $('#AgregarNuevoDetalle').click(function () {
         $('#validationCantidadSistema').after('<ul id="errorcantidadsistema" class="validation-summary-errors text-danger">Campo Cantidad Sistema Requerido</ul>');
 
     } else {
-        //Rellenar la tabla 
-        contador = contador + 1;
-        copiar = "<tr data-id=" + contador + ">";
-        copiar += "<td id = 'data_producto' hidden='hidden'>" + $('#prod_Codigo').val() + "</td>";
-        copiar += "<td id = 'Barras'>" + $('#prod_CodigoBarras').val() + "</td>";
-        copiar += "<td id = 'Descripcion'>" + $('#prod_Descripcion').val() + "</td>";
-        copiar += "<td id = 'UnidadMedida'>" + $('#uni_Id').val() + "</td>";
-        copiar += "<td id = 'cantidadfisica'>" + $('#invfd_CantidadSistema').val() + "</td>";
-        copiar += "<td id = 'cantidadsistema'>" + $('#invfd_Cantidad').val() + "</td>";
-        copiar += "<td>" + '<button id="removerInvFisicoDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
-        copiar += "</tr>";
-        $('#InvDetalle').append(copiar);
-
         //ajax para el controlador
-        var InventarioFisicoDetalle = GetInventarioFisicoDetalle();
-        $.ajax({
-            url: "/InventarioFisico/GuardarInventarioDetalle",
-            method: "POST",
-            dataType: 'json',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ invfd: InventarioFisicoDetalle }),
-        })
-        .done(function (data) {
-            $('#prod_CodigoBarras').val('');
-            $('#invfd_CantidadSistema').val('');
-            $('#prod_Descripcion').val('');
-            $('#uni_Id').val('');
+            var InventarioFisicoDetalle = GetInventarioFisicoDetalle();
+            $.ajax({
+                url: "/InventarioFisico/GuardarInventarioDetalle",
+                method: "POST",
+                dataType: 'json',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ invfd: InventarioFisicoDetalle, data_producto: data_producto })
+            })
+            .done(function (datos) {
+                if (datos == data_producto) {
+                    //alert('Es Igual.')
+                    console.log('Repetido');
+                    var cantfisica_nueva = $('#invfd_Cantidad').val();
+                    $("#InvDetalle td").each(function () {
+                        var prueba = $(this).text()
+                        if (prueba == data_producto) {
+                            var idcontador = $(this).closest('tr').data('id');
+                            var cantfisica_anterior = $(this).closest("tr").find("td:eq(5)").text();
+                            var sumacantidades = parseInt(cantfisica_nueva) + parseInt(cantfisica_anterior);
+                            console.log(sumacantidades);
+                            $(this).closest('tr').remove();
+                            copiar = "<tr data-id=" + idcontador + ">";
+                            copiar += "<td id = 'data_producto' hidden='hidden'>" + $('#prod_Codigo').val() + "</td>";
+                            copiar += "<td id = 'barras'>" + $('#prod_CodigoBarras').val() + "</td>";
+                            copiar += "<td id = 'Descripcion'>" + $('#prod_Descripcion').val() + "</td>";
+                            copiar += "<td id = 'UnidadMedida'>" + $('#uni_Id').val() + "</td>";
+                            copiar += "<td id = 'cantidadsistema'>" + $('#invfd_CantidadSistema').val() + "</td>";
+                            copiar += "<td id = 'cantidadfisicas'>" + sumacantidades + "</td>";
+                            copiar += "<td id = 'uni' hidden='hidden'>" + $('#uni_Ids').val() + "</td>";
+                            copiar += "<td>" + '<button id="removerInvFisicoDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
+                            copiar += "</tr>";
+                            $('#InvDetalle').append(copiar);
+                        }
+                    });
+                }
+                else {
+                    //alert('NO ES IGUAL')
+                    //Rellenar la tabla 
+                    contador = contador + 1;
+                    copiar = "<tr data-id=" + contador + ">";
+                    copiar += "<td id = 'data_producto' hidden='hidden'>" + $('#prod_Codigo').val() + "</td>";
+                    copiar += "<td id = 'barras'>" + $('#prod_CodigoBarras').val() + "</td>";
+                    copiar += "<td id = 'Descripcion'>" + $('#prod_Descripcion').val() + "</td>";
+                    copiar += "<td id = 'UnidadMedida'>" + $('#uni_Id').val() + "</td>";
+                    copiar += "<td id = 'cantidadsistema'>" + $('#invfd_CantidadSistema').val() + "</td>";
+                    copiar += "<td id = 'cantidadfisicas'>" + $('#invfd_Cantidad').val() + "</td>";
+                    copiar += "<td id = 'uni' hidden='hidden'>" + $('#uni_Ids').val() + "</td>";
+                    copiar += "<td>" + '<button id="removerInvFisicoDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
+                    copiar += "</tr>";
+                    $('#InvDetalle').append(copiar);
+                }
+            }).done(function (data) {
 
-            $('#MessageError').text('');
-            $('#errorproducto').text('');
-            $('#errorcantidadfisica').text('');
-            $('#errorcantidadsistema').text('');
-        });
-    }
+                $('#prod_CodigoBarras').val('');
+                $('#invfd_CantidadSistema').val('');
+                $('#prod_Descripcion').val('');
+                $('#uni_Id').val('');
 
+                $('#MessageError').text('');
+                $('#errorproducto').text('');
+                $('#errorcantidadfisica').text('');
+                $('#errorcantidadsistema').text('');
+
+            })
+
+        }
 })
 
 //eliminar datos agregados a la tabla detalle editar
@@ -650,6 +683,25 @@ $('#Imprimir').click(function () {
     a.click();
 })
 var url = "";
+
+//Cambio de bodega
+function cambiobodega() {
+    var bod_Id = $("#bod_Id").val();
+    var data_producto = $("#prod_Codigo").val();
+    $.ajax({
+        url: "/InventarioFisico/cambiobodega",
+        method: "POST",
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({ bod_Id: bod_Id }),
+    }).done(function () {
+            $('#detalle td').each(function () {
+                $(this).closest('tr').remove();
+        });
+        
+    })
+
+}
 
 
 //$("#seleccionar").click("#bod_Id", function () {

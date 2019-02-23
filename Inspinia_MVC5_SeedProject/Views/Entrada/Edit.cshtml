@@ -194,8 +194,7 @@
                                 @*<label class="control-label col-md-2">Bodega Destino<span style="color:red">*</span></label>*@
                                 @Html.LabelFor(model => model.bod_Id, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    @Html.DropDownListFor(model => model.ent_BodegaDestino, (SelectList)ViewBag.bbod_Id, new { @class = "form-control", @readonly = "readonly" })
-                                    @*@Html.ValidationMessageFor(model => model.bod_Id)*@
+                                    @Html.EditorFor(model => model.tbBodega.bod_Nombre, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     <div style="display:none" class="col-md-4">
                                         @Html.DropDownListFor(model => model.ent_BodegaDestino, (SelectList)ViewBag.bbod_Id, new { @class = "form-control", @readonly = "readonly" })
                                     </div>
@@ -404,7 +403,7 @@
                         <p style="color:maroon">Recuerde que si Anula esta Entrada no la podrá editar despues.</p>
                         <p><span style="color:red">*</span>¿Porque desea anular esta entrada?</p>
                         <div class="col-md-12">
-                            @Html.EditorFor(model => model.entd_RazonAnulada, new { htmlAttributes = new { @class = "form-control", @placeholder = "Razón Anulación"} })
+                            @Html.EditorFor(model => model.entd_RazonAnulada, new { htmlAttributes = new { @class = "form-control", @onkeypress = "return soloLetras(event)", @maxlength = "100", @placeholder = "Razón Anulación"} })
                             <p style="color:red" id="RazonANULADA"></p>
                         </div>
                     </div>

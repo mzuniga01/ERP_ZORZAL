@@ -7,15 +7,7 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Create</h2>
-        <ol class="breadcrumb">
-            <li>
-                @Html.ActionLink("List", "Index")
-            </li>
-            <li class="active">
-                <strong>Crear</strong>
-            </li>
-        </ol>
+        <h2>Crear parametro</h2>
     </div>
     <div class="col-sm-8">
         <div class="title-action">
@@ -32,9 +24,6 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <h5>Crear Parametro</h5>
-                </div>
                 <div class="ibox-content">
 
 			@using (Html.BeginForm("Create", "Parametro", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -45,9 +34,6 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="ibox float-e-margins">
-                                <div class="ibox-title">
-                                    <h5>Fotografía del Instructor</h5>
-                                </div>
                                 <div class="ibox-content">
                                     <div class="form-horizontal">
                                         <div class="form-group">
@@ -59,7 +45,11 @@
                                                 </div>
                                             </div>
                                             <div class="form-group col-md-12">
-                                                <p style="color:red">@Html.ValidationMessageFor(model => model.par_PathLogo)</p>
+                                                @if (ViewBag.smserror != "" && ViewBag.smserror != null)
+                                                {     <div class="col-md-12" id="mensaje">
+                                                        <p style="color:red">El campo Logo es obligatorio.</p>
+                                                </div>
+                                                }
                                             </div>
                                         </div>
                                     </div>

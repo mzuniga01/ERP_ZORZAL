@@ -23,3 +23,21 @@ $('#par_TelefonoEmpresa').keypress(function (e) {
     return /^[0-9\-]+$/.test(tecla);
 
 });
+
+
+$('#par_SucursalPrincipal').keypress(function (e) {
+    var keynum = window.event ? window.event.keyCode : e.which;
+    if ((keynum == 48) || (keynum == 57))
+        return true;
+    return /\d/.test(String.fromCharCode(keynum));
+
+});
+
+$('#par_PorcentajeDescuentoTE').keypress(function (e) {
+    var keynum = window.event ? window.event.keyCode : e.which;
+    if ((keynum == 48) || (keynum == 57))
+        return true;
+    return /\d/.test(String.fromCharCode(keynum));
+
+});
+
