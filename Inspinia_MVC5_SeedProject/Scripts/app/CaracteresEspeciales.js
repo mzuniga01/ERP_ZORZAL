@@ -17,7 +17,7 @@ function validarJ(e) {
 function correo(e) {
     tecla = (document.all) ? e.keyCode : e.which;
     tecla = String.fromCharCode(tecla)
-    return /^[a-záéíóúñ@._-\s]*$/i.test(tecla);
+    return /^[a-z0-9áéíóúñ@._-\s]*$/i.test(tecla);
 }
 
 //TextArea

@@ -22,17 +22,6 @@
         dateFormat: 'dd-mm-yy',
         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
-        prevText: 'Ant',
-        nextText: 'Sig',
-        changeMonth: true,
-        changeYear: true,
-    }).datepicker("destroy");
-
-
-    $("#fechaNacimientoEdit").datepicker({
-        dateFormat: 'dd-mm-yy',
-        monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-        dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
         minDate: '-100Y',
         maxDate: '-18Y',
         prevText: 'Ant',
@@ -42,7 +31,7 @@
         monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic']
         //showOn: 'both',
         //buttonText: '<i class="fas fa-calendar-day"></i>'
-    }).datepicker("destroy");
+    }).datepicker();
     
 
     var FechaInicio1 = new Date();
@@ -65,27 +54,18 @@
         dateFormat: 'dd-mm-yy',
         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+        minDate: '-100Y',
+        maxDate: '-18Y',
         prevText: 'Ant',
         nextText: 'Sig',
         changeMonth: true,
         changeYear: true,
-    }).datepicker("destroy");
+        monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic']
+        //showOn: 'both',
+        //buttonText: '<i class="fas fa-calendar-day"></i>'
+    }).datepicker();
 
-    //$("#fechaConstitucionEdit").datepicker({
-    //    dateFormat: 'dd-mm-yy',
-    //    monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-    //    dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
-    //    minDate: '-100Y',
-    //    maxDate: FechaInicio1,
-    //    prevText: 'Ant',
-    //    nextText: 'Sig',
-    //    changeMonth: true,
-    //    changeYear: true,
-    //    monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic']
-    //    //showOn: 'both',
-    //    //buttonText: '<i class="fas fa-calendar-day"></i>'
-    //}).datepicker("destroy");
-
+  
     //DevolucionFactura
     $("#fechaDevolucion").datepicker({
         dateFormat: 'dd-mm-yy',
@@ -159,7 +139,7 @@
         dateFormat: 'dd-mm-yy',
         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá']
-    }).datepicker("setDate", new Date());
+    }).datepicker("setDate", new Date()).datepicker("destroy");
 
     $("#FFV").datepicker({
         dateFormat: 'dd-mm-yy',

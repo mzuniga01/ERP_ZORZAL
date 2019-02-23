@@ -62,7 +62,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.clte_Nombres, new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.clte_Nombres, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @onkeyup = "format(this)", @style = "text-transform:uppercase;", onkeypress = "return validar(event)" } })
+                        @Html.EditorFor(model => model.clte_Nombres, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @style = "text-transform:uppercase;", onkeypress = "return validar(event)" } })
                         <p id="Nombres" style="color:red">@Html.ValidationMessageFor(model => model.clte_Nombres)</p>
                     </div>
                 </div>

@@ -279,12 +279,12 @@ function format(input) {
         var res = str.toUpperCase();
         $(input).val(res);
     });
-    $(input).on("keypress", function () {
-        $input = $(this);
-        setTimeout(function () {
-        $input.val($input.val().toUpperCase());
-        }, 0);
-    })
+    //$(input).on("keypress", function () {
+    //    $input = $(this);
+    //    setTimeout(function () {
+    //    $input.val($input.val().toUpperCase());
+    //    }, 0);
+    //})
 }
 
 function formateo(input) {

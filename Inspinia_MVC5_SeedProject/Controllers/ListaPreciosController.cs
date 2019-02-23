@@ -127,7 +127,7 @@ namespace ERP_GMEDINA.Controllers
                                                 }
                                             }
                                         }
-                                    }
+                                    } 
                                 }
                             }
                             else
@@ -237,11 +237,13 @@ namespace ERP_GMEDINA.Controllers
             var MensajeErrorDetalle = "";
             IEnumerable<object> list = null;
             IEnumerable<object> listDetalle = null;
+            if (db.tbListaPrecio.Any(a => a.listp_Nombre == tbListaPrecio.listp_Nombre))
+            {
+                ModelState.AddModelError("", "Ya existe una Lista Precio con este mismo nombre.");
+                return View(tbListaPrecio);
+            }
             if (ModelState.IsValid)
             {
-
-
-
 
                 try
                 {                    using (TransactionScope Tran = new TransactionScope())
