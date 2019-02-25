@@ -63,6 +63,8 @@ namespace ERP_GMEDINA.Models
         [Display(Name = "Sucursal")]
         public Nullable<int> suc_Id { get; set; }
 
+        [Display(Name = "ID Empleado")]
+
         public Nullable<short> emp_Id { get; set; }
 
 
