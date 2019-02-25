@@ -75,6 +75,10 @@
 
 
                         <div class="form-group">
+                            <div id="validationAdmi">
+                                <p style="color:red"></p>
+                            </div>
+
                             @Html.LabelFor(model => model.prov_Id, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
                                 @Html.TextBoxFor(model => model.prov_Id, new { @class = "form-control", @readonly = "readonly" })
@@ -84,8 +88,9 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.prov_RTN, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                @Html.TextBoxFor(model => model.prov_RTN, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.prov_Id)   
+
+                                @Html.EditorFor(model => model.prov_RTN, new { htmlAttributes = new { @maxlength = "14", @autocomplete = "off" } })
+                                @Html.ValidationMessageFor(model => model.prov_Id)
                                 <div id="validationRTN">
                                     <p style="color:red"></p>
                                 </div>
