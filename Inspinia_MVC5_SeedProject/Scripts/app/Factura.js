@@ -219,6 +219,35 @@ function GetConsumidorFinal() {
     return ConsumidorFinal
 };
 
+function ValidarAutorizacion() {
+    var User = $("#Username").val();
+    var Password = $("#txtPassword").val();
+    console.log(User)
+    console.log(Password)
+    $.ajax({
+        url: "/Factura/AutorizarDescuento",
+        method: "POST",
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({ User: User, Password: Password }),
+    })
+    .done(function (data) {
+        console.log()
+        if (data==true) {
+           
+               var Porcentaje = $("#PorcentajeDescuento").val();
+               $("#factd_PorcentajeDescuento").val(Porcentaje);
+               $('#AutorizarDescuentoModal').modal('hide');
+        }
+        else
+        {
+            valido = document.getElementById('mensajerror');
+            valido.innerText = "Usuario o contraseña incorrectos";
+        }
+    });
+}
+
+
 
 
 

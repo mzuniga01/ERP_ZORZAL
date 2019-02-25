@@ -49,7 +49,7 @@
                                 </div>
                             </div>
                             <div class="col-md-1">
-                                <button type="button" class="btn btn-primary btn-sm" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#AutorizarDescuentoDetalle">Descuento</button>
+                                <button type="button" class="btn btn-primary btn-sm" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#AutorizarDescuentoModal">Descuento</button>
                             </div>                           
                         </div>
                         <div class="form-group">
@@ -159,7 +159,7 @@
     <p style="color:red"></p>
 </div>
 <div>
-    <div class="modal fade" id="AutorizarDescuentoDetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal fade" id="AutorizarDescuentoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -175,20 +175,25 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-4">Usuario</label>
                                     <div class="col-md-6">
-                                        <input id="Username1" type="text" name="Username" class="form-control" autocomplete="off" , onkeypress="return correo(event)">
+                                        <input id="Username" type="text" name="Username" class="form-control" autocomplete="off" , onkeypress="return correo(event)">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-4">Contraseña</label>
                                     <div class="col-md-6">
-                                        <input id="passdetalle" name="pass" class="form-control" autocomplete="on" placeholder="Password">
+                                        <input id="txtPassword" name="PorcentajeDescuento" type="password" class="form-control" autocomplete="on" placeholder="Password">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-4">Porcentaje de Descuento</label>
                                     <div class="col-md-6">
-                                        <input id="PorcentajeDescuentoAuditoria" type="text" class="form-control" />
+                                        <input id="PorcentajeDescuento" type="text" class="form-control" />
                                     </div>
+                                </div>
+                                <div><p id="mensajerror" class="danger"></p></div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-primary btn-sm" type="button" id="Autorizar" onclick="ValidarAutorizacion()">Guardar</button>
+                                    <button type="button" class="btn btn-white btn-sm" data-dismiss="modal" onclick="uncheck3()">Cancelar</button>
                                 </div>
                             </form>
                         </div>

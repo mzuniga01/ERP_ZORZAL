@@ -963,6 +963,12 @@ namespace ERP_GMEDINA.Controllers
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult AutorizarDescuento(string User, string Password)
+        {
+            var list = db.UDP_Vent_tbFactura_RolSupervisorCaja(User, Password).SingleOrDefault();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
         [HttpPost]
         public JsonResult GetDetallePedido(int CodPedido)
         {

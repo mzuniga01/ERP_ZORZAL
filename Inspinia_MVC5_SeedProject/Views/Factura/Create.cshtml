@@ -234,7 +234,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-4">Contraseña</label>
                                     <div class="col-md-6">
-                                        <input name="txtPassword" class="form-control" type="text" placeholder="Password" />
+                                        <input id="txtPassword" name="txtPassword" class="form-control" type="password" placeholder="Password" />
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -243,8 +243,9 @@
                                         <input id="PorcentajeDescuento" type="text" class="form-control"  onKeyPress = "return soloNumeros(event)", onKeyUp = "pierdeFoco(this)", autocomplete = "off" />
                                     </div>
                                 </div>
+                                <div><p id="mensajerror" class="danger"></p></div>
                                 <div class="modal-footer">
-                                    <button class="btn btn-primary btn-sm" type="button" id="Autorizar">Guardar</button>
+                                    <button class="btn btn-primary btn-sm" type="button" id="Autorizar" onclick="ValidarAutorizacion()">Guardar</button>
                                     <button type="button" class="btn btn-white btn-sm" data-dismiss="modal" onclick="uncheck3()">Cancelar</button>
                                 </div>
                             </form>
