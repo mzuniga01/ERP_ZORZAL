@@ -102,7 +102,7 @@
                                         <td>
                                             @Html.ActionLink("Detalle", "Details", new { id = item.fact_Id }, new { @class = "btn btn-primary btn-xs" })
                                             @Html.ActionLink("Editar", "Edit", new { id = item.fact_Id }, new { @class = "btn btn-primary btn-xs" })
-                                            @Html.ActionLink("Imprimir", "ExportReport", new { id = item.fact_Id }, new { @class = "btn btn-primary btn-xs" })
+                                            @Html.ActionLink("Imprimir", "ExportReport", new { id = item.fact_Id }, new { @class = "btn btn-primary btn-xs", target = "_blank" })
                                         </td>
                                     }
                                     else

@@ -101,7 +101,7 @@
                                             {
                                                 <td>
                                                     @Html.ActionLink("Detalle", "Details", new { id = item.IdSolicitud }, new { @class = "btn btn-primary btn-xs" })
-                                                    @Html.ActionLink("Imprimir", "ExportReport", new { id = item.IdSolicitud }, new { @class = "btn btn-primary btn-xs" })                                                   
+                                                    @Html.ActionLink("Imprimir", "ExportReport", new { id = item.IdSolicitud }, new { @class = "btn btn-primary btn-xs", target = "_blank" })                                                   
                                                 </td>
                                             }
                                             else if (Convert.ToString(item.MontoSolicitado) == "")
@@ -124,7 +124,7 @@
                                             {
                                                 <td>
                                                     @Html.ActionLink("Detalle", "Details", new { id = item.IdSolicitud }, new { @class = "btn btn-primary btn-xs" })
-                                                    @Html.ActionLink("Imprimir", "ExportReport", new { id = item.IdSolicitud }, new { @class = "btn btn-primary btn-xs" })
+                                                    @Html.ActionLink("Imprimir", "ExportReport", new { id = item.IdSolicitud }, new { @class = "btn btn-primary btn-xs", target = "_blank" })
                                                 </td>
                                             }
                                             else
@@ -133,7 +133,7 @@
                                                     @Html.ActionLink("Detalle", "Details", new { id = item.IdSolicitud }, new { @class = "btn btn-primary btn-xs" })
                                                     @Html.ActionLink("Editar", "Edit", new { id = item.IdSolicitud }, new { @class = "btn btn-white btn-xs", id = Editar })
                                                     @Html.ActionLink("Entregar Efectivo", "EditEntregaEfectivo", new { id = item.IdSolicitud }, new { @class = "btn btn-danger btn-xs" })
-                                                    @Html.ActionLink("Imprimir", "ExportReport", new { id = item.IdSolicitud }, new { @class = "btn btn-primary btn-xs" })
+                                                    @Html.ActionLink("Imprimir", "ExportReport", new { id = item.IdSolicitud }, new { @class = "btn btn-primary btn-xs", target = "_blank" })
                                                 </td>
                                             }
                                         }

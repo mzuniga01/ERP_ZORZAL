@@ -126,7 +126,7 @@
                                 <div class="form-horizontal" name="Cred1" id="Cred1">
                                     @Html.LabelFor(model => model.fact_DiasCredito, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.EditorFor(model => model.fact_DiasCredito)
+                                        @Html.EditorFor(model => model.fact_DiasCredito, new { htmlAttributes = new {onKeyPress = "return soloNumeros(event)", onKeyUp = "pierdeFoco(this)", @autocomplete = "off" } })
                                         <span id="DiasError" class="validation-error">@Html.ValidationMessageFor(model => model.fact_DiasCredito)</span>
                                     </div>
                                 </div>
@@ -228,7 +228,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-4">Usuario</label>
                                     <div class="col-md-6">
-                                        <input id="Username" type="text" name="Username" class="form-control">
+                                        <input id="Username" type="text" name="Username" class="form-control" autocomplete = "off", onkeypress = "return correo(event)">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -240,7 +240,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-4">Porcentaje de Descuento</label>
                                     <div class="col-md-6">
-                                        <input id="PorcentajeDescuento" type="text" class="form-control" />
+                                        <input id="PorcentajeDescuento" type="text" class="form-control"  onKeyPress = "return soloNumeros(event)", onKeyUp = "pierdeFoco(this)", autocomplete = "off" />
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -281,7 +281,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.fact_NombresTE, new { @class = "control-label col-md-3" })
                                     <div class="col-md-7">
-                                        @Html.EditorFor(model => model.fact_NombresTE, new { htmlAttributes = new { @autocomplete = "off", @onkeyup = "format(this)", @style="text-transform:capitalize;" } })
+                                        @Html.EditorFor(model => model.fact_NombresTE,new { htmlAttributes = new { @autocomplete = "off", @onkeyup = "format(this)", @style = "text-transform:capitalize;", @onkeypress = "return soloLetras(event)" } }) 
                                         <div id="validationNombreTECreate">
                                             <span class="validation-error">@Html.ValidationMessageFor(model => model.fact_NombresTE)</span>
                                         </div>
@@ -343,11 +343,18 @@
 <script src="~/Scripts/app/GetNumeroFact.js"></script>
 <script src="~/Scripts/app/ValidarPedido.js"></script>
 <script src="~/Scripts/app/FacturaPedido.js"></script>
-
+<script src="~/Scripts/app/CaracteresEspeciales.js"></script>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script src="~/Scripts/app/Empleados.js"></script>
     <script>
+        function validartel(e) {
+            tecla = (document.all) ? e.keyCode : e.which;
+            tecla = String.fromCharCode(tecla)
+            return /^[ 0-9\s]*$/i.test(tecla);
+        }
+
+
     $('#guardar').click(function () {
         var Identificacion = $('#cliente_Identificacionxx').val();
         var diascredito = $('#fact_DiasCredito').val();

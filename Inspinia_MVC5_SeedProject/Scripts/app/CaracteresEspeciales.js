@@ -26,3 +26,4 @@ function validarI(e) {
     tecla = String.fromCharCode(tecla)
     return /^[0-9a-záéíóúñ.#_-\s]*$/i.test(tecla);
 }
+

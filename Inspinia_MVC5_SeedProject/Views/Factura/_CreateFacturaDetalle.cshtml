@@ -30,7 +30,7 @@
 
                             @Html.LabelFor(model => model.prod_Codigo, new { @class = "control-label required col-md-1" })
                             <div class="col-md-3">
-                                @Html.EditorFor(model => model.prod_Codigo, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", onkeypress = "return validar(event)" } })
+                                @Html.EditorFor(model => model.prod_Codigo, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", onkeypress = "return validar(event)", @readonly = "readonly" } })
                                 <div id="validationCodigoProductoCreate">
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.prod_Codigo)</p>
                                 </div>                               
@@ -166,16 +166,22 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="CloseAutorizarDetalle">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="modal-title" id="myModalLabel">Código Autorizado</h4>
+                    <h4 class="modal-title" id="myModalLabel">Porcentaje de Descuento</h4>
                 </div>
                 <div class="modal-body" id="frmAutorizarDescuento">
                     <div class="ibox-content">
                         <div class="form-horizontal">
                             <form method="post">
                                 <div class="form-group">
+                                    <label class="control-label col-md-4">Usuario</label>
+                                    <div class="col-md-6">
+                                        <input id="Username1" type="text" name="Username" class="form-control" autocomplete="off" , onkeypress="return correo(event)">
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label class="control-label col-md-4">Contraseña</label>
                                     <div class="col-md-6">
-                                        <input id="passdetalle" name="pass" class="form-control" autocomplete="on">
+                                        <input id="passdetalle" name="pass" class="form-control" autocomplete="on" placeholder="Password">
                                     </div>
                                 </div>
                                 <div class="form-group">
