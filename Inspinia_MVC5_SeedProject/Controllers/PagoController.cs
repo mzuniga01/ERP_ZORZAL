@@ -179,7 +179,7 @@ namespace ERP_GMEDINA.Controllers
                         ViewBag.Cliente = db.tbCliente.ToList();
                         ViewBag.Factura = db.tbFactura.ToList();
                         ViewBag.FacturaPago = db.V_Vent_FacturaPago.ToList();
-                        ViewBag.NotaCredito = db.UDP_Vent_tbNotaCreditoSelect().ToList();
+                       
 
 
                         return View();
@@ -203,7 +203,7 @@ namespace ERP_GMEDINA.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include= "pago_Id,fact_Id,tpa_Id,pago_FechaElaboracion,pago_SaldoAnterior,pago_TotalPago,pago_TotalCambio,pago_Emisor,bcta_Id,pago_FechaVencimiento,pago_Titular,pago_UsuarioCrea,pago_FechaCrea,pago_UsuarioModifica,pago_FechaModifica, pago_EstaImpreso, pago_EstaAnulado")] tbPago tbPago)
+        public ActionResult Create([Bind(Include= "pago_Id,fact_Id,tpa_Id,pago_FechaElaboracion,pago_SaldoAnterior,pago_TotalPago,pago_TotalCambio,pago_Emisor,bcta_Id,pago_FechaVencimiento,pago_Titular,pago_UsuarioCrea,pago_FechaCrea,pago_UsuarioModifica,pago_FechaModifica, nocre_Codigo_cdto_Id")] tbPago tbPago)
         {
             if (Function.GetUserLogin())
             {
@@ -221,17 +221,19 @@ namespace ERP_GMEDINA.Controllers
                         {
                             try
                             {
-                                var MensajeError = 0;
+                                string MensajeError = "";
                                 IEnumerable<object> list = null;
-                                list = db.UDP_Vent_tbPago_Insert(tbPago.fact_Id, tbPago.tpa_Id, tbPago.pago_FechaElaboracion, tbPago.pago_SaldoAnterior, tbPago.pago_TotalPago, tbPago.pago_TotalCambio, tbPago.pago_Emisor, tbPago.bcta_Id, tbPago.pago_FechaVencimiento, tbPago.pago_Titular, tbPago.pago_EstaImpreso, tbPago.pago_EstaAnulado);
+                                list = db.UDP_Vent_tbPago_Insert(tbPago.fact_Id, tbPago.tpa_Id, tbPago.pago_FechaElaboracion, tbPago.pago_SaldoAnterior, tbPago.pago_TotalPago, tbPago.pago_TotalCambio, tbPago.pago_Emisor, tbPago.bcta_Id, tbPago.pago_FechaVencimiento, tbPago.pago_Titular, tbPago.nocre_Codigo_cdto_Id, Function.GetUser(), Function.DatetimeNow());
                                 foreach (UDP_Vent_tbPago_Insert_Result pago in list)
-                                    MensajeError = pago.MensajeError;
-                                if (MensajeError == -1)
+                                    MensajeError = pago.MensajeError.ToString();
+                                if (MensajeError.StartsWith(" -1"))
                                 {
+                                    Function.InsertBitacoraErrores("Pago/Edit", MensajeError, "Create");
+                                    ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
                                     ViewBag.Cliente = db.tbCliente.ToList();
                                     ViewBag.Factura = db.tbFactura.ToList();
                                     ViewBag.FacturaPago = db.V_Vent_FacturaPago.ToList();
-                                    ViewBag.NotaCredito = db.UDP_Vent_tbNotaCreditoSelect().ToList();
+                                   // ViewBag.NotaCredito = db.UDP_Vent_tbNotaCreditoSelect().ToList();
                                     ModelState.AddModelError("", "No se pudo agregar el registro");
                                     return View(tbPago);
                                 }
@@ -250,7 +252,7 @@ namespace ERP_GMEDINA.Controllers
                                 ViewBag.Cliente = db.tbCliente.ToList();
                                 ViewBag.Factura = db.tbFactura.ToList();
                                 ViewBag.FacturaPago = db.V_Vent_FacturaPago.ToList();
-                                ViewBag.NotaCredito = db.UDP_Vent_tbNotaCreditoSelect().ToList();
+                               // ViewBag.NotaCredito = db.UDP_Vent_tbNotaCreditoSelect().ToList();
                                 ModelState.AddModelError("", "Error al agregar el registro " + Ex.Message.ToString());
                                 return View(tbPago);
 
@@ -354,16 +356,17 @@ namespace ERP_GMEDINA.Controllers
                         {
                             try
                             {
-                                var MensajeError = 0;
+                                string  MensajeError = "";
                                 IEnumerable<object> list = null;
-                                list = db.UDP_Vent_tbPago_Update(tbPago.pago_Id, tbPago.fact_Id, tbPago.tpa_Id, tbPago.pago_FechaElaboracion, tbPago.pago_SaldoAnterior, tbPago.pago_TotalPago, tbPago.pago_TotalCambio, tbPago.pago_Emisor, tbPago.bcta_Id, tbPago.pago_FechaVencimiento, tbPago.pago_Titular, tbPago.pago_EstaImpreso, tbPago.pago_EstaAnulado);
+                                list = db.UDP_Vent_tbPago_Update(tbPago.pago_Id, tbPago.fact_Id, tbPago.tpa_Id, tbPago.pago_FechaElaboracion, tbPago.pago_SaldoAnterior, tbPago.pago_TotalPago, tbPago.pago_TotalCambio, tbPago.pago_Emisor, tbPago.bcta_Id, tbPago.pago_FechaVencimiento, tbPago.pago_Titular, tbPago.nocre_Codigo_cdto_Id, tbPago.pago_UsuarioCrea, tbPago.pago_FechaCrea, Function.GetUser(), Function.DatetimeNow());
                                 foreach (UDP_Vent_tbPago_Update_Result pago in list)
-                                    MensajeError = pago.MensajeError;
-                                if (MensajeError == -1)
-                                {
-
-                                }
-                                else
+                                    if (MensajeError.StartsWith("-1"))
+                                    {
+                                        Function.InsertBitacoraErrores("Pago/Create", MensajeError, "Create");
+                                        ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                                        return View(tbPago);
+                                    }
+                                    else
                                 {
                                     return RedirectToAction("Index");
                                 }

@@ -7,41 +7,99 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ERP_GMEDINA.Models;
+using System.Transactions;
+using ERP_GMEDINA.Attribute;
 
 namespace ERP_GMEDINA.Controllers
 {
     public class TipoPagoController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
+        GeneralFunctions Function = new GeneralFunctions();
+        [SessionManager("TipoPago/Index")]
 
         // GET: /TipoPago/
         public ActionResult Index()
         {
-            var tbtipopago = db.tbTipoPago.Include(t => t.tbUsuario).Include(t => t.tbUsuario1);
-            return View(tbtipopago.ToList());
+            if (Function.GetUserLogin())
+            {
+                if (Function.GetRol())
+                {
+                    if (Function.GetUserRols("TipoPago/Index"))
+                    {
+                        var tbtipopago = db.tbTipoPago.Include(t => t.tbUsuario).Include(t => t.tbUsuario1);
+                        return View(tbtipopago.ToList());
+                    }
+                    else
+                    {
+                        return RedirectToAction("SinAcceso", "Login");
+                    }
+                }
+                else
+                    return RedirectToAction("SinRol", "Login");
+            }
+            else
+                return RedirectToAction("Index", "Login");
+            
         }
 
         // GET: /TipoPago/Details/5
+        [SessionManager("TipoPago/Details")]
         public ActionResult Details(short? id)
         {
-            if (id == null)
+            if (Function.GetUserLogin())
             {
-                return RedirectToAction("Index");
+                if (Function.GetRol())
+                {
+                    if (Function.GetUserRols("TipoPago/Details"))
+                    {
+                        if (id == null)
+                        {
+                            return RedirectToAction("Index");
+                        }
+                        tbTipoPago tbTipoPago = db.tbTipoPago.Find(id);
+                        if (tbTipoPago == null)
+                        {
+                            return RedirectToAction("NotFound", "Login");
+                        }
+                        return View(tbTipoPago);
+                    }
+                    else
+                    {
+                        return RedirectToAction("SinAcceso", "Login");
+                    }
+                }
+                else
+                    return RedirectToAction("SinRol", "Login");
             }
-            tbTipoPago tbTipoPago = db.tbTipoPago.Find(id);
-            if (tbTipoPago == null)
-            {
-                return RedirectToAction("NotFound", "Login");
-            }
-            return View(tbTipoPago);
+            else
+                return RedirectToAction("Index", "Login");
+
         }
 
         // GET: /TipoPago/Create
+        [SessionManager("TipoPago/Create")]
         public ActionResult Create()
         {
-            ViewBag.tpa_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
-            ViewBag.tpa_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
-            return View();
+            if (Function.GetUserLogin())
+            {
+                if (Function.GetRol())
+                {
+                    if (Function.GetUserRols("TipoPago/Create"))
+                    {
+                        return View();
+                    }
+                    else
+                    {
+                        return RedirectToAction("SinAcceso", "Login");
+                    }
+                }
+                else
+                    return RedirectToAction("SinRol", "Login");
+            }
+            else
+                return RedirectToAction("Index", "Login");
+           
         }
 
         // POST: /TipoPago/Create
@@ -49,68 +107,103 @@ namespace ERP_GMEDINA.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [SessionManager("TipoPago/Create")]
         public ActionResult Create([Bind(Include = "tpa_Id,tpa_Descripcion,tpa_Emisor,tpa_Cuenta,tpa_FechaVencimiento,tpa_Titular,tpa_UsuarioCrea,tpa_FechaCrea,tpa_UsuarioModifica,tpa_FechaModifica")] tbTipoPago tbTipoPago)
         {
-
-            if (ModelState.IsValid)
+            if (Function.GetUserLogin())
             {
-                try
+                if (Function.GetRol())
                 {
-                    if (db.tbTipoPago.Any(a => a.tpa_Descripcion == tbTipoPago.tpa_Descripcion))
+                    if (Function.GetUserRols("TipoPago/Create"))
+                       
                     {
+                        if (ModelState.IsValid)
+                        {
+                            try
+                            {
+                                if (db.tbTipoPago.Any(a => a.tpa_Descripcion == tbTipoPago.tpa_Descripcion))
+                                {
+                                    ModelState.AddModelError("", "Ya existe este tipo de pago.");
+                                    return View(tbTipoPago);
+                                }
+                                else
+                                {
+                                    string MensajeError = "";
+                                    IEnumerable<object> list = null;
+                                    list = db.UDP_Vent_tbTipoPago_Insert(tbTipoPago.tpa_Descripcion, tbTipoPago.tpa_Emisor, tbTipoPago.tpa_Cuenta, tbTipoPago.tpa_FechaVencimiento, tbTipoPago.tpa_Titular, Function.GetUser(), Function.DatetimeNow());
+                                        foreach (UDP_Vent_tbTipoPago_Insert_Result tipopago in list)
+                                            MensajeError = tipopago.MensajeError.ToString();
+                                    if (MensajeError.StartsWith("-1"))
+                                    {
+                                        Function.InsertBitacoraErrores("TipoPago/Create", MensajeError, "Create");
+                                        ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                                        return View(tbTipoPago);
+                                    }
+                                    else
+                                    {
+                                        return RedirectToAction("Index");
+                                    }
+
+                                    }
+                            }
+                            catch (Exception Ex)
+                            {
+                                Function.InsertBitacoraErrores("TipoPago/Create", Ex.Message.ToString(), "Create");
+                                ModelState.AddModelError("", "No se ha podido ingresar el registro, favor contacte al administrador ");
+                                return View(tbTipoPago);
+                            }    
+                        }
                         
-                        ModelState.AddModelError("", "Ya existe este tipo de pago.");
                         return View(tbTipoPago);
                     }
                     else
                     {
-                        var MensajeError = 0;
-                        IEnumerable<object> list = null;
-                        list = db.UDP_Vent_tbTipoPago_Insert(tbTipoPago.tpa_Descripcion, tbTipoPago.tpa_Emisor, tbTipoPago.tpa_Cuenta, tbTipoPago.tpa_FechaVencimiento, tbTipoPago.tpa_Titular, tbTipoPago.tpa_UsuarioCrea,tbTipoPago.tpa_FechaCrea);
-                        foreach (UDP_Vent_tbTipoPago_Insert_Result tipopago in list)
-                            MensajeError = tipopago.MensajeError;
-                        if (MensajeError == -1)
-                        {
-
-                        }
-                        else
-                        {
-                            return RedirectToAction("Index");
-
-                        }
+                        return RedirectToAction("SinAcceso", "Login");
                     }
                 }
-                catch (Exception Ex)
-                {
-                    ModelState.AddModelError("", "No se ha podido ingresar el registro, favor contacte al administrador " + Ex.Message.ToString());
-                    return View(tbTipoPago);
-                }
-                //db.tbTipoPago.Add(tbTipoPago);
-                //db.SaveChanges();
-                //return RedirectToAction("Index");
+                else
+                    return RedirectToAction("SinRol", "Login");
             }
-        
-         
-            ViewBag.tpa_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbTipoPago.tpa_UsuarioCrea);
-            ViewBag.tpa_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbTipoPago.tpa_UsuarioModifica);
-            return View(tbTipoPago);
+            else
+                return RedirectToAction("Index", "Login");
+
+
+            
         }
 
         // GET: /TipoPago/Edit/5
+        [SessionManager("TipoPago/Edit")]
         public ActionResult Edit(short? id)
         {
-            if (id == null)
+            if (Function.GetUserLogin())
             {
-                return RedirectToAction("Index");
+                if (Function.GetRol())
+                {
+                    if (Function.GetUserRols("TipoPago/Edit"))
+                    {
+                        if (id == null)
+                        {
+                            return RedirectToAction("Index");
+                        }
+                        tbTipoPago tbTipoPago = db.tbTipoPago.Find(id);
+                        if (tbTipoPago == null)
+                        {
+                            return RedirectToAction("NotFound", "Login");
+                        }
+                       
+                        return View(tbTipoPago);
+                    }
+                    else
+                    {
+                        return RedirectToAction("SinAcceso", "Login");
+                    }
+                }
+                else
+                    return RedirectToAction("SinRol", "Login");
             }
-            tbTipoPago tbTipoPago = db.tbTipoPago.Find(id);
-            if (tbTipoPago == null)
-            {
-                return RedirectToAction("NotFound", "Login");
-            }
-            ViewBag.tpa_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbTipoPago.tpa_UsuarioCrea);
-            ViewBag.tpa_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbTipoPago.tpa_UsuarioModifica);
-            return View(tbTipoPago);
+            else
+                return RedirectToAction("Index", "Login");
+       
         }
 
         // POST: /TipoPago/Edit/5
@@ -118,74 +211,71 @@ namespace ERP_GMEDINA.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [SessionManager("TipoPago/Edit")]
         public ActionResult Edit([Bind(Include= "tpa_Id,tpa_Descripcion,tpa_Emisor,tpa_Cuenta,tpa_FechaVencimiento,tpa_Titular,tpa_UsuarioCrea,tpa_FechaCrea,tpa_UsuarioModifica,tpa_FechaModifica, tbUsuario, tbUsuario1")] tbTipoPago tbTipoPago)
         {
-            if (ModelState.IsValid)
+            if (Function.GetUserLogin())
             {
-                try
+                if (Function.GetRol())
                 {
-                    if (db.tbTipoPago.Any(a => a.tpa_Descripcion == tbTipoPago.tpa_Descripcion))
+                    if (Function.GetUserRols("TipoPago/Edit"))
                     {
-                        ModelState.AddModelError("", "Ya existe este tipo de pago.");
+                        if (ModelState.IsValid)
+                        {
+                            try
+                            {
+                                if (db.tbTipoPago.Any(a => a.tpa_Descripcion == tbTipoPago.tpa_Descripcion))
+                                {
+                                    ModelState.AddModelError("", "Ya existe  tipo de pago.");
+                                    return View(tbTipoPago);
+                                }
+                                else
+                                {
+                                        string MensajeError = "";
+                                        IEnumerable<object> list = null;
+                                        list = db.UDP_Vent_tbTipoPago_Update(tbTipoPago.tpa_Id, tbTipoPago.tpa_Descripcion, tbTipoPago.tpa_Emisor, tbTipoPago.tpa_Cuenta, tbTipoPago.tpa_FechaVencimiento, tbTipoPago.tpa_Titular, tbTipoPago.tpa_UsuarioCrea, tbTipoPago.tpa_FechaCrea, Function.GetUser(), Function.DatetimeNow());
+                                        foreach (UDP_Vent_tbTipoPago_Update_Result tipopago in list)
+                                            MensajeError = tipopago.MensajeError.ToString();
+                                        if (MensajeError.StartsWith("-1"))
+                                        {
+                                            Function.InsertBitacoraErrores("TipoPago/Edit", MensajeError, "Edit");
+                                            ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                                            return View(tbTipoPago);
+                                        }
+                                        else
+                                        { 
+                                            return RedirectToAction("Index");
+                                        }
+                                }
+                            }
+
+                            catch (Exception Ex)
+                            {
+                                Function.InsertBitacoraErrores("TipoPago/Edit", Ex.Message.ToString(), "Edit");
+                                ModelState.AddModelError("", "No se ha podido actualizar el registro, favor contacte al administrador");
+                                return View(tbTipoPago);
+                            }
+                        }
+                        
                         return View(tbTipoPago);
                     }
                     else
                     {
-                        var MensajeError = 0;
-                        IEnumerable<object> list = null;
-                        list = db.UDP_Vent_tbTipoPago_Update(tbTipoPago.tpa_Id, tbTipoPago.tpa_Descripcion, tbTipoPago.tpa_Emisor, tbTipoPago.tpa_Cuenta, tbTipoPago.tpa_FechaVencimiento, tbTipoPago.tpa_Titular, tbTipoPago.tpa_UsuarioCrea, tbTipoPago.tpa_FechaCrea,tbTipoPago.tpa_UsuarioModifica, tbTipoPago.tpa_FechaModifica);
-                        foreach (UDP_Vent_tbTipoPago_Update_Result tipopago in list)
-                            MensajeError = tipopago.MensajeError;
-                        if (MensajeError == -1)
-                        {
-
-                        }
-                        else
-                        {
-                            return RedirectToAction("Index");
-                        }
+                        return RedirectToAction("SinAcceso", "Login");
                     }
                 }
-                catch (Exception Ex)
-                {
-                    ModelState.AddModelError("", "No se ha podido actualizar el registro, favor contacte al administrador" + Ex.Message.ToString());
-                    return View(tbTipoPago);
-                }
-
-                //db.Entry(tbTipoPago).State = EntityState.Modified;
-                //db.SaveChanges();
-                //return RedirectToAction("Index");
+                else
+                    return RedirectToAction("SinRol", "Login");
             }
-            ViewBag.tpa_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbTipoPago.tpa_UsuarioCrea);
-            ViewBag.tpa_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbTipoPago.tpa_UsuarioModifica);
-            return View(tbTipoPago);
+            else
+                return RedirectToAction("Index", "Login");
+        
+            
         }
 
-        // GET: /TipoPago/Delete/5
-        public ActionResult Delete(short? id)
-        {
-            if (id == null)
-            {
-                return RedirectToAction("Index");
-            }
-            tbTipoPago tbTipoPago = db.tbTipoPago.Find(id);
-            if (tbTipoPago == null)
-            {
-                return RedirectToAction("NotFound", "Login");
-            }
-            return View(tbTipoPago);
-        }
-
+        // GET: /TipoPago/Delete/
         // POST: /TipoPago/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(short id)
-        {
-            tbTipoPago tbTipoPago = db.tbTipoPago.Find(id);
-            db.tbTipoPago.Remove(tbTipoPago);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+        
 
         protected override void Dispose(bool disposing)
         {
