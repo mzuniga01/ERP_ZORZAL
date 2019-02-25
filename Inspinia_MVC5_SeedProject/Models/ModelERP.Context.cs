@@ -6757,7 +6757,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbDevolucion_Caja_Result>("UDP_Vent_tbDevolucion_Caja", codUsuarioParameter);
         }
     
-        public virtual ObjectResult<Nullable<bool>> UDP_Vent_tbFactura_RolSupervisorCaja(string usuarioId, string password)
+        public virtual ObjectResult<UDP_Vent_tbFactura_RolSupervisorCaja_Result> UDP_Vent_tbFactura_RolSupervisorCaja(string usuarioId, string password)
         {
             var usuarioIdParameter = usuarioId != null ?
                 new ObjectParameter("UsuarioId", usuarioId) :
@@ -6767,7 +6767,7 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("password", password) :
                 new ObjectParameter("password", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<bool>>("UDP_Vent_tbFactura_RolSupervisorCaja", usuarioIdParameter, passwordParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbFactura_RolSupervisorCaja_Result>("UDP_Vent_tbFactura_RolSupervisorCaja", usuarioIdParameter, passwordParameter);
         }
     
         public virtual ObjectResult<UDP_Vent_tbNotaCredito_Caja_Result> UDP_Vent_tbNotaCredito_Caja(Nullable<int> codUsuario)
@@ -6801,7 +6801,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Vent_tbPago_ImprimirEstaImpreso", pago_IdParameter, pago_EstaImpresoParameter);
         }
     
-        public virtual ObjectResult<Nullable<bool>> UDP_Vent_tbSolicitudCredito_RolGerenteCreditosCobranza(string usuarioId, string password)
+        public virtual ObjectResult<UDP_Vent_tbSolicitudCredito_RolGerenteCreditosCobranza_Result> UDP_Vent_tbSolicitudCredito_RolGerenteCreditosCobranza(string usuarioId, string password)
         {
             var usuarioIdParameter = usuarioId != null ?
                 new ObjectParameter("UsuarioId", usuarioId) :
@@ -6811,7 +6811,7 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("password", password) :
                 new ObjectParameter("password", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<bool>>("UDP_Vent_tbSolicitudCredito_RolGerenteCreditosCobranza", usuarioIdParameter, passwordParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbSolicitudCredito_RolGerenteCreditosCobranza_Result>("UDP_Vent_tbSolicitudCredito_RolGerenteCreditosCobranza", usuarioIdParameter, passwordParameter);
         }
     
         public virtual ObjectResult<UDP_Vent_tbSolicitudEfectivoDetalle_Update_Insert_Result> UDP_Vent_tbSolicitudEfectivoDetalle_Update_Insert(Nullable<int> iDSOLICITUD)

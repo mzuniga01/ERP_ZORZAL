@@ -87,7 +87,7 @@ namespace ERP_GMEDINA.Controllers
             try
             {
                 var lider = (from f in db.tbFactura
-                             where f.fact_Id== fId
+                             where f.fact_Id == fId
                              select f.fact_Codigo).ToList();
 
                 return Json(lider, JsonRequestBehavior.AllowGet);
@@ -233,7 +233,7 @@ namespace ERP_GMEDINA.Controllers
                                     ViewBag.Cliente = db.tbCliente.ToList();
                                     ViewBag.Factura = db.tbFactura.ToList();
                                     ViewBag.FacturaPago = db.V_Vent_FacturaPago.ToList();
-                                   // ViewBag.NotaCredito = db.UDP_Vent_tbNotaCreditoSelect().ToList();
+                                    //ViewBag.NotaCredito = db.UDP_Vent_tbNotaCreditoSelect;
                                     ModelState.AddModelError("", "No se pudo agregar el registro");
                                     return View(tbPago);
                                 }
@@ -281,6 +281,27 @@ namespace ERP_GMEDINA.Controllers
             else
                 return RedirectToAction("Index", "Login");
         
+        }
+
+
+
+        [HttpPost]
+
+        public JsonResult NotasCredito(int CodCliente)
+        {
+            var list = ViewBag.NotaCredito = db.UDP_Vent_tbNotaCreditoSelect(CodCliente).ToList();
+
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+
+        [HttpPost]
+
+        public JsonResult FacturasPago(int CodCliente)
+        {
+            var list = ViewBag.NotaCredito = db.UDP_Vent_vFacturaPago(CodCliente).ToList();
+
+            return Json(list, JsonRequestBehavior.AllowGet);
         }
 
         // GET: /Pago/Edit/5

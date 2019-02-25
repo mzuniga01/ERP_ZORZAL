@@ -9919,7 +9919,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <FunctionImport Name="UDP_Vent_tbDevolucion_Caja" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDevolucion_Caja_Result)">
           <Parameter Name="CodUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Vent_tbFactura_RolSupervisorCaja" ReturnType="Collection(Boolean)">
+          <FunctionImport Name="UDP_Vent_tbFactura_RolSupervisorCaja" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFactura_RolSupervisorCaja_Result)">
             <Parameter Name="UsuarioId" Mode="In" Type="String" />
             <Parameter Name="password" Mode="In" Type="String" />
           </FunctionImport>
@@ -9933,7 +9933,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="pago_Id" Mode="In" Type="Int32" />
             <Parameter Name="pago_EstaImpreso" Mode="In" Type="Boolean" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Vent_tbSolicitudCredito_RolGerenteCreditosCobranza" ReturnType="Collection(Boolean)">
+          <FunctionImport Name="UDP_Vent_tbSolicitudCredito_RolGerenteCreditosCobranza" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudCredito_RolGerenteCreditosCobranza_Result)">
             <Parameter Name="UsuarioId" Mode="In" Type="String" />
             <Parameter Name="password" Mode="In" Type="String" />
           </FunctionImport>
@@ -15509,6 +15509,12 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Property Type="Decimal" Name="nocre_Monto" Nullable="true" Precision="10" Scale="2" />
           <Property Type="Boolean" Name="nocre_Redimido" Nullable="false" />
         </ComplexType>
+        <ComplexType Name="UDP_Vent_tbFactura_RolSupervisorCaja_Result">
+          <Property Type="Boolean" Name="RESULTADO" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbSolicitudCredito_RolGerenteCreditosCobranza_Result">
+          <Property Type="Boolean" Name="RESULTADO" Nullable="true" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -18426,7 +18432,13 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_RolSupervisorCaja" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_RolSupervisorCaja" />
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_RolSupervisorCaja" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_RolSupervisorCaja" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbFactura_RolSupervisorCaja_Result">
+                <ScalarProperty Name="RESULTADO" ColumnName="RESULTADO" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbNotaCredito_Caja" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbNotaCredito_Caja">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbNotaCredito_Caja_Result">
@@ -18447,7 +18459,13 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbPago_ImprimirEstaImpreso" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbPago_ImprimirEstaImpreso" />
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudCredito_RolGerenteCreditosCobranza" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudCredito_RolGerenteCreditosCobranza" />
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudCredito_RolGerenteCreditosCobranza" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudCredito_RolGerenteCreditosCobranza" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbSolicitudCredito_RolGerenteCreditosCobranza_Result">
+                <ScalarProperty Name="RESULTADO" ColumnName="RESULTADO" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudEfectivoDetalle_Update_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudEfectivoDetalle_Update_Insert">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivoDetalle_Update_Insert_Result">

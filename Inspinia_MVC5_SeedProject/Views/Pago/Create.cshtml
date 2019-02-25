@@ -69,7 +69,7 @@
         </div>
  
         <div class="form-group">
-            @Html.LabelFor(model => model.tbFactura.fact_Codigo, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.tbFactura.fact_Codigo, new { @class = "control-label col-md-1" })
             <div class="col-md-3">
                 @Html.EditorFor(model => model.tbFactura.fact_Codigo)
                 @Html.ValidationMessageFor(model => model.tbFactura.fact_Codigo, "", new { @style = "color:red" })
@@ -90,7 +90,7 @@
         
         <div class="form-group">
            
-            @Html.Label("Total Pagado", new { @class = "control-label col-md-3" })
+            @Html.Label("Total Pagado", new { @class = "control-label col-md-2" })
             <div class="col-md-2">
                 @Html.Editor("Total", String.Empty, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @id = "TotalPagado", @value = "number", @onkeyup = "format(this)", @autocomplete = "off" } })       
             </div>
@@ -101,7 +101,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.pago_TotalPago, "Monto Pagar", new { @class = "control-label col-md-3" })
+            @Html.LabelFor(model => model.pago_TotalPago, "Monto Pagar", new { @class = "control-label col-md-2" })
             <div class="col-md-2">
                 @Html.EditorFor(model => model.pago_TotalPago, String.Empty, new { htmlAttributes = new { @class = "form-control", @onkeyup = "format(this)", @autocomplete = "off", @style = "text-transform:capitalize;", onkeypress = "return validar(event)" } })
                 @Html.ValidationMessageFor(model => model.pago_TotalPago, "", new { @style = "color:red", @id = "msgMontoPagar" })
@@ -122,7 +122,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.tpa_Id, "Tipo de Pago", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.tpa_Id, "Tipo de Pago", new { @class = "control-label col-md-1" })
             <div class="col-md-3">
                 @Html.DropDownList("tpa_Id", null, "Seleccionar Tipo de Pago", new { @class = "form-control", @id = "TipoPago" })
                 @*@Html.DropDownList("tpa_id", new SelectList(Model.TPList, "ID_TP", "DESCRIPCION_TP"), "Seleccionar Tipo Pago", new { @class = "form-control", @id = "TipoPago" })*@
@@ -201,7 +201,7 @@
         <div id="NC" name="NC">
        
             <div class="form-group">
-                @Html.Label("Monto NC", new { @class = "control-label col-md-2" })
+                @Html.Label("Monto NC", new { @class = "control-label col-md-1" })
                 <div class="col-md-3">
                     @Html.Editor("NC", String.Empty, new { htmlAttributes = new { @class = "form-control", @id = "MontoNC", @value = "number", @onkeyup = "format(this)", @autocomplete = "off" } })
                     @Html.ValidationMessage("", new { @style = "color:red" })
@@ -218,7 +218,7 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.pago_Titular, new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.pago_Titular, new { @class = "control-label col-md-1" })
                 <div class="col-md-3">
                     @Html.EditorFor(model => model.pago_Titular)
                     @Html.ValidationMessageFor(model => model.pago_Titular)
@@ -277,7 +277,19 @@
                     <h4 class="modal-title" id="myModalLabel">Agregar Factura</h4>
                 </div>
                 <div class="modal-body" id="frmEditarMunicipios">
-                    @Html.Partial("_IndexFacturaPago", (List<V_Vent_FacturaPago>)ViewBag.FacturaPago)
+                    <table id="FacturasPagos" class="table table table-striped  table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Código Factura</th>
+                                <th>Monto</th>
+                                <th>Total Pagado</th>
+                                <th>Saldo Factura</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="BodyFacturaPagos"></tbody>
+                    </table>
+                   @*@Html.Partial("_IndexFacturaPago", (List<V_Vent_FacturaPago>)ViewBag.FacturaPago)*@
                 </div>
             </div>
         </div>
@@ -292,7 +304,18 @@
                     <h4 class="modal-title" id="myModalLabel">Buscar Nota Credito</h4>
                 </div>
                 <div class="modal-body" id="frmEditarMunicipios">
-                    @Html.Partial("_IndexNotaCredito", (List<UDP_Vent_tbNotaCreditoSelect_Result>) ViewBag.NotaCredito)
+                    <table id="DataTable" class="table table table-striped  table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Código Factura</th>
+                                <th>Monto</th>
+                                <th>¿Es redimido?</th>
+                                <th>¿Esta Impreso?</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="BodyNotaCreditoPagos"></tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -306,7 +329,7 @@
 <script src="~/Scripts/app/PagoClienteFacturas.js"></script>
 <script src="~/Scripts/app/PagoTransacciones.js"></script>
 <script src="~/Scripts/app/PagoCampoNumerico.js"></script>
-
+@*<script src="~/Scripts/app/DataTable.js"></script>*@
 <script>
     $(document).ready(function () {
         x = document.getElementById("Factura").disabled = true;

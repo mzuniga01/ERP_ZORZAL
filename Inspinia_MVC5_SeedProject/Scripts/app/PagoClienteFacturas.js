@@ -21,7 +21,6 @@ $(document).ready(function () {
 //Factura Seleccionar Cliente
 $(document).on("click", "#tbCliente tbody tr td button#seleccionar", function () {
     idItem = $(this).closest('tr').data('id');
-
     rtnItem = $(this).closest('tr').data('rtn');
     nombreItem = $(this).closest('tr').data('nombrecliente');
     $("#tbFactura_clte_Id").val(idItem);
@@ -32,7 +31,10 @@ $(document).on("click", "#tbCliente tbody tr td button#seleccionar", function ()
     if (idItem != '') {
         document.getElementById("Factura").disabled = false;
         document.getElementById("tbFactura_fact_Codigo").disabled = false;
+        GetIDCliente(idItem)
+        GetIDClienteNC(idItem)
     }
+
 });
 
 
@@ -111,3 +113,98 @@ $(document).ready(function () {
     });
 });
 
+///Filtrar modal de Codigo de nota credito
+var CodCliente = $('#tbFactura_clte_Id').val();
+console.log(CodCliente)
+
+function GetIDClienteNC(CodCliente, idItem) {
+    $.ajax({
+        url: "/Pago/NotasCredito",
+        method: "POST",
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({ CodCliente: CodCliente }),
+
+        error: function () {
+            alert("No se puede filtrar");
+        },
+        success: function (list) {
+            $('#BodyNotaCreditoPagos').empty();
+            console.log(list)
+            $.each(list, function (key, val) {
+                var EsRedimido = "No";
+                var EsImpreso = "Si";
+                copiar = "<tr data-codigo=" + val.nocre_Codigo + "  data-monto=" + val.nocre_Monto + " >";
+                copiar += "<td id = 'Codigo'>" + val.nocre_Codigo + "</td>";
+                copiar += "<td id = 'Monto'>" + val.nocre_Monto + "</td>";
+                copiar += "<td id = 'c'>" + EsRedimido + "</td>";
+                copiar += "<td id = 'd'>" + EsImpreso + "</td>";
+                copiar += "<td>" + '<button id="AgregarNotaCredito" class="btn btn-primary btn-xs" type="button">Añadir</button>' + "</td>";
+                copiar += "</tr>";
+                $('#BodyNotaCreditoPagos').append(copiar);
+
+            });
+        }
+
+
+    });
+
+}
+
+
+///filtrar modal de Factura
+
+function GetIDCliente(CodCliente, idItem) {
+    $.ajax({
+        url: "/Pago/FacturasPago",
+        method: "POST",
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({ CodCliente: CodCliente }),
+
+        error: function () {
+            alert("No se puede filtrar");
+        },
+        success: function (list) {
+            $('#BodyFacturaPagos').empty();
+            console.log(list)
+            $.each(list, function (key, val) {
+                copiar = "<tr data-codigo=" + val.fact_Codigo + "  data-monto=" + val.MontoFactura + "  data-total=" + val.TotalPagado + "  data-saldo=" + val.SaldoFactura + ">";
+                copiar += "<td id = 'Codigo'>" + val.fact_Codigo + "</td>";
+                copiar += "<td id = 'Monto'>" + val.MontoFactura + "</td>";
+                copiar += "<td id = 'c'>" + val.TotalPagado + "</td>";
+                copiar += "<td id = 'd'>" + val.SaldoFactura + "</td>";
+                copiar += "<td>" + '<button id="AgregarFactura" class="btn btn-primary btn-xs" type="button">Añadir</button>' + "</td>";
+                copiar += "</tr>";
+                $('#BodyFacturaPagos').append(copiar);
+
+            });
+        }
+
+
+    });
+
+}
+
+//Añadir una nota de credito
+$(document).on("click", "#DataTable tbody tr td button#AgregarNotaCredito", function () {
+    CodigoNC = $(this).closest('tr').data('codigo');
+    Monto = $(this).closest('tr').data('monto');
+    $("#MontoNC").val(CodigoNC);
+    $("#CodigoNC").val(Monto);
+    $('#ModalAgregarNotaCredito').modal('hide');
+});
+
+
+//Añadir una Factura
+$(document).on("click", "#FacturasPagos tbody tr td button#AgregarFactura", function () {
+    CodigoFactura = $(this).closest('tr').data('codigo');
+    Monto = $(this).closest('tr').data('monto');
+    TotalPagado = $(this).closest('tr').data('total');
+    SaldoAnterior = $(this).closest('tr').data('saldo');
+    $("#tbFactura_fact_Codigo").val(CodigoFactura);
+    $("#MontoFactura").val(Monto);
+    $("#TotalPagado").val(TotalPagado);
+    $("#SaldoAnterior").val(SaldoAnterior);
+    $('#ModalAgregaFacturaPago').modal('hide');
+});
