@@ -169,40 +169,40 @@ $('#btnActualizar').click(function () {
         $('#validationRTN').after('<ul id="errorRTN" class="validation-summary-errors text-danger">Campo RTN Requerido</ul>');
     }
 
-    else if (Nombre == '') {
-      
+    if (Nombre == '') {
+        $('#validationRTN').text('');
+        $("errorRTN").removeClass("error");
         $('#Nombre').text('');
         $('#errorNombre').text('');
         $('#validationNombre').after('<ul id="errorNombre" class="validation-summary-errors text-danger">Campo Nombre Requerido</ul>');
     }
 
- else   if (Contacto == '') {
+    if (Contacto == '') {
         $('#Contacto').text('');
         $('#errorContacto').text('');
         $('#validationContacto').after('<ul id="errorContacto" class="validation-summary-errors text-danger">Campo Contacto Requerido</ul>');
     }
 
-   else if (Direccion == '') {
+    if (Direccion == '') {
         $('#Direccion').text('');
         $('#errorDireccion').text('');
         $('#validationDireccion').after('<ul id="errorDireccion" class="validation-summary-errors text-danger">Campo Direccion Requerido</ul>');
     }
-  else  if (Email == '') {
+    if (Email == '') {
         $('#Email').text('');
         $('#errorEmail').text('');
         $('#validationEmail').after('<ul id="errorEmail" class="validation-summary-errors text-danger">Campo Email Requerido</ul>');
     }
-    else if (Telefono == '') {
+    if (Telefono == '') {
         $('#Telefono').text('');
         $('#errorTelefono').text('');
         $('#validationTelefono').after('<ul id="errorTelefono" class="validation-summary-errors text-danger">Campo Telefono Requerido</ul>');
     }
-  else  if (Actividad == '') {
+    if (Actividad == '') {
         $('#Actividad').text('');
         $('#errorActividad').text('');
         $('#validationActividad').after('<ul id="errorActividad" class="validation-summary-errors text-danger">Campo Actividad Economica Requerido</ul>');
     }
-
 
     else {
 
@@ -303,7 +303,7 @@ function controlCaracteres(e) {
 
 
 $('#prov_RTN').change(function (e) {
-    console.log('Hola');
+
     var RTN  = this.value;
     if (RTN != '') {
         $('#RTN').text('');
@@ -312,7 +312,7 @@ $('#prov_RTN').change(function (e) {
 });
 
 $('#prov_Nombre').change(function (e) {
-    console.log('Hola');
+ 
     var Nombre = this.value;
     if (Nombre != '') {
         $('#Nombre').text('');
@@ -321,7 +321,7 @@ $('#prov_Nombre').change(function (e) {
 });
 
     $('#prov_NombreContacto').change(function (e) {
-        console.log('Hola');
+      
         var Contacto = this.value;
         if (Contacto != '') {
             $('#Contacto').text('');
