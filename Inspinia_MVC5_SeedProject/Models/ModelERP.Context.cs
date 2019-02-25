@@ -6327,15 +6327,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetCaja_Result>("spGetCaja", codUsuarioParameter);
         }
     
-        public virtual ObjectResult<UDP_Vent_tbMovimientoCaja_Imprimir_Result1> UDP_Vent_tbMovimientoCaja_Imprimir(Nullable<int> mocja_Id)
-        {
-            var mocja_IdParameter = mocja_Id.HasValue ?
-                new ObjectParameter("mocja_Id", mocja_Id) :
-                new ObjectParameter("mocja_Id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbMovimientoCaja_Imprimir_Result1>("UDP_Vent_tbMovimientoCaja_Imprimir", mocja_IdParameter);
-        }
-    
         public virtual ObjectResult<UDP_Vent_tbTipoPago_Insert_Result> UDP_Vent_tbTipoPago_Insert(string tpa_Descripcion, Nullable<bool> tpa_Emisor, Nullable<bool> tpa_Cuenta, Nullable<bool> tpa_FechaVencimiento, Nullable<bool> tpa_Titular, Nullable<int> tpa_UsuarioCrea, Nullable<System.DateTime> tpa_FechaCrea)
         {
             var tpa_DescripcionParameter = tpa_Descripcion != null ?
@@ -6928,6 +6919,15 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("password", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbFactura_RolSupervisorCaja_Result>("UDP_Vent_tbFactura_RolSupervisorCaja", usuarioIdParameter, passwordParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbMovimientoCaja_Imprimir_Result1> UDP_Vent_tbMovimientoCaja_Imprimir(Nullable<int> mocja_Id)
+        {
+            var mocja_IdParameter = mocja_Id.HasValue ?
+                new ObjectParameter("mocja_Id", mocja_Id) :
+                new ObjectParameter("mocja_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbMovimientoCaja_Imprimir_Result1>("UDP_Vent_tbMovimientoCaja_Imprimir", mocja_IdParameter);
         }
     }
 }

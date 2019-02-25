@@ -279,6 +279,8 @@ namespace ERP_GMEDINA.Dataset {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class UDP_Vent_tbNotaCredito_ImprimirDataTable : global::System.Data.TypedTableBase<UDP_Vent_tbNotaCredito_ImprimirRow> {
             
+            private global::System.Data.DataColumn columnnocre_FechaEmision;
+            
             private global::System.Data.DataColumn columnnocre_Id;
             
             private global::System.Data.DataColumn columnnocre_Codigo;
@@ -289,17 +291,15 @@ namespace ERP_GMEDINA.Dataset {
             
             private global::System.Data.DataColumn columndev_Id;
             
+            private global::System.Data.DataColumn columndevd_Monto;
+            
             private global::System.Data.DataColumn columnclte_Identificacion;
             
             private global::System.Data.DataColumn columnclte_Nombres;
             
             private global::System.Data.DataColumn columnclte_Apellidos;
             
-            private global::System.Data.DataColumn columnnocre_FechaEmision;
-            
             private global::System.Data.DataColumn columnclte_NombreComercial;
-            
-            private global::System.Data.DataColumn columndevd_Monto;
             
             private global::System.Data.DataColumn columnsuc_Descripcion;
             
@@ -344,6 +344,14 @@ namespace ERP_GMEDINA.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn nocre_FechaEmisionColumn {
+                get {
+                    return this.columnnocre_FechaEmision;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn nocre_IdColumn {
                 get {
                     return this.columnnocre_Id;
@@ -384,6 +392,14 @@ namespace ERP_GMEDINA.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn devd_MontoColumn {
+                get {
+                    return this.columndevd_Monto;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn clte_IdentificacionColumn {
                 get {
                     return this.columnclte_Identificacion;
@@ -408,25 +424,9 @@ namespace ERP_GMEDINA.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn nocre_FechaEmisionColumn {
-                get {
-                    return this.columnnocre_FechaEmision;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn clte_NombreComercialColumn {
                 get {
                     return this.columnclte_NombreComercial;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn devd_MontoColumn {
-                get {
-                    return this.columndevd_Monto;
                 }
             }
             
@@ -499,20 +499,20 @@ namespace ERP_GMEDINA.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public UDP_Vent_tbNotaCredito_ImprimirRow AddUDP_Vent_tbNotaCredito_ImprimirRow(string nocre_Codigo, string nocre_MotivoEmision, decimal nocre_Monto, string clte_Identificacion, string clte_Nombres, string clte_Apellidos, System.DateTime nocre_FechaEmision, string clte_NombreComercial, decimal devd_Monto, string suc_Descripcion, string suc_Correo, string suc_Direccion, string suc_Telefono) {
+            public UDP_Vent_tbNotaCredito_ImprimirRow AddUDP_Vent_tbNotaCredito_ImprimirRow(System.DateTime nocre_FechaEmision, string nocre_Codigo, string nocre_MotivoEmision, decimal nocre_Monto, decimal devd_Monto, string clte_Identificacion, string clte_Nombres, string clte_Apellidos, string clte_NombreComercial, string suc_Descripcion, string suc_Correo, string suc_Direccion, string suc_Telefono) {
                 UDP_Vent_tbNotaCredito_ImprimirRow rowUDP_Vent_tbNotaCredito_ImprimirRow = ((UDP_Vent_tbNotaCredito_ImprimirRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
+                        nocre_FechaEmision,
                         null,
                         nocre_Codigo,
                         nocre_MotivoEmision,
                         nocre_Monto,
                         null,
+                        devd_Monto,
                         clte_Identificacion,
                         clte_Nombres,
                         clte_Apellidos,
-                        nocre_FechaEmision,
                         clte_NombreComercial,
-                        devd_Monto,
                         suc_Descripcion,
                         suc_Correo,
                         suc_Direccion,
@@ -539,17 +539,17 @@ namespace ERP_GMEDINA.Dataset {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
+                this.columnnocre_FechaEmision = base.Columns["nocre_FechaEmision"];
                 this.columnnocre_Id = base.Columns["nocre_Id"];
                 this.columnnocre_Codigo = base.Columns["nocre_Codigo"];
                 this.columnnocre_MotivoEmision = base.Columns["nocre_MotivoEmision"];
                 this.columnnocre_Monto = base.Columns["nocre_Monto"];
                 this.columndev_Id = base.Columns["dev_Id"];
+                this.columndevd_Monto = base.Columns["devd_Monto"];
                 this.columnclte_Identificacion = base.Columns["clte_Identificacion"];
                 this.columnclte_Nombres = base.Columns["clte_Nombres"];
                 this.columnclte_Apellidos = base.Columns["clte_Apellidos"];
-                this.columnnocre_FechaEmision = base.Columns["nocre_FechaEmision"];
                 this.columnclte_NombreComercial = base.Columns["clte_NombreComercial"];
-                this.columndevd_Monto = base.Columns["devd_Monto"];
                 this.columnsuc_Descripcion = base.Columns["suc_Descripcion"];
                 this.columnsuc_Correo = base.Columns["suc_Correo"];
                 this.columnsuc_Direccion = base.Columns["suc_Direccion"];
@@ -559,6 +559,8 @@ namespace ERP_GMEDINA.Dataset {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
+                this.columnnocre_FechaEmision = new global::System.Data.DataColumn("nocre_FechaEmision", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnnocre_FechaEmision);
                 this.columnnocre_Id = new global::System.Data.DataColumn("nocre_Id", typeof(short), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnnocre_Id);
                 this.columnnocre_Codigo = new global::System.Data.DataColumn("nocre_Codigo", typeof(string), null, global::System.Data.MappingType.Element);
@@ -569,18 +571,16 @@ namespace ERP_GMEDINA.Dataset {
                 base.Columns.Add(this.columnnocre_Monto);
                 this.columndev_Id = new global::System.Data.DataColumn("dev_Id", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndev_Id);
+                this.columndevd_Monto = new global::System.Data.DataColumn("devd_Monto", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndevd_Monto);
                 this.columnclte_Identificacion = new global::System.Data.DataColumn("clte_Identificacion", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnclte_Identificacion);
                 this.columnclte_Nombres = new global::System.Data.DataColumn("clte_Nombres", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnclte_Nombres);
                 this.columnclte_Apellidos = new global::System.Data.DataColumn("clte_Apellidos", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnclte_Apellidos);
-                this.columnnocre_FechaEmision = new global::System.Data.DataColumn("nocre_FechaEmision", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnnocre_FechaEmision);
                 this.columnclte_NombreComercial = new global::System.Data.DataColumn("clte_NombreComercial", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnclte_NombreComercial);
-                this.columndevd_Monto = new global::System.Data.DataColumn("devd_Monto", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columndevd_Monto);
                 this.columnsuc_Descripcion = new global::System.Data.DataColumn("suc_Descripcion", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnsuc_Descripcion);
                 this.columnsuc_Correo = new global::System.Data.DataColumn("suc_Correo", typeof(string), null, global::System.Data.MappingType.Element);
@@ -589,6 +589,7 @@ namespace ERP_GMEDINA.Dataset {
                 base.Columns.Add(this.columnsuc_Direccion);
                 this.columnsuc_Telefono = new global::System.Data.DataColumn("suc_Telefono", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnsuc_Telefono);
+                this.columnnocre_FechaEmision.AllowDBNull = false;
                 this.columnnocre_Id.AutoIncrement = true;
                 this.columnnocre_Id.AutoIncrementSeed = -1;
                 this.columnnocre_Id.AutoIncrementStep = -1;
@@ -601,25 +602,14 @@ namespace ERP_GMEDINA.Dataset {
                 this.columndev_Id.AutoIncrement = true;
                 this.columndev_Id.AutoIncrementSeed = -1;
                 this.columndev_Id.AutoIncrementStep = -1;
-                this.columndev_Id.AllowDBNull = false;
                 this.columndev_Id.ReadOnly = true;
-                this.columnclte_Identificacion.AllowDBNull = false;
                 this.columnclte_Identificacion.MaxLength = 26;
-                this.columnclte_Nombres.AllowDBNull = false;
                 this.columnclte_Nombres.MaxLength = 50;
-                this.columnclte_Apellidos.AllowDBNull = false;
                 this.columnclte_Apellidos.MaxLength = 50;
-                this.columnnocre_FechaEmision.AllowDBNull = false;
-                this.columnclte_NombreComercial.AllowDBNull = false;
                 this.columnclte_NombreComercial.MaxLength = 50;
-                this.columndevd_Monto.AllowDBNull = false;
-                this.columnsuc_Descripcion.AllowDBNull = false;
                 this.columnsuc_Descripcion.MaxLength = 40;
-                this.columnsuc_Correo.AllowDBNull = false;
                 this.columnsuc_Correo.MaxLength = 50;
-                this.columnsuc_Direccion.AllowDBNull = false;
                 this.columnsuc_Direccion.MaxLength = 100;
-                this.columnsuc_Telefono.AllowDBNull = false;
                 this.columnsuc_Telefono.MaxLength = 9;
             }
             
@@ -763,6 +753,17 @@ namespace ERP_GMEDINA.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime nocre_FechaEmision {
+                get {
+                    return ((global::System.DateTime)(this[this.tableUDP_Vent_tbNotaCredito_Imprimir.nocre_FechaEmisionColumn]));
+                }
+                set {
+                    this[this.tableUDP_Vent_tbNotaCredito_Imprimir.nocre_FechaEmisionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public short nocre_Id {
                 get {
                     return ((short)(this[this.tableUDP_Vent_tbNotaCredito_Imprimir.nocre_IdColumn]));
@@ -815,7 +816,13 @@ namespace ERP_GMEDINA.Dataset {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public int dev_Id {
                 get {
-                    return ((int)(this[this.tableUDP_Vent_tbNotaCredito_Imprimir.dev_IdColumn]));
+                    try {
+                        return ((int)(this[this.tableUDP_Vent_tbNotaCredito_Imprimir.dev_IdColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'dev_Id\' in table \'UDP_Vent_tbNotaCredito_Imprimir\' is DBNul" +
+                                "l.", e);
+                    }
                 }
                 set {
                     this[this.tableUDP_Vent_tbNotaCredito_Imprimir.dev_IdColumn] = value;
@@ -824,9 +831,32 @@ namespace ERP_GMEDINA.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal devd_Monto {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableUDP_Vent_tbNotaCredito_Imprimir.devd_MontoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'devd_Monto\' in table \'UDP_Vent_tbNotaCredito_Imprimir\' is D" +
+                                "BNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableUDP_Vent_tbNotaCredito_Imprimir.devd_MontoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string clte_Identificacion {
                 get {
-                    return ((string)(this[this.tableUDP_Vent_tbNotaCredito_Imprimir.clte_IdentificacionColumn]));
+                    try {
+                        return ((string)(this[this.tableUDP_Vent_tbNotaCredito_Imprimir.clte_IdentificacionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'clte_Identificacion\' in table \'UDP_Vent_tbNotaCredito_Impri" +
+                                "mir\' is DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tableUDP_Vent_tbNotaCredito_Imprimir.clte_IdentificacionColumn] = value;
@@ -837,7 +867,13 @@ namespace ERP_GMEDINA.Dataset {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string clte_Nombres {
                 get {
-                    return ((string)(this[this.tableUDP_Vent_tbNotaCredito_Imprimir.clte_NombresColumn]));
+                    try {
+                        return ((string)(this[this.tableUDP_Vent_tbNotaCredito_Imprimir.clte_NombresColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'clte_Nombres\' in table \'UDP_Vent_tbNotaCredito_Imprimir\' is" +
+                                " DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tableUDP_Vent_tbNotaCredito_Imprimir.clte_NombresColumn] = value;
@@ -848,7 +884,13 @@ namespace ERP_GMEDINA.Dataset {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string clte_Apellidos {
                 get {
-                    return ((string)(this[this.tableUDP_Vent_tbNotaCredito_Imprimir.clte_ApellidosColumn]));
+                    try {
+                        return ((string)(this[this.tableUDP_Vent_tbNotaCredito_Imprimir.clte_ApellidosColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'clte_Apellidos\' in table \'UDP_Vent_tbNotaCredito_Imprimir\' " +
+                                "is DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tableUDP_Vent_tbNotaCredito_Imprimir.clte_ApellidosColumn] = value;
@@ -857,20 +899,15 @@ namespace ERP_GMEDINA.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime nocre_FechaEmision {
-                get {
-                    return ((global::System.DateTime)(this[this.tableUDP_Vent_tbNotaCredito_Imprimir.nocre_FechaEmisionColumn]));
-                }
-                set {
-                    this[this.tableUDP_Vent_tbNotaCredito_Imprimir.nocre_FechaEmisionColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string clte_NombreComercial {
                 get {
-                    return ((string)(this[this.tableUDP_Vent_tbNotaCredito_Imprimir.clte_NombreComercialColumn]));
+                    try {
+                        return ((string)(this[this.tableUDP_Vent_tbNotaCredito_Imprimir.clte_NombreComercialColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'clte_NombreComercial\' in table \'UDP_Vent_tbNotaCredito_Impr" +
+                                "imir\' is DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tableUDP_Vent_tbNotaCredito_Imprimir.clte_NombreComercialColumn] = value;
@@ -879,20 +916,15 @@ namespace ERP_GMEDINA.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal devd_Monto {
-                get {
-                    return ((decimal)(this[this.tableUDP_Vent_tbNotaCredito_Imprimir.devd_MontoColumn]));
-                }
-                set {
-                    this[this.tableUDP_Vent_tbNotaCredito_Imprimir.devd_MontoColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string suc_Descripcion {
                 get {
-                    return ((string)(this[this.tableUDP_Vent_tbNotaCredito_Imprimir.suc_DescripcionColumn]));
+                    try {
+                        return ((string)(this[this.tableUDP_Vent_tbNotaCredito_Imprimir.suc_DescripcionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'suc_Descripcion\' in table \'UDP_Vent_tbNotaCredito_Imprimir\'" +
+                                " is DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tableUDP_Vent_tbNotaCredito_Imprimir.suc_DescripcionColumn] = value;
@@ -903,7 +935,13 @@ namespace ERP_GMEDINA.Dataset {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string suc_Correo {
                 get {
-                    return ((string)(this[this.tableUDP_Vent_tbNotaCredito_Imprimir.suc_CorreoColumn]));
+                    try {
+                        return ((string)(this[this.tableUDP_Vent_tbNotaCredito_Imprimir.suc_CorreoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'suc_Correo\' in table \'UDP_Vent_tbNotaCredito_Imprimir\' is D" +
+                                "BNull.", e);
+                    }
                 }
                 set {
                     this[this.tableUDP_Vent_tbNotaCredito_Imprimir.suc_CorreoColumn] = value;
@@ -914,7 +952,13 @@ namespace ERP_GMEDINA.Dataset {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string suc_Direccion {
                 get {
-                    return ((string)(this[this.tableUDP_Vent_tbNotaCredito_Imprimir.suc_DireccionColumn]));
+                    try {
+                        return ((string)(this[this.tableUDP_Vent_tbNotaCredito_Imprimir.suc_DireccionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'suc_Direccion\' in table \'UDP_Vent_tbNotaCredito_Imprimir\' i" +
+                                "s DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tableUDP_Vent_tbNotaCredito_Imprimir.suc_DireccionColumn] = value;
@@ -925,7 +969,13 @@ namespace ERP_GMEDINA.Dataset {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string suc_Telefono {
                 get {
-                    return ((string)(this[this.tableUDP_Vent_tbNotaCredito_Imprimir.suc_TelefonoColumn]));
+                    try {
+                        return ((string)(this[this.tableUDP_Vent_tbNotaCredito_Imprimir.suc_TelefonoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'suc_Telefono\' in table \'UDP_Vent_tbNotaCredito_Imprimir\' is" +
+                                " DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tableUDP_Vent_tbNotaCredito_Imprimir.suc_TelefonoColumn] = value;
@@ -942,6 +992,126 @@ namespace ERP_GMEDINA.Dataset {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void Setnocre_MontoNull() {
                 this[this.tableUDP_Vent_tbNotaCredito_Imprimir.nocre_MontoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Isdev_IdNull() {
+                return this.IsNull(this.tableUDP_Vent_tbNotaCredito_Imprimir.dev_IdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setdev_IdNull() {
+                this[this.tableUDP_Vent_tbNotaCredito_Imprimir.dev_IdColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Isdevd_MontoNull() {
+                return this.IsNull(this.tableUDP_Vent_tbNotaCredito_Imprimir.devd_MontoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setdevd_MontoNull() {
+                this[this.tableUDP_Vent_tbNotaCredito_Imprimir.devd_MontoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Isclte_IdentificacionNull() {
+                return this.IsNull(this.tableUDP_Vent_tbNotaCredito_Imprimir.clte_IdentificacionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setclte_IdentificacionNull() {
+                this[this.tableUDP_Vent_tbNotaCredito_Imprimir.clte_IdentificacionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Isclte_NombresNull() {
+                return this.IsNull(this.tableUDP_Vent_tbNotaCredito_Imprimir.clte_NombresColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setclte_NombresNull() {
+                this[this.tableUDP_Vent_tbNotaCredito_Imprimir.clte_NombresColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Isclte_ApellidosNull() {
+                return this.IsNull(this.tableUDP_Vent_tbNotaCredito_Imprimir.clte_ApellidosColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setclte_ApellidosNull() {
+                this[this.tableUDP_Vent_tbNotaCredito_Imprimir.clte_ApellidosColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Isclte_NombreComercialNull() {
+                return this.IsNull(this.tableUDP_Vent_tbNotaCredito_Imprimir.clte_NombreComercialColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setclte_NombreComercialNull() {
+                this[this.tableUDP_Vent_tbNotaCredito_Imprimir.clte_NombreComercialColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Issuc_DescripcionNull() {
+                return this.IsNull(this.tableUDP_Vent_tbNotaCredito_Imprimir.suc_DescripcionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setsuc_DescripcionNull() {
+                this[this.tableUDP_Vent_tbNotaCredito_Imprimir.suc_DescripcionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Issuc_CorreoNull() {
+                return this.IsNull(this.tableUDP_Vent_tbNotaCredito_Imprimir.suc_CorreoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setsuc_CorreoNull() {
+                this[this.tableUDP_Vent_tbNotaCredito_Imprimir.suc_CorreoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Issuc_DireccionNull() {
+                return this.IsNull(this.tableUDP_Vent_tbNotaCredito_Imprimir.suc_DireccionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setsuc_DireccionNull() {
+                this[this.tableUDP_Vent_tbNotaCredito_Imprimir.suc_DireccionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Issuc_TelefonoNull() {
+                return this.IsNull(this.tableUDP_Vent_tbNotaCredito_Imprimir.suc_TelefonoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setsuc_TelefonoNull() {
+                this[this.tableUDP_Vent_tbNotaCredito_Imprimir.suc_TelefonoColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -1104,17 +1274,17 @@ namespace ERP_GMEDINA.Dataset.DSNotaCreditoTableAdapters {
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "UDP_Vent_tbNotaCredito_Imprimir";
+            tableMapping.ColumnMappings.Add("nocre_FechaEmision", "nocre_FechaEmision");
             tableMapping.ColumnMappings.Add("nocre_Id", "nocre_Id");
             tableMapping.ColumnMappings.Add("nocre_Codigo", "nocre_Codigo");
             tableMapping.ColumnMappings.Add("nocre_MotivoEmision", "nocre_MotivoEmision");
             tableMapping.ColumnMappings.Add("nocre_Monto", "nocre_Monto");
             tableMapping.ColumnMappings.Add("dev_Id", "dev_Id");
+            tableMapping.ColumnMappings.Add("devd_Monto", "devd_Monto");
             tableMapping.ColumnMappings.Add("clte_Identificacion", "clte_Identificacion");
             tableMapping.ColumnMappings.Add("clte_Nombres", "clte_Nombres");
             tableMapping.ColumnMappings.Add("clte_Apellidos", "clte_Apellidos");
-            tableMapping.ColumnMappings.Add("nocre_FechaEmision", "nocre_FechaEmision");
             tableMapping.ColumnMappings.Add("clte_NombreComercial", "clte_NombreComercial");
-            tableMapping.ColumnMappings.Add("devd_Monto", "devd_Monto");
             tableMapping.ColumnMappings.Add("suc_Descripcion", "suc_Descripcion");
             tableMapping.ColumnMappings.Add("suc_Correo", "suc_Correo");
             tableMapping.ColumnMappings.Add("suc_Direccion", "suc_Direccion");

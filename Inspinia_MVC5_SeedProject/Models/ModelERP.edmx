@@ -9797,9 +9797,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <FunctionImport Name="spGetCaja" ReturnType="Collection(ERP_ZORZALModel.spGetCaja_Result)">
           <Parameter Name="CodUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Vent_tbMovimientoCaja_Imprimir" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_Imprimir_Result1)">
-          <Parameter Name="mocja_Id" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbTipoPago_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbTipoPago_Insert_Result)">
             <Parameter Name="tpa_Descripcion" Mode="In" Type="String" />
             <Parameter Name="tpa_Emisor" Mode="In" Type="Boolean" />
@@ -9968,6 +9965,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <FunctionImport Name="UDP_Vent_tbFactura_RolSupervisorCaja" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFactura_RolSupervisorCaja_Result)">
             <Parameter Name="UsuarioId" Mode="In" Type="String" />
             <Parameter Name="password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbMovimientoCaja_Imprimir" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_Imprimir_Result1)">
+            <Parameter Name="mocja_Id" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
@@ -15319,48 +15319,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Property Type="Int16" Name="cja_Id" Nullable="false" />
           <Property Type="String" Name="cja_Descripcion" Nullable="false" MaxLength="10" />
         </ComplexType>
-        <ComplexType Name="UDP_Vent_tbMovimientoCaja_Imprimir_Result">
-          <Property Type="Int32" Name="mocja_Id" Nullable="false" />
-          <Property Type="DateTime" Name="mocja_FechaApertura" Nullable="true" Precision="23" />
-          <Property Type="Int32" Name="mocja_UsuarioApertura" Nullable="false" />
-          <Property Type="DateTime" Name="mocja_FechaArqueo" Nullable="true" Precision="23" />
-          <Property Type="Int32" Name="mocja_UsuarioArquea" Nullable="false" />
-          <Property Type="DateTime" Name="mocja_FechaAceptacion" Nullable="true" Precision="23" />
-          <Property Type="Int32" Name="mocja_UsuarioAceptacion" Nullable="false" />
-          <Property Type="String" Name="cja_Descripcion" Nullable="false" MaxLength="10" />
-          <Property Type="String" Name="suc_Descripcion" Nullable="false" MaxLength="40" />
-          <Property Type="Int16" Name="arqde_CantidadDenominacion" Nullable="false" />
-          <Property Type="Decimal" Name="arqde_MontoDenominacion" Nullable="false" Precision="10" Scale="2" />
-          <Property Type="String" Name="deno_Descripcion" Nullable="false" MaxLength="50" />
-          <Property Type="Decimal" Name="deno_valor" Nullable="false" Precision="10" Scale="2" />
-          <Property Type="Decimal" Name="arqpg_PagosSistema" Nullable="false" Precision="10" Scale="2" />
-          <Property Type="Decimal" Name="arqpg_PagosConteo" Nullable="false" Precision="10" Scale="2" />
-          <Property Type="String" Name="tpa_Descripcion" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Usuario_Apertura" Nullable="false" MaxLength="301" />
-          <Property Type="String" Name="Usuario_Arquea" Nullable="false" MaxLength="301" />
-          <Property Type="String" Name="Usuario_Aceptacion" Nullable="false" MaxLength="301" />
-        </ComplexType>
-        <ComplexType Name="UDP_Vent_tbMovimientoCaja_Imprimir_Result1">
-          <Property Type="Int32" Name="mocja_Id" Nullable="false" />
-          <Property Type="DateTime" Name="mocja_FechaApertura" Nullable="true" Precision="23" />
-          <Property Type="Int32" Name="mocja_UsuarioApertura" Nullable="false" />
-          <Property Type="DateTime" Name="mocja_FechaArqueo" Nullable="true" Precision="23" />
-          <Property Type="Int32" Name="mocja_UsuarioArquea" Nullable="false" />
-          <Property Type="DateTime" Name="mocja_FechaAceptacion" Nullable="true" Precision="23" />
-          <Property Type="Int32" Name="mocja_UsuarioAceptacion" Nullable="false" />
-          <Property Type="String" Name="cja_Descripcion" Nullable="false" MaxLength="10" />
-          <Property Type="String" Name="suc_Descripcion" Nullable="false" MaxLength="40" />
-          <Property Type="Int16" Name="arqde_CantidadDenominacion" Nullable="false" />
-          <Property Type="Decimal" Name="arqde_MontoDenominacion" Nullable="false" Precision="10" Scale="2" />
-          <Property Type="String" Name="deno_Descripcion" Nullable="false" MaxLength="50" />
-          <Property Type="Decimal" Name="deno_valor" Nullable="false" Precision="10" Scale="2" />
-          <Property Type="Decimal" Name="arqpg_PagosSistema" Nullable="false" Precision="10" Scale="2" />
-          <Property Type="Decimal" Name="arqpg_PagosConteo" Nullable="false" Precision="10" Scale="2" />
-          <Property Type="String" Name="tpa_Descripcion" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Usuario_Apertura" Nullable="false" MaxLength="301" />
-          <Property Type="String" Name="Usuario_Arquea" Nullable="false" MaxLength="301" />
-          <Property Type="String" Name="Usuario_Aceptacion" Nullable="false" MaxLength="301" />
-        </ComplexType>
         <ComplexType Name="UDP_Vent_tbTipoPago_Update_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
@@ -15514,6 +15472,48 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
         </ComplexType>
         <ComplexType Name="UDP_Vent_tbFactura_RolSupervisorCaja_Result">
           <Property Type="Boolean" Name="RESULTADO" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbMovimientoCaja_Imprimir_Result">
+          <Property Type="Int32" Name="mocja_Id" Nullable="false" />
+          <Property Type="DateTime" Name="mocja_FechaApertura" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="mocja_UsuarioApertura" Nullable="false" />
+          <Property Type="DateTime" Name="mocja_FechaArqueo" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="mocja_UsuarioArquea" Nullable="false" />
+          <Property Type="DateTime" Name="mocja_FechaAceptacion" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="mocja_UsuarioAceptacion" Nullable="false" />
+          <Property Type="String" Name="cja_Descripcion" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="suc_Descripcion" Nullable="true" MaxLength="40" />
+          <Property Type="Int16" Name="arqde_CantidadDenominacion" Nullable="true" />
+          <Property Type="Decimal" Name="arqde_MontoDenominacion" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="String" Name="deno_Descripcion" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="deno_valor" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="arqpg_PagosSistema" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="arqpg_PagosConteo" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="String" Name="tpa_Descripcion" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Usuario_Apertura" Nullable="true" MaxLength="301" />
+          <Property Type="String" Name="Usuario_Arquea" Nullable="true" MaxLength="301" />
+          <Property Type="String" Name="Usuario_Aceptacion" Nullable="true" MaxLength="301" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbMovimientoCaja_Imprimir_Result1">
+          <Property Type="Int32" Name="mocja_Id" Nullable="false" />
+          <Property Type="DateTime" Name="mocja_FechaApertura" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="mocja_UsuarioApertura" Nullable="false" />
+          <Property Type="DateTime" Name="mocja_FechaArqueo" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="mocja_UsuarioArquea" Nullable="false" />
+          <Property Type="DateTime" Name="mocja_FechaAceptacion" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="mocja_UsuarioAceptacion" Nullable="false" />
+          <Property Type="String" Name="cja_Descripcion" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="suc_Descripcion" Nullable="true" MaxLength="40" />
+          <Property Type="Int16" Name="arqde_CantidadDenominacion" Nullable="true" />
+          <Property Type="Decimal" Name="arqde_MontoDenominacion" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="String" Name="deno_Descripcion" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="deno_valor" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="arqpg_PagosSistema" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="arqpg_PagosConteo" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="String" Name="tpa_Descripcion" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Usuario_Apertura" Nullable="true" MaxLength="301" />
+          <Property Type="String" Name="Usuario_Arquea" Nullable="true" MaxLength="301" />
+          <Property Type="String" Name="Usuario_Aceptacion" Nullable="true" MaxLength="301" />
         </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
@@ -18201,31 +18201,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbMovimientoCaja_Imprimir" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbMovimientoCaja_Imprimir">
-          <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_Imprimir_Result1">
-                <ScalarProperty Name="mocja_Id" ColumnName="mocja_Id" />
-                <ScalarProperty Name="mocja_FechaApertura" ColumnName="mocja_FechaApertura" />
-                <ScalarProperty Name="mocja_UsuarioApertura" ColumnName="mocja_UsuarioApertura" />
-                <ScalarProperty Name="mocja_FechaArqueo" ColumnName="mocja_FechaArqueo" />
-                <ScalarProperty Name="mocja_UsuarioArquea" ColumnName="mocja_UsuarioArquea" />
-                <ScalarProperty Name="mocja_FechaAceptacion" ColumnName="mocja_FechaAceptacion" />
-                <ScalarProperty Name="mocja_UsuarioAceptacion" ColumnName="mocja_UsuarioAceptacion" />
-                <ScalarProperty Name="cja_Descripcion" ColumnName="cja_Descripcion" />
-                <ScalarProperty Name="suc_Descripcion" ColumnName="suc_Descripcion" />
-                <ScalarProperty Name="arqde_CantidadDenominacion" ColumnName="arqde_CantidadDenominacion" />
-                <ScalarProperty Name="arqde_MontoDenominacion" ColumnName="arqde_MontoDenominacion" />
-                <ScalarProperty Name="deno_Descripcion" ColumnName="deno_Descripcion" />
-                <ScalarProperty Name="deno_valor" ColumnName="deno_valor" />
-                <ScalarProperty Name="arqpg_PagosSistema" ColumnName="arqpg_PagosSistema" />
-                <ScalarProperty Name="arqpg_PagosConteo" ColumnName="arqpg_PagosConteo" />
-                <ScalarProperty Name="tpa_Descripcion" ColumnName="tpa_Descripcion" />
-                <ScalarProperty Name="Usuario_Apertura" ColumnName="Usuario Apertura" />
-                <ScalarProperty Name="Usuario_Arquea" ColumnName="Usuario Arquea" />
-                <ScalarProperty Name="Usuario_Aceptacion" ColumnName="Usuario Aceptacion" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbTipoPago_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbTipoPago_Insert" >
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbTipoPago_Insert_Result">
@@ -18479,6 +18454,31 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbFactura_RolSupervisorCaja_Result">
                 <ScalarProperty Name="RESULTADO" ColumnName="RESULTADO" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbMovimientoCaja_Imprimir" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbMovimientoCaja_Imprimir">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_Imprimir_Result1">
+                <ScalarProperty Name="mocja_Id" ColumnName="mocja_Id" />
+                <ScalarProperty Name="mocja_FechaApertura" ColumnName="mocja_FechaApertura" />
+                <ScalarProperty Name="mocja_UsuarioApertura" ColumnName="mocja_UsuarioApertura" />
+                <ScalarProperty Name="mocja_FechaArqueo" ColumnName="mocja_FechaArqueo" />
+                <ScalarProperty Name="mocja_UsuarioArquea" ColumnName="mocja_UsuarioArquea" />
+                <ScalarProperty Name="mocja_FechaAceptacion" ColumnName="mocja_FechaAceptacion" />
+                <ScalarProperty Name="mocja_UsuarioAceptacion" ColumnName="mocja_UsuarioAceptacion" />
+                <ScalarProperty Name="cja_Descripcion" ColumnName="cja_Descripcion" />
+                <ScalarProperty Name="suc_Descripcion" ColumnName="suc_Descripcion" />
+                <ScalarProperty Name="arqde_CantidadDenominacion" ColumnName="arqde_CantidadDenominacion" />
+                <ScalarProperty Name="arqde_MontoDenominacion" ColumnName="arqde_MontoDenominacion" />
+                <ScalarProperty Name="deno_Descripcion" ColumnName="deno_Descripcion" />
+                <ScalarProperty Name="deno_valor" ColumnName="deno_valor" />
+                <ScalarProperty Name="arqpg_PagosSistema" ColumnName="arqpg_PagosSistema" />
+                <ScalarProperty Name="arqpg_PagosConteo" ColumnName="arqpg_PagosConteo" />
+                <ScalarProperty Name="tpa_Descripcion" ColumnName="tpa_Descripcion" />
+                <ScalarProperty Name="Usuario_Apertura" ColumnName="Usuario Apertura" />
+                <ScalarProperty Name="Usuario_Arquea" ColumnName="Usuario Arquea" />
+                <ScalarProperty Name="Usuario_Aceptacion" ColumnName="Usuario Aceptacion" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
