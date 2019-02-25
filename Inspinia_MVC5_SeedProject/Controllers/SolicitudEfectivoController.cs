@@ -455,7 +455,7 @@ namespace ERP_GMEDINA.Controllers
             {
                 if (Function.GetRol())
                 {
-                    if (Function.GetUserRols("Devolucion/Edit"))
+                    if (Function.GetUserRols("SolicitudEfectio/Edit"))
                     {
                         ViewBag.Denominacion = db.tbDenominacion.ToList();
                         var list = (List<tbSolicitudEfectivoDetalle>)Session["Solicitud"];
