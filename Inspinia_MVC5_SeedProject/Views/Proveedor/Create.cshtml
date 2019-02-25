@@ -101,7 +101,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.prov_Email, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.TextBoxFor(model => model.prov_Email, new { @class = "form-control", @onKeyPress = "return CaracteresNombre(event)", @onkeyup = "this.value=NumText(this.value)", @autocomplete = "off" })
+                                    @Html.TextBoxFor(model => model.prov_Email, new { @class = "form-control", @autocomplete = "off",MaxLength = 50 })
 
                                   
                                     <div id="validationEmail">
@@ -134,9 +134,9 @@
                                 <div class="col-md-4">
 
                                     @Html.DropDownList("acte_Id", (IEnumerable<SelectListItem>)ViewBag.Actividad, "Seleccione", new { @class = "form-control" })
-                                    <p style="color:red">
-                                        @Html.ValidationMessageFor(model => model.acte_Id)
-                                    </p>
+                                    <div id="validationActividad">
+                                        <p style="color:red"></p>
+                                    </div>
 
                                 </div>
                             </div>

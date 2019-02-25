@@ -472,7 +472,6 @@ C:\Users\Dell\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\System.W
 C:\Users\Dell\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.csprojFakesResolveAssemblyReference.cache
 C:\Users\Dell\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.dll
 C:\Users\Dell\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.pdb
-C:\Users\Dell\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\es\Microsoft.ReportViewer.WebForms.resources.dll
 C:\Users\Junior Diaz\Documents\GitHub\Inspinia_MVC5_SeedProject\bin\ERP_GMEDINA.dll.config
 C:\Users\Junior Diaz\Documents\GitHub\Inspinia_MVC5_SeedProject\bin\ERP_GMEDINA.dll
 C:\Users\Junior Diaz\Documents\GitHub\Inspinia_MVC5_SeedProject\bin\ERP_GMEDINA.pdb
