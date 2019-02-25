@@ -1009,8 +1009,8 @@
           <Property Name="tpa_UsuarioModifica" Type="int" />
           <Property Name="tpa_FechaModifica" Type="datetime" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'ERP_GMEDINA.Acce.UDV_Acce_Usuario_Roles' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.Acce.UDV_Acce_Usuario_Roles' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="UDV_Acce_Usuario_Roles">
           <Key>
             <PropertyRef Name="rolu_Id" />
@@ -1047,8 +1047,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Acce.UDV_Acce_Usuario_Roles' no 
           <Property Name="obj_FechaModifica" Type="datetime" />
           <Property Name="obj_Estado" Type="bit" Nullable="false" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'ERP_GMEDINA.Acce.V_Objetos' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.Acce.V_Objetos' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="V_Objetos">
           <Key>
             <PropertyRef Name="obj_Id" />
@@ -1062,8 +1062,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Acce.V_Objetos' no tiene definid
           <Property Name="obj_UsuarioModifica" Type="int" />
           <Property Name="obj_FechaModifica" Type="datetime" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'ERP_GMEDINA.dbo.UDV_Vent_FacturaPuntoEmision' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.dbo.UDV_Vent_FacturaPuntoEmision' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="UDV_Vent_FacturaPuntoEmision">
           <Key>
             <PropertyRef Name="cja_Id" />
@@ -1084,8 +1084,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.dbo.UDV_Vent_FacturaPuntoEmision
           <Property Name="pemid_FechaLimite" Type="date" Nullable="false" />
           <Property Name="dfisc_Id" Type="char" MaxLength="2" Nullable="false" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="UDV_Inv_Nombre_Empleado">
           <Key>
             <PropertyRef Name="emp_Id" />
@@ -1094,8 +1094,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' no
           <Property Name="emp_Id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Empleados" Type="nvarchar" MaxLength="201" Nullable="false" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Productos' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Productos' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="UDV_Inv_Consultar_Existencias_Productos">
           <Key>
             <PropertyRef Name="prod_Descripcion" />
@@ -1116,8 +1116,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
           <Property Name="bodd_Id" Type="int" Nullable="false" />
           <Property Name="prod_Codigo" Type="nvarchar" MaxLength="15" Nullable="false" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDP_Vent_listExoneracion_Select' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.Vent.UDP_Vent_listExoneracion_Select' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="UDP_Vent_listExoneracion_Select">
           <Key>
             <PropertyRef Name="Id" />
@@ -1134,8 +1134,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDP_Vent_listExoneracion_Se
           <Property Name="persona comercial" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="apellido" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivo_Detalles_Select' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivo_Detalles_Select' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="UDP_Vent_SolicituEfectivo_Detalles_Select">
           <Key>
             <PropertyRef Name="soled_Id" />
@@ -1162,8 +1162,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivo_D
           <Property Name="soled_UsuarioModifica" Type="int" />
           <Property Name="soled_FechaModifica" Type="datetime" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivo_Select' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivo_Select' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="UDP_Vent_SolicituEfectivo_Select">
           <Key>
             <PropertyRef Name="IdSolicitud" />
@@ -1182,8 +1182,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivo_S
           <Property Name="Apertura" Type="bit" Nullable="false" />
           <Property Name="Anulada" Type="bit" Nullable="false" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivoDetalle_Denominacion' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivoDetalle_Denominacion' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="UDP_Vent_SolicituEfectivoDetalle_Denominacion">
           <Key>
             <PropertyRef Name="denoId" />
@@ -1194,8 +1194,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivoDe
           <Property Name="DenoDescripcion" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="valor" Type="decimal" Precision="10" Scale="2" Nullable="false" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Clientes' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Clientes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="UDV_Vent_Busqueda_Clientes">
           <Key>
             <PropertyRef Name="clte_Id" />
@@ -1248,8 +1248,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Clientes'
           <Property Name="clte_UsuarioModifica" Type="int" />
           <Property Name="clte_FechaModifica" Type="datetime" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="UDV_Vent_Busqueda_Factura">
           <Key>
             <PropertyRef Name="fact_Id" />
@@ -1299,8 +1299,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' 
           <Property Name="fact_UsuarioModifica" Type="int" />
           <Property Name="fact_FechaModifica" Type="datetime" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_FacturaPuntoEmision' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_FacturaPuntoEmision' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="UDV_Vent_FacturaPuntoEmision1">
           <Key>
             <PropertyRef Name="cja_Id" />
@@ -1323,8 +1323,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_FacturaPuntoEmisio
           <Property Name="pemid_FechaLimite" Type="date" Nullable="false" />
           <Property Name="dfisc_Id" Type="char" MaxLength="2" Nullable="false" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="V_Vent_FacturaPago">
           <Key>
             <PropertyRef Name="fact_Id" />
@@ -4109,6 +4109,11 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
           <Parameter Name="obj_UsuarioModifica" Type="int" Mode="In" />
           <Parameter Name="obj_FechaModifica" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="UDP_Acce_tbRol_Inactivar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
+          <Parameter Name="IDRol" Type="int" Mode="In" />
+          <Parameter Name="rol_UsuarioModifica" Type="int" Mode="In" />
+          <Parameter Name="rol_FechaModifica" Type="datetime" Mode="In" />
+        </Function>
         <Function Name="UDP_Acce_tbRol_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
           <Parameter Name="rol_Descripcion" Type="varchar" Mode="In" />
           <Parameter Name="rol_Estado" Type="bit" Mode="In" />
@@ -4142,6 +4147,11 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
           <Parameter Name="rolu_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="rolu_FechaCrea" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="UDP_Acce_tbUsuario_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
+          <Parameter Name="usu_Id" Type="nvarchar" Mode="In" />
+          <Parameter Name="usu_EsActivo" Type="bit" Mode="In" />
+          <Parameter Name="usu_RazonInactivo" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="UDP_Acce_tbUsuario_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
           <Parameter Name="usu_NombreUsuario" Type="varchar" Mode="In" />
           <Parameter Name="usu_Password" Type="varchar" Mode="In" />
@@ -4150,6 +4160,10 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
           <Parameter Name="usu_Correo" Type="varchar" Mode="In" />
           <Parameter Name="suc_Id" Type="int" Mode="In" />
           <Parameter Name="emp_Id" Type="smallint" Mode="In" />
+        </Function>
+        <Function Name="UDP_Acce_tbUsuario_PasswordRestore" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
+          <Parameter Name="usu_Id" Type="int" Mode="In" />
+          <Parameter Name="usu_Password" Type="varchar" Mode="In" />
         </Function>
         <Function Name="UDP_Acce_tbUsuario_PasswordUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
           <Parameter Name="usu_Id" Type="int" Mode="In" />
@@ -4222,6 +4236,13 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
         <Function Name="UDP_Vent_tbPuntoEmision_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="pemi_Id" Type="int" Mode="In" />
         </Function>
+        <Function Name="SDP_Gral_tbEmpleado_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
+          <Parameter Name="emp_Id" Type="smallint" Mode="In" />
+        </Function>
+        <Function Name="SDP_tbEmpleado_Consulta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
+          <Parameter Name="emp_Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SDP_tbEmpleado_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral" />
         <Function Name="SDP_tbMunicipio_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
           <Parameter Name="mun_Codigo" Type="char" Mode="In" />
         </Function>
@@ -4327,6 +4348,20 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
         <Function Name="UDP_Gral_tbEmpleado_Update_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
           <Parameter Name="emp_Id" Type="int" Mode="In" />
           <Parameter Name="emp_Estado" Type="bit" Mode="In" />
+          <Parameter Name="emp_UsuarioModifica" Type="int" Mode="In" />
+          <Parameter Name="emp_FechaModifica" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="UDP_Gral_tbEmpleado_Update_RazonInactivacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
+          <Parameter Name="emp_Id" Type="int" Mode="In" />
+          <Parameter Name="emp_Estado" Type="bit" Mode="In" />
+          <Parameter Name="emp_RazonInactivacion" Type="nvarchar" Mode="In" />
+          <Parameter Name="obj_UsuarioModifica" Type="int" Mode="In" />
+          <Parameter Name="obj_FechaModifica" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="UDP_Gral_tbEmpleado_Update_RazonSalida" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Gral">
+          <Parameter Name="emp_Id" Type="int" Mode="In" />
+          <Parameter Name="emp_Estado" Type="bit" Mode="In" />
+          <Parameter Name="emp_RazonSalida" Type="nchar" Mode="In" />
           <Parameter Name="emp_UsuarioModifica" Type="int" Mode="In" />
           <Parameter Name="emp_FechaModifica" Type="datetime" Mode="In" />
         </Function>
@@ -4965,6 +5000,12 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
         <Function Name="UDF_Vent_RecuperacionBodegaID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent" ReturnType="int">
           <Parameter Name="ID_FACTURA_DETALLE" Type="smallint" Mode="In" />
         </Function>
+        <Function Name="UDP_tbPedidoDetalle_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="pedd_Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UDP_tbPedidoDetalle_Select_Edit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="pedd_Id" Type="int" Mode="In" />
+        </Function>
         <Function Name="UDP_Vent_DatosConsumidorFinal_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="fact_Id" Type="bigint" Mode="In" />
           <Parameter Name="confi_Nombres" Type="nvarchar" Mode="In" />
@@ -5125,6 +5166,9 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
           <Parameter Name="arqde_FechaCrea" Type="datetime" Mode="In" />
           <Parameter Name="arqde_UsuarioModifica" Type="int" Mode="In" />
           <Parameter Name="arqde_FechaModifica" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="UDP_Vent_tbDevolucion_Caja" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="CodUsuario" Type="int" Mode="In" />
         </Function>
         <Function Name="UDP_Vent_tbDevolucion_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="dev_Id" Type="int" Mode="In" />
@@ -5305,6 +5349,10 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
           <Parameter Name="IDSucursal" Type="int" Mode="In" />
           <Parameter Name="IDCAJA" Type="smallint" Mode="In" />
         </Function>
+        <Function Name="UDP_Vent_tbFactura_RolSupervisorCaja" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="UsuarioId" Type="varchar" Mode="In" />
+          <Parameter Name="password" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="UDP_Vent_tbFactura_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="fact_Id" Type="bigint" Mode="In" />
           <Parameter Name="fact_Codigo" Type="nvarchar" Mode="In" />
@@ -5454,6 +5502,9 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
           <Parameter Name="nocre_Id" Type="smallint" Mode="In" />
           <Parameter Name="nocre_Anulado" Type="bit" Mode="In" />
         </Function>
+        <Function Name="UDP_Vent_tbNotaCredito_Caja" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="CodUsuario" Type="int" Mode="In" />
+        </Function>
         <Function Name="UDP_Vent_tbNotaCredito_CodigoNotaCredito" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="IDSucursal" Type="int" Mode="In" />
           <Parameter Name="IDCAJA" Type="smallint" Mode="In" />
@@ -5504,6 +5555,9 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
           <Parameter Name="nocre_UsuarioModifica" Type="int" Mode="In" />
           <Parameter Name="nocre_FechaModifica" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="UDP_Vent_tbNotaCreditoSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="clte_Id" Type="int" Mode="In" />
+        </Function>
         <Function Name="UDP_Vent_tbPago_Anulado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="pago_Id" Type="int" Mode="In" />
           <Parameter Name="pago_EstaAnulado" Type="bit" Mode="In" />
@@ -5515,6 +5569,10 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
         </Function>
         <Function Name="UDP_Vent_tbPago_Imprimir" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="pago_Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UDP_Vent_tbPago_ImprimirEstaImpreso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="pago_Id" Type="int" Mode="In" />
+          <Parameter Name="pago_EstaImpreso" Type="bit" Mode="In" />
         </Function>
         <Function Name="UDP_Vent_tbPago_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="fact_Id" Type="bigint" Mode="In" />
@@ -5686,6 +5744,10 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
           <Parameter Name="cred_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="cred_FechaCrea" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="UDP_Vent_tbSolicitudCredito_RolGerenteCreditosCobranza" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="UsuarioId" Type="varchar" Mode="In" />
+          <Parameter Name="password" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="UDP_Vent_tbSolicitudCredito_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="cred_Id" Type="int" Mode="In" />
           <Parameter Name="clte_Id" Type="int" Mode="In" />
@@ -5794,6 +5856,34 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
           <Parameter Name="soled_UsuarioModifica" Type="int" Mode="In" />
           <Parameter Name="soled_FechaModifica" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="UDP_Vent_tbSolicitudEfectivoDetalle_Update_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="IDSOLICITUD" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UDP_Vent_tbSucursal_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="mun_Codigo" Type="char" Mode="In" />
+          <Parameter Name="bod_Id" Type="int" Mode="In" />
+          <Parameter Name="pemi_Id" Type="int" Mode="In" />
+          <Parameter Name="suc_Descripcion" Type="nvarchar" Mode="In" />
+          <Parameter Name="suc_Correo" Type="nvarchar" Mode="In" />
+          <Parameter Name="suc_Direccion" Type="nvarchar" Mode="In" />
+          <Parameter Name="suc_Telefono" Type="nvarchar" Mode="In" />
+          <Parameter Name="suc_UsuarioCrea" Type="int" Mode="In" />
+          <Parameter Name="suc_FechaCrea" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="UDP_Vent_tbSucursal_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="suc_Id" Type="int" Mode="In" />
+          <Parameter Name="mun_Codigo" Type="char" Mode="In" />
+          <Parameter Name="bod_Id" Type="int" Mode="In" />
+          <Parameter Name="pemi_Id" Type="int" Mode="In" />
+          <Parameter Name="suc_Descripcion" Type="nvarchar" Mode="In" />
+          <Parameter Name="suc_Correo" Type="nvarchar" Mode="In" />
+          <Parameter Name="suc_Direccion" Type="nvarchar" Mode="In" />
+          <Parameter Name="suc_Telefono" Type="nvarchar" Mode="In" />
+          <Parameter Name="suc_UsuarioCrea" Type="int" Mode="In" />
+          <Parameter Name="suc_FechaCrea" Type="datetime" Mode="In" />
+          <Parameter Name="suc_UsuarioModifica" Type="int" Mode="In" />
+          <Parameter Name="suc_FechaModifica" Type="datetime" Mode="In" />
+        </Function>
         <Function Name="UDP_Vent_tbTipoPago_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="tpa_Descripcion" Type="varchar" Mode="In" />
           <Parameter Name="tpa_Emisor" Type="bit" Mode="In" />
@@ -5814,6 +5904,10 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
           <Parameter Name="tpa_FechaCrea" Type="datetime" Mode="In" />
           <Parameter Name="tpa_UsuarioModifica" Type="int" Mode="In" />
           <Parameter Name="tpa_FechaModifica" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="UDP_Vent_tbTipoTaller_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="tptal_Id" Type="int" Mode="In" />
+          <Parameter Name="tptal_Es_Activo" Type="bit" Mode="In" />
         </Function>
         <Function Name="UDP_Vent_vFacturaPago" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="clte_Id" Type="int" Mode="In" />
@@ -9779,7 +9873,101 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
             <Parameter Name="pago_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Vent_vFacturaPago" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_vFacturaPago_Result)">
-            <Parameter Name="clte_Id" Mode="In" Type="Int32" />
+          <Parameter Name="clte_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Acce_tbRol_Inactivar" ReturnType="Collection(String)">
+            <Parameter Name="IDRol" Mode="In" Type="Int32" />
+            <Parameter Name="rol_UsuarioModifica" Mode="In" Type="Int32" />
+            <Parameter Name="rol_FechaModifica" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Acce_tbUsuario_Estado" ReturnType="Collection(Int32)">
+            <Parameter Name="usu_Id" Mode="In" Type="String" />
+            <Parameter Name="usu_EsActivo" Mode="In" Type="Boolean" />
+            <Parameter Name="usu_RazonInactivo" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Acce_tbUsuario_PasswordRestore" ReturnType="Collection(String)">
+            <Parameter Name="usu_Id" Mode="In" Type="Int32" />
+            <Parameter Name="usu_Password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SDP_Gral_tbEmpleado_Select" ReturnType="Collection(ERP_ZORZALModel.SDP_Gral_tbEmpleado_Select_Result)">
+          <Parameter Name="emp_Id" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="SDP_tbEmpleado_Consulta" ReturnType="Collection(ERP_ZORZALModel.SDP_tbEmpleado_Consulta_Result)">
+          <Parameter Name="emp_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SDP_tbEmpleado_Select" ReturnType="Collection(ERP_ZORZALModel.SDP_tbEmpleado_Select_Result)" />
+          <FunctionImport Name="UDP_Gral_tbEmpleado_Update_RazonInactivacion" ReturnType="Collection(String)">
+            <Parameter Name="emp_Id" Mode="In" Type="Int32" />
+            <Parameter Name="emp_Estado" Mode="In" Type="Boolean" />
+            <Parameter Name="emp_RazonInactivacion" Mode="In" Type="String" />
+            <Parameter Name="obj_UsuarioModifica" Mode="In" Type="Int32" />
+            <Parameter Name="obj_FechaModifica" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Gral_tbEmpleado_Update_RazonSalida" ReturnType="Collection(String)">
+            <Parameter Name="emp_Id" Mode="In" Type="Int32" />
+            <Parameter Name="emp_Estado" Mode="In" Type="Boolean" />
+            <Parameter Name="emp_RazonSalida" Mode="In" Type="String" />
+            <Parameter Name="emp_UsuarioModifica" Mode="In" Type="Int32" />
+            <Parameter Name="emp_FechaModifica" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_tbPedidoDetalle_Select" ReturnType="Collection(ERP_ZORZALModel.UDP_tbPedidoDetalle_Select_Result)">
+          <Parameter Name="pedd_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_tbPedidoDetalle_Select_Edit" ReturnType="Collection(ERP_ZORZALModel.UDP_tbPedidoDetalle_Select_Edit_Result)">
+          <Parameter Name="pedd_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbDevolucion_Caja" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDevolucion_Caja_Result)">
+          <Parameter Name="CodUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbFactura_RolSupervisorCaja" ReturnType="Collection(Boolean)">
+            <Parameter Name="UsuarioId" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbNotaCredito_Caja" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbNotaCredito_Caja_Result)">
+          <Parameter Name="CodUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbNotaCreditoSelect" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbNotaCreditoSelect_Result)">
+          <Parameter Name="clte_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbPago_ImprimirEstaImpreso" ReturnType="Collection(String)">
+            <Parameter Name="pago_Id" Mode="In" Type="Int32" />
+            <Parameter Name="pago_EstaImpreso" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbSolicitudCredito_RolGerenteCreditosCobranza" ReturnType="Collection(Boolean)">
+            <Parameter Name="UsuarioId" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbSolicitudEfectivoDetalle_Update_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivoDetalle_Update_Insert_Result)">
+          <Parameter Name="IDSOLICITUD" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbSucursal_Insert1" ReturnType="Collection(Int32)">
+            <Parameter Name="mun_Codigo" Mode="In" Type="String" />
+            <Parameter Name="bod_Id" Mode="In" Type="Int32" />
+            <Parameter Name="pemi_Id" Mode="In" Type="Int32" />
+            <Parameter Name="suc_Descripcion" Mode="In" Type="String" />
+            <Parameter Name="suc_Correo" Mode="In" Type="String" />
+            <Parameter Name="suc_Direccion" Mode="In" Type="String" />
+            <Parameter Name="suc_Telefono" Mode="In" Type="String" />
+            <Parameter Name="suc_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="suc_FechaCrea" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbSucursal_Update1" ReturnType="Collection(Int32)">
+            <Parameter Name="suc_Id" Mode="In" Type="Int32" />
+            <Parameter Name="mun_Codigo" Mode="In" Type="String" />
+            <Parameter Name="bod_Id" Mode="In" Type="Int32" />
+            <Parameter Name="pemi_Id" Mode="In" Type="Int32" />
+            <Parameter Name="suc_Descripcion" Mode="In" Type="String" />
+            <Parameter Name="suc_Correo" Mode="In" Type="String" />
+            <Parameter Name="suc_Direccion" Mode="In" Type="String" />
+            <Parameter Name="suc_Telefono" Mode="In" Type="String" />
+            <Parameter Name="suc_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="suc_FechaCrea" Mode="In" Type="DateTime" />
+            <Parameter Name="suc_UsuarioModifica" Mode="In" Type="Int32" />
+            <Parameter Name="suc_FechaModifica" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbTipoTaller_Estado">
+            <Parameter Name="tptal_Id" Mode="In" Type="Int32" />
+            <Parameter Name="tptal_Es_Activo" Mode="In" Type="Boolean" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
@@ -10384,13 +10572,6 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
           <Property Type="Decimal" Name="cdto_MaximoMontoDescuento" Nullable="false" Precision="10" Scale="2" />
           <Property Type="Decimal" Name="cdto_CantidadCompraMinima" Nullable="false" Precision="10" Scale="2" />
           <Property Type="Boolean" Name="cdto_Redimido" Nullable="false" />
-          </ComplexType>
-        <ComplexType Name="UDP_Vent_tbNotaCreditoSelect_Result">
-          <Property Type="Int32" Name="clte_Id" Nullable="false" />
-          <Property Type="Int16" Name="nocre_Id" Nullable="false" />
-          <Property Type="String" Name="nocre_Codigo" Nullable="false" MaxLength="19" />
-          <Property Type="Decimal" Name="nocre_Monto" Nullable="true" Precision="10" Scale="2" />
-          <Property Type="Boolean" Name="nocre_Redimido" Nullable="false" />
           </ComplexType>
         <ComplexType Name="UDP_Vent_tbPago_Anulado_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
@@ -15195,13 +15376,6 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
           <Property Type="Decimal" Name="cdto_CantidadCompraMinima" Nullable="false" Precision="10" Scale="2" />
           <Property Type="Boolean" Name="cdto_Redimido" Nullable="false" />
         </ComplexType>
-        <ComplexType Name="UDP_Vent_tbNotaCreditoSelect_Result1">
-          <Property Type="Int32" Name="clte_Id" Nullable="false" />
-          <Property Type="Int16" Name="nocre_Id" Nullable="false" />
-          <Property Type="String" Name="nocre_Codigo" Nullable="false" MaxLength="19" />
-          <Property Type="Decimal" Name="nocre_Monto" Nullable="true" Precision="10" Scale="2" />
-          <Property Type="Boolean" Name="nocre_Redimido" Nullable="false" />
-        </ComplexType>
         <ComplexType Name="UDP_Vent_vFacturaPago_Result">
           <Property Type="Int64" Name="fact_Id" Nullable="false" />
           <Property Type="Int32" Name="clte_Id" Nullable="false" />
@@ -15219,6 +15393,121 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
         </ComplexType>
         <ComplexType Name="UDP_Vent_tbCuponDescuento_Redimido_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="SDP_Gral_tbEmpleado_Select_Result">
+          <Property Type="Int16" Name="emp_Id" Nullable="false" />
+          <Property Type="String" Name="emp_Nombres" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="emp_Apellidos" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="emp_Sexo" Nullable="false" MaxLength="1" />
+          <Property Type="DateTime" Name="emp_FechaNacimiento" Nullable="false" Precision="23" />
+          <Property Type="Byte" Name="tpi_Id" Nullable="false" />
+          <Property Type="String" Name="emp_Identificacion" Nullable="false" MaxLength="14" />
+          <Property Type="String" Name="emp_Telefono" Nullable="false" MaxLength="25" />
+          <Property Type="String" Name="emp_Correoelectronico" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="emp_TipoSangre" Nullable="false" MaxLength="2" />
+          <Property Type="String" Name="emp_Puesto" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="emp_FechaIngreso" Nullable="false" />
+          <Property Type="String" Name="emp_Direccion" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="emp_RazonInactivacion" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="emp_UsuarioCrea" Nullable="false" />
+          <Property Type="DateTime" Name="emp_FechaCrea" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="emp_UsuarioModifica" Nullable="true" />
+          <Property Type="DateTime" Name="emp_FechaModifica" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="emp_Estado" Nullable="false" />
+          <Property Type="String" Name="emp_RazonSalida" Nullable="true" MaxLength="250" />
+          <Property Type="DateTime" Name="emp_FechaDeSalida" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SDP_tbEmpleado_Consulta_Result">
+          <Property Type="Int16" Name="emp_Id" Nullable="false" />
+          <Property Type="String" Name="emp_Nombres" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="emp_Apellidos" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="emp_Sexo" Nullable="false" MaxLength="1" />
+          <Property Type="DateTime" Name="emp_FechaNacimiento" Nullable="false" Precision="23" />
+          <Property Type="Byte" Name="tpi_Id" Nullable="false" />
+          <Property Type="String" Name="emp_Identificacion" Nullable="false" MaxLength="14" />
+          <Property Type="String" Name="emp_Telefono" Nullable="false" MaxLength="25" />
+          <Property Type="String" Name="emp_Correoelectronico" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="emp_TipoSangre" Nullable="false" MaxLength="2" />
+          <Property Type="String" Name="emp_Puesto" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="emp_FechaIngreso" Nullable="false" />
+          <Property Type="String" Name="emp_Direccion" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="emp_RazonInactivacion" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="emp_UsuarioCrea" Nullable="false" />
+          <Property Type="DateTime" Name="emp_FechaCrea" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="emp_UsuarioModifica" Nullable="true" />
+          <Property Type="DateTime" Name="emp_FechaModifica" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="emp_Estado" Nullable="false" />
+          <Property Type="String" Name="emp_RazonSalida" Nullable="true" MaxLength="250" />
+          <Property Type="DateTime" Name="emp_FechaDeSalida" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SDP_tbEmpleado_Select_Result">
+          <Property Type="Int16" Name="emp_Id" Nullable="false" />
+          <Property Type="String" Name="emp_Nombres" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="emp_Apellidos" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="emp_Sexo" Nullable="false" MaxLength="1" />
+          <Property Type="DateTime" Name="emp_FechaNacimiento" Nullable="false" Precision="23" />
+          <Property Type="Byte" Name="tpi_Id" Nullable="false" />
+          <Property Type="String" Name="emp_Identificacion" Nullable="false" MaxLength="14" />
+          <Property Type="String" Name="emp_Telefono" Nullable="false" MaxLength="25" />
+          <Property Type="String" Name="emp_Correoelectronico" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="emp_TipoSangre" Nullable="false" MaxLength="2" />
+          <Property Type="String" Name="emp_Puesto" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="emp_FechaIngreso" Nullable="false" />
+          <Property Type="String" Name="emp_Direccion" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="emp_RazonInactivacion" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="emp_UsuarioCrea" Nullable="false" />
+          <Property Type="DateTime" Name="emp_FechaCrea" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="emp_UsuarioModifica" Nullable="true" />
+          <Property Type="DateTime" Name="emp_FechaModifica" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="emp_Estado" Nullable="false" />
+          <Property Type="String" Name="emp_RazonSalida" Nullable="true" MaxLength="250" />
+          <Property Type="DateTime" Name="emp_FechaDeSalida" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="UDP_tbPedidoDetalle_Select_Result">
+          <Property Type="Int32" Name="pedd_Id" Nullable="false" />
+          <Property Type="Int32" Name="ped_Id" Nullable="false" />
+          <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
+          <Property Type="Decimal" Name="pedd_Cantidad" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="pedd_CantidadFacturada" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Int32" Name="pedd_UsuarioCrea" Nullable="false" />
+          <Property Type="DateTime" Name="pedd_FechaCrea" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="pedd_UsuarioModifica" Nullable="true" />
+          <Property Type="DateTime" Name="pedd_FechaModifica" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="UDP_tbPedidoDetalle_Select_Edit_Result">
+          <Property Type="Int32" Name="pedd_Id" Nullable="false" />
+          <Property Type="Int32" Name="ped_Id" Nullable="false" />
+          <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
+          <Property Type="Decimal" Name="pedd_Cantidad" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="pedd_CantidadFacturada" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Int32" Name="pedd_UsuarioCrea" Nullable="false" />
+          <Property Type="DateTime" Name="pedd_FechaCrea" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="pedd_UsuarioModifica" Nullable="true" />
+          <Property Type="DateTime" Name="pedd_FechaModifica" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbDevolucion_Caja_Result">
+          <Property Type="Int16" Name="cja_Id" Nullable="false" />
+          <Property Type="String" Name="cja_Descripcion" Nullable="false" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbNotaCredito_Caja_Result">
+          <Property Type="Int16" Name="cja_Id" Nullable="false" />
+          <Property Type="String" Name="cja_Descripcion" Nullable="false" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbSolicitudEfectivoDetalle_Update_Insert_Result">
+          <Property Type="Int16" Name="denoId" Nullable="false" />
+          <Property Type="String" Name="DenoDescripcion" Nullable="false" MaxLength="50" />
+          <Property Type="Decimal" Name="valor" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Int32" Name="CantidadSolicitada" Nullable="true" />
+          <Property Type="Decimal" Name="MONTO" Nullable="true" Precision="21" Scale="2" />
+          <Property Type="Int32" Name="iddetalle" Nullable="true" />
+          <Property Type="Int32" Name="solef_Id" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbNotaCreditoSelect_Result">
+          <Property Type="Int32" Name="clte_Id" Nullable="false" />
+          <Property Type="Int16" Name="nocre_Id" Nullable="false" />
+          <Property Type="String" Name="nocre_Codigo" Nullable="false" MaxLength="19" />
+          <Property Type="Decimal" Name="nocre_Monto" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Boolean" Name="nocre_Redimido" Nullable="false" />
         </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
@@ -18013,6 +18302,168 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Acce_tbRol_Inactivar" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbRol_Inactivar" />
+          <FunctionImportMapping FunctionImportName="UDP_Acce_tbUsuario_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbUsuario_Estado" />
+          <FunctionImportMapping FunctionImportName="UDP_Acce_tbUsuario_PasswordRestore" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbUsuario_PasswordRestore" />
+          <FunctionImportMapping FunctionImportName="SDP_Gral_tbEmpleado_Select" FunctionName="ERP_ZORZALModel.Store.SDP_Gral_tbEmpleado_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_Gral_tbEmpleado_Select_Result">
+                <ScalarProperty Name="emp_Id" ColumnName="emp_Id" />
+                <ScalarProperty Name="emp_Nombres" ColumnName="emp_Nombres" />
+                <ScalarProperty Name="emp_Apellidos" ColumnName="emp_Apellidos" />
+                <ScalarProperty Name="emp_Sexo" ColumnName="emp_Sexo" />
+                <ScalarProperty Name="emp_FechaNacimiento" ColumnName="emp_FechaNacimiento" />
+                <ScalarProperty Name="tpi_Id" ColumnName="tpi_Id" />
+                <ScalarProperty Name="emp_Identificacion" ColumnName="emp_Identificacion" />
+                <ScalarProperty Name="emp_Telefono" ColumnName="emp_Telefono" />
+                <ScalarProperty Name="emp_Correoelectronico" ColumnName="emp_Correoelectronico" />
+                <ScalarProperty Name="emp_TipoSangre" ColumnName="emp_TipoSangre" />
+                <ScalarProperty Name="emp_Puesto" ColumnName="emp_Puesto" />
+                <ScalarProperty Name="emp_FechaIngreso" ColumnName="emp_FechaIngreso" />
+                <ScalarProperty Name="emp_Direccion" ColumnName="emp_Direccion" />
+                <ScalarProperty Name="emp_RazonInactivacion" ColumnName="emp_RazonInactivacion" />
+                <ScalarProperty Name="emp_UsuarioCrea" ColumnName="emp_UsuarioCrea" />
+                <ScalarProperty Name="emp_FechaCrea" ColumnName="emp_FechaCrea" />
+                <ScalarProperty Name="emp_UsuarioModifica" ColumnName="emp_UsuarioModifica" />
+                <ScalarProperty Name="emp_FechaModifica" ColumnName="emp_FechaModifica" />
+                <ScalarProperty Name="emp_Estado" ColumnName="emp_Estado" />
+                <ScalarProperty Name="emp_RazonSalida" ColumnName="emp_RazonSalida" />
+                <ScalarProperty Name="emp_FechaDeSalida" ColumnName="emp_FechaDeSalida" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SDP_tbEmpleado_Consulta" FunctionName="ERP_ZORZALModel.Store.SDP_tbEmpleado_Consulta">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_tbEmpleado_Consulta_Result">
+                <ScalarProperty Name="emp_Id" ColumnName="emp_Id" />
+                <ScalarProperty Name="emp_Nombres" ColumnName="emp_Nombres" />
+                <ScalarProperty Name="emp_Apellidos" ColumnName="emp_Apellidos" />
+                <ScalarProperty Name="emp_Sexo" ColumnName="emp_Sexo" />
+                <ScalarProperty Name="emp_FechaNacimiento" ColumnName="emp_FechaNacimiento" />
+                <ScalarProperty Name="tpi_Id" ColumnName="tpi_Id" />
+                <ScalarProperty Name="emp_Identificacion" ColumnName="emp_Identificacion" />
+                <ScalarProperty Name="emp_Telefono" ColumnName="emp_Telefono" />
+                <ScalarProperty Name="emp_Correoelectronico" ColumnName="emp_Correoelectronico" />
+                <ScalarProperty Name="emp_TipoSangre" ColumnName="emp_TipoSangre" />
+                <ScalarProperty Name="emp_Puesto" ColumnName="emp_Puesto" />
+                <ScalarProperty Name="emp_FechaIngreso" ColumnName="emp_FechaIngreso" />
+                <ScalarProperty Name="emp_Direccion" ColumnName="emp_Direccion" />
+                <ScalarProperty Name="emp_RazonInactivacion" ColumnName="emp_RazonInactivacion" />
+                <ScalarProperty Name="emp_UsuarioCrea" ColumnName="emp_UsuarioCrea" />
+                <ScalarProperty Name="emp_FechaCrea" ColumnName="emp_FechaCrea" />
+                <ScalarProperty Name="emp_UsuarioModifica" ColumnName="emp_UsuarioModifica" />
+                <ScalarProperty Name="emp_FechaModifica" ColumnName="emp_FechaModifica" />
+                <ScalarProperty Name="emp_Estado" ColumnName="emp_Estado" />
+                <ScalarProperty Name="emp_RazonSalida" ColumnName="emp_RazonSalida" />
+                <ScalarProperty Name="emp_FechaDeSalida" ColumnName="emp_FechaDeSalida" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SDP_tbEmpleado_Select" FunctionName="ERP_ZORZALModel.Store.SDP_tbEmpleado_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_tbEmpleado_Select_Result">
+                <ScalarProperty Name="emp_Id" ColumnName="emp_Id" />
+                <ScalarProperty Name="emp_Nombres" ColumnName="emp_Nombres" />
+                <ScalarProperty Name="emp_Apellidos" ColumnName="emp_Apellidos" />
+                <ScalarProperty Name="emp_Sexo" ColumnName="emp_Sexo" />
+                <ScalarProperty Name="emp_FechaNacimiento" ColumnName="emp_FechaNacimiento" />
+                <ScalarProperty Name="tpi_Id" ColumnName="tpi_Id" />
+                <ScalarProperty Name="emp_Identificacion" ColumnName="emp_Identificacion" />
+                <ScalarProperty Name="emp_Telefono" ColumnName="emp_Telefono" />
+                <ScalarProperty Name="emp_Correoelectronico" ColumnName="emp_Correoelectronico" />
+                <ScalarProperty Name="emp_TipoSangre" ColumnName="emp_TipoSangre" />
+                <ScalarProperty Name="emp_Puesto" ColumnName="emp_Puesto" />
+                <ScalarProperty Name="emp_FechaIngreso" ColumnName="emp_FechaIngreso" />
+                <ScalarProperty Name="emp_Direccion" ColumnName="emp_Direccion" />
+                <ScalarProperty Name="emp_RazonInactivacion" ColumnName="emp_RazonInactivacion" />
+                <ScalarProperty Name="emp_UsuarioCrea" ColumnName="emp_UsuarioCrea" />
+                <ScalarProperty Name="emp_FechaCrea" ColumnName="emp_FechaCrea" />
+                <ScalarProperty Name="emp_UsuarioModifica" ColumnName="emp_UsuarioModifica" />
+                <ScalarProperty Name="emp_FechaModifica" ColumnName="emp_FechaModifica" />
+                <ScalarProperty Name="emp_Estado" ColumnName="emp_Estado" />
+                <ScalarProperty Name="emp_RazonSalida" ColumnName="emp_RazonSalida" />
+                <ScalarProperty Name="emp_FechaDeSalida" ColumnName="emp_FechaDeSalida" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Gral_tbEmpleado_Update_RazonInactivacion" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbEmpleado_Update_RazonInactivacion" />
+          <FunctionImportMapping FunctionImportName="UDP_Gral_tbEmpleado_Update_RazonSalida" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbEmpleado_Update_RazonSalida" />
+          <FunctionImportMapping FunctionImportName="UDP_tbPedidoDetalle_Select" FunctionName="ERP_ZORZALModel.Store.UDP_tbPedidoDetalle_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_tbPedidoDetalle_Select_Result">
+                <ScalarProperty Name="pedd_Id" ColumnName="pedd_Id" />
+                <ScalarProperty Name="ped_Id" ColumnName="ped_Id" />
+                <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+                <ScalarProperty Name="pedd_Cantidad" ColumnName="pedd_Cantidad" />
+                <ScalarProperty Name="pedd_CantidadFacturada" ColumnName="pedd_CantidadFacturada" />
+                <ScalarProperty Name="pedd_UsuarioCrea" ColumnName="pedd_UsuarioCrea" />
+                <ScalarProperty Name="pedd_FechaCrea" ColumnName="pedd_FechaCrea" />
+                <ScalarProperty Name="pedd_UsuarioModifica" ColumnName="pedd_UsuarioModifica" />
+                <ScalarProperty Name="pedd_FechaModifica" ColumnName="pedd_FechaModifica" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_tbPedidoDetalle_Select_Edit" FunctionName="ERP_ZORZALModel.Store.UDP_tbPedidoDetalle_Select_Edit">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_tbPedidoDetalle_Select_Edit_Result">
+                <ScalarProperty Name="pedd_Id" ColumnName="pedd_Id" />
+                <ScalarProperty Name="ped_Id" ColumnName="ped_Id" />
+                <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+                <ScalarProperty Name="pedd_Cantidad" ColumnName="pedd_Cantidad" />
+                <ScalarProperty Name="pedd_CantidadFacturada" ColumnName="pedd_CantidadFacturada" />
+                <ScalarProperty Name="pedd_UsuarioCrea" ColumnName="pedd_UsuarioCrea" />
+                <ScalarProperty Name="pedd_FechaCrea" ColumnName="pedd_FechaCrea" />
+                <ScalarProperty Name="pedd_UsuarioModifica" ColumnName="pedd_UsuarioModifica" />
+                <ScalarProperty Name="pedd_FechaModifica" ColumnName="pedd_FechaModifica" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbDevolucion_Caja" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbDevolucion_Caja">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbDevolucion_Caja_Result">
+                <ScalarProperty Name="cja_Id" ColumnName="cja_Id" />
+                <ScalarProperty Name="cja_Descripcion" ColumnName="cja_Descripcion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_RolSupervisorCaja" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_RolSupervisorCaja" />
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbNotaCredito_Caja" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbNotaCredito_Caja">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbNotaCredito_Caja_Result">
+                <ScalarProperty Name="cja_Id" ColumnName="cja_Id" />
+                <ScalarProperty Name="cja_Descripcion" ColumnName="cja_Descripcion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbNotaCreditoSelect" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbNotaCreditoSelect">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbNotaCreditoSelect_Result">
+                <ScalarProperty Name="clte_Id" ColumnName="clte_Id" />
+                <ScalarProperty Name="nocre_Id" ColumnName="nocre_Id" />
+                <ScalarProperty Name="nocre_Codigo" ColumnName="nocre_Codigo" />
+                <ScalarProperty Name="nocre_Monto" ColumnName="nocre_Monto" />
+                <ScalarProperty Name="nocre_Redimido" ColumnName="nocre_Redimido" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbPago_ImprimirEstaImpreso" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbPago_ImprimirEstaImpreso" />
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudCredito_RolGerenteCreditosCobranza" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudCredito_RolGerenteCreditosCobranza" />
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudEfectivoDetalle_Update_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudEfectivoDetalle_Update_Insert">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivoDetalle_Update_Insert_Result">
+                <ScalarProperty Name="denoId" ColumnName="denoId" />
+                <ScalarProperty Name="DenoDescripcion" ColumnName="DenoDescripcion" />
+                <ScalarProperty Name="valor" ColumnName="valor" />
+                <ScalarProperty Name="CantidadSolicitada" ColumnName="CantidadSolicitada" />
+                <ScalarProperty Name="MONTO" ColumnName="MONTO" />
+                <ScalarProperty Name="iddetalle" ColumnName="iddetalle" />
+                <ScalarProperty Name="solef_Id" ColumnName="solef_Id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbSucursal_Insert1" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSucursal_Insert" />
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbSucursal_Update1" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSucursal_Update" />
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbTipoTaller_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbTipoTaller_Estado" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
