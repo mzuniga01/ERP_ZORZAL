@@ -233,21 +233,7 @@ if (Contacto == '') {
     }
 });
 
-////Validacion De Correo Electronico
-$('#prov_Email').change(function (e) {
-    var emailRegex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-    var EmailId = this.value;
-    if (emailRegex.test(EmailId)) {
-        $('#ErrorCorreo').text('');
-        this.style.backgroundColor = "";
-    }
-    else {
 
-        $('#ErrorCorreo').text('');
-        $('#MessageForCorreo').after('<ul id="ErrorCorreo" class="validation-summary-errors text-danger">Correo Electronico Es Incorrecto </ul>');
-        $("#prov_Email").focus();
-    }
-});
 ////Validacion De solo letras 
 function soloLetras(e) {
     tecla = (document.all) ? e.keyCode : e.which;
@@ -361,5 +347,34 @@ $('#acte_Id').change(function (e) {
     if (Actividad != '') {
         $('#Actividad').text('');
         $('#errorActividad').text('');
+    }
+});
+$('#prov_Email').change(function () {
+
+    var emailRegex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    var Correo = this.value;
+    if (emailRegex.test(Correo)) { //si el input es cero
+        $('#ErrorCorreo').text('');
+
+    }
+    else { //si el input es cero
+     
+        $('#ErrorCorreo').text('');
+        $('#MessageForCorreo').after('<ul id="ErrorCorreo" class="validation-summary-errors text-danger">Correo Electronico Es Incorrecto </ul>');
+        $("#prov_Email").focus();
+        $('#btnGuardar').attr('disabled', 'disabled');
+        $('#btnActualizar').attr('disabled', 'disabled');
+
+
+
+    }
+});
+
+$('#prov_RTN').change(function (e) {
+
+    var RTN= this.value;
+    if (RTN == 9999999999999) {
+        $('#RTN').text('');
+        $('#errorRTN').text('');
     }
 });

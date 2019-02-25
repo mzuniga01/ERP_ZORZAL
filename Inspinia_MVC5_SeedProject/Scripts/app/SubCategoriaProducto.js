@@ -1,7 +1,7 @@
 ﻿////Get SubCategoria
-//$(document).on("change", "#pcat_Id", function () {
-//    GetSubCategoriaProducto();   
-//});
+$(document).on("change", "#pcat_Id", function () {
+    GetSubCategoriaProducto();   
+});
 
 function GetSubCategoriaProducto() {
     var CodCategoria = $('#pcat_Id').val();
