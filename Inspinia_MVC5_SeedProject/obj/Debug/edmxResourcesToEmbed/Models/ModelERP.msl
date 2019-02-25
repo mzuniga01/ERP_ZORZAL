@@ -2910,7 +2910,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_RolSupervisorCaja" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_RolSupervisorCaja" />
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbNotaCredito_Caja" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbNotaCredito_Caja">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbNotaCredito_Caja_Result">
@@ -2931,7 +2930,13 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbPago_ImprimirEstaImpreso" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbPago_ImprimirEstaImpreso" />
-    <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudCredito_RolGerenteCreditosCobranza" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudCredito_RolGerenteCreditosCobranza" />
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudCredito_RolGerenteCreditosCobranza" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudCredito_RolGerenteCreditosCobranza">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbSolicitudCredito_RolGerenteCreditosCobranza_Result">
+          <ScalarProperty Name="RESULTADO" ColumnName="RESULTADO" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudEfectivoDetalle_Update_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudEfectivoDetalle_Update_Insert">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivoDetalle_Update_Insert_Result">
@@ -2948,5 +2953,12 @@
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbSucursal_Insert1" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSucursal_Insert" />
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbSucursal_Update1" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSucursal_Update" />
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbTipoTaller_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbTipoTaller_Estado" />
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_RolSupervisorCaja" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_RolSupervisorCaja">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbFactura_RolSupervisorCaja_Result">
+          <ScalarProperty Name="RESULTADO" ColumnName="RESULTADO" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

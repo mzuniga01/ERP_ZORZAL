@@ -2833,10 +2833,6 @@
     <FunctionImport Name="UDP_Vent_tbDevolucion_Caja" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDevolucion_Caja_Result)">
       <Parameter Name="CodUsuario" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbFactura_RolSupervisorCaja" ReturnType="Collection(Boolean)">
-      <Parameter Name="UsuarioId" Mode="In" Type="String" />
-      <Parameter Name="password" Mode="In" Type="String" />
-    </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbNotaCredito_Caja" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbNotaCredito_Caja_Result)">
       <Parameter Name="CodUsuario" Mode="In" Type="Int32" />
     </FunctionImport>
@@ -2847,7 +2843,7 @@
       <Parameter Name="pago_Id" Mode="In" Type="Int32" />
       <Parameter Name="pago_EstaImpreso" Mode="In" Type="Boolean" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbSolicitudCredito_RolGerenteCreditosCobranza" ReturnType="Collection(Boolean)">
+    <FunctionImport Name="UDP_Vent_tbSolicitudCredito_RolGerenteCreditosCobranza" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudCredito_RolGerenteCreditosCobranza_Result)">
       <Parameter Name="UsuarioId" Mode="In" Type="String" />
       <Parameter Name="password" Mode="In" Type="String" />
     </FunctionImport>
@@ -2882,6 +2878,10 @@
     <FunctionImport Name="UDP_Vent_tbTipoTaller_Estado">
       <Parameter Name="tptal_Id" Mode="In" Type="Int32" />
       <Parameter Name="tptal_Es_Activo" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbFactura_RolSupervisorCaja" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFactura_RolSupervisorCaja_Result)">
+      <Parameter Name="UsuarioId" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
     </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
@@ -8422,5 +8422,11 @@
     <Property Type="String" Name="nocre_Codigo" Nullable="false" MaxLength="19" />
     <Property Type="Decimal" Name="nocre_Monto" Nullable="true" Precision="10" Scale="2" />
     <Property Type="Boolean" Name="nocre_Redimido" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbSolicitudCredito_RolGerenteCreditosCobranza_Result">
+    <Property Type="Boolean" Name="RESULTADO" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbFactura_RolSupervisorCaja_Result">
+    <Property Type="Boolean" Name="RESULTADO" Nullable="true" />
   </ComplexType>
 </Schema>

@@ -6757,19 +6757,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbDevolucion_Caja_Result>("UDP_Vent_tbDevolucion_Caja", codUsuarioParameter);
         }
     
-        public virtual ObjectResult<UDP_Vent_tbFactura_RolSupervisorCaja_Result> UDP_Vent_tbFactura_RolSupervisorCaja(string usuarioId, string password)
-        {
-            var usuarioIdParameter = usuarioId != null ?
-                new ObjectParameter("UsuarioId", usuarioId) :
-                new ObjectParameter("UsuarioId", typeof(string));
-    
-            var passwordParameter = password != null ?
-                new ObjectParameter("password", password) :
-                new ObjectParameter("password", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbFactura_RolSupervisorCaja_Result>("UDP_Vent_tbFactura_RolSupervisorCaja", usuarioIdParameter, passwordParameter);
-        }
-    
         public virtual ObjectResult<UDP_Vent_tbNotaCredito_Caja_Result> UDP_Vent_tbNotaCredito_Caja(Nullable<int> codUsuario)
         {
             var codUsuarioParameter = codUsuario.HasValue ?
@@ -6928,6 +6915,19 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("tptal_Es_Activo", typeof(bool));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_Vent_tbTipoTaller_Estado", tptal_IdParameter, tptal_Es_ActivoParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbFactura_RolSupervisorCaja_Result> UDP_Vent_tbFactura_RolSupervisorCaja(string usuarioId, string password)
+        {
+            var usuarioIdParameter = usuarioId != null ?
+                new ObjectParameter("UsuarioId", usuarioId) :
+                new ObjectParameter("UsuarioId", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("password", password) :
+                new ObjectParameter("password", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbFactura_RolSupervisorCaja_Result>("UDP_Vent_tbFactura_RolSupervisorCaja", usuarioIdParameter, passwordParameter);
         }
     }
 }
