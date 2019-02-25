@@ -69,6 +69,7 @@ $('#AgregarInvFisicoDetalle').click(function () {
                         copiar += "<td>" + '<button id="removerInventarioFisicoDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
                         copiar += "</tr>";
                         $('#detalle').append(copiar);
+                        $("#invfd_Cantidad").val('1');
                     }
                 });
             }
@@ -87,6 +88,7 @@ $('#AgregarInvFisicoDetalle').click(function () {
                 copiar += "<td>" + '<button id="removerInventarioFisicoDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
                 copiar += "</tr>";
                 $('#detalle').append(copiar);
+                $("#invfd_Cantidad").val('1');
             }
         }).done(function (data) {
 
@@ -172,6 +174,7 @@ $(document).ready(function () {
     });
 });
 $(document).on("click", "#BuscarProducto tbody tr td button#seleccionar", function () {
+    var buscar = $("#buscar").val('');
     id = $(this).closest('tr').data('id');
     descripcion = $(this).closest('tr').data('content');
     barras = $(this).closest('tr').data('delay');
@@ -182,8 +185,14 @@ $(document).on("click", "#BuscarProducto tbody tr td button#seleccionar", functi
     $("#prod_CodigoBarras").val(barras);
     $("#uni_Id").val(uni);
     $("#uni_Ids").val(uniid);
-    console.log(id);
     seleccionar(id);
+    if (buscar != '') {
+        $("#BuscarProducto td").remove();
+        productos();
+    }
+    else {
+        console.log('no sirve');
+    }
 });
 
 
@@ -310,9 +319,15 @@ $("#submit").click(function () {
 })
 
 //Encargado de Bodega
-$(document).change("#bod_Id", function () {
+$("#bod_Id").change(function () {
     GetResponsableBodega();
     $("#BuscarProducto tr>td").remove();
+    $("#prod_CodigoBarras").val('');
+    $("#prod_Descripcion").val('');
+    $("#uni_Id").val('');
+    $('#uni_Ids').val('');
+    $("#invfd_CantidadSistema").val('');
+    $("#invfd_Cantidad").val('1');
 });
 
 
@@ -400,6 +415,7 @@ $("#bod_Id").change(function () {
     $('#detalle tbody').empty();
     productos();
     cambiobodega();
+    $("#invfd_Cantidad").val('1');
 });
 
 function productos() {
@@ -599,7 +615,6 @@ function justNumbers(e) {
 //Enter
 var contador = 0;
 $(document).keypress(function (e) {
-    console.log('Hola', e.target.id);
     var IDInput = e.target.id;
     if (e.which == 13) {
         if (IDInput == 'prod_CodigoBarras') {
@@ -697,6 +712,37 @@ function cambiobodega() {
         data: JSON.stringify({ bod_Id: bod_Id }),
     })
 
+}
+
+
+//Buscar productos en el modal
+function doSearch() {
+    var tableReg = document.getElementById('BuscarProducto');
+    var searchText = document.getElementById('buscar').value.toLowerCase();
+    var cellsOfRow = "";
+    var found = false;
+    var compareWith = "";
+
+    // Recorremos todas las filas con contenido de la tabla
+    for (var i = 1; i < tableReg.rows.length; i++) {
+        cellsOfRow = tableReg.rows[i].getElementsByTagName('td');
+        found = false;
+        // Recorremos todas las celdas
+        for (var j = 0; j < cellsOfRow.length && !found; j++) {
+            compareWith = cellsOfRow[j].innerHTML.toLowerCase();
+            // Buscamos el texto en el contenido de la celda
+            if (searchText.length == 0 || (compareWith.indexOf(searchText) > -1)) {
+                found = true;
+            }
+        }
+        if (found) {
+            tableReg.rows[i].style.display = '';
+        } else {
+            // si no ha encontrado ninguna coincidencia, esconde la
+            // fila de la tabla
+            tableReg.rows[i].style.display = 'none';
+        }
+    }
 }
 
 

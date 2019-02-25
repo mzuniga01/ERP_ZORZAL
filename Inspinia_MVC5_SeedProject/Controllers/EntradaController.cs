@@ -287,20 +287,41 @@ namespace ERP_ZORZAL.Controllers
         }
         //para añadir datos temporales a la tabla
         [HttpPost]
-        public JsonResult Guardardetalleentrada(tbEntradaDetalle EntradaDetalle)
+        public JsonResult Guardardetalleentrada(tbEntradaDetalle EntradaDetalle, string codigoproducto)
         {
+            var datos = "";
+            decimal cantvieja = 0;
+            decimal cantnueva = 0;
+            codigoproducto = EntradaDetalle.prod_Codigo;
+            decimal data_cantidad = EntradaDetalle.entd_Cantidad;
             List<tbEntradaDetalle> sessionentradadetalle = new List<tbEntradaDetalle>();
-            var list = (List<tbEntradaDetalle>)Session["CrearDetalleEntrada"];
+            var list = (List<tbEntradaDetalle>)Session["_CrearDetalleEntrada"];
             if (list == null)
             {
                 sessionentradadetalle.Add(EntradaDetalle);
-                Session["CrearDetalleEntrada"] = sessionentradadetalle;
+                Session["_CrearDetalleEntrada"] = sessionentradadetalle;
             }
             else
             {
+                foreach (var t in list)
+                    if (t.prod_Codigo == codigoproducto)
+                    {
+                        datos = codigoproducto;
+                        foreach (var viejo in list)
+                            if (viejo.prod_Codigo == EntradaDetalle.prod_Codigo)
+                                cantvieja = viejo.entd_Cantidad;
+                        cantnueva = cantvieja + data_cantidad;
+                        t.entd_Cantidad = cantnueva;
+                        return Json(datos, JsonRequestBehavior.AllowGet);
+                    }
                 list.Add(EntradaDetalle);
-                Session["CrearDetalleEntrada"] = list;
+                Session["_CrearDetalleEntrada"] = list;
+                return Json(datos, JsonRequestBehavior.AllowGet);
             }
+            //{
+            //    list.Add(EntradaDetalle);
+            //    Session["CrearDetalleEntrada"] = list;
+            //}
             return Json("Exito", JsonRequestBehavior.AllowGet);
         }
 

@@ -257,34 +257,68 @@ $('#AgregarDetalleEntrada_Craete').click(function () {
             console.log("cantidad");
         }
             else {
-                contador = contador + 1;
-                copiar = "<tr data-id=" + contador + ">";
-            //copiar += "<td>" + $('#ent_Id option:selected').text() + "</td>";
-            //copiar += "<td hidden id='ent_Id'>" + $('#ent_Id option:selected').val() + "</td>";
-
-                copiar += "<td id = 'codigoproducto'>" + $('#prod_Codigo').val() + "</td>";
-                copiar += "<td id = 'desprod'>" + $('#prod_Descripcion').val() + "</td>";
-
-            //copiar += "<td>" + $('#uni_Id option:selected').text() + "</td>";
-            //copiar += "<td hidden id='uni_Id'>" + $('#unimedida option:selected').val() + "</td>";
-
-                copiar += "<td id = 'Código Barra'>" + $('#prod_CodigoBarras').val() + "</td>";
-
-                copiar += "<td id = 'cantidad'>" + $('#entd_Cantidad').val() + "</td>";
-
-                copiar += "<td>" + '<button id="Eliminardetalleentrada_Edit" class="btn btn-danger btn-xs eliminar" type="button">Quitar</button>' + "</td>";
-                copiar += "</tr>";
-                $('#tbEntradaDetalle').append(copiar);
-
+            //ajax para el controlador
                 var EntradaDetalle = GetEntradaDetalle();
                 $.ajax({
                     url: "/Entrada/Guardardetalleentrada",
                     method: "POST",
                     dataType: 'json',
                     contentType: "application/json; charset=utf-8",
-                    data: JSON.stringify({ entradadetalle: EntradaDetalle }),
+                    data: JSON.stringify({ entradadetalle: EntradaDetalle, codigoproducto: codigoproducto }),
                 })
-                .done(function (data) {
+                .done(function (datos) {
+                    if (datos == codigoproducto) {
+                        //alert('Es Igual.')
+                        console.log('Repetido');
+                        var cantent_nueva = $('#entd_Cantidad').val();
+                        $("#tbEntradaDetalle td").each(function () {
+                            var prueba = $(this).text()
+                            if (prueba == codigoproducto) {
+                                var idcontador = $(this).closest('tr').data('id');
+                                var cantentra_anterior = $(this).closest("tr").find("td:eq(3)").text();
+                                var sumacantidades = parseInt(cantent_nueva) + parseInt(cantentra_anterior);
+                                console.log(sumacantidades);
+                                console.log(cantentra_anterior);
+                                console.log(idcontador);
+                                $(this).closest('tr').remove();
+
+                                copiar = "<tr data-id=" + idcontador + ">";
+                                copiar += "<td id = 'data_producto' hidden='hidden'>" + $('#prod_Codigo').val() + "</td>";
+                                copiar += "<td id = 'codigoproducto'>" + $('#prod_Codigo').val() + "</td>";
+                                copiar += "<td id = 'desprod'>" + $('#prod_Descripcion').val() + "</td>";
+
+                                copiar += "<td id = 'Código Barra'>" + $('#prod_CodigoBarras').val() + "</td>";
+
+                                //copiar += "<td id = 'cantidad'>" + $('#entd_Cantidad').val() + "</td>";
+                                copiar += "<td id = 'cantidad'>" + sumacantidades + "</td>";
+
+                                copiar += "<td>" + '<button id="Eliminardetalleentrada_Edit" class="btn btn-danger btn-xs eliminar" type="button">Quitar</button>' + "</td>";
+                                copiar += "</tr>";
+                                $('#tbEntradaDetalle').append(copiar);
+                            }
+                        });
+                    }
+                    else {
+                        //alert('NO ES IGUAL')
+                        //Rellenar la tabla 
+                        contador = contador + 1;
+                        copiar = "<tr data-id=" + contador + ">";
+                        //copiar += "<td>" + $('#ent_Id option:selected').text() + "</td>";
+                        //copiar += "<td hidden id='ent_Id'>" + $('#ent_Id option:selected').val() + "</td>";
+
+                        copiar += "<td id = 'codigoproducto'>" + $('#prod_Codigo').val() + "</td>";
+                        copiar += "<td id = 'desprod'>" + $('#prod_Descripcion').val() + "</td>";
+
+                        copiar += "<td id = 'Código Barra'>" + $('#prod_CodigoBarras').val() + "</td>";
+
+                        copiar += "<td id = 'cantidad'>" + $('#entd_Cantidad').val() + "</td>";
+
+                        copiar += "<td>" + '<button id="Eliminardetalleentrada_Edit" class="btn btn-danger btn-xs eliminar" type="button">Quitar</button>' + "</td>";
+                        copiar += "</tr>";
+                        $('#tbEntradaDetalle').append(copiar);
+                        console.log("prueba");
+                    }
+                }).done(function (data) {
                     $('#prod_CodigoBarras').val('');
                     $('#prod_Codigo').val('');
                     $("#uni_Id").val('');
@@ -296,7 +330,7 @@ $('#AgregarDetalleEntrada_Craete').click(function () {
                     $('#Mensajecodigo').text('');
                     $('#Mensajecantidad').text('');
 
-                });
+                })
             }
 })
 function GetEntradaDetalle() {
@@ -349,35 +383,69 @@ $('#AgregarDetalleEntrada').click(function () {
         $('#validationcantidad').after('<ul id="Mensajecantidad" class="validation-summary-errors text-danger">La cantidad No debe ser 0.</ul>');
         console.log("cantidad");
     }
-    else {
-        contador = contador + 1;
-        copiar = "<tr data-id=" + contador + ">";
-        //copiar += "<td>" + $('#ent_Id option:selected').text() + "</td>";
-        //copiar += "<td hidden id='ent_Id'>" + $('#ent_Id option:selected').val() + "</td>";
+        else {
+        //ajax para el controlador
+            var EntradaDetalle = GetEntradaDetalle();
+            $.ajax({
+                url: "/Entrada/Guardardetalleentrada",
+                method: "POST",
+                dataType: 'json',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ entradadetalle: EntradaDetalle, codigoproducto: codigoproducto }),
+            })
+            .done(function (datos) {
+                if (datos == codigoproducto) {
+                    //alert('Es Igual.')
+                    console.log('Repetido');
+                    var cantent_nueva = $('#entd_Cantidad').val();
+                    $("#tbentrada td").each(function () {
+                        var prueba = $(this).text()
+                        if (prueba == codigoproducto) {
+                            var idcontador = $(this).closest('tr').data('id');
+                            var cantentra_anterior = $(this).closest("tr").find("td:eq(3)").text();
+                            var sumacantidades = parseInt(cantent_nueva) + parseInt(cantentra_anterior);
+                            console.log(sumacantidades);
+                            console.log(cantentra_anterior);
+                            console.log(idcontador);
+                            $(this).closest('tr').remove();
 
-        copiar += "<td id = 'codigoproducto'>" + $('#prod_Codigo').val() + "</td>";
-        copiar += "<td id = 'desprod'>" + $('#prod_Descripcion').val() + "</td>";
+                            copiar = "<tr data-id=" + idcontador + ">";
+                            copiar += "<td id = 'data_producto' hidden='hidden'>" + $('#prod_Codigo').val() + "</td>";
+                            copiar += "<td id = 'codigoproducto'>" + $('#prod_Codigo').val() + "</td>";
+                            copiar += "<td id = 'desprod'>" + $('#prod_Descripcion').val() + "</td>";
 
-        //copiar += "<td>" + $('#uni_Id option:selected').text() + "</td>";
-        //copiar += "<td hidden id='uni_Id'>" + $('#unimedida option:selected').val() + "</td>";
+                            copiar += "<td id = 'Código Barra'>" + $('#prod_CodigoBarras').val() + "</td>";
 
-        copiar += "<td id = 'Código Barra'>" + $('#prod_CodigoBarras').val() + "</td>";
+                            //copiar += "<td id = 'cantidad'>" + $('#entd_Cantidad').val() + "</td>";
+                            copiar += "<td id = 'cantidad'>" + sumacantidades + "</td>";
 
-        copiar += "<td id = 'cantidad'>" + $('#entd_Cantidad').val() + "</td>";
+                            copiar += "<td>" + '<button id="Eliminardetalleentrada" class="btn btn-danger btn-xs eliminar" type="button">Quitar</button>' + "</td>";
+                            copiar += "</tr>";
+                            $('#tbentrada').append(copiar);
+                        }
+                    });
+                }
+                else {
+                    //alert('NO ES IGUAL')
+                    //Rellenar la tabla 
+                    contador = contador + 1;
+                    copiar = "<tr data-id=" + contador + ">";
+                    //copiar += "<td>" + $('#ent_Id option:selected').text() + "</td>";
+                    //copiar += "<td hidden id='ent_Id'>" + $('#ent_Id option:selected').val() + "</td>";
 
-        copiar += "<td>" + '<button id="Eliminardetalleentrada" class="btn btn-danger btn-xs eliminar" type="button">Quitar</button>' + "</td>";
-        copiar += "</tr>";
-        $('#tbentrada').append(copiar);
+                    copiar += "<td id = 'codigoproducto'>" + $('#prod_Codigo').val() + "</td>";
+                    copiar += "<td id = 'desprod'>" + $('#prod_Descripcion').val() + "</td>";
 
-        var EntradaDetalle = GetEntradaDetalle();
-        $.ajax({
-            url: "/Entrada/Guardardetalleentrada",
-            method: "POST",
-            dataType: 'json',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ entradadetalle: EntradaDetalle }),
-        })
-            .done(function (data) {
+                    copiar += "<td id = 'Código Barra'>" + $('#prod_CodigoBarras').val() + "</td>";
+
+                    copiar += "<td id = 'cantidad'>" + $('#entd_Cantidad').val() + "</td>";
+
+                    copiar += "<td>" + '<button id="Eliminardetalleentrada" class="btn btn-danger btn-xs eliminar" type="button">Quitar</button>' + "</td>";
+                    copiar += "</tr>";
+                    $('#tbentrada').append(copiar);
+                    console.log("prueba");
+                }
+            }).done(function (data) {
                 $('#prod_CodigoBarras').val('');
                 $('#prod_Codigo').val('');
                 $("#uni_Id").val('');
@@ -389,8 +457,8 @@ $('#AgregarDetalleEntrada').click(function () {
                 $('#Mensajecodigo').text('');
                 $('#Mensajecantidad').text('');
 
-            });
-    }
+            })
+        }
 })
 function GetEntradaDetalle() {
     var EntradaDetalle = {
@@ -542,7 +610,6 @@ function GetRTNproveedor() {
             $('#Rtn').empty();
             $.each(data, function (key, val) {
                 $('#Rtn').val(val.prov_RTN);
-                console.log(val.codigoProveedor);
             });
             $('#Rtn').trigger("chosen:updated");
         }
