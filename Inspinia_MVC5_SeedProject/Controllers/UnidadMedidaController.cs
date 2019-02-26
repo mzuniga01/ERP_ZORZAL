@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ERP_GMEDINA.Models;
+using ERP_GMEDINA.Attribute;
 
 namespace ERP_GMEDINA.Controllers
 {
@@ -15,283 +16,15 @@ namespace ERP_GMEDINA.Controllers
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
         GeneralFunctions Function = new GeneralFunctions();
         // GET: /UnidadMedida/
+        [SessionManager("UnidadMedida/Index")]
         public ActionResult Index()
         {
-            if (Function.GetUserLogin())
-            {
-                if (Function.Sesiones("UnidadMedida/Index"))
-                {
-
-                }
-                else
-                {
-                    return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
-                }
-
-                if (Function.GetUserRols("UnidadMedida/Index"))
-                {
-                    return View(db.tbUnidadMedida.ToList());
-                }
-                else
-                {
-                    return RedirectToAction("SinAcceso", "Login");
-                }
-            }
-            else
-                return RedirectToAction("Index", "Login");
+            return View(db.tbUnidadMedida.ToList());
         }
 
         // GET: /UnidadMedida/Details/5
+        [SessionManager("UnidadMedida/Details")]
         public ActionResult Details(int? id)
-        {
-            if (Function.GetUserLogin())
-            {
-                if (Function.Sesiones("UnidadMedida/Details"))
-                {
-
-                }
-                else
-                {
-                    return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
-                }
-
-                if (Function.GetUserRols("UnidadMedida/Details"))
-                {
-                    if (id == null)
-                    {
-                        return RedirectToAction("Index");
-                    }
-                    tbUnidadMedida tbUnidadMedida = db.tbUnidadMedida.Find(id);
-                    if (tbUnidadMedida == null)
-                    {
-                        return RedirectToAction("NotFound", "Login");
-                    }
-                    return View(tbUnidadMedida);
-                }
-                else
-                {
-                    return RedirectToAction("SinAcceso", "Login");
-                }
-            }
-            else
-                return RedirectToAction("Index", "Login");
-        }
-
-        // GET: /UnidadMedida/Create
-        public ActionResult Create()
-        {
-            if (Function.GetUserLogin())
-            {
-                if (Function.Sesiones("UnidadMedida/Create"))
-                {
-
-                }
-                else
-                {
-                    return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
-                }
-
-                if (Function.GetUserRols("UnidadMedida/Create"))
-                {
-                    return View();
-                }
-                else
-                {
-                    return RedirectToAction("SinAcceso", "Login");
-                }
-            }
-            else
-                return RedirectToAction("Index", "Login");
-        }
-        
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="uni_Descripcion,uni_Abreviatura,uni_UsuarioCrea,uni_FechaCrea")] tbUnidadMedida tbUnidadMedida)
-        {
-            if (Function.GetUserLogin())
-            {
-                if (Function.GetUserRols("UnidadMedida/Create"))
-                {
-                    if (db.tbUnidadMedida.Any(a => a.uni_Descripcion == tbUnidadMedida.uni_Descripcion))
-                    {
-                        ModelState.AddModelError("", "La Unidad de Medida ya Existe.");
-
-                    }
-                    if (ModelState.IsValid)
-                    {
-                        try
-                        {
-                            IEnumerable<object> List = null;
-                            var MsjError = "0";
-                            List = db.UDP_Gral_tbUnidadMedida_Insert(tbUnidadMedida.uni_Descripcion, tbUnidadMedida.uni_Abreviatura, Function.GetUser(), DateTime.Now);
-                            foreach (UDP_Gral_tbUnidadMedida_Insert_Result uni in List)
-                                MsjError = uni.MensajeError;
-
-                            //        if (MsjError.StartsWith("-1"))
-                            //        {
-                            //            ModelState.AddModelError("", "No se guardó el registro, Contacte al Administrador");
-                            //            return View(tbUnidadMedida);
-                            //        }
-                            //        else if (MsjError.StartsWith("0"))
-                            //        {
-                            //            ModelState.AddModelError("", "La Unidad de Medida ya Existe");
-                            //            return View(tbUnidadMedida);
-                            //        }
-
-                            //            return RedirectToAction("Index");
-
-                            //    }
-                            //    catch (Exception Ex)
-                            //    {
-                            //        Ex.Message.ToString();
-                            //        ModelState.AddModelError("", "No se guardó el registro, Contacte al Administrador");
-                            //        return View(tbUnidadMedida);
-                            //    }
-
-                            //}
-                            //else
-                            //{
-                            //    var errors = ModelState.Values.SelectMany(v => v.Errors);
-                            //    return RedirectToAction("Index");
-                            //}
-                            //return View(tbUnidadMedida);
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////                           
-                            if (MsjError.StartsWith("-1"))
-                            {
-                                ModelState.AddModelError("Error", "No se Guardo el registro , Contacte al Administrador");
-                                return View(tbUnidadMedida);
-                            }
-
-                            else
-                            {
-                                return RedirectToAction("Index");
-                            }
-
-                        }
-                        catch (Exception Ex)
-                        {
-                            Ex.Message.ToString();
-                            ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
-
-                            return View(tbUnidadMedida);
-                        }
-
-                    }
-                    else
-                    {
-                        var errors = ModelState.Values.SelectMany(v => v.Errors);
-                    }
-                    return View(tbUnidadMedida);
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                }
-
-                else
-                {
-                    var errors = ModelState.Values.SelectMany(v => v.Errors);
-
-                    return RedirectToAction("SinAcceso", "Login");
-                }
-            }
-            else
-                return RedirectToAction("Index", "Login");
-        }
-
-        // GET: /UnidadMedida/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (Function.GetUserLogin())
-            {
-                if (Function.Sesiones("UnidadMedida/Edit"))
-                {
-
-                }
-                else
-                {
-                    return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
-                }
-
-                if (Function.GetUserRols("UnidadMedida/Edit"))
-                {
-                    if (id == null)
-                    {
-                        return RedirectToAction("Index");
-                    }
-                    tbUnidadMedida tbUnidadMedida = db.tbUnidadMedida.Find(id);
-                    if (tbUnidadMedida == null)
-                    {
-                        return RedirectToAction("NotFound", "Login");
-                    }
-                    return View(tbUnidadMedida);
-                }
-                else
-                {
-                    return RedirectToAction("SinAcceso", "Login");
-                }
-            }
-            else
-                return RedirectToAction("Index", "Login");
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int? id,[Bind(Include= "uni_Id,uni_Descripcion,uni_Abreviatura,uni_UsuarioCrea, uni_FechaCrea,uni_UsuarioModifica,uni_FechaModifica")] tbUnidadMedida tbUnidadMedida)
-        {
-            if (Function.GetUserLogin())
-            {
-                if (Function.GetUserRols("UnidadMedida/Edit"))
-                {
-                    if (db.tbUnidadMedida.Any(a => a.uni_Descripcion == tbUnidadMedida.uni_Descripcion))
-                    {
-                        ModelState.AddModelError("", "La Descripcion ya Existe.");
-
-                    }
-                    if (ModelState.IsValid)
-                    {
-                        try
-                        {
-                            tbUnidadMedida UnidadMedida = db.tbUnidadMedida.Find(id);
-                            IEnumerable<object> List = null;
-                            var MsjError = "";
-                            List = db.UDP_Gral_tbUnidadMedida_Update(tbUnidadMedida.uni_Id,
-                                                                        tbUnidadMedida.uni_Descripcion,
-                                                                        tbUnidadMedida.uni_Abreviatura,
-                                                                        tbUnidadMedida.uni_UsuarioCrea,
-                                                                        tbUnidadMedida.uni_FechaCrea
-                                                                        , Function.GetUser(), DateTime.Now);
-                            foreach (UDP_Gral_tbUnidadMedida_Update_Result uni in List)
-                                MsjError = uni.MensajeError;
-
-                            if (MsjError.StartsWith("-1"))
-                            {
-                                ModelState.AddModelError("", "No se guardó el registro , contacte al Administrador");
-                                return View(tbUnidadMedida);
-                            }
-                            else
-                            {
-                                return RedirectToAction("Index");
-                            }
-
-                        }
-                        catch (Exception Ex)
-                        {
-                            Ex.Message.ToString();
-                            ModelState.AddModelError("", "No se guardó el registro , contacte al Administrador");
-                            return View(tbUnidadMedida);
-                        }
-                    }
-                    return View(tbUnidadMedida);
-                }
-                else
-                {
-                    return RedirectToAction("SinAcceso", "Login");
-                }
-            }
-            else
-                return RedirectToAction("Index", "Login");
-        }
-
-        //GET: /UnidadMedida/Delete/5
-        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
@@ -305,15 +38,117 @@ namespace ERP_GMEDINA.Controllers
             return View(tbUnidadMedida);
         }
 
-        // POST: /UnidadMedida/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        // GET: /UnidadMedida/Create
+        [SessionManager("UnidadMedida/Create")]
+        public ActionResult Create()
         {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [SessionManager("UnidadMedida/Create")]
+        public ActionResult Create([Bind(Include = "uni_Descripcion,uni_Abreviatura,uni_UsuarioCrea,uni_FechaCrea")] tbUnidadMedida tbUnidadMedida)
+        {
+            if (db.tbUnidadMedida.Any(a => a.uni_Descripcion == tbUnidadMedida.uni_Descripcion))
+            {
+                ModelState.AddModelError("", "La Unidad de Medida ya Existe.");
+
+            }
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    IEnumerable<object> List = null;
+                    var MsjError = "0";
+                    List = db.UDP_Gral_tbUnidadMedida_Insert(tbUnidadMedida.uni_Descripcion, tbUnidadMedida.uni_Abreviatura, Function.GetUser(), DateTime.Now);
+                    foreach (UDP_Gral_tbUnidadMedida_Insert_Result uni in List)
+                        MsjError = uni.MensajeError;
+                    if (MsjError.StartsWith("-1"))
+                    {
+                        ModelState.AddModelError("Error", "No se Guardo el registro , Contacte al Administrador");
+                        return View(tbUnidadMedida);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+                catch (Exception Ex)
+                {
+                    Ex.Message.ToString();
+                    ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
+                    return View(tbUnidadMedida);
+                }
+            }
+            else
+            {
+                var errors = ModelState.Values.SelectMany(v => v.Errors);
+            }
+            return View(tbUnidadMedida);
+        }
+
+        // GET: /UnidadMedida/Edit/5
+        [SessionManager("UnidadMedida/Edit")]
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction("Index");
+            }
             tbUnidadMedida tbUnidadMedida = db.tbUnidadMedida.Find(id);
-            db.tbUnidadMedida.Remove(tbUnidadMedida);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if (tbUnidadMedida == null)
+            {
+                return RedirectToAction("NotFound", "Login");
+            }
+            return View(tbUnidadMedida);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [SessionManager("UnidadMedida/Edit")]
+        public ActionResult Edit(int? id, [Bind(Include = "uni_Id,uni_Descripcion,uni_Abreviatura,uni_UsuarioCrea, uni_FechaCrea,uni_UsuarioModifica,uni_FechaModifica")] tbUnidadMedida tbUnidadMedida)
+        {
+            if (db.tbUnidadMedida.Any(a => a.uni_Descripcion == tbUnidadMedida.uni_Descripcion))
+            {
+                ModelState.AddModelError("", "La Descripcion ya Existe.");
+
+            }
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    tbUnidadMedida UnidadMedida = db.tbUnidadMedida.Find(id);
+                    IEnumerable<object> List = null;
+                    var MsjError = "";
+                    List = db.UDP_Gral_tbUnidadMedida_Update(tbUnidadMedida.uni_Id,
+                                                                tbUnidadMedida.uni_Descripcion,
+                                                                tbUnidadMedida.uni_Abreviatura,
+                                                                tbUnidadMedida.uni_UsuarioCrea,
+                                                                tbUnidadMedida.uni_FechaCrea
+                                                                , Function.GetUser(), DateTime.Now);
+                    foreach (UDP_Gral_tbUnidadMedida_Update_Result uni in List)
+                        MsjError = uni.MensajeError;
+
+                    if (MsjError.StartsWith("-1"))
+                    {
+                        ModelState.AddModelError("", "No se guardó el registro , contacte al Administrador");
+                        return View(tbUnidadMedida);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+
+                }
+                catch (Exception Ex)
+                {
+                    Ex.Message.ToString();
+                    ModelState.AddModelError("", "No se guardó el registro , contacte al Administrador");
+                    return View(tbUnidadMedida);
+                }
+            }
+            return View(tbUnidadMedida);
         }
 
         protected override void Dispose(bool disposing)

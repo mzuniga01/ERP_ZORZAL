@@ -1,4 +1,5 @@
 ﻿using CrystalDecisions.CrystalReports.Engine;
+using ERP_GMEDINA.Attribute;
 using ERP_GMEDINA.Models;
 using System;
 using System.Collections.Generic;
@@ -16,18 +17,11 @@ namespace ERP_GMEDINA.Controllers
         private GeneralFunctions Function = new GeneralFunctions();
 
         // GET: /Salida/
+        [SessionManager("Salida/Index")]
         public ActionResult Index()
         {
-            if (Function.Sesiones("Salida/Index"))
-            {
-            }
-            else
-            {
-                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
-            }
             ViewBag.tsal_Id = new SelectList(db.tbTipoSalida, "tsal_Id", "tsal_Descripcion");
             var tbsalida = db.tbSalida;
-            //.Include(t => t.tbUsuario).Include(t => t.tbBodega).Include(t => t.tbEstadoMovimiento).Include(t => t.tbTipoSalida)
             return View(tbsalida.ToList());
         }
 
@@ -59,20 +53,12 @@ namespace ERP_GMEDINA.Controllers
             {
                 throw;
             }
-            //.Include(t => t.tbUsuario).Include(t => t.tbBodega).Include(t => t.tbEstadoMovimiento).Include(t => t.tbTipoSalida)
         }
 
         // GET: /Salida/Details/5
+        [SessionManager("Salida/Details")]
         public ActionResult Details(int? id)
         {
-            if (Function.Sesiones("Salida/Details"))
-            {
-            }
-            else
-            {
-                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
-            }
-
             if (id == null)
             {
                 return RedirectToAction("Index");
@@ -86,17 +72,10 @@ namespace ERP_GMEDINA.Controllers
         }
 
         // GET: /Salida/Create
+        [SessionManager("Salida/Create")]
         public ActionResult Create()
         {
-            if (Function.Sesiones("Salida/Create"))
-            {
-            }
-            else
-            {
-                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
-            }
             int idUser = 0;
-
             try
             {
                 Session["SalidaDetalle"] = null;
@@ -127,6 +106,7 @@ namespace ERP_GMEDINA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [SessionManager("Salida/Create")]
         public ActionResult Create([Bind(Include = "bod_Id,fact_Id,fact_Codigo,sal_FechaElaboracion,estm_Id,tsal_Id,sal_RazonDevolucion, sal_BodDestino, sal_EsAnulada, sal_RazonAnulada")] tbSalida tbSalida)
         {
             int idUser = 0;
@@ -247,7 +227,6 @@ namespace ERP_GMEDINA.Controllers
             {
                 throw;
             }
-            //.Include(t => t.tbUsuario).Include(t => t.tbBodega).Include(t => t.tbEstadoMovimiento).Include(t => t.tbTipoSalida)
         }
 
         public JsonResult BodegaDestino(int? id)
@@ -342,16 +321,9 @@ namespace ERP_GMEDINA.Controllers
         }
 
         // GET: /Salida/Edit
+        [SessionManager("Salida/Edit")]
         public ActionResult Edit(int? id)
         {
-            if (Function.Sesiones("Salida/Edit"))
-            {
-            }
-            else
-            {
-                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
-            }
-
             if (id == null)
             {
                 return RedirectToAction("Index");
@@ -374,7 +346,6 @@ namespace ERP_GMEDINA.Controllers
             }
             ViewBag.IdSal = id;
             ViewBag.bod_Id = new SelectList(db.tbBodega.Where(x => x.bod_ResponsableBodega == idUser).ToList(), "bod_Id", "bod_Nombre");
-            //ViewBag.bod_Prod = db.tbBodega.Where(x => x.bod_ResponsableBodega == idUser).Select(x => x.bod_Id).SingleOrDefault();
 
             ViewBag.estm_Id = new SelectList(db.tbEstadoMovimiento, "estm_Id", "estm_Descripcion", tbSalida.estm_Id);
             ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo", tbSalida.fact_Id);
@@ -468,6 +439,7 @@ namespace ERP_GMEDINA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [SessionManager("Salida/Edit")]
         public ActionResult Edit(int? id, [Bind(Include = "sal_Id, bod_Id,fact_Id,fact_Codigo,sal_FechaElaboracion,estm_Id,tsal_Id,  sal_RazonDevolucion, sal_UsuarioCrea, sal_FechaCrea")] tbSalida tbSalida)
         {
             ViewBag.sal_BodDestino = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbSalida.sal_BodDestino);
@@ -760,43 +732,15 @@ namespace ERP_GMEDINA.Controllers
                     if (MensajeError == "-1")
                     {
                         ModelState.AddModelError("", "No se pudo agregar el registro detalle");
-                        //return View(tbSalidaDetalle);
                     }
                 }
             }
             catch (Exception Ex)
             {
                 MensajeError = Ex.Message.ToString();
-                //ViewBag.dfisc_Id = new SelectList(db.tbDocumentoFiscal, "dfisc_Id", "dfisc_Descripcion", CreatePuntoEmisionDetalle.dfisc_Id);
                 ModelState.AddModelError("", MensajeError);
             }
             return Json(MensajeError, JsonRequestBehavior.AllowGet);
-        }
-
-        // GET: /Salida/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return RedirectToAction("Index");
-            }
-            tbSalida tbSalida = db.tbSalida.Find(id);
-            if (tbSalida == null)
-            {
-                return RedirectToAction("NotFound", "Login");
-            }
-            return View(tbSalida);
-        }
-
-        // POST: /Salida/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            tbSalida tbSalida = db.tbSalida.Find(id);
-            db.tbSalida.Remove(tbSalida);
-            db.SaveChanges();
-            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

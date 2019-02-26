@@ -212,7 +212,6 @@
     <Compile Include="Controllers\ProveedorController.cs" />
     <Compile Include="Controllers\RolController.cs" />
     <Compile Include="Controllers\SalidaController.cs" />
-    <Compile Include="Controllers\tbProveedorsController.cs" />
     <Compile Include="Controllers\TipoDevolucionController.cs" />
     <Compile Include="Controllers\TipoEntradaController.cs" />
     <Compile Include="Controllers\TipoSalidaController.cs" />
@@ -1435,10 +1434,6 @@
     <Content Include="Views\Rol\Details.cshtml" />
     <Content Include="Views\Rol\Edit.cshtml" />
     <Content Include="Views\Rol\Index.cshtml" />
-    <Content Include="Views\tbProveedors\Create.cshtml" />
-    <Content Include="Views\tbProveedors\Details.cshtml" />
-    <Content Include="Views\tbProveedors\Edit.cshtml" />
-    <Content Include="Views\tbProveedors\Index.cshtml" />
     <Content Include="Views\Box\Create.cshtml" />
     <Content Include="Views\Box\Delete.cshtml" />
     <Content Include="Views\Box\Details.cshtml" />
