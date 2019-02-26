@@ -10,7 +10,6 @@
                 <div class="ibox-content">
 
                     <div class="form-horizontal">
-                        @Html.ValidationSummary(true)
                         <input name="ped_Id" id="ped_Id" type="hidden" value="@ViewBag.ped_idd">
                         <div class="form-horizontal">
                             <div class="form-group">
@@ -23,7 +22,7 @@
                                     @Html.EditorFor(model => model.tbProducto.prod_CodigoBarras, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly" } })
                                     @Html.ValidationMessageFor(model => model.tbProducto.prod_CodigoBarras)
                                 </div>
-                            
+
 
 
 
@@ -43,15 +42,16 @@
                                     @Html.EditorFor(model => model.prod_Codigo, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly" } })
                                     <p style="color:red">
                                         @Html.ValidationMessageFor(model => model.prod_Codigo)
-                                </div></div>
-
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.tbProducto.prod_Descripcion, new { @class = "control-label col-md-3" })
-                                    <div class="col-md-6">
-                                        @Html.EditorFor(model => model.tbProducto.prod_Descripcion, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly" } })
-                                        @Html.ValidationMessageFor(model => model.tbProducto.prod_Descripcion)
-                                    </div>
                                 </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.tbProducto.prod_Descripcion, new { @class = "control-label col-md-3" })
+                                <div class="col-md-6">
+                                    @Html.EditorFor(model => model.tbProducto.prod_Descripcion, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.tbProducto.prod_Descripcion)
+                                </div>
+                            </div>
 
 
                             <div class="form-group">
@@ -79,61 +79,62 @@
 
                                 </div>
                             </div>
-                     
 
-            
 
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.lispd_DescCaja, new { @class = "control-label col-md-3", @id = "pedd_Cantidad_Ped" })
 
-                                    <div class="col-md-6">
-                                        @Html.EditorFor(model => model.lispd_DescCaja, new { htmlAttributes = new { @autocomplete = "off", @onkeypress = "return solonum(event)" } })
-                                        @*@Html.ValidationMessageFor(model => model.lispd_DescCaja)*@
-                                        <p id="smsCantidad" style="color:red"> @Html.ValidationMessageFor(model => model.lispd_DescCaja)</p>
 
-                                    </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.lispd_DescCaja, new { @class = "control-label col-md-3", @id = "pedd_Cantidad_Ped" })
+
+                                <div class="col-md-6">
+                                    @Html.EditorFor(model => model.lispd_DescCaja, new { htmlAttributes = new { @autocomplete = "off", @onkeypress = "return solonum(event)" } })
+                                    @*@Html.ValidationMessageFor(model => model.lispd_DescCaja)*@
+                                    <p id="smsCantidad" style="color:red"> @Html.ValidationMessageFor(model => model.lispd_DescCaja)</p>
+
                                 </div>
-                                     
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.lispd_DescGerente, new { @class = "control-label col-md-3", @id = "pedd_Cantidad_Ped" })
-
-                                    <div class="col-md-6">
-                                        @Html.EditorFor(model => model.lispd_DescGerente, new { htmlAttributes = new { @autocomplete = "off", @onkeypress = "return solonum(event)" } })
-                                        @*@Html.ValidationMessageFor(model => model.lispd_DescGerente)*@
-                                        <p id="desccaja" style="color:red">@Html.ValidationMessageFor(model => model.lispd_DescGerente)</p>
-
-                                    </div>
-                                </div>
-
-
-
-
-                                <input type="hidden" id="lispd_UsuarioCrea_Lp" name="lispd_UsuarioCrea" />
-                                <input type="hidden" id="lispd_FechaCrea_Lp" name="lispd_FechaCrea" />
-
-
-                                <br />
-                                <br />
-
-
-
-
-                                <div class="form-group">
-                                    <div class="col-md-offset-5 col-md-10">
-                                        <button class="btn btn-primary" type="submit" id="BtnGuardarDetalle" tabindex="10"> Guardar </button>
-                                        @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
-                                    </div>
-                                </div>
-
-
-
                             </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.lispd_DescGerente, new { @class = "control-label col-md-3", @id = "pedd_Cantidad_Ped" })
+
+                                <div class="col-md-6">
+                                    @Html.EditorFor(model => model.lispd_DescGerente, new { htmlAttributes = new { @autocomplete = "off", @onkeypress = "return solonum(event)" } })
+                                    @*@Html.ValidationMessageFor(model => model.lispd_DescGerente)*@
+                                    <p id="desccaja" style="color:red">@Html.ValidationMessageFor(model => model.lispd_DescGerente)</p>
+
+                                </div>
+                            </div>
+
+
+
+
+                            <input type="hidden" id="lispd_UsuarioCrea_Lp" name="lispd_UsuarioCrea" />
+                            <input type="hidden" id="lispd_FechaCrea_Lp" name="lispd_FechaCrea" />
+
+
+                            <br />
+                            <br />
+
+
+
+
+                            <div class="form-group">
+                                <div class="col-md-offset-5 col-md-10">
+                                    <button class="btn btn-primary" type="submit" id="BtnGuardarDetalle" tabindex="10"> Guardar </button>
+                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                </div>
+                            </div>
+
+
+
+                        </div>
 
                     </div>
                 </div>
             </div>
         </div>
-
+    </div>
+</div>
 <div>
     <div class="modal fade" id="ModalAgregarProducto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
@@ -145,23 +146,23 @@
                     <h4 class="modal-title" id="myModalLabel">Agregar Producto</h4>
                 </div>
                 <div class="modal-body" id="frmEditarMunicipios">
-                    @Html.Partial("_IndexProducto", (List<tbProducto>)ViewBag.Producto)
+                    @*@Html.Partial("_IndexProducto", (List<tbProducto>)ViewBag.Producto)*@
                 </div>
             </div>
         </div>
     </div>
 </div>
-        <div id="validationSummary">
-            <p style="color:red"></p>
-        </div>
-        <script type="text/javascript">
-        $(document).ready(function () {
-            $('#lispd_DescGerente').val('0.00')
-            $('#lispd_DescCaja').val('0.00')
-        })
-        </script>
+<div id="validationSummary">
+    <p style="color:red"></p>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#lispd_DescGerente').val('0.00')
+        $('#lispd_DescCaja').val('0.00')
+    })
+</script>
 
-        <script>
+<script>
 
     $("#lispd_PrecioMinorista").blur(function () {
         valido = document.getElementById('validacionPreciosMM');
@@ -196,7 +197,7 @@
 
 
 
-        if (parseFloat(DescuentoCaja) < 0 || parseFloat(DescuentoCaja)> 100) {
+        if (parseFloat(DescuentoCaja) < 0 || parseFloat(DescuentoCaja) > 100) {
             //console.log("facturada", CantFacturada)
             //console.log(CantDevolucion)
             //console.log("if")
@@ -243,9 +244,9 @@
         tecla = String.fromCharCode(tecla)
         return /^[0-9]+$/.test(tecla);
     }
-        </script>
+</script>
 
-        <script>
+<script>
     //---------------------------------Ctrl + G (GuardarRegistro)------------------------------
     $(document).keydown(function (e) {
         if ((e.key == 'g' || e.key == 'G') && (e.ctrlKey || e.metaKey)) {
@@ -260,7 +261,7 @@
 
 
 
-        </script>
+</script>
 
 
 

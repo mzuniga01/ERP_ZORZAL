@@ -39,7 +39,6 @@
 
             <div class="form-horizontal">
                 @Html.Hidden("RedirectTo", Url.Action("Index", "ListaPrecios"))
-                @Html.ValidationSummary(true)
                 @Html.HiddenFor(model => model.listp_Id)
                 @*@Html.HiddenFor(model => model.lispd_Id)*@
 
@@ -84,10 +83,11 @@
 
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.listp_FechaInicioVigencia, "Fecha Inicio Vigencia", new { @class = "control-label col-md-2" })
+                    <label class="control-label col-md-2 AsteriscoRojo">Fecha Inicio Vigencia</label>
+                    @*@Html.LabelFor(model => model.listp_FechaInicioVigencia, new { @class = "control-label col-md-2" })*@
                     <div class="col-md-3">
-                        @Html.EditorFor(model => model.listp_FechaInicioVigencia, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechaListaPrecioEdit", @readonly = "readonly" } })
-                        <span class="validation-error">@Html.ValidationMessageFor(model => model.listp_FechaInicioVigencia)</span>
+                        @Html.EditorFor(model => model.listp_FechaInicioVigencia, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @id = "FIV" } })
+                        @Html.ValidationMessageFor(model => model.listp_FechaInicioVigencia)
                     </div>
                 </div>
 
@@ -96,7 +96,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.listp_FechaFinalVigencia, new { @class = "control-label col-md-2" })
                     <div class="col-md-3">
-                        @Html.EditorFor(model => model.listp_FechaFinalVigencia, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "FFV" } })
+                        @Html.EditorFor(model => model.listp_FechaFinalVigencia, "{0:dd-MM-yyyy}", new { htmlAttributes = new { @class = "form-control", @id = "FFV" } })
                         @Html.ValidationMessageFor(model => model.listp_FechaFinalVigencia)
                     </div>
                 </div>
