@@ -907,53 +907,6 @@ C:\Users\Lab 2\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\System.
 C:\Users\Lab 2\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\System.Web.WebPages.Razor.xml
 C:\Users\Lab 2\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.dll
 C:\Users\Lab 2\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.pdb
-C:\Users\Dell\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.csprojAssemblyReference.cache
-C:\Users\Dell\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.csproj.CoreCompileInputs.cache
-C:\Users\Dell\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\cs\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Dell\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\da\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Dell\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\de\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Dell\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\en\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Dell\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\es\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Dell\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\fi\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Dell\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\fr\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Dell\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\hu\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Dell\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\it\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Dell\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\ja\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Dell\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\ko\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Dell\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\nb-NO\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Dell\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\nl\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Dell\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\pl\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Dell\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\pt\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Dell\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\ru\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Dell\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\sk\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Dell\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\sv\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Dell\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\th\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Dell\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\tr\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Dell\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\zh-CHS\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Dell\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\zh-CHT\CrystalDecisions.CrystalReports.Engine.resources.dll
-C:\Users\Dell\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\cs\CrystalDecisions.Shared.resources.dll
-C:\Users\Dell\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\da\CrystalDecisions.Shared.resources.dll
-C:\Users\Dell\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\de\CrystalDecisions.Shared.resources.dll
-C:\Users\Dell\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\en\CrystalDecisions.Shared.resources.dll
-C:\Users\Dell\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\es\CrystalDecisions.Shared.resources.dll
-C:\Users\Dell\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\fi\CrystalDecisions.Shared.resources.dll
-C:\Users\Dell\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\fr\CrystalDecisions.Shared.resources.dll
-C:\Users\Dell\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\hu\CrystalDecisions.Shared.resources.dll
-C:\Users\Dell\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\it\CrystalDecisions.Shared.resources.dll
-C:\Users\Dell\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\ja\CrystalDecisions.Shared.resources.dll
-C:\Users\Dell\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\ko\CrystalDecisions.Shared.resources.dll
-C:\Users\Dell\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\nb-NO\CrystalDecisions.Shared.resources.dll
-C:\Users\Dell\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\nl\CrystalDecisions.Shared.resources.dll
-C:\Users\Dell\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\pl\CrystalDecisions.Shared.resources.dll
-C:\Users\Dell\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\pt\CrystalDecisions.Shared.resources.dll
-C:\Users\Dell\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\ru\CrystalDecisions.Shared.resources.dll
-C:\Users\Dell\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\sk\CrystalDecisions.Shared.resources.dll
-C:\Users\Dell\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\sv\CrystalDecisions.Shared.resources.dll
-C:\Users\Dell\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\th\CrystalDecisions.Shared.resources.dll
-C:\Users\Dell\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\tr\CrystalDecisions.Shared.resources.dll
-C:\Users\Dell\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\zh-CHS\CrystalDecisions.Shared.resources.dll
-C:\Users\Dell\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\zh-CHT\CrystalDecisions.Shared.resources.dll
-C:\Users\Dell\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.csproj.CopyComplete
 C:\Users\antonio\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\ERP_GMEDINA.dll.config
 C:\Users\antonio\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\ERP_GMEDINA.pdb
 C:\Users\antonio\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\Antlr3.Runtime.dll
@@ -1239,3 +1192,13 @@ C:\Users\Lab 2\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\Crystal
 C:\Users\Lab 2\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
 C:\Users\Lab 2\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
 C:\Users\Lab 2\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
+C:\Users\DELL\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.CrystalReports.Design.dll
+C:\Users\DELL\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.ReportSource.dll
+C:\Users\DELL\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.Web.dll
+C:\Users\DELL\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.ReportAppServer.ClientDoc.dll
+C:\Users\DELL\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.ReportAppServer.Prompting.dll
+C:\Users\DELL\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+C:\Users\DELL\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+C:\Users\DELL\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
+C:\Users\DELL\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\es\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\DELL\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.csprojResolveAssemblyReference.cache

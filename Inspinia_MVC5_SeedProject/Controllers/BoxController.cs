@@ -207,7 +207,7 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.Cod_Box = id;
             ViewBag.bod_Id = new SelectList(db.tbBodega.Where(x => x.bod_ResponsableBodega == idUser).ToList(), "bod_Id", "bod_Nombre");
             ViewBag.bod_Prod = db.tbBodega.Where(x => x.bod_ResponsableBodega == idUser).Select(x => x.bod_Id).First();
-            ViewBag.Producto = db.tbBodegaDetalle.ToList();
+            ViewBag.Producto = db.tbProducto.ToList();
             return View(tbBox);
         }
 
@@ -350,9 +350,9 @@ namespace ERP_ZORZAL.Controllers
 
                 tbSalidaDetalle vsalida = db.tbSalidaDetalle.Find(EditarSalidaDetalle.sald_Id);
                 list = db.UDP_Inv_tbSalidaDetalle_Update(EditarSalidaDetalle.sald_Id,
-                                                         EditarSalidaDetalle.sald_Id, 
+                                                         EditarSalidaDetalle.sald_Id,
                                                          EditarSalidaDetalle.prod_Codigo,
-                                                        EditarSalidaDetalle.sald_Cantidad, 
+                                                        EditarSalidaDetalle.sald_Cantidad,
                                                         EditarSalidaDetalle.box_Codigo,
                                                         EditarSalidaDetalle.sald_UsuarioCrea,
                                                         EditarSalidaDetalle.sald_FechaCrea, Function.GetUser(), Function.DatetimeNow());
@@ -468,8 +468,71 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.MonedaList = new SelectList(MonedaList, "mnda_Id", "mnda_Nombre");
             ViewBag.SolicitudEdectivoDetalle = db.tbSolicitudEfectivoDetalle.ToList();
         }
+        public JsonResult GetProdList(tbBodegaDetalle tbBodegaDetalle)
+        {
+            IEnumerable<object> list = null;
+            try
+            {
+                list = db.SDP_Inv_tbBodegaDetalle_Select_Producto(tbBodegaDetalle.bod_Id).ToList();
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+            }
+            object jsonlist = new { d = list };
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult SaveNewDetail(tbSalidaDetalle SalidaDetalle)
+        {
+            var list = (List<tbSalidaDetalle>)Session["SalidaDetalle"];
+            var MensajeError = "0";
+            var MensajeErrorDetalle = "0";
+            IEnumerable<object> listSalidaDetalle = null;
+
+            try
+            {
+                if (list != null)
+                {
+                    if (list.Count != 0)
+                    {
+                        foreach (tbSalidaDetalle Detalle in list)
+                        {
+                            var box_Codigo = "0";
+                            Detalle.box_Codigo = MensajeError;
+                            listSalidaDetalle = db.UDP_Inv_tbSalidaDetalle_Insert(
+                                SalidaDetalle.sal_Id,
+                                Detalle.prod_Codigo,
+                                Detalle.sald_Cantidad,
+                                box_Codigo
+                                , Function.GetUser(), Function.DatetimeNow());
+                            foreach (UDP_Inv_tbSalidaDetalle_Insert_Result spDetalle in listSalidaDetalle)
+                            {
+                                MensajeErrorDetalle = spDetalle.MensajeError;
+                                if (MensajeError == "-1")
+                                {
+                                    ModelState.AddModelError("", "No se pudo agregar el registro detalle");
+                                    return Json("", JsonRequestBehavior.AllowGet);
+                                }
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Vacio");
+                }
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+            }
+
+            return Json("", JsonRequestBehavior.AllowGet);
+        }
+
     }
 }
+
 
 
 

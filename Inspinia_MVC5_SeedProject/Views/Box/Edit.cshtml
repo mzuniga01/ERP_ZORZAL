@@ -91,21 +91,22 @@
                                     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="ibox float-e-margins">
-                                        <div class="ibox-title">
-                                            <div class="title-action">
-                                                <h5>Producto</h5>
-                                                <button type="button" class="btn btn-white glyphicon glyphicon-download" data-toggle="collapse" data-target="#CreateProducto"></button>
-                                            </div>
-                                        </div>
-                                        <div class="ibox-content collapse" id="CreateProducto">
-                                            @Html.Partial("_CreateEditSalidaDetalle", new ERP_GMEDINA.Models.tbSalidaDetalle())
+                            <div class="modal fade" id="Nuevo" tabindex="-1" role="dialog" aria-labelledby="DetalleNumeracion" aria-hidden="true">
 
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Seleccione un Producto</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body" id="AjaxCreateNumeracion">
+                                            @Html.Partial("_CreateEditSalidaDetalle", new ERP_GMEDINA.Models.tbSalidaDetalle())
                                         </div>
                                     </div>
                                 </div>
+                            </div>
                             </div><div class="row">
 
                                       @* Llama la vista  *@
@@ -114,9 +115,16 @@
 
                                               <div class="row">
                                                   <div class="col-lg-12">
+
                                                       <div class="ibox-content">
+
                                                           <fieldset class="box-border">
-                                                              <legend class="box-border">Salida Detalle</legend>
+                                                              <legend class="box-border">Caja Detalle</legend>
+                                                              <div class="ibox-tools">
+                                                                  <button type="button" id="btnModalGuardarNumeracion" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#Nuevo">
+                                                                      Agregar Producto
+                                                                  </button>
+                                                              </div>
                                                               @Html.Partial("_EditSalidaDetalle", Model.tbSalidaDetalle, new ViewDataDictionary(new { clave = Model.box_Codigo }))
                                                           </fieldset>
                                                       </div>
@@ -125,6 +133,7 @@
                                           </div>
                                       </div>
 
+       
                                       <div class="ibox-content">
                                           <table class="table table-striped">
                                               <tr>
@@ -152,26 +161,78 @@
                                           </table>
                                       </div>
     </div>
-</div>                        
-                      
                     }
                 </div>
-                
-                
             </div>
         </div>
     </div>
-</div>
+
 
 <script src="~/Scripts/jquery-3.1.1.min.js"></script>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/Datepicker.js"></script>
-<script src="~/Scripts/app/Salida.js"></script>
 <script src="~/Scripts/app/DataTable.js"></script>
-<script src="~/Scripts/app/SalidaDetalle.js"></script>
+<script src="~/Scripts/app/DetalleBox.js"></script>
 
+<script>
+    //$(":input").inputmask();
 
+    //$("#sald_Cantidad").inputmask({ "mask": "999.99" });
+
+    var selector = "#fact_Codigo";
+    $(selector).val('');
+    $(selector).mask("999-999-99-99999999", { reverse: true });
+    //Output is shown as: 1,000,000
+
+    var value = $(selector).cleanVal();
+    //Mask will be removed on next line
+    $(selector).val('');
+
+    $(function () {
+        $("#sal_FechaElaboracion").datepicker({
+            dateFormat: 'yy-mm-dd',
+            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá']
+        }).datepicker("setDate", new Date());
+    });
+
+    function filterFloat(evt, input) {
+        // Backspace = 8, Enter = 13, ‘0′ = 48, ‘9′ = 57, ‘.’ = 46, ‘-’ = 43
+        var key = window.Event ? evt.which : evt.keyCode;
+        var chark = String.fromCharCode(key);
+        var tempValue = input.value + chark;
+        if (key >= 48 && key <= 57) {
+            if (filter(tempValue) === false) {
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            if (key == 8 || key == 13 || key == 0) {
+                return true;
+            } else if (key == 46) {
+                if (filter(tempValue) === false) {
+                    return false;
+                } else {
+                    return true;
+                }
+            } else {
+                return false;
+            }
+        }
+    }
+    function filter(__val__) {
+        var preg = /^([0-9]+\.?[0-9]{0,2})$/;
+        if (preg.test(__val__) === true) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+</script>
 @section Scripts {
-                                    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryval")
     <script src="~/Scripts/app/DataTable.js"></script>
 }
