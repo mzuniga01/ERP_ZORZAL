@@ -185,50 +185,6 @@ namespace ERP_GMEDINA.Controllers
                 return RedirectToAction("Index", "Login");
         }
 
-        //    if (Function.GetUserLogin())
-        //    {
-        //        if (Function.GetRol())
-        //        {
-        //            if (Function.GetUserRols("CuponDescuento/Edit"))
-        //            {
-        //                int idUser = 0;
-        //                GeneralFunctions Login = new GeneralFunctions();
-        //                List<tbUsuario> User = Login.getUserInformation();
-        //                foreach (tbUsuario Usuario in User)
-        //                {
-        //                    idUser = Convert.ToInt32(Usuario.emp_Id);
-        //                }
-        //                ViewBag.suc_Descripcion = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Descripcion).SingleOrDefault();
-        //                ViewBag.suc_Id = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Id).SingleOrDefault();
-
-        //                if (id == null)
-        //                {
-        //                    return RedirectToAction("Index");
-        //                }
-        //                tbNotaCredito tbNotaCredito = db.tbNotaCredito.Find(id);
-        //                if (tbNotaCredito == null)
-        //                {
-        //                    return RedirectToAction("NotFound", "Login");
-        //                }
-        //                ViewBag.clte_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion", tbNotaCredito.cja_Id);
-        //                ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_Identificacion", tbNotaCredito.clte_Id);
-        //                ViewBag.dev_Id = new SelectList(db.tbDevolucion, "dev_Id", "dev_Id", tbNotaCredito.dev_Id);
-        //                ViewBag.Cliente = db.tbCliente.ToList();
-        //                ViewBag.Devolucion = db.tbDevolucionDetalle.ToList();
-        //                return View(tbNotaCredito);
-        //            }
-        //            else
-        //            {
-        //                return RedirectToAction("SinAcceso", "Login");
-        //            }
-        //        }
-        //        else
-        //            return RedirectToAction("SinRol", "Login");
-        //    }
-        //    else
-        //        return RedirectToAction("Index", "Login");
-
-
         // POST: /NotaCredito/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -491,50 +447,12 @@ namespace ERP_GMEDINA.Controllers
                 throw;
             }
         }
-        //public ActionResult AutorizarNotaCredito(tbUsuario Login, string txtPassword)
-        //{
-        //    try
-        //    {
-        //        var Usuario = db.UDP_Acce_Login(Login.usu_NombreUsuario, txtPassword).ToList();
-        //        if (Usuario.Count > 0)
-        //        {
-        //            foreach (UDP_Acce_Login_Result UserLogin in Usuario)
-        //            {
-        //                var Listado = db.SDP_Acce_GetUserRols(UserLogin.usu_Id, "").ToList();
-        //                var ListadoRol = db.SDP_Acce_GetRolesAsignados(UserLogin.usu_Id).ToList();
-        //                Session["UserRol"] = ListadoRol.Count();
-        //                Session["UserLogin"] = UserLogin.usu_Id;
-        //                Session["UserLoginRols"] = Listado;
-        //                Session["UserLoginEsAdmin"] = UserLogin.usu_EsAdministrador;
-        //                Session["UserLoginSesion"] = UserLogin.usu_SesionesValidas;
-        //                if (!UserLogin.usu_EsActivo)
-        //                {
-        //                    ModelState.AddModelError("usu_NombreUsuario", "Usuario inactivo, contacte al Administrador");
-        //                    return View(Login);
-        //                }
-        //                if (UserLogin.usu_SesionesValidas == 0)
-        //                {
-        //                    ModelState.AddModelError("usu_NombreUsuario", "Su contraseña expiró, contacte al Administrador");
-        //                    return View(Login);
-        //                }
-        //                if (UserLogin.usu_SesionesValidas == 1)
-        //                {
-        //                    return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
-        //                }
-        //            }
-        //            return RedirectToAction("Index", "Home");
-        //        }
-        //        else
-        //        {
-        //            ModelState.AddModelError("usu_NombreUsuario", "Usuario o Password incorrecto");
-        //            return View(Login);
-        //        }
-        //    }
-        //    catch (Exception Ex)
-        //    {
-        //        Ex.Message.ToString();
-        //        return View(Login);
-        //    }
-        //}
+
+        //Autorizar Nota Credito por Otros
+        public JsonResult AprobarDescuento(string User, string Password)
+        {
+            var list = db.UDP_Vent_tbSolicitudCredito_RolGerenteCreditosCobranza(User, Password).SingleOrDefault();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
     }
 }

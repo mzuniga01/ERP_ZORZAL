@@ -6300,15 +6300,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbMovimientoCaja_Insert_Result>("UDP_Vent_tbMovimientoCaja_Insert", cja_IdParameter, usu_IdParameter, mocja_UsuarioAperturaParameter, mocja_FechaArqueoParameter, mocja_UsuarioArqueaParameter, mocja_FechaAceptacionParameter, mocja_UsuarioAceptacionParameter, mocja_UsuarioCreaParameter, mocja_FechaCreaParameter);
         }
     
-        public virtual ObjectResult<UDP_Vent_tbNotaCredito_Imprimir_Result> UDP_Vent_tbNotaCredito_Imprimir(Nullable<int> nocre_Id)
-        {
-            var nocre_IdParameter = nocre_Id.HasValue ?
-                new ObjectParameter("nocre_Id", nocre_Id) :
-                new ObjectParameter("nocre_Id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbNotaCredito_Imprimir_Result>("UDP_Vent_tbNotaCredito_Imprimir", nocre_IdParameter);
-        }
-    
         public virtual ObjectResult<UPD_Vent_tbUsuario_Rol_Result> UPD_Vent_tbUsuario_Rol(Nullable<int> suc_Id)
         {
             var suc_IdParameter = suc_Id.HasValue ?
@@ -6791,19 +6782,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Vent_tbPago_ImprimirEstaImpreso", pago_IdParameter, pago_EstaImpresoParameter);
         }
     
-        public virtual ObjectResult<UDP_Vent_tbSolicitudCredito_RolGerenteCreditosCobranza_Result> UDP_Vent_tbSolicitudCredito_RolGerenteCreditosCobranza(string usuarioId, string password)
-        {
-            var usuarioIdParameter = usuarioId != null ?
-                new ObjectParameter("UsuarioId", usuarioId) :
-                new ObjectParameter("UsuarioId", typeof(string));
-    
-            var passwordParameter = password != null ?
-                new ObjectParameter("password", password) :
-                new ObjectParameter("password", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbSolicitudCredito_RolGerenteCreditosCobranza_Result>("UDP_Vent_tbSolicitudCredito_RolGerenteCreditosCobranza", usuarioIdParameter, passwordParameter);
-        }
-    
         public virtual ObjectResult<UDP_Vent_tbSolicitudEfectivoDetalle_Update_Insert_Result> UDP_Vent_tbSolicitudEfectivoDetalle_Update_Insert(Nullable<int> iDSOLICITUD)
         {
             var iDSOLICITUDParameter = iDSOLICITUD.HasValue ?
@@ -6920,7 +6898,16 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_Vent_tbTipoTaller_Estado", tptal_IdParameter, tptal_Es_ActivoParameter);
         }
     
-        public virtual ObjectResult<UDP_Vent_tbFactura_RolSupervisorCaja_Result> UDP_Vent_tbFactura_RolSupervisorCaja(string usuarioId, string password)
+        public virtual ObjectResult<UDP_Vent_tbMovimientoCaja_Imprimir_Result1> UDP_Vent_tbMovimientoCaja_Imprimir(Nullable<int> mocja_Id)
+        {
+            var mocja_IdParameter = mocja_Id.HasValue ?
+                new ObjectParameter("mocja_Id", mocja_Id) :
+                new ObjectParameter("mocja_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbMovimientoCaja_Imprimir_Result1>("UDP_Vent_tbMovimientoCaja_Imprimir", mocja_IdParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<bool>> UDP_Vent_tbSolicitudCredito_RolGerenteCreditosCobranza(string usuarioId, string password)
         {
             var usuarioIdParameter = usuarioId != null ?
                 new ObjectParameter("UsuarioId", usuarioId) :
@@ -6930,16 +6917,29 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("password", password) :
                 new ObjectParameter("password", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbFactura_RolSupervisorCaja_Result>("UDP_Vent_tbFactura_RolSupervisorCaja", usuarioIdParameter, passwordParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<bool>>("UDP_Vent_tbSolicitudCredito_RolGerenteCreditosCobranza", usuarioIdParameter, passwordParameter);
         }
     
-        public virtual ObjectResult<UDP_Vent_tbMovimientoCaja_Imprimir_Result1> UDP_Vent_tbMovimientoCaja_Imprimir(Nullable<int> mocja_Id)
+        public virtual ObjectResult<Nullable<bool>> UDP_Vent_tbFactura_RolSupervisorCaja(string usuarioId, string password)
         {
-            var mocja_IdParameter = mocja_Id.HasValue ?
-                new ObjectParameter("mocja_Id", mocja_Id) :
-                new ObjectParameter("mocja_Id", typeof(int));
+            var usuarioIdParameter = usuarioId != null ?
+                new ObjectParameter("UsuarioId", usuarioId) :
+                new ObjectParameter("UsuarioId", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbMovimientoCaja_Imprimir_Result1>("UDP_Vent_tbMovimientoCaja_Imprimir", mocja_IdParameter);
+            var passwordParameter = password != null ?
+                new ObjectParameter("password", password) :
+                new ObjectParameter("password", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<bool>>("UDP_Vent_tbFactura_RolSupervisorCaja", usuarioIdParameter, passwordParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbNotaCredito_Imprimir_Result1> UDP_Vent_tbNotaCredito_Imprimir(Nullable<int> nocre_Id)
+        {
+            var nocre_IdParameter = nocre_Id.HasValue ?
+                new ObjectParameter("nocre_Id", nocre_Id) :
+                new ObjectParameter("nocre_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbNotaCredito_Imprimir_Result1>("UDP_Vent_tbNotaCredito_Imprimir", nocre_IdParameter);
         }
     }
 }

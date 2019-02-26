@@ -222,3 +222,54 @@ $(document).ready(function () {
 
     });
 });
+
+function AprobarCredito() {
+    var User = $("#Username1").val();
+    var Password = $("#txtPassword1").val();
+    console.log(User)
+    console.log(Password)
+    $.ajax({
+        url: "/SolicitudCredito/AprobarDescuento",
+        method: "POST",
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({ User: User, Password: Password }),
+    })
+    .done(function (data) {
+        console.log(data)
+        if (data == true) {
+            $('#AprobarSolicitud').modal('show');
+            $('#AutorizarDescuento').modal('hide');
+        }
+        else {
+            valido = document.getElementById('mensajerror');
+            valido.innerText = "Usuario o contraseña incorrectos";
+        }
+    });
+}
+
+
+function DenegarCredito() {
+    var User = $("#Username").val();
+    var Password = $("#txtPassword").val();
+    console.log(User)
+    console.log(Password)
+    $.ajax({
+        url: "/SolicitudCredito/DenegarCredito",
+        method: "POST",
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({ User: User, Password: Password }),
+    })
+    .done(function (data) {
+        console.log(data)
+        if (data == true) {
+            AnularSolictud()
+        }
+        else {
+            valido = document.getElementById('mensajerror1');
+            valido.innerText = "Usuario o contraseña incorrectos";
+        }
+    });
+}
+

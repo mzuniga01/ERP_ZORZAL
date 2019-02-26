@@ -978,6 +978,8 @@ namespace ERP_GMEDINA.Controllers
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
+       
+
         [HttpPost]
         public JsonResult GetDetallePedido(int CodPedido)
         {

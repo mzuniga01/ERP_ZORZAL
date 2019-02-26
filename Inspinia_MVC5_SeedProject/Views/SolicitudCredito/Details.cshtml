@@ -151,18 +151,18 @@
                         </dd>
                     </dl>
 
-@if (Model.escre_Id == 1)
-{
-                    @Html.ActionLink("Editar", "Edit", new { id = Model.cred_Id }, new { @class = "btn btn-primary" })
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AprobarSolicitud">Aprobar</button>
-                    <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-primary" data-toggle="modal" data-target="#Anular">Denegar</button>
-                    @*@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white"})*@
-}
-else
-{
-    @*@Html.ActionLink("Editar", "Edit", new { id = Model.cred_Id }, new { @class = "btn btn-primary" })*@
+                    @if (Model.escre_Id == 1)
+                    {
+                        @Html.ActionLink("Editar", "Edit", new { id = Model.cred_Id }, new { @class = "btn btn-primary" })
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AutorizarDescuento">Aprobar</button>
+                        <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-primary" data-toggle="modal" data-target="#AutorizarDescuentoModal">Denegar</button>
+                        @*@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white"})*@
+                    }
+                    else
+                    {
+                        @*@Html.ActionLink("Editar", "Edit", new { id = Model.cred_Id }, new { @class = "btn btn-primary" })*@
 
-}
+                    }
                 </div>
             </div>
 
@@ -227,40 +227,83 @@ else
         </div>
     </div>
 </div>
-@*//---------------------------modal DENEGAR*@
-<div class="modal fade" id="Anular" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Denegar Solicitud Crédito</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                @*  *@
-                <div class="form-group">
-                    <label class="control-label col-md-2">Usuario</label>
-                    <div class="col-md-10">
-                        <input class="col-md-5 form-control" id="" type="text" />
+
+<div>
+    <div class="modal fade" id="AutorizarDescuentoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="CloseAutorizar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Denegar Solicitud Crédito</h4>
+                </div>
+                <div class="modal-body" id="frmAutorizarDescuento">
+                    <div class="ibox-content">
+                        <div class="form-horizontal">
+                            <form>
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">Usuario</label>
+                                    <div class="col-md-6">
+                                        <input id="Username" type="text" name="Username" class="form-control" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">Contraseña</label>
+                                    <div class="col-md-6">
+                                        <input id="txtPassword" name="txtPassword" class="form-control" type="password" placeholder="Password" />
+                                    </div>
+                                </div>
+                                <div><p id="mensajerror1" style="color:red"></p></div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-primary btn-sm" type="button" id="Autorizar" onclick="DenegarCredito()">Aceptar</button>
+                                    <button type="button" class="btn btn-white btn-sm" data-dismiss="modal">Cancelar</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="control-label col-md-2">Contraseña</label>
-                    <div class="col-md-10">
-                        <input class="col-md-5 form-control" id="" type="password" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div>
+    <div class="modal fade" id="AutorizarDescuento" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="CloseAutorizar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Aprobar Solicitud Crédito<</h4>
+                </div>
+                <div class="modal-body" id="frmAutorizarDescuento">
+                    <div class="ibox-content">
+                        <div class="form-horizontal">
+                            <form>
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">Usuario</label>
+                                    <div class="col-md-6">
+                                        <input id="Username1" type="text" name="Username" class="form-control" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">Contraseña</label>
+                                    <div class="col-md-6">
+                                        <input id="txtPassword1" name="txtPassword" class="form-control" type="password" placeholder="Password" />
+                                    </div>
+                                </div>
+                                <div ><p id="mensajerror" style="color:red"></p></div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-primary btn-sm" type="button" id="Autorizar1" onclick="AprobarCredito()">Guardar</button>
+                                    <button type="button" class="btn btn-white btn-sm" data-dismiss="modal">Cancelar</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
-
-
-
-                @*  *@
-
-                ¿Está seguro de Denegar esta Solicitud De Crédito?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="AnularSolictud();" data-dismiss="modal">Si</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
             </div>
         </div>
     </div>

@@ -616,6 +616,18 @@ namespace ERP_GMEDINA.Controllers
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult AprobarDescuento(string User, string Password)
+        {
+            var list = db.UDP_Vent_tbSolicitudCredito_RolGerenteCreditosCobranza(User, Password).SingleOrDefault();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult DenegarCredito(string User, string Password)
+        {
+            var list = db.UDP_Vent_tbSolicitudCredito_RolGerenteCreditosCobranza(User, Password).SingleOrDefault();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }
 

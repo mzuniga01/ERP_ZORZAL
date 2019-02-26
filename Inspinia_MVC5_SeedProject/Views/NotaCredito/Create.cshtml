@@ -226,33 +226,30 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="CloseAutorizar">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="modal-title" id="myModalLabel">Autorizar Nota de Crédito</h4>
+                    <h4 class="modal-title" id="myModalLabel">Autoriza Nota de Crédito</h4>
                 </div>
                 <div class="modal-body" id="frmAutorizarDescuento">
                     <div class="ibox-content">
                         <div class="form-horizontal">
-                            @using (Html.BeginForm())
-                            {
+                            <form>
                                 <div class="form-group">
-                                   
-                                        <label class="control-label col-md-4">Usuario</label>
-                                        <div class="col-md-6">
-                                            @Html.EditorFor(model => model.tbUsuario.usu_NombreUsuario)
-                                        </div>
+                                    <label class="control-label col-md-4">Usuario</label>
+                                    <div class="col-md-6">
+                                        <input id="Username" type="text" placeholder="Usuario" name="Username" class="form-control" autocomplete="off" value="" defautlvalue="false"/>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-4">Contraseña</label>
                                     <div class="col-md-6">
-                                        <input type="password" name="txtPassword" class="form-control" placeholder="Password" />
-                                        <p style="color:red;">@Html.ValidationMessageFor(model => model.tbUsuario.usu_NombreUsuario)</p>
+                                        <input id="txtPassword" name="txtPassword" class="form-control" type="password" placeholder="Contraseña" value="" defautlvalue="false"/>
                                     </div>
                                 </div>
+                                <div><p id="mensajerror" style="color:red"></p></div>
                                 <div class="modal-footer">
-                                    @*@Html.ActionLink("Autorizar", "AutorizarNotaCredito", new { @class = "btn btn-primary btn-sm", @onclick = "otros();", @id = "Autorizar" })*@
-                                    <button class="btn btn-primary btn-sm" type="button" data-dismiss="modal" onclick="otros();" id="Autorizar">Autorizar</button>
-                                    <button type="button" class="btn btn-white btn-sm" data-dismiss="modal" onclick="devolucionNC();">Cancelar</button>
-                                 </div>
-                            }
+                                    <button class="btn btn-primary btn-sm" type="button" id="Autorizar" onclick="AprobarCredito()">Autorizar</button>
+                                    <button type="button" class="btn btn-white btn-sm" data-dismiss="modal" onclick="devolucionNC()">Cancelar</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -316,6 +313,9 @@
 
         function otros() {
             //$('#radioBtn').click(function () {
+            $('#Username').val("");
+            $('#txtPassword').val("");
+            $('#mensajerror').val("");
             $("#radioBtn").prop("checked", true);
             $("#radioBtnDev").prop("checked", false);
             $('#cltesearch').show();
@@ -477,6 +477,35 @@ function filter(__val__) {
         return false;
     }
 
+}
+
+
+    //Autorizar Nota de Credito
+function AprobarCredito() {
+    var User = $("#Username").val();
+    var Password = $("#txtPassword").val();
+    console.log(User)
+    console.log(Password)
+    $.ajax({
+        url: "/NotaCredito/AprobarDescuento",
+        method: "POST",
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({ User: User, Password: Password }),
+    })
+    .done(function (data) {
+        console.log(data)
+        if (data == true) {
+            $('#ModalAutorizarNC').modal('hide');
+            otros();
+            valido.innerText = "";
+            //$('#AutorizarDescuentoModal').modal('hide');
+        }
+        else {
+            valido = document.getElementById('mensajerror');
+            valido.innerText = "Usuario o contraseña incorrectos";
+        }
+    });
 }
 </script>
 }
