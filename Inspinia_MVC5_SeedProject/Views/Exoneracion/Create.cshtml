@@ -68,8 +68,8 @@
             <div class="col-md-4">
                
                 @Html.EditorFor(model => model.exo_Documento)
-                @Html.ValidationMessageFor(model => model.exo_Documento)
-            </div>
+                <p id="doc" style="color:red">@Html.ValidationMessageFor(model => model.exo_Documento)
+</div>
         </div>
 
         <div class="form-group" >
@@ -181,6 +181,19 @@
         });
 
         $('#exo_ExoneracionActiva').attr('checked', true);
+    </script>
+
+
+
+<script type="text/javascript">
+jQuery('input,select').each(function() {
+    var req = jQuery(this).attr('data-val-required');
+     var label = jQuery('label[for="' + jQuery(this).attr('id') + '"]');
+     var text = label.text();
+     if (text.length > 0) {
+      label.append('<span style="color:red"> *</span>');
+    }
+});
     </script>
 
 }

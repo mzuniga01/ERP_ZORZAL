@@ -323,6 +323,19 @@ $(function () {
     });
 
 </script>
+
+
+
+<script type="text/javascript">
+jQuery('input,select').each(function() {
+    var req = jQuery(this).attr('data-val-required');
+     var label = jQuery('label[for="' + jQuery(this).attr('id') + '"]');
+     var text = label.text();
+     if (text.length > 0) {
+      label.append('<span style="color:red"> *</span>');
+    }
+});
+</script>
 }
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>

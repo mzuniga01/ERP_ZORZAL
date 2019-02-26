@@ -64,10 +64,29 @@ $('#exo_Documento').on('input', function (e) {
 
 
 $('#suc_Direccion').on('input', function (e) {
-    if (!/^[ a-z0-9áéíóúüñ]*$/i.test(this.value)) {
-        this.value = this.value.replace(/[^ a-z0-9áéíóúüñ]+/ig, "");
+    if (!/^[ a-z0-9áéíóúüñ\.#]*$/i.test(this.value)) {
+        this.value = this.value.replace(/[^ a-z0-9áéíóúüñ\.#]+/ig, "");
     }
 });
+
+$(document).ready(function () {
+    $("#btnGuardar").click(function () {
+        var monto = $('#exo_Documento').val();
+        //var montoint = parseInt(monto);
+
+        if (monto == '') {
+            valido = document.getElementById('doc');
+            valido.innerText = "El campo Documento es Requerido";
+            return false;
+        }
+        else {
+            valido = document.getElementById('Departamento');
+            valido.innerText = "";
+        }
+
+    });
+});
+
 
 //Documento fiscal
 
