@@ -588,10 +588,10 @@ namespace ERP_GMEDINA.Controllers
                         {
                             mocja_Id = r.mocja_Id,
                             cja_Descripcion = r.cja_Descripcion,
-                            suc_Descripcion = r.suc_Descripcion,
-                            Usuario_Apertura = r.Usuario_Apertura,
-                            Usuario_Arquea = r.Usuario_Arquea,
-                            Usuario_Aceptacion = r.Usuario_Aceptacion,
+                            //suc_Descripcion = r.suc_Descripcion,
+                            //Usuario_Apertura = r.Usuario_Apertura,
+                            //Usuario_Arquea = r.Usuario_Arquea,
+                            //Usuario_Aceptacion = r.Usuario_Aceptacion,
 
                             solef_FechaEntrega = DateTime.Parse(r.mocja_FechaApertura.ToString()).ToString("dd / MM / yyyy  hh: mm tt"),
                             mocja_FechaArqueo = DateTime.Parse(r.mocja_FechaArqueo.ToString()).ToString("dd / MM / yyyy  hh: mm tt"),

@@ -217,6 +217,11 @@
     <Compile Include="Controllers\SucursalController.cs" />
     <Compile Include="Controllers\TipoIdentificacionController.cs" />
     <Compile Include="Controllers\TipoPagoController.cs" />
+    <Compile Include="Dataset\ArqueoCaja.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ArqueoCaja.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Dataset\DSCuponDescuento.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -875,9 +880,6 @@
     <Compile Include="Models\UDP_Vent_tbMovimientoCaja_Imprimir_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\UDP_Vent_tbMovimientoCaja_Imprimir_Result1.cs">
-      <DependentUpon>ModelERP.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\UDP_Vent_tbMovimientoCaja_Insert_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -1090,6 +1092,12 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\ArqueoCaja.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ArqueoCaja.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\Factura.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1531,6 +1539,17 @@
     <Content Include="Dataset\DSCuponDescuento.xsc">
       <DependentUpon>DSCuponDescuento.xsd</DependentUpon>
     </Content>
+    <Content Include="Dataset\ArqueoCaja.xsc">
+      <DependentUpon>ArqueoCaja.xsd</DependentUpon>
+    </Content>
+    <None Include="Dataset\ArqueoCaja.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ArqueoCaja.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Dataset\ArqueoCaja.xss">
+      <DependentUpon>ArqueoCaja.xsd</DependentUpon>
+    </Content>
     <None Include="Dataset\DSCuponDescuento.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>DSCuponDescuento.Designer.cs</LastGenOutput>
@@ -1927,6 +1946,10 @@
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Reports\ArqueoCaja.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ArqueoCaja.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Factura.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Factura.cs</LastGenOutput>

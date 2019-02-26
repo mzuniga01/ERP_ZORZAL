@@ -4,12 +4,12 @@
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="ERP_GMEDINAConnectionString1" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_GMEDINAConnectionString1 (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.ERP_GMEDINAConnectionString1.ConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="ERP_GMEDINAConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_GMEDINAConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.ERP_GMEDINAConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="UDP_Vent_tbMovimientoCaja_ImprimirTableAdapter" GeneratorDataComponentClassName="UDP_Vent_tbMovimientoCaja_ImprimirTableAdapter" Name="UDP_Vent_tbMovimientoCaja_Imprimir" UserDataComponentName="UDP_Vent_tbMovimientoCaja_ImprimirTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="ERP_GMEDINAConnectionString1 (Web.config)" DbObjectName="ERP_GMEDINA.Vent.UDP_Vent_tbMovimientoCaja_Imprimir" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="ERP_GMEDINAConnectionString (Web.config)" DbObjectName="ERP_GMEDINA.Vent.UDP_Vent_tbMovimientoCaja_Imprimir" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>Vent.UDP_Vent_tbMovimientoCaja_Imprimir</CommandText>
@@ -62,33 +62,33 @@
               <xs:element name="mocja_UsuarioArquea" msprop:Generator_ColumnVarNameInTable="columnmocja_UsuarioArquea" msprop:Generator_ColumnPropNameInRow="mocja_UsuarioArquea" msprop:Generator_ColumnPropNameInTable="mocja_UsuarioArqueaColumn" msprop:Generator_UserColumnName="mocja_UsuarioArquea" type="xs:int" />
               <xs:element name="mocja_FechaAceptacion" msprop:Generator_ColumnVarNameInTable="columnmocja_FechaAceptacion" msprop:Generator_ColumnPropNameInRow="mocja_FechaAceptacion" msprop:Generator_ColumnPropNameInTable="mocja_FechaAceptacionColumn" msprop:Generator_UserColumnName="mocja_FechaAceptacion" type="xs:dateTime" minOccurs="0" />
               <xs:element name="mocja_UsuarioAceptacion" msprop:Generator_ColumnVarNameInTable="columnmocja_UsuarioAceptacion" msprop:Generator_ColumnPropNameInRow="mocja_UsuarioAceptacion" msprop:Generator_ColumnPropNameInTable="mocja_UsuarioAceptacionColumn" msprop:Generator_UserColumnName="mocja_UsuarioAceptacion" type="xs:int" />
-              <xs:element name="cja_Descripcion" msprop:Generator_ColumnVarNameInTable="columncja_Descripcion" msprop:Generator_ColumnPropNameInRow="cja_Descripcion" msprop:Generator_ColumnPropNameInTable="cja_DescripcionColumn" msprop:Generator_UserColumnName="cja_Descripcion">
+              <xs:element name="cja_Descripcion" msprop:Generator_ColumnVarNameInTable="columncja_Descripcion" msprop:Generator_ColumnPropNameInRow="cja_Descripcion" msprop:Generator_ColumnPropNameInTable="cja_DescripcionColumn" msprop:Generator_UserColumnName="cja_Descripcion" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="10" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="suc_Descripcion" msprop:Generator_ColumnVarNameInTable="columnsuc_Descripcion" msprop:Generator_ColumnPropNameInRow="suc_Descripcion" msprop:Generator_ColumnPropNameInTable="suc_DescripcionColumn" msprop:Generator_UserColumnName="suc_Descripcion">
+              <xs:element name="suc_Descripcion" msprop:Generator_ColumnVarNameInTable="columnsuc_Descripcion" msprop:Generator_ColumnPropNameInRow="suc_Descripcion" msprop:Generator_ColumnPropNameInTable="suc_DescripcionColumn" msprop:Generator_UserColumnName="suc_Descripcion" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="40" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="arqde_CantidadDenominacion" msprop:Generator_ColumnVarNameInTable="columnarqde_CantidadDenominacion" msprop:Generator_ColumnPropNameInRow="arqde_CantidadDenominacion" msprop:Generator_ColumnPropNameInTable="arqde_CantidadDenominacionColumn" msprop:Generator_UserColumnName="arqde_CantidadDenominacion" type="xs:short" />
-              <xs:element name="arqde_MontoDenominacion" msprop:Generator_ColumnVarNameInTable="columnarqde_MontoDenominacion" msprop:Generator_ColumnPropNameInRow="arqde_MontoDenominacion" msprop:Generator_ColumnPropNameInTable="arqde_MontoDenominacionColumn" msprop:Generator_UserColumnName="arqde_MontoDenominacion" type="xs:decimal" />
-              <xs:element name="deno_Descripcion" msprop:Generator_ColumnVarNameInTable="columndeno_Descripcion" msprop:Generator_ColumnPropNameInRow="deno_Descripcion" msprop:Generator_ColumnPropNameInTable="deno_DescripcionColumn" msprop:Generator_UserColumnName="deno_Descripcion">
+              <xs:element name="arqde_CantidadDenominacion" msprop:Generator_ColumnVarNameInTable="columnarqde_CantidadDenominacion" msprop:Generator_ColumnPropNameInRow="arqde_CantidadDenominacion" msprop:Generator_ColumnPropNameInTable="arqde_CantidadDenominacionColumn" msprop:Generator_UserColumnName="arqde_CantidadDenominacion" type="xs:short" minOccurs="0" />
+              <xs:element name="arqde_MontoDenominacion" msprop:Generator_ColumnVarNameInTable="columnarqde_MontoDenominacion" msprop:Generator_ColumnPropNameInRow="arqde_MontoDenominacion" msprop:Generator_ColumnPropNameInTable="arqde_MontoDenominacionColumn" msprop:Generator_UserColumnName="arqde_MontoDenominacion" type="xs:decimal" minOccurs="0" />
+              <xs:element name="deno_Descripcion" msprop:Generator_ColumnVarNameInTable="columndeno_Descripcion" msprop:Generator_ColumnPropNameInRow="deno_Descripcion" msprop:Generator_ColumnPropNameInTable="deno_DescripcionColumn" msprop:Generator_UserColumnName="deno_Descripcion" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="deno_valor" msprop:Generator_ColumnVarNameInTable="columndeno_valor" msprop:Generator_ColumnPropNameInRow="deno_valor" msprop:Generator_ColumnPropNameInTable="deno_valorColumn" msprop:Generator_UserColumnName="deno_valor" type="xs:decimal" />
-              <xs:element name="arqpg_PagosSistema" msprop:Generator_ColumnVarNameInTable="columnarqpg_PagosSistema" msprop:Generator_ColumnPropNameInRow="arqpg_PagosSistema" msprop:Generator_ColumnPropNameInTable="arqpg_PagosSistemaColumn" msprop:Generator_UserColumnName="arqpg_PagosSistema" type="xs:decimal" />
-              <xs:element name="arqpg_PagosConteo" msprop:Generator_ColumnVarNameInTable="columnarqpg_PagosConteo" msprop:Generator_ColumnPropNameInRow="arqpg_PagosConteo" msprop:Generator_ColumnPropNameInTable="arqpg_PagosConteoColumn" msprop:Generator_UserColumnName="arqpg_PagosConteo" type="xs:decimal" />
-              <xs:element name="tpa_Descripcion" msprop:Generator_ColumnVarNameInTable="columntpa_Descripcion" msprop:Generator_ColumnPropNameInRow="tpa_Descripcion" msprop:Generator_ColumnPropNameInTable="tpa_DescripcionColumn" msprop:Generator_UserColumnName="tpa_Descripcion">
+              <xs:element name="deno_valor" msprop:Generator_ColumnVarNameInTable="columndeno_valor" msprop:Generator_ColumnPropNameInRow="deno_valor" msprop:Generator_ColumnPropNameInTable="deno_valorColumn" msprop:Generator_UserColumnName="deno_valor" type="xs:decimal" minOccurs="0" />
+              <xs:element name="arqpg_PagosSistema" msprop:Generator_ColumnVarNameInTable="columnarqpg_PagosSistema" msprop:Generator_ColumnPropNameInRow="arqpg_PagosSistema" msprop:Generator_ColumnPropNameInTable="arqpg_PagosSistemaColumn" msprop:Generator_UserColumnName="arqpg_PagosSistema" type="xs:decimal" minOccurs="0" />
+              <xs:element name="arqpg_PagosConteo" msprop:Generator_ColumnVarNameInTable="columnarqpg_PagosConteo" msprop:Generator_ColumnPropNameInRow="arqpg_PagosConteo" msprop:Generator_ColumnPropNameInTable="arqpg_PagosConteoColumn" msprop:Generator_UserColumnName="arqpg_PagosConteo" type="xs:decimal" minOccurs="0" />
+              <xs:element name="tpa_Descripcion" msprop:Generator_ColumnVarNameInTable="columntpa_Descripcion" msprop:Generator_ColumnPropNameInRow="tpa_Descripcion" msprop:Generator_ColumnPropNameInTable="tpa_DescripcionColumn" msprop:Generator_UserColumnName="tpa_Descripcion" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />

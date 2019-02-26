@@ -6898,15 +6898,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UDP_Vent_tbTipoTaller_Estado", tptal_IdParameter, tptal_Es_ActivoParameter);
         }
     
-        public virtual ObjectResult<UDP_Vent_tbMovimientoCaja_Imprimir_Result1> UDP_Vent_tbMovimientoCaja_Imprimir(Nullable<int> mocja_Id)
-        {
-            var mocja_IdParameter = mocja_Id.HasValue ?
-                new ObjectParameter("mocja_Id", mocja_Id) :
-                new ObjectParameter("mocja_Id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbMovimientoCaja_Imprimir_Result1>("UDP_Vent_tbMovimientoCaja_Imprimir", mocja_IdParameter);
-        }
-    
         public virtual ObjectResult<Nullable<bool>> UDP_Vent_tbSolicitudCredito_RolGerenteCreditosCobranza(string usuarioId, string password)
         {
             var usuarioIdParameter = usuarioId != null ?
@@ -6940,6 +6931,15 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("nocre_Id", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbNotaCredito_Imprimir_Result1>("UDP_Vent_tbNotaCredito_Imprimir", nocre_IdParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbMovimientoCaja_Imprimir_Result> UDP_Vent_tbMovimientoCaja_Imprimir(Nullable<int> mocja_Id)
+        {
+            var mocja_IdParameter = mocja_Id.HasValue ?
+                new ObjectParameter("mocja_Id", mocja_Id) :
+                new ObjectParameter("mocja_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbMovimientoCaja_Imprimir_Result>("UDP_Vent_tbMovimientoCaja_Imprimir", mocja_IdParameter);
         }
     }
 }

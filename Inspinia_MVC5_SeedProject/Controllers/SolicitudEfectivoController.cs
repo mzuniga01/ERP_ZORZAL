@@ -90,7 +90,7 @@ namespace ERP_GMEDINA.Controllers
                     List<tbUsuario> User = Login.getUserInformation();
                     foreach (tbUsuario Usuario in User)
                     {
-                        idUser = Convert.ToInt32(Usuario.emp_Id);
+                        idUser = Convert.ToInt32(Usuario.usu_Id);
                     }
                     var list = db.UDP_Vent_tbSolicitudEfectivo_Recargo(idUser).ToList();
                     return Json(list, JsonRequestBehavior.AllowGet);
@@ -116,7 +116,7 @@ namespace ERP_GMEDINA.Controllers
                     List<tbUsuario> User = Login.getUserInformation();
                     foreach (tbUsuario Usuario in User)
                     {
-                        idUser = Convert.ToInt32(Usuario.emp_Id);
+                        idUser = Convert.ToInt32(Usuario.usu_Id);
                     }
                     var list = db.UDP_Vent_tbSolicitudEfectivo_DatosEncabezado(idUser).ToList();
                     return Json(list, JsonRequestBehavior.AllowGet);

@@ -2900,31 +2900,6 @@
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbSucursal_Insert1" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSucursal_Insert" />
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbSucursal_Update1" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSucursal_Update" />
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbTipoTaller_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbTipoTaller_Estado" />
-    <FunctionImportMapping FunctionImportName="UDP_Vent_tbMovimientoCaja_Imprimir" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbMovimientoCaja_Imprimir">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_Imprimir_Result1">
-          <ScalarProperty Name="mocja_Id" ColumnName="mocja_Id" />
-          <ScalarProperty Name="mocja_FechaApertura" ColumnName="mocja_FechaApertura" />
-          <ScalarProperty Name="mocja_UsuarioApertura" ColumnName="mocja_UsuarioApertura" />
-          <ScalarProperty Name="mocja_FechaArqueo" ColumnName="mocja_FechaArqueo" />
-          <ScalarProperty Name="mocja_UsuarioArquea" ColumnName="mocja_UsuarioArquea" />
-          <ScalarProperty Name="mocja_FechaAceptacion" ColumnName="mocja_FechaAceptacion" />
-          <ScalarProperty Name="mocja_UsuarioAceptacion" ColumnName="mocja_UsuarioAceptacion" />
-          <ScalarProperty Name="cja_Descripcion" ColumnName="cja_Descripcion" />
-          <ScalarProperty Name="suc_Descripcion" ColumnName="suc_Descripcion" />
-          <ScalarProperty Name="arqde_CantidadDenominacion" ColumnName="arqde_CantidadDenominacion" />
-          <ScalarProperty Name="arqde_MontoDenominacion" ColumnName="arqde_MontoDenominacion" />
-          <ScalarProperty Name="deno_Descripcion" ColumnName="deno_Descripcion" />
-          <ScalarProperty Name="deno_valor" ColumnName="deno_valor" />
-          <ScalarProperty Name="arqpg_PagosSistema" ColumnName="arqpg_PagosSistema" />
-          <ScalarProperty Name="arqpg_PagosConteo" ColumnName="arqpg_PagosConteo" />
-          <ScalarProperty Name="tpa_Descripcion" ColumnName="tpa_Descripcion" />
-          <ScalarProperty Name="Usuario_Apertura" ColumnName="Usuario Apertura" />
-          <ScalarProperty Name="Usuario_Arquea" ColumnName="Usuario Arquea" />
-          <ScalarProperty Name="Usuario_Aceptacion" ColumnName="Usuario Aceptacion" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudCredito_RolGerenteCreditosCobranza" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudCredito_RolGerenteCreditosCobranza" />
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_RolSupervisorCaja" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_RolSupervisorCaja" />
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbNotaCredito_Imprimir" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbNotaCredito_Imprimir">
@@ -2945,6 +2920,31 @@
           <ScalarProperty Name="suc_Correo" ColumnName="suc_Correo" />
           <ScalarProperty Name="suc_Direccion" ColumnName="suc_Direccion" />
           <ScalarProperty Name="suc_Telefono" ColumnName="suc_Telefono" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbMovimientoCaja_Imprimir" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbMovimientoCaja_Imprimir">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_Imprimir_Result">
+          <ScalarProperty Name="mocja_Id" ColumnName="mocja_Id" />
+          <ScalarProperty Name="mocja_FechaApertura" ColumnName="mocja_FechaApertura" />
+          <ScalarProperty Name="mocja_UsuarioApertura" ColumnName="mocja_UsuarioApertura" />
+          <ScalarProperty Name="mocja_FechaArqueo" ColumnName="mocja_FechaArqueo" />
+          <ScalarProperty Name="mocja_UsuarioArquea" ColumnName="mocja_UsuarioArquea" />
+          <ScalarProperty Name="mocja_FechaAceptacion" ColumnName="mocja_FechaAceptacion" />
+          <ScalarProperty Name="mocja_UsuarioAceptacion" ColumnName="mocja_UsuarioAceptacion" />
+          <ScalarProperty Name="cja_Descripcion" ColumnName="cja_Descripcion" />
+          <ScalarProperty Name="suc_Descripcion" ColumnName="suc_Descripcion" />
+          <ScalarProperty Name="arqde_CantidadDenominacion" ColumnName="arqde_CantidadDenominacion" />
+          <ScalarProperty Name="arqde_MontoDenominacion" ColumnName="arqde_MontoDenominacion" />
+          <ScalarProperty Name="deno_Descripcion" ColumnName="deno_Descripcion" />
+          <ScalarProperty Name="deno_valor" ColumnName="deno_valor" />
+          <ScalarProperty Name="arqpg_PagosSistema" ColumnName="arqpg_PagosSistema" />
+          <ScalarProperty Name="arqpg_PagosConteo" ColumnName="arqpg_PagosConteo" />
+          <ScalarProperty Name="tpa_Descripcion" ColumnName="tpa_Descripcion" />
+          <ScalarProperty Name="Usuario_Apertura" ColumnName="Usuario Apertura" />
+          <ScalarProperty Name="Usuario_Arquea" ColumnName="Usuario Arquea" />
+          <ScalarProperty Name="Usuario_Aceptacion" ColumnName="Usuario Aceptacion" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
