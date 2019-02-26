@@ -79,6 +79,7 @@ namespace ERP_GMEDINA.Controllers
             Session["UserLogin"] = null;
             Session["UserLoginRols"] = null;
             Session["UserLoginEsAdmin"] = null;
+            Session["UserLoginSesion"] = null;
             return RedirectToAction("Index", "Login");
         }
 

@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using ERP_GMEDINA.Models;
 using Newtonsoft.Json;
+using ERP_GMEDINA.Attribute;
 
 namespace ERP_GMEDINA.Controllers
 {
@@ -17,10 +18,11 @@ namespace ERP_GMEDINA.Controllers
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
         GeneralFunctions Function = new GeneralFunctions();
         // GET: /ProductoCategoria/
+        [SessionManager("ProductoCategoria/Index")]
         public ActionResult Index()
         {
             try { ViewBag.smserror = TempData["smserror"].ToString(); } catch { }
-           
+
 
             var tbproductocategoria = db.tbProductoCategoria.Include(t => t.tbProductoSubcategoria);
             //ViewBag.smserror = "";
@@ -28,6 +30,7 @@ namespace ERP_GMEDINA.Controllers
         }
 
         // GET: /ProductoCategoria/Details/5
+        [SessionManager("ProductoCategoria/Details")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -57,167 +60,106 @@ namespace ERP_GMEDINA.Controllers
             return Json(list, JsonRequestBehavior.AllowGet);
 
         }
-       
+
         // GET: /ProductoCategoria/Create
+        [SessionManager("ProductoCategoria/Create")]
         public ActionResult Create()
         {
-            if (Function.GetUserLogin())
-            {
-                if (Function.Sesiones("ProductoCategoria/Create"))
-                {
-
-                }
-                else
-                {
-                    return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
-                }
-                if (Function.GetUserRols("ProductoCategoria/Create"))
-                {
-                    Session["tbProductoSubcategoria"] = null;
-                    return View();
-                }
-                else
-                {
-                    return RedirectToAction("SinAcceso", "Login");
-                }
-            }
-            else
-                return RedirectToAction("Index", "Login");
-            ////
-           
+            Session["tbProductoSubcategoria"] = null;
+            return View();
         }
 
-
-        // POST: /ProductoCategoria/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [SessionManager("ProductoCategoria/Create")]
         public ActionResult Create([Bind(Include = "pcat_Id,pcat_Nombre,pcat_UsuarioCrea,pcat_FechaCrea,pcat_UsuarioModifica,pcat_FechaModifica, pcat_EsActivo")] tbProductoCategoria tbProductoCategoria)
         {
-            if (Function.GetUserLogin())
+            IEnumerable<object> cate = null;
+            IEnumerable<object> sub = null;
+            string MsjError = "";
+            var listaSubCategoria = (List<tbProductoSubcategoria>)Session["tbProductoSubcategoria"];
+            if (ModelState.IsValid)
             {
-                if (Function.GetUserRols("ProductoCategoria/Create"))
-                {
-                    IEnumerable<object> cate = null;
-                    IEnumerable<object> sub = null;
-                    var idMaster = 0;
-                    var MsjError = "";
-                    var listaSubCategoria = (List<tbProductoSubcategoria>)Session["tbProductoSubcategoria"];
-                    if (ModelState.IsValid)
-                    {
-
-                        using (TransactionScope _Tran = new TransactionScope())
-                        {
-                            try
-                            {
-
-                                cate = db.UDP_Inv_tbProductoCategoria_Insert(tbProductoCategoria.pcat_Nombre, Function.GetUser(), DateTime.Now);
-                                foreach (UDP_Inv_tbProductoCategoria_Insert_Result categoria in cate)
-                                    idMaster = Convert.ToInt32(categoria.MensajeError);
-                                if (MsjError.StartsWith("-1"))
-                                {
-                                    Function.InsertBitacoraErrores("ProductoCategoria/Create", MsjError, "Create");
-                                    ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
-                                    return View(tbProductoCategoria);
-                                    
-                                }
-                                else
-                                {
-                                    if (listaSubCategoria != null)
-                                    {
-                                        if (listaSubCategoria.Count > 0)
-                                        {
-                                            foreach (tbProductoSubcategoria subcategoria in listaSubCategoria)
-                                            {
-                                                sub = db.UDP_Inv_tbProductoSubcategoria_Insert(subcategoria.pscat_Descripcion
-                                                                                            , idMaster,
-                                                                                            Function.GetUser(), Function.DatetimeNow(),
-                                                                                            subcategoria.pscat_ISV
-                                                                                            );
-                                                foreach (UDP_Inv_tbProductoSubcategoria_Insert_Result ProdSubCate in sub)
-                                                    MsjError = ProdSubCate.MensajeError;
-                                                if (MsjError.StartsWith("-1"))
-                                                {
-                                                    
-                                                    Function.InsertBitacoraErrores("ProductoCategoria/Create", MsjError, "Create");
-                                                    ModelState.AddModelError("", "No se pudo insertar el registro detalle, favor contacte al administrador.");
-                                                    return View(tbProductoCategoria);
-                                                }
-                                            }
-                                        }
-                                    }
-                                        _Tran.Complete();
-                                        
-                                    }
-
-                                }
-                            catch (Exception Ex)
-                            {
-                                Ex.Message.ToString();
-                                Function.InsertBitacoraErrores("ProductoCategoria/Create", Ex.Message.ToString(), "Create");
-                                ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
-                                return View(tbProductoCategoria);
-                            }
-                        }
-                        return RedirectToAction("Index");
-                    }
-                    return View(tbProductoCategoria);
-                }
-                else
-                {
-                    return RedirectToAction("SinAcceso", "Login");
-                }
-            }
-            else
-                return RedirectToAction("Index", "Login");
-        }
-
-        // GET: /ProductoCategoria/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (Function.GetUserLogin())
-            {
-                if (Function.Sesiones("ProductoCategoria/Edit"))
-                {
-
-                }
-                else
-                {
-                    return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
-                }
-                if (Function.GetUserRols("ProductoCategoria/Edit"))
+                using (TransactionScope _Tran = new TransactionScope())
                 {
                     try
                     {
-                        ViewBag.smserror = TempData["smserror"].ToString();
+                        cate = db.UDP_Inv_tbProductoCategoria_Insert(tbProductoCategoria.pcat_Nombre, Function.GetUser(), DateTime.Now);
+                        foreach (UDP_Inv_tbProductoCategoria_Insert_Result categoria in cate)
+                            MsjError = categoria.MensajeError;
+                        if (MsjError.StartsWith("-1"))
+                        {
+                            Function.InsertBitacoraErrores("ProductoCategoria/Create", MsjError, "Create");
+                            ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                            return View(tbProductoCategoria);
+                        }
+                        else
+                        {
+                            if (listaSubCategoria != null)
+                            {
+                                if (listaSubCategoria.Count > 0)
+                                {
+                                    foreach (tbProductoSubcategoria subcategoria in listaSubCategoria)
+                                    {
+                                        sub = db.UDP_Inv_tbProductoSubcategoria_Insert(subcategoria.pscat_Descripcion
+                                                                                    , Convert.ToInt16(MsjError),
+                                                                                    Function.GetUser(), Function.DatetimeNow(),
+                                                                                    subcategoria.pscat_ISV
+                                                                                    );
+                                        foreach (UDP_Inv_tbProductoSubcategoria_Insert_Result ProdSubCate in sub)
+                                            MsjError = ProdSubCate.MensajeError;
+                                        if (MsjError.StartsWith("-1"))
+                                        {
+                                            Function.InsertBitacoraErrores("ProductoCategoria/Create", MsjError, "Create");
+                                            ModelState.AddModelError("", "No se pudo insertar el registro detalle, favor contacte al administrador.");
+                                            return View(tbProductoCategoria);
+                                        }
+                                    }
+                                }
+                            }
+                            _Tran.Complete();
+                        }
+
                     }
-                    catch { }
-                    if (id == null)
+                    catch (Exception Ex)
                     {
-                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                        Ex.Message.ToString();
+                        Function.InsertBitacoraErrores("ProductoCategoria/Create", Ex.Message.ToString(), "Create");
+                        ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                        return View(tbProductoCategoria);
                     }
-                    tbProductoCategoria tbProductoCategoria = db.tbProductoCategoria.Find(id);
-                    if (tbProductoCategoria == null)
-                    {
-                        return HttpNotFound();
-                    }
-                   
-                    Session["tbProductoSubcategoria"] = null;
-                    return View(tbProductoCategoria);
                 }
-                else
-                {
-                    return RedirectToAction("SinAcceso", "Login");
-                }
+                return RedirectToAction("Index");
             }
-            else
-                return RedirectToAction("Index", "Login");
+            return View(tbProductoCategoria);
+        }
+
+        // GET: /ProductoCategoria/Edit/5
+        [SessionManager("ProductoCategoria/Edit")]
+        public ActionResult Edit(int? id)
+        {
+            try
+            {
+                ViewBag.smserror = TempData["smserror"].ToString();
+            }
+            catch { }
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            tbProductoCategoria tbProductoCategoria = db.tbProductoCategoria.Find(id);
+            if (tbProductoCategoria == null)
+            {
+                return HttpNotFound();
+            }
+
+            Session["tbProductoSubcategoria"] = null;
+            return View(tbProductoCategoria);
         }
         [HttpPost]
         public JsonResult GuardarSubCategoria(tbProductoSubcategoria tbsubcategoria)
         {
-            
+
             List<tbProductoSubcategoria> sessionsubCate = new List<tbProductoSubcategoria>();
             var list = (List<tbProductoSubcategoria>)Session["tbProductoSubCategoria"];
             if (list == null)
@@ -248,7 +190,7 @@ namespace ERP_GMEDINA.Controllers
             {
                 IEnumerable<object> list = null;
 
-                tbProductoSubcategoria subcater = db.tbProductoSubcategoria.Find(EditarSubCategoria.pscat_Id); 
+                tbProductoSubcategoria subcater = db.tbProductoSubcategoria.Find(EditarSubCategoria.pscat_Id);
                 list = db.UDP_Inv_tbProductoSubcategoria_Update(
                                                         EditarSubCategoria.pscat_Id,
                                                         EditarSubCategoria.pscat_Descripcion,
@@ -273,122 +215,91 @@ namespace ERP_GMEDINA.Controllers
                 Msj = "-1";
             }
             return Json(Msj, JsonRequestBehavior.AllowGet);
-          
+
         }
 
-        // POST: /ProductoCategoria/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int? id, [Bind(Include= "pcat_Id,pcat_Nombre,pcat_UsuarioCrea,pcat_FechaCrea,pcat_UsuarioModifica,pcat_FechaModifica,pcat_EsActivo")] tbProductoCategoria tbProductoCategoria)
+        [SessionManager("ProductoCategoria/Edit")]
+        public ActionResult Edit(int? id, [Bind(Include = "pcat_Id,pcat_Nombre,pcat_UsuarioCrea,pcat_FechaCrea,pcat_UsuarioModifica,pcat_FechaModifica,pcat_EsActivo")] tbProductoCategoria tbProductoCategoria)
         {
-            if (Function.GetUserLogin())
+            IEnumerable<object> cate = null;
+            IEnumerable<object> subcate = null;
+            string MsjError = "";
+            string MensajeError = "";
+            var List = (List<tbProductoSubcategoria>)Session["tbProductoSubCategoria"];
+            if (ModelState.IsValid)
             {
-                if (Function.GetUserRols("ProductoCategoria/Edit"))
+                using (TransactionScope _Tran = new TransactionScope())
                 {
-                    IEnumerable<object> cate = null;
-                    IEnumerable<object> subcate = null;
-                    var idMaster = 0;
-                    var MsjError = "";
-                    var List = (List<tbProductoSubcategoria>)Session["tbProductoSubCategoria"];
-                    if (ModelState.IsValid)
+                    try
                     {
+                        cate = db.UDP_Inv_tbProductoCategoria_Update(tbProductoCategoria.pcat_Id,
+                                              tbProductoCategoria.pcat_Nombre,
+                                              tbProductoCategoria.pcat_UsuarioCrea,
+                                              tbProductoCategoria.pcat_FechaCrea
+                                              , Function.GetUser(),
+                                              DateTime.Now);
+                        foreach (UDP_Inv_tbProductoCategoria_Update_Result ProductoCategoria in cate)
+                            MsjError = ProductoCategoria.MensajeError;
 
-                        using (TransactionScope _Tran = new TransactionScope())
+                        if (MsjError == "-1")
                         {
-                            try
+                            ModelState.AddModelError("", "No se Actualizó el Registro");
+                            ViewBag.pcat_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbProductoCategoria.pcat_UsuarioModifica);
+                            ViewBag.pcat_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbProductoCategoria.pcat_UsuarioCrea);
+                            return View(tbProductoCategoria);
+                        }
+                        else
+                        {
+                            if (List != null)
                             {
-
-                                cate = db.UDP_Inv_tbProductoCategoria_Update(tbProductoCategoria.pcat_Id,
-                                                      tbProductoCategoria.pcat_Nombre,
-                                                      tbProductoCategoria.pcat_UsuarioCrea,
-                                                      tbProductoCategoria.pcat_FechaCrea
-                                                      , Function.GetUser(),
-                                                      DateTime.Now);
-                                foreach (UDP_Inv_tbProductoCategoria_Update_Result ProductoCategoria in cate)
-
-
-                                    idMaster = Convert.ToInt32(ProductoCategoria.MensajeError);
-
-                                if (MsjError == "-1")
-                                {
-                                    ModelState.AddModelError("", "No se Actualizó el Registro");
                                     ViewBag.pcat_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbProductoCategoria.pcat_UsuarioModifica);
-                                    ViewBag.pcat_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbProductoCategoria.pcat_UsuarioCrea);
-                                    return View(tbProductoCategoria);
-                                }
-                                else
+                                if (List.Count > 0)
                                 {
-                                    if (List != null)
+
+                                    foreach (tbProductoSubcategoria subcategoria in List)
                                     {
-                                        if (List.Count > 0)
+                                        subcate = db.UDP_Inv_tbProductoSubcategoria_Insert(subcategoria.pscat_Descripcion
+                                                                                    , Convert.ToInt16(MsjError),
+                                                                                    Function.GetUser(), Function.DatetimeNow(),
+                                                                                    subcategoria.pscat_ISV
+                                                                                    );
+
+                                        foreach (UDP_Inv_tbProductoSubcategoria_Insert_Result ProdSubCate in subcate)
+                                            MensajeError = ProdSubCate.MensajeError;
+                                        if (MensajeError.StartsWith("-1"))
                                         {
-
-                                            foreach (tbProductoSubcategoria subcategoria in List)
-                                            {
-                                               
-
-                                                subcate = db.UDP_Inv_tbProductoSubcategoria_Insert(subcategoria.pscat_Descripcion
-                                                                                            , idMaster,
-                                                                                            Function.GetUser(), Function.DatetimeNow(),
-                                                                                            subcategoria.pscat_ISV
-                                                                                            );
-
-                                                foreach (UDP_Inv_tbProductoSubcategoria_Insert_Result ProdSubCate in subcate)
-
-                                                //if (MensajeError == "-1")
-                                                {
-                                                    ModelState.AddModelError("", "No se Actualizó el Registro");
-
-                                                    //}
-                                                    //else
-                                                    //{
-                                                    //    _Tran.Complete();
-                                                    //    return RedirectToAction("Index");
-                                                }
-                                            }
+                                            Function.InsertBitacoraErrores("ProductoCategoria/Edit", MsjError, "Edit");
+                                            ModelState.AddModelError("", "No se pudo insertar el registro detalle, favor contacte al administrador.");
+                                            return RedirectToAction("Edit/" + MsjError);
                                         }
                                     }
-
-                                    //else
-                                    {
-                                        _Tran.Complete();
-                                        return RedirectToAction("Edit/" + idMaster);
-                                    }
-
                                 }
-
                             }
-                            catch (Exception Ex)
-                            {
-                                Ex.Message.ToString();
-                                ModelState.AddModelError("", "No se Actualizó el Registro");
-                                ViewBag.pcat_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbProductoCategoria.pcat_UsuarioModifica);
-                                ViewBag.pcat_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbProductoCategoria.pcat_UsuarioCrea);
-                                //MsjError = "-1";
-                            }
+                            _Tran.Complete();
+                            return RedirectToAction("Edit/" + MsjError);
                         }
-                        return RedirectToAction("Index");
                     }
-                    ViewBag.pcat_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbProductoCategoria.pcat_UsuarioModifica);
-                    ViewBag.pcat_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbProductoCategoria.pcat_UsuarioCrea);
-                    return View(tbProductoCategoria);
-                }
-                else
-                {
-                    return RedirectToAction("SinAcceso", "Login");
+                    catch (Exception Ex)
+                    {
+                        Function.InsertBitacoraErrores("ProductoCategoria/Edit", Ex.Message.ToString(), "Edit");
+                        ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                        ViewBag.pcat_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbProductoCategoria.pcat_UsuarioModifica);
+                        ViewBag.pcat_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbProductoCategoria.pcat_UsuarioCrea);
+                        return RedirectToAction("Edit/" + MsjError);
+                    }
                 }
             }
-            else
-                return RedirectToAction("Index", "Login");
-
+            ViewBag.pcat_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbProductoCategoria.pcat_UsuarioModifica);
+            ViewBag.pcat_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbProductoCategoria.pcat_UsuarioCrea);
+            return View(tbProductoCategoria);
         }
 
         //funciona 
         public ActionResult EliminarProductoCategoria(int? id)
-         {
-            
+        {
+
             try
             {
                 tbProductoCategoria obj = db.tbProductoCategoria.Find(id);
@@ -406,10 +317,10 @@ namespace ERP_GMEDINA.Controllers
                     ModelState.AddModelError("", "No se puede borrar el registro");
                     return RedirectToAction("Edit/" + id);
                 }
-                
+
                 else
                 {
-                    
+
                     return RedirectToAction("Index");
                 }
             }
@@ -421,8 +332,8 @@ namespace ERP_GMEDINA.Controllers
             }
 
 
-          
-          
+
+
         }
         ///APLICAR ESTE DELETE 
         public ActionResult DeteleSub(int? id)
@@ -448,7 +359,7 @@ namespace ERP_GMEDINA.Controllers
 
                 else
                 {
-                    
+
                     return RedirectToAction("Index");
                 }
             }
@@ -535,7 +446,7 @@ namespace ERP_GMEDINA.Controllers
                 tbProductoSubcategoria obj = db.tbProductoSubcategoria.Find(id);
                 IEnumerable<object> list = null;
                 var MsjError = "";
-                list = db.UDP_Inv_tbProductoSubCategoria_Update_Estado_Validacion(id,Helpers.SubcategoriaInactivo, Function.GetUser(), Function.DatetimeNow());
+                list = db.UDP_Inv_tbProductoSubCategoria_Update_Estado_Validacion(id, Helpers.SubcategoriaInactivo, Function.GetUser(), Function.DatetimeNow());
                 foreach (UDP_Inv_tbProductoSubCategoria_Update_Estado_Validacion_Result obje in list)
                     MsjError = obje.MensajeError;
 
@@ -592,9 +503,6 @@ namespace ERP_GMEDINA.Controllers
                 return RedirectToAction("Edit/" + id);
             }
         }
-
-
     }
-
-    }
+}
 

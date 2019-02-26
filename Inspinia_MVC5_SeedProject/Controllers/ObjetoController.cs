@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ERP_GMEDINA.Models;
+using ERP_GMEDINA.Attribute;
 
 namespace ERP_GMEDINA.Controllers
 {
@@ -15,90 +16,33 @@ namespace ERP_GMEDINA.Controllers
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
         GeneralFunctions Function = new GeneralFunctions();
         // GET: /Objeto/
+        [SessionManager("Objeto/Index")]
         public ActionResult Index()
         {
-            if (Function.GetUserLogin())
-            {
-                if (Function.Sesiones("Objeto/Index"))
-                {
-
-                }
-                else
-                {
-                    return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
-                }
-                if (Function.GetUserRols("Objeto/Index"))
-                {
-                    return View(db.tbObjeto.ToList());
-                }
-                else
-                {
-                    return RedirectToAction("SinAcceso", "Login");
-                }
-            }
-            else
-                return RedirectToAction("Index", "Login");
+            return View(db.tbObjeto.ToList());
         }
 
         // GET: /Objeto/Details/5
+        [SessionManager("Objeto/Details")]
         public ActionResult Details(int? id)
         {
-            if (Function.GetUserLogin())
+            if (id == null)
             {
-                if (Function.Sesiones("Objeto/Details"))
-                {
-
-                }
-                else
-                {
-                    return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
-                }
-                if (Function.GetUserRols("Objeto/Details"))
-                {
-                    if (id == null)
-                    {
-                        return RedirectToAction("Index");
-                    }
-                    tbObjeto tbObjeto = db.tbObjeto.Find(id);
-                    if (tbObjeto == null)
-                    {
-                        return RedirectToAction("NotFound", "Login");
-                    }
-                    return View(tbObjeto);
-                }
-                else
-                {
-                    return RedirectToAction("SinAcceso", "Login");
-                }
+                return RedirectToAction("Index");
             }
-            else
-                return RedirectToAction("Index", "Login");
+            tbObjeto tbObjeto = db.tbObjeto.Find(id);
+            if (tbObjeto == null)
+            {
+                return RedirectToAction("NotFound", "Login");
+            }
+            return View(tbObjeto);
         }
 
         // GET: /Objeto/Create
+        [SessionManager("Objeto/Create")]
         public ActionResult Create()
         {
-            if (Function.GetUserLogin())
-            {
-                if (Function.Sesiones("Objeto/Create"))
-                {
-
-                }
-                else
-                {
-                    return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
-                }
-                if (Function.GetUserRols("Objeto/Create"))
-                {
-                    return View();
-                }
-                else
-                {
-                    return RedirectToAction("SinAcceso", "Login");
-                }
-            }
-            else
-                return RedirectToAction("Index", "Login");
+            return View();
         }
 
         // POST: /Objeto/Create
@@ -106,91 +50,60 @@ namespace ERP_GMEDINA.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include= "obj_Id,obj_Pantalla,obj_Referencia,obj_UsuarioCrea,obj_FechaCrea,obj_UsuarioModifica,obj_FechaModifica,obj_Estado")] tbObjeto tbObjeto)
+        [SessionManager("Objeto/Create")]
+        public ActionResult Create([Bind(Include = "obj_Id,obj_Pantalla,obj_Referencia,obj_UsuarioCrea,obj_FechaCrea,obj_UsuarioModifica,obj_FechaModifica,obj_Estado")] tbObjeto tbObjeto)
         {
-            if (Function.GetUserLogin())
+            if (db.tbObjeto.Any(a => a.obj_Pantalla == tbObjeto.obj_Pantalla))
             {
-                if (Function.GetUserRols("Objeto/Create"))
+                ModelState.AddModelError("", "Ya existe un objeto con este nombre, favor registrar otro");
+            }
+            if (ModelState.IsValid)
+            {
+                try
                 {
-                    if (db.tbObjeto.Any(a => a.obj_Pantalla == tbObjeto.obj_Pantalla))
+                    IEnumerable<object> list = null;
+                    string MsjError = "";
+                    list = db.UDP_Acce_tbObjeto_Insert(tbObjeto.obj_Pantalla, tbObjeto.obj_Referencia, Function.GetUser(), DateTime.Now);
+                    foreach (UDP_Acce_tbObjeto_Insert_Result obejto in list)
+                        MsjError = obejto.MensajeError;
+                    if (MsjError.StartsWith("-1"))
                     {
-                        ModelState.AddModelError("", "Ya existe esta pantalla, Favor registrar otra");
+                        Function.InsertBitacoraErrores("Objeto/Create", MsjError, "Create");
+                        ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                        return View(tbObjeto);
                     }
-                    if (ModelState.IsValid)
+                    else
                     {
-                      
-                        try
-                        {
-                            IEnumerable<object> list = null;
-                            var MsjError = "";
-                            list = db.UDP_Acce_tbObjeto_Insert(tbObjeto.obj_Pantalla, tbObjeto.obj_Referencia, Function.GetUser(), DateTime.Now);
-                            foreach (UDP_Acce_tbObjeto_Insert_Result obejto in list)
-                                MsjError = obejto.MensajeError;
-                            if (MsjError.StartsWith("-1"))
-                            {
-                           
-                                ModelState.AddModelError("", "No se guardó el registro");
-                            }
-                            else
-                            {
-                                return RedirectToAction("Index");
-                            }
-                        }
-                        catch (Exception Ex)
-                        {
-                            Ex.Message.ToString();
-                            ModelState.AddModelError("", "No se guardó el registro");
-                            return View(tbObjeto);
-                        }
                         return RedirectToAction("Index");
                     }
+                }
+                catch (Exception Ex)
+                {
+                    Function.InsertBitacoraErrores("Objeto/Create", Ex.Message.ToString(), "Create");
+                    ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador."); ;
                     return View(tbObjeto);
                 }
-                else
-                {
-                    return RedirectToAction("SinAcceso", "Login");
-                }
             }
-            else
-                return RedirectToAction("Index", "Login");
+            return View(tbObjeto);
         }
 
 
         // GET: /Objeto/Edit/5
+        [SessionManager("Objeto/Edit")]
         public ActionResult Edit(int? id)
         {
-            if (Function.GetUserLogin())
+            if (id == null)
             {
-                if (Function.Sesiones("Objeto/Edit"))
-                {
-
-                }
-                else
-                {
-                    return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
-                }
-                if (Function.GetUserRols("Objeto/Edit"))
-                {
-                    if (id == null)
-                    {
-                        return RedirectToAction("Index");
-                    }
-                    tbObjeto tbObjeto = db.tbObjeto.Find(id);
-                    if (tbObjeto == null)
-                    {
-                        return RedirectToAction("NotFound", "Login");
-                    }
-                    ViewBag.obj_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbObjeto.obj_UsuarioModifica);
-                    ViewBag.obj_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbObjeto.obj_UsuarioCrea);
-                    return View(tbObjeto);
-                }
-                else
-                {
-                    return RedirectToAction("SinAcceso", "Login");
-                }
+                return RedirectToAction("Index");
             }
-            else
-                return RedirectToAction("Index", "Login");
+            tbObjeto tbObjeto = db.tbObjeto.Find(id);
+            if (tbObjeto == null)
+            {
+                return RedirectToAction("NotFound", "Login");
+            }
+            ViewBag.obj_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbObjeto.obj_UsuarioModifica);
+            ViewBag.obj_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbObjeto.obj_UsuarioCrea);
+            return View(tbObjeto);
         }
 
         // POST: /Objeto/Edit/5
@@ -198,181 +111,123 @@ namespace ERP_GMEDINA.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int? id,[Bind(Include="obj_Id, obj_Pantalla,obj_Referencia,obj_UsuarioCrea,obj_FechaCrea,obj_UsuarioModifica,obj_FechaModifica,obj_Estado")] tbObjeto tbObjeto)
+        [SessionManager("Objeto/Edit")]
+        public ActionResult Edit(int? id, [Bind(Include = "obj_Id, obj_Pantalla,obj_Referencia,obj_UsuarioCrea,obj_FechaCrea,obj_UsuarioModifica,obj_FechaModifica,obj_Estado")] tbObjeto tbObjeto)
         {
-            if (Function.GetUserLogin())
+            //if (db.tbObjeto.Any(a => a.obj_Pantalla == tbObjeto.obj_Pantalla))
+            //{
+            //    ModelState.AddModelError("", "Ya existe esta pantalla, Favor registrar otra");
+            //}
+            if (db.tbObjeto.Any(a => a.obj_Pantalla == tbObjeto.obj_Pantalla && a.obj_Id != tbObjeto.obj_Id))
             {
-                if (Function.GetUserRols("Objeto/Edit"))
+                ModelState.AddModelError("", "Ya existe una pantalla con el mismo nombre");
+            }
+            if (ModelState.IsValid)
+            {
+                try
                 {
-                    //if (db.tbObjeto.Any(a => a.obj_Pantalla == tbObjeto.obj_Pantalla))
-                    //{
-                    //    ModelState.AddModelError("", "Ya existe esta pantalla, Favor registrar otra");
-                    //}
-                    if (db.tbObjeto.Any(a => a.obj_Pantalla == tbObjeto.obj_Pantalla && a.obj_Id != tbObjeto.obj_Id))
-                    {
-                        ModelState.AddModelError("", "Ya existe una pantalla con el mismo nombre");
-                    }
-                    if (ModelState.IsValid)
-                    {
-                       
-                        try
-                        {
-                            tbObjeto obj = db.tbObjeto.Find(id);
-                            IEnumerable<object> list = null;
-                            var MsjError = "";
-                            list = db.UDP_Acce_tbObjeto_Update(tbObjeto.obj_Id,
-                                                                 tbObjeto.obj_Pantalla,
-                                                                 tbObjeto.obj_Referencia
-                                                                 ,tbObjeto.obj_UsuarioCrea
-                                                                 ,tbObjeto.obj_FechaCrea
-                                                                ,Function.GetUser()
-                                                                ,DateTime.Now);
-                            foreach (UDP_Acce_tbObjeto_Update_Result obje in list)
-                                MsjError = obje.MensajeError;
+                    tbObjeto obj = db.tbObjeto.Find(id);
+                    IEnumerable<object> list = null;
+                    var MsjError = "";
+                    list = db.UDP_Acce_tbObjeto_Update(tbObjeto.obj_Id,
+                                                         tbObjeto.obj_Pantalla,
+                                                         tbObjeto.obj_Referencia
+                                                         , tbObjeto.obj_UsuarioCrea
+                                                         , tbObjeto.obj_FechaCrea
+                                                        , Function.GetUser()
+                                                        , DateTime.Now);
+                    foreach (UDP_Acce_tbObjeto_Update_Result obje in list)
+                        MsjError = obje.MensajeError;
 
-                            if (MsjError.StartsWith("-1"))
-                            {
-                                ModelState.AddModelError("", "No se actualizó el registro");
-                                ViewBag.obj_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbObjeto.obj_UsuarioModifica);
-                                ViewBag.obj_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbObjeto.obj_UsuarioCrea);
-                                return View(tbObjeto);
-                            }
-                            else
-                            {
-                                return RedirectToAction("Index");
-                            }
-                        }
-                        catch (Exception Ex)
-                        {
-                            Ex.Message.ToString();
-                            ModelState.AddModelError("", "No se actualizó el registro");
-                            ViewBag.obj_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbObjeto.obj_UsuarioModifica);
-                            ViewBag.obj_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbObjeto.obj_UsuarioCrea);
-                            return View(tbObjeto);
-                        }
-
+                    if (MsjError.StartsWith("-1"))
+                    {
+                        Function.InsertBitacoraErrores("Objeto/Edit", MsjError, "Edit");
+                        ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                        ViewBag.obj_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbObjeto.obj_UsuarioModifica);
+                        ViewBag.obj_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbObjeto.obj_UsuarioCrea);
+                        return View(tbObjeto);
                     }
-                    
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+                catch (Exception Ex)
+                {
+                    Function.InsertBitacoraErrores("Objeto/Create", Ex.Message.ToString(), "Create");
+                    ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
                     ViewBag.obj_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbObjeto.obj_UsuarioModifica);
                     ViewBag.obj_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbObjeto.obj_UsuarioCrea);
                     return View(tbObjeto);
                 }
-                else
-                {
-                    return RedirectToAction("SinAcceso", "Login");
-                }
-            }
-            else
-                return RedirectToAction("Index", "Login");
-        }
-        //para que cambie estado a activar
-        public ActionResult EstadoInactivar(int? id)
-        {
-            if (Function.GetUserLogin())
-            {
-                if (Function.GetUserRols("Objeto/Edit"))
-                {
-                    try
-                    {
-                        tbObjeto obj = db.tbObjeto.Find(id);
-                        IEnumerable<object> list = null;
-                        var MsjError = "";
-                        list = db.UDP_Acce_tbObjeto_Update_Estado(id, Helpers.ObjetoInactivo, Function.GetUser(), DateTime.Now);
-                        foreach (UDP_Acce_tbObjeto_Update_Estado_Result obje in list)
-                            MsjError = obje.MensajeError;
 
-                        if (MsjError.StartsWith("-1"))
-                        {
-                            ModelState.AddModelError("", "No se actualizó el registro");
-                            return RedirectToAction("Edit/" + id);
-                        }
-                        else
-                        {
-                            return RedirectToAction("Edit/" + id);
-                        }
-                    }
-                    catch (Exception Ex)
-                    {
-                        Ex.Message.ToString();
-                        ModelState.AddModelError("", "No se actualizó el registro");
-                        return RedirectToAction("Edit/" + id);
-                    }
-                }
-                else
-                {
-                    return RedirectToAction("SinAcceso", "Login");
-                }
             }
-            else
-                return RedirectToAction("Index", "Login");
-        }
-        //para que cambie estado a inactivar
-        public ActionResult Estadoactivar(int? id)
-        {
-            if (Function.GetUserLogin())
-            {
-                if (Function.GetUserRols("Objeto/Edit"))
-                {
-                    try
-                    {
-                        tbObjeto obj = db.tbObjeto.Find(id);
-                        IEnumerable<object> list = null;
-                        var MsjError = "";
-                        list = db.UDP_Acce_tbObjeto_Update_Estado(id, Helpers.ObjetoActivo, Function.GetUser(), DateTime.Now);
-                        foreach (UDP_Acce_tbObjeto_Update_Estado_Result obje in list)
-                            MsjError = obje.MensajeError;
 
-                        if (MsjError == "-1")
-                        {
-                            ModelState.AddModelError("", "No se Actualizo el registro");
-                            return RedirectToAction("Edit/" + id);
-                        }
-                        else
-                        {
-                            return RedirectToAction("Edit/" + id);
-                        }
-                    }
-                    catch (Exception Ex)
-                    {
-                        Ex.Message.ToString();
-                        ModelState.AddModelError("", "No se Actualizo el registro");
-                        return RedirectToAction("Edit/" + id);
-                    }
-                }
-                else
-                {
-                    return RedirectToAction("SinAcceso", "Login");
-                }
-            }
-            else
-                return RedirectToAction("Index", "Login");
-        }
-
-
-        // GET: /Objeto/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            tbObjeto tbObjeto = db.tbObjeto.Find(id);
-            if (tbObjeto == null)
-            {
-                return HttpNotFound();
-            }
+            ViewBag.obj_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbObjeto.obj_UsuarioModifica);
+            ViewBag.obj_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbObjeto.obj_UsuarioCrea);
             return View(tbObjeto);
         }
-
-        // POST: /Objeto/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        //para que cambie estado a activar
+        [SessionManager("Objeto/InactivarEstado")]
+        public ActionResult EstadoInactivar(int? id)
         {
-            tbObjeto tbObjeto = db.tbObjeto.Find(id);
-            db.tbObjeto.Remove(tbObjeto);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                tbObjeto obj = db.tbObjeto.Find(id);
+                IEnumerable<object> list = null;
+                var MsjError = "";
+                list = db.UDP_Acce_tbObjeto_Update_Estado(id, Helpers.ObjetoInactivo, Function.GetUser(), DateTime.Now);
+                foreach (UDP_Acce_tbObjeto_Update_Estado_Result obje in list)
+                    MsjError = obje.MensajeError;
+
+                if (MsjError.StartsWith("-1"))
+                {
+                    Function.InsertBitacoraErrores("Objeto/EstadoInactivar", MsjError, "EstadoInactivar");
+                    ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                    return RedirectToAction("Edit/" + id);
+                }
+                else
+                {
+                    return RedirectToAction("Edit/" + id);
+                }
+            }
+            catch (Exception Ex)
+            {
+                Function.InsertBitacoraErrores("Objeto/EstadoInactivar", Ex.Message.ToString(), "EstadoInactivar");
+                ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                return RedirectToAction("Edit/" + id);
+            }
+        }
+        //para que cambie estado a inactivar
+        [SessionManager("Objeto/ActivarEstado")]
+        public ActionResult Estadoactivar(int? id)
+        {
+            try
+            {
+                tbObjeto obj = db.tbObjeto.Find(id);
+                IEnumerable<object> list = null;
+                var MsjError = "";
+                list = db.UDP_Acce_tbObjeto_Update_Estado(id, Helpers.ObjetoActivo, Function.GetUser(), DateTime.Now);
+                foreach (UDP_Acce_tbObjeto_Update_Estado_Result obje in list)
+                    MsjError = obje.MensajeError;
+
+                if (MsjError == "-1")
+                {
+                    Function.InsertBitacoraErrores("Objeto/Estadoactivar", MsjError, "Estadoactivar");
+                    ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                    return RedirectToAction("Edit/" + id);
+                }
+                else
+                {
+                    return RedirectToAction("Edit/" + id);
+                }
+            }
+            catch (Exception Ex)
+            {
+                Function.InsertBitacoraErrores("Objeto/Estadoactivar", Ex.Message.ToString(), "Estadoactivar");
+                ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                return RedirectToAction("Edit/" + id);
+            }
         }
 
         protected override void Dispose(bool disposing)

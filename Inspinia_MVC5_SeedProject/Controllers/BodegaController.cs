@@ -60,7 +60,6 @@ namespace ERP_GMEDINA.Controllers
         {
             IEnumerable<object> BODEGA = null;
             IEnumerable<object> DETALLE = null;
-            var idMaster = 0;
             string MsjError = "";
             string MensajeError = "";
             var listaDetalle = (List<tbBodegaDetalle>)Session["tbBodegaDetalle"];
@@ -77,9 +76,9 @@ namespace ERP_GMEDINA.Controllers
                                                         , tbBodega.bod_Telefono
                                                         , tbBodega.mun_Codigo
                                                         , Function.GetUser()
-                                                        ,Function.DatetimeNow());
+                                                        , Function.DatetimeNow());
                         foreach (UDP_Inv_tbBodega_Insert_Result bodega in BODEGA)
-                            idMaster = Convert.ToInt32(bodega.MensajeError);
+                            MsjError = bodega.MensajeError;
                         if (MsjError.StartsWith("-1"))
                         {
                             this.AllLists();
@@ -96,7 +95,7 @@ namespace ERP_GMEDINA.Controllers
                                     foreach (tbBodegaDetalle bodd in listaDetalle)
                                     {
                                         DETALLE = db.UDP_Inv_tbBodegaDetalle_Insert(bodd.prod_Codigo
-                                                                                    , idMaster
+                                                                                    , Convert.ToInt16(MsjError)
                                                                                     , bodd.bodd_CantidadMinima
                                                                                     , bodd.bodd_CantidadMaxima
                                                                                     , bodd.bodd_PuntoReorden
@@ -172,7 +171,6 @@ namespace ERP_GMEDINA.Controllers
         {
             IEnumerable<object> BODEGA = null;
             IEnumerable<object> DETALLE = null;
-            var idMaster = 0;
             string MsjError = "";
             string MensajeError = "";
             var listaDetalle = (List<tbBodegaDetalle>)Session["tbBodegaDetalle"];
@@ -194,14 +192,14 @@ namespace ERP_GMEDINA.Controllers
                                                             Function.GetUser()
                                                         , Function.DatetimeNow());
                         foreach (UDP_Inv_tbBodega_Update_Result bodega in BODEGA)
-                            idMaster = Convert.ToInt32(bodega.MensajeError);
+                            MsjError = bodega.MensajeError;
                         if (MsjError.StartsWith("-1"))
                         {
                             this.AllLists();
                             ResponsableBodega(tbBodega.bod_ResponsableBodega);
                             Function.InsertBitacoraErrores("Bodega/Edit", MsjError, "Edit");
                             ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
-                            return RedirectToAction("Edit/" + idMaster);
+                            return RedirectToAction("Edit/" + MsjError);
                         }
                         else
                         {
@@ -213,7 +211,7 @@ namespace ERP_GMEDINA.Controllers
                                     {
                                         DETALLE = db.UDP_Inv_tbBodegaDetalle_Insert(
                                                                                       bodd.prod_Codigo
-                                                                                    , idMaster
+                                                                                    , Convert.ToInt16(MsjError)
                                                                                     , bodd.bodd_CantidadMinima
                                                                                     , bodd.bodd_CantidadMaxima
                                                                                     , bodd.bodd_PuntoReorden
@@ -231,13 +229,13 @@ namespace ERP_GMEDINA.Controllers
                                             ViewBag.municipio_Edit = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbBodega.mun_Codigo);
                                             Function.InsertBitacoraErrores("Bodega/Edit", MsjError, "Edit");
                                             ModelState.AddModelError("", "No se pudo insertar el registro detalle, favor contacte al administrador.");
-                                            return RedirectToAction("Edit/" + idMaster);
+                                            return RedirectToAction("Edit/" + MsjError);
                                         }
                                     }
                                 }
                             }
                             _Tran.Complete();
-                            return RedirectToAction("Edit/" + idMaster);
+                            return RedirectToAction("Edit/" + MsjError);
                         }
                     }
                     catch (Exception Ex)
@@ -246,9 +244,9 @@ namespace ERP_GMEDINA.Controllers
                         ResponsableBodega(tbBodega.bod_ResponsableBodega);
                         ViewBag.deparatamento_Edit = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre", tbBodega.dep_Codigo);
                         ViewBag.municipio_Edit = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbBodega.mun_Codigo);
-                        Function.InsertBitacoraErrores("Bodega/Create", Ex.Message.ToString(), "Create");
+                        Function.InsertBitacoraErrores("Bodega/Edit", Ex.Message.ToString(), "Edit");
                         ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
-                        return RedirectToAction("Edit/" + idMaster);
+                        return RedirectToAction("Edit/" + MsjError);
                     }
                 }
             }
@@ -273,7 +271,7 @@ namespace ERP_GMEDINA.Controllers
             {
                 tbBodega obj = db.tbBodega.Find(id);
                 IEnumerable<object> list = null;
-                var MsjError = "";
+                string MsjError = "";
                 list = db.UDP_Inv_tbBodega_Update_Estado_Validacion(id, EstadoBodega.Inactivo, Function.GetUser(), Function.DatetimeNow());
                 foreach (UDP_Inv_tbBodega_Update_Estado_Validacion_Result obje in list)
                     MsjError = obje.MensajeError;
@@ -282,8 +280,8 @@ namespace ERP_GMEDINA.Controllers
                 {
                     TempData["smserror_Estado"] = "No se puede Inactivar Bodegas Con Detalles";
                     ViewBag.smserror_Estado = TempData["smserror_Estado"];
-
-                    ModelState.AddModelError("", "No se Actualizo el registro");
+                    Function.InsertBitacoraErrores("Bodega/EstadoInactivar", MsjError, "EstadoInactivar");
+                    ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
                     return RedirectToAction("Edit/" + id);
                 }
                 else
@@ -294,13 +292,10 @@ namespace ERP_GMEDINA.Controllers
             }
             catch (Exception Ex)
             {
-                Ex.Message.ToString();
-                ModelState.AddModelError("", "No se Actualizo el registro");
+                Function.InsertBitacoraErrores("Bodega/EstadoInactivar", Ex.Message.ToString(), "EstadoInactivar");
+                ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
                 return RedirectToAction("Edit/" + id);
             }
-
-
-            //return RedirectToAction("Index");
         }
         //para que cambie estado a inactivar
         [SessionManager("Bodega/ActivarEstado")]

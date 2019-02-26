@@ -11,6 +11,7 @@ using System.Transactions;
 using CrystalDecisions.CrystalReports.Engine;
 using System.IO;
 using System.Net.Mime;
+using ERP_GMEDINA.Attribute;
 
 namespace ERP_GMEDINA.Controllers
 {
@@ -20,16 +21,9 @@ namespace ERP_GMEDINA.Controllers
         GeneralFunctions Function = new GeneralFunctions();
 
         // GET: /InventarioFisico/
+        [SessionManager("InventarioFisico/Index")]
         public ActionResult Index()
         {
-            if (Function.Sesiones("InventarioFisico/Index"))
-            {
-
-            }
-            else
-            {
-                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
-            }
             var tbinventariofisico = db.tbInventarioFisico.Include(t => t.tbEstadoInventarioFisico).Include(t => t.tbUsuario).Include(t => t.tbUsuario1);
             ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
             this.listas();
@@ -37,16 +31,9 @@ namespace ERP_GMEDINA.Controllers
         }
 
         // GET: /InventarioFisico/Details/5
+        [SessionManager("InventarioFisico/Details")]
         public ActionResult Details(int? id)
         {
-            if (Function.Sesiones("InventarioFisico/Details"))
-            {
-
-            }
-            else
-            {
-                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
-            }
             if (id == null)
             {
                 return RedirectToAction("Index");
@@ -183,16 +170,9 @@ namespace ERP_GMEDINA.Controllers
         }
 
         // GET: /InventarioFisico/Create
+        [SessionManager("InventarioFisico/Create")]
         public ActionResult Create()
         {
-            if (Function.Sesiones("InventarioFisico/Create"))
-            {
-
-            }
-            else
-            {
-                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
-            }
             try
             {
                 ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
@@ -211,13 +191,13 @@ namespace ERP_GMEDINA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [SessionManager("InventarioFisico/Create")]
         public ActionResult Create([Bind(Include = "invf_Id,invf_Descripcion,invf_ResponsableBodega,bod_Id,estif_Id,invf_FechaInventario")] tbInventarioFisico tbInventarioFisico)
         {
             IEnumerable<object> INVENTARIOFISICO = null;
             IEnumerable<object> INVFISICODETALLE = null;
-            var id = 0;
-            var MensajeError = "";
-            var MsjError = "";
+            string MensajeError = "";
+            string MsjError = "";
             var detalle = (List<tbInventarioFisicoDetalle>)Session["tbInventarioFisicoDetalle"];
             if (ModelState.IsValid)
             {
@@ -242,10 +222,12 @@ namespace ERP_GMEDINA.Controllers
                                                                                     , tbInventarioFisico.invf_FechaInventario,
                                                                                     Function.GetUser(), Function.DatetimeNow());
                             foreach (UDP_Inv_tbInventarioFisico_Insert_Result InventarioFisico in INVENTARIOFISICO)
-                                id = Convert.ToInt32(InventarioFisico.MensajeError);
-                            if (MsjError == "-")
+                                MsjError = InventarioFisico.MensajeError;
+                            if (MsjError.StartsWith("-1"))
                             {
-                                ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
+                                this.listas();
+                                Function.InsertBitacoraErrores("InventarioFisico/Create", MsjError, "Create");
+                                ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
                                 return View(tbInventarioFisico);
                             }
                             else
@@ -256,31 +238,33 @@ namespace ERP_GMEDINA.Controllers
                                     {
                                         foreach (tbInventarioFisicoDetalle invfd in detalle)
                                         {
-                                            INVFISICODETALLE = db.UDP_Inv_tbInventarioFisicoDetalle_Insert(id
+                                            INVFISICODETALLE = db.UDP_Inv_tbInventarioFisicoDetalle_Insert(Convert.ToInt16(MsjError)
                                                                                                             , invfd.prod_Codigo
                                                                                                             , invfd.invfd_Cantidad
                                                                                                             , invfd.invfd_CantidadSistema
                                                                                                             , invfd.uni_Id, Function.GetUser(), Function.DatetimeNow());
                                             foreach (UDP_Inv_tbInventarioFisicoDetalle_Insert_Result invfdetalle in INVFISICODETALLE)
-                                                MsjError = invfdetalle.MensajeError;
+                                                MensajeError = invfdetalle.MensajeError;
                                             {
-                                                ModelState.AddModelError("", "No se Guardo el Registro");
+                                                ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
+                                                this.listas();
+                                                Function.InsertBitacoraErrores("InventarioFisico/Create", MsjError, "Create");
+                                                ModelState.AddModelError("", "No se pudo insertar el registro detalle, favor contacte al administrador.");
+                                                return View(tbInventarioFisico);
                                             }
                                         }
                                     }
                                 }
-                                {
                                     _Tran.Complete();
-                                }
                             }
-
-
                         }
                         catch (Exception Ex)
                         {
-                            //Ex.Message.ToString();
-                            //ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
-                            MsjError = "-1";
+                            ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
+                            this.listas();
+                            Function.InsertBitacoraErrores("InventarioFisico/Create", Ex.Message.ToString(), "Create");
+                            ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                            return View(tbInventarioFisico);
                         }
                     }
                 }
@@ -328,16 +312,9 @@ namespace ERP_GMEDINA.Controllers
         }
 
         // GET: /InventarioFisico/Edit/5
+        [SessionManager("InventarioFisico/Edit")]
         public ActionResult Edit(int? id)
         {
-            if (Function.Sesiones("InventarioFisico/Edit"))
-            {
-
-            }
-            else
-            {
-                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
-            }
             if (id == null)
             {
                 return RedirectToAction("Index");
@@ -359,12 +336,13 @@ namespace ERP_GMEDINA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [SessionManager("InventarioFisico/Edit")]
         public ActionResult Edit(int? id,[Bind(Include="invf_Id,invf_Descripcion,invf_ResponsableBodega,bod_Id,estif_Id,invf_FechaInventario,invf_UsuarioCrea,invf_FechaCrea")] tbInventarioFisico tbInventarioFisico)
         {
             IEnumerable<object> Inv = null;
             IEnumerable<object> Detalle = null;
-            var idMaster = 0;
-            var MsjError = "";
+            string MsjError = "";
+            string MensajeError = "";
             var listaDetalle = (List<tbInventarioFisicoDetalle>)Session["tbInventarioFisicoDetalle"];
             if (ModelState.IsValid)
             {
@@ -382,11 +360,14 @@ namespace ERP_GMEDINA.Controllers
                             tbInventarioFisico.invf_FechaCrea,
                             Function.GetUser(), Function.DatetimeNow());
                         foreach (UDP_Inv_tbInventarioFisico_Update_Result InventarioFisico in Inv)
-                            idMaster = Convert.ToInt32(InventarioFisico.MensajeError);
+                            MsjError = InventarioFisico.MensajeError;
 
-                        if (MsjError == "-")
+                        if (MsjError.StartsWith("-1"))
                         {
-                            ModelState.AddModelError("", "No se Actualizó el Registro");
+                            ViewBag.bodegas = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbInventarioFisico.bod_Id);
+                            this.listas();
+                            Function.InsertBitacoraErrores("InventarioFisico/Edit", MsjError, "Edit");
+                            ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
                             return View(tbInventarioFisico);
                         }
                         else
@@ -397,7 +378,7 @@ namespace ERP_GMEDINA.Controllers
                                 {
                                     foreach (tbInventarioFisicoDetalle invd in listaDetalle)
                                     {
-                                        Detalle = db.UDP_Inv_tbInventarioFisicoDetalle_Insert(idMaster,
+                                        Detalle = db.UDP_Inv_tbInventarioFisicoDetalle_Insert(Convert.ToInt16(MsjError),
                                                                                                invd.prod_Codigo,
                                                                                                invd.invfd_Cantidad,
                                                                                                invd.invfd_CantidadSistema,
@@ -405,25 +386,20 @@ namespace ERP_GMEDINA.Controllers
                                                                                                Function.GetUser(), 
                                                                                                Function.DatetimeNow());
                                         foreach (UDP_Inv_tbInventarioFisicoDetalle_Insert_Result inv_detalle in Detalle)
-                                            MsjError = inv_detalle.MensajeError;
-                                        if (MsjError == "-1")
+                                            MensajeError = inv_detalle.MensajeError;
+                                        if (MensajeError.StartsWith("-1"))
                                         {
-                                            ModelState.AddModelError("", "No se Actualizó el Registro");
+                                            Function.InsertBitacoraErrores("InventarioFisico/Edit", MsjError, "Edit");
+                                            ModelState.AddModelError("", "No se pudo insertar el registro detalle, favor contacte al administrador.");
                                             ViewBag.bodegas = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbInventarioFisico.bod_Id);
                                             this.listas();
-                                            return RedirectToAction("Edit/" + idMaster);
+                                            return RedirectToAction("Edit/" + MsjError);
                                         }
                                     }
                                 }
                             }
-                            {
                                 _Tran.Complete();
-                                return RedirectToAction("Index");
-                            }
-
                         }
-
-
                     }
                     catch (Exception Ex)
                     {
@@ -431,8 +407,9 @@ namespace ERP_GMEDINA.Controllers
                         ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
                         ViewBag.bodegas = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbInventarioFisico.bod_Id);
                         this.listas();
-                        return View(tbInventarioFisico);
-
+                        Function.InsertBitacoraErrores("InventarioFisico/Create", Ex.Message.ToString(), "Create");
+                        ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                        return RedirectToAction("Edit/" + MsjError);
                     }
                 }
                 return RedirectToAction("Index");
@@ -499,7 +476,6 @@ namespace ERP_GMEDINA.Controllers
                 }
                 else
                 {
-                    //return View("Edit/" + bod_Id);
                     return Json("Index");
                 }
             }
@@ -509,21 +485,6 @@ namespace ERP_GMEDINA.Controllers
                 ModelState.AddModelError("", "No se Actualizo el registro");
             }
             return Json("Index");
-        }
-
-        // GET: /InventarioFisico/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return RedirectToAction("Index");
-            }
-            tbInventarioFisico tbInventarioFisico = db.tbInventarioFisico.Find(id);
-            if (tbInventarioFisico == null)
-            {
-                return RedirectToAction("NotFound", "Login");
-            }
-            return View(tbInventarioFisico);
         }
 
         [HttpPost]
@@ -540,20 +501,7 @@ namespace ERP_GMEDINA.Controllers
                     Session["tbInventarioFisicoDetalle"] = null;
                 }
             }
-            //return Json(list, JsonRequestBehavior.AllowGet);
             return Json(list, JsonRequestBehavior.AllowGet);
-
-        }
-
-        // POST: /InventarioFisico/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            tbInventarioFisico tbInventarioFisico = db.tbInventarioFisico.Find(id);
-            db.tbInventarioFisico.Remove(tbInventarioFisico);
-            db.SaveChanges();
-            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
@@ -567,7 +515,6 @@ namespace ERP_GMEDINA.Controllers
 
         public ActionResult Conciliar(int? id)
         {
-
             try
             {
                 tbInventarioFisico obj = db.tbInventarioFisico.Find(id);
@@ -593,11 +540,7 @@ namespace ERP_GMEDINA.Controllers
                 ModelState.AddModelError("", "No se Actualizo el registro");
                 return RedirectToAction("Edit/" + id);
             }
-
-
-            //return RedirectToAction("Index");
         }
-
     }
 }
 
