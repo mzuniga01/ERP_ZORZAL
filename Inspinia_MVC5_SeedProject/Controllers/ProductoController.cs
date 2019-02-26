@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using ERP_GMEDINA.Models;
 using System.Data.Entity.Core.Objects;
+using ERP_GMEDINA.Attribute;
 
 namespace ERP_GMEDINA.Controllers
 {
@@ -18,114 +19,40 @@ namespace ERP_GMEDINA.Controllers
         private GeneralFunctions Function = new GeneralFunctions();
 
         // GET: /Producto/
+        [SessionManager("Producto/Index")]
         public ActionResult Index()
         {
-            GeneralFunctions Function = new GeneralFunctions();
-            if (Function.GetUserLogin())
-            {
-                if (Function.Sesiones("Producto/Index"))
-                {
-                }
-                else
-                {
-                    return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
-                }
-
-                if (Function.GetUserRols("Producto/Index"))
-                {
-                    var tbproducto = db.tbProducto.Include(t => t.tbUsuario).Include(t => t.tbUnidadMedida).Include(t => t.tbProductoSubcategoria);
-                    ViewBag.Producto = db.tbBodegaDetalle.ToList();
-                    return View(tbproducto.ToList());
-                }
-                else
-                {
-                    return RedirectToAction("SinAcceso", "Login");
-                }
-            }
-            else
-                return RedirectToAction("Index", "Login");
+            var tbproducto = db.tbProducto.Include(t => t.tbUsuario).Include(t => t.tbUnidadMedida).Include(t => t.tbProductoSubcategoria);
+            ViewBag.Producto = db.tbBodegaDetalle.ToList();
+            return View(tbproducto.ToList());
         }
 
         // GET: /Producto/Details/5
+        [SessionManager("Producto/Details")]
         public ActionResult Details(string id)
         {
-            GeneralFunctions Function = new GeneralFunctions();
-            if (Function.GetUserLogin())
+            if (id == null)
             {
-                if (Function.Sesiones("Producto/Details"))
-                {
-                }
-                else
-                {
-                    return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
-                }
-                if (Function.GetUserRols("Producto/Details"))
-                {
-                    if (id == null)
-                    {
-                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                    }
-
-                    tbProducto tbProducto = db.tbProducto.Find(id);
-
-                    //var pcat = db.tbProductoSubcategoria.Find(tbProducto.pscat_Id).pcat_Id;
-                    //ViewBag.PCAT = db.tbProductoCategoria.Find(pcat).pcat_Nombre;
-
-                    //ViewBag.UsuarioCrea = db.tbUsuario.Find(tbProducto.prod_UsuarioCrea).usu_NombreUsuario;
-                    //var UsuarioModfica = tbProducto.prod_UsuarioModifica;
-                    //if (UsuarioModfica == null)
-                    //{
-                    //    ViewBag.UsuarioModifica = "";
-                    //}
-                    //else
-                    //{
-                    //    ViewBag.UsuarioModifica = db.tbUsuario.Find(UsuarioModfica).usu_NombreUsuario;
-                    //};
-
-                    if (tbProducto == null)
-                    {
-                        return HttpNotFound();
-                    }
-                    return View(tbProducto);
-                }
-                else
-                {
-                    return RedirectToAction("SinAcceso", "Login");
-                }
+                return RedirectToAction("Index");
             }
-            else
-                return RedirectToAction("Index", "Login");
+            tbProducto tbProducto = db.tbProducto.Find(id);
+            if (tbProducto == null)
+            {
+                return RedirectToAction("NotFound", "Login");
+            }
+            return View(tbProducto);
         }
 
         // GET: /Producto/Create
+        [SessionManager("Producto/Create")]
         public ActionResult Create()
         {
-            GeneralFunctions Function = new GeneralFunctions();
-            if (Function.GetUserLogin())
-            {
-                if (Function.Sesiones("Producto/Create"))
-                {
-                }
-                else
-                {
-                    return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
-                }
-                if (Function.GetUserRols("Producto/Create"))
-                {
-                    ViewBag.pcat_Id = new SelectList(db.tbProductoCategoria.Where(x => x.pcat_EsActivo == 1), "pcat_Id", "pcat_Nombre");
-                    ViewBag.prod_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
-                    ViewBag.prod_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
-                    ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion");
-                    ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion");
-                    return View();
-                }
-                else
-                {
-                    return RedirectToAction("SinAcceso", "Login");
-                }
-            }
-            else
-                return RedirectToAction("Index", "Login");
+            ViewBag.pcat_Id = new SelectList(db.tbProductoCategoria.Where(x => x.pcat_EsActivo == 1), "pcat_Id", "pcat_Nombre");
+            ViewBag.prod_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+            ViewBag.prod_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+            ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion");
+            ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion");
+            return View();
         }
 
         [HttpPost]
@@ -148,20 +75,10 @@ namespace ERP_GMEDINA.Controllers
             var list = db.UDP_Inv_tbProducto_GetSubCategoria(CodCategoria).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
-
-        //[HttpPost]
-        //public JsonResult GetScatList(int pcat_Id)
-        //{
-        //    db.Configuration.ProxyCreationEnabled = false;
-        //    List<tbProductoSubcategoria> tbProductoSubcategoriaList = db.tbProductoSubcategoria.Where(x => x.pcat_Id == pcat_Id).ToList();
-        //    return Json(tbProductoSubcategoriaList, JsonRequestBehavior.AllowGet);
-        //}
-
-        // POST: /Producto/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [SessionManager("Producto/Create")]
         public ActionResult Create([Bind(Include = "prod_Codigo,prod_Descripcion,prod_Marca,prod_Modelo,prod_Talla,prod_Color,pscat_Id,uni_Id,prod_CodigoBarras,prod_UsiuarioCrea,prod_FechaCrea,pcat_Id")] tbProducto tbProducto, int pcat_Id)
         {
             if (db.tbProducto.Any(a => a.prod_CodigoBarras == tbProducto.prod_CodigoBarras))
@@ -172,7 +89,7 @@ namespace ERP_GMEDINA.Controllers
             {
                 try
                 {
-                    var MsjError = "";
+                    string MsjError = "";
                     IEnumerable<object> List = null;
                     List = db.UDP_Inv_tbProducto_Insert(tbProducto.prod_Codigo,
                                                             tbProducto.prod_Descripcion,
@@ -192,6 +109,11 @@ namespace ERP_GMEDINA.Controllers
                     if (MsjError.StartsWith("-1"))
                     {
                         ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
+                        ViewBag.pcat_Id = new SelectList(db.tbProductoCategoria, "pcat_Id", "pcat_Nombre");
+                        ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion");
+                        ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion");
+                        Function.InsertBitacoraErrores("Producto/Create", MsjError, "Create");
+                        ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
                         return View(tbProducto);
                     }
                     else
@@ -201,11 +123,9 @@ namespace ERP_GMEDINA.Controllers
                 }
                 catch (Exception Ex)
                 {
-                    Ex.Message.ToString();
-                    ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
+                    Function.InsertBitacoraErrores("Producto/Create", Ex.Message.ToString(), "Create");
+                    ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
                     ViewBag.pcat_Id = new SelectList(db.tbProductoCategoria, "pcat_Id", "pcat_Nombre");
-                    //ViewBag.prod_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
-                    //ViewBag.prod_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
                     ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion");
                     ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion");
                     return View(tbProducto);
@@ -221,51 +141,32 @@ namespace ERP_GMEDINA.Controllers
         }
 
         // GET: /Producto/Edit/5
+        [SessionManager("Producto/Edit")]
         public ActionResult Edit(string id)
         {
-            //GeneralFunctions Function = new GeneralFunctions();
-            if (Function.GetUserLogin())
+            if (id == null)
             {
-                if (Function.Sesiones("Producto/Edit"))
-                {
-                }
-                else
-                {
-                    return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
-                }
-                if (Function.GetUserRols("Cliente/Edit"))
-                {
-                    if (id == null)
-                    {
-                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                    }
-                    tbProducto tbProducto = db.tbProducto.Find(id);
-
-                    if (tbProducto == null)
-                    {
-                        return HttpNotFound();
-                    }
-
-                    ViewBag.prod_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbProducto.prod_UsuarioModifica);
-                    ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion", tbProducto.uni_Id);
-                    ViewBag.pcat_Id = new SelectList(db.tbProductoCategoria.Where(x => x.pcat_EsActivo == 1), "pcat_Id", "pcat_Nombre", tbProducto.tbProductoSubcategoria.tbProductoCategoria.pcat_Id);
-                    var Categoria = tbProducto.tbProductoSubcategoria.tbProductoCategoria.pcat_Id; ;
-                    var Sucategoria = db.tbProductoSubcategoria.Select(s => new
-                    {
-                        pscat_Id = s.pscat_Id,
-                        pscat_Descripcion = s.pscat_Descripcion,
-                        pcat_Id = s.pcat_Id
-                    }).Where(x => x.pcat_Id == Categoria).ToList();
-                    ViewBag.pscat_Id = new SelectList(Sucategoria, "pscat_Id", "pscat_Descripcion", tbProducto.pscat_Id);
-                    return View(tbProducto);
-                }
-                else
-                {
-                    return RedirectToAction("SinAcceso", "Login");
-                }
+                return RedirectToAction("Index");
             }
-            else
-                return RedirectToAction("Index", "Login");
+            tbProducto tbProducto = db.tbProducto.Find(id);
+
+            if (tbProducto == null)
+            {
+                return RedirectToAction("NotFound", "Login");
+            }
+
+            ViewBag.prod_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbProducto.prod_UsuarioModifica);
+            ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion", tbProducto.uni_Id);
+            ViewBag.pcat_Id = new SelectList(db.tbProductoCategoria.Where(x => x.pcat_EsActivo == 1), "pcat_Id", "pcat_Nombre", tbProducto.tbProductoSubcategoria.tbProductoCategoria.pcat_Id);
+            var Categoria = tbProducto.tbProductoSubcategoria.tbProductoCategoria.pcat_Id; ;
+            var Sucategoria = db.tbProductoSubcategoria.Select(s => new
+            {
+                pscat_Id = s.pscat_Id,
+                pscat_Descripcion = s.pscat_Descripcion,
+                pcat_Id = s.pcat_Id
+            }).Where(x => x.pcat_Id == Categoria).ToList();
+            ViewBag.pscat_Id = new SelectList(Sucategoria, "pscat_Id", "pscat_Descripcion", tbProducto.pscat_Id);
+            return View(tbProducto);
         }
 
         [HttpPost]
@@ -280,6 +181,7 @@ namespace ERP_GMEDINA.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [SessionManager("Producto/Edit")]
         public ActionResult Edit(string id, [Bind(Include = "prod_Codigo,prod_Descripcion,prod_Marca,prod_Modelo,prod_Talla,prod_Color,pscat_Id,uni_Id,prod_EsActivo,prod_Razon_Inactivacion,prod_UsuarioCrea,prod_FechaCrea,prod_UsuarioModifica,prod_FechaModifica,prod_CodigoBarras,pcat_Id")] tbProducto tbProducto, int pcat_Id)
         {
             if (ModelState.IsValid)
@@ -287,9 +189,8 @@ namespace ERP_GMEDINA.Controllers
                 try
                 {
                     tbProducto vtbProducto = db.tbProducto.Find(id);
-
                     IEnumerable<object> List = null;
-                    var MsjError = "";
+                    string MsjError = "";
                     List = db.UDP_Inv_tbProducto_Update(tbProducto.prod_Codigo,
                                                         tbProducto.prod_Descripcion,
                                                         tbProducto.prod_Marca,
@@ -307,9 +208,12 @@ namespace ERP_GMEDINA.Controllers
                     foreach (UDP_Inv_tbProducto_Update_Result producto in List)
                         MsjError = producto.MensajeError;
 
-                    if (MsjError == "-1")
+                    if (MsjError.StartsWith("-1"))
                     {
-                        ModelState.AddModelError("", "No se Actualizo el registro , Contacte al Administrador");
+                        ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion", tbProducto.uni_Id);
+                        ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion ", tbProducto.pscat_Id);
+                        Function.InsertBitacoraErrores("Producto/Edit", MsjError, "Edit");
+                        ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
                         return View(tbProducto);
                     }
                     else
@@ -319,8 +223,11 @@ namespace ERP_GMEDINA.Controllers
                 }
                 catch (Exception Ex)
                 {
-                    Ex.Message.ToString();
-                    ModelState.AddModelError("", "No se Actualizo el registro , Contacte al Administrador");
+                    ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion", tbProducto.uni_Id);
+                    ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion ", tbProducto.pscat_Id);
+                    Function.InsertBitacoraErrores("Producto/Edit", Ex.Message.ToString(), "Edit");
+                    ModelState.AddModelError("", "No se pudo actualizar el registro detalle, favor contacte al administrador.");
+                    return View(tbProducto);
                 }
             }
             else
@@ -336,9 +243,9 @@ namespace ERP_GMEDINA.Controllers
 
         public ActionResult EstadoActivar(string id)
         {
+            tbProducto obj = db.tbProducto.Find(id);
             try
             {
-                tbProducto obj = db.tbProducto.Find(id);
                 tbProducto productos = new tbProducto();
                 IEnumerable<object> list = null;
                 var MsjError = "";
@@ -346,9 +253,12 @@ namespace ERP_GMEDINA.Controllers
                 foreach (UDP_Inv_tbProducto_Estado_Prueba_Result obje in list)
                     MsjError = obje.MensajeError;
 
-                if (MsjError == "-1")
+                if (MsjError.StartsWith("-1"))
                 {
-                    ModelState.AddModelError("", "No se Actualizo el registro contacte con el administrador");
+                    ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion", obj.uni_Id);
+                    ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion ", obj.pscat_Id);
+                    Function.InsertBitacoraErrores("Producto/EstadoActivar", MsjError, "EstadoActivar");
+                    ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
                     return RedirectToAction("Edit/" + id);
                 }
                 else
@@ -358,37 +268,12 @@ namespace ERP_GMEDINA.Controllers
             }
             catch (Exception Ex)
             {
-                Ex.Message.ToString();
-                ModelState.AddModelError("", "No se Actualizo el registro contacte con el administrador");
+                ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion", obj.uni_Id);
+                ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion ", obj.pscat_Id);
+                Function.InsertBitacoraErrores("Producto/EstadoActivar", Ex.Message.ToString(), "EstadoActivar");
+                ModelState.AddModelError("", "No se pudo actualizar el registro detalle, favor contacte al administrador.");
                 return RedirectToAction("Edit/" + id);
             }
-            //return RedirectToAction("Index");
-        }
-
-        // GET: /Producto/Delete/5
-        public ActionResult Delete(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            tbProducto tbProducto = db.tbProducto.Find(id);
-            if (tbProducto == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tbProducto);
-        }
-
-        // POST: /Producto/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
-        {
-            tbProducto tbProducto = db.tbProducto.Find(id);
-            db.tbProducto.Remove(tbProducto);
-            db.SaveChanges();
-            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
@@ -404,8 +289,16 @@ namespace ERP_GMEDINA.Controllers
         public JsonResult EstadoInactivar(tbProducto tbProducto, string Razon_Inactivacion)
         {
             tbProducto vProducto = db.tbProducto.Find(tbProducto.prod_Codigo);
-            var list = db.UDP_Inv_tbProducto_Update_RazonInactivacion(tbProducto.prod_Codigo, Helpers.ProductoInactivo, Razon_Inactivacion, vProducto.prod_UsuarioCrea, vProducto.prod_FechaCrea, Function.GetUser(), DateTime.Now).ToList();
-            return Json(list, JsonRequestBehavior.AllowGet);
+            try
+            {
+                var list = db.UDP_Inv_tbProducto_Update_RazonInactivacion(tbProducto.prod_Codigo, Helpers.ProductoInactivo, Razon_Inactivacion, vProducto.prod_UsuarioCrea, vProducto.prod_FechaCrea, Function.GetUser(), DateTime.Now).ToList();
+                return Json("Éxito", JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception Ex)
+            {
+                Function.InsertBitacoraErrores("Producto/EstadoInactivar", Ex.Message.ToString(), "EstadoInactivar");
+                return Json("Error", JsonRequestBehavior.AllowGet);
+            }
         }
     }
 }

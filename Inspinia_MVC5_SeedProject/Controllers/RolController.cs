@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using ERP_GMEDINA.Models;
 using System.Transactions;
+using ERP_GMEDINA.Attribute;
 
 namespace ERP_GMEDINA.Controllers
 {
@@ -16,17 +17,9 @@ namespace ERP_GMEDINA.Controllers
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
         GeneralFunctions Function = new GeneralFunctions();
         // GET: /Rol/
+        [SessionManager("Rol/Index")]
         public ActionResult Index()
         {
-            if (Function.Sesiones("Rol/Index"))
-            {
-
-            }
-            else
-            {
-                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
-            }
-
             return View(db.tbRol.ToList());
         }
         public ActionResult _IndexAccesoRol()
@@ -34,33 +27,14 @@ namespace ERP_GMEDINA.Controllers
             return View();
         }
         // GET: /Rol/Details/5
+        [SessionManager("Rol/Details")]
         public ActionResult Details(int? id)
         {
-            if (Function.Sesiones("Rol/Details"))
-            {
-
-            }
-            else
-            {
-                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
-            }
-
             if (id == null)
             {
                 return RedirectToAction("Index");
             }
             tbRol tbRol = db.tbRol.Find(id);
-
-            ViewBag.UsuarioCrea = db.tbUsuario.Find(tbRol.rol_UsuarioCrea).usu_Nombres;
-            var UsuarioModfica = tbRol.rol_UsuarioModifica;
-            if (UsuarioModfica == null)
-            {
-                ViewBag.UsuarioModifica = "";
-            }
-            else
-            {
-                ViewBag.UsuarioModifica = db.tbUsuario.Find(UsuarioModfica).usu_Nombres;
-            };
             if (tbRol == null)
             {
                 return RedirectToAction("NotFound", "Login");
@@ -68,128 +42,27 @@ namespace ERP_GMEDINA.Controllers
             return View(tbRol);
         }
         // GET: /Rol/Create
+        [SessionManager("Rol/Create")]
         public ActionResult Create()
         {
-            if (Function.Sesiones("Rol/Create"))
-            {
-
-            }
-            else
-            {
-                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
-            }
-
             ViewBag.obj_Id = new SelectList(db.tbObjeto, "obj_Id", "obj_Pantalla");
             return View();
         }
-        // POST: /Rol/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "rol_Descripcion,rol_Estado")] tbRol tbRol)
-        {
-            int idUser = 0;
-            GeneralFunctions Login = new GeneralFunctions();
-            List<tbUsuario> User = Login.getUserInformation();
-            foreach (tbUsuario Usuario in User)
-            {
-                idUser = Convert.ToInt32(Usuario.usu_Id);
-            }
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    IEnumerable<Object> List = null;
-                    var Msj = "";
-                    List = db.UDP_Acce_tbRol_Insert(tbRol.rol_Descripcion, Helpers.RolActivo, idUser, System.DateTime.Now);
-                    foreach (UDP_Acce_tbRol_Insert_Result Rol in List)
-                        Msj = Rol.MensajeError;
-                }
-                catch (Exception Ex)
-                {
-                    Ex.Message.ToString();
-                    ModelState.AddModelError("", "No se pudo guardar el registro , Contacte al Administrador");
-                }
-                return RedirectToAction("Index");
-            }
-            return View(tbRol);
-        }
+
         // GET: /Rol/Edit/5
+        [SessionManager("Rol/Edit")]
         public ActionResult Edit(int? id)
         {
-            if (Function.Sesiones("Rol/Edit"))
-            {
-
-            }
-            else
-            {
-                return RedirectToAction("ModificarPass/" + Session["UserLogin"], "Usuario");
-            }
-
             try
             {
                 ViewBag.smserror = TempData["smserror"].ToString();
             }
             catch { }
-
             if (id == null)
             {
                 return RedirectToAction("Index");
             }
             ViewBag.obj_Id = new SelectList(db.tbObjeto, "obj_Id", "obj_Pantalla");
-
-            tbRol tbRol = db.tbRol.Find(id);
-            ViewBag.UsuarioCrea = db.tbUsuario.Find(tbRol.rol_UsuarioCrea).usu_Nombres;
-            var UsuarioModfica = tbRol.rol_UsuarioModifica;
-            if (UsuarioModfica == null)
-            {
-                ViewBag.UsuarioModifica = "";
-            }
-            else
-            {
-                ViewBag.UsuarioModifica = db.tbUsuario.Find(UsuarioModfica).usu_Nombres;
-            };
-            if (tbRol == null)
-            {
-                return RedirectToAction("NotFound", "Login");
-            }
-            return View(tbRol);
-        }
-        // POST: /Rol/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(byte? id, [Bind(Include = "rol_Id,rol_Descripcion,rol_UsuarioCrea,rol_FechaCrea,rol_Estado")] tbRol tbRol)
-        {
-            if (ModelState.IsValid)
-            {
-                    //try
-                    //{
-                    //    tbRol vRol = db.tbRol.Find(id);
-                    //    IEnumerable<Object> List = null;
-                    //    var Msj = "";
-                    //    List = db.UDP_Acce_tbRol_Update(tbRol.rol_Id, tbRol.rol_Descripcion, vRol.rol_UsuarioCrea, vRol.rol_FechaCrea, vRol.rol_Estado);
-                    //    foreach (UDP_Acce_tbRol_Update_Result Rol in List)
-                    //        Msj = Rol.MensajeError;
-                    //}
-                    //catch (Exception Ex)
-                    //{
-                    //    Ex.Message.ToString();
-                    //    ModelState.AddModelError("", "No se pudo actualizar el registro , Contacte al Administrador");
-                    //}
-                    //return RedirectToAction("Index");
-                }
-            return View(tbRol);
-        }
-        // GET: /Rol/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return RedirectToAction("Index");
-            }
             tbRol tbRol = db.tbRol.Find(id);
             if (tbRol == null)
             {
@@ -197,16 +70,7 @@ namespace ERP_GMEDINA.Controllers
             }
             return View(tbRol);
         }
-        // POST: /Rol/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            tbRol tbRol = db.tbRol.Find(id);
-            db.tbRol.Remove(tbRol);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+        
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -312,6 +176,7 @@ namespace ERP_GMEDINA.Controllers
             }
         }
         [HttpPost]
+        [SessionManager("Rol/Create")]
         public JsonResult InsertRol(string DescripcionRol, ICollection<tbAccesoRol> AccesoRol)
         {
             int idUser = 0;
@@ -324,8 +189,7 @@ namespace ERP_GMEDINA.Controllers
             IEnumerable<Object> Rol = null;
             IEnumerable<Object> RolAcceso = null;
             int idRol = 0;
-            var Msj1 = "";
-            var Msj2 = "";
+            string Msj1 = "-1";
             if (db.tbRol.Any(a => a.rol_Descripcion == DescripcionRol))
             {
                 ModelState.AddModelError("", "Ya existe un rol con el mismo nombre");
@@ -334,43 +198,50 @@ namespace ERP_GMEDINA.Controllers
             else
             {
                 using (TransactionScope Tran = new TransactionScope())
-            {
-
-                try
                 {
-                    if (DescripcionRol != "")
+                    try
                     {
-                        Rol = db.UDP_Acce_tbRol_Insert(DescripcionRol, Helpers.RolActivo, Function.GetUser(), Function.DatetimeNow());
-                        foreach (UDP_Acce_tbRol_Insert_Result vRol in Rol)
-                            Msj1 = vRol.MensajeError;
-                        if (Msj1.Substring(0, 1) != "-")
+                        if (DescripcionRol != "")
                         {
-                            if (AccesoRol != null)
+                            Rol = db.UDP_Acce_tbRol_Insert(DescripcionRol, Helpers.RolActivo, Function.GetUser(), Function.DatetimeNow());
+                            foreach (UDP_Acce_tbRol_Insert_Result vRol in Rol)
+                                Msj1 = vRol.MensajeError;
+                            if (!Msj1.StartsWith("-1"))
                             {
-                                if (AccesoRol.Count > 0)
+                                if (AccesoRol != null)
                                 {
-                                    idRol = Convert.ToInt32(Msj1);
-                                    foreach (tbAccesoRol vAccesoRol in AccesoRol)
+                                    if (AccesoRol.Count > 0)
                                     {
-                                        RolAcceso = db.UDP_Acce_tbAccesoRol_Insert(idRol, vAccesoRol.obj_Id, Function.GetUser(), Function.DatetimeNow());
-                                        foreach (UDP_Acce_tbAccesoRol_Insert_Result item in RolAcceso)
+                                        idRol = Convert.ToInt32(Msj1);
+                                        foreach (tbAccesoRol vAccesoRol in AccesoRol)
                                         {
-                                            Msj2 = Convert.ToString(item.MensajeError);
+                                            RolAcceso = db.UDP_Acce_tbAccesoRol_Insert(idRol, vAccesoRol.obj_Id, Function.GetUser(), Function.DatetimeNow());
+                                            foreach (UDP_Acce_tbAccesoRol_Insert_Result item in RolAcceso)
+                                            {
+                                                Msj1 = Convert.ToString(item.MensajeError);
+                                                if (Msj1.StartsWith("-1"))
+                                                {
+                                                    Function.InsertBitacoraErrores("Rol/Create", Msj1, "Create");
+                                                }
+                                            }
                                         }
                                     }
                                 }
+                                else
+                                {
+                                    Function.InsertBitacoraErrores("Rol/Create", Msj1, "Create");
+                                    Msj1 = "-1";
+                                }   
                             }
-
+                            Tran.Complete();
                         }
-                        Tran.Complete();
+                    }
+                    catch (Exception Ex)
+                    {
+                        Function.InsertBitacoraErrores("Rol/Create", Ex.Message.ToString(), "Create");
+                        Msj1 = "-1";
                     }
                 }
-                catch (Exception)
-                {
-                    Msj1 = "-1";
-                }
-
-            }
             }
             return Json(Msj1, JsonRequestBehavior.AllowGet);
         }
@@ -393,9 +264,11 @@ namespace ERP_GMEDINA.Controllers
             return Json(list, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
+        [SessionManager("Rol/Edit")]
         public JsonResult UpdateRol(int rolId, string Descripcion)
         {
-            var Msj = "";
+            string Msj = "-1";
+            IEnumerable<Object> Rol = null;
             if (db.tbRol.Any(a => a.rol_Descripcion == Descripcion && a.rol_Id != rolId))
             {
                 ModelState.AddModelError("", "Ya existe un rol con el mismo nombre");
@@ -403,23 +276,26 @@ namespace ERP_GMEDINA.Controllers
             }
             else
             {
-                int idUser = 0;
-                GeneralFunctions Login = new GeneralFunctions();
-                List<tbUsuario> User = Login.getUserInformation();
-                foreach (tbUsuario Usuario in User)
-                {
-                    idUser = Convert.ToInt32(Usuario.usu_Id);
-                }
                 try
                 {
                     if (Descripcion != null)
                     {
-                        db.UDP_Acce_tbRol_Update(rolId, Descripcion, Function.GetUser(), Function.DatetimeNow());
-                        Msj = "1";
+                        Rol = db.UDP_Acce_tbRol_Update(rolId, Descripcion, Function.GetUser(), Function.DatetimeNow());
+                        foreach (UDP_Acce_tbAccesoRol_Update_Result item in Rol)
+                        {
+                            Msj = Convert.ToString(item.MensajeError);
+                            if (Msj.StartsWith("-1"))
+                            {
+                                Function.InsertBitacoraErrores("Rol/Edit", Msj, "Edit");
+                            }
+                            else
+                                Msj = "1";
+                        }
                     }
                 }
-                catch (Exception)
+                catch (Exception Ex)
                 {
+                    Function.InsertBitacoraErrores("Rol/Edit", Ex.Message.ToString(), "Edit");
                     Msj = "-1";
                 }
             }

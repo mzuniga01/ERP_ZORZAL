@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ERP_GMEDINA.Models;
+using ERP_GMEDINA.Attribute;
 
 namespace ERP_ZORZAL.Controllers
 {
@@ -15,12 +16,14 @@ namespace ERP_ZORZAL.Controllers
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
         GeneralFunctions Function = new GeneralFunctions();
         // GET: /Proveedor/
+        [SessionManager("Proveedor/Index")]
         public ActionResult Index()
         {
             return View(db.tbProveedor.ToList());
         }
 
         // GET: /Proveedor/Details/5
+        [SessionManager("Proveedor/Details")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -28,16 +31,6 @@ namespace ERP_ZORZAL.Controllers
                 return RedirectToAction("Index");
             }
             tbProveedor tbProveedor = db.tbProveedor.Find(id);
-            ViewBag.UsuarioCrea = db.tbUsuario.Find(tbProveedor.prov_UsuarioCrea).usu_NombreUsuario;
-            var UsuarioModfica = tbProveedor.prov_UsuarioModifica;
-            if (UsuarioModfica == null)
-            {
-                ViewBag.UsuarioModifica = "";
-            }
-            else
-            {
-                ViewBag.UsuarioModifica = db.tbUsuario.Find(UsuarioModfica).usu_NombreUsuario;
-            };
             if (tbProveedor == null)
             {
                 return RedirectToAction("NotFound", "Login");
@@ -46,6 +39,7 @@ namespace ERP_ZORZAL.Controllers
         }
 
         // GET: /Proveedor/Create
+        [SessionManager("Proveedor/Create")]
         public ActionResult Create()
         {
             try
@@ -67,6 +61,7 @@ namespace ERP_ZORZAL.Controllers
 
 
         // GET: /Proveedor/Edit/5
+        [SessionManager("Proveedor/Edit")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -74,185 +69,76 @@ namespace ERP_ZORZAL.Controllers
                 return RedirectToAction("Index");
             }
             tbProveedor tbProveedor = db.tbProveedor.Find(id);
-         
-          
             if (tbProveedor == null)
             {
-              
                 return RedirectToAction("NotFound", "Login");
             }
             ViewBag.Actividad = new SelectList(db.tbActividadEconomica, "acte_Id", "acte_Descripcion", tbProveedor.acte_Id);
             return View(tbProveedor);
         }
 
-
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "prov_RTN, prov_Nombre, prov_NombreContacto,prov_Direccion, prov_Email, prov_Telefono,acte_Id")] tbProveedor tbProveedor)
-        {
-
-
-
-
-            if (ModelState.IsValid)
-            {
-
-
-                try
-                {
-                    IEnumerable<Object> List = null;
-                    string Msj = "";
-                    ViewBag.Actividad = new SelectList(db.tbActividadEconomica, "acte_Id", "acte_Descripcion", tbProveedor.acte_Id);
-                    List = db.UDP_Inv_tbProveedor_Insert(tbProveedor.prov_RTN, tbProveedor.prov_Nombre,tbProveedor.prov_NombreContacto,tbProveedor.prov_Direccion, tbProveedor.prov_Email, tbProveedor.prov_Telefono, tbProveedor.acte_Id, Function.GetUser(), Function.DatetimeNow());
-                    foreach (UDP_Inv_tbProveedor_Insert_Result Proveedores in List)
-                        Msj = Proveedores.MensajeError;
-                    if (Msj.StartsWith("-1"))
-                    {
-                        Function.InsertBitacoraErrores("Proveedor/Create", Msj, "Create");
-                        ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
-                        return View(tbProveedor);
-                    }
-                    if (Msj.StartsWith("-2"))
-                    {
-                        Function.InsertBitacoraErrores("Proveedor/Create", Msj, "Create");
-                        ModelState.AddModelError("", "Ya existe un estado con el mismo nombre.");
-                        return View(tbProveedor);
-                    }
-                    else
-                    {
-                        return RedirectToAction("Index");
-                    }
-                }
-                catch (Exception Ex)
-                {
-                    Function.InsertBitacoraErrores("EstadoMovimiento/Create", Ex.Message.ToString(), "Create");
-                    ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
-                    return View(tbProveedor);
-                }
-            }
-            return View(tbProveedor);
-        }
-
-        [HttpPost]
+        [SessionManager("Proveedor/Create")]
         public JsonResult GuardarProveedor(string prov_RTN, string prov_Nombre, string prov_NombreContacto, string prov_Direccion, string prov_Email, string prov_Telefono,short? acte_Id)
         {
             var MsjError = "";
             if (ModelState.IsValid)
             {
-                //db.tbUnidadMedida.Add(tbProveedor);
-                //db.SaveChanges();
                 try
                 {
                     IEnumerable<object> List = null;
-                   
-
-
                     List = db.UDP_Inv_tbProveedor_Insert(prov_Nombre, prov_NombreContacto, prov_Direccion, prov_Email, prov_Telefono, prov_RTN, acte_Id, Function.GetUser(), Function.DatetimeNow());
                     foreach (UDP_Inv_tbProveedor_Insert_Result Proveedor in List)
                         MsjError = Proveedor.MensajeError;
-
-                    if (MsjError == "-1")
+                    if (MsjError.StartsWith("-1"))
                     {
-
-                        ModelState.AddModelError("", "No se guardo el registro, Contacte al Administrador");
-                     
+                        Function.InsertBitacoraErrores("Proveedor/Edit", MsjError, "Edit");
                     }
-
-                    else if (MsjError == "-2")
+                    else if (MsjError.StartsWith("-2"))
                     {
-
-                        ModelState.AddModelError("prov_RTN", "No se guardo el registro, Contacte al Administrador");
-                       
+                        Function.InsertBitacoraErrores("Proveedor/Edit", MsjError, "Edit");
                     }
-                  
-
                 }
                 catch (Exception Ex)
                 {
                     MsjError = "-1";
-                    Ex.Message.ToString();
-                    ModelState.AddModelError("", "No se Guardo el registro, Contacte al Administrador");
+                    Function.InsertBitacoraErrores("Proveedor/Edit", Ex.Message.ToString(), "Edit");
                 }
-              
             }
             return Json(MsjError, JsonRequestBehavior.AllowGet);
-
         }
-        // POST: /Proveedor/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
 
         [HttpPost]
+        [SessionManager("Proveedor/Edit")]
         public JsonResult ActualizarProveedor( int? prov_Id, string prov_RTN, string prov_Nombre, string prov_NombreContacto, string prov_Direccion, string prov_Email, string prov_Telefono, short? acte_Id)
         {
             var MsjError = "";
             tbProveedor tbProveedor = db.tbProveedor.Find(prov_Id);
             if (ModelState.IsValid)
             {
-                //db.tbUnidadMedida.Add(tbProveedor);
-                //db.SaveChanges();
                 try
                 {
                     IEnumerable<object> List = null;
-
-
-
                     List = db.UDP_Inv_tbProveedor_Update(prov_Id,prov_Nombre, prov_NombreContacto, prov_Direccion, prov_Email, prov_Telefono, prov_RTN, acte_Id, Function.GetUser(), Function.DatetimeNow(), Function.GetUser(), Function.DatetimeNow());
                     foreach (UDP_Inv_tbProveedor_Update_Result Proveedor in List)
                         MsjError = Proveedor.MensajeError;
-
-                    if (MsjError == "-1")
+                    if (MsjError.StartsWith("-1"))
                     {
-                      
-                        ModelState.AddModelError("", "No se guardo el registro, Contacte al Administrador");
-
+                        Function.InsertBitacoraErrores("Proveedor/Edit", MsjError, "Edit");
                     }
-
                     else if (MsjError == "-2")
                     {
-
-                        ModelState.AddModelError("prov_RTN", "No se guardo el registro, Contacte al Administrador");
-
+                        Function.InsertBitacoraErrores("Proveedor/Edit", MsjError, "Edit");
                     }
-
-
                 }
                 catch (Exception Ex)
                 {
                     MsjError = "-1";
-                    Ex.Message.ToString();
-                    ModelState.AddModelError("", "No se Guardo el registro, Contacte al Administrador");
+                    Function.InsertBitacoraErrores("Proveedor/Edit", Ex.Message.ToString(), "Edit");
                 }
                 ViewBag.Actividad = new SelectList(db.tbActividadEconomica, "acte_Id", "acte_Descripcion", tbProveedor.acte_Id);
             }
-
             return Json(MsjError, JsonRequestBehavior.AllowGet);
-
-        }
-        // GET: /Proveedor/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return RedirectToAction("Index");
-            }
-            tbProveedor tbProveedor = db.tbProveedor.Find(id);
-            if (tbProveedor == null)
-            {
-                return RedirectToAction("NotFound", "Login");
-            }
-            return View(tbProveedor);
-        }
-
-        // POST: /Proveedor/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            tbProveedor tbProveedor = db.tbProveedor.Find(id);
-            db.tbProveedor.Remove(tbProveedor);
-            db.SaveChanges();
-            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
@@ -263,11 +149,5 @@ namespace ERP_ZORZAL.Controllers
             }
             base.Dispose(disposing);
         }
-
-
-
-
-
-
     }
 }
