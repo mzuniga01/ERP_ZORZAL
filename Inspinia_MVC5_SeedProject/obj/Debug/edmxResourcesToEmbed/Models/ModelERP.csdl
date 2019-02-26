@@ -2762,6 +2762,9 @@
       <Parameter Name="pago_FechaVencimiento" Mode="In" Type="DateTime" />
       <Parameter Name="pago_Titular" Mode="In" Type="String" />
       <Parameter Name="nocre_Codigo_cdto_Id" Mode="In" Type="String" />
+      <Parameter Name="pago_EstaAnulado" Mode="In" Type="Boolean" />
+      <Parameter Name="pago_RazonAnulado" Mode="In" Type="String" />
+      <Parameter Name="pago_EstaImpreso" Mode="In" Type="Boolean" />
       <Parameter Name="pago_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="pago_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>

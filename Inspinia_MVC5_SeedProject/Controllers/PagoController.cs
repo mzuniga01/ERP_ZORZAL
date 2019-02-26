@@ -223,7 +223,22 @@ namespace ERP_GMEDINA.Controllers
                             {
                                 string MensajeError = "";
                                 IEnumerable<object> list = null;
-                                list = db.UDP_Vent_tbPago_Insert(tbPago.fact_Id, tbPago.tpa_Id, tbPago.pago_FechaElaboracion, tbPago.pago_SaldoAnterior, tbPago.pago_TotalPago, tbPago.pago_TotalCambio, tbPago.pago_Emisor, tbPago.bcta_Id, tbPago.pago_FechaVencimiento, tbPago.pago_Titular, tbPago.nocre_Codigo_cdto_Id, Function.GetUser(), Function.DatetimeNow());
+                                list = db.UDP_Vent_tbPago_Insert(tbPago.fact_Id, 
+                                                                 tbPago.tpa_Id, 
+                                                                 tbPago.pago_FechaElaboracion,
+                                                                 tbPago.pago_SaldoAnterior, 
+                                                                 tbPago.pago_TotalPago, 
+                                                                 tbPago.pago_TotalCambio,
+                                                                 tbPago.pago_Emisor,
+                                                                 tbPago.bcta_Id, 
+                                                                 tbPago.pago_FechaVencimiento,
+                                                                 tbPago.pago_Titular, 
+                                                                 tbPago.nocre_Codigo_cdto_Id,
+                                                                 tbPago.pago_EstaAnulado,
+                                                                 tbPago.pago_RazonAnulado,
+                                                                 tbPago.pago_EstaImpreso,
+                                                                 Function.GetUser(), 
+                                                                 Function.DatetimeNow());
                                 foreach (UDP_Vent_tbPago_Insert_Result pago in list)
                                     MensajeError = pago.MensajeError.ToString();
                                 if (MensajeError.StartsWith(" -1"))

@@ -5586,6 +5586,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Parameter Name="pago_FechaVencimiento" Type="datetime" Mode="In" />
           <Parameter Name="pago_Titular" Type="nvarchar" Mode="In" />
           <Parameter Name="nocre_Codigo_cdto_Id" Type="nvarchar" Mode="In" />
+          <Parameter Name="pago_EstaAnulado" Type="bit" Mode="In" />
+          <Parameter Name="pago_RazonAnulado" Type="nvarchar" Mode="In" />
+          <Parameter Name="pago_EstaImpreso" Type="bit" Mode="In" />
           <Parameter Name="pago_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="pago_FechaCrea" Type="datetime" Mode="In" />
         </Function>
@@ -9848,6 +9851,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="pago_FechaVencimiento" Mode="In" Type="DateTime" />
             <Parameter Name="pago_Titular" Mode="In" Type="String" />
             <Parameter Name="nocre_Codigo_cdto_Id" Mode="In" Type="String" />
+            <Parameter Name="pago_EstaAnulado" Mode="In" Type="Boolean" />
+            <Parameter Name="pago_RazonAnulado" Mode="In" Type="String" />
+            <Parameter Name="pago_EstaImpreso" Mode="In" Type="Boolean" />
             <Parameter Name="pago_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="pago_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
@@ -9967,7 +9973,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="password" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbMovimientoCaja_Imprimir" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_Imprimir_Result1)">
-            <Parameter Name="mocja_Id" Mode="In" Type="Int32" />
+          <Parameter Name="mocja_Id" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">

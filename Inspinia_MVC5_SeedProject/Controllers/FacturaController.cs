@@ -23,6 +23,15 @@ namespace ERP_GMEDINA.Controllers
         // GET: /Factura/
         public ActionResult Index()
         {
+            int idUser = 0;
+            GeneralFunctions Login = new GeneralFunctions();
+            List<tbUsuario> User = Login.getUserInformation();
+            foreach (tbUsuario Usuario in User)
+            {
+                idUser = Convert.ToInt32(Usuario.usu_Id);
+            }
+            ViewBag.suc_Id = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.tbSucursal.suc_Id).SingleOrDefault();
+
             var tbFactura = db.UDV_Vent_Busqueda_Factura;
             return View(tbFactura.ToList());
         }
@@ -245,13 +254,13 @@ namespace ERP_GMEDINA.Controllers
             List<tbUsuario> User = Login.getUserInformation();
             foreach (tbUsuario Usuario in User)
             {
-                idUser = Convert.ToInt32(Usuario.emp_Id);
+                idUser = Convert.ToInt32(Usuario.usu_Id);
             }
             ViewBag.usu_Id = idUser;
             var Fact_Id = db.tbFactura.OrderBy(x => x.fact_Id).Select(x => x.fact_Id).ToList().LastOrDefault();
             ViewBag.fact_Id = Fact_Id + 1;
-            ViewBag.suc_Descripcion = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Descripcion).SingleOrDefault();
-            ViewBag.suc_Id = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Id).SingleOrDefault();
+            ViewBag.suc_Descripcion = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.tbSucursal.suc_Descripcion).SingleOrDefault();
+            ViewBag.suc_Id = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.tbSucursal.suc_Id).SingleOrDefault();
             ViewBag.fact_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             ViewBag.fact_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             ViewBag.esfac_Id = new SelectList(db.tbEstadoFactura, "esfac_Id", "esfac_Descripcion");

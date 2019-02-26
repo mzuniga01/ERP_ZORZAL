@@ -6466,7 +6466,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbPago_Impreso_Result>("UDP_Vent_tbPago_Impreso", pago_IdParameter, pago_EstaImpresoParameter);
         }
     
-        public virtual ObjectResult<UDP_Vent_tbPago_Insert_Result> UDP_Vent_tbPago_Insert(Nullable<long> fact_Id, Nullable<short> tpa_Id, Nullable<System.DateTime> pago_FechaElaboracion, Nullable<decimal> pago_SaldoAnterior, Nullable<decimal> pago_TotalPago, Nullable<decimal> pago_TotalCambio, string pago_Emisor, Nullable<short> bcta_Id, Nullable<System.DateTime> pago_FechaVencimiento, string pago_Titular, string nocre_Codigo_cdto_Id, Nullable<int> pago_UsuarioCrea, Nullable<System.DateTime> pago_FechaCrea)
+        public virtual ObjectResult<UDP_Vent_tbPago_Insert_Result> UDP_Vent_tbPago_Insert(Nullable<long> fact_Id, Nullable<short> tpa_Id, Nullable<System.DateTime> pago_FechaElaboracion, Nullable<decimal> pago_SaldoAnterior, Nullable<decimal> pago_TotalPago, Nullable<decimal> pago_TotalCambio, string pago_Emisor, Nullable<short> bcta_Id, Nullable<System.DateTime> pago_FechaVencimiento, string pago_Titular, string nocre_Codigo_cdto_Id, Nullable<bool> pago_EstaAnulado, string pago_RazonAnulado, Nullable<bool> pago_EstaImpreso, Nullable<int> pago_UsuarioCrea, Nullable<System.DateTime> pago_FechaCrea)
         {
             var fact_IdParameter = fact_Id.HasValue ?
                 new ObjectParameter("fact_Id", fact_Id) :
@@ -6512,6 +6512,18 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("nocre_Codigo_cdto_Id", nocre_Codigo_cdto_Id) :
                 new ObjectParameter("nocre_Codigo_cdto_Id", typeof(string));
     
+            var pago_EstaAnuladoParameter = pago_EstaAnulado.HasValue ?
+                new ObjectParameter("pago_EstaAnulado", pago_EstaAnulado) :
+                new ObjectParameter("pago_EstaAnulado", typeof(bool));
+    
+            var pago_RazonAnuladoParameter = pago_RazonAnulado != null ?
+                new ObjectParameter("pago_RazonAnulado", pago_RazonAnulado) :
+                new ObjectParameter("pago_RazonAnulado", typeof(string));
+    
+            var pago_EstaImpresoParameter = pago_EstaImpreso.HasValue ?
+                new ObjectParameter("pago_EstaImpreso", pago_EstaImpreso) :
+                new ObjectParameter("pago_EstaImpreso", typeof(bool));
+    
             var pago_UsuarioCreaParameter = pago_UsuarioCrea.HasValue ?
                 new ObjectParameter("pago_UsuarioCrea", pago_UsuarioCrea) :
                 new ObjectParameter("pago_UsuarioCrea", typeof(int));
@@ -6520,7 +6532,7 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("pago_FechaCrea", pago_FechaCrea) :
                 new ObjectParameter("pago_FechaCrea", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbPago_Insert_Result>("UDP_Vent_tbPago_Insert", fact_IdParameter, tpa_IdParameter, pago_FechaElaboracionParameter, pago_SaldoAnteriorParameter, pago_TotalPagoParameter, pago_TotalCambioParameter, pago_EmisorParameter, bcta_IdParameter, pago_FechaVencimientoParameter, pago_TitularParameter, nocre_Codigo_cdto_IdParameter, pago_UsuarioCreaParameter, pago_FechaCreaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbPago_Insert_Result>("UDP_Vent_tbPago_Insert", fact_IdParameter, tpa_IdParameter, pago_FechaElaboracionParameter, pago_SaldoAnteriorParameter, pago_TotalPagoParameter, pago_TotalCambioParameter, pago_EmisorParameter, bcta_IdParameter, pago_FechaVencimientoParameter, pago_TitularParameter, nocre_Codigo_cdto_IdParameter, pago_EstaAnuladoParameter, pago_RazonAnuladoParameter, pago_EstaImpresoParameter, pago_UsuarioCreaParameter, pago_FechaCreaParameter);
         }
     
         public virtual ObjectResult<UDP_Vent_tbPago_Update_Result> UDP_Vent_tbPago_Update(Nullable<int> pago_Id, Nullable<long> fact_Id, Nullable<short> tpa_Id, Nullable<System.DateTime> pago_FechaElaboracion, Nullable<decimal> pago_SaldoAnterior, Nullable<decimal> pago_TotalPago, Nullable<decimal> pago_TotalCambio, string pago_Emisor, Nullable<short> bcta_Id, Nullable<System.DateTime> pago_FechaVencimiento, string pago_Titular, string nocre_Codigo_cdto_Id, Nullable<int> pago_UsuarioCrea, Nullable<System.DateTime> pago_FechaCrea, Nullable<int> pago_UsuarioModifica, Nullable<System.DateTime> pago_FechaModifica)
