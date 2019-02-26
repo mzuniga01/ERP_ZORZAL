@@ -222,8 +222,6 @@ function GetConsumidorFinal() {
 function ValidarAutorizacion() {
     var User = $("#Username").val();
     var Password = $("#txtPassword").val();
-    console.log(User)
-    console.log(Password)
     $.ajax({
         url: "/Factura/AutorizarDescuento",
         method: "POST",
@@ -241,6 +239,33 @@ function ValidarAutorizacion() {
         }
         else
         {
+            valido = document.getElementById('mensajerror');
+            valido.innerText = "Usuario o contraseña incorrectos";
+        }
+    });
+}
+
+
+
+function ValidarAutorizacion1() {
+    var User = $("#Username1").val();
+    var Password = $("#txtPassword1").val();
+    $.ajax({
+        url: "/Factura/AutorizarDescuentoDetalle",
+        method: "POST",
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({ User: User, Password: Password }),
+    })
+    .done(function (data) {
+        console.log()
+        if (data == true) {
+
+            var Porcentaje = $("#PorcentajeDescuento1").val();
+            $("#factd_PorcentajeDescuento").val(Porcentaje);
+            $('#AutorizarDescuentoModal1').modal('hide');
+        }
+        else {
             valido = document.getElementById('mensajerror');
             valido.innerText = "Usuario o contraseña incorrectos";
         }
