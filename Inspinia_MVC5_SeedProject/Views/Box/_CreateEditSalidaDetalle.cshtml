@@ -49,7 +49,7 @@
                             <div class="col-md-4">
                                 @Html.EditorFor(model => model.sald_Cantidad, new { HtmlAttributes = new { name = "sald_Cantidad", @onkeypress = "return filterFloat(event,this);" } })
                                 <div id="validationcantidad">
-                                    @Html.ValidationMessageFor(model => model.sald_Cantidad)
+                                  @Html.ValidationMessageFor(model => model.sald_Cantidad)
                                 </div>
                             </div>
                             @Html.LabelFor(model => model.tbProducto.tbProductoSubcategoria.tbProductoCategoria, "Categoria", new { @class = "control-label col-md-2" })
@@ -74,65 +74,15 @@
                     <table id="tblSalidaDetalle" class="table table table-striped table-bordered">
                         <thead>
                             <tr>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.prod_Codigo)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.tbProducto.prod_Descripcion)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.tbProducto.prod_Marca)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.tbProducto.prod_Modelo)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.tbProducto.prod_Talla)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.tbProducto.pcat_Id)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.tbProducto.uni_Id)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.sald_Cantidad)
-                                </th>
-                                <th>
-                                    Acciones
-                                </th>
+                                <th>Codigo Producto</th>
+                                <th>Descripcion del Producto</th>
+                                <th>Unidad Medida</th>
+                                <th>Cantidad</th>
+                                <th>Eliminiar</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            @*<tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.tbProducto.prod_Marca)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.tbProducto.prod_Modelo)
-                                </td>
-                                <th>
-                                    @Html.DisplayFor(modelItem => item.sald_Cantidad)
-                                </th>
-                                <th>
-                                    @Html.DisplayFor(modelItem => item.tbProducto.prod_Talla)
-                                </th>
-                                <th>
-                                    @Html.DisplayFor(modelItem => item.tbProducto.tbProductoSubcategoria.tbProductoCategoria.pcat_Nombre)  @Html.DisplayFor(modelItem => item.tbProducto.tbProductoSubcategoria.pscat_Descripcion)
-                                </th>
-                                <th>
-                                    @Html.DisplayFor(modelItem => item.tbProducto.tbUnidadMedida.uni_Descripcion)
-                                </th>
-                                <th>
-                                    @Html.DisplayFor(modelItem => item.sald_Cantidad)
-                                </th>
-                                <td>
-                            </tr>*@
-                        </tbody>
-</table>
+                        <tbody></tbody>
+                    </table>
                 </div>
 
             </div>  <div class="form-group col-md-1">

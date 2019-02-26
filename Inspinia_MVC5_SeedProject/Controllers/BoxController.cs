@@ -151,33 +151,45 @@ namespace ERP_ZORZAL.Controllers
             var MensajeError = "0";
             var MensajeErrorDetalle = "0";
             IEnumerable<object> listSalidaDetalle = null;
-            if (ModelState.IsValid)
-            {
-                try
-                {
 
-                    var box_Codigo = "0";
-                    listSalidaDetalle = db.UDP_Inv_tbSalidaDetalle_Insert(
-                        SalidaDetalle.sal_Id,
-                        SalidaDetalle.prod_Codigo,
-                        SalidaDetalle.sald_Cantidad,
-                        box_Codigo
-                        , Function.GetUser(), Function.DatetimeNow());
-                    foreach (UDP_Inv_tbSalidaDetalle_Insert_Result spDetalle in listSalidaDetalle)
+            try
+            {
+                if (list != null)
+                {
+                    if (list.Count != 0)
                     {
-                        MensajeErrorDetalle = spDetalle.MensajeError;
-                        if (MensajeError == "-1")
+                        foreach (tbSalidaDetalle Detalle in list)
                         {
-                            ModelState.AddModelError("", "No se pudo agregar el registro detalle");
-                            return Json("", JsonRequestBehavior.AllowGet);
+                            var box_Codigo = "0";
+                            Detalle.box_Codigo = MensajeError;
+                            listSalidaDetalle = db.UDP_Inv_tbSalidaDetalle_Insert(
+                                SalidaDetalle.sal_Id,
+                                Detalle.prod_Codigo,
+                                Detalle.sald_Cantidad,
+                                box_Codigo
+                                , Function.GetUser(), Function.DatetimeNow());
+                            foreach (UDP_Inv_tbSalidaDetalle_Insert_Result spDetalle in listSalidaDetalle)
+                            {
+                                MensajeErrorDetalle = spDetalle.MensajeError;
+                                if (MensajeError == "-1")
+                                {
+                                    ModelState.AddModelError("", "No se pudo agregar el registro detalle");
+                                    return Json("", JsonRequestBehavior.AllowGet);
+                                }
+                            }
                         }
                     }
                 }
-                catch (Exception Ex)
+                else
                 {
-                    Ex.Message.ToString();
+                    ModelState.AddModelError("", "Vacio");
                 }
             }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+            }
+
             return Json("", JsonRequestBehavior.AllowGet);
         }
 
@@ -529,6 +541,40 @@ namespace ERP_ZORZAL.Controllers
 
             return Json("", JsonRequestBehavior.AllowGet);
         }
+        public JsonResult SaveSalidaDetalle(tbSalidaDetalle SalidaDetalle, string data_producto)
+        {
+            var datos = "";
+            decimal cantvieja = 0;
+            decimal cantnueva = 0;
+            data_producto = SalidaDetalle.prod_Codigo;
+            decimal data_cantidad = SalidaDetalle.sald_Cantidad;
+            List<tbSalidaDetalle> sessionSalidaDetalle = new List<tbSalidaDetalle>();
+            var list = (List<tbSalidaDetalle>)Session["SalidaDetalle"];
+            if (list == null)
+            {
+                sessionSalidaDetalle.Add(SalidaDetalle);
+                Session["SalidaDetalle"] = sessionSalidaDetalle;
+            }
+            else
+            {
+                foreach (var t in list)
+                    if (t.prod_Codigo == data_producto)
+                    {
+                        datos = data_producto;
+                        foreach (var viejo in list)
+                            if (viejo.prod_Codigo == SalidaDetalle.prod_Codigo)
+                                cantvieja = viejo.sald_Cantidad;
+                        cantnueva = cantvieja + data_cantidad;
+                        t.sald_Cantidad = cantnueva;
+                        return Json(datos, JsonRequestBehavior.AllowGet);
+                    }
+                list.Add(SalidaDetalle);
+                Session["SalidaDetalle"] = list;
+                return Json(datos, JsonRequestBehavior.AllowGet);
+            }
+            return Json(datos, JsonRequestBehavior.AllowGet);
+        }
+
 
     }
 }
