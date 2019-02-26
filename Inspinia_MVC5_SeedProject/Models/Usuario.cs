@@ -61,6 +61,7 @@ namespace ERP_GMEDINA.Models
         public byte usu_SesionesValidas { get; set; }
 
         [Display(Name = "Sucursal")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public Nullable<int> suc_Id { get; set; }
 
         [Display(Name = "ID Empleado")]
