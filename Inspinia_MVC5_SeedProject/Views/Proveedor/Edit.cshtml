@@ -132,12 +132,8 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.prov_Email, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                @Html.TextBoxFor(model => model.prov_Email, new { @class = "form-control", type = "email", @autocomplete = "off", MaxLength = 50 })
+                                @Html.TextBoxFor(model => model.prov_Email, new { @class = "form-control", @onKeyPress = "return CaracteresNombre(event)", @onkeyup = "this.value=NumText(this.value)", maxlength = 50 })
                                 <div id="validationEmail">
-                                    <p style="color:red"></p>
-                                </div>
-
-                                <div id="MessageForCorreo">
                                     <p style="color:red"></p>
                                 </div>
 

@@ -24,7 +24,7 @@ function NumText1(string) {//solo letras y numeros
 function CaracteresNombre(e) {
     tecla = (document.all) ? e.keyCode : e.which;
     tecla = String.fromCharCode(tecla)
-    return /^[a-zA-ZáéíóúñÁÉÍÓÚÑ1234567890  #.,@]+$/.test(tecla);
+    return /^[a-zA-ZáéíóúñÁÉÍÓÚÑ1234567890 ]+$/.test(tecla);
 
 }
 //////////////////////////////////////////////////////////
@@ -38,10 +38,6 @@ $("#prov_Telefono").on("keypress keyup blur", function (event) {
 ///SoloNumerosy+Telefono
 $("#prov_Telefono").on("keypress keyup blur", function (event) {
     var Telefono = $(this).val();
-  
-    if (Telefono == '') {
-        $(this).val('+');
-    }
     this.value = this.value.replace(/[a-záéíóúüñ#/=]+/ig, "");
 });
 ///SoloNumerosRTN
@@ -53,9 +49,7 @@ $("#prov_RTN").on("keypress keyup blur", function (event) {
     }
 });
 ////Accion Guardar
-$('#btnGuardar').click(function () {
-
-    
+$('#btnGuardar').click(function () {    
     $("#ErrorValidacionGeneral").remove();
     $("#errorRTN").remove();
     $("#errorNombre").remove();
@@ -72,14 +66,14 @@ $('#btnGuardar').click(function () {
     var Email = $("#prov_Email").val();
     var Telefono = $("#prov_Telefono").val();
     var Actividad = $("#acte_Id").find('option:selected').val();
-    //console.log(Actividad);
+
     if (RTN == '') {
         $('#RTN').text('');
         $('#errorRTN').text('');
         $('#validationRTN').after('<ul id="errorRTN" class="validation-summary-errors text-danger">Campo RTN Requerido</ul>');
     }
 
-  if (Nombre == '') {
+    if ($.trim(Nombre) == '') {
         $('#validationRTN').text('');
         $("errorRTN").removeClass("error");
         $('#Nombre').text('');
@@ -87,36 +81,44 @@ $('#btnGuardar').click(function () {
         $('#validationNombre').after('<ul id="errorNombre" class="validation-summary-errors text-danger">Campo Nombre Requerido</ul>');
     }
 
-    if (Contacto == '') {
+    if ($.trim(Contacto) == '') {
         $('#Contacto').text('');
         $('#errorContacto').text('');
         $('#validationContacto').after('<ul id="errorContacto" class="validation-summary-errors text-danger">Campo Contacto Requerido</ul>');
     }
 
-    if (Direccion == '') {
+    if ($.trim(Direccion) == '') {
         $('#Direccion').text('');
         $('#errorDireccion').text('');
         $('#validationDireccion').after('<ul id="errorDireccion" class="validation-summary-errors text-danger">Campo Direccion Requerido</ul>');
     }
-    if (Email == '') {
+
+    if ($.trim(Email) == '') {
         $('#Email').text('');
         $('#errorEmail').text('');
         $('#validationEmail').after('<ul id="errorEmail" class="validation-summary-errors text-danger">Campo Email Requerido</ul>');
     }
-    if (Telefono == '') {
+
+    if ($.trim(Telefono) == '') {
         $('#Telefono').text('');
         $('#errorTelefono').text('');
         $('#validationTelefono').after('<ul id="errorTelefono" class="validation-summary-errors text-danger">Campo Telefono Requerido</ul>');
     }
-    if (Actividad == '') {
+
+    if ($.trim(Actividad) == '') {
         $('#Actividad').text('');
         $('#errorActividad').text('');
         $('#validationActividad').after('<ul id="errorActividad" class="validation-summary-errors text-danger">Campo Actividad Economica Requerido</ul>');
     }
-  
-    else {
+    
+    var length = $("#prov_RTN").val().length;
+    if (length < 14) {
+        $('#errorRTN').text('');
+        $('#validationRTN').after('<ul id="errorRTN" class="validation-summary-errors text-danger">RTN debe tener 14 dígitos</ul>');
+        $("#prov_RTN").focus();
+    }
 
-
+    if (RTN != '' && $.trim(Nombre) != '' && $.trim(Contacto) != '' && $.trim(Direccion) != '' && $.trim(Email) != '' && $.trim(Telefono) != '' && $.trim(Actividad) != '' && length == 14) {
         $.ajax({
             url: "/Proveedor/GuardarProveedor",
             method: "POST",
@@ -124,21 +126,19 @@ $('#btnGuardar').click(function () {
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify({ prov_RTN: RTN, prov_Nombre: Nombre, prov_NombreContacto: Contacto, prov_Direccion: Direccion, prov_Email: Email, prov_Telefono: Telefono, acte_Id: Actividad}),
         })
-                .done(function (data) {
-                    if (data == "-1") {
-                        $('#prov_RTN').after('<ul id="ErrorValidacionGeneral" class="validation-summary-errors text-danger">No se Puede Guardar Contacte Al Administrador</ul>');
-                    }
-                    else if (data == "-2") {
-                        $('#RTN').text('');
-                        $('#ErrorValidacionGeneral').text('');
-                        $('#prov_RTN').after('<ul id="ErrorValidacionGeneral" class="validation-summary-errors text-danger">Este RTN Ya existe</ul>');
-                    }
-
-                    else {
-                        window.location.href = "Index/Proveedor";
-                    }
-                    console.log(data);
-            })
+        .done(function (data) {
+            if (data == "-1") {
+                $('#prov_RTN').after('<ul id="ErrorValidacionGeneral" class="validation-summary-errors text-danger">No se Puede Guardar Contacte Al Administrador</ul>');
+            }
+            else if (data == "-2") {
+                $('#RTN').text('');
+                $('#ErrorValidacionGeneral').text('');
+                $('#prov_RTN').after('<ul id="ErrorValidacionGeneral" class="validation-summary-errors text-danger">Este RTN Ya existe</ul>');
+            }
+            else {
+                window.location.href = "/Proveedor/Index";
+            }
+        })
     }
 });
 ////Accion Actualizar
@@ -169,44 +169,50 @@ $('#btnActualizar').click(function () {
         $('#validationRTN').after('<ul id="errorRTN" class="validation-summary-errors text-danger">Campo RTN Requerido</ul>');
     }
 
-   if (Nombre == '') {
-      
+    if ($.trim(Nombre) == '') {
         $('#Nombre').text('');
         $('#errorNombre').text('');
         $('#validationNombre').after('<ul id="errorNombre" class="validation-summary-errors text-danger">Campo Nombre Requerido</ul>');
     }
 
-if (Contacto == '') {
+    if ($.trim(Contacto) == '') {
         $('#Contacto').text('');
         $('#errorContacto').text('');
-        $('#validationContacto').after('<ul id="errorContacto" class="validation-summary-errors text-danger">Campo Contacto Requerido</ul>');
+        $('#validationContacto').after('<ul id="errorContacto" class="validation-summary-errors text-danger">Campo Nombre Contacto Requerido</ul>');
     }
 
- if (Direccion == '') {
+    if ($.trim(Direccion) == '') {
         $('#Direccion').text('');
         $('#errorDireccion').text('');
-        $('#validationDireccion').after('<ul id="errorDireccion" class="validation-summary-errors text-danger">Campo Direccion Requerido</ul>');
+        $('#validationDireccion').after('<ul id="errorDireccion" class="validation-summary-errors text-danger">Campo Dirección Requerido</ul>');
     }
- if (Email == '') {
+
+    if ($.trim(Email) == '') {
         $('#Email').text('');
         $('#errorEmail').text('');
         $('#validationEmail').after('<ul id="errorEmail" class="validation-summary-errors text-danger">Campo Email Requerido</ul>');
     }
-  if (Telefono == '') {
+
+    if ($.trim(Telefono) == '') {
         $('#Telefono').text('');
         $('#errorTelefono').text('');
-        $('#validationTelefono').after('<ul id="errorTelefono" class="validation-summary-errors text-danger">Campo Telefono Requerido</ul>');
+        $('#validationTelefono').after('<ul id="errorTelefono" class="validation-summary-errors text-danger">Campo Teléfono Requerido</ul>');
     }
-   if (Actividad == '') {
+
+    if ($.trim(Actividad) == '') {
         $('#Actividad').text('');
         $('#errorActividad').text('');
-        $('#validationActividad').after('<ul id="errorActividad" class="validation-summary-errors text-danger">Campo Actividad Economica Requerido</ul>');
+        $('#validationActividad').after('<ul id="errorActividad" class="validation-summary-errors text-danger">Campo Actividad Económica Requerido</ul>');
     }
 
+    var length = $("#prov_RTN").val().length;
+    if (length < 14) {
+        $('#errorRTN').text('');
+        $('#validationRTN').after('<ul id="errorRTN" class="validation-summary-errors text-danger">RTN debe tener 14 dígitos</ul>');
+        $("#prov_RTN").focus();
+    }
 
-    else {
-
-
+    if (RTN != '' && $.trim(Nombre) != '' && $.trim(Contacto) != '' && $.trim(Direccion) != '' && $.trim(Email) != '' && $.trim(Telefono) != '' && $.trim(Actividad) != '' && length == 14) {
         $.ajax({
             url: "/Proveedor/ActualizarProveedor",
             method: "POST",
@@ -214,22 +220,21 @@ if (Contacto == '') {
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify({ prov_Id: Id, prov_RTN: RTN, prov_Nombre: Nombre, prov_NombreContacto: Contacto, prov_Direccion: Direccion, prov_Email: Email, prov_Telefono: Telefono, acte_Id: Actividad }),
         })
-            .done(function (data) {
-                if (data == "-1") {
-                    $('#RTN').text('');
-                    $('#ErrorValidacionGeneral').text('');
-                    $('#validationAdmi').after('<ul id="ErrorValidacionGeneral" class="validation-summary-errors text-danger">No se Guardo el registro, Contacte al Administrador.</ul>');
-                }
-                else if (data == "-2") {
-                    $('#RTN').text('');
-                    $('#ErrorValidacionGeneral').text('');
-                    $('#validationAdmi').after('<ul id="ErrorValidacionGeneral" class="validation-summary-errors text-danger">Este RTN Ya existe</ul>');
-                }
-                else {
-                    window.location.href = "/Proveedor/Index";
-                }
-                console.log(data);
-            })
+        .done(function (data) {
+            if (data == "-1") {
+                $('#RTN').text('');
+                $('#ErrorValidacionGeneral').text('');
+                $('#validationAdmi').after('<ul id="ErrorValidacionGeneral" class="validation-summary-errors text-danger">No se actualizó el registro, contacte al Administrador.</ul>');
+            }
+            else if (data == "-2") {
+                $('#RTN').text('');
+                $('#ErrorValidacionGeneral').text('');
+                $('#validationAdmi').after('<ul id="ErrorValidacionGeneral" class="validation-summary-errors text-danger">Este RTN Ya existe</ul>');
+            }
+            else {
+                window.location.href = "/Proveedor/Index";
+            }
+        })
     }
 });
 
@@ -242,75 +247,61 @@ function soloLetras(e) {
 }
 /////Validacion de RTN<14
 $('#prov_RTN').change(function (e) {
-
-    $('#ErrorCorreo').text('');
-    var RTN = $("#prov_RTN").val();
-    $("#ErrorCorreo").remove();
-    if (RTN < 9999999999999) {
-      
-        $('#ErrorCorreo').text('');
-        $('#validationRTN').after('<ul id="ErrorCorreo" class="validation-summary-errors text-danger">RTN debe tener 14 dígitos</ul>');
-        $("#prov_RTN").focus();
-        $('#btnGuardar').attr('disabled', 'disabled');
-        $('#btnActualizar').attr('disabled', 'disabled');
-    }
-    else {
-        $('#ErrorCorreo').text('');
-        $('#btnGuardar').removeAttr("disabled");
-        $('#btnActualizar').removeAttr("disabled");
-       
-    }
-
-
-});
-/////Validacion De Space
-$('#prov_Nombre,#prov_NombreContacto,#prov_Direccion,#prov_Email').change(function () {
- 
-    //alert("el input cambio");
-    if ($(this).val() == 0) { //si el input es cero
-        $('#btnGuardar').attr('disabled', 'disabled');
-        $('#btnActualizar').attr('disabled', 'disabled');
-       alert("No puede llevar Solo Espacios")
-    }
-   else if ($(this).val() == 0) { //si el input es cero
-       $('#btnGuardar').attr('disabled', 'disabled');
-       $('#btnActualizar').attr('disabled', 'disabled');
-     
-   }
-   else if ($(this).val() == 0) { //si el input es cero
-       $('#btnGuardar').attr('disabled', 'disabled');
-       $('#btnActualizar').attr('disabled', 'disabled');
-      
-   }
-    else { // si tiene un valor diferente a cero
-       $('#btnGuardar').removeAttr("disabled");
-       $('#btnActualizar').removeAttr("disabled");
-
-    }
-});
-/////ValidacionDireccion
-function controlCaracteres(e) {
-
-    tecla = (document.all) ? e.keyCode : e.which;
-    tecla = String.fromCharCode(tecla)
-    return /^[a-zA-ZáéíóúñÁÉÍÓÚÑ1234567890# ,.]+$/.test(tecla);
-
-}
-
-
-
-$('#prov_RTN').change(function (e) {
-    console.log('Hola');
-    var RTN  = this.value;
+    var RTN = $.trim(this.value);
     if (RTN != '') {
         $('#RTN').text('');
         $('#errorRTN').text('');
     }
+    $('#errorRTN').text('');
+    var RTN = $("#prov_RTN").val();
+    $("#errorRTN").remove();
+    var length = $("#prov_RTN").val().length;
+    if (length < 14) {
+        $('#errorRTN').text('');
+        $('#validationRTN').after('<ul id="errorRTN" class="validation-summary-errors text-danger">RTN debe tener 14 dígitos</ul>');
+        $("#prov_RTN").focus();
+    }
+    else
+        $('#errorRTN').text('');
 });
 
+/////Validacion De Space
+$('#prov_Nombre').blur(function () {
+    if ($.trim($('#prov_Nombre').val()) == 0) {
+        $('#errorNombre').text('');
+        $('#validationNombre').after('<ul id="errorNombre" class="validation-summary-errors text-danger">Campo Nombre Requerido</ul>');
+    }
+});
+
+$('#prov_NombreContacto').blur(function () {
+    if ($.trim($('#prov_NombreContacto').val()) == 0) {
+        $('#errorContacto').text('');
+        $('#validationContacto').after('<ul id="errorContacto" class="validation-summary-errors text-danger">Campo Nombre Contacto Requerido</ul>');
+    }
+});
+
+$('#prov_Direccion').blur(function () {
+    if ($.trim($('#prov_Direccion').val()) == 0) {
+        $('#errorDireccion').text('');
+        $('#validationDireccion').after('<ul id="errorDireccion" class="validation-summary-errors text-danger">Campo Dirección Requerido</ul>');
+    }
+});
+
+$('#prov_Email').blur(function () {
+    if ($.trim($('#prov_Email').val()) == 0) {
+        $('#errorEmail').text('');
+        $('#validationEmail').after('<ul id="errorEmail" class="validation-summary-errors text-danger">Campo Email Requerido</ul>');
+    }
+});
+/////ValidacionDireccion
+function controlCaracteres(e) {
+    tecla = (document.all) ? e.keyCode : e.which;
+    tecla = String.fromCharCode(tecla)
+    return /^[a-zA-ZáéíóúñÁÉÍÓÚÑ1234567890# ,.]+$/.test(tecla);
+}
+
 $('#prov_Nombre').change(function (e) {
-    console.log('Hola');
-    var Nombre = this.value;
+    var Nombre = $.trim(this.value);
     if (Nombre != '') {
         $('#Nombre').text('');
         $('#errorNombre').text('');
@@ -318,63 +309,56 @@ $('#prov_Nombre').change(function (e) {
 });
 
 $('#prov_NombreContacto').change(function (e) {
-        console.log('Hola');
-        var Contacto = this.value;
-        if (Contacto != '') {
-            $('#Contacto').text('');
-            $('#errorContacto').text('');
-        }
+    var Contacto = $.trim(this.value);
+    if (Contacto != '') {
+        $('#Contacto').text('');
+        $('#errorContacto').text('');
+    }
 });
 
 $('#prov_Direccion').change(function (e) {
-
-    var Direccion = this.value;
+    var Direccion = $.trim(this.value);
     if (Direccion != '') {
         $('#Direccion').text('');
         $('#errorDireccion').text('');
     }
 });
-$('#prov_Email').change(function (e) {
 
-    var Email= this.value;
+$('#prov_Email').change(function (e) {
+    var Email= $.trim(this.value);
     if (Email != '') {
         $('#Email').text('');
         $('#errorEmail').text('');
     }
-});
-$('#prov_Telefono').change(function (e) {
 
+    var emailRegex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    var Correo = this.value;
+    if (emailRegex.test(Correo)) { //si el input es cero
+        $('#ErrorCorreo').text('');
+    }
+    else { //si el input es cero
+
+        $('#ErrorCorreo').text('');
+        $('#MessageForCorreo').after('<ul id="ErrorCorreo" class="validation-summary-errors text-danger">Correo Electronico Es Incorrecto </ul>');
+        $("#prov_Email").focus();
+        $('#btnGuardar').attr('disabled', 'disabled');
+        $('#btnActualizar').attr('disabled', 'disabled');
+    }
+});
+
+$('#prov_Telefono').change(function (e) {
     var Telefono = this.value;
     if (Telefono != '') {
         $('#Telefono').text('');
         $('#errorTelefono').text('');
     }
 });
-$('#acte_Id').change(function (e) {
 
-    var Actividad = this.value;
+$('#acte_Id').change(function (e) {
+    var Actividad = $.trim(this.value);
     if (Actividad != '') {
         $('#Actividad').text('');
         $('#errorActividad').text('');
     }
 });
-$('#prov_Email').change(function () {
-
-    var emailRegex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-    var Correo = this.value;
-    if (emailRegex.test(Correo)) { //si el input es cero
-        $('#ErrorCorreo').text('');
-
-    }
-    else { //si el input es cero
-     
-        $('#ErrorCorreo').text('');
-        $('#MessageForCorreo').after('<ul id="ErrorCorreo" class="validation-summary-errors text-danger">Correo Electronico Es Incorrecto </ul>');
-        $("#prov_Email").focus();
-        $('#btnGuardar').attr('disabled', 'disabled');
-        $('#btnActualizar').attr('disabled', 'disabled');
-
-
-
-    }
-});
+    
