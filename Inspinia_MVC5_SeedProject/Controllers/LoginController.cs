@@ -61,6 +61,7 @@ namespace ERP_GMEDINA.Controllers
             }
             catch (Exception Ex)
             {
+                ModelState.AddModelError("usu_NombreUsuario", Ex.Message.ToString());
                 Ex.Message.ToString();
                 return View(Login);
             }

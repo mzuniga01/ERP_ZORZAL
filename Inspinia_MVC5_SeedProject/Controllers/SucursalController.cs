@@ -64,13 +64,16 @@ namespace ERP_GMEDINA.Controllers
         public ActionResult Create([Bind(Include="suc_Id,mun_Codigo,bod_Id,pemi_Id,suc_Descripcion,suc_Correo,suc_Direccion,suc_Telefono,suc_UsuarioCrea,suc_FechaCrea,suc_UsuarioModifica,suc_FechaModifica")] tbSucursal tbSucursal)
         {
             ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre");
-
+            var Bodegas = db.tbBodega.Select(s => new
+            {
+                bod_Id = s.bod_Id,
+                bod_Nombre = string.Concat(s.mun_Codigo + " - " + s.bod_Nombre)
+            }).ToList();
             try
             {
                 if (ModelState.IsValid)
                 {
-
-                    var MensajeError = 0;
+                    string MensajeError = "";
                     IEnumerable<object> list = null;
                     list = db.UDP_Vent_tbSucursal_Insert( tbSucursal.mun_Codigo,
                                                             tbSucursal.bod_Id,
@@ -83,39 +86,41 @@ namespace ERP_GMEDINA.Controllers
                                                             Function.DatetimeNow());
                     foreach (UDP_Vent_tbSucursal_Insert_Result Exoneracion in list)
                         MensajeError = Exoneracion.MensajeError;
-                    if (MensajeError == -1)
+                    if (MensajeError.StartsWith("-1"))
                     {
+                        ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "dep_Codigo", tbSucursal.mun_Codigo);
+                        ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre");
+                        ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_ResponsableBodega", tbSucursal.bod_Id);
+                        ViewBag.pemi_Id = new SelectList(db.tbPuntoEmision, "pemi_Id", "pemi_NumeroCAI", tbSucursal.pemi_Id);
+                        ViewBag.bod_Id = new SelectList(Bodegas, "bod_Id", "bod_Nombre", tbSucursal.bod_Id);
+                        ModelState.AddModelError("", "No se pudo insertar el registro, contacte al administrador");
+                        ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre");
+                        return View(tbSucursal);
                     }
                     else
                     {
                         return RedirectToAction("Index");
                     }
-                    
-                    return RedirectToAction("Index");
-
                 }
+                ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "dep_Codigo", tbSucursal.mun_Codigo);
+                ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre");
+                ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_ResponsableBodega", tbSucursal.bod_Id);
+                ViewBag.pemi_Id = new SelectList(db.tbPuntoEmision, "pemi_Id", "pemi_NumeroCAI", tbSucursal.pemi_Id);
+                ViewBag.bod_Id = new SelectList(Bodegas, "bod_Id", "bod_Nombre", tbSucursal.bod_Id);
+                ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre");
+                return View(tbSucursal);
             }
             catch (Exception Ex)
             {
+                ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "dep_Codigo", tbSucursal.mun_Codigo);
+                ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre");
+                ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_ResponsableBodega", tbSucursal.bod_Id);
+                ViewBag.pemi_Id = new SelectList(db.tbPuntoEmision, "pemi_Id", "pemi_NumeroCAI", tbSucursal.pemi_Id);
+                ViewBag.bod_Id = new SelectList(Bodegas, "bod_Id", "bod_Nombre", tbSucursal.bod_Id);
                 ModelState.AddModelError("", "Error al Agregar Registro " + Ex.Message.ToString());
                 ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre");
                 return View(tbSucursal);
             }
-
-            ViewBag.suc_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSucursal.suc_UsuarioCrea);
-            ViewBag.suc_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSucursal.suc_UsuarioModifica);
-            ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "dep_Codigo", tbSucursal.mun_Codigo);
-            ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre");
-            ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_ResponsableBodega", tbSucursal.bod_Id);
-            ViewBag.pemi_Id = new SelectList(db.tbPuntoEmision, "pemi_Id", "pemi_NumeroCAI", tbSucursal.pemi_Id);
-            var Bodegas = db.tbBodega.Select(s => new
-            {
-                bod_Id = s.bod_Id,
-                bod_Nombre = string.Concat(s.mun_Codigo + " - " + s.bod_Nombre)
-            }).ToList();
-
-            ViewBag.bod_Id = new SelectList(Bodegas, "bod_Id", "bod_Nombre", tbSucursal.bod_Id);
-            return View(tbSucursal);
         }
 
         // GET: /Sucursal/Edit/5
@@ -154,12 +159,17 @@ namespace ERP_GMEDINA.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(short? id, [Bind(Include = "suc_Id,mun_Codigo,bod_Id,pemi_Id,suc_Descripcion,suc_Correo,suc_Direccion,suc_Telefono,suc_UsuarioCrea,suc_FechaCrea")] tbSucursal tbSucursal)
         {
+            var Bodegas = db.tbBodega.Select(s => new
+            {
+                bod_Id = s.bod_Id,
+                bod_Nombre = string.Concat(s.mun_Codigo + " - " + s.bod_Nombre)
+            }).ToList();
             try
             {
                 if (ModelState.IsValid)
                 {
                     tbSucursal pSucursal = db.tbSucursal.Find(id);
-                    var MensajeError = 0;
+                    string MensajeError = "";
                     IEnumerable<object> list = null;
                     list = db.UDP_Vent_tbSucursal_Update(tbSucursal.suc_Id,
                                                             tbSucursal.mun_Codigo,
@@ -173,56 +183,39 @@ namespace ERP_GMEDINA.Controllers
                                                             pSucursal.suc_FechaCrea, Function.GetUser(), Function.DatetimeNow());
                     foreach (UDP_Vent_tbSucursal_Update_Result Exoneracion in list)
                         MensajeError = Exoneracion.MensajeError;
-                    if (MensajeError == -1)
+                    if (MensajeError.StartsWith("-1"))
                     {
+                        ViewBag.suc_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSucursal.suc_UsuarioCrea);
+                        ViewBag.suc_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSucursal.suc_UsuarioModifica);
+                        ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre", tbSucursal.tbMunicipio.tbDepartamento.dep_Codigo);
+                        ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbSucursal.mun_Codigo);
+                        ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbSucursal.bod_Id);
+                        ViewBag.pemi_Id = new SelectList(db.tbPuntoEmision, "pemi_Id", "pemi_NumeroCAI", tbSucursal.pemi_Id);
+                        ViewBag.bod_Id = new SelectList(Bodegas, "bod_Id", "bod_Nombre", tbSucursal.bod_Id);
+                        return View(tbSucursal);
                     }
                     else
                     {
                         return RedirectToAction("Index");
                     }
-
-                    return RedirectToAction("Index");
-
                 }
-                var direccion = tbSucursal.suc_Direccion;
-                var telefono = tbSucursal.suc_Telefono;
-                var municipio = tbSucursal.mun_Codigo;
-                var correo = tbSucursal.suc_Correo;
-                var bodega = tbSucursal.bod_Id;
-                var Emision = tbSucursal.pemi_Id;
-                if (direccion == null && telefono == null)
-                {
-                    ModelState.AddModelError("", "No se pudo Editar el registro, Campos Requeridos.");
-                    return RedirectToAction("Edit");
-                }
-                else if (correo == null)
-                {
-                    ModelState.AddModelError("", "No se pudo Editar el registro, Campos Requeridos.");
-                    return RedirectToAction("Edit");
-                }
-               
-                else
-                {
-                    return View(tbSucursal);
-                }
-
-               
-            }
-            catch (Exception Ex)
-            {
-                
                 ViewBag.suc_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSucursal.suc_UsuarioCrea);
                 ViewBag.suc_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSucursal.suc_UsuarioModifica);
                 ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre", tbSucursal.tbMunicipio.tbDepartamento.dep_Codigo);
                 ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbSucursal.mun_Codigo);
                 ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbSucursal.bod_Id);
                 ViewBag.pemi_Id = new SelectList(db.tbPuntoEmision, "pemi_Id", "pemi_NumeroCAI", tbSucursal.pemi_Id);
-                var Bodegas = db.tbBodega.Select(s => new
-                {
-                    bod_Id = s.bod_Id,
-                    bod_Nombre = string.Concat(s.mun_Codigo + " - " + s.bod_Nombre)
-                }).ToList();
-
+                ViewBag.bod_Id = new SelectList(Bodegas, "bod_Id", "bod_Nombre", tbSucursal.bod_Id);
+                return View(tbSucursal);
+            }
+            catch (Exception Ex)
+            {
+                ViewBag.suc_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSucursal.suc_UsuarioCrea);
+                ViewBag.suc_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSucursal.suc_UsuarioModifica);
+                ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre", tbSucursal.tbMunicipio.tbDepartamento.dep_Codigo);
+                ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbSucursal.mun_Codigo);
+                ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbSucursal.bod_Id);
+                ViewBag.pemi_Id = new SelectList(db.tbPuntoEmision, "pemi_Id", "pemi_NumeroCAI", tbSucursal.pemi_Id);
                 ViewBag.bod_Id = new SelectList(Bodegas, "bod_Id", "bod_Nombre", tbSucursal.bod_Id);
                 ModelState.AddModelError("", "Error al Agregar Registro " + Ex.Message.ToString());
                 return View(tbSucursal);

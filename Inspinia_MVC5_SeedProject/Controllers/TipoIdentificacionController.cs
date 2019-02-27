@@ -52,10 +52,6 @@ namespace ERP_GMEDINA.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    //db.tbTipoIdentificacion.Add(tbTipoIdentificacion);
-                    //db.SaveChanges();
-                    //return RedirectToAction("Index");
-
                     var MensajeError = "";
                     IEnumerable<object> list = null;
                     list = db.UDP_Gral_tbTipoIdentificacion_Insert(tbTipoIdentificacion.tpi_Descripcion, Function.GetUser(), Function.DatetimeNow());
@@ -112,7 +108,7 @@ namespace ERP_GMEDINA.Controllers
 
                     var MensajeError = "";
                     IEnumerable<object> list = null;
-                    list = db.UDP_Gral_tbTipoIdentificacion_Update(tbTipoIdentificacion.tpi_Id, tbTipoIdentificacion.tpi_Descripcion, tbTipoIdentificacion.tpi_UsuarioCrea, tbTipoIdentificacion.tpi_FechaCrea, tbTipoIdentificacion.tpi_UsuarioModifica, tbTipoIdentificacion.tpi_FechaModifica);
+                    list = db.UDP_Gral_tbTipoIdentificacion_Update(tbTipoIdentificacion.tpi_Id, tbTipoIdentificacion.tpi_Descripcion, tbTipoIdentificacion.tpi_UsuarioCrea, tbTipoIdentificacion.tpi_FechaCrea, Function.GetUser(), Function.DatetimeNow());
                     foreach (UDP_Gral_tbTipoIdentificacion_Update_Result TipoIdentificacion in list)
                         MensajeError = TipoIdentificacion.MensajeError;
                     if (MensajeError == "-1")

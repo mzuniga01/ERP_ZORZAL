@@ -127,8 +127,8 @@ namespace ERP_GMEDINA.Controllers
             /////////VAR//////////;
             bool solef_EsApertura = true;
             bool solef_EsAnulada = false;
-            tbMovimientoCaja.mocja_FechaApertura = DateTime.Now;
-            tbMovimientoCaja.mocja_FechaCrea = DateTime.Now;
+            tbMovimientoCaja.mocja_FechaApertura = Function.DatetimeNow();
+            tbMovimientoCaja.mocja_FechaCrea = Function.DatetimeNow();
             ///////////VAR SESSION//////////
             var list = (List<tbSolicitudEfectivoDetalle>)Session["SolicitudEfectivo"];
             short moneda = (short)Session["SolicitudEfectivoMoneda"];

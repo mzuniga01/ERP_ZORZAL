@@ -34,6 +34,7 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbRol> tbRol { get; set; }
         public virtual DbSet<tbRolesUsuario> tbRolesUsuario { get; set; }
         public virtual DbSet<tbUsuario> tbUsuario { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<tbActividadEconomica> tbActividadEconomica { get; set; }
         public virtual DbSet<tbBanco> tbBanco { get; set; }
         public virtual DbSet<tbCuentasBanco> tbCuentasBanco { get; set; }
@@ -3572,100 +3573,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbExoneracion_Select_Result>("UDP_Vent_tbExoneracion_Select");
         }
     
-        public virtual ObjectResult<UDP_Vent_tbSucursal_Update_Result> UDP_Vent_tbSucursal_Update(Nullable<int> suc_Id, string mun_Codigo, Nullable<int> bod_Id, Nullable<int> pemi_Id, string suc_Descripcion, string suc_Correo, string suc_Direccion, string suc_Telefono, Nullable<int> suc_UsuarioCrea, Nullable<System.DateTime> suc_FechaCrea, Nullable<int> suc_UsuarioModifica, Nullable<System.DateTime> suc_FechaModifica)
-        {
-            var suc_IdParameter = suc_Id.HasValue ?
-                new ObjectParameter("suc_Id", suc_Id) :
-                new ObjectParameter("suc_Id", typeof(int));
-    
-            var mun_CodigoParameter = mun_Codigo != null ?
-                new ObjectParameter("mun_Codigo", mun_Codigo) :
-                new ObjectParameter("mun_Codigo", typeof(string));
-    
-            var bod_IdParameter = bod_Id.HasValue ?
-                new ObjectParameter("bod_Id", bod_Id) :
-                new ObjectParameter("bod_Id", typeof(int));
-    
-            var pemi_IdParameter = pemi_Id.HasValue ?
-                new ObjectParameter("pemi_Id", pemi_Id) :
-                new ObjectParameter("pemi_Id", typeof(int));
-    
-            var suc_DescripcionParameter = suc_Descripcion != null ?
-                new ObjectParameter("suc_Descripcion", suc_Descripcion) :
-                new ObjectParameter("suc_Descripcion", typeof(string));
-    
-            var suc_CorreoParameter = suc_Correo != null ?
-                new ObjectParameter("suc_Correo", suc_Correo) :
-                new ObjectParameter("suc_Correo", typeof(string));
-    
-            var suc_DireccionParameter = suc_Direccion != null ?
-                new ObjectParameter("suc_Direccion", suc_Direccion) :
-                new ObjectParameter("suc_Direccion", typeof(string));
-    
-            var suc_TelefonoParameter = suc_Telefono != null ?
-                new ObjectParameter("suc_Telefono", suc_Telefono) :
-                new ObjectParameter("suc_Telefono", typeof(string));
-    
-            var suc_UsuarioCreaParameter = suc_UsuarioCrea.HasValue ?
-                new ObjectParameter("suc_UsuarioCrea", suc_UsuarioCrea) :
-                new ObjectParameter("suc_UsuarioCrea", typeof(int));
-    
-            var suc_FechaCreaParameter = suc_FechaCrea.HasValue ?
-                new ObjectParameter("suc_FechaCrea", suc_FechaCrea) :
-                new ObjectParameter("suc_FechaCrea", typeof(System.DateTime));
-    
-            var suc_UsuarioModificaParameter = suc_UsuarioModifica.HasValue ?
-                new ObjectParameter("suc_UsuarioModifica", suc_UsuarioModifica) :
-                new ObjectParameter("suc_UsuarioModifica", typeof(int));
-    
-            var suc_FechaModificaParameter = suc_FechaModifica.HasValue ?
-                new ObjectParameter("suc_FechaModifica", suc_FechaModifica) :
-                new ObjectParameter("suc_FechaModifica", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbSucursal_Update_Result>("UDP_Vent_tbSucursal_Update", suc_IdParameter, mun_CodigoParameter, bod_IdParameter, pemi_IdParameter, suc_DescripcionParameter, suc_CorreoParameter, suc_DireccionParameter, suc_TelefonoParameter, suc_UsuarioCreaParameter, suc_FechaCreaParameter, suc_UsuarioModificaParameter, suc_FechaModificaParameter);
-        }
-    
-        public virtual ObjectResult<UDP_Vent_tbSucursal_Insert_Result> UDP_Vent_tbSucursal_Insert(string mun_Codigo, Nullable<int> bod_Id, Nullable<int> pemi_Id, string suc_Descripcion, string suc_Correo, string suc_Direccion, string suc_Telefono, Nullable<int> suc_UsuarioCrea, Nullable<System.DateTime> suc_FechaCrea)
-        {
-            var mun_CodigoParameter = mun_Codigo != null ?
-                new ObjectParameter("mun_Codigo", mun_Codigo) :
-                new ObjectParameter("mun_Codigo", typeof(string));
-    
-            var bod_IdParameter = bod_Id.HasValue ?
-                new ObjectParameter("bod_Id", bod_Id) :
-                new ObjectParameter("bod_Id", typeof(int));
-    
-            var pemi_IdParameter = pemi_Id.HasValue ?
-                new ObjectParameter("pemi_Id", pemi_Id) :
-                new ObjectParameter("pemi_Id", typeof(int));
-    
-            var suc_DescripcionParameter = suc_Descripcion != null ?
-                new ObjectParameter("suc_Descripcion", suc_Descripcion) :
-                new ObjectParameter("suc_Descripcion", typeof(string));
-    
-            var suc_CorreoParameter = suc_Correo != null ?
-                new ObjectParameter("suc_Correo", suc_Correo) :
-                new ObjectParameter("suc_Correo", typeof(string));
-    
-            var suc_DireccionParameter = suc_Direccion != null ?
-                new ObjectParameter("suc_Direccion", suc_Direccion) :
-                new ObjectParameter("suc_Direccion", typeof(string));
-    
-            var suc_TelefonoParameter = suc_Telefono != null ?
-                new ObjectParameter("suc_Telefono", suc_Telefono) :
-                new ObjectParameter("suc_Telefono", typeof(string));
-    
-            var suc_UsuarioCreaParameter = suc_UsuarioCrea.HasValue ?
-                new ObjectParameter("suc_UsuarioCrea", suc_UsuarioCrea) :
-                new ObjectParameter("suc_UsuarioCrea", typeof(int));
-    
-            var suc_FechaCreaParameter = suc_FechaCrea.HasValue ?
-                new ObjectParameter("suc_FechaCrea", suc_FechaCrea) :
-                new ObjectParameter("suc_FechaCrea", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbSucursal_Insert_Result>("UDP_Vent_tbSucursal_Insert", mun_CodigoParameter, bod_IdParameter, pemi_IdParameter, suc_DescripcionParameter, suc_CorreoParameter, suc_DireccionParameter, suc_TelefonoParameter, suc_UsuarioCreaParameter, suc_FechaCreaParameter);
-        }
-    
         public virtual ObjectResult<UDP_Vent_tbFacturaDetalle_Insert_Result> UDP_Vent_tbFacturaDetalle_Insert(Nullable<long> fact_Id, string prod_Codigo, Nullable<decimal> factd_Cantidad, Nullable<decimal> factd_MontoDescuento, Nullable<decimal> factd_PorcentajeDescuento, Nullable<decimal> factd_Impuesto, Nullable<decimal> factd_PrecioUnitario, Nullable<int> factd_UsuarioCrea, Nullable<System.DateTime> factd_FechaCrea)
         {
             var fact_IdParameter = fact_Id.HasValue ?
@@ -6705,100 +6612,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbSolicitudEfectivoDetalle_Update_Insert_Result>("UDP_Vent_tbSolicitudEfectivoDetalle_Update_Insert", iDSOLICITUDParameter);
         }
     
-        public virtual ObjectResult<Nullable<int>> UDP_Vent_tbSucursal_Insert1(string mun_Codigo, Nullable<int> bod_Id, Nullable<int> pemi_Id, string suc_Descripcion, string suc_Correo, string suc_Direccion, string suc_Telefono, Nullable<int> suc_UsuarioCrea, Nullable<System.DateTime> suc_FechaCrea)
-        {
-            var mun_CodigoParameter = mun_Codigo != null ?
-                new ObjectParameter("mun_Codigo", mun_Codigo) :
-                new ObjectParameter("mun_Codigo", typeof(string));
-    
-            var bod_IdParameter = bod_Id.HasValue ?
-                new ObjectParameter("bod_Id", bod_Id) :
-                new ObjectParameter("bod_Id", typeof(int));
-    
-            var pemi_IdParameter = pemi_Id.HasValue ?
-                new ObjectParameter("pemi_Id", pemi_Id) :
-                new ObjectParameter("pemi_Id", typeof(int));
-    
-            var suc_DescripcionParameter = suc_Descripcion != null ?
-                new ObjectParameter("suc_Descripcion", suc_Descripcion) :
-                new ObjectParameter("suc_Descripcion", typeof(string));
-    
-            var suc_CorreoParameter = suc_Correo != null ?
-                new ObjectParameter("suc_Correo", suc_Correo) :
-                new ObjectParameter("suc_Correo", typeof(string));
-    
-            var suc_DireccionParameter = suc_Direccion != null ?
-                new ObjectParameter("suc_Direccion", suc_Direccion) :
-                new ObjectParameter("suc_Direccion", typeof(string));
-    
-            var suc_TelefonoParameter = suc_Telefono != null ?
-                new ObjectParameter("suc_Telefono", suc_Telefono) :
-                new ObjectParameter("suc_Telefono", typeof(string));
-    
-            var suc_UsuarioCreaParameter = suc_UsuarioCrea.HasValue ?
-                new ObjectParameter("suc_UsuarioCrea", suc_UsuarioCrea) :
-                new ObjectParameter("suc_UsuarioCrea", typeof(int));
-    
-            var suc_FechaCreaParameter = suc_FechaCrea.HasValue ?
-                new ObjectParameter("suc_FechaCrea", suc_FechaCrea) :
-                new ObjectParameter("suc_FechaCrea", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("UDP_Vent_tbSucursal_Insert1", mun_CodigoParameter, bod_IdParameter, pemi_IdParameter, suc_DescripcionParameter, suc_CorreoParameter, suc_DireccionParameter, suc_TelefonoParameter, suc_UsuarioCreaParameter, suc_FechaCreaParameter);
-        }
-    
-        public virtual ObjectResult<Nullable<int>> UDP_Vent_tbSucursal_Update1(Nullable<int> suc_Id, string mun_Codigo, Nullable<int> bod_Id, Nullable<int> pemi_Id, string suc_Descripcion, string suc_Correo, string suc_Direccion, string suc_Telefono, Nullable<int> suc_UsuarioCrea, Nullable<System.DateTime> suc_FechaCrea, Nullable<int> suc_UsuarioModifica, Nullable<System.DateTime> suc_FechaModifica)
-        {
-            var suc_IdParameter = suc_Id.HasValue ?
-                new ObjectParameter("suc_Id", suc_Id) :
-                new ObjectParameter("suc_Id", typeof(int));
-    
-            var mun_CodigoParameter = mun_Codigo != null ?
-                new ObjectParameter("mun_Codigo", mun_Codigo) :
-                new ObjectParameter("mun_Codigo", typeof(string));
-    
-            var bod_IdParameter = bod_Id.HasValue ?
-                new ObjectParameter("bod_Id", bod_Id) :
-                new ObjectParameter("bod_Id", typeof(int));
-    
-            var pemi_IdParameter = pemi_Id.HasValue ?
-                new ObjectParameter("pemi_Id", pemi_Id) :
-                new ObjectParameter("pemi_Id", typeof(int));
-    
-            var suc_DescripcionParameter = suc_Descripcion != null ?
-                new ObjectParameter("suc_Descripcion", suc_Descripcion) :
-                new ObjectParameter("suc_Descripcion", typeof(string));
-    
-            var suc_CorreoParameter = suc_Correo != null ?
-                new ObjectParameter("suc_Correo", suc_Correo) :
-                new ObjectParameter("suc_Correo", typeof(string));
-    
-            var suc_DireccionParameter = suc_Direccion != null ?
-                new ObjectParameter("suc_Direccion", suc_Direccion) :
-                new ObjectParameter("suc_Direccion", typeof(string));
-    
-            var suc_TelefonoParameter = suc_Telefono != null ?
-                new ObjectParameter("suc_Telefono", suc_Telefono) :
-                new ObjectParameter("suc_Telefono", typeof(string));
-    
-            var suc_UsuarioCreaParameter = suc_UsuarioCrea.HasValue ?
-                new ObjectParameter("suc_UsuarioCrea", suc_UsuarioCrea) :
-                new ObjectParameter("suc_UsuarioCrea", typeof(int));
-    
-            var suc_FechaCreaParameter = suc_FechaCrea.HasValue ?
-                new ObjectParameter("suc_FechaCrea", suc_FechaCrea) :
-                new ObjectParameter("suc_FechaCrea", typeof(System.DateTime));
-    
-            var suc_UsuarioModificaParameter = suc_UsuarioModifica.HasValue ?
-                new ObjectParameter("suc_UsuarioModifica", suc_UsuarioModifica) :
-                new ObjectParameter("suc_UsuarioModifica", typeof(int));
-    
-            var suc_FechaModificaParameter = suc_FechaModifica.HasValue ?
-                new ObjectParameter("suc_FechaModifica", suc_FechaModifica) :
-                new ObjectParameter("suc_FechaModifica", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("UDP_Vent_tbSucursal_Update1", suc_IdParameter, mun_CodigoParameter, bod_IdParameter, pemi_IdParameter, suc_DescripcionParameter, suc_CorreoParameter, suc_DireccionParameter, suc_TelefonoParameter, suc_UsuarioCreaParameter, suc_FechaCreaParameter, suc_UsuarioModificaParameter, suc_FechaModificaParameter);
-        }
-    
         public virtual int UDP_Vent_tbTipoTaller_Estado(Nullable<int> tptal_Id, Nullable<bool> tptal_Es_Activo)
         {
             var tptal_IdParameter = tptal_Id.HasValue ?
@@ -6949,6 +6762,100 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("usu_RazonInactivo", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Acce_tbUsuario_Estado_Result>("UDP_Acce_tbUsuario_Estado", usu_IdParameter, usu_EsActivoParameter, usu_RazonInactivoParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbSucursal_Insert_Result> UDP_Vent_tbSucursal_Insert(string mun_Codigo, Nullable<int> bod_Id, Nullable<int> pemi_Id, string suc_Descripcion, string suc_Correo, string suc_Direccion, string suc_Telefono, Nullable<int> suc_UsuarioCrea, Nullable<System.DateTime> suc_FechaCrea)
+        {
+            var mun_CodigoParameter = mun_Codigo != null ?
+                new ObjectParameter("mun_Codigo", mun_Codigo) :
+                new ObjectParameter("mun_Codigo", typeof(string));
+    
+            var bod_IdParameter = bod_Id.HasValue ?
+                new ObjectParameter("bod_Id", bod_Id) :
+                new ObjectParameter("bod_Id", typeof(int));
+    
+            var pemi_IdParameter = pemi_Id.HasValue ?
+                new ObjectParameter("pemi_Id", pemi_Id) :
+                new ObjectParameter("pemi_Id", typeof(int));
+    
+            var suc_DescripcionParameter = suc_Descripcion != null ?
+                new ObjectParameter("suc_Descripcion", suc_Descripcion) :
+                new ObjectParameter("suc_Descripcion", typeof(string));
+    
+            var suc_CorreoParameter = suc_Correo != null ?
+                new ObjectParameter("suc_Correo", suc_Correo) :
+                new ObjectParameter("suc_Correo", typeof(string));
+    
+            var suc_DireccionParameter = suc_Direccion != null ?
+                new ObjectParameter("suc_Direccion", suc_Direccion) :
+                new ObjectParameter("suc_Direccion", typeof(string));
+    
+            var suc_TelefonoParameter = suc_Telefono != null ?
+                new ObjectParameter("suc_Telefono", suc_Telefono) :
+                new ObjectParameter("suc_Telefono", typeof(string));
+    
+            var suc_UsuarioCreaParameter = suc_UsuarioCrea.HasValue ?
+                new ObjectParameter("suc_UsuarioCrea", suc_UsuarioCrea) :
+                new ObjectParameter("suc_UsuarioCrea", typeof(int));
+    
+            var suc_FechaCreaParameter = suc_FechaCrea.HasValue ?
+                new ObjectParameter("suc_FechaCrea", suc_FechaCrea) :
+                new ObjectParameter("suc_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbSucursal_Insert_Result>("UDP_Vent_tbSucursal_Insert", mun_CodigoParameter, bod_IdParameter, pemi_IdParameter, suc_DescripcionParameter, suc_CorreoParameter, suc_DireccionParameter, suc_TelefonoParameter, suc_UsuarioCreaParameter, suc_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbSucursal_Update_Result> UDP_Vent_tbSucursal_Update(Nullable<int> suc_Id, string mun_Codigo, Nullable<int> bod_Id, Nullable<int> pemi_Id, string suc_Descripcion, string suc_Correo, string suc_Direccion, string suc_Telefono, Nullable<int> suc_UsuarioCrea, Nullable<System.DateTime> suc_FechaCrea, Nullable<int> suc_UsuarioModifica, Nullable<System.DateTime> suc_FechaModifica)
+        {
+            var suc_IdParameter = suc_Id.HasValue ?
+                new ObjectParameter("suc_Id", suc_Id) :
+                new ObjectParameter("suc_Id", typeof(int));
+    
+            var mun_CodigoParameter = mun_Codigo != null ?
+                new ObjectParameter("mun_Codigo", mun_Codigo) :
+                new ObjectParameter("mun_Codigo", typeof(string));
+    
+            var bod_IdParameter = bod_Id.HasValue ?
+                new ObjectParameter("bod_Id", bod_Id) :
+                new ObjectParameter("bod_Id", typeof(int));
+    
+            var pemi_IdParameter = pemi_Id.HasValue ?
+                new ObjectParameter("pemi_Id", pemi_Id) :
+                new ObjectParameter("pemi_Id", typeof(int));
+    
+            var suc_DescripcionParameter = suc_Descripcion != null ?
+                new ObjectParameter("suc_Descripcion", suc_Descripcion) :
+                new ObjectParameter("suc_Descripcion", typeof(string));
+    
+            var suc_CorreoParameter = suc_Correo != null ?
+                new ObjectParameter("suc_Correo", suc_Correo) :
+                new ObjectParameter("suc_Correo", typeof(string));
+    
+            var suc_DireccionParameter = suc_Direccion != null ?
+                new ObjectParameter("suc_Direccion", suc_Direccion) :
+                new ObjectParameter("suc_Direccion", typeof(string));
+    
+            var suc_TelefonoParameter = suc_Telefono != null ?
+                new ObjectParameter("suc_Telefono", suc_Telefono) :
+                new ObjectParameter("suc_Telefono", typeof(string));
+    
+            var suc_UsuarioCreaParameter = suc_UsuarioCrea.HasValue ?
+                new ObjectParameter("suc_UsuarioCrea", suc_UsuarioCrea) :
+                new ObjectParameter("suc_UsuarioCrea", typeof(int));
+    
+            var suc_FechaCreaParameter = suc_FechaCrea.HasValue ?
+                new ObjectParameter("suc_FechaCrea", suc_FechaCrea) :
+                new ObjectParameter("suc_FechaCrea", typeof(System.DateTime));
+    
+            var suc_UsuarioModificaParameter = suc_UsuarioModifica.HasValue ?
+                new ObjectParameter("suc_UsuarioModifica", suc_UsuarioModifica) :
+                new ObjectParameter("suc_UsuarioModifica", typeof(int));
+    
+            var suc_FechaModificaParameter = suc_FechaModifica.HasValue ?
+                new ObjectParameter("suc_FechaModifica", suc_FechaModifica) :
+                new ObjectParameter("suc_FechaModifica", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbSucursal_Update_Result>("UDP_Vent_tbSucursal_Update", suc_IdParameter, mun_CodigoParameter, bod_IdParameter, pemi_IdParameter, suc_DescripcionParameter, suc_CorreoParameter, suc_DireccionParameter, suc_TelefonoParameter, suc_UsuarioCreaParameter, suc_FechaCreaParameter, suc_UsuarioModificaParameter, suc_FechaModificaParameter);
         }
     }
 }

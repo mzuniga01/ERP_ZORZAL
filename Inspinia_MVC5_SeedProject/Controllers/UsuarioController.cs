@@ -74,7 +74,7 @@ namespace ERP_GMEDINA.Controllers
                             Session.Clear();
                             Session.Abandon();
                             Response.Buffer = true;
-                            Response.ExpiresAbsolute = DateTime.Now.AddDays(-1D);
+                            Response.ExpiresAbsolute = Function.DatetimeNow().AddDays(-1D);
                             Response.Expires = -1500;
                             Response.CacheControl = "no-cache";
                             Response.Cache.SetCacheability(HttpCacheability.NoCache);

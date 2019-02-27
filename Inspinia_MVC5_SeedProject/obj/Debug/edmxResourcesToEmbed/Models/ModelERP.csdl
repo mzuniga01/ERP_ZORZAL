@@ -972,31 +972,6 @@
       <Parameter Name="prod_Razon_Inactivacion" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbExoneracion_Select" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbExoneracion_Select_Result)" />
-    <FunctionImport Name="UDP_Vent_tbSucursal_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSucursal_Update_Result)">
-      <Parameter Name="suc_Id" Mode="In" Type="Int32" />
-      <Parameter Name="mun_Codigo" Mode="In" Type="String" />
-      <Parameter Name="bod_Id" Mode="In" Type="Int32" />
-      <Parameter Name="pemi_Id" Mode="In" Type="Int32" />
-      <Parameter Name="suc_Descripcion" Mode="In" Type="String" />
-      <Parameter Name="suc_Correo" Mode="In" Type="String" />
-      <Parameter Name="suc_Direccion" Mode="In" Type="String" />
-      <Parameter Name="suc_Telefono" Mode="In" Type="String" />
-      <Parameter Name="suc_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="suc_FechaCrea" Mode="In" Type="DateTime" />
-      <Parameter Name="suc_UsuarioModifica" Mode="In" Type="Int32" />
-      <Parameter Name="suc_FechaModifica" Mode="In" Type="DateTime" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbSucursal_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSucursal_Insert_Result)">
-      <Parameter Name="mun_Codigo" Mode="In" Type="String" />
-      <Parameter Name="bod_Id" Mode="In" Type="Int32" />
-      <Parameter Name="pemi_Id" Mode="In" Type="Int32" />
-      <Parameter Name="suc_Descripcion" Mode="In" Type="String" />
-      <Parameter Name="suc_Correo" Mode="In" Type="String" />
-      <Parameter Name="suc_Direccion" Mode="In" Type="String" />
-      <Parameter Name="suc_Telefono" Mode="In" Type="String" />
-      <Parameter Name="suc_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="suc_FechaCrea" Mode="In" Type="DateTime" />
-    </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbFacturaDetalle_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFacturaDetalle_Insert_Result)">
       <Parameter Name="fact_Id" Mode="In" Type="Int64" />
       <Parameter Name="prod_Codigo" Mode="In" Type="String" />
@@ -1633,12 +1608,266 @@
       <Parameter Name="exo_UsuarioModifa" Mode="In" Type="Int32" />
       <Parameter Name="exo_FechaModifica" Mode="In" Type="DateTime" />
     </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbMovimientoCaja_Apertura_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_Apertura_Insert_Result)">
+      <Parameter Name="cja_Id" Mode="In" Type="Int16" />
+      <Parameter Name="mocja_FechaApertura" Mode="In" Type="DateTime" />
+      <Parameter Name="mocja_UsuarioApertura" Mode="In" Type="Int32" />
+      <Parameter Name="usu_Id" Mode="In" Type="Int32" />
+      <Parameter Name="mocja_FechaArqueo" Mode="In" Type="DateTime" />
+      <Parameter Name="mocja_UsuarioArquea" Mode="In" Type="Int32" />
+      <Parameter Name="mocja_FechaAceptacion" Mode="In" Type="DateTime" />
+      <Parameter Name="mocja_UsuarioAceptacion" Mode="In" Type="Int32" />
+      <Parameter Name="mocja_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="mocja_FechaCrea" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbSolicitudEfectivo_Apertura_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivo_Apertura_Insert_Result)">
+      <Parameter Name="mocja_Id" Mode="In" Type="Int32" />
+      <Parameter Name="solef_EsApertura" Mode="In" Type="Boolean" />
+      <Parameter Name="solef_FechaEntrega" Mode="In" Type="DateTime" />
+      <Parameter Name="solef_UsuarioEntrega" Mode="In" Type="Int32" />
+      <Parameter Name="mnda_Id" Mode="In" Type="Int16" />
+      <Parameter Name="solef_EsAnulada" Mode="In" Type="Boolean" />
+      <Parameter Name="solef_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="solef_FechaCrea" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert_Result)">
+      <Parameter Name="solef_Id" Mode="In" Type="Int32" />
+      <Parameter Name="deno_Id" Mode="In" Type="Int16" />
+      <Parameter Name="soled_CantidadSolicitada" Mode="In" Type="Int16" />
+      <Parameter Name="soled_CantidadEntregada" Mode="In" Type="Int16" />
+      <Parameter Name="soled_MontoEntregado" Mode="In" Type="Decimal" />
+      <Parameter Name="soled_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="soled_FechaCrea" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbSolicitudEfectivo_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivo_Insert_Result)">
+      <Parameter Name="mocja_Id" Mode="In" Type="Int32" />
+      <Parameter Name="mnda_Id" Mode="In" Type="Int16" />
+      <Parameter Name="solef_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="solef_FechaCrea" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbSolicitudEfectivo_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivo_Update_Result)">
+      <Parameter Name="solef_Id" Mode="In" Type="Int32" />
+      <Parameter Name="mocja_Id" Mode="In" Type="Int32" />
+      <Parameter Name="solef_EsApertura" Mode="In" Type="Boolean" />
+      <Parameter Name="mnda_Id" Mode="In" Type="Int16" />
+      <Parameter Name="solef_EsAnulada" Mode="In" Type="Boolean" />
+      <Parameter Name="solef_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="solef_FechaCrea" Mode="In" Type="DateTime" />
+      <Parameter Name="solef_UsuarioModifica" Mode="In" Type="Int32" />
+      <Parameter Name="solef_FechaModifica" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbSolicitudEfectivoDetalle_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivoDetalle_Insert_Result)">
+      <Parameter Name="solef_Id" Mode="In" Type="Int32" />
+      <Parameter Name="deno_Id" Mode="In" Type="Int16" />
+      <Parameter Name="soled_CantidadSolicitada" Mode="In" Type="Int16" />
+      <Parameter Name="soled_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="soled_FechaCrea" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbSolicitudEfectivoDetalle_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivoDetalle_Update_Result)">
+      <Parameter Name="soled_Id" Mode="In" Type="Int32" />
+      <Parameter Name="deno_Id" Mode="In" Type="Int16" />
+      <Parameter Name="soled_CantidadSolicitada" Mode="In" Type="Int16" />
+      <Parameter Name="soled_CantidadEntregada" Mode="In" Type="Int16" />
+      <Parameter Name="soled_MontoEntregado" Mode="In" Type="Decimal" />
+      <Parameter Name="soled_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="soled_FechaCrea" Mode="In" Type="DateTime" />
+      <Parameter Name="soled_UsuarioModifica" Mode="In" Type="Int32" />
+      <Parameter Name="soled_FechaModifica" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Gral_tbDenominacion_using" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbDenominacion_using_Result)">
+      <Parameter Name="DENO_ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbFactura_ObtenerCai_CodigoFactura" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFactura_ObtenerCai_CodigoFactura_Result)">
+      <Parameter Name="IDSucursal" Mode="In" Type="Int32" />
+      <Parameter Name="IDCAJA" Mode="In" Type="Int16" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbSolicitudEfectivo_Recargo" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivo_Recargo_Result)">
+      <Parameter Name="USER_ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbSolicitudEfectivo_Details" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivo_Details_Result1)">
+      <Parameter Name="IDSOLICITUD" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbDenominacionArqueo_Select" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDenominacionArqueo_Select_Result)" />
+    <FunctionImport Name="UDP_Vent_tbMovimientoCaja_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_Insert_Result)">
+      <Parameter Name="cja_Id" Mode="In" Type="Int16" />
+      <Parameter Name="usu_Id" Mode="In" Type="Int32" />
+      <Parameter Name="mocja_UsuarioApertura" Mode="In" Type="Int32" />
+      <Parameter Name="mocja_FechaArqueo" Mode="In" Type="DateTime" />
+      <Parameter Name="mocja_UsuarioArquea" Mode="In" Type="Int32" />
+      <Parameter Name="mocja_FechaAceptacion" Mode="In" Type="DateTime" />
+      <Parameter Name="mocja_UsuarioAceptacion" Mode="In" Type="Int32" />
+      <Parameter Name="mocja_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="mocja_FechaCrea" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UPD_Vent_tbUsuario_Rol" ReturnType="Collection(ERP_ZORZALModel.UPD_Vent_tbUsuario_Rol_Result)">
+      <Parameter Name="suc_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spGetCaja" ReturnType="Collection(ERP_ZORZALModel.spGetCaja_Result)">
+      <Parameter Name="CodUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbTipoPago_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbTipoPago_Insert_Result)">
+      <Parameter Name="tpa_Descripcion" Mode="In" Type="String" />
+      <Parameter Name="tpa_Emisor" Mode="In" Type="Boolean" />
+      <Parameter Name="tpa_Cuenta" Mode="In" Type="Boolean" />
+      <Parameter Name="tpa_FechaVencimiento" Mode="In" Type="Boolean" />
+      <Parameter Name="tpa_Titular" Mode="In" Type="Boolean" />
+      <Parameter Name="tpa_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="tpa_FechaCrea" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbTipoPago_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbTipoPago_Update_Result)">
+      <Parameter Name="tpa_Id" Mode="In" Type="Int16" />
+      <Parameter Name="tpa_Descripcion" Mode="In" Type="String" />
+      <Parameter Name="tpa_Emisor" Mode="In" Type="Boolean" />
+      <Parameter Name="tpa_Cuenta" Mode="In" Type="Boolean" />
+      <Parameter Name="tpa_FechaVencimiento" Mode="In" Type="Boolean" />
+      <Parameter Name="tpa_Titular" Mode="In" Type="Boolean" />
+      <Parameter Name="tpa_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="tpa_FechaCrea" Mode="In" Type="DateTime" />
+      <Parameter Name="tpa_UsuarioModifica" Mode="In" Type="Int32" />
+      <Parameter Name="tpa_FechaModifica" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbCuponDescuento_Redimido" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbCuponDescuento_Redimido_Result)">
+      <Parameter Name="cdto_ID" Mode="In" Type="Int32" />
+      <Parameter Name="cdto_Redimido" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbCuponDescuentoSelect" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbCuponDescuentoSelect_Result)" />
+    <FunctionImport Name="UDP_Vent_tbNotaCredito_Redimido" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbNotaCredito_Redimido_Result)">
+      <Parameter Name="nocre_Id" Mode="In" Type="Int16" />
+      <Parameter Name="nocre_Redimido" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbPago_Anulado" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPago_Anulado_Result)">
+      <Parameter Name="pago_Id" Mode="In" Type="Int32" />
+      <Parameter Name="pago_EstaAnulado" Mode="In" Type="Boolean" />
+      <Parameter Name="pago_RazonAnulado" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbPago_Impreso" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPago_Impreso_Result)">
+      <Parameter Name="pago_Id" Mode="In" Type="Int32" />
+      <Parameter Name="pago_EstaImpreso" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbPago_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPago_Update_Result)">
+      <Parameter Name="pago_Id" Mode="In" Type="Int32" />
+      <Parameter Name="fact_Id" Mode="In" Type="Int64" />
+      <Parameter Name="tpa_Id" Mode="In" Type="Int16" />
+      <Parameter Name="pago_FechaElaboracion" Mode="In" Type="DateTime" />
+      <Parameter Name="pago_SaldoAnterior" Mode="In" Type="Decimal" />
+      <Parameter Name="pago_TotalPago" Mode="In" Type="Decimal" />
+      <Parameter Name="pago_TotalCambio" Mode="In" Type="Decimal" />
+      <Parameter Name="pago_Emisor" Mode="In" Type="String" />
+      <Parameter Name="bcta_Id" Mode="In" Type="Int16" />
+      <Parameter Name="pago_FechaVencimiento" Mode="In" Type="DateTime" />
+      <Parameter Name="pago_Titular" Mode="In" Type="String" />
+      <Parameter Name="nocre_Codigo_cdto_Id" Mode="In" Type="String" />
+      <Parameter Name="pago_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="pago_FechaCrea" Mode="In" Type="DateTime" />
+      <Parameter Name="pago_UsuarioModifica" Mode="In" Type="Int32" />
+      <Parameter Name="pago_FechaModifica" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_vFacturaPago" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_vFacturaPago_Result)">
+      <Parameter Name="clte_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Acce_tbRol_Inactivar" ReturnType="Collection(String)">
+      <Parameter Name="IDRol" Mode="In" Type="Int32" />
+      <Parameter Name="rol_UsuarioModifica" Mode="In" Type="Int32" />
+      <Parameter Name="rol_FechaModifica" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Acce_tbUsuario_PasswordRestore" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbUsuario_PasswordRestore_Result)">
+      <Parameter Name="usu_Id" Mode="In" Type="Int32" />
+      <Parameter Name="usu_Password" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SDP_Gral_tbEmpleado_Select" ReturnType="Collection(ERP_ZORZALModel.SDP_Gral_tbEmpleado_Select_Result)">
+      <Parameter Name="emp_Id" Mode="In" Type="Int16" />
+    </FunctionImport>
+    <FunctionImport Name="SDP_tbEmpleado_Consulta" ReturnType="Collection(ERP_ZORZALModel.SDP_tbEmpleado_Consulta_Result)">
+      <Parameter Name="emp_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SDP_tbEmpleado_Select" ReturnType="Collection(ERP_ZORZALModel.SDP_tbEmpleado_Select_Result)" />
+    <FunctionImport Name="UDP_Gral_tbEmpleado_Update_RazonInactivacion" ReturnType="Collection(String)">
+      <Parameter Name="emp_Id" Mode="In" Type="Int32" />
+      <Parameter Name="emp_Estado" Mode="In" Type="Boolean" />
+      <Parameter Name="emp_RazonInactivacion" Mode="In" Type="String" />
+      <Parameter Name="obj_UsuarioModifica" Mode="In" Type="Int32" />
+      <Parameter Name="obj_FechaModifica" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Gral_tbEmpleado_Update_RazonSalida" ReturnType="Collection(String)">
+      <Parameter Name="emp_Id" Mode="In" Type="Int32" />
+      <Parameter Name="emp_Estado" Mode="In" Type="Boolean" />
+      <Parameter Name="emp_RazonSalida" Mode="In" Type="String" />
+      <Parameter Name="emp_UsuarioModifica" Mode="In" Type="Int32" />
+      <Parameter Name="emp_FechaModifica" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_tbPedidoDetalle_Select" ReturnType="Collection(ERP_ZORZALModel.UDP_tbPedidoDetalle_Select_Result)">
+      <Parameter Name="pedd_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_tbPedidoDetalle_Select_Edit" ReturnType="Collection(ERP_ZORZALModel.UDP_tbPedidoDetalle_Select_Edit_Result)">
+      <Parameter Name="pedd_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbDevolucion_Caja" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDevolucion_Caja_Result)">
+      <Parameter Name="CodUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbNotaCredito_Caja" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbNotaCredito_Caja_Result)">
+      <Parameter Name="CodUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbNotaCreditoSelect" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbNotaCreditoSelect_Result)">
+      <Parameter Name="clte_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbPago_ImprimirEstaImpreso" ReturnType="Collection(String)">
+      <Parameter Name="pago_Id" Mode="In" Type="Int32" />
+      <Parameter Name="pago_EstaImpreso" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbSolicitudEfectivoDetalle_Update_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivoDetalle_Update_Insert_Result)">
+      <Parameter Name="IDSOLICITUD" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbTipoTaller_Estado">
+      <Parameter Name="tptal_Id" Mode="In" Type="Int32" />
+      <Parameter Name="tptal_Es_Activo" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbSolicitudCredito_RolGerenteCreditosCobranza" ReturnType="Collection(Boolean)">
+      <Parameter Name="UsuarioId" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbFactura_RolSupervisorCaja" ReturnType="Collection(Boolean)">
+      <Parameter Name="UsuarioId" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbNotaCredito_Imprimir" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbNotaCredito_Imprimir_Result1)">
+      <Parameter Name="nocre_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbMovimientoCaja_Imprimir" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_Imprimir_Result)">
+      <Parameter Name="mocja_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SDP_Vent_tbCuponDescuentoSelectGet" ReturnType="Collection(ERP_ZORZALModel.SDP_Vent_tbCuponDescuentoSelectGet_Result)">
+      <Parameter Name="cdto_ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbPago_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPago_Insert_Result)">
+      <Parameter Name="fact_Id" Mode="In" Type="Int64" />
+      <Parameter Name="tpa_Id" Mode="In" Type="Int16" />
+      <Parameter Name="pago_FechaElaboracion" Mode="In" Type="DateTime" />
+      <Parameter Name="pago_SaldoAnterior" Mode="In" Type="Decimal" />
+      <Parameter Name="pago_TotalPago" Mode="In" Type="Decimal" />
+      <Parameter Name="pago_TotalCambio" Mode="In" Type="Decimal" />
+      <Parameter Name="pago_Emisor" Mode="In" Type="String" />
+      <Parameter Name="bcta_Id" Mode="In" Type="Int16" />
+      <Parameter Name="pago_FechaVencimiento" Mode="In" Type="DateTime" />
+      <Parameter Name="pago_Titular" Mode="In" Type="String" />
+      <Parameter Name="nocre_Codigo_cdto_Id" Mode="In" Type="String" />
+      <Parameter Name="pago_EstaAnulado" Mode="In" Type="Boolean" />
+      <Parameter Name="pago_RazonAnulado" Mode="In" Type="String" />
+      <Parameter Name="pago_EstaImpreso" Mode="In" Type="Boolean" />
+      <Parameter Name="pago_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="pago_FechaCrea" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Acce_tbUsuario_Estado" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbUsuario_Estado_Result)">
+      <Parameter Name="usu_Id" Mode="In" Type="String" />
+      <Parameter Name="usu_EsActivo" Mode="In" Type="Boolean" />
+      <Parameter Name="usu_RazonInactivo" Mode="In" Type="String" />
+    </FunctionImport>
     <EntitySet Name="tbAccesoRol" EntityType="ERP_ZORZALModel.tbAccesoRol" />
     <EntitySet Name="tbBitacoraErrores" EntityType="ERP_ZORZALModel.tbBitacoraErrores" />
     <EntitySet Name="tbObjeto" EntityType="ERP_ZORZALModel.tbObjeto" />
     <EntitySet Name="tbRol" EntityType="ERP_ZORZALModel.tbRol" />
     <EntitySet Name="tbRolesUsuario" EntityType="ERP_ZORZALModel.tbRolesUsuario" />
     <EntitySet Name="tbUsuario" EntityType="ERP_ZORZALModel.tbUsuario" />
+    <EntitySet Name="sysdiagrams" EntityType="ERP_ZORZALModel.sysdiagrams" />
     <EntitySet Name="tbActividadEconomica" EntityType="ERP_ZORZALModel.tbActividadEconomica" />
     <EntitySet Name="tbBanco" EntityType="ERP_ZORZALModel.tbBanco" />
     <EntitySet Name="tbCuentasBanco" EntityType="ERP_ZORZALModel.tbCuentasBanco" />
@@ -2459,7 +2688,7 @@
       <End Role="tbSalida" EntitySet="tbSalida" />
       <End Role="tbSalidaDetalle" EntitySet="tbSalidaDetalle" />
     </AssociationSet>
-    <AssociationSet Name="FK__DatosCons__fact___4DAB2CE2" Association="ERP_ZORZALModel.FK__DatosCons__fact___4DAB2CE2">
+    <AssociationSet Name="FK__DatosCons__fact___0C1BC9F9" Association="ERP_ZORZALModel.FK__DatosCons__fact___0C1BC9F9">
       <End Role="tbFactura" EntitySet="tbFactura" />
       <End Role="DatosConsumidorFinal" EntitySet="DatosConsumidorFinal" />
     </AssociationSet>
@@ -2611,216 +2840,7 @@
       <End Role="tbSolicitudEfectivo" EntitySet="tbSolicitudEfectivo" />
       <End Role="tbSolicitudEfectivoDetalle" EntitySet="tbSolicitudEfectivoDetalle" />
     </AssociationSet>
-    <FunctionImport Name="UDP_Vent_tbMovimientoCaja_Apertura_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_Apertura_Insert_Result)">
-      <Parameter Name="cja_Id" Mode="In" Type="Int16" />
-      <Parameter Name="mocja_FechaApertura" Mode="In" Type="DateTime" />
-      <Parameter Name="mocja_UsuarioApertura" Mode="In" Type="Int32" />
-      <Parameter Name="usu_Id" Mode="In" Type="Int32" />
-      <Parameter Name="mocja_FechaArqueo" Mode="In" Type="DateTime" />
-      <Parameter Name="mocja_UsuarioArquea" Mode="In" Type="Int32" />
-      <Parameter Name="mocja_FechaAceptacion" Mode="In" Type="DateTime" />
-      <Parameter Name="mocja_UsuarioAceptacion" Mode="In" Type="Int32" />
-      <Parameter Name="mocja_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="mocja_FechaCrea" Mode="In" Type="DateTime" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbSolicitudEfectivo_Apertura_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivo_Apertura_Insert_Result)">
-      <Parameter Name="mocja_Id" Mode="In" Type="Int32" />
-      <Parameter Name="solef_EsApertura" Mode="In" Type="Boolean" />
-      <Parameter Name="solef_FechaEntrega" Mode="In" Type="DateTime" />
-      <Parameter Name="solef_UsuarioEntrega" Mode="In" Type="Int32" />
-      <Parameter Name="mnda_Id" Mode="In" Type="Int16" />
-      <Parameter Name="solef_EsAnulada" Mode="In" Type="Boolean" />
-      <Parameter Name="solef_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="solef_FechaCrea" Mode="In" Type="DateTime" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert_Result)">
-      <Parameter Name="solef_Id" Mode="In" Type="Int32" />
-      <Parameter Name="deno_Id" Mode="In" Type="Int16" />
-      <Parameter Name="soled_CantidadSolicitada" Mode="In" Type="Int16" />
-      <Parameter Name="soled_CantidadEntregada" Mode="In" Type="Int16" />
-      <Parameter Name="soled_MontoEntregado" Mode="In" Type="Decimal" />
-      <Parameter Name="soled_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="soled_FechaCrea" Mode="In" Type="DateTime" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbSolicitudEfectivo_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivo_Insert_Result)">
-      <Parameter Name="mocja_Id" Mode="In" Type="Int32" />
-      <Parameter Name="mnda_Id" Mode="In" Type="Int16" />
-      <Parameter Name="solef_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="solef_FechaCrea" Mode="In" Type="DateTime" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbSolicitudEfectivo_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivo_Update_Result)">
-      <Parameter Name="solef_Id" Mode="In" Type="Int32" />
-      <Parameter Name="mocja_Id" Mode="In" Type="Int32" />
-      <Parameter Name="solef_EsApertura" Mode="In" Type="Boolean" />
-      <Parameter Name="mnda_Id" Mode="In" Type="Int16" />
-      <Parameter Name="solef_EsAnulada" Mode="In" Type="Boolean" />
-      <Parameter Name="solef_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="solef_FechaCrea" Mode="In" Type="DateTime" />
-      <Parameter Name="solef_UsuarioModifica" Mode="In" Type="Int32" />
-      <Parameter Name="solef_FechaModifica" Mode="In" Type="DateTime" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbSolicitudEfectivoDetalle_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivoDetalle_Insert_Result)">
-      <Parameter Name="solef_Id" Mode="In" Type="Int32" />
-      <Parameter Name="deno_Id" Mode="In" Type="Int16" />
-      <Parameter Name="soled_CantidadSolicitada" Mode="In" Type="Int16" />
-      <Parameter Name="soled_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="soled_FechaCrea" Mode="In" Type="DateTime" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbSolicitudEfectivoDetalle_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivoDetalle_Update_Result)">
-      <Parameter Name="soled_Id" Mode="In" Type="Int32" />
-      <Parameter Name="deno_Id" Mode="In" Type="Int16" />
-      <Parameter Name="soled_CantidadSolicitada" Mode="In" Type="Int16" />
-      <Parameter Name="soled_CantidadEntregada" Mode="In" Type="Int16" />
-      <Parameter Name="soled_MontoEntregado" Mode="In" Type="Decimal" />
-      <Parameter Name="soled_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="soled_FechaCrea" Mode="In" Type="DateTime" />
-      <Parameter Name="soled_UsuarioModifica" Mode="In" Type="Int32" />
-      <Parameter Name="soled_FechaModifica" Mode="In" Type="DateTime" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Gral_tbDenominacion_using" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbDenominacion_using_Result)">
-      <Parameter Name="DENO_ID" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbFactura_ObtenerCai_CodigoFactura" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFactura_ObtenerCai_CodigoFactura_Result)">
-      <Parameter Name="IDSucursal" Mode="In" Type="Int32" />
-      <Parameter Name="IDCAJA" Mode="In" Type="Int16" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbSolicitudEfectivo_Recargo" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivo_Recargo_Result)">
-      <Parameter Name="USER_ID" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbSolicitudEfectivo_Details" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivo_Details_Result1)">
-      <Parameter Name="IDSOLICITUD" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbDenominacionArqueo_Select" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDenominacionArqueo_Select_Result)" />
-    <FunctionImport Name="UDP_Vent_tbMovimientoCaja_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_Insert_Result)">
-      <Parameter Name="cja_Id" Mode="In" Type="Int16" />
-      <Parameter Name="usu_Id" Mode="In" Type="Int32" />
-      <Parameter Name="mocja_UsuarioApertura" Mode="In" Type="Int32" />
-      <Parameter Name="mocja_FechaArqueo" Mode="In" Type="DateTime" />
-      <Parameter Name="mocja_UsuarioArquea" Mode="In" Type="Int32" />
-      <Parameter Name="mocja_FechaAceptacion" Mode="In" Type="DateTime" />
-      <Parameter Name="mocja_UsuarioAceptacion" Mode="In" Type="Int32" />
-      <Parameter Name="mocja_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="mocja_FechaCrea" Mode="In" Type="DateTime" />
-    </FunctionImport>
-    <FunctionImport Name="UPD_Vent_tbUsuario_Rol" ReturnType="Collection(ERP_ZORZALModel.UPD_Vent_tbUsuario_Rol_Result)">
-      <Parameter Name="suc_Id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="spGetCaja" ReturnType="Collection(ERP_ZORZALModel.spGetCaja_Result)">
-      <Parameter Name="CodUsuario" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbTipoPago_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbTipoPago_Insert_Result)">
-      <Parameter Name="tpa_Descripcion" Mode="In" Type="String" />
-      <Parameter Name="tpa_Emisor" Mode="In" Type="Boolean" />
-      <Parameter Name="tpa_Cuenta" Mode="In" Type="Boolean" />
-      <Parameter Name="tpa_FechaVencimiento" Mode="In" Type="Boolean" />
-      <Parameter Name="tpa_Titular" Mode="In" Type="Boolean" />
-      <Parameter Name="tpa_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="tpa_FechaCrea" Mode="In" Type="DateTime" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbTipoPago_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbTipoPago_Update_Result)">
-      <Parameter Name="tpa_Id" Mode="In" Type="Int16" />
-      <Parameter Name="tpa_Descripcion" Mode="In" Type="String" />
-      <Parameter Name="tpa_Emisor" Mode="In" Type="Boolean" />
-      <Parameter Name="tpa_Cuenta" Mode="In" Type="Boolean" />
-      <Parameter Name="tpa_FechaVencimiento" Mode="In" Type="Boolean" />
-      <Parameter Name="tpa_Titular" Mode="In" Type="Boolean" />
-      <Parameter Name="tpa_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="tpa_FechaCrea" Mode="In" Type="DateTime" />
-      <Parameter Name="tpa_UsuarioModifica" Mode="In" Type="Int32" />
-      <Parameter Name="tpa_FechaModifica" Mode="In" Type="DateTime" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbCuponDescuento_Redimido" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbCuponDescuento_Redimido_Result)">
-      <Parameter Name="cdto_ID" Mode="In" Type="Int32" />
-      <Parameter Name="cdto_Redimido" Mode="In" Type="Boolean" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbCuponDescuentoSelect" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbCuponDescuentoSelect_Result)" />
-    <FunctionImport Name="UDP_Vent_tbNotaCredito_Redimido" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbNotaCredito_Redimido_Result)">
-      <Parameter Name="nocre_Id" Mode="In" Type="Int16" />
-      <Parameter Name="nocre_Redimido" Mode="In" Type="Boolean" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbPago_Anulado" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPago_Anulado_Result)">
-      <Parameter Name="pago_Id" Mode="In" Type="Int32" />
-      <Parameter Name="pago_EstaAnulado" Mode="In" Type="Boolean" />
-      <Parameter Name="pago_RazonAnulado" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbPago_Impreso" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPago_Impreso_Result)">
-      <Parameter Name="pago_Id" Mode="In" Type="Int32" />
-      <Parameter Name="pago_EstaImpreso" Mode="In" Type="Boolean" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbPago_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPago_Update_Result)">
-      <Parameter Name="pago_Id" Mode="In" Type="Int32" />
-      <Parameter Name="fact_Id" Mode="In" Type="Int64" />
-      <Parameter Name="tpa_Id" Mode="In" Type="Int16" />
-      <Parameter Name="pago_FechaElaboracion" Mode="In" Type="DateTime" />
-      <Parameter Name="pago_SaldoAnterior" Mode="In" Type="Decimal" />
-      <Parameter Name="pago_TotalPago" Mode="In" Type="Decimal" />
-      <Parameter Name="pago_TotalCambio" Mode="In" Type="Decimal" />
-      <Parameter Name="pago_Emisor" Mode="In" Type="String" />
-      <Parameter Name="bcta_Id" Mode="In" Type="Int16" />
-      <Parameter Name="pago_FechaVencimiento" Mode="In" Type="DateTime" />
-      <Parameter Name="pago_Titular" Mode="In" Type="String" />
-      <Parameter Name="nocre_Codigo_cdto_Id" Mode="In" Type="String" />
-      <Parameter Name="pago_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="pago_FechaCrea" Mode="In" Type="DateTime" />
-      <Parameter Name="pago_UsuarioModifica" Mode="In" Type="Int32" />
-      <Parameter Name="pago_FechaModifica" Mode="In" Type="DateTime" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Vent_vFacturaPago" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_vFacturaPago_Result)">
-      <Parameter Name="clte_Id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Acce_tbRol_Inactivar" ReturnType="Collection(String)">
-      <Parameter Name="IDRol" Mode="In" Type="Int32" />
-      <Parameter Name="rol_UsuarioModifica" Mode="In" Type="Int32" />
-      <Parameter Name="rol_FechaModifica" Mode="In" Type="DateTime" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Acce_tbUsuario_PasswordRestore" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbUsuario_PasswordRestore_Result)">
-      <Parameter Name="usu_Id" Mode="In" Type="Int32" />
-      <Parameter Name="usu_Password" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="SDP_Gral_tbEmpleado_Select" ReturnType="Collection(ERP_ZORZALModel.SDP_Gral_tbEmpleado_Select_Result)">
-      <Parameter Name="emp_Id" Mode="In" Type="Int16" />
-    </FunctionImport>
-    <FunctionImport Name="SDP_tbEmpleado_Consulta" ReturnType="Collection(ERP_ZORZALModel.SDP_tbEmpleado_Consulta_Result)">
-      <Parameter Name="emp_Id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="SDP_tbEmpleado_Select" ReturnType="Collection(ERP_ZORZALModel.SDP_tbEmpleado_Select_Result)" />
-    <FunctionImport Name="UDP_Gral_tbEmpleado_Update_RazonInactivacion" ReturnType="Collection(String)">
-      <Parameter Name="emp_Id" Mode="In" Type="Int32" />
-      <Parameter Name="emp_Estado" Mode="In" Type="Boolean" />
-      <Parameter Name="emp_RazonInactivacion" Mode="In" Type="String" />
-      <Parameter Name="obj_UsuarioModifica" Mode="In" Type="Int32" />
-      <Parameter Name="obj_FechaModifica" Mode="In" Type="DateTime" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Gral_tbEmpleado_Update_RazonSalida" ReturnType="Collection(String)">
-      <Parameter Name="emp_Id" Mode="In" Type="Int32" />
-      <Parameter Name="emp_Estado" Mode="In" Type="Boolean" />
-      <Parameter Name="emp_RazonSalida" Mode="In" Type="String" />
-      <Parameter Name="emp_UsuarioModifica" Mode="In" Type="Int32" />
-      <Parameter Name="emp_FechaModifica" Mode="In" Type="DateTime" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_tbPedidoDetalle_Select" ReturnType="Collection(ERP_ZORZALModel.UDP_tbPedidoDetalle_Select_Result)">
-      <Parameter Name="pedd_Id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_tbPedidoDetalle_Select_Edit" ReturnType="Collection(ERP_ZORZALModel.UDP_tbPedidoDetalle_Select_Edit_Result)">
-      <Parameter Name="pedd_Id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbDevolucion_Caja" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDevolucion_Caja_Result)">
-      <Parameter Name="CodUsuario" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbNotaCredito_Caja" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbNotaCredito_Caja_Result)">
-      <Parameter Name="CodUsuario" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbNotaCreditoSelect" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbNotaCreditoSelect_Result)">
-      <Parameter Name="clte_Id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbPago_ImprimirEstaImpreso" ReturnType="Collection(String)">
-      <Parameter Name="pago_Id" Mode="In" Type="Int32" />
-      <Parameter Name="pago_EstaImpreso" Mode="In" Type="Boolean" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbSolicitudEfectivoDetalle_Update_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivoDetalle_Update_Insert_Result)">
-      <Parameter Name="IDSOLICITUD" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbSucursal_Insert1" ReturnType="Collection(Int32)">
+    <FunctionImport Name="UDP_Vent_tbSucursal_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSucursal_Insert_Result)">
       <Parameter Name="mun_Codigo" Mode="In" Type="String" />
       <Parameter Name="bod_Id" Mode="In" Type="Int32" />
       <Parameter Name="pemi_Id" Mode="In" Type="Int32" />
@@ -2831,7 +2851,7 @@
       <Parameter Name="suc_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="suc_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbSucursal_Update1" ReturnType="Collection(Int32)">
+    <FunctionImport Name="UDP_Vent_tbSucursal_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSucursal_Update_Result)">
       <Parameter Name="suc_Id" Mode="In" Type="Int32" />
       <Parameter Name="mun_Codigo" Mode="In" Type="String" />
       <Parameter Name="bod_Id" Mode="In" Type="Int32" />
@@ -2844,50 +2864,6 @@
       <Parameter Name="suc_FechaCrea" Mode="In" Type="DateTime" />
       <Parameter Name="suc_UsuarioModifica" Mode="In" Type="Int32" />
       <Parameter Name="suc_FechaModifica" Mode="In" Type="DateTime" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbTipoTaller_Estado">
-      <Parameter Name="tptal_Id" Mode="In" Type="Int32" />
-      <Parameter Name="tptal_Es_Activo" Mode="In" Type="Boolean" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbSolicitudCredito_RolGerenteCreditosCobranza" ReturnType="Collection(Boolean)">
-      <Parameter Name="UsuarioId" Mode="In" Type="String" />
-      <Parameter Name="password" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbFactura_RolSupervisorCaja" ReturnType="Collection(Boolean)">
-      <Parameter Name="UsuarioId" Mode="In" Type="String" />
-      <Parameter Name="password" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbNotaCredito_Imprimir" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbNotaCredito_Imprimir_Result1)">
-      <Parameter Name="nocre_Id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbMovimientoCaja_Imprimir" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_Imprimir_Result)">
-      <Parameter Name="mocja_Id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="SDP_Vent_tbCuponDescuentoSelectGet" ReturnType="Collection(ERP_ZORZALModel.SDP_Vent_tbCuponDescuentoSelectGet_Result)">
-      <Parameter Name="cdto_ID" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbPago_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPago_Insert_Result)">
-      <Parameter Name="fact_Id" Mode="In" Type="Int64" />
-      <Parameter Name="tpa_Id" Mode="In" Type="Int16" />
-      <Parameter Name="pago_FechaElaboracion" Mode="In" Type="DateTime" />
-      <Parameter Name="pago_SaldoAnterior" Mode="In" Type="Decimal" />
-      <Parameter Name="pago_TotalPago" Mode="In" Type="Decimal" />
-      <Parameter Name="pago_TotalCambio" Mode="In" Type="Decimal" />
-      <Parameter Name="pago_Emisor" Mode="In" Type="String" />
-      <Parameter Name="bcta_Id" Mode="In" Type="Int16" />
-      <Parameter Name="pago_FechaVencimiento" Mode="In" Type="DateTime" />
-      <Parameter Name="pago_Titular" Mode="In" Type="String" />
-      <Parameter Name="nocre_Codigo_cdto_Id" Mode="In" Type="String" />
-      <Parameter Name="pago_EstaAnulado" Mode="In" Type="Boolean" />
-      <Parameter Name="pago_RazonAnulado" Mode="In" Type="String" />
-      <Parameter Name="pago_EstaImpreso" Mode="In" Type="Boolean" />
-      <Parameter Name="pago_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="pago_FechaCrea" Mode="In" Type="DateTime" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Acce_tbUsuario_Estado" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbUsuario_Estado_Result)">
-      <Parameter Name="usu_Id" Mode="In" Type="String" />
-      <Parameter Name="usu_EsActivo" Mode="In" Type="Boolean" />
-      <Parameter Name="usu_RazonInactivo" Mode="In" Type="String" />
     </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
@@ -3161,12 +3137,6 @@
   <ComplexType Name="UDP_Vent_tbExoneracion_Select_Result">
     <Property Type="Int32" Name="clte_Id" Nullable="false" />
     <Property Type="String" Name="clte_Nombres" Nullable="false" MaxLength="50" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbSucursal_Update_Result">
-    <Property Type="Int32" Name="MensajeError" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbSucursal_Insert_Result">
-    <Property Type="Int32" Name="MensajeError" Nullable="false" />
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbFacturaDetalle_Insert_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
@@ -3703,6 +3673,322 @@
   <ComplexType Name="UDP_Vent_tbExoneracion_Update_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
+  <ComplexType Name="UDP_Vent_tbMovimientoCaja_Apertura_Insert_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbSolicitudEfectivo_Apertura_Insert_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbSolicitudEfectivo_Insert_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbSolicitudEfectivo_Update_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbSolicitudEfectivoDetalle_Insert_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbSolicitudEfectivoDetalle_Update_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Gral_tbDenominacion_using_Result">
+    <Property Type="Int16" Name="deno_Id" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbFactura_ObtenerCai_CodigoFactura_Result">
+    <Property Type="String" Name="CODFACTURA" Nullable="true" MaxLength="19" />
+    <Property Type="String" Name="CAI" Nullable="true" MaxLength="40" />
+    <Property Type="String" Name="ERRORMSJ" Nullable="true" MaxLength="40" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbSolicitudEfectivo_Recargo_Result">
+    <Property Type="Int32" Name="solef_Id" Nullable="false" />
+    <Property Type="Int32" Name="mocja_Id" Nullable="false" />
+    <Property Type="Int32" Name="solef_UsuarioCrea" Nullable="false" />
+    <Property Type="String" Name="suc_Descripcion" Nullable="false" MaxLength="40" />
+    <Property Type="Int16" Name="cja_Id" Nullable="false" />
+    <Property Type="String" Name="cja_Descripcion" Nullable="false" MaxLength="10" />
+    <Property Type="DateTime" Name="mocja_FechaApertura" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbSolicitudEfectivo_Details_Result">
+    <Property Type="Int32" Name="soled_Id" Nullable="false" />
+    <Property Type="String" Name="deno_Descripcion" Nullable="false" MaxLength="50" />
+    <Property Type="Int16" Name="soled_CantidadSolicitada" Nullable="false" />
+    <Property Type="Decimal" Name="MontoSolicitado" Nullable="true" Precision="16" Scale="2" />
+    <Property Type="Int16" Name="soled_CantidadEntregada" Nullable="false" />
+    <Property Type="Decimal" Name="MontoEntregado" Nullable="true" Precision="16" Scale="2" />
+    <Property Type="Int16" Name="deno_Id" Nullable="false" />
+    <Property Type="Decimal" Name="deno_valor" Nullable="false" Precision="10" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbSolicitudEfectivo_Details_Result1">
+    <Property Type="Int32" Name="soled_Id" Nullable="false" />
+    <Property Type="String" Name="deno_Descripcion" Nullable="false" MaxLength="50" />
+    <Property Type="Int16" Name="soled_CantidadSolicitada" Nullable="false" />
+    <Property Type="Decimal" Name="MontoSolicitado" Nullable="true" Precision="16" Scale="2" />
+    <Property Type="Int16" Name="soled_CantidadEntregada" Nullable="false" />
+    <Property Type="Decimal" Name="MontoEntregado" Nullable="true" Precision="16" Scale="2" />
+    <Property Type="Int16" Name="deno_Id" Nullable="false" />
+    <Property Type="Decimal" Name="deno_valor" Nullable="false" Precision="10" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbDenominacionArqueo_Select_Result">
+    <Property Type="Int16" Name="deno_Id" Nullable="false" />
+    <Property Type="String" Name="mnda_Abreviatura" Nullable="false" MaxLength="4" />
+    <Property Type="String" Name="TipoDenominacion" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="deno_Descripcion" Nullable="false" MaxLength="50" />
+    <Property Type="Decimal" Name="deno_valor" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="String" Name="mnda_Nombre" Nullable="false" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbMovimientoCaja_Insert_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbNotaCredito_Imprimir_Result">
+    <Property Type="Int16" Name="nocre_Id" Nullable="false" />
+    <Property Type="String" Name="nocre_Codigo" Nullable="false" MaxLength="19" />
+    <Property Type="String" Name="nocre_MotivoEmision" Nullable="false" MaxLength="250" />
+    <Property Type="Decimal" Name="nocre_Monto" Nullable="true" Precision="10" Scale="2" />
+    <Property Type="Int32" Name="dev_Id" Nullable="false" />
+    <Property Type="String" Name="clte_Identificacion" Nullable="false" MaxLength="26" />
+    <Property Type="String" Name="clte_Nombres" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="clte_Apellidos" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="nocre_FechaEmision" Nullable="false" Precision="23" />
+    <Property Type="String" Name="clte_NombreComercial" Nullable="false" MaxLength="50" />
+    <Property Type="Decimal" Name="devd_Monto" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="String" Name="suc_Descripcion" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="suc_Correo" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="suc_Direccion" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="suc_Telefono" Nullable="false" MaxLength="9" />
+  </ComplexType>
+  <ComplexType Name="UPD_Vent_tbUsuario_Rol_Result">
+    <Property Type="Int32" Name="usu_Id" Nullable="false" />
+    <Property Type="String" Name="usu_NombreUsuario" Nullable="false" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="spGetCaja_Result">
+    <Property Type="Int16" Name="cja_Id" Nullable="false" />
+    <Property Type="String" Name="cja_Descripcion" Nullable="false" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbTipoPago_Update_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbTipoPago_Insert_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbCuponDescuentoSelect_Result1">
+    <Property Type="Int32" Name="cdto_ID" Nullable="false" />
+    <Property Type="DateTime" Name="cdto_FechaVencimiento" Nullable="false" />
+    <Property Type="Decimal" Name="cdto_PorcentajeDescuento" Nullable="true" Precision="5" Scale="2" />
+    <Property Type="Decimal" Name="cdto_MontoDescuento" Nullable="true" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="cdto_MaximoMontoDescuento" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="cdto_CantidadCompraMinima" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Boolean" Name="cdto_Redimido" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_vFacturaPago_Result">
+    <Property Type="Int64" Name="fact_Id" Nullable="false" />
+    <Property Type="Int32" Name="clte_Id" Nullable="false" />
+    <Property Type="Boolean" Name="fact_AlCredito" Nullable="false" />
+    <Property Type="String" Name="fact_Codigo" Nullable="false" MaxLength="19" />
+    <Property Type="Decimal" Name="MontoFactura" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="TotalPagado" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="SaldoFactura" Nullable="true" Precision="18" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbPago_Impreso_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbNotaCredito_Redimido_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbCuponDescuento_Redimido_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="SDP_Gral_tbEmpleado_Select_Result">
+    <Property Type="Int16" Name="emp_Id" Nullable="false" />
+    <Property Type="String" Name="emp_Nombres" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="emp_Apellidos" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="emp_Sexo" Nullable="false" MaxLength="1" />
+    <Property Type="DateTime" Name="emp_FechaNacimiento" Nullable="false" Precision="23" />
+    <Property Type="Byte" Name="tpi_Id" Nullable="false" />
+    <Property Type="String" Name="emp_Identificacion" Nullable="false" MaxLength="14" />
+    <Property Type="String" Name="emp_Telefono" Nullable="false" MaxLength="25" />
+    <Property Type="String" Name="emp_Correoelectronico" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="emp_TipoSangre" Nullable="false" MaxLength="2" />
+    <Property Type="String" Name="emp_Puesto" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="emp_FechaIngreso" Nullable="false" />
+    <Property Type="String" Name="emp_Direccion" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="emp_RazonInactivacion" Nullable="true" MaxLength="500" />
+    <Property Type="Int32" Name="emp_UsuarioCrea" Nullable="false" />
+    <Property Type="DateTime" Name="emp_FechaCrea" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="emp_UsuarioModifica" Nullable="true" />
+    <Property Type="DateTime" Name="emp_FechaModifica" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="emp_Estado" Nullable="false" />
+    <Property Type="String" Name="emp_RazonSalida" Nullable="true" MaxLength="250" />
+    <Property Type="DateTime" Name="emp_FechaDeSalida" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SDP_tbEmpleado_Consulta_Result">
+    <Property Type="Int16" Name="emp_Id" Nullable="false" />
+    <Property Type="String" Name="emp_Nombres" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="emp_Apellidos" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="emp_Sexo" Nullable="false" MaxLength="1" />
+    <Property Type="DateTime" Name="emp_FechaNacimiento" Nullable="false" Precision="23" />
+    <Property Type="Byte" Name="tpi_Id" Nullable="false" />
+    <Property Type="String" Name="emp_Identificacion" Nullable="false" MaxLength="14" />
+    <Property Type="String" Name="emp_Telefono" Nullable="false" MaxLength="25" />
+    <Property Type="String" Name="emp_Correoelectronico" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="emp_TipoSangre" Nullable="false" MaxLength="2" />
+    <Property Type="String" Name="emp_Puesto" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="emp_FechaIngreso" Nullable="false" />
+    <Property Type="String" Name="emp_Direccion" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="emp_RazonInactivacion" Nullable="true" MaxLength="500" />
+    <Property Type="Int32" Name="emp_UsuarioCrea" Nullable="false" />
+    <Property Type="DateTime" Name="emp_FechaCrea" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="emp_UsuarioModifica" Nullable="true" />
+    <Property Type="DateTime" Name="emp_FechaModifica" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="emp_Estado" Nullable="false" />
+    <Property Type="String" Name="emp_RazonSalida" Nullable="true" MaxLength="250" />
+    <Property Type="DateTime" Name="emp_FechaDeSalida" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SDP_tbEmpleado_Select_Result">
+    <Property Type="Int16" Name="emp_Id" Nullable="false" />
+    <Property Type="String" Name="emp_Nombres" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="emp_Apellidos" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="emp_Sexo" Nullable="false" MaxLength="1" />
+    <Property Type="DateTime" Name="emp_FechaNacimiento" Nullable="false" Precision="23" />
+    <Property Type="Byte" Name="tpi_Id" Nullable="false" />
+    <Property Type="String" Name="emp_Identificacion" Nullable="false" MaxLength="14" />
+    <Property Type="String" Name="emp_Telefono" Nullable="false" MaxLength="25" />
+    <Property Type="String" Name="emp_Correoelectronico" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="emp_TipoSangre" Nullable="false" MaxLength="2" />
+    <Property Type="String" Name="emp_Puesto" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="emp_FechaIngreso" Nullable="false" />
+    <Property Type="String" Name="emp_Direccion" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="emp_RazonInactivacion" Nullable="true" MaxLength="500" />
+    <Property Type="Int32" Name="emp_UsuarioCrea" Nullable="false" />
+    <Property Type="DateTime" Name="emp_FechaCrea" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="emp_UsuarioModifica" Nullable="true" />
+    <Property Type="DateTime" Name="emp_FechaModifica" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="emp_Estado" Nullable="false" />
+    <Property Type="String" Name="emp_RazonSalida" Nullable="true" MaxLength="250" />
+    <Property Type="DateTime" Name="emp_FechaDeSalida" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="UDP_tbPedidoDetalle_Select_Result">
+    <Property Type="Int32" Name="pedd_Id" Nullable="false" />
+    <Property Type="Int32" Name="ped_Id" Nullable="false" />
+    <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
+    <Property Type="Decimal" Name="pedd_Cantidad" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="pedd_CantidadFacturada" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Int32" Name="pedd_UsuarioCrea" Nullable="false" />
+    <Property Type="DateTime" Name="pedd_FechaCrea" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="pedd_UsuarioModifica" Nullable="true" />
+    <Property Type="DateTime" Name="pedd_FechaModifica" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="UDP_tbPedidoDetalle_Select_Edit_Result">
+    <Property Type="Int32" Name="pedd_Id" Nullable="false" />
+    <Property Type="Int32" Name="ped_Id" Nullable="false" />
+    <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
+    <Property Type="Decimal" Name="pedd_Cantidad" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="pedd_CantidadFacturada" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Int32" Name="pedd_UsuarioCrea" Nullable="false" />
+    <Property Type="DateTime" Name="pedd_FechaCrea" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="pedd_UsuarioModifica" Nullable="true" />
+    <Property Type="DateTime" Name="pedd_FechaModifica" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbDevolucion_Caja_Result">
+    <Property Type="Int16" Name="cja_Id" Nullable="false" />
+    <Property Type="String" Name="cja_Descripcion" Nullable="false" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbNotaCredito_Caja_Result">
+    <Property Type="Int16" Name="cja_Id" Nullable="false" />
+    <Property Type="String" Name="cja_Descripcion" Nullable="false" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbSolicitudEfectivoDetalle_Update_Insert_Result">
+    <Property Type="Int16" Name="denoId" Nullable="false" />
+    <Property Type="String" Name="DenoDescripcion" Nullable="false" MaxLength="50" />
+    <Property Type="Decimal" Name="valor" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Int32" Name="CantidadSolicitada" Nullable="true" />
+    <Property Type="Decimal" Name="MONTO" Nullable="true" Precision="21" Scale="2" />
+    <Property Type="Int32" Name="iddetalle" Nullable="true" />
+    <Property Type="Int32" Name="solef_Id" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbNotaCreditoSelect_Result">
+    <Property Type="Int32" Name="clte_Id" Nullable="false" />
+    <Property Type="Int16" Name="nocre_Id" Nullable="false" />
+    <Property Type="String" Name="nocre_Codigo" Nullable="false" MaxLength="19" />
+    <Property Type="Decimal" Name="nocre_Monto" Nullable="true" Precision="10" Scale="2" />
+    <Property Type="Boolean" Name="nocre_Redimido" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbNotaCredito_Imprimir_Result1">
+    <Property Type="DateTime" Name="nocre_FechaEmision" Nullable="false" Precision="23" />
+    <Property Type="Int16" Name="nocre_Id" Nullable="false" />
+    <Property Type="String" Name="nocre_Codigo" Nullable="false" MaxLength="19" />
+    <Property Type="String" Name="nocre_MotivoEmision" Nullable="false" MaxLength="250" />
+    <Property Type="Decimal" Name="nocre_Monto" Nullable="true" Precision="10" Scale="2" />
+    <Property Type="Int32" Name="dev_Id" Nullable="true" />
+    <Property Type="Decimal" Name="devd_Monto" Nullable="true" Precision="10" Scale="2" />
+    <Property Type="String" Name="clte_Identificacion" Nullable="true" MaxLength="26" />
+    <Property Type="String" Name="clte_Nombres" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="clte_Apellidos" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="clte_NombreComercial" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="suc_Descripcion" Nullable="true" MaxLength="40" />
+    <Property Type="String" Name="suc_Correo" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="suc_Direccion" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="suc_Telefono" Nullable="true" MaxLength="9" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbMovimientoCaja_Imprimir_Result">
+    <Property Type="Int32" Name="mocja_Id" Nullable="false" />
+    <Property Type="DateTime" Name="mocja_FechaApertura" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="mocja_UsuarioApertura" Nullable="false" />
+    <Property Type="DateTime" Name="mocja_FechaArqueo" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="mocja_UsuarioArquea" Nullable="false" />
+    <Property Type="DateTime" Name="mocja_FechaAceptacion" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="mocja_UsuarioAceptacion" Nullable="false" />
+    <Property Type="String" Name="cja_Descripcion" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="suc_Descripcion" Nullable="true" MaxLength="40" />
+    <Property Type="Int16" Name="arqde_CantidadDenominacion" Nullable="true" />
+    <Property Type="Decimal" Name="arqde_MontoDenominacion" Nullable="true" Precision="10" Scale="2" />
+    <Property Type="String" Name="deno_Descripcion" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="deno_valor" Nullable="true" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="arqpg_PagosSistema" Nullable="true" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="arqpg_PagosConteo" Nullable="true" Precision="10" Scale="2" />
+    <Property Type="String" Name="tpa_Descripcion" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Usuario_Apertura" Nullable="true" MaxLength="301" />
+    <Property Type="String" Name="Usuario_Arquea" Nullable="true" MaxLength="301" />
+    <Property Type="String" Name="Usuario_Aceptacion" Nullable="true" MaxLength="301" />
+  </ComplexType>
+  <ComplexType Name="SDP_Vent_tbCuponDescuentoSelectGet_Result">
+    <Property Type="Int32" Name="cdto_ID" Nullable="false" />
+    <Property Type="DateTime" Name="cdto_FechaVencimiento" Nullable="false" />
+    <Property Type="Decimal" Name="cdto_PorcentajeDescuento" Nullable="true" Precision="5" Scale="2" />
+    <Property Type="Decimal" Name="cdto_MontoDescuento" Nullable="true" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="cdto_MaximoMontoDescuento" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="cdto_CantidadCompraMinima" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Boolean" Name="cdto_Redimido" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbPago_Insert_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Acce_tbUsuario_Insert_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Acce_tbUsuario_PasswordRestore_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Acce_tbUsuario_PasswordUpdate_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Acce_tbUsuario_Select_Result">
+    <Property Type="String" Name="usu_NombreUsuario" Nullable="false" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="UDP_Acce_tbUsuario_Update_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Acce_tbUsuario_Estado_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Acce_tbRol_Insert_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Acce_tbRolesUsuario_Insert_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
   <EntityType Name="tbAccesoRol">
     <Key>
       <PropertyRef Name="acrol_Id" />
@@ -3929,6 +4215,16 @@
     <NavigationProperty Name="tbPuntoEmisionDetalle1" Relationship="ERP_ZORZALModel.FK_Vent_tbPuntoEmisionDetalle_tbUsuario_usu_Id_Modifica" FromRole="tbUsuario" ToRole="tbPuntoEmisionDetalle" />
     <NavigationProperty Name="tbCliente" Relationship="ERP_ZORZALModel.FK_Vent_tbUsuario_tbCliente_usu_Id_Crea" FromRole="tbUsuario" ToRole="tbCliente" />
     <NavigationProperty Name="tbCliente1" Relationship="ERP_ZORZALModel.FK_Vent_tbUsuario_tbCliente_usu_Id_Modifica" FromRole="tbUsuario" ToRole="tbCliente" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <EntityType Name="tbActividadEconomica">
     <Key>
@@ -4502,7 +4798,7 @@
     <Property Name="confi_Nombres" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="confi_Telefono" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
     <Property Name="confi_Correo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="tbFactura" Relationship="ERP_ZORZALModel.FK__DatosCons__fact___4DAB2CE2" FromRole="DatosConsumidorFinal" ToRole="tbFactura" />
+    <NavigationProperty Name="tbFactura" Relationship="ERP_ZORZALModel.FK__DatosCons__fact___0C1BC9F9" FromRole="DatosConsumidorFinal" ToRole="tbFactura" />
   </EntityType>
   <EntityType Name="tbCaja">
     <Key>
@@ -4757,7 +5053,7 @@
     <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbUsuario_usu_Id_Crea" FromRole="tbFactura" ToRole="tbUsuario" />
     <NavigationProperty Name="tbUsuario2" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbUsuario_usu_Id_Modifica" FromRole="tbFactura" ToRole="tbUsuario" />
     <NavigationProperty Name="tbSalida" Relationship="ERP_ZORZALModel.FK_Inv_tbSalida_tbFactura_fact_Id" FromRole="tbFactura" ToRole="tbSalida" />
-    <NavigationProperty Name="DatosConsumidorFinal" Relationship="ERP_ZORZALModel.FK__DatosCons__fact___4DAB2CE2" FromRole="tbFactura" ToRole="DatosConsumidorFinal" />
+    <NavigationProperty Name="DatosConsumidorFinal" Relationship="ERP_ZORZALModel.FK__DatosCons__fact___0C1BC9F9" FromRole="tbFactura" ToRole="DatosConsumidorFinal" />
     <NavigationProperty Name="tbCaja" Relationship="ERP_ZORZALModel.FK_Vent_tbCaja_tbFactura_cja_Id" FromRole="tbFactura" ToRole="tbCaja" />
     <NavigationProperty Name="tbCliente" Relationship="ERP_ZORZALModel.FK_Vent_tbCliente_tbFactura_clte_Id" FromRole="tbFactura" ToRole="tbCliente" />
     <NavigationProperty Name="tbDevolucion" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbDevolucion_fact_Id" FromRole="tbFactura" ToRole="tbDevolucion" />
@@ -5437,10 +5733,10 @@
     <Property Name="fact_Id" Type="Int64" Nullable="false" />
     <Property Name="clte_Id" Type="Int32" Nullable="false" />
     <Property Name="fact_Codigo" Type="String" Nullable="false" MaxLength="19" FixedLength="false" Unicode="true" />
+    <Property Name="fact_AlCredito" Type="Boolean" Nullable="false" />
     <Property Name="MontoFactura" Type="Decimal" Precision="18" Scale="2" />
     <Property Name="TotalPagado" Type="Decimal" Precision="18" Scale="2" />
     <Property Name="SaldoFactura" Type="Decimal" Precision="18" Scale="2" />
-    <Property Name="fact_AlCredito" Type="Boolean" Nullable="false" />
   </EntityType>
   <Association Name="FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id">
     <End Type="ERP_ZORZALModel.tbObjeto" Role="tbObjeto" Multiplicity="1" />
@@ -7686,7 +7982,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__DatosCons__fact___4DAB2CE2">
+  <Association Name="FK__DatosCons__fact___0C1BC9F9">
     <End Type="ERP_ZORZALModel.tbFactura" Role="tbFactura" Multiplicity="1" />
     <End Type="ERP_ZORZALModel.DatosConsumidorFinal" Role="DatosConsumidorFinal" Multiplicity="*" />
     <ReferentialConstraint>
@@ -8142,320 +8438,10 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <ComplexType Name="UDP_Vent_tbMovimientoCaja_Apertura_Insert_Result">
+  <ComplexType Name="UDP_Vent_tbSucursal_Insert_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
-  <ComplexType Name="UDP_Vent_tbSolicitudEfectivo_Apertura_Insert_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbSolicitudEfectivo_Insert_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbSolicitudEfectivo_Update_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbSolicitudEfectivoDetalle_Insert_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbSolicitudEfectivoDetalle_Update_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="UDP_Gral_tbDenominacion_using_Result">
-    <Property Type="Int16" Name="deno_Id" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbFactura_ObtenerCai_CodigoFactura_Result">
-    <Property Type="String" Name="CODFACTURA" Nullable="true" MaxLength="19" />
-    <Property Type="String" Name="CAI" Nullable="true" MaxLength="40" />
-    <Property Type="String" Name="ERRORMSJ" Nullable="true" MaxLength="40" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbSolicitudEfectivo_Recargo_Result">
-    <Property Type="Int32" Name="solef_Id" Nullable="false" />
-    <Property Type="Int32" Name="mocja_Id" Nullable="false" />
-    <Property Type="Int32" Name="solef_UsuarioCrea" Nullable="false" />
-    <Property Type="String" Name="suc_Descripcion" Nullable="false" MaxLength="40" />
-    <Property Type="Int16" Name="cja_Id" Nullable="false" />
-    <Property Type="String" Name="cja_Descripcion" Nullable="false" MaxLength="10" />
-    <Property Type="DateTime" Name="mocja_FechaApertura" Nullable="true" Precision="23" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbSolicitudEfectivo_Details_Result">
-    <Property Type="Int32" Name="soled_Id" Nullable="false" />
-    <Property Type="String" Name="deno_Descripcion" Nullable="false" MaxLength="50" />
-    <Property Type="Int16" Name="soled_CantidadSolicitada" Nullable="false" />
-    <Property Type="Decimal" Name="MontoSolicitado" Nullable="true" Precision="16" Scale="2" />
-    <Property Type="Int16" Name="soled_CantidadEntregada" Nullable="false" />
-    <Property Type="Decimal" Name="MontoEntregado" Nullable="true" Precision="16" Scale="2" />
-    <Property Type="Int16" Name="deno_Id" Nullable="false" />
-    <Property Type="Decimal" Name="deno_valor" Nullable="false" Precision="10" Scale="2" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbSolicitudEfectivo_Details_Result1">
-    <Property Type="Int32" Name="soled_Id" Nullable="false" />
-    <Property Type="String" Name="deno_Descripcion" Nullable="false" MaxLength="50" />
-    <Property Type="Int16" Name="soled_CantidadSolicitada" Nullable="false" />
-    <Property Type="Decimal" Name="MontoSolicitado" Nullable="true" Precision="16" Scale="2" />
-    <Property Type="Int16" Name="soled_CantidadEntregada" Nullable="false" />
-    <Property Type="Decimal" Name="MontoEntregado" Nullable="true" Precision="16" Scale="2" />
-    <Property Type="Int16" Name="deno_Id" Nullable="false" />
-    <Property Type="Decimal" Name="deno_valor" Nullable="false" Precision="10" Scale="2" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbDenominacionArqueo_Select_Result">
-    <Property Type="Int16" Name="deno_Id" Nullable="false" />
-    <Property Type="String" Name="mnda_Abreviatura" Nullable="false" MaxLength="4" />
-    <Property Type="String" Name="TipoDenominacion" Nullable="true" MaxLength="8000" />
-    <Property Type="String" Name="deno_Descripcion" Nullable="false" MaxLength="50" />
-    <Property Type="Decimal" Name="deno_valor" Nullable="false" Precision="10" Scale="2" />
-    <Property Type="String" Name="mnda_Nombre" Nullable="false" MaxLength="100" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbMovimientoCaja_Insert_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbNotaCredito_Imprimir_Result">
-    <Property Type="Int16" Name="nocre_Id" Nullable="false" />
-    <Property Type="String" Name="nocre_Codigo" Nullable="false" MaxLength="19" />
-    <Property Type="String" Name="nocre_MotivoEmision" Nullable="false" MaxLength="250" />
-    <Property Type="Decimal" Name="nocre_Monto" Nullable="true" Precision="10" Scale="2" />
-    <Property Type="Int32" Name="dev_Id" Nullable="false" />
-    <Property Type="String" Name="clte_Identificacion" Nullable="false" MaxLength="26" />
-    <Property Type="String" Name="clte_Nombres" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="clte_Apellidos" Nullable="false" MaxLength="50" />
-    <Property Type="DateTime" Name="nocre_FechaEmision" Nullable="false" Precision="23" />
-    <Property Type="String" Name="clte_NombreComercial" Nullable="false" MaxLength="50" />
-    <Property Type="Decimal" Name="devd_Monto" Nullable="false" Precision="10" Scale="2" />
-    <Property Type="String" Name="suc_Descripcion" Nullable="false" MaxLength="40" />
-    <Property Type="String" Name="suc_Correo" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="suc_Direccion" Nullable="false" MaxLength="100" />
-    <Property Type="String" Name="suc_Telefono" Nullable="false" MaxLength="9" />
-  </ComplexType>
-  <ComplexType Name="UPD_Vent_tbUsuario_Rol_Result">
-    <Property Type="Int32" Name="usu_Id" Nullable="false" />
-    <Property Type="String" Name="usu_NombreUsuario" Nullable="false" MaxLength="100" />
-  </ComplexType>
-  <ComplexType Name="spGetCaja_Result">
-    <Property Type="Int16" Name="cja_Id" Nullable="false" />
-    <Property Type="String" Name="cja_Descripcion" Nullable="false" MaxLength="10" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbTipoPago_Update_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbTipoPago_Insert_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbCuponDescuentoSelect_Result1">
-    <Property Type="Int32" Name="cdto_ID" Nullable="false" />
-    <Property Type="DateTime" Name="cdto_FechaVencimiento" Nullable="false" />
-    <Property Type="Decimal" Name="cdto_PorcentajeDescuento" Nullable="true" Precision="5" Scale="2" />
-    <Property Type="Decimal" Name="cdto_MontoDescuento" Nullable="true" Precision="10" Scale="2" />
-    <Property Type="Decimal" Name="cdto_MaximoMontoDescuento" Nullable="false" Precision="10" Scale="2" />
-    <Property Type="Decimal" Name="cdto_CantidadCompraMinima" Nullable="false" Precision="10" Scale="2" />
-    <Property Type="Boolean" Name="cdto_Redimido" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_vFacturaPago_Result">
-    <Property Type="Int64" Name="fact_Id" Nullable="false" />
-    <Property Type="Int32" Name="clte_Id" Nullable="false" />
-    <Property Type="Boolean" Name="fact_AlCredito" Nullable="false" />
-    <Property Type="String" Name="fact_Codigo" Nullable="false" MaxLength="19" />
-    <Property Type="Decimal" Name="MontoFactura" Nullable="true" Precision="18" Scale="2" />
-    <Property Type="Decimal" Name="TotalPagado" Nullable="true" Precision="18" Scale="2" />
-    <Property Type="Decimal" Name="SaldoFactura" Nullable="true" Precision="18" Scale="2" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbPago_Impreso_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbNotaCredito_Redimido_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbCuponDescuento_Redimido_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="SDP_Gral_tbEmpleado_Select_Result">
-    <Property Type="Int16" Name="emp_Id" Nullable="false" />
-    <Property Type="String" Name="emp_Nombres" Nullable="false" MaxLength="100" />
-    <Property Type="String" Name="emp_Apellidos" Nullable="false" MaxLength="100" />
-    <Property Type="String" Name="emp_Sexo" Nullable="false" MaxLength="1" />
-    <Property Type="DateTime" Name="emp_FechaNacimiento" Nullable="false" Precision="23" />
-    <Property Type="Byte" Name="tpi_Id" Nullable="false" />
-    <Property Type="String" Name="emp_Identificacion" Nullable="false" MaxLength="14" />
-    <Property Type="String" Name="emp_Telefono" Nullable="false" MaxLength="25" />
-    <Property Type="String" Name="emp_Correoelectronico" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="emp_TipoSangre" Nullable="false" MaxLength="2" />
-    <Property Type="String" Name="emp_Puesto" Nullable="false" MaxLength="50" />
-    <Property Type="DateTime" Name="emp_FechaIngreso" Nullable="false" />
-    <Property Type="String" Name="emp_Direccion" Nullable="false" MaxLength="250" />
-    <Property Type="String" Name="emp_RazonInactivacion" Nullable="true" MaxLength="500" />
-    <Property Type="Int32" Name="emp_UsuarioCrea" Nullable="false" />
-    <Property Type="DateTime" Name="emp_FechaCrea" Nullable="false" Precision="23" />
-    <Property Type="Int32" Name="emp_UsuarioModifica" Nullable="true" />
-    <Property Type="DateTime" Name="emp_FechaModifica" Nullable="true" Precision="23" />
-    <Property Type="Boolean" Name="emp_Estado" Nullable="false" />
-    <Property Type="String" Name="emp_RazonSalida" Nullable="true" MaxLength="250" />
-    <Property Type="DateTime" Name="emp_FechaDeSalida" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="SDP_tbEmpleado_Consulta_Result">
-    <Property Type="Int16" Name="emp_Id" Nullable="false" />
-    <Property Type="String" Name="emp_Nombres" Nullable="false" MaxLength="100" />
-    <Property Type="String" Name="emp_Apellidos" Nullable="false" MaxLength="100" />
-    <Property Type="String" Name="emp_Sexo" Nullable="false" MaxLength="1" />
-    <Property Type="DateTime" Name="emp_FechaNacimiento" Nullable="false" Precision="23" />
-    <Property Type="Byte" Name="tpi_Id" Nullable="false" />
-    <Property Type="String" Name="emp_Identificacion" Nullable="false" MaxLength="14" />
-    <Property Type="String" Name="emp_Telefono" Nullable="false" MaxLength="25" />
-    <Property Type="String" Name="emp_Correoelectronico" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="emp_TipoSangre" Nullable="false" MaxLength="2" />
-    <Property Type="String" Name="emp_Puesto" Nullable="false" MaxLength="50" />
-    <Property Type="DateTime" Name="emp_FechaIngreso" Nullable="false" />
-    <Property Type="String" Name="emp_Direccion" Nullable="false" MaxLength="250" />
-    <Property Type="String" Name="emp_RazonInactivacion" Nullable="true" MaxLength="500" />
-    <Property Type="Int32" Name="emp_UsuarioCrea" Nullable="false" />
-    <Property Type="DateTime" Name="emp_FechaCrea" Nullable="false" Precision="23" />
-    <Property Type="Int32" Name="emp_UsuarioModifica" Nullable="true" />
-    <Property Type="DateTime" Name="emp_FechaModifica" Nullable="true" Precision="23" />
-    <Property Type="Boolean" Name="emp_Estado" Nullable="false" />
-    <Property Type="String" Name="emp_RazonSalida" Nullable="true" MaxLength="250" />
-    <Property Type="DateTime" Name="emp_FechaDeSalida" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="SDP_tbEmpleado_Select_Result">
-    <Property Type="Int16" Name="emp_Id" Nullable="false" />
-    <Property Type="String" Name="emp_Nombres" Nullable="false" MaxLength="100" />
-    <Property Type="String" Name="emp_Apellidos" Nullable="false" MaxLength="100" />
-    <Property Type="String" Name="emp_Sexo" Nullable="false" MaxLength="1" />
-    <Property Type="DateTime" Name="emp_FechaNacimiento" Nullable="false" Precision="23" />
-    <Property Type="Byte" Name="tpi_Id" Nullable="false" />
-    <Property Type="String" Name="emp_Identificacion" Nullable="false" MaxLength="14" />
-    <Property Type="String" Name="emp_Telefono" Nullable="false" MaxLength="25" />
-    <Property Type="String" Name="emp_Correoelectronico" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="emp_TipoSangre" Nullable="false" MaxLength="2" />
-    <Property Type="String" Name="emp_Puesto" Nullable="false" MaxLength="50" />
-    <Property Type="DateTime" Name="emp_FechaIngreso" Nullable="false" />
-    <Property Type="String" Name="emp_Direccion" Nullable="false" MaxLength="250" />
-    <Property Type="String" Name="emp_RazonInactivacion" Nullable="true" MaxLength="500" />
-    <Property Type="Int32" Name="emp_UsuarioCrea" Nullable="false" />
-    <Property Type="DateTime" Name="emp_FechaCrea" Nullable="false" Precision="23" />
-    <Property Type="Int32" Name="emp_UsuarioModifica" Nullable="true" />
-    <Property Type="DateTime" Name="emp_FechaModifica" Nullable="true" Precision="23" />
-    <Property Type="Boolean" Name="emp_Estado" Nullable="false" />
-    <Property Type="String" Name="emp_RazonSalida" Nullable="true" MaxLength="250" />
-    <Property Type="DateTime" Name="emp_FechaDeSalida" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="UDP_tbPedidoDetalle_Select_Result">
-    <Property Type="Int32" Name="pedd_Id" Nullable="false" />
-    <Property Type="Int32" Name="ped_Id" Nullable="false" />
-    <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
-    <Property Type="Decimal" Name="pedd_Cantidad" Nullable="false" Precision="10" Scale="2" />
-    <Property Type="Decimal" Name="pedd_CantidadFacturada" Nullable="false" Precision="10" Scale="2" />
-    <Property Type="Int32" Name="pedd_UsuarioCrea" Nullable="false" />
-    <Property Type="DateTime" Name="pedd_FechaCrea" Nullable="false" Precision="23" />
-    <Property Type="Int32" Name="pedd_UsuarioModifica" Nullable="true" />
-    <Property Type="DateTime" Name="pedd_FechaModifica" Nullable="true" Precision="23" />
-  </ComplexType>
-  <ComplexType Name="UDP_tbPedidoDetalle_Select_Edit_Result">
-    <Property Type="Int32" Name="pedd_Id" Nullable="false" />
-    <Property Type="Int32" Name="ped_Id" Nullable="false" />
-    <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
-    <Property Type="Decimal" Name="pedd_Cantidad" Nullable="false" Precision="10" Scale="2" />
-    <Property Type="Decimal" Name="pedd_CantidadFacturada" Nullable="false" Precision="10" Scale="2" />
-    <Property Type="Int32" Name="pedd_UsuarioCrea" Nullable="false" />
-    <Property Type="DateTime" Name="pedd_FechaCrea" Nullable="false" Precision="23" />
-    <Property Type="Int32" Name="pedd_UsuarioModifica" Nullable="true" />
-    <Property Type="DateTime" Name="pedd_FechaModifica" Nullable="true" Precision="23" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbDevolucion_Caja_Result">
-    <Property Type="Int16" Name="cja_Id" Nullable="false" />
-    <Property Type="String" Name="cja_Descripcion" Nullable="false" MaxLength="10" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbNotaCredito_Caja_Result">
-    <Property Type="Int16" Name="cja_Id" Nullable="false" />
-    <Property Type="String" Name="cja_Descripcion" Nullable="false" MaxLength="10" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbSolicitudEfectivoDetalle_Update_Insert_Result">
-    <Property Type="Int16" Name="denoId" Nullable="false" />
-    <Property Type="String" Name="DenoDescripcion" Nullable="false" MaxLength="50" />
-    <Property Type="Decimal" Name="valor" Nullable="false" Precision="10" Scale="2" />
-    <Property Type="Int32" Name="CantidadSolicitada" Nullable="true" />
-    <Property Type="Decimal" Name="MONTO" Nullable="true" Precision="21" Scale="2" />
-    <Property Type="Int32" Name="iddetalle" Nullable="true" />
-    <Property Type="Int32" Name="solef_Id" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbNotaCreditoSelect_Result">
-    <Property Type="Int32" Name="clte_Id" Nullable="false" />
-    <Property Type="Int16" Name="nocre_Id" Nullable="false" />
-    <Property Type="String" Name="nocre_Codigo" Nullable="false" MaxLength="19" />
-    <Property Type="Decimal" Name="nocre_Monto" Nullable="true" Precision="10" Scale="2" />
-    <Property Type="Boolean" Name="nocre_Redimido" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbNotaCredito_Imprimir_Result1">
-    <Property Type="DateTime" Name="nocre_FechaEmision" Nullable="false" Precision="23" />
-    <Property Type="Int16" Name="nocre_Id" Nullable="false" />
-    <Property Type="String" Name="nocre_Codigo" Nullable="false" MaxLength="19" />
-    <Property Type="String" Name="nocre_MotivoEmision" Nullable="false" MaxLength="250" />
-    <Property Type="Decimal" Name="nocre_Monto" Nullable="true" Precision="10" Scale="2" />
-    <Property Type="Int32" Name="dev_Id" Nullable="true" />
-    <Property Type="Decimal" Name="devd_Monto" Nullable="true" Precision="10" Scale="2" />
-    <Property Type="String" Name="clte_Identificacion" Nullable="true" MaxLength="26" />
-    <Property Type="String" Name="clte_Nombres" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="clte_Apellidos" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="clte_NombreComercial" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="suc_Descripcion" Nullable="true" MaxLength="40" />
-    <Property Type="String" Name="suc_Correo" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="suc_Direccion" Nullable="true" MaxLength="100" />
-    <Property Type="String" Name="suc_Telefono" Nullable="true" MaxLength="9" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbMovimientoCaja_Imprimir_Result">
-    <Property Type="Int32" Name="mocja_Id" Nullable="false" />
-    <Property Type="DateTime" Name="mocja_FechaApertura" Nullable="true" Precision="23" />
-    <Property Type="Int32" Name="mocja_UsuarioApertura" Nullable="false" />
-    <Property Type="DateTime" Name="mocja_FechaArqueo" Nullable="true" Precision="23" />
-    <Property Type="Int32" Name="mocja_UsuarioArquea" Nullable="false" />
-    <Property Type="DateTime" Name="mocja_FechaAceptacion" Nullable="true" Precision="23" />
-    <Property Type="Int32" Name="mocja_UsuarioAceptacion" Nullable="false" />
-    <Property Type="String" Name="cja_Descripcion" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="suc_Descripcion" Nullable="true" MaxLength="40" />
-    <Property Type="Int16" Name="arqde_CantidadDenominacion" Nullable="true" />
-    <Property Type="Decimal" Name="arqde_MontoDenominacion" Nullable="true" Precision="10" Scale="2" />
-    <Property Type="String" Name="deno_Descripcion" Nullable="true" MaxLength="50" />
-    <Property Type="Decimal" Name="deno_valor" Nullable="true" Precision="10" Scale="2" />
-    <Property Type="Decimal" Name="arqpg_PagosSistema" Nullable="true" Precision="10" Scale="2" />
-    <Property Type="Decimal" Name="arqpg_PagosConteo" Nullable="true" Precision="10" Scale="2" />
-    <Property Type="String" Name="tpa_Descripcion" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="Usuario_Apertura" Nullable="true" MaxLength="301" />
-    <Property Type="String" Name="Usuario_Arquea" Nullable="true" MaxLength="301" />
-    <Property Type="String" Name="Usuario_Aceptacion" Nullable="true" MaxLength="301" />
-  </ComplexType>
-  <ComplexType Name="SDP_Vent_tbCuponDescuentoSelectGet_Result">
-    <Property Type="Int32" Name="cdto_ID" Nullable="false" />
-    <Property Type="DateTime" Name="cdto_FechaVencimiento" Nullable="false" />
-    <Property Type="Decimal" Name="cdto_PorcentajeDescuento" Nullable="true" Precision="5" Scale="2" />
-    <Property Type="Decimal" Name="cdto_MontoDescuento" Nullable="true" Precision="10" Scale="2" />
-    <Property Type="Decimal" Name="cdto_MaximoMontoDescuento" Nullable="false" Precision="10" Scale="2" />
-    <Property Type="Decimal" Name="cdto_CantidadCompraMinima" Nullable="false" Precision="10" Scale="2" />
-    <Property Type="Boolean" Name="cdto_Redimido" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbPago_Insert_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="UDP_Acce_tbUsuario_Insert_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="UDP_Acce_tbUsuario_PasswordRestore_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="UDP_Acce_tbUsuario_PasswordUpdate_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="UDP_Acce_tbUsuario_Select_Result">
-    <Property Type="String" Name="usu_NombreUsuario" Nullable="false" MaxLength="100" />
-  </ComplexType>
-  <ComplexType Name="UDP_Acce_tbUsuario_Update_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="UDP_Acce_tbUsuario_Estado_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="UDP_Acce_tbRol_Insert_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="UDP_Acce_tbRolesUsuario_Insert_Result">
+  <ComplexType Name="UDP_Vent_tbSucursal_Update_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
 </Schema>
