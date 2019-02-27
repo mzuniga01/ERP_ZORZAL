@@ -1,0 +1,117 @@
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbUsuario>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Usuario</h2>
+        @*<ol class="breadcrumb">
+            <li class="active">
+                <strong>tbUsuario</strong>
+            </li>
+        </ol>*@
+    </div>
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    @*<h5>List of tbUsuario</h5>*@
+					<div class="ibox-tools">
+						@Html.ActionLink("Registrar Usuario", "Create", null, new { @class = "btn btn-primary"})
+					</div>
+                </div>
+                <div class="ibox-content">
+
+<table class="table table-responsive" style="width:100%"  id="Datatable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.usu_NombreUsuario)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.usu_Password)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.usu_Nombres)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.usu_Apellidos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.usu_Correo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.usu_EsActivo)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.usu_RazonInactivo)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.usu_EsAdministrador)
+            </th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.usu_NombreUsuario)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.usu_Password)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.usu_Nombres)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.usu_Apellidos)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.usu_Correo)
+                </td>
+                @if (item.usu_EsActivo)
+                {
+                    <td>Sí</td>
+                }
+                else
+                {
+                    <td>No</td>
+                }
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.usu_RazonInactivo)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.usu_EsAdministrador)
+                </td>
+                <td>
+                    @Html.ActionLink("Detalles", "Details", new { id = item.usu_Id }, new { @class = "btn btn-primary btn-xs" })
+                    @Html.ActionLink("Editar", "Edit", new { id = item.usu_Id }, new { @class = "btn btn-white btn-xs" })
+                    @*@Html.ActionLink("Delete", "Delete", new { id=item.usu_Id }, new { @class = "btn btn-white btn-sm"})*@
+                </td>
+            </tr>
+        }
+
+</table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/DataTable.js"></script>
+
+
+
+

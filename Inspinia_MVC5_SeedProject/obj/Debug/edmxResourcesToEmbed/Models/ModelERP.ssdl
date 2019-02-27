@@ -1335,7 +1335,7 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
     <Property Name="TotalPagado" Type="decimal" Precision="18" Scale="2" />
     <Property Name="SaldoFactura" Type="decimal" Precision="18" Scale="2" />
   </EntityType>
-  <Association Name="FK__DatosCons__fact___4DAB2CE2">
+  <Association Name="FK__DatosCons__fact___0C1BC9F9">
     <End Role="tbFactura" Type="Self.tbFactura" Multiplicity="1" />
     <End Role="DatosConsumidorFinal" Type="Self.DatosConsumidorFinal" Multiplicity="*" />
     <ReferentialConstraint>
@@ -4961,9 +4961,6 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
   <Function Name="SDP_tbPedidoDetalle_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="pedd_Id" Type="int" Mode="In" />
   </Function>
-  <Function Name="SDP_Vent_tbCuponDescuentoSelectGet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
-    <Parameter Name="cdto_ID" Type="int" Mode="In" />
-  </Function>
   <Function Name="SDP_Vent_tbPedidoDetalle_tbPedido_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="ped_Id" Type="int" Mode="In" />
   </Function>
@@ -6182,7 +6179,7 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
     [V_Vent_FacturaPago].[SaldoFactura] AS [SaldoFactura]
     FROM [Vent].[V_Vent_FacturaPago] AS [V_Vent_FacturaPago]</DefiningQuery>
     </EntitySet>
-    <AssociationSet Name="FK__DatosCons__fact___4DAB2CE2" Association="Self.FK__DatosCons__fact___4DAB2CE2">
+    <AssociationSet Name="FK__DatosCons__fact___0C1BC9F9" Association="Self.FK__DatosCons__fact___0C1BC9F9">
       <End Role="tbFactura" EntitySet="tbFactura" />
       <End Role="DatosConsumidorFinal" EntitySet="DatosConsumidorFinal" />
     </AssociationSet>
