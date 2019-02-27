@@ -70,8 +70,7 @@ namespace ERP_GMEDINA.Controllers
                     {
                         var MensajeError = "";
                         IEnumerable<object> list = null;
-                        list = db.UDP_Gral_tbMoneda_Insert(tbMoneda.mnda_Abreviatura, tbMoneda.mnda_Nombre, Function.GetUser(),
-                                        Function.DatetimeNow());
+                        list = db.UDP_Gral_tbMoneda_Insert(tbMoneda.mnda_Abreviatura, tbMoneda.mnda_Nombre, Function.GetUser(), Function.DatetimeNow());
                         foreach (UDP_Gral_tbMoneda_Insert_Result Moneda in list)
                             MensajeError = Moneda.MensajeError;
                         if (MensajeError == "-1")
@@ -134,7 +133,7 @@ namespace ERP_GMEDINA.Controllers
 
                     var MensajeError = "";
                     IEnumerable<object> list = null;
-                    list = db.UDP_Gral_tbMoneda_Update(tbMoneda.mnda_Id, tbMoneda.mnda_Abreviatura, tbMoneda.mnda_Nombre, tbMoneda.mnda_UsuarioCrea,tbMoneda.mnda_FechaCrea, tbMoneda.mnda_UsuarioModifica, tbMoneda.mnda_FechaModifica);
+                    list = db.UDP_Gral_tbMoneda_Update(tbMoneda.mnda_Id, tbMoneda.mnda_Abreviatura, tbMoneda.mnda_Nombre, tbMoneda.mnda_UsuarioCrea,tbMoneda.mnda_FechaCrea, Function.GetUser(), Function.DatetimeNow());
                     foreach (UDP_Gral_tbMoneda_Update_Result Moneda in list)
                         MensajeError = Moneda.MensajeError;
                     if (MensajeError == "-1")
