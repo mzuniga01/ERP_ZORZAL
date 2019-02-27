@@ -1,0 +1,238 @@
+﻿@model ERP_GMEDINA.Models.tbBox
+@using ERP_GMEDINA.Models
+
+@{
+    ViewBag.Title = "Editar Caja";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .validation-error {
+        color: red;
+        font-size: small;
+    }
+
+    .validation-summary-errors {
+        color: red;
+        font-size: small;
+    }
+
+    .required:after {
+        content: "*";
+        font-weight: bold;
+        color: red;
+    }
+</style>
+
+
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Caja</h2>
+     
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            <a href="@Url.Action("Index","Box")">Regresar</a>
+        </div>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Editar Caja</h5>
+                </div>
+                <div class="ibox-content">
+
+                    @using (Html.BeginForm("Edit", "Box", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+
+                            @Html.ValidationSummary(true)
+                            @Html.HiddenFor(model => model.box_Codigo)
+
+                            @*Datos de Auditoria*@
+                            @Html.HiddenFor(model => model.box_UsuarioCrea)
+                            @Html.HiddenFor(model => model.box_FechaCrea)
+                            @Html.HiddenFor(model => model.box_UsuarioModifica)
+                            @Html.HiddenFor(model => model.box_FechaModifica)
+                            @Html.HiddenFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.HiddenFor(model => model.tbUsuario.usu_Apellidos)
+
+                            @Html.HiddenFor(model => model.tbUsuario.usu_NombreUsuario)
+                            @Html.HiddenFor(model => model.tbUsuario.usu_Password)
+                            @Html.HiddenFor(model => model.tbUsuario.usu_Correo)
+                            @Html.HiddenFor(model => model.tbUsuario.usu_EsActivo)
+                            @Html.HiddenFor(model => model.tbUsuario.usu_EsAdministrador)
+                   
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.box_Codigo, new { @class = "control-label col-md-2 , required"  })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.box_Codigo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.box_Codigo)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.box_Descripcion, new { @class = "control-label col-md-2 , required" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.box_Descripcion, new { htmlAttributes = new { @class = "form-control",  @onKeyPress = "return controlCaracteres(event)"} })
+                                    @Html.ValidationMessageFor(model => model.box_Descripcion)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                </div>
+                            </div>
+                            <div class="modal fade" id="Nuevo" tabindex="-1" role="dialog" aria-labelledby="DetalleNumeracion" aria-hidden="true">
+
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Seleccione un Producto</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body" id="AjaxCreateNumeracion">
+                                            @Html.Partial("_CreateEditSalidaDetalle", new ERP_GMEDINA.Models.tbSalidaDetalle())
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div><div class="row">
+
+                                      @* Llama la vista  *@
+                                      <div class="ibox float-e-margins">
+                                          <div class="ibox-content">
+
+                                              <div class="row">
+                                                  <div class="col-lg-12">
+
+                                                      <div class="ibox-content">
+
+                                                          <fieldset class="box-border">
+                                                              <legend class="box-border">Caja Detalle</legend>
+                                                              <div class="ibox-tools">
+                                                                  <button type="button" id="btnModalGuardarNumeracion" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#Nuevo">
+                                                                      Agregar Producto
+                                                                  </button>
+                                                              </div>
+                                                              @Html.Partial("_EditSalidaDetalle", Model.tbSalidaDetalle, new ViewDataDictionary(new { clave = Model.box_Codigo }))
+                                                          </fieldset>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+
+       
+                                      <div class="ibox-content">
+                                          <table class="table table-striped">
+                                              <tr>
+                                                  <th>Acción</th>
+                                                  <th>Usuario</th>
+                                                  <th> Fecha</th>
+                                              </tr>
+                                              <tr>
+                                                  <td>Creado por  </td>
+                                                  <td>
+                                                      @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                                                      @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                                                  </td>
+                                                  <td>@Html.DisplayFor(model => model.box_FechaCrea)</td>
+
+                                              </tr>
+                                              <tr>
+                                                  <td>Modificado por</td>
+                                                  <td>
+                                                      @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                                                      @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                                                  </td>
+                                                  <td>@Html.DisplayFor(model => model.box_FechaModifica)</td>
+                                              </tr>
+                                          </table>
+                                      </div>
+    </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/Datepicker.js"></script>
+<script src="~/Scripts/app/DataTable.js"></script>
+<script src="~/Scripts/app/DetalleBox.js"></script>
+
+<script>
+    //$(":input").inputmask();
+
+    //$("#sald_Cantidad").inputmask({ "mask": "999.99" });
+
+    var selector = "#fact_Codigo";
+    $(selector).val('');
+    $(selector).mask("999-999-99-99999999", { reverse: true });
+    //Output is shown as: 1,000,000
+
+    var value = $(selector).cleanVal();
+    //Mask will be removed on next line
+    $(selector).val('');
+
+    $(function () {
+        $("#sal_FechaElaboracion").datepicker({
+            dateFormat: 'yy-mm-dd',
+            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá']
+        }).datepicker("setDate", new Date());
+    });
+
+    function filterFloat(evt, input) {
+        // Backspace = 8, Enter = 13, ‘0′ = 48, ‘9′ = 57, ‘.’ = 46, ‘-’ = 43
+        var key = window.Event ? evt.which : evt.keyCode;
+        var chark = String.fromCharCode(key);
+        var tempValue = input.value + chark;
+        if (key >= 48 && key <= 57) {
+            if (filter(tempValue) === false) {
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            if (key == 8 || key == 13 || key == 0) {
+                return true;
+            } else if (key == 46) {
+                if (filter(tempValue) === false) {
+                    return false;
+                } else {
+                    return true;
+                }
+            } else {
+                return false;
+            }
+        }
+    }
+    function filter(__val__) {
+        var preg = /^([0-9]+\.?[0-9]{0,2})$/;
+        if (preg.test(__val__) === true) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+</script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/app/DataTable.js"></script>
+}

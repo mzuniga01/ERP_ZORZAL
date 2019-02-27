@@ -1,0 +1,123 @@
+﻿@model ERP_GMEDINA.Models.tbInventarioFisico
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Inventario Fisico</h2>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            @Html.ActionLink("Regresar", "Index", null, new { @class = "" })
+        </div>
+    </div>
+</div>
+
+@if (ViewBag.smserror != "" && ViewBag.smserror != null)
+{     <div class="col-md-12" id="mensaje">
+        <div class="alert alert-warning alert-danger">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <h4><i class="icon fa fa-warning"></i>Alerta</h4>
+            <h2>No Puede Guardar un Inventario fisico Sin Detalle</h2>
+        </div>
+    </div>
+}
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Levantar Inventario Fisico</h5>
+                </div>
+                <div class="ibox-content">
+
+@using (Html.BeginForm("Create", "InventarioFisico", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+                    <div class="form-horizontal">
+
+                        @Html.ValidationSummary(true)
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Fecha del Inventario</label>
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.invf_FechaInventario,  new { htmlAttributes = new { @class = "form-control", @id = "FechaElaboracion" , @readonly = "readonly"} })
+                                <p style="color:red">@Html.ValidationMessageFor(model => model.invf_FechaInventario)</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Bodega</label>
+                            <div class="col-md-10">
+                                @Html.DropDownList("bod_Id", (IEnumerable<SelectListItem>)ViewBag.bod_Id, "Seleccione",  new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.tbBodega.bod_Id)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Responsable de Bodega<span style="color:red">*</span></label>
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.invf_ResponsableBodega, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                <p style="color:red">@Html.ValidationMessageFor(model => model.invf_ResponsableBodega)</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Descripcion del Inventario Fisico<span style="color:red">*</span></label>
+                            <div class="col-md-10">
+                                @Html.TextAreaFor(model => model.invf_Descripcion, new { @class = "form-control"})
+                               <p style="color:red"> @Html.ValidationMessageFor(model => model.invf_Descripcion)</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group" hidden="hidden">
+                            @Html.LabelFor(model => model.estif_Id, "Estado Inventario Fisico", new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.estif_Id, new { @Value = "1" })
+                                @Html.ValidationMessageFor(model => model.estif_Id)
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="ibox float-e-margins">
+                                    <div class="ibox-content" id="Crear">
+                                        @*@Html.Partial("_CreateInstructorCasosExitos", new InstructorCasosExitos())*@
+                                        @Html.Partial("_CreateInvFisicoDetalle", new ERP_GMEDINA.Models.tbInventarioFisicoDetalle())
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Guardar" class="btn btn-primary" />
+                                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                            </div>
+                        </div>
+
+                    </div>
+}
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+@*@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}*@
+
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/Datepicker.js"></script>
+<script src="~/Scripts/app/InvFisicoDetalle.js"></script>

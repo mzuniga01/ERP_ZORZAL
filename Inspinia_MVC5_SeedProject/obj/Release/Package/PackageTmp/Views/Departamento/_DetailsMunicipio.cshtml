@@ -1,0 +1,38 @@
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbMunicipio>
+
+@using ERP_GMEDINA.Models;
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <table class="table table table-striped table-bordered dataTable no-footer" style="width:100%" id="DataTable">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.mun_Codigo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.mun_Nombre)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.mun_Codigo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.mun_Nombre)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+
+
+

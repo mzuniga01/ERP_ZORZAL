@@ -1,0 +1,84 @@
+﻿@model ERP_GMEDINA.Models.tbProductoSubcategoria
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Detalles SubCategoría</h5>
+                </div>
+                <div class="ibox-content">
+
+
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.pscat_Id)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.pscat_Id)
+                        </dd>
+
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.pscat_Descripcion)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.pscat_Descripcion)
+                        </dd>
+
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.pcat_Id)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.pcat_Id)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.pscat_EsActiva)
+                        </dt>
+                        <dd>
+                            @if (Model.pscat_EsActiva == 1)
+                            {
+                                <p> Activo</p>
+                            }
+                            else
+                            {
+                                <p>Inactivo</p>
+                            }
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.pscat_ISV)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.pscat_ISV)
+                        </dd>
+
+                    </dl>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                           
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+
+
+
+
+
+
+
+
+
+

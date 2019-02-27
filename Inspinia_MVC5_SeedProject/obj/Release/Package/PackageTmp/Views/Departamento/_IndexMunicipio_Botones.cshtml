@@ -1,0 +1,94 @@
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbMunicipio>
+@{ string depCodigo = "";}
+@using ERP_GMEDINA.Models;
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="ibox-tools">
+            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalregistro">Registrar Municipio</button>
+        </div>
+                <table class="table table table-striped table-bordered dataTable no-footer" style="width:100%" id="DataTable">
+                    <thead>
+
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.mun_Codigo)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.mun_Nombre)
+                            </th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            depCodigo = item.dep_Codigo;
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.mun_Codigo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.mun_Nombre)
+                                </td>
+                                <td>
+
+                                    <button type="button" class="btn btn-white btn-xs" onclick="EditMunicipioRecord('@item.mun_Codigo')">Editar</button>
+                                    <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#modalEliminar_@item.mun_Codigo">Eliminar</button>
+
+                                    <!-- ELIMINAR MODAL MUNICIPIO-->
+
+                                    <div class="modal fade" id="modalEliminar_@item.mun_Codigo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Eliminar Municipio</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    ¿Está seguro que quiere Eliminar ?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    @Html.ActionLink("Sí", "EliminarMunicipio", new { id = item.mun_Codigo, dep_Codigo = item.dep_Codigo }, new { @class = "btn btn-danger" })
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/app/letras.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#DataTable').DataTable({
+
+        "searching": false,
+        "oLanguage": {
+            "oPaginate": {
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior",
+            },
+            "sEmptyTable": "No hay registros",
+            "sInfoEmpty": "Mostrando 0 de 0 Entradas",
+            "sSearch": "Buscar",
+            "sLengthMenu": "Mostrar _MENU_ Registros por página",
+            "sInfo": "Mostrando _START_ a _END_ Entradas",
+
+        },
+
+    });
+    });
+</script>
+
+  
+
+
+

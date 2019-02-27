@@ -1,0 +1,93 @@
+﻿@model ERP_GMEDINA.Models.tbSalidaDetalle
+@using ERP_GMEDINA.Models
+
+@using (Ajax.BeginForm("UpdateSalidaDetalle", "Box", new AjaxOptions() { HttpMethod = "POST", UpdateTargetId = "EditarSalidaDetalle" }))
+{
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                 <div class="ibox-content">
+
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.sald_Id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.tbProducto.prod_Descripcion, "prod_Descripcion", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.tbProducto.prod_Descripcion, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @id = "DescripcionEdit" } })
+                @Html.ValidationMessageFor(model => model.tbProducto.prod_Codigo)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.tbProducto.prod_Marca, "prod_Marca", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.tbProducto.prod_Marca, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @id = "MarcaEdit" } })
+                @Html.ValidationMessageFor(model => model.tbProducto.prod_Marca)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.tbProducto.prod_Modelo, "prod_Modelo", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.tbProducto.prod_Modelo, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @id = "ModeloEdit" } })
+                @Html.ValidationMessageFor(model => model.tbProducto.prod_Modelo)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.tbProducto.prod_Talla, "prod_Talla", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.tbProducto.prod_Talla, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @id = "TallaEdit" } })
+                @Html.ValidationMessageFor(model => model.tbProducto.prod_Talla)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.tbProducto.prod_Color, "prod_Color", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.tbProducto.prod_Color, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @id = "ColorEdit" } })
+                @Html.ValidationMessageFor(model => model.tbProducto.prod_Color)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.tbProducto.tbUnidadMedida.uni_Descripcion, "uni_Descripcion", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.tbProducto.tbUnidadMedida.uni_Descripcion, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @id = "DescripcionEdit" } })
+                @Html.ValidationMessageFor(model => model.tbProducto.tbUnidadMedida.uni_Descripcion)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.sal_Cantidad, "sal_Cantidad", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.sal_Cantidad, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @id = "CantidadEdit" } })
+                @Html.ValidationMessageFor(model => model.sal_Cantidad)
+            </div>
+        </div>
+       
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" id="modal" value="Guardar" class="btn btn-primary" />
+				@Html.ActionLink("Cancelar", "Edit", null, new { @class = "btn btn-white"})
+            </div>
+        </div>
+    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+}

@@ -1,0 +1,99 @@
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbInventarioFisicoDetalle>
+@using ERP_GMEDINA.Models
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Listado de Inventario Fisico Detalle</h5>
+				
+                </div>
+                <div class="ibox-content">
+
+<table class="table table-striped" id="InvDetalleconciliado">
+    <thead>
+        <tr>
+            <th>
+                Descripcion del Producto
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tbProducto.prod_CodigoBarras)
+            </th>
+            <th>
+                Unidad de Medida
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.invfd_Cantidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.invfd_CantidadSistema)
+            </th>
+            <th>
+                Sobrante/Faltante
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tbProducto.prod_CodigoBarras)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tbUnidadMedida.uni_Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.invfd_Cantidad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.invfd_CantidadSistema)
+                </td>
+                @{
+                    decimal Suma = (decimal)item.invfd_Cantidad - (decimal)item.invfd_CantidadSistema;
+                }
+                <td>
+                    @Suma
+                </td>
+            </tr>
+                    }
+    </tbody>
+</table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+<script>
+    $(document).ready(function () {
+        $('#InvDetalleconciliado').DataTable({
+
+        "searching": true,
+        "oLanguage": {
+            "oPaginate": {
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior",
+            },
+            "sProcessing": "Procesando...",
+            "sLengthMenu": "Mostrar _MENU_ registros",
+            "sZeroRecords": "No se encontraron resultados",
+            "sEmptyTable": "Ningún dato disponible en esta tabla",
+            "sEmptyTable": "No hay registros",
+            "sInfoEmpty": "Mostrando 0 de 0 Entradas",
+            "sSearch": "Buscar",
+            "sInfo": "Mostrando _START_ a _END_ Entradas",
+            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+
+        },
+
+    });
+    });
+</script>
+
+

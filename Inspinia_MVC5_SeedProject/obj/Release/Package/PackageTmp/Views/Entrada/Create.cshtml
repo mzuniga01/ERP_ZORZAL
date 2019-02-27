@@ -1,0 +1,300 @@
+﻿@model ERP_GMEDINA.Models.tbEntrada
+@using ERP_GMEDINA.Models
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .validation-error {
+        color: red;
+        font-size: small;
+    }
+    .required:after {
+                            content: "*";
+                            font-weight: bold;
+                            color: red;
+                        }
+</style>
+@if (ViewBag.smserror != "" && ViewBag.smserror != null)
+{     <div class="col-md-12" id="mensaje">
+        <div class="alert alert-warning alert-danger">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <h4><i class="icon fa fa-warning"></i>Alerta</h4>
+            <h2>No Puede Guardar una Entrada Sin Detalle</h2>
+        </div>
+    </div> 
+}
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+    
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Entradas</h2>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            <a href="@Url.Action("Index", "Entrada")">Regresar</a>
+        </div>
+    </div>
+</div>
+@using (Html.BeginForm("Create", "Entrada", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Ingresar Entrada</h5>
+                </div>
+                <div data-print-content>
+                    <div class="ibox-content">
+                        @Html.AntiForgeryToken()
+                        <div class="form-horizontal">
+                            <div style="color:red;">@Html.ValidationSummary(true)</div>
+                            <fieldset class="box-border">
+                                <legend class="box-border">Datos Generales</legend>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.bod_Id, new { @class = "control-label col-md-2 , required" })
+                                    @*<label class="control-label col-md-2">Bodega<span style="color:red">*</span></label>*@
+                                    <div class="col-md-4">
+                                        @*@Html.EditorFor(model => model.tbBodega.bod_Nombre, new { htmlAttributes = new { @class = "form-control ", @readonly = "readonly" } })
+                                    </div>
+                                    <div style="display:none" class="col-md-4">*@
+                                        @Html.DropDownList("bod_Id", (IEnumerable<SelectListItem>)ViewBag.bod_Id, "Seleccione su Bodega", new { @class = "form-control" })
+                                        <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Id)</p>
+                                    </div>
+                                    @Html.LabelFor(model => model.ent_FechaElaboracion, new { @class = "control-label col-md-2 , required" })
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.ent_FechaElaboracion, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "FechaElaboracion", @readonly = "readonly" } })
+                                        <div class="col-md-10">
+                                            <p style="color:red">@Html.ValidationMessageFor(model => model.ent_FechaElaboracion)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.prov_Id, new { @class = "control-label col-md-2 , required" })
+                                    @*<label class="control-label col-md-2">Proveedor<span style="color:red">*</span></label>*@
+                                    <div class="col-md-4">
+                                        @Html.DropDownList("prov_Id", (IEnumerable<SelectListItem>)ViewBag.prov_Id, "Seleccione", new { @class = "form-control" })
+
+                                        <div class="col-md-10">
+                                            <p style="color:red">@Html.ValidationMessageFor(model => model.prov_Id)</p>
+                                        </div>
+                                    </div>
+                                    <label class="control-label col-md-2">RTN Proveedor<span style="color:red">*</span></label>
+                                    <div class="col-md-4">
+                                        @*<input type="text" value="1" id="Rtn"/>*@
+                                        @Html.EditorFor(item => item.tbProveedor.prov_RTN, new { htmlAttributes = new {@Value="Seleccione Proveedor", @class = "form-control", @readonly = "readonly", @Id = "Rtn" } })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.tent_Id, new { @class = "control-label col-md-2 , required" })
+                                    @*<label class="control-label col-md-2">Tipo Entrada<span style="color:red">*</span></label>*@
+                                    <div class="col-md-4">
+                                        @Html.DropDownList("tent_Id", (IEnumerable<SelectListItem>)ViewBag.tent_Id, "Seleccione", new { @class = "form-control" })
+
+                                        <div class="col-md-10">
+                                            <p style="color:red">@Html.ValidationMessageFor(model => model.tent_Id)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <div class="form-horizontal" name="compra" id="compra" style="display:none">
+                            <fieldset class="box-border">
+                                <legend class="box-border">Compra</legend>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ent_FacturaCompra, new { @class = "control-label col-md-2 , required" })
+                                    @*<label class="control-label col-md-2">Factura Compra<span style="color:red">*</span></label>*@
+                                    <div class="col-md-4">
+                                        @*@Html.EditorFor(model => model.ent_FacturaCompra)*@
+                                        <input type="text" id="ent_FacturaCompra" placeholder="" class="form-control" name="ent_FacturaCompra" />
+                                        <div class="col-md-10">
+                                            <p style="color:red">@Html.ValidationMessageFor(model => model.ent_FacturaCompra)</p>
+                                        </div>
+                                    </div>
+                                    @*<label class="control-label col-md-2">Fecha Compra<span style="color:red">*</span></label>*@
+                                    @Html.LabelFor(model => model.ent_FechaCompra, new { @class = "control-label col-md-2 , required" })
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.ent_FechaCompra, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "FechaCompra" } })
+
+                                        <div class="col-md-10">
+                                            <p style="color:red">@Html.ValidationMessageFor(model => model.ent_FechaCompra)</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </fieldset>
+                        </div>
+
+                        <div class="form-horizontal" id="traslado" style="display:none">
+                            <fieldset class="box-border">
+                                <legend class="box-border">Traslado</legend>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ent_BodegaDestino, new { @class = "control-label col-md-2 , required" })
+                                    @*<label class="control-label col-md-2">Bodega Destino<span style="color:red">*</span></label>*@
+                                    <div class="col-md-4">
+                                        @Html.DropDownList("ent_BodegaDestino", (IEnumerable<SelectListItem>)ViewBag.bod_Idd, "Seleccione", new { @class = "form-control" })
+
+                                        <div class="col-md-10">
+                                            <p style="color:red">@Html.ValidationMessageFor(model => model.ent_BodegaDestino)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <div class="form-horizontal" id="Devolucion" style="display:none">
+                            <fieldset class="box-border">
+                                <legend class="box-border">Devolucion</legend>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ent_RazonDevolucion, new { @class = "control-label col-md-2 , required" })
+                                    @*<label class="control-label col-md-2">Razon Devolucion<span style="color:red">*</span></label>*@
+                                    <div class="col-md-4">
+                                        @Html.DropDownList("ent_RazonDevolucion", (IEnumerable<SelectListItem>)ViewBag.tdev_Id, "Seleccione", new { @class = "form-control" })
+                                        
+                                        <div class="col-md-10">
+                                            <p style="color:red">@Html.ValidationMessageFor(model => model.ent_RazonDevolucion)</p>
+                                        </div>
+                                    </div>
+                                    @Html.LabelFor(model => model.fact_Id, new { @class = "control-label col-md-2 , required" })
+                                    @*<label class="control-label col-md-2">Código Factura<span style="color:red">*</span></label>*@
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.fact_Id)
+                                        <div class="col-md-10">
+                                            <p style="color:red">@Html.ValidationMessageFor(model => model.fact_Id)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+
+
+                        @* Llama la vista de detalle *@
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="ibox float-e-margins">
+                                    <div class="ibox-title">
+                                        <div class="title-action">
+                                            <div class="box-border">
+                                                <h5>Detalle Entrada</h5>
+                                                <button type="button" class="btn btn-white glyphicon glyphicon-download" data-toggle="collapse" data-target="#Crear"></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="ibox-content collapse" id="Crear">
+                                        @*@Html.Partial("_CreateInstructorCasosExitos", new InstructorCasosExitos())*@
+                                        @Html.Partial("_CrearDetalleEntrada", new tbEntradaDetalle())
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        @*botones*@
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Guardar" class="btn btn-primary" />
+                                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                @*<input type="button" class="btn btn-danger" data-toggle="modal" data-target="#Modalanular" value="Anular" />*@
+                            </div>
+                        </div>
+                        <div class="form-group">
+                        </div>
+                        <br />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+}
+@**********************************************************************************MODALES*****************************************************************************@
+@**********************************************************************************MODALES*****************************************************************************@
+@**********************************************************************************MODALES*****************************************************************************@
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+<script>
+    jQuery('input,select').each(function () {
+        var req = jQuery(this).attr('data-val-required');
+        if (undefined != req) {
+            var label = jQuery('label[for="' + jQuery(this).attr('id') + '"]');
+            var text = label.text();
+            if (text.length > 0) {
+                label.append('<span style="color:red">*</span>');
+            }
+        }
+    });
+</script>
+}
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/Datepicker.js"></script>
+<script src="~/Scripts/app/EntradaDetalle.js"></script>
+<script src="~/Scripts/app/MostrarCamposEntradajs.js"></script>
+<script>
+    $(document).ready( function () {
+        var e = document.getElementById("bod_Id");
+        var strUser = e.options[e.selectedIndex].text;
+        console.log(strUser)
+        $("#tbBodega_bod_Nombre").val(strUser)
+
+    });
+</script>
+<script>
+    $("#Btnsubmit").click(function () {
+        var data = $("#SubmitForm").serializeArray();
+
+
+        $.ajax({
+            type: "Post",
+            url: "/Entrada/UpdateEntradaDetalle",
+            data: data,
+            success: function (result) {
+                if (result == '-1')
+                    $("#MsjError").text("No se pudo actualizar el registro, contacte al administrador");
+                else
+                    //$("#MyModal").modal("hide");
+                    location.reload();
+            }
+        });
+    });
+</script>
+<script>
+    window.onload = function () {
+        console.log('hola');
+        var valorid = document.getElementById("tent_Id").value;
+        console.log(valorid);
+            if (valorid == 1) {
+                document.getElementById("compra").style.display = 'block';
+                document.getElementById("Devolucion").style.display = 'none';
+                document.getElementById("traslado").style.display = 'none';
+            }
+            else if (valorid == 2) {
+                document.getElementById("Devolucion").style.display = 'block';
+                document.getElementById("compra").style.display = 'none';
+                document.getElementById("traslado").style.display = 'none';
+            }
+            else if (valorid == 3) {
+                document.getElementById("traslado").style.display = 'block';
+                document.getElementById("Devolucion").style.display = 'none';
+                document.getElementById("compra").style.display = 'none';
+            }
+            //else
+            //{
+            //    alert("Entrada Seeccionada no Disponible");
+            //}
+
+    };
+</script>

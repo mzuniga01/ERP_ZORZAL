@@ -1,0 +1,102 @@
+﻿@model ERP_GMEDINA.Models.tbSalida
+
+
+
+
+
+
+
+<div class="modal fade" id="ModalAplicar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Desea Aplicar la Salida</h4>
+            </div>
+            <div class="modal-body" id="frmBuscarProducto">
+                Esta Salida se Aplicara y no sera Editable
+            </div>
+            <div class="modal-body">
+                <p style="color:maroon"></p>
+                <div class="col-md-4">
+                </div>
+            </div>
+            <div class="modal-footer">
+                @Html.ActionLink("Si", "Aplicar", new { id = Model.sal_Id }, new { @class = "btn btn-primary" })
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="ModalAnular" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Desea Anular la Salida la Salida</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @Html.LabelFor(model => model.sal_RazonAnulada, "Razon de Anulacion", new { @class = "control-label col-md-8 required" })
+                <div class="form-group">
+                    @Html.TextAreaFor(model => model.sal_RazonAnulada, new { @class = "form-control", @rows = "5", @cols = "12" })
+                    <p style="color:red">
+                        @Html.ValidationMessageFor(model => model.sal_RazonAnulada)
+                    </p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" type="submit" id="btnAnularSalida">Anular</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ModalActivar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Desea Activar la Salida</h4>
+            </div>
+            <div class="modal-body" id="frmBuscarProducto">
+                <div class="modal-body">
+                    <p style="color:maroon"></p>
+                    ¿Desea Activar la Salida?
+                </div>
+                <div class="modal-footer">
+                    @Html.ActionLink("Si", "Activar", new { id = Model.sal_Id }, new { @class = "btn btn-primary" })
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ModalInactivar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Desea Inactivar la Salida la Salida</h4>
+            </div>
+            <div class="modal-body" id="frmBuscarProducto">
+
+            </div>
+            <div class="modal-footer">
+                @Html.ActionLink("Si", "Inactivar", new { id = Model.sal_Id }, new { @class = "btn btn-primary" })
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>

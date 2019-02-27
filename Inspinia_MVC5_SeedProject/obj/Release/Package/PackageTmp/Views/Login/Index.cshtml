@@ -1,0 +1,27 @@
+﻿@model ERP_GMEDINA.Models.tbUsuario
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "";
+}
+<link href="~/Content/css/master.css" rel="stylesheet" />
+
+<div class="login-box">
+    <img src="~/Content/img/MicrosoftTeams-image.png" class="avatar" alt="Avatar Image">
+    <h1></h1>
+    @using (Html.BeginForm())
+    {
+        <!-- USERNAME INPUT -->
+        <label for="username">Nombre Usuario</label>
+        @Html.EditorFor(model => model.usu_NombreUsuario)
+        <!-- PASSWORD INPUT -->
+        <label for="password">Contraseña</label>
+        @*@Html.EditorFor(model => model.usu_Password, new { htmlAttributes = new { @class = "form-control", type = "password" , placeholder = "Password" } })*@
+        <input type="password" name="txtPassword" class="form-control" placeholder="Password"/>
+        <p style="color:red;">@Html.ValidationMessageFor(model => model.usu_NombreUsuario)</p>
+        <input type="submit" value="INGRESAR">
+        <a href="#">¿Olvidaste tu Contraseña?</a><br>
+        <a href="#"></a>
+    }
+</div>
+

@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "SinAcceso";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Sin Acceso</h2>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            <a href="@Url.Action("Index","Home")">Regresar</a>
+        </div>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                </div>
+                <div class="ibox-content">
+                    <div class="form-horizontal">
+                        <div class="form-group text-center">
+                            <div class="col-md-12">
+                                <img src="~/Content/img/stop.png" />
+                                <div>
+                                    <br /><br />
+                                </div>
+                                
+                                <h2>Lo sentimos, usted no tiene acceso a esta pantalla</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

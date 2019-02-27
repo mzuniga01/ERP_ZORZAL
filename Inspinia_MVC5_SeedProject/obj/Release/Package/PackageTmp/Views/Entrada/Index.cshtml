@@ -1,0 +1,185 @@
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbEntrada>
+@using ERP_GMEDINA.Models
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-sm-4">
+            <h2>Entradas</h2>
+            @*<ol class="breadcrumb">
+                    <li class="active">
+                        <strong>tbBanco</strong>
+                    </li>
+                </ol>*@
+        </div>
+    </div>
+
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Listado de Entradas</h5>
+                        <div class="ibox-tools">
+                            <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalGenReporte" value="Generar Reporte" />
+                            @Html.ActionLink("Registrar Entrada", "Create", null, new { @class = "btn btn-primary" })
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <table class="table table-responsive" style="width:100%" id="tbEntrada">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.bod_Id)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.ent_NumeroFormato)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.ent_FechaElaboracion)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.tent_Id)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.estm_Id)
+                                    </th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.tbBodega1.bod_Nombre)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ent_NumeroFormato)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ent_FechaElaboracion)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.tbTipoEntrada.tent_Descripcion)
+                                        </td>
+                                        <td>
+                                            @if (item.estm_Id == Helpers.EntradaEmitida)
+                                            {
+                                                <p>Emitida</p>
+                                            }
+                                            else if (item.estm_Id == Helpers.EntradaInactivada)
+                                            {
+                                                <p>Inactiva</p>
+                                            }
+                                            else if (item.estm_Id == Helpers.EntradaAplicada)
+                                            {
+                                                <p style="color:green">Aplicada</p>
+                                            }
+                                            else if (item.estm_Id == Helpers.EntradaEstadoAnulada)
+                                            {
+                                                <p style="color:maroon">Anulada</p>
+                                            }
+                                        </td>
+                                        <td>
+
+                                            @Html.ActionLink("Detalles", "Details", new { id = item.ent_Id }, new { @class = "btn btn-primary btn-xs" })
+                                            @Html.ActionLink("Editar", "Edit", new { id = item.ent_Id }, new { @class = "btn btn-white btn-xs" })
+
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="modal fade" id="ModalGenReporte" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Generar Reportes Generales de Entrada</h4>
+            </div>
+            <div id="GenerarReporte" class="modal-body">
+                @Html.Partial("_GenerarReportes", new ERP_GMEDINA.Models.tbEntrada())
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+@**********************************************************************************MODALES*****************************************************************************@
+@**********************************************************************************MODALES*****************************************************************************@
+@**********************************************************************************MODALES*****************************************************************************@
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/Datepicker.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#tbEntrada').DataTable(
+        {
+            "searching": true,
+
+            "oLanguage": {
+                "oPaginate": {
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior",
+                },
+                "sProcessing": "Procesando...",
+                "sLengthMenu": "Mostrar _MENU_ registros",
+                "sZeroRecords": "No se encontraron resultados",
+                "sEmptyTable": "Ningún dato disponible en esta tabla",
+                "sEmptyTable": "No hay registros",
+                "sInfoEmpty": "Mostrando 0 de 0 Entradas",
+                "sSearch": "Buscar",
+                "sInfo": "Mostrando _START_ a _END_ Entradas",
+                "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+            }
+        });
+    });
+        $(function () {
+            $("#rangofecha").datepicker({
+                dateFormat: 'yy-mm-dd',
+                monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá']
+            }).datepicker();
+
+        });
+
+</script>
+
+<script>
+    function ClickDrop() {
+        var valorid = document.getElementById('Entrada').value;
+        var rangofecha = document.getElementById('rangofechaimprimir').value;
+        $.ajax({
+            url: "/Entrada/ExportReportGeneral",
+            method: "POST",
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ TipoEntrada: valorid, FechaElaboracion: rangofecha }),
+
+        })
+        .done(function (data) {
+        });
+        //para inprimir
+        $('#btnIMPRIMIR').click(function () {
+            var a = document.createElement("a");
+            a.target = "_blank";
+            a.href = url;
+            a.click();
+        })
+
+        var url = "";
+    };
+</script>

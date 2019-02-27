@@ -1,0 +1,126 @@
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbSalida>
+@using ERP_GMEDINA.Models
+@{
+    ViewBag.Title = "Listado De Salidas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Salida</h2>
+        <ol class="breadcrumb">
+            <li class="active">
+                <strong></strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Listado de Salida</h5>
+                    <div class="ibox-tools">
+                        <input type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalGenReporte" value="Generar Reporte" />
+                        @Html.ActionLink("Registrar Salida", "Create", null, new { @class = "btn btn-primary" })
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="table table table-striped  table-bordered" style="width:100%" id="Datatable">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.sal_FechaElaboracion)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.bod_Id)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tsal_Id)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.estm_Id)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tbBodega.bod_ResponsableBodega)
+                                </th>
+                                <th>
+                                    Acciones
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.sal_FechaElaboracion)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbBodega.bod_Nombre)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbTipoSalida.tsal_Descripcion)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbEstadoMovimiento.estm_Descripcion)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbBodega.tbEmpleado.emp_Nombres) @Html.DisplayFor(modelItem => item.tbBodega.tbEmpleado.emp_Apellidos)
+                                    </td>
+                                    <td>
+                                        @{
+                                            if (item.sal_EsAnulada)
+                                            {
+                                                <input type="button" class="btn btn-xs" style="background-color:red;color:white" value="Anulada">
+                                            }
+                                            else
+                                            {
+                                                if (item.estm_Id == Helpers.Aplicada)
+                                                {
+                                                    <input type="button" class="btn  btn-xs" style="background-color:green;color:white" value="Aplicada">
+                                                }
+                                                else
+                                                {
+                                                    @Html.ActionLink("Editar", "Edit", new { id = item.sal_Id }, new { @class = "btn btn-primary btn-xs" });
+                                                }
+                                            }
+                                        }
+                                        @Html.ActionLink("Detalles", "Details", new { id = item.sal_Id }, new { @class = "btn btn-white btn-xs" })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ModalGenReporte" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Desea Aplicar la Salida</h4>
+            </div>
+            <div id="GenerarReporte" class="modal-body">
+                @Html.Partial("_GenReporte", new ERP_GMEDINA.Models.tbSalida())
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/DataTable.js"></script>

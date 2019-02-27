@@ -1,0 +1,99 @@
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbRol>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Rol</h2>
+    </div>
+
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Listado de Rol</h5>
+                    <div class="ibox-tools">
+                        @Html.ActionLink("Registrar Rol", "Create", null, new { @class = "btn btn-primary" })
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="table table table-striped table-bordered dataTable no-footer" style="width:100%" id="DataTable">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.rol_Id)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.rol_Descripcion)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.rol_Estado)
+                                </th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.rol_Id)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.rol_Descripcion)
+                                    </td>
+                                    @if (Convert.ToString(item.rol_Estado) == "True")
+                                    { 
+                                             <td>Activo</td>  
+                                    }
+                                    @if (Convert.ToString(item.rol_Estado) == "False")
+                                    {
+                                            <td>Inactivo</td>
+
+                                    }
+                                    <td>
+                                        @Html.ActionLink("Detalle", "Details", new { id = item.rol_Id }, new { @class = "btn btn-primary btn-xs" })
+                                        @Html.ActionLink("Editar", "Edit", new { id = item.rol_Id }, new { @class = "btn btn-white btn-xs" })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#DataTable').DataTable({
+
+        "searching": true,
+        "oLanguage": {
+            "oPaginate": {
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior",
+            },
+            "sEmptyTable": "No hay registros",
+            "sInfoEmpty": "Mostrando 0 de 0 Entradas",
+            "sSearch": "Buscar",
+            "sLengthMenu": "Mostrar _MENU_ registros por página",
+            "sInfo": "Mostrando _START_ a _END_ Entradas",
+            "sZeroRecords": "No se encontraron resultados",
+            "sInfoFiltered": "(Filtrado de _MAX_ total entradas)",
+        },
+
+    });
+    });
+</script>

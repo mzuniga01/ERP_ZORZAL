@@ -1,0 +1,297 @@
+﻿@model IEnumerable<ERP_GMEDINA.Models.UDV_Inv_Consultar_Existencias_Productos>
+@using ERP_GMEDINA.Models
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    int BodegaDestino = 0;
+    string Bodegaactual = "";
+    string SucursalActual = "";
+    GeneralFunctions Login = new GeneralFunctions();
+    List<tbUsuario> User = Login.getUserInformation();
+    foreach (tbUsuario Usuario in User)
+    {
+        BodegaDestino = Usuario.tbSucursal.tbBodega.bod_Id ;
+        Bodegaactual = Usuario.tbSucursal.tbBodega.bod_Nombre;
+        SucursalActual = Usuario.tbSucursal.suc_Descripcion;
+
+
+    }
+}
+
+<div class="modal fade" id="mensaje">
+    <div id="dialog" title="Exito" class="dialog">
+    </div>
+</div>
+<div class="modal fade" id="mensaje1">
+    <div id="dialogfail" title="Fallo" class="dialog">
+    </div>
+</div>
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Consultar Existencias</h2>
+      
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+           <h3 style="font-weight:900">Sucursal Actual: @SucursalActual </h3>
+          <h3 style="font-weight:900">Bodega Actual: @Bodegaactual</h3>
+         
+        </div>
+    </div>
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <div id="PedidoExitoso">
+                        <p style="color:red"></p>
+                        
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+<table id="example" class="table table table-striped table-bordered dataTable no-footer" style="width:100%">
+    <thead>
+        <tr>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.bod_Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.prod_Codigo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.prod_Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.prod_Marca)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.bodd_CantidadExistente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.bodd_CantidadMinima)
+            </th>
+            <th>
+
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.bod_Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.prod_Codigo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.prod_Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.prod_Marca)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.bodd_CantidadExistente)
+             
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.bodd_CantidadMinima)
+                
+            </td>
+            <td>
+                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" id="btnSolicitarProducto" data-target="#SolicitarProductomodal" onclick="SolicitarProducto(@item.bod_Id, '@item.bod_Nombre', '@item.suc_Descripcion', '@item.prod_Codigo', '@item.prod_Descripcion', '@item.prod_Marca', @item.bodd_CantidadExistente, @item.bodd_CantidadMinima, @BodegaDestino);">Solicitar</button>
+            </td>
+        </tr>
+        <div class="modal fade" id="SolicitarProductomodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"><label id="LblSearchByDescription">Solicitar Producto</label></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" id="CerrarX">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="form-horizontal">
+                            <div class="form-group row">
+                                <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription">Sucursal</label>
+                                <div class="col-sm-7  input-group">
+                                    <input type="text" class="form-control" id="txt1" value="" readonly />
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription">Bodega</label>
+                                <div class="col-sm-7  input-group">
+                                    <input type="text" class="form-control" id="txt2" value="" readonly />
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription">Nombre del Producto</label>
+                                <div class="col-sm-7  input-group">
+                                    <input type="text" class="form-control" id="txt3" value="" readonly />
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription">Marca del Producto</label>
+                                <div class="col-sm-7  input-group">
+                                    <input type="text" class="form-control" id="txt4" value="" readonly />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label style="margin-left:15px" class="col-sm-4 col-form-label" id="LblDescription">Cantidad a Pedir</label>
+                                <div class="col-sm-7  input-group">
+                                    <input type="number" class="form-control" min=1 id="txt5" required value="" />
+                                    <div id="validationCantidad">
+                                        <p id="alerta" style="color:red"></p> 
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" type="submit" id="btnGuardarSalida">Guardar</button>
+                        @*@Html.ActionLink("Test", "InsertPedido", new { IDBodega = item.bod_Id, IDProducto = item.prod_Codigo, CantidadSolicitada = "" })*@
+                        <input type="button" class="btn btn-white btn-sm" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cancelar" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+    </tbody>
+</table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+<!-- SOLICITAR PRODUCTO MODAL-->
+
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/app/SolicitarProducto.js"></script>
+<script>
+    jQuery('input,select').each(function () {
+        var req = jQuery(this).attr('data-val-required');
+        if (undefined != req) {
+            var label = jQuery('label[for="' + jQuery(this).attr('id') + '"]');
+            var text = label.text();
+            if (text.length > 0) {
+                label.append('<span style="color:red"> *</span>');
+            }
+        }
+    });
+
+</script>
+<script type="text/javascript">
+    var contador = 0;
+    $(document).ready(function () {
+        $('#example thead tr').clone(true).appendTo('#example thead');
+        var nColumnas = $("#example tr:last td").length;
+        console.log(nColumnas)
+
+        $('#example thead tr:eq(1) th').each(function (i) {
+            contador++;
+            if (contador != nColumnas) {
+                var title = $(this).text();
+                $(this).html('<input type="text" id="txtPrueba' + contador + '" size="16" placeholder="' + '" />');
+            }
+
+
+            $('input', this).on('keyup change', function () {
+                if (table.column(i).search() !== this.value) {
+                    table
+                        .column(i)
+                        .search(this.value)
+                        .draw();
+                }
+            });
+        });
+
+
+        var table = $('#example').DataTable(
+          {
+              "searching": true,
+
+              "oLanguage": {
+                  "oPaginate": {
+                      "sNext": "Siguiente",
+                      "sPrevious": "Anterior",
+                  },
+                  "sZeroRecords": "No se encontraron resultados",
+                  "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                  "sEmptyTable": "No hay registros",
+                  "sInfoEmpty": "Mostrando 0 de 0 Entradas",
+                  "sSearch": "Buscar",
+                  "sLengthMenu": "Mostrar _MENU_Registros Por Página",
+                  "sInfo": "Mostrando _START_ a _END_ Entradas"
+
+              },
+              orderCellsTop: true,
+
+              fixedHeader: true
+          });
+        $('#txtPrueba1').on('input', function (e) {
+            if (!/^[a-z0-9A-ZáéíóúñÁÉÍÓÚÑ ]+$/.test(this.value)) {
+                this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
+            }
+        });
+
+
+        $('#txtPrueba2').on('input', function (e) {
+            if (!/^[ 0-9-]*$/i.test(this.value)) {
+                this.value = this.value.replace(/[^ 0-9-]+/ig, "");
+            }
+        })
+        $('#txtPrueba3').on('input', function (e) {
+            if (!/^[a-z0-9A-ZáéíóúñÁÉÍÓÚÑ ]+$/.test(this.value)) {
+                this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
+            }
+        });
+        $('#txtPrueba4').on('input', function (e) {
+            if (!/^[a-z0-9A-ZáéíóúñÁÉÍÓÚÑ ]+$/.test(this.value)) {
+                this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
+            }
+        });
+       
+        $("#txtPrueba5").on("keypress keyup blur", function (event) {
+            //this.value = this.value.replace(/[^0-9\.]/g,'');
+            $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
+            if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+                event.preventDefault();
+            }
+        });
+        $("#txtPrueba6").on("keypress keyup blur", function (event) {
+
+          
+     
+            $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
+            if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+                event.preventDefault();
+            }
+        });
+    });
+
+ 
+    
+
+   
+</script>

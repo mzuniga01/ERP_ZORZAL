@@ -1,0 +1,93 @@
+﻿@model ERP_GMEDINA.Models.tbBox
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Caja</h2>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            @Html.ActionLink("Regresar", "Index")
+        </div>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Detalles Caja</h5>
+                </div>
+                <div class="ibox-content">
+
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.box_Codigo)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.box_Codigo)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.box_Descripcion)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.box_Descripcion)
+                        </dd>
+                    </dl>
+                    @Html.ActionLink("Editar", "Edit", new { id = Model.box_Codigo }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Eliminar", "Delete", new { id = Model.box_Codigo }, new { @class = "btn btn-danger " })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <div class="title-action">
+                                <h5>Producto</h5>
+                                <button type="button" class="btn btn-white glyphicon glyphicon-download" data-toggle="collapse" data-target="#CreateProducto"></button>
+                            </div>
+                        </div>
+                        <div class="ibox-content collapse" id="CreateProducto">
+                           @Html.Partial("_IndexBoxDetalle", Model.tbSalidaDetalle, new ViewDataDictionary(new { clave = Model.box_Codigo }))
+                        </div>
+                    </div>
+                </div>
+            </div>
+     
+
+            @*Datos de Auditoria*@ 
+            <div class="ibox-content">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Acción</th>
+                        <th>Usuario</th>
+                        <th> Fecha</th>
+                    </tr>
+                    <tr>
+                        <td>Creado por  </td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                        </td>
+                        <td>@Html.DisplayFor(model => model.box_FechaCrea)</td>
+
+                    </tr>
+                    <tr>
+                        <td>Modificado por</td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                        </td>
+                        <td>@Html.DisplayFor(model => model.box_FechaModifica)</td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+        </div>
+    </div>

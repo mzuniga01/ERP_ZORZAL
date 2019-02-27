@@ -1,0 +1,114 @@
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbObjeto>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Objeto</h2>
+        <ol class="breadcrumb">
+            <li class="active">
+            </li>
+        </ol>
+    </div>
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5> Lista De Objetos</h5>
+                    <div class="ibox-tools">
+                        @Html.ActionLink("Registrar Objeto", "Create", null, new { @class = "btn btn-primary " })
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="table table-striped" id="tbObjeto">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.obj_Id)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.obj_Pantalla)
+                                </th>
+                               
+                                <th>
+                                  @Html.DisplayNameFor(model => model.obj_Estado)
+                                 </th>
+                                <th>Actividad</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.obj_Id)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.obj_Pantalla)
+                                    </td>
+                                    
+                                    <td>
+                                      @if (item.obj_Estado==true)
+                                      {
+                                        <p> Activo</p>
+                                      }
+                                      else
+                                      {
+                                        <p>Inactivo</p>
+                                      }
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Detalles", "Details", new { id = item.obj_Id }, new { @class = "btn btn-primary btn-xs" })
+                                        @Html.ActionLink("Editar", "Edit", new { id = item.obj_Id }, new { @class = "btn btn-white btn-xs" })
+                               
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+
+                       
+
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.responsive.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.bootstrap.js"></script>
+    <script>
+    $(document).ready(function () {
+        $('#tbObjeto').DataTable({
+
+        "searching": true,
+        "oLanguage": {
+            "oPaginate": {
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior",
+            },
+            "sSearch": "Buscar",
+            "sLengthMenu": "Mostrar _MENU_Registros Por Página",
+            "sInfo": "Mostrando _START_ a _END_ Entradas"
+
+        },
+
+    });
+
+    });
+
+    </script>
+}
+

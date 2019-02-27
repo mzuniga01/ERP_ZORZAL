@@ -1,0 +1,84 @@
+﻿@model ERP_GMEDINA.Models.tbSalidaDetalle
+@using ERP_GMEDINA.Models
+@{
+    tbProducto tbProducto = new tbProducto();
+}
+
+@using (Ajax.BeginForm("EditSalidaDetalle", "Salida", new AjaxOptions() { HttpMethod = "POST", UpdateTargetId = "EditarProductoSalidaDetalle" }))
+{
+    @*@using (Ajax.BeginForm("GetPatients", "Patient", new AjaxOptions
+        {//GetPatients is name of method in PatientController
+            InsertionMode = InsertionMode.Replace, //target element(#patientList) will be replaced
+            UpdateTargetId = "patientList",
+            LoadingElementId = "loader" // div with .gif loader - that is shown when data are loading
+        }))*@
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    @Html.HiddenFor(model => model.sal_Id)
+    @Html.HiddenFor(model => model.sald_Id)
+    <div class="form-horizontal">
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.ent_Id, "Salida", new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DropDownList("ent_Id", (IEnumerable<SelectListItem>)ViewBag.ent_Id, "Selecione", new { @class = "form-control", @readonly = "readonly" })
+                <div id="validationSalida">
+                    @Html.ValidationMessageFor(model => model.ent_Id)
+                </div>
+
+            </div>*@
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.ent_Id, "Salida", new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.DropDownList("ent_Id", (IEnumerable<SelectListItem>)ViewBag.ent_Id, "Selecione", new { @class = "form-control", @readonly = "readonly" })
+                    <div id="validationSalida">
+                        @Html.ValidationMessageFor(model => model.ent_Id)
+                    </div>
+
+                </div>
+            </div>*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.prod_Codigo, "Producto", new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.prod_Codigo)
+                <div id="validationcodigoproducto">
+                    @Html.ValidationMessageFor(model => model.prod_Codigo)
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.tbProducto.prod_Descripcion, "Descripcion", new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.tbProducto.prod_Descripcion)
+                @Html.ValidationMessageFor(model => model.tbProducto.prod_Descripcion)
+            </div>
+            @Html.LabelFor(model => model.tbProducto.pscat_Id, "Subcategoria", new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.tbProducto.tbProductoSubcategoria.pscat_Descripcion)
+                @Html.ValidationMessageFor(model => model.tbProducto.pscat_Id)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.sald_Cantidad, "Cantidad", new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.sald_Cantidad, new { HtmlAttributes = new { name = "sald_Cantidad", @onkeypress = "return filterFloat(event,this);" } })
+                <div id="validationcantidad">
+                    @Html.ValidationMessageFor(model => model.sald_Cantidad)
+                </div>
+            </div>
+            @Html.LabelFor(model => model.tbProducto.tbProductoSubcategoria.tbProductoCategoria, "Categoria", new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.tbProducto.pscat_Id)
+                @Html.ValidationMessageFor(model => model.tbProducto.tbProductoSubcategoria.tbProductoCategoria.pcat_Nombre)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+
+    </div>
+}

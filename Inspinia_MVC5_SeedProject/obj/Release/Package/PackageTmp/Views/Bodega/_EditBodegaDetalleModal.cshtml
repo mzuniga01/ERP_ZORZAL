@@ -1,0 +1,245 @@
+﻿@model ERP_GMEDINA.Models.tbBodegaDetalle
+@using ERP_GMEDINA.Models
+
+@using (Ajax.BeginForm("UpdateBodegaDetalle", "Bodega", new AjaxOptions() { HttpMethod = "POST", UpdateTargetId = "mdlEditBodegaDetalle" }))
+{
+
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="float-e-margins">
+                    <div class="ibox-content">
+                        @Html.AntiForgeryToken()
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true)
+                            @Html.HiddenFor(model => model.bodd_Id)
+                            @Html.HiddenFor(model => model.bod_Id)
+                            @Html.HiddenFor(model => model.bodd_UsuarioCrea)
+                            @Html.HiddenFor(model => model.bodd_FechaCrea)
+                            @Html.HiddenFor(model => model.bodd_UsuarioModifica)
+                            @Html.HiddenFor(model => model.bodd_FechaModifica)
+                            @Html.HiddenFor(model => model.prod_Codigo)
+
+                           
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.prod_Codigo, new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.prod_Codigo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    <div id="ErrorProducto_Create">
+                                        @Html.ValidationMessageFor(model => model.prod_Codigo)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.bodd_CantidadMinima, new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.bodd_CantidadMinima, new { htmlAttributes = new { @class = "form-control", @onkeyup = "format(this)", @onKeyPress = "return soloNumeros(event)" } })
+                                    <div id="ErrorCantidadMinima_Create">
+                                        @Html.ValidationMessageFor(model => model.bodd_CantidadMinima)
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.bodd_PuntoReorden, new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.bodd_PuntoReorden, new { htmlAttributes = new { @class = "form-control", @onkeyup = "format(this)", @onKeyPress = "return soloNumeros(event)" } })
+                                    <div id="ErrorPuntoReorden_Create">
+                                        @Html.ValidationMessageFor(model => model.bodd_PuntoReorden)
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.bodd_CantidadMaxima, new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.bodd_CantidadMaxima, new { htmlAttributes = new { @class = "form-control", @onkeyup = "format(this)", @onKeyPress = "return soloNumeros(event)" } })
+                                    <div id="ErrorCantidadMaxima_Create">
+                                        @Html.ValidationMessageFor(model => model.bodd_CantidadMaxima)
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.bodd_Costo, new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.bodd_Costo, new { htmlAttributes = new { @class = "form-control", @onKeyPress = "return soloNumeros(event)" } })
+                                    <div id="ErrorCosto_Create">
+                                        @Html.ValidationMessageFor(model => model.bodd_CantidadMaxima)
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.bodd_CostoPromedio, new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.bodd_CostoPromedio, new { htmlAttributes = new { @class = "form-control", @onKeyPress = "return soloNumeros(event)" } })
+                                    <div id="ErrorCostoPromedio_Create">
+                                        @Html.ValidationMessageFor(model => model.bodd_CostoPromedio)
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <hr />
+                                <div class="col-md-12 text-right">
+                                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                                    @Html.ActionLink("Cancelar", "Edit", null, new { @class = "btn btn-white" })
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+    <div class="modal fade" id="ModalEliminarDetalle_@Model.bodd_Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Inactivar Bodega</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ¿Está seguro que quiere Eliminar este Detalle?
+                </div>
+                <div class="modal-footer">
+                    @Html.ActionLink("Sí", "DeleteDetalle", new { id = Model.bodd_Id }, new { @class = "btn btn-danger" })
+                    @*<input type="button" value="Si" id="btnDeleteDetalle" class="btn btn-danger" />*@
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+    //Validar Cantidades Bodega Detalle
+    $(document).on('blur', '#bodd_PuntoReorden', function () {
+        var Mn = $('#bodd_CantidadMinima').val();
+        var Pr = $('#bodd_PuntoReorden').val();
+        console.log(Mn)
+        alert('editar modal')
+        console.log(Pr)
+        if (Mn)
+
+
+            if (Pr != '' && Mn != '') {
+
+                if (parseFloat(Mn) > parseFloat(Pr)) {
+
+                    $('#Error_PuntoReorden').text('');
+                    $('#ErrorPuntoReorden_Create').after('<ul id="Error_PuntoReorden" class="validation-summary-errors text-danger">Punto Reorden debe ser Mayor de Cantidad Minima</ul>');
+                    console.log('1')
+                }
+                else {
+                    $('#Error_PuntoReorden').text('');
+                    console.log('2')
+                }
+            }
+
+
+    })
+
+    $(document).on('blur', '#bodd_CantidadMinima', function () {
+        var Mn = $('#bodd_CantidadMinima').val();
+        var Pr = $('#bodd_PuntoReorden').val();
+        console.log(Mn)
+        console.log(Pr)
+        if (Mn)
+
+
+            if (Pr != '' && Mn != '') {
+
+                if (parseFloat(Mn) > parseFloat(Pr)) {
+
+                    $('#Error_CantidadMinima').text('');
+                    $('#ErrorCantidadMinima_Create').after('<ul id="Error_CantidadMinima" class="validation-summary-errors text-danger">Cantidad Minima debe ser Menor que Punto Reorden</ul>');
+                    console.log('1')
+                }
+                else {
+                    $('#Error_CantidadMinima').text('');
+                    console.log('2')
+                }
+            }
+
+
+    })
+
+    $(document).on('blur', '#bodd_CantidadMaxima', function () {
+        var Mx = $('#bodd_CantidadMaxima').val();
+        var Pr = $('#bodd_PuntoReorden').val();
+        console.log(Mx)
+        console.log(Pr)
+        if (Mx)
+
+
+            if (Pr != '' && Mx != '') {
+
+                if (parseFloat(Mx) < parseFloat(Pr)) {
+
+                    $('#Error_CantidadMaxima').text('');
+                    $('#ErrorCantidadMaxima_Create').after('<ul id="Error_CantidadMaxima" class="validation-summary-errors text-danger">Cantidad Maxima debe ser Mayor que Punto Reorden</ul>');
+                    console.log('1')
+                }
+                else {
+                    $('#Error_CantidadMaxima').text('');
+                    console.log('2')
+                }
+            }
+
+
+    })
+
+
+    ////Agregar Detalle a Bodega
+    //$('#btnDeleteDetalle').click(function () {
+    //console.log('boton');
+    //var BodegaDetalle = $('#bodd_Id').val();
+   
+    //    console.log(BodegaDetalle);
+       
+
+        //var tbBodegaDetalle = Getbodegadetalle();
+        //$.ajax({
+        //    url: "/Bodega/SaveBodegaDetalle",
+        //    method: "POST",
+        //    dataType: 'json',
+        //    contentType: "application/json; charset=utf-8",
+        //    data: JSON.stringify({ BODEGADETALLE: tbBodegaDetalle }),
+        //})
+        //    .done(function (data) {
+        //        $('#prod_Codigo').val('');
+        //        $('#prod_Descripcion').val('');
+        //        $('#pcat_Id').val('');
+        //        $('#pscat_Id').val('');
+        //        $('#uni_Id').val('');
+        //        $('#bodd_PuntoReorden').val('');
+        //        $('#bodd_CantidadMinima').val('');
+        //        $('#bodd_CantidadMaxima').val('');
+        //        $('#bodd_Costo').val('');
+        //        $('#bodd_CostoPromedio').val('');
+
+        //        $('#MessageError').text('');
+        //        $('#Error_Producto').text('');
+        //        $('#Error_PuntoReorden').text('');
+        //        $('#Error_CantidadMinima').text('');
+        //        $('#Error_CantidadMaxima').text('');
+        //        $('#Error_Costo').text('');
+        //        $('#Error_CostoPromedioo').text('');
+        //    });
+       
+//});
+
+////Fin
+
+
+
+</script>

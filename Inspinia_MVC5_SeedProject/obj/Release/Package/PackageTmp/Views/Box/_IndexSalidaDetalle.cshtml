@@ -1,0 +1,79 @@
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbSalidaDetalle>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Lista de Salida Detalle</h5>
+					
+                </div>
+                <div class="ibox-content">
+
+<table class="table table-responsive" style="width:100%" id="DataTable">
+    <tr>
+        <th>
+           Descripcion
+        </th>
+        <th>
+           Marca
+        </th>
+        <th>
+           Modelo
+        </th>
+        <th>
+           Talla
+        </th>
+        <th>
+            Color
+        </th>
+        <th>
+            Descripcion
+        </th>
+        <th>
+           Cantidad
+        </th>
+       
+        <th></th>
+    </tr>
+
+
+    <tr>
+        <td>
+            Cadena
+        </td>
+        <td>
+           Joma
+        </td>
+        <td>
+            Mj 45
+        </td>
+        <td>
+           5 pulgadas
+        </td>
+        <td>
+           Blanco
+        </td>
+        <td>
+           Unidad
+        </td>
+        <td>
+           2
+        </td>
+        
+        <td>
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modaldetalle">Detalle</button>
+            <button type="button" class="btn btn-white btn-xs" data-toggle="modal" data-target="#MyModal">Editar</button>
+            <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#">Eliminar</button>
+        </td>
+    </tr>
+
+
+</table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>

@@ -1,0 +1,78 @@
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbSalidaDetalle>
+@using ERP_GMEDINA.Models
+
+@ViewData["clave"]
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Listado Detalle Caja</h5>
+                    <div class="ibox-tools">
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="table table-striped">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.tbProducto.prod_Descripcion)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.tbProducto.prod_Marca)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.tbProducto.prod_Modelo)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.tbProducto.prod_Talla)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.tbProducto.prod_Color)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.tbProducto.tbUnidadMedida.uni_Descripcion)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.sal_Cantidad)
+                            </th>
+
+                        </tr>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tbProducto.prod_Marca)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tbProducto.prod_Modelo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tbProducto.prod_Talla)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tbProducto.prod_Color)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tbProducto.tbUnidadMedida.uni_Descripcion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.sal_Cantidad)
+                                </td>
+                                <td>
+                                    <input type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalEditar" value="Editar" />
+                                    @Html.ActionLink("Eliminar", "Delete", new { id = item.box_Codigo }, new { @class = "btn btn-danger btn-xs" })
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

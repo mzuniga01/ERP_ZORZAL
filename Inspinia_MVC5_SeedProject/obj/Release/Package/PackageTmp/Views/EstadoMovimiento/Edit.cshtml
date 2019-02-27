@@ -1,0 +1,176 @@
+﻿@model ERP_GMEDINA.Models.tbEstadoMovimiento
+
+@{
+    ViewBag.Title = "Editar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (ViewBag.smserror != "" && ViewBag.smserror != null)
+{<div class="col-md-12" id="mensaje">
+        <div class="alert alert-warning alert-danger">
+            <button type="button" class="close" data-dissmiss="alert" aria-hidden="true">@Html.ActionLink("X", "Edit/" + Model.estm_Id, new { @class = "btn btn-primary " })</button>
+            <h4><i class="icon fa fa-warning"></i>Alerta</h4>
+            <h2>@ViewBag.smserror</h2>
+        </div>
+    </div>  }
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Estado Movimiento</h2>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            @Html.ActionLink("Regresar", "Index")
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Editar Estado Movimiento</h5>
+                </div>
+                <div class="ibox-content">
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+
+                            @Html.ValidationSummary(true)
+                            @Html.HiddenFor(model => model.estm_Id)
+
+                            @Html.HiddenFor(model => model.estm_UsuarioCrea)
+                            @Html.HiddenFor(model => model.estm_FechaCrea)
+                            @Html.HiddenFor(model => model.estm_FechaModifica)
+                            @Html.HiddenFor(model => model.estm_UsuarioModifica)
+                            @Html.HiddenFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.HiddenFor(model => model.tbUsuario.usu_Apellidos)
+                            @Html.HiddenFor(model => model.tbUsuario1.usu_Nombres)
+                            @Html.HiddenFor(model => model.tbUsuario1.usu_Apellidos)
+
+
+                            @*Esto lo agregó Mágdaly Zúniga*@
+                            @*Extras usuario crea*@
+                            @Html.HiddenFor(model => model.tbUsuario.usu_NombreUsuario)
+                            @Html.HiddenFor(model => model.tbUsuario.usu_Password)
+                            @Html.HiddenFor(model => model.tbUsuario.usu_Correo)
+                            @Html.HiddenFor(model => model.tbUsuario.usu_EsActivo)
+                            @Html.HiddenFor(model => model.tbUsuario.usu_EsAdministrador)
+
+                            @*Extras usuario crea*@
+                            @Html.HiddenFor(model => model.tbUsuario1.usu_NombreUsuario)
+                            @Html.HiddenFor(model => model.tbUsuario1.usu_Password)
+                            @Html.HiddenFor(model => model.tbUsuario1.usu_Correo)
+                            @Html.HiddenFor(model => model.tbUsuario1.usu_EsActivo)
+                            @Html.HiddenFor(model => model.tbUsuario1.usu_EsAdministrador)
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.estm_Id, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.estm_Id, new { @class = "form-control", @readonly = "readonly", @MaxLength = "10" })
+                                    @Html.ValidationMessageFor(model => model.estm_Id)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.estm_Descripcion, new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.estm_Descripcion, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @maxlength = "50" } })
+                                    <p style="color:red">
+                                        @Html.ValidationMessageFor(model => model.estm_Descripcion)
+                                    </p>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" class="btn btn-primary" value="Guardar"/>
+                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                    <button type="button" class="btn btn-danger btn" data-toggle="modal" data-target="#ModalEstado_@Model.estm_Id" value="Eliminar">Eliminar</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal fade" id="ModalEstado_@Model.estm_Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Eliminar Estado</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        ¿Está seguro que quiere Eliminar?
+                                    </div>
+                                    <div class="modal-footer">
+                                        @Html.ActionLink("Sí", "Eliminar", new { id = Model.estm_Id }, new { @class = "btn btn-danger" })
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+
+                </div>
+
+            </div>
+
+            <div class="ibox-content">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Acción</th>
+                        <th>Usuario</th>
+                        <th>Fecha</th>
+                    </tr>
+                    <tr>
+                        <td>Creado</td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                        </td>
+                        <td>@Html.DisplayFor(model => model.estm_FechaCrea)</td>
+                    </tr>
+                    <tr>
+                        <td>Modificado</td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                        </td>
+                        <td>@Html.DisplayFor(model => model.estm_FechaModifica)</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/app/ValidationEstadoMovimientojs.js"></script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        jQuery('input,select').each(function () {
+            var req = jQuery(this).attr('data-val-required');
+            if (undefined != req) {
+                var label = jQuery('label[for="' + jQuery(this).attr('id') + '"]');
+                var text = label.text();
+                if (text.length > 0) {
+                    label.append('<span style="color:red"> *</span>');
+                }
+            }
+        });
+
+    </script>
+}

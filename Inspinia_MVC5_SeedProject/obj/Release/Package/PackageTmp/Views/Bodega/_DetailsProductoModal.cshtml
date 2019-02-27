@@ -1,0 +1,94 @@
+﻿@model ERP_GMEDINA.Models.tbProducto
+@using ERP_GMEDINA.Models
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Detalles Producto</h5>
+                </div>
+                <div class="ibox-content">
+
+
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.prod_Descripcion)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.prod_Descripcion)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.prod_Marca)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.prod_Marca)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.prod_Modelo)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.prod_Modelo)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.prod_Talla)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.prod_Talla)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.prod_Color)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.prod_Color)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.tbProductoSubcategoria.pscat_Descripcion)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.tbProductoSubcategoria.pscat_Descripcion)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.tbUnidadMedida.uni_Descripcion)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.tbUnidadMedida.uni_Descripcion)
+                        </dd>
+
+                    </dl>
+
+
+                    @*@Html.ActionLink("Edit", "Edit", new { id = Model.prod_Codigo }, new { @class = "btn btn-primary"})
+                        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white"})*@
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
