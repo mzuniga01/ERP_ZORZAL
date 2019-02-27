@@ -178,6 +178,7 @@ namespace ERP_GMEDINA.Controllers
 
                         ViewBag.Cliente = db.tbCliente.ToList();
                         ViewBag.Factura = db.tbFactura.ToList();
+                        ViewBag.CuponDescuento = db.UDP_Vent_tbCuponDescuentoSelect().ToList();
                         ViewBag.FacturaPago = db.V_Vent_FacturaPago.ToList();
                        
 
@@ -203,7 +204,7 @@ namespace ERP_GMEDINA.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include= "pago_Id,fact_Id,tpa_Id,pago_FechaElaboracion,pago_SaldoAnterior,pago_TotalPago,pago_TotalCambio,pago_Emisor,bcta_Id,pago_FechaVencimiento,pago_Titular,pago_UsuarioCrea,pago_FechaCrea,pago_UsuarioModifica,pago_FechaModifica, nocre_Codigo_cdto_Id")] tbPago tbPago)
+        public ActionResult Create([Bind(Include= "pago_Id,fact_Id,tpa_Id,pago_FechaElaboracion,pago_SaldoAnterior,pago_TotalPago,pago_TotalCambio,pago_Emisor,bcta_Id,pago_FechaVencimiento,pago_Titular,nocre_Codigo_cdto_Id,pago_UsuarioCrea,pago_FechaCrea,pago_UsuarioModifica,pago_FechaModifica, tbUsuario,tbUsuario1")] tbPago tbPago)
         {
             if (Function.GetUserLogin())
             {
@@ -223,27 +224,12 @@ namespace ERP_GMEDINA.Controllers
                             {
                                 string MensajeError = "";
                                 IEnumerable<object> list = null;
-                                list = db.UDP_Vent_tbPago_Insert(tbPago.fact_Id, 
-                                                                 tbPago.tpa_Id, 
-                                                                 tbPago.pago_FechaElaboracion,
-                                                                 tbPago.pago_SaldoAnterior, 
-                                                                 tbPago.pago_TotalPago, 
-                                                                 tbPago.pago_TotalCambio,
-                                                                 tbPago.pago_Emisor,
-                                                                 tbPago.bcta_Id, 
-                                                                 tbPago.pago_FechaVencimiento,
-                                                                 tbPago.pago_Titular, 
-                                                                 tbPago.nocre_Codigo_cdto_Id,
-                                                                 tbPago.pago_EstaAnulado,
-                                                                 tbPago.pago_RazonAnulado,
-                                                                 tbPago.pago_EstaImpreso,
-                                                                 Function.GetUser(), 
-                                                                 Function.DatetimeNow());
+                                list = db.UDP_Vent_tbPago_Insert(tbPago.fact_Id, tbPago.tpa_Id, tbPago.pago_FechaElaboracion, tbPago.pago_SaldoAnterior, tbPago.pago_TotalPago, tbPago.pago_TotalCambio, tbPago.pago_Emisor, tbPago.bcta_Id, tbPago.pago_FechaVencimiento, tbPago.pago_Titular, tbPago.nocre_Codigo_cdto_Id, tbPago.pago_EstaAnulado, tbPago.pago_RazonAnulado, tbPago.pago_EstaImpreso,Function.GetUser(), Function.DatetimeNow());
                                 foreach (UDP_Vent_tbPago_Insert_Result pago in list)
                                     MensajeError = pago.MensajeError.ToString();
-                                if (MensajeError.StartsWith(" -1"))
+                                if (MensajeError.StartsWith("-1"))
                                 {
-                                    Function.InsertBitacoraErrores("Pago/Edit", MensajeError, "Create");
+                                    Function.InsertBitacoraErrores("Pago/Create", MensajeError, "Create");
                                     ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
                                     ViewBag.Cliente = db.tbCliente.ToList();
                                     ViewBag.Factura = db.tbFactura.ToList();
@@ -260,9 +246,12 @@ namespace ERP_GMEDINA.Controllers
                             }
                             catch (Exception Ex)
                             {
-                                ViewBag.bcta_Id = new SelectList(db.tbCuentasBanco, "bcta_Id", "bcta_Numero");
-                                ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo");
-                                ViewBag.tpa_Id = new SelectList(db.tbTipoPago, "tpa_Id", "tpa_Descripcion");
+                                ViewBag.pago_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPago.pago_UsuarioCrea);
+                                ViewBag.pago_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPago.pago_UsuarioModifica);
+                                ViewBag.bcta_Id = new SelectList(db.tbCuentasBanco, "bcta_Id", "bcta_Numero", tbPago.bcta_Id);
+
+                                ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo", tbPago.fact_Id);
+                                ViewBag.tpa_Id = new SelectList(db.tbTipoPago, "tpa_Id", "tpa_Descripcion", tbPago.tpa_Id);
 
                                 ViewBag.Cliente = db.tbCliente.ToList();
                                 ViewBag.Factura = db.tbFactura.ToList();
@@ -277,7 +266,8 @@ namespace ERP_GMEDINA.Controllers
 
                         ViewBag.pago_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPago.pago_UsuarioCrea);
                         ViewBag.pago_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPago.pago_UsuarioModifica);
-                        ViewBag.bcta_Id = new SelectList(db.tbCuentasBanco, "bcta_Id", "bcta_Numero", tbPago.bcta_Id);
+                       ViewBag.bcta_Id = new SelectList(db.tbCuentasBanco, "bcta_Id", "bcta_Numero", tbPago.bcta_Id);
+
                         ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo", tbPago.fact_Id);
                         ViewBag.tpa_Id = new SelectList(db.tbTipoPago, "tpa_Id", "tpa_Descripcion", tbPago.tpa_Id);
                         ViewBag.Factura = db.tbFactura.ToList();

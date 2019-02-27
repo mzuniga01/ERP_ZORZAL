@@ -64,7 +64,8 @@
         <div class="form-group">
             <div class="col-md-4">
                 @Html.HiddenFor(model => model.fact_Id)
-                @Html.ValidationMessageFor(model => model.fact_Id)
+                @Html.HiddenFor(model => model.tbFactura.fact_AlCredito)
+                @Html.ValidationMessageFor(model => model.fact_Id, "", new { @style = "color:red" })
             </div>
         </div>
  
@@ -130,107 +131,106 @@
             </div>
         </div>
 
-        <div id="Efectivo" name="Efectivo">
-            <div class="form-group">
+
+        @*<div id="TCD" name="TCD">*@
+        <div class="form-group">
+            <div id="Efectivo">
                 @Html.Label("Total Efectivo", new { @class = "control-label col-md-3" })
                 <div class="col-md-2">
-                    @Html.Editor("Efectivo", String.Empty, new { htmlAttributes = new { @class = "form-control", @id = "efectivo", @value = "number", @onkeyup = "format(this)", @autocomplete = "off" } })
-                    @Html.ValidationMessage("", new { @style = "color:red" })
-                </div>
+                    
+                        @Html.Editor("Efectivo", String.Empty, new { htmlAttributes = new { @class = "form-control", @id = "efectivo", @value = "number", @onkeyup = "format(this)", @autocomplete = "off" } })
+                        @Html.ValidationMessage("", new { @style = "color:red", @id = "smspsfectivo" })
+</div>
+            </div>
+            <div id="pago_TotalCambio" >
                 @Html.LabelFor(model => model.pago_TotalCambio, "Cambio Efectivo", new { @class = "control-label col-md-3" })
                 <div class="col-md-2">
                     @Html.EditorFor(model => model.pago_TotalCambio, String.Empty, new { htmlAttributes = new { @class = "form-control", @id = "cambio", @value = "number", @onkeyup = "format(this)", @autocomplete = "off", @readonly = "readonly" } })
                     @Html.ValidationMessageFor(model => model.pago_TotalCambio, "", new { @style = "color:red" })
                 </div>
             </div>
-           
-            </div>
-
-        <div id="TCD" name="TCD">
+        </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.pago_Titular, new { @class = "control-label col-md-2" })
-                <div class="col-md-3">
-                    @Html.EditorFor(model => model.pago_Titular)
-                    @Html.ValidationMessageFor(model => model.pago_Titular)
+                <div  id="pago_Titular" class="">
+                    @Html.LabelFor(model => model.pago_Titular, new { @class = "control-label col-md-2" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.pago_Titular)
+                        @Html.ValidationMessageFor(model => model.pago_Titular)
+                    </div>
                 </div>
-            </div>
+                 <div id="bcta_Id"class="">
+                        @Html.LabelFor(model => model.bcta_Id, "Cuenta Banco", new { @class = "control-label col-md-2" })
+                        <div class="col-md-3">
+                            @Html.DropDownList("bcta_Id", null, "Seleccionar Cuenta Banco", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.bcta_Id)
+                        </div>
+                    </div>
+                <div id="MontoDesc">
+                    @Html.Label("Monto Descuento", new { @class = "control-label col-md-2" })
+                    <div class="col-md-2">
+                        @Html.Editor("MontoDescuento", "", new { @class = "form-control", @id = "MontoDesc"})
+                        @Html.ValidationMessage("", new { @style = "color:red" })
+                    </div>
+                </div>
+                <div id="Descuento">
+                    @Html.Label("% Descuento", new { @class = "control-label col-md-3" })
+                    <div class="col-md-2">
+                        @Html.Editor("Descuento", "" , new { @class = "form-control", @id ="descuento" })
+                        @Html.ValidationMessage("", new { @style = "color:red" })
+                    </div>
+                </div>
+                </div>
      
             <div class="form-group">
-                @Html.LabelFor(model => model.pago_Emisor, new { @class = "control-label col-md-3" })
-                <div class="col-md-2">
-                    @Html.EditorFor(model => model.pago_Emisor)
-                    @Html.ValidationMessageFor(model => model.pago_Emisor, "", new { @style = "color:red" })
+                <div id="pago_Emisor">
+                    @Html.LabelFor(model => model.pago_Emisor, new { @class = "control-label col-md-2" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.pago_Emisor)
+                        @Html.ValidationMessageFor(model => model.pago_Emisor, "", new { @style = "color:red" })
+                    </div>
                 </div>
-                @Html.LabelFor(model => model.pago_FechaVencimiento, new { @class = "control-label col-md-3" })
-                <div class="col-md-2">
-                    @Html.EditorFor(model => model.pago_FechaVencimiento)
-                    @Html.ValidationMessageFor(model => model.pago_FechaVencimiento)
+             
+                <div id="pago_FechaVencimiento">
+                    @Html.LabelFor(model => model.pago_FechaVencimiento, new { @class = "control-label col-md-2" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.pago_FechaVencimiento)
+                        @Html.ValidationMessageFor(model => model.pago_FechaVencimiento)
+                    </div>
                 </div>
+                <div id="nocre_Codigo_cdto_Id" class="form-group">
+                    @Html.Label("Código/ID ", new { @class = "control-label col-md-2" })
+                    <div class="col-md-2">
+                        @Html.EditorFor(model => model.nocre_Codigo_cdto_Id)
+                        @Html.ValidationMessageFor(model => model.nocre_Codigo_cdto_Id)
+                    </div>
+                    <div class="col-md-1" id="mNotaCredito">
+                        <button type="button" id="" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarNotaCredito"><span class="glyphicon glyphicon-search"></span></button>
+                    </div>
+                    <div class="col-md-1" id="mCuponDesc">
+                        
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarCuponDescuento" title="Seleccione un Cupón" data-placement="bottom"><span class="glyphicon glyphicon-search"></span></button>
+                      
+                    </div>
+                    
+                </div>
+
+
+              
             </div>
 
-
-        
+        <div class="form-group">
+            <div class="col-md-4">
+            @Html.Editor("MontoMax","",new {  @id = "montomax"} )
+                @Html.Editor("CantMin", "", new { @id = "cantmin" })
+                @Html.Editor("Redimido", "", new { @id = "redimido" })
+               
+            </div>
         </div>
+           
+        @*</div>*@
 
-        <div id="Cheque" name="Cheque">
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.pago_Titular, new { @class = "control-label col-md-2" })
-                <div class="col-md-3">
-                    @Html.EditorFor(model => model.pago_Titular)
-                    @Html.ValidationMessageFor(model => model.pago_Titular)
-                </div>
-                @Html.LabelFor(model => model.pago_Emisor, new { @class = "control-label col-md-3" })
-                <div class="col-md-2">
-                    @Html.EditorFor(model => model.pago_Emisor)
-                    @Html.ValidationMessageFor(model => model.pago_Emisor, "", new { @style = "color:red" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.bcta_Id, "Cuenta Banco", new { @class = "control-label col-md-2" })
-                <div class="col-md-3">
-                    @Html.DropDownList("bcta_Id", null, "Seleccionar Cuenta Banco", new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.bcta_Id)
-                </div>
-            </div>
-
-        </div>
-
-        <div id="NC" name="NC">
        
-            <div class="form-group">
-                @Html.Label("Monto NC", new { @class = "control-label col-md-1" })
-                <div class="col-md-3">
-                    @Html.Editor("NC", String.Empty, new { htmlAttributes = new { @class = "form-control", @id = "MontoNC", @value = "number", @onkeyup = "format(this)", @autocomplete = "off" } })
-                    @Html.ValidationMessage("", new { @style = "color:red" })
-                </div>
-                <input type="hidden" id="nc_Id" name="nc_Id" value="false" />
-                <div class="col-sm-1">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarNotaCredito" title="Seleccione un empleado" data-placement="bottom"><span class="glyphicon glyphicon-search"></span></button>
-                </div>
-                @Html.Label("Código", new { @class = "control-label col-md-2" })
-                <div class="col-md-2">
-                    @Html.Editor("Codigo", String.Empty, new { htmlAttributes = new { @class = "form-control", @id = "CodigoNC", @onkeyup = "format(this)", @autocomplete = "off" } })
-                    @Html.ValidationMessage("", new { @style = "color:red" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.pago_Titular, new { @class = "control-label col-md-1" })
-                <div class="col-md-3">
-                    @Html.EditorFor(model => model.pago_Titular)
-                    @Html.ValidationMessageFor(model => model.pago_Titular)
-                </div>
-                @Html.LabelFor(model => model.pago_Emisor, new { @class = "control-label col-md-3" })
-                <div class="col-md-2">
-                    @Html.EditorFor(model => model.pago_Emisor)
-                    @Html.ValidationMessageFor(model => model.pago_Emisor, "", new { @style = "color:red" })
-                </div>
-            </div>
-
-        </div>
 
        
 
@@ -307,7 +307,7 @@
                     <table id="DataTable" class="table table table-striped  table-bordered">
                         <thead>
                             <tr>
-                                <th>Código Factura</th>
+                                <th>Código</th>
                                 <th>Monto</th>
                                 <th>¿Es redimido?</th>
                                 <th>¿Esta Impreso?</th>
@@ -316,6 +316,23 @@
                         </thead>
                         <tbody id="BodyNotaCreditoPagos"></tbody>
                     </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="ModalAgregarCuponDescuento" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Agregar Cupón Descuento</h4>
+                </div>
+                <div class="modal-body" id="frmEditarMunicipios">
+                    @Html.Partial("_IndexCuponDescuento", (List<UDP_Vent_tbCuponDescuentoSelect_Result>)ViewBag.CuponDescuento)
                 </div>
             </div>
         </div>
@@ -361,8 +378,11 @@
 </script>
 
 
- 
-
+ <script>
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
 
 
 
@@ -373,6 +393,7 @@
             })
         });
 </script>
+
 
 
 }

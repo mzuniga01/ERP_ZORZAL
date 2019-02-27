@@ -98,17 +98,7 @@
 
 
 
-        <div class="form-group">
-            @*@Html.Label("Monto Factura", new { @class = "control-label col-md-2" })
-            <div class="col-md-2">
-                @Html.Editor("Monto", String.Empty, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @id = "MontoFactura", @value = "number", @onkeyup = "format(this)", @autocomplete = "off" } })
-            </div>
-            @Html.Label("Total Pagado", new { @class = "control-label col-md-1 " })
-            <div class="col-md-2">
-                @Html.Editor("Total", String.Empty, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @id = "TotalPagado", @value = "number", @onkeyup = "format(this)", @autocomplete = "off" } })
-            </div>*@
-           
-        </div>
+    
 
         <div class="form-group">
             @Html.LabelFor(model => model.pago_TotalPago, "Monto Pago",new { @class = "control-label col-md-3" })
@@ -135,76 +125,83 @@
             @Html.LabelFor(model => model.tpa_Id, "Tipo de Pago", new { @class = "control-label col-md-2" })
             <div class="col-md-3">
                @Html.DropDownList("tpa_Id", null, "Seleccionar Tipo de Pago", new { @class = "form-control",  @id = "TipoPago" })
-                @*@Html.DropDownList("tpa_id", new SelectList(Model.TPList, "ID_TP", "DESCRIPCION_TP"), "Seleccionar Tipo Pago", new { @class = "form-control", @id = "TipoPago" })*@
                 @Html.ValidationMessageFor(model => model.tpa_Id, "", new { @style = "color:red" })
             </div>
         </div>
 
 
-        <div id="Efectivo" name="Efectivo">
-            <div class="form-group">
+        <div class="form-group">
+            <div id="Efectivo">
                 @Html.Label("Total Efectivo", new { @class = "control-label col-md-3" })
                 <div class="col-md-2">
                     @Html.Editor("Efectivo", String.Empty, new { htmlAttributes = new { @class = "form-control", @id = "efectivo", @value = "number", @onkeyup = "format(this)", @autocomplete = "off" } })
-                    @Html.ValidationMessage("", new { @style = "color:red" })
+                    @Html.ValidationMessage("", new { @style = "color:red"  , @id="mEfectivo"})
                 </div>
+            </div>
+            <div id="pago_TotalCambio">
                 @Html.LabelFor(model => model.pago_TotalCambio, "Cambio Efectivo", new { @class = "control-label col-md-3" })
                 <div class="col-md-2">
                     @Html.EditorFor(model => model.pago_TotalCambio, String.Empty, new { htmlAttributes = new { @class = "form-control", @id = "cambio", @value = "number", @onkeyup = "format(this)", @autocomplete = "off", @readonly = "readonly" } })
                     @Html.ValidationMessageFor(model => model.pago_TotalCambio, "", new { @style = "color:red" })
                 </div>
             </div>
-
         </div>
 
-        <div id="TCD" name="TCD">
-
-            <div class="form-group">
+        <div class="form-group">
+            <div id="pago_Titular" class="">
                 @Html.LabelFor(model => model.pago_Titular, new { @class = "control-label col-md-2" })
                 <div class="col-md-3">
                     @Html.EditorFor(model => model.pago_Titular)
                     @Html.ValidationMessageFor(model => model.pago_Titular)
                 </div>
             </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.pago_Emisor, new { @class = "control-label col-md-3" })
-                <div class="col-md-2">
-                    @Html.EditorFor(model => model.pago_Emisor)
-                    @Html.ValidationMessageFor(model => model.pago_Emisor, "", new { @style = "color:red" })
-                </div>
-                @Html.LabelFor(model => model.pago_FechaVencimiento, new { @class = "control-label col-md-3" })
-                <div class="col-md-2">
-                    @Html.EditorFor(model => model.pago_FechaVencimiento)
-                    @Html.ValidationMessageFor(model => model.pago_FechaVencimiento)
-                </div>
-            </div>
-
-
-
-        </div>
-        <div id="Cheque" name="Cheque">
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.pago_Titular, new { @class = "control-label col-md-2" })
-                <div class="col-md-3">
-                    @Html.EditorFor(model => model.pago_Titular)
-                    @Html.ValidationMessageFor(model => model.pago_Titular)
-                </div>
-                @Html.LabelFor(model => model.pago_Emisor, new { @class = "control-label col-md-3" })
-                <div class="col-md-2">
-                    @Html.EditorFor(model => model.pago_Emisor)
-                    @Html.ValidationMessageFor(model => model.pago_Emisor, "", new { @style = "color:red" })
-                </div>
-            </div>
-
-            <div class="form-group">
+            <div id="bcta_Id" class="">
                 @Html.LabelFor(model => model.bcta_Id, "Cuenta Banco", new { @class = "control-label col-md-2" })
                 <div class="col-md-3">
                     @Html.DropDownList("bcta_Id", null, "Seleccionar Cuenta Banco", new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.bcta_Id)
                 </div>
             </div>
+            <div id="MontoDesc">
+                @Html.Label("Monto Descuento", new { @class = "control-label col-md-2" })
+                <div class="col-md-2">
+                    @Html.Editor("MontoDesc", String.Empty, new { htmlAttributes = new { @class = "form-control", @id = "MontoDesc", @value = "number", @onkeyup = "format(this)", @autocomplete = "off" } })
+                    @Html.ValidationMessage("", new { @style = "color:red" })
+                </div>
+            </div>
+            <div id="Descuento">
+                @Html.Label("% Descuento", new { @class = "control-label col-md-3" })
+                <div class="col-md-2">
+                    @Html.Editor("Descuento", String.Empty, new { htmlAttributes = new { @class = "form-control", @id = "descuento", @value = "number", @onkeyup = "format(this)", @autocomplete = "off" } })
+                    @Html.ValidationMessage("", new { @style = "color:red" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div id="pago_Emisor">
+                @Html.LabelFor(model => model.pago_Emisor, new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.pago_Emisor)
+                    @Html.ValidationMessageFor(model => model.pago_Emisor, "", new { @style = "color:red" })
+                </div>
+            </div>
+
+            <div id="pago_FechaVencimiento">
+                @Html.LabelFor(model => model.pago_FechaVencimiento, new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.pago_FechaVencimiento)
+                    @Html.ValidationMessageFor(model => model.pago_FechaVencimiento)
+                </div>
+            </div>
+            <div id="nocre_Codigo_cdto_Id" class="form-group">
+                @Html.LabelFor(model => model.nocre_Codigo_cdto_Id, "Código/ID ", new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.nocre_Codigo_cdto_Id)
+                    @Html.ValidationMessageFor(model => model.nocre_Codigo_cdto_Id)
+                </div>
+            </div>
+
 
         </div>
       
@@ -279,6 +276,7 @@
 
 <script src="~/Scripts/app/PagoClienteFacturas.js"></script>
 <script src="~/Scripts/app/PagoCampoNumerico.js"></script>
+
 <script>
     $(function () {
 
@@ -315,6 +313,8 @@
     $(function () {
 
         $("#efectivo").change(function (e) {
+            valido = document.getElementById('mEfectivo');
+            $("#efectivo").val(parseFloat(totalpagar) + parseFloat(cambio));
             var efectivo = $("#efectivo").val();
             var cambio = $("#cambio").val();
             var totalpagar = $("#pago_TotalPago").val();
@@ -327,6 +327,12 @@
                 $("#efectivo").val(result);
                 $("#cambio").val(result);
 
+            }
+            else if (efectivo < totalpagar) {
+                $('#efectivo').val('').focus();
+                $("#cambio").val(result);
+                valido.innerText = "El valor debe ser Mayor al Monto Pago";
+                
             }
             else {
                 $("#efectivo").val(efectivo);

@@ -19,13 +19,13 @@
    
     $('#pago_TotalPago').on('input', function (e) {
         if (!/^[0-9]+$/.test(this.value)) {
-            this.value = this.value.replace(/[^/^[0-9]+$/, "");
+            this.value = this.value.replace(/[^.^[0-9]+$/, "");
         }
     });
 
     $('#efectivo').on('input', function (e) {
         if (!/^[0-9]+$/.test(this.value)) {
-            this.value = this.value.replace(/[^/^[0-9]+$/, "");
+            this.value = this.value.replace(/[^.^[0-9]+$/, "");
         }
     });
 

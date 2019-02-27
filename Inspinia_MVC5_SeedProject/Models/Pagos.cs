@@ -28,7 +28,7 @@ namespace ERP_GMEDINA.Models
         public short tpa_Id { get; set; }
 
         [Display(Name = "Fecha ")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public System.DateTime pago_FechaElaboracion { get; set; }
 

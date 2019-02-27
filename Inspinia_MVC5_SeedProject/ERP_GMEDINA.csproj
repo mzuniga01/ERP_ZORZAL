@@ -1934,6 +1934,7 @@
     <Content Include="Views\Factura\_CreateConsumidorFinal.cshtml" />
     <Content Include="Views\Login\SinRol.cshtml" />
     <Content Include="Views\Pedido\_CreateDetallePedido.cshtml" />
+    <Content Include="Views\Pago\_IndexCuponDescuento.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

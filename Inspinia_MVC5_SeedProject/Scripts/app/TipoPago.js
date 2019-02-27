@@ -1,51 +1,164 @@
-﻿$(document).ready(function () {
+﻿//$(document).ready(function () {
  
+//    $('#Efectivo').hide();
+//    $('#TCD').hide();
+//    $('#Cheque').hide();
+//    $('#NC').hide();
+
+//});
+//forma dos
+$(document).ready(function () {
     $('#Efectivo').hide();
-    $('#TCD').hide();
-    $('#Cheque').hide();
-    $('#NC').hide();
+    $('#pago_TotalCambio').hide();
+    $('#pago_Titular').hide();
+    $('#bcta_Id').hide();
+    $('#pago_Emisor').hide();
+    $('#pago_FechaVencimiento').hide();
+    $('#nocre_Codigo_cdto_Id').hide();
+
+    $('#Descuento').hide();
+    $('#MontoDesc').hide();
+    $('#mNotaCredito').hide();
+    $('#mCuponDesc').hide();
 
 });
-
-
-
 $(document).ready(function () {
     $("#TipoPago").change(function (evt) {
-        if ($("#TipoPago").val() == 1 )
-        {
+        if ($("#TipoPago").val() == 1) {
             $('#Efectivo').show();
-            $('#TCD').hide();
-            $('#Cheque').hide();
-            $('#NC').hide();
+            $('#pago_TotalCambio').show();
+            $('#pago_Titular').hide();
+            $('#bcta_Id').hide();
+            $('#pago_Emisor').hide();
+            $('#pago_FechaVencimiento').hide();
+            $('#nocre_Codigo_cdto_Id').hide();
+
+            $('#Descuento').hide();
+            $('#MontoDesc').hide();
+            $('#mNotaCredito').hide();
+            $('#mCuponDesc').hide();
+
         }
-        else if ($("#TipoPago").val() == 2) {      
-            $('#TCD').show();
+        else if ($("#TipoPago").val() == 2) {
             $('#Efectivo').hide();
-            $('#Cheque').hide();
-            $('#NC').hide();
+            $('#pago_TotalCambio').hide();
+            $('#pago_Titular').show();
+            $('#bcta_Id').hide();
+            $('#pago_Emisor').show();
+            $('#pago_FechaVencimiento').show();
+            $('#nocre_Codigo_cdto_Id').hide();
+
+            $('#Descuento').hide();
+            $('#MontoDesc').hide();
+            $('#mNotaCredito').hide();
+            $('#mCuponDesc').hide();
         }
         else if ($("#TipoPago").val() == 3) {
-            $('#TCD').hide();
             $('#Efectivo').hide();
-            $('#NC').hide();
-            $('#Cheque').show();
+            $('#pago_TotalCambio').hide();
+            $('#pago_Titular').show();
+            $('#bcta_Id').show();
+            $('#pago_Emisor').show();
+            $('#pago_FechaVencimiento').hide();
+            $('#nocre_Codigo_cdto_Id').hide();
+
+            $('#Descuento').hide();
+            $('#MontoDesc').hide();
+            $('#mNotaCredito').hide();
+            $('#mCuponDesc').hide();
 
         }
         else if ($("#TipoPago").val() == 4) {
-            $('#TCD').hide();
             $('#Efectivo').hide();
-            $('#Cheque').hide();
-            $('#NC').show();
+            $('#pago_TotalCambio').hide();
+            $('#pago_Titular').show();
+            $('#bcta_Id').hide();
+            $('#pago_Emisor').show();
+            $('#pago_FechaVencimiento').hide();
+            $('#nocre_Codigo_cdto_Id').show();
+            $('#Descuento').hide();
+            $('#MontoDesc').hide();
+            $('#mNotaCredito').show();
+            $('#mCuponDesc').hide();
+        }
+        else if ($("#TipoPago").val() == 5) {
+            $('#Efectivo').hide();
+            $('#pago_TotalCambio').hide();
+            $('#pago_Titular').hide();
+            $('#bcta_Id').hide();
+            $('#pago_Emisor').hide();
+            $('#pago_FechaVencimiento').show();
+            $('#nocre_Codigo_cdto_Id').show();
+
+            $('#Descuento').show();
+            $('#MontoDesc').show();
+            $('#mNotaCredito').hide();
+            $('#mCuponDesc').show();
+        }
+        else if ($("#TipoPago").val() == 6) {
+            $('#Efectivo').hide();
+            $('#pago_TotalCambio').hide();
+            $('#pago_Titular').show();
+            $('#bcta_Id').show();
+            $('#pago_Emisor').show();
+            $('#pago_FechaVencimiento').hide();
+            $('#nocre_Codigo_cdto_Id').show();
+            $('#Descuento').hide();
+            $('#MontoDesc').hide();
         }
         else {
             $('#Efectivo').hide();
-            $('#TCD').hide();
-            $('#Cheque').hide();
-            $('#NC').hide();
+            $('#pago_TotalCambio').hide();
+            $('#pago_Titular').show();
+            $('#bcta_Id').show();
+            $('#pago_Emisor').show();
+            $('#pago_FechaVencimiento').hide();
+            $('#nocre_Codigo_cdto_Id').show();
+            $('#Descuento').hide();
+            $('#MontoDesc').hide();
         }
-       
+
     });
 });
+
+
+//$(document).ready(function () {
+//    $("#TipoPago").change(function (evt) {
+//        if ($("#TipoPago").val() == 1 )
+//        {
+//            $('#Efectivo').show();
+//            $('#TCD').hide();
+//            $('#Cheque').hide();
+//            $('#NC').hide();
+//        }
+//        else if ($("#TipoPago").val() == 2) {      
+//            $('#TCD').show();
+//            $('#Efectivo').hide();
+//            $('#Cheque').hide();
+//            $('#NC').hide();
+//        }
+//        else if ($("#TipoPago").val() == 3) {
+//            $('#TCD').hide();
+//            $('#Efectivo').hide();
+//            $('#NC').hide();
+//            $('#Cheque').show();
+
+//        }
+//        else if ($("#TipoPago").val() == 4) {
+//            $('#TCD').hide();
+//            $('#Efectivo').hide();
+//            $('#Cheque').hide();
+//            $('#NC').show();
+//        }
+//        else {
+//            $('#Efectivo').hide();
+//            $('#TCD').hide();
+//            $('#Cheque').hide();
+//            $('#NC').hide();
+//        }
+       
+//    });
+//});
 
 
 

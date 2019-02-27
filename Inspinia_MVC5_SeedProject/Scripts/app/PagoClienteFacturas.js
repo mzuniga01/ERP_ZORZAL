@@ -134,7 +134,7 @@ function GetIDClienteNC(CodCliente, idItem) {
             $.each(list, function (key, val) {
                 var EsRedimido = "No";
                 var EsImpreso = "Si";
-                copiar = "<tr data-codigo=" + val.nocre_Codigo + "  data-monto=" + val.nocre_Monto + " >";
+                copiar = "<tr data-codigonc=" + val.nocre_Codigo + "  data-montonc=" + val.nocre_Monto + " >";
                 copiar += "<td id = 'Codigo'>" + val.nocre_Codigo + "</td>";
                 copiar += "<td id = 'Monto'>" + val.nocre_Monto + "</td>";
                 copiar += "<td id = 'c'>" + EsRedimido + "</td>";
@@ -169,7 +169,7 @@ function GetIDCliente(CodCliente, idItem) {
             $('#BodyFacturaPagos').empty();
             console.log(list)
             $.each(list, function (key, val) {
-                copiar = "<tr data-codigo=" + val.fact_Codigo + "  data-monto=" + val.MontoFactura + "  data-total=" + val.TotalPagado + "  data-saldo=" + val.SaldoFactura + ">";
+                copiar = "<tr data-fid=" + val.fact_Id + " data-codigo=" + val.fact_Codigo + "  data-monto=" + val.MontoFactura + "  data-total=" + val.TotalPagado + "  data-saldo=" + val.SaldoFactura + " data-clteid=" + val.clte_Id + " data-credito=" + val.fact_AlCredito +">";
                 copiar += "<td id = 'Codigo'>" + val.fact_Codigo + "</td>";
                 copiar += "<td id = 'Monto'>" + val.MontoFactura + "</td>";
                 copiar += "<td id = 'c'>" + val.TotalPagado + "</td>";
@@ -186,25 +186,93 @@ function GetIDCliente(CodCliente, idItem) {
 
 }
 
+
+//Factura Buscar Cliente
+$(document).ready(function () {
+    var $rows = $('#BodyCD tr');
+    $("#searchCD").keyup(function () {
+        var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+        console.log('val', val.length);
+        if (val.length >= 3) {
+            $rows.show().filter(function () {
+                var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+                return !~text.indexOf(val);
+            }).hide();
+        }
+        else if (val.length >= 1) {
+            $rows.show().filter(function () {
+            }).hide();
+        }
+
+    })
+});
+// seleccionar cupon descuento
+$(document).on("click", "#spCupon tbody tr td button#agregar", function () {
+    idItem = $(this).closest('tr').data('idcd');
+    FechaVence = $(this).closest('tr').data('fechavence');
+    PorcentDesc = $(this).closest('tr').data('porcentajedesc');
+    MondoDesc(this).closest('tr').data('motodesc');
+    MontoMaxDesc = $(this).closest('tr').data('maxmontodesc');
+    CantMinimaCompra = $(this).closest('tr').data('cantcompramin');
+    Redimido = $(this).closest('tr').data('redimido');
+    $("#nocre_Codigo_cdto_Id").val(idItem);
+    $("#pago_FechaVencimiento").val(FechaVence);
+    $("#descuento").val(PorcentDesc);
+    $("#MontoDesc").val(MondoDesc);
+    $("#montomax").val(MontoMaxDesc);
+    $("#cantmin").val(CantMinimaCompra);
+    $("#redimido").val(Redimido);
+    $('#ModalAgregarCuponDescuento').modal('hide');
+
+});
+
+//agregar cupon descuento
+$(document).ready(function () {
+    var table = $('#spCupon').DataTable();
+    $('#spCupon tbody').on('click', 'tr', function () {
+        idItem = $(this).closest('tr').data('idcd');
+        FechaVence = $(this).closest('tr').data('fechavence');
+        PorcentDesc = $(this).closest('tr').data('porcentajedesc');
+        MondoDesc(this).closest('tr').data('motodesc');
+        MontoMaxDesc = $(this).closest('tr').data('maxmontodesc');
+        CantMinimaCompra = $(this).closest('tr').data('cantcompramin');
+        Redimido = $(this).closest('tr').data('redimido');
+         $("#nocre_Codigo_cdto_Id").val(idItem);
+         $("#pago_FechaVencimiento").val(FechaVence);
+         $("#descuento").val(PorcentDesc);
+         $("#MontoDesc").val(MondoDesc);
+         $("#montomax").val(MontoMaxDesc);
+         $("#cantmin").val(CantMinimaCompra);
+         $("#redimido").val(Redimido);
+         $('#ModalAgregarCuponDescuento').modal('hide');
+    });
+});
+
 //Añadir una nota de credito
 $(document).on("click", "#DataTable tbody tr td button#AgregarNotaCredito", function () {
-    CodigoNC = $(this).closest('tr').data('codigo');
-    Monto = $(this).closest('tr').data('monto');
-    $("#MontoNC").val(CodigoNC);
-    $("#CodigoNC").val(Monto);
+    CodigoNC = $(this).closest('tr').data('codigonc');
+    Monto = $(this).closest('tr').data('montonc');
+    $("#nocre_Codigo_cdto_Id").val(CodigoNC);
+    $("#pago_TotalPago").val(Monto);
     $('#ModalAgregarNotaCredito').modal('hide');
 });
 
 
 //Añadir una Factura
 $(document).on("click", "#FacturasPagos tbody tr td button#AgregarFactura", function () {
+    Factura_Id = $(this).closest('tr').data('fid');
     CodigoFactura = $(this).closest('tr').data('codigo');
     Monto = $(this).closest('tr').data('monto');
     TotalPagado = $(this).closest('tr').data('total');
     SaldoAnterior = $(this).closest('tr').data('saldo');
+    clte = $(this).closest('tr').data('clteid');
+    credito = $(this).closest('tr').data('credito');
+    $("#fact_Id").val(Factura_Id);
     $("#tbFactura_fact_Codigo").val(CodigoFactura);
     $("#MontoFactura").val(Monto);
     $("#TotalPagado").val(TotalPagado);
     $("#SaldoAnterior").val(SaldoAnterior);
+    $("#tbFactura_clte_Id").val(clte);
+    $("#tbFactura_fact_AlCredito").val(credito);
     $('#ModalAgregaFacturaPago').modal('hide');
 });
