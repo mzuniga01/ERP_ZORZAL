@@ -62,7 +62,7 @@ namespace ERP_ZORZAL.Controllers
                 {
                     IEnumerable<object> List = null;
                     var MsjError = "0";
-                    List = db.UDP_Inv_tbTipoSalida_Insert(tbTipoSalida.tsal_Descripcion, Function.GetUser(), DateTime.Now);
+                    List = db.UDP_Inv_tbTipoSalida_Insert(tbTipoSalida.tsal_Descripcion, Function.GetUser(), Function.DatetimeNow());
                     foreach (UDP_Inv_tbTipoSalida_Insert_Result TipoSalida in List)
                         MsjError = TipoSalida.MensajeError;
                     if (MsjError.StartsWith("-1"))
@@ -133,7 +133,7 @@ namespace ERP_ZORZAL.Controllers
                                                             , tbTipoSalida.tsal_UsuarioCrea
                                                                  , tbTipoSalida.tsal_FechaCrea
                                                              , Function.GetUser()
-                                                                , DateTime.Now);
+                                                                , Function.DatetimeNow());
                     foreach (UDP_Inv_tbTipoSalida_Update_Result tsal in List)
                         MsjError = tsal.MensajeError;
                     if (MsjError.StartsWith("-1"))

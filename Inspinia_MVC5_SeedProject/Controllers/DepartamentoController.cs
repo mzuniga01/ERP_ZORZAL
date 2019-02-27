@@ -76,7 +76,7 @@ namespace ERP_GMEDINA.Controllers
                 {
                     try
                     {
-                        list = db.UDP_Gral_tbDepartamento_Insert(tbDepartamento.dep_Codigo, tbDepartamento.dep_Nombre, Function.GetUser(), DateTime.Now);
+                        list = db.UDP_Gral_tbDepartamento_Insert(tbDepartamento.dep_Codigo, tbDepartamento.dep_Nombre, Function.GetUser(), Function.DatetimeNow());
                         foreach (UDP_Gral_tbDepartamento_Insert_Result departamento in list)
                             MsjError = departamento.MensajeError;
                         if (MsjError.StartsWith("-1"))
@@ -93,7 +93,7 @@ namespace ERP_GMEDINA.Controllers
                                 {
                                     foreach (tbMunicipio mun in listMunicipios)
                                     {
-                                        lista = db.UDP_Gral_tbMunicipio_Insert(mun.mun_Codigo, tbDepartamento.dep_Codigo, mun.mun_Nombre, Function.GetUser(), DateTime.Now);
+                                        lista = db.UDP_Gral_tbMunicipio_Insert(mun.mun_Codigo, tbDepartamento.dep_Codigo, mun.mun_Nombre, Function.GetUser(), Function.DatetimeNow());
                                         foreach (UDP_Gral_tbMunicipio_Insert_Result municipios in lista)
                                             MensajeError = municipios.MensajeError;
                                         if (MensajeError.StartsWith("-1"))
@@ -149,7 +149,7 @@ namespace ERP_GMEDINA.Controllers
                 {
                     try
                     {
-                        list = db.UDP_Gral_tbDepartamento_Update(tbDepartamento.dep_Codigo, tbDepartamento.dep_Nombre, tbDepartamento.dep_UsuarioCrea, tbDepartamento.dep_FechaCrea, Function.GetUser(), DateTime.Now);
+                        list = db.UDP_Gral_tbDepartamento_Update(tbDepartamento.dep_Codigo, tbDepartamento.dep_Nombre, tbDepartamento.dep_UsuarioCrea, tbDepartamento.dep_FechaCrea, Function.GetUser(), Function.DatetimeNow());
                         foreach (UDP_Gral_tbDepartamento_Update_Result dep in list)
                             MsjError = dep.MensajeError;
                         if (MsjError.StartsWith("-1"))

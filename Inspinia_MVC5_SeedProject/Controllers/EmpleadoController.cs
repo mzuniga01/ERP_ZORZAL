@@ -84,7 +84,7 @@ namespace ERP_GMEDINA.Controllers
                         tbEmpleado.emp_FechaIngreso, 
                         tbEmpleado.emp_Direccion,
                         Function.GetUser(),
-                        DateTime.Now                        
+                        Function.DatetimeNow()                        
                         );
                     foreach (UDP_Gral_tbEmpleados_Insert_Result empleados in list)
                         MsjError = empleados.MensajeError;
@@ -168,7 +168,7 @@ namespace ERP_GMEDINA.Controllers
                                                         tbEmpleado.emp_RazonSalida,
                                                         tbEmpleado.emp_FechaDeSalida,
                                                         Function.GetUser(),
-                                                        DateTime.Now);
+                                                        Function.DatetimeNow());
                     foreach (UDP_Gral_tbEmpleados_Update_Result empleado in list)
                         MsjError = empleado.MensajeError;                    
                     if (MsjError.StartsWith("-1"))
@@ -221,7 +221,7 @@ namespace ERP_GMEDINA.Controllers
 
                     Function.GetUser(),
                     
-                    DateTime.Now                    
+                    Function.DatetimeNow()                    
                     );
                 foreach ( UDP_Gral_tbEmpleado_Update_RazonInactivacion_Result empleado in list)
                     Msj = empleado.MensajeError;
@@ -258,7 +258,7 @@ namespace ERP_GMEDINA.Controllers
                     tbEmpleado.emp_Estado,
                     tbEmpleado.emp_RazonSalida,
                     Function.GetUser(),
-                    DateTime.Now
+                    Function.DatetimeNow()
                     );
                 foreach (UDP_Gral_tbEmpleado_Update_RazonSalida_Result empleado in list)
                     Msj = empleado.MensajeError;
@@ -286,7 +286,7 @@ namespace ERP_GMEDINA.Controllers
                 tbEmpleado empleado = new tbEmpleado();
                 IEnumerable<object> list = null;
                 var MsjError = "";
-                list = db.UDP_Gral_tbEmpleado_Update_Estado(id, Helpers.EmpleadoActivo,Function.GetUser(),DateTime.Now);
+                list = db.UDP_Gral_tbEmpleado_Update_Estado(id, Helpers.EmpleadoActivo,Function.GetUser(),Function.DatetimeNow());
                 foreach (UDP_Gral_tbEmpleado_Update_Estado_Result obje in list)
                     MsjError = obje.MensajeError;
 

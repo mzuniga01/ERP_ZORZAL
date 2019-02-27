@@ -84,7 +84,7 @@ namespace ERP_GMEDINA.Controllers
                 {
                     try
                     {
-                        cate = db.UDP_Inv_tbProductoCategoria_Insert(tbProductoCategoria.pcat_Nombre, Function.GetUser(), DateTime.Now);
+                        cate = db.UDP_Inv_tbProductoCategoria_Insert(tbProductoCategoria.pcat_Nombre, Function.GetUser(), Function.DatetimeNow());
                         foreach (UDP_Inv_tbProductoCategoria_Insert_Result categoria in cate)
                             MsjError = categoria.MensajeError;
                         if (MsjError.StartsWith("-1"))
@@ -239,7 +239,7 @@ namespace ERP_GMEDINA.Controllers
                                               tbProductoCategoria.pcat_UsuarioCrea,
                                               tbProductoCategoria.pcat_FechaCrea
                                               , Function.GetUser(),
-                                              DateTime.Now);
+                                              Function.DatetimeNow());
                         foreach (UDP_Inv_tbProductoCategoria_Update_Result ProductoCategoria in cate)
                             MsjError = ProductoCategoria.MensajeError;
 

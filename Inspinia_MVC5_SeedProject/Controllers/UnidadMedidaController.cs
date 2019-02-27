@@ -61,7 +61,7 @@ namespace ERP_GMEDINA.Controllers
                 {
                     IEnumerable<object> List = null;
                     var MsjError = "0";
-                    List = db.UDP_Gral_tbUnidadMedida_Insert(tbUnidadMedida.uni_Descripcion, tbUnidadMedida.uni_Abreviatura, Function.GetUser(), DateTime.Now);
+                    List = db.UDP_Gral_tbUnidadMedida_Insert(tbUnidadMedida.uni_Descripcion, tbUnidadMedida.uni_Abreviatura, Function.GetUser(), Function.DatetimeNow());
                     foreach (UDP_Gral_tbUnidadMedida_Insert_Result uni in List)
                         MsjError = uni.MensajeError;
                     if (MsjError.StartsWith("-1"))
@@ -126,7 +126,7 @@ namespace ERP_GMEDINA.Controllers
                                                                 tbUnidadMedida.uni_Abreviatura,
                                                                 tbUnidadMedida.uni_UsuarioCrea,
                                                                 tbUnidadMedida.uni_FechaCrea
-                                                                , Function.GetUser(), DateTime.Now);
+                                                                , Function.GetUser(), Function.DatetimeNow());
                     foreach (UDP_Gral_tbUnidadMedida_Update_Result uni in List)
                         MsjError = uni.MensajeError;
 

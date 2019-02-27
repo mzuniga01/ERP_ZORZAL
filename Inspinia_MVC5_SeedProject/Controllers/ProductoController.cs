@@ -101,7 +101,7 @@ namespace ERP_GMEDINA.Controllers
                                                             tbProducto.uni_Id,
                                                             tbProducto.prod_CodigoBarras,
                                                             Function.GetUser(),
-                                                            DateTime.Now
+                                                            Function.DatetimeNow()
                                                             );
                     foreach (UDP_Inv_tbProducto_Insert_Result Producto in List)
                         MsjError = Producto.MensajeError;
@@ -203,7 +203,7 @@ namespace ERP_GMEDINA.Controllers
                                                         vtbProducto.prod_UsuarioCrea,
                                                         vtbProducto.prod_FechaCrea,
                                                         Function.GetUser(),
-                                                        DateTime.Now
+                                                        Function.DatetimeNow()
                                                         );
                     foreach (UDP_Inv_tbProducto_Update_Result producto in List)
                         MsjError = producto.MensajeError;
@@ -249,7 +249,7 @@ namespace ERP_GMEDINA.Controllers
                 tbProducto productos = new tbProducto();
                 IEnumerable<object> list = null;
                 var MsjError = "";
-                list = db.UDP_Inv_tbProducto_Estado_Prueba(id, Helpers.EmpleadoActivo, Function.GetUser(), DateTime.Now);
+                list = db.UDP_Inv_tbProducto_Estado_Prueba(id, Helpers.EmpleadoActivo, Function.GetUser(), Function.DatetimeNow());
                 foreach (UDP_Inv_tbProducto_Estado_Prueba_Result obje in list)
                     MsjError = obje.MensajeError;
 
@@ -291,7 +291,7 @@ namespace ERP_GMEDINA.Controllers
             tbProducto vProducto = db.tbProducto.Find(tbProducto.prod_Codigo);
             try
             {
-                var list = db.UDP_Inv_tbProducto_Update_RazonInactivacion(tbProducto.prod_Codigo, Helpers.ProductoInactivo, Razon_Inactivacion, vProducto.prod_UsuarioCrea, vProducto.prod_FechaCrea, Function.GetUser(), DateTime.Now).ToList();
+                var list = db.UDP_Inv_tbProducto_Update_RazonInactivacion(tbProducto.prod_Codigo, Helpers.ProductoInactivo, Razon_Inactivacion, vProducto.prod_UsuarioCrea, vProducto.prod_FechaCrea, Function.GetUser(), Function.DatetimeNow()).ToList();
                 return Json("Éxito", JsonRequestBehavior.AllowGet);
             }
             catch (Exception Ex)

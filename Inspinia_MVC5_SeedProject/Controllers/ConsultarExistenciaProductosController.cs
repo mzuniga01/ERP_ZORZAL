@@ -32,7 +32,7 @@ namespace ERP_GMEDINA.Controllers
             {
                 using (TransactionScope Tran = new TransactionScope())
                 {
-                    var FechaPedido = DateTime.Now;
+                    var FechaPedido = Function.DatetimeNow();
                     listSalida = db.UDP_Inv_ValidacionCantidadExistente(CantidadSolicitada, IDBodega, IDProducto, FechaPedido, BodegaDestino, CantidadDisponible, Function.GetUser(), Function.DatetimeNow());
                     foreach (UDP_Inv_ValidacionCantidadExistente_Result Salida in listSalida)
                         MensajeError = Salida.MensajeError;
@@ -84,7 +84,7 @@ namespace ERP_GMEDINA.Controllers
             //{
             try
             {
-                    var FechaPedido = DateTime.Now;
+                    var FechaPedido = Function.DatetimeNow();
                 ListSolicitarProducto = db.UDP_Inv_SolicitarProducto_ValidacionPorBodega(IDBodega, IDProducto);
                     foreach (UDP_Inv_SolicitarProducto_ValidacionPorBodega_Result SolicitarProducto in ListSolicitarProducto)
                         MensajeError = SolicitarProducto.MensajeError;

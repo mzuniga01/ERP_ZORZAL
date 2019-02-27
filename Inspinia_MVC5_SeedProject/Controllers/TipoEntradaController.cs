@@ -61,7 +61,7 @@ namespace ERP_GMEDINA.Controllers
                 {
                     IEnumerable<object> list = null;
                     var MsjError = "";
-                    list = db.UDP_Inv_tbTipoEntrada_Insert(tbTipoEntrada.tent_Descripcion, Function.GetUser(), DateTime.Now);
+                    list = db.UDP_Inv_tbTipoEntrada_Insert(tbTipoEntrada.tent_Descripcion, Function.GetUser(), Function.DatetimeNow());
                     foreach (UDP_Inv_tbTipoEntrada_Insert_Result TipoEntrada in list)
                         MsjError = TipoEntrada.MensajeError;
                     if (MsjError == "-1")
@@ -123,7 +123,7 @@ namespace ERP_GMEDINA.Controllers
                                                             , tbTipoEntrada.tent_Descripcion
                                                             , tbTipoEntrada.tent_UsuarioCrea
                                                             , tbTipoEntrada.tent_FechaCrea, Function.GetUser()
-                                                        , DateTime.Now);
+                                                        , Function.DatetimeNow());
                     foreach (UDP_Inv_tbTipoEntrada_Update_Result tent in list)
                         MsjError = tent.MensajeError;
 

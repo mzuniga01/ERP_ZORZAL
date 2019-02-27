@@ -63,7 +63,7 @@ namespace ERP_GMEDINA.Controllers
                 {
                     IEnumerable<object> list = null;
                     string MsjError = "";
-                    list = db.UDP_Acce_tbObjeto_Insert(tbObjeto.obj_Pantalla, tbObjeto.obj_Referencia, Function.GetUser(), DateTime.Now);
+                    list = db.UDP_Acce_tbObjeto_Insert(tbObjeto.obj_Pantalla, tbObjeto.obj_Referencia, Function.GetUser(), Function.DatetimeNow());
                     foreach (UDP_Acce_tbObjeto_Insert_Result obejto in list)
                         MsjError = obejto.MensajeError;
                     if (MsjError.StartsWith("-1"))
@@ -135,7 +135,7 @@ namespace ERP_GMEDINA.Controllers
                                                          , tbObjeto.obj_UsuarioCrea
                                                          , tbObjeto.obj_FechaCrea
                                                         , Function.GetUser()
-                                                        , DateTime.Now);
+                                                        , Function.DatetimeNow());
                     foreach (UDP_Acce_tbObjeto_Update_Result obje in list)
                         MsjError = obje.MensajeError;
 
@@ -176,7 +176,7 @@ namespace ERP_GMEDINA.Controllers
                 tbObjeto obj = db.tbObjeto.Find(id);
                 IEnumerable<object> list = null;
                 var MsjError = "";
-                list = db.UDP_Acce_tbObjeto_Update_Estado(id, Helpers.ObjetoInactivo, Function.GetUser(), DateTime.Now);
+                list = db.UDP_Acce_tbObjeto_Update_Estado(id, Helpers.ObjetoInactivo, Function.GetUser(), Function.DatetimeNow());
                 foreach (UDP_Acce_tbObjeto_Update_Estado_Result obje in list)
                     MsjError = obje.MensajeError;
 
@@ -207,7 +207,7 @@ namespace ERP_GMEDINA.Controllers
                 tbObjeto obj = db.tbObjeto.Find(id);
                 IEnumerable<object> list = null;
                 var MsjError = "";
-                list = db.UDP_Acce_tbObjeto_Update_Estado(id, Helpers.ObjetoActivo, Function.GetUser(), DateTime.Now);
+                list = db.UDP_Acce_tbObjeto_Update_Estado(id, Helpers.ObjetoActivo, Function.GetUser(), Function.DatetimeNow());
                 foreach (UDP_Acce_tbObjeto_Update_Estado_Result obje in list)
                     MsjError = obje.MensajeError;
 

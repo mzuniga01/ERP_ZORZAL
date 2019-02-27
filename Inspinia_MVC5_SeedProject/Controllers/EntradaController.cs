@@ -552,7 +552,7 @@ namespace ERP_ZORZAL.Controllers
                                     foreach (tbEntradaDetalle entd in listaDetalle)
                                     {
                                         entd.entd_UsuarioCrea = 1;
-                                        entd.entd_FechaCrea = DateTime.Now;
+                                        entd.entd_FechaCrea = Function.DatetimeNow();
 
                                         DETALLE = db.UDP_Inv_tbEntradaDetalle_Insert(Convert.ToInt16(MsjError)
                                                                                     , entd.prod_Codigo

@@ -138,6 +138,7 @@
                         @Html.HiddenFor(model => model.dep_Codigo)
                         <div class="form-group">
                             @*@Html.LabelFor(model => model.dep_Codigo, new { @class = "control-label col-md-2" })*@
+                            <input type="hidden" value="@Model.dep_Nombre"/>
                             <label class="control-label col-md-2">Código Departamento</label>
                             <div class="col-md-2">
                                 @Html.TextBoxFor(model => model.dep_Codigo, new { @class = "form-control", @readonly = "readonly" })
