@@ -227,11 +227,11 @@ namespace ERP_GMEDINA.Controllers
                                         }
                                     }
                                 }
-                                else
-                                {
-                                    Function.InsertBitacoraErrores("Rol/Create", Msj1, "Create");
-                                    Msj1 = "-1";
-                                }   
+                            }
+                            else
+                            {
+                                Function.InsertBitacoraErrores("Rol/Create", Msj1, "Create");
+                                //Msj1 = "-1";
                             }
                             Tran.Complete();
                         }

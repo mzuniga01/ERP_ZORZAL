@@ -574,6 +574,19 @@ namespace ERP_ZORZAL.Controllers
             }
             return Json(datos, JsonRequestBehavior.AllowGet);
         }
+        public JsonResult RemoveSalidaDetalles(tbSalidaDetalle SalidaDetalle)
+        {
+            var list = (List<tbSalidaDetalle>)Session["SalidaDetalle"];
+
+            if (list != null)
+            {
+                var itemToRemove = list.Single(r => r.prod_Codigo == SalidaDetalle.prod_Codigo);
+                list.Remove(itemToRemove);
+                Session["SalidaDetalle"] = list;
+            }
+            return Json("", JsonRequestBehavior.AllowGet);
+        }
+
 
 
     }
