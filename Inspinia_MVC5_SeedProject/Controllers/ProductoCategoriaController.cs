@@ -77,6 +77,7 @@ namespace ERP_GMEDINA.Controllers
             IEnumerable<object> cate = null;
             IEnumerable<object> sub = null;
             string MsjError = "";
+            string mensajeDetail = "";
             var listaSubCategoria = (List<tbProductoSubcategoria>)Session["tbProductoSubcategoria"];
             if (ModelState.IsValid)
             {
@@ -107,10 +108,10 @@ namespace ERP_GMEDINA.Controllers
                                                                                     subcategoria.pscat_ISV
                                                                                     );
                                         foreach (UDP_Inv_tbProductoSubcategoria_Insert_Result ProdSubCate in sub)
-                                            MsjError = ProdSubCate.MensajeError;
-                                        if (MsjError.StartsWith("-1"))
+                                            mensajeDetail = ProdSubCate.MensajeError;
+                                        if (mensajeDetail.StartsWith("-1"))
                                         {
-                                            Function.InsertBitacoraErrores("ProductoCategoria/Create", MsjError, "Create");
+                                            Function.InsertBitacoraErrores("ProductoCategoria/Create", mensajeDetail, "Create");
                                             ModelState.AddModelError("", "No se pudo insertar el registro detalle, favor contacte al administrador.");
                                             return View(tbProductoCategoria);
                                         }
