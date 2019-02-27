@@ -129,13 +129,6 @@ namespace ERP_GMEDINA.Controllers
                             try
                             {
                                 var MensajeError = "";
-                                tbCuponDescuento.cdto_PorcentajeDescuento = 0;
-                                tbCuponDescuento.cdto_MaximoMontoDescuento = 0;
-                                tbCuponDescuento.cdto_MontoDescuento = 10;
-                                tbCuponDescuento.cdto_CantidadCompraMinima = 100;
-                                tbCuponDescuento.cdto_Redimido = false;
-                                tbCuponDescuento.cdto_Anulado = false;
-                                tbCuponDescuento.cdto_EsImpreso = false;
                                 IEnumerable<object> list = null;
                                 list = db.UDP_Vent_tbCuponDescuento_Insert(tbCuponDescuento.suc_Id, tbCuponDescuento.cdto_FechaEmision,
                                                                  tbCuponDescuento.cdto_FechaVencimiento, tbCuponDescuento.cdto_PorcentajeDescuento,

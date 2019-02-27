@@ -135,34 +135,41 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script>
-        $.datepicker.regional['es'] = {
-            closeText: 'Cerrar',
-            prevText: '< Ant',
-            nextText: 'Sig >',
-            currentText: 'Hoy',
-            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-            monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
-            dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
-            dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
-            dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
-            weekHeader: 'Sm',
-            dateFormat: 'dd/mm/yy',
-            firstDay: 1,
-            isRTL: false,
-            showMonthAfterYear: false,
-            yearSuffix: ''
-        };
-        $.datepicker.setDefaults($.datepicker.regional['es']);
+        //$.datepicker.regional['es'] = {
+        //    closeText: 'Cerrar',
+        //    prevText: '< Ant',
+        //    nextText: 'Sig >',
+        //    currentText: 'Hoy',
+        //    monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+        //    monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+        //    dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+        //    dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
+        //    dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+        //    weekHeader: 'Sm',
+        //    dateFormat: 'mm/dd/yy',
+        //    firstDay: 1,
+        //    isRTL: false,
+        //    showMonthAfterYear: false,
+        //    yearSuffix: ''
+        //};
+        //$.datepicker.setDefaults($.datepicker.regional['es']);
 
+        $('#cdto_FechaEmision').datepicker({
+            dateFormat: 'mm/dd/yy',
+            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+            prevText: 'Ant',
+            nextText: 'Sig'
+        }).datepicker('setDate', new Date());
         //-------------Fecha Actual-----------------------
         $(function () {
-            $("#cdto_FechaEmision").datepicker({ dateFormat: 'dd/mm/yy' }).datepicker('setDate', new Date()).datepicker("destroy");
+            $("#cdto_FechaEmision").datepicker({ dateFormat: 'mm/dd/yy' }).datepicker('setDate', new Date()).datepicker("destroy");
 
         });
 
         //-----------Fecha Vencimiento (1 año)--------------------
         var d = new Date();
-        var strDate = d.getDate() + "/" + (d.getMonth() + 1) + "/" + (d.getFullYear() + 1);
+        var strDate = (d.getMonth() + 1) + "/" + d.getDate() + "/" + (d.getFullYear() + 1);
         $("#cdto_FechaVencimiento").val(strDate);
 
     </script>

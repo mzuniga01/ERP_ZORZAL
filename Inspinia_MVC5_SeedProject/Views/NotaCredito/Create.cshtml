@@ -223,7 +223,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="CloseAutorizar">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="CloseAutorizar" onclick="devolucionNC()">
                         <span aria-hidden="true">&times;</span>
                     </button>
                     <h4 class="modal-title" id="myModalLabel">Autoriza Nota de Crédito</h4>
@@ -263,28 +263,28 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script>
-        $.datepicker.regional['es'] = {
-            closeText: 'Cerrar',
-            prevText: '< Ant',
-            nextText: 'Sig >',
-            currentText: 'Hoy',
-            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-            monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
-            dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
-            dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
-            dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
-            weekHeader: 'Sm',
-            dateFormat: 'dd/mm/yy',
-            firstDay: 1,
-            isRTL: false,
-            showMonthAfterYear: false,
-            yearSuffix: ''
-        };
-        $.datepicker.setDefaults($.datepicker.regional['es']);
+        //$.datepicker.regional['es'] = {
+        //    closeText: 'Cerrar',
+        //    prevText: '< Ant',
+        //    nextText: 'Sig >',
+        //    currentText: 'Hoy',
+        //    monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+        //    monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+        //    dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+        //    dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
+        //    dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+        //    weekHeader: 'Sm',
+        //    dateFormat: 'dd/mm/yy',
+        //    firstDay: 1,
+        //    isRTL: false,
+        //    showMonthAfterYear: false,
+        //    yearSuffix: ''
+        ////};
+        //$.datepicker.setDefaults($.datepicker.regional['es']);
         $(function () {
-            $("#nocre_FechaEmision").datepicker({ dateFormat: 'dd/mm/yy' }).datepicker('setDate', new Date()).datepicker("destroy");
+            $("#nocre_FechaEmision").datepicker({ dateFormat: 'mm/dd/yy' }).datepicker('setDate', new Date()).datepicker("destroy");
 
-            $("#tbDevolucion_dev_Fecha").datepicker({ dateFormat: 'dd/mm/yy' }).datepicker("destroy")
+            $("#tbDevolucion_dev_Fecha").datepicker({ dateFormat: 'mm/dd/yy' }).datepicker("destroy")
         });
     </script>
     <script>

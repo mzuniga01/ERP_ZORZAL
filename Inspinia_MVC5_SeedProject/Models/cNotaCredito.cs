@@ -21,19 +21,15 @@ namespace ERP_GMEDINA.Models
         public string nocre_Codigo { get; set; }
 
         [Display(Name = "Devolución")]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
         public int dev_Id { get; set; }
 
         [Display(Name = "Cliente")]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
         public int clte_Id { get; set; }
 
         [Display(Name = "Sucursal")]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
         public int suc_Id { get; set; }
 
         [Display(Name = "Caja")]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
         public short cja_Id { get; set; }
 
         [Display(Name = "Anulada")]
@@ -43,7 +39,7 @@ namespace ERP_GMEDINA.Models
         [Display(Name = "Fecha Emisión")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
         [DisplayFormat(ApplyFormatInEditMode = true,
-            DataFormatString = "{0:dd/MM/yyyy}",
+            DataFormatString = "{0:MM/dd/yyyy}",
             HtmlEncode = false)]
         public System.DateTime nocre_FechaEmision { get; set; }
 
@@ -70,14 +66,14 @@ namespace ERP_GMEDINA.Models
 
         [Display(Name = "Fecha Crea")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
         public System.DateTime nocre_FechaCrea { get; set; }
 
         [Display(Name = "Usuario Modifica")]
         public Nullable<int> nocre_UsuarioModifica { get; set; }
 
         [Display(Name = "Fecha Modifica")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> nocre_FechaModifica { get; set; }
 
        

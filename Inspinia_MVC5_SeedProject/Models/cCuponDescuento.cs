@@ -22,13 +22,13 @@ namespace ERP_GMEDINA.Models
 
         [Display(Name = "Fecha Emisión")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}", HtmlEncode = false)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}", HtmlEncode = false)]
         public System.DateTime cdto_FechaEmision { get; set; }
 
         [Display(Name = "Fecha Vencimiento")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
         [DisplayFormat(ApplyFormatInEditMode = true,
-            DataFormatString = "{0:dd/MM/yyyy}",
+            DataFormatString = "{0:MM/dd/yyyy}",
             HtmlEncode = false)]
         public System.DateTime cdto_FechaVencimiento { get; set; }
 
@@ -63,19 +63,19 @@ namespace ERP_GMEDINA.Models
 
         [Display(Name = "Fecha Crea")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
         public System.DateTime cdto_FechaCrea { get; set; }
 
         [Display(Name = "Usuario Modifica")]
         public Nullable<int> cdto_UsuarioModifica { get; set; }
 
         [Display(Name = "Fecha Modifica")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> cdto_FechaModifica { get; set; }
 
         [Display(Name = "Fecha Redención")]
         [DisplayFormat(ApplyFormatInEditMode = true,
-            DataFormatString = "{0:dd/MM/yyyy}",
+            DataFormatString = "{0:MM/dd/yyyy}",
             HtmlEncode = false)]
         public System.DateTime cdto_FechaRedencion { get; set; }
 
