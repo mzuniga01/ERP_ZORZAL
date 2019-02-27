@@ -47,6 +47,8 @@
                             @Html.LabelFor(model => model.sald_Cantidad, "Cantidad", new { @class = "control-label col-md-2 required" })
                             <div class="col-md-4">
                                 @Html.EditorFor(model => model.sald_Cantidad, new { HtmlAttributes = new { name = "sald_Cantidad", @onkeypress = "return filterFloat(event,this);" } })
+                                <div id="CantidaExistente">
+                                </div>
                                 <div id="validationcantidad">
                                     @Html.ValidationMessageFor(model => model.sald_Cantidad)
                                 </div>

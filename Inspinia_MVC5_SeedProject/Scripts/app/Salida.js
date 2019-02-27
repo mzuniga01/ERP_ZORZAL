@@ -1,61 +1,82 @@
-﻿//$(document).ready(function () {
-//    var tbSalida = GetAnularSalida();
-//    $.ajax({
-//        url: "/Salida/Anular",
-//        method: "POST",
-//        dataType: 'json',
-//        contentType: "application/json; charset=utf-8",
-//        data: JSON.stringify({ Salida: tbSalida }),
-//    })
-//    .done(function (data) {
-//        if (data == 'El registro se guardo exitosamente') {
-//            location.reload();
-//            swal("El registro se almacenó exitosamente!", "", "success");
-//        }
-//        else {
-//            location.reload();
-//            swal("El registro  no se almacenó!", "", "error");
-//        }
-//    });
+﻿
 
-////})
-//var masked = IMask.createMask({
-//    mask: '000-000-00-00000000'
-//    // ...and other options
-//});
-//var maskedValue = masked.resolve('71234567890');
+$('#fact_Codigo').change(function () {
+    FaturaExist()
+})
 
-//// mask keeps state after resolving
-//console.log(masked.value);  // same as maskedValue
-//// get unmasked value
-//console.log(masked.unmaskedValue);
+//Tipo de Salida
+$("#bod_Id").click(function () {
+    ChangeBodega();
+})
 
-//function sald_Cantidad() {
-//    //this.value = this.value.replace(/[^0-9\.]/g,'');
-//    $(this).val($(this).val().replace(/[^0-9.\.]/g, ''));
-//    if ((event.which != 46 || $(this).val().indexOf('') != -1) && (event.which < 48 || event.which > 57)) {
-//        event.preventDefault();
-//    }
-//}
+$("#bod_Id").change(function () {
+        LimpiarTable();
+        BodegaDestino();
+    });
 
-//$("#sald_Cantidad").on("keypress keyup blur", function (event) {
-//    sald_Cantidad()
-//});
+$('#Productos').click(function () {
+    ListaProductos()
+});
+
+$(document).ready(function () {
+    TipodeSalida()
+});
+$("#tsal_Id").change(function () {
+    TipodeSalida()
+});
+
+$("#ChangeBodega").change(function () {
+    $('#ModalChangeBodega').modal('dispose')
+    window.showState = function (str) {
+        var dropdown = document.getElementById('bod_Id');
+        var event = document.createEvent('MouseEvents');
+        event.initMouseEvent('mousedown', true, true, window);
+        dropdown.dispatchEvent(event);
+    }
+});
+
+function LimpiarTable() {
+    $("#Body_BuscarProducto").html("");
+
+    //$("#Body_BuscarProducto").remove()
+}
+
+function ChangeBodega() {
+
+    var tblSalidaDetalle = $('#tblSalidaDetalle >tbody >tr').length;
+    if (tblSalidaDetalle > 0) {
+        $('#ModalChangeBodega').modal('show')
+    }
+}
 
 
-//$(document).ready(function () {
-//    $("#fact_Codigo").mask('999-999-99-99999999');
-//});
+function GetProdCodBar() {
+    var Producto = {
+        prod_CodigoBarras: $('#prod_Codigo').val(),
+        bod_Id: $('#sald_Cantidad').val(),
+        sald_UsuarioCrea: contador
+    };
+    return Producto;
+}
 
+//Anular
+function GetAnularSalida() {
+    var Salida = {
+        sal_Id: $('#sal_Id').val(),
+        sal_RazonAnulada: $('#sal_RazonAnulada').val(),
+        sald_UsuarioCrea: contador
+    };
+    return Salida;
+}
 
-//var dateMask = new IMask(
-//    document.getElementById('fact_Codigo'),
-//    {
-//        mask: Date,
-//        min: new Date(1990, 0, 1),
-//        max: new Date(2020, 0, 1),
-//        lazy: false
-//    });
+$(function () {
+    $("#sal_FechaElaboracion").datepicker({
+        dateFormat: 'yy-mm-dd',
+        monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+        dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá']
+    }).datepicker("setDate", new Date());
+});
+
 function FaturaExist() {
 
     $.ajax({
@@ -70,35 +91,6 @@ function FaturaExist() {
             $('#validationFactura').after('<ul id="CodigoError" class="validation-summary-errors text-danger">' + data + '</ul>');
         })
 }
-
-function GetProdCodBar() {
-    var Producto = {
-        prod_CodigoBarras: $('#prod_Codigo').val(),
-        bod_Id: $('#sald_Cantidad').val(),
-        sald_UsuarioCrea: contador
-    };
-    return Producto;
-}
-
-//function GetProdCodBar() {
-//    var bod_Id = $('#bod_Id').val()
-//    var prod_CodigoBarras = $('#prod_CodigoBarras').val()
-//    $.ajax({
-//        url: "/Salida/GetProdCodBar",
-//        method: "POST",
-//        dataType: 'json',
-//        contentType: "application/json; charset=utf-8",
-//        data: JSON.stringify({ bod_Id: bod_Id, prod_CodigoBarras: prod_CodigoBarras }),
-//    })
-//        .done(function (data) {
-//            $('#CodigoError').text('');
-//            $('#validationFactura').after('<ul id="CodigoError" class="validation-summary-errors text-danger">' + data + '</ul>');
-//        })
-//}
-
-$('#fact_Codigo').change(function () {
-    FaturaExist()
-})
 
 function BodegaDestino() {
     $.ajax({
@@ -115,34 +107,6 @@ function BodegaDestino() {
     })
 };
 
-
-//function test() {
-//    $.ajax({
-//        method: "POST",
-//        url: "/Salida/GetProdList",
-//        contentType: "application/json; charset=utf-8",
-//        dataType: 'json',
-//    }).done(function (info) {
-//        console.log(info);
-//    });
-//}
-//function ListaProductos() {
-//    var table = $('#Table_BuscarProductoD').dataTable({
-//        destroy: true,
-//        resposive: true,
-//        ajax: {
-//                method: "POST",
-//                url: "/Salida/GetProdList",
-//                contentType: "application/json; charset=utf-8",
-//                dataType: 'json',
-//                dataSrc: "d"
-//        },
-//        columns: [
-//                     { "d": ".prod_Codigo"}
-//                 ]
-//    })
-//}
-
 function ListaProductos() {
     var vbod_Id = $('#bod_Id').val()
     var BodegaDetalle = {
@@ -155,6 +119,7 @@ function ListaProductos() {
         contentType: "application/json; charset=utf-8",
         data: JSON.stringify({ tbBodegaDetalle: BodegaDetalle }),
     }).done(function (data) {
+        $("#Body_BuscarProducto").html("");
         $.each(data, function (key, value) {
             key = "<tr tr data-id =" + value.prod_Codigo + " , tr data-content =" + value.prod_Descripcion + " tr data-container =" + value.pscat_Descripcion + " , tr data-keyboard =" + value.uni_Descripcion + " , tr data-pcat=" + value.pcat_Nombre + " , tr data-cod_Barra=" + value.prod_CodigoBarras + " >";
             key += "<td id ='prod_Codigo' >" + value.prod_Codigo + "</td>";
@@ -165,43 +130,26 @@ function ListaProductos() {
             key += "<td id = 'prod_CodigoBarras'>" + value.prod_CodigoBarras + "</td>";
             key += "<td>" + "<button class='btn btn-primary btn-xs' value=" + value.prod_Codigo + " id='seleccionar' data-dismiss='modal'>Seleccionar</button>" + "</td>"
             key += "</tr>";
-            $('#Table_BuscarProductoD').append(key);
+            $("#Body_BuscarProducto").append(key)
+
         })
     });
 }
-function LimpiarTable() { $("#Body_BuscarProducto").removeData() }
 
-//$(document).ready(function () {
-//    console.log("ready")
-//    ListaProductos()
-//});
-$("#bod_Id").change(function () {
-    LimpiarTable();
-    BodegaDestino()
-});
 
-$('#Productos').click(function () {
-    ListaProductos()
-});
-
-//$.when(LimpiarTable()).then(function () {
-
-//    $(document).ready(function () {
-//        console.log("ready")
-//        ListaProductos()
-//    });
-//});
 
 function TipodeSalida() {
-    //$('#submit').attr('value = "SICambio"')
     $('#fact_Codigo').val('***-***-**-********');
     var TipoSal = $("#tsal_Id").val()
     if (TipoSal == "1") {
         $('#fact_Codigo').val('***-***-**-********');
-        $('#sal_RazonDevolucion').val('*****');
+        $('#tbFactura_fact_Codigo').val('***-***-**-********');
         
-        $("#Prestamo").css("display", "block");
 
+        $('#sal_RazonDevolucion').val('*****');
+        ///////////////////////////////////////
+        $("#Prestamo").css("display", "block");
+        ///////////////////////////////////////
         $("#VentaoDevolucion").css("display", "none");
         BodegaDestino()
     }
@@ -211,14 +159,14 @@ function TipodeSalida() {
         if (TipoSal == 2) {
             $('#fact_Codigo').val('');
             $('#sal_RazonDevolucion').val('*****');
-
+            ///////////////////////////////////////
             $("#sal_BodDestino").empty();
             $("#VentaoDevolucion").css("display", "block");
             $("#TitleVenta").css("display", "block");
-
+            ///////////////////////////////////////
             $('#div_sal_RazonDevolucion').css("display", "none");
             $("#TitleDevolucion").css("display", "none");
-
+            ///////////////////////////////////////
             $("#Venta").css("display", "none");
         }
         else {
@@ -233,47 +181,20 @@ function TipodeSalida() {
                 $("#TitleDevolucion").css("display", "block");
                 $('#fact_Codigo').css("display", "block");
                 $('#div_sal_RazonDevolucion').css("display", "block");
-
+                ///////////////////////////////////////
                 $("#TitleVenta").css("display", "none");
-
             }
             else {
                 $("#VentaoDevolucion").css("display", "none");
-
+                ///////////////////////////////////////
                 $("#Prestamo").css("display", "none");
-
             }
-
         }
-
     }
-
     FaturaExist()
 }
 
-//$(document).ready( function () {
-//    var e = document.getElementById("bod_Id");
-//    var strUser = e.options[e.selectedIndex].text;
-//    console.log(strUser)
-//    $("#tbBodega_bod_Nombre").val(strUser)
 
-//});
-
-//$(document).ready(function () {
-//    var e = document.getElementById("estm_Id");
-//    var strUser = e.options[e.selectedIndex].text;
-//    console.log(strUser)
-//    $("#tbEstadoMovimiento_estm_Descripcion").val(strUser)
-
-//});
-
-//$(document).ready(function () {
-//    var e = document.getElementById("tbFactura_fact_Codigo");
-//    var strUser = e.options[e.selectedIndex].text;
-//    console.log(strUser)
-//    $("#tbFactura_fact_Codigo").val(strUser)
-
-//});
 $(document).ready(function () {
     var e = document.getElementById("tsal_Id");
     var strUser = e.options[e.selectedIndex].text;
@@ -281,119 +202,34 @@ $(document).ready(function () {
     $("#tbTipoSalida_tsal_Id").val(strUser)
 
 });
-//Tipo de Salida
-
-$(document).ready(function () {
-    TipodeSalida()
-});
-$("#tsal_Id").change(function () {
-    TipodeSalida()
-});
-
-//$(document).on("change", "#dep_Codigo", function () {
-//    GetMunicipios();
-//});
 
 
 
-//function phonenumber(inputtxt) {
+$('#btnAnularSalida').click(function () {
+    var sal_Id = $('#sal_Id').val();
+    var sal_RazonAnulada = $('#sal_RazonAnulada').val();
 
-//    var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
-
-//    if (inputtxt.value.match(phoneno)) {
-
-//        return true;
-
-//    }
-
-//    else {
-
-//        alert("message");
-
-//        return false;
-
-//    }
-
-//}
-
-
-//window.addEventListener("load", function () {
-
-//    Miform.sald_Cantidad.addEventListener("keypress", soloNumeros, false);
-//});
-
-////$('#prod_Dsescripcion').mask('0000-0000');
-//$(document).on("change", "#sald_Cantidad", function () {
-//    var fiel = $("#sald_Cantidad").val();
-//    soloNumeros(fiel);
-//});
-
-//Solo permite introducir numeros.
-//function soloNumeros(e) {
-//    var key = window.event ? e.which : e.keyCode;
-//    //|| key == 44
-//    if (key == 46) {
-
-//    }
-//    else {
-//        if (key < 48 || key > 57) {
-//            e.preventDefault();
-//        }
-//    }}
-    //var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
-
-    //if (e.value.match(phoneno)) {
-
-    //    return true;
-
-    //}
-
-    //else {
-
-    //    alert("message");
-
-    //    return false;
-
-    //}
-
-
-
-
-    //Anular
-    function GetAnularSalida() {
-        var Salida = {
-            sal_Id: $('#sal_Id').val(),
-            sal_RazonAnulada: $('#sal_RazonAnulada').val(),
-            sald_UsuarioCrea: contador
-        };
-        return Salida;
+    if (sal_RazonAnulada == '' || sal_RazonAnulada == '*****') {
+        $('#MessageError').text('');
+        $('#CodigoError').text('');
+        $('#NombreError').text('');
+        $('#sal_RazonAnulada').after('<ul id="MessageError" class="validation-summary-errors text-danger">Campo Requerido</ul>');
     }
 
-    $('#btnAnularSalida').click(function () {
-        var sal_Id = $('#sal_Id').val();
-        var sal_RazonAnulada = $('#sal_RazonAnulada').val();
-
-        if (sal_RazonAnulada == '' || sal_RazonAnulada == '*****') {
-            $('#MessageError').text('');
-            $('#CodigoError').text('');
-            $('#NombreError').text('');
-            $('#sal_RazonAnulada').after('<ul id="MessageError" class="validation-summary-errors text-danger">Campo Requerido</ul>');
-        }
-
-        else {
-            var tbSalida = GetAnularSalida();
-            $.ajax({
-                url: "/Salida/Anular",
-                method: "POST",
-                dataType: 'json',
-                contentType: "application/json; charset=utf-8",
-                data: JSON.stringify({ Salida: tbSalida }),
-            })
+    else {
+        var tbSalida = GetAnularSalida();
+        $.ajax({
+            url: "/Salida/Anular",
+            method: "POST",
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ Salida: tbSalida }),
+        })
             .done(function (data) {
                 window.location.href = "/Salida/Index"
-                 
+
             });
 
-        }
+    }
 
-    });
+});

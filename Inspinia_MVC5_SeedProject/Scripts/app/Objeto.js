@@ -16,3 +16,31 @@
         return false;
     }
 }
+///validar not copy paste///
+window.onload =
+    function () {
+        var myInput = document.getElementById('obj_Pantalla');
+        myInput.onpaste = function (e) {
+            e.preventDefault();
+            //alert("esta acción está prohibida");
+        }
+
+        myInput.oncopy = function (e) {
+            e.preventDefault();
+            //alert("esta acción está prohibida");
+        }
+    }
+///validar not copy paste///
+window.onload =
+    function () {
+        var myInput = document.getElementById('obj_Referencia');
+        myInput.onpaste = function (e) {
+            e.preventDefault();
+            //alert("esta acción está prohibida");
+        }
+
+        myInput.oncopy = function (e) {
+            e.preventDefault();
+            //alert("esta acción está prohibida");
+        }
+    }

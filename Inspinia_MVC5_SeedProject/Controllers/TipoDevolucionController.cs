@@ -84,7 +84,7 @@ namespace ERP_GMEDINA.Controllers
                     ModelState.AddModelError("", "No se guardó el registro");
                     return View(tbTipoDevolucion);
                 }
-                return RedirectToAction("Index");
+                //return RedirectToAction("Edit");
             }
             return View(tbTipoDevolucion);
         }

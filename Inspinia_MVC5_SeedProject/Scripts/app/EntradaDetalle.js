@@ -190,7 +190,7 @@ $(document).on("click", "#tbentrada tbody tr td button#Eliminardetalleentrada", 
     idItem = $(this).closest('tr').data('id');
 
     var Eliminar = {
-        ent_Id: idItem,
+        prod_Codigo: idItem,
     };
     $.ajax({
         url: "/Entrada/Eliminardetalleentrada",
@@ -217,7 +217,7 @@ $(document).on("click", "#tbEntradaDetalle tbody tr td button#Eliminardetalleent
         data: JSON.stringify({ EntradaDetalle: Eliminar }),
     });
 });
-//para añadir codigo a la tabla temporal(Create)
+//para añadir codigo a la tabla temporal(Editar)
 $('#AgregarDetalleEntrada_Craete').click(function () {
     var codigobarra = $("#prod_CodigoBarras").val();
     var entrada = $("#ent_Id").val();
@@ -283,7 +283,6 @@ $('#AgregarDetalleEntrada_Craete').click(function () {
                                 $(this).closest('tr').remove();
 
                                 copiar = "<tr data-id=" + idcontador + ">";
-                                copiar += "<td id = 'data_producto' hidden='hidden'>" + $('#prod_Codigo').val() + "</td>";
                                 copiar += "<td id = 'codigoproducto'>" + $('#prod_Codigo').val() + "</td>";
                                 copiar += "<td id = 'desprod'>" + $('#prod_Descripcion').val() + "</td>";
 
@@ -410,7 +409,6 @@ $('#AgregarDetalleEntrada').click(function () {
                             $(this).closest('tr').remove();
 
                             copiar = "<tr data-id=" + idcontador + ">";
-                            copiar += "<td id = 'data_producto' hidden='hidden'>" + $('#prod_Codigo').val() + "</td>";
                             copiar += "<td id = 'codigoproducto'>" + $('#prod_Codigo').val() + "</td>";
                             copiar += "<td id = 'desprod'>" + $('#prod_Descripcion').val() + "</td>";
 

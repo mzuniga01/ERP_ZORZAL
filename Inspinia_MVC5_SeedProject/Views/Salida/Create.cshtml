@@ -22,6 +22,8 @@
 
     }*@
 @{
+    /**/
+
     ViewBag.Title = "Registrar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -78,24 +80,15 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.sal_FechaElaboracion, "Fecha de Elaboración", new { @class = "control-label col-md-2 required" })
                                     <div class="col-md-4">
-                                        @Html.EditorFor(model => model.sal_FechaElaboracion)
-                                        @Html.ValidationMessageFor(model => model.sal_FechaElaboracion)
+                                        @Html.EditorFor(model => model.sal_FechaElaboracion, new { @autocomplete = "off" })
+                                        <div id="validationsal_FechaElaboracion">
+                                            <p style="color:red">
+                                                @*@Html.ValidationMessageFor(model => model.tsal_Id)*@
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
-                                @*, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @id = "FechaElaboracionSalida" } }*@
 
-                                @*<div class="form-group">
-                                    @Html.LabelFor(model => model.bod_Id, "Nombre de Bodega", new { @class = "control-label col-md-2" })
-                                    <div class="col-md-4">
-                                        @Html.EditorFor(model => model.tbBodega.bod_Nombre, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                        <div style="display:none" class="col-md-4">
-                                            @Html.DropDownList("bod_Id", (IEnumerable<SelectListItem>)ViewBag.bod_Id, new { @class = "form-control" })
-                                            <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Id)</p>*@
-                                @*@Html.DropDownList("tent_Id", (IEnumerable<SelectListItem>)ViewBag.tent_Id, new { @class = "form-control", @readonly = "readonly" })
-                                    @Html.ValidationMessageFor(model => model.tent_Id)*@
-                                @*</div>
-                                        </div>
-                                    </div>*@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.bod_Id, "Nombre de Bodega", new { @class = "control-label col-md-2 required" })
                                     <div style="display:block" class="col-md-4">
@@ -131,7 +124,7 @@
                                                 <div class="col-md-4">
                                                     @Html.EditorFor(model => model.fact_Codigo)
                                                     <div id="validationFactura">
-                                                        @Html.ValidationMessageFor(model => model.fact_Codigo)
+                                                        @*@Html.ValidationMessageFor(model => model.fact_Codigo)*@
                                                     </div>
                                                 </div>
 
@@ -139,9 +132,9 @@
                                                     @Html.LabelFor(model => model.sal_RazonDevolucion, new { @class = "control-label col-md-2 required" })
                                                     <div class="col-md-4">
                                                         @Html.EditorFor(model => model.sal_RazonDevolucion)
-                                                        <p style="color:red">
-                                                            @Html.ValidationMessageFor(model => model.sal_RazonDevolucion)
-                                                        </p>
+                                                        <div id="validationsal_RazonDevolucion">
+                                                            @*@Html.ValidationMessageFor(model => model.fact_Codigo)*@
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -154,12 +147,14 @@
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.sal_BodDestino, "Bodega de Destino", new { @class = "control-label col-md-2 required" })
                                                 <div class="col-md-4">
-                                                    @*<select type="d" id="sal_BodDestino" placeholder="Seleccione una Bodega de Destino" class="form-control"></select>*@
-                                                    @*@Html.DropDownList("sal_BodDestino", null, "Seleccione una Subcategoria", new { @class = "single-line" })*@
-                                                    @Html.DropDownList("sal_BodDestino", (IEnumerable<SelectListItem>)ViewBag.sal_BodDestino, "Seleccionar", new { @class = "form-control" })
-                                                    <p style="color:red">
-                                                        @Html.ValidationMessageFor(model => model.sal_BodDestino)
-                                                    </p>
+                                                    @Html.DropDownList("sal_BodDestino", (IEnumerable<SelectListItem>)null, "Seleccionar", new { @class = "form-control" })
+                                                    <div id="validationsal_BodDestino">
+                                                        <p style="color:red">
+                                                        </p>
+                                                    </div>
+                                                    @*<p style="color:red">
+                                                            @Html.ValidationMessageFor(model => model.sal_BodDestino)
+                                                        </p>*@
                                                 </div>
                                             </div>
                                         </fieldset>
@@ -174,8 +169,6 @@
                                     @*botones*@
                                     <div class="col-md-offset-2 col-md-10">
                                         <input type="submit" value="Guardar" id="submit" class="btn btn-primary" />
-                                        @*<input type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAplicar" value="Aplicar" />*@
-                                        @*<input type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalImprimir" value="Imprimir" />*@
                                         @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                                     </div>
                                 </fieldset>
@@ -225,7 +218,27 @@
                     Esta Creando una Salida sin Detalle
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    @*<button type="button" class="btn btn-primary">Save changes</button>*@
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="ModalChangeBodega" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Salida</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Esta seguro que desea cambia de Bodega
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="ChangeBodega" data-dismiss="modal">Cambiar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                     @*<button type="button" class="btn btn-primary">Save changes</button>*@
                 </div>
             </div>
@@ -257,6 +270,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
 <script src="~/Scripts/app/SalidaDetalle.js"></script>
 <script src="~/Scripts/app/Salida.js"></script>
+<script src="~/Scripts/wp-embed.min.js"></script>
 @*<script>
        $(document).ready(function()
        {
@@ -330,6 +344,7 @@
                     </div>*@
 
 <script>
+
     //$(":input").inputmask();
 
     //$("#sald_Cantidad").inputmask({ "mask": "999.99" });
@@ -339,17 +354,9 @@
     $(selector).mask("999-999-99-99999999", { reverse: true });
     //Output is shown as: 1,000,000
 
-    var value = $(selector).cleanVal();
+    //var value = $(selector).cleanVal();
     //Mask will be removed on next line
     $(selector).val('');
-
-    $(function () {
-        $("#sal_FechaElaboracion").datepicker({
-            dateFormat: 'yy-mm-dd',
-            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-            dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá']
-        }).datepicker("setDate", new Date());
-    });
 
     function filterFloat(evt, input) {
         // Backspace = 8, Enter = 13, ‘0′ = 48, ‘9′ = 57, ‘.’ = 46, ‘-’ = 43

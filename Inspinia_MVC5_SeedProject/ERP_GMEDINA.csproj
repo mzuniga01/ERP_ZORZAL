@@ -1160,6 +1160,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Logo\1.jpg" />
+    <Content Include="Logo\1.png" />
     <Content Include="Models\ModelERP.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ModelERP.edmx</DependentUpon>
@@ -1375,6 +1377,7 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
+    <Content Include="Scripts\jquery.inputmask.bundle.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -1386,6 +1389,7 @@
     <Content Include="Scripts\plugins\slimscroll\jquery.slimscroll.min.js" />
     <Content Include="Scripts\Salida.js" />
     <Content Include="Scripts\SalidaDetalle.js" />
+    <Content Include="Scripts\wp-embed.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1582,6 +1586,8 @@
     <Content Include="Views\Box\_SalidaDetalle.cshtml" />
     <Content Include="Views\Usuario\Edit.cshtml" />
     <Content Include="Views\Login\SinRol.cshtml" />
+    <Content Include="Views\Entrada\_GenerarReportes.cshtml" />
+    <Content Include="Views\Salida\_GenReporte.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

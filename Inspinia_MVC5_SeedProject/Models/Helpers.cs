@@ -35,11 +35,19 @@ namespace ERP_GMEDINA.Models
         ///ESTADO ENTRADA
         public const int EntradaAnulada = 1;
         public const int EntradaEmitida = 2;
-        public const int EntradaInactivada = 67;
+        public const int EntradaInactivada = 4;
         public const int EntradaAplicada = 1;
                 //estado movimiento
-        public const int EntradaEstadoAnulada = 24;
+        public const int EntradaEstadoAnulada = 3;
 
+        //Estado Salida
+        public const int sal_Emitida = 1;
+
+        public const int sal_Aplicada = 2;
+        public const int sal_Impresa = 3;
+        public const int sal_Activa = 4;
+        public const int sal_Inactiva = 5;
+        public const int sal_Anulada = 5;
         ///ESTADO OBJETO
         public const bool ObjetoActivo = true;
         public const bool ObjetoInactivo = false;
@@ -72,14 +80,7 @@ namespace ERP_GMEDINA.Models
         public const int SubcategoriaActivo = 1;
         public const int SubcategoriaInactivo = 2;
 
-        //Estado Salida
-        public const int Emitida = 1;
-        public const int Aplicada = 2;
-        public const int Impresa = 3;
-
-        public const int Activa = 4;
-
-        public const int Inactiva = 5;
+       
 
     }
 }

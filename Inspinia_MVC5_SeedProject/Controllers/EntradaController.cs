@@ -236,7 +236,7 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion");
             ViewBag.bod_Idd = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
             ViewBag.Producto = db.SDP_Inv_tbProducto_Select().ToList();
-            Session["CrearDetalleEntrada"] =null;
+            Session["_CrearDetalleEntrada"] =null;
             return View();
         }
 
@@ -273,7 +273,7 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.bod_Idd = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
 
             ViewBag.Producto = db.SDP_Inv_tbProducto_Select().ToList();
-            Session["CrearDetalleEntrada"] =null;
+            Session["_CrearDetalleEntrada"] =null;
             return View(tbEntrada);
         }
 
@@ -377,7 +377,7 @@ namespace ERP_ZORZAL.Controllers
 
             if (list != null)
             {
-                var itemToRemove = list.Single(r => r.ent_Id == eliminardetalle.ent_Id);
+                var itemToRemove = list.Single(r => r.prod_Codigo == eliminardetalle.prod_Codigo);
                 list.Remove(itemToRemove);
                 Session["_CrearDetalleEntrada"] = list;
             }
@@ -395,7 +395,7 @@ namespace ERP_ZORZAL.Controllers
             string MensajeError = "";
             string MsjError = "";
             
-            var listaDetalle = (List<tbEntradaDetalle>)Session["CrearDetalleEntrada"];
+            var listaDetalle = (List<tbEntradaDetalle>)Session["_CrearDetalleEntrada"];
 
             ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbEntrada.bod_Id);
             ViewBag.tdev_Id = new SelectList(db.tbTipoDevolucion, "tdev_Id", "tdev_Descripcion", tbEntrada.ent_RazonDevolucion);
@@ -503,7 +503,7 @@ namespace ERP_ZORZAL.Controllers
             IEnumerable<object> DETALLE = null;
             string MensajeError = "";
             string MsjError = "";
-            var listaDetalle = (List<tbEntradaDetalle>)Session["CrearDetalleEntrada"];
+            var listaDetalle = (List<tbEntradaDetalle>)Session["_CrearDetalleEntrada"];
             ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbEntrada.bod_Id);
             ViewBag.ent_RazonDevolucion = new SelectList(db.tbTipoDevolucion, "tdev_Id", "tdev_Descripcion", tbEntrada.ent_RazonDevolucion);
             ViewBag.prov_Id = new SelectList(db.tbProveedor, "prov_Id", "prov_Nombre", tbEntrada.prov_Id);
@@ -552,7 +552,7 @@ namespace ERP_ZORZAL.Controllers
                                     foreach (tbEntradaDetalle entd in listaDetalle)
                                     {
                                         entd.entd_UsuarioCrea = 1;
-                                        entd.entd_FechaCrea = Function.DatetimeNow();
+                                        entd.entd_FechaCrea = DateTime.Now;
 
                                         DETALLE = db.UDP_Inv_tbEntradaDetalle_Insert(Convert.ToInt16(MsjError)
                                                                                     , entd.prod_Codigo

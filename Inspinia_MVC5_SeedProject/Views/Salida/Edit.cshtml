@@ -3,6 +3,8 @@
 @{
     /**/
 
+    /**/
+
     ViewBag.Title = "Editar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -34,22 +36,20 @@
     </div>
 </div>
 @{
-    //string UserName = "";
-    //int idUser = 0;
-    //int czx = 0;
-    //GeneralFunctions Login = new GeneralFunctions();
-    //List<tbUsuario> User = Login.getUserInformation();
-    //tbBodega tbBod = new tbBodega();
-    //foreach (tbUsuario Usuario in User)
-    //{
-    //    UserName = Usuario.usu_Nombres + " " + Usuario.usu_Apellidos;
-    //    idUser = Convert.ToInt32(Usuario.emp_Id);
-    //    int czx = Usuario.tbBodega.Where(x => x.bod_ResponsableBodega == idUser).Select(x => x.bod_Id).SingleOrDefault();
-    //}
-
+//string UserName = "";
+//int idUser = 0;
+//int czx = 0;
+//GeneralFunctions Login = new GeneralFunctions();
+//List<tbUsuario> User = Login.getUserInformation();
+//tbBodega tbBod = new tbBodega();
+//foreach (tbUsuario Usuario in User)
+//{
+//    UserName = Usuario.usu_Nombres + " " + Usuario.usu_Apellidos;
+//    idUser = Convert.ToInt32(Usuario.emp_Id);
+//    int czx = Usuario.tbBodega.Where(x => x.bod_ResponsableBodega == idUser).Select(x => x.bod_Id).SingleOrDefault();
+//}
 
 }
-
 
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
@@ -57,7 +57,6 @@
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
                     <h3><b>Modificar Salida</b></h3>
-
                 </div>
                 <div class="ibox-content">
 
@@ -104,7 +103,6 @@
                                     </div>
                                 </div>
 
-
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.tsal_Id, "Tipo de Salida", new { @class = "control-label col-md-2 required" })
                                     <div class="col-md-4">
@@ -121,7 +119,7 @@
                                         <div class="form-group">
                                             @Html.LabelFor(model => model.sal_EsAnulada, "Es Anulada?", new { @class = "control-label col-md-2 required" })
                                             <div class="col-md-4">
-                                                <p>@Html.EditorFor(model => model.sal_EsAnulada, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })</p>
+                                                @Html.EditorFor(model => model.sal_EsAnulada, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -143,7 +141,8 @@
                                     @Html.LabelFor(model => model.fact_Codigo, new { @class = "control-label col-md-2 required" })
                                     <div class="col-md-4">
                                         @Html.EditorFor(model => model.tbFactura.fact_Codigo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                        <p style="color:red">
+                                        @Html.HiddenFor(model => model.fact_Codigo)
+                                         <p style="color:red">
 
                                             @Html.ValidationMessageFor(model => model.fact_Codigo)
                                         </p>
@@ -168,7 +167,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.sal_BodDestino, "Bodega de Destino", new { @class = "control-label col-md-2 required" })
                                     <div class="col-md-4">
-                                        @Html.DropDownList("sal_BodDestino", (IEnumerable<SelectListItem>)ViewBag.sal_BodDestino, new { @class = "form-control" })
+                                        @Html.DropDownList("sal_BodDestino", (IEnumerable<SelectListItem>)null, new { @class = "form-control" })
                                         <p style="color:red">
                                             @Html.ValidationMessageFor(model => model.sal_BodDestino)
                                         </p>
@@ -180,7 +179,7 @@
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
                                 @{
-                                    if (!Model.sal_EsAnulada && Model.estm_Id != Helpers.Aplicada)
+                                    if (!Model.sal_EsAnulada && Model.estm_Id == Helpers.sal_Emitida)
                                     {
                                         <input type="submit" value="Guardar" class="btn btn-primary" />
                                     }
@@ -188,8 +187,8 @@
                                     {
                                         <input type="submit" value="Guardar" disabled class="btn btn-primary" />
                                     }
-                                    var Activo = Model.estm_Id;
-                                    if (Activo == Helpers.Emitida && !Model.sal_EsAnulada)
+                                    var Estado = Model.estm_Id;
+                                    if (Estado == Helpers.sal_Emitida && !Model.sal_EsAnulada)
                                     {
                                         <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAplicar" value="Aplicar" />
                                     }
@@ -197,19 +196,19 @@
                                     {
 
                                     }
-                                    if (Activo == Helpers.Aplicada)
+                                    if (Estado == Helpers.sal_Aplicada && !Model.sal_EsAnulada)
                                     {
                                         @Html.ActionLink("Imprimir", "Imprimir", new { id = Model.sal_Id }, new { @class = "btn btn-success" })
                                     }
-                                    if (!Model.sal_EsAnulada)
+                                    if (!Model.sal_EsAnulada && Estado == Helpers.sal_Emitida)
                                     {
                                         <input type="button" class="btn btn-danger" data-toggle="modal" id="Anular" data-target="#ModalAnular" value="Anular" />
                                     }
-                                    if (Activo == Helpers.Activa)
+                                    if (Estado == Helpers.sal_Activa)
                                     {
                                         <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalInactivar" value="Inactivar" />
                                     }
-                                    else if (Activo == Helpers.Inactiva)
+                                    else if (Estado == Helpers.sal_Inactiva)
                                     {
                                         <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalActivar" value="Activar" />
                                     }
@@ -217,11 +216,9 @@
 
                                 @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                             </div>
-
                         </div>
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
-
                             </div>
                         </div>
                         <div class="modal fade" id="Nuevo" tabindex="-1" role="dialog" aria-labelledby="DetalleNumeracion" aria-hidden="true">
@@ -259,38 +256,37 @@
                                 </div>
                             </div>*@
 
-                        @* Llama la vista  *@
-                        <div class="ibox float-e-margins">
-                            <div class="ibox-content">
-
-                                <div class="row">
-
-                                    <div class="col-lg-12">
+                                    @* Llama la vista  *@
+                                    <div class="ibox float-e-margins">
                                         <div class="ibox-content">
 
-                                            <fieldset class="box-border">
-                                                @if (!Model.sal_EsAnulada && Model.estm_Id != Helpers.Aplicada)
-                                                {
-                                                    <div class="ibox-tools">
-                                                        <button type="button" id="btnModalGuardarNumeracion" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#Nuevo">
-                                                            Agregar Producto
-                                                        </button>
+                                            <div class="row">
+
+                                                <div class="col-lg-12">
+                                                    <div class="ibox-content">
+
+                                                        <fieldset class="box-border">
+                                                            @if (!Model.sal_EsAnulada && Model.estm_Id == Helpers.sal_Emitida)
+                                                            {
+                                                                <div class="ibox-tools">
+                                                                    <button type="button" id="btnModalGuardarNumeracion" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#Nuevo">
+                                                                        Agregar Producto
+                                                                    </button>
+                                                                </div>
+                                                            }
+                                                            <legend class="box-border">SalidaDetalle</legend>
+                                                            @Html.Partial("_EditSalidaDetalle", Model.tbSalidaDetalle, new ViewDataDictionary(new { clave = Model.sal_Id }))
+                                                        </fieldset>
                                                     </div>
-                                                }
-                                                <legend class="box-border">SalidaDetalle</legend>
-                                                @Html.Partial("_EditSalidaDetalle", Model.tbSalidaDetalle, new ViewDataDictionary(new { clave = Model.sal_Id }))
-                                            </fieldset>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
 
-                        @*botones*@
+                                    @*botones*@
 
-                        <br />
-                    }
-
+                                    <br />
+                                    }
                 </div>
             </div>
         </div>
@@ -325,15 +321,10 @@
 </script>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-<script src="~/Scripts/app/DataTable.js"></script>
-<script src="~/Scripts/app/Datepicker.js"></script>
 <script src="~/Scripts/app/Salida.js"></script>
 <script src="~/Scripts/app/SalidaDetalle.js"></script>
 <script type="text/javascript">
-    //$("#ModalAnular").modal("hide").(function () {
 
-    //    $('#sal_RazonAnulada').val("******");
-    //})
     $("#Anular").click(function () {
 
         var sal_RazonAnulada = $('#sal_RazonAnulada').val();
@@ -341,11 +332,36 @@
             $('#sal_RazonAnulada').val('');
         }
     })
+
+    $(function () {
+
+        $.ajax({
+            method: "POST",
+            url: "/Salida/BodegaDestinoEdit",
+            contentType: "application/json; charset=utf-8",
+            dataType: 'json',
+            data: JSON.stringify({ id: $('#sal_Id').val() }),
+        }).done(function (data) {
+            $("#sal_BodDestino").val(data)
+        })
+
+    });
 </script>
 
 <script>
     //$(":input").inputmask();
-
+    //$.ajax({
+    //    method: "POST",
+    //    url: "/Salida/BodegaDestino",
+    //    contentType: "application/json; charset=utf-8",
+    //    dataType: 'json', data: JSON.stringify({ id: $('#bod_Id').val() }),
+    //}).done(function (data) {
+    //    $("#sal_BodDestino").empty();
+    //    $("#sal_BodDestino").append("<option placeholder='Seleccione una Bodega de Destino'>Seleccione una Bodega de Destino</option>")
+    //    $.each(data, function (index, row) {
+    //        $("#sal_BodDestino").append("<option value ='" + row.bod_Id + "'>" + row.bod_Nombre + "</option>")
+    //    });
+    //})
     //$("#sald_Cantidad").inputmask({ "mask": "999.99" });
 
     var selector = "#fact_Codigo";
@@ -362,7 +378,7 @@
             dateFormat: 'yy-mm-dd',
             monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
             dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá']
-        }).datepicker("setDate", new Date());
+        });
     });
 
     function filterFloat(evt, input) {
@@ -399,7 +415,6 @@
         }
 
     }
-
 </script>
 @*<script type="text/javascript">
         var contadorp = 0;

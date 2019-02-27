@@ -1,6 +1,7 @@
 ﻿using CrystalDecisions.CrystalReports.Engine;
 using ERP_GMEDINA.Attribute;
 using ERP_GMEDINA.Models;
+using ERP_GMEDINA.Reports;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -243,6 +244,20 @@ namespace ERP_GMEDINA.Controllers
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult BodegaDestinoEdit(int? id)
+        {
+            int list = 0;
+            try
+            {
+                list = db.tbSalida.Find(id).sal_BodDestino;
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+            }
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
         public JsonResult GetProdList(tbBodegaDetalle tbBodegaDetalle)
         {
             IEnumerable<object> list = null;
@@ -278,7 +293,6 @@ namespace ERP_GMEDINA.Controllers
             var MensajeError = "0";
             var MensajeErrorDetalle = "0";
             IEnumerable<object> listSalidaDetalle = null;
-
             try
             {
                 if (list != null)
@@ -287,21 +301,59 @@ namespace ERP_GMEDINA.Controllers
                     {
                         foreach (tbSalidaDetalle Detalle in list)
                         {
-                            var box_Codigo = "0";
-                            Detalle.box_Codigo = MensajeError;
-                            listSalidaDetalle = db.UDP_Inv_tbSalidaDetalle_Insert(
-                                SalidaDetalle.sal_Id,
-                                Detalle.prod_Codigo,
-                                Detalle.sald_Cantidad,
-                                box_Codigo
-                                , Function.GetUser(), Function.DatetimeNow());
-                            foreach (UDP_Inv_tbSalidaDetalle_Insert_Result spDetalle in listSalidaDetalle)
+                            var Exits = db.tbSalidaDetalle.Where(
+                                x => x.prod_Codigo == Detalle.prod_Codigo
+                                &&
+                                x.sal_Id == SalidaDetalle.sal_Id).FirstOrDefault();
+
+                            if (Exits != null)
                             {
-                                MensajeErrorDetalle = spDetalle.MensajeError;
+                                var Cantidad = db.tbSalidaDetalle.Where(
+                                x => x.prod_Codigo == Detalle.prod_Codigo
+                                &&
+                                x.sal_Id == SalidaDetalle.sal_Id).Select(c => c.sald_Cantidad).FirstOrDefault();
+
+                                var pSalidaDetalle = db.tbSalidaDetalle.Where(x => x.sal_Id == SalidaDetalle.sal_Id).Select(c => c.sald_Id).FirstOrDefault();
+
+                                decimal CantidadNew = Convert.ToDecimal(Cantidad) + Convert.ToDecimal(Detalle.sald_Cantidad);
+                                tbSalidaDetalle vSalidaDetalle = db.tbSalidaDetalle.Find(pSalidaDetalle);
+                                listSalidaDetalle = db.UDP_Inv_tbSalidaDetalle_Update(pSalidaDetalle,
+                                                                    vSalidaDetalle.sal_Id,
+                                                                    Detalle.prod_Codigo,
+                                                                    CantidadNew,
+                                                                    vSalidaDetalle.box_Codigo,
+                                                                    vSalidaDetalle.sald_UsuarioCrea,
+                                                                    vSalidaDetalle.sald_FechaCrea,
+                                                                    Function.GetUser(),
+                                                                    Function.DatetimeNow());
+
+                                foreach (UDP_Inv_tbSalidaDetalle_Update_Result RSSalidaDetalle in listSalidaDetalle)
+                                    MensajeError = RSSalidaDetalle.MensajeError;
                                 if (MensajeError == "-1")
                                 {
-                                    ModelState.AddModelError("", "No se pudo agregar el registro detalle");
-                                    return Json("", JsonRequestBehavior.AllowGet);
+                                    ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                                    //return PartialView("_EditSalidaDetalle");
+                                    return Json(ModelState, JsonRequestBehavior.AllowGet);
+                                }
+                            }
+                            else
+                            {
+                                var box_Codigo = "0";
+                                Detalle.box_Codigo = MensajeError;
+                                listSalidaDetalle = db.UDP_Inv_tbSalidaDetalle_Insert(
+                                    SalidaDetalle.sal_Id,
+                                    Detalle.prod_Codigo,
+                                    Detalle.sald_Cantidad,
+                                    box_Codigo
+                                    , Function.GetUser(), Function.DatetimeNow());
+                                foreach (UDP_Inv_tbSalidaDetalle_Insert_Result spDetalle in listSalidaDetalle)
+                                {
+                                    MensajeErrorDetalle = spDetalle.MensajeError;
+                                    if (MensajeError == "-1")
+                                    {
+                                        ModelState.AddModelError("", "No se pudo agregar el registro detalle");
+                                        return Json("", JsonRequestBehavior.AllowGet);
+                                    }
                                 }
                             }
                         }
@@ -410,7 +462,7 @@ namespace ERP_GMEDINA.Controllers
                                                     data.sal_Id,
                                                     data.prod_Codigo,
                                                     data.sald_Cantidad,
-                                                    data.box_Codigo, data.sald_UsuarioCrea, data.sald_FechaCrea, Function.GetUser(), Function.DatetimeNow());
+                                                    data.box_Codigo, pSalidaDetalle.sald_UsuarioCrea, pSalidaDetalle.sald_FechaCrea, Function.GetUser(), Function.DatetimeNow());
 
                 foreach (UDP_Inv_tbSalidaDetalle_Update_Result RSSalidaDetalle in list)
                     MensajeError = RSSalidaDetalle.MensajeError;
@@ -434,13 +486,32 @@ namespace ERP_GMEDINA.Controllers
             }
         }
 
+        [HttpPost]
+        public JsonResult Cantidad(int bod_Id, string prod_Codigo)
+        {
+            try
+            {
+                var CantidadBodegaDetalle = db.tbBodegaDetalle.Where(x =>
+                x.bod_Id == bod_Id
+                &&
+                x.prod_Codigo == prod_Codigo).Select(c => c.bodd_CantidadExistente).SingleOrDefault();
+                return Json(CantidadBodegaDetalle, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                return Json(ModelState, JsonRequestBehavior.AllowGet);
+            }
+        }
+
         // POST: /Salida/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         [SessionManager("Salida/Edit")]
-        public ActionResult Edit(int? id, [Bind(Include = "sal_Id, bod_Id,fact_Id,fact_Codigo,sal_FechaElaboracion,estm_Id,tsal_Id,  sal_RazonDevolucion, sal_UsuarioCrea, sal_FechaCrea")] tbSalida tbSalida)
+        public ActionResult Edit(int? id, [Bind(Include = "sal_Id, bod_Id,fact_Id,fact_Codigo,sal_FechaElaboracion,estm_Id,tsal_Id,  sal_RazonDevolucion, sal_UsuarioCrea, sal_FechaCrea,tbFactura_fact_Codigo, sal_BodDestino")] tbSalida tbSalida)
         {
             ViewBag.sal_BodDestino = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbSalida.sal_BodDestino);
             if (ModelState.IsValid)
@@ -559,9 +630,9 @@ namespace ERP_GMEDINA.Controllers
 
         public ActionResult Aplicar(int? id)
         {
-            if (ModelState.IsValid)
+            try
             {
-                try
+                if (ModelState.IsValid)
                 {
                     var MensajeError = "";
                     byte Estado = 2;
@@ -591,22 +662,34 @@ namespace ERP_GMEDINA.Controllers
                         return RedirectToAction("Index");
                     }
                 }
-                catch (Exception Ex)
+                else
                 {
-                    ModelState.AddModelError("", "No se pudo agregar el registros" + Ex.Message.ToString());
+                    var errors = ModelState.Values.SelectMany(v => v.Errors);
                 }
-
-                return RedirectToAction("Index");
             }
+            catch (Exception Ex)
+            {
+                ModelState.AddModelError("", "No se pudo agregar el registros" + Ex.Message.ToString());
+            }
+
             return RedirectToAction("Index");
         }
 
-        public ActionResult Imprimir(int? id)
+        public ActionResult Imprimir(int id)
         {
+            //Salida SalidaRD = new Salida();
+            //SalidaRD.SetParameterValue("@sal_Id", id);
+            //var si = SalidaRD;
+
             ReportDocument rd = new ReportDocument();
+            //    Reports.Salida SalidaRD = new Reports.Salida();
+            //    SalidaRD.SetParameterValue("@sal_Id", id);
+
+            //    SalidaRD.SetDataSource(rd);
+
             rd.Load(Path.Combine(Server.MapPath("~/Reports"), "Salida.rpt"));
-            var tbsalida = db.tbSalida.ToList();
-            var todo = db.SDP_Inv_Salida_Imprimir(13).ToList();
+            //    //var tbsalida = db.tbSalida.ToList();
+            var todo = db.SDP_Inv_Salida_Imprimir(id).ToList();
 
             rd.SetDataSource(todo);
             Response.Buffer = false;
@@ -701,13 +784,13 @@ namespace ERP_GMEDINA.Controllers
         [HttpPost]
         public JsonResult RemoveSalidaDetalle(tbSalidaDetalle SalidaDetalle)
         {
-            var list = (List<tbSalidaDetalle>)Session["tbSalidaDetalle"];
+            var list = (List<tbSalidaDetalle>)Session["SalidaDetalle"];
 
             if (list != null)
             {
-                var itemToRemove = list.Single(r => r.sald_UsuarioCrea == SalidaDetalle.sald_UsuarioCrea);
+                var itemToRemove = list.Single(r => r.prod_Codigo == SalidaDetalle.prod_Codigo);
                 list.Remove(itemToRemove);
-                Session["tbSalidaDetalle"] = list;
+                Session["SalidaDetalle"] = list;
             }
             return Json("", JsonRequestBehavior.AllowGet);
         }
@@ -732,12 +815,14 @@ namespace ERP_GMEDINA.Controllers
                     if (MensajeError == "-1")
                     {
                         ModelState.AddModelError("", "No se pudo agregar el registro detalle");
+                        //return View(tbSalidaDetalle);
                     }
                 }
             }
             catch (Exception Ex)
             {
                 MensajeError = Ex.Message.ToString();
+                //ViewBag.dfisc_Id = new SelectList(db.tbDocumentoFiscal, "dfisc_Id", "dfisc_Descripcion", CreatePuntoEmisionDetalle.dfisc_Id);
                 ModelState.AddModelError("", MensajeError);
             }
             return Json(MensajeError, JsonRequestBehavior.AllowGet);

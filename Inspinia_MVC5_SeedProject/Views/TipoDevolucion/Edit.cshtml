@@ -5,6 +5,18 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    .validation-error {
+        color: red;
+        font-size: small;
+    }
+
+    .validation-summary-errors {
+        color: red;
+        font-size: small;
+    }
+</style>
+
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Tipo Devolucion</h2>
@@ -67,7 +79,6 @@
         @Html.HiddenFor(model => model.tbUsuario1.usu_EsActivo)
         @Html.HiddenFor(model => model.tbUsuario1.usu_EsAdministrador)
 
-        @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.tdev_Id)
 
         <div class="form-group">
