@@ -245,6 +245,7 @@ namespace ERP_GMEDINA.Controllers
                                                                                                             , invfd.uni_Id, Function.GetUser(), Function.DatetimeNow());
                                             foreach (UDP_Inv_tbInventarioFisicoDetalle_Insert_Result invfdetalle in INVFISICODETALLE)
                                                 MensajeError = invfdetalle.MensajeError;
+                                            if (MensajeError.StartsWith("-1"))
                                             {
                                                 ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
                                                 this.listas();
