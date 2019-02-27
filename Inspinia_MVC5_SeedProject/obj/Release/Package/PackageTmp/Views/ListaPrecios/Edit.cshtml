@@ -35,11 +35,10 @@
         @using (Html.BeginForm("Edit", "ListaPrecios", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             @Html.AntiForgeryToken()
-
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
             <div class="form-horizontal">
                 @Html.Hidden("RedirectTo", Url.Action("Index", "ListaPrecios"))
-                @Html.ValidationSummary(true)
                 @Html.HiddenFor(model => model.listp_Id)
                 @*@Html.HiddenFor(model => model.lispd_Id)*@
 
@@ -59,7 +58,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.listp_Nombre, new { @class = "control-label col-md-2" })
                     <div class="col-md-3">
-                        @Html.EditorFor(model => model.listp_Nombre)
+                        @Html.EditorFor(model => model.listp_Nombre, new { htmlAttributes = new { @autocomplete = "off", @onkeypress = "return nombre(event)" } })
                         @Html.ValidationMessageFor(model => model.listp_Nombre)
                     </div>
                 </div>
@@ -84,10 +83,11 @@
 
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.listp_FechaInicioVigencia, "Fecha Inicio Vigencia", new { @class = "control-label col-md-2" })
+                    <label class="control-label col-md-2 AsteriscoRojo">Fecha Inicio Vigencia</label>
+                    @*@Html.LabelFor(model => model.listp_FechaInicioVigencia, new { @class = "control-label col-md-2" })*@
                     <div class="col-md-3">
-                        @Html.EditorFor(model => model.listp_FechaInicioVigencia, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechaListaPrecioEdit", @readonly = "readonly" } })
-                        <span class="validation-error">@Html.ValidationMessageFor(model => model.listp_FechaInicioVigencia)</span>
+                        @Html.EditorFor(model => model.listp_FechaInicioVigencia, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @id = "FIV" } })
+                        @Html.ValidationMessageFor(model => model.listp_FechaInicioVigencia)
                     </div>
                 </div>
 
@@ -96,7 +96,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.listp_FechaFinalVigencia, new { @class = "control-label col-md-2" })
                     <div class="col-md-3">
-                        @Html.EditorFor(model => model.listp_FechaFinalVigencia, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "FFV" } })
+                        @Html.EditorFor(model => model.listp_FechaFinalVigencia, "{0:dd-MM-yyyy}", new { htmlAttributes = new { @class = "form-control", @id = "FFV" } })
                         @Html.ValidationMessageFor(model => model.listp_FechaFinalVigencia)
                     </div>
                 </div>
@@ -153,36 +153,7 @@
                                 <div class="tabs-container">
                                     
                                     <div class="tab-content">
-                                        <div id="tab-1" class="tab-pane active">
-                                            <div class="panel-body">
-                                                
-                                            </div>
                                        
-                                            <div class="col-lg-12">
-                                                <div class="form-group">
-                                                    <div class="col-md-offset-2 col-md-10">
-                                                        <input type="submit" value="Guardar" class="btn btn-primary" />
-                                                       
-                                                        @if (Model.listp_EsActivo)
-                                                        {
-                                                            <button type="button" id="inactivar" name="inactivar" class="btn btn-danger" data-toggle="modal" data-target="#ModalAnular">
-                                                                Inactivar
-                                                            </button>
-                                                        }
-                                                        else
-                                                        {
-                                                            <button type="button" id="activar" name="activar" class="btn btn-info" data-toggle="modal" data-target="#ModalAnular1">
-                                                                Activar
-                                                            </button>
-                                                        }
-                                                        @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
-
-
-                                                    </div>
-                                                                                                    </div>
-                                                <br />
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -284,6 +255,17 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+    <script>
+
+    function nombre(e) {
+        tecla = (document.all) ? e.keyCode : e.which;
+        tecla = String.fromCharCode(tecla)
+        return /^[a-zñA-ZÑáéíóúÁÉÍÓÚ0-9]+$/.test(tecla);
+    }
+    </script>
+
+
 <script type="text/javascript">
     $(document).on('click', '#myModalLabel', function () {
         $('#ModalAgregarProducto').modal('show');

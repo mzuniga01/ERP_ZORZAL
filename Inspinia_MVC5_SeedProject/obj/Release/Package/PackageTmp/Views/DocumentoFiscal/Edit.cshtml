@@ -56,10 +56,10 @@
 
 
         <div class="form-group">
-            @Html.LabelFor(model => model.dfisc_Id, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.dfisc_Id, "Codigo Documento Fiscal", new { @class = "control-label col-md-2" })
             <div class="col-md-5">
-                @Html.EditorFor(model => model.dfisc_Id)
-                @Html.ValidationMessageFor(model => model.dfisc_Id)
+                @Html.EditorFor(model => model.dfisc_Id, new { htmlAttributes = new { @autocomplete = "off" } })
+                <p style="color:red">@Html.ValidationMessageFor(model => model.dfisc_Id)</p>
             </div>
         </div>
         <div class="form-group">
@@ -114,7 +114,39 @@
  </div>
 
 
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/app/ClienteExoneracion.js"></script>
+<script>
+    $("#dfisc_Id").on("keypress keyup blur", function (event) {
+    var Telefono = $(this).val();
+    console.log(Telefono)
+    if (Telefono == '') {
+        $(this).val('');
+    }
+    this.value = this.value.replace(/[a-záéíóúüñ#/=]+/ig, "");
+});
+
+</script>
+
+
+<script>
+    $(document).ready(function () {
+
+
+        //VALIDAR SOLO LETRAS
+        $('#dfisc_Descripcion').on('input', function (e) {
+            if (!/^[ a-z-áéíóúüñ]*$/i.test(this.value)) {
+                this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
+            }
+        });
+        $('#dfisc_Descripcion').on('input', function (e) {
+            if (!/^[ a-z-áéíóúüñ]*$/i.test(this.value)) {
+                this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
+            }
+        });
+
+
+    });
+</script>
 }

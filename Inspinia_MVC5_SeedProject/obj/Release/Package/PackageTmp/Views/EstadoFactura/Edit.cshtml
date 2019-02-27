@@ -49,17 +49,16 @@
         <div class="form-group">
             @Html.LabelFor(model => model.esfac_Id, new { @class = "control-label col-md-2" })
             <div class="col-md-5">
-                @Html.EditorFor(model => model.esfac_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.esfac_Descripcion)
+                @Html.EditorFor(model => model.esfac_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })             
             </div>
         </div>
 
 
 
         <div class="form-group">
-            @Html.LabelFor(model => model.esfac_Descripcion, new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Descripción<span style="color:red"> *</span></label>
             <div class="col-md-5">
-                @Html.EditorFor(model => model.esfac_Descripcion)
+                @Html.EditorFor(model => model.esfac_Descripcion, new { htmlAttributes = new { onkeypress = "return validar(event)" } })
                 <p style="color:red">  @Html.ValidationMessageFor(model => model.esfac_Descripcion)</p>
             </div>
         </div>
@@ -114,3 +113,6 @@
 }
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/Factura.js"></script>
+<script src="~/Scripts/app/CaracteresEspeciales.js"></script>
+<script src="~/Scripts/app/ComandoGuardar.js"></script>
+

@@ -6,7 +6,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Listado de Solicitus de Eectivo</h5>
+                    <h5>Listado de Solicitudes de Efectivo</h5>
                     <div class="ibox-tools">
                         @Html.ActionLink("Registrar Solicitud Efectivo", "Create", null, new { @class = "btn btn-primary btn-xs" })
                     </div>
@@ -16,8 +16,7 @@
                         <table class="table table-striped" id="SolicitudEfectivo">
                             <thead>
                                 <tr>
-                                    <th>
-                                        @*@Html.DisplayNameFor(model => model.IdSolicitud)*@
+                                    <th>                                       
                                         ID Solicitud
                                     </th>
                                     <th>
@@ -92,13 +91,9 @@
                                                 </td>
                                             }
                                         }
-
-
-
                                         <td class="hidden">
                                             @Html.DisplayFor(modelItem => item.Apertura)
                                         </td>
-
                                         @{
                                             string Editar = "btnEditar";}
                                         @{
@@ -106,20 +101,15 @@
                                             {
                                                 <td>
                                                     @Html.ActionLink("Detalle", "Details", new { id = item.IdSolicitud }, new { @class = "btn btn-primary btn-xs" })
-                                                    @Html.ActionLink("Imprimir", "ExportReport", new { id = item.IdSolicitud }, new { @class = "btn btn-primary btn-xs" })
-
-
+                                                    @Html.ActionLink("Imprimir", "ExportReport", new { id = item.IdSolicitud }, new { @class = "btn btn-primary btn-xs", target = "_blank" })                                                   
                                                 </td>
                                             }
-
                                             else if (Convert.ToString(item.MontoSolicitado) == "")
                                             {
                                                 <td>
                                                     @Html.ActionLink("Detalle", "Details", new { id = item.IdSolicitud }, new { @class = "btn btn-primary btn-xs" })
                                                     @Html.ActionLink("Editar", "Edit", new { id = item.IdSolicitud }, new { @class = "btn btn-white btn-xs", id = Editar })
                                                 </td>
-
-
                                             }
                                             else if (item.MontoEntregado == 0)
                                             {
@@ -127,48 +117,28 @@
                                                     @Html.ActionLink("Detalle", "Details", new { id = item.IdSolicitud }, new { @class = "btn btn-primary btn-xs" })
                                                     @Html.ActionLink("Editar", "Edit", new { id = item.IdSolicitud }, new { @class = "btn btn-white btn-xs", id = Editar })
                                                     @Html.ActionLink("Entregar Efectivo", "EditEntregaEfectivo", new { id = item.IdSolicitud }, new { @class = "btn btn-danger btn-xs" })
-
                                                 </td>
-
-
                                             }
 
                                             else if (item.MontoEntregado > 0)
                                             {
                                                 <td>
                                                     @Html.ActionLink("Detalle", "Details", new { id = item.IdSolicitud }, new { @class = "btn btn-primary btn-xs" })
-                                                    @Html.ActionLink("Imprimir", "ExportReport", new { id = item.IdSolicitud }, new { @class = "btn btn-primary btn-xs" })
-
-
+                                                    @Html.ActionLink("Imprimir", "ExportReport", new { id = item.IdSolicitud }, new { @class = "btn btn-primary btn-xs", target = "_blank" })
                                                 </td>
-
-
                                             }
-
-
                                             else
                                             {
                                                 <td>
                                                     @Html.ActionLink("Detalle", "Details", new { id = item.IdSolicitud }, new { @class = "btn btn-primary btn-xs" })
                                                     @Html.ActionLink("Editar", "Edit", new { id = item.IdSolicitud }, new { @class = "btn btn-white btn-xs", id = Editar })
                                                     @Html.ActionLink("Entregar Efectivo", "EditEntregaEfectivo", new { id = item.IdSolicitud }, new { @class = "btn btn-danger btn-xs" })
-                                                    @Html.ActionLink("Imprimir", "ExportReport", new { id = item.IdSolicitud }, new { @class = "btn btn-primary btn-xs" })
-
-
-
-
-
-
-
-
+                                                    @Html.ActionLink("Imprimir", "ExportReport", new { id = item.IdSolicitud }, new { @class = "btn btn-primary btn-xs", target = "_blank" })
                                                 </td>
                                             }
-
-
                                         }
-
                                     </tr>
-                                            }
+                                   }
                             </tbody>
                         </table>
                     </div>
@@ -182,22 +152,3 @@
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/SolicitudEfectivo.js"></script>
 
-<div class="modal fade" id="ModalImprimir" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Imprimir Solicitud Efectivo</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                ¿Desea Imprimir Esta Solicitud de Efectivo?
-            </div>
-            <div class="modal-footer">
-                <a href="@Url.Action("Index","SolicitudEfectivo")" class="btn btn-primary">Si</a>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-            </div>
-        </div>
-    </div>
-</div>

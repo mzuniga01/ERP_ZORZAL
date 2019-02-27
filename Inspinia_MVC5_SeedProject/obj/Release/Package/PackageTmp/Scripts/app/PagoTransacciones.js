@@ -7,6 +7,7 @@ $(document).ready(function () {
 $(function () {
 
     $("#pago_TotalPago").change(function (e) {
+        valido = document.getElementById('msgMontoPagar');
         var totalpagar = $("#pago_TotalPago").val();
         var saldoAnterior = $("#SaldoAnterior").val();
         var saldoActual = $("#pago_SaldoAnterior").val();
@@ -19,7 +20,7 @@ $(function () {
         result = 0.00;
 
         if (totalpagar == '') {
-            alert('Monto Incorrecto2');
+           
             $("#pago_SaldoAnterior").val(saldoAnterior);
             if (isNaN($("#TotalPagado").val(pagado))) {
                 $("#TotalPagado").val(0.00);
@@ -27,37 +28,34 @@ $(function () {
             else if ($("#TotalPagado").val(pagado) > 0) {
                 $("#TotalPagado").val(parseFloat(pagado) - parseFloat(pagoActual));
             }
+            $('#pago_TotalPago').val('').focus();
+            valido.innerText = "el campo Monto Pagar no deber ir vacio";
         }
-       else if (totalpagar < 0) {
-           alert('Monto menor a cero');
-           $("#pago_TotalPago").val('');
-            $("#pago_SaldoAnterior").val(saldoAnterior);
+        else if (totalpagar > saldoAnterior) {
+
+
+
+            $("#pago_SaldoAnterior").val(saldoActual);
+            $("#SaldoAnterior").val(saldoAnterior);
             if (isNaN($("#TotalPagado").val(pagado))) {
                 $("#TotalPagado").val(0.00);
             }
             else if ($("#TotalPagado").val(pagado) > 0) {
-                $("#TotalPagado").val(parseFloat(pagado) - parseFloat(pagoActual));
+
+                $("#TotalPagado").val(pagado - totalpagar);
             }
-        }
-      
-
-        else if ( totalpagar > saldoAnterior && pagado > montofactura) {
-           
-           
-            alert('Monto Incorrecto');
-            $("#pago_SaldoAnterior").val(saldoAnterior);
-            $("#TotalPagado").val(pagado - pagoActual);
+                $('#pago_TotalPago').val('').focus();
+            valido.innerText = "El monto pago no debe superar el saldo o el monto de la factura";
 
         }
-   
-
-       
+        
 
         else {
             var saldoActualizado = (parseFloat(saldoAnterior) - parseFloat(totalpagar));
             var pagoActual = (parseFloat(pagado) + parseFloat(totalpagar));
             $("#pago_SaldoAnterior").val(saldoActualizado);
-            $("#TotalPagado").val(pagoActual);     
+            $("#TotalPagado").val(pagoActual);
+            valido.innerText = "";
         }
        
      
@@ -69,69 +67,93 @@ $(function () {
 $(function () {
 
     $("#efectivo").change(function (e) {
+        valido = document.getElementById('smspsfectivo');
         var efectivo = $("#efectivo").val();
         var cambio = $("#cambio").val();
         var totalpagar = $("#pago_TotalPago").val();
 
-        var cambioefectivo = (parseFloat(efectivo) - parseFloat(totalpagar));
+        
         result = 0;
 
         if (totalpagar == '' || totalpagar == 0) {
-
-            $("#efectivo").val(result);
-            $("#cambio").val(result);
-
+            $('#efectivo').val('').focus();
+            valido.innerText = "El monto efectivo no debe ir vacio";
+          
+           
         }
-        else {
+        else if(efectivo > totalpagar)
+        {
+            var cambioefectivo = (parseFloat(efectivo) - parseFloat(totalpagar));
             $("#efectivo").val(efectivo);
             $("#cambio").val(cambioefectivo);
-
+            valido.innerText = "";
+        }
+        else 
+        {
+            $("#cambio").val(result);
+            $('#efectivo').val('').focus();
+            valido.innerText = "El Campo Monto Efectivo no debe ser menor a Moto Pagar";
         }
 
     });
 });
 
+// validaciones con cupon descuento
 
-//Filtro de Modal Factura----------------------------------------------------------------------------
+$(function () {
 
-var CodCliente = $('#tbFactura_clte_Id').val();
-console.log(CodCliente)
-function GetIDCliente(CodCliente, idItem) {
-    $.ajax({
-        url: "/Pago/FiltrarModal",
-        method: "POST",
-        dataType: 'json',
-        contentType: "application/json; charset=utf-8",
-        data: JSON.stringify({ CodCliente: CodCliente }),
+    $("#MontoDesc").change(function (e) {
+        valido = document.getElementById('smsFechaVencimiento');
+        var MontoDescuento = $("#MontoDesc").val();
+        var PorcentDescuento = $("#descuento").val();
+        var FechaVencimiento = $("#pago_FechaVencimiento").val();
+        var codigo = $("#nocre_Codigo_cdto_Id").val();
+        var hoy = new Date();
+         console.log(hoy);
+        var MontoMaximo = $("#montomax").val();
+        var CantidadMinimma = $("#cantmin").val();
+        var Redimido = $("#redimido").val();
+        var totalpagar = $("#pago_TotalPago").val();
+        var montofactura = $("#MontoFactura").val();
 
-        error: function () {
-            console.log("si entrafiltrar1");
-            alert("No se puede filtrar");
-        },
-        success: function (list) {
-            $('#FacturaPagoTbody').empty();
-            $.each(list, function (key, val) {
-                contador = contador + 1;
-                var myDate = "/Date(1547704800000)/";
-                var jsDate = new Date(parseInt(myDate.replace(/\D/g, '')))
 
-                //var date = new Date(parseInt(val.FactFecha.substr(6)));
-                //val.FactFecha = new Date(parseInt(val.FactFecha.replace("/Date(", "").replace(")/", ""), 10));
-                copiar = "<tr data-id=" + contador + " data-codigo=" + val.Factura_Codigo + " data-id=" + val.Factura_Id + ">";
-                copiar += "<td id = 'codigo'>" + val.Factura_Codigo + "</td>";
-                copiar += "<td id = 'b'>" + val.jsDate + "</td>";
-                copiar += "<td id = 'data-c_id'>" + val.clte_Id + "</td>";
-                copiar += "<td id = 'data-monto'>" + val.Factura_Monto + "</td>";
-                copiar += "<td id = 'data-pago'>" + val.Factura_Pagado + "</td>";
-                copiar += "<td id = 'data-saldo'>" + val.Factura_Saldo + "</td>";
-                copiar += "<td>" + '<button id="Seleccionar" class="btn btn-primary btn-xs" type="button">Añadir</button>' + "</td>";
-                copiar += "</tr>";
-                $('#BodyFactura').append(copiar);
-            });
-            console.log(list);
+        result = 0;
+
+        if (FechaVencimiento <= hoy) {
+            if (MontoDesc > 0) {
+                $("#pago_TotalPago").val(parseFloat(MontoDescuento));
+                valido.innerText = "";
+            }
+            else {
+                var CalculoMontoConPorcent = (parseFloat(montofactura)*(parseFloat(PorcentDescuento)/100));
+                //var saldo = (parseFloat(montofactura) - parseFloat(CalculoMontoConPorcent));
+                if (CalculoMontoConPorcent <= parseFloat(MontoMaximo)) {
+                    $("#pago_TotalPago").val(parseFloat(CalculoMontoConPorcent));
+                    valido.innerText = "";
+                }
+                else{
+                    $("#MontoDesc").val('');
+                    $("#descuento").val('');
+                    $("#pago_FechaVencimiento").val('');
+                    $("#nocre_Codigo_cdto_Id").val('').focus();
+                    valido.innerText = "Monto de descuento excede el monto establecido,  con otro cupón.";
+                }
+                  
+                }
         }
+        else {
+           $("#MontoDesc").val('');
+            $("#descuento").val('');
+            $("#pago_FechaVencimiento").val('');
+            $("#nocre_Codigo_cdto_Id").val('').focus();
+            valido.innerText = "Cupón vencido, intente con otro.";
+        }
+          
+            
 
+
+        
+       
 
     });
-
-}
+});

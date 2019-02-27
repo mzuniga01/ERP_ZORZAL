@@ -29,12 +29,18 @@
                             </tr>
                         </thead>
                         <tbody id="ClienteTbody">
-                            @foreach (var item in Model)
-                            {
-                                if (item.clte_EsMinorista == false)
-                                {
-                                    var nameuser = (!item.clte_EsPersonaNatural) ? item.clte_NombreComercial : item.clte_Nombres + ' ' + @item.clte_Apellidos;
-                                    <tr data-id="@item.clte_Id" data-rtn="@item.clte_Identificacion" data-name="@nameuser">
+        @foreach (var item in Model)
+        {
+            if (item.clte_Id == 1)
+            {
+
+            }
+            else
+            {
+                var nombrecliente = (!item.clte_EsPersonaNatural) ? item.clte_NombreComercial : item.clte_Nombres + ' ' + @item.clte_Apellidos;
+               
+     
+                                    <tr data-id="@item.clte_Id" data-rtn="@item.clte_Identificacion" data-name="@nombrecliente">
 
                                         <td>
                                             @Html.DisplayFor(modelItem => item.clte_Id)
@@ -43,7 +49,7 @@
                                             @Html.DisplayFor(modelItem => item.clte_Identificacion)
                                         </td>
                                         <td>
-                                            @nameuser
+                                            @nombrecliente
 
                                         </td>
                                         <td>

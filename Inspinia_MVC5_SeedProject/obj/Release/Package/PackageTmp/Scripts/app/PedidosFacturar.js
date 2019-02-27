@@ -3,6 +3,8 @@
     console.log(idpedido)
 })
 
+
+
     //var pedido = $('#tbFactura_clte_Identificacion').val();
     //console.log(pedido)
     //function GetDetallePedido(pedido) {

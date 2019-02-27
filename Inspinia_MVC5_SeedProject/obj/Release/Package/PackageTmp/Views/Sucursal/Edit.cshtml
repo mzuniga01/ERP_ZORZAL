@@ -43,7 +43,6 @@
 
                             @Html.ValidationSummary(true)
                             @Html.HiddenFor(model => model.suc_Id)
-                            @Html.ValidationSummary(true)
                             @Html.Hidden("RedirectTo", Url.Action("Index", "Sucursal"))
                             @Html.HiddenFor(model => model.suc_FechaCrea)
                             @Html.HiddenFor(model => model.suc_UsuarioCrea)
@@ -57,46 +56,52 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-2">Departamento<span style="color:red"> *</span></label>
+                                @*<div class="col-md-4">
+                                    @Html.DropDownList("dep_Codigo", null, "Seleccione Departamento", new { @class = "form-control", required = "required" })
+                                    <p id="Departamento" style="color:red">@Html.ValidationMessageFor(muni => test.dep_Codigo)</p>
+                                </div>*@
                                 <div class="col-md-4">
                                     @Html.DropDownList("dep_Codigo", null, "Seleccione Departamento", new { @class = "form-control" })
-                                    <p id="Departamento" style="color:red">@Html.ValidationMessageFor(muni => test.dep_Codigo)</p>
                                 </div>
+
                                 @Html.LabelFor(model => model.mun_Codigo, "Municipio", new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.DropDownList("mun_Codigo", null, "Seleccione Municipio", new { @class = "form-control" })
+                                    @Html.DropDownList("mun_Codigo", null, "Seleccione Municipio", new { @class = "form-control", required = "required" })
                                     <p id="Municipio" style="color:red">@Html.ValidationMessageFor(model => model.mun_Codigo)</p>
                                 </div>
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(model => model.suc_Direccion, new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
-                                    @Html.TextAreaFor(model => model.suc_Direccion, new { @autocomplete = "off", @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => model.suc_Direccion)
+                                    @Html.TextAreaFor(model => model.suc_Direccion, new { @autocomplete = "off", @class = "form-control", required = "required" })
+                                    <p id="smsMotivoNC" style="color:red">@Html.ValidationMessageFor(model => model.suc_Direccion)</p>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.bod_Id, "Bodega", new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.DropDownList("bod_Id", null, "Seleccione Bodega", new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => model.bod_Id)
+                                    @Html.DropDownList("bod_Id", null, "Seleccione Bodega", new { @class = "form-control", required = "required" })
+                                    <p id="bod" style="color:red">@Html.ValidationMessageFor(model => model.bod_Id)</p>
                                 </div>
                                 @Html.LabelFor(model => model.pemi_Id, "Punto Emision", new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.DropDownList("pemi_Id", null, "Seleccione Punto Emision", new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => model.pemi_Id)
+                                    @Html.DropDownList("pemi_Id", null, "Seleccione Punto Emision", new { @class = "form-control", required = "required" })
+                                    <p id="pemi" style="color:red">@Html.ValidationMessageFor(model => model.pemi_Id)</p>
                                 </div>
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(model => model.suc_Telefono, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.suc_Telefono, new { htmlAttributes = new { @autocomplete = "off" } })
-                                    @Html.ValidationMessageFor(model => model.suc_Telefono)
+                                    @Html.EditorFor(model => model.suc_Telefono, new { htmlAttributes = new { @autocomplete = "off" , required = "required" } })
+                                    <p id="smsTelefono" style="color:red">@Html.ValidationMessageFor(model => model.suc_Telefono)</p>
                                 </div>
                                 @Html.LabelFor(model => model.suc_Correo, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.suc_Correo)
-                                    @Html.ValidationMessageFor(model => model.suc_Correo)
+                                    @Html.EditorFor(model => model.suc_Correo, new { @autocomplete = "off", type = "email", @class = "form-control", @onkeyup = "formateo(this)", onkeypress = "return correo(event)" })
+                                    <div id="MessageForCorreo">
+                                        <p id="emailOK" style="color:red"> @Html.ValidationMessageFor(model => model.suc_Correo)</p>
+                                    </div>
                                 </div>
                             </div>
 
@@ -104,7 +109,7 @@
 
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                                    <input type="submit" value="Guardar" id="btnGuardar" class="btn btn-primary" />
                                     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                                 </div>
                             </div>
@@ -123,16 +128,16 @@
                     <tr>
                         <td>Creado</td>
                         <td>
-                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                            @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
                         </td>
                         <td>@Html.DisplayFor(model => model.suc_FechaCrea)</td>
                     </tr>
                     <tr>
                         <td>Modificado</td>
                         <td>
-                            @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
-                            @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                            @Html.DisplayFor(model => model.tbUsuario2.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario2.usu_Apellidos)
                         </td>
                         <td>@Html.DisplayFor(model => model.suc_FechaModifica)</td>
                     </tr>
@@ -144,7 +149,11 @@
     </div>
  </div>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/ClienteExoneracion.js"></script>
 <script src="~/Scripts/app/Sucursal.js"></script>
+@*<script src="~/Scripts/app/PersonaNatural.js"></script>*@
+<script src="~/Scripts/app/CaracteresEspeciales.js"></script>
+
 
 <script type="text/javascript">
 jQuery('input,select').each(function() {
@@ -155,4 +164,77 @@ jQuery('input,select').each(function() {
       label.append('<span style="color:red"> *</span>');
     }
 });
+
+$('#suc_Direccion').blur(function () {
+    valido = document.getElementById('smsMotivoNC');
+    var motivoNC = $('#suc_Direccion').val();
+    if (motivoNC == "") {
+        $('#suc_Direccion').val('').focus();
+        valido.innerText = "*El campo Dirección es requerido";
+    } else {
+        valido.innerText = "";
+    }
+});
+
+
+$('#suc_Correo').blur(function () {
+    valido = document.getElementById('emailOK1');
+    var motivoNC = $('#suc_Correo').val();
+    if (motivoNC == "") {
+        $('#suc_Correo').val('').focus();
+        valido.innerText = "*El campo Dirección es requerido";
+    } else {
+        valido.innerText = "";
+    }
+});
+
+
+
+$('#suc_Telefono').blur(function () {
+    valido = document.getElementById('smsTelefono');
+    var motivoNC = $('#suc_Telefono').val();
+    if (motivoNC == "") {
+        $('#suc_Telefono').val('').focus();
+        valido.innerText = "*El campo Teléfono es requerido";
+    } else {
+        valido.innerText = "";
+    }
+});
+
+$('#pemi_Id').blur(function () {
+    valido = document.getElementById('pemi');
+    var motivoNC = $('#pemi_Id').val();
+    if (motivoNC == "") {
+        $('#pemi_Id').val('').focus();
+        valido.innerText = "*El campo Dirección es requerido";
+    } else {
+        valido.innerText = "";
+    }
+});
+
+
+$('#bod_Id').blur(function () {
+    valido = document.getElementById('bod');
+    var motivoNC = $('#bod_Id').val();
+    if (motivoNC == "") {
+        $('#bod_Id').val('').focus();
+        valido.innerText = "*El campo Dirección es requerido";
+    } else {
+        valido.innerText = "";
+    }
+});
+
+$('#mun_Codigo').blur(function () {
+    valido = document.getElementById('Municipio');
+    var motivoNC = $('#mun_Codigo').val();
+    if (motivoNC == "") {
+        $('#mun_Codigo').val('').focus();
+        valido.innerText = "*El campo Dirección es requerido";
+    } else {
+        valido.innerText = "";
+    }
+});
+
+
+
 </script>

@@ -25,80 +25,87 @@
                 </div>
                 <div class="ibox-content">
 
-                    @using (Html.BeginForm("CreateApertura", "MovimientoCaja", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                    {
+    @using (Html.BeginForm("CreateApertura", "MovimientoCaja", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
 
-                        @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
 
-                        <div class="form-horizontal">
-                            <div>
-                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                            </div>
+        <div class="form-horizontal">
+            <div>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            </div>
 
-                            <div class="form-horizontal">
-                                <div class="form-group col-md-7">
-                                   @Html.LabelFor(model => test.suc_Descripcion, "Sucursal", new { @class = "control-label col-md-2" })
-                                    <div class="col-md-7">
-                                        @Html.EditorFor(model => test.suc_Descripcion, new { htmlAttributes = new { @class = "form-control" , @readonly = "readonly", @Value = ViewBag.suc_Descripcion } })
-                                        <p style="color:red"> @Html.ValidationMessageFor(model => test.suc_Descripcion)</p>
-                                    </div>
-                                </div>
-                            </div>
-             
-                            <div class="form-group col-md-5">
-                                @Html.LabelFor(model => model.cja_Id, "Caja", new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.DropDownList("cja_Id", null, "Seleccione Caja", new { @class = "form-control" })
-                                    <div id="validacioncajacreate">
-                                        <p id="MensajeErrorDenominacion" style="color:red">@Html.ValidationMessageFor(model => model.cja_Id)</p>
-                                    </div>                                                                                   
-                                </div>
-                            </div>
-                            <div class="form-group col-md-7">
-                              @Html.LabelFor(model => model.mocja_FechaApertura, "Fecha Apertura", new { @class = "control-label col-md-2" })
-                                <div class="col-md-7">
-                                    @Html.EditorFor(model => model.mocja_FechaApertura, "{0:MM/dd/yyyy}", new { htmlAttributes = new { @maxlength = "10", @class = "form-control" , @readonly = "readonly" } })
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.mocja_FechaApertura)</p>
-                                    </div>
-                            </div> 
+            <div class="form-horizontal">
+                <div class="form-group col-md-7">
+                    @Html.LabelFor(model => test.suc_Descripcion, "Sucursal", new { @class = "control-label col-md-2" })
+                    <div class="col-md-7">
+                        @Html.EditorFor(model => test.suc_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @Value = ViewBag.suc_Descripcion } })
+                        <p style="color:red"> @Html.ValidationMessageFor(model => test.suc_Descripcion)</p>
+                    </div>
+                </div>
+            </div>
 
-                             <div class="form-group col-md-5">
-                                <label class = "control-label col-md-2">Usuario Apertura</label>
-                                <div class="col-md-10">
-                                    <input class = "form-control" readonly value="@ViewBag.UsuarioApertura" />
-                                   <p id="MensajeErrorDenominacion" style="color:red"> @Html.ValidationMessageFor(model => model.mocja_UsuarioApertura)</p>
-                                </div>
-                            </div>
+            <div class="form-group col-md-5">
+                @Html.LabelFor(model => model.cja_Id, "Caja", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("cja_Id", null, "Seleccione Caja", new { @class = "form-control" })
+                    <div id="validacioncajacreate">
+                        <p id="MensajeErrorDenominacion" style="color:red">@Html.ValidationMessageFor(model => model.cja_Id)</p>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-md-7">
+                @Html.LabelFor(model => model.mocja_FechaApertura, "Fecha Apertura", new { @class = "control-label col-md-2" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.mocja_FechaApertura, "{0:MM/dd/yyyy}", new { htmlAttributes = new { @maxlength = "10", @class = "form-control", @readonly = "readonly" } })
+                    <p style="color:red">@Html.ValidationMessageFor(model => model.mocja_FechaApertura)</p>
+                </div>
+            </div>
 
-                            <div hidden class="form-group col-md-5">
-                                @Html.LabelFor(model => model.mocja_UsuarioApertura, "Usuario Apertura", new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.mocja_UsuarioApertura, new { htmlAttributes = new { @class = "form-control" , @readonly = "readonly", @Value = ViewBag.mocja_UsuarioApertura } })
-                                   <p id="MensajeErrorDenominacion" style="color:red"> @Html.ValidationMessageFor(model => model.mocja_UsuarioApertura)</p>
-                                </div>
-                            </div>
-                             
-                            <div class="form-group col-md-7">
-                                <label class="control-label col-md-2">Monto Inicial</label>
-                                <div class="col-md-7">
-                                    <input type="text" class="form-control " id="Monto" readonly>
-                                </div>
-                            </div>
+            <div class="form-group col-md-5">
+                <label class="control-label col-md-2">Usuario Apertura</label>
+                <div class="col-md-10">
+                    <input class="form-control" readonly value="@ViewBag.UsuarioApertura" />
+                    <p id="MensajeErrorDenominacion" style="color:red"> @Html.ValidationMessageFor(model => model.mocja_UsuarioApertura)</p>
+                </div>
+            </div>
+
+            <div class="form-group col-md-5" hidden>
+                <label class="control-label col-md-2">Sucursal</label>
+                <div class="col-md-10">
+                    <input class="form-control" id="suc_Id" readonly value="@ViewBag.suc_Id" />
+                </div>
+            </div>
 
 
 
-                            @*<div class="form-horizontal">
-                                <div class="form-group col-md-5">
-                                    <label class="control-label col-md-2">Monto Inicial</label>
-                                    <div class="col-md-10">
-                                        <input type="text" class="form-control " id="MontoInicial" readonly>
-                                    </div>
-                                </div>
-                            </div>*@
+            <div hidden class="form-group col-md-5">
+                @Html.LabelFor(model => model.mocja_UsuarioApertura, "Usuario Apertura", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.mocja_UsuarioApertura, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @Value = ViewBag.mocja_UsuarioApertura } })
+                    <p id="MensajeErrorDenominacion" style="color:red"> @Html.ValidationMessageFor(model => model.mocja_UsuarioApertura)</p>
+                </div>
+            </div>
 
-                            
-                        </div>
+            <div class="form-group col-md-7">
+                <label class="control-label col-md-2">Monto Inicial</label>
+                <div class="col-md-7">
+                    <input type="text" class="form-control " id="Monto" readonly>
+                </div>
+            </div>
 
+
+            <div class="form-group col-md-5">
+                @Html.LabelFor(model => model.usu_Id, "Cajero", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("usu_Id", null, "Seleccione Cajero", new { @class = "form-control" })
+                    <p id="MensajeErrorUsuario" style="color:red">@Html.ValidationMessageFor(model => model.usu_Id)</p>
+                </div>
+            </div>
+        </div>
+
+
+                   
                         <div class="form-group">
                             <div class="col-md-12">
                                 @Html.Partial("_CreateAperturaDetalle", new tbSolicitudEfectivo())
@@ -110,7 +117,7 @@
                                     <div class="ibox-content">
                                         <div class="form-group">
                                             <div class="col-md-12 text-center">
-                                                <input type="submit" value="Guardar" class="btn btn-primary"  id="guardar"/>
+                                                <input type="submit" value="Guardar" class="btn btn-primary"  id="guardar" />                                                   
                                                 @Html.ActionLink("Cancelar", "IndexApertura", null, new { @class = "btn btn-white" })
                                             </div>
                                         </div>
@@ -124,17 +131,18 @@
 
                 </div>
             </div>
-        </div>guardar
+        </div>
     </div>
 </div>
 
 
 
 
-
+<script src="~/Scripts/jquery-3.3.1.js"></script>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+   
     <script src="~/Scripts/app/Apertura.js"></script>
     <script src="~/Scripts/app/Datepicker.js"></script>
     <script src="~/Scripts/app/AperturaDetalle.js"></script>

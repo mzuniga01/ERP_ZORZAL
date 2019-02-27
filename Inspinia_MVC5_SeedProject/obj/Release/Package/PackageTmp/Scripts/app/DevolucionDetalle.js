@@ -17,26 +17,26 @@ $('#AgregarDetalleDevolucion').click(function () {
         $('#MessageError').text('');
         $('#ErrorDescripcion').text('');
         $('#ErrorFecha').text('');
-        $('#validationComentariosCreate').after('<ul id="ErrorProductoDescripcionCreate" class="validation-summary-errors text-danger">Campo Descripìon Requerido</ul>');
+        $('#validationDescripcionCreate').after('<ul id="validationDescripcionCreate" class="validation-summary-errors text-danger">Campo Descripción Producto Requerido</ul>');
     }
      else if ($('#devd_CantidadProducto').val() == '') {
                 $('#MessageError').text('');
                 $('#ErrorDescripcion').text('');
                 $('#ErrorFecha').text('');
-                $('#validationCantidadCreate').after('<ul id="ErrorDescripcionCreate" class="validation-summary-errors text-danger">Campo Descripción Requerido</ul>');
+                $('#validationCantidadCreate').after('<ul id="validationCantidadCreate" class="validation-summary-errors text-danger">Campo Cantidad Requerido</ul>');
 
      }
      else if ($('#devd_Descripcion').val() == '') {
          $('#MessageError').text('');
          $('#ErrorDescripcion').text('');
          $('#ErrorFecha').text('');
-         $('#validationComentariosCreate').after('<ul id="ErrorProductoComentarioCreate" class="validation-summary-errors text-danger">Campo Descripìon Requerido</ul>');
+         $('#validationComentariosCreate').after('<ul id="ErrorProductoComentarioCreate" class="validation-summary-errors text-danger">Campo Observaciones Requerido</ul>');
      }
      else if ($('#devd_Monto').val() == '') {
          $('#MessageError').text('');
          $('#ErrorDescripcion').text('');
          $('#ErrorFecha').text('');
-         $('#validationComentariosCreate').after('<ul id="ErrorProductoComentarioCreate" class="validation-summary-errors text-danger">Campo Descripìon Requerido</ul>');
+         $('#ErrorMontoCreate').after('<ul id="ErrorMontoCreate" class="validation-summary-errors text-danger">Campo Monto Requerido</ul>');
      }
     else {
         contador = contador + 1;
@@ -48,7 +48,6 @@ $('#AgregarDetalleDevolucion').click(function () {
         copiar += "<td id = 'devd_Monto'>" + $('#devd_Monto').val() + "</td>";
         copiar += "<td>" + '<button id="removeDevolucionDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
         copiar += "</tr>";
-        //console.log('CodTipoCasoExito', $('#CodTipoCasoExito option:selected').text());
         $('#tbDetalleDevolucion').append(copiar);
 
 
@@ -114,37 +113,3 @@ $(document).on("click", "#tbDetalleDevolucion tbody tr td button#removeDevolucio
     }); 
     });
 
-
-//function GetDevolucionDetalle11() {
-//    var CasosExito = {
-//        CodInstructor: $('#prod_Codigo').val(),
-//        CodTipoCasoExito: $('#CodTipoCasoExitoCreate').val(),
-//        Descripcion: $('#DescripcionCreate').val(),
-//        CodInstructorCasoExito: contador,
-//        Fecha: new Date($('#fechaCreate').val()),
-//        //Fecha: $('#fechaCreate').val(),
-//    };
-//    return CasosExito;
-//}
-
-//copiar = "<tr data-id=" + contador + ">";       
-//copiar += "<td>" + $('#CodTipoCasoExitoCreate option:selected').text() + "</td>";      
-//copiar += "<td hidden id='CodTipoCasoExitoCreate'>" + $('#CodTipoCasoExitoCreate option:selected').val() + "</td>";       
-//copiar += "<td id = 'fechaCreate'>" + $('#fechaCreate').val() + "</td>";         
-//copiar += "<td id = 'DescripcionCreate'>" + $('#DescripcionCreate').val() + "</td>";         
-//copiar += "<td>" + '<button id="removeCasoExito" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";        
-//copiar += "</tr>";       
-//$('#tblCasosExito').append(copiar);
-
-
-//function GetDevolucionDetalle122() {
-//    var CasosExito = {
-//        CodInstructor: $('#CodInstructor').val(),
-//        CodTipoCasoExito: $('#CodTipoCasoExitoCreate').val(),
-//        Descripcion: $('#DescripcionCreate').val(),
-//        CodInstructorCasoExito: contador,
-//        Fecha: new Date($('#fechaCreate').val()),
-//        //Fecha: $('#fechaCreate').val(),
-//    };
-//    return CasosExito;
-//}

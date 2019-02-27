@@ -9,14 +9,14 @@
                         <div class="form-group">
                             <label class="col-md-1 required">Codigo Barra</label>
                             <div class="col-md-3">
-                                <input id="prod_CodigoBarras" type="text" class="form-control" />
+                                <input id="prod_CodigoBarras" type="text" class="form-control" onKeyPress = "return soloNumeros(event)" />
                             </div>
                             <div class="col-md-1">
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarProducto"><span class="glyphicon glyphicon-search"></span></button>
                             </div>
                             @Html.LabelFor(model => model.tbProducto.prod_Descripcion, new { @class = "control-label col-md-1" })
                             <div class="col-md-5">
-                                @Html.EditorFor(model => model.tbProducto.prod_Descripcion, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly" } })
+                                @Html.EditorFor(model => model.tbProducto.prod_Descripcion, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly", @onkeypress = "return validar(event)" } })
                                 <div id="validationDescripcionProductoCreate">
                                     @Html.ValidationMessageFor(model => model.tbProducto.prod_Descripcion)
                                 </div>
@@ -30,7 +30,7 @@
 
                             @Html.LabelFor(model => model.prod_Codigo, new { @class = "control-label required col-md-1" })
                             <div class="col-md-3">
-                                @Html.EditorFor(model => model.prod_Codigo, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control" } })
+                                @Html.EditorFor(model => model.prod_Codigo, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", onkeypress = "return validar(event)", @readonly = "readonly" } })
                                 <div id="validationCodigoProductoCreate">
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.prod_Codigo)</p>
                                 </div>                               
@@ -49,7 +49,7 @@
                                 </div>
                             </div>
                             <div class="col-md-1">
-                                <button type="button" class="btn btn-primary btn-sm" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#AutorizarDescuentoDetalle">Descuento</button>
+                                <button type="button" class="btn btn-primary btn-sm" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#AutorizarDescuentoModal">Descuento</button>
                             </div>                           
                         </div>
                         <div class="form-group">
@@ -95,6 +95,9 @@
         </div>
     </div>
 </div>
+<div class="alert alert-success text-center text-uppercase" id="alerta" style="display:none;">...Por favor ingrese productos a la factura...</div>
+
+
 <table id="tblDetalleFactura" class="table table-striped table-bordered table-hover dataTables-example">
     <thead>
         <tr>
@@ -156,30 +159,41 @@
     <p style="color:red"></p>
 </div>
 <div>
-    <div class="modal fade" id="AutorizarDescuentoDetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal fade" id="AutorizarDescuentoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="CloseAutorizarDetalle">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="modal-title" id="myModalLabel">Código Autorizado</h4>
+                    <h4 class="modal-title" id="myModalLabel">Porcentaje de Descuento</h4>
                 </div>
                 <div class="modal-body" id="frmAutorizarDescuento">
                     <div class="ibox-content">
                         <div class="form-horizontal">
                             <form method="post">
                                 <div class="form-group">
+                                    <label class="control-label col-md-4">Usuario</label>
+                                    <div class="col-md-6">
+                                        <input id="Username" type="text" name="Username" class="form-control" autocomplete="off" , onkeypress="return correo(event)">
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label class="control-label col-md-4">Contraseña</label>
                                     <div class="col-md-6">
-                                        <input id="passdetalle" name="pass" class="form-control" autocomplete="on">
+                                        <input id="txtPassword" name="PorcentajeDescuento" type="password" class="form-control" autocomplete="on" placeholder="Password">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-4">Porcentaje de Descuento</label>
                                     <div class="col-md-6">
-                                        <input id="PorcentajeDescuentoAuditoria" type="text" class="form-control" />
+                                        <input id="PorcentajeDescuento" type="text" class="form-control" />
                                     </div>
+                                </div>
+                                <div><p id="mensajerror" class="danger"></p></div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-primary btn-sm" type="button" id="Autorizar" onclick="ValidarAutorizacion()">Guardar</button>
+                                    <button type="button" class="btn btn-white btn-sm" data-dismiss="modal" onclick="uncheck3()">Cancelar</button>
                                 </div>
                             </form>
                         </div>

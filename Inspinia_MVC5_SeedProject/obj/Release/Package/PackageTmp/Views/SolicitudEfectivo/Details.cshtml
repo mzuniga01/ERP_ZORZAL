@@ -6,7 +6,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
 <style>
     #montosSolicitado {
         font-family: Tahoma, Verdana, Arial;
@@ -36,9 +35,6 @@
     </div>
 </div>
 
-
-
-
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
@@ -48,15 +44,12 @@
                 </div>
                 <div class="ibox-content">
                     @Html.HiddenFor(model => model.solef_Id)
-
                     <dl class="dl-horizontal">
-
                         <dt>
                             @Html.DisplayNameFor(model => model.solef_Id)
                         </dt>
                         <dd>
                             @Html.DisplayFor(model => model.solef_Id)
-
                         </dd>
                         <dt>
                             @Html.DisplayNameFor(model => model.tbMovimientoCaja.tbCaja.tbSucursal.suc_Descripcion)
@@ -65,46 +58,35 @@
                             @Html.DisplayFor(model => model.tbMovimientoCaja.tbCaja.tbSucursal.suc_Descripcion)
                         </dd>
                         <dt>
-                            @*@Html.DisplayNameFor(model => model.tbMovimientoCaja.tbCaja.cja_Descripcion)*@
                             Caja
                         </dt>
                         <dd>
                             @Html.DisplayFor(model => model.tbMovimientoCaja.tbCaja.cja_Descripcion)
                         </dd>
                         <dt>
-                            @*@Html.DisplayNameFor(model => model.tbMovimientoCaja.mocja_Id)*@
                             Id Apertura
                         </dt>
                         <dd>
                             @Html.DisplayFor(model => model.tbMovimientoCaja.mocja_Id)
                         </dd>
-
-
                         <dt>
-                            @*@Html.DisplayNameFor(model => model.tbMoneda.mnda_Nombre)*@
                             Moneda
                         </dt>
                         <dd>
                             @Html.DisplayFor(model => model.tbMoneda.mnda_Nombre)
                         </dd>
-
                         <dt>
-                            @*@Html.DisplayNameFor(model => model.solef_FechaCrea)*@
                             Fecha de Solicitud
                         </dt>
                         <dd>
                             @Html.DisplayFor(model => model.solef_FechaCrea)
                         </dd>
-
-
                         <dt>
-                            Monto Solictud
+                            Monto Solicitud
                         </dt>
                         <dd>
                             <input type="text" class="input" id="montosSolicitado" readonly size="50">
                         </dd>
-
-
                         <dt>
                             @Html.DisplayNameFor(model => model.solef_FechaEntrega)
                         </dt>
@@ -114,37 +96,16 @@
                         <dt>
                             Monto Entregado
                         </dt>
-
                         <dd>
                             <input type="text" class="input" id="montoEntregado" readonly size="50">
                         </dd>
-
-
                         <dt>
                             @Html.DisplayNameFor(model => model.solef_EsApertura)
                         </dt>
                         <dd>
                             @Html.DisplayFor(model => model.solef_EsApertura)
                         </dd>
-
-
-
-
-
-                        @*<dt>
-                                @Html.DisplayNameFor(model => model.solef_EsAnulada)
-                            </dt>
-
-                            <dd>
-                                @Html.DisplayFor(model => model.solef_EsAnulada)
-                            </dd>*@
-
-
-
-
-
                     </dl>
-
                     @if (Model.solef_FechaEntrega == null)
                     {
                         @Html.ActionLink("Editar", "Edit", new { id = Model.solef_Id }, new { @class = "btn btn-primary" })
@@ -153,24 +114,11 @@
                     {
 
                     }
-
-
-
-                    @*@Html.Partial("_DetailsSolicitudEfectivoDetalle", Model.tbSolicitudEfectivoDetalle)*@
-
-
-                    @*@Html.Partial("_IndexDetails", (List<UDP_Vent_SolicituEfectivo_Detalles_Select>)ViewBag.detalles)*@
-
-
                     <div class="ibox-content">
-
                         <div class="table table-responsive">
                             <table class="table table-bordered" id="TBDetalleSolicitud">
-
                                 <thead>
-
                                     <tr>
-
                                         <th>
                                             Denominación
                                         </th>
@@ -186,22 +134,12 @@
                                         <th>
                                             Monto Entregado
                                         </th>
-
-
                                     </tr>
                                 </thead>
                                 <tbody></tbody>
-
                             </table>
-
                         </div>
                     </div>
-
-
-
-
-
-
                 </div>
             </div>
             <div class="ibox-content">
@@ -229,7 +167,6 @@
                     </tr>
                 </table>
             </div>
-
         </div>
     </div>
 </div>
@@ -238,30 +175,18 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-
     <script>
-
         var MontoSolicitado = 0;
         $("#mitabla tbody tr:nth-child(-n+20)").each(function () {
             MontoSolicitado += parseFloat($(this).children("td:eq(3)").html());
         });
-
         $("#montosSolicitado").val(MontoSolicitado);
-
-        //alert("Mi suma es: " + MontoSolicitado.toFixed(2));
-
-
-
         var MontoEntregado = 0;
         $("#mitabla tbody tr:nth-child(-n+5)").each(function () {
             MontoEntregado += parseFloat($(this).children("td:eq(5)").html());
         });
-
         $("#montoEntregado").val(MontoEntregado);
-
     </script>
-
-
     @* -----------------Ocultar Boton si el valor es mayor a 0------------ *@
     <script>
         function Cantidad() {
@@ -269,16 +194,13 @@
                 document.getElementById("mnda_Id").disabled = false;
             }
         };
-
     </script>
 
-
     <script type="text/javascript">
-
         $(document).ready(function () {
             GetDenominacions()
         });
- function GetDenominacions() {
+        function GetDenominacions() {
             var Solictud = $("#solef_Id").val();
             $.ajax({
                 type: 'GET',
@@ -296,52 +218,40 @@
                             "<td class='sumTotal'>" + item.MontoSolicitado + "</td>" +
                             "<td>" + item.soled_CantidadEntregada + "</td>" +
                             "<td class='MontoEntregado'>" + item.MontoEntregado + "</td>" +
-                            "<td hidden>" + item.deno_Id + "</td>" +
-
-
-                           // '<td>' + item.soled_FechaCrea + '</td>' +
-                              "</tr>";
+                            "<td hidden>" + item.deno_Id + "</td>" +                         
+                            "</tr>";
                         $('#TBDetalleSolicitud tbody').append(rows);
                         //----------------------------------------------------------
-                            var suma = 0;
-                            var data = [];
-                            //Calculo Total solicitado
-                            $("td.sumTotal").each(function () {
-                                data.push(parseFloat($(this).text()));
-                            });
-                            var suma = data.reduce(function (a, b) { return a + b; }, 0)
-                            $("#montosSolicitado").val(suma);
-
-                            console.log(data);
-                            console.log('Monto Solicitado: ' + suma);
+                        var suma = 0;
+                        var data = [];
+                        //Calculo Total solicitado
+                        $("td.sumTotal").each(function () {
+                            data.push(parseFloat($(this).text()));
+                        });
+                        var suma = data.reduce(function (a, b) { return a + b; }, 0)
+                        $("#montosSolicitado").val(suma);
+                        console.log(data);
+                        console.log('Monto Solicitado: ' + suma);
                         //---------------------------------------------
                         //Calcilo total Monto entregado
-                            var sumaentregada = 0;
-                            var datos = [];
+                        var sumaentregada = 0;
+                        var datos = [];
 
-                            $("td.MontoEntregado").each(function () {
-                                datos.push(parseFloat($(this).text()));
-                            });
-                            var sumaentregada = datos.reduce(function (a, b) { return a + b; }, 0)
-                            $("#montoEntregado").val(sumaentregada);
+                        $("td.MontoEntregado").each(function () {
+                            datos.push(parseFloat($(this).text()));
+                        });
+                        var sumaentregada = datos.reduce(function (a, b) { return a + b; }, 0)
+                        $("#montoEntregado").val(sumaentregada);
 
-                            console.log(datos);
-                            console.log('Monto Entregado: ' + sumaentregada);
+                        console.log(datos);
+                        console.log('Monto Entregado: ' + sumaentregada);
                         //-----------------------------------------
-
-
                     });
                 },
                 error: function (data) { alert(data.responseText); }
             });
         };
-
     </script>
-
-
-
-
-
 }
 
 

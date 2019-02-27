@@ -69,13 +69,13 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.suc_Id, new { @class = " required control-label col-md-2" })
                                 <div class="col-md-4">
-                                    <input class="form-control" readonly value="@ViewBag.suc_Descripcion" />
-                                    @Html.EditorFor(model => model.suc_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @type = "hidden" } })
+                                    @Html.EditorFor(model => model.tbCaja.tbSucursal.suc_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    <input class="form-control" readonly value="@ViewBag.suc_Id" id="suc_Id" name="suc_Id" type="hidden" />
                                     <span class="validation-error">@Html.ValidationMessageFor(model => model.suc_Id)</span>
                                 </div>
                                 @Html.LabelFor(model => model.cja_Id, new { @class = "required control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.cja_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.EditorFor(model => model.tbCaja.cja_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     <span class="validation-error">@Html.ValidationMessageFor(model => model.cja_Id)</span>
                                 </div>
                             </div>
@@ -239,7 +239,7 @@
             </div>
             <div class="modal-body">
                 <p>¿Está seguro de anular esta factura?</p>
-                <textarea rows="4" cols="50" placeholder="Ingrese la razon de Anular" id="razonAnular" name="razonAnular"></textarea>
+                <textarea rows="4" cols="50" placeholder="Ingrese la razon de Anular" id="razonAnular" name="razonAnular" onkeypress="return soloLetras(event)"></textarea>
                 <p id="Mensaje" style="color:red"></p>
             </div>
             <div class="modal-footer">

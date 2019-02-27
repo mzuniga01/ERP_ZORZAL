@@ -25,8 +25,6 @@
     </div>
 </div>
 
-
-
 <div class="wrapper wrapper-content">
     <div class="row">
         <div class="col-lg-12">
@@ -41,15 +39,14 @@
                         @Html.AntiForgeryToken()
 
                         <div class="form-horizontal">
-                            @Html.ValidationSummary(true)
-
-
-
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @* --------Mnesaje ------- *@
+                            <div class="alert alert-success text-center text-uppercase" id="alerta" style="display:none;">...No hay ninguna apertura realizada por favor aperture caja...</div>
+                            @* ----------------------- *@
                             <div class="form-group">
                                 @Html.LabelFor(model => sucursal.suc_Descripcion, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => test.suc_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @Value = ViewBag.suc_Descripcion } })
-                                    @*@Html.EditorFor(model => model.tbMovimientoCaja.tbCaja.tbSucursal.suc_Descripcion, new { htmlAttributes = new { @Value = "San Pedro Sula", @class = "form-control", @readonly = "readonly" } })*@
+                                    @Html.EditorFor(model => model.tbMovimientoCaja.tbCaja.tbSucursal.suc_Descripcion, new { htmlAttributes = new { id = "sucursales", @class = "form-control", @readonly = "readonly" } })
                                     @Html.ValidationMessageFor(model => model.tbMovimientoCaja.tbCaja.tbSucursal.suc_Descripcion)
                                 </div>
 
@@ -58,7 +55,6 @@
                                     <input id="cajas" class="form-control" readonly />
                                 </div>
                             </div>
-
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.tbMovimientoCaja.mocja_Id, "Id Apertura", new { @class = "control-label col-md-2" })
@@ -74,9 +70,6 @@
                                         <option value="0">Seleccione la Moneda</option>
                                     </select>
                                     <p id="mone" style="color:red"> @Html.ValidationMessageFor(model => model.mnda_Id)</p>
-                                    @*<div class="validationMonedaCreate">
-                                            @Html.ValidationMessageFor(model => model.mnda_Id, "", new { style = "Color:red" })
-                                        </div>*@
                                 </div>
                             </div>
 
@@ -86,15 +79,11 @@
                                     <input id="total" class="form-control" readonly />
                                 </div>
                             </div>
-                       
-
-
-
 
                             <div class="form-group">
                                 <div class="col-md-12">
                                     @Html.Partial("_ListaDenominaciones", (List<tbDenominacion>)ViewBag.Denominacion)
-                                </div>                               
+                                </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-offset-5 col-md-10">
@@ -113,44 +102,53 @@
 </div>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 
-@*<script src="~/Scripts/app/SolicitudEfectipoDetalless.js"></script>*@
-@*<script src="~/Scripts/app/SolicitudEfectivoDetalles.js"></script>*@
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-
+    <script>
+        $('#mnda_Id').click(function () {
+            valido = document.getElementById('mone');
+            valido.innerText = "";
+            return false;
+        });
+    </script>
 
     @* -------------Caja y id Apertura----------- *@
     <script>
         $(document).ready(function () {
             $.ajax({
                 type: 'GET',
-                url: '/SolicitudEfectivo/GDatosEncabezado',
+                url: '/SolicitudEfectivo/GDatosEncabezados',
                 datatype: 'JSON',
                 data: {},
                 success: function (data) {
-
                     console.log(data);
-
                     $.each(data, function (i, item) {
-
-                        var Caja = item.cja_Descripcion;
                         var idaperura = item.mocja_Id;
+                        var Caja = item.cja_Descripcion;
+                        var sucursal = item.suc_Descripcion;
+                        console.log(sucursal)
 
                         $("#cajas").val(Caja);
                         $("#mocja_Id").val(idaperura);
-
-
+                        $("#sucursales").val(sucursal);
                     });
+                    if (data.length > 0) {
+                        // alert('si')
+                        console.log(data)
+                    }
+                    else {
+                        //alert('no')
+                        console.log(data)
+                        $("#mnda_Id").prop("disabled", true);
+                        $("#guardar").prop("disabled", true);
+                        $('#alerta').show();
+                    }
                 },
                 error: function (data) { alert(data.responseText); }
             });
         });
     </script>
     @* ------------------------------------------ *@
-
-
-
     <script>
         $(document).on("keyup", "#example1 tbody tr td input#cantidad", function () {
             var row = $(this).closest("tr");
@@ -159,33 +157,24 @@
             var montosoli = parseFloat(Cantidad * ValorDenominacion);
             var suma = 0;
             var data = [];
-
             MontoInicial = 0;
-         
+
             $(this).parents("tr").find("td")[3].innerHTML = montosoli;
             if (montosoli != 0) {
                 MontoInicial += montosoli;
-
-               //Calculo Total
-
+                //Calculo Total
                 $("td.sumTotal").each(function () {
                     data.push(parseFloat($(this).text()));
                 });
                 var suma = data.reduce(function (a, b) { return a + b; }, 0);
-
-
                 $("#total").val(suma);
-
                 console.log(data);
                 console.log(suma);
-            //---------------------------------------------
-
-
-
+                //---------------------------------------------
             }
             else {
                 MontoInicial = 0;
-                $("#example1 tbody tr  td label#MontoSolicitado").each(function (index) {              
+                $("#example1 tbody tr  td label#MontoSolicitado").each(function (index) {
                     Monto = $(this).children("td:eq(3)").html();
                     if (Monto != '') {
                         Monto = parseFloat(Monto);
@@ -193,29 +182,21 @@
                     }
                 })
             }
-            
-
-
         });
-
     </script>
-
-
-<script>
-     // campos requerido *
-    jQuery('input,select').each(function () {
-        var req = jQuery(this).attr('data-val-required');
-        if (undefined != req) {
-            var label = jQuery('label[for="' + jQuery(this).attr('id') + '"]');
-            var text = label.text();
-            if (text.length > 0) {
-                label.append('<span style="color:red"> *</span>');
+    <script>
+        // campos requerido *
+        jQuery('input,select').each(function () {
+            var req = jQuery(this).attr('data-val-required');
+            if (undefined != req) {
+                var label = jQuery('label[for="' + jQuery(this).attr('id') + '"]');
+                var text = label.text();
+                if (text.length > 0) {
+                    label.append('<span style="color:red"> *</span>');
+                }
             }
-        }
-    });
-
+        });
     </script>
-
 
     <script type="text/javascript">
         $(document).ready(function () {
@@ -233,7 +214,6 @@
                 },
                 error: function (data) { alert(data.responseText); }
             });
-
             $("#mnda_Id").change(function () {
                 $.ajax({
                     type: 'GET',
@@ -246,15 +226,14 @@
                             var rows = "<tr data-id=" + item.deno_Id + ">" +
                                        "<td hidden>" + item.deno_Id + "</td>" +
                                        "<td>" + item.deno_Descripcion + "</td>" +
-                                        "<td>" + '<input type="text" id="cantidad" name="name" onKeyPress="return soloNumeros(event)" onKeyUp="pierdeFoco(this)" autocomplete="off" class="form-control" ize="3">' + "</td>" +
+                                        "<td>" + '<input type="text" id="cantidad" maxlength="3" name="name" onKeyPress="return soloNumeros(event)" onKeyUp="pierdeFoco(this)" autocomplete="off" class="form-control" ize="3">' + "</td>" +
                                         "<td class='sumTotal'>" + 0 + "</td>" +
-                                         "<td>" +  0 +   "</td>" +
-                                        "<td >" + 0+ "</td>" +
-                                       "<td hidden>" + item.deno_valor + "</td>" +
-
+                                        "<td>" + 0 + "</td>" +
+                                        "<td >" + 0 + "</td>" +
+                                        "<td hidden>" + item.deno_valor + "</td>" +
                                        "</tr>";
                             $('#example1 tbody').append(rows);
-                        });                     
+                        });
                     },
                     error: function (data) { alert(data.responseText); }
                 });
@@ -262,85 +241,63 @@
         });
     </script>
 
-<script>
-    function soloNumeros(e) {
-        var key = window.Event ? e.which : e.keyCode;
-        return ((key >= 48 && key <= 57) || (key == 8))
-    }
+    <script>
+        function soloNumeros(e) {
+            var key = window.Event ? e.which : e.keyCode;
+            return ((key >= 48 && key <= 57) || (key == 8))
+        }
 
-    function pierdeFoco(e) {
-        var valor = e.value.replace(/^0*/, '');
-        e.value = valor;
+        function pierdeFoco(e) {
+            var valor = e.value.replace(/^0*/, '');
+            e.value = valor;
+         }
+    </script>
 
-       
-       
-    }
-
-</script>
-
-    
-   
-
-
-<script>
-    $('#guardar').click(function () {
-               
-         
-
-                var idmovimiento 
-            
-                var Detail = [];
-               
-                var monedas = $('#mnda_Id').val();
-
-                if (monedas <= 0) {
-                    valido = document.getElementById('mone');
-                    valido.innerText = "El Campo Moneda es Requierido";
-                    return false;
-                }
-                else if (monedas > 0) {
-                   
-                
-                    $('#example1 > tbody  > tr').each(function () {
-                        idItem = $(this).data('id');
-                        var soledCantidadSolicitada = $(this).find("td:eq(2)").find("input").val();
-                        if (soledCantidadSolicitada != '' && soledCantidadSolicitada != 0) {
-                            console.log('idItem', idItem);
-                            console.log('soledCantidadSolicitada', soledCantidadSolicitada);
-                            var item = {
-                                deno_Id: idItem,
-                                soled_CantidadSolicitada: parseInt(soledCantidadSolicitada),
-                            }
-                            Detail.push(item);
+    <script>
+        $('#guardar').click(function () {
+            var idmovimiento
+            var Detail = [];
+            var monedas = $('#mnda_Id').val();
+            if (monedas <= 0) {
+                valido = document.getElementById('mone');
+                valido.innerText = "El Campo Moneda es Requerido";
+                return false;
+            }
+            else if (monedas > 0) {
+                $('#example1 > tbody  > tr').each(function () {
+                    idItem = $(this).data('id');
+                    var soledCantidadSolicitada = $(this).find("td:eq(2)").find("input").val();
+                    if (soledCantidadSolicitada != '' && soledCantidadSolicitada != 0) {
+                        console.log('idItem', idItem);
+                        console.log('soledCantidadSolicitada', soledCantidadSolicitada);
+                        var item = {
+                            deno_Id: idItem,
+                            soled_CantidadSolicitada: parseInt(soledCantidadSolicitada),
                         }
-                    });
-                    console.log(Detail);
-                    $.ajax({
-                        url: "/SolicitudEfectivo/InsertDetalleSolicitudDetalle",
-                        method: 'POST',
-                        dataType: "json",
-                        contentType: "application/json; charset=utf-8",
-                        data: JSON.stringify({ procesoData: Detail }),
-                    })
-                    .done(function (data) {
-                        if (data == 'Error') {
-                            alert('No Enviado');
+                        Detail.push(item);
+                    }
+                });
+                console.log(Detail);
+                $.ajax({
+                    url: "/SolicitudEfectivo/InsertDetalleSolicitudDetalle",
+                    method: 'POST',
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify({ procesoData: Detail }),
+                })
+                .done(function (data) {
+                    if (data == 'Error') {
+                        alert('No Enviado');
+                    }
+                    else {
+                        console.log(procesoData);
+                        console.log(cantisoli);
+                    }
 
-                        }
-                        else {
-                            
-                            console.log(procesoData);
-                            console.log(cantisoli);
-                        }
-
-                    });
-                }
+                });
+            }
         });
-</script>
-   
-
-
-
+    </script>
 
 }
 

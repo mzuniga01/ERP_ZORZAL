@@ -6,6 +6,9 @@
     var test = new ERP_GMEDINA.Models.tbCaja();
 }
 
+@{
+    var sucursal = new ERP_GMEDINA.Models.tbSucursal();
+}
 
 
 <div class="row wrapper border-bottom white-bg page-heading">
@@ -19,13 +22,16 @@
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
                     <h5>Listado Caja</h5>
+                    <div class="ibox-tools">
+                        @Html.ActionLink("Registrar Apertura Caja", "CreateApertura", null, new { @class = "btn btn-primary" })
+                    </div>
                 </div>
                 <div class="ibox-content">
                     <div class="form-horizontal">
                     <div class="form-group">
                         <label class="control-label col-md-1">Sucursal</label>
                         <div class="col-md-4">
-                            <input type="text" class="form-control " value="San pedro sula" />
+                            @Html.EditorFor(model => sucursal.suc_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @Value = ViewBag.suc_Descripcion } })
                         </div>
                     </div>
                 </div>

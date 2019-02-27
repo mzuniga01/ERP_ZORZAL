@@ -80,7 +80,7 @@ $("#cred_MontoAprobado").blur(function () {
         // alert('El valor Monto Aprobado no puede ser cero');
         document.getElementById('AceptarAprobacion').disabled = true;
         valido = document.getElementById('AcepSolicitud2');
-        valido.innerText = "El valor Monto Aprobado no puede ser cero";
+        valido.innerText = "El valor Monto Aprobado no puede ser menor o igual a cero";
         $('#cred_MontoAprobado').val(MontoAprobado);
 
         //if (document.getElementById('AceptarAprobacion').disabled = true /*&& MSF > 0*/)
@@ -111,3 +111,165 @@ $("#cred_MontoAprobado").blur(function () {
 function soloNumeros(e) {
     if ((car < '0' || car > '9') && (car < ',' || car > '.')) evt.consume();
 }
+
+
+//validacion campos vacios
+$(document).ready(function () {
+    $("#btnGuardar").click(function () {
+        var monto = $('#cred_MontoSolicitado').val();
+        
+        if (monto == '') {
+            valido = document.getElementById('Monto');
+            valido.innerText = "El campo Monto Solicitado es requerido";
+            return false;
+        }
+        else {
+            valido = document.getElementById('Monto');
+            valido.innerText = "";
+        }
+
+    });
+});
+
+$(document).ready(function () {
+    $("#btnGuardar").click(function () {
+        var dias = $('#cred_DiasSolicitado').val();
+
+       
+
+        if (dias == '') {
+            valido = document.getElementById('Dias');
+            valido.innerText = "El campo Días Solicitados es requerido";
+            return false;
+        }
+        else {
+            valido = document.getElementById('Dias');
+            valido.innerText = "";
+  
+        }
+
+    });
+});
+///////mayores que cerito
+$(document).ready(function () {
+    $("#btnGuardar").click(function () {
+        var monto = $('#cred_MontoSolicitado').val();
+        var montoint = parseInt(monto);
+
+        if (montoint <= 0) {
+            valido = document.getElementById('Monto');
+            valido.innerText = "El campo Monto Solicitado debe de ser Mayor que cero";
+            return false;
+        }
+        else {
+            valido = document.getElementById('Monto');
+            valido.innerText = "";
+        }
+
+    });
+});
+//
+$(document).ready(function () {
+    $("#btnGuardar").click(function () {
+        var monto = $('#cred_DiasSolicitado').val();
+        var montoint = parseInt(monto);
+
+        if (montoint <= 0) {
+            valido = document.getElementById('Dias');
+            valido.innerText = "El campo Dias Solicitados debe de ser Mayor que cero";
+            return false;
+        }
+        else {
+            valido = document.getElementById('Monto');
+            valido.innerText = "";
+        }
+
+    });
+});
+///aprobados
+$(document).ready(function () {
+    $("#AceptarAprobacion").click(function () {
+        var monto = $('#cred_DiasAprobado').val();
+        var montoint = parseInt(monto);
+
+        if (montoint <= 0) {
+            valido = document.getElementById('AcepSolicitud');
+            valido.innerText = "El campo Dias Solicitados debe de ser Mayor que cero";
+            return false;
+        }
+        else {
+            valido = document.getElementById('AcepSolicitud');
+            valido.innerText = "";
+        }
+
+    });
+});
+//dias aprobados
+$(document).ready(function () {
+    $("#AceptarAprobacion").click(function () {
+        var monto = $('#cred_MontoAprobado').val();
+        var montoint = parseInt(monto);
+
+        if (montoint <= 0) {
+            valido = document.getElementById('AcepSolicitud2');
+            valido.innerText = "El campo Monto Solicitado debe de ser Mayor que cero";
+            return false;
+        }
+        else {
+            valido = document.getElementById('AcepSolicitud2');
+            valido.innerText = "";
+        }
+
+    });
+});
+
+function AprobarCredito() {
+    var User = $("#Username1").val();
+    var Password = $("#txtPassword1").val();
+    console.log(User)
+    console.log(Password)
+    $.ajax({
+        url: "/SolicitudCredito/AprobarDescuento",
+        method: "POST",
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({ User: User, Password: Password }),
+    })
+    .done(function (data) {
+        console.log(data)
+        if (data == true) {
+            $('#AprobarSolicitud').modal('show');
+            $('#AutorizarDescuento').modal('hide');
+        }
+        else {
+            valido = document.getElementById('mensajerror');
+            valido.innerText = "Usuario o contraseña incorrectos";
+        }
+    });
+}
+
+
+function DenegarCredito() {
+    var User = $("#Username").val();
+    var Password = $("#txtPassword").val();
+    console.log(User)
+    console.log(Password)
+    $.ajax({
+        url: "/SolicitudCredito/DenegarCredito",
+        method: "POST",
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({ User: User, Password: Password }),
+    })
+    .done(function (data) {
+        console.log(data)
+        if (data == true) {
+            AnularSolictud()
+        }
+        else {
+            valido = document.getElementById('mensajerror1');
+            valido.innerText = "Usuario o contraseña incorrectos";
+        }
+    });
+}
+

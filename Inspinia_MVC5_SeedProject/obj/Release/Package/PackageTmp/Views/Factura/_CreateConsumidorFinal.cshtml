@@ -4,7 +4,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.confi_Nombres, "Nombres", new { @class = "control-label col-md-3" })
         <div class="col-md-6">
-            @Html.EditorFor(model => model.confi_Nombres, new { htmlAttributes = new { @autocomplete = "off", @onkeyup = "format(this)", @style = "text-transform:capitalize;" } })
+            @Html.EditorFor(model => model.confi_Nombres, new { htmlAttributes = new { @autocomplete = "off", @onkeyup = "format(this)", @style = "text-transform:capitalize;", @onkeypress = "return soloLetras(event)" } })
             @Html.ValidationMessageFor(model => model.confi_Nombres)
         </div>
     </div>
@@ -12,7 +12,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.confi_Telefono, "Telefono", new { @class = "control-label col-md-3" })
         <div class="col-md-6">
-            @Html.EditorFor(model => model.confi_Telefono)
+            @Html.EditorFor(model => model.confi_Telefono, new { htmlAttributes = new { @autocomplete = "off", @onkeypress = "return validartel(event)" }})
             @Html.ValidationMessageFor(model => model.confi_Telefono)
         </div>
     </div>
@@ -20,7 +20,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.confi_Correo, "Correo", new { @class = "control-label col-md-3" })
         <div class="col-md-6">
-            @Html.EditorFor(model => model.confi_Correo)
+            @Html.EditorFor(model => model.confi_Correo, new { htmlAttributes = new { @autocomplete = "off", @onkeypress = "return correo(event)" } })
             <p id="emailOK1" style="color:red">@Html.ValidationMessageFor(model => model.confi_Correo)</p>
         </div>
     </div>

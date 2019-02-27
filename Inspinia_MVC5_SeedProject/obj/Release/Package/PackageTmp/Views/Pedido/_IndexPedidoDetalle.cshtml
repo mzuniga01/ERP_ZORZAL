@@ -89,14 +89,14 @@
                             <div class="form-group">
                                 @Html.LabelFor(m => PedDetalle.pedd_Id, new { @class = "control-label col-sm-2" })
                                 <div class="col-sm-10">
-                                    <input type="text" id="pedd_Id_Ped" name="pedd_Id" class="form-control" />
+                                    <input type="text" id="pedd_Id_Ped" name="pedd_Id" class="form-control" readonly/>
                                     @Html.ValidationMessageFor(m => PedDetalle.pedd_Id)
                                 </div>
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(m => PedDetalle.prod_Codigo, new { @class = "control-label col-sm-2" })
                                 <div class="col-sm-10">
-                                    <input type="text" id="prod_Codigo_Ped" name="prod_Codigo" class="form-control" />
+                                    <input type="text" id="prod_Codigo_Ped" name="prod_Codigo" class="form-control" readonly />
                                     @Html.ValidationMessageFor(m => PedDetalle.prod_Codigo)
                                 </div>
                             </div>
@@ -104,8 +104,8 @@
                             <div class="form-group">
                                 @Html.LabelFor(m => PedDetalle.pedd_Cantidad, new { @class = "control-label col-sm-2" })
                                 <div class="col-sm-10">
-                                    <input type="text" id="pedd_Cantidad_Ped" name="pedd_Cantidad" class="form-control" />
-                                    @Html.ValidationMessageFor(m => PedDetalle.pedd_Cantidad)
+                                    <input type="text" id="pedd_Cantidad_Ped" name="pedd_Cantidad" class="form-control" onkeypress = "return validar(event)"/>
+                                    <p id="PCantidad" style="color:red">@Html.ValidationMessageFor(m => PedDetalle.pedd_Cantidad)</p>
                                 </div>
                             </div>
 
@@ -148,4 +148,7 @@
     </div>
 </div>
 
-
+@section Scripts
+{
+<script src="~/Scripts/app/SaveDetallePedido.js"></script>    
+    }

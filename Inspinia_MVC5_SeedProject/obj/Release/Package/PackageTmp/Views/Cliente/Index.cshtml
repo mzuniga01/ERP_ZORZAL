@@ -29,17 +29,17 @@
                             <div class="form-group">
                                 <label class="control-label col-md-2">Identificación</label>
                                 <div class="col-md-4">
-                                    <input type="text" value="@ViewBag.Ident" id="identificacion" autocomplete="off" onkeyup = "format(this)" name="identificacion" class="form-control" />
+                                    <input type="text" value="@ViewBag.Ident" id="identificacion" autocomplete="off" onkeypress = "return validarI(event)"  name="identificacion" class="form-control" />
                                 </div>
                                 <label class="control-label col-md-1">Nombres</label>
                                 <div class="col-md-4">
-                                    <input type="text" value="@ViewBag.Nombres" id="nombre" name="nombre" autocomplete="off" onkeyup = "format(this)" class="form-control" />
+                                    <input type="text" value="@ViewBag.Nombres" id="nombre" name="nombre" autocomplete="off" onkeyup = "format(this)" onkeypress = "return validar(event)" class="form-control" style="text-transform:uppercase"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-2">Teléfono</label>
                                 <div class="col-md-3">
-                                    <input type="text" value="@ViewBag.Tel" id="telefono" name="telefono" Placeholder = "(Codigo Areá) Telefono" autocomplete="off" class="form-control" />
+                                    <input type="text" value="@ViewBag.Tel" id="telefono" name="telefono" Placeholder = "(Codigo Areá) Telefono" onkeypress = "return validartel(event)" autocomplete="off" class="form-control" />
                                 </div>
                                 <div class="">
                                     <button id="search" type="submit" class="btn btn-primary btn-sm">Buscar</button>
@@ -141,6 +141,7 @@
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/DataTableBusquedaGenerica.js"></script>
 <script src="~/Scripts/app/BCliente.js"></script>
+<script src="~/Scripts/app/CaracteresEspeciales.js"></script>
 <script>
     $("#telefono").on("keypress keyup blur", function (event) {
         var Telefono = $(this).val();
@@ -150,6 +151,14 @@
         }
         this.value = this.value.replace(/[a-záéíóúüñ#/=]+/ig, "");
     });
+
+
+    function validartel(e) {
+        tecla = (document.all) ? e.keyCode : e.which;
+        tecla = String.fromCharCode(tecla)
+        return /^[ 0-9\s]*$/i.test(tecla);
+    }
+
     function format(input) {
         $(input).change(function () {
             var str = $(input).val();

@@ -1,13 +1,11 @@
-﻿$(suc_Telefono).on("keypress keyup blur", function (event) {
-    //this.value = this.value.replace(/[^0-9\.]/g,'');
-    $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
-    if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
-        event.preventDefault();
+﻿$("#suc_Telefono").on("keypress keyup blur", function (event) {
+    var Telefono = $(this).val();
+
+    if (Telefono == '') {
+        $(this).val('+');
     }
+    this.value = this.value.replace(/[a-záéíóúüñ#/=]+/ig, "");
 });
-
-
-
 
 $(document).ready(function () {
     $('#Sucursal').DataTable(
@@ -101,21 +99,26 @@ $("#dep_Codigo").change(function () {
 });
 
 
-$('#suc_Correo').blur(function () {
-    campo = event.target;
-    valido = document.getElementById('emailOK');
 
-    var reg = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+$('#suc_Correo').change(function (e) {
+    var emailRegex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    var EmailId = this.value;
+    if (emailRegex.test(EmailId)) {
+        $('#ErrorCorreo').text('');
+        this.style.backgroundColor = "";
+    }
+    else {
 
-    var regOficial = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
-    //Se muestra un texto a modo de ejemplo, luego va a ser un icono
-    if (reg.test(campo.value) && regOficial.test(campo.value)) {
-        valido.innerText = "";
-    } else if (reg.test(campo.value)) {
-        valido.innerText = "";
-
-    } else {
-        valido.innerText = "Direccion de Correo Electronico Incorrecta";
-
+        $('#ErrorCorreo').text('');
+        $('#MessageForCorreo').after('<ul id="ErrorCorreo" class="validation-summary-errors text-danger">Correo Electronico Es Incorrecto </ul>');
+        $("#suc_Correo").focus();
     }
 });
+
+function controlCaracteres(e) {
+
+    tecla = (document.all) ? e.keyCode : e.which;
+    tecla = String.fromCharCode(tecla)
+    return /^[a-zA-ZáéíóúñÁÉÍÓÚÑ1234567890# ,.]+$/.test(tecla);
+
+}

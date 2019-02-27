@@ -5,7 +5,21 @@
     ViewBag.Title = "Registrar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@{
+    string UserName = "";
+    GeneralFunctions Login = new GeneralFunctions();
+    List<tbUsuario> User = Login.getUserInformation();
+    foreach (tbUsuario Usuario in User)
+    {
+        UserName = Usuario.usu_Nombres + " " + Usuario.usu_Apellidos;
+    }
+}
+<style>
+    .AsteriscoRojo:after {
+        content: "*";
+        color: red;
+    }
+</style>
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Nota Crédito</h2>
@@ -37,8 +51,8 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.suc_Id, new { @class = "control-label required col-md-2" })
                                 <div class="col-md-4">
-                                    <input class="form-control" readonly value="@ViewBag.suc_Descripcion" name="suc_Descripcion" id="suc_Descripcion"/>
-                                    <input class="form-control" readonly value="@ViewBag.suc_Id" id="suc_Id" name="suc_Id" type="hidden" />
+                                    <input class="form-control" readonly value="@ViewBag.suc_Descripcion" id="descripcion"/>
+                                    <input class="form-control" value="@ViewBag.suc_Id" id="suc_Id" name="suc_Id" type="hidden" />
                                     <span class="validation-error">  @Html.ValidationMessageFor(model => model.suc_Id)</span>
                                 </div>
                             </div>
@@ -46,24 +60,23 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.cja_Id, new { @class = "control-label required col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.cja_Id, new { htmlAttributes = new { @class = "form-control"@*, @readonly = "readonly"*@ }
-                               })
+                                    @Html.EditorFor(model => model.cja_Id, new { htmlAttributes = new { @class = "form-control"@*, @readonly = "readonly"*@ }})
                                     <span class="validation-error">@Html.ValidationMessageFor(model => model.cja_Id)</span>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.tbDevolucion.tbCaja.cja_Descripcion, "Cajero", new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.tbUsuario.tbEmpleado.emp_Nombres, "Cajero", new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.tbDevolucion.tbCaja.cja_Descripcion)
-                                    @*<p style="color:red"><span class="validation-error"> @Html.ValidationMessageFor(model => model.tbDevolucion.tbCaja.cja_Descripcion)</span></p>*@
+                                    
+                                    <input class="form-control" readonly value="@UserName"/>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.nocre_Codigo, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.nocre_Codigo)
+                                    @Html.EditorFor(model => model.nocre_Codigo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     <p style="color:red"><span class="validation-error"> @Html.ValidationMessageFor(model => model.nocre_Codigo)</span></p>
                                 </div>
                             </div>
@@ -87,7 +100,7 @@
                                 @*<label class="control-label col-md-2" id="labeldev" name="labeldev">Devolución</label>*@
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.dev_Id, new { htmlAttributes = new { @readonly = "readonly" } })
-                                    <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.dev_Id)</span></p>
+                                    <p id="valido" style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.dev_Id)</span></p>
                                 </div>
                                 <div class="col-md-">
                                     <button type="button" id="buscarDev" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarDevolucion"><span class="glyphicon glyphicon-search"></span></button>
@@ -98,7 +111,7 @@
                                 @Html.LabelFor(model => model.tbCliente.clte_Identificacion, "Identificación Cliente", new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.tbCliente.clte_Identificacion, new { htmlAttributes = new { @readonly = "readonly" } })
-                                    <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.tbCliente.clte_Identificacion)</span></p>
+                                    <p id="valido" style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.tbCliente.clte_Identificacion)</span></p>
                                 </div>
 
                                 <div class="col-md-">
@@ -110,24 +123,24 @@
                                 @Html.LabelFor(model => model.tbCliente.clte_Nombres, "Cliente", new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.tbCliente.clte_Nombres, new { htmlAttributes = new { @readonly = "readonly" } })
-                                    <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.tbCliente.clte_Nombres)</span></p>
+                                    <p id="valido" style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.tbCliente.clte_Nombres)</span></p>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.nocre_Monto, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.nocre_Monto, new { htmlAttributes = new { @style = "text-align:right", @type = "number", @min = "0", @step = "0.01", @value = "0", @readonly = "readonly" } })
+                                    @Html.EditorFor(model => model.nocre_Monto, new { htmlAttributes = new { @style = "text-align:right", @type = "number", @min = "0", @step = "0.01", @value = "0", @readonly = "readonly", @onkeypress = "return filterFloat(event,this);" } })
                                     <p id="smsMontoNC" style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.nocre_Monto)</span></p>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.nocre_MotivoEmision, new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.nocre_MotivoEmision, new { @class = "control-label col-md-2 AsteriscoRojo" })
                                 <div class="col-md-4">
-                                    @Html.TextAreaFor(model => model.nocre_MotivoEmision, new { @class = "form-control" })
-                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.nocre_MotivoEmision)</span>
-                                </div>
+                                    @Html.TextAreaFor(model => model.nocre_MotivoEmision, new { @class = "form-control", @onkeypress = "return soloLetras(event)", @onblur = "limpia()" })
+                                    <p id="smsMotivoNC" style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.nocre_MotivoEmision)</span></p>
+</div>
                             </div>
 
                             <div class="form-group">
@@ -155,7 +168,7 @@
                             @*clte_Id NotaCredito fin*@
                             <div class="form-group">
                                 <div class="col-md-12 text-center">
-                                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                                    <input type="submit" value="Guardar" id="guardar" class="btn btn-primary" />
                                     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                                 </div>
                             </div>
@@ -213,7 +226,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="CloseAutorizar">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="modal-title" id="myModalLabel">Autorizar Nota de Crédito</h4>
+                    <h4 class="modal-title" id="myModalLabel">Autoriza Nota de Crédito</h4>
                 </div>
                 <div class="modal-body" id="frmAutorizarDescuento">
                     <div class="ibox-content">
@@ -222,18 +235,19 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-4">Usuario</label>
                                     <div class="col-md-6">
-                                        <input id="Username" type="text" name="Username" class="form-control" placeholder="Usuario">
+                                        <input id="Username" type="text" placeholder="Usuario" name="Username" class="form-control" autocomplete="off" value="" defautlvalue="false"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-4">Contraseña</label>
                                     <div class="col-md-6">
-                                        <input name="txtPassword" class="form-control" type="text" placeholder="Contraseña" />
+                                        <input id="txtPassword" name="txtPassword" class="form-control" type="password" placeholder="Contraseña" value="" defautlvalue="false"/>
                                     </div>
                                 </div>
+                                <div><p id="mensajerror" style="color:red"></p></div>
                                 <div class="modal-footer">
-                                    <button class="btn btn-primary btn-sm" type="button" data-dismiss="modal" onclick="otros();" id="Autorizar">Autorizar</button>
-                                    <button type="button" class="btn btn-white btn-sm" data-dismiss="modal" onclick="devolucionNC();">Cancelar</button>
+                                    <button class="btn btn-primary btn-sm" type="button" id="Autorizar" onclick="AprobarCredito()">Autorizar</button>
+                                    <button type="button" class="btn btn-white btn-sm" data-dismiss="modal" onclick="devolucionNC()">Cancelar</button>
                                 </div>
                             </form>
                         </div>
@@ -299,6 +313,9 @@
 
         function otros() {
             //$('#radioBtn').click(function () {
+            $('#Username').val("");
+            $('#txtPassword').val("");
+            $('#mensajerror').val("");
             $("#radioBtn").prop("checked", true);
             $("#radioBtnDev").prop("checked", false);
             $('#cltesearch').show();
@@ -347,8 +364,148 @@
         });
 
 
+        $('#nocre_MotivoEmision').blur(function () {
+            valido = document.getElementById('smsMotivoNC');
+            var motivoNC = $('#nocre_MotivoEmision').val();
+            if (motivoNC == "") {
+                $('#nocre_MotivoEmision').val('').focus();
+                valido.innerText = "*El campo Motivo Emisión es requerido";
+            } else {
+                valido.innerText = "";
+            }
+        });
         //--------------------mascara-----------------------------
 
     </script>
 
+<script>
+function soloLetras(e) {
+    key = e.keyCode || e.which;
+    tecla = String.fromCharCode(key).toLowerCase();
+    letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
+    especiales = [8, 37, 39, 46];
+
+    tecla_especial = false
+    for(var i in especiales) {
+        if(key == especiales[i]) {
+            tecla_especial = true;
+            break;
+        }
+    }
+
+    if(letras.indexOf(tecla) == -1 && !tecla_especial)
+        return false;
+}
+
+function limpia() {
+    var val = document.getElementById("#nocre_MotivoEmision").value;
+    var tam = val.length;
+    for(i = 0; i < tam; i++) {
+        if(!isNaN(val[i]))
+            document.getElementById("#nocre_MotivoEmision").value = '';
+    }
+}
+
+    //---------------------No limpiar textos---------------------------
+$('#guardar').click(function () {
+    var sucursal = $('#descripcion').val();
+    var codigoNC = $('#nocre_Codigo').val();
+    var IDdev = $('#dev_Id').val();
+    var identificacion = $('#tbCliente_clte_Identificacion').val();
+    var cliente = $('#tbCliente_clte_Nombres').val();
+    var monto = $('#nocre_Monto').val();
+    var motivo = $('#nocre_MotivoEmision').val();
+    var fechaEmision = $('#nocre_FechaEmision').val();
+    var fechaDevolucion = $('#tbDevolucion_dev_Fecha').val();
+
+    if (sucursal == "") {
+        valido = document.getElementById('sucursal');
+        valido.innerText = "El Campo Sucursal es Requierido";
+        return false;
+    } else if (codigoNC == ""){
+        valido = document.getElementById('codigoNC');
+        valido.innerText = "El Campo Sucursal es Requierido";
+        return false;
+    } else if (identificacion == "") {
+        valido = document.getElementById('identificacion');
+        valido.innerText = "El Campo Identificación es Requierido";
+        return false;
+    } else if (cliente == "") {
+        valido = document.getElementById('cliente');
+        valido.innerText = "El Campo Cliente es Requierido";
+        return false;
+    } else if (IDdev <= 0 || IDdev == "") {
+        valido = document.getElementById('IDdev');
+        valido.innerText = "El Campo Devolución es Requierido, porfavor seleccione una devolución";
+        return false;
+    }else
+    {
+        return true;
+    }
+});
+
+function filterFloat(evt, input) {
+    // Backspace = 8, Enter = 13, ‘0′ = 48, ‘9′ = 57, ‘.’ = 46, ‘-’ = 43
+    var key = window.Event ? evt.which : evt.keyCode;
+    var chark = String.fromCharCode(key);
+    var tempValue = input.value + chark;
+    if (key >= 48 && key <= 57) {
+        if (filter(tempValue) === false) {
+            return false;
+        } else {
+            return true;
+        }
+    } else {
+        if (key == 8 || key == 13 || key == 0) {
+            return true;
+        } else if (key == 46) {
+            if (filter(tempValue) === false) {
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            return false;
+        }
+    }
+}
+function filter(__val__) {
+    var preg = /^([0-9]+\.?[0-9]{0,2})$/;
+    if (preg.test(__val__) === true) {
+        return true;
+    } else {
+        return false;
+    }
+
+}
+
+
+    //Autorizar Nota de Credito
+function AprobarCredito() {
+    var User = $("#Username").val();
+    var Password = $("#txtPassword").val();
+    console.log(User)
+    console.log(Password)
+    $.ajax({
+        url: "/NotaCredito/AprobarDescuento",
+        method: "POST",
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({ User: User, Password: Password }),
+    })
+    .done(function (data) {
+        console.log(data)
+        if (data == true) {
+            $('#ModalAutorizarNC').modal('hide');
+            otros();
+            valido.innerText = "";
+            //$('#AutorizarDescuentoModal').modal('hide');
+        }
+        else {
+            valido = document.getElementById('mensajerror');
+            valido.innerText = "Usuario o contraseña incorrectos";
+        }
+    });
+}
+</script>
 }

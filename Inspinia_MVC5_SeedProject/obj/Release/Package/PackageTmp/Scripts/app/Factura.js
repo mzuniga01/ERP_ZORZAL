@@ -32,13 +32,30 @@ $("#consumidorFinal").change(function () {
     }
 });
 
-
-
 $("#fact_NombresTE").change(function () {
     var str = $("#fact_NombresTE").val();
     var res = str.toUpperCase();
     $("#fact_NombresTE").val(res);
 });
+
+function soloLetras(e) {
+    key = e.keyCode || e.which;
+    tecla = String.fromCharCode(key).toLowerCase();
+    letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
+    especiales = "8-37-39-46";
+
+    tecla_especial = false
+    for (var i in especiales) {
+        if (key == especiales[i]) {
+            tecla_especial = true;
+            break;
+        }
+    }
+
+    if (letras.indexOf(tecla) == -1 && !tecla_especial) {
+        return false;
+    }
+}
 
 function format(input) {
     $(input).change(function () {
@@ -71,6 +88,7 @@ $("#confi_Telefono").on("keypress keyup blur", function (event) {
     }
     this.value = this.value.replace(/[a-záéíóúüñ#/=]+/ig, "");
 });
+
 
 
 $("#confi_Correo").blur(function () {
@@ -171,7 +189,6 @@ function GetTerceraEdad() {
     return TerceraEdad
 };
 
-
 $('#AgregarConsumidorFinal').click(function () {
 
     var DatoConsumidorFinal = GetConsumidorFinal();
@@ -201,6 +218,60 @@ function GetConsumidorFinal() {
     }
     return ConsumidorFinal
 };
+
+function ValidarAutorizacion() {
+    var User = $("#Username").val();
+    var Password = $("#txtPassword").val();
+    $.ajax({
+        url: "/Factura/AutorizarDescuento",
+        method: "POST",
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({ User: User, Password: Password }),
+    })
+    .done(function (data) {
+        console.log()
+        if (data==true) {
+           
+               var Porcentaje = $("#PorcentajeDescuento").val();
+               $("#factd_PorcentajeDescuento").val(Porcentaje);
+               $('#AutorizarDescuentoModal').modal('hide');
+        }
+        else
+        {
+            valido = document.getElementById('mensajerror');
+            valido.innerText = "Usuario o contraseña incorrectos";
+        }
+    });
+}
+
+
+
+function ValidarAutorizacion1() {
+    var User = $("#Username1").val();
+    var Password = $("#txtPassword1").val();
+    $.ajax({
+        url: "/Factura/AutorizarDescuentoDetalle",
+        method: "POST",
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({ User: User, Password: Password }),
+    })
+    .done(function (data) {
+        console.log()
+        if (data == true) {
+
+            var Porcentaje = $("#PorcentajeDescuento1").val();
+            $("#factd_PorcentajeDescuento").val(Porcentaje);
+            $('#AutorizarDescuentoModal1').modal('hide');
+        }
+        else {
+            valido = document.getElementById('mensajerror');
+            valido.innerText = "Usuario o contraseña incorrectos";
+        }
+    });
+}
+
 
 
 

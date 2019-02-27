@@ -41,18 +41,58 @@ $('#AgregarDetalleFactura').click(function () {
         $('#validationImpuestoProductoCreate').after('<ul id="ErrorImpuestoCreate" class="validation-summary-errors text-danger">Campo Impuesto requerido</ul>');
     }
     else {
-        contador = contador + 1;
-        copiar = "<tr data-id=" + contador + ">";
-        copiar += "<td id = 'prod_CodigoCreate'>" + CodigoProducto + "</td>";
-        copiar += "<td id = 'tbProducto_prod_DescripcionCreate'>" + DescripcionProducto + "</td>";
-        copiar += "<td id = 'factd_CantidadCreate' align='right'>" + CantidadProducto + "</td>";
-        copiar += "<td id = 'Precio_UnitarioCreate' align='right'>" + PrecioUnitario + "</td>";
-        copiar += "<td id = 'ImpuestoCreate' align='right'>" + Impuesto + "</td>";
-        copiar += "<td id = 'factd_MontoDescuentoCreate' align='right'>" + MontoDescuento + "</td>";
-        copiar += "<td id = 'TotalProductoCreate' align='right'>" + Total + "</td>";
-        copiar += "<td>" + '<button id="removeFacturaDetalle" class="btn btn-danger glyphicon glyphicon-trash btn-xs eliminar" type="button"></button>' + "</td>";
-        copiar += "</tr>";
-        $('#tblDetalleFactura').append(copiar);
+        //ajax para el controlador
+        var FacturaDetalle = GetFacturaDetalle();
+        $.ajax({
+            url: "/Factura/SaveFacturaDetalle",
+            method: "POST",
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ FacturaDetalleC: FacturaDetalle, data_producto: CodigoProducto })
+        })
+            .done(function(datos) {
+                if (datos == CodigoProducto) {
+                //alert('Es Igual.')
+                console.log('Repetido');
+                var cantfisica_nueva = $('#factd_Cantidad').val();
+                $("#tblDetalleFactura td").each(function () {
+                    var prueba = $(this).text()
+                    if (prueba == CodigoProducto) {
+                        var idcontador = $(this).closest('tr').data('id');
+                        var cantfisica_anterior = $(this).closest("tr").find("td:eq(2)").text();
+                        var sumacantidades = parseInt(cantfisica_nueva) + parseInt(cantfisica_anterior);
+                        console.log(sumacantidades);
+                        $(this).closest('tr').remove();
+                        copiar = "<tr data-id=" + idcontador + ">";
+                        copiar += "<td id = 'prod_CodigoCreate'>" + CodigoProducto + "</td>";
+                        copiar += "<td id = 'tbProducto_prod_DescripcionCreate'>" + DescripcionProducto + "</td>";
+                        copiar += "<td id = 'factd_CantidadCreate' align='right'>" + sumacantidades + "</td>";
+                        copiar += "<td id = 'Precio_UnitarioCreate' align='right'>" + PrecioUnitario + "</td>";
+                        copiar += "<td id = 'ImpuestoCreate' align='right'>" + Impuesto + "</td>";
+                        copiar += "<td id = 'factd_MontoDescuentoCreate' align='right'>" + MontoDescuento + "</td>";
+                        copiar += "<td id = 'TotalProductoCreate' align='right'>" + Total + "</td>";
+                        copiar += "<td>" + '<button id="removeFacturaDetalle" class="btn btn-danger glyphicon glyphicon-trash btn-xs eliminar" type="button"></button>' + "</td>";
+                        copiar += "</tr>";
+                        $('#tblDetalleFactura').append(copiar);
+                    }
+                });
+            }else {
+                //alert('NO ES IGUAL')
+                //Rellenar la tabla 
+                contador = contador + 1;
+                copiar = "<tr data-id=" + contador + ">";
+                copiar += "<td id = 'prod_CodigoCreate'>" + CodigoProducto + "</td>";
+                copiar += "<td id = 'tbProducto_prod_DescripcionCreate'>" + DescripcionProducto + "</td>";
+                copiar += "<td id = 'factd_CantidadCreate' align='right'>" + CantidadProducto + "</td>";
+                copiar += "<td id = 'Precio_UnitarioCreate' align='right'>" + PrecioUnitario + "</td>";
+                copiar += "<td id = 'ImpuestoCreate' align='right'>" + Impuesto + "</td>";
+                copiar += "<td id = 'factd_MontoDescuentoCreate' align='right'>" + MontoDescuento + "</td>";
+                copiar += "<td id = 'TotalProductoCreate' align='right'>" + Total + "</td>";
+                copiar += "<td>" + '<button id="removeFacturaDetalle" class="btn btn-danger glyphicon glyphicon-trash btn-xs eliminar" type="button"></button>' + "</td>";
+                copiar += "</tr>";
+                $('#tblDetalleFactura').append(copiar);
+            }    
+
         //Descuento 
         var Descuento = $('#factd_MontoDescuento').val();
         var TotalDescuento = parseFloat(document.getElementById("TotalDescuento").innerHTML);
@@ -101,16 +141,7 @@ $('#AgregarDetalleFactura').click(function () {
         else {
             var TotalEncabezado = document.getElementById("total").innerHTML = parseFloat(subtotal) + parseFloat(totalProducto) + parseFloat(impuestotal) + parseFloat(impuestos)- parseFloat(TotalDescuento) - parseFloat(Descuento);
             $("#TotalProductoEncabezado").val(TotalEncabezado);
-        }
-                  
-
-        var FacturaDetalle = GetFacturaDetalle();
-        $.ajax({
-            url: "/Factura/SaveFacturaDetalle",
-            method: "POST",
-            dataType: 'json',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ FacturaDetalleC: FacturaDetalle }),
+        }        
         })
         .done(function (data) {
             $('#ErrorCodigoProductoCreate').text('');
@@ -128,9 +159,9 @@ $('#AgregarDetalleFactura').click(function () {
             $('#factd_PrecioUnitario').val('');
             $('#factd_Impuesto').val('');
             $('#TotalProducto').val('');
-        });
+        })
     }
-});
+})
 
 function GetFacturaDetalle() {
 
@@ -189,7 +220,6 @@ $(document).on("click", "#tblDetalleFactura tbody tr td button#removeFacturaDeta
     });
 });
 
-//Validacion de numeros//
 function soloNumeros(e) {
     var key = window.Event ? e.which : e.keyCode;
     return ((key >= 48 && key <= 57) || (key == 8))
@@ -207,16 +237,8 @@ function ponerdecimales(numero) {
     return numero;
 }
 
-//$('#AgregarDetalleFactura').click(function () {
-//    console.log(total);
-//    if (document.getElementById("total").innerHTML == '') {
-//        totalProducto = $('#TotalProducto').val();
-//        document.getElementById("total").innerHTML = parseFloat(totalProducto);
-//    }
-//    else {
-//        document.getElementById("total").innerHTML = parseFloat(subtotal) + parseFloat(totalProducto);
-//    }
-
-//})
-
-
+function validar(e) {
+    tecla = (document.all) ? e.keyCode : e.which;
+    tecla = String.fromCharCode(tecla)
+    return /^[a-z0-9A-Z\-]+$/.test(tecla);
+}

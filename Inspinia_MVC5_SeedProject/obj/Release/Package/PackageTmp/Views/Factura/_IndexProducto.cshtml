@@ -36,23 +36,30 @@
                         <tbody id="ProductoTbody">
                             @foreach (var item in Model)
                             {
-                                <tr data-barra="@item.prod_CodigoBarras" data-id="@item.prod_Codigo" data-desc="@item.prod_Descripcion" data-isv="@item.tbProductoSubcategoria.pscat_ISV">
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.prod_Descripcion)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.prod_Marca)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.prod_Modelo)
-                                    </td>
-                                    <td hidden>
-                                        @Html.DisplayFor(modelItem => item.prod_CodigoBarras)
-                                    </td>
-                                    <td>
-                                        <button id="SelectProduct" type="button" class="btn btn-primary btn-xs">Agregar</button>
-                                    </td>
-                                </tr>
+                                if (!item.prod_EsActivo)
+                                {
+                                }
+                                else
+                                {
+                                    <tr data-barra="@item.prod_CodigoBarras" data-id="@item.prod_Codigo" data-desc="@item.prod_Descripcion" data-isv="@item.tbProductoSubcategoria.pscat_ISV">
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.prod_Descripcion)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.prod_Marca)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.prod_Modelo)
+                                        </td>
+                                        <td hidden>
+                                            @Html.DisplayFor(modelItem => item.prod_CodigoBarras)
+                                        </td>
+                                        <td>
+                                            <button id="SelectProduct" type="button" class="btn btn-primary btn-xs">Agregar</button>
+                                        </td>
+                                    </tr>
+                                }
+
                             }
                         </tbody>
                     </table>

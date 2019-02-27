@@ -83,7 +83,22 @@ function GetPedidoDetalle() {
 }
 
 
+$("#pedd_Cantidad")[0].maxLength = 10; 
+$("#pedd_Cantidad_Ped")[0].maxLength = 10;
 
+
+
+
+$('#pedd_Cantidad_Ped').blur(function () {
+    valido = document.getElementById('PCantidad');
+    var motivoNC = $('#pedd_Cantidad_Ped').val();
+    if (motivoNC == "") {
+        $('#pedd_Cantidad_Ped').val('').focus();
+        valido.innerText = "*El campo Cantidad es requerido";
+    } else {
+        valido.innerText = "";
+    }
+});
 
 $(document).on("click", "#tblPedidoDetalle tbody tr td button#QuitarDetalle", function () {
     $(this).closest('tr').remove();
@@ -171,7 +186,6 @@ function EditPedidoDetalles(pedd_Id) {
     })
 }
 
-
 $("#BtnsubmitMunicipio").click(function () {
     var pedd_Ids = $('#pedd_Id').val();
     var data = $("#SubmitForm").serializeArray();
@@ -181,47 +195,12 @@ $("#BtnsubmitMunicipio").click(function () {
         data: data,
         success: function (result) {
             if (result == '-1')
-                $("#MsjError").text("No se pudo actualizar el registro, contacte al administrador");
-            else
-                window.location.href = '/Pedido/Edit/' + pedd_Ids;
+                $("#MsjError").text("No se pudo actualizar el registro, contacte al administrador");                
         }
     });
 
     location.reload(true);
 })
-
-$("#BtnsubmitMunicipio").click(function () {
-    var pedd_Ids = $('#pedd_Id').val();
-    var data = $("#SubmitForm").serializeArray();
-    $.ajax({
-        type: "Post",
-        url: "/Pedido/UpdatePedidoDetalle",
-        data: data,
-        success: function (result) {
-            if (result == '-1')
-                $("#MsjError").text("No se pudo actualizar el registro, contacte al administrador");
-            else
-                window.location.href = '/Pedido/EditPedido/' + pedd_Ids;
-        }
-    });
-
-    location.reload(true);
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 $(document).ready(function () {
 

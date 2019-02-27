@@ -13,7 +13,6 @@ $(document).ready(function () {
             $rows.show().filter(function () {
             }).hide();
         }
-
     })
 });
 

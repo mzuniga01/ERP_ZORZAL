@@ -28,7 +28,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-2">Cliente</label>
                             <div class="col-md-4">
-                                <input type="text" value="@ViewBag.cliente" id="cliente" autocomplete="off" name="cliente" class="form-control" />
+                                <input type="text" value="@ViewBag.cliente" id="cliente" autocomplete="off" name="cliente" class="form-control" onkeypress = "return validar(event)" style="text-transform:uppercase" />
                             </div>
                             <label class="control-label col-md-1">Fecha</label>
                             <div class="col-md-4">
@@ -38,8 +38,8 @@
                         <div class="form-group">
                             <label class="control-label col-md-2">Caja</label>
                             <div class="col-md-4">
-                                <input type="text" id="caja" value="@ViewBag.caja" name="caja" autocomplete="off" class="form-control" />
-                            </div>
+                                <input type="text" id="caja" value="@ViewBag.caja" name="caja" autocomplete="off" class="form-control" onkeyup = "format(this)" onkeypress = "return validar(event)" style="text-transform:uppercase" />
+                             </div>
                             <div class="">
                                 <button id="search" type="submit" class="btn btn-primary btn-sm">Buscar</button>
                             </div>
@@ -74,6 +74,9 @@
 
                             @foreach (var item in Model)
                             {
+                                var sucursal = ViewBag.suc_Id;
+
+
                                 if (item.fact_EsAnulada)
                                 {
                                     item.esfac_Descripcion = "Anulada";
@@ -102,7 +105,7 @@
                                         <td>
                                             @Html.ActionLink("Detalle", "Details", new { id = item.fact_Id }, new { @class = "btn btn-primary btn-xs" })
                                             @Html.ActionLink("Editar", "Edit", new { id = item.fact_Id }, new { @class = "btn btn-primary btn-xs" })
-                                            @Html.ActionLink("Imprimir", "ExportReport", new { id = item.fact_Id }, new { @class = "btn btn-primary btn-xs" })
+                                            @Html.ActionLink("Imprimir", "ExportReport", new { id = item.fact_Id }, new { @class = "btn btn-primary btn-xs", target = "_blank" })
                                         </td>
                                     }
                                     else
@@ -110,16 +113,16 @@
                                         <td>
                                             @Html.ActionLink("Detalle", "Details", new { id = item.fact_Id }, new { @class = "btn btn-primary btn-xs" })
 
-                                            <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="No se puede Editar, esta Anulado">
+                                            <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="No se puede Editar, Está Anulado">
                                                 <button class="btn btn-white btn-xs" style="pointer-events: none;" type="button" >Editar</button>
                                             </span>
-                                            <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="No se puede Editar, esta Anulado">
+                                            <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="No se puede Imprimir, factura anulada"> 
                                                 <button class="btn btn-primary btn-xs" style="pointer-events: none;" type="button" >Imprimir</button>
                                             </span>
                                         </td>
                                     }
                                 </tr>
-
+                                
                             }
                         </tbody>
                     </table>
@@ -152,6 +155,7 @@
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/Datepicker.js"></script>
+<script src="~/Scripts/app/CaracteresEspeciales.js"></script>
 <script>
     $(document).ready(function () {
         $('#DataTable1').DataTable(
@@ -163,7 +167,8 @@
                     "sNext": "Siguiente",
                     "sPrevious": "Anterior",
                 },
-                "sEmptyTable": "No hay registros",
+                "sZeroRecords": "No se encontraron resultados",
+                "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
                 "sInfoEmpty": "Mostrando 0 de 0 Entradas",
                 "sSearch": "Buscar",
                 "sLengthMenu": "Mostrar _MENU_ registros por página",
@@ -171,6 +176,7 @@
             }
         });
     });
+
 </script>
 
 
