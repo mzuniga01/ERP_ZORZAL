@@ -9961,7 +9961,7 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
           <Parameter Name="mocja_Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SDP_Vent_tbCuponDescuentoSelectGet" ReturnType="Collection(ERP_ZORZALModel.SDP_Vent_tbCuponDescuentoSelectGet_Result)">
-            <Parameter Name="cdto_ID" Mode="In" Type="Int32" />
+          <Parameter Name="cdto_ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbPago_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPago_Insert_Result)">
             <Parameter Name="fact_Id" Mode="In" Type="Int64" />

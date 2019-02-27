@@ -45,9 +45,9 @@
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
-    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
-    <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -217,6 +217,11 @@
     <Compile Include="Controllers\SucursalController.cs" />
     <Compile Include="Controllers\TipoIdentificacionController.cs" />
     <Compile Include="Controllers\TipoPagoController.cs" />
+    <Compile Include="Dataset\ArqueoCaja.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ArqueoCaja.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Dataset\DSCuponDescuento.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -842,9 +847,6 @@
     <Compile Include="Models\UDP_Vent_tbFactura_ObtenerCai_CodigoFactura_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\UDP_Vent_tbFactura_RolSupervisorCaja_Result.cs">
-      <DependentUpon>ModelERP.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\UDP_Vent_tbFactura_Update_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -878,9 +880,6 @@
     <Compile Include="Models\UDP_Vent_tbMovimientoCaja_Imprimir_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\UDP_Vent_tbMovimientoCaja_Imprimir_Result1.cs">
-      <DependentUpon>ModelERP.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\UDP_Vent_tbMovimientoCaja_Insert_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -903,6 +902,9 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Vent_tbNotaCredito_Imprimir_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Vent_tbNotaCredito_Imprimir_Result1.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Vent_tbNotaCredito_Insert_Result.cs">
@@ -981,9 +983,6 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Vent_tbSolicitudCredito_Insert_Result.cs">
-      <DependentUpon>ModelERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\UDP_Vent_tbSolicitudCredito_RolGerenteCreditosCobranza_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Vent_tbSolicitudCredito_Update_Result.cs">
@@ -1093,6 +1092,12 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\ArqueoCaja.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ArqueoCaja.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\Factura.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1140,6 +1145,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SolicitudEfectivo.rpt</DependentUpon>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportViewer\PuntoEmision.aspx.cs">
+      <DependentUpon>PuntoEmision.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReportViewer\PuntoEmision.aspx.designer.cs">
+      <DependentUpon>PuntoEmision.aspx</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -1379,6 +1391,7 @@
       <DependentUpon>ModelERP.edmx</DependentUpon>
       <LastGenOutput>ModelERP.cs</LastGenOutput>
     </Content>
+    <Content Include="ReportViewer\PuntoEmision.aspx" />
     <Content Include="Scripts\app\AceptarSolicitudCre.js" />
     <Content Include="Scripts\app\Activo.js" />
     <Content Include="Scripts\app\ActivoExoneracion.js" />
@@ -1525,6 +1538,17 @@
     </Content>
     <Content Include="Dataset\DSCuponDescuento.xsc">
       <DependentUpon>DSCuponDescuento.xsd</DependentUpon>
+    </Content>
+    <Content Include="Dataset\ArqueoCaja.xsc">
+      <DependentUpon>ArqueoCaja.xsd</DependentUpon>
+    </Content>
+    <None Include="Dataset\ArqueoCaja.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ArqueoCaja.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Dataset\ArqueoCaja.xss">
+      <DependentUpon>ArqueoCaja.xsd</DependentUpon>
     </Content>
     <None Include="Dataset\DSCuponDescuento.xsd">
       <Generator>MSDataSetGenerator</Generator>
@@ -1910,10 +1934,10 @@
     <Content Include="Views\Factura\_CreateConsumidorFinal.cshtml" />
     <Content Include="Views\Login\SinRol.cshtml" />
     <Content Include="Views\Pedido\_CreateDetallePedido.cshtml" />
+    <Content Include="Views\Pago\_IndexCuponDescuento.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="ReportViewer\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -1923,6 +1947,10 @@
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Reports\ArqueoCaja.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ArqueoCaja.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Factura.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Factura.cs</LastGenOutput>

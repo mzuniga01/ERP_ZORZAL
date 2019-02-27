@@ -2747,24 +2747,6 @@
       <Parameter Name="pago_Id" Mode="In" Type="Int32" />
       <Parameter Name="pago_EstaImpreso" Mode="In" Type="Boolean" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbPago_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPago_Insert_Result)">
-      <Parameter Name="fact_Id" Mode="In" Type="Int64" />
-      <Parameter Name="tpa_Id" Mode="In" Type="Int16" />
-      <Parameter Name="pago_FechaElaboracion" Mode="In" Type="DateTime" />
-      <Parameter Name="pago_SaldoAnterior" Mode="In" Type="Decimal" />
-      <Parameter Name="pago_TotalPago" Mode="In" Type="Decimal" />
-      <Parameter Name="pago_TotalCambio" Mode="In" Type="Decimal" />
-      <Parameter Name="pago_Emisor" Mode="In" Type="String" />
-      <Parameter Name="bcta_Id" Mode="In" Type="Int16" />
-      <Parameter Name="pago_FechaVencimiento" Mode="In" Type="DateTime" />
-      <Parameter Name="pago_Titular" Mode="In" Type="String" />
-      <Parameter Name="nocre_Codigo_cdto_Id" Mode="In" Type="String" />
-      <Parameter Name="pago_EstaAnulado" Mode="In" Type="Boolean" />
-      <Parameter Name="pago_RazonAnulado" Mode="In" Type="String" />
-      <Parameter Name="pago_EstaImpreso" Mode="In" Type="Boolean" />
-      <Parameter Name="pago_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="pago_FechaCrea" Mode="In" Type="DateTime" />
-    </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbPago_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPago_Update_Result)">
       <Parameter Name="pago_Id" Mode="In" Type="Int32" />
       <Parameter Name="fact_Id" Mode="In" Type="Int64" />
@@ -2885,6 +2867,27 @@
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbMovimientoCaja_Imprimir" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_Imprimir_Result)">
       <Parameter Name="mocja_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SDP_Vent_tbCuponDescuentoSelectGet" ReturnType="Collection(ERP_ZORZALModel.SDP_Vent_tbCuponDescuentoSelectGet_Result)">
+      <Parameter Name="cdto_ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbPago_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPago_Insert_Result)">
+      <Parameter Name="fact_Id" Mode="In" Type="Int64" />
+      <Parameter Name="tpa_Id" Mode="In" Type="Int16" />
+      <Parameter Name="pago_FechaElaboracion" Mode="In" Type="DateTime" />
+      <Parameter Name="pago_SaldoAnterior" Mode="In" Type="Decimal" />
+      <Parameter Name="pago_TotalPago" Mode="In" Type="Decimal" />
+      <Parameter Name="pago_TotalCambio" Mode="In" Type="Decimal" />
+      <Parameter Name="pago_Emisor" Mode="In" Type="String" />
+      <Parameter Name="bcta_Id" Mode="In" Type="Int16" />
+      <Parameter Name="pago_FechaVencimiento" Mode="In" Type="DateTime" />
+      <Parameter Name="pago_Titular" Mode="In" Type="String" />
+      <Parameter Name="nocre_Codigo_cdto_Id" Mode="In" Type="String" />
+      <Parameter Name="pago_EstaAnulado" Mode="In" Type="Boolean" />
+      <Parameter Name="pago_RazonAnulado" Mode="In" Type="String" />
+      <Parameter Name="pago_EstaImpreso" Mode="In" Type="Boolean" />
+      <Parameter Name="pago_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="pago_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
@@ -3107,9 +3110,6 @@
     <Property Type="Decimal" Name="CANTIDAD" Nullable="false" Precision="10" Scale="2" />
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbListaPrecio_Estado_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbPago_Insert_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbPago_Update_Result">
@@ -8421,5 +8421,17 @@
     <Property Type="String" Name="Usuario_Apertura" Nullable="true" MaxLength="301" />
     <Property Type="String" Name="Usuario_Arquea" Nullable="true" MaxLength="301" />
     <Property Type="String" Name="Usuario_Aceptacion" Nullable="true" MaxLength="301" />
+  </ComplexType>
+  <ComplexType Name="SDP_Vent_tbCuponDescuentoSelectGet_Result">
+    <Property Type="Int32" Name="cdto_ID" Nullable="false" />
+    <Property Type="DateTime" Name="cdto_FechaVencimiento" Nullable="false" />
+    <Property Type="Decimal" Name="cdto_PorcentajeDescuento" Nullable="true" Precision="5" Scale="2" />
+    <Property Type="Decimal" Name="cdto_MontoDescuento" Nullable="true" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="cdto_MaximoMontoDescuento" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="cdto_CantidadCompraMinima" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Boolean" Name="cdto_Redimido" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbPago_Insert_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
 </Schema>
