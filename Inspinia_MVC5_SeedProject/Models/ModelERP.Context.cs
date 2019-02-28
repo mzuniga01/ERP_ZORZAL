@@ -6316,11 +6316,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbCuponDescuento_Redimido_Result>("UDP_Vent_tbCuponDescuento_Redimido", cdto_IDParameter, cdto_RedimidoParameter);
         }
     
-        public virtual ObjectResult<UDP_Vent_tbCuponDescuentoSelect_Result> UDP_Vent_tbCuponDescuentoSelect()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbCuponDescuentoSelect_Result>("UDP_Vent_tbCuponDescuentoSelect");
-        }
-    
         public virtual ObjectResult<UDP_Vent_tbNotaCredito_Redimido_Result> UDP_Vent_tbNotaCredito_Redimido(Nullable<short> nocre_Id, Nullable<bool> nocre_Redimido)
         {
             var nocre_IdParameter = nocre_Id.HasValue ?
@@ -6856,6 +6851,20 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("suc_FechaModifica", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbSucursal_Update_Result>("UDP_Vent_tbSucursal_Update", suc_IdParameter, mun_CodigoParameter, bod_IdParameter, pemi_IdParameter, suc_DescripcionParameter, suc_CorreoParameter, suc_DireccionParameter, suc_TelefonoParameter, suc_UsuarioCreaParameter, suc_FechaCreaParameter, suc_UsuarioModificaParameter, suc_FechaModificaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbNotaCredito_Select_Result> UDP_Vent_tbNotaCredito_Select(Nullable<int> dev_Id)
+        {
+            var dev_IdParameter = dev_Id.HasValue ?
+                new ObjectParameter("dev_Id", dev_Id) :
+                new ObjectParameter("dev_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbNotaCredito_Select_Result>("UDP_Vent_tbNotaCredito_Select", dev_IdParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbCuponDescuentoSelect_Result> UDP_Vent_tbCuponDescuentoSelect()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbCuponDescuentoSelect_Result>("UDP_Vent_tbCuponDescuentoSelect");
         }
     }
 }

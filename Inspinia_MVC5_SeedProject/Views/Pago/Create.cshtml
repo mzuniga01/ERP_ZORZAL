@@ -104,7 +104,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.pago_TotalPago, "Monto Pagar", new { @class = "control-label col-md-2" })
             <div class="col-md-2">
-                @Html.EditorFor(model => model.pago_TotalPago, String.Empty, new { htmlAttributes = new { @class = "form-control", @onkeyup = "format(this)", @autocomplete = "off", @style = "text-transform:capitalize;", onkeypress = "return validar(event)" } })
+                @Html.EditorFor(model => model.pago_TotalPago, String.Empty, new { htmlAttributes = new { @class = "form-control"} })
                 @Html.ValidationMessageFor(model => model.pago_TotalPago, "", new { @style = "color:red", @id = "msgMontoPagar" })
             </div>
 
@@ -135,7 +135,7 @@
         @*<div id="TCD" name="TCD">*@
         <div class="form-group">
             <div id="Efectivo">
-                @Html.Label("Total Efectivo", new { @class = "control-label col-md-3" })
+                @Html.Label("Total Efectivo", new { @class = "control-label col-md-2" })
                 <div class="col-md-2">
                     
                         @Html.Editor("Efectivo", String.Empty, new { htmlAttributes = new { @class = "form-control", @id = "efectivo", @value = "number", @onkeyup = "format(this)", @autocomplete = "off" } })
@@ -152,6 +152,13 @@
         </div>
 
             <div class="form-group">
+                <div id="bcta_Id" class="">
+                    @Html.LabelFor(model => model.bcta_Id, "Cuenta Banco", new { @class = "control-label col-md-2" })
+                    <div class="col-md-3">
+                        @Html.DropDownList("bcta_Id", null, "Seleccionar Cuenta Banco", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.bcta_Id)
+                    </div>
+                </div>
                 <div  id="pago_Titular" class="">
                     @Html.LabelFor(model => model.pago_Titular, new { @class = "control-label col-md-2" })
                     <div class="col-md-3">
@@ -159,13 +166,7 @@
                         @Html.ValidationMessageFor(model => model.pago_Titular)
                     </div>
                 </div>
-                 <div id="bcta_Id"class="">
-                        @Html.LabelFor(model => model.bcta_Id, "Cuenta Banco", new { @class = "control-label col-md-2" })
-                        <div class="col-md-3">
-                            @Html.DropDownList("bcta_Id", null, "Seleccionar Cuenta Banco", new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.bcta_Id)
-                        </div>
-                    </div>
+             
                 <div id="MontoDesc">
                     @Html.Label("Monto Descuento", new { @class = "control-label col-md-2" })
                     <div class="col-md-2">
@@ -221,9 +222,9 @@
 
         <div class="form-group">
             <div class="col-md-4">
-            @Html.Editor("MontoMax","",new {  @id = "montomax"} )
-                @Html.Editor("CantMin", "", new { @id = "cantmin" })
-                @Html.Editor("Redimido", "", new { @id = "redimido" })
+                <input type="hidden" id="montomax" name="montomax" value="false" />
+                <input type="hidden" id="cantmin" name="cantmin" value="false" />
+                <input type="hidden" id="redimido" name="redimido" value="false" />
                
             </div>
         </div>
@@ -346,7 +347,7 @@
 <script src="~/Scripts/app/PagoClienteFacturas.js"></script>
 <script src="~/Scripts/app/PagoTransacciones.js"></script>
 <script src="~/Scripts/app/PagoCampoNumerico.js"></script>
-@*<script src="~/Scripts/app/DataTable.js"></script>*@
+<script src="~/Scripts/app/DataTable.js"></script>
 <script>
     $(document).ready(function () {
         x = document.getElementById("Factura").disabled = true;

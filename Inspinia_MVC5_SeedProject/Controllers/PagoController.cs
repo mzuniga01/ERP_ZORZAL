@@ -256,7 +256,8 @@ namespace ERP_GMEDINA.Controllers
                                 ViewBag.Cliente = db.tbCliente.ToList();
                                 ViewBag.Factura = db.tbFactura.ToList();
                                 ViewBag.FacturaPago = db.V_Vent_FacturaPago.ToList();
-                               // ViewBag.NotaCredito = db.UDP_Vent_tbNotaCreditoSelect().ToList();
+                                ViewBag.CuponDescuento = db.UDP_Vent_tbCuponDescuentoSelect().ToList();
+                                // ViewBag.NotaCredito = db.UDP_Vent_tbNotaCreditoSelect().ToList();
                                 ModelState.AddModelError("", "Error al agregar el registro " + Ex.Message.ToString());
                                 return View(tbPago);
 
@@ -272,6 +273,7 @@ namespace ERP_GMEDINA.Controllers
                         ViewBag.tpa_Id = new SelectList(db.tbTipoPago, "tpa_Id", "tpa_Descripcion", tbPago.tpa_Id);
                         ViewBag.Factura = db.tbFactura.ToList();
                         ViewBag.Cliente = db.tbCliente.ToList();
+                        ViewBag.CuponDescuento = db.UDP_Vent_tbCuponDescuentoSelect().ToList();
                         ViewBag.FacturaPago = db.V_Vent_FacturaPago.ToList();
                         return View(tbPago);
                     }
@@ -339,9 +341,11 @@ namespace ERP_GMEDINA.Controllers
                         ViewBag.bcta_Id = new SelectList(db.tbCuentasBanco, "bcta_Id", "bcta_Numero", tbPago.bcta_Id);
                         ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo", tbPago.fact_Id);
                         ViewBag.tpa_Id = new SelectList(db.tbTipoPago, "tpa_Id", "tpa_Descripcion", tbPago.tpa_Id);
+
                         ViewBag.Cliente = db.tbCliente.ToList();
                         ViewBag.Factura = db.tbFactura.ToList();
                         ViewBag.FacturaPago = db.V_Vent_FacturaPago.ToList();
+                        ViewBag.CuponDescuento = db.UDP_Vent_tbCuponDescuentoSelect().ToList();
                         return View(tbPago);
                     }
                     else
@@ -413,6 +417,7 @@ namespace ERP_GMEDINA.Controllers
                         ViewBag.Cliente = db.tbCliente.ToList();
                         ViewBag.Factura = db.tbFactura.ToList();
                         ViewBag.FacturaPago = db.V_Vent_FacturaPago.ToList();
+                        ViewBag.CuponDescuento = db.UDP_Vent_tbCuponDescuentoSelect().ToList();
                         return View(tbPago);
                     }
                     else

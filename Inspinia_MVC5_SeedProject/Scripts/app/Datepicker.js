@@ -189,13 +189,19 @@
     //Grupo1
 
 
-
-
+    //Fecha de realizacion de pago
     $("#FechaPago").datepicker({
         dateFormat: 'mm-dd-yy',
         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-        dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá']
-    }).datepicker("setDate", new Date());
+        dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+        prevText: 'Ant',
+        nextText: 'Sig',
+        changeMonth: true,
+        changeYear: true,
+    }).datepicker('setDate', new Date()).datepicker("destroy");
+
+
+
 
     $("#fechaarqueo").datepicker({
         dateFormat: 'mm-dd-yy',

@@ -5541,6 +5541,9 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' no tien
     <Parameter Name="nocre_Id" Type="smallint" Mode="In" />
     <Parameter Name="nocre_Redimido" Type="bit" Mode="In" />
   </Function>
+  <Function Name="UDP_Vent_tbNotaCredito_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="dev_Id" Type="int" Mode="In" />
+  </Function>
   <Function Name="UDP_Vent_tbNotaCredito_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="nocre_Id" Type="smallint" Mode="In" />
     <Parameter Name="nocre_Codigo" Type="varchar" Mode="In" />

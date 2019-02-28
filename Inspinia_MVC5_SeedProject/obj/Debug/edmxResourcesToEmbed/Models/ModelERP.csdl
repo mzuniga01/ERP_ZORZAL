@@ -1730,7 +1730,6 @@
       <Parameter Name="cdto_ID" Mode="In" Type="Int32" />
       <Parameter Name="cdto_Redimido" Mode="In" Type="Boolean" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbCuponDescuentoSelect" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbCuponDescuentoSelect_Result)" />
     <FunctionImport Name="UDP_Vent_tbNotaCredito_Redimido" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbNotaCredito_Redimido_Result)">
       <Parameter Name="nocre_Id" Mode="In" Type="Int16" />
       <Parameter Name="nocre_Redimido" Mode="In" Type="Boolean" />
@@ -2865,6 +2864,10 @@
       <Parameter Name="suc_UsuarioModifica" Mode="In" Type="Int32" />
       <Parameter Name="suc_FechaModifica" Mode="In" Type="DateTime" />
     </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbNotaCredito_Select" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbNotaCredito_Select_Result)">
+      <Parameter Name="dev_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbCuponDescuentoSelect" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbCuponDescuentoSelect_Result)" />
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -3451,15 +3454,6 @@
   <ComplexType Name="UDP_Vent_tbListadoPrecioDetalle_Update_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
-  <ComplexType Name="UDP_Vent_tbCuponDescuentoSelect_Result">
-    <Property Type="Int32" Name="cdto_ID" Nullable="false" />
-    <Property Type="DateTime" Name="cdto_FechaVencimiento" Nullable="false" />
-    <Property Type="Decimal" Name="cdto_PorcentajeDescuento" Nullable="true" Precision="5" Scale="2" />
-    <Property Type="Decimal" Name="cdto_MontoDescuento" Nullable="true" Precision="10" Scale="2" />
-    <Property Type="Decimal" Name="cdto_MaximoMontoDescuento" Nullable="false" Precision="10" Scale="2" />
-    <Property Type="Decimal" Name="cdto_CantidadCompraMinima" Nullable="false" Precision="10" Scale="2" />
-    <Property Type="Boolean" Name="cdto_Redimido" Nullable="false" />
-  </ComplexType>
   <ComplexType Name="UDP_Vent_tbPago_Anulado_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
@@ -3772,15 +3766,6 @@
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbTipoPago_Insert_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbCuponDescuentoSelect_Result1">
-    <Property Type="Int32" Name="cdto_ID" Nullable="false" />
-    <Property Type="DateTime" Name="cdto_FechaVencimiento" Nullable="false" />
-    <Property Type="Decimal" Name="cdto_PorcentajeDescuento" Nullable="true" Precision="5" Scale="2" />
-    <Property Type="Decimal" Name="cdto_MontoDescuento" Nullable="true" Precision="10" Scale="2" />
-    <Property Type="Decimal" Name="cdto_MaximoMontoDescuento" Nullable="false" Precision="10" Scale="2" />
-    <Property Type="Decimal" Name="cdto_CantidadCompraMinima" Nullable="false" Precision="10" Scale="2" />
-    <Property Type="Boolean" Name="cdto_Redimido" Nullable="false" />
   </ComplexType>
   <ComplexType Name="UDP_Vent_vFacturaPago_Result">
     <Property Type="Int64" Name="fact_Id" Nullable="false" />
@@ -8443,5 +8428,19 @@
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbSucursal_Update_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbNotaCredito_Select_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="Decimal" Name="MONTO" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="DateTime" Name="dev_Fecha" Nullable="false" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbCuponDescuentoSelect_Result">
+    <Property Type="Int32" Name="cdto_ID" Nullable="false" />
+    <Property Type="DateTime" Name="cdto_FechaVencimiento" Nullable="false" />
+    <Property Type="Decimal" Name="cdto_PorcentajeDescuento" Nullable="true" Precision="5" Scale="2" />
+    <Property Type="Decimal" Name="cdto_MontoDescuento" Nullable="true" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="cdto_MaximoMontoDescuento" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="cdto_CantidadCompraMinima" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Boolean" Name="cdto_Redimido" Nullable="false" />
   </ComplexType>
 </Schema>

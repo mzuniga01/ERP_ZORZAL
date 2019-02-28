@@ -14,13 +14,13 @@ $(function () {
         var pagado = $("#TotalPagado").val();
         var montofactura = $("#MontoFactura").val();
 
-       
+
         var monto = (parseFloat(montofactura));
 
         result = 0.00;
 
         if (totalpagar == '') {
-           
+
             $("#pago_SaldoAnterior").val(saldoAnterior);
             if (isNaN($("#TotalPagado").val(pagado))) {
                 $("#TotalPagado").val(0.00);
@@ -31,7 +31,7 @@ $(function () {
             $('#pago_TotalPago').val('').focus();
             valido.innerText = "el campo Monto Pagar no deber ir vacio";
         }
-        else if (totalpagar > saldoAnterior) {
+        else if (parseFloat(totalpagar) > parseFloat(saldoAnterior)) {
 
 
 
@@ -44,11 +44,11 @@ $(function () {
 
                 $("#TotalPagado").val(pagado - totalpagar);
             }
-                $('#pago_TotalPago').val('').focus();
+            $('#pago_TotalPago').val('').focus();
             valido.innerText = "El monto pago no debe superar el saldo o el monto de la factura";
 
         }
-        
+             
 
         else {
             var saldoActualizado = (parseFloat(saldoAnterior) - parseFloat(totalpagar));
@@ -57,10 +57,10 @@ $(function () {
             $("#TotalPagado").val(pagoActual);
             valido.innerText = "";
         }
-       
-     
-    
-   
+
+
+
+
     });
 });
 
@@ -72,24 +72,22 @@ $(function () {
         var cambio = $("#cambio").val();
         var totalpagar = $("#pago_TotalPago").val();
 
-        
+
         result = 0;
 
-        if (totalpagar == '' || totalpagar == 0) {
+        if (totalpagar == '' || parseFloat(totalpagar) == 0) {
             $('#efectivo').val('').focus();
             valido.innerText = "El monto efectivo no debe ir vacio";
-          
-           
+
+
         }
-        else if(efectivo > totalpagar)
-        {
+        else if (parseFloat(efectivo) > parseFloat(totalpagar)) {
             var cambioefectivo = (parseFloat(efectivo) - parseFloat(totalpagar));
             $("#efectivo").val(efectivo);
             $("#cambio").val(cambioefectivo);
             valido.innerText = "";
         }
-        else 
-        {
+        else {
             $("#cambio").val(result);
             $('#efectivo').val('').focus();
             valido.innerText = "El Campo Monto Efectivo no debe ser menor a Moto Pagar";
@@ -109,7 +107,7 @@ $(function () {
         var FechaVencimiento = $("#pago_FechaVencimiento").val();
         var codigo = $("#nocre_Codigo_cdto_Id").val();
         var hoy = new Date();
-         console.log(hoy);
+        console.log(hoy);
         var MontoMaximo = $("#montomax").val();
         var CantidadMinimma = $("#cantmin").val();
         var Redimido = $("#redimido").val();
@@ -125,35 +123,35 @@ $(function () {
                 valido.innerText = "";
             }
             else {
-                var CalculoMontoConPorcent = (parseFloat(montofactura)*(parseFloat(PorcentDescuento)/100));
+                var CalculoMontoConPorcent = (parseFloat(montofactura) * (parseFloat(PorcentDescuento) / 100));
                 //var saldo = (parseFloat(montofactura) - parseFloat(CalculoMontoConPorcent));
                 if (CalculoMontoConPorcent <= parseFloat(MontoMaximo)) {
                     $("#pago_TotalPago").val(parseFloat(CalculoMontoConPorcent));
                     valido.innerText = "";
                 }
-                else{
+                else {
                     $("#MontoDesc").val('');
                     $("#descuento").val('');
                     $("#pago_FechaVencimiento").val('');
                     $("#nocre_Codigo_cdto_Id").val('').focus();
                     valido.innerText = "Monto de descuento excede el monto establecido,  con otro cupón.";
                 }
-                  
-                }
+
+            }
         }
         else {
-           $("#MontoDesc").val('');
+            $("#MontoDesc").val('');
             $("#descuento").val('');
             $("#pago_FechaVencimiento").val('');
             $("#nocre_Codigo_cdto_Id").val('').focus();
             valido.innerText = "Cupón vencido, intente con otro.";
         }
-          
-            
 
 
-        
-       
+
+
+
+
 
     });
 });

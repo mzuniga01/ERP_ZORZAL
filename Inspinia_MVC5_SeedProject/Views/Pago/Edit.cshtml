@@ -101,7 +101,7 @@
     
 
         <div class="form-group">
-            @Html.LabelFor(model => model.pago_TotalPago, "Monto Pago",new { @class = "control-label col-md-3" })
+            @Html.LabelFor(model => model.pago_TotalPago, "Monto Pago",new { @class = "control-label col-md-2" })
             <div class="col-md-2">
                 @Html.EditorFor(model => model.pago_TotalPago, String.Empty, new { htmlAttributes = new { @class = "form-control",  @onkeyup = "format(this)", @autocomplete = "off" } })
                 @Html.ValidationMessageFor(model => model.pago_TotalPago, "", new { @style = "color:red" })
@@ -132,10 +132,11 @@
 
         <div class="form-group">
             <div id="Efectivo">
-                @Html.Label("Total Efectivo", new { @class = "control-label col-md-3" })
+                @Html.Label("Total Efectivo", new { @class = "control-label col-md-2" })
                 <div class="col-md-2">
+
                     @Html.Editor("Efectivo", String.Empty, new { htmlAttributes = new { @class = "form-control", @id = "efectivo", @value = "number", @onkeyup = "format(this)", @autocomplete = "off" } })
-                    @Html.ValidationMessage("", new { @style = "color:red"  , @id="mEfectivo"})
+                    @Html.ValidationMessage("", new { @style = "color:red", @id = "smspsfectivo" })
                 </div>
             </div>
             <div id="pago_TotalCambio">
@@ -148,13 +149,6 @@
         </div>
 
         <div class="form-group">
-            <div id="pago_Titular" class="">
-                @Html.LabelFor(model => model.pago_Titular, new { @class = "control-label col-md-2" })
-                <div class="col-md-3">
-                    @Html.EditorFor(model => model.pago_Titular)
-                    @Html.ValidationMessageFor(model => model.pago_Titular)
-                </div>
-            </div>
             <div id="bcta_Id" class="">
                 @Html.LabelFor(model => model.bcta_Id, "Cuenta Banco", new { @class = "control-label col-md-2" })
                 <div class="col-md-3">
@@ -162,17 +156,25 @@
                     @Html.ValidationMessageFor(model => model.bcta_Id)
                 </div>
             </div>
+            <div id="pago_Titular" class="">
+                @Html.LabelFor(model => model.pago_Titular, new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.pago_Titular)
+                    @Html.ValidationMessageFor(model => model.pago_Titular)
+                </div>
+            </div>
+          
             <div id="MontoDesc">
                 @Html.Label("Monto Descuento", new { @class = "control-label col-md-2" })
                 <div class="col-md-2">
-                    @Html.Editor("MontoDesc", String.Empty, new { htmlAttributes = new { @class = "form-control", @id = "MontoDesc", @value = "number", @onkeyup = "format(this)", @autocomplete = "off" } })
+                    @Html.Editor("MontoDescuento", "", new { @class = "form-control", @id = "MontoDesc" })
                     @Html.ValidationMessage("", new { @style = "color:red" })
                 </div>
             </div>
             <div id="Descuento">
                 @Html.Label("% Descuento", new { @class = "control-label col-md-3" })
                 <div class="col-md-2">
-                    @Html.Editor("Descuento", String.Empty, new { htmlAttributes = new { @class = "form-control", @id = "descuento", @value = "number", @onkeyup = "format(this)", @autocomplete = "off" } })
+                    @Html.Editor("Descuento", "", new { @class = "form-control", @id = "descuento" })
                     @Html.ValidationMessage("", new { @style = "color:red" })
                 </div>
             </div>
@@ -195,19 +197,36 @@
                 </div>
             </div>
             <div id="nocre_Codigo_cdto_Id" class="form-group">
-                @Html.LabelFor(model => model.nocre_Codigo_cdto_Id, "Código/ID ", new { @class = "control-label col-md-2" })
-                <div class="col-md-3">
+                @Html.Label("Código/ID ", new { @class = "control-label col-md-2" })
+                <div class="col-md-2">
                     @Html.EditorFor(model => model.nocre_Codigo_cdto_Id)
                     @Html.ValidationMessageFor(model => model.nocre_Codigo_cdto_Id)
                 </div>
+                <div class="col-md-1" id="mNotaCredito">
+                    <button type="button" id="" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarNotaCredito"><span class="glyphicon glyphicon-search"></span></button>
+                </div>
+                <div class="col-md-1" id="mCuponDesc">
+
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarCuponDescuento" title="Seleccione un Cupón" data-placement="bottom"><span class="glyphicon glyphicon-search"></span></button>
+
+                </div>
+
             </div>
+
 
 
         </div>
       
 
       
+        <div class="form-group">
+            <div class="col-md-4">
+                <input type="hidden" id="SaldoAntesPago" name="SaldoAntesPago" value="false" />
+                <input type="hidden" id="cantmin" name="cantmin" value="false" />
+                <input type="hidden" id="redimido" name="redimido" value="false" />
 
+            </div>
+        </div>
       
 
         <div class="form-group">
@@ -270,80 +289,139 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="ModalAgregarNotaCredito" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Buscar Nota Credito</h4>
+                </div>
+                <div class="modal-body" id="frmEditarMunicipios">
+                    <table id="DataTable" class="table table table-striped  table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Monto</th>
+                                <th>¿Es redimido?</th>
+                                <th>¿Esta Impreso?</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="BodyNotaCreditoPagos"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="ModalAgregarCuponDescuento" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Agregar Cupón Descuento</h4>
+                </div>
+                <div class="modal-body" id="frmEditarMunicipios">
+                    @Html.Partial("_IndexCuponDescuento", (List<UDP_Vent_tbCuponDescuentoSelect_Result>)ViewBag.CuponDescuento)
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/TipoPago.js"></script>
 
 <script src="~/Scripts/app/PagoClienteFacturas.js"></script>
 <script src="~/Scripts/app/PagoCampoNumerico.js"></script>
+<script src="~/Scripts/app/Datepicker.js"></script>
 
 <script>
-    $(function () {
+    $(document).ready(function () {
+        var montopago = $("#pago_TotalPago").val();
+        var Saldo = $("#pago_SaldoAnterior").val();
+        var saldoAntes = $("#SaldoAntesPago").val(parseFloat(Saldo) + parseFloat(montopago));
+        var cambio = $("#cambio").val();
+        $("#efectivo").val(parseFloat(montopago) + parseFloat(cambio));
+        
+
+    })
+    $(function() {
 
         $("#pago_TotalPago").change(function (e) {
             var totalpagar = $("#pago_TotalPago").val();
-
-            var saldoActual = $("#pago_SaldoAnterior").val();
-
-
+            var Saldo = $("#pago_SaldoAnterior").val();
+            var saldoAntes = $("#SaldoAntesPago").val();
             result = 0.00;
 
-            if (totalpagar == '' || totalpagar < 0 || totalpagar >= saldoActual) {
+            if (totalpagar == '' || parseFloat(totalpagar) == 0 ) {
 
 
-                alert('Monto Incorrecto');
-                $("#pago_SaldoAnterior").val(parseFloat(saldoActual) + parseFloat(totalpagar));
+                alert('Monto vacio');
+                $("#pago_TotalPago").val('');
+                $("#cambio").val('');
+                $("#pago_SaldoAnterior").val(saldoAntes);
+                 $("#efectivo").val('');
             }
 
+            else if (parseFloat(totalpagar) > parseFloat(saldoAntes)) {
+                alert('Monto Supera el saldo');
+                $("#pago_TotalPago").val('');
+                $("#cambio").val('');
+                $("#pago_SaldoAnterior").val(saldoAntes);
+                $("#efectivo").val('');
 
+            }
 
             else {
-                var saldoActualizado = (parseFloat(saldoActual) - parseFloat(totalpagar));
-                var pagoActual = parseFloat(totalpagar);
-                $("#pago_SaldoAnterior").val(saldoActualizado);
-                $("#TotalPagado").val(pagoActual);
-
-
-
+               var hacerpago = $("#pago_TotalPago").val();
+                var  SaldoRec = $("#pago_SaldoAnterior").val();
+                $("#pago_SaldoAnterior").val(parseFloat(SaldoRec) - parseFloat(hacerpago));
             }
 
         });
     });
 
-    $(function () {
-
+   // validaciones para el Efectivo
+  $(function () {
         $("#efectivo").change(function (e) {
             valido = document.getElementById('mEfectivo');
-            $("#efectivo").val(parseFloat(totalpagar) + parseFloat(cambio));
-            var efectivo = $("#efectivo").val();
             var cambio = $("#cambio").val();
             var totalpagar = $("#pago_TotalPago").val();
+            var efectivo = $("#efectivo").val();
 
             var cambioefectivo = (parseFloat(efectivo) - parseFloat(totalpagar));
             result = 0;
 
-            if (totalpagar == '' || totalpagar == 0) {
+            if (efectivo == '' || parseFloat(totalpagar) == 0) {
 
-                $("#efectivo").val(result);
+                valido.innerText = "";
+                $("#efectivo").val('');
                 $("#cambio").val(result);
 
             }
-            else if (efectivo < totalpagar) {
+            else if(parseFloat(efectivo) < (totalpagar)) {
                 $('#efectivo').val('').focus();
                 $("#cambio").val(result);
-                valido.innerText = "El valor debe ser Mayor al Monto Pago";
+                valido.innerText = "El monto efectivo debe ser mayor al Monto Pago";
                 
             }
             else {
-                $("#efectivo").val(efectivo);
-                $("#cambio").val(cambioefectivo);
-
+                $("#efectivo").val();
+                $("#cambio").val(parseFloat(efectivo)-parseFloat(totalpagar));
+                valido.innerText = "";
             }
 
         });
     });
 
 </script>
+
 <script>
 $('#Anular').click(function () {
     var pago_Id = $('#pago_Id').val();
