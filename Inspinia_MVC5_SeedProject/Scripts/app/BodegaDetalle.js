@@ -1,5 +1,9 @@
 ﻿var contador = 0;
-
+$("#bod_Nombre").change(function () {
+    var str = $("#bod_Nombre").val();
+    var res = str.toUpperCase();
+    $("#bod_Nombre").val(res);
+});
 //Validar Correo Electronico
 $('#bod_Correo').change(function (e) {
     var emailRegex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;

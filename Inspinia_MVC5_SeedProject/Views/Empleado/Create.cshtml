@@ -51,7 +51,7 @@
 
                                 @Html.LabelFor(model => model.emp_Nombres, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.emp_Nombres, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)" } })
+                                    @Html.EditorFor(model => model.emp_Nombres, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @onkeyup= "return mayus(empleados)" } })
                                     <p style="color:red">
                                         @Html.ValidationMessageFor(model => model.emp_Nombres)
                                     </p>
@@ -97,7 +97,9 @@
                                 @Html.LabelFor(model => model.emp_Identificacion, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
                                     @Html.TextBoxFor(model => model.emp_Identificacion,  new { @class = "form-control", onblur = "limpiaIdentificacion()", id = "emp_Identificacion", MaxLength = 14 })
-                                    <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_Identificacion)</p>
+                                    <div id="ValidacionIdentificacion">
+                                        <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_Identificacion)</p>
+                                    </div>
                                 </div>
                             </div>
 
@@ -107,7 +109,10 @@
                                 @Html.LabelFor(model => model.emp_Telefono, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
                                     @Html.TextBoxFor(model => model.emp_Telefono, new { @class = "form-control", maxlength = 10 })
-                                    <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_Telefono)</p>
+                                    <div id="ValidacionTelefono" style="color:red">
+                                         @Html.ValidationMessageFor(model => model.emp_Telefono)
+                                    </div>
+                                    
                                 </div>
 
                                 @Html.LabelFor(model => model.emp_Correoelectronico, new { @class = "control-label col-md-2 , required" })
@@ -153,7 +158,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                                    <input type="submit" id="btnguardar" value="Guardar" class="btn btn-primary" />
                                     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                                 </div>
                             </div>

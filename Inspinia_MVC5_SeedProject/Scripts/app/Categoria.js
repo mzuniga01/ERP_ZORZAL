@@ -69,10 +69,6 @@ function EditStudentRecord(pscat_Id) {
             $("#pcat_id_Edit").val(item.pcat_Id);
 
 
-            $("#pscat_UsuarioCrea_Edit").val(item.pscat_UsuarioCrea);
-            $("#pscat_FechaCrea_Edit").val(item.pscat_FechaCrea);
-
-
             $("#pscat_ISV_Edit").val(item.pscat_ISV);
             $("#MyModal").modal();
             
@@ -87,24 +83,28 @@ function EditStudentRecord(pscat_Id) {
 
 $("#Btnsubmit").click(function () {
     var data = $("#SubmitForm").serializeArray();
+    var impu = $("#pscat_ISV_Edit").val();
+    if (impu > 100) {
+        $("#MsjISV").text("Campo ISV solo Permite un Rango de 0 a 100");
+    }
+    else if (impu == '') {
+        $("#MsjISV").text("Campo ISV Requerido");
+    }
+    else {
+        $.ajax({
+            type: "Post",
+            url: "/ProductoCategoria/UpdateSubCategoria",
+            data: data,
+            success: function (result) {
+                if (result == '-1')
+                    $("#MsjError").text("No se pudo actualizar el registro, contacte al administrador");
+                else
+                    //$("#MyModal").modal("hide");
+                location.reload();
+            }
+        });
+    }
    
-
-    $.ajax({
-        type: "Post",
-        url: "/ProductoCategoria/UpdateSubCategoria",
-        data: data,
-        success: function (result) {
-            if (result == '-1')
-                $("#MsjError").text("No se pudo actualizar el registro, contacte al administrador");
-            else
-                $("#MyModal").modal("hide");
-            location.reload();
-        }
-    });
-    
-
-
-    
 
 
     function GetSubCategoria() {
@@ -162,14 +162,7 @@ $('#AgregarSubCategorias').click(function () {
         $('#MessageError').text('');
         $('#ErrorDescripcion').text('');
         $('#ErrorISV').text('');
-        $('#ErroDescripcion_Create').after('<ul id="ErrorDescripcion" class="validation-summary-errors text-danger">Campo Descripción Requerido</ul>');
-
-    }
-    else if (Descripcion < '                                       ') {
-        $('#MessageError').text('');
-        $('#ErrorDescripcion').text('');
-        $('#ErrorISV').text('');
-        $('#ErroDescripcion_Create').after('<ul id="ErrorDescripcion" class="validation-summary-errors text-danger">Campo Descripción Tiene Espacios Vacios</ul>');
+        $('#DescripcionError').after('<ul id="ErrorDescripcion" class="validation-summary-errors text-danger">Campo Descripción Requerido</ul>');
 
     }
 
@@ -177,13 +170,13 @@ $('#AgregarSubCategorias').click(function () {
         $('#MessageError').text('');
         $('#ErrorDescripcion').text('');
         $('#ErrorISV').text('');
-        $('#ErrorISV_Create').after('<ul id="ErrorISV" class="validation-summary-errors text-danger">Campo ISV Requerido</ul>');
+        $('#ISVError').after('<ul id="ErrorISV" class="validation-summary-errors text-danger">Campo ISV Requerido</ul>');
     }
     else if (ISV > 100) {
         $('#MessageError').text('');
         $('#ErrorDescripcion').text('');
         $('#ErrorISV').text('');
-        $('#ErrorISV_Create').after('<ul id="ErrorISV" class="validation-summary-errors text-danger">Campo ISV solo Permite un Rango de 0 a 100</ul>');
+        $('#ISVError').after('<ul id="ErrorISV" class="validation-summary-errors text-danger">Campo ISV solo Permite un Rango de 0 a 100</ul>');
     }
     else {
         contador = contador + 1;
@@ -238,7 +231,7 @@ $('#CrearSubCategoria').click(function () {
         $('#MessageError').text('');
         $('#ErrorDescripcion').text('');
         $('#ErrorISV').text('');
-        $('#ErroDescripcion_Create').after('<ul id="ErrorDescripcion" class="validation-summary-errors text-danger">Campo Descripción Requerido</ul>');
+        $('#DescripcionError').after('<ul id="ErrorDescripcion" class="validation-summary-errors text-danger">Campo Descripción Requerido</ul>');
 
     }
 
@@ -246,13 +239,13 @@ $('#CrearSubCategoria').click(function () {
         $('#MessageError').text('');
         $('#ErrorDescripcion').text('');
         $('#ErrorISV').text('');
-        $('#ErrorISV_Create').after('<ul id="ErrorISV" class="validation-summary-errors text-danger">Campo ISV Requerido</ul>');
+        $('#ISVError').after('<ul id="ErrorISV" class="validation-summary-errors text-danger">Campo ISV Requerido</ul>');
     }
     else if (ISV > 100) {
         $('#MessageError').text('');
         $('#ErrorDescripcion').text('');
         $('#ErrorISV').text('');
-        $('#ErrorISV_Create').after('<ul id="ErrorISV" class="validation-summary-errors text-danger">Campo ISV solo Permite un Rango de 0 a 100</ul>');
+        $('#ISVError').after('<ul id="ErrorISV" class="validation-summary-errors text-danger">Campo ISV solo Permite un Rango de 0 a 100</ul>');
     }
 
     else {
@@ -330,23 +323,35 @@ $(document).on("click", "#TablaSub tbody tr td button#removerSubCategoria", func
     });
 })
 
-$('#pscat_Descripcion').change(function () {
-
-    //alert("el input cambio");
-    if ($(this).val() == 0) { //si el input es cero
-        $('#btnGuardar').attr('disabled', 'disabled');
-        alert("No puede llevar Solo Espacios")
+$('#pscat_Descripcion').blur(function () {
+    if ($.trim($('#pscat_Descripcion').val()) == 0) {
+        $('#errorDescripcion').text('');
+        $('#validationDescripcion').after('<ul id="errorDescripcion" class="validation-summary-errors text-danger">Campo Descripcion Requerido</ul>');
     }
-    else if ($(this).val() == 0) { //si el input es cero
-        $('#btnGuardar').attr('disabled', 'disabled');
+});
 
-    }
-    else if ($(this).val() == 0) { //si el input es cero
-        $('#btnGuardar').attr('disabled', 'disabled');
 
+$('#pscat_Descripcion_edit').blur(function () {
+    if ($.trim($('#pscat_Descripcion_edit').val()) == 0) {
+        $('#DescripcionErrorEdit').text('');
+        $('#validationDescripcionEdit').after('<ul id="DescripcionErrorEdit" class="validation-summary-errors text-danger">Campo Descripcion Requerido</ul>');
     }
-    else { // si tiene un valor diferente a cero
-        $('#btnGuardar').removeAttr("disabled");
+});
 
-    }
+$("#pcat_Nombre").change(function () {
+    var str = $("#pcat_Nombre").val();
+    var res = str.toUpperCase();
+    $("#pcat_Nombre").val(res);
+});
+
+$("#pscat_Descripcion").change(function () {
+    var str = $("#pscat_Descripcion").val();
+    var res = str.toUpperCase();
+    $("#pscat_Descripcion").val(res);
+});
+
+$("#pscat_Descripcion_edit").change(function () {
+    var str = $("#pscat_Descripcion").val();
+    var res = str.toUpperCase();
+    $("#pscat_Descripcion").val(res);
 });

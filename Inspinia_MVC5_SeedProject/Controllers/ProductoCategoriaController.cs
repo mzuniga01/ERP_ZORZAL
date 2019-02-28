@@ -349,7 +349,7 @@ namespace ERP_GMEDINA.Controllers
                 foreach (UDP_Inv_tbProductoSubCategoria_Delete_Result obje in list)
                     MsjError = obje.MensajeError;
 
-                if (MsjError.StartsWith("-2"))
+                if (MsjError.StartsWith (null))
                 {
                     TempData["smserror"] = " No se puede eliminar el dato porque tiene dependencia.";
                     ViewBag.smserror = TempData["smserror"];
@@ -366,6 +366,9 @@ namespace ERP_GMEDINA.Controllers
             }
             catch (Exception Ex)
             {
+                TempData["smserror"] = " No se puede eliminar el dato porque tiene dependencia.";
+                ViewBag.smserror = TempData["smserror"];
+
                 Ex.Message.ToString();
                 ModelState.AddModelError("", "No se puede borrar el registro");
                 return RedirectToAction("Index");

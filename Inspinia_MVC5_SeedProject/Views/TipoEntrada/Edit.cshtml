@@ -15,6 +15,9 @@
         font-weight: bold;
         color: red;
     }
+     #tent_Descripcion {
+        text-transform: uppercase;
+    }
 </style>
 <link href="~/Content/css/Auditoria.css" rel="stylesheet" />
 <div class="row wrapper border-bottom white-bg page-heading">
@@ -83,7 +86,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.tent_Descripcion, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-5">
-                                    @Html.EditorFor(model => model.tent_Descripcion , new { htmlAttributes = new { @autocomplete = "off", @onKeyPress = "return soloLetras(event)" } })
+                                    @Html.EditorFor(model => model.tent_Descripcion , new { htmlAttributes = new { @autocomplete = "off", @onKeyPress = "return soloLetras(event)"} })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.tent_Descripcion)</p>
                                 </div>
                             </div>
@@ -127,7 +130,9 @@
         </div>
     </div>
 </div>
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
 <script>
+
     //Validar Los campos Stringg
     //Validar Los campos Stringg
     function soloLetras(e) {
@@ -135,6 +140,11 @@
         tecla = String.fromCharCode(tecla)
         return /^[a-zA-ZáéíóúñÁÉÍÓÚÑ ]+$/.test(tecla);
     }
+    $("#tent_Descripcion").change(function () {
+        var str = $("#tent_Descripcion").val();
+        var res = str.toUpperCase();
+        $("#tent_Descripcion").val(res);
+    });
 </script>
 
 
