@@ -54,5 +54,8 @@
 
                 });
             }
+            else {
+                $('#alertaCaja').show();
+            }
         });
     }

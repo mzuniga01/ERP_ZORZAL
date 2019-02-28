@@ -30,7 +30,6 @@
         </div>
     </div>
 </div>
-
 <div class="wrapper wrapper-content">
     <div class="row">
         <div class="col-lg-12">
@@ -39,7 +38,7 @@
                     <h5>Registrar Factura</h5>
                 </div>
                 <div class="ibox-content">
-
+                    <div class="alert alert-danger text-center text-uppercase" id="alertaCaja" style="display:none;">...Por favor realizar una apertura de caja...</div>
                     @using (Html.BeginForm("Create", "Factura", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
@@ -134,7 +133,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-2">Autorizar Descuento</label>
                                 <div class="col-md-4">
-                                    <input id="fact_AutorizarDescuento" type="checkbox" class="check-box" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#AutorizarDescuentoModal1" />
+                                    <input id="fact_AutorizarDescuento" type="checkbox" class="check-box" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#AutorizarDescuentoModal" />
                                 </div>
                                 <div class="form-horizontal" name="Cred2" id="Cred2">
                                     @Html.LabelFor(model => model.fact_PorcentajeDescuento, new { @class = "control-label col-md-2" })
@@ -212,7 +211,7 @@
     </div>
 </div>
 <div>
-    <div class="modal fade" id="AutorizarDescuentoModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal fade" id="AutorizarDescuentoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -228,24 +227,24 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-4">Usuario</label>
                                     <div class="col-md-6">
-                                        <input id="Username1" type="text" name="Username" class="form-control" autocomplete = "off", onkeypress = "return correo(event)">
+                                        <input id="Username" type="text" name="Username" class="form-control" autocomplete = "off", onkeypress = "return correo(event)">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-4">Contraseña</label>
                                     <div class="col-md-6">
-                                        <input id="txtPassword1" name="txtPassword" class="form-control" type="password" placeholder="Password" />
+                                        <input id="txtPassword" name="txtPassword" class="form-control" type="password" placeholder="Password" />
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-4">Porcentaje de Descuento</label>
                                     <div class="col-md-6">
-                                        <input id="PorcentajeDescuento1" type="text" class="form-control"  onKeyPress = "return soloNumeros(event)", onKeyUp = "pierdeFoco(this)", autocomplete = "off" />
+                                        <input id="PorcentajeDescuento" type="text" class="form-control"  onKeyPress = "return soloNumeros(event)", onKeyUp = "pierdeFoco(this)" autocomplete = "off" />
                                     </div>
                                 </div>
-                                <div><p id="mensajerror" class="danger"></p></div>
+                                <div><p id="mensajerror" style="color:red"></p></div>
                                 <div class="modal-footer">
-                                    <button class="btn btn-primary btn-sm" type="button" id="Autorizar" onclick="ValidarAutorizacion1()">Guardar</button>
+                                    <button class="btn btn-primary btn-sm" type="button" id="Autorizar" onclick="ValidarAutorizacion()">Guardar</button>
                                     <button type="button" class="btn btn-white btn-sm" data-dismiss="modal" onclick="uncheck3()">Cancelar</button>
                                 </div>
                             </form>
@@ -416,7 +415,6 @@
 
 
 <script>
-
 
     $("#prod_CodigoBarras").on("keypress keyup blur", function (event) {
         var Value = $(this).val();

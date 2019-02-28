@@ -247,9 +247,9 @@ function ValidarAutorizacion() {
 
 
 
-function ValidarAutorizacion1() {
-    var User = $("#Username1").val();
-    var Password = $("#txtPassword1").val();
+function ValidarAutorizacionDetalle() {
+    var User = $("#UsernameDetalle").val();
+    var Password = $("#txtPasswordDetalle").val();
     $.ajax({
         url: "/Factura/AutorizarDescuentoDetalle",
         method: "POST",
@@ -261,12 +261,12 @@ function ValidarAutorizacion1() {
         console.log()
         if (data == true) {
 
-            var Porcentaje = $("#PorcentajeDescuento1").val();
+            var Porcentaje = $("#PorcentajeDescuentoDetalle").val();
             $("#factd_PorcentajeDescuento").val(Porcentaje);
-            $('#AutorizarDescuentoModal1').modal('hide');
+            $('#AutorizarDescuentoDetalle').modal('hide');
         }
         else {
-            valido = document.getElementById('mensajerror');
+            valido = document.getElementById('mensajerrorDetalle');
             valido.innerText = "Usuario o contraseña incorrectos";
         }
     });
