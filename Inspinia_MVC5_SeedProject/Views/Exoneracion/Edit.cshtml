@@ -67,22 +67,7 @@
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarClientes"><span class="glyphicon glyphicon-search"></span></button>
             </div>
         </div>
-
-
-
-
-        @{ if (Convert.ToInt32(Model.tbCliente.clte_EsPersonaNatural) == 1)
-            {
-                <div class="form-group">
-                    <label class="control-label col-md-2">Cliente</label>
-                    <div class="col-md-4">
-                        @Html.EditorFor(model => model.tbCliente.clte_Nombres, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                        @Html.ValidationMessageFor(model => model.tbCliente.clte_Nombres)
-                    </div>
-                </div>
-            }
-            else
-            {
+    
                 <div class="form-group">
                     <label class="control-label col-md-2">Cliente</label>
                     <div class="col-md-4">
@@ -90,18 +75,11 @@
                         @Html.ValidationMessageFor(model => model.tbCliente.clte_NombreComercial)
                     </div>
                 </div>
-            }
-        }
-
-
-
-
-      
 
             <div class="form-group">
                 @Html.LabelFor(model => model.exo_Documento, new { @class = "control-label col-md-2" })
                 <div class="col-md-4">
-                    @Html.EditorFor(model => model.exo_Documento)
+                    @Html.EditorFor(model => model.exo_Documento, new { htmlAttributes = new { @autocomplete = "off", @onkeyup = "format(this)", @style = "text-transform:uppercase;" } })
                     <p id="doc" style="color:red">@Html.ValidationMessageFor(model => model.exo_Documento)
 </div>
             </div>
@@ -114,24 +92,23 @@
                 </div>
             </div>*@
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.exo_FechaInicialVigencia, new { @class = "control-label col-md-2" })
-                <div class="col-md-4">
-                    @*<input type="text" name="entrada" id="entrada" value="">*@
-                     
-                     @Html.EditorFor(model => model.exo_FechaInicialVigencia, new { htmlAttributes = new { @readonly = "readonly" } })
-                    <p id="cc" style="color:red">@Html.ValidationMessageFor(model => model.exo_FechaInicialVigencia)</p>
-                </div>
-            </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.exo_FechaInicialVigencia, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.exo_FechaIFinalVigencia, new { @class = "control-label col-md-2" })
-                <div class="col-md-4">
-                    @*<input type="text" name="salida" id="salida" value="">*@
-                    @Html.EditorFor(model => model.exo_FechaIFinalVigencia, new { htmlAttributes = new { @readonly = "readonly" } })
-                    <p id="ccc" style="color:red">@Html.ValidationMessageFor(model => model.exo_FechaIFinalVigencia)</p>
-                </div>
+                @Html.EditorFor(model => model.exo_FechaInicialVigencia, "{0:MM/dd/yyyy}", new { htmlAttributes = new { @autocomplete = "off", @readonly = "readonly" } })
+                <p id="cc" style="color:red">@Html.ValidationMessageFor(model => model.exo_FechaInicialVigencia)</p>
             </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.exo_FechaIFinalVigencia, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+
+                @Html.EditorFor(model => model.exo_FechaIFinalVigencia, "{0:MM/dd/yyyy}", new { htmlAttributes = new { @autocomplete = "off", @readonly = "readonly" } })
+                <p id="ccc" style="color:red">@Html.ValidationMessageFor(model => model.exo_FechaIFinalVigencia)</p>
+            </div>
+        </div>
 
 
             
@@ -260,33 +237,33 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    <script>
- $.datepicker.regional['es'] = {
- closeText: 'Cerrar',
- prevText: '< Ant',
- nextText: 'Sig >',
- currentText: 'Hoy',
- monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
- monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
- dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
- dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
- dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
- weekHeader: 'Sm',
- dateFormat: 'dd/mm/yy',
- firstDay: 1,
- isRTL: false,
- showMonthAfterYear: false,
- yearSuffix: ''
- };
- $.datepicker.setDefaults($.datepicker.regional['es']);
-$(function () {
-    $("#exo_FechaInicialVigencia").datepicker({ dateFormat: 'dd/mm/yy' });
-    $("#exo_FechaIFinalVigencia").datepicker({ dateFormat: 'dd/mm/yy'});
-});
+   <script>
+        $.datepicker.regional['es'] = {
+            closeText: 'Cerrar',
+            prevText: '< Ant',
+            nextText: 'Sig >',
+            currentText: 'Hoy',
+            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+            dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+            dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
+            dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+            weekHeader: 'Sm',
+            dateFormat: 'mm/dd/yy',
+            firstDay: 1,
+            isRTL: false,
+            showMonthAfterYear: false,
+            yearSuffix: ''
+        };
+        $.datepicker.setDefaults($.datepicker.regional['es']);
 
-      
+        //-------------Fecha Actual-----------------------
+        $(function () {
+            $("#exo_FechaInicialVigencia").datepicker();
+            $("#exo_FechaIFinalVigencia").datepicker();
 
-    </script>
+        });
+</script>
 
 
 <script>

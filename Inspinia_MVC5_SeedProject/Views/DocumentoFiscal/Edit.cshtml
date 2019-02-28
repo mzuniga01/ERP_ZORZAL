@@ -65,7 +65,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.dfisc_Descripcion, new { @class = "control-label col-md-2" })
             <div class="col-md-5">
-                @Html.EditorFor(model => model.dfisc_Descripcion)
+                @Html.EditorFor(model => model.dfisc_Descripcion, new { htmlAttributes = new { @autocomplete = "off", @onkeyup = "format(this)", @style = "text-transform:uppercase;" } })
                 @Html.ValidationMessageFor(model => model.dfisc_Descripcion)
             </div>
         </div>

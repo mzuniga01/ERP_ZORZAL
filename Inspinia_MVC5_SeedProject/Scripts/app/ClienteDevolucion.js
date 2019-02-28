@@ -124,8 +124,6 @@ function GetCaja() {
                 $("#cja_Id").val(val.cja_Id);
                 $("#cja_Descripcion").val(val.cja_Descripcion);
 
-                var Suc = $("#suc_Id").val();
-                GetNumeroFact(Suc, val.cja_Id)
 
             });
         }

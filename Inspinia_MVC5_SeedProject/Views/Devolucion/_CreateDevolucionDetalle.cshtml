@@ -99,7 +99,7 @@
             @Html.LabelFor(model => model.devd_Descripcion, "Observaciones", new { @class = "control-label col-md-1 AsteriscoRojo" })
             <div class="col-md-10">
              
-                <textarea class="form-control" id="devd_Descripcion" name="devd_Descripcion"  onKeyPress = "return soloLetras(event)" onkeyup = "format(this)" style="text-transform:uppercase;"  autocomplete = "off"></textarea>
+                <textarea class="form-control" id="devd_Descripcion" name="devd_Descripcion"  onKeyPress = "return soloLetras(event)" style="text-transform:uppercase;"  autocomplete = "off"></textarea>
                 <div id="validationComentariosCreate">
                     @Html.ValidationMessageFor(model => model.devd_Descripcion)
                 </div>
