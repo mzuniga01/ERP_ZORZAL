@@ -284,8 +284,33 @@ namespace ERP_GMEDINA.Controllers
                     ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
                     return RedirectToAction("Edit/" + id);
                 }
+                else if (MsjError.StartsWith("-2"))
+                {
+                    TempData["smserror_Estado"] = "No se puede inactivar la Bodega; El Detalle esta siendo utilizado";
+                    ViewBag.smserror_Estado = TempData["smserror_Estado"];
+                    Function.InsertBitacoraErrores("Bodega/EstadoInactivar", MsjError, "EstadoInactivar");
+                    ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                    return RedirectToAction("Edit/" + id);
+                }
+                else if (MsjError.StartsWith("-4"))
+                {
+                    TempData["smserror_Estado"] = "No se puede inactivar la Bodega; El Detalle esta siendo utilizado";
+                    ViewBag.smserror_Estado = TempData["smserror_Estado"];
+                    Function.InsertBitacoraErrores("Bodega/EstadoInactivar", MsjError, "EstadoInactivar");
+                    ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                    return RedirectToAction("Edit/" + id);
+                }
+                else if (MsjError.StartsWith("-3"))
+                {
+                    TempData["smserror_Estado"] = "No se puede inactivar la Bodega; El Detalle esta siendo utilizado";
+                    ViewBag.smserror_Estado = TempData["smserror_Estado"];
+                    Function.InsertBitacoraErrores("Bodega/EstadoInactivar", MsjError, "EstadoInactivar");
+                    ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                    return RedirectToAction("Edit/" + id);
+                }
                 else
                 {
+                    
                     ViewBag.smserror_Estado = "";
                     return RedirectToAction("Edit/" + id);
                 }
