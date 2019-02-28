@@ -5,7 +5,18 @@
     ViewBag.Title = "Registrar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@{
+    int idUser = 0;
+    string UserName = "";
+    GeneralFunctions Login = new GeneralFunctions();
+    List<tbUsuario> User = Login.getUserInformation();
+    foreach (tbUsuario Usuario in User)
+    {
+        UserName = Usuario.usu_Nombres + " " + Usuario.usu_Apellidos;
+        idUser = Convert.ToInt32(Usuario.emp_Id);
+    }
+    ViewBag.usu_Id = idUser;
+}
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Nota Crédito</h2>
@@ -17,7 +28,12 @@
     </div>
 </div>
 
-
+<style>
+    .AsteriscoRojo:after {
+        content: "*";
+        color: red;
+    }
+</style>
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
@@ -35,21 +51,21 @@
                             @Html.ValidationSummary(true)
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.suc_Id, new { @class = "control-label required col-md-2" })
+                                @Html.LabelFor(model => model.tbCaja.tbSucursal.suc_Descripcion, "Sucursal", new { @class = "control-label col-md-2" })
                                 <div class="col-md-3">
-                                    @Html.EditorFor(model => model.suc_Id, new
-                               {
-                                   htmlAttributes = new
-                                   {
-                                       @class = "form-control"@*, @readonly = "readonly"*@ }
-                               })
-                                    <span class="validation-error">  @Html.ValidationMessageFor(model => model.suc_Id)</span>
+                                    <input class="form-control" readonly value="@ViewBag.Sucursal" name="suc_Descripcion" id="suc_Descripcion" />
+                                    <input class="form-control" readonly value="@ViewBag.IDSucursal" id="suc_Id" name="suc_Id" type="hidden" />
+                                    <input id="usu_Id" name="usu_Id" type="hidden" class="form-control" value="@ViewBag.usu_Id" />
+                                    <div id="validationSucursalCreate">
+                                        <p id="SmSuc_Descripcion" style="color:red">@Html.ValidationMessageFor(model => model.tbCaja.tbSucursal.suc_Descripcion)</p>
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.cja_Id, new { @class = "control-label required col-md-2" })
                                     <div class="col-md-3">
-                                        <input type="text" id="cja_Id" name="cja_Id" value="4" class="form-control " readonly />
+                                        <input class="form-control" readonly value="@ViewBag.Caja" name="suc_Descripcion" id="suc_Descripcion" />
+                                        <input class="form-control" readonly value="@ViewBag.IDCaja" id="cja_Id" name="cja_Id" type="hidden" />
                                         <span class="validation-error">@Html.ValidationMessageFor(model => model.cja_Id)</span>
                                     </div>
                                 </div>
@@ -66,12 +82,10 @@
                                     @Html.EditorFor(model => model.nocre_Codigo , new { @class = "control-label", @readonly = "readonly" } )
                                     <p style="color:red"><span class="validation-error"> @Html.ValidationMessageFor(model => model.nocre_Codigo)</span></p>
                                 </div>
-
                                 <div class="form-group">
-                                    @Html.LabelFor(model => model.tbDevolucion.tbCaja.cja_Descripcion, "Cajero", new { @class = "control-label col-md-2" })
+                                    @Html.LabelFor(model => model.tbUsuario.tbEmpleado.emp_Nombres, "Cajero", new { @class = "control-label col-md-2" })
                                     <div class="col-md-3">
-                                        @Html.EditorFor(model => model.tbDevolucion.tbCaja.cja_Descripcion)
-                                        @*<p style="color:red"><span class="validation-error"> @Html.ValidationMessageFor(model => model.tbDevolucion.tbCaja.cja_Descripcion)</span></p>*@
+                                        <input class="form-control" readonly value="@UserName" />
                                     </div>
                                 </div>
                             </div>
@@ -126,9 +140,9 @@
                             </div>
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.nocre_MotivoEmision, new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.nocre_MotivoEmision, new { @class = "control-label col-md-2 AsteriscoRojo" })
                                 <div class="col-md-8">
-                                    @Html.TextAreaFor(model => model.nocre_MotivoEmision, new { @class = "form-control" })
+                                    @Html.TextAreaFor(model => model.nocre_MotivoEmision, new { @class = "form-control" , @onkeyup = "format(this)", @style = "text-transform:uppercase;" })
                                     <span class="validation-error">@Html.ValidationMessageFor(model => model.nocre_MotivoEmision)</span>
                                 </div>
                             </div>

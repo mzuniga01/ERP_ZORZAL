@@ -69,6 +69,7 @@ namespace ERP_GMEDINA.Controllers
             {
                 idUser = Convert.ToInt32(Usuario.emp_Id);
             }
+            ViewBag.usu_Id = idUser;
             ViewBag.suc_Descripcion = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Descripcion).SingleOrDefault();
             ViewBag.suc_Id = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Id).SingleOrDefault();
             ViewBag.Devolucion = db.tbDevolucionDetalle.ToList();
@@ -276,6 +277,14 @@ namespace ERP_GMEDINA.Controllers
             }
             base.Dispose(disposing);
         }
+
+        [HttpPost]
+        public JsonResult GetCaja(int CodUsuario)
+        {
+            var list = db.spGetCaja(CodUsuario).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
         [HttpPost]
         public JsonResult AnularNotaCredito(Int16 nocreId, bool Anulado)
         {

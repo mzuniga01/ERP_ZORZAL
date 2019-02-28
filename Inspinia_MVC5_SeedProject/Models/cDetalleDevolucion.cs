@@ -33,10 +33,10 @@ namespace ERP_GMEDINA.Models
         public string devd_Descripcion { get; set; }
 
         public Nullable<int> devd_UsuarioCrea { get; set; }
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> devd_FechaCrea { get; set; }
         public Nullable<int> devd_UsuarioModifica { get; set; }
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> devd_FechaModifica { get; set; }
     }
 }

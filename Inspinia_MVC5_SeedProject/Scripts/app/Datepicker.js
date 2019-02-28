@@ -74,12 +74,12 @@
         prevText: 'Ant',
         nextText: 'Sig',
         monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic']
-    }).datepicker('setDate', new Date());
+    }).datepicker('setDate', new Date()).datepicker("destroy");
 
 
-    //Factura
+    ///////////////////////////Factura     
     $("#fechafactura").datepicker({
-        dateFormat: 'mm-dd-yy',
+        dateFormat: 'dd-mm-yy',
         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
         prevText: 'Ant',
@@ -87,9 +87,8 @@
         changeMonth: true,
         changeYear: true,
     }).datepicker('setDate', new Date()).datepicker("destroy");
-
     $("#fechafacturaEdit").datepicker({
-        dateFormat: 'mm-dd-yy',
+        dateFormat: 'dd-mm-yy',
         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
         prevText: 'Ant',
@@ -97,35 +96,19 @@
         changeMonth: true,
         changeYear: true,
     }).datepicker("destroy");
-
     $("#fact_FechaNacimientoTE").datepicker({
-        dateFormat: 'mm-dd-yy',
+        dateFormat: 'dd-mm-yy',
         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
-        prevText: 'Ant',
-        nextText: 'Sig',
-        minDate: '-100Y',
+        prevText: 'Ant', nextText: 'Sig', minDate: '-100Y',
         maxDate: '-61Y',
         changeMonth: true,
         changeYear: true,
         monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic']
-        }).datepicker();
-
-
-    $("#fecha").datepicker({
-        dateFormat: 'mm-dd-yy',
-        monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-        dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
-        prevText: 'Ant',
-        nextText: 'Sig',
-        changeMonth: true,
-        changeYear: true,
-        monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic']
-        //showOn: 'both',
-        //buttonText: '<i class="fas fa-calendar-day"></i>'
     }).datepicker();
+    //buttonText: '<i class="fas fa-calendar-day"></i>'     }).datepicker();
 
-    //Lista Precio
+        //Lista Precio
     $("#listp_FechaInicioVigencia").datepicker({
         dateFormat: 'mm-dd-yy',
         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],

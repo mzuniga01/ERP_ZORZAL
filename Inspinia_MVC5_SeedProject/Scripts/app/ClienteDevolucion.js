@@ -102,7 +102,32 @@ function GetIDCliente(CodCliente, idItem) {
 }
 
 
-$(function () {
-   
+/////GET CAJA DE DEVOLUCION 
 
-});
+$(document).ready(function () {
+    GetCaja();
+})
+
+function GetCaja() {
+    var CodUsuario = $("#usu_Id").val();
+    console.log(CodUsuario)
+    $.ajax({
+        url: "/Devolucion/GetCaja",
+        method: "POST",
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({ CodUsuario: CodUsuario }),
+    })
+    .done(function (data) {
+        if (data.length > 0) {
+            $.each(data, function (key, val) {
+                $("#cja_Id").val(val.cja_Id);
+                $("#cja_Descripcion").val(val.cja_Descripcion);
+
+                var Suc = $("#suc_Id").val();
+                GetNumeroFact(Suc, val.cja_Id)
+
+            });
+        }
+    });
+}
