@@ -9,6 +9,18 @@
           text-transform: uppercase;
         }
 </style>
+<style>
+    .validation-error {
+        color: red;
+        font-size: small;
+    }
+
+    .validation-summary-errors {
+        color: red;
+        font-size: small;
+    }
+</style>
+
 @using (Html.BeginForm())
 {
 @Html.AntiForgeryToken()
@@ -37,8 +49,7 @@
 
     
     <div class="form-horizontal">
-        @Html.ValidationSummary(true)
-
+      @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.dep_Codigo, new { @class = "control-label col-md-2" })
             <div class="col-md-4">

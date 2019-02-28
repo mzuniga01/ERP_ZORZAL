@@ -125,6 +125,12 @@ namespace ERP_GMEDINA.Controllers
         public ActionResult Edit(string id)
         {
             Session["tbMunicipio"] = null;
+            try
+            {
+                ViewBag.smserror = TempData["smserror"].ToString();
+            }
+            catch { }
+
             if (id == null)
             {
                 return RedirectToAction("Index");
@@ -325,7 +331,8 @@ namespace ERP_GMEDINA.Controllers
                             MsjError = mun.MensajeError;
                         if (MsjError.StartsWith("-1The DELETE statement conflicted with the REFERENCE constraint"))
                         {
-                            TempData["smserror"] = " No se puede eliminar el dato porque tiene dependencia."; ViewBag.smserror = TempData["smserror"];
+                            TempData["smserror"] = "No se puede eliminar el registro porque posee dependencias, favor contacte al administrador.";
+                            ViewBag.smserror = TempData["smserror"];
                             ModelState.AddModelError("", "No se puede borrar el registro");
                             return RedirectToAction("Edit/" + dep_Codigo);
                         }
