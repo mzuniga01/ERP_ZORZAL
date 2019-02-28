@@ -76,7 +76,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.solef_FechaEntrega, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.solef_FechaEntrega, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.EditorFor(model => model.solef_FechaEntrega, "{0:mm-dd-yyyy}", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     @Html.ValidationMessageFor(model => model.solef_FechaEntrega)
                                 </div>
                                 <label class="control-label col-md-2">Usuario Entrega</label>
@@ -195,7 +195,7 @@
             dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
             dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
             weekHeader: 'Sm',
-            dateFormat: 'dd/mm/yy',
+            dateFormat: 'mm/dd/yy',
             firstDay: 1,
             isRTL: false,
             showMonthAfterYear: false,
@@ -204,7 +204,7 @@
         $.datepicker.setDefaults($.datepicker.regional['es']);
 
         $(function () {
-            $("#solef_FechaEntrega").datepicker({ dateFormat: 'dd/mm/yy', minDate: 0 }).datepicker('setDate', new Date());
+            $("#solef_FechaEntrega").datepicker({ dateFormat: 'mm/dd/yy', minDate: 0 }).datepicker('setDate', new Date());
 
         });
 </script>

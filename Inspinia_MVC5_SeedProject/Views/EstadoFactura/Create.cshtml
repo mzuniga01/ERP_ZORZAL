@@ -23,7 +23,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Registrar</h5>
+                    <h5>Registrar Estado Factura</h5>
                 </div>
                 <div class="ibox-content">
 
@@ -32,25 +32,25 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <div>
-            <p style="color:red">@Html.ValidationSummary(true)</p>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.esfac_Descripcion, new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.esfac_Descripcion, new { htmlAttributes = new { onkeypress = "return validar(event)" } })
-                <p style="color:red"> @Html.ValidationMessageFor(model => model.esfac_Descripcion)</p>
-</div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Guardar" class="btn btn-primary " />
-				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.esfac_Descripcion, new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.esfac_Descripcion, new { htmlAttributes = new { @autocomplete = "off", @onkeyup = "format(this)", @style = "text-transform:capitalize;", onkeypress = "return validar(event)" } })
+                    <p style="color:red"> @Html.ValidationMessageFor(model => model.esfac_Descripcion)</p>
+                </div>
             </div>
         </div>
-    </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Guardar" class="btn btn-primary " />
+                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                </div>
+            </div>
+        </div>
 }
 
                 </div>
@@ -68,6 +68,13 @@
 <script src="~/Scripts/app/Factura.js"></script>
 <script src="~/Scripts/app/CaracteresEspeciales.js"></script>
 <script src="~/Scripts/app/ComandoGuardar.js"></script>
+<script src="~/Scripts/app/Banco.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#esfac_Descripcion")[0].maxLength = 50;
+    })
+</script>
 
 <script>
 

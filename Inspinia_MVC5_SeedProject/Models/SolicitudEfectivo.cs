@@ -28,7 +28,8 @@ namespace ERP_GMEDINA.Models
         
         public Nullable<System.DateTime> solef_FechaEntrega { get; set; }
         [Display(Name = "Usuario Entrega")]
-        
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
+
         public Nullable<int> solef_UsuarioEntrega { get; set; }
         [Display(Name = "Moneda")]
       

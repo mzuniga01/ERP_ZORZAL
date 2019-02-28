@@ -38,3 +38,8 @@ $(document).ready(function () {
         }
     });
 });
+
+//Limpiar mensajes a tiempo real
+$("#pemi_NumeroCAI").keyup(function () {
+    $('#MessageNumeroCAICreate').text('');
+});

@@ -31,7 +31,6 @@
                     <div class="form-horizontal">
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         @Html.HiddenFor(model => model.pemi_Id)
-                        @*Auditoria*@
                         @Html.HiddenFor(model => model.pemi_UsuarioCrea)
                         @Html.HiddenFor(model => model.pemi_FechaCrea)
                         @Html.HiddenFor(model => model.pemi_UsuarioModifica)

@@ -90,7 +90,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.bcta_FechaApertura, new { @class = "control-label col-md-2" })
                                 <div class="col-md-5">
-                                    @Html.EditorFor(model => model.bcta_FechaApertura, "{0:dd-MM-yyyy}", new { htmlAttributes = new { maxlength = 10 } })
+                                    @Html.EditorFor(model => model.bcta_FechaApertura, "{0:mm-dd-yyyy}", new { htmlAttributes = new { maxlength = 10 } })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.bcta_FechaApertura)</p>
                                 </div>
                             </div>
@@ -129,7 +129,7 @@
             dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
             dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
             weekHeader: 'Sm',
-            dateFormat: 'dd/mm/yy',
+            dateFormat: 'mm/dd/yy',
             firstDay: 1,
             isRTL: false,
             showMonthAfterYear: false,
@@ -138,7 +138,7 @@
         $.datepicker.setDefaults($.datepicker.regional['es']);
 
         $(function () {
-            $("#bcta_FechaApertura").datepicker({ dateFormat: 'dd/mm/yy' }).datepicker('setDate', new Date());
+            $("#bcta_FechaApertura").datepicker({ dateFormat: 'mm/dd/yy' }).datepicker('setDate', new Date());
 
         });
 
