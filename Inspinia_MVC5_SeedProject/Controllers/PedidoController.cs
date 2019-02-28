@@ -73,14 +73,20 @@ namespace ERP_GMEDINA.Controllers
         // GET: /Pedido/Create
         public ActionResult Create()
         {
-            //ViewBag.ped_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
-            //ViewBag.ped_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
-            //ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte");
-            //ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo");
-            //ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo");
+            if (Function.GetUserLogin())
+            {
+                if (Function.GetRol())
+                {
+                    if (Function.GetUserRols("Pedido/Create"))
+                    {
+                        //ViewBag.ped_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+                        //ViewBag.ped_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+                        //ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte");
+                        //ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo");
+                        //ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo");
 
 
-            ViewBag.esped_Id = new SelectList(db.tbEstadoPedido, "esped_Id", "esped_Descripcion");
+                        ViewBag.esped_Id = new SelectList(db.tbEstadoPedido, "esped_Id", "esped_Descripcion");
      
             ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo");
             ViewBag.Cliente = db.tbCliente.ToList();
@@ -90,6 +96,17 @@ namespace ERP_GMEDINA.Controllers
             Pedido.esped_Id = Helpers.Pendiente;
             Pedido.suc_Id = 1;
             return View(Pedido);
+                    }
+                    else
+                    {
+                        return RedirectToAction("SinAcceso", "Login");
+                    }
+                }
+                else
+                    return RedirectToAction("SinRol", "Login");
+            }
+            else
+                return RedirectToAction("Index", "Login");
 
         }
 
@@ -100,7 +117,14 @@ namespace ERP_GMEDINA.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "esped_Id,ped_FechaElaboracion,ped_FechaEntrega,clte_Id,suc_Id,fact_Id,ped_EsAnulado,ped_RazonAnulado,tbUsuario,tbUsuario1")] tbPedido tbPedido)
         {
-            ViewBag.ped_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPedido.ped_UsuarioCrea);
+            if (Function.GetUserLogin())
+            {
+                if (Function.GetRol())
+                {
+                    if (Function.GetUserRols("Pedido/Create"))
+                    {
+
+                        ViewBag.ped_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPedido.ped_UsuarioCrea);
             ViewBag.esped_Id = new SelectList(db.tbEstadoPedido, "esped_Id", "esped_Descripcion");
             ViewBag.Producto = db.tbProducto.ToList();
             ViewBag.Cliente = db.tbCliente.ToList();
@@ -199,7 +223,19 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.Cliente = db.tbCliente.ToList();
             ViewBag.Producto = db.tbProducto.ToList();
             ViewBag.ListaPrecio = db.tbListaPrecio.ToList();
-            return View(tbPedido);
+                        return View(tbPedido);
+                    }
+                    else
+                    {
+                        return RedirectToAction("SinAcceso", "Login");
+                    }
+                }
+                else
+                    return RedirectToAction("SinRol", "Login");
+            }
+            else
+                return RedirectToAction("Index", "Login");
+
         }
         [HttpPost]
         public JsonResult SavePedidoDetalles(tbPedidoDetalle PedidoDetalle)
@@ -292,7 +328,13 @@ namespace ERP_GMEDINA.Controllers
         }
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            if (Function.GetUserLogin())
+            {
+                if (Function.GetRol())
+                {
+                    if (Function.GetUserRols("Pedido/Edit"))
+                    {
+                        if (id == null)
             {
                 return RedirectToAction("Index");
             }
@@ -311,7 +353,19 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.Producto = db.tbProducto.ToList();
             ViewBag.Cliente = db.tbCliente.ToList();
 
-            return View(tbPedido);
+                        return View(tbPedido);
+                    }
+                    else
+                    {
+                        return RedirectToAction("SinAcceso", "Login");
+                    }
+                }
+                else
+                    return RedirectToAction("SinRol", "Login");
+            }
+            else
+                return RedirectToAction("Index", "Login");
+
         }
 
         // POST: /Pedido/Edit/5
@@ -324,68 +378,86 @@ namespace ERP_GMEDINA.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int? id, [Bind(Include = "ped_Id,esped_Id,ped_FechaElaboracion,ped_FechaEntrega,clte_Id,suc_Id,fact_Id,ped_EsAnulado,ped_RazonAnulado,ped_UsuarioCrea,ped_FechaCrea")] tbPedido tbPedido)
         {
-            if (ModelState.IsValid)
+            if (Function.GetUserLogin())
             {
-                try
+                if (Function.GetRol())
                 {
-
-                    ViewBag.ped_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPedido.ped_UsuarioCrea);
-                    ViewBag.ped_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPedido.ped_UsuarioModifica);
-                    ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte", tbPedido.clte_Id);
-                    ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo", tbPedido.fact_Id);
-                    ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo", tbPedido.suc_Id);
-                    ViewBag.esped_Id = new SelectList(db.tbEstadoPedido, "esped_Id", "esped_Descripcion", tbPedido.esped_Id);
-
-                    ViewBag.Producto = db.tbProducto.ToList();
-                    ViewBag.Cliente = db.tbCliente.ToList();
-
-                    var MensajeError = "";
-                    IEnumerable<object> list = null;
-                    list = db.UDP_Vent_tbPedido_Update(tbPedido.ped_Id,
-                                                        tbPedido.esped_Id = 1,
-                                                        tbPedido.ped_FechaElaboracion,
-                                                        tbPedido.ped_FechaEntrega,
-                                                        tbPedido.clte_Id,
-                                                        tbPedido.suc_Id,
-                                                        tbPedido.fact_Id,
-                                                        tbPedido.ped_EsAnulado,
-                                                        tbPedido.ped_RazonAnulado,
-                                                        tbPedido.ped_UsuarioCrea,
-                                                        tbPedido.ped_FechaCrea,
-                                                        Function.GetUser(),
-                                                        Function.DatetimeNow());
-
-                    foreach (UDP_Vent_tbPedido_Update_Result ListaPrecio in list)
-                        MensajeError = ListaPrecio.MensajeError;
-                    if (MensajeError == "-1")
+                    if (Function.GetUserRols("Pedido/Edit"))
                     {
+                        if (ModelState.IsValid)
+                        {
+                            try
+                            {
+
+                                ViewBag.ped_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPedido.ped_UsuarioCrea);
+                                ViewBag.ped_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPedido.ped_UsuarioModifica);
+                                ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte", tbPedido.clte_Id);
+                                ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo", tbPedido.fact_Id);
+                                ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo", tbPedido.suc_Id);
+                                ViewBag.esped_Id = new SelectList(db.tbEstadoPedido, "esped_Id", "esped_Descripcion", tbPedido.esped_Id);
+
+                                ViewBag.Producto = db.tbProducto.ToList();
+                                ViewBag.Cliente = db.tbCliente.ToList();
+
+                                var MensajeError = "";
+                                IEnumerable<object> list = null;
+                                list = db.UDP_Vent_tbPedido_Update(tbPedido.ped_Id,
+                                                                    tbPedido.esped_Id = 1,
+                                                                    tbPedido.ped_FechaElaboracion,
+                                                                    tbPedido.ped_FechaEntrega,
+                                                                    tbPedido.clte_Id,
+                                                                    tbPedido.suc_Id,
+                                                                    tbPedido.fact_Id,
+                                                                    tbPedido.ped_EsAnulado,
+                                                                    tbPedido.ped_RazonAnulado,
+                                                                    tbPedido.ped_UsuarioCrea,
+                                                                    tbPedido.ped_FechaCrea,
+                                                                    Function.GetUser(),
+                                                                    Function.DatetimeNow());
+
+                                foreach (UDP_Vent_tbPedido_Update_Result ListaPrecio in list)
+                                    MensajeError = ListaPrecio.MensajeError;
+                                if (MensajeError == "-1")
+                                {
+
+                                }
+                                else
+                                {
+                                    return RedirectToAction("Index");
+                                }
+                            }
+                            catch (Exception Ex)
+                            {
+                                ModelState.AddModelError("", "No se pudo agregar el registros" + Ex.Message.ToString());
+                                ViewBag.listp_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPedido.ped_UsuarioCrea);
+                                ViewBag.listp_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPedido.ped_UsuarioModifica);
+                                ViewBag.listp_Id = new SelectList(db.tbListadoPrecioDetalle, "listp_Id", "prod_Codigo", tbPedido.ped_Id);
+                                ViewBag.Producto = db.tbProducto.ToList();
+                            }
+
+                            return RedirectToAction("Index");
+                        }
+                        ViewBag.ped_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPedido.ped_UsuarioCrea);
+                        ViewBag.ped_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPedido.ped_UsuarioModifica);
+                        ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte", tbPedido.clte_Id);
+                        ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo", tbPedido.fact_Id);
+                        ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo", tbPedido.suc_Id);
+                        ViewBag.esped_Id = new SelectList(db.tbEstadoPedido, "esped_Id", "esped_Descripcion", tbPedido.esped_Id);
+                        ViewBag.Producto = db.tbProducto.ToList();
+                        return View(tbPedido);
+
 
                     }
                     else
                     {
-                        return RedirectToAction("Index");
+                        return RedirectToAction("SinAcceso", "Login");
                     }
                 }
-                catch (Exception Ex)
-                {
-                    ModelState.AddModelError("", "No se pudo agregar el registros" + Ex.Message.ToString());
-                    ViewBag.listp_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPedido.ped_UsuarioCrea);
-                    ViewBag.listp_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPedido.ped_UsuarioModifica);
-                    ViewBag.listp_Id = new SelectList(db.tbListadoPrecioDetalle, "listp_Id", "prod_Codigo", tbPedido.ped_Id);
-                    ViewBag.Producto = db.tbProducto.ToList();
-                }
-
-                return RedirectToAction("Index");
+                else
+                    return RedirectToAction("SinRol", "Login");
             }
-            ViewBag.ped_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPedido.ped_UsuarioCrea);
-            ViewBag.ped_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPedido.ped_UsuarioModifica);
-            ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte", tbPedido.clte_Id);
-            ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo", tbPedido.fact_Id);
-            ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo", tbPedido.suc_Id);
-            ViewBag.esped_Id = new SelectList(db.tbEstadoPedido, "esped_Id", "esped_Descripcion", tbPedido.esped_Id);
-            ViewBag.Producto = db.tbProducto.ToList();
-            return View(tbPedido);
-          
+            else
+                return RedirectToAction("Index", "Login");
         }
 
 

@@ -412,7 +412,6 @@
     <FunctionImportMapping FunctionImportName="UDP_Inv_ConsultarExistenciaProductos" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_ConsultarExistenciaProductos" />
     <FunctionImportMapping FunctionImportName="UDP_Inv_tbEstadoMovimiento_Delete" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEstadoMovimiento_Delete" />
     <FunctionImportMapping FunctionImportName="UDP_Inv_ValidacionCantidadExistente" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_ValidacionCantidadExistente" />
-    <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_BuscarListaPrecio" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_BuscarListaPrecio" />
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudEfectivoDetalle_Select" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudEfectivoDetalle_Select">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivoDetalle_Select_Result">
@@ -491,22 +490,6 @@
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_CantidadExistente_Result">
           <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
           <ScalarProperty Name="bodd_CantidadExistente" ColumnName="bodd_CantidadExistente" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Vent_tbPuntoEmision_Select" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbPuntoEmision_Select">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbPuntoEmision_Select_Result">
-          <ScalarProperty Name="pemid_Id" ColumnName="pemid_Id" />
-          <ScalarProperty Name="pemi_Id" ColumnName="pemi_Id" />
-          <ScalarProperty Name="dfisc_Descripcion" ColumnName="dfisc_Descripcion" />
-          <ScalarProperty Name="pemid_RangoInicio" ColumnName="pemid_RangoInicio" />
-          <ScalarProperty Name="pemid_RangoFinal" ColumnName="pemid_RangoFinal" />
-          <ScalarProperty Name="pemid_FechaLimite" ColumnName="pemid_FechaLimite" />
-          <ScalarProperty Name="UsuarioCrea" ColumnName="UsuarioCrea" />
-          <ScalarProperty Name="pemid_FechaCrea" ColumnName="pemid_FechaCrea" />
-          <ScalarProperty Name="UsuarioModifica" ColumnName="UsuarioModifica" />
-          <ScalarProperty Name="pemid_FechaModifica" ColumnName="pemid_FechaModifica" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -813,13 +796,6 @@
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbPedido_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbPedido_Estado">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbPedido_Estado_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Vent_tbPedido_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbPedido_Insert">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbPedido_Insert_Result">
           <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
         </ComplexTypeMapping>
       </ResultMapping>
@@ -3025,6 +3001,20 @@
           <ScalarProperty Name="cdto_MaximoMontoDescuento" ColumnName="cdto_MaximoMontoDescuento" />
           <ScalarProperty Name="cdto_CantidadCompraMinima" ColumnName="cdto_CantidadCompraMinima" />
           <ScalarProperty Name="cdto_Redimido" ColumnName="cdto_Redimido" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbPedido_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbPedido_Insert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbPedido_Insert_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_BuscarListaPrecio" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_BuscarListaPrecio">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbFactura_BuscarListaPrecio_Result">
+          <ScalarProperty Name="PrecioUnitario" ColumnName="PrecioUnitario" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

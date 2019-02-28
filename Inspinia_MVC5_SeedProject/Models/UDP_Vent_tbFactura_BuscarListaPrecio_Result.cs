@@ -11,8 +11,8 @@ namespace ERP_GMEDINA.Models
 {
     using System;
     
-    public partial class UDP_Gral_tbDenominacion_using_Result
+    public partial class UDP_Vent_tbFactura_BuscarListaPrecio_Result
     {
-        public short deno_Id { get; set; }
+        public decimal PrecioUnitario { get; set; }
     }
 }

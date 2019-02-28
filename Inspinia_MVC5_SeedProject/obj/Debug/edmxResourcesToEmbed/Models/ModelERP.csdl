@@ -905,10 +905,6 @@
       <Parameter Name="UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbFactura_BuscarListaPrecio" ReturnType="Collection(Decimal)">
-      <Parameter Name="IDCLIENTE" Mode="In" Type="Int32" />
-      <Parameter Name="IDPRODUCTO" Mode="In" Type="String" />
-    </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbSolicitudEfectivoDetalle_Select" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivoDetalle_Select_Result)" />
     <FunctionImport Name="UDP_Vent_tbFactura_ConsultaBodega" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFactura_ConsultaBodega_Result)">
       <Parameter Name="IDSUCURSAL" Mode="In" Type="Int32" />
@@ -1204,18 +1200,6 @@
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbPedido_Estado" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPedido_Estado_Result)">
       <Parameter Name="ped_Id" Mode="In" Type="Int32" />
-      <Parameter Name="ped_EsAnulado" Mode="In" Type="Boolean" />
-      <Parameter Name="ped_RazonAnulado" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbPedido_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPedido_Insert_Result)">
-      <Parameter Name="esped_Id" Mode="In" Type="Byte" />
-      <Parameter Name="ped_FechaElaboracion" Mode="In" Type="DateTime" />
-      <Parameter Name="ped_FechaEntrega" Mode="In" Type="DateTime" />
-      <Parameter Name="clte_Id" Mode="In" Type="Int32" />
-      <Parameter Name="suc_Id" Mode="In" Type="Int32" />
-      <Parameter Name="fact_Id" Mode="In" Type="Int64" />
-      <Parameter Name="ped_UsuarioModifica" Mode="In" Type="Int32" />
-      <Parameter Name="ped_FechaModifica" Mode="In" Type="DateTime" />
       <Parameter Name="ped_EsAnulado" Mode="In" Type="Boolean" />
       <Parameter Name="ped_RazonAnulado" Mode="In" Type="String" />
     </FunctionImport>
@@ -2868,6 +2852,22 @@
       <Parameter Name="dev_Id" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbCuponDescuentoSelect" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbCuponDescuentoSelect_Result)" />
+    <FunctionImport Name="UDP_Vent_tbPedido_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPedido_Insert_Result)">
+      <Parameter Name="esped_Id" Mode="In" Type="Byte" />
+      <Parameter Name="ped_FechaElaboracion" Mode="In" Type="DateTime" />
+      <Parameter Name="ped_FechaEntrega" Mode="In" Type="DateTime" />
+      <Parameter Name="clte_Id" Mode="In" Type="Int32" />
+      <Parameter Name="suc_Id" Mode="In" Type="Int32" />
+      <Parameter Name="fact_Id" Mode="In" Type="Int64" />
+      <Parameter Name="ped_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="ped_FechaCrea" Mode="In" Type="DateTime" />
+      <Parameter Name="ped_EsAnulado" Mode="In" Type="Boolean" />
+      <Parameter Name="ped_RazonAnulado" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbFactura_BuscarListaPrecio" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFactura_BuscarListaPrecio_Result)">
+      <Parameter Name="IDCLIENTE" Mode="In" Type="Int32" />
+      <Parameter Name="IDPRODUCTO" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -3359,9 +3359,6 @@
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbPedido_Estado_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbPedido_Insert_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbPedido_Update_Result2">
@@ -8442,5 +8439,11 @@
     <Property Type="Decimal" Name="cdto_MaximoMontoDescuento" Nullable="false" Precision="10" Scale="2" />
     <Property Type="Decimal" Name="cdto_CantidadCompraMinima" Nullable="false" Precision="10" Scale="2" />
     <Property Type="Boolean" Name="cdto_Redimido" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbPedido_Insert_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbFactura_BuscarListaPrecio_Result">
+    <Property Type="Decimal" Name="PrecioUnitario" Nullable="false" Precision="10" Scale="2" />
   </ComplexType>
 </Schema>
