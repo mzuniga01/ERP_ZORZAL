@@ -104,19 +104,19 @@ namespace ERP_GMEDINA.Controllers
         }
 
         [HttpPost]
-        public JsonResult ProductosEnter(string cod_Barras,int bod_Id)
-        {
-            IEnumerable<object> list = null;
-            try
-            {
-                 list = db.SP_tbInventariofisico_ProductosRepetidos(cod_Barras, bod_Id).ToList();
-            }
-            catch (Exception Ex)
-            {
-                Ex.Message.ToString();
-            }
-            return Json(list, JsonRequestBehavior.AllowGet);
-        }
+        //public JsonResult ProductosEnter(string cod_Barras,int bod_Id)
+        //{
+        //    IEnumerable<object> list = null;
+        //    try
+        //    {
+        //         list = db.SP_tbInventariofisico_ProductosRepetidos(cod_Barras, bod_Id).ToList();
+        //    }
+        //    catch (Exception Ex)
+        //    {
+        //        Ex.Message.ToString();
+        //    }
+        //    return Json(list, JsonRequestBehavior.AllowGet);
+        //}
 
         public ActionResult ExportReport(int? id)
         {

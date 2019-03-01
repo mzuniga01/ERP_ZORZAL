@@ -241,40 +241,40 @@ namespace ERP_GMEDINA.Controllers
             return View(tbProducto);
         }
 
-        public ActionResult EstadoActivar(string id)
-        {
-            tbProducto obj = db.tbProducto.Find(id);
-            try
-            {
-                tbProducto productos = new tbProducto();
-                IEnumerable<object> list = null;
-                var MsjError = "";
-                list = db.UDP_Inv_tbProducto_Estado_Prueba(id, Helpers.EmpleadoActivo, Function.GetUser(), Function.DatetimeNow());
-                foreach (UDP_Inv_tbProducto_Estado_Prueba_Result obje in list)
-                    MsjError = obje.MensajeError;
+        //public ActionResult EstadoActivar(string id)
+        //{
+        //    tbProducto obj = db.tbProducto.Find(id);
+        //    try
+        //    {
+        //        tbProducto productos = new tbProducto();
+        //        IEnumerable<object> list = null;
+        //        var MsjError = "";
+        //        list = db.UDP_Inv_tbProducto_Estado_Prueba(id, Helpers.EmpleadoActivo, Function.GetUser(), Function.DatetimeNow());
+        //        foreach (UDP_Inv_tbProducto_Estado_Prueba_Result obje in list)
+        //            MsjError = obje.MensajeError;
 
-                if (MsjError.StartsWith("-1"))
-                {
-                    ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion", obj.uni_Id);
-                    ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion ", obj.pscat_Id);
-                    Function.InsertBitacoraErrores("Producto/EstadoActivar", MsjError, "EstadoActivar");
-                    ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
-                    return RedirectToAction("Edit/" + id);
-                }
-                else
-                {
-                    return RedirectToAction("Edit/" + id);
-                }
-            }
-            catch (Exception Ex)
-            {
-                ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion", obj.uni_Id);
-                ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion ", obj.pscat_Id);
-                Function.InsertBitacoraErrores("Producto/EstadoActivar", Ex.Message.ToString(), "EstadoActivar");
-                ModelState.AddModelError("", "No se pudo actualizar el registro detalle, favor contacte al administrador.");
-                return RedirectToAction("Edit/" + id);
-            }
-        }
+        //        if (MsjError.StartsWith("-1"))
+        //        {
+        //            ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion", obj.uni_Id);
+        //            ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion ", obj.pscat_Id);
+        //            Function.InsertBitacoraErrores("Producto/EstadoActivar", MsjError, "EstadoActivar");
+        //            ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+        //            return RedirectToAction("Edit/" + id);
+        //        }
+        //        else
+        //        {
+        //            return RedirectToAction("Edit/" + id);
+        //        }
+        //    }
+        //    catch (Exception Ex)
+        //    {
+        //        ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion", obj.uni_Id);
+        //        ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion ", obj.pscat_Id);
+        //        Function.InsertBitacoraErrores("Producto/EstadoActivar", Ex.Message.ToString(), "EstadoActivar");
+        //        ModelState.AddModelError("", "No se pudo actualizar el registro detalle, favor contacte al administrador.");
+        //        return RedirectToAction("Edit/" + id);
+        //    }
+        //}
 
         protected override void Dispose(bool disposing)
         {
