@@ -70,7 +70,6 @@ $('#AñadirPedidoDetalle').click(function () {
 
 });
 
-
 function GetPedidoDetalle() {
     var PedidoDetalle = {
         prod_Codigo: $('#prod_Codigo').val(),

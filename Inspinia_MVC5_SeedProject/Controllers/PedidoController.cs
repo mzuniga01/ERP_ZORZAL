@@ -27,6 +27,26 @@ namespace ERP_GMEDINA.Controllers
             return View(db.tbPedido.ToList());
         }
 
+
+        public int Usuario()
+        {
+            int idUser = 0;
+            try
+            {
+                List<tbUsuario> User = Function.getUserInformation();
+                foreach (tbUsuario Usuario in User)
+                {
+                    idUser = Convert.ToInt32(Usuario.suc_Id);
+                }
+                return idUser;
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                return 0;
+            }
+        }
+
         // GET: /Pedido/Details/5
         public ActionResult Details(int? id)
         {
@@ -94,7 +114,11 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.Producto = db.tbProducto.ToList();
             tbPedido Pedido = new tbPedido();
             Pedido.esped_Id = Helpers.Pendiente;
-            Pedido.suc_Id = 1;
+            Pedido.suc_Id = Usuario();
+                        tbSucursal tbSucursal = new tbSucursal();
+                        int suc = Usuario();
+                        ViewBag.Sucursal = db.tbSucursal.Find(suc).suc_Descripcion;
+
             return View(Pedido);
                     }
                     else
