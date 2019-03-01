@@ -351,7 +351,7 @@ $("#pscat_Descripcion").change(function () {
 });
 
 $("#pscat_Descripcion_edit").change(function () {
-    var str = $("#pscat_Descripcion").val();
+    var str = $("#pscat_Descripcion_edit").val();
     var res = str.toUpperCase();
-    $("#pscat_Descripcion").val(res);
+    $("#pscat_Descripcion_edit").val(res);
 });

@@ -89,12 +89,12 @@ namespace ERP_GMEDINA.Controllers
         }
 
         [HttpPost]
-        public JsonResult ProductosBodega(tbBodegaDetalle productos)
+        public JsonResult ProductosEnter(string cod_Barras)
         {
             IEnumerable<object> list = null;
             try
             {
-                 list = db.UDP_Inv_tbInventarioFisico_ListaProductos(productos.bod_Id).ToList();
+                 list = db.SP_tbInventariofisico_ProductosRepetidos(cod_Barras).ToList();
             }
             catch (Exception Ex)
             {
@@ -102,21 +102,6 @@ namespace ERP_GMEDINA.Controllers
             }
             return Json(list, JsonRequestBehavior.AllowGet);
         }
-
-        [HttpPost]
-        //public JsonResult ProductosEnter(string cod_Barras,int bod_Id)
-        //{
-        //    IEnumerable<object> list = null;
-        //    try
-        //    {
-        //         list = db.SP_tbInventariofisico_ProductosRepetidos(cod_Barras, bod_Id).ToList();
-        //    }
-        //    catch (Exception Ex)
-        //    {
-        //        Ex.Message.ToString();
-        //    }
-        //    return Json(list, JsonRequestBehavior.AllowGet);
-        //}
 
         public ActionResult ExportReport(int? id)
         {
@@ -413,7 +398,7 @@ namespace ERP_GMEDINA.Controllers
                         return RedirectToAction("Edit/" + MsjError);
                     }
                 }
-                return RedirectToAction("Index");
+                return RedirectToAction("Edit");
             }
             ViewBag.bodegas = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbInventarioFisico.bod_Id);
             this.listas();
@@ -532,7 +517,7 @@ namespace ERP_GMEDINA.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Edit");
                 }
             }
             catch (Exception Ex)

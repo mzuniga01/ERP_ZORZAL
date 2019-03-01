@@ -26,7 +26,7 @@
             @Html.LabelFor(model => model.tbProducto.prod_CodigoBarras, "Producto", new { @class = "control-label col-md-2" })
             <div class="col-md-8">
                 <input type="text" id="prod_CodigoBarras" placeholder="" class="form-control" />
-                <div id="validationproducto">
+                <div id="ErrorBarras_Create">
                     @Html.ValidationMessageFor(model => model.tbProducto.prod_CodigoBarras)
                 </div>
             </div>
@@ -103,31 +103,7 @@
                 </div>
                 <div class="modal-body" id="frmAgregarCasoExito">
                     <div class="ibox-content">
-                        <input type="text" id="buscar" placeholder="Buscar Producto" class="form-control" onkeyup="doSearch()" />
-                        <table class="table table-striped" id="BuscarProducto">
-                            <tr>
-                                <th>
-                                    Descripcion del Producto
-                                </th>
-                                <th>
-                                    Marca
-                                </th>
-                                <th>
-                                    Codigo de Barras
-                                </th>
-                                <th>
-                                    Modelo
-                                </th>
-                                <th>
-                                    Unidad de Medida
-                                </th>
-                                <th>
-                                    Acciones
-                                </th>
-                            </tr>
-
-                        </table>
-
+                        @Html.Partial("_IndexProductos", (List<tbProducto>)ViewBag.Producto)
                     </div>
                     <div class="form-group">
                         <div class="col-md-12 text-center">

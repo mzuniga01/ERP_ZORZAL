@@ -337,6 +337,7 @@ namespace ERP_GMEDINA.Controllers
             }
             else
             {
+                ViewBag.Sucursal = new SelectList(db.tbSucursal, "suc_Id", "suc_Descripcion");
                 var errors = ModelState.Values.SelectMany(v => v.Errors);
             }
             return View(tbUsuario);

@@ -761,9 +761,6 @@
     <Compile Include="Models\UDP_Inv_tbInventarioFisico_Insert_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\UDP_Inv_tbInventarioFisico_ListaProductos_Result.cs">
-      <DependentUpon>ModelERP.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\UDP_Inv_tbInventarioFisico_Update_Estado_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -1432,7 +1429,6 @@
     <Content Include="Views\UnidadMedida\Edit.cshtml" />
     <Content Include="Views\UnidadMedida\Index.cshtml" />
     <Content Include="Views\InventarioFisico\_IndexInvFisicoDetalle.cshtml" />
-    <Content Include="Views\InventarioFisico\_IndexInvFisicoDetalle_Botones.cshtml" />
     <Content Include="Views\Rol\Create.cshtml" />
     <Content Include="Views\Rol\Delete.cshtml" />
     <Content Include="Views\Rol\Details.cshtml" />
@@ -1462,7 +1458,6 @@
     <Content Include="Views\Departamento\_IndexMunicipio_Botones.cshtml" />
     <Content Include="Views\InventarioFisico\_CreateInvFisicoDetalle.cshtml" />
     <Content Include="Views\InventarioFisico\_DetailsInvFisicoDetalle.cshtml" />
-    <Content Include="Views\InventarioFisico\_EditInvFisicoDetalle.cshtml" />
     <Content Include="Views\Proveedor\Create.cshtml" />
     <Content Include="Views\Proveedor\Details.cshtml" />
     <Content Include="Views\Proveedor\Edit.cshtml" />

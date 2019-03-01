@@ -15,10 +15,11 @@
     <thead>
         <tr>
             <th>
-                Descripcion del Producto
+                @Html.DisplayNameFor(model => model.tbProducto.prod_CodigoBarras)
+               
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.tbProducto.prod_CodigoBarras)
+                Descripcion del Producto
             </th>
             <th>
                 Unidad de Medida
@@ -40,10 +41,10 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
+                    @Html.DisplayFor(modelItem => item.tbProducto.prod_CodigoBarras)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.tbProducto.prod_CodigoBarras)
+                  @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.tbUnidadMedida.uni_Descripcion)
