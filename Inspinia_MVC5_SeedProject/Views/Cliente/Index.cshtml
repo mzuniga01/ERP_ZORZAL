@@ -143,23 +143,7 @@
 <script src="~/Scripts/app/BCliente.js"></script>
 <script src="~/Scripts/app/CaracteresEspeciales.js"></script>
 <script>
-    $("#telefono").on("keypress keyup blur", function (event) {
-        var Telefono = $(this).val();
-        console.log(Telefono)
-        if (Telefono == '') {
-            //$(this).val('+');
-        }
-        this.value = this.value.replace(/[a-záéíóúüñ#/=]+/ig, "");
-    });
-
-
-    function validartel(e) {
-        tecla = (document.all) ? e.keyCode : e.which;
-        tecla = String.fromCharCode(tecla)
-        return /^[ 0-9\s]*$/i.test(tecla);
-    }
-
-    function format(input) {
+   function format(input) {
         $(input).change(function () {
             var str = $(input).val();
             var res = str.toUpperCase();

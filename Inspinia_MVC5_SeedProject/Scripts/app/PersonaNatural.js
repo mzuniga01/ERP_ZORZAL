@@ -205,61 +205,81 @@ $('#clte_EsPersonaNatural').on('click', function () {
 
 });
 
-$("#clte_ContactoTelefono").on("keypress keyup blur", function (event) {
-    var Telefono = $(this).val();
-        console.log(Telefono)
-        if (Telefono == '') {
-            $(this).val('+');
-        }
-        this.value = this.value.replace(/[a-záéíóúüñ#/=]+/ig, "");
-});
+//$("#clte_ContactoTelefono").on("keypress keyup blur", function (event) {
+//    var Telefono = $(this).val();
+//        console.log(Telefono)
+//        if (Telefono == '') {
+//            $(this).val('+');
+//        }
+//    this.value = this.value.replace(/[a-záéíóúüñ#/=]+/ig, "");
+//});
 
-$("#clte_Telefono").on("keypress keyup blur", function (event) {
-    var Telefono = $(this).val();
-    console.log(Telefono)
-    if (Telefono == '') {
-        $(this).val('+');
-    }
-    this.value = this.value.replace(/[a-záéíóúüñ#/=]+/ig, "");
-});
+//$("#clte_Telefono").on("keypress keyup blur", function (event) {
+//    var Telefono = $(this).val();
+//    console.log(Telefono)
+//    if (Telefono == '') {
+//        $(this).val('+');
+//    }
+//    this.value = this.value.replace(/[a-záéíóúüñ#/=]+/ig, "");
+//});
 
-$("#clte_ContactoEmail").blur(function () {   
-        campo = event.target;
-        valido = document.getElementById('emailOK');
+//$("#clte_ContactoEmail").blur(function () {   
+//        campo = event.target;
+//        valido = document.getElementById('emailOK');
 
-        var reg = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+//        var reg = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-        var regOficial = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
-        //Se muestra un texto a modo de ejemplo, luego va a ser un icono
-        if (reg.test(campo.value) && regOficial.test(campo.value)) {
-            valido.innerText = "";
-        } else if (reg.test(campo.value)) {
-            valido.innerText = "";
+//        var regOficial = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+//        //Se muestra un texto a modo de ejemplo, luego va a ser un icono
+//        if (reg.test(campo.value) && regOficial.test(campo.value)) {
+//            valido.innerText = "";
+//        } else if (reg.test(campo.value)) {
+//            valido.innerText = "";
 
-        } else {
-            valido.innerText = "Direccion de Correo Electronico Incorrecta";
-            return false
-        }
-});
+//        } else {
+//            valido.innerText = "Direccion de Correo Electronico Incorrecta";
+//            return false
+//        }
+//});
 
-$("#clte_CorreoElectronico").blur(function () {
-    campo = event.target;
-    valido = document.getElementById('emailOK1');
+//$("#clte_ContactoEmail").blur(function () {   
+//            campo = event.target;
+//            var reg = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-    var reg = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+//            var regOficial = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+//            //Se muestra un texto a modo de ejemplo, luego va a ser un icono
+//            if (reg.test(campo.value) && regOficial.test(campo.value)) {
+//                $(this).next("p").text("");
+//            } else if (reg.test(campo.value)) {
+//                valido.innerText = "";
 
-    var regOficial = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
-    //Se muestra un texto a modo de ejemplo, luego va a ser un icono
-    if (reg.test(campo.value) && regOficial.test(campo.value)) {
-        valido.innerText = "";
-    } else if (reg.test(campo.value)) {
-        valido.innerText = "";
+//            } else {
+//                //valido.innerText = "Direccion de Correo Electronico Incorrecta";
+//                $(this).next("p").text("Direccion de Correo Electronico Incorrecta");
+//                return false
+//            }
+//    });
 
-    } else {
-        valido.innerText = "Direccion de Correo Electronico Incorrecta";
-        return false
-    }
-});
+
+
+//$("#clte_CorreoElectronico").blur(function () {
+//    campo = event.target;
+//    valido = document.getElementById('emailOK1');
+
+//    var reg = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+//    var regOficial = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+//    //Se muestra un texto a modo de ejemplo, luego va a ser un icono
+//    if (reg.test(campo.value) && regOficial.test(campo.value)) {
+//        valido.innerText = "";
+//    } else if (reg.test(campo.value)) {
+//        valido.innerText = "";
+
+//    } else {
+//        valido.innerText = "Direccion de Correo Electronico Incorrecta";
+//        return false
+//    }
+//});
 
 $('#clte_Identificacion').on('input', function (e) {
     if (!/^[ a-z0-9]*$/i.test(this.value)) {
@@ -273,33 +293,33 @@ $('#identificacion').on('input', function (e) {
     }
 });
 
-function format(input) {
-    $(input).change(function () {
-        var str = $(input).val();
-        var res = str.toUpperCase();
-        $(input).val(res);
-    });
-    //$(input).on("keypress", function () {
-    //    $input = $(this);
-    //    setTimeout(function () {
-    //    $input.val($input.val().toUpperCase());
-    //    }, 0);
-    //})
-}
+//function format(input) {
+//    $(input).change(function () {
+//        var str = $(input).val();
+//        var res = str.toUpperCase();
+//        $(input).val(res);
+//    });
+//    //$(input).on("keypress", function () {
+//    //    $input = $(this);
+//    //    setTimeout(function () {
+//    //    $input.val($input.val().toUpperCase());
+//    //    }, 0);
+//    //})
+//}
 
-function formateo(input) {
-    $(input).change(function () {
-        var str = $(input).val();
-        var res = str.toLowerCase();
-        $(input).val(res);
-    });
-    $(input).on("keypress", function () {
-        $input = $(this);
-        setTimeout(function () {
-            $input.val($input.val().toLowerCase());
-        }, 50);
-    })
-}
+//function formateo(input) {
+//    $(input).change(function () {
+//        var str = $(input).val();
+//        var res = str.toLowerCase();
+//        $(input).val(res);
+//    });
+//    $(input).on("keypress", function () {
+//        $input = $(this);
+//        setTimeout(function () {
+//            $input.val($input.val().toLowerCase());
+//        }, 50);
+//    })
+//}
 
 $("#clte_Identificacion").on("blur", function (event) {
     var tpi_Id = $("#tpi_Id option:selected").text()
@@ -328,8 +348,4 @@ $("#clte_Identificacion").on("blur", function (event) {
     }
 });
 
-function validartel(e) {
-    tecla = (document.all) ? e.keyCode : e.which;
-    tecla = String.fromCharCode(tecla)
-    return /^[ 0-9\s]*$/i.test(tecla);
-}
+
