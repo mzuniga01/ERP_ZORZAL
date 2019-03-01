@@ -99,6 +99,7 @@ namespace ERP_GMEDINA.Controllers
                                                             tbProducto.prod_Color,
                                                             tbProducto.pscat_Id,
                                                             tbProducto.uni_Id,
+                                                            tbProducto.prod_EsActivo,
                                                             tbProducto.prod_CodigoBarras,
                                                             Function.GetUser(),
                                                             Function.DatetimeNow()
@@ -199,6 +200,7 @@ namespace ERP_GMEDINA.Controllers
                                                         tbProducto.prod_Color,
                                                         tbProducto.pscat_Id,
                                                         tbProducto.uni_Id,
+                                                        tbProducto.prod_Razon_Inactivacion,
                                                         tbProducto.prod_CodigoBarras,
                                                         vtbProducto.prod_UsuarioCrea,
                                                         vtbProducto.prod_FechaCrea,

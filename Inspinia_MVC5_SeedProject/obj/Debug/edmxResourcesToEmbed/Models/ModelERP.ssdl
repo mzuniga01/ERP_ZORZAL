@@ -324,7 +324,7 @@
     <Key>
       <PropertyRef Name="estif_Id" />
     </Key>
-    <Property Name="estif_Id" Type="tinyint" Nullable="false" />
+    <Property Name="estif_Id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="estif_Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="estif_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="estif_FechaCrea" Type="datetime" Nullable="false" />
@@ -2491,6 +2491,30 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Inv_tbEstadoInventarioFisico_estif_UsuarioModifica">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbEstadoInventarioFisico" Type="Self.tbEstadoInventarioFisico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbEstadoInventarioFisico">
+        <PropertyRef Name="estif_UsuarioModifica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inv_tbEstadoInventarioFisico_tbUsuario_estif_UsuarioCrea">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="tbEstadoInventarioFisico" Type="Self.tbEstadoInventarioFisico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbEstadoInventarioFisico">
+        <PropertyRef Name="estif_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Inv_tbEstadoMovimiento_estm_UsuarioModifica">
     <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
     <End Role="tbEstadoMovimiento" Type="Self.tbEstadoMovimiento" Multiplicity="*" />
@@ -4216,6 +4240,18 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
     <Parameter Name="entd_UsuarioModifica" Type="int" Mode="In" />
     <Parameter Name="entd_FechaModifica" Type="datetime" Mode="In" />
   </Function>
+  <Function Name="UDP_Inv_tbEstadoInventarioFisico_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="estif_Id" Type="tinyint" Mode="In" />
+    <Parameter Name="estif_Descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="estif_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="estif_FechaCrea" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="UDP_Inv_tbEstadoInventarioFisico_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="estif_Id" Type="tinyint" Mode="In" />
+    <Parameter Name="estif_Descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="estif_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="estif_FechaCrea" Type="datetime" Mode="In" />
+  </Function>
   <Function Name="UDP_Inv_tbEstadoMovimiento_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="estm_Id" Type="int" Mode="In" />
   </Function>
@@ -4301,6 +4337,7 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
     <Parameter Name="prod_Color" Type="varchar" Mode="In" />
     <Parameter Name="pscat_Id" Type="int" Mode="In" />
     <Parameter Name="uni_Id" Type="int" Mode="In" />
+    <Parameter Name="prod_EsActivo" Type="bit" Mode="In" />
     <Parameter Name="prod_CodigoBarras" Type="varchar" Mode="In" />
     <Parameter Name="prod_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="prod_FechaCrea" Type="datetime" Mode="In" />
@@ -4314,6 +4351,7 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
     <Parameter Name="prod_Color" Type="varchar" Mode="In" />
     <Parameter Name="pscat_Id" Type="int" Mode="In" />
     <Parameter Name="uni_Id" Type="int" Mode="In" />
+    <Parameter Name="prod_Razon_Inactivacion" Type="varchar" Mode="In" />
     <Parameter Name="prod_CodigoBarras" Type="varchar" Mode="In" />
     <Parameter Name="prod_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="prod_FechaCrea" Type="datetime" Mode="In" />
@@ -5091,6 +5129,14 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
     <AssociationSet Name="FK_Inv_tbEntradaDetalle_tbProducto_prod_Codigo" Association="Self.FK_Inv_tbEntradaDetalle_tbProducto_prod_Codigo">
       <End Role="tbProducto" EntitySet="tbProducto" />
       <End Role="tbEntradaDetalle" EntitySet="tbEntradaDetalle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inv_tbEstadoInventarioFisico_estif_UsuarioModifica" Association="Self.FK_Inv_tbEstadoInventarioFisico_estif_UsuarioModifica">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbEstadoInventarioFisico" EntitySet="tbEstadoInventarioFisico" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inv_tbEstadoInventarioFisico_tbUsuario_estif_UsuarioCrea" Association="Self.FK_Inv_tbEstadoInventarioFisico_tbUsuario_estif_UsuarioCrea">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbEstadoInventarioFisico" EntitySet="tbEstadoInventarioFisico" />
     </AssociationSet>
     <AssociationSet Name="FK_Inv_tbEstadoMovimiento_estm_UsuarioModifica" Association="Self.FK_Inv_tbEstadoMovimiento_estm_UsuarioModifica">
       <End Role="tbUsuario" EntitySet="tbUsuario" />

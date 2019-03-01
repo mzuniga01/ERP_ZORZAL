@@ -128,6 +128,12 @@
                             <a href="@Url.Action("Index", "EstadoMovimiento")"><i class="fa fa-bar-chart-o fa-fw"></i>Estado Movimiento<span class="nav-label"></span> </a>
                         </li>
                     }
+                    @if (Login.GetUserRols("EstadoInventarioFisico/Index"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("Index", "EstadoInventarioFisico")"><i class="fa fa-bar-chart-o fa-fw"></i>Estado Inventario Fisico<span class="nav-label"></span> </a>
+                        </li>
+                    }
                 </ul>
             </li>
 

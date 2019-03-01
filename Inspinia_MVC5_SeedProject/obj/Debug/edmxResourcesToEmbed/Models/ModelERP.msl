@@ -152,35 +152,9 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SDP_Acce_GetRoles" FunctionName="ERP_ZORZALModel.Store.SDP_Acce_GetRoles">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_Acce_GetRoles_Result">
-          <ScalarProperty Name="rol_Id" ColumnName="rol_Id" />
-          <ScalarProperty Name="rol_Descripcion" ColumnName="rol_Descripcion" />
-          <ScalarProperty Name="rol_UsuarioCrea" ColumnName="rol_UsuarioCrea" />
-          <ScalarProperty Name="rol_FechaCrea" ColumnName="rol_FechaCrea" />
-          <ScalarProperty Name="rol_UsuarioModifica" ColumnName="rol_UsuarioModifica" />
-          <ScalarProperty Name="rol_FechaModifica" ColumnName="rol_FechaModifica" />
-          <ScalarProperty Name="rol_Estado" ColumnName="rol_Estado" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="SDP_Acce_GetRolesAsignados" FunctionName="ERP_ZORZALModel.Store.SDP_Acce_GetRolesAsignados">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_Acce_GetRolesAsignados_Result">
-          <ScalarProperty Name="rol_Id" ColumnName="rol_Id" />
-          <ScalarProperty Name="rol_Descripcion" ColumnName="rol_Descripcion" />
-          <ScalarProperty Name="rol_UsuarioCrea" ColumnName="rol_UsuarioCrea" />
-          <ScalarProperty Name="rol_FechaCrea" ColumnName="rol_FechaCrea" />
-          <ScalarProperty Name="rol_UsuarioModifica" ColumnName="rol_UsuarioModifica" />
-          <ScalarProperty Name="rol_FechaModifica" ColumnName="rol_FechaModifica" />
-          <ScalarProperty Name="rol_Estado" ColumnName="rol_Estado" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SDP_Acce_GetRolesDisponibles" FunctionName="ERP_ZORZALModel.Store.SDP_Acce_GetRolesDisponibles">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_Acce_GetRolesDisponibles_Result">
           <ScalarProperty Name="rol_Id" ColumnName="rol_Id" />
           <ScalarProperty Name="rol_Descripcion" ColumnName="rol_Descripcion" />
           <ScalarProperty Name="rol_UsuarioCrea" ColumnName="rol_UsuarioCrea" />
@@ -2206,6 +2180,46 @@
           <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
           <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
           <ScalarProperty Name="uni_Descripcion" ColumnName="uni_Descripcion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbEstadoInventarioFisico_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEstadoInventarioFisico_Insert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbEstadoInventarioFisico_Insert_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbEstadoInventarioFisico_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEstadoInventarioFisico_Update">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbEstadoInventarioFisico_Update_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SDP_Acce_GetRoles" FunctionName="ERP_ZORZALModel.Store.SDP_Acce_GetRoles">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_Acce_GetRoles_Result">
+          <ScalarProperty Name="rol_Id" ColumnName="rol_Id" />
+          <ScalarProperty Name="rol_Descripcion" ColumnName="rol_Descripcion" />
+          <ScalarProperty Name="rol_UsuarioCrea" ColumnName="rol_UsuarioCrea" />
+          <ScalarProperty Name="rol_FechaCrea" ColumnName="rol_FechaCrea" />
+          <ScalarProperty Name="rol_UsuarioModifica" ColumnName="rol_UsuarioModifica" />
+          <ScalarProperty Name="rol_FechaModifica" ColumnName="rol_FechaModifica" />
+          <ScalarProperty Name="rol_Estado" ColumnName="rol_Estado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SDP_Acce_GetRolesDisponibles" FunctionName="ERP_ZORZALModel.Store.SDP_Acce_GetRolesDisponibles">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_Acce_GetRolesDisponibles_Result">
+          <ScalarProperty Name="rol_Id" ColumnName="rol_Id" />
+          <ScalarProperty Name="rol_Descripcion" ColumnName="rol_Descripcion" />
+          <ScalarProperty Name="rol_UsuarioCrea" ColumnName="rol_UsuarioCrea" />
+          <ScalarProperty Name="rol_FechaCrea" ColumnName="rol_FechaCrea" />
+          <ScalarProperty Name="rol_UsuarioModifica" ColumnName="rol_UsuarioModifica" />
+          <ScalarProperty Name="rol_FechaModifica" ColumnName="rol_FechaModifica" />
+          <ScalarProperty Name="rol_Estado" ColumnName="rol_Estado" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

@@ -329,7 +329,7 @@
           <Key>
             <PropertyRef Name="estif_Id" />
           </Key>
-          <Property Name="estif_Id" Type="tinyint" Nullable="false" />
+          <Property Name="estif_Id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="estif_Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="estif_UsuarioCrea" Type="int" Nullable="false" />
           <Property Name="estif_FechaCrea" Type="datetime" Nullable="false" />
@@ -2496,6 +2496,30 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Inv_tbEstadoInventarioFisico_estif_UsuarioModifica">
+          <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+          <End Role="tbEstadoInventarioFisico" Type="Self.tbEstadoInventarioFisico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbEstadoInventarioFisico">
+              <PropertyRef Name="estif_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inv_tbEstadoInventarioFisico_tbUsuario_estif_UsuarioCrea">
+          <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+          <End Role="tbEstadoInventarioFisico" Type="Self.tbEstadoInventarioFisico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbEstadoInventarioFisico">
+              <PropertyRef Name="estif_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Inv_tbEstadoMovimiento_estm_UsuarioModifica">
           <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
           <End Role="tbEstadoMovimiento" Type="Self.tbEstadoMovimiento" Multiplicity="*" />
@@ -4221,6 +4245,18 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
           <Parameter Name="entd_UsuarioModifica" Type="int" Mode="In" />
           <Parameter Name="entd_FechaModifica" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="UDP_Inv_tbEstadoInventarioFisico_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+          <Parameter Name="estif_Id" Type="tinyint" Mode="In" />
+          <Parameter Name="estif_Descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="estif_UsuarioCrea" Type="int" Mode="In" />
+          <Parameter Name="estif_FechaCrea" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="UDP_Inv_tbEstadoInventarioFisico_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+          <Parameter Name="estif_Id" Type="tinyint" Mode="In" />
+          <Parameter Name="estif_Descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="estif_UsuarioCrea" Type="int" Mode="In" />
+          <Parameter Name="estif_FechaCrea" Type="datetime" Mode="In" />
+        </Function>
         <Function Name="UDP_Inv_tbEstadoMovimiento_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="estm_Id" Type="int" Mode="In" />
         </Function>
@@ -4306,6 +4342,7 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
           <Parameter Name="prod_Color" Type="varchar" Mode="In" />
           <Parameter Name="pscat_Id" Type="int" Mode="In" />
           <Parameter Name="uni_Id" Type="int" Mode="In" />
+          <Parameter Name="prod_EsActivo" Type="bit" Mode="In" />
           <Parameter Name="prod_CodigoBarras" Type="varchar" Mode="In" />
           <Parameter Name="prod_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="prod_FechaCrea" Type="datetime" Mode="In" />
@@ -4319,6 +4356,7 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
           <Parameter Name="prod_Color" Type="varchar" Mode="In" />
           <Parameter Name="pscat_Id" Type="int" Mode="In" />
           <Parameter Name="uni_Id" Type="int" Mode="In" />
+          <Parameter Name="prod_Razon_Inactivacion" Type="varchar" Mode="In" />
           <Parameter Name="prod_CodigoBarras" Type="varchar" Mode="In" />
           <Parameter Name="prod_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="prod_FechaCrea" Type="datetime" Mode="In" />
@@ -5097,6 +5135,14 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
             <End Role="tbProducto" EntitySet="tbProducto" />
             <End Role="tbEntradaDetalle" EntitySet="tbEntradaDetalle" />
           </AssociationSet>
+          <AssociationSet Name="FK_Inv_tbEstadoInventarioFisico_estif_UsuarioModifica" Association="Self.FK_Inv_tbEstadoInventarioFisico_estif_UsuarioModifica">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbEstadoInventarioFisico" EntitySet="tbEstadoInventarioFisico" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inv_tbEstadoInventarioFisico_tbUsuario_estif_UsuarioCrea" Association="Self.FK_Inv_tbEstadoInventarioFisico_tbUsuario_estif_UsuarioCrea">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbEstadoInventarioFisico" EntitySet="tbEstadoInventarioFisico" />
+          </AssociationSet>
           <AssociationSet Name="FK_Inv_tbEstadoMovimiento_estm_UsuarioModifica" Association="Self.FK_Inv_tbEstadoMovimiento_estm_UsuarioModifica">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbEstadoMovimiento" EntitySet="tbEstadoMovimiento" />
@@ -5641,11 +5687,7 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
             <Parameter Name="bod_Id" Mode="In" Type="Int32" />
             <Parameter Name="prod_Codigo" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="SDP_Acce_GetRoles" ReturnType="Collection(ERP_ZORZALModel.SDP_Acce_GetRoles_Result)" />
           <FunctionImport Name="SDP_Acce_GetRolesAsignados" ReturnType="Collection(ERP_ZORZALModel.SDP_Acce_GetRolesAsignados_Result)">
-          <Parameter Name="usu_Id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="SDP_Acce_GetRolesDisponibles" ReturnType="Collection(ERP_ZORZALModel.SDP_Acce_GetRolesDisponibles_Result)">
           <Parameter Name="usu_Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="UDP_Acce_tbUsuario_PasswordUpdate" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbUsuario_PasswordUpdate_Result)">
@@ -7063,6 +7105,7 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
             <Parameter Name="prod_Color" Mode="In" Type="String" />
             <Parameter Name="pscat_Id" Mode="In" Type="Int32" />
             <Parameter Name="uni_Id" Mode="In" Type="Int32" />
+            <Parameter Name="prod_EsActivo" Mode="In" Type="Boolean" />
             <Parameter Name="prod_CodigoBarras" Mode="In" Type="String" />
             <Parameter Name="prod_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="prod_FechaCrea" Mode="In" Type="DateTime" />
@@ -7076,6 +7119,7 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
             <Parameter Name="prod_Color" Mode="In" Type="String" />
             <Parameter Name="pscat_Id" Mode="In" Type="Int32" />
             <Parameter Name="uni_Id" Mode="In" Type="Int32" />
+            <Parameter Name="prod_Razon_Inactivacion" Mode="In" Type="String" />
             <Parameter Name="prod_CodigoBarras" Mode="In" Type="String" />
             <Parameter Name="prod_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="prod_FechaCrea" Mode="In" Type="DateTime" />
@@ -7294,7 +7338,31 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
             <Parameter Name="bodega" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_tbInventariofisico_ProductosRepetidos" ReturnType="Collection(ERP_ZORZALModel.SP_tbInventariofisico_ProductosRepetidos_Result)">
-            <Parameter Name="prod_CodigoBarras" Mode="In" Type="String" />
+          <Parameter Name="prod_CodigoBarras" Mode="In" Type="String" />
+          </FunctionImport>
+          <AssociationSet Name="FK_Inv_tbEstadoInventarioFisico_estif_UsuarioModifica" Association="ERP_ZORZALModel.FK_Inv_tbEstadoInventarioFisico_estif_UsuarioModifica">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbEstadoInventarioFisico" EntitySet="tbEstadoInventarioFisico" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inv_tbEstadoInventarioFisico_tbUsuario_estif_UsuarioCrea" Association="ERP_ZORZALModel.FK_Inv_tbEstadoInventarioFisico_tbUsuario_estif_UsuarioCrea">
+            <End Role="tbUsuario" EntitySet="tbUsuario" />
+            <End Role="tbEstadoInventarioFisico" EntitySet="tbEstadoInventarioFisico" />
+          </AssociationSet>
+          <FunctionImport Name="UDP_Inv_tbEstadoInventarioFisico_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEstadoInventarioFisico_Insert_Result)">
+            <Parameter Name="estif_Id" Mode="In" Type="Byte" />
+            <Parameter Name="estif_Descripcion" Mode="In" Type="String" />
+            <Parameter Name="estif_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="estif_FechaCrea" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Inv_tbEstadoInventarioFisico_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEstadoInventarioFisico_Update_Result)">
+            <Parameter Name="estif_Id" Mode="In" Type="Byte" />
+            <Parameter Name="estif_Descripcion" Mode="In" Type="String" />
+            <Parameter Name="estif_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="estif_FechaCrea" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="SDP_Acce_GetRoles" ReturnType="Collection(ERP_ZORZALModel.SDP_Acce_GetRoles_Result)" />
+          <FunctionImport Name="SDP_Acce_GetRolesDisponibles" ReturnType="Collection(ERP_ZORZALModel.SDP_Acce_GetRolesDisponibles_Result)">
+            <Parameter Name="usu_Id" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
@@ -7387,25 +7455,7 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
           <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
           <Property Type="Decimal" Name="Cantidad_Existente" Nullable="true" Precision="38" Scale="2" />
         </ComplexType>
-        <ComplexType Name="SDP_Acce_GetRoles_Result">
-          <Property Type="Int32" Name="rol_Id" Nullable="false" />
-          <Property Type="String" Name="rol_Descripcion" Nullable="false" MaxLength="100" />
-          <Property Type="Int32" Name="rol_UsuarioCrea" Nullable="false" />
-          <Property Type="DateTime" Name="rol_FechaCrea" Nullable="false" Precision="23" />
-          <Property Type="Int32" Name="rol_UsuarioModifica" Nullable="true" />
-          <Property Type="DateTime" Name="rol_FechaModifica" Nullable="true" Precision="23" />
-          <Property Type="Boolean" Name="rol_Estado" Nullable="true" />
-        </ComplexType>
         <ComplexType Name="SDP_Acce_GetRolesAsignados_Result">
-          <Property Type="Int32" Name="rol_Id" Nullable="false" />
-          <Property Type="String" Name="rol_Descripcion" Nullable="false" MaxLength="100" />
-          <Property Type="Int32" Name="rol_UsuarioCrea" Nullable="false" />
-          <Property Type="DateTime" Name="rol_FechaCrea" Nullable="false" Precision="23" />
-          <Property Type="Int32" Name="rol_UsuarioModifica" Nullable="true" />
-          <Property Type="DateTime" Name="rol_FechaModifica" Nullable="true" Precision="23" />
-          <Property Type="Boolean" Name="rol_Estado" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="SDP_Acce_GetRolesDisponibles_Result">
           <Property Type="Int32" Name="rol_Id" Nullable="false" />
           <Property Type="String" Name="rol_Descripcion" Nullable="false" MaxLength="100" />
           <Property Type="Int32" Name="rol_UsuarioCrea" Nullable="false" />
@@ -7864,6 +7914,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
           <NavigationProperty Name="tbProducto" Relationship="ERP_ZORZALModel.FK_Inv_tbProducto_prod_UsuarioModifica" FromRole="tbUsuario" ToRole="tbProducto" />
           <NavigationProperty Name="tbProducto1" Relationship="ERP_ZORZALModel.FK_Inv_tbProducto_tbUsuario_prod_UsuarioCrea" FromRole="tbUsuario" ToRole="tbProducto" />
           <NavigationProperty Name="tbMovimientoCaja5" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbMovimientoCaja_usu_Id" FromRole="tbUsuario" ToRole="tbMovimientoCaja" />
+          <NavigationProperty Name="tbEstadoInventarioFisico" Relationship="ERP_ZORZALModel.FK_Inv_tbEstadoInventarioFisico_estif_UsuarioModifica" FromRole="tbUsuario" ToRole="tbEstadoInventarioFisico" />
+          <NavigationProperty Name="tbEstadoInventarioFisico1" Relationship="ERP_ZORZALModel.FK_Inv_tbEstadoInventarioFisico_tbUsuario_estif_UsuarioCrea" FromRole="tbUsuario" ToRole="tbEstadoInventarioFisico" />
         </EntityType>
         <EntityType Name="tbActividadEconomica">
           <Key>
@@ -8149,6 +8201,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
           <Property Name="estif_UsuarioModifica" Type="Int32" />
           <Property Name="estif_FechaModifica" Type="DateTime" Precision="3" />
           <NavigationProperty Name="tbInventarioFisico" Relationship="ERP_ZORZALModel.FK_Inv_tbInventarioFisico_tbEstadoInventarioFisico_estif_Id" FromRole="tbEstadoInventarioFisico" ToRole="tbInventarioFisico" />
+          <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Inv_tbEstadoInventarioFisico_estif_UsuarioModifica" FromRole="tbEstadoInventarioFisico" ToRole="tbUsuario" />
+          <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Inv_tbEstadoInventarioFisico_tbUsuario_estif_UsuarioCrea" FromRole="tbEstadoInventarioFisico" ToRole="tbUsuario" />
         </EntityType>
         <EntityType Name="tbEstadoMovimiento">
           <Key>
@@ -12112,6 +12166,54 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
           <Property Type="String" Name="prod_Descripcion" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="uni_Descripcion" Nullable="false" MaxLength="150" />
         </ComplexType>
+        <Association Name="FK_Inv_tbEstadoInventarioFisico_estif_UsuarioModifica">
+          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
+          <End Type="ERP_ZORZALModel.tbEstadoInventarioFisico" Role="tbEstadoInventarioFisico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbEstadoInventarioFisico">
+              <PropertyRef Name="estif_UsuarioModifica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inv_tbEstadoInventarioFisico_tbUsuario_estif_UsuarioCrea">
+          <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
+          <End Type="ERP_ZORZALModel.tbEstadoInventarioFisico" Role="tbEstadoInventarioFisico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUsuario">
+              <PropertyRef Name="usu_Id" />
+            </Principal>
+            <Dependent Role="tbEstadoInventarioFisico">
+              <PropertyRef Name="estif_UsuarioCrea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="SDP_Acce_GetRoles_Result">
+          <Property Type="Int32" Name="rol_Id" Nullable="false" />
+          <Property Type="String" Name="rol_Descripcion" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="rol_UsuarioCrea" Nullable="false" />
+          <Property Type="DateTime" Name="rol_FechaCrea" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="rol_UsuarioModifica" Nullable="true" />
+          <Property Type="DateTime" Name="rol_FechaModifica" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="rol_Estado" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SDP_Acce_GetRolesDisponibles_Result">
+          <Property Type="Int32" Name="rol_Id" Nullable="false" />
+          <Property Type="String" Name="rol_Descripcion" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="rol_UsuarioCrea" Nullable="false" />
+          <Property Type="DateTime" Name="rol_FechaCrea" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="rol_UsuarioModifica" Nullable="true" />
+          <Property Type="DateTime" Name="rol_FechaModifica" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="rol_Estado" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbEstadoInventarioFisico_Insert_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbEstadoInventarioFisico_Update_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -12269,35 +12371,9 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SDP_Acce_GetRoles" FunctionName="ERP_ZORZALModel.Store.SDP_Acce_GetRoles">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_Acce_GetRoles_Result">
-                <ScalarProperty Name="rol_Id" ColumnName="rol_Id" />
-                <ScalarProperty Name="rol_Descripcion" ColumnName="rol_Descripcion" />
-                <ScalarProperty Name="rol_UsuarioCrea" ColumnName="rol_UsuarioCrea" />
-                <ScalarProperty Name="rol_FechaCrea" ColumnName="rol_FechaCrea" />
-                <ScalarProperty Name="rol_UsuarioModifica" ColumnName="rol_UsuarioModifica" />
-                <ScalarProperty Name="rol_FechaModifica" ColumnName="rol_FechaModifica" />
-                <ScalarProperty Name="rol_Estado" ColumnName="rol_Estado" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SDP_Acce_GetRolesAsignados" FunctionName="ERP_ZORZALModel.Store.SDP_Acce_GetRolesAsignados">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_Acce_GetRolesAsignados_Result">
-                <ScalarProperty Name="rol_Id" ColumnName="rol_Id" />
-                <ScalarProperty Name="rol_Descripcion" ColumnName="rol_Descripcion" />
-                <ScalarProperty Name="rol_UsuarioCrea" ColumnName="rol_UsuarioCrea" />
-                <ScalarProperty Name="rol_FechaCrea" ColumnName="rol_FechaCrea" />
-                <ScalarProperty Name="rol_UsuarioModifica" ColumnName="rol_UsuarioModifica" />
-                <ScalarProperty Name="rol_FechaModifica" ColumnName="rol_FechaModifica" />
-                <ScalarProperty Name="rol_Estado" ColumnName="rol_Estado" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SDP_Acce_GetRolesDisponibles" FunctionName="ERP_ZORZALModel.Store.SDP_Acce_GetRolesDisponibles">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_Acce_GetRolesDisponibles_Result">
                 <ScalarProperty Name="rol_Id" ColumnName="rol_Id" />
                 <ScalarProperty Name="rol_Descripcion" ColumnName="rol_Descripcion" />
                 <ScalarProperty Name="rol_UsuarioCrea" ColumnName="rol_UsuarioCrea" />
@@ -14323,6 +14399,46 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
                 <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
                 <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
                 <ScalarProperty Name="uni_Descripcion" ColumnName="uni_Descripcion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbEstadoInventarioFisico_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEstadoInventarioFisico_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbEstadoInventarioFisico_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbEstadoInventarioFisico_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEstadoInventarioFisico_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbEstadoInventarioFisico_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SDP_Acce_GetRoles" FunctionName="ERP_ZORZALModel.Store.SDP_Acce_GetRoles">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_Acce_GetRoles_Result">
+                <ScalarProperty Name="rol_Id" ColumnName="rol_Id" />
+                <ScalarProperty Name="rol_Descripcion" ColumnName="rol_Descripcion" />
+                <ScalarProperty Name="rol_UsuarioCrea" ColumnName="rol_UsuarioCrea" />
+                <ScalarProperty Name="rol_FechaCrea" ColumnName="rol_FechaCrea" />
+                <ScalarProperty Name="rol_UsuarioModifica" ColumnName="rol_UsuarioModifica" />
+                <ScalarProperty Name="rol_FechaModifica" ColumnName="rol_FechaModifica" />
+                <ScalarProperty Name="rol_Estado" ColumnName="rol_Estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SDP_Acce_GetRolesDisponibles" FunctionName="ERP_ZORZALModel.Store.SDP_Acce_GetRolesDisponibles">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_Acce_GetRolesDisponibles_Result">
+                <ScalarProperty Name="rol_Id" ColumnName="rol_Id" />
+                <ScalarProperty Name="rol_Descripcion" ColumnName="rol_Descripcion" />
+                <ScalarProperty Name="rol_UsuarioCrea" ColumnName="rol_UsuarioCrea" />
+                <ScalarProperty Name="rol_FechaCrea" ColumnName="rol_FechaCrea" />
+                <ScalarProperty Name="rol_UsuarioModifica" ColumnName="rol_UsuarioModifica" />
+                <ScalarProperty Name="rol_FechaModifica" ColumnName="rol_FechaModifica" />
+                <ScalarProperty Name="rol_Estado" ColumnName="rol_Estado" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

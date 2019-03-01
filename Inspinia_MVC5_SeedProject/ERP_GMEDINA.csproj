@@ -201,6 +201,7 @@
     <Compile Include="Controllers\DepartamentoController.cs" />
     <Compile Include="Controllers\EmpleadoController.cs" />
     <Compile Include="Controllers\EntradaController.cs" />
+    <Compile Include="Controllers\EstadoInventarioFisicoController.cs" />
     <Compile Include="Controllers\EstadoMovimientoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InventarioFisicoController.cs" />
@@ -743,6 +744,12 @@
     <Compile Include="Models\UDP_Inv_tbEntrada_Update_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UDP_Inv_tbEstadoInventarioFisico_Insert_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDP_Inv_tbEstadoInventarioFisico_Update_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UDP_Inv_tbEstadoMovimiento_Delete_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -1217,6 +1224,7 @@
     <Content Include="Scripts\app\ValidacionProveedor.js" />
     <Content Include="Scripts\app\ValidationEmail.js" />
     <Content Include="Scripts\app\ValidationErrorsBodega.js" />
+    <Content Include="Scripts\app\ValidationEstadoInventarioFisico.js" />
     <Content Include="Scripts\app\ValidationEstadoMovimientojs.js" />
     <Content Include="Scripts\app\ValidationNumber.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -1583,6 +1591,10 @@
     <Content Include="Views\Login\SinRol.cshtml" />
     <Content Include="Views\Entrada\_GenerarReportes.cshtml" />
     <Content Include="Views\Salida\_GenReporte.cshtml" />
+    <Content Include="Views\EstadoInventarioFisico\Create.cshtml" />
+    <Content Include="Views\EstadoInventarioFisico\Details.cshtml" />
+    <Content Include="Views\EstadoInventarioFisico\Edit.cshtml" />
+    <Content Include="Views\EstadoInventarioFisico\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
