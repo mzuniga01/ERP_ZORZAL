@@ -261,11 +261,40 @@ namespace ERP_GMEDINA.Controllers
                 return RedirectToAction("Index", "Login");
 
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         [HttpPost]
-        public JsonResult SavePedidoDetalles(tbPedidoDetalle PedidoDetalle)
+        public JsonResult SavePedidoDetalles(tbPedidoDetalle PedidoDetalle, string data_producto)
         {
             List<tbPedidoDetalle> sessionPedidoDetalle = new List<tbPedidoDetalle>();
             var list = (List<tbPedidoDetalle>)Session["tbPedidoDetalle"];
+            var datos = "";
+            decimal cantvieja = 0;
+            decimal cantnueva = 0;
+            decimal data_cantidad = PedidoDetalle.pedd_Cantidad;
+
+
             if (list == null)
             {
                 sessionPedidoDetalle.Add(PedidoDetalle);
@@ -273,10 +302,24 @@ namespace ERP_GMEDINA.Controllers
             }
             else
             {
+                foreach (var t in list)
+                    if (t.prod_Codigo == data_producto)
+                    {
+
+                        datos = data_producto;
+                        foreach (var viejo in list)
+                            if (viejo.prod_Codigo == PedidoDetalle.prod_Codigo)
+                                cantvieja = viejo.pedd_Cantidad;
+                        cantnueva = cantvieja + data_cantidad;
+                        t.pedd_Cantidad = cantnueva;
+                        return Json(datos, JsonRequestBehavior.AllowGet);
+                    }
                 list.Add(PedidoDetalle);
                 Session["tbPedidoDetalle"] = list;
+                return Json(datos, JsonRequestBehavior.AllowGet);
             }
-            return Json("Exito", JsonRequestBehavior.AllowGet);
+
+            return Json("datos", JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]

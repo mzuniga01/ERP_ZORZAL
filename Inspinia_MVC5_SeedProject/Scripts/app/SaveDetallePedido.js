@@ -32,42 +32,62 @@ $('#AñadirPedidoDetalle').click(function () {
     //    $('#ValidationCantidadFacturadaCreate').after('<ul id="ErrorCantidadFacturadaCreate" class="validation-summary-errors text-danger">Campo Cantidad Facturada Requerido</ul>');
     //}
     else {
-        contador = contador + 1;
-        copiar = "<tr data-id=" + contador + ">";
-        //copiar += "<td>" + $('#CodTipoCasoExitoCreate option:selected').text() + "</td>";
-        //copiar += "<td hidden id='MunCodigo'>" + $('#mun_Codigo option:selected').val() + "</td>";
-        copiar += "<td id = 'prod_Codigo'>" + $('#prod_Codigo').val() + "</td>";
-        copiar += "<td id = 'prod_Descripcion'>" + $('#tbProducto_prod_Descripcion').val() + "</td>";
-        copiar += "<td id = 'pedd_Cantidad'>" + $('#pedd_Cantidad').val() + "</td>";
-        copiar += "<td id = 'pedd_CantidadFacturada'>" + $('#pedd_CantidadFacturada').val() + "</td>";
-
-        copiar += "<td>" + '<button id="QuitarDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
-
-        copiar += "</tr>";
-        $('#tblPedidoDetalle').append(copiar);
-
-
         var tbPedidoDetalle = GetPedidoDetalle();
         $.ajax({
             url: "/Pedido/SavePedidoDetalles",
             method: "POST",
             dataType: 'json',
             contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ PedidoDetalle: tbPedidoDetalle }),
-        })
-                .done(function (data) {
-                    $('#prod_Codigo').val('');
-                    $('#tbProducto_prod_Descripcion').val('');
-                    $('#tbProducto_prod_CodigoBarras').val('');
-                    $('#pedd_Cantidad').val('');
-                    $('#MessageError').text('');
-                    $('#NombreError').text('');
-                    console.log('Hola');
+            data: JSON.stringify({ PedidoDetalle: tbPedidoDetalle, data_producto: prod_Codigo }),
+
+        }).done(function (datos) {
+            if (datos == prod_Codigo) {
+                console.log('Repetido');
+                var cantfisica_nueva = $('#pedd_Cantidad').val();
+                $("#tblPedidoDetalle td").each(function () {
+                    var prueba = $(this).text()
+                    if (prueba == prod_Codigo) {
+                        var idcontador = $(this).closest('tr').data('id');
+                        var cantfisica_anterior = $(this).closest("tr").find("td:eq(2)").text();
+                        var sumacantidades = parseInt(cantfisica_nueva) + parseInt(cantfisica_anterior);
+                        console.log(sumacantidades);
+                        $(this).closest('tr').remove();
+                        copiar = "<tr data-id=" + idcontador + ">";
+
+                        copiar += "<td id = 'prod_Codigo'>" + $('#prod_Codigo').val() + "</td>";
+                        copiar += "<td id = 'prod_Descripcion'>" + $('#tbProducto_prod_Descripcion').val() + "</td>";
+                        copiar += "<td id = 'pedd_Cantidad'>" + sumacantidades + "</td>";
+                        copiar += "<td id = 'pedd_CantidadFacturada'>" + $('#pedd_CantidadFacturada').val() + "</td>";
+
+                        copiar += "<td>" + '<button id="QuitarDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
+
+                        copiar += "</tr>";
+                        $('#tblPedidoDetalle').append(copiar);
+                    }
                 });
+            } else {
+                contador = contador + 1;
+                copiar = "<tr data-id=" + contador + ">";
+                copiar += "<td id = 'prod_Codigo'>" + $('#prod_Codigo').val() + "</td>";
+                copiar += "<td id = 'prod_Descripcion'>" + $('#tbProducto_prod_Descripcion').val() + "</td>";
+                copiar += "<td id = 'pedd_Cantidad'>" + $('#pedd_Cantidad').val() + "</td>";
+                copiar += "<td id = 'pedd_CantidadFacturada'>" + $('#pedd_CantidadFacturada').val() + "</td>";
 
+                copiar += "<td>" + '<button id="QuitarDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
 
+                copiar += "</tr>";
+                $('#tblPedidoDetalle').append(copiar);
+
+            }
+        }).done(function (data) {
+            $('#prod_Codigo').val('');
+            $('#tbProducto_prod_Descripcion').val('');
+            $('#tbProducto_prod_CodigoBarras').val('');
+            $('#pedd_Cantidad').val('');
+            $('#MessageError').text('');
+            $('#NombreError').text('');
+        })
     }
-
 });
 
 function GetPedidoDetalle() {
