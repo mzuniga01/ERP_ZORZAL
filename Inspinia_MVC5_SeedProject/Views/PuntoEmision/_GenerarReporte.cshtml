@@ -1,0 +1,26 @@
+﻿@model ERP_GMEDINA.Models.tbSucursal
+
+<div class="form-horizontal">
+    @using (Ajax.BeginForm("ExportReport", "PuntoEmision", new AjaxOptions() { HttpMethod = "POST", UpdateTargetId = "GenerarReporteSucursal" }))
+    {
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true)
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.suc_Descripcion, new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.DropDownList("suc_Id", (IEnumerable<SelectListItem>)ViewBag.ReporteSucursal, "Seleccione", new { @class = "form-control" })
+                    <div id="DropSucursalReporte">
+                        <p style="color:red">@Html.ValidationMessageFor(model => model.suc_Id)</p>
+                    </div>
+                </div>
+            </div>
+         </div>
+        <div class="modal-footer">
+           <button type="submit" id="btnGenerarReporte" class="btn btn-primary">Generar</button>
+           <button type="button"  class="btn btn-white" data-dismiss="modal">Cancelar</button>
+        </div>
+    }
+</div>
+

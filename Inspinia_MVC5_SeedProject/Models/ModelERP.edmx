@@ -5024,6 +5024,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
         <Function Name="UDP_Vent_FacturasPagoSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="fact_Id" Type="int" Mode="In" />
         </Function>
+        <Function Name="UDP_Vent_InventarioNumeraciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="suc_Id" Type="int" Mode="In" />
+        </Function>
         <Function Name="UDP_Vent_tbCaja_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="cja_Descripcion" Type="nvarchar" Mode="In" />
           <Parameter Name="suc_Id" Type="int" Mode="In" />
@@ -9971,6 +9974,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
             <Parameter Name="IDPRODUCTO" Mode="In" Type="String" />
           </FunctionImport>
           <EntitySet Name="UDP_Vent_SolicituEfectivo_Select" EntityType="ERP_ZORZALModel.UDP_Vent_SolicituEfectivo_Select" />
+          <FunctionImport Name="UDP_Vent_InventarioNumeraciones" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_InventarioNumeraciones_Result)">
+            <Parameter Name="suc_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
           <Key>
@@ -15551,6 +15557,19 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
           <Property Name="Anulada" Type="Boolean" Nullable="false" />
           <Property Name="usuariocrea" Type="Int32" Nullable="false" />
         </EntityType>
+        <ComplexType Name="UDP_Vent_InventarioNumeraciones_Result">
+          <Property Type="Int32" Name="suc_Id" Nullable="false" />
+          <Property Type="String" Name="suc_Descripcion" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="mun_Nombre" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="suc_Correo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="suc_Direccion" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="suc_Telefono" Nullable="false" MaxLength="9" />
+          <Property Type="String" Name="pemi_NumeroCAI" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="pemid_RangoInicio" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="pemid_RangoFinal" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="pemid_NumeroActual" Nullable="false" MaxLength="10" />
+          <Property Type="DateTime" Name="pemid_FechaLimite" Nullable="false" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -18577,6 +18596,23 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_InventarioNumeraciones" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_InventarioNumeraciones">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_InventarioNumeraciones_Result">
+                <ScalarProperty Name="suc_Id" ColumnName="suc_Id" />
+                <ScalarProperty Name="suc_Descripcion" ColumnName="suc_Descripcion" />
+                <ScalarProperty Name="mun_Nombre" ColumnName="mun_Nombre" />
+                <ScalarProperty Name="suc_Correo" ColumnName="suc_Correo" />
+                <ScalarProperty Name="suc_Direccion" ColumnName="suc_Direccion" />
+                <ScalarProperty Name="suc_Telefono" ColumnName="suc_Telefono" />
+                <ScalarProperty Name="pemi_NumeroCAI" ColumnName="pemi_NumeroCAI" />
+                <ScalarProperty Name="pemid_RangoInicio" ColumnName="pemid_RangoInicio" />
+                <ScalarProperty Name="pemid_RangoFinal" ColumnName="pemid_RangoFinal" />
+                <ScalarProperty Name="pemid_NumeroActual" ColumnName="pemid_NumeroActual" />
+                <ScalarProperty Name="pemid_FechaLimite" ColumnName="pemid_FechaLimite" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

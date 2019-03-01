@@ -2868,6 +2868,9 @@
       <Parameter Name="IDPRODUCTO" Mode="In" Type="String" />
     </FunctionImport>
     <EntitySet Name="UDP_Vent_SolicituEfectivo_Select" EntityType="ERP_ZORZALModel.UDP_Vent_SolicituEfectivo_Select" />
+    <FunctionImport Name="UDP_Vent_InventarioNumeraciones" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_InventarioNumeraciones_Result)">
+      <Parameter Name="suc_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -8448,4 +8451,17 @@
     <Property Name="Anulada" Type="Boolean" Nullable="false" />
     <Property Name="usuariocrea" Type="Int32" Nullable="false" />
   </EntityType>
+  <ComplexType Name="UDP_Vent_InventarioNumeraciones_Result">
+    <Property Type="Int32" Name="suc_Id" Nullable="false" />
+    <Property Type="String" Name="suc_Descripcion" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="mun_Nombre" Nullable="false" MaxLength="150" />
+    <Property Type="String" Name="suc_Correo" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="suc_Direccion" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="suc_Telefono" Nullable="false" MaxLength="9" />
+    <Property Type="String" Name="pemi_NumeroCAI" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="pemid_RangoInicio" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="pemid_RangoFinal" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="pemid_NumeroActual" Nullable="false" MaxLength="10" />
+    <Property Type="DateTime" Name="pemid_FechaLimite" Nullable="false" />
+  </ComplexType>
 </Schema>

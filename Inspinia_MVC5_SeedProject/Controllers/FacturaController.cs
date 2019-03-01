@@ -30,10 +30,9 @@ namespace ERP_GMEDINA.Controllers
             {
                 idUser = Convert.ToInt32(Usuario.usu_Id);
             }
-            ViewBag.suc_Id = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.tbSucursal.suc_Id).SingleOrDefault();
-
-            var tbFactura = db.UDV_Vent_Busqueda_Factura;
-            return View(tbFactura.ToList());
+            var Suc_Id = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.suc_Id).SingleOrDefault();
+            var tbFacturaUser = db.UDV_Vent_Busqueda_Factura;
+            return View(tbFacturaUser.Where(a => a.suc_Id == Suc_Id).ToList());
         }
 
         [HttpPost]
@@ -141,14 +140,31 @@ namespace ERP_GMEDINA.Controllers
                 ViewBag.cliente = cliente;
                 ViewBag.fecha = fecha;
                 ViewBag.caja = caja;
-                return View(list);
+                int idUser = 0;
+                GeneralFunctions Login = new GeneralFunctions();
+                List<tbUsuario> User = Login.getUserInformation();
+                foreach (tbUsuario Usuario in User)
+                {
+                    idUser = Convert.ToInt32(Usuario.usu_Id);
+                }
+                var Suc_Id = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.tbSucursal.suc_Id).SingleOrDefault();
+                var tbFacturaUser = db.UDV_Vent_Busqueda_Factura;
+                return View(tbFacturaUser.Where(a => a.suc_Id == Suc_Id).ToList());
             }
             catch (Exception ex)
             {
 
-                var tbFactura = db.UDV_Vent_Busqueda_Factura;
                 Console.Write(ex.Message);
-                return View(tbFactura.ToList());
+                int idUser = 0;
+                GeneralFunctions Login = new GeneralFunctions();
+                List<tbUsuario> User = Login.getUserInformation();
+                foreach (tbUsuario Usuario in User)
+                {
+                    idUser = Convert.ToInt32(Usuario.usu_Id);
+                }
+                var Suc_Id = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.tbSucursal.suc_Id).SingleOrDefault();
+                var tbFacturaUser = db.UDV_Vent_Busqueda_Factura;
+                return View(tbFacturaUser.Where(a => a.suc_Id == Suc_Id).ToList());
             }
 
         }

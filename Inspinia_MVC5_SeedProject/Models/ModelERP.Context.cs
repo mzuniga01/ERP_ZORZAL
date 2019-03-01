@@ -6866,5 +6866,14 @@ namespace ERP_GMEDINA.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbFactura_BuscarListaPrecio_Result>("UDP_Vent_tbFactura_BuscarListaPrecio", iDCLIENTEParameter, iDPRODUCTOParameter);
         }
+    
+        public virtual ObjectResult<UDP_Vent_InventarioNumeraciones_Result> UDP_Vent_InventarioNumeraciones(Nullable<int> suc_Id)
+        {
+            var suc_IdParameter = suc_Id.HasValue ?
+                new ObjectParameter("suc_Id", suc_Id) :
+                new ObjectParameter("suc_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_InventarioNumeraciones_Result>("UDP_Vent_InventarioNumeraciones", suc_IdParameter);
+        }
     }
 }

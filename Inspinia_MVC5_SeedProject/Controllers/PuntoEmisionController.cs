@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using ERP_GMEDINA.Models;
 using System.Transactions;
+using CrystalDecisions.CrystalReports.Engine;
+using System.IO;
 
 namespace ERP_ZORZAL.Controllers
 {
@@ -19,6 +21,11 @@ namespace ERP_ZORZAL.Controllers
         public ActionResult Index()
         {
             var tbpuntoemision = db.tbPuntoEmision.Include(t => t.tbUsuario).Include(t => t.tbUsuario1);
+            
+            //Reporte
+            tbSucursal Sucursal = new tbSucursal();
+            ViewBag.ReporteSucursal = new SelectList(db.tbSucursal, "suc_Id", "suc_Descripcion", Sucursal.suc_Id);
+
             return View(tbpuntoemision.ToList());
         }
 
@@ -56,7 +63,7 @@ namespace ERP_ZORZAL.Controllers
 
             //Vistas parciales
             ViewBag.PuntoEmisionDetalle = db.tbPuntoEmisionDetalle.ToList();
-
+            
             Session["PuntoEmision"] = null;
             return View();
         }
@@ -377,6 +384,41 @@ namespace ERP_ZORZAL.Controllers
             return Json(Msj, JsonRequestBehavior.AllowGet);
         }
 
-        
+        public ActionResult ExportReport(int suc_Id)
+        {
+            ReportDocument rd = new ReportDocument();
+            rd.Load(Path.Combine(Server.MapPath("~/Reports"), "InventarioNumeraciones.rpt"));
+            var tbSucursal = db.UDP_Vent_InventarioNumeraciones(suc_Id).ToList();
+            var todo = (from s in tbSucursal
+                        where s.suc_Id == suc_Id
+                        select new
+                        {
+                            suc_Id = s.suc_Id,
+                            suc_Descripcion = s.suc_Descripcion,
+                            mun_Nombre = s.mun_Nombre,
+                            suc_Correo =s.suc_Correo,
+                            suc_Direccion = s.suc_Direccion,
+                            suc_Telefono = s.suc_Telefono,
+                            pemi_NumeroCAI = s.pemi_NumeroCAI,
+                            pemid_RangoInicio = s.pemid_RangoInicio,
+                            pemid_RangoFinal = s.pemid_RangoFinal,
+                            pemid_NumeroActual = s.pemid_NumeroActual,
+                            pemid_FechaLimite = s.pemid_FechaLimite
+                        }).ToList();
+
+            rd.SetDataSource(todo);
+            Response.Buffer = false;
+            Response.ClearContent();
+            Response.ClearHeaders();
+            try
+            {
+                Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+                return File(stream, "application/pdf");
+            }
+            catch
+            {
+                throw;
+            }
+        }
     }
 }

@@ -99,6 +99,13 @@
                         </div>
                         @Html.Partial("_ListPedidoDetalle", new tbPedidoDetalle())
 
+
+                        <div class="form-group">
+                            <div class="col-md-offset-5 col-md-10">
+                                <input id="Save" type="submit" value="Guardar" class="btn btn-primary" />
+                                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                            </div>
+                        </div>
                     }
                 </div>
             </div>
@@ -179,10 +186,7 @@
             this.value = this.value.replace(/[a-záéíóúüñ#/=]+/ig, "");
             this.value = this.value.replace(/[a-záéíóúüñ#/=\s-+*,.;]+/ig, "");
         });
-
     </script>
-
-
     <script>
         $("#pedd_Cantidad").on("keypress keyup blur", function (event) {
             this.value = this.value.replace(/[a-záéíóúüñ#/=]+/ig, "");
@@ -190,6 +194,34 @@
         });
 
     </script>
+
+<script>
+        $('#Save').click(function () {
+        var Identificacion = $('#cliente_Identificacionxx').val();
+        var diascredito = $('#fact_DiasCredito').val();
+
+
+        console.log(Identificacion)
+        if (Identificacion == "") {
+            valido = document.getElementById('err_cliente');
+            valido.innerText = "Seleccione un cliente";
+            return false;
+        }
+        else if ($('#pedd_Cantidad').is(':checked') && diascredito <= 0) {
+            valido = document.getElementById('DiasError');
+            valido.innerText = "Los dias de credito no deben de ser menores o iguales a 0.";
+            return false;
+        }
+        else if ($('#tblPedidoDetalle >tbody >tr').length == 0) {
+            $('#alerta').show();
+           return false;
+        }
+        else {
+            return true;
+        }
+    });
+    </script>
+
 }
 
 
