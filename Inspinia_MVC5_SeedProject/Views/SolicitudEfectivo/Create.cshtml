@@ -226,7 +226,7 @@
                             var rows = "<tr data-id=" + item.deno_Id + ">" +
                                        "<td hidden>" + item.deno_Id + "</td>" +
                                        "<td>" + item.deno_Descripcion + "</td>" +
-                                        "<td>" + '<input type="text" id="cantidad" maxlength="3" name="name" onKeyPress="return soloNumeros(event)" onKeyUp="pierdeFoco(this)" autocomplete="off" class="form-control" ize="3">' + "</td>" +
+                                        "<td>" + '<input type="number" id="cantidad" onKeyPress="if(this.value.length==3) return false;" name="name" onKeyPress="return soloNumeros(event)" onKeyUp="pierdeFoco(this)" autocomplete="off" class="form-control" ize="3">' + "</td>" +
                                         "<td class='sumTotal'>" + 0 + "</td>" +
                                         "<td>" + 0 + "</td>" +
                                         "<td >" + 0 + "</td>" +
@@ -242,15 +242,20 @@
     </script>
 
     <script>
+        //function soloNumeros(e) {
+        //    var key = window.Event ? e.which : e.keyCode;
+        //    return ((key >= 48 && key <= 57) || (key == 8))
+        //}
         function soloNumeros(e) {
-            var key = window.Event ? e.which : e.keyCode;
-            return ((key >= 48 && key <= 57) || (key == 8))
+            tecla = (document.all) ? e.keyCode : e.which;
+            tecla = String.fromCharCode(tecla)
+            return /^[0-9\-]+$/.test(tecla);
         }
 
         function pierdeFoco(e) {
             var valor = e.value.replace(/^0*/, '');
             e.value = valor;
-         }
+        }
     </script>
 
     <script>
@@ -298,7 +303,17 @@
             }
         });
     </script>
-
+    <script>
+        $(document).keydown(function (e) {
+            if ((e.key == 'g' || e.key == 'G') && (e.ctrlKey || e.metaKey)) {
+                e.preventDefault();
+                //alert("Ctrl-g pressed");
+                $("#guardar").click();
+                return false;
+            }
+            return true;
+        });
+    </script>
 }
 
 
