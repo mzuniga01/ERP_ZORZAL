@@ -41,13 +41,14 @@ namespace ERP_GMEDINA.Models
         public const int EntradaEstadoAnulada = 3;
 
         //Estado Salida
-        public const int sal_Emitida = 1;
+        public const int sal_Aplicada = 1;
 
-        public const int sal_Aplicada = 2;
-        public const int sal_Impresa = 3;
-        public const int sal_Activa = 4;
-        public const int sal_Inactiva = 5;
-        public const int sal_Anulada = 5;
+        public const int sal_Emitida = 2;
+        public const int sal_Anulada = 3;
+        public const int sal_Inactiva = 4;
+        public const int sal_Activa = 5;
+
+        public const int sal_Impresa = 6;
         ///ESTADO OBJETO
         public const bool ObjetoActivo = true;
         public const bool ObjetoInactivo = false;

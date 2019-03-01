@@ -63,51 +63,37 @@
             </div>
         </div>
     </div>
-
+    <div class="form-horizontal">
+        <p></p>
+        
+    </div>
     <div class="wrapper wrapper-content animated fadeInRight">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <h5>Ingresar Salida</h5>
-                    </div>
-                    <div class="ibox-content">
-                        <div class="form-horizontal">
-
-                            <fieldset class="box-border">
-                                <legend class="box-border">Datos Generales</legend>
-
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.sal_FechaElaboracion, "Fecha de Elaboración", new { @class = "control-label col-md-2 required" })
-                                    <div class="col-md-4">
-                                        @Html.EditorFor(model => model.sal_FechaElaboracion, new { @autocomplete = "off" })
-                                        <div id="validationsal_FechaElaboracion">
-                                            <p style="color:red">
-                                                @*@Html.ValidationMessageFor(model => model.tsal_Id)*@
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.bod_Id, "Nombre de Bodega", new { @class = "control-label col-md-2 required" })
-                                    <div style="display:block" class="col-md-4">
-                                        @Html.DropDownList("bod_Id", (IEnumerable<SelectListItem>)ViewBag.bod_Id, new { @class = "form-control" })
-                                        <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Id)</p>
-                                    </div>
-                                </div>
-                            </fieldset>
+        <div id="Without" style="display:none">
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                @*<button type="button" onclick=" $('#Without').css('display', 'none');" class="close" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>*@
+                <strong>Detalle Vacio</strong>
+            </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>Ingresar Salida</h5>
                         </div>
-
                         <div class="ibox-content">
                             <div class="form-horizontal">
+
                                 <fieldset class="box-border">
+                                    <legend class="box-border">Datos Generales</legend>
 
                                     <div class="form-group">
-                                        @Html.LabelFor(model => model.tsal_Id, "Tipo de Salida", new { @class = "control-label col-md-2 required" })
+                                        @Html.LabelFor(model => model.sal_FechaElaboracion, "Fecha de Elaboración", new { @class = "control-label col-md-2 required" })
                                         <div class="col-md-4">
-                                            @Html.DropDownList("tsal_Id", (IEnumerable<SelectListItem>)ViewBag.tsal_Id, "Seleccionar", new { @class = "form-control" })
-                                            <div id="validationtsal_Id">
+                                            @Html.EditorFor(model => model.sal_FechaElaboracion, new { @autocomplete = "off" ,@readonly= "readonly" })
+                                            <div id="validationsal_FechaElaboracion">
                                                 <p style="color:red">
                                                     @*@Html.ValidationMessageFor(model => model.tsal_Id)*@
                                                 </p>
@@ -115,284 +101,320 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-horizontal" id="VentaoDevolucion" style="display:none">
-                                        <fieldset class="box-border">
-                                            <legend class="box-border" id="TitleVenta">Venta</legend>
-                                            <legend class="box-border" id="TitleDevolucion">Devolucion</legend>
-                                            <div class="form-group">
-                                                @Html.LabelFor(model => model.fact_Codigo, new { @class = "control-label col-md-2 required" })
-                                                <div class="col-md-4">
-                                                    @Html.EditorFor(model => model.fact_Codigo)
-                                                    <div id="validationFactura">
-                                                        @*@Html.ValidationMessageFor(model => model.fact_Codigo)*@
-                                                    </div>
-                                                </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.bod_Id, "Nombre de Bodega", new { @class = "control-label col-md-2 required" })
+                                        <div style="display:block" class="col-md-4">
+                                            @Html.DropDownList("bod_Id", (IEnumerable<SelectListItem>)ViewBag.bod_Id, new { @class = "form-control" })
+                                            <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Id)</p>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
 
-                                                <div id="div_sal_RazonDevolucion">
-                                                    @Html.LabelFor(model => model.sal_RazonDevolucion, new { @class = "control-label col-md-2 required" })
+                            <div class="ibox-content">
+                                <div class="form-horizontal">
+                                    <fieldset class="box-border">
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.tsal_Id, "Tipo de Salida", new { @class = "control-label col-md-2 required" })
+                                            <div class="col-md-4">
+                                                @Html.DropDownList("tsal_Id", (IEnumerable<SelectListItem>)ViewBag.tsal_Id, "Seleccionar", new { @class = "form-control" })
+                                                <div id="validationtsal_Id">
+                                                    <p style="color:red">
+                                                        @*@Html.ValidationMessageFor(model => model.tsal_Id)*@
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.estm_Id, "Estado", new { @class = "control-label col-md-2" })
+                                            <div class="col-md-4">
+                                                @Html.TextBoxFor(model => model.tbEstadoMovimiento.estm_Descripcion, new { @class = "form-control", Value = "Emitida", @readonly = "readonly" })
+                                                <div id="validationtsal_Id">
+                                                    <p style="color:red">
+                                                        @*@Html.ValidationMessageFor(model => model.tsal_Id)*@
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-horizontal" id="VentaoDevolucion" style="display:none">
+                                            <fieldset class="box-border">
+                                                <legend class="box-border" id="TitleVenta">Venta</legend>
+                                                <legend class="box-border" id="TitleDevolucion">Devolucion</legend>
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.fact_Codigo, new { @class = "control-label col-md-2 required" })
                                                     <div class="col-md-4">
-                                                        @Html.EditorFor(model => model.sal_RazonDevolucion)
-                                                        <div id="validationsal_RazonDevolucion">
+                                                        @Html.EditorFor(model => model.fact_Codigo, new { @autocomplete = "off" })
+                                                        <div id="validationFactura">
                                                             @*@Html.ValidationMessageFor(model => model.fact_Codigo)*@
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </fieldset>
-                                    </div>
 
-                                    <div class="form-horizontal" id="Prestamo" style="display:none">
-                                        <fieldset class="box-border">
-                                            <legend class="box-border">Prestamo</legend>
-                                            <div class="form-group">
-                                                @Html.LabelFor(model => model.sal_BodDestino, "Bodega de Destino", new { @class = "control-label col-md-2 required" })
-                                                <div class="col-md-4">
-                                                    @Html.DropDownList("sal_BodDestino", (IEnumerable<SelectListItem>)null, "Seleccionar", new { @class = "form-control" })
-                                                    <div id="validationsal_BodDestino">
-                                                        <p style="color:red">
-                                                        </p>
+                                                    <div id="div_sal_RazonDevolucion">
+                                                        @Html.LabelFor(model => model.sal_RazonDevolucion, new { @class = "control-label col-md-2 required" })
+                                                        <div class="col-md-4">
+                                                            @Html.EditorFor(model => model.sal_RazonDevolucion)
+                                                            <div id="validationsal_RazonDevolucion">
+                                                                @*@Html.ValidationMessageFor(model => model.fact_Codigo)*@
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    @*<p style="color:red">
-                                                            @Html.ValidationMessageFor(model => model.sal_BodDestino)
-                                                        </p>*@
                                                 </div>
-                                            </div>
-                                        </fieldset>
-                                    </div>
-                                </fieldset>
-                            </div>
-                        </div>
+                                            </fieldset>
+                                        </div>
 
-                        <div class="ibox-content">
-                            <div class="form-horizontal">
+                                        <div class="form-horizontal" id="Prestamo" style="display:none">
+                                            <fieldset class="box-border">
+                                                <legend class="box-border">Prestamo</legend>
+                                                <div class="form-group">
+                                                    @Html.LabelFor(model => model.sal_BodDestino, "Bodega de Destino", new { @class = "control-label col-md-2 required" })
+                                                    <div class="col-md-4">
+                                                        @Html.DropDownList("sal_BodDestino", (IEnumerable<SelectListItem>)null, "Seleccionar", new { @class = "form-control" })
+                                                        <div id="validationsal_BodDestino">
+                                                            <p style="color:red">
+                                                            </p>
+                                                        </div>
+                                                        @*<p style="color:red">
+                            @Html.ValidationMessageFor(model => model.sal_BodDestino)
+                        </p>*@
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+
+                            <div class="ibox-content">
+                                <div class="form-horizontal">
+                                    <fieldset class="box-border">
+                                        @*botones*@
+                                        <div class="col-md-offset-2 col-md-10">
+                                            <input type="submit" value="Guardar" id="submit" class="btn btn-primary" />
+                                            @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="box-border">
                                 <fieldset class="box-border">
-                                    @*botones*@
-                                    <div class="col-md-offset-2 col-md-10">
-                                        <input type="submit" value="Guardar" id="submit" class="btn btn-primary" />
-                                        @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                    <div class="form-group">
                                     </div>
                                 </fieldset>
                             </div>
-                        </div>
-                        <div class="box-border">
-                            <fieldset class="box-border">
-                                <div class="form-group">
-                                </div>
-                            </fieldset>
-                        </div>
 
-                        <br />
+                            <br />
+                        </div>
                     </div>
-                </div>
 
-                @* Llama la vista  *@
+                    @* Llama la vista  *@
 
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="ibox float-e-margins">
-                            <div class="ibox-title">
-                                <div class="title-action">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="ibox float-e-margins">
+                                <div class="ibox-title">
+                                    <div class="title-action">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="ibox-content" id="Crear">
-                                @*@Html.Partial("_CreateInstructorCasosExitos", new InstructorCasosExitos())*@
-                                @Html.Partial("_CreateSalidaDetalle", new tbSalidaDetalle())
+                                <div class="ibox-content" id="Crear">
+                                    @*@Html.Partial("_CreateInstructorCasosExitos", new InstructorCasosExitos())*@
+                                    @Html.Partial("_CreateSalidaDetalle", new tbSalidaDetalle())
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Salida</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    Esta Creando una Salida sin Detalle
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    @*<button type="button" class="btn btn-primary">Save changes</button>*@
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="ModalChangeBodega" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Salida</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    Esta seguro que desea cambia de Bodega
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="ChangeBodega" data-dismiss="modal">Cambiar</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    @*<button type="button" class="btn btn-primary">Save changes</button>*@
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Salida</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Esta Creando una Salida sin Detalle
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        @*<button type="button" class="btn btn-primary">Save changes</button>*@
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-}
-@*<div class="modal fade" id="ModalImprimir" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel">Desea Imprimir la Salida</h4>
-                </div>
-                <div class="modal-body" id="frmBuscarProducto">
-                    @Html.ActionLink("Si", "Imprimir", new { id = Model.sal_Id }, new { @class = "btn btn-primary btn-xs" });
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <div class="modal fade" id="ModalChangeBodega" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Salida</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Esta seguro que desea cambia de Bodega
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="ChangeBodega" data-dismiss="modal">Cambiar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        @*<button type="button" class="btn btn-primary">Save changes</button>*@
+                    </div>
                 </div>
             </div>
         </div>
-    </div>*@
-<script src="~/Scripts/jquery-3.3.1.js"></script>
-<script src="~/Scripts/jquery-3.3.1.min.js"></script>
-<script src="~/Scripts/app/DataTable.js"></script>
-<script src="~/Scripts/jquery.inputmask.bundle.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bowser/1.9.4/bowser.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
-<script src="~/Scripts/app/SalidaDetalle.js"></script>
-<script src="~/Scripts/app/Salida.js"></script>
-<script src="~/Scripts/wp-embed.min.js"></script>
-@*<script>
-       $(document).ready(function()
-       {
-           $("#ModalSelect").modal("show");
-       });
-    </script>*@
-@*<script>
-        function myFunction() {
-            var x = document.getElementById("myDIV");
-            var z = document.getElementById("rbtm")
-            if (z.checked) {
-                x.style.display = "block";
-            } else {
-                x.style.display = "none";
-            }
         }
-    </script>*@
-
-@*<script type="text/javascript">
-        var contadorp = 0;
-        $(document).ready(function () {
-            $.get('/Salida/GetProdList', function (data) {
-
-                $("#cuerpo").html("");
-                $.each(data, function (index, row) {
-                    contadorp = contadorp + 1;
-                    copy = "<tr data-id=" + contadorp + ">";
-                    copy += "<td id = 'Cod_Producto'>" + row.prod_Codigo + "</td>";
-                    copy += "<td id = 'Producto'>" + row.data(tbProducto) + "</td>";
-                    copy += "<td id = 'Unidad_Medida'>" + row.prod_Codigo + "</td>";
-                    copy += "<td id = 'Cantidad'>" + row.prod_Codigo + "</td>";
-                    copy += "<td>" + '<button class="btn btn-primary btn-xs" value="'+row.prod_Codigo+'" id="seleccionar" data-dismiss="modal">Seleccionar</button>' + "</td>";
-                    copy += "</tr>";
-                    $('#cuerpo').append(copy);
-                });
-
-                })
-            })
-    </script>*@
-@*<div class="modal fade" id="ModalSelect" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Salida</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+        @*<div class="modal fade" id="ModalImprimir" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Desea Imprimir la Salida</h4>
+                    </div>
+                    <div class="modal-body" id="frmBuscarProducto">
+                        @Html.ActionLink("Si", "Imprimir", new { id = Model.sal_Id }, new { @class = "btn btn-primary btn-xs" });
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    </div>
                 </div>
-                <div class="modal-body">
-                        Seleccione el tipo de salida
-                        <div class="form-group">
-                            <form action="">
-                                <input type="radio" name="selec" value="1" onclick="myFunction()" id="rbtm1"> Listado<br>
-                                <input type="radio" name="selec" value="2" onclick="myFunction()" id="rbtm"> Caja<br>
-                            </form>
-                            <div class="form-group" id="myDIV" style="display: none;">
-                                @Html.LabelFor(model => model.tbSalidaDetalle, new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-                                  @Html.DropDownList("box_Codigo", (IEnumerable<SelectListItem>)ViewBag.box_Codigo, "Seleccionar", new { @class = "form-control" })
-                                </div>
-                            </div>
-                        </div>
-    </div>
-                <div class="modal-footer">
-                    @tml.ActionLink("Sí", "EstadoInactivar", new { id = Model.ent_Id }, new { @class = "btn btn-danger" })
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Aceptar</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                    </div>
-                    </div>
-                    </div>
-                    </div>*@
-
-<script>
-
-    //$(":input").inputmask();
-
-    //$("#sald_Cantidad").inputmask({ "mask": "999.99" });
-
-    var selector = "#fact_Codigo";
-    $(selector).val('');
-    $(selector).mask("999-999-99-99999999", { reverse: true });
-    //Output is shown as: 1,000,000
-
-    //var value = $(selector).cleanVal();
-    //Mask will be removed on next line
-    $(selector).val('');
-
-    function filterFloat(evt, input) {
-        // Backspace = 8, Enter = 13, ‘0′ = 48, ‘9′ = 57, ‘.’ = 46, ‘-’ = 43
-        var key = window.Event ? evt.which : evt.keyCode;
-        var chark = String.fromCharCode(key);
-        var tempValue = input.value + chark;
-        if (key >= 48 && key <= 57) {
-            if (filter(tempValue) === false) {
-                return false;
-            } else {
-                return true;
-            }
-        } else {
-            if (key == 8 || key == 13 || key == 0) {
-                return true;
-            } else if (key == 46) {
-                if (filter(tempValue) === false) {
-                    return false;
+            </div>
+        </div>*@
+        <script src="~/Scripts/jquery-3.3.1.js"></script>
+        <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+        <script src="~/Scripts/app/DataTable.js"></script>
+        <script src="~/Scripts/jquery.inputmask.bundle.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bowser/1.9.4/bowser.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
+        <script src="~/Scripts/app/SalidaDetalle.js"></script>
+        <script src="~/Scripts/app/Salida.js"></script>
+        <script src="~/Scripts/wp-embed.min.js"></script>
+        @*<script>
+           $(document).ready(function()
+           {
+               $("#ModalSelect").modal("show");
+           });
+        </script>*@
+        @*<script>
+            function myFunction() {
+                var x = document.getElementById("myDIV");
+                var z = document.getElementById("rbtm")
+                if (z.checked) {
+                    x.style.display = "block";
                 } else {
-                    return true;
+                    x.style.display = "none";
                 }
-            } else {
-                return false;
             }
-        }
-    }
-    function filter(__val__) {
-        var preg = /^([0-9]+\.?[0-9]{0,2})$/;
-        if (preg.test(__val__) === true) {
-            return true;
-        } else {
-            return false;
-        }
+        </script>*@
 
-    }
-</script>
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+        @*<script type="text/javascript">
+            var contadorp = 0;
+            $(document).ready(function () {
+                $.get('/Salida/GetProdList', function (data) {
+
+                    $("#cuerpo").html("");
+                    $.each(data, function (index, row) {
+                        contadorp = contadorp + 1;
+                        copy = "<tr data-id=" + contadorp + ">";
+                        copy += "<td id = 'Cod_Producto'>" + row.prod_Codigo + "</td>";
+                        copy += "<td id = 'Producto'>" + row.data(tbProducto) + "</td>";
+                        copy += "<td id = 'Unidad_Medida'>" + row.prod_Codigo + "</td>";
+                        copy += "<td id = 'Cantidad'>" + row.prod_Codigo + "</td>";
+                        copy += "<td>" + '<button class="btn btn-primary btn-xs" value="'+row.prod_Codigo+'" id="seleccionar" data-dismiss="modal">Seleccionar</button>' + "</td>";
+                        copy += "</tr>";
+                        $('#cuerpo').append(copy);
+                    });
+
+                    })
+                })
+        </script>*@
+        @*<div class="modal fade" id="ModalSelect" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Salida</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                            Seleccione el tipo de salida
+                            <div class="form-group">
+                                <form action="">
+                                    <input type="radio" name="selec" value="1" onclick="myFunction()" id="rbtm1"> Listado<br>
+                                    <input type="radio" name="selec" value="2" onclick="myFunction()" id="rbtm"> Caja<br>
+                                </form>
+                                <div class="form-group" id="myDIV" style="display: none;">
+                                    @Html.LabelFor(model => model.tbSalidaDetalle, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-4">
+                                      @Html.DropDownList("box_Codigo", (IEnumerable<SelectListItem>)ViewBag.box_Codigo, "Seleccionar", new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+        </div>
+                    <div class="modal-footer">
+                        @tml.ActionLink("Sí", "EstadoInactivar", new { id = Model.ent_Id }, new { @class = "btn btn-danger" })
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Aceptar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                        </div>
+                        </div>
+                        </div>
+                        </div>*@
+
+        <script>
+
+            //$(":input").inputmask();
+
+            //$("#sald_Cantidad").inputmask({ "mask": "999.99" });
+
+            var selector = "#fact_Codigo";
+            $(selector).val('');
+            $(selector).mask("999-999-99-99999999", { reverse: true });
+            //Output is shown as: 1,000,000
+
+            //var value = $(selector).cleanVal();
+            //Mask will be removed on next line
+            $(selector).val('');
+
+            function filterFloat(evt, input) {
+                // Backspace = 8, Enter = 13, ‘0′ = 48, ‘9′ = 57, ‘.’ = 46, ‘-’ = 43
+                var key = window.Event ? evt.which : evt.keyCode;
+                var chark = String.fromCharCode(key);
+                var tempValue = input.value + chark;
+                if (key >= 48 && key <= 57) {
+                    if (filter(tempValue) === false) {
+                        return false;
+                    } else {
+                        return true;
+                    }
+                } else {
+                    if (key == 8 || key == 13 || key == 0) {
+                        return true;
+                    } else if (key == 46) {
+                        if (filter(tempValue) === false) {
+                            return false;
+                        } else {
+                            return true;
+                        }
+                    } else {
+                        return false;
+                    }
+                }
+            }
+            function filter(__val__) {
+                var preg = /^([0-9]+\.?[0-9]{0,2})$/;
+                if (preg.test(__val__) === true) {
+                    return true;
+                } else {
+                    return false;
+                }
+
+            }
+        </script>
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }

@@ -1,18 +1,18 @@
-﻿
-
-$('#fact_Codigo').change(function () {
+﻿$('#fact_Codigo').change(function () {
     FaturaExist()
 })
-
+$('#fact_Codigo').keypress(function () {
+    FaturaExist()
+})
 //Tipo de Salida
 $("#bod_Id").click(function () {
     ChangeBodega();
 })
 
 $("#bod_Id").change(function () {
-        LimpiarTable();
-        BodegaDestino();
-    });
+    LimpiarTable();
+    BodegaDestino();
+});
 
 $('#Productos').click(function () {
     ListaProductos()
@@ -42,13 +42,11 @@ function LimpiarTable() {
 }
 
 function ChangeBodega() {
-
     var tblSalidaDetalle = $('#tblSalidaDetalle >tbody >tr').length;
     if (tblSalidaDetalle > 0) {
         $('#ModalChangeBodega').modal('show')
     }
 }
-
 
 function GetProdCodBar() {
     var Producto = {
@@ -71,14 +69,13 @@ function GetAnularSalida() {
 
 $(function () {
     $("#sal_FechaElaboracion").datepicker({
-        dateFormat: 'yy-mm-dd',
+        dateFormat: 'mm-dd-yy',
         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá']
     }).datepicker("setDate", new Date());
 });
 
 function FaturaExist() {
-
     $.ajax({
         url: "/Salida/FacturaExist",
         method: "POST",
@@ -131,12 +128,9 @@ function ListaProductos() {
             key += "<td>" + "<button class='btn btn-primary btn-xs' value=" + value.prod_Codigo + " id='seleccionar' data-dismiss='modal'>Seleccionar</button>" + "</td>"
             key += "</tr>";
             $("#Body_BuscarProducto").append(key)
-
         })
     });
 }
-
-
 
 function TipodeSalida() {
     $('#fact_Codigo').val('***-***-**-********');
@@ -144,7 +138,6 @@ function TipodeSalida() {
     if (TipoSal == "1") {
         $('#fact_Codigo').val('***-***-**-********');
         $('#tbFactura_fact_Codigo').val('***-***-**-********');
-        
 
         $('#sal_RazonDevolucion').val('*****');
         ///////////////////////////////////////
@@ -194,16 +187,12 @@ function TipodeSalida() {
     FaturaExist()
 }
 
-
 $(document).ready(function () {
     var e = document.getElementById("tsal_Id");
     var strUser = e.options[e.selectedIndex].text;
     console.log(strUser)
     $("#tbTipoSalida_tsal_Id").val(strUser)
-
 });
-
-
 
 $('#btnAnularSalida').click(function () {
     var sal_Id = $('#sal_Id').val();
@@ -227,9 +216,6 @@ $('#btnAnularSalida').click(function () {
         })
             .done(function (data) {
                 window.location.href = "/Salida/Index"
-
             });
-
     }
-
 });

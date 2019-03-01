@@ -22,8 +22,31 @@ namespace ERP_GMEDINA.Controllers
         public ActionResult Index()
         {
             ViewBag.tsal_Id = new SelectList(db.tbTipoSalida, "tsal_Id", "tsal_Descripcion");
+            ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
+
+            ViewBag.estm_Id = new SelectList(db.tbEstadoMovimiento, "estm_Id", "estm_Descripcion");
+            ViewBag.tsal_Id = new SelectList(db.tbTipoSalida, "tsal_Id", "tsal_Descripcion");
             var tbsalida = db.tbSalida;
             return View(tbsalida.ToList());
+        }
+
+        public int Usuario()
+        {
+            int idUser = 0;
+            try
+            {
+                List<tbUsuario> User = Function.getUserInformation();
+                foreach (tbUsuario Usuario in User)
+                {
+                    idUser = Convert.ToInt32(Usuario.emp_Id);
+                }
+                return idUser;
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                return 0;
+            }
         }
 
         public ActionResult ExportReport()
@@ -76,18 +99,11 @@ namespace ERP_GMEDINA.Controllers
         [SessionManager("Salida/Create")]
         public ActionResult Create()
         {
-            int idUser = 0;
             try
             {
                 Session["SalidaDetalle"] = null;
                 ViewBag.sal_BodDestino = db.SDP_tbBodega_Listado(3).ToList();
-                GeneralFunctions Login = new GeneralFunctions();
-                List<tbUsuario> User = Login.getUserInformation();
-                foreach (tbUsuario Usuario in User)
-                {
-                    idUser = Convert.ToInt32(Usuario.emp_Id);
-                }
-
+                int idUser = Usuario();
                 ViewBag.bod_Id = new SelectList(db.tbBodega.Where(x => x.bod_ResponsableBodega == idUser).ToList(), "bod_Id", "bod_Nombre");
                 ViewBag.sal_BodDestino = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
                 ViewBag.estm_Id = new SelectList(db.tbEstadoMovimiento, "estm_Id", "estm_Descripcion");
@@ -491,11 +507,29 @@ namespace ERP_GMEDINA.Controllers
         {
             try
             {
-                var CantidadBodegaDetalle = db.tbBodegaDetalle.Where(x =>
+                var CantidadExistente = db.tbBodegaDetalle.Where(x =>
                 x.bod_Id == bod_Id
                 &&
                 x.prod_Codigo == prod_Codigo).Select(c => c.bodd_CantidadExistente).SingleOrDefault();
-                return Json(CantidadBodegaDetalle, JsonRequestBehavior.AllowGet);
+                var CantidadMinima = db.tbBodegaDetalle.Where(x =>
+                 x.bod_Id == bod_Id
+                 &&
+                 x.prod_Codigo == prod_Codigo).Select(c => c.bodd_CantidadMinima).SingleOrDefault();
+
+                var CantidadAceptada = CantidadExistente - CantidadMinima;
+
+                //if (CantidadPermitida == 0 && CantidadMinima > 0)
+                //{
+                //    var CantidadMinimaA = "Cantidad Minima Alcanzada solo hay en existencia: "+ CantidadMinima+" de este producto";
+                //    return Json(CantidadMinimaA, JsonRequestBehavior.AllowGet);
+                //}
+                //else
+                //{
+                //    return Json(CantidadPermitida, JsonRequestBehavior.AllowGet);
+                //}
+
+                object CantidadPermitida = new { CantidadAceptada, CantidadMinima };
+                return Json(CantidadPermitida, JsonRequestBehavior.AllowGet);
             }
             catch (Exception Ex)
             {
@@ -599,24 +633,31 @@ namespace ERP_GMEDINA.Controllers
                     }
                     else
                     {
-                        //.Select(x => x.fact_Id).SingleOrDefault()
-                        var vFactura = db.tbFactura.Where(x => x.fact_Codigo == fact_Codigo).ToList();
-                        if (vFactura.Count() > 0)
+                        if (fact_Codigo == "___-___-__-________")
                         {
-                            var vFacturaID = db.tbFactura.Where(x => x.fact_Codigo == fact_Codigo).Select(x => x.fact_Id).First();
-                            var vSalida = db.tbSalida.Where(x => x.fact_Id == vFacturaID).ToList();
-                            if (vSalida.Count() > 0)
-                            {
-                                Message = "Ya existe una Salida con ese Codigo de Factura";
-                            }
-                            else
-                            {
-                                Message = "";
-                            }
+                            Message = "Inserte una Factura";
                         }
                         else
                         {
-                            Message = "No Existe Esa Factura";
+                            //.Select(x => x.fact_Id).SingleOrDefault()
+                            var vFactura = db.tbFactura.Where(x => x.fact_Codigo == fact_Codigo).ToList();
+                            if (vFactura.Count() > 0)
+                            {
+                                var vFacturaID = db.tbFactura.Where(x => x.fact_Codigo == fact_Codigo).Select(x => x.fact_Id).First();
+                                var vSalida = db.tbSalida.Where(x => x.fact_Id == vFacturaID).ToList();
+                                if (vSalida.Count() > 0)
+                                {
+                                    Message = "Ya existe una Salida con ese Codigo de Factura";
+                                }
+                                else
+                                {
+                                    Message = "";
+                                }
+                            }
+                            else
+                            {
+                                Message = "No Existe Esa Factura";
+                            }
                         }
                     }
                 }
@@ -713,13 +754,14 @@ namespace ERP_GMEDINA.Controllers
             {
                 var MensajeError = "";
                 bool EsAnulada = true;
+
                 IEnumerable<object> list = null;
                 tbSalida vSalida = db.tbSalida.Find(Salida.sal_Id);
                 list = db.UDP_Inv_tbSalida_Update(vSalida.sal_Id,
                                                 vSalida.bod_Id,
                                                 vSalida.fact_Id,
                                                 vSalida.sal_FechaElaboracion,
-                                                vSalida.estm_Id,
+                                                Helpers.sal_Anulada,
                                                 vSalida.tsal_Id,
                                                 vSalida.sal_BodDestino,
                                                 EsAnulada,
@@ -750,9 +792,9 @@ namespace ERP_GMEDINA.Controllers
         public JsonResult SaveSalidaDetalle(tbSalidaDetalle SalidaDetalle, string data_producto)
         {
             var datos = "";
-            decimal cantvieja = 0;
-            decimal cantnueva = 0;
-            data_producto = SalidaDetalle.prod_Codigo;
+            decimal CantidadVieja = 0;
+            decimal CantidadNueva = 0;
+            //data_producto = SalidaDetalle.prod_Codigo;
             decimal data_cantidad = SalidaDetalle.sald_Cantidad;
             List<tbSalidaDetalle> sessionSalidaDetalle = new List<tbSalidaDetalle>();
             var list = (List<tbSalidaDetalle>)Session["SalidaDetalle"];
@@ -763,15 +805,15 @@ namespace ERP_GMEDINA.Controllers
             }
             else
             {
-                foreach (var t in list)
-                    if (t.prod_Codigo == data_producto)
+                foreach (var vSalidaDetalle in list)
+                    if (vSalidaDetalle.prod_Codigo == data_producto)
                     {
                         datos = data_producto;
                         foreach (var viejo in list)
                             if (viejo.prod_Codigo == SalidaDetalle.prod_Codigo)
-                                cantvieja = viejo.sald_Cantidad;
-                        cantnueva = cantvieja + data_cantidad;
-                        t.sald_Cantidad = cantnueva;
+                                CantidadVieja = viejo.sald_Cantidad;
+                        CantidadNueva = CantidadVieja + data_cantidad;
+                        vSalidaDetalle.sald_Cantidad = CantidadNueva;
                         return Json(datos, JsonRequestBehavior.AllowGet);
                     }
                 list.Add(SalidaDetalle);

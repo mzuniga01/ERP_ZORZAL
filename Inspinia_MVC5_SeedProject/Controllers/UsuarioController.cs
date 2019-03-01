@@ -169,6 +169,7 @@ namespace ERP_GMEDINA.Controllers
                             ViewBag.Empleado = db.SDP_tbEmpleado_Select().ToList();
                             ViewBag.Sucursal = new SelectList(db.tbSucursal, "suc_Id", "suc_Descripcion");
                             ModelState.AddModelError("", "No se guardó el registro , contacte al Administrador");
+                            Session["tbRolesUsuario"] = null;
                             return View(tbUsuario);
                         }
                         else
@@ -187,6 +188,7 @@ namespace ERP_GMEDINA.Controllers
                                             ViewBag.Empleado = db.SDP_tbEmpleado_Select().ToList();
                                             ViewBag.Sucursal = new SelectList(db.tbSucursal, "suc_Id", "suc_Descripcion");
                                             ModelState.AddModelError("", "No se guardó el registro , contacte al Administrador");
+                                            Session["tbRolesUsuario"] = null;
                                             return View(tbUsuario);
                                         }
                                     }
@@ -203,6 +205,7 @@ namespace ERP_GMEDINA.Controllers
                         ViewBag.Empleado = db.SDP_tbEmpleado_Select().ToList();
                         ViewBag.Sucursal = new SelectList(db.tbSucursal, "suc_Id", "suc_Descripcion");
                         ModelState.AddModelError("", "No se guardó el registro , contacte al Administrador");
+                        Session["tbRolesUsuario"] = null;
                         return View(tbUsuario);
                     }
                 }
@@ -214,6 +217,7 @@ namespace ERP_GMEDINA.Controllers
                 ViewBag.Empleado = db.SDP_tbEmpleado_Select().ToList();
                 ViewBag.Sucursal = new SelectList(db.tbSucursal, "suc_Id", "suc_Descripcion");
             }
+            Session["tbRolesUsuario"] = null;
             return View(tbUsuario);
         }
 
@@ -467,6 +471,8 @@ namespace ERP_GMEDINA.Controllers
             }
             return Json("Exito", JsonRequestBehavior.AllowGet);
         }
+
+       
 
         [HttpPost]
         public JsonResult removeRol(tbRolesUsuario Roles)

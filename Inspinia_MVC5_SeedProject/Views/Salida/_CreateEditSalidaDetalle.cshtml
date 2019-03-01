@@ -1,7 +1,6 @@
 ﻿@model ERP_GMEDINA.Models.tbSalidaDetalle
 @using ERP_GMEDINA.Models
 
-
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
@@ -12,6 +11,10 @@
                 <div class="ibox-content">
                     @Html.HiddenFor(model => model.sal_Id)
                     <input name="sal_Id" id="txtsal_Id" type="hidden" value="@ViewBag.IdSal">
+                    <input type="hidden" id="prod_Marca" placeholder="" class="form-control" readonly />
+                    <input type="hidden" id="prod_Modelo" placeholder="" class="form-control" readonly />
+                    <input type="hidden" id="prod_Talla" placeholder="" class="form-control" readonly />
+                    <input type="hidden" id="prod_Color" placeholder="" class="form-control" readonly />
                     <div class="form-horizontal">
                         <div class="form-group">
                             @Html.LabelFor(model => model.tbProducto.prod_CodigoBarras, "Codigo de Barras", new { @class = "control-label col-md-2 required" })
@@ -24,12 +27,11 @@
                             <div class="col-md-1">
                                 <button type="button" id="Productos" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarProducto"><span class="glyphicon glyphicon-search"></span></button>
                             </div>
-
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(model => model.prod_Codigo, "Producto", new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                <input type="text" id="prod_Codigo" placeholder="" class="form-control" readonly/>
+                                <input type="text" id="prod_Codigo" placeholder="" class="form-control" readonly />
                             </div>
                         </div>
                         <div class="form-group">
@@ -48,8 +50,7 @@
                             @Html.LabelFor(model => model.sald_Cantidad, "Cantidad", new { @class = "control-label col-md-2 required" })
                             <div class="col-md-4">
                                 @Html.EditorFor(model => model.sald_Cantidad, new { HtmlAttributes = new { name = "sald_Cantidad", @onkeypress = "return filterFloat(event,this);" } })
-                                <div id="validationcantidad">
-                                    @Html.ValidationMessageFor(model => model.sald_Cantidad)
+                                <div id="CantidaExistente">
                                 </div>
                             </div>
                             @Html.LabelFor(model => model.tbProducto.tbProductoSubcategoria.tbProductoCategoria, "Categoria", new { @class = "control-label col-md-2" })
@@ -71,24 +72,22 @@
                         </div>
                     </div>
 
-                    <table id="tblSalidaDetalle" class="table table table-striped table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Codigo Producto</th>
-                                <th>Descripcion del Producto</th>
-                                <th>Unidad Medida</th>
-                                <th>Cantidad</th>
-                                <th>Eliminiar</th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
+                    @*<table id="tblSalidaDetalle" class="table table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Codigo Producto</th>
+                                    <th>Descripcion del Producto</th>
+                                    <th>Unidad Medida</th>
+                                    <th>Cantidad</th>
+                                    <th>Eliminiar</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>*@
                 </div>
-
             </div>  <div class="form-group col-md-1">
                 <button class="btn btn-primary" type="button" id="btnCreateSalidaDetalle">Guardar</button>
             </div>
-
         </div>
     </div>
 </div>
@@ -108,7 +107,6 @@
         </div>
     </div>
 </div>
-
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
