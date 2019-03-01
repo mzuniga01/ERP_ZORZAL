@@ -40,7 +40,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.ban_Nombre, new { @class = "control-label col-md-2" })
                 <div class="col-md-5">
-                    @Html.EditorFor(model => model.ban_Nombre, new { htmlAttributes = new { @autocomplete = "off", @onkeyup = "format(this)", @style = "text-transform:capitalize;", onkeypress = "return validar(event)" } })
+                    @Html.EditorFor(model => model.ban_Nombre, new { htmlAttributes = new { @autocomplete = "off", @onkeyup = "format(this)", @style = "text-transform:uppercase;", onkeypress = "return validar(event)" } })
                     <p style="color:red">@Html.ValidationMessageFor(model => model.ban_Nombre)</p>
                 </div>
             </div>
@@ -49,7 +49,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.ban_NombreContacto, new { @class = "control-label col-md-2" })
                 <div class="col-md-5">
-                    @Html.EditorFor(model => model.ban_NombreContacto, new { htmlAttributes = new { @autocomplete = "off", @onkeyup = "format(this)", @style = "text-transform:capitalize;", onkeypress = "return validar(event)" } })
+                    @Html.EditorFor(model => model.ban_NombreContacto, new { htmlAttributes = new { @autocomplete = "off", @onkeyup = "format(this)", @style = "text-transform:uppercase;", onkeypress = "return validar(event)" } }) 
                     <p style="color:red">@Html.ValidationMessageFor(model => model.ban_NombreContacto)</p>
                 </div>
             </div>

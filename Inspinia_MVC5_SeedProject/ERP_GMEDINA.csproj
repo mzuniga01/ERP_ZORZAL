@@ -1065,9 +1065,6 @@
     <Compile Include="Models\UDP_Vent_tbPuntoEmision_Insert_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\UDP_Vent_tbPuntoEmision_Select_Result.cs">
-      <DependentUpon>ModelERP.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\UDP_Vent_tbPuntoEmision_Update_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -1836,12 +1833,10 @@
     <Content Include="Views\EstadoFactura\Edit.cshtml" />
     <Content Include="Views\EstadoFactura\Index.cshtml" />
     <Content Include="Views\ActividadEconomica\Create.cshtml" />
-    <Content Include="Views\ActividadEconomica\Delete.cshtml" />
     <Content Include="Views\ActividadEconomica\Details.cshtml" />
     <Content Include="Views\ActividadEconomica\Edit.cshtml" />
     <Content Include="Views\ActividadEconomica\Index.cshtml" />
     <Content Include="Views\TipoIdentificacion\Create.cshtml" />
-    <Content Include="Views\TipoIdentificacion\Delete.cshtml" />
     <Content Include="Views\TipoIdentificacion\Details.cshtml" />
     <Content Include="Views\TipoIdentificacion\Edit.cshtml" />
     <Content Include="Views\TipoIdentificacion\Index.cshtml" />
@@ -1854,13 +1849,11 @@
     <Content Include="Views\CuentaBanco\Edit.cshtml" />
     <Content Include="Views\CuentaBanco\Index.cshtml" />
     <Content Include="Views\Devolucion\Create.cshtml" />
-    <Content Include="Views\Devolucion\Delete.cshtml" />
     <Content Include="Views\Devolucion\Details.cshtml" />
     <Content Include="Views\Devolucion\Edit.cshtml" />
     <Content Include="Views\Devolucion\Index.cshtml" />
     <Content Include="Views\Devolucion\_CreateDevolucionDetalle.cshtml" />
     <Content Include="Views\DocumentoFiscal\Create.cshtml" />
-    <Content Include="Views\DocumentoFiscal\Delete.cshtml" />
     <Content Include="Views\DocumentoFiscal\Details.cshtml" />
     <Content Include="Views\DocumentoFiscal\Edit.cshtml" />
     <Content Include="Views\DocumentoFiscal\Index.cshtml" />
@@ -1870,32 +1863,26 @@
     <Content Include="Views\UnidadesMedida\Edit.cshtml" />
     <Content Include="Views\UnidadesMedida\Index.cshtml" />
     <Content Include="Views\CuponDescuento\Create.cshtml" />
-    <Content Include="Views\CuponDescuento\Delete.cshtml" />
     <Content Include="Views\CuponDescuento\Details.cshtml" />
     <Content Include="Views\CuponDescuento\Edit.cshtml" />
     <Content Include="Views\CuponDescuento\Index.cshtml" />
     <Content Include="Views\NotaCredito\Create.cshtml" />
-    <Content Include="Views\NotaCredito\Delete.cshtml" />
     <Content Include="Views\NotaCredito\Details.cshtml" />
     <Content Include="Views\NotaCredito\Edit.cshtml" />
     <Content Include="Views\NotaCredito\Index.cshtml" />
     <Content Include="Views\Moneda\Create.cshtml" />
-    <Content Include="Views\Moneda\Delete.cshtml" />
     <Content Include="Views\Moneda\Details.cshtml" />
     <Content Include="Views\Moneda\Edit.cshtml" />
     <Content Include="Views\Moneda\Index.cshtml" />
     <Content Include="Views\EstadoSolicitudCredito\Create.cshtml" />
-    <Content Include="Views\EstadoSolicitudCredito\Delete.cshtml" />
     <Content Include="Views\EstadoSolicitudCredito\Details.cshtml" />
     <Content Include="Views\EstadoSolicitudCredito\Edit.cshtml" />
     <Content Include="Views\EstadoSolicitudCredito\Index.cshtml" />
     <Content Include="Views\SolicitudCredito\Create.cshtml" />
-    <Content Include="Views\SolicitudCredito\Delete.cshtml" />
     <Content Include="Views\SolicitudCredito\Details.cshtml" />
     <Content Include="Views\SolicitudCredito\Edit.cshtml" />
     <Content Include="Views\SolicitudCredito\Index.cshtml" />
     <Content Include="Views\Cliente\Create.cshtml" />
-    <Content Include="Views\Cliente\Delete.cshtml" />
     <Content Include="Views\Cliente\Details.cshtml" />
     <Content Include="Views\Cliente\Edit.cshtml" />
     <Content Include="Views\Cliente\Index.cshtml" />
@@ -1908,23 +1895,15 @@
     <Content Include="Views\PuntoEmision\_IndexNumeracion.cshtml" />
     <Content Include="Views\PuntoEmision\_IndexSucursal.cshtml" />
     <Content Include="Views\PuntoEmision\_EditNumeracion.cshtml" />
-    <Content Include="Views\ArqueoCaja\Create.cshtml" />
-    <Content Include="Views\ArqueoCaja\Delete.cshtml" />
-    <Content Include="Views\ArqueoCaja\Details.cshtml" />
-    <Content Include="Views\ArqueoCaja\Edit.cshtml" />
-    <Content Include="Views\ArqueoCaja\Index.cshtml" />
     <Content Include="Views\Caja\Create.cshtml" />
-    <Content Include="Views\Caja\Delete.cshtml" />
     <Content Include="Views\Caja\Details.cshtml" />
     <Content Include="Views\Caja\Edit.cshtml" />
     <Content Include="Views\Caja\Index.cshtml" />
     <Content Include="Views\Denominacion\Create.cshtml" />
-    <Content Include="Views\Denominacion\Delete.cshtml" />
     <Content Include="Views\Denominacion\Details.cshtml" />
     <Content Include="Views\Denominacion\Edit.cshtml" />
     <Content Include="Views\Denominacion\Index.cshtml" />
     <Content Include="Views\SolicitudEfectivo\Create.cshtml" />
-    <Content Include="Views\SolicitudEfectivo\Delete.cshtml" />
     <Content Include="Views\SolicitudEfectivo\Details.cshtml" />
     <Content Include="Views\SolicitudEfectivo\Edit.cshtml" />
     <Content Include="Views\SolicitudEfectivo\Index.cshtml" />
@@ -1934,7 +1913,6 @@
     <Content Include="Views\SolicitudCredito\_IndexCliente.cshtml" />
     <Content Include="Views\SolicitudCredito\IndexSolicitud.cshtml" />
     <Content Include="Views\Pedido\Create.cshtml" />
-    <Content Include="Views\Pedido\Delete.cshtml" />
     <Content Include="Views\Pedido\Details.cshtml" />
     <Content Include="Views\Pedido\Edit.cshtml" />
     <Content Include="Views\Pedido\Index.cshtml" />
@@ -1942,7 +1920,6 @@
     <Content Include="Views\Pedido\_ListPedidoDetalle.cshtml" />
     <Content Include="Views\MovimientoCaja\Create.cshtml" />
     <Content Include="Views\MovimientoCaja\CreateApertura.cshtml" />
-    <Content Include="Views\MovimientoCaja\Delete.cshtml" />
     <Content Include="Views\MovimientoCaja\Details.cshtml" />
     <Content Include="Views\MovimientoCaja\Edit.cshtml" />
     <Content Include="Views\MovimientoCaja\Index.cshtml" />
@@ -1954,11 +1931,9 @@
     <Content Include="Views\Devolucion\_IndexProductoDDevolucion.cshtml" />
     <Content Include="Views\Devolucion\_ProductoDevolucionFactura.cshtml" />
     <Content Include="Views\Pago\Create.cshtml" />
-    <Content Include="Views\Pago\Delete.cshtml" />
     <Content Include="Views\Pago\Details.cshtml" />
     <Content Include="Views\Pago\Edit.cshtml" />
     <Content Include="Views\Pago\Index.cshtml" />
-    <Content Include="Views\TipoPago\Create.cshtml" />
     <Content Include="Views\TipoPago\Delete.cshtml" />
     <Content Include="Views\TipoPago\Details.cshtml" />
     <Content Include="Views\TipoPago\Edit.cshtml" />
@@ -1969,12 +1944,10 @@
     <Content Include="Views\Pedido\_IndexProducto.cshtml" />
     <Content Include="Views\Pago\IndexPagoFactura.cshtml" />
     <Content Include="Views\Sucursal\Create.cshtml" />
-    <Content Include="Views\Sucursal\Delete.cshtml" />
     <Content Include="Views\Sucursal\Details.cshtml" />
     <Content Include="Views\Sucursal\Edit.cshtml" />
     <Content Include="Views\Sucursal\Index.cshtml" />
     <Content Include="Views\Exoneracion\Create.cshtml" />
-    <Content Include="Views\Exoneracion\Delete.cshtml" />
     <Content Include="Views\Exoneracion\Details.cshtml" />
     <Content Include="Views\Exoneracion\Edit.cshtml" />
     <Content Include="Views\Exoneracion\Index.cshtml" />
@@ -1991,7 +1964,6 @@
     <Content Include="Views\SolicitudEfectivo\_DetailsSolicitudEfectivoDetalle.cshtml" />
     <Content Include="Views\SolicitudEfectivo\_IndexEditSolicitudEfectivoDetalle.cshtml" />
     <Content Include="Views\DenominacionArqueo\Create.cshtml" />
-    <Content Include="Views\DenominacionArqueo\Delete.cshtml" />
     <Content Include="Views\DenominacionArqueo\Details.cshtml" />
     <Content Include="Views\DenominacionArqueo\Edit.cshtml" />
     <Content Include="Views\DenominacionArqueo\Index.cshtml" />
@@ -2003,7 +1975,6 @@
     <Content Include="Views\Pedido\EditPedido.cshtml" />
     <Content Include="Views\Pedido\IndexPedido.cshtml" />
     <Content Include="Views\ListaPrecios\Create.cshtml" />
-    <Content Include="Views\ListaPrecios\Delete.cshtml" />
     <Content Include="Views\ListaPrecios\Details.cshtml" />
     <Content Include="Views\ListaPrecios\Edit.cshtml" />
     <Content Include="Views\ListaPrecios\Index.cshtml" />
@@ -2015,7 +1986,6 @@
     <Content Include="Views\Pedido\_PedidoDetalleEditar.cshtml" />
     <Content Include="Views\Pedido\_IndexPedidoDetalle.cshtml" />
     <Content Include="Views\PagosArqueo\Create.cshtml" />
-    <Content Include="Views\PagosArqueo\Delete.cshtml" />
     <Content Include="Views\PagosArqueo\Details.cshtml" />
     <Content Include="Views\PagosArqueo\Edit.cshtml" />
     <Content Include="Views\PagosArqueo\Index.cshtml" />

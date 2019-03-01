@@ -3434,15 +3434,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_CantidadExistente_Result>("UDP_Inv_CantidadExistente", bod_IdParameter, prod_CodigoParameter);
         }
     
-        public virtual ObjectResult<UDP_Vent_tbPuntoEmision_Select_Result> UDP_Vent_tbPuntoEmision_Select(Nullable<int> pemi_Id)
-        {
-            var pemi_IdParameter = pemi_Id.HasValue ?
-                new ObjectParameter("pemi_Id", pemi_Id) :
-                new ObjectParameter("pemi_Id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbPuntoEmision_Select_Result>("UDP_Vent_tbPuntoEmision_Select", pemi_IdParameter);
-        }
-    
         public virtual ObjectResult<SDP_tbProductoSubcategoria_Select_Result> SDP_tbProductoSubcategoria_Select(Nullable<int> pscat_Id)
         {
             var pscat_IdParameter = pscat_Id.HasValue ?

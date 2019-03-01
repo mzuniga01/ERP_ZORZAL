@@ -33,13 +33,12 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        @Html.ValidationSummary(true)
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
   
-
         <div class="form-group">
             @Html.LabelFor(model => model.acte_Descripcion, new { @class = "control-label col-md-2" })
             <div class="col-md-5">
-                @Html.EditorFor(model => model.acte_Descripcion, new { htmlAttributes = new { @autocomplete = "off", @style = "text-transform:capitalize;", onkeypress = "return validar(event)"@*, @maxlenght = 3*@ } })
+                @Html.EditorFor(model => model.acte_Descripcion, new { htmlAttributes = new { @autocomplete = "off", @style = "text-transform:uppercase;", onkeypress = "return validar(event)"@*, @maxlenght = 3*@ } })
                 <p style="color:red">@Html.ValidationMessageFor(model => model.acte_Descripcion)</p>
        </div>
         </div>

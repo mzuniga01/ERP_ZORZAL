@@ -8,17 +8,13 @@
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Moneda</h2>
-        
     </div>
     <div class="col-sm-8">
         <div class="title-action">
             <a href="@Url.Action("Index","Moneda")">Regresar</a>
-            @*<a href="/Moneda/Index">Regresar</a>*@
         </div>
     </div>
 </div>
-
-
 
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
@@ -34,10 +30,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        @Html.ValidationSummary(true)
-
-
-
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             <label class="control-label col-md-2">Abreviatura</label>
 

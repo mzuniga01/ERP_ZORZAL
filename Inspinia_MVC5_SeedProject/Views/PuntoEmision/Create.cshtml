@@ -34,7 +34,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.pemi_NumeroCAI, new { @class = "control-label col-md-2" })
                                 <div class="col-md-7">
-                                    @Html.EditorFor(model => model.pemi_NumeroCAI, new { htmlAttributes = new { @onkeypress = "return validarNúmeroCAI(event)" } })
+                                    @Html.EditorFor(model => model.pemi_NumeroCAI, new { htmlAttributes = new { @onkeypress = "return validarNúmeroCAI(event)", @style = "text-transform:uppercase;" } })
                                     <div id="validacionNumeroCAICreate">
                                         <p id="MessageNumeroCAICreate" style="color:red">@Html.ValidationMessageFor(model => model.pemi_NumeroCAI)</p>
                                     </div>
