@@ -187,10 +187,11 @@ $('#seleccionarModal').click(function () {
 //para eliminar detalle
 $(document).on("click", "#tbentrada tbody tr td button#Eliminardetalleentrada", function () {
     $(this).closest('tr').remove();
-    idItem = $(this).closest('tr').data('id');
+    var currentRow = $(this).closest("tr");
+    var prod_Codigo = currentRow.find("td:eq(0)").text();
 
     var Eliminar = {
-        prod_Codigo: idItem,
+        prod_Codigo: prod_Codigo,
     };
     $.ajax({
         url: "/Entrada/Eliminardetalleentrada",
@@ -204,10 +205,11 @@ $(document).on("click", "#tbentrada tbody tr td button#Eliminardetalleentrada", 
 
 $(document).on("click", "#tbEntradaDetalle tbody tr td button#Eliminardetalleentrada_Edit", function () {
     $(this).closest('tr').remove();
-    idItem = $(this).closest('tr').data('id');
+    var currentRow = $(this).closest("tr");
+    var prod_Codigo = currentRow.find("td:eq(0)").text(); 
 
     var Eliminar = {
-        ent_Id: idItem,
+        prod_Codigo: prod_Codigo,
     };
     $.ajax({
         url: "/Entrada/Eliminardetalleentrada",
@@ -561,7 +563,8 @@ $('#AnularEntrada').click(function () {
     {
         valido = document.getElementById('RazonANULADA');
         valido.innerText = "La razón Anulado es requerida";
-    } else {
+    }
+    else {
         var anularentrada = GetAnualarEntrada();
         $.ajax({
             url: "/Entrada/EstadoAnular",
@@ -572,12 +575,17 @@ $('#AnularEntrada').click(function () {
         })
         .done(function (data) {
             $("#entd_RazonAnulada").val('');
-            //$('#ent_Id').val('');
-            location.reload();
-            //window.location.reload();
+            if (data.length > 0) {
+                var url = $("#RedirectTo").val();
+                location.href = url;
+            }
+            else {
+                alert("Registro No Actualizado");
+            }
         });
+        location.reload();
     }
-     window.location.reload();
+
 })
 function GetAnualarEntrada() {
 

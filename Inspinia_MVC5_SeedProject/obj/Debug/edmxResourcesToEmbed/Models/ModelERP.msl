@@ -1995,23 +1995,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SDP_tbentradaImprimir_Select" FunctionName="ERP_ZORZALModel.Store.SDP_tbentradaImprimir_Select">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_tbentradaImprimir_Select_Result">
-          <ScalarProperty Name="ent_NumeroFormato" ColumnName="ent_NumeroFormato" />
-          <ScalarProperty Name="bod_Nombre" ColumnName="bod_Nombre" />
-          <ScalarProperty Name="ent_FechaElaboracion" ColumnName="ent_FechaElaboracion" />
-          <ScalarProperty Name="prov_Nombre" ColumnName="prov_Nombre" />
-          <ScalarProperty Name="estm_Descripcion" ColumnName="estm_Descripcion" />
-          <ScalarProperty Name="tent_Descripcion" ColumnName="tent_Descripcion" />
-          <ScalarProperty Name="ent_FacturaCompra" ColumnName="ent_FacturaCompra" />
-          <ScalarProperty Name="ent_FechaCompra" ColumnName="ent_FechaCompra" />
-          <ScalarProperty Name="tdev_descripcion" ColumnName="tdev_descripcion" />
-          <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
-          <ScalarProperty Name="ent_BodegaDestino" ColumnName="ent_BodegaDestino" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="UDP_Inv_tbProducto_GetSubCategoria" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProducto_GetSubCategoria">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProducto_GetSubCategoria_Result">
@@ -2209,7 +2192,36 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Inv_tbProducto_Estado_Prueba" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProducto_Estado_Prueba" />
-    <FunctionImportMapping FunctionImportName="UDP_Inv_tbProducto_Update_RazonInactivacion" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProducto_Update_RazonInactivacion" />
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbProducto_Estado_Prueba" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProducto_Estado_Prueba">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProducto_Estado_Prueba_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbProducto_Update_RazonInactivacion" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProducto_Update_RazonInactivacion">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProducto_Update_RazonInactivacion_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SDP_tbentradaImprimir_Select" FunctionName="ERP_ZORZALModel.Store.SDP_tbentradaImprimir_Select">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_tbentradaImprimir_Select_Result">
+          <ScalarProperty Name="ent_NumeroFormato" ColumnName="ent_NumeroFormato" />
+          <ScalarProperty Name="bod_Nombre" ColumnName="bod_Nombre" />
+          <ScalarProperty Name="ent_FechaElaboracion" ColumnName="ent_FechaElaboracion" />
+          <ScalarProperty Name="prov_Nombre" ColumnName="prov_Nombre" />
+          <ScalarProperty Name="estm_Descripcion" ColumnName="estm_Descripcion" />
+          <ScalarProperty Name="tent_Descripcion" ColumnName="tent_Descripcion" />
+          <ScalarProperty Name="ent_FacturaCompra" ColumnName="ent_FacturaCompra" />
+          <ScalarProperty Name="ent_FechaCompra" ColumnName="ent_FechaCompra" />
+          <ScalarProperty Name="tdev_descripcion" ColumnName="tdev_descripcion" />
+          <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
+          <ScalarProperty Name="ent_BodegaDestino" ColumnName="ent_BodegaDestino" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

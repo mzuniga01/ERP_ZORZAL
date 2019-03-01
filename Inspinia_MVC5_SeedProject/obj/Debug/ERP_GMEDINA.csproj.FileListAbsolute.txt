@@ -1290,3 +1290,23 @@ C:\Users\MágdalyZúniga\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\o
 C:\Users\MágdalyZúniga\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.dll
 C:\Users\MágdalyZúniga\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.pdb
 C:\Users\Lab 2\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\es\Microsoft.ReportViewer.WebForms.resources.dll
+C:\Users\DORIAN\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.CrystalReports.Design.dll
+C:\Users\DORIAN\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.CrystalReports.Engine.dll
+C:\Users\DORIAN\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.ReportSource.dll
+C:\Users\DORIAN\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.Shared.dll
+C:\Users\DORIAN\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.Web.dll
+C:\Users\DORIAN\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\log4net.dll
+C:\Users\DORIAN\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.ReportAppServer.DataDefModel.dll
+C:\Users\DORIAN\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.ReportAppServer.ClientDoc.dll
+C:\Users\DORIAN\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+C:\Users\DORIAN\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.ReportAppServer.Controllers.dll
+C:\Users\DORIAN\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.ReportAppServer.CommLayer.dll
+C:\Users\DORIAN\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+C:\Users\DORIAN\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.ReportAppServer.Prompting.dll
+C:\Users\DORIAN\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+C:\Users\DORIAN\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+C:\Users\DORIAN\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+C:\Users\DORIAN\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+C:\Users\DORIAN\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
+C:\Users\DORIAN\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\stdole.dll
+C:\Users\DORIAN\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\log4net.xml

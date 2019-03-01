@@ -2576,19 +2576,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbEmpleado_Update_RazonSalida_Result>("UDP_Gral_tbEmpleado_Update_RazonSalida", emp_IdParameter, emp_EstadoParameter, emp_RazonSalidaParameter, emp_UsuarioModificaParameter, emp_FechaModificaParameter);
         }
     
-        public virtual ObjectResult<SDP_tbentradaImprimir_Select_Result> SDP_tbentradaImprimir_Select(Nullable<int> tipoEntrada, Nullable<System.DateTime> fechaElaboracion)
-        {
-            var tipoEntradaParameter = tipoEntrada.HasValue ?
-                new ObjectParameter("TipoEntrada", tipoEntrada) :
-                new ObjectParameter("TipoEntrada", typeof(int));
-    
-            var fechaElaboracionParameter = fechaElaboracion.HasValue ?
-                new ObjectParameter("FechaElaboracion", fechaElaboracion) :
-                new ObjectParameter("FechaElaboracion", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_tbentradaImprimir_Select_Result>("SDP_tbentradaImprimir_Select", tipoEntradaParameter, fechaElaboracionParameter);
-        }
-    
         public virtual ObjectResult<UDP_Inv_tbProducto_GetSubCategoria_Result> UDP_Inv_tbProducto_GetSubCategoria(Nullable<int> codCategoria)
         {
             var codCategoriaParameter = codCategoria.HasValue ?
@@ -2903,17 +2890,13 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Acce_tbRolEstado_Update_Result>("UDP_Acce_tbRolEstado_Update", rol_IdParameter, rol_EstadoParameter, rol_UsuarioModificaParameter, rol_FechaModificaParameter);
         }
     
-        public virtual ObjectResult<SP_tbInventariofisico_ProductosRepetidos_Result> SP_tbInventariofisico_ProductosRepetidos(string prod_CodigoBarras, Nullable<int> bod_Id)
+        public virtual ObjectResult<SP_tbInventariofisico_ProductosRepetidos_Result> SP_tbInventariofisico_ProductosRepetidos(string prod_CodigoBarras)
         {
             var prod_CodigoBarrasParameter = prod_CodigoBarras != null ?
                 new ObjectParameter("prod_CodigoBarras", prod_CodigoBarras) :
                 new ObjectParameter("prod_CodigoBarras", typeof(string));
     
-            var bod_IdParameter = bod_Id.HasValue ?
-                new ObjectParameter("bod_Id", bod_Id) :
-                new ObjectParameter("bod_Id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_tbInventariofisico_ProductosRepetidos_Result>("SP_tbInventariofisico_ProductosRepetidos", prod_CodigoBarrasParameter, bod_IdParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_tbInventariofisico_ProductosRepetidos_Result>("SP_tbInventariofisico_ProductosRepetidos", prod_CodigoBarrasParameter);
         }
     
         public virtual ObjectResult<SDP_Inv_Salida_Imprimir_Reporte_Result> SDP_Inv_Salida_Imprimir_Reporte(Nullable<int> tsal_Id, Nullable<System.DateTime> fecha)
@@ -3013,7 +2996,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_Inv_tbProducto_Select_CodBar_Result>("SDP_Inv_tbProducto_Select_CodBar", prod_CodigoBarrasParameter, bod_IdParameter);
         }
     
-        public virtual ObjectResult<UDP_Inv_tbProducto_Estado_Prueba_Result> UDP_Inv_tbProducto_Estado_Prueba(string prod_Codigo, Nullable<bool> prod_EsActivo, Nullable<int> prod_UsuarioModifica, Nullable<System.DateTime> prod_FechaModifica)
+        public virtual ObjectResult<UDP_Inv_tbProducto_Estado_Prueba_Result> UDP_Inv_tbProducto_Estado_Prueba(string prod_Codigo, Nullable<bool> prod_EsActivo)
         {
             var prod_CodigoParameter = prod_Codigo != null ?
                 new ObjectParameter("prod_Codigo", prod_Codigo) :
@@ -3023,15 +3006,7 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("prod_EsActivo", prod_EsActivo) :
                 new ObjectParameter("prod_EsActivo", typeof(bool));
     
-            var prod_UsuarioModificaParameter = prod_UsuarioModifica.HasValue ?
-                new ObjectParameter("prod_UsuarioModifica", prod_UsuarioModifica) :
-                new ObjectParameter("prod_UsuarioModifica", typeof(int));
-    
-            var prod_FechaModificaParameter = prod_FechaModifica.HasValue ?
-                new ObjectParameter("prod_FechaModifica", prod_FechaModifica) :
-                new ObjectParameter("prod_FechaModifica", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbProducto_Estado_Prueba_Result>("UDP_Inv_tbProducto_Estado_Prueba", prod_CodigoParameter, prod_EsActivoParameter, prod_UsuarioModificaParameter, prod_FechaModificaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbProducto_Estado_Prueba_Result>("UDP_Inv_tbProducto_Estado_Prueba", prod_CodigoParameter, prod_EsActivoParameter);
         }
     
         public virtual ObjectResult<UDP_Inv_tbProducto_Update_RazonInactivacion_Result> UDP_Inv_tbProducto_Update_RazonInactivacion(string prod_Codigo, Nullable<bool> prod_EsActivo, string prod_Razon_Inactivacion, Nullable<int> prod_Usuario_Crea, Nullable<System.DateTime> prod_Fecha_Crea, Nullable<int> prod_UsuarioModifica, Nullable<System.DateTime> prod_FechaModifica)
@@ -3065,6 +3040,27 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("prod_FechaModifica", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbProducto_Update_RazonInactivacion_Result>("UDP_Inv_tbProducto_Update_RazonInactivacion", prod_CodigoParameter, prod_EsActivoParameter, prod_Razon_InactivacionParameter, prod_Usuario_CreaParameter, prod_Fecha_CreaParameter, prod_UsuarioModificaParameter, prod_FechaModificaParameter);
+        }
+    
+        public virtual ObjectResult<SDP_tbentradaImprimir_Select_Result> SDP_tbentradaImprimir_Select(Nullable<int> tipoEntrada, Nullable<System.DateTime> fechaElaboracion, Nullable<byte> estado, Nullable<int> bodega)
+        {
+            var tipoEntradaParameter = tipoEntrada.HasValue ?
+                new ObjectParameter("TipoEntrada", tipoEntrada) :
+                new ObjectParameter("TipoEntrada", typeof(int));
+    
+            var fechaElaboracionParameter = fechaElaboracion.HasValue ?
+                new ObjectParameter("FechaElaboracion", fechaElaboracion) :
+                new ObjectParameter("FechaElaboracion", typeof(System.DateTime));
+    
+            var estadoParameter = estado.HasValue ?
+                new ObjectParameter("estado", estado) :
+                new ObjectParameter("estado", typeof(byte));
+    
+            var bodegaParameter = bodega.HasValue ?
+                new ObjectParameter("bodega", bodega) :
+                new ObjectParameter("bodega", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_tbentradaImprimir_Select_Result>("SDP_tbentradaImprimir_Select", tipoEntradaParameter, fechaElaboracionParameter, estadoParameter, bodegaParameter);
         }
     }
 }

@@ -4033,6 +4033,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
   <Function Name="SDP_tbentradaImprimir_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="TipoEntrada" Type="int" Mode="In" />
     <Parameter Name="FechaElaboracion" Type="datetime" Mode="In" />
+    <Parameter Name="estado" Type="tinyint" Mode="In" />
+    <Parameter Name="bodega" Type="int" Mode="In" />
   </Function>
   <Function Name="SDP_tbInventarioFisicoDetalle_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="invfd_Id" Type="int" Mode="In" />
@@ -4045,7 +4047,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
   </Function>
   <Function Name="SP_tbInventariofisico_ProductosRepetidos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="prod_CodigoBarras" Type="varchar" Mode="In" />
-    <Parameter Name="bod_Id" Type="int" Mode="In" />
   </Function>
   <Function Name="spGetActividadEconomica" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="acte_Id" Type="smallint" Mode="In" />
@@ -4287,8 +4288,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
   <Function Name="UDP_Inv_tbProducto_Estado_Prueba" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
     <Parameter Name="prod_EsActivo" Type="bit" Mode="In" />
-    <Parameter Name="prod_UsuarioModifica" Type="int" Mode="In" />
-    <Parameter Name="prod_FechaModifica" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Inv_tbProducto_GetCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="codsubcategoria" Type="int" Mode="In" />

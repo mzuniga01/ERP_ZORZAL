@@ -1654,10 +1654,6 @@
       <Parameter Name="emp_UsuarioModifica" Mode="In" Type="Int32" />
       <Parameter Name="emp_FechaModifica" Mode="In" Type="DateTime" />
     </FunctionImport>
-    <FunctionImport Name="SDP_tbentradaImprimir_Select" ReturnType="Collection(ERP_ZORZALModel.SDP_tbentradaImprimir_Select_Result)">
-      <Parameter Name="TipoEntrada" Mode="In" Type="Int32" />
-      <Parameter Name="FechaElaboracion" Mode="In" Type="DateTime" />
-    </FunctionImport>
     <FunctionImport Name="UDP_Inv_tbProducto_GetSubCategoria" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProducto_GetSubCategoria_Result)">
       <Parameter Name="CodCategoria" Mode="In" Type="Int32" />
     </FunctionImport>
@@ -1753,7 +1749,6 @@
     </FunctionImport>
     <FunctionImport Name="SP_tbInventariofisico_ProductosRepetidos" ReturnType="Collection(ERP_ZORZALModel.SP_tbInventariofisico_ProductosRepetidos_Result)">
       <Parameter Name="prod_CodigoBarras" Mode="In" Type="String" />
-      <Parameter Name="bod_Id" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="SDP_Inv_Salida_Imprimir_Reporte" ReturnType="Collection(ERP_ZORZALModel.SDP_Inv_Salida_Imprimir_Reporte_Result)">
       <Parameter Name="tsal_Id" Mode="In" Type="Int32" />
@@ -1783,13 +1778,11 @@
       <Parameter Name="prod_CodigoBarras" Mode="In" Type="String" />
       <Parameter Name="bod_Id" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Inv_tbProducto_Estado_Prueba" ReturnType="Collection(String)">
+    <FunctionImport Name="UDP_Inv_tbProducto_Estado_Prueba" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProducto_Estado_Prueba_Result)">
       <Parameter Name="prod_Codigo" Mode="In" Type="String" />
       <Parameter Name="prod_EsActivo" Mode="In" Type="Boolean" />
-      <Parameter Name="prod_UsuarioModifica" Mode="In" Type="Int32" />
-      <Parameter Name="prod_FechaModifica" Mode="In" Type="DateTime" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Inv_tbProducto_Update_RazonInactivacion" ReturnType="Collection(String)">
+    <FunctionImport Name="UDP_Inv_tbProducto_Update_RazonInactivacion" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProducto_Update_RazonInactivacion_Result)">
       <Parameter Name="prod_Codigo" Mode="In" Type="String" />
       <Parameter Name="prod_EsActivo" Mode="In" Type="Boolean" />
       <Parameter Name="prod_Razon_Inactivacion" Mode="In" Type="String" />
@@ -1797,6 +1790,12 @@
       <Parameter Name="prod_Fecha_Crea" Mode="In" Type="DateTime" />
       <Parameter Name="prod_UsuarioModifica" Mode="In" Type="Int32" />
       <Parameter Name="prod_FechaModifica" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="SDP_tbentradaImprimir_Select" ReturnType="Collection(ERP_ZORZALModel.SDP_tbentradaImprimir_Select_Result)">
+      <Parameter Name="TipoEntrada" Mode="In" Type="Int32" />
+      <Parameter Name="FechaElaboracion" Mode="In" Type="DateTime" />
+      <Parameter Name="estado" Mode="In" Type="Byte" />
+      <Parameter Name="bodega" Mode="In" Type="Int32" />
     </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
@@ -6470,19 +6469,6 @@
   <ComplexType Name="UDP_Gral_tbEmpleado_Update_RazonSalida_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
-  <ComplexType Name="SDP_tbentradaImprimir_Select_Result">
-    <Property Type="String" Name="ent_NumeroFormato" Nullable="false" MaxLength="20" />
-    <Property Type="String" Name="bod_Nombre" Nullable="true" MaxLength="100" />
-    <Property Type="DateTime" Name="ent_FechaElaboracion" Nullable="false" Precision="23" />
-    <Property Type="String" Name="prov_Nombre" Nullable="false" MaxLength="100" />
-    <Property Type="String" Name="estm_Descripcion" Nullable="false" MaxLength="100" />
-    <Property Type="String" Name="tent_Descripcion" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="ent_FacturaCompra" Nullable="false" MaxLength="20" />
-    <Property Type="DateTime" Name="ent_FechaCompra" Nullable="false" Precision="23" />
-    <Property Type="String" Name="tdev_descripcion" Nullable="false" MaxLength="100" />
-    <Property Type="Int32" Name="fact_Id" Nullable="false" />
-    <Property Type="Int32" Name="ent_BodegaDestino" Nullable="false" />
-  </ComplexType>
   <ComplexType Name="UDP_Inv_tbProducto_GetSubCategoria_Result">
     <Property Type="Int32" Name="pscat_Id" Nullable="false" />
     <Property Type="String" Name="pscat_Descripcion" Nullable="true" MaxLength="150" />
@@ -6617,5 +6603,24 @@
     <Property Type="String" Name="prod_Modelo" Nullable="false" MaxLength="25" />
     <Property Type="String" Name="prod_Talla" Nullable="false" MaxLength="15" />
     <Property Type="String" Name="prod_Color" Nullable="false" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="UDP_Inv_tbProducto_Update_RazonInactivacion_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Inv_tbProducto_Estado_Prueba_Result">
+    <Property Type="String" Name="MensajeError" Nullable="false" MaxLength="15" />
+  </ComplexType>
+  <ComplexType Name="SDP_tbentradaImprimir_Select_Result">
+    <Property Type="String" Name="ent_NumeroFormato" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="bod_Nombre" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="ent_FechaElaboracion" Nullable="false" Precision="23" />
+    <Property Type="String" Name="prov_Nombre" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="estm_Descripcion" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="tent_Descripcion" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ent_FacturaCompra" Nullable="false" MaxLength="20" />
+    <Property Type="DateTime" Name="ent_FechaCompra" Nullable="false" Precision="23" />
+    <Property Type="String" Name="tdev_descripcion" Nullable="false" MaxLength="100" />
+    <Property Type="Int32" Name="fact_Id" Nullable="false" />
+    <Property Type="Int32" Name="ent_BodegaDestino" Nullable="false" />
   </ComplexType>
 </Schema>

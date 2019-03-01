@@ -15,7 +15,6 @@
                 </ol>*@
         </div>
     </div>
-
     <div class="wrapper wrapper-content animated fadeInRight">
         <div class="row">
             <div class="col-lg-12">
@@ -147,39 +146,5 @@
             }
         });
     });
-        $(function () {
-            $("#rangofecha").datepicker({
-                dateFormat: 'yy-mm-dd',
-                monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-                dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá']
-            }).datepicker();
 
-        });
-
-</script>
-
-<script>
-    function ClickDrop() {
-        var valorid = document.getElementById('Entrada').value;
-        var rangofecha = document.getElementById('rangofechaimprimir').value;
-        $.ajax({
-            url: "/Entrada/ExportReportGeneral",
-            method: "POST",
-            dataType: 'json',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ TipoEntrada: valorid, FechaElaboracion: rangofecha }),
-
-        })
-        .done(function (data) {
-        });
-        //para inprimir
-        $('#btnIMPRIMIR').click(function () {
-            var a = document.createElement("a");
-            a.target = "_blank";
-            a.href = url;
-            a.click();
-        })
-
-        var url = "";
-    };
 </script>

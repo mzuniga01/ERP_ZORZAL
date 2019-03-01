@@ -23,6 +23,8 @@ namespace ERP_ZORZAL.Controllers
         [SessionManager("Entrada/Index")]
         public ActionResult Index()
         {
+            ViewBag.estm_Id = new SelectList(db.tbEstadoMovimiento, "estm_Id", "estm_Descripcion");
+            ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
             ViewBag.tent_Id = new SelectList(db.tbTipoEntrada, "tent_Id", "tent_Descripcion");
             var tbentrada = db.tbEntrada.Include(t => t.tbBodega).Include(t => t.tbEstadoMovimiento).Include(t => t.tbProveedor).Include(t => t.tbTipoEntrada);
             return View(tbentrada.ToList());
@@ -72,24 +74,27 @@ namespace ERP_ZORZAL.Controllers
         {
             var TipoEntrada = Convert.ToString(tbentrada.tent_Id);
             var FechaElaboracion = tbentrada.ent_FechaElaboracion;
+            var estado = tbentrada.estm_Id;
+            var bodega = tbentrada.bod_Id;
             ReportDocument rd = new ReportDocument();
-            if (TipoEntrada == "1")
-            {
-                var pathr = "ImprimirEntradaCompra.rpt";
-                rd.Load(Path.Combine(Server.MapPath("~/Reports"), pathr));
-            }
-            else if (TipoEntrada == "2")
-            {
-                var pathr = "ImprimirEntradaDevolucion.rpt";
-                rd.Load(Path.Combine(Server.MapPath("~/Reports"), pathr));
-            }
-            else if (TipoEntrada == "3")
-            {
-                var pathr = "ImprimirEntradaTraslado.rpt";
-                rd.Load(Path.Combine(Server.MapPath("~/Reports"), pathr));
-            }
-
-            var tbEntrada2 = db.SDP_tbentradaImprimir_Select(Convert.ToInt32(TipoEntrada), FechaElaboracion).ToList();
+            //if (TipoEntrada == "1")
+            //{
+            //    var pathr = "ImprimirEntradaCompra.rpt";
+            //    rd.Load(Path.Combine(Server.MapPath("~/Reports"), pathr));
+            //}
+            //else if (TipoEntrada == "2")
+            //{
+            //    var pathr = "ImprimirEntradaDevolucion.rpt";
+            //    rd.Load(Path.Combine(Server.MapPath("~/Reports"), pathr));
+            //}
+            //else if (TipoEntrada == "3")
+            //{
+            //    var pathr = "ImprimirEntradaTraslado.rpt";
+            //    rd.Load(Path.Combine(Server.MapPath("~/Reports"), pathr));
+            //}
+            var pathr = "ImprimirEntradaCompra.rpt";
+            rd.Load(Path.Combine(Server.MapPath("~/Reports"), pathr));
+            var tbEntrada2 = db.SDP_tbentradaImprimir_Select(Convert.ToInt32(TipoEntrada), FechaElaboracion, estado, bodega).ToList();
             rd.SetDataSource(tbEntrada2);
             Response.Buffer = false;
             Response.ClearContent();
@@ -371,15 +376,19 @@ namespace ERP_ZORZAL.Controllers
         }
         //para borrar registros en la tabla temporal
         [HttpPost]
-        public JsonResult Eliminardetalleentrada(tbEntradaDetalle eliminardetalle)
+        public JsonResult Eliminardetalleentrada(tbEntradaDetalle EntradaDetalle)
         {
             var list = (List<tbEntradaDetalle>)Session["_CrearDetalleEntrada"];
 
             if (list != null)
             {
-                var itemToRemove = list.Single(r => r.prod_Codigo == eliminardetalle.prod_Codigo);
+                var itemToRemove = list.Single(r => r.prod_Codigo == EntradaDetalle.prod_Codigo);
                 list.Remove(itemToRemove);
                 Session["_CrearDetalleEntrada"] = list;
+                if (list.Count == 0)
+                {
+                    Session["_CrearDetalleEntrada"] = null;
+                }
             }
             return Json(list, JsonRequestBehavior.AllowGet);
         }
