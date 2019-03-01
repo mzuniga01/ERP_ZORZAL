@@ -107,6 +107,8 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<UDV_Vent_FacturaPuntoEmision1> UDV_Vent_FacturaPuntoEmision1 { get; set; }
         public virtual DbSet<V_Vent_FacturaPago> V_Vent_FacturaPago { get; set; }
         public virtual DbSet<UDP_Vent_SolicituEfectivo_Select> UDP_Vent_SolicituEfectivo_Select { get; set; }
+        public virtual DbSet<UDV_Vent_DevolucionesPorFecha> UDV_Vent_DevolucionesPorFecha { get; set; }
+        public virtual DbSet<UDV_Vent_Factura_VentasporFecha> UDV_Vent_Factura_VentasporFecha { get; set; }
     
         public virtual ObjectResult<Nullable<short>> UDP_Vent_tbPedido_Select(Nullable<int> ped_Id)
         {

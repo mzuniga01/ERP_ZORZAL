@@ -3019,22 +3019,33 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Vent_InventarioNumeraciones" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_InventarioNumeraciones">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_InventarioNumeraciones_Result">
-          <ScalarProperty Name="suc_Id" ColumnName="suc_Id" />
-          <ScalarProperty Name="suc_Descripcion" ColumnName="suc_Descripcion" />
-          <ScalarProperty Name="mun_Nombre" ColumnName="mun_Nombre" />
-          <ScalarProperty Name="suc_Correo" ColumnName="suc_Correo" />
-          <ScalarProperty Name="suc_Direccion" ColumnName="suc_Direccion" />
-          <ScalarProperty Name="suc_Telefono" ColumnName="suc_Telefono" />
-          <ScalarProperty Name="pemi_NumeroCAI" ColumnName="pemi_NumeroCAI" />
-          <ScalarProperty Name="pemid_RangoInicio" ColumnName="pemid_RangoInicio" />
-          <ScalarProperty Name="pemid_RangoFinal" ColumnName="pemid_RangoFinal" />
-          <ScalarProperty Name="pemid_NumeroActual" ColumnName="pemid_NumeroActual" />
-          <ScalarProperty Name="pemid_FechaLimite" ColumnName="pemid_FechaLimite" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
+    <EntitySetMapping Name="UDV_Vent_DevolucionesPorFecha">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Vent_DevolucionesPorFecha">
+        <MappingFragment StoreEntitySet="UDV_Vent_DevolucionesPorFecha">
+          <ScalarProperty Name="dev_Estado" ColumnName="dev_Estado" />
+          <ScalarProperty Name="dev_Fecha" ColumnName="dev_Fecha" />
+          <ScalarProperty Name="clte_Nombres" ColumnName="clte_Nombres" />
+          <ScalarProperty Name="clte_Identificacion" ColumnName="clte_Identificacion" />
+          <ScalarProperty Name="fact_Codigo" ColumnName="fact_Codigo" />
+          <ScalarProperty Name="dev_Id" ColumnName="dev_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UDV_Vent_Factura_VentasporFecha">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Vent_Factura_VentasporFecha">
+        <MappingFragment StoreEntitySet="UDV_Vent_Factura_VentasporFecha">
+          <ScalarProperty Name="MontoFactura" ColumnName="MontoFactura" />
+          <ScalarProperty Name="Fecha_factura" ColumnName="Fecha_factura" />
+          <ScalarProperty Name="Factura_Credito" ColumnName="Factura_Credito" />
+          <ScalarProperty Name="fact_AlCredito" ColumnName="fact_AlCredito" />
+          <ScalarProperty Name="fact_Codigo" ColumnName="fact_Codigo" />
+          <ScalarProperty Name="Tipo_cliente" ColumnName="Tipo_cliente" />
+          <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+          <ScalarProperty Name="clte_EsPersonaNatural" ColumnName="clte_EsPersonaNatural" />
+          <ScalarProperty Name="clte_Identificacion" ColumnName="clte_Identificacion" />
+          <ScalarProperty Name="clte_Id" ColumnName="clte_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

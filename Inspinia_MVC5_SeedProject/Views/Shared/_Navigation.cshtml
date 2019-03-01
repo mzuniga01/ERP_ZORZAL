@@ -216,7 +216,107 @@
                    }
                 </ul>
             </li>
-
+            <li>
+                <a href="#"><i class="fa fa-archive"></i><span class="nav-label">Reportes</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse">
+                    @if (Login.GetUserRols("/"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("", "")"><i class="fa fa-money"></i> <span class="nav-label">Ventas entre fechas</span> </a>
+                        </li>
+                    }
+                    @if (Login.GetUserRols("/"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("", "")"><i class="fa fa-money"></i> <span class="nav-label">Ventas por caja entre fechas</span> </a>
+                        </li>
+                    }
+                    @if (Login.GetUserRols("/"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("", "")"><i class="fa fa-credit-card-alt"></i> <span class="nav-label">Facturas pendientes de Pago</span> </a>
+                        </li>
+                    }
+                    @if (Login.GetUserRols("/"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("", "")"><i class="fa fa-usd"></i> <span class="nav-label">Ventas a consumidor final entre fechas</span> </a>
+                        </li>
+                    }
+                    @if (Login.GetUserRols("/"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("", "")"><i class="fa fa-cc-mastercard"></i> <span class="nav-label">Nota de Crédito entre fechas</span> </a>
+                        </li>
+                    }
+                    @if (Login.GetUserRols("/"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("", "")"><i class="fa fa-cc-mastercard"></i> <span class="nav-label">Análisis de Mora</span> </a>
+                        </li>
+                    }
+                    @if (Login.GetUserRols("/"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("", "")"><i class="fa fa-cc-mastercard"></i> <span class="nav-label">Solicitudes de Crédito por aprobar</span> </a>
+                        </li>
+                    }
+                    @if (Login.GetUserRols("/"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("", "")"><i class="fa fa-cc-mastercard"></i> <span class="nav-label">Cupones de Descuento entre fecha</span> </a>
+                        </li>
+                    }
+                    @if (Login.GetUserRols("/"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("", "")"><i class="fa fa-cc-mastercard"></i> <span class="nav-label">Pedidos entre fechas</span> </a>
+                        </li>
+                    }
+                    @if (Login.GetUserRols("/"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("", "")"><i class="fa fa-cc-mastercard"></i> <span class="nav-label">Solicitudes de Efectivos entre fechas</span> </a>
+                        </li>
+                    }
+                    @if (Login.GetUserRols("/"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("", "")"><i class="fa fa-cc-mastercard"></i> <span class="nav-label">Devoluciones entre fechas</span> </a>
+                        </li>
+                    }
+                    @if (Login.GetUserRols("/"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("", "")"><i class="fa fa-cc-mastercard"></i> <span class="nav-label">Ventas exoneradas entre fechas</span> </a>
+                        </li>
+                    }
+                    @if (Login.GetUserRols("/"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("", "")"><i class="fa fa-cc-mastercard"></i> <span class="nav-label">Pagos entre fechas</span> </a>
+                        </li>
+                    }
+                    @if (Login.GetUserRols("/"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("", "")"><i class="fa fa-cc-mastercard"></i> <span class="nav-label">Descuentos aplicados entre fechas</span> </a>
+                        </li>
+                    }
+                    @if (Login.GetUserRols("/"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("", "")"><i class="fa fa-cc-mastercard"></i> <span class="nav-label">Inventario de Numeraciones</span> </a>
+                        </li>
+                    }
+                    @if (Login.GetUserRols("/"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("", "")"><i class="fa fa-cc-mastercard"></i> <span class="nav-label">Estado de Cuenta Cliente</span> </a>
+                        </li>
+                    }
+                </ul>
+            </li>
             <li>
                 <a href="#"><i class="fa fa-lock"></i><span class="nav-label">Seguridad</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">

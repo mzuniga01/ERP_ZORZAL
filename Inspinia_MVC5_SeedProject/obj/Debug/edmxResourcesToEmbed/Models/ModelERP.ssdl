@@ -1307,6 +1307,47 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
     <Property Name="fact_FechaModifica" Type="datetime" />
   </EntityType>
   <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_DevolucionesPorFecha' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="UDV_Vent_DevolucionesPorFecha">
+    <Key>
+      <PropertyRef Name="dev_Id" />
+      <PropertyRef Name="fact_Codigo" />
+      <PropertyRef Name="clte_Identificacion" />
+      <PropertyRef Name="clte_Nombres" />
+      <PropertyRef Name="dev_Fecha" />
+    </Key>
+    <Property Name="dev_Id" Type="int" Nullable="false" />
+    <Property Name="fact_Codigo" Type="nvarchar" MaxLength="19" Nullable="false" />
+    <Property Name="clte_Identificacion" Type="nvarchar" MaxLength="26" Nullable="false" />
+    <Property Name="clte_Nombres" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="dev_Fecha" Type="datetime" Nullable="false" />
+    <Property Name="dev_Estado" Type="bit" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Factura_VentasporFecha' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="UDV_Vent_Factura_VentasporFecha">
+    <Key>
+      <PropertyRef Name="clte_Id" />
+      <PropertyRef Name="clte_Identificacion" />
+      <PropertyRef Name="clte_EsPersonaNatural" />
+      <PropertyRef Name="Nombres" />
+      <PropertyRef Name="Tipo_cliente" />
+      <PropertyRef Name="fact_Codigo" />
+      <PropertyRef Name="fact_AlCredito" />
+      <PropertyRef Name="Factura_Credito" />
+    </Key>
+    <Property Name="clte_Id" Type="int" Nullable="false" />
+    <Property Name="clte_Identificacion" Type="nvarchar" MaxLength="26" Nullable="false" />
+    <Property Name="clte_EsPersonaNatural" Type="bit" Nullable="false" />
+    <Property Name="Nombres" Type="nvarchar" MaxLength="101" Nullable="false" />
+    <Property Name="Tipo_cliente" Type="varchar" MaxLength="8" Nullable="false" />
+    <Property Name="fact_Codigo" Type="nvarchar" MaxLength="19" Nullable="false" />
+    <Property Name="fact_AlCredito" Type="bit" Nullable="false" />
+    <Property Name="Factura_Credito" Type="varchar" MaxLength="2" Nullable="false" />
+    <Property Name="Fecha_factura" Type="date" />
+    <Property Name="MontoFactura" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <!--Errors Found During Generation:
 warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_FacturaPuntoEmision' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="UDV_Vent_FacturaPuntoEmision1">
     <Key>
@@ -5019,9 +5060,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
   <Function Name="UDP_Vent_FacturasPagoSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="fact_Id" Type="int" Mode="In" />
   </Function>
-  <Function Name="UDP_Vent_InventarioNumeraciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
-    <Parameter Name="suc_Id" Type="int" Mode="In" />
-  </Function>
   <Function Name="UDP_Vent_tbCaja_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="cja_Descripcion" Type="nvarchar" Mode="In" />
     <Parameter Name="suc_Id" Type="int" Mode="In" />
@@ -6171,6 +6209,30 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     [UDV_Vent_Busqueda_Factura].[fact_UsuarioModifica] AS [fact_UsuarioModifica], 
     [UDV_Vent_Busqueda_Factura].[fact_FechaModifica] AS [fact_FechaModifica]
     FROM [Vent].[UDV_Vent_Busqueda_Factura] AS [UDV_Vent_Busqueda_Factura]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="UDV_Vent_DevolucionesPorFecha" EntityType="Self.UDV_Vent_DevolucionesPorFecha" store:Type="Views" store:Schema="Vent">
+      <DefiningQuery>SELECT 
+    [UDV_Vent_DevolucionesPorFecha].[dev_Id] AS [dev_Id], 
+    [UDV_Vent_DevolucionesPorFecha].[fact_Codigo] AS [fact_Codigo], 
+    [UDV_Vent_DevolucionesPorFecha].[clte_Identificacion] AS [clte_Identificacion], 
+    [UDV_Vent_DevolucionesPorFecha].[clte_Nombres] AS [clte_Nombres], 
+    [UDV_Vent_DevolucionesPorFecha].[dev_Fecha] AS [dev_Fecha], 
+    [UDV_Vent_DevolucionesPorFecha].[dev_Estado] AS [dev_Estado]
+    FROM [Vent].[UDV_Vent_DevolucionesPorFecha] AS [UDV_Vent_DevolucionesPorFecha]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="UDV_Vent_Factura_VentasporFecha" EntityType="Self.UDV_Vent_Factura_VentasporFecha" store:Type="Views" store:Schema="Vent">
+      <DefiningQuery>SELECT 
+    [UDV_Vent_Factura_VentasporFecha].[clte_Id] AS [clte_Id], 
+    [UDV_Vent_Factura_VentasporFecha].[clte_Identificacion] AS [clte_Identificacion], 
+    [UDV_Vent_Factura_VentasporFecha].[clte_EsPersonaNatural] AS [clte_EsPersonaNatural], 
+    [UDV_Vent_Factura_VentasporFecha].[Nombres] AS [Nombres], 
+    [UDV_Vent_Factura_VentasporFecha].[Tipo_cliente] AS [Tipo_cliente], 
+    [UDV_Vent_Factura_VentasporFecha].[fact_Codigo] AS [fact_Codigo], 
+    [UDV_Vent_Factura_VentasporFecha].[fact_AlCredito] AS [fact_AlCredito], 
+    [UDV_Vent_Factura_VentasporFecha].[Factura_Credito] AS [Factura_Credito], 
+    [UDV_Vent_Factura_VentasporFecha].[Fecha_factura] AS [Fecha_factura], 
+    [UDV_Vent_Factura_VentasporFecha].[MontoFactura] AS [MontoFactura]
+    FROM [Vent].[UDV_Vent_Factura_VentasporFecha] AS [UDV_Vent_Factura_VentasporFecha]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="UDV_Vent_FacturaPuntoEmision1" EntityType="Self.UDV_Vent_FacturaPuntoEmision1" store:Type="Views" store:Schema="Vent" store:Name="UDV_Vent_FacturaPuntoEmision">
       <DefiningQuery>SELECT 

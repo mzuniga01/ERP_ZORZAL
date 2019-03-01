@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using ERP_GMEDINA.Models;
 using System.Net.Mail;
-using SimpleCrypto;
+//using SimpleCrypto;
 using System.Transactions;
 using Microsoft.Owin.Security;
 using ERP_GMEDINA.Attribute;
@@ -353,7 +353,8 @@ namespace ERP_GMEDINA.Controllers
                     string emailsalida = "erpzorzal@gmail.com";
                     string passwordsalida = "sistemadeinventari0";
                     string emaildestino = tbUsuario.usu_Correo;
-                    string passwordnueva = RandomPassword.Generate(8, PasswordGroup.Uppercase, PasswordGroup.Lowercase, PasswordGroup.Numeric);
+                    string passwordnueva = "";
+                    //string passwordnueva = RandomPassword.Generate(8, PasswordGroup.Uppercase, PasswordGroup.Lowercase, PasswordGroup.Numeric);
                     db.Entry(tbUsuario).State = EntityState.Modified;
                     try
                     {
