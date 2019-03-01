@@ -1917,7 +1917,6 @@
     <EntitySet Name="UDV_Inv_Consultar_Existencias_Productos" EntityType="ERP_ZORZALModel.UDV_Inv_Consultar_Existencias_Productos" />
     <EntitySet Name="UDP_Vent_listExoneracion_Select" EntityType="ERP_ZORZALModel.UDP_Vent_listExoneracion_Select" />
     <EntitySet Name="UDP_Vent_SolicituEfectivo_Detalles_Select" EntityType="ERP_ZORZALModel.UDP_Vent_SolicituEfectivo_Detalles_Select" />
-    <EntitySet Name="UDP_Vent_SolicituEfectivo_Select" EntityType="ERP_ZORZALModel.UDP_Vent_SolicituEfectivo_Select" />
     <EntitySet Name="UDP_Vent_SolicituEfectivoDetalle_Denominacion" EntityType="ERP_ZORZALModel.UDP_Vent_SolicituEfectivoDetalle_Denominacion" />
     <EntitySet Name="UDV_Vent_Busqueda_Clientes" EntityType="ERP_ZORZALModel.UDV_Vent_Busqueda_Clientes" />
     <EntitySet Name="UDV_Vent_Busqueda_Factura" EntityType="ERP_ZORZALModel.UDV_Vent_Busqueda_Factura" />
@@ -2868,6 +2867,7 @@
       <Parameter Name="IDCLIENTE" Mode="In" Type="Int32" />
       <Parameter Name="IDPRODUCTO" Mode="In" Type="String" />
     </FunctionImport>
+    <EntitySet Name="UDP_Vent_SolicituEfectivo_Select" EntityType="ERP_ZORZALModel.UDP_Vent_SolicituEfectivo_Select" />
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -5553,24 +5553,6 @@
     <Property Name="soled_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="soled_UsuarioModifica" Type="Int32" />
     <Property Name="soled_FechaModifica" Type="DateTime" Precision="3" />
-  </EntityType>
-  <EntityType Name="UDP_Vent_SolicituEfectivo_Select">
-    <Key>
-      <PropertyRef Name="IdSolicitud" />
-      <PropertyRef Name="FechaSolicitud" />
-      <PropertyRef Name="Moneda" />
-      <PropertyRef Name="Apertura" />
-      <PropertyRef Name="Anulada" />
-    </Key>
-    <Property Name="IdSolicitud" Type="Int32" Nullable="false" />
-    <Property Name="FechaSolicitud" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="Sucursal" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
-    <Property Name="Caja" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-    <Property Name="Moneda" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="MontoSolicitado" Type="Decimal" Precision="38" Scale="2" />
-    <Property Name="MontoEntregado" Type="Decimal" Precision="38" Scale="2" />
-    <Property Name="Apertura" Type="Boolean" Nullable="false" />
-    <Property Name="Anulada" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="UDP_Vent_SolicituEfectivoDetalle_Denominacion">
     <Key>
@@ -8446,4 +8428,24 @@
   <ComplexType Name="UDP_Vent_tbFactura_BuscarListaPrecio_Result">
     <Property Type="Decimal" Name="PrecioUnitario" Nullable="false" Precision="10" Scale="2" />
   </ComplexType>
+  <EntityType Name="UDP_Vent_SolicituEfectivo_Select">
+    <Key>
+      <PropertyRef Name="IdSolicitud" />
+      <PropertyRef Name="FechaSolicitud" />
+      <PropertyRef Name="Moneda" />
+      <PropertyRef Name="Apertura" />
+      <PropertyRef Name="Anulada" />
+      <PropertyRef Name="usuariocrea" />
+    </Key>
+    <Property Name="IdSolicitud" Type="Int32" Nullable="false" />
+    <Property Name="FechaSolicitud" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Sucursal" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="Caja" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Moneda" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="MontoSolicitado" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="MontoEntregado" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="Apertura" Type="Boolean" Nullable="false" />
+    <Property Name="Anulada" Type="Boolean" Nullable="false" />
+    <Property Name="usuariocrea" Type="Int32" Nullable="false" />
+  </EntityType>
 </Schema>

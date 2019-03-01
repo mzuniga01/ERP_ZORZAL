@@ -23,5 +23,6 @@ namespace ERP_GMEDINA.Models
         public Nullable<decimal> MontoEntregado { get; set; }
         public bool Apertura { get; set; }
         public bool Anulada { get; set; }
+        public int usuariocrea { get; set; }
     }
 }

@@ -41,6 +41,9 @@
                                     <th class="hide">
                                         Apertura
                                     </th>
+                                    <th class="hide">
+                                        Cajero
+                                    </th>
                                     <th>
                                         Acciones
                                     </th>
@@ -65,6 +68,9 @@
                                         <td>
                                             @Html.DisplayFor(modelItem => item.Moneda)
                                         </td>
+                                        <th class="hide">
+                                            @Html.DisplayFor(modelItem => item.usuariocrea)
+                                        </th>  
                                         @{ if (Convert.ToString(item.MontoSolicitado) == "")
                                             {
                                                 <td>

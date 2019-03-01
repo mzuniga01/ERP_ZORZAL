@@ -24,7 +24,14 @@ namespace ERP_GMEDINA.Controllers
             {
                 if (Function.GetUserRols("SolicitudEfectivo/Index"))
                 {
-                    return View(db.UDP_Vent_SolicituEfectivo_Select.Where(a => a.Anulada == false).ToList());
+                    int idUser = 0;
+                    GeneralFunctions Login = new GeneralFunctions();
+                    List<tbUsuario> User = Login.getUserInformation();
+                    foreach (tbUsuario Usuario in User)
+                    {
+                        idUser = Convert.ToInt32(Usuario.usu_Id);
+                    }
+                    return View(db.UDP_Vent_SolicituEfectivo_Select.Where(a => a.Anulada == false && a.usuariocrea == idUser).ToList());
                 }
                 else
                 {

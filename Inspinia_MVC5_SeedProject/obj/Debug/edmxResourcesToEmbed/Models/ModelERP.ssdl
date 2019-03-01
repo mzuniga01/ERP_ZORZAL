@@ -1176,6 +1176,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivo_Select'
       <PropertyRef Name="Moneda" />
       <PropertyRef Name="Apertura" />
       <PropertyRef Name="Anulada" />
+      <PropertyRef Name="usuariocrea" />
     </Key>
     <Property Name="IdSolicitud" Type="int" Nullable="false" />
     <Property Name="FechaSolicitud" Type="datetime" Nullable="false" />
@@ -1186,6 +1187,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivo_Select'
     <Property Name="MontoEntregado" Type="decimal" Precision="38" Scale="2" />
     <Property Name="Apertura" Type="bit" Nullable="false" />
     <Property Name="Anulada" Type="bit" Nullable="false" />
+    <Property Name="usuariocrea" Type="int" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivoDetalle_Denominacion' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -6093,7 +6095,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.V_Vent_FacturaPago' does not have
     [UDP_Vent_SolicituEfectivo_Select].[MontoSolicitado] AS [MontoSolicitado], 
     [UDP_Vent_SolicituEfectivo_Select].[MontoEntregado] AS [MontoEntregado], 
     [UDP_Vent_SolicituEfectivo_Select].[Apertura] AS [Apertura], 
-    [UDP_Vent_SolicituEfectivo_Select].[Anulada] AS [Anulada]
+    [UDP_Vent_SolicituEfectivo_Select].[Anulada] AS [Anulada], 
+    [UDP_Vent_SolicituEfectivo_Select].[usuariocrea] AS [usuariocrea]
     FROM [Vent].[UDP_Vent_SolicituEfectivo_Select] AS [UDP_Vent_SolicituEfectivo_Select]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="UDP_Vent_SolicituEfectivoDetalle_Denominacion" EntityType="Self.UDP_Vent_SolicituEfectivoDetalle_Denominacion" store:Type="Views" store:Schema="Vent">
