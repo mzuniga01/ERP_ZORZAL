@@ -52,7 +52,7 @@
                                 @Html.LabelFor(model => model.suc_Id, new { @class = "control-label required col-md-2" })
                                 <div class="col-md-4">
                                     <input class="form-control" readonly value="@ViewBag.suc_Descripcion" id="descripcion"/>
-                                    <input class="form-control" value="@ViewBag.suc_Id" id="suc_Id" name="suc_Id" type="text" />
+                                    <input class="form-control" value="@ViewBag.suc_Id" id="suc_Id" name="suc_Id" type="hidden" />
                                     <input id="usu_Id" name="usu_Id" type="hidden" class="form-control" value="@ViewBag.usu_Id" />
                                     <span class="validation-error">  @Html.ValidationMessageFor(model => model.suc_Id)</span>
                                 </div>
@@ -62,7 +62,7 @@
                                 @Html.LabelFor(model => model.cja_Id, new { @class = "control-label required col-md-2" })
                                 <div class="col-md-4">
                                     <input class="form-control" id="cja_Descripcion" readonly />
-                                    @Html.EditorFor(model => model.cja_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @type = "text" } })
+                                    @Html.EditorFor(model => model.cja_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @type = "hidden" } })
                                     <span class="validation-error">@Html.ValidationMessageFor(model => model.cja_Id)</span>
                                 </div>
                             </div>
@@ -98,7 +98,7 @@
                             @*FIN Check box*@
 
                             <div class="form-group" id="divDevolucion">
-                                @Html.LabelFor(model => model.dev_Id, new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.dev_Id, new { @class = "control-label col-md-2 AsteriscoRojo" })
                                 @*<label class="control-label col-md-2" id="labeldev" name="labeldev">Devolución</label>*@
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.dev_Id, new { htmlAttributes = new { @readonly = "readonly" } })
@@ -140,7 +140,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.nocre_MotivoEmision, new { @class = "control-label col-md-2 AsteriscoRojo" })
                                 <div class="col-md-4">
-                                    @Html.TextAreaFor(model => model.nocre_MotivoEmision, new { @class = "form-control", @onkeypress = "return soloLetras(event)", @onblur = "limpia()" })
+                                    @Html.TextAreaFor(model => model.nocre_MotivoEmision, new { @class = "form-control", @onkeypress = "return soloLetras(event)", @style = "text-transform:uppercase;",  @autocomplete = "off", @onblur = "limpia()" })
                                     <p id="smsMotivoNC" style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.nocre_MotivoEmision)</span></p>
 </div>
                             </div>
@@ -237,13 +237,13 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-4">Usuario</label>
                                     <div class="col-md-6">
-                                        <input id="Username" type="text" placeholder="Usuario" name="Username" class="form-control" autocomplete="off" value="" defautlvalue="false"/>
+                                        <input id="Username1" type="text" placeholder="Usuario" name="Username1" class="form-control" autocomplete="off" value="" defautlvalue="false"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-4">Contraseña</label>
                                     <div class="col-md-6">
-                                        <input id="txtPassword" name="txtPassword" class="form-control" type="password" placeholder="Contraseña" value="" defautlvalue="false"/>
+                                        <input id="txtPassword1" name="txtPassword1" class="form-control" type="password" placeholder="Contraseña" value="" defautlvalue="false"/>
                                     </div>
                                 </div>
                                 <div><p id="mensajerror" style="color:red"></p></div>
@@ -261,28 +261,11 @@
 </div>
 @*------------------------------------------FINAL MODAL AUTORIZAR NOTA CREDITO--------------------------------------*@
 
-
+<script src="~/Scripts/app/CaracteresEspeciales.js"></script>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+<script src="~/Scripts/app/CaracteresEspeciales.js"></script>
     <script>
-        //$.datepicker.regional['es'] = {
-        //    closeText: 'Cerrar',
-        //    prevText: '< Ant',
-        //    nextText: 'Sig >',
-        //    currentText: 'Hoy',
-        //    monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-        //    monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
-        //    dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
-        //    dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
-        //    dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
-        //    weekHeader: 'Sm',
-        //    dateFormat: 'dd/mm/yy',
-        //    firstDay: 1,
-        //    isRTL: false,
-        //    showMonthAfterYear: false,
-        //    yearSuffix: ''
-        ////};
-        //$.datepicker.setDefaults($.datepicker.regional['es']);
         $(function () {
             $("#nocre_FechaEmision").datepicker({ dateFormat: 'mm/dd/yy' }).datepicker('setDate', new Date()).datepicker("destroy");
 
@@ -295,10 +278,10 @@
     </script>
     <script src="~/Scripts/app/NotaCredito.js"></script>
     <script src="~/Scripts/app/GetCodigoNotaCredito.js"></script>
+
     @*------------------------radiobutton--------------------------*@
     <script>
         function devolucionNC() {
-            //$('#radioBtnDev').click(function () {
             $("#radioBtnDev").prop("checked", true);
             $("#radioBtn").prop("checked", false);
             $("#buscarclte").hide();
@@ -309,14 +292,18 @@
             $('#cltesearch').hide();         //prop("disabled", true);
             $('#dev_Id').val('');
             $("#divFechaDev").show();
-
-            //});
+            document.getElementById("#Username1").value = "";
+            document.getElementById("#txtPassword1").value = "";
+            $('#Username1').val("");
+            $('#txtPassword1').val("");
+            $('#mensajerror').val("");
         }
 
         function otros() {
-            //$('#radioBtn').click(function () {
-            $('#Username').val("");
-            $('#txtPassword').val("");
+            document.getElementById("#Username1").value = "";
+            document.getElementById("#txtPassword1").value = "";
+            $('#Username1').val("");
+            $('#txtPassword1').val("");
             $('#mensajerror').val("");
             $("#radioBtn").prop("checked", true);
             $("#radioBtnDev").prop("checked", false);
@@ -326,7 +313,6 @@
             $('#nocre_Monto').prop('readonly', false);
             $('#nocre_Monto').val('');
             $("#divFechaDev").hide();
-            //});
         }
 
 
@@ -484,8 +470,8 @@ function filter(__val__) {
 
     //Autorizar Nota de Credito
 function AprobarCredito() {
-    var User = $("#Username").val();
-    var Password = $("#txtPassword").val();
+    var User = $("#Username1").val();
+    var Password = $("#txtPassword1").val();
     console.log(User)
     console.log(Password)
     $.ajax({
@@ -501,13 +487,27 @@ function AprobarCredito() {
             $('#ModalAutorizarNC').modal('hide');
             otros();
             valido.innerText = "";
-            //$('#AutorizarDescuentoModal').modal('hide');
         }
         else {
             valido = document.getElementById('mensajerror');
             valido.innerText = "Usuario o contraseña incorrectos";
         }
     });
+}
+$("#Username1").click(function () {
+    valido = document.getElementById('mensajerror');
+    valido.innerText = "";
+});
+$("#txtPassword1").click(function () {
+    valido = document.getElementById('mensajerror');
+    valido.innerText = "";
+});
+    //------------solo letras-----------------------
+//Validacion de letras//
+function soloLetras(e) {
+    tecla = (document.all) ? e.keyCode : e.which;
+    tecla = String.fromCharCode(tecla)
+    return /^[a-zA-ZáéíóúñÁÉÍÓÚÑ ]+$/.test(tecla);
 }
 </script>
 }

@@ -21,7 +21,9 @@ function GetCaja() {
                 $("#cja_Descripcion").val(val.cja_Descripcion);
 
                 var CodSucursal = $("#suc_Id").val();
+                console(CodSucursal)
                 var CodCaja = $("#cja_Id").val();
+                console(CodCaja)
                 console.log('CodCaja', CodCaja)
                 console.log("holakeyla", CodSucursal, "holakeylaaaaaa", CodCaja, "joshuaaa")
                 GetCodigoNotaCredito(CodSucursal, CodCaja)
