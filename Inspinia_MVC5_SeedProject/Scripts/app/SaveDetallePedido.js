@@ -58,6 +58,7 @@ $('#AñadirPedidoDetalle').click(function () {
                 .done(function (data) {
                     $('#prod_Codigo').val('');
                     $('#tbProducto_prod_Descripcion').val('');
+                    $('#tbProducto_prod_CodigoBarras').val('');
                     $('#pedd_Cantidad').val('');
                     $('#MessageError').text('');
                     $('#NombreError').text('');
