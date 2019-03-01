@@ -258,7 +258,7 @@ namespace ERP_GMEDINA.Controllers
         [HttpPost]
         public JsonResult QuitarPedidoDetalle(tbPedidoDetalle PedidoDetalle)
         {
-            var list = (List<tbPedidoDetalle>)Session["tbPedido"];
+            var list = (List<tbPedidoDetalle>)Session["tbPedidoDetalle"];
 
             if (list != null)
             {
