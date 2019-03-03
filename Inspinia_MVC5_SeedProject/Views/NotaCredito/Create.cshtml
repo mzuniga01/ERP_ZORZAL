@@ -40,7 +40,7 @@
                     <h5>Registrar Nota Crédito</h5>
                 </div>
                 <div class="ibox-content">
-
+                    <div class="alert alert-danger text-center text-uppercase" id="alertaCaja" style="display:none;">...Por favor realizar una apertura de caja...</div>
                     @using (Html.BeginForm())
                     {
                         @Html.AntiForgeryToken()

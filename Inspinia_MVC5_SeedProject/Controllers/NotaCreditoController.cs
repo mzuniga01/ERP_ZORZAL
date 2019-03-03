@@ -243,32 +243,6 @@ namespace ERP_GMEDINA.Controllers
                 
         }
 
-        // GET: /NotaCredito/Delete/5
-        public ActionResult Delete(short? id)
-        {
-            if (id == null)
-            {
-                return RedirectToAction("Index");
-            }
-            tbNotaCredito tbNotaCredito = db.tbNotaCredito.Find(id);
-            if (tbNotaCredito == null)
-            {
-                return RedirectToAction("NotFound", "Login");
-            }
-            return View(tbNotaCredito);
-        }
-
-        // POST: /NotaCredito/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(short id)
-        {
-            tbNotaCredito tbNotaCredito = db.tbNotaCredito.Find(id);
-            db.tbNotaCredito.Remove(tbNotaCredito);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)
