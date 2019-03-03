@@ -817,6 +817,9 @@
     <Compile Include="Models\UDP_Vent_tbCliente_Update_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UDP_Vent_tbCuponDescuentoSelectGet_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UDP_Vent_tbCuponDescuentoSelect_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -1168,6 +1171,9 @@
     <Compile Include="Models\UDV_Vent_DevolucionesPorFecha.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UDV_Vent_FacturaPagoSelect.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UDV_Vent_FacturaPuntoEmision.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -1182,9 +1188,6 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\V_Objetos.cs">
-      <DependentUpon>ModelERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\V_Vent_FacturaPago.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

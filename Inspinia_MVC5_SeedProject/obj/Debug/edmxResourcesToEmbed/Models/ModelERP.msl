@@ -1441,19 +1441,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Vent_vFacturaPago" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_vFacturaPago">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_vFacturaPago_Result">
-          <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
-          <ScalarProperty Name="clte_Id" ColumnName="clte_Id" />
-          <ScalarProperty Name="fact_AlCredito" ColumnName="fact_AlCredito" />
-          <ScalarProperty Name="fact_Codigo" ColumnName="fact_Codigo" />
-          <ScalarProperty Name="MontoFactura" ColumnName="MontoFactura" />
-          <ScalarProperty Name="TotalPagado" ColumnName="TotalPagado" />
-          <ScalarProperty Name="SaldoFactura" ColumnName="SaldoFactura" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="UDP_Acce_tbRol_Inactivar" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbRol_Inactivar" />
     <FunctionImportMapping FunctionImportName="UDP_Acce_tbUsuario_PasswordRestore" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbUsuario_PasswordRestore">
       <ResultMapping>
@@ -2940,19 +2927,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="V_Vent_FacturaPago">
-      <EntityTypeMapping TypeName="ERP_ZORZALModel.V_Vent_FacturaPago">
-        <MappingFragment StoreEntitySet="V_Vent_FacturaPago">
-          <ScalarProperty Name="SaldoFactura" ColumnName="SaldoFactura" />
-          <ScalarProperty Name="TotalPagado" ColumnName="TotalPagado" />
-          <ScalarProperty Name="MontoFactura" ColumnName="MontoFactura" />
-          <ScalarProperty Name="fact_AlCredito" ColumnName="fact_AlCredito" />
-          <ScalarProperty Name="fact_Codigo" ColumnName="fact_Codigo" />
-          <ScalarProperty Name="clte_Id" ColumnName="clte_Id" />
-          <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbSucursal_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSucursal_Insert">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbSucursal_Insert_Result">
@@ -3044,6 +3018,45 @@
           <ScalarProperty Name="clte_EsPersonaNatural" ColumnName="clte_EsPersonaNatural" />
           <ScalarProperty Name="clte_Identificacion" ColumnName="clte_Identificacion" />
           <ScalarProperty Name="clte_Id" ColumnName="clte_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbCuponDescuentoSelectGet" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbCuponDescuentoSelectGet">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbCuponDescuentoSelectGet_Result">
+          <ScalarProperty Name="cdto_ID" ColumnName="cdto_ID" />
+          <ScalarProperty Name="cdto_FechaVencimiento" ColumnName="cdto_FechaVencimiento" />
+          <ScalarProperty Name="cdto_PorcentajeDescuento" ColumnName="cdto_PorcentajeDescuento" />
+          <ScalarProperty Name="cdto_MontoDescuento" ColumnName="cdto_MontoDescuento" />
+          <ScalarProperty Name="cdto_MaximoMontoDescuento" ColumnName="cdto_MaximoMontoDescuento" />
+          <ScalarProperty Name="cdto_CantidadCompraMinima" ColumnName="cdto_CantidadCompraMinima" />
+          <ScalarProperty Name="cdto_Redimido" ColumnName="cdto_Redimido" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_vFacturaPago" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_vFacturaPago">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_vFacturaPago_Result">
+          <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
+          <ScalarProperty Name="clte_Id" ColumnName="clte_Id" />
+          <ScalarProperty Name="fact_AlCredito" ColumnName="fact_AlCredito" />
+          <ScalarProperty Name="fact_Codigo" ColumnName="fact_Codigo" />
+          <ScalarProperty Name="MontoFactura" ColumnName="MontoFactura" />
+          <ScalarProperty Name="TotalPagado" ColumnName="TotalPagado" />
+          <ScalarProperty Name="SaldoFactura" ColumnName="SaldoFactura" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="UDV_Vent_FacturaPagoSelect">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Vent_FacturaPagoSelect">
+        <MappingFragment StoreEntitySet="UDV_Vent_FacturaPagoSelect">
+          <ScalarProperty Name="SaldoFactura" ColumnName="SaldoFactura" />
+          <ScalarProperty Name="TotalPagado" ColumnName="TotalPagado" />
+          <ScalarProperty Name="MontoFactura" ColumnName="MontoFactura" />
+          <ScalarProperty Name="fact_AlCredito" ColumnName="fact_AlCredito" />
+          <ScalarProperty Name="fact_Codigo" ColumnName="fact_Codigo" />
+          <ScalarProperty Name="clte_Id" ColumnName="clte_Id" />
+          <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e3cdae754a7b458288829a69167bdea2" Name="Diagram1" ZoomLevel="82">
+      <Diagram DiagramId="e3cdae754a7b458288829a69167bdea2" Name="Diagram1" ZoomLevel="42">
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbAccesoRol" Width="1.5" PointX="12.75" PointY="110.625" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbBitacoraErrores" Width="1.5" PointX="12.75" PointY="118.125" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbObjeto" Width="1.5" PointX="10.5" PointY="142.25" />
@@ -82,7 +82,6 @@
         <EntityTypeShape EntityType="ERP_ZORZALModel.UDV_Vent_Busqueda_Clientes" Width="1.5" PointX="8.75" PointY="8.75" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.UDV_Vent_Busqueda_Factura" Width="1.5" PointX="0.75" PointY="9.75" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.UDV_Vent_FacturaPuntoEmision1" Width="1.5" PointX="10.75" PointY="0.75" />
-        <EntityTypeShape EntityType="ERP_ZORZALModel.V_Vent_FacturaPago" Width="1.5" PointX="10.75" PointY="4.75" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Acce_tbAccesoRol_acrol_UsuarioModifica" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Acce_tbAccesoRol_tbRoles_Rol_Id" />
@@ -306,6 +305,9 @@
         <EntityTypeShape EntityType="ERP_ZORZALModel.UDP_Vent_SolicituEfectivo_Select" Width="1.5" PointX="3.375" PointY="9.75" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.UDV_Vent_DevolucionesPorFecha" Width="1.5" PointX="5.375" PointY="11.75" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.UDV_Vent_Factura_VentasporFecha" Width="1.5" PointX="11.375" PointY="8.75" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbEstadoInventarioFisico_estif_UsuarioModifica" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbEstadoInventarioFisico_tbUsuario_estif_UsuarioCrea" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.UDV_Vent_FacturaPagoSelect" Width="1.5" PointX="11.375" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

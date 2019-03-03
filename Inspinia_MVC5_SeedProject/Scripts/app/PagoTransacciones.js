@@ -29,7 +29,7 @@ $(function () {
                 $("#TotalPagado").val(parseFloat(pagado) - parseFloat(pagoActual));
             }
             $('#pago_TotalPago').val('').focus();
-            valido.innerText = "el campo Monto Pagar no deber ir vacio";
+            valido.innerText = "El moto pago no debe ir vacio";
         }
         else if (parseFloat(totalpagar) > parseFloat(saldoAnterior)) {
 
@@ -81,7 +81,7 @@ $(function () {
 
 
         }
-        else if (parseFloat(efectivo) > parseFloat(totalpagar)) {
+        else if (parseFloat(efectivo) >= parseFloat(totalpagar)) {
             var cambioefectivo = (parseFloat(efectivo) - parseFloat(totalpagar));
             $("#efectivo").val(efectivo);
             $("#cambio").val(cambioefectivo);
@@ -90,7 +90,7 @@ $(function () {
         else {
             $("#cambio").val(result);
             $('#efectivo').val('').focus();
-            valido.innerText = "El Campo Monto Efectivo no debe ser menor a Moto Pagar";
+            valido.innerText = "El moto efectivo no debe ser mayor o igual al moto pago";
         }
 
     });

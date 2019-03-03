@@ -55,7 +55,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.pago_FechaElaboracion, new { @class = "control-label col-md-2" })
                 <div class="col-md-3">
-                    @Html.EditorFor(model => model.pago_FechaElaboracion, "{0:yyyy-MM-dd H:mm:ss tt}", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @id = "FechaPago" } })
+                    @Html.EditorFor(model => model.pago_FechaElaboracion, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @id = "FechaPago" } })
                     @Html.ValidationMessageFor(model => model.pago_FechaElaboracion)
                 </div>
             </div>
@@ -104,7 +104,7 @@
             @Html.LabelFor(model => model.pago_TotalPago, "Monto Pago",new { @class = "control-label col-md-2" })
             <div class="col-md-2">
                 @Html.EditorFor(model => model.pago_TotalPago, String.Empty, new { htmlAttributes = new { @class = "form-control",  @onkeyup = "format(this)", @autocomplete = "off" } })
-                @Html.ValidationMessageFor(model => model.pago_TotalPago, "", new { @style = "color:red" })
+                @Html.ValidationMessageFor(model => model.pago_TotalPago, "", new { @style = "color:red", @id = "msgMontoPagar" })
             </div>
             @Html.LabelFor(model => model.pago_SaldoAnterior, "Saldo Actual", new { @class = "control-label col-md-3" })
             <div class="col-md-2">
@@ -343,6 +343,7 @@
 
 <script>
     $(document).ready(function () {
+      
         var montopago = $("#pago_TotalPago").val();
         var Saldo = $("#pago_SaldoAnterior").val();
         var saldoAntes = $("#SaldoAntesPago").val(parseFloat(Saldo) + parseFloat(montopago));
@@ -354,6 +355,7 @@
     $(function() {
 
         $("#pago_TotalPago").change(function (e) {
+            valido = document.getElementById('msgMontoPagar');
             var totalpagar = $("#pago_TotalPago").val();
             var Saldo = $("#pago_SaldoAnterior").val();
             var saldoAntes = $("#SaldoAntesPago").val();
@@ -362,7 +364,7 @@
             if (totalpagar == '' || parseFloat(totalpagar) == 0 ) {
 
 
-                alert('Monto vacio');
+                valido.innerText = "El moto pago no deber ir vacío";
                 $("#pago_TotalPago").val('');
                 $("#cambio").val('');
                 $("#pago_SaldoAnterior").val(saldoAntes);
@@ -370,7 +372,7 @@
             }
 
             else if (parseFloat(totalpagar) > parseFloat(saldoAntes)) {
-                alert('Monto Supera el saldo');
+                valido.innerText = "El moto pago no debe ser mayot al  saldo";
                 $("#pago_TotalPago").val('');
                 $("#cambio").val('');
                 $("#pago_SaldoAnterior").val(saldoAntes);
@@ -390,7 +392,7 @@
    // validaciones para el Efectivo
   $(function () {
         $("#efectivo").change(function (e) {
-            valido = document.getElementById('mEfectivo');
+            valido = document.getElementById('smspsfectivo');
             var cambio = $("#cambio").val();
             var totalpagar = $("#pago_TotalPago").val();
             var efectivo = $("#efectivo").val();

@@ -179,7 +179,7 @@ namespace ERP_GMEDINA.Controllers
                         ViewBag.Cliente = db.tbCliente.ToList();
                         ViewBag.Factura = db.tbFactura.ToList();
                         ViewBag.CuponDescuento = db.UDP_Vent_tbCuponDescuentoSelect().ToList();
-                        ViewBag.FacturaPago = db.V_Vent_FacturaPago.ToList();
+                        ViewBag.FacturaPago = db.UDV_Vent_FacturaPagoSelect.ToList();
                        
 
 
@@ -233,7 +233,7 @@ namespace ERP_GMEDINA.Controllers
                                     ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
                                     ViewBag.Cliente = db.tbCliente.ToList();
                                     ViewBag.Factura = db.tbFactura.ToList();
-                                    ViewBag.FacturaPago = db.V_Vent_FacturaPago.ToList();
+                                    ViewBag.FacturaPago = db.UDV_Vent_FacturaPagoSelect.ToList();
                                     //ViewBag.NotaCredito = db.UDP_Vent_tbNotaCreditoSelect;
                                     ModelState.AddModelError("", "No se pudo agregar el registro");
                                     return View(tbPago);
@@ -255,7 +255,7 @@ namespace ERP_GMEDINA.Controllers
 
                                 ViewBag.Cliente = db.tbCliente.ToList();
                                 ViewBag.Factura = db.tbFactura.ToList();
-                                ViewBag.FacturaPago = db.V_Vent_FacturaPago.ToList();
+                                ViewBag.FacturaPago = db.UDV_Vent_FacturaPagoSelect.ToList();
                                 ViewBag.CuponDescuento = db.UDP_Vent_tbCuponDescuentoSelect().ToList();
                                 // ViewBag.NotaCredito = db.UDP_Vent_tbNotaCreditoSelect().ToList();
                                 ModelState.AddModelError("", "Error al agregar el registro " + Ex.Message.ToString());
@@ -274,7 +274,7 @@ namespace ERP_GMEDINA.Controllers
                         ViewBag.Factura = db.tbFactura.ToList();
                         ViewBag.Cliente = db.tbCliente.ToList();
                         ViewBag.CuponDescuento = db.UDP_Vent_tbCuponDescuentoSelect().ToList();
-                        ViewBag.FacturaPago = db.V_Vent_FacturaPago.ToList();
+                        ViewBag.FacturaPago = db.UDV_Vent_FacturaPagoSelect.ToList();
                         return View(tbPago);
                     }
                     else
@@ -344,7 +344,7 @@ namespace ERP_GMEDINA.Controllers
 
                         ViewBag.Cliente = db.tbCliente.ToList();
                         ViewBag.Factura = db.tbFactura.ToList();
-                        ViewBag.FacturaPago = db.V_Vent_FacturaPago.ToList();
+                        ViewBag.FacturaPago = db.UDV_Vent_FacturaPagoSelect.ToList();
                         ViewBag.CuponDescuento = db.UDP_Vent_tbCuponDescuentoSelect().ToList();
                         return View(tbPago);
                     }
@@ -416,7 +416,7 @@ namespace ERP_GMEDINA.Controllers
                         ViewBag.tpa_Id = new SelectList(db.tbTipoPago, "tpa_Id", "tpa_Descripcion", tbPago.tpa_Id);
                         ViewBag.Cliente = db.tbCliente.ToList();
                         ViewBag.Factura = db.tbFactura.ToList();
-                        ViewBag.FacturaPago = db.V_Vent_FacturaPago.ToList();
+                        ViewBag.FacturaPago = db.UDV_Vent_FacturaPagoSelect.ToList();
                         ViewBag.CuponDescuento = db.UDP_Vent_tbCuponDescuentoSelect().ToList();
                         return View(tbPago);
                     }
