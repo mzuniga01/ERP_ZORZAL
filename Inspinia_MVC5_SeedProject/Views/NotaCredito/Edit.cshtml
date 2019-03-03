@@ -15,8 +15,8 @@
 }
 <style>
     .uppercase {
-  text-transform:uppercase;
-}
+        text-transform: uppercase;
+    }
 </style>
 
 <div class="row wrapper border-bottom white-bg page-heading">
@@ -30,8 +30,6 @@
     </div>
 </div>
 
-
-
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
@@ -40,13 +38,10 @@
                     <h5>Editar Nota Crédito</h5>
                 </div>
                 <div class="ibox-content">
-
                     @using (Html.BeginForm())
                     {
                         @Html.AntiForgeryToken()
-
                         <div class="form-horizontal">
-
                             @Html.ValidationSummary(true)
                             @Html.HiddenFor(model => model.nocre_Id)
                             @Html.Hidden("RedirectTo", Url.Action("Index", "NotaCredito"))
@@ -78,8 +73,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.tbUsuario.tbEmpleado.emp_Nombres, "Cajero", new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    <input class="form-control" readonly value="@UserName"/>
-                                    @*@Html.EditorFor(model => model.tbUsuario.tbEmpleado.emp_Nombres, new { htmlAttributes = new { @readonly = "readonly" } })*@
+                                    <input class="form-control" readonly value="@UserName" />
                                     <p style="color:red"><span class="validation-error"> @Html.ValidationMessageFor(model => model.tbDevolucion.tbCaja.cja_Descripcion)</span></p>
                                 </div>
                             </div>
@@ -135,7 +129,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.nocre_Monto, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.EditorFor(model => model.nocre_Monto, new { htmlAttributes = new { @style = "text-align:right", @readonly ="readonly", @type = "number", @min = "0", @step = "0.01", @value = "0", maxlength = "4" } })
+                                        @Html.EditorFor(model => model.nocre_Monto, new { htmlAttributes = new { @style = "text-align:right", @readonly = "readonly", @type = "number", @min = "0", @step = "0.01", @value = "0", maxlength = "4" } })
                                         <p id="smsMontoNC" style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.nocre_Monto)</span></p>
                                     </div>
                                 </div>
@@ -145,7 +139,7 @@
                                     <div class="col-md-4">
                                         @Html.TextAreaFor(model => model.nocre_MotivoEmision, new { @class = "form-control", @onkeypress = "return soloLetras(event)", @onblur = "limpia()" })
                                         <p id="smsMotivoNC" style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.nocre_MotivoEmision)</span></p>
-</div>
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
@@ -231,12 +225,12 @@
                                     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                                     <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-danger" data-toggle="modal" data-target="#AnularNC">
                                         @*boton Anular Cupon Descuento*@
-                                    Anular
-                                </button>
+                                        Anular
+                                    </button>
+                                </div>
                             </div>
+                            @*---------------FIN Botones---------------------*@
                         </div>
-                        @*---------------FIN Botones---------------------*@
-                    </div>
                     }
                 </div>
             </div>
@@ -363,75 +357,72 @@
             valido.innerText = "";
         }
     });
-</script>
 
-<script>
-function soloLetras(e) {
-    key = e.keyCode || e.which;
-    tecla = String.fromCharCode(key).toLowerCase();
-    letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
-    especiales = [8, 37, 39, 46];
+    function soloLetras(e) {
+        key = e.keyCode || e.which;
+        tecla = String.fromCharCode(key).toLowerCase();
+        letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
+        especiales = [8, 37, 39, 46];
 
-    tecla_especial = false
-    for(var i in especiales) {
-        if(key == especiales[i]) {
-            tecla_especial = true;
-            break;
+        tecla_especial = false
+        for (var i in especiales) {
+            if (key == especiales[i]) {
+                tecla_especial = true;
+                break;
+            }
         }
-    }
 
-    if(letras.indexOf(tecla) == -1 && !tecla_especial)
-        return false;
-}
-
-function limpia() {
-    var val = document.getElementById("#nocre_MotivoEmision").value;
-    var tam = val.length;
-    for(i = 0; i < tam; i++) {
-        if(!isNaN(val[i]))
-            document.getElementById("#nocre_MotivoEmision").value = '';
-    }
-}
-
-function filterFloat(evt, input) {
-    // Backspace = 8, Enter = 13, ‘0′ = 48, ‘9′ = 57, ‘.’ = 46, ‘-’ = 43
-    var key = window.Event ? evt.which : evt.keyCode;
-    var chark = String.fromCharCode(key);
-    var tempValue = input.value + chark;
-    if (key >= 48 && key <= 57) {
-        if (filter(tempValue) === false) {
+        if (letras.indexOf(tecla) == -1 && !tecla_especial)
             return false;
-        } else {
-            return true;
+    }
+
+    function limpia() {
+        var val = document.getElementById("#nocre_MotivoEmision").value;
+        var tam = val.length;
+        for (i = 0; i < tam; i++) {
+            if (!isNaN(val[i]))
+                document.getElementById("#nocre_MotivoEmision").value = '';
         }
-    } else {
-        if (key == 8 || key == 13 || key == 0) {
-            return true;
-        } else if (key == 46) {
+    }
+
+    function filterFloat(evt, input) {
+        // Backspace = 8, Enter = 13, ‘0′ = 48, ‘9′ = 57, ‘.’ = 46, ‘-’ = 43
+        var key = window.Event ? evt.which : evt.keyCode;
+        var chark = String.fromCharCode(key);
+        var tempValue = input.value + chark;
+        if (key >= 48 && key <= 57) {
             if (filter(tempValue) === false) {
                 return false;
             } else {
                 return true;
             }
         } else {
+            if (key == 8 || key == 13 || key == 0) {
+                return true;
+            } else if (key == 46) {
+                if (filter(tempValue) === false) {
+                    return false;
+                } else {
+                    return true;
+                }
+            } else {
+                return false;
+            }
+        }
+    }
+    function filter(__val__) {
+        var preg = /^([0-9]+\.?[0-9]{0,2})$/;
+        if (preg.test(__val__) === true) {
+            return true;
+        } else {
             return false;
         }
     }
-}
-function filter(__val__) {
-    var preg = /^([0-9]+\.?[0-9]{0,2})$/;
-    if (preg.test(__val__) === true) {
-        return true;
-    } else {
-        return false;
+    //------------solo letras-----------------------
+    //Validacion de letras//
+    function soloLetras(e) {
+        tecla = (document.all) ? e.keyCode : e.which;
+        tecla = String.fromCharCode(tecla)
+        return /^[a-zA-ZáéíóúñÁÉÍÓÚÑ ]+$/.test(tecla);
     }
-
-}
-//------------solo letras-----------------------
-//Validacion de letras//
-function soloLetras(e) {
-    tecla = (document.all) ? e.keyCode : e.which;
-    tecla = String.fromCharCode(tecla)
-    return /^[a-zA-ZáéíóúñÁÉÍÓÚÑ ]+$/.test(tecla);
-}
 </script>

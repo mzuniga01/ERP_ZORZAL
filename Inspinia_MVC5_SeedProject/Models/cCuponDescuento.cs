@@ -23,13 +23,12 @@ namespace ERP_GMEDINA.Models
         [Display(Name = "Fecha Emisión")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}", HtmlEncode = false)]
+        //[DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public System.DateTime cdto_FechaEmision { get; set; }
 
         [Display(Name = "Fecha Vencimiento")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
-        [DisplayFormat(ApplyFormatInEditMode = true,
-            DataFormatString = "{0:MM/dd/yyyy}",
-            HtmlEncode = false)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}", HtmlEncode = false)]
         public System.DateTime cdto_FechaVencimiento { get; set; }
 
         [Display(Name = "% Descuento")]
@@ -55,7 +54,6 @@ namespace ERP_GMEDINA.Models
         [Display(Name = "Anulado")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
         public bool cdto_Anulado { get; set; }
-        //public Nullable<bool> cdto_Anulado { get; set; }
 
         [Display(Name = "Usuario Crea")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
@@ -74,9 +72,7 @@ namespace ERP_GMEDINA.Models
         public Nullable<System.DateTime> cdto_FechaModifica { get; set; }
 
         [Display(Name = "Fecha Redención")]
-        [DisplayFormat(ApplyFormatInEditMode = true,
-            DataFormatString = "{0:MM/dd/yyyy}",
-            HtmlEncode = false)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}", HtmlEncode = false)]
         public System.DateTime cdto_FechaRedencion { get; set; }
 
         public virtual tbUsuario tbUsuario { get; set; }

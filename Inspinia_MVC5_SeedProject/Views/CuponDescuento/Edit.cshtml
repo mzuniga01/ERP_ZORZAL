@@ -255,14 +255,12 @@
                     $('#cdto_FechaEmision').focus();
                 });
                
-
             } else if (Porcentaje <= 0) {
                 $('#cdto_PorcentajeDescuento').val('0.00');
                 $('#cdto_MaximoMontoDescuento').attr('readonly', 'readonly').val('0.00');
                 $("#cdto_MontoDescuento").removeAttr("readonly").focus().val();
                 $('#cdto_CantidadCompraMinima').removeAttr("readonly").val();
             } 
-            
         });
 
         $("#cdto_PorcentajeDescuento").blur(function () {
@@ -300,7 +298,6 @@
                     valido1.innerText = "";
             });
         
-
         $('#cdto_CantidadCompraMinima').blur(function () {
             valido1 = document.getElementById('smsCantidadMinima1');
             var monto = $('#cdto_CantidadCompraMinima').val();
@@ -419,5 +416,4 @@
             }
         }
 </script>
- 
 }

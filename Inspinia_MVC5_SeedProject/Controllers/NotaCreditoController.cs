@@ -25,8 +25,25 @@ namespace ERP_GMEDINA.Controllers
         // GET: /NotaCredito/
         public ActionResult Index()
         {
-            var tbnotacredito = db.tbNotaCredito.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbCliente).Include(t => t.tbDevolucion).Include(t => t.tbSucursal);
-            return View(tbnotacredito.ToList());
+            if (Function.GetUserLogin())
+            {
+                if (Function.GetRol())
+                {
+                    if (Function.GetUserRols("NotaCredito/Index"))
+                    {
+                        var tbnotacredito = db.tbNotaCredito.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbCliente).Include(t => t.tbDevolucion).Include(t => t.tbSucursal);
+                        return View(tbnotacredito.ToList());
+                    }
+                    else
+                    {
+                        return RedirectToAction("SinAcceso", "Login");
+                    }
+                }
+                else
+                    return RedirectToAction("SinRol", "Login");
+            }
+            else
+                return RedirectToAction("Index", "Login");
         }
 
         public ActionResult _IndexDevolucion(int? id)
@@ -47,35 +64,68 @@ namespace ERP_GMEDINA.Controllers
         // GET: /NotaCredito/Details/5
         public ActionResult Details(short? id)
         {
-            if (id == null)
+            if (Function.GetUserLogin())
             {
-                return RedirectToAction("Index");
+                if (Function.GetRol())
+                {
+                    if (Function.GetUserRols("NotaCredito/Details"))
+                    {
+                        if (id == null)
+                        {
+                            return RedirectToAction("Index");
+                        }
+                        tbNotaCredito tbNotaCredito = db.tbNotaCredito.Find(id);
+                        if (tbNotaCredito == null)
+                        {
+                            return RedirectToAction("NotFound", "Login");
+                        }
+                        return View(tbNotaCredito);
+                    }
+                    else
+                    {
+                        return RedirectToAction("SinAcceso", "Login");
+                    }
+                }
+                else
+                    return RedirectToAction("SinRol", "Login");
             }
-            tbNotaCredito tbNotaCredito = db.tbNotaCredito.Find(id);
-            if (tbNotaCredito == null)
-            {
-                return RedirectToAction("NotFound", "Login");
-            }
-            return View(tbNotaCredito);
+            else
+                return RedirectToAction("Index", "Login");
         }
 
         // GET: /NotaCredito/Create
         public ActionResult Create()
         {
-            int idUser = 0;
-            GeneralFunctions Login = new GeneralFunctions();
-            List<tbUsuario> User = Login.getUserInformation();
-            foreach (tbUsuario Usuario in User)
+            if (Function.GetUserLogin())
             {
-                idUser = Convert.ToInt32(Usuario.emp_Id);
+                if (Function.GetRol())
+                {
+                    if (Function.GetUserRols("NotaCredito/Create"))
+                    {
+                        int idUser = 0;
+                        GeneralFunctions Login = new GeneralFunctions();
+                        List<tbUsuario> User = Login.getUserInformation();
+                        foreach (tbUsuario Usuario in User)
+                        {
+                            idUser = Convert.ToInt32(Usuario.emp_Id);
+                        }
+                        ViewBag.usu_Id = idUser;
+                        ViewBag.suc_Descripcion = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Descripcion).SingleOrDefault();
+                        ViewBag.suc_Id = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Id).SingleOrDefault();
+                        ViewBag.Devolucion = db.tbDevolucionDetalle.ToList();
+                        ViewBag.Cliente = db.tbCliente.ToList();
+                        return View();
+                    }
+                    else
+                    {
+                        return RedirectToAction("SinAcceso", "Login");
+                    }
+                }
+                else
+                    return RedirectToAction("SinRol", "Login");
             }
-            ViewBag.usu_Id = idUser;
-            ViewBag.suc_Descripcion = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Descripcion).SingleOrDefault();
-            ViewBag.suc_Id = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Id).SingleOrDefault();
-            ViewBag.Devolucion = db.tbDevolucionDetalle.ToList();
-            ViewBag.Cliente = db.tbCliente.ToList();
-
-            return View();
+            else
+                return RedirectToAction("Index", "Login");
         }
 
         // POST: /NotaCredito/Create
@@ -85,58 +135,74 @@ namespace ERP_GMEDINA.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "nocre_Id,nocre_Codigo,dev_Id,clte_Id,suc_Id,cja_Id,nocre_Anulado,nocre_FechaEmision,nocre_MotivoEmision,nocre_Monto,nocre_Redimido,nocre_FechaRedimido,nocre_EsImpreso,nocre_UsuarioCrea,nocre_FechaCrea,nocre_UsuarioModifica,nocre_FechaModifica")] tbNotaCredito tbNotaCredito)
         {
-            int idUser = 0;
-            GeneralFunctions Login = new GeneralFunctions();
-            List<tbUsuario> User = Login.getUserInformation();
-            foreach (tbUsuario Usuario in User)
+            if (Function.GetUserLogin())
             {
-                idUser = Convert.ToInt32(Usuario.emp_Id);
-            }
-            var MensajeError = "";
-            IEnumerable<object> list = null;
-            if (ModelState.IsValid)
-            {
-                try
+                if (Function.GetRol())
                 {
-                    list = db.UDP_Vent_tbNotaCredito_Insert(tbNotaCredito.nocre_Codigo,
-                                                            tbNotaCredito.dev_Id,
-                                                            tbNotaCredito.clte_Id,
-                                                            tbNotaCredito.suc_Id,
-                                                            tbNotaCredito.cja_Id,
-                                                            tbNotaCredito.nocre_Anulado,
-                                                            tbNotaCredito.nocre_FechaEmision,
-                                                            tbNotaCredito.nocre_MotivoEmision,
-                                                            tbNotaCredito.nocre_Monto,
-                                                            tbNotaCredito.nocre_Redimido,
-                                                            tbNotaCredito.nocre_FechaRedimido,
-                                                            tbNotaCredito.nocre_EsImpreso,
-                                                            Function.GetUser(),
-                                                            Function.DatetimeNow());
-                    foreach (UDP_Vent_tbNotaCredito_Insert_Result NotaCredito in list)
-                        MensajeError = NotaCredito.MensajeError;
-                    if (MensajeError == "-1")
+                    if (Function.GetUserRols("CuponDescuento/Create"))
                     {
-                        ModelState.AddModelError("", "No se pudo Insertar el registro, favor contacte al administrador.");
+                        int idUser = 0;
+                        GeneralFunctions Login = new GeneralFunctions();
+                        List<tbUsuario> User = Login.getUserInformation();
+                        foreach (tbUsuario Usuario in User)
+                        {
+                            idUser = Convert.ToInt32(Usuario.emp_Id);
+                        }
+                        var MensajeError = "";
+                        IEnumerable<object> list = null;
+                        if (ModelState.IsValid)
+                        {
+                            try
+                            {
+                                list = db.UDP_Vent_tbNotaCredito_Insert(tbNotaCredito.nocre_Codigo,
+                                        tbNotaCredito.dev_Id,
+                                        tbNotaCredito.clte_Id,
+                                        tbNotaCredito.suc_Id,
+                                        tbNotaCredito.cja_Id,
+                                        tbNotaCredito.nocre_Anulado,
+                                        tbNotaCredito.nocre_FechaEmision,
+                                        tbNotaCredito.nocre_MotivoEmision,
+                                        tbNotaCredito.nocre_Monto,
+                                        tbNotaCredito.nocre_Redimido,
+                                        tbNotaCredito.nocre_FechaRedimido,
+                                        tbNotaCredito.nocre_EsImpreso,
+                                        Function.GetUser(),
+                                        Function.DatetimeNow());
+                                foreach (UDP_Vent_tbNotaCredito_Insert_Result NotaCredito in list)
+                                    MensajeError = NotaCredito.MensajeError;
+                                if (MensajeError == "-1")
+                                {
+                                    ModelState.AddModelError("", "No se pudo Insertar el registro, favor contacte al administrador.");
+                                    return View(tbNotaCredito);
+                                }
+                                else
+                                {
+                                    return RedirectToAction("Index");
+                                }
+                            }
+                            catch (Exception Ex)
+                            {
+                                Ex.Message.ToString();
+                                ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                                return View(tbNotaCredito);
+                            }
+                        }
+                        ViewBag.Devolucion = db.tbDevolucionDetalle.ToList();
+                        ViewBag.Cliente = db.tbCliente.ToList();
+                        ViewBag.suc_Descripcion = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Descripcion).SingleOrDefault();
+                        ViewBag.suc_Id = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Id).SingleOrDefault();
                         return View(tbNotaCredito);
                     }
                     else
                     {
-                        return RedirectToAction("Index");
+                        return RedirectToAction("SinAcceso", "Login");
                     }
                 }
-                catch (Exception Ex)
-                {
-                    Ex.Message.ToString();
-                    ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
-                    return View(tbNotaCredito);
-
-                }
+                else
+                    return RedirectToAction("SinRol", "Login");
             }
-            ViewBag.Devolucion = db.tbDevolucionDetalle.ToList();
-            ViewBag.Cliente = db.tbCliente.ToList();
-            ViewBag.suc_Descripcion = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Descripcion).SingleOrDefault();
-            ViewBag.suc_Id = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Id).SingleOrDefault();
-            return View(tbNotaCredito);
+            else
+                return RedirectToAction("Index", "Login");
         }
 
         // GET: /NotaCredito/Edit/5
@@ -157,7 +223,6 @@ namespace ERP_GMEDINA.Controllers
                         }
                         ViewBag.suc_Descripcion = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Descripcion).SingleOrDefault();
                         ViewBag.suc_Id = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Id).SingleOrDefault();
-
                         if (id == null)
                         {
                             return RedirectToAction("Index");
@@ -191,56 +256,70 @@ namespace ERP_GMEDINA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include= "nocre_Id,nocre_Codigo,dev_Id,clte_Id,suc_Id,cja_Id,nocre_Anulado,nocre_FechaEmision,nocre_MotivoEmision,nocre_Monto,nocre_Redimido,nocre_FechaRedimido,nocre_EsImpreso,nocre_UsuarioCrea,nocre_FechaCrea,nocre_UsuarioModifica,nocre_FechaModifica, tbUsuario, tbUsuario1")] tbNotaCredito tbNotaCredito)
+        public ActionResult Edit([Bind(Include = "nocre_Id,nocre_Codigo,dev_Id,clte_Id,suc_Id,cja_Id,nocre_Anulado,nocre_FechaEmision,nocre_MotivoEmision,nocre_Monto,nocre_Redimido,nocre_FechaRedimido,nocre_EsImpreso,nocre_UsuarioCrea,nocre_FechaCrea,nocre_UsuarioModifica,nocre_FechaModifica, tbUsuario, tbUsuario1")] tbNotaCredito tbNotaCredito)
         {
-            if (ModelState.IsValid)
+            if (Function.GetUserLogin())
             {
-                try
+                if (Function.GetRol())
                 {
-                    
-                        var MensajeError = "";
-                        IEnumerable<object> list = null;
-                        list = db.UDP_Vent_tbNotaCredito_Update(tbNotaCredito.nocre_Id, tbNotaCredito.nocre_Codigo,
-                            tbNotaCredito.dev_Id, tbNotaCredito.clte_Id, tbNotaCredito.suc_Id, tbNotaCredito.cja_Id, tbNotaCredito.nocre_Anulado,
-                            tbNotaCredito.nocre_FechaEmision, tbNotaCredito.nocre_MotivoEmision, tbNotaCredito.nocre_Monto,
-                            tbNotaCredito.nocre_Redimido, tbNotaCredito.nocre_FechaRedimido, tbNotaCredito.nocre_EsImpreso,
-                            tbNotaCredito.nocre_UsuarioCrea, tbNotaCredito.nocre_FechaCrea, Function.GetUser(),
-                                        Function.DatetimeNow());
-                        foreach (UDP_Vent_tbNotaCredito_Update_Result NotaCredito in list)
-                            MensajeError = Convert.ToString(NotaCredito.MensajeError);
-                        if (MensajeError == "-1")
+                    if (Function.GetUserRols("CuponDescuento/Edit"))
+                    {
+                        if (ModelState.IsValid)
                         {
-                            ModelState.AddModelError("", "No se pudo Editar el registro, favor contacte al administrador.");
-                            return View(tbNotaCredito);
+                            try
+                            {
+                                var MensajeError = "";
+                                IEnumerable<object> list = null;
+                                list = db.UDP_Vent_tbNotaCredito_Update(tbNotaCredito.nocre_Id, tbNotaCredito.nocre_Codigo,
+                                    tbNotaCredito.dev_Id, tbNotaCredito.clte_Id, tbNotaCredito.suc_Id, tbNotaCredito.cja_Id, tbNotaCredito.nocre_Anulado,
+                                    tbNotaCredito.nocre_FechaEmision, tbNotaCredito.nocre_MotivoEmision, tbNotaCredito.nocre_Monto,
+                                    tbNotaCredito.nocre_Redimido, tbNotaCredito.nocre_FechaRedimido, tbNotaCredito.nocre_EsImpreso,
+                                    tbNotaCredito.nocre_UsuarioCrea, tbNotaCredito.nocre_FechaCrea, Function.GetUser(),
+                                                Function.DatetimeNow());
+                                foreach (UDP_Vent_tbNotaCredito_Update_Result NotaCredito in list)
+                                    MensajeError = Convert.ToString(NotaCredito.MensajeError);
+                                if (MensajeError == "-1")
+                                {
+                                    ModelState.AddModelError("", "No se pudo Editar el registro, favor contacte al administrador.");
+                                    return View(tbNotaCredito);
+                                }
+                                else
+                                {
+                                    return RedirectToAction("Index");
+                                }
+                            }
+                            catch (Exception Ex)
+                            {
+                                Ex.Message.ToString();
+                                ModelState.AddModelError("", "No se pudo Editar el registro, favor contacte al administrador.");
+                                ViewBag.Devolucion = db.tbDevolucionDetalle.ToList();
+                                ViewBag.Cliente = db.tbCliente.ToList();
+                                return View(tbNotaCredito);
+                            }
+                        }
+                        var motivo = tbNotaCredito.nocre_MotivoEmision;
+                        if (motivo == null)
+                        {
+                            ModelState.AddModelError("", "No se pudo Editar el registro, Campos Requeridos.");
+                            return RedirectToAction("Edit");
                         }
                         else
                         {
-                            return RedirectToAction("Index");
+                            ViewBag.Devolucion = db.tbDevolucionDetalle.ToList();
+                            ViewBag.Cliente = db.tbCliente.ToList();
+                            return View(tbNotaCredito);
                         }
                     }
-            catch(Exception Ex)
-            {
-                Ex.Message.ToString();
-                ModelState.AddModelError("", "No se pudo Editar el registro, favor contacte al administrador.");
-                    ViewBag.Devolucion = db.tbDevolucionDetalle.ToList();
-                    ViewBag.Cliente = db.tbCliente.ToList();
-                    return View(tbNotaCredito);
-            }
-            }
-            var motivo = tbNotaCredito.nocre_MotivoEmision;
-            if (motivo == null)
-            {
-                    ModelState.AddModelError("", "No se pudo Editar el registro, Campos Requeridos.");
-                    return RedirectToAction("Edit");
+                    else
+                    {
+                        return RedirectToAction("SinAcceso", "Login");
+                    }
+                }
+                else
+                    return RedirectToAction("SinRol", "Login");
             }
             else
-            {
-                //ModelState.AddModelError("", "No se pudo Editar el registro, Campos Requeridos.");
-                ViewBag.Devolucion = db.tbDevolucionDetalle.ToList();
-                ViewBag.Cliente = db.tbCliente.ToList();
-                return View(tbNotaCredito);
-            }
-                
+                return RedirectToAction("Index", "Login");
         }
 
         protected override void Dispose(bool disposing)
@@ -295,9 +374,7 @@ namespace ERP_GMEDINA.Controllers
                             nocre_FechaEmision = NC.nocre_FechaEmision,
                             nocre_MotivoEmision = NC.nocre_MotivoEmision,
                             devd_Monto = (Decimal)NC.devd_Monto
-
-                        }).ToList();
-
+                            }).ToList();
             rd.SetDataSource(todo);
             Response.Buffer = false;
             Response.ClearContent();
@@ -335,8 +412,7 @@ namespace ERP_GMEDINA.Controllers
                             nocre_FechaEmision = NC.nocre_FechaEmision,
                             nocre_MotivoEmision = NC.nocre_MotivoEmision,
                             nocre_Monto = (Decimal)NC.nocre_Monto
-                        }).ToList();
-
+                            }).ToList();
             rd.SetDataSource(todo);
             Response.Buffer = false;
             Response.ClearContent();
@@ -351,8 +427,7 @@ namespace ERP_GMEDINA.Controllers
                 throw;
             }
         }
-
-
+        
         //---------------------Imprimir Cliente Juridico por Devolucion-----------------------------
         public ActionResult ExportReportclteJuridicoxDEV(short? id)
         {
@@ -369,15 +444,13 @@ namespace ERP_GMEDINA.Controllers
                             clte_Identificacion = NC.clte_Identificacion,
                             clte_NombreComercial = NC.clte_NombreComercial,
                             suc_Descripcion = NC.suc_Descripcion,
-                            //cja_Descripcion = NC.cja_Descripcion,
                             suc_Correo = NC.suc_Correo,
                             suc_Direccion = NC.suc_Direccion,
                             suc_Telefono = NC.suc_Telefono,
                             nocre_FechaEmision = NC.nocre_FechaEmision,
                             nocre_MotivoEmision = NC.nocre_MotivoEmision,
                             devd_Monto = (Decimal)NC.devd_Monto
-                        }).ToList();
-
+                            }).ToList();
             rd.SetDataSource(todo);
             Response.Buffer = false;
             Response.ClearContent();
@@ -392,6 +465,7 @@ namespace ERP_GMEDINA.Controllers
                 throw;
             }
         }
+
         //---------------------Imprimir Cliente Juridico por Otros-----------------------------
         public ActionResult ExportReportclteJuridicoxOtros(short? id)
         {
@@ -407,15 +481,13 @@ namespace ERP_GMEDINA.Controllers
                             clte_Identificacion = NC.clte_Identificacion,
                             clte_NombreComercial = NC.clte_NombreComercial,
                             suc_Descripcion = NC.suc_Descripcion,
-                            //cja_Descripcion = NC.cja_Descripcion,
                             suc_Correo = NC.suc_Correo,
                             suc_Direccion = NC.suc_Direccion,
                             suc_Telefono = NC.suc_Telefono,
                             nocre_FechaEmision = NC.nocre_FechaEmision,
                             nocre_MotivoEmision = NC.nocre_MotivoEmision,
                             nocre_Monto = (Decimal)NC.nocre_Monto
-                        }).ToList();
-
+                            }).ToList();
             rd.SetDataSource(todo);
             Response.Buffer = false;
             Response.ClearContent();

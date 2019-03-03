@@ -110,7 +110,7 @@ namespace ERP_GMEDINA.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include= "cdto_ID,suc_Id,cdto_FechaEmision,cdto_FechaVencimiento,cdto_PorcentajeDescuento,cdto_MontoDescuento,cdto_MaximoMontoDescuento,cdto_CantidadCompraMinima,cdto_Redimido,cdto_FechaRedencion,cdto_Anulado,cdto_EsImpreso,cdto_UsuarioCrea,cdto_FechaCrea,cdto_UsuarioModifica,cdto_FechaModifica")] tbCuponDescuento tbCuponDescuento)
+        public ActionResult Create([Bind(Include = "cdto_ID,suc_Id,cdto_FechaEmision,cdto_FechaVencimiento,cdto_PorcentajeDescuento,cdto_MontoDescuento,cdto_MaximoMontoDescuento,cdto_CantidadCompraMinima,cdto_Redimido,cdto_FechaRedencion,cdto_Anulado,cdto_EsImpreso,cdto_UsuarioCrea,cdto_FechaCrea,cdto_UsuarioModifica,cdto_FechaModifica")] tbCuponDescuento tbCuponDescuento)
         {
             if (Function.GetUserLogin())
             {
@@ -130,16 +130,19 @@ namespace ERP_GMEDINA.Controllers
                             {
                                 var MensajeError = "";
                                 IEnumerable<object> list = null;
-                                list = db.UDP_Vent_tbCuponDescuento_Insert(tbCuponDescuento.suc_Id, tbCuponDescuento.cdto_FechaEmision,
-                                                                 tbCuponDescuento.cdto_FechaVencimiento, tbCuponDescuento.cdto_PorcentajeDescuento,
-                                                                 tbCuponDescuento.cdto_MontoDescuento, tbCuponDescuento.cdto_MaximoMontoDescuento,
-                                                                 tbCuponDescuento.cdto_CantidadCompraMinima,
-                                                                 tbCuponDescuento.cdto_Redimido,
-                                                                 tbCuponDescuento.cdto_FechaRedencion,
-                                                                 tbCuponDescuento.cdto_Anulado,
-                                                                 tbCuponDescuento.cdto_EsImpreso,
-                                                                 Function.GetUser(),
-                                                                 Function.DatetimeNow());
+                                list = db.UDP_Vent_tbCuponDescuento_Insert(tbCuponDescuento.suc_Id, 
+                                        tbCuponDescuento.cdto_FechaEmision,
+                                        tbCuponDescuento.cdto_FechaVencimiento, 
+                                        tbCuponDescuento.cdto_PorcentajeDescuento,
+                                        tbCuponDescuento.cdto_MontoDescuento, 
+                                        tbCuponDescuento.cdto_MaximoMontoDescuento,
+                                        tbCuponDescuento.cdto_CantidadCompraMinima,
+                                        tbCuponDescuento.cdto_Redimido,
+                                        tbCuponDescuento.cdto_FechaRedencion,
+                                        tbCuponDescuento.cdto_Anulado,
+                                        tbCuponDescuento.cdto_EsImpreso,
+                                        Function.GetUser(),
+                                        Function.DatetimeNow());
                                 foreach (UDP_Vent_tbCuponDescuento_Insert_Result CuponDescuento in list)
                                     MensajeError = CuponDescuento.MensajeError;
                                 if (MensajeError.StartsWith("-1"))
@@ -198,7 +201,6 @@ namespace ERP_GMEDINA.Controllers
                         }
                         ViewBag.suc_Descripcion = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Descripcion).SingleOrDefault();
                         ViewBag.suc_Id = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Id).SingleOrDefault();
-
                         if (id == null)
                         {
                             return RedirectToAction("Index");
@@ -224,7 +226,7 @@ namespace ERP_GMEDINA.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include= "cdto_ID,suc_Id,cdto_FechaEmision,cdto_FechaVencimiento,cdto_PorcentajeDescuento,cdto_MontoDescuento,cdto_MaximoMontoDescuento,cdto_CantidadCompraMinima,cdto_Redimido,cdto_FechaRedencion, cdto_Anulado,cdto_EsImpreso,cdto_UsuarioCrea,cdto_FechaCrea,cdto_UsuarioModifica,cdto_FechaModifica, tbUsuario, tbUsuario1")] tbCuponDescuento tbCuponDescuento)
+        public ActionResult Edit([Bind(Include = "cdto_ID,suc_Id,cdto_FechaEmision,cdto_FechaVencimiento,cdto_PorcentajeDescuento,cdto_MontoDescuento,cdto_MaximoMontoDescuento,cdto_CantidadCompraMinima,cdto_Redimido,cdto_FechaRedencion, cdto_Anulado,cdto_EsImpreso,cdto_UsuarioCrea,cdto_FechaCrea,cdto_UsuarioModifica,cdto_FechaModifica, tbUsuario, tbUsuario1")] tbCuponDescuento tbCuponDescuento)
         {
             if (Function.GetUserLogin())
             {
@@ -317,8 +319,7 @@ namespace ERP_GMEDINA.Controllers
             var list = db.UDP_Vent_tbCuponDescuento_Anulado(cdtoId, Anulada).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
-
-
+        
         //--------------------------------Imprimir Actualiza DB-------------------------
         [HttpPost]
         public JsonResult CuponEsImpreso(int cdtoId, bool EsImpreso)
@@ -347,8 +348,7 @@ namespace ERP_GMEDINA.Controllers
                             cdto_CantidadCompraMinima = (Decimal)CD.cdto_CantidadCompraMinima,
                             suc_Correo = CD.suc_Correo,
                             suc_Descripcion = CD.suc_Descripcion
-                        }).ToList();
-
+                            }).ToList();
             rd.SetDataSource(todo);
             Response.Buffer = false;
             Response.ClearContent();

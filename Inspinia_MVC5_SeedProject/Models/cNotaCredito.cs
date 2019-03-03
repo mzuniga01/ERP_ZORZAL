@@ -38,9 +38,8 @@ namespace ERP_GMEDINA.Models
 
         [Display(Name = "Fecha Emisión")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
-        [DisplayFormat(ApplyFormatInEditMode = true,
-            DataFormatString = "{0:MM/dd/yyyy}",
-            HtmlEncode = false)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}", HtmlEncode = false)]
+        //[DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public System.DateTime nocre_FechaEmision { get; set; }
 
         [Display(Name = "Motivo Emisión")]
@@ -61,7 +60,6 @@ namespace ERP_GMEDINA.Models
        public bool nocre_EsImpreso { get; set; }
 
         [Display(Name = "Usuario Crea")]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
         public int nocre_UsuarioCrea { get; set; }
 
         [Display(Name = "Fecha Crea")]
