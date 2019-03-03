@@ -47,7 +47,7 @@
                                 @Html.LabelFor(model => model.pemi_NumeroCAI, new { @class = "control-label col-md-2" })
                                 <div class="col-md-7">
                                     @Html.EditorFor(model => model.pemi_NumeroCAI, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })
-                                    <small style="color:red">No se puede actualizar el número CAI porque ya existe un documento fiscal con este número.</small>  
+                                    <small style="color:red">No se puede actualizar el número CAI porque ya existe uno o varios documentos fiscales con este número.</small>  
                                 </div>
                             </div>
                         }

@@ -222,6 +222,7 @@ namespace ERP_ZORZAL.Controllers
                     if (db.tbPuntoEmision.Any(a => a.pemi_NumeroCAI == PuntoEmision.pemi_NumeroCAI))
                     {
                         System.Web.HttpContext.Current.Items[cas] = new SelectList(DocumentoFiscal, "dfisc_Id", "dfisc_Descripcion");
+                        ViewBag.IdPuntoEmisionEdit = PuntoEmision.pemi_Id;
                         ModelState.AddModelError("", "Ya existe este Número CAI.");
                         return View(PuntoEmision);
                     }
@@ -244,9 +245,8 @@ namespace ERP_ZORZAL.Controllers
                         }
                         else
                         {
-                            System.Web.HttpContext.Current.Items[cas] = new SelectList(DocumentoFiscal, "dfisc_Id", "dfisc_Descripcion");
-                            ModelState.AddModelError("", "El registro se editó exitosamente.");
-                            return View(PuntoEmision);
+                            System.Web.HttpContext.Current.Items[cas] = new SelectList(DocumentoFiscal, "dfisc_Id", "dfisc_Descripcion");       
+                            return RedirectToAction("Edit/" + PuntoEmision.pemi_Id);
                         }
                     }
                 }
