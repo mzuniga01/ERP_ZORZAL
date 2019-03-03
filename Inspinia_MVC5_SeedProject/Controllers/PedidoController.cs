@@ -321,7 +321,7 @@ namespace ERP_GMEDINA.Controllers
 
             return Json("datos", JsonRequestBehavior.AllowGet);
         }
-
+         
         [HttpPost]
         public JsonResult QuitarPedidoDetalle(tbPedidoDetalle PedidoDetalle)
         {
@@ -329,7 +329,7 @@ namespace ERP_GMEDINA.Controllers
 
             if (list != null)
             {
-                var itemToRemove = list.Single(r => r.pedd_UsuarioCrea == PedidoDetalle.pedd_UsuarioCrea);
+                var itemToRemove = list.Single(r => r.prod_Codigo == PedidoDetalle.prod_Codigo);
                 list.Remove(itemToRemove);
                 Session["tbPedidoDetalle"] = list;
             }

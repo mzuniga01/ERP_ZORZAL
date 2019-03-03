@@ -52,7 +52,7 @@ $('#AñadirPedidoDetalle').click(function () {
                         var sumacantidades = parseInt(cantfisica_nueva) + parseInt(cantfisica_anterior);
                         console.log(sumacantidades);
                         $(this).closest('tr').remove();
-                        copiar = "<tr data-id=" + idcontador + ">";
+                        copiar = "<tr data-id=" + idcontador + " data-prod_Codigo = " + $('#prod_Codigo').val()+ ">";
 
                         copiar += "<td id = 'prod_Codigo'>" + $('#prod_Codigo').val() + "</td>";
                         copiar += "<td id = 'prod_Descripcion'>" + $('#tbProducto_prod_Descripcion').val() + "</td>";
@@ -67,7 +67,7 @@ $('#AñadirPedidoDetalle').click(function () {
                 });
             } else {
                 contador = contador + 1;
-                copiar = "<tr data-id=" + contador + ">";
+                copiar = "<tr data-id=" + contador + " data-prod_Codigo = " + $('#prod_Codigo').val() + ">";
                 copiar += "<td id = 'prod_Codigo'>" + $('#prod_Codigo').val() + "</td>";
                 copiar += "<td id = 'prod_Descripcion'>" + $('#tbProducto_prod_Descripcion').val() + "</td>";
                 copiar += "<td id = 'pedd_Cantidad'>" + $('#pedd_Cantidad').val() + "</td>";
@@ -97,7 +97,8 @@ function GetPedidoDetalle() {
         pedd_Descripcion: $('#pedd_Descripcion').val(),
         pedd_Cantidad: $('#pedd_Cantidad').val(),
         pedd_CantidadFacturada: $('#pedd_CantidadFacturada').val(),
-        pedd_Id: contador
+        pedd_Id: contador,
+        pedd_UsuarioCrea: contador,
     };
     return PedidoDetalle;
 }
@@ -118,21 +119,6 @@ $('#pedd_Cantidad_Ped').blur(function () {
     } else {
         valido.innerText = "";
     }
-});
-
-$(document).on("click", "#tblPedidoDetalle tbody tr td button#QuitarDetalle", function () {
-    $(this).closest('tr').remove();
-    idItem = $(this).closest('tr').data('id');
-    var PedidoDetalle = {
-        mun_UsuarioCrea: idItem,
-    };
-    $.ajax({
-        url: "/Pedido/QuitarPedidoDetalle",
-        method: "POST",
-        dataType: 'json',
-        contentType: "application/json; charset=utf-8",
-        data: JSON.stringify({ PedidoDetalle: PedidoDetalle }),
-    });
 });
 
 
@@ -294,7 +280,6 @@ function EditPedidoDetalleM(pedd_Id) {
 
 
 
-var contador = 0;
 $('#AñadirPedidoDetalle').click(function () {
     var prod_Codigo = $('#prod_Codigo').val();
     var CodigoBarra = $('#tbProducto_prod_CodigoBarras').val();
