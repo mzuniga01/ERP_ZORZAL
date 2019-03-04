@@ -41,7 +41,7 @@
                         <div class="form-horizontal">
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             @* --------Mnesaje ------- *@
-                            <div class="alert alert-success text-center text-uppercase" id="alerta" style="display:none;">...No hay ninguna apertura realizada por favor aperture caja...</div>
+                            <div class="alert alert-danger  text-center text-uppercase" id="alerta" style="display:none;">...No hay ninguna apertura realizada por favor aperture caja...</div>
                             @* ----------------------- *@
                             <div class="form-group">
                                 @Html.LabelFor(model => sucursal.suc_Descripcion, new { @class = "control-label col-md-2" })
@@ -62,9 +62,9 @@
                                     @Html.EditorFor(model => model.mocja_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     @Html.ValidationMessageFor(model => model.mocja_Id, "", new { style = "Color:red" })
                                 </div>
-                                @Html.LabelFor(model => model.tbMovimientoCaja.tbCaja.tbSucursal.suc_Descripcion, "Moneda", new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-
+                                @*@Html.LabelFor(model => model.tbMovimientoCaja.tbCaja.tbSucursal.suc_Descripcion, "Moneda", new { @class = "control-label col-md-2" })*@
+                                <label class="control-label col-md-2" id="moneda">Moneda</label>
+                                 <div class="col-md-4">
                                     <select id="mnda_Id" name="mnda_Id" class="form-control select2 select2-hidden-accessible"
                                             style="width: 100%;" tabindex="-1" aria-hidden="true">
                                         <option value="0">Seleccione la Moneda</option>
@@ -79,12 +79,14 @@
                                     <input id="total" class="form-control" readonly />
                                 </div>
                             </div>
-
-                            <div class="form-group">
-                                <div class="col-md-12">
-                                    @Html.Partial("_ListaDenominaciones", (List<tbDenominacion>)ViewBag.Denominacion)
+                            <div class="ibox-content">
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        @Html.Partial("_ListaDenominaciones", (List<tbDenominacion>)ViewBag.Denominacion)
+                                    </div>
                                 </div>
                             </div>
+
                             <div class="form-group">
                                 <div class="col-md-offset-5 col-md-10">
                                     <input type="submit" value="Guardar" id="guardar" class="btn btn-primary" />
@@ -104,6 +106,12 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+<script>
+        //Ateriscos
+    $('#moneda').append('<span style="color:red"> *</span>');
+
+        //____________________
+</script>
     <script>
         $('#mnda_Id').click(function () {
             valido = document.getElementById('mone');
