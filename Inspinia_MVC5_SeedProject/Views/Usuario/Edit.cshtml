@@ -5,6 +5,24 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    .validation-error {
+        color: red;
+        font-size: small;
+    }
+
+    .validation-summary-errors {
+        color: red;
+        font-size: small;
+    }
+
+    .required:after {
+        content: "*";
+        font-weight: bold;
+        color: red;
+    }
+</style>
+
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Usuario</h2>
@@ -48,7 +66,7 @@
                                 </div>
 
 
-                                @Html.LabelFor(model => model.usu_Correo, new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.usu_Correo, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
                                     @Html.TextBoxFor(model => model.usu_Correo, new { @class = "form-control", maxlength = "150", @autocomplete = "off", @onKeyPress = "return Caracteres_Email(event)", @onkeyup = "this.value=CorreoElectronico(this.value)" })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.usu_Correo)</p>
@@ -56,13 +74,13 @@
                             </div>
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.usu_Nombres, new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.usu_Nombres, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
                                     @Html.TextBoxFor(model => model.usu_Nombres, new { @class = "form-control", maxlength = "150", @onKeyPress = "return soloLetras(event)" })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.usu_Nombres)</p>
 
                                 </div>
-                                @Html.LabelFor(model => model.usu_Apellidos, new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.usu_Apellidos, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
                                     @Html.TextBoxFor(model => model.usu_Apellidos, new { @class = "form-control", maxlength = "150", @onKeyPress = "return soloLetras(event)" })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.usu_Apellidos)</p>
@@ -76,7 +94,7 @@
                                     @Html.EditorFor(model => model.usu_EsAdministrador, new { htmlAttributes = new { @class = "checkbox-inline" } })
                                     @Html.ValidationMessageFor(model => model.usu_EsAdministrador)
                                 </div>
-                                @Html.LabelFor(model => model.suc_Id, new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.suc_Id, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
                                     @Html.DropDownList("suc_Id", (IEnumerable<SelectListItem>)ViewBag.Sucursal, new { @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.suc_Id)
@@ -108,7 +126,7 @@
                                 </div>
                             }
                             <div class="form-group">
-                                @Html.LabelFor(model => model.usu_Password, new { @class = "control-label col-md-2 invisible" })
+                                @Html.LabelFor(model => model.usu_Password, new { @class = "control-label col-md-2 invisible , required" })
                                 <div class="col-md-10">
                                     @Html.HiddenFor(model => model.usu_Password, new { @value = "password" })
                                     @*<input class="text-box single-line invisible" data-val="true" data-val-required="El campo Usuario es requerido" id="usu_Password" name="usu_Password" type="text" value="">*@
