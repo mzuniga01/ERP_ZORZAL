@@ -33,12 +33,12 @@
 <div class="wrapper wrapper-content">
     <div class="row">
         <div class="col-lg-12">
+            <div class="alert alert-danger text-center text-uppercase" id="alertaCaja" style="display:none;">...Por favor realizar una apertura de caja...</div>
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
                     <h5>Registrar Factura</h5>
                 </div>
                 <div class="ibox-content">
-                    <div class="alert alert-danger text-center text-uppercase" id="alertaCaja" style="display:none;">...Por favor realizar una apertura de caja...</div>
                     @using (Html.BeginForm("Create", "Factura", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
@@ -50,14 +50,14 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.suc_Id, new { @class = "control-label required col-md-2" })
                                 <div class="col-md-4">
-                                    <input class = "form-control" readonly value="@ViewBag.suc_Descripcion" />
+                                    <input class="form-control" readonly value="@ViewBag.suc_Descripcion" />
                                     <input class="form-control" readonly value="@ViewBag.suc_Id" id="suc_Id" name="suc_Id" type="hidden" />
                                     <span class="validation-error">  @Html.ValidationMessageFor(model => model.suc_Id)</span>
                                 </div>
                                 @Html.LabelFor(model => model.cja_Id, new { @class = "control-label required col-md-2" })
                                 <div class="col-md-4">
                                     <input class="form-control" id="cja_Descripcion" readonly />
-                                    @Html.EditorFor(model => model.cja_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @type="hidden" } })
+                                    @Html.EditorFor(model => model.cja_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @type = "hidden" } })
                                     <span class="validation-error">@Html.ValidationMessageFor(model => model.cja_Id)</span>
                                 </div>
                             </div>
@@ -82,7 +82,7 @@
                                 <label class="control-label col-md-2">Consumidor Final</label>
                                 <div class="col-md-4">
                                     <input id="consumidorFinal" type="checkbox" class="check-box" data-backdrop="static" data-keyboard="false" />
-                               </div>
+                                </div>
                             </div>
 
                             <div id="DatosCliente" name="DatosCliente" class="form-group">
@@ -125,7 +125,7 @@
                                 <div class="form-horizontal" name="Cred1" id="Cred1">
                                     @Html.LabelFor(model => model.fact_DiasCredito, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.EditorFor(model => model.fact_DiasCredito, new { htmlAttributes = new {onKeyPress = "return soloNumeros(event)", onKeyUp = "pierdeFoco(this)", @autocomplete = "off" } })
+                                        @Html.EditorFor(model => model.fact_DiasCredito, new { htmlAttributes = new { onKeyPress = "return soloNumeros(event)", onKeyUp = "pierdeFoco(this)", @autocomplete = "off" } })
                                         <span id="DiasError" class="validation-error">@Html.ValidationMessageFor(model => model.fact_DiasCredito)</span>
                                     </div>
                                 </div>
@@ -169,7 +169,7 @@
 
                             <div class="form-group">
                                 <div class="col-md-4">
-                                    <input id="ped_Id" name="ped_Id" type="hidden" class="form-control"/>
+                                    <input id="ped_Id" name="ped_Id" type="hidden" class="form-control" />
                                     <input id="fact_Id" name="fact_Id" type="hidden" class="form-control" value="@ViewBag.fact_Id" />
                                     <input id="usu_Id" name="usu_Id" type="hidden" class="form-control" value="@ViewBag.usu_Id" />
                                 </div>
@@ -227,7 +227,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-4">Usuario</label>
                                     <div class="col-md-6">
-                                        <input id="Username" type="text" name="Username" class="form-control" autocomplete = "off", onkeypress = "return correo(event)">
+                                        <input id="Username" type="text" name="Username" class="form-control" autocomplete="off" , onkeypress="return correo(event)">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -239,7 +239,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-4">Porcentaje de Descuento</label>
                                     <div class="col-md-6">
-                                        <input id="PorcentajeDescuento" type="text" class="form-control"  onKeyPress = "return soloNumeros(event)", onKeyUp = "pierdeFoco(this)" autocomplete = "off" />
+                                        <input id="PorcentajeDescuento" type="text" class="form-control" onKeyPress="return soloNumeros(event)" , onKeyUp="pierdeFoco(this)" autocomplete="off" />
                                     </div>
                                 </div>
                                 <div><p id="mensajerror" style="color:red"></p></div>
@@ -281,7 +281,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.fact_NombresTE, new { @class = "control-label col-md-3" })
                                     <div class="col-md-7">
-                                        @Html.EditorFor(model => model.fact_NombresTE,new { htmlAttributes = new { @autocomplete = "off", @onkeyup = "format(this)", @style = "text-transform:capitalize;", @onkeypress = "return soloLetras(event)" } }) 
+                                        @Html.EditorFor(model => model.fact_NombresTE, new { htmlAttributes = new { @autocomplete = "off", @onkeyup = "format(this)", @style = "text-transform:capitalize;", @onkeypress = "return soloLetras(event)" } })
                                         <div id="validationNombreTECreate">
                                             <span class="validation-error">@Html.ValidationMessageFor(model => model.fact_NombresTE)</span>
                                         </div>
@@ -322,7 +322,7 @@
                 </div>
                 <div class="modal-body" id="frmConsumidor">
                     <div class="ibox-content">
-                         @Html.Partial("_CreateConsumidorFinal", new DatosConsumidorFinal())
+                        @Html.Partial("_CreateConsumidorFinal", new DatosConsumidorFinal())
                     </div>
                 </div>
             </div>
@@ -331,54 +331,51 @@
 </div>
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
-<script src="~/Scripts/app/FacturaDetalle.js"></script>
-<script src="~/Scripts/app/ProductoFactura.js"></script>
+<script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
 <script src="~/Scripts/app/Datepicker.js"></script>
-<script src="~/Scripts/app/Credito.js"></script>
-<script src="~/Scripts/app/ClienteFactura.js"></script>
 <script src="~/Scripts/app/Factura.js"></script>
-<script src="~/Scripts/app/Cantidad.js"></script>
-<script src="~/Scripts/app/AutorizarDescuento.js"></script>
-<script src="~/Scripts/app/CalculoFactura.js"></script>
-<script src="~/Scripts/app/GetNumeroFact.js"></script>
+<script src="~/Scripts/app/Credito.js"></script>
+<script src="~/Scripts/app/FacturaDetalle.js"></script>
 <script src="~/Scripts/app/ValidarPedido.js"></script>
 <script src="~/Scripts/app/FacturaPedido.js"></script>
 <script src="~/Scripts/app/CaracteresEspeciales.js"></script>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    <script src="~/Scripts/app/Empleados.js"></script>
     <script>
+        //Buscar Empleados
+        $("#fact_Vendedor").autocomplete({
+            source: "/Factura/GetEmpleados",
+            minLength: 3
+        });
         function validartel(e) {
             tecla = (document.all) ? e.keyCode : e.which;
             tecla = String.fromCharCode(tecla)
             return /^[ 0-9\s]*$/i.test(tecla);
         }
+        $('#guardar').click(function () {
+            var Identificacion = $('#cliente_Identificacionxx').val();
+            var diascredito = $('#fact_DiasCredito').val();
 
 
-    $('#guardar').click(function () {
-        var Identificacion = $('#cliente_Identificacionxx').val();
-        var diascredito = $('#fact_DiasCredito').val();
-
-
-        console.log(Identificacion)
-        if (Identificacion == "") {
-            valido = document.getElementById('err_cliente');
-            valido.innerText = "Seleccione un cliente";
-            return false;
-        }
-        else if ($('#fact_AlCredito').is(':checked') && diascredito <= 0) {            
-            valido = document.getElementById('DiasError');
-            valido.innerText = "Los dias de credito no deben de ser menores o iguales a 0.";            
-            return false;
-        }
-        else if ($('#tblDetalleFactura >tbody >tr').length == 0) {           
-            $('#alerta').show();
-           return false;
-        }       
-        else {
-            return true;
-        }
-    });
+            console.log(Identificacion)
+            if (Identificacion == "") {
+                valido = document.getElementById('err_cliente');
+                valido.innerText = "Seleccione un cliente";
+                return false;
+            }
+            else if ($('#fact_AlCredito').is(':checked') && diascredito <= 0) {
+                valido = document.getElementById('DiasError');
+                valido.innerText = "Los dias de credito no deben de ser menores o iguales a 0.";
+                return false;
+            }
+            else if ($('#tblDetalleFactura >tbody >tr').length == 0) {
+                $('#alerta').show();
+                return false;
+            }
+            else {
+                return true;
+            }
+        });
     </script>
 
 }
@@ -410,9 +407,9 @@
         document.getElementById("fact_AutorizarDescuento").checked = false;
     }
 
+    $("#fact_IdentidadTE")[0].maxLength = 13;
+
 </script>
-
-
 
 <script>
 
@@ -438,395 +435,126 @@
         if (e.which == 13) {
             if (IDInput == 'prod_CodigoBarras') {
                 ///
-                $(function () {
-                    var IDSucursal = $('#suc_Id').val();
-                    var CodBarra = $('#prod_CodigoBarras').val();
-                    var IDCliente = $('#clte_Id').val();
-                    $.ajax({
-                        type: 'POST',
-                        url: '/Factura/BuscarCodigoBarras',
-                        data: JSON.stringify({ IDSucursal: IDSucursal, CodBarra: CodBarra, IDCliente: IDCliente }),
-                        contentType: 'application/json;',
-                        dataType: 'json',
-                    }).done(function (data) {
-                        if (data.length > 0) {
-                            $.each(data, function (key, val) {
-                                if (val.EXISTE) {
-                                    console.log('each')
-                                    data_producto = val.CODIGOPRODUCTO;
-                                    data_descripcion = val.DESCRIPCIONPRODUCTO;
-                                    data_impuesto = val.IMPUESTOPRODUCTO;
-                                    data_precio = val.PRECIOUNITARIO;
-                                    $('#prod_Codigo').val(data_producto);
-                                    $('#tbProducto_prod_Descripcion').val(data_descripcion);
-                                    $('#factd_Impuesto').val(data_impuesto);
-                                    $('#factd_PrecioUnitario').val(data_precio);
-                                    $('#factd_Cantidad').val(1);
-                                    $.ajax({
-                                        url: "/Factura/IncrementarProducto",
-                                        method: "POST",
-                                        dataType: 'json',
-                                        contentType: "application/json; charset=utf-8",
-                                        data: JSON.stringify({ data_producto: data_producto }),
-                                    })
-                                    .done(function (datos) {
-                                        console.log(datos)
-                                        //if (datos.length > 0) {
-                                            if (datos== data_producto) {
-                                                //doSearch(data_producto)
-                                                jsBuscar(data_producto)
-                                                //buscar()
-                                            }
-                                            else {
-                                                var Cantidad = 1,
-                                                        Precio = $("#factd_PrecioUnitario").val(),
-                                                        Impuesto = $("#factd_Impuesto").val(),
-                                                    result = "";
-                                                result1 = "";
-                                                if (Cantidad && Precio > 0) {
-                                                    result += Cantidad * Precio;
-                                                }
+                var CodBarra = $('#prod_CodigoBarras').val();
 
-                                                $("#SubtotalProducto").val(result);
-                                                Subtotal = $("#SubtotalProducto").val(),
-                                                PorcentajeImpuesto = ((parseFloat(Impuesto) / 100) * Subtotal);
-                                                result1 += PorcentajeImpuesto;
-                                                console.log(result1)
-                                                $("#Impuesto").val(result1);
-                                                var Descuento = $("#factd_PorcentajeDescuento").val();
-                                                var Subtotal = $("#SubtotalProducto").val();
-                                                var impuesto = $("#factd_Impuesto").val();
-                                                if (Descuento == '') {
-                                                    Descuento = 0
-                                                }
-                                                var PorcentajeDescuento = (parseFloat(Descuento) / 100);
-                                                var PorcentajeImpuesto = (parseFloat(impuesto) / 100);
-                                                var DescuentoTotal = (parseFloat(Subtotal) * parseFloat(PorcentajeDescuento));
-                                                var impuestotal = (Subtotal * PorcentajeImpuesto);
-                                                result = "";
+                SeleccionProducto(CodBarra)
 
-                                                if (PorcentajeDescuento && Cantidad == '') {
-                                                    result += (parseFloat(Subtotal) + parseFloat(impuestotal));
-                                                }
-                                                else if (DescuentoTotal && Cantidad == 0) {
-                                                    result += (parseFloat(Subtotal) + parseFloat(impuestotal));
-                                                }
-                                                else {
-                                                    result += (parseFloat(Subtotal) - parseFloat(DescuentoTotal) + parseFloat(impuestotal));
-                                                }
-                                                if (Descuento == '') {
-                                                    $("#factd_PorcentajeDescuento").val(0);
-                                                }
-                                                if (Cantidad == '') {
-                                                    $("#factd_MontoDescuento").val('');
-                                                }
-                                                else {
-                                                    $("#factd_MontoDescuento").val(DescuentoTotal);
-                                                }
-                                                if (Descuento && Cantidad == '') {
-                                                    $("#TotalProducto").val('');
-                                                }
-                                                else {
-                                                    $("#TotalProducto").val(result);
-                                                    var CodigoProducto = $('#prod_Codigo').val();
-                                                    var PorcentajeDescuento = $('#factd_PorcentajeDescuento').val();
-                                                    var MontoDescuento = $('#factd_MontoDescuento').val();
-                                                    var DescripcionProducto = $('#tbProducto_prod_Descripcion').val();
-                                                    var CantidadProducto = $('#factd_Cantidad').val();
-                                                    var Subtotal = $('#SubtotalProducto').val();
-                                                    var PrecioUnitario = $('#factd_PrecioUnitario').val();
-                                                    var Impuesto = $('#factd_Impuesto').val();
-                                                    var Total = $('#TotalProducto').val();
-                                                    //Prueba
-                                                    contador = contador + 1;
-                                                    copiar = "<tr data-id=" + contador + ">";
-                                                    copiar += "<td id = 'prod_CodigoCreate'>" + data_producto + "</td>";
-                                                    copiar += "<td id = 'tbProducto_prod_DescripcionCreate'>" + data_descripcion + "</td>";
-                                                    copiar += "<td id = 'factd_CantidadCreate' align='right'>" + 1 + "</td>";
-                                                    copiar += "<td id = 'Precio_UnitarioCreate' align='right'>" + data_precio + "</td>";
-                                                    copiar += "<td id = 'ImpuestoCreate' align='right'>" + data_impuesto + "</td>";
-                                                    copiar += "<td id = 'factd_MontoDescuentoCreate' align='right'>" + DescuentoTotal + "</td>";
-                                                    copiar += "<td id = 'TotalProductoCreate' align='right'>" + result + "</td>";
-                                                    copiar += "<td>" + '<button id="removeFacturaDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
-                                                    copiar += "</tr>";
-                                                    $('#tblDetalleFactura').append(copiar);
-                                                    //Descuento
-                                                    var Descuento = $('#factd_MontoDescuento').val();
-                                                    var TotalDescuento = parseFloat(document.getElementById("TotalDescuento").innerHTML);
-
-                                                    if (document.getElementById("TotalDescuento").innerHTML == '') {
-                                                        totalProducto = $('#factd_MontoDescuento').val();
-                                                        document.getElementById("TotalDescuento").innerHTML = parseFloat(totalProducto);
-                                                    }
-                                                    else {
-                                                        document.getElementById("TotalDescuento").innerHTML = parseFloat(TotalDescuento) + parseFloat(Descuento);
-                                                    }
-
-                                                    //Subtotal
-                                                    var totalProducto = $('#SubtotalProducto').val();
-                                                    var subtotal = parseFloat(document.getElementById("Subtotal").innerHTML);
-
-                                                    if (document.getElementById("Subtotal").innerHTML == '') {
-                                                        totalProducto = $('#SubtotalProducto').val();
-                                                        document.getElementById("Subtotal").innerHTML = parseFloat(totalProducto);
-                                                    }
-                                                    else {
-                                                        document.getElementById("Subtotal").innerHTML = parseFloat(subtotal) + parseFloat(totalProducto);
-                                                    }
-                                                    ///Impuesto
-                                                    var Cantidad = CantidadProducto
-                                                    var Precio = PrecioUnitario
-                                                    var impuesto = parseFloat(document.getElementById("factd_Impuesto").value.replace(',', '.'));
-                                                    var impuestotal = parseFloat(document.getElementById("isv").innerHTML);
-                                                    var porcentaje = parseFloat(impuesto / 100);
-                                                    var impuestos = (Cantidad * Precio) * porcentaje;
-
-                                                    if (document.getElementById("isv").innerHTML == '') {
-                                                        impuesto = document.getElementById("factd_Impuesto").value;
-                                                        document.getElementById("isv").innerHTML = parseFloat(impuestos);
-                                                    }
-                                                    else {
-                                                        document.getElementById("isv").innerHTML = parseFloat(impuestotal) + parseFloat(impuestos);
-                                                    }
-
-                                                    //Grantotal
-                                                    if (document.getElementById("total").innerHTML == '') {
-                                                        var TotalEncabezado = document.getElementById("total").innerHTML = parseFloat(totalProducto) + parseFloat(impuestos) - parseFloat(Descuento);
-                                                        $("#TotalProductoEncabezado").val(TotalEncabezado);
-                                                    }
-                                                    else {
-                                                        var TotalEncabezado = document.getElementById("total").innerHTML = parseFloat(subtotal) + parseFloat(totalProducto) + parseFloat(impuestotal) + parseFloat(impuestos) - parseFloat(TotalDescuento) - parseFloat(Descuento);
-                                                        $("#TotalProductoEncabezado").val(TotalEncabezado);
-                                                    }
+                return false;
+            }
+            else
+                return false;
+        }
+    });
 
 
-                                                    var FacturaDetalle = GetFacturaDetalle();
-                                                    $.ajax({
-                                                        url: "/Factura/SaveFacturaDetalle",
-                                                        method: "POST",
-                                                        dataType: 'json',
-                                                        contentType: "application/json; charset=utf-8",
-                                                        data: JSON.stringify({ FacturaDetalleC: FacturaDetalle }),
-                                                    })
-                                                    .done(function (data) {
-                                                        $('#ErrorCodigoProductoCreate').text('');
-                                                        $('#ErrorMontoDescuentoCreate').text('');
-                                                        $('#ErrorCantidadCreate').text('');
-                                                        $('#ErrorImpuestoCreate').text('');
-                                                        ////Input
-                                                        //$('#prod_Codigo').val('');
-                                                        //$('#factd_MontoDescuento').val('');
-                                                        //$('#Impuesto').val('');
-                                                        //$('#tbProducto_prod_Descripcion').val('');
-                                                        //$('#factd_Cantidad').val('');
-                                                        //$('#SubtotalProducto').val('');
-                                                        //$('#factd_PrecioUnitario').val('');
-                                                        //$('#factd_Impuesto').val('');
-                                                        //$('#TotalProducto').val('');
-                                                    });
-                                                    //Fin Prueba
+    function SeleccionProducto(CodBarra) {
+        var IDSucursal = $('#suc_Id').val();
+        var IDCliente = $('#clte_Id').val();
+        $.ajax({
+            type: 'POST',
+            url: '/Factura/BuscarCodigoBarras',
+            data: JSON.stringify({ IDSucursal: IDSucursal, CodBarra: CodBarra, IDCliente: IDCliente }),
+            contentType: 'application/json;',
+            dataType: 'json',
+        }).done(function (data) {   
+            if (data.length > 0) {
+                $.each(data, function (key, val) {
+                    if (val.EXISTE) {
+                        console.log('each')
+                        data_producto = val.CODIGOPRODUCTO;
+                        data_descripcion = val.DESCRIPCIONPRODUCTO;
+                        data_impuesto = val.IMPUESTOPRODUCTO;
+                        data_precio = val.PRECIOUNITARIO;
+                        $('#prod_Codigo').val(data_producto);
+                        $('#tbProducto_prod_Descripcion').val(data_descripcion);
+                        $('#factd_Impuesto').val(data_impuesto);
+                        $('#factd_PrecioUnitario').val(data_precio);
+                        $('#factd_Cantidad').val(1);
+                        $.ajax({
+                            url: "/Factura/IncrementarProducto",
+                            method: "POST",
+                            dataType: 'json',
+                            contentType: "application/json; charset=utf-8",
+                            data: JSON.stringify({ data_producto: data_producto }),
+                        })
+                        .done(function (datos) {
+                            console.log(datos)
+                            //if (datos.length > 0) {
+                            if (datos == data_producto) {
+                                //doSearch(data_producto)
+                                jsBuscar(data_producto)
+                                //buscar()
+                            }
+                            else {
+                                var Cantidad = 1,
+                                        Precio = $("#factd_PrecioUnitario").val(),
+                                        Impuesto = $("#factd_Impuesto").val(),
+                                    result = "";
+                                result1 = "";
+                                if (Cantidad && Precio > 0) {
+                                    result += Cantidad * Precio;
+                                }
 
+                                $("#SubtotalProducto").val(result);
+                                Subtotal = $("#SubtotalProducto").val(),
+                                PorcentajeImpuesto = ((parseFloat(Impuesto) / 100) * Subtotal);
+                                result1 += PorcentajeImpuesto;
+                                console.log(result1)
+                                $("#Impuesto").val(result1);
+                                var Descuento = $("#factd_PorcentajeDescuento").val();
+                                var Subtotal = $("#SubtotalProducto").val();
+                                var impuesto = $("#factd_Impuesto").val();
+                                if (Descuento == '') {
+                                    Descuento = 0
+                                }
+                                var PorcentajeDescuento = (parseFloat(Descuento) / 100);
+                                var PorcentajeImpuesto = (parseFloat(impuesto) / 100);
+                                var DescuentoTotal = (parseFloat(Subtotal) * parseFloat(PorcentajeDescuento));
+                                var impuestotal = (Subtotal * PorcentajeImpuesto);
+                                result = "";
 
-
-                                                }
-
-                                                if ($("#factd_Cantidad").val(), $("#factd_PrecioUnitario").val() == '') {
-                                                    $("#factd_MontoDescuento").val('');
-                                                    $("#TotalProducto").val('');
-                                                }
-                                            }
-                                        //}
-                                        //else {
-
-                                        //}
-
-
-
-
-
-
-                                    })
-
-
-                                    function doSearch(data_producto) {
-                                        var tableReg = document.getElementById('tblDetalleFactura');
-                                        var searchText = data_producto
-                                        var cellsOfRow = "";
-                                        var found = false;
-                                        var compareWith = "";
-
-                                        // Recorremos todas las filas con contenido de la tabla
-                                        for (var i = 1; i < tableReg.rows.length; i++) {
-                                            cellsOfRow = tableReg.rows[i].getElementsByTagName('td');
-                                            found = false;
-                                            // Recorremos todas las celdas
-                                            for (var j = 0; j < cellsOfRow.length && !found; j++) {
-                                                compareWith = cellsOfRow[j].innerHTML.toLowerCase();
-                                                // Buscamos el texto en el contenido de la celda
-                                                if (searchText.length == 0 || (compareWith.indexOf(searchText) > -1)) {
-                                                    //found = true;
-                                                    var Cantidad = parseInt($('#factd_Cantidad').val());
-
-                                                    var Cantidad1 = parseInt(document.getElementById("factd_CantidadCreate").innerHTML)
-
-                                                    var Total = parseInt(document.getElementById("TotalProductoCreate").innerHTML);
-                                                    var PrecioU = parseInt(document.getElementById("Precio_UnitarioCreate").innerHTML);
-                                                    var Porcentaje = parseInt(document.getElementById("ImpuestoCreate").innerHTML) / 100;
-                                                    var dato = Cantidad + Cantidad1
-                                                    var dato1 = ((Cantidad * PrecioU) + Total) + ((Cantidad * PrecioU) * Porcentaje)
-                                                    $("#tblDetalleFactura").children().children()[i].children[2].innerHTML = dato;
-                                                    $("#tblDetalleFactura").children().children()[i].children[6].innerHTML = dato1;
-                                                    Cantidad1 = 0;
-
-                                                }
-                                            }
-                                        }
-                                    }
-
-                                    //función que realiza la busqueda
-                                    function jsBuscar(data_producto) {
-
-                                        //obtenemos el valor insertado a buscar
-                                        buscar = data_producto
-
-                                        //utilizamos esta variable solo de ayuda y mostrar que se encontro
-                                        encontradoResultado = false;
-
-                                        //realizamos el recorrido solo por las celdas que contienen el código, que es la primera
-                                        $("#tblDetalleFactura tr").find('td:eq(0)').each(function () {
-
-                                            //obtenemos el codigo de la celda
-                                            codigo = $(this).html();
-
-                                            //comparamos para ver si el código es igual a la busqueda
-                                            if (codigo == buscar) {
-
-                                                //aqui ya que tenemos el td que contiene el codigo utilizaremos parent para obtener el tr.
-                                                trDelResultado = $(this).parent();
-
-                                                //ya que tenemos el tr seleccionado ahora podemos navegar a las otras celdas con find
-                                                nombre = trDelResultado.find("td:eq(1)").html();
-                                                edad = trDelResultado.find("td:eq(2)").html();
-
-                                                //mostramos el resultado en el div
-
-                                                //alert("Lo encontre")
-
-                                                encontradoResultado = true;
-                                                var Cantidad = parseInt($('#factd_Cantidad').val());
-
-                                                var Cantidad1 = parseInt(document.getElementById("factd_CantidadCreate").innerHTML)
-
-                                                //var Cantidad1 = parseInt($(this).find('td:eq(2)').html())
-                                                console.log(Cantidad1)
-
-                                                //Id: $(this).find('td:eq(1) input').val(),
-
-                                                //Address: $(this).find('td:eq(3) input').val(),
-                                                //Contact: $(this).find('td:eq(4) input').val()
-
-
-
-                                                var Total = parseInt(document.getElementById("TotalProductoCreate").innerHTML);
-                                                var PrecioU = parseInt(document.getElementById("Precio_UnitarioCreate").innerHTML);
-                                                var Porcentaje = parseInt(document.getElementById("ImpuestoCreate").innerHTML) / 100;
-                                                var dato = Cantidad + Cantidad1
-                                                document.getElementById("TotalProductoCreate").innerHTML = ((Cantidad * PrecioU) + Total) + ((Cantidad * PrecioU) * Porcentaje)
-                                                trDelResultado.find("td:eq(2)").html(dato);
-                                                //document.getElementById("factd_CantidadCreate").innerHTML = Cantidad + Cantidad1
-                                                //document.getElementById("TotalProductoCreate").innerHTML = ((Cantidad * PrecioU) + Total) + ((Cantidad * PrecioU) * Porcentaje)
-                                                //$("#tblDetalleFactura").children().children()[trDelResultado].children[2].innerHTML = dato;
-                                                //$("#tblDetalleFactura").children().children()[trDelResultado].children[6].innerHTML = dato1;
-
-                                                Cantidad = 0;
-                                                Cantidad1 = 0;
-                                                dato = 0;
-                                                dato1 = 0;
-                                            }
-
-                                        })
-
-                                        //si no se encontro resultado mostramos que no existe.
-                                        if (!encontradoResultado)
-                                            alert("No lo encontre")
-                                    }
-
-                                    function buscar() {
-                                        $('table.tblDetalleFactura tr').each(function () {
-
-                                            Id = $(this).find('td:eq(1) input').val(),
-                                            Name = $(this).find('td:eq(2) input').val(),
-                                            Address = $(this).find('td:eq(3) input').val(),
-                                            Contact = $(this).find('td:eq(4) input').val()
-
-                                            console.log(Id)
-                                            console.log(Name)
-                                            console.log(Address)
-                                            console.log(Contact)
-
-                                        });
-                                    }
-
-
-
+                                if (PorcentajeDescuento && Cantidad == '') {
+                                    result += (parseFloat(Subtotal) + parseFloat(impuestotal));
+                                }
+                                else if (DescuentoTotal && Cantidad == 0) {
+                                    result += (parseFloat(Subtotal) + parseFloat(impuestotal));
                                 }
                                 else {
-                                    alert("Este producto no esta en existencia.")
-                                    $("#prod_CodigoBarras").val('')
+                                    result += (parseFloat(Subtotal) - parseFloat(DescuentoTotal) + parseFloat(impuestotal));
                                 }
-
-                            })
-
-                            $('#AgregarDetalleFactura').keypress(function () {
-                                console.log('boton');
-                                var CodigoProducto = $('#prod_Codigo').val();
-                                var PorcentajeDescuento = $('#factd_PorcentajeDescuento').val();
-                                var MontoDescuento = $('#factd_MontoDescuento').val();
-                                var DescripcionProducto = $('#tbProducto_prod_Descripcion').val();
-                                var CantidadProducto = $('#factd_Cantidad').val();
-                                var Subtotal = $('#SubtotalProducto').val();
-                                var PrecioUnitario = $('#factd_PrecioUnitario').val();
-                                var Impuesto = $('#factd_Impuesto').val();
-                                var Total = $('#TotalProducto').val();
-
-                                if (CodigoProducto == '') {
-                                    $('#ErrorCodigoProductoCreate').text('');
-                                    $('#ErrorMontoDescuentoCreate').text('');
-                                    $('#ErrorCantidadCreate').text('');
-                                    $('#ErrorImpuestoCreate').text('');
-                                    $('#validationCodigoProductoCreate').after('<ul id="ErrorCodigoProductoCreate" class="validation-summary-errors text-danger">Campo Código Producto requerido</ul>');
+                                if (Descuento == '') {
+                                    $("#factd_PorcentajeDescuento").val(0);
                                 }
-                                else if (MontoDescuento == '') {
-                                    $('#ErrorCodigoProductoCreate').text('');
-                                    $('#ErrorMontoDescuentoCreate').text('');
-                                    $('#ErrorCantidadCreate').text('');
-                                    $('#ErrorImpuestoCreate').text('');
-                                    $('#validationMontoDescuentoCreate').after('<ul id="ErrorMontoDescuentoCreate" class="validation-summary-errors text-danger">Campo Monto Descuento requerido</ul>');
-                                }
-                                else if (CantidadProducto == '') {
-                                    $('#ErrorCodigoProductoCreate').text('');
-                                    $('#ErrorMontoDescuentoCreate').text('');
-                                    $('#ErrorCantidadCreate').text('');
-                                    $('#ErrorImpuestoCreate').text('');
-                                    $('#validationCantidadProductoCreate').after('<ul id="ErrorCantidadCreate" class="validation-summary-errors text-danger">Campo Cantidad requerido</ul>');
-                                }
-                                else if (Impuesto == '') {
-                                    $('#ErrorCodigoProductoCreate').text('');
-                                    $('#ErrorMontoDescuentoCreate').text('');
-                                    $('#ErrorCantidadCreate').text('');
-                                    $('#ErrorImpuestoCreate').text('');
-                                    $('#validationImpuestoProductoCreate').after('<ul id="ErrorImpuestoCreate" class="validation-summary-errors text-danger">Campo Impuesto requerido</ul>');
+                                if (Cantidad == '') {
+                                    $("#factd_MontoDescuento").val('');
                                 }
                                 else {
+                                    $("#factd_MontoDescuento").val(DescuentoTotal);
+                                }
+                                if (Descuento && Cantidad == '') {
+                                    $("#TotalProducto").val('');
+                                }
+                                else {
+                                    $("#TotalProducto").val(result);
+                                    var CodigoProducto = $('#prod_Codigo').val();
+                                    var PorcentajeDescuento = $('#factd_PorcentajeDescuento').val();
+                                    var MontoDescuento = $('#factd_MontoDescuento').val();
+                                    var DescripcionProducto = $('#tbProducto_prod_Descripcion').val();
+                                    var CantidadProducto = $('#factd_Cantidad').val();
+                                    var Subtotal = $('#SubtotalProducto').val();
+                                    var PrecioUnitario = $('#factd_PrecioUnitario').val();
+                                    var Impuesto = $('#factd_Impuesto').val();
+                                    var Total = $('#TotalProducto').val();
+                                    //Prueba
                                     contador = contador + 1;
                                     copiar = "<tr data-id=" + contador + ">";
-                                    copiar += "<td id = 'prod_CodigoCreate'>" + CodigoProducto + "</td>";
-                                    copiar += "<td id = 'tbProducto_prod_DescripcionCreate'>" + DescripcionProducto + "</td>";
-                                    copiar += "<td id = 'factd_CantidadCreate' align='right'>" + CantidadProducto + "</td>";
-                                    copiar += "<td id = 'Precio_UnitarioCreate' align='right'>" + PrecioUnitario + "</td>";
-                                    copiar += "<td id = 'ImpuestoCreate' align='right'>" + Impuesto + "</td>";
-                                    copiar += "<td id = 'factd_MontoDescuentoCreate' align='right'>" + MontoDescuento + "</td>";
-                                    copiar += "<td id = 'TotalProductoCreate' align='right'>" + Total + "</td>";
+                                    copiar += "<td id = 'prod_CodigoCreate'>" + data_producto + "</td>";
+                                    copiar += "<td id = 'tbProducto_prod_DescripcionCreate'>" + data_descripcion + "</td>";
+                                    copiar += "<td id = 'factd_CantidadCreate' align='right'>" + 1 + "</td>";
+                                    copiar += "<td id = 'Precio_UnitarioCreate' align='right'>" + data_precio + "</td>";
+                                    copiar += "<td id = 'ImpuestoCreate' align='right'>" + data_impuesto + "</td>";
+                                    copiar += "<td id = 'factd_MontoDescuentoCreate' align='right'>" + DescuentoTotal + "</td>";
+                                    copiar += "<td id = 'TotalProductoCreate' align='right'>" + result + "</td>";
                                     copiar += "<td>" + '<button id="removeFacturaDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
                                     copiar += "</tr>";
                                     $('#tblDetalleFactura').append(copiar);
@@ -843,22 +571,23 @@
                                     }
 
                                     //Subtotal
-                                    var totalProducto = $('#TotalProducto').val();
+                                    var totalProducto = $('#SubtotalProducto').val();
                                     var subtotal = parseFloat(document.getElementById("Subtotal").innerHTML);
 
                                     if (document.getElementById("Subtotal").innerHTML == '') {
-                                        totalProducto = $('#TotalProducto').val();
+                                        totalProducto = $('#SubtotalProducto').val();
                                         document.getElementById("Subtotal").innerHTML = parseFloat(totalProducto);
                                     }
                                     else {
                                         document.getElementById("Subtotal").innerHTML = parseFloat(subtotal) + parseFloat(totalProducto);
                                     }
-                                    //Impuesto
-                                    var totalProducto = document.getElementById("TotalProducto").value;
+                                    ///Impuesto
+                                    var Cantidad = CantidadProducto
+                                    var Precio = PrecioUnitario
                                     var impuesto = parseFloat(document.getElementById("factd_Impuesto").value.replace(',', '.'));
                                     var impuestotal = parseFloat(document.getElementById("isv").innerHTML);
                                     var porcentaje = parseFloat(impuesto / 100);
-                                    var impuestos = (totalProducto * porcentaje);
+                                    var impuestos = (Cantidad * Precio) * porcentaje;
 
                                     if (document.getElementById("isv").innerHTML == '') {
                                         impuesto = document.getElementById("factd_Impuesto").value;
@@ -870,11 +599,11 @@
 
                                     //Grantotal
                                     if (document.getElementById("total").innerHTML == '') {
-                                        var TotalEncabezado = document.getElementById("total").innerHTML = parseFloat(totalProducto) + parseFloat(impuestos);
+                                        var TotalEncabezado = document.getElementById("total").innerHTML = parseFloat(totalProducto) + parseFloat(impuestos) - parseFloat(Descuento);
                                         $("#TotalProductoEncabezado").val(TotalEncabezado);
                                     }
                                     else {
-                                        var TotalEncabezado = document.getElementById("total").innerHTML = parseFloat(subtotal) + parseFloat(totalProducto) + parseFloat(impuestotal) + parseFloat(impuestos);
+                                        var TotalEncabezado = document.getElementById("total").innerHTML = parseFloat(subtotal) + parseFloat(totalProducto) + parseFloat(impuestotal) + parseFloat(impuestos) - parseFloat(TotalDescuento) - parseFloat(Descuento);
                                         $("#TotalProductoEncabezado").val(TotalEncabezado);
                                     }
 
@@ -892,46 +621,187 @@
                                         $('#ErrorMontoDescuentoCreate').text('');
                                         $('#ErrorCantidadCreate').text('');
                                         $('#ErrorImpuestoCreate').text('');
-                                        //Input
-                                        $('#prod_Codigo').val('');
-                                        $('#factd_MontoDescuento').val('');
-                                        $('#Impuesto').val('');
-                                        $('#tbProducto_prod_Descripcion').val('');
-                                        $('#factd_Cantidad').val('');
-                                        $('#SubtotalProducto').val('');
-                                        $('#factd_PrecioUnitario').val('');
-                                        $('#factd_Impuesto').val('');
-                                        $('#TotalProducto').val('');
+                                        ////Input
+                                        //$('#prod_Codigo').val('');
+                                        //$('#factd_MontoDescuento').val('');
+                                        //$('#Impuesto').val('');
+                                        //$('#tbProducto_prod_Descripcion').val('');
+                                        //$('#factd_Cantidad').val('');
+                                        //$('#SubtotalProducto').val('');
+                                        //$('#factd_PrecioUnitario').val('');
+                                        //$('#factd_Impuesto').val('');
+                                        //$('#TotalProducto').val('');
                                     });
-                                }
-                            });
-                            function GetFacturaDetalle() {
+                                    //Fin Prueba
 
-                                var FacturaDetalle = {
-                                    prod_Codigo: $('#prod_Codigo').val(),
-                                    factd_PorcentajeDescuento: $('#factd_PorcentajeDescuento').val(),
-                                    factd_MontoDescuento: $('#factd_MontoDescuento').val(),
-                                    tbProducto_prod_Descripcion: $('#tbProducto_prod_Descripcion').val(),
-                                    factd_Cantidad: $('#factd_Cantidad').val(),
-                                    SubtotalProducto: $('#SubtotalProducto').val(),
-                                    factd_PrecioUnitario: $('#factd_PrecioUnitario').val(),
-                                    factd_Impuesto: $('#factd_Impuesto').val(),
-                                    TotalProducto: $('#TotalProducto').val(),
-                                    factd_Id: contador
-                                };
-                                return FacturaDetalle
+
+
+                                }
+
+                                if ($("#factd_Cantidad").val(), $("#factd_PrecioUnitario").val() == '') {
+                                    $("#factd_MontoDescuento").val('');
+                                    $("#TotalProducto").val('');
+                                }
                             }
+
+                        })
+
+                    }
+                    else {
+                        alert("Este producto no esta en existencia.")
+                        $("#prod_CodigoBarras").val('')
+                    }
+
+                })
+
+                $('#AgregarDetalleFactura').keypress(function () {
+                    console.log('boton');
+                    var CodigoProducto = $('#prod_Codigo').val();
+                    var PorcentajeDescuento = $('#factd_PorcentajeDescuento').val();
+                    var MontoDescuento = $('#factd_MontoDescuento').val();
+                    var DescripcionProducto = $('#tbProducto_prod_Descripcion').val();
+                    var CantidadProducto = $('#factd_Cantidad').val();
+                    var Subtotal = $('#SubtotalProducto').val();
+                    var PrecioUnitario = $('#factd_PrecioUnitario').val();
+                    var Impuesto = $('#factd_Impuesto').val();
+                    var Total = $('#TotalProducto').val();
+
+                    if (CodigoProducto == '') {
+                        $('#ErrorCodigoProductoCreate').text('');
+                        $('#ErrorMontoDescuentoCreate').text('');
+                        $('#ErrorCantidadCreate').text('');
+                        $('#ErrorImpuestoCreate').text('');
+                        $('#validationCodigoProductoCreate').after('<ul id="ErrorCodigoProductoCreate" class="validation-summary-errors text-danger">Campo Código Producto requerido</ul>');
+                    }
+                    else if (MontoDescuento == '') {
+                        $('#ErrorCodigoProductoCreate').text('');
+                        $('#ErrorMontoDescuentoCreate').text('');
+                        $('#ErrorCantidadCreate').text('');
+                        $('#ErrorImpuestoCreate').text('');
+                        $('#validationMontoDescuentoCreate').after('<ul id="ErrorMontoDescuentoCreate" class="validation-summary-errors text-danger">Campo Monto Descuento requerido</ul>');
+                    }
+                    else if (CantidadProducto == '') {
+                        $('#ErrorCodigoProductoCreate').text('');
+                        $('#ErrorMontoDescuentoCreate').text('');
+                        $('#ErrorCantidadCreate').text('');
+                        $('#ErrorImpuestoCreate').text('');
+                        $('#validationCantidadProductoCreate').after('<ul id="ErrorCantidadCreate" class="validation-summary-errors text-danger">Campo Cantidad requerido</ul>');
+                    }
+                    else if (Impuesto == '') {
+                        $('#ErrorCodigoProductoCreate').text('');
+                        $('#ErrorMontoDescuentoCreate').text('');
+                        $('#ErrorCantidadCreate').text('');
+                        $('#ErrorImpuestoCreate').text('');
+                        $('#validationImpuestoProductoCreate').after('<ul id="ErrorImpuestoCreate" class="validation-summary-errors text-danger">Campo Impuesto requerido</ul>');
+                    }
+                    else {
+                        contador = contador + 1;
+                        copiar = "<tr data-id=" + contador + ">";
+                        copiar += "<td id = 'prod_CodigoCreate'>" + CodigoProducto + "</td>";
+                        copiar += "<td id = 'tbProducto_prod_DescripcionCreate'>" + DescripcionProducto + "</td>";
+                        copiar += "<td id = 'factd_CantidadCreate' align='right'>" + CantidadProducto + "</td>";
+                        copiar += "<td id = 'Precio_UnitarioCreate' align='right'>" + PrecioUnitario + "</td>";
+                        copiar += "<td id = 'ImpuestoCreate' align='right'>" + Impuesto + "</td>";
+                        copiar += "<td id = 'factd_MontoDescuentoCreate' align='right'>" + MontoDescuento + "</td>";
+                        copiar += "<td id = 'TotalProductoCreate' align='right'>" + Total + "</td>";
+                        copiar += "<td>" + '<button id="removeFacturaDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
+                        copiar += "</tr>";
+                        $('#tblDetalleFactura').append(copiar);
+                        //Descuento
+                        var Descuento = $('#factd_MontoDescuento').val();
+                        var TotalDescuento = parseFloat(document.getElementById("TotalDescuento").innerHTML);
+
+                        if (document.getElementById("TotalDescuento").innerHTML == '') {
+                            totalProducto = $('#factd_MontoDescuento').val();
+                            document.getElementById("TotalDescuento").innerHTML = parseFloat(totalProducto);
+                        }
+                        else {
+                            document.getElementById("TotalDescuento").innerHTML = parseFloat(TotalDescuento) + parseFloat(Descuento);
                         }
 
-                    });
+                        //Subtotal
+                        var totalProducto = $('#TotalProducto').val();
+                        var subtotal = parseFloat(document.getElementById("Subtotal").innerHTML);
 
-                    return false;
+                        if (document.getElementById("Subtotal").innerHTML == '') {
+                            totalProducto = $('#TotalProducto').val();
+                            document.getElementById("Subtotal").innerHTML = parseFloat(totalProducto);
+                        }
+                        else {
+                            document.getElementById("Subtotal").innerHTML = parseFloat(subtotal) + parseFloat(totalProducto);
+                        }
+                        //Impuesto
+                        var totalProducto = document.getElementById("TotalProducto").value;
+                        var impuesto = parseFloat(document.getElementById("factd_Impuesto").value.replace(',', '.'));
+                        var impuestotal = parseFloat(document.getElementById("isv").innerHTML);
+                        var porcentaje = parseFloat(impuesto / 100);
+                        var impuestos = (totalProducto * porcentaje);
+
+                        if (document.getElementById("isv").innerHTML == '') {
+                            impuesto = document.getElementById("factd_Impuesto").value;
+                            document.getElementById("isv").innerHTML = parseFloat(impuestos);
+                        }
+                        else {
+                            document.getElementById("isv").innerHTML = parseFloat(impuestotal) + parseFloat(impuestos);
+                        }
+
+                        //Grantotal
+                        if (document.getElementById("total").innerHTML == '') {
+                            var TotalEncabezado = document.getElementById("total").innerHTML = parseFloat(totalProducto) + parseFloat(impuestos);
+                            $("#TotalProductoEncabezado").val(TotalEncabezado);
+                        }
+                        else {
+                            var TotalEncabezado = document.getElementById("total").innerHTML = parseFloat(subtotal) + parseFloat(totalProducto) + parseFloat(impuestotal) + parseFloat(impuestos);
+                            $("#TotalProductoEncabezado").val(TotalEncabezado);
+                        }
+
+
+                        var FacturaDetalle = GetFacturaDetalle();
+                        $.ajax({
+                            url: "/Factura/SaveFacturaDetalle",
+                            method: "POST",
+                            dataType: 'json',
+                            contentType: "application/json; charset=utf-8",
+                            data: JSON.stringify({ FacturaDetalleC: FacturaDetalle }),
+                        })
+                        .done(function (data) {
+                            $('#ErrorCodigoProductoCreate').text('');
+                            $('#ErrorMontoDescuentoCreate').text('');
+                            $('#ErrorCantidadCreate').text('');
+                            $('#ErrorImpuestoCreate').text('');
+                            //Input
+                            $('#prod_Codigo').val('');
+                            $('#factd_MontoDescuento').val('');
+                            $('#Impuesto').val('');
+                            $('#tbProducto_prod_Descripcion').val('');
+                            $('#factd_Cantidad').val('');
+                            $('#SubtotalProducto').val('');
+                            $('#factd_PrecioUnitario').val('');
+                            $('#factd_Impuesto').val('');
+                            $('#TotalProducto').val('');
+                        });
+                    }
                 });
+                function GetFacturaDetalle() {
 
-                return false;
+                    var FacturaDetalle = {
+                        prod_Codigo: $('#prod_Codigo').val(),
+                        factd_PorcentajeDescuento: $('#factd_PorcentajeDescuento').val(),
+                        factd_MontoDescuento: $('#factd_MontoDescuento').val(),
+                        tbProducto_prod_Descripcion: $('#tbProducto_prod_Descripcion').val(),
+                        factd_Cantidad: $('#factd_Cantidad').val(),
+                        SubtotalProducto: $('#SubtotalProducto').val(),
+                        factd_PrecioUnitario: $('#factd_PrecioUnitario').val(),
+                        factd_Impuesto: $('#factd_Impuesto').val(),
+                        TotalProducto: $('#TotalProducto').val(),
+                        factd_Id: contador
+                    };
+                    return FacturaDetalle
+                }
             }
-            else
-                return false;
-        }
-    });    
+
+        });
+
+        return false;
+    }
 </script>

@@ -3044,5 +3044,17 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SDP_Inv_tbBodegaDetalle_Select_Producto" FunctionName="ERP_ZORZALModel.Store.SDP_Inv_tbBodegaDetalle_Select_Producto">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_Inv_tbBodegaDetalle_Select_Producto_Result">
+          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+          <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
+          <ScalarProperty Name="pcat_Nombre" ColumnName="pcat_Nombre" />
+          <ScalarProperty Name="pscat_Descripcion" ColumnName="pscat_Descripcion" />
+          <ScalarProperty Name="uni_Descripcion" ColumnName="uni_Descripcion" />
+          <ScalarProperty Name="prod_CodigoBarras" ColumnName="prod_CodigoBarras" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -241,3 +241,509 @@ function validar(e) {
     tecla = String.fromCharCode(tecla)
     return /^[a-z0-9A-Z\-]+$/.test(tecla);
 }
+
+//Show Tabla Detalle Factura
+$(document).ready(function () {
+    GetDetalle()
+});
+var contador = 0;
+function GetDetalle() {
+    var factID = $("#fact_Id").val();
+    $.ajax({
+        url: "/Factura/GetFacturaDetalleD",
+        method: "POST",
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({ factID: factID }),
+    })
+      .done(function (data) {
+          $.each(data, function (key, val) {
+              Descuento = (val.factd_MontoDescuento * val.factd_Cantidad);
+              ImpuestoTotal = ((val.factd_Impuesto / 100) * val.factd_PrecioUnitario) * val.factd_Cantidad;
+              Subtotal = ((val.factd_Cantidad * val.factd_PrecioUnitario) + ImpuestoTotal);
+              GranSubtotal = (val.factd_Cantidad * val.factd_PrecioUnitario);
+              Total = (GranSubtotal + ImpuestoTotal) - Descuento;
+              StudentId = val.factd_Id;
+              contador = contador + 1;
+              copiar = "<tr data-id=" + StudentId + ">";
+              copiar += "<td id = 'prod_CodigoCreate'>" + val.prod_Codigo + "</td>";
+              copiar += "<td id = 'tbProducto_prod_DescripcionCreate'>" + val.prod_Descripcion + "</td>";
+              copiar += "<td id = 'factd_CantidadCreate' align='right'>" + val.factd_Cantidad + "</td>";
+              copiar += "<td id = 'Precio_UnitarioCreate' align='right'>" + val.factd_PrecioUnitario + "</td>";
+              copiar += "<td id = 'ImpuestoCreate' align='right'>" + val.factd_Impuesto + "</td>";
+              copiar += "<td id = 'factd_MontoDescuentoCreate' align='right'>" + val.factd_MontoDescuento + "</td>";
+              copiar += "<td id = 'TotalProductoCreate' align='right'>" + Subtotal + "</td>";
+              copiar += "<td>" + "<a href='#' onclick='EditStudentRecord(" + StudentId + ")' ><span class='btn btn-warning glyphicon glyphicon-edit btn-xs'></span></a>" + "</td>";
+              copiar += "</tr>";
+              $('#tblDetalleFactura').append(copiar);
+              total_col1 = 0
+              SubtotalD = 0;
+              GranImpuesto = 0;
+              GranTotal = 0;
+              $("#tblDetalleFactura tbody tr").each(function (index) {
+                  DescuentoDD = $(this).children("td:eq(5)").html();
+                  Cantidad = $(this).children("td:eq(2)").html();
+                  ImpuestoD = $(this).children("td:eq(4)").html();
+                  ValorUnitario = $(this).children("td:eq(3)").html();
+                  PorcentajeImpuesto = parseFloat(ImpuestoD / 100);
+                  if (ValorUnitario != '') {
+                      total_col1 += parseFloat($(this).find('td').eq(5).text());
+                      ValorUnitario = parseFloat(ValorUnitario);
+                      SubtotalD += Cantidad * ValorUnitario;
+                      GranImpuesto += (Cantidad * ValorUnitario) * PorcentajeImpuesto;
+                      GranTotal += Cantidad * ValorUnitario + (Cantidad * ValorUnitario) * PorcentajeImpuesto - DescuentoDD;
+                  }
+              });
+              document.getElementById("TotalDescuento").innerHTML = parseFloat(total_col1);
+              document.getElementById("Subtotal").innerHTML = parseFloat(SubtotalD);
+              document.getElementById("isv").innerHTML = parseFloat(GranImpuesto);
+              document.getElementById("total").innerHTML = parseFloat(GranTotal);
+          });
+
+      })
+
+}
+//Show Modal Detalle Factura
+function EditStudentRecord(StudentId) {
+    var url = "/Factura/GetDetalleEdit?StudentId=" + StudentId;
+    $("#FacturaDetalleEdit").modal();
+    $.ajax({
+        type: "GET",
+        url: url,
+        success: function (data) {
+            $.each(data, function (key, arn) {
+
+                var fechaString = arn.factd_FechaCrea.substr(6);
+                var fechaActual = new Date(parseInt(fechaString));
+                var mes = fechaActual.getMonth() + 1;
+                var dia = fechaActual.getDate();
+                var anio = fechaActual.getFullYear();
+                var FechaCrea = dia + "/" + mes + "/" + anio;
+
+                $("#factdd").val(arn.factd_Id);
+                $("#IDProducto").val(arn.prod_Codigo);
+                $("#DescProducto").val(arn.prod_Descripcion);
+                $("#MontoDescuentoEdit").val(arn.factd_MontoDescuento);
+                $("#CantidadEdit").val(arn.factd_Cantidad);
+                $("#ImpuestoEdit").val(arn.factd_Impuesto);
+                $("#PrecioUnitarioEdit").val(arn.factd_PrecioUnitario);
+                $("#UsuCrea").val(arn.factd_UsuarioCrea);
+                $("#FechaCrea").val(FechaCrea);
+                var Cantidad = document.getElementById("CantidadEdit").value;
+                var Precio = document.getElementById("PrecioUnitarioEdit").value;
+                var Descuento = document.getElementById("MontoDescuentoEdit").value;
+                var Impuesto = document.getElementById("ImpuestoEdit").value;
+                var PorcentajeImpuesto = (Impuesto / 100);
+                var ImpuestoTotal = (Cantidad * Precio) * PorcentajeImpuesto;
+                result = "";
+                result1 = "";
+                if (Cantidad && Precio > 0) {
+                    result += Cantidad * Precio;
+                    result1 += ((Cantidad * Precio) + ImpuestoTotal - Descuento)
+                }
+                $("#SubtotalEdit").val(result);
+                $("#TotalEdit").val(result1);
+            })
+        }
+    })
+}
+
+//Editar Show Detalle Factura
+$("#EditFacturaDetalle").click(function () {
+    var factd_Ids = $('#factd_Id').val();
+    var data = $("#SubmitForm").serializeArray();
+    console.log(data)
+    $.ajax({
+        type: "POST",
+        url: "/Factura/UpdateFacturaDetalle",
+        data: data,
+        success: function (result) {
+            if (result == '-1')
+                $("#MsjError").text("No se pudo actualizar el registro, contacte al administrador");
+        }
+    });
+    location.reload(true);
+})
+
+
+//Anular Factura
+$(document).ready(function () {
+    var Estado = $('#fact_EsAnulada').val(true);
+    document.getElementById("esfac_Id").disabled = true;
+    if (Estado == true) {
+        $('#bottonAnular').hide();
+        document.getElementById("esfac_Id").disabled = true;
+        document.getElementById("fechafacturaEdit").disabled = true;
+        document.getElementById("clte_Identificacion").disabled = true;
+        document.getElementById("fact_AlCredito").disabled = true;
+        document.getElementById("clte_Nombres").disabled = true;
+        document.getElementById("fact_AutorizarDescuento").disabled = true;
+        document.getElementById("btnSave").disabled = true;
+        document.getElementById("AddProducto").disabled = true;
+    }
+});
+
+
+$('#Anular').click(function () {
+    var CodFactura = $('#fact_Id').val();
+    var FacturaAnulado = 1
+    var RazonAnulado = $('#razonAnular').val();
+    if (RazonAnulado == "") {
+        valido = document.getElementById('Mensaje');
+        valido.innerText = "La razón Anular es requerida";
+    } else {
+        $.ajax({
+            url: "/Factura/AnularFactura",
+            method: "POST",
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ CodFactura: CodFactura, FacturaAnulado: FacturaAnulado, RazonAnulado: RazonAnulado }),
+
+        })
+            .done(function (data) {
+                if (data.length > 0) {
+                    var url = $("#RedirectTo").val();
+                    location.href = url;
+                }
+                else {
+                    alert("Registro No Actualizado");
+                }
+            });
+    }
+
+})
+function soloLetras(e) {
+    key = e.keyCode || e.which;
+    tecla = String.fromCharCode(key).toLowerCase();
+    letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
+    especiales = "8-37-39-46";
+
+    tecla_especial = false
+    for (var i in especiales) {
+        if (key == especiales[i]) {
+            tecla_especial = true;
+            break;
+        }
+    }
+
+    if (letras.indexOf(tecla) == -1 && !tecla_especial) {
+        return false;
+    }
+}
+
+//Edit View CheckBox
+$("#fact_AlCredito").change(function () {
+    if (this.checked) {
+        $('#Credito').show();
+    }
+    else {
+
+        $('#Credito').hide();
+    }
+});
+
+$("#fact_AlCredito").ready(function () {
+    if (this.checked) {
+        $('#Credito').show();
+    }
+    else {
+
+        $('#Credito').hide();
+    }
+});
+
+$("#fact_AutorizarDescuento").change(function () {
+    if (this.checked) {
+        $('#Credito2').show();
+    }
+    else {
+
+        $('#Credito2').hide();
+    }
+});
+
+$("#fact_AutorizarDescuento").ready(function () {
+    if (this.checked) {
+        $('#Credito2').show();
+    }
+    else {
+
+        $('#Credito2').hide();
+    }
+});
+
+$(document).ready(function () {
+    if (fact_AlCredito.checked) {
+        $('#Credito').show();
+    } else {
+        $('#Credito').hide();
+    }
+});
+
+$(document).ready(function () {
+    if (fact_AutorizarDescuento.checked) {
+        $('#Credito2').show();
+    } else {
+        $('#Credito2').hide();
+    }
+});
+
+
+//Create View CheckBox
+$("#fact_AlCredito").change(function () {
+    if (this.checked) {
+        $('#Cred1').show();
+    }
+    else {
+
+        $('#Cred1').hide();
+    }
+});
+
+$("#fact_AlCredito").ready(function () {
+    if (this.checked) {
+        $('#Cred1').show();
+    }
+    else {
+
+        $('#Cred1').hide();
+    }
+});
+
+$("#fact_AutorizarDescuento").change(function () {
+    if (this.checked) {
+        $('#Cred2').show();
+    }
+    else {
+
+        $('#Cred2').hide();
+    }
+});
+
+$("#fact_AutorizarDescuento").ready(function () {
+    if (this.checked) {
+        $('#Cred2').show();
+    }
+    else {
+
+        $('#Cred2').hide();
+    }
+});
+
+
+// Default Value
+$(document).ready(function () {
+    var isChecked = document.getElementById('fact_AlCredito').checked;
+    if (isChecked == false) {
+        $('#fact_DiasCredito').val(0);
+    }
+    else {
+    }
+});
+
+$(document).change(function () {
+    var isChecked = document.getElementById('fact_AlCredito').checked;
+    if (isChecked == false) {
+        $('#fact_DiasCredito').val(0);
+    }
+    else {
+    }
+});
+
+$(document).ready(function () {
+    var isChecked = document.getElementById('fact_AutorizarDescuento').checked;
+    if (isChecked == false) {
+        $('#fact_PorcentajeDescuento').val(0);
+    }
+    else {
+    }
+});
+
+$(document).change(function () {
+    var isChecked = document.getElementById('fact_AutorizarDescuento').checked;
+    if (isChecked == false) {
+        $('#fact_PorcentajeDescuento').val(0);
+    }
+    else {
+    }
+});
+
+$("#fact_AlCredito").click(function () {
+    var x = $('#fact_DiasCredito').val();
+    console.log(x);
+    if (x == '') {
+        $('#fact_DiasCredito').val(0);
+    }
+    else {
+        $('#fact_DiasCredito').val('');
+    }
+});
+
+$("#fact_AutorizarDescuento").click(function () {
+    var x = $('#fact_PorcentajeDescuento').val();
+    console.log(x);
+    if (x == '') {
+        $('#fact_PorcentajeDescuento').val(0);
+    }
+    else {
+
+        $('#fact_PorcentajeDescuento').val('');
+    }
+});
+//Muestra un mensaje de Si hay productos en exitencias.
+$("#factd_Cantidad").on("blur", function (event) {
+    GetCantidad();
+});
+
+function GetCantidad() {
+    var CodSucursal = $('#suc_Id').val();
+    console.log(CodSucursal)
+    var CodProducto = $('#prod_Codigo').val();
+    console.log(CodProducto)
+    var CantidadIngresada = $('#factd_Cantidad').val();
+    console.log(CantidadIngresada)
+
+
+    $.ajax({
+        url: "/Factura/GetCantidad",
+        method: "POST",
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({ CodSucursal: CodSucursal, CodProducto: CodProducto }),
+    })
+    .done(function (data) {
+
+        if (data.length > 0) {
+            $.each(data, function (key, val) {
+                var MENSAJE = data[0]['MENSAJE'];
+                console.log(MENSAJE)
+
+                if (MENSAJE) {
+                    var can = data[0]['CANTIDAD'];
+                    var CANTIDAD = parseFloat(can)
+                    console.log(CANTIDAD)
+                    if (CANTIDAD < CantidadIngresada) {
+                        alert('La cantidad de productos no esta disponible, Cantidad disponible: ' + CANTIDAD)
+                        $('#factd_Impuesto').val(0.00);
+                        $('#factd_Cantidad').val(''),
+                        $("#SubtotalProducto").val(0.00),
+                        $("#factd_PorcentajeDescuento").val(0.00),
+                        $("#TotalProducto").val(0.00)
+                        $('#Impuesto').val(0.00);
+                        $('#factd_Cantidad').val('');
+                    }
+                    else if (CANTIDAD == 10) {
+                        alert('Pocos productos en exitencia, cantidad existente: ' + CANTIDAD)
+                    } else {
+                        document.getElementById("AgregarDetalleFactura").disabled = false;
+                    }
+
+                }
+                else {
+                    var can = data[0]['CANTIDAD'];
+                    var CANTIDAD = parseFloat(can)
+                    alert('No hay productos en existencia')
+                    $('#factd_Cantidad').val('');
+                    $('#factd_MontoDescuento').val('');
+                    $('#factd_Cantidad').val('');
+                    $('#SubtotalProducto').val('');
+                    $('#Impuesto').val('');
+                    $('#TotalProducto').val('');
+                }
+            });
+        }
+        else {
+
+        }
+    });
+}
+//Factura Buscar Producto
+$(document).ready(function () {
+    var $rows = $('#ProductoTbody tr');
+    $("#search").keyup(function () {
+        var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+        if (val.length >= 3) {
+            $rows.show().filter(function () {
+                var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+                return !~text.indexOf(val);
+            }).hide();
+        }
+        else if (val.length >= 1) {
+            $rows.show().filter(function () {
+            }).hide();
+        }
+
+    })
+});
+
+// Factura Seleccionar Producto
+$(document).on("click", "#tbProductoFactura tbody tr td button#seleccionar", function () {
+    idbarraItem = $(this).closest('tr').data('barra');
+    idItem = $(this).closest('tr').data('id');
+    DescItem = $(this).closest('tr').data('desc');
+    ISVItem = $(this).closest('tr').data('isv');
+    $("#prod_CodigoBarras").val(idbarraItem);
+    $("#prod_Codigo").val(idItem);
+    $("#tbProducto_prod_CodigoBarras").val(idCbItem);
+    $("#tbProducto_prod_Descripcion").val(DescItem);
+    $("#factd_Impuesto").val(ISVItem);
+    $('#ModalAgregarProducto').modal('hide');
+});
+
+//Facturar RowSeleccionar Producto
+$(document).ready(function () {
+    var table = $('#tbProductoFactura').DataTable();
+
+    $('#tbProductoFactura tbody').on('click', 'tr', function () {
+        idbarraItem = $(this).closest('tr').data('barra');
+        idItem = $(this).closest('tr').data('id');
+        DescItem = $(this).closest('tr').data('desc');
+        ISVItem = $(this).closest('tr').data('isv');
+        $("#prod_CodigoBarras").val(idbarraItem);
+        $("#prod_Codigo").val(idItem);
+        $("#tbProducto_prod_Descripcion").val(DescItem);
+        $("#factd_Impuesto").val(ISVItem);
+        $('#ModalAgregarProducto').modal('hide');
+        var Cliente = $('#clte_Id').val();
+        if (Cliente == '') {
+            Cliente = 0;
+            GetPrecio(Cliente, idItem);
+        }
+        else {
+            GetPrecio(Cliente, idItem);
+        }
+
+        function GetPrecio(Cliente, idItem) {
+            $.ajax({
+                url: "/Factura/GetPrecio",
+                method: "POST",
+                dataType: 'json',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ Cliente: Cliente, idItem: idItem }),
+            })
+            .done(function (data) {
+                var g = data;
+                $("#factd_PrecioUnitario").val(g);
+            });
+        }
+    });
+});
+
+$(function () {
+    $("#CantidadEdit").keyup(function (e) {
+        var Cantidad = document.getElementById("CantidadEdit").value;
+        var Precio = document.getElementById("PrecioUnitarioEdit").value;
+        var Descuento = document.getElementById("MontoDescuentoEdit").value;
+        var Impuesto = document.getElementById("ImpuestoEdit").value;
+        var PorcentajeImpuesto = (Impuesto / 100);
+        var ImpuestoTotal = (Cantidad * Precio) * PorcentajeImpuesto;
+        result = "";
+        result1 = "";
+        if (Cantidad && Precio > 0) {
+            result += Cantidad * Precio;
+            result1 += ((Cantidad * Precio) + ImpuestoTotal - Descuento)
+        }
+        $("#SubtotalEdit").val(result);
+        $("#TotalEdit").val(result1);
+    });
+});

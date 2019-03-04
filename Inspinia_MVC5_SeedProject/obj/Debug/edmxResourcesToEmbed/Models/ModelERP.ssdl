@@ -1324,8 +1324,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_DevolucionesPorFecha' do
     <Property Name="dev_Estado" Type="bit" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Factura_VentasporFecha' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-  <!--Errors Found During Generation:
 warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_FacturaPagoSelect' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="UDV_Vent_FacturaPagoSelect">
     <Key>
@@ -4552,6 +4550,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_FacturaPuntoEmision' doe
   </Function>
   <Function Name="crud_tbProductoSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SDP_Inv_tbBodegaDetalle_Select_Producto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="bod_Id" Type="int" Mode="In" />
   </Function>
   <Function Name="SDP_Inv_tbSalidaDetalle_Edit_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="sald_Id" Type="int" Mode="In" />

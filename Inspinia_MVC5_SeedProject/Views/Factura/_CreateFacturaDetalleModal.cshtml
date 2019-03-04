@@ -284,28 +284,7 @@
         </div>
     </div>
 </div>
-
-<script src="~/Scripts/app/CalculoFactura.js"></script>
-
 <script>
-    $(function () {
-        $("#CantidadEdit").keyup(function (e) {
-
-            var Cantidad = document.getElementById("CantidadEdit").value;
-            var Precio = document.getElementById("PrecioUnitarioEdit").value;
-            var Descuento = document.getElementById("MontoDescuentoEdit").value;
-            var Impuesto = document.getElementById("ImpuestoEdit").value;
-            var PorcentajeImpuesto = (Impuesto / 100);
-            var ImpuestoTotal = (Cantidad * Precio) * PorcentajeImpuesto;
-            result = "";
-            result1 = "";
-            if (Cantidad && Precio > 0) {
-                result += Cantidad * Precio;
-                result1 += ((Cantidad * Precio) + ImpuestoTotal - Descuento)
-            }
-            $("#SubtotalEdit").val(result);
-            $("#TotalEdit").val(result1);
-        });
-    });
+   
 </script>
 

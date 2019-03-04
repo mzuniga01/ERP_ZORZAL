@@ -242,3 +242,44 @@ function validar(e) {
     tecla = String.fromCharCode(tecla)
     return /^[a-z0-9A-Z\-]+$/.test(tecla);
 }
+
+$("#Producto").click(function()
+{
+    ListaProductos();
+})
+function ListaProductos() {
+    url = "/Factura/ListaProductos";
+    $('#ModalAgregarProducto').modal('show');
+    var table = $('#tbProductoFactura').dataTable({
+        destroy: true,
+        resposive: true,
+        ajax: {
+            method: "POST",
+            url: url,
+            contentType: "application/json; charset=utf-8",
+            dataType: 'json',
+            "dataSrc": ""
+        },
+        "columns": [
+            { "data": "prod_Codigo" },
+            { "data": "prod_Descripcion" },
+            { "data": "prod_CodigoBarras" },
+            { "defaultContent": "<button class='btn btn-primary btn-xs'  id='seleccionar' data-dismiss='modal'>Seleccionar</button>" }
+        ],
+        "oLanguage": {
+            "oPaginate": {
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior",
+            },
+            "sProcessing": "Procesando...",
+            "sLengthMenu": "Mostrar _MENU_ registros",
+            "sZeroRecords": "No se encontraron resultados",
+            "sEmptyTable": "Ningún dato disponible en esta tabla",
+            "sEmptyTable": "No hay registros",
+            "sInfoEmpty": "Mostrando 0 de 0 Entradas",
+            "sSearch": "Buscar",
+            "sInfo": "Mostrando _START_ a _END_ Entradas",
+            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+        }
+    })
+}

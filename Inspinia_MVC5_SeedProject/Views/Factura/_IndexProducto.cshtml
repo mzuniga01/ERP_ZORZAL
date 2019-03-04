@@ -34,33 +34,7 @@
                         </thead>
 
                         <tbody id="ProductoTbody">
-                            @foreach (var item in Model)
-                            {
-                                if (!item.prod_EsActivo)
-                                {
-                                }
-                                else
-                                {
-                                    <tr data-barra="@item.prod_CodigoBarras" data-id="@item.prod_Codigo" data-desc="@item.prod_Descripcion" data-isv="@item.tbProductoSubcategoria.pscat_ISV">
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.prod_Descripcion)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.prod_Marca)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.prod_Modelo)
-                                        </td>
-                                        <td hidden>
-                                            @Html.DisplayFor(modelItem => item.prod_CodigoBarras)
-                                        </td>
-                                        <td>
-                                            <button id="SelectProduct" type="button" class="btn btn-primary btn-xs">Agregar</button>
-                                        </td>
-                                    </tr>
-                                }
-
-                            }
+                            
                         </tbody>
                     </table>
 
@@ -69,25 +43,4 @@
         </div>
     </div>
 </div>
-<script src="~/Scripts/jquery-3.3.1.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $('#tbProductoFactura').DataTable(
-        {
-            "searching": false,
-            "lengthChange": false,
 
-            "oLanguage": {
-                "oPaginate": {
-                    "sNext": "Siguiente",
-                    "sPrevious": "Anterior",
-                },
-                "sEmptyTable": "No hay registros",
-                "sInfoEmpty": "Mostrando 0 de 0 Entradas",
-                "sSearch": "Buscar",
-                "sInfo": "Mostrando _START_ a _END_ Entradas",
-
-            }
-        });
-    });
-</script>

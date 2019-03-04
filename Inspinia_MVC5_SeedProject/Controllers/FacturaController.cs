@@ -255,7 +255,7 @@ namespace ERP_GMEDINA.Controllers
             }
             else
             {
-                int id = (int)Session["IDCLIENTE"];
+                string id = (string)Session["IDCLIENTE"];
                 ViewBag.Iden = id;
                 int? idped = (int)Session["PEDIDO"];
                 ViewBag.Pedid = idped;
@@ -776,8 +776,6 @@ namespace ERP_GMEDINA.Controllers
             return Json("Exito", JsonRequestBehavior.AllowGet);
         }
 
-
-
        [HttpPost]
         public JsonResult SaveTerceraEdad(tbFactura TerceraEdadC)
         {
@@ -869,6 +867,7 @@ namespace ERP_GMEDINA.Controllers
         {
             try
             {
+                tbFacturaDetalle tbfactDetalle = db.tbFacturaDetalle.Find(EditFacturaDetalle.factd_Id);
                 var MensajeError = "";
                 IEnumerable<object> list = null;
                 list = db.UDP_Vent_tbFacturaDetalle_Update(
@@ -881,7 +880,7 @@ namespace ERP_GMEDINA.Controllers
                             EditFacturaDetalle.factd_UsuarioAutoriza,
                             EditFacturaDetalle.factd_FechaAutoriza,
                             EditFacturaDetalle.factd_UsuarioCrea,
-                            EditFacturaDetalle.factd_FechaCrea,
+                            tbfactDetalle.factd_FechaCrea,
                             Function.GetUser(),
                             Function.DatetimeNow());
                 foreach (UDP_Vent_tbFacturaDetalle_Update_Result FacturaDetalle in list)
@@ -1000,8 +999,6 @@ namespace ERP_GMEDINA.Controllers
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
-
-
         [HttpPost]
         public JsonResult GetDetallePedido(int CodPedido)
         {
@@ -1097,9 +1094,44 @@ namespace ERP_GMEDINA.Controllers
             tbCliente Cliente = new tbCliente();
             ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre", dep_Codigo);
             ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbCliente.mun_Codigo);
-            ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion", tbCliente.tpi_Id);
+                ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion", tbCliente.tpi_Id);
             return View(tbCliente);
         }
 
+        public JsonResult ListaProductos()
+        {
+            IEnumerable<object> Lista = null;
+            try
+            {
+                var UserId = Usuario();
+                var SucId = db.tbUsuario.Where(x => x.usu_Id == UserId).Select(p => p.suc_Id).FirstOrDefault();
+                var bod_Id = db.tbSucursal.Where(x => x.suc_Id == SucId).Select(p => p.bod_Id).FirstOrDefault();
+                Lista = db.SDP_Inv_tbBodegaDetalle_Select_Producto(bod_Id).ToList();
+                
+            }
+            catch(Exception Ex)
+            {
+                Ex.Message.ToString();
+            }
+            return Json(Lista, JsonRequestBehavior.AllowGet);
+        }
+        public int Usuario()
+        {
+            int idUser = 0;
+            try
+            {
+                List<tbUsuario> User = Function.getUserInformation();
+                foreach (tbUsuario Usuario in User)
+                {
+                    idUser = Convert.ToInt32(Usuario.emp_Id);
+                }
+                return idUser;
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                return 0;
+            }
+        }
     }
 }

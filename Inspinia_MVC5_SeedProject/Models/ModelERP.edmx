@@ -1329,8 +1329,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_DevolucionesPorFecha' do
           <Property Name="dev_Estado" Type="bit" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Factura_VentasporFecha' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <!--Errors Found During Generation:
 warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_FacturaPagoSelect' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="UDV_Vent_FacturaPagoSelect">
           <Key>
@@ -4557,6 +4555,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_FacturaPuntoEmision' doe
         </Function>
         <Function Name="crud_tbProductoSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="SDP_Inv_tbBodegaDetalle_Select_Producto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+          <Parameter Name="bod_Id" Type="int" Mode="In" />
         </Function>
         <Function Name="SDP_Inv_tbSalidaDetalle_Edit_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="sald_Id" Type="int" Mode="In" />
@@ -10047,6 +10048,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_FacturaPuntoEmision' doe
           <Parameter Name="clte_Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <EntitySet Name="UDV_Vent_FacturaPagoSelect" EntityType="ERP_ZORZALModel.UDV_Vent_FacturaPagoSelect" />
+          <FunctionImport Name="SDP_Inv_tbBodegaDetalle_Select_Producto" ReturnType="Collection(ERP_ZORZALModel.SDP_Inv_tbBodegaDetalle_Select_Producto_Result)">
+            <Parameter Name="bod_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
           <Key>
@@ -15680,6 +15684,14 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_FacturaPuntoEmision' doe
         <ComplexType Name="UDP_Vent_tbSolicitudEfectivo_Update_Entrega_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
+        <ComplexType Name="SDP_Inv_tbBodegaDetalle_Select_Producto_Result">
+          <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="prod_Descripcion" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="pcat_Nombre" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="pscat_Descripcion" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="uni_Descripcion" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="prod_CodigoBarras" Nullable="false" MaxLength="15" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -18731,6 +18743,18 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_FacturaPuntoEmision' doe
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SDP_Inv_tbBodegaDetalle_Select_Producto" FunctionName="ERP_ZORZALModel.Store.SDP_Inv_tbBodegaDetalle_Select_Producto">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_Inv_tbBodegaDetalle_Select_Producto_Result">
+                <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+                <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
+                <ScalarProperty Name="pcat_Nombre" ColumnName="pcat_Nombre" />
+                <ScalarProperty Name="pscat_Descripcion" ColumnName="pscat_Descripcion" />
+                <ScalarProperty Name="uni_Descripcion" ColumnName="uni_Descripcion" />
+                <ScalarProperty Name="prod_CodigoBarras" ColumnName="prod_CodigoBarras" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

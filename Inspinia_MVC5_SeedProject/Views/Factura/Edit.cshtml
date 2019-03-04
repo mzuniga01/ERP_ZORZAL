@@ -251,21 +251,21 @@
 </div>
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
-<script src="~/Scripts/app/GetFacturaDetalleEdit.js"></script>
 <script src="~/Scripts/app/FacturaDetalleEdit.js"></script>
-<script src="~/Scripts/app/ProductoFactura.js"></script>
 <script src="~/Scripts/app/Datepicker.js"></script>
 <script src="~/Scripts/app/Credito.js"></script>
-<script src="~/Scripts/app/Cantidad.js"></script>
-<script src="~/Scripts/app/AnularFactura.js"></script>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    <script src="~/Scripts/app/Empleados.js"></script>
+    <script>
+        //Buscar Empleados
+        $("#fact_Vendedor").autocomplete({
+            source: "/Factura/GetEmpleados",
+            minLength: 3
+        });
+    </script>
 }
 
 <script>
-
-
     $("#prod_CodigoBarras").on("keypress keyup blur", function (event) {
         var Value = $(this).val();
         if (Value == '') {

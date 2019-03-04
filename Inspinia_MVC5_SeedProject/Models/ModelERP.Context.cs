@@ -6876,5 +6876,14 @@ namespace ERP_GMEDINA.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_vFacturaPago_Result>("UDP_Vent_vFacturaPago", clte_IdParameter);
         }
+    
+        public virtual ObjectResult<SDP_Inv_tbBodegaDetalle_Select_Producto_Result> SDP_Inv_tbBodegaDetalle_Select_Producto(Nullable<int> bod_Id)
+        {
+            var bod_IdParameter = bod_Id.HasValue ?
+                new ObjectParameter("bod_Id", bod_Id) :
+                new ObjectParameter("bod_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_Inv_tbBodegaDetalle_Select_Producto_Result>("SDP_Inv_tbBodegaDetalle_Select_Producto", bod_IdParameter);
+        }
     }
 }

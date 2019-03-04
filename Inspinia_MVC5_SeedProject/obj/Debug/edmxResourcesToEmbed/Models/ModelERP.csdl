@@ -2880,6 +2880,9 @@
       <Parameter Name="clte_Id" Mode="In" Type="Int32" />
     </FunctionImport>
     <EntitySet Name="UDV_Vent_FacturaPagoSelect" EntityType="ERP_ZORZALModel.UDV_Vent_FacturaPagoSelect" />
+    <FunctionImport Name="SDP_Inv_tbBodegaDetalle_Select_Producto" ReturnType="Collection(ERP_ZORZALModel.SDP_Inv_tbBodegaDetalle_Select_Producto_Result)">
+      <Parameter Name="bod_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -8512,5 +8515,13 @@
   </EntityType>
   <ComplexType Name="UDP_Vent_tbSolicitudEfectivo_Update_Entrega_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="SDP_Inv_tbBodegaDetalle_Select_Producto_Result">
+    <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="prod_Descripcion" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="pcat_Nombre" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="pscat_Descripcion" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="uni_Descripcion" Nullable="false" MaxLength="150" />
+    <Property Type="String" Name="prod_CodigoBarras" Nullable="false" MaxLength="15" />
   </ComplexType>
 </Schema>

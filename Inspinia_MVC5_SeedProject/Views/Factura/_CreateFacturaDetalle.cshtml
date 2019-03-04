@@ -12,7 +12,7 @@
                                 <input id="prod_CodigoBarras" type="text" class="form-control" onKeyPress = "return soloNumeros(event)" />
                             </div>
                             <div class="col-md-1">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarProducto"><span class="glyphicon glyphicon-search"></span></button>
+                                <button id="Producto" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
                             </div>
                             @Html.LabelFor(model => model.tbProducto.prod_Descripcion, new { @class = "control-label col-md-1" })
                             <div class="col-md-5">
@@ -220,9 +220,6 @@
         </div>
     </div>
 </div>
-
-
-<script src="~/Scripts/app/CalculoFactura.js"></script>
 
 
 
