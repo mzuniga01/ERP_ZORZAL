@@ -1162,8 +1162,6 @@
       <Parameter Name="solef_UsuarioEntrega" Mode="In" Type="Int32" />
       <Parameter Name="mnda_Id" Mode="In" Type="Int16" />
       <Parameter Name="solef_EsAnulada" Mode="In" Type="Boolean" />
-      <Parameter Name="solef_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="solef_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbDevolucion_Filtrado_CodProducto" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDevolucion_Filtrado_CodProducto_Result)">
       <Parameter Name="IDFACTURA" Mode="In" Type="Int32" />
@@ -3321,9 +3319,6 @@
     <Property Type="Int16" Name="denoId" Nullable="false" />
     <Property Type="String" Name="DenoDescripcion" Nullable="false" MaxLength="50" />
     <Property Type="Decimal" Name="valor" Nullable="false" Precision="10" Scale="2" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbSolicitudEfectivo_Update_Entrega_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbDevolucion_Insert_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
@@ -8477,9 +8472,13 @@
     <Property Name="Tipo_cliente" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
     <Property Name="fact_Codigo" Type="String" Nullable="false" MaxLength="19" FixedLength="false" Unicode="true" />
     <Property Name="fact_AlCredito" Type="Boolean" Nullable="false" />
-    <Property Name="Factura_Credito" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="Factura_Credito" Type="String" Nullable="false" MaxLength="7" FixedLength="false" Unicode="false" />
     <Property Name="Fecha_factura" Type="DateTime" Precision="0" />
     <Property Name="MontoFactura" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Fecha_vencimiento" Type="DateTime" Precision="0" />
+    <Property Name="Descuento" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Impuesto" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="TotalFactura" Type="Decimal" Precision="18" Scale="2" />
   </EntityType>
   <Association Name="FK_Inv_tbEstadoInventarioFisico_estif_UsuarioModifica">
     <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
@@ -8538,4 +8537,7 @@
     <Property Name="TotalPagado" Type="Decimal" Precision="18" Scale="2" />
     <Property Name="SaldoFactura" Type="Decimal" Precision="18" Scale="2" />
   </EntityType>
+  <ComplexType Name="UDP_Vent_tbSolicitudEfectivo_Update_Entrega_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
 </Schema>

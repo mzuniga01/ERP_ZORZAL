@@ -361,9 +361,7 @@ namespace ERP_GMEDINA.Controllers
                                 tbSolicitudEfectivo.solef_FechaEntrega,
                                 tbSolicitudEfectivo.solef_UsuarioEntrega,
                                 tbSolicitudEfectivo.mnda_Id,
-                                tbSolicitudEfectivo.solef_EsAnulada,
-                                tbSolicitudEfectivo.solef_UsuarioCrea,
-                                tbSolicitudEfectivo.solef_FechaCrea);
+                                tbSolicitudEfectivo.solef_EsAnulada);
                             foreach (UDP_Vent_tbSolicitudEfectivo_Update_Entrega_Result solicitud in list)
                                 MensajeError = solicitud.MensajeError;
                             if (MensajeError == "-1")
