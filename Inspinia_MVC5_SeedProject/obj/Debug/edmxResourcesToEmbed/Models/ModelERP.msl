@@ -3005,23 +3005,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="UDV_Vent_Factura_VentasporFecha">
-      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Vent_Factura_VentasporFecha">
-        <MappingFragment StoreEntitySet="UDV_Vent_Factura_VentasporFecha">
-          <ScalarProperty Name="TotalFactura" ColumnName="TotalFactura" />
-          <ScalarProperty Name="Impuesto" ColumnName="Impuesto" />
-          <ScalarProperty Name="Descuento" ColumnName="Descuento" />
-          <ScalarProperty Name="Fecha_vencimiento" ColumnName="Fecha_vencimiento" />
-          <ScalarProperty Name="MontoFactura" ColumnName="MontoFactura" />
-          <ScalarProperty Name="Fecha_factura" ColumnName="Fecha_factura" />
-          <ScalarProperty Name="Factura_Credito" ColumnName="Factura_Credito" />
-          <ScalarProperty Name="fact_Codigo" ColumnName="fact_Codigo" />
-          <ScalarProperty Name="Nombres" ColumnName="Nombres" />
-          <ScalarProperty Name="clte_Identificacion" ColumnName="clte_Identificacion" />
-          <ScalarProperty Name="clte_Id" ColumnName="clte_Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbCuponDescuentoSelectGet" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbCuponDescuentoSelectGet">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbCuponDescuentoSelectGet_Result">

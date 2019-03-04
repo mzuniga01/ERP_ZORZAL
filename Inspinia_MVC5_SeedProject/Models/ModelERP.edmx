@@ -1330,26 +1330,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_DevolucionesPorFecha' do
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Factura_VentasporFecha' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="UDV_Vent_Factura_VentasporFecha">
-          <Key>
-            <PropertyRef Name="clte_Id" />
-            <PropertyRef Name="fact_Codigo" />
-            <PropertyRef Name="clte_Identificacion" />
-            <PropertyRef Name="Nombres" />
-            <PropertyRef Name="Factura_Credito" />
-          </Key>
-          <Property Name="clte_Id" Type="int" Nullable="false" />
-          <Property Name="Fecha_factura" Type="date" />
-          <Property Name="fact_Codigo" Type="nvarchar" MaxLength="19" Nullable="false" />
-          <Property Name="clte_Identificacion" Type="nvarchar" MaxLength="26" Nullable="false" />
-          <Property Name="Nombres" Type="nvarchar" MaxLength="101" Nullable="false" />
-          <Property Name="Factura_Credito" Type="varchar" MaxLength="7" Nullable="false" />
-          <Property Name="Fecha_vencimiento" Type="date" />
-          <Property Name="MontoFactura" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="Descuento" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="Impuesto" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="TotalFactura" Type="decimal" Precision="18" Scale="2" />
-        </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_FacturaPagoSelect' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="UDV_Vent_FacturaPagoSelect">
@@ -6250,21 +6230,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_FacturaPuntoEmision' doe
     [UDV_Vent_DevolucionesPorFecha].[dev_Estado] AS [dev_Estado]
     FROM [Vent].[UDV_Vent_DevolucionesPorFecha] AS [UDV_Vent_DevolucionesPorFecha]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="UDV_Vent_Factura_VentasporFecha" EntityType="Self.UDV_Vent_Factura_VentasporFecha" store:Type="Views" store:Schema="Vent">
-            <DefiningQuery>SELECT 
-    [UDV_Vent_Factura_VentasporFecha].[clte_Id] AS [clte_Id], 
-    [UDV_Vent_Factura_VentasporFecha].[Fecha_factura] AS [Fecha_factura], 
-    [UDV_Vent_Factura_VentasporFecha].[fact_Codigo] AS [fact_Codigo], 
-    [UDV_Vent_Factura_VentasporFecha].[clte_Identificacion] AS [clte_Identificacion], 
-    [UDV_Vent_Factura_VentasporFecha].[Nombres] AS [Nombres], 
-    [UDV_Vent_Factura_VentasporFecha].[Factura_Credito] AS [Factura_Credito], 
-    [UDV_Vent_Factura_VentasporFecha].[Fecha_vencimiento] AS [Fecha_vencimiento], 
-    [UDV_Vent_Factura_VentasporFecha].[MontoFactura] AS [MontoFactura], 
-    [UDV_Vent_Factura_VentasporFecha].[Descuento] AS [Descuento], 
-    [UDV_Vent_Factura_VentasporFecha].[Impuesto] AS [Impuesto], 
-    [UDV_Vent_Factura_VentasporFecha].[TotalFactura] AS [TotalFactura]
-    FROM [Vent].[UDV_Vent_Factura_VentasporFecha] AS [UDV_Vent_Factura_VentasporFecha]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="UDV_Vent_FacturaPagoSelect" EntityType="Self.UDV_Vent_FacturaPagoSelect" store:Type="Views" store:Schema="Vent">
             <DefiningQuery>SELECT 
     [UDV_Vent_FacturaPagoSelect].[fact_Id] AS [fact_Id], 
@@ -10067,7 +10032,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_FacturaPuntoEmision' doe
           <Parameter Name="suc_Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <EntitySet Name="UDV_Vent_DevolucionesPorFecha" EntityType="ERP_ZORZALModel.UDV_Vent_DevolucionesPorFecha" />
-          <EntitySet Name="UDV_Vent_Factura_VentasporFecha" EntityType="ERP_ZORZALModel.UDV_Vent_Factura_VentasporFecha" />
           <AssociationSet Name="FK_Inv_tbEstadoInventarioFisico_estif_UsuarioModifica" Association="ERP_ZORZALModel.FK_Inv_tbEstadoInventarioFisico_estif_UsuarioModifica">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbEstadoInventarioFisico" EntitySet="tbEstadoInventarioFisico" />
@@ -15656,32 +15620,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_FacturaPuntoEmision' doe
           <Property Name="dev_Fecha" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="dev_Estado" Type="Boolean" />
         </EntityType>
-        <EntityType Name="UDV_Vent_Factura_VentasporFecha">
-          <Key>
-            <PropertyRef Name="clte_Id" />
-            <PropertyRef Name="clte_Identificacion" />
-            <PropertyRef Name="clte_EsPersonaNatural" />
-            <PropertyRef Name="Nombres" />
-            <PropertyRef Name="Tipo_cliente" />
-            <PropertyRef Name="fact_Codigo" />
-            <PropertyRef Name="fact_AlCredito" />
-            <PropertyRef Name="Factura_Credito" />
-          </Key>
-          <Property Name="clte_Id" Type="Int32" Nullable="false" />
-          <Property Name="clte_Identificacion" Type="String" Nullable="false" MaxLength="26" FixedLength="false" Unicode="true" />
-          <Property Name="clte_EsPersonaNatural" Type="Boolean" Nullable="false" />
-          <Property Name="Nombres" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="true" />
-          <Property Name="Tipo_cliente" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
-          <Property Name="fact_Codigo" Type="String" Nullable="false" MaxLength="19" FixedLength="false" Unicode="true" />
-          <Property Name="fact_AlCredito" Type="Boolean" Nullable="false" />
-          <Property Name="Factura_Credito" Type="String" Nullable="false" MaxLength="7" FixedLength="false" Unicode="false" />
-          <Property Name="Fecha_factura" Type="DateTime" Precision="0" />
-          <Property Name="MontoFactura" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="Fecha_vencimiento" Type="DateTime" Precision="0" />
-          <Property Name="Descuento" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="Impuesto" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="TotalFactura" Type="Decimal" Precision="18" Scale="2" />
-        </EntityType>
         <Association Name="FK_Inv_tbEstadoInventarioFisico_estif_UsuarioModifica">
           <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
           <End Type="ERP_ZORZALModel.tbEstadoInventarioFisico" Role="tbEstadoInventarioFisico" Multiplicity="*" />
@@ -18751,23 +18689,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_FacturaPuntoEmision' doe
                 <ScalarProperty Name="clte_Identificacion" ColumnName="clte_Identificacion" />
                 <ScalarProperty Name="fact_Codigo" ColumnName="fact_Codigo" />
                 <ScalarProperty Name="dev_Id" ColumnName="dev_Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UDV_Vent_Factura_VentasporFecha">
-            <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Vent_Factura_VentasporFecha">
-              <MappingFragment StoreEntitySet="UDV_Vent_Factura_VentasporFecha">
-                <ScalarProperty Name="TotalFactura" ColumnName="TotalFactura" />
-                <ScalarProperty Name="Impuesto" ColumnName="Impuesto" />
-                <ScalarProperty Name="Descuento" ColumnName="Descuento" />
-                <ScalarProperty Name="Fecha_vencimiento" ColumnName="Fecha_vencimiento" />
-                <ScalarProperty Name="MontoFactura" ColumnName="MontoFactura" />
-                <ScalarProperty Name="Fecha_factura" ColumnName="Fecha_factura" />
-                <ScalarProperty Name="Factura_Credito" ColumnName="Factura_Credito" />
-                <ScalarProperty Name="fact_Codigo" ColumnName="fact_Codigo" />
-                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
-                <ScalarProperty Name="clte_Identificacion" ColumnName="clte_Identificacion" />
-                <ScalarProperty Name="clte_Id" ColumnName="clte_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

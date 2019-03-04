@@ -2865,7 +2865,6 @@
       <Parameter Name="suc_Id" Mode="In" Type="Int32" />
     </FunctionImport>
     <EntitySet Name="UDV_Vent_DevolucionesPorFecha" EntityType="ERP_ZORZALModel.UDV_Vent_DevolucionesPorFecha" />
-    <EntitySet Name="UDV_Vent_Factura_VentasporFecha" EntityType="ERP_ZORZALModel.UDV_Vent_Factura_VentasporFecha" />
     <AssociationSet Name="FK_Inv_tbEstadoInventarioFisico_estif_UsuarioModifica" Association="ERP_ZORZALModel.FK_Inv_tbEstadoInventarioFisico_estif_UsuarioModifica">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbEstadoInventarioFisico" EntitySet="tbEstadoInventarioFisico" />
@@ -8453,32 +8452,6 @@
     <Property Name="clte_Nombres" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="dev_Fecha" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="dev_Estado" Type="Boolean" />
-  </EntityType>
-  <EntityType Name="UDV_Vent_Factura_VentasporFecha">
-    <Key>
-      <PropertyRef Name="clte_Id" />
-      <PropertyRef Name="clte_Identificacion" />
-      <PropertyRef Name="clte_EsPersonaNatural" />
-      <PropertyRef Name="Nombres" />
-      <PropertyRef Name="Tipo_cliente" />
-      <PropertyRef Name="fact_Codigo" />
-      <PropertyRef Name="fact_AlCredito" />
-      <PropertyRef Name="Factura_Credito" />
-    </Key>
-    <Property Name="clte_Id" Type="Int32" Nullable="false" />
-    <Property Name="clte_Identificacion" Type="String" Nullable="false" MaxLength="26" FixedLength="false" Unicode="true" />
-    <Property Name="clte_EsPersonaNatural" Type="Boolean" Nullable="false" />
-    <Property Name="Nombres" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="true" />
-    <Property Name="Tipo_cliente" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
-    <Property Name="fact_Codigo" Type="String" Nullable="false" MaxLength="19" FixedLength="false" Unicode="true" />
-    <Property Name="fact_AlCredito" Type="Boolean" Nullable="false" />
-    <Property Name="Factura_Credito" Type="String" Nullable="false" MaxLength="7" FixedLength="false" Unicode="false" />
-    <Property Name="Fecha_factura" Type="DateTime" Precision="0" />
-    <Property Name="MontoFactura" Type="Decimal" Precision="18" Scale="2" />
-    <Property Name="Fecha_vencimiento" Type="DateTime" Precision="0" />
-    <Property Name="Descuento" Type="Decimal" Precision="18" Scale="2" />
-    <Property Name="Impuesto" Type="Decimal" Precision="18" Scale="2" />
-    <Property Name="TotalFactura" Type="Decimal" Precision="18" Scale="2" />
   </EntityType>
   <Association Name="FK_Inv_tbEstadoInventarioFisico_estif_UsuarioModifica">
     <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
