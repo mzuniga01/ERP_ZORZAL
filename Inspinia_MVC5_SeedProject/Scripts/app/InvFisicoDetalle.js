@@ -151,8 +151,8 @@ $(document).on("click", "#detalle tbody tr td button#removerInventarioFisicoDeta
 $(document).ready(function () {
     $('#BuscarProducto').DataTable(
         {
-            "searching": false,
-            "lengthChange": false,
+            "searching": true,
+            "lengthChange": true,
 
             "oLanguage": {
                 "oPaginate": {
@@ -169,17 +169,6 @@ $(document).ready(function () {
 
             }
         });
-
-    var $rows = $('#BuscarProducto tr');
-    $("#buscar").keyup(function () {
-        var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
-
-        $rows.show().filter(function () {
-            var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
-            return !~text.indexOf(val);
-        }).hide();
-
-    });
 });
 $(document).on("click", "#BuscarProducto tbody tr td button#seleccionar", function () {
     id = $(this).closest('tr').data('id');
@@ -530,6 +519,7 @@ $(document).keypress(function (e) {
                             data_cantidadfisica = val.invfd_Cantidad;
                             data_unidad = val.uni_Descripcion;
                             data_Descripcion = val.prod_Descripcion;
+                            seleccionar(data_producto);
                             $('#prod_Codigo').val(data_producto);
                             $('#invfd_CantidadSistema').val('0');
                             $('#invfd_Cantidad').val('1');

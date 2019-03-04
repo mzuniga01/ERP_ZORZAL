@@ -38,20 +38,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Inv_tbBox_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBox_Insert">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbBox_Insert_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Inv_tbBox_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBox_Update">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbBox_Update_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="SDP_Acce_GetObjetos" FunctionName="ERP_ZORZALModel.Store.SDP_Acce_GetObjetos">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_Acce_GetObjetos_Result">
@@ -802,19 +788,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="tbBox">
-      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbBox">
-        <MappingFragment StoreEntitySet="tbBox">
-          <ScalarProperty Name="box_FechaModifica" ColumnName="box_FechaModifica" />
-          <ScalarProperty Name="box_UsuarioModifica" ColumnName="box_UsuarioModifica" />
-          <ScalarProperty Name="box_FechaCrea" ColumnName="box_FechaCrea" />
-          <ScalarProperty Name="box_UsuarioCrea" ColumnName="box_UsuarioCrea" />
-          <ScalarProperty Name="box_Estado" ColumnName="box_Estado" />
-          <ScalarProperty Name="box_Descripcion" ColumnName="box_Descripcion" />
-          <ScalarProperty Name="box_Codigo" ColumnName="box_Codigo" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="tbEntradaDetalle">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbEntradaDetalle">
         <MappingFragment StoreEntitySet="tbEntradaDetalle">
@@ -1521,13 +1494,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Inv_tbBox_Delete" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBox_Delete">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbBox_Delete_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="UDP_Inv_tbSalida_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbSalida_Insert">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbSalida_Insert_Result">
@@ -2220,6 +2186,75 @@
           <ScalarProperty Name="rol_UsuarioModifica" ColumnName="rol_UsuarioModifica" />
           <ScalarProperty Name="rol_FechaModifica" ColumnName="rol_FechaModifica" />
           <ScalarProperty Name="rol_Estado" ColumnName="rol_Estado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="tbBox">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbBox">
+        <MappingFragment StoreEntitySet="tbBox">
+          <ScalarProperty Name="box_FechaModifica" ColumnName="box_FechaModifica" />
+          <ScalarProperty Name="box_UsuarioModifica" ColumnName="box_UsuarioModifica" />
+          <ScalarProperty Name="box_FechaCrea" ColumnName="box_FechaCrea" />
+          <ScalarProperty Name="box_UsuarioCrea" ColumnName="box_UsuarioCrea" />
+          <ScalarProperty Name="bod_Id" ColumnName="bod_Id" />
+          <ScalarProperty Name="box_Descripcion" ColumnName="box_Descripcion" />
+          <ScalarProperty Name="box_Codigo" ColumnName="box_Codigo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbBoxDetalle">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbBoxDetalle">
+        <MappingFragment StoreEntitySet="tbBoxDetalle">
+          <ScalarProperty Name="boxd_FechaModifica" ColumnName="boxd_FechaModifica" />
+          <ScalarProperty Name="boxd_UsuarioModifica" ColumnName="boxd_UsuarioModifica" />
+          <ScalarProperty Name="boxd_FechaCrea" ColumnName="boxd_FechaCrea" />
+          <ScalarProperty Name="boxd_UsuarioCrea" ColumnName="boxd_UsuarioCrea" />
+          <ScalarProperty Name="boxd_Cantidad" ColumnName="boxd_Cantidad" />
+          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+          <ScalarProperty Name="box_Codigo" ColumnName="box_Codigo" />
+          <ScalarProperty Name="boxd_Id" ColumnName="boxd_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbBox_Delete" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBox_Delete">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbBox_Delete_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbBox_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBox_Insert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbBox_Insert_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbBox_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBox_Update">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbBox_Update_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbBoxDetalle_Delete" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBoxDetalle_Delete">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbBoxDetalle_Delete_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbBoxDetalle_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBoxDetalle_Insert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbBoxDetalle_Insert_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbBoxDetalle_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBoxDetalle_Update">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbBoxDetalle_Update_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

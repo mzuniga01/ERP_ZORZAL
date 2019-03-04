@@ -47,21 +47,6 @@
       <Parameter Name="rolu_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="rolu_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Inv_tbBox_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbBox_Insert_Result)">
-      <Parameter Name="box_Codigo" Mode="In" Type="String" />
-      <Parameter Name="box_Descripcion" Mode="In" Type="String" />
-      <Parameter Name="box_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="box_FechaCrea" Mode="In" Type="DateTime" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Inv_tbBox_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbBox_Update_Result)">
-      <Parameter Name="box_Codigo" Mode="In" Type="String" />
-      <Parameter Name="box_Descripcion" Mode="In" Type="String" />
-      <Parameter Name="box_Estado" Mode="In" Type="Boolean" />
-      <Parameter Name="box_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="box_FechaCrea" Mode="In" Type="DateTime" />
-      <Parameter Name="box_UsuarioModifica" Mode="In" Type="Int32" />
-      <Parameter Name="box_FechaModifica" Mode="In" Type="DateTime" />
-    </FunctionImport>
     <FunctionImport Name="SDP_Acce_GetObjetos" ReturnType="Collection(ERP_ZORZALModel.SDP_Acce_GetObjetos_Result)" />
     <FunctionImport Name="SDP_Acce_GetObjetosDisponibles" ReturnType="Collection(ERP_ZORZALModel.SDP_Acce_GetObjetosDisponibles_Result)">
       <Parameter Name="rol_Id" Mode="In" Type="Int32" />
@@ -416,7 +401,6 @@
     <EntitySet Name="tbUnidadMedida" EntityType="ERP_ZORZALModel.tbUnidadMedida" />
     <EntitySet Name="tbBodega" EntityType="ERP_ZORZALModel.tbBodega" />
     <EntitySet Name="tbBodegaDetalle" EntityType="ERP_ZORZALModel.tbBodegaDetalle" />
-    <EntitySet Name="tbBox" EntityType="ERP_ZORZALModel.tbBox" />
     <EntitySet Name="tbEntradaDetalle" EntityType="ERP_ZORZALModel.tbEntradaDetalle" />
     <EntitySet Name="tbEstadoInventarioFisico" EntityType="ERP_ZORZALModel.tbEstadoInventarioFisico" />
     <EntitySet Name="tbEstadoMovimiento" EntityType="ERP_ZORZALModel.tbEstadoMovimiento" />
@@ -804,10 +788,6 @@
     <AssociationSet Name="FK_Inv_tbBodega_tbUsuario_bod_UsuarioCrea" Association="ERP_ZORZALModel.FK_Inv_tbBodega_tbUsuario_bod_UsuarioCrea">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbBodega" EntitySet="tbBodega" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Inv_tbBox_tbUsuario_box_UsuarioCrea" Association="ERP_ZORZALModel.FK_Inv_tbBox_tbUsuario_box_UsuarioCrea">
-      <End Role="tbUsuario" EntitySet="tbUsuario" />
-      <End Role="tbBox" EntitySet="tbBox" />
     </AssociationSet>
     <AssociationSet Name="FK_Inv_tbEntrada_pcat_UsuarioCrea" Association="ERP_ZORZALModel.FK_Inv_tbEntrada_pcat_UsuarioCrea">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
@@ -1214,9 +1194,6 @@
       <Parameter Name="usu_Id" Mode="In" Type="Int32" />
       <Parameter Name="usu_Password" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Inv_tbBox_Delete" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbBox_Delete_Result)">
-      <Parameter Name="box_Codigo" Mode="In" Type="String" />
-    </FunctionImport>
     <FunctionImport Name="UDP_Inv_tbSalida_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbSalida_Insert_Result)">
       <Parameter Name="bod_Id" Mode="In" Type="Int32" />
       <Parameter Name="fact_Id" Mode="In" Type="Int64" />
@@ -1301,10 +1278,6 @@
     <EntitySet Name="tbSalidaDetalle" EntityType="ERP_ZORZALModel.tbSalidaDetalle" />
     <AssociationSet Name="FK_Inv_tbSalidaDetalle_tbUsuario_sald_UsuarioCrea" Association="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_tbUsuario_sald_UsuarioCrea">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
-      <End Role="tbSalidaDetalle" EntitySet="tbSalidaDetalle" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Inv_tbSalidaDetalle_box_Codigo" Association="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_box_Codigo">
-      <End Role="tbBox" EntitySet="tbBox" />
       <End Role="tbSalidaDetalle" EntitySet="tbSalidaDetalle" />
     </AssociationSet>
     <AssociationSet Name="FK_Inv_tbSalidaDetalle_tbSalida_sal_Id" Association="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_tbSalida_sal_Id">
@@ -1816,6 +1789,71 @@
     <FunctionImport Name="SDP_Acce_GetRolesDisponibles" ReturnType="Collection(ERP_ZORZALModel.SDP_Acce_GetRolesDisponibles_Result)">
       <Parameter Name="usu_Id" Mode="In" Type="Int32" />
     </FunctionImport>
+    <EntitySet Name="tbBox" EntityType="ERP_ZORZALModel.tbBox" />
+    <EntitySet Name="tbBoxDetalle" EntityType="ERP_ZORZALModel.tbBoxDetalle" />
+    <AssociationSet Name="FK_Inv_tbBox_tbUsuario_box_UsuarioCrea" Association="ERP_ZORZALModel.FK_Inv_tbBox_tbUsuario_box_UsuarioCrea">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbBox" EntitySet="tbBox" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inv_tbBoxDetalle_tbUsuario_boxd_UsuarioCrea" Association="ERP_ZORZALModel.FK_Inv_tbBoxDetalle_tbUsuario_boxd_UsuarioCrea">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbBoxDetalle" EntitySet="tbBoxDetalle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inv_tbBox_Inv_tbBodega_bod_Id" Association="ERP_ZORZALModel.FK_Inv_tbBox_Inv_tbBodega_bod_Id">
+      <End Role="tbBodega" EntitySet="tbBodega" />
+      <End Role="tbBox" EntitySet="tbBox" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inv_tbBoxDetalle_box_Codigo" Association="ERP_ZORZALModel.FK_Inv_tbBoxDetalle_box_Codigo">
+      <End Role="tbBox" EntitySet="tbBox" />
+      <End Role="tbBoxDetalle" EntitySet="tbBoxDetalle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inv_tbSalidaDetalle_box_Codigo" Association="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_box_Codigo">
+      <End Role="tbBox" EntitySet="tbBox" />
+      <End Role="tbSalidaDetalle" EntitySet="tbSalidaDetalle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inv_tbBoxDetalle_tbProducto_prod_Codigo" Association="ERP_ZORZALModel.FK_Inv_tbBoxDetalle_tbProducto_prod_Codigo">
+      <End Role="tbProducto" EntitySet="tbProducto" />
+      <End Role="tbBoxDetalle" EntitySet="tbBoxDetalle" />
+    </AssociationSet>
+    <FunctionImport Name="UDP_Inv_tbBox_Delete" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbBox_Delete_Result)">
+      <Parameter Name="box_Codigo" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Inv_tbBox_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbBox_Insert_Result)">
+      <Parameter Name="box_Codigo" Mode="In" Type="String" />
+      <Parameter Name="box_Descripcion" Mode="In" Type="String" />
+      <Parameter Name="bod_Id" Mode="In" Type="Int32" />
+      <Parameter Name="box_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="box_FechaCrea" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Inv_tbBox_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbBox_Update_Result)">
+      <Parameter Name="box_Codigo" Mode="In" Type="String" />
+      <Parameter Name="box_Descripcion" Mode="In" Type="String" />
+      <Parameter Name="bod_Id" Mode="In" Type="Int32" />
+      <Parameter Name="box_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="box_FechaCrea" Mode="In" Type="DateTime" />
+      <Parameter Name="box_UsuarioModifica" Mode="In" Type="Int32" />
+      <Parameter Name="box_FechaModifica" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Inv_tbBoxDetalle_Delete" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbBoxDetalle_Delete_Result)">
+      <Parameter Name="boxd_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Inv_tbBoxDetalle_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbBoxDetalle_Insert_Result)">
+      <Parameter Name="box_Codigo" Mode="In" Type="String" />
+      <Parameter Name="prod_Codigo" Mode="In" Type="String" />
+      <Parameter Name="boxd_Cantidad" Mode="In" Type="Decimal" />
+      <Parameter Name="boxd_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="boxd_FechaCrea" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Inv_tbBoxDetalle_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbBoxDetalle_Update_Result)">
+      <Parameter Name="boxd_Id" Mode="In" Type="Int32" />
+      <Parameter Name="box_Codigo" Mode="In" Type="String" />
+      <Parameter Name="prod_Codigo" Mode="In" Type="String" />
+      <Parameter Name="boxd_Cantidad" Mode="In" Type="Decimal" />
+      <Parameter Name="boxd_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="boxd_FechaCrea" Mode="In" Type="DateTime" />
+      <Parameter Name="boxd_UsuarioModifica" Mode="In" Type="Int32" />
+      <Parameter Name="boxd_FechaModifica" Mode="In" Type="DateTime" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -1841,12 +1879,6 @@
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
   <ComplexType Name="UDP_Acce_tbRolesUsuario_Update_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="UDP_Inv_tbBox_Insert_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="UDP_Inv_tbBox_Update_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
   <ComplexType Name="SDP_Acce_GetObjetos_Result">
@@ -2319,7 +2351,6 @@
     <NavigationProperty Name="tbSucursal3" Relationship="ERP_ZORZALModel.FK_Gral_tbUsuario_suc_Id" FromRole="tbUsuario" ToRole="tbSucursal" />
     <NavigationProperty Name="tbBodega" Relationship="ERP_ZORZALModel.FK_Inv_tbBodega_bod_tbUsuario_UsuarioModifica" FromRole="tbUsuario" ToRole="tbBodega" />
     <NavigationProperty Name="tbBodega1" Relationship="ERP_ZORZALModel.FK_Inv_tbBodega_tbUsuario_bod_UsuarioCrea" FromRole="tbUsuario" ToRole="tbBodega" />
-    <NavigationProperty Name="tbBox" Relationship="ERP_ZORZALModel.FK_Inv_tbBox_tbUsuario_box_UsuarioCrea" FromRole="tbUsuario" ToRole="tbBox" />
     <NavigationProperty Name="tbProductoCategoria" Relationship="ERP_ZORZALModel.FK_Inv_tbEntrada_pcat_UsuarioCrea" FromRole="tbUsuario" ToRole="tbProductoCategoria" />
     <NavigationProperty Name="tbEstadoMovimiento" Relationship="ERP_ZORZALModel.FK_Inv_tbEstadoMovimiento_estm_UsuarioModifica" FromRole="tbUsuario" ToRole="tbEstadoMovimiento" />
     <NavigationProperty Name="tbEstadoMovimiento1" Relationship="ERP_ZORZALModel.FK_Inv_tbEstadoMovimiento_tbUsuario_estm_UsuarioCrea" FromRole="tbUsuario" ToRole="tbEstadoMovimiento" />
@@ -2368,6 +2399,8 @@
     <NavigationProperty Name="tbMovimientoCaja5" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbMovimientoCaja_usu_Id" FromRole="tbUsuario" ToRole="tbMovimientoCaja" />
     <NavigationProperty Name="tbEstadoInventarioFisico" Relationship="ERP_ZORZALModel.FK_Inv_tbEstadoInventarioFisico_estif_UsuarioModifica" FromRole="tbUsuario" ToRole="tbEstadoInventarioFisico" />
     <NavigationProperty Name="tbEstadoInventarioFisico1" Relationship="ERP_ZORZALModel.FK_Inv_tbEstadoInventarioFisico_tbUsuario_estif_UsuarioCrea" FromRole="tbUsuario" ToRole="tbEstadoInventarioFisico" />
+    <NavigationProperty Name="tbBox" Relationship="ERP_ZORZALModel.FK_Inv_tbBox_tbUsuario_box_UsuarioCrea" FromRole="tbUsuario" ToRole="tbBox" />
+    <NavigationProperty Name="tbBoxDetalle" Relationship="ERP_ZORZALModel.FK_Inv_tbBoxDetalle_tbUsuario_boxd_UsuarioCrea" FromRole="tbUsuario" ToRole="tbBoxDetalle" />
   </EntityType>
   <EntityType Name="tbActividadEconomica">
     <Key>
@@ -2590,6 +2623,7 @@
     <NavigationProperty Name="tbSalida" Relationship="ERP_ZORZALModel.FK_Inv_tbSalida_Inv_tbBodega_bod_Id" FromRole="tbBodega" ToRole="tbSalida" />
     <NavigationProperty Name="tbSalida1" Relationship="ERP_ZORZALModel.FK_Inv_tbSalida_tbBodega_sal_BodDestino" FromRole="tbBodega" ToRole="tbSalida" />
     <NavigationProperty Name="tbEmpleado" Relationship="ERP_ZORZALModel.FK_Inv_tbBodega_bod_ResponsableBodega" FromRole="tbBodega" ToRole="tbEmpleado" />
+    <NavigationProperty Name="tbBox" Relationship="ERP_ZORZALModel.FK_Inv_tbBox_Inv_tbBodega_bod_Id" FromRole="tbBodega" ToRole="tbBox" />
   </EntityType>
   <EntityType Name="tbBodegaDetalle">
     <Key>
@@ -2612,20 +2646,6 @@
     <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_bodd_UsuarioModifica" FromRole="tbBodegaDetalle" ToRole="tbUsuario" />
     <NavigationProperty Name="tbBodega" Relationship="ERP_ZORZALModel.FK_Inv_tbBodegaDetalle_tbBodega_bod_Id" FromRole="tbBodegaDetalle" ToRole="tbBodega" />
     <NavigationProperty Name="tbProducto" Relationship="ERP_ZORZALModel.FK_Inv_tbBodegaDetalle_tbProducto_prod_Codigo" FromRole="tbBodegaDetalle" ToRole="tbProducto" />
-  </EntityType>
-  <EntityType Name="tbBox">
-    <Key>
-      <PropertyRef Name="box_Codigo" />
-    </Key>
-    <Property Name="box_Codigo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="box_Descripcion" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-    <Property Name="box_Estado" Type="Boolean" Nullable="false" />
-    <Property Name="box_UsuarioCrea" Type="Int32" Nullable="false" />
-    <Property Name="box_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="box_UsuarioModifica" Type="Int32" />
-    <Property Name="box_FechaModifica" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Inv_tbBox_tbUsuario_box_UsuarioCrea" FromRole="tbBox" ToRole="tbUsuario" />
-    <NavigationProperty Name="tbSalidaDetalle" Relationship="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_box_Codigo" FromRole="tbBox" ToRole="tbSalidaDetalle" />
   </EntityType>
   <EntityType Name="tbEntradaDetalle">
     <Key>
@@ -4477,18 +4497,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Inv_tbBox_tbUsuario_box_UsuarioCrea">
-    <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
-    <End Type="ERP_ZORZALModel.tbBox" Role="tbBox" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbUsuario">
-        <PropertyRef Name="usu_Id" />
-      </Principal>
-      <Dependent Role="tbBox">
-        <PropertyRef Name="box_UsuarioCrea" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Inv_tbEntrada_pcat_UsuarioCrea">
     <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
     <End Type="ERP_ZORZALModel.tbProductoCategoria" Role="tbProductoCategoria" Multiplicity="*" />
@@ -5872,9 +5880,9 @@
     <Property Name="sald_UsuarioModifica" Type="Int32" />
     <Property Name="sald_FechaModifica" Type="DateTime" Precision="3" />
     <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_tbUsuario_sald_UsuarioCrea" FromRole="tbSalidaDetalle" ToRole="tbUsuario" />
-    <NavigationProperty Name="tbBox" Relationship="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_box_Codigo" FromRole="tbSalidaDetalle" ToRole="tbBox" />
     <NavigationProperty Name="tbSalida" Relationship="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_tbSalida_sal_Id" FromRole="tbSalidaDetalle" ToRole="tbSalida" />
     <NavigationProperty Name="tbProducto" Relationship="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_tbProducto_prod_Codigo" FromRole="tbSalidaDetalle" ToRole="tbProducto" />
+    <NavigationProperty Name="tbBox" Relationship="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_box_Codigo" FromRole="tbSalidaDetalle" ToRole="tbBox" />
   </EntityType>
   <Association Name="FK_Inv_tbSalidaDetalle_tbUsuario_sald_UsuarioCrea">
     <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
@@ -5885,18 +5893,6 @@
       </Principal>
       <Dependent Role="tbSalidaDetalle">
         <PropertyRef Name="sald_UsuarioCrea" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Inv_tbSalidaDetalle_box_Codigo">
-    <End Type="ERP_ZORZALModel.tbBox" Role="tbBox" Multiplicity="0..1" />
-    <End Type="ERP_ZORZALModel.tbSalidaDetalle" Role="tbSalidaDetalle" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tbBox">
-        <PropertyRef Name="box_Codigo" />
-      </Principal>
-      <Dependent Role="tbSalidaDetalle">
-        <PropertyRef Name="box_Codigo" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -5941,9 +5937,6 @@
     <Property Type="Decimal" Name="sald_Cantidad" Nullable="false" Precision="10" Scale="2" />
     <Property Type="String" Name="box_Codigo" Nullable="true" MaxLength="20" />
     <Property Type="String" Name="prod_CodigoBarras" Nullable="false" MaxLength="15" />
-  </ComplexType>
-  <ComplexType Name="UDP_Inv_tbBox_Delete_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
   <ComplexType Name="UDP_Inv_tbSalidaDetalle_Insert_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
@@ -6307,6 +6300,7 @@
     <NavigationProperty Name="tbFacturaDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbFacturaDetalle_tbProducto_prod_Codigo" FromRole="tbProducto" ToRole="tbFacturaDetalle" />
     <NavigationProperty Name="tbListadoPrecioDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbListado_tbProducto_prod_Codigo" FromRole="tbProducto" ToRole="tbListadoPrecioDetalle" />
     <NavigationProperty Name="tbPedidoDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbPedidoDetalle_tbProducto_prod_Codigo" FromRole="tbProducto" ToRole="tbPedidoDetalle" />
+    <NavigationProperty Name="tbBoxDetalle" Relationship="ERP_ZORZALModel.FK_Inv_tbBoxDetalle_tbProducto_prod_Codigo" FromRole="tbProducto" ToRole="tbBoxDetalle" />
   </EntityType>
   <Association Name="FK_Inv_tbProducto_prod_UsuarioModifica">
     <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
@@ -6664,6 +6658,128 @@
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
   <ComplexType Name="UDP_Inv_tbEstadoInventarioFisico_Update_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <EntityType Name="tbBox">
+    <Key>
+      <PropertyRef Name="box_Codigo" />
+    </Key>
+    <Property Name="box_Codigo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="box_Descripcion" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="bod_Id" Type="Int32" Nullable="false" />
+    <Property Name="box_UsuarioCrea" Type="Int32" Nullable="false" />
+    <Property Name="box_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="box_UsuarioModifica" Type="Int32" />
+    <Property Name="box_FechaModifica" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Inv_tbBox_tbUsuario_box_UsuarioCrea" FromRole="tbBox" ToRole="tbUsuario" />
+    <NavigationProperty Name="tbBodega" Relationship="ERP_ZORZALModel.FK_Inv_tbBox_Inv_tbBodega_bod_Id" FromRole="tbBox" ToRole="tbBodega" />
+    <NavigationProperty Name="tbBoxDetalle" Relationship="ERP_ZORZALModel.FK_Inv_tbBoxDetalle_box_Codigo" FromRole="tbBox" ToRole="tbBoxDetalle" />
+    <NavigationProperty Name="tbSalidaDetalle" Relationship="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_box_Codigo" FromRole="tbBox" ToRole="tbSalidaDetalle" />
+  </EntityType>
+  <EntityType Name="tbBoxDetalle">
+    <Key>
+      <PropertyRef Name="boxd_Id" />
+    </Key>
+    <Property Name="boxd_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="box_Codigo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Codigo" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="boxd_Cantidad" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="boxd_UsuarioCrea" Type="Int32" Nullable="false" />
+    <Property Name="boxd_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="boxd_UsuarioModifica" Type="Int32" />
+    <Property Name="boxd_FechaModifica" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Inv_tbBoxDetalle_tbUsuario_boxd_UsuarioCrea" FromRole="tbBoxDetalle" ToRole="tbUsuario" />
+    <NavigationProperty Name="tbBox" Relationship="ERP_ZORZALModel.FK_Inv_tbBoxDetalle_box_Codigo" FromRole="tbBoxDetalle" ToRole="tbBox" />
+    <NavigationProperty Name="tbProducto" Relationship="ERP_ZORZALModel.FK_Inv_tbBoxDetalle_tbProducto_prod_Codigo" FromRole="tbBoxDetalle" ToRole="tbProducto" />
+  </EntityType>
+  <Association Name="FK_Inv_tbBox_tbUsuario_box_UsuarioCrea">
+    <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
+    <End Type="ERP_ZORZALModel.tbBox" Role="tbBox" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbBox">
+        <PropertyRef Name="box_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inv_tbBoxDetalle_tbUsuario_boxd_UsuarioCrea">
+    <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
+    <End Type="ERP_ZORZALModel.tbBoxDetalle" Role="tbBoxDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbBoxDetalle">
+        <PropertyRef Name="boxd_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inv_tbBox_Inv_tbBodega_bod_Id">
+    <End Type="ERP_ZORZALModel.tbBodega" Role="tbBodega" Multiplicity="1" />
+    <End Type="ERP_ZORZALModel.tbBox" Role="tbBox" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbBodega">
+        <PropertyRef Name="bod_Id" />
+      </Principal>
+      <Dependent Role="tbBox">
+        <PropertyRef Name="bod_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inv_tbBoxDetalle_box_Codigo">
+    <End Type="ERP_ZORZALModel.tbBox" Role="tbBox" Multiplicity="1" />
+    <End Type="ERP_ZORZALModel.tbBoxDetalle" Role="tbBoxDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbBox">
+        <PropertyRef Name="box_Codigo" />
+      </Principal>
+      <Dependent Role="tbBoxDetalle">
+        <PropertyRef Name="box_Codigo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inv_tbSalidaDetalle_box_Codigo">
+    <End Type="ERP_ZORZALModel.tbBox" Role="tbBox" Multiplicity="0..1" />
+    <End Type="ERP_ZORZALModel.tbSalidaDetalle" Role="tbSalidaDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbBox">
+        <PropertyRef Name="box_Codigo" />
+      </Principal>
+      <Dependent Role="tbSalidaDetalle">
+        <PropertyRef Name="box_Codigo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inv_tbBoxDetalle_tbProducto_prod_Codigo">
+    <End Type="ERP_ZORZALModel.tbProducto" Role="tbProducto" Multiplicity="1" />
+    <End Type="ERP_ZORZALModel.tbBoxDetalle" Role="tbBoxDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbProducto">
+        <PropertyRef Name="prod_Codigo" />
+      </Principal>
+      <Dependent Role="tbBoxDetalle">
+        <PropertyRef Name="prod_Codigo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="UDP_Inv_tbBox_Delete_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Inv_tbBox_Insert_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Inv_tbBox_Update_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Inv_tbBoxDetalle_Delete_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Inv_tbBoxDetalle_Insert_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Inv_tbBoxDetalle_Update_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
 </Schema>
