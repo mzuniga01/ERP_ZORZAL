@@ -278,6 +278,7 @@
     <Property Name="box_Codigo" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="box_Descripcion" Type="varchar" MaxLength="200" Nullable="false" />
     <Property Name="bod_Id" Type="int" Nullable="false" />
+    <Property Name="box_Estado" Type="tinyint" Nullable="false" />
     <Property Name="box_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="box_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="box_UsuarioModifica" Type="int" />
@@ -2348,7 +2349,7 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Inv_tbBox_Inv_tbBodega_bod_Id">
+  <Association Name="FK_Inv_tbBox_tbBodega_bod_Id">
     <End Role="tbBodega" Type="Self.tbBodega" Multiplicity="1" />
     <End Role="tbBox" Type="Self.tbBox" Multiplicity="*" />
     <ReferentialConstraint>
@@ -2360,7 +2361,7 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Inv_tbBox_tbUsuario_box_UsuarioCrea">
+  <Association Name="FK_Inv_tbBox_tbUsuario_usu_Id">
     <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
     <End Role="tbBox" Type="Self.tbBox" Multiplicity="*" />
     <ReferentialConstraint>
@@ -4095,6 +4096,9 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
   <Function Name="SDP_Inv_tbBodegaDetalle_Select_Producto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="bod_Id" Type="int" Mode="In" />
   </Function>
+  <Function Name="SDP_Inv_tbBoxDetalle_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="boxd_Id" Type="int" Mode="In" />
+  </Function>
   <Function Name="SDP_Inv_tbProducto_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv" />
   <Function Name="SDP_Inv_tbProducto_Select_CodBar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="prod_CodigoBarras" Type="varchar" Mode="In" />
@@ -4236,6 +4240,7 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
     <Parameter Name="box_Codigo" Type="varchar" Mode="In" />
     <Parameter Name="box_Descripcion" Type="varchar" Mode="In" />
     <Parameter Name="bod_Id" Type="int" Mode="In" />
+    <Parameter Name="box_Estado" Type="tinyint" Mode="In" />
     <Parameter Name="box_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="box_FechaCrea" Type="datetime" Mode="In" />
     <Parameter Name="box_UsuarioModifica" Type="int" Mode="In" />
@@ -5161,11 +5166,11 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
       <End Role="tbProducto" EntitySet="tbProducto" />
       <End Role="tbBodegaDetalle" EntitySet="tbBodegaDetalle" />
     </AssociationSet>
-    <AssociationSet Name="FK_Inv_tbBox_Inv_tbBodega_bod_Id" Association="Self.FK_Inv_tbBox_Inv_tbBodega_bod_Id">
+    <AssociationSet Name="FK_Inv_tbBox_tbBodega_bod_Id" Association="Self.FK_Inv_tbBox_tbBodega_bod_Id">
       <End Role="tbBodega" EntitySet="tbBodega" />
       <End Role="tbBox" EntitySet="tbBox" />
     </AssociationSet>
-    <AssociationSet Name="FK_Inv_tbBox_tbUsuario_box_UsuarioCrea" Association="Self.FK_Inv_tbBox_tbUsuario_box_UsuarioCrea">
+    <AssociationSet Name="FK_Inv_tbBox_tbUsuario_usu_Id" Association="Self.FK_Inv_tbBox_tbUsuario_usu_Id">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbBox" EntitySet="tbBox" />
     </AssociationSet>

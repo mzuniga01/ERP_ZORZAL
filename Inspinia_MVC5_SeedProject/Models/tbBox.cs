@@ -24,6 +24,7 @@ namespace ERP_GMEDINA.Models
         public string box_Codigo { get; set; }
         public string box_Descripcion { get; set; }
         public int bod_Id { get; set; }
+        public byte box_Estado { get; set; }
         public int box_UsuarioCrea { get; set; }
         public System.DateTime box_FechaCrea { get; set; }
         public Nullable<int> box_UsuarioModifica { get; set; }

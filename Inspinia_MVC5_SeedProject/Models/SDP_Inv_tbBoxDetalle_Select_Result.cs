@@ -10,21 +10,21 @@
 namespace ERP_GMEDINA.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class tbBoxDetalle
+    public partial class SDP_Inv_tbBoxDetalle_Select_Result
     {
         public int boxd_Id { get; set; }
-        public string box_Codigo { get; set; }
         public string prod_Codigo { get; set; }
+        public string prod_Descripcion { get; set; }
+        public string prod_Marca { get; set; }
+        public string prod_Modelo { get; set; }
+        public string prod_Talla { get; set; }
+        public string prod_Color { get; set; }
+        public string uni_Descripcion { get; set; }
+        public string pcat_Nombre { get; set; }
+        public string pscat_Descripcion { get; set; }
         public decimal boxd_Cantidad { get; set; }
-        public int boxd_UsuarioCrea { get; set; }
-        public System.DateTime boxd_FechaCrea { get; set; }
-        public Nullable<int> boxd_UsuarioModifica { get; set; }
-        public Nullable<System.DateTime> boxd_FechaModifica { get; set; }
-    
-        public virtual tbUsuario tbUsuario { get; set; }
-        public virtual tbProducto tbProducto { get; set; }
-        public virtual tbBox tbBox { get; set; }
+        public string prod_CodigoBarras { get; set; }
+        public string box_Codigo { get; set; }
     }
 }

@@ -92,8 +92,8 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbEmpleado> tbEmpleado { get; set; }
         public virtual DbSet<tbDevolucion> tbDevolucion { get; set; }
         public virtual DbSet<tbProducto> tbProducto { get; set; }
-        public virtual DbSet<tbBox> tbBox { get; set; }
         public virtual DbSet<tbBoxDetalle> tbBoxDetalle { get; set; }
+        public virtual DbSet<tbBox> tbBox { get; set; }
     
         public virtual ObjectResult<UDP_Gral_tbParametro_Insert_Result> UDP_Gral_tbParametro_Insert(Nullable<byte> par_Id, string par_NombreEmpresa, string par_TelefonoEmpresa, string par_CorreoEmpresa, string par_PathLogo, Nullable<short> mnda_Id, Nullable<int> par_RolGerenteTienda, Nullable<int> par_RolCreditoCobranza, Nullable<int> par_RolSupervisorCaja, Nullable<int> par_RolCajero, Nullable<int> par_RolAuditor, Nullable<short> par_SucursalPrincipal, Nullable<decimal> par_PorcentajeDescuentoTE, Nullable<int> par_IdConsumidorFinal, Nullable<int> par_UsuarioCrea, Nullable<System.DateTime> par_FechaCrea)
         {
@@ -3076,39 +3076,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbBox_Insert_Result>("UDP_Inv_tbBox_Insert", box_CodigoParameter, box_DescripcionParameter, bod_IdParameter, box_UsuarioCreaParameter, box_FechaCreaParameter);
         }
     
-        public virtual ObjectResult<UDP_Inv_tbBox_Update_Result> UDP_Inv_tbBox_Update(string box_Codigo, string box_Descripcion, Nullable<int> bod_Id, Nullable<int> box_UsuarioCrea, Nullable<System.DateTime> box_FechaCrea, Nullable<int> box_UsuarioModifica, Nullable<System.DateTime> box_FechaModifica)
-        {
-            var box_CodigoParameter = box_Codigo != null ?
-                new ObjectParameter("box_Codigo", box_Codigo) :
-                new ObjectParameter("box_Codigo", typeof(string));
-    
-            var box_DescripcionParameter = box_Descripcion != null ?
-                new ObjectParameter("box_Descripcion", box_Descripcion) :
-                new ObjectParameter("box_Descripcion", typeof(string));
-    
-            var bod_IdParameter = bod_Id.HasValue ?
-                new ObjectParameter("bod_Id", bod_Id) :
-                new ObjectParameter("bod_Id", typeof(int));
-    
-            var box_UsuarioCreaParameter = box_UsuarioCrea.HasValue ?
-                new ObjectParameter("box_UsuarioCrea", box_UsuarioCrea) :
-                new ObjectParameter("box_UsuarioCrea", typeof(int));
-    
-            var box_FechaCreaParameter = box_FechaCrea.HasValue ?
-                new ObjectParameter("box_FechaCrea", box_FechaCrea) :
-                new ObjectParameter("box_FechaCrea", typeof(System.DateTime));
-    
-            var box_UsuarioModificaParameter = box_UsuarioModifica.HasValue ?
-                new ObjectParameter("box_UsuarioModifica", box_UsuarioModifica) :
-                new ObjectParameter("box_UsuarioModifica", typeof(int));
-    
-            var box_FechaModificaParameter = box_FechaModifica.HasValue ?
-                new ObjectParameter("box_FechaModifica", box_FechaModifica) :
-                new ObjectParameter("box_FechaModifica", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbBox_Update_Result>("UDP_Inv_tbBox_Update", box_CodigoParameter, box_DescripcionParameter, bod_IdParameter, box_UsuarioCreaParameter, box_FechaCreaParameter, box_UsuarioModificaParameter, box_FechaModificaParameter);
-        }
-    
         public virtual ObjectResult<UDP_Inv_tbBoxDetalle_Delete_Result> UDP_Inv_tbBoxDetalle_Delete(Nullable<int> boxd_Id)
         {
             var boxd_IdParameter = boxd_Id.HasValue ?
@@ -3178,6 +3145,52 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("boxd_FechaModifica", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbBoxDetalle_Update_Result>("UDP_Inv_tbBoxDetalle_Update", boxd_IdParameter, box_CodigoParameter, prod_CodigoParameter, boxd_CantidadParameter, boxd_UsuarioCreaParameter, boxd_FechaCreaParameter, boxd_UsuarioModificaParameter, boxd_FechaModificaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Inv_tbBox_Update_Result> UDP_Inv_tbBox_Update(string box_Codigo, string box_Descripcion, Nullable<int> bod_Id, Nullable<byte> box_Estado, Nullable<int> box_UsuarioCrea, Nullable<System.DateTime> box_FechaCrea, Nullable<int> box_UsuarioModifica, Nullable<System.DateTime> box_FechaModifica)
+        {
+            var box_CodigoParameter = box_Codigo != null ?
+                new ObjectParameter("box_Codigo", box_Codigo) :
+                new ObjectParameter("box_Codigo", typeof(string));
+    
+            var box_DescripcionParameter = box_Descripcion != null ?
+                new ObjectParameter("box_Descripcion", box_Descripcion) :
+                new ObjectParameter("box_Descripcion", typeof(string));
+    
+            var bod_IdParameter = bod_Id.HasValue ?
+                new ObjectParameter("bod_Id", bod_Id) :
+                new ObjectParameter("bod_Id", typeof(int));
+    
+            var box_EstadoParameter = box_Estado.HasValue ?
+                new ObjectParameter("box_Estado", box_Estado) :
+                new ObjectParameter("box_Estado", typeof(byte));
+    
+            var box_UsuarioCreaParameter = box_UsuarioCrea.HasValue ?
+                new ObjectParameter("box_UsuarioCrea", box_UsuarioCrea) :
+                new ObjectParameter("box_UsuarioCrea", typeof(int));
+    
+            var box_FechaCreaParameter = box_FechaCrea.HasValue ?
+                new ObjectParameter("box_FechaCrea", box_FechaCrea) :
+                new ObjectParameter("box_FechaCrea", typeof(System.DateTime));
+    
+            var box_UsuarioModificaParameter = box_UsuarioModifica.HasValue ?
+                new ObjectParameter("box_UsuarioModifica", box_UsuarioModifica) :
+                new ObjectParameter("box_UsuarioModifica", typeof(int));
+    
+            var box_FechaModificaParameter = box_FechaModifica.HasValue ?
+                new ObjectParameter("box_FechaModifica", box_FechaModifica) :
+                new ObjectParameter("box_FechaModifica", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbBox_Update_Result>("UDP_Inv_tbBox_Update", box_CodigoParameter, box_DescripcionParameter, bod_IdParameter, box_EstadoParameter, box_UsuarioCreaParameter, box_FechaCreaParameter, box_UsuarioModificaParameter, box_FechaModificaParameter);
+        }
+    
+        public virtual ObjectResult<SDP_Inv_tbBoxDetalle_Select_Result> SDP_Inv_tbBoxDetalle_Select(Nullable<int> boxd_Id)
+        {
+            var boxd_IdParameter = boxd_Id.HasValue ?
+                new ObjectParameter("boxd_Id", boxd_Id) :
+                new ObjectParameter("boxd_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_Inv_tbBoxDetalle_Select_Result>("SDP_Inv_tbBoxDetalle_Select", boxd_IdParameter);
         }
     }
 }

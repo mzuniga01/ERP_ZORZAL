@@ -287,14 +287,14 @@
         <AssociationConnector Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbMovimientoCaja_usu_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbEstadoInventarioFisico_estif_UsuarioModifica" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbEstadoInventarioFisico_tbUsuario_estif_UsuarioCrea" />
-        <EntityTypeShape EntityType="ERP_ZORZALModel.tbBox" Width="1.5" PointX="18.25" PointY="116.125" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.tbBoxDetalle" Width="1.5" PointX="20.5" PointY="105.625" />
-        <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbBox_tbUsuario_box_UsuarioCrea" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbBoxDetalle_tbUsuario_boxd_UsuarioCrea" />
-        <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbBox_Inv_tbBodega_bod_Id" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbBoxDetalle_tbProducto_prod_Codigo" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.tbBox" Width="1.5" PointX="18.25" PointY="116" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbBox_tbUsuario_usu_Id" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbBox_tbBodega_bod_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbBoxDetalle_box_Codigo" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_box_Codigo" />
-        <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbBoxDetalle_tbProducto_prod_Codigo" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
