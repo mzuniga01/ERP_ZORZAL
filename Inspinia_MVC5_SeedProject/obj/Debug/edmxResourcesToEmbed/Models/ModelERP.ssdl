@@ -77,16 +77,6 @@
     <Property Name="suc_Id" Type="int" />
     <Property Name="emp_Id" Type="smallint" />
   </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="version" Type="int" />
-    <Property Name="definition" Type="varbinary(max)" />
-  </EntityType>
   <EntityType Name="tbActividadEconomica">
     <Key>
       <PropertyRef Name="acte_Id" />
@@ -298,11 +288,25 @@
     </Key>
     <Property Name="box_Codigo" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="box_Descripcion" Type="varchar" MaxLength="200" Nullable="false" />
-    <Property Name="box_Estado" Type="bit" Nullable="false" />
+    <Property Name="bod_Id" Type="int" Nullable="false" />
+    <Property Name="box_Estado" Type="tinyint" Nullable="false" />
     <Property Name="box_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="box_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="box_UsuarioModifica" Type="int" />
     <Property Name="box_FechaModifica" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbBoxDetalle">
+    <Key>
+      <PropertyRef Name="boxd_Id" />
+    </Key>
+    <Property Name="boxd_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="box_Codigo" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="prod_Codigo" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="boxd_Cantidad" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="boxd_UsuarioCrea" Type="int" Nullable="false" />
+    <Property Name="boxd_FechaCrea" Type="datetime" Nullable="false" />
+    <Property Name="boxd_UsuarioModifica" Type="int" />
+    <Property Name="boxd_FechaModifica" Type="datetime" />
   </EntityType>
   <EntityType Name="tbEntrada">
     <Key>
@@ -1015,113 +1019,6 @@
     <Property Name="tpa_FechaModifica" Type="datetime" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'ERP_GMEDINA.Acce.UDV_Acce_Usuario_Roles' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-  <EntityType Name="UDV_Acce_Usuario_Roles">
-    <Key>
-      <PropertyRef Name="rolu_Id" />
-      <PropertyRef Name="rol_Id" />
-      <PropertyRef Name="usu_Id" />
-      <PropertyRef Name="rolu_UsuarioCrea" />
-      <PropertyRef Name="rolu_FechaCrea" />
-      <PropertyRef Name="acrol_Id" />
-      <PropertyRef Name="obj_Id" />
-      <PropertyRef Name="acrol_UsuarioCrea" />
-      <PropertyRef Name="acrol_FechaCrea" />
-      <PropertyRef Name="obj_UsuarioCrea" />
-      <PropertyRef Name="obj_FechaCrea" />
-      <PropertyRef Name="obj_Estado" />
-    </Key>
-    <Property Name="rolu_Id" Type="int" Nullable="false" />
-    <Property Name="rol_Id" Type="int" Nullable="false" />
-    <Property Name="usu_Id" Type="int" Nullable="false" />
-    <Property Name="rolu_UsuarioCrea" Type="int" Nullable="false" />
-    <Property Name="rolu_FechaCrea" Type="datetime" Nullable="false" />
-    <Property Name="rolu_UsuarioModifica" Type="int" />
-    <Property Name="rolu_FechaModifica" Type="datetime" />
-    <Property Name="acrol_Id" Type="int" Nullable="false" />
-    <Property Name="obj_Id" Type="int" Nullable="false" />
-    <Property Name="acrol_UsuarioCrea" Type="int" Nullable="false" />
-    <Property Name="acrol_FechaCrea" Type="datetime" Nullable="false" />
-    <Property Name="acrol_UsuarioModifica" Type="int" />
-    <Property Name="acrol_FechaModifica" Type="datetime" />
-    <Property Name="obj_Pantalla" Type="nvarchar" MaxLength="50" />
-    <Property Name="obj_Referencia" Type="varchar" MaxLength="100" />
-    <Property Name="obj_UsuarioCrea" Type="int" Nullable="false" />
-    <Property Name="obj_FechaCrea" Type="datetime" Nullable="false" />
-    <Property Name="obj_UsuarioModifica" Type="int" />
-    <Property Name="obj_FechaModifica" Type="datetime" />
-    <Property Name="obj_Estado" Type="bit" Nullable="false" />
-  </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'ERP_GMEDINA.Acce.V_Objetos' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-  <EntityType Name="V_Objetos">
-    <Key>
-      <PropertyRef Name="obj_Id" />
-      <PropertyRef Name="usu_NombreUsuario" />
-      <PropertyRef Name="obj_FechaCrea" />
-    </Key>
-    <Property Name="obj_Id" Type="int" Nullable="false" />
-    <Property Name="obj_Pantalla" Type="nvarchar" MaxLength="50" />
-    <Property Name="usu_NombreUsuario" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="obj_FechaCrea" Type="datetime" Nullable="false" />
-    <Property Name="obj_UsuarioModifica" Type="int" />
-    <Property Name="obj_FechaModifica" Type="datetime" />
-  </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'ERP_GMEDINA.dbo.UDV_Vent_FacturaPuntoEmision' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-  <EntityType Name="UDV_Vent_FacturaPuntoEmision">
-    <Key>
-      <PropertyRef Name="cja_Id" />
-      <PropertyRef Name="suc_Id" />
-      <PropertyRef Name="pemi_Id" />
-      <PropertyRef Name="pemi_NumeroCAI" />
-      <PropertyRef Name="pemid_RangoInicio" />
-      <PropertyRef Name="pemid_RangoFinal" />
-      <PropertyRef Name="pemid_FechaLimite" />
-      <PropertyRef Name="dfisc_Id" />
-    </Key>
-    <Property Name="cja_Id" Type="smallint" Nullable="false" />
-    <Property Name="suc_Id" Type="int" Nullable="false" />
-    <Property Name="pemi_Id" Type="int" Nullable="false" />
-    <Property Name="pemi_NumeroCAI" Type="nvarchar" MaxLength="40" Nullable="false" />
-    <Property Name="pemid_RangoInicio" Type="varchar" MaxLength="20" Nullable="false" />
-    <Property Name="pemid_RangoFinal" Type="varchar" MaxLength="20" Nullable="false" />
-    <Property Name="pemid_FechaLimite" Type="date" Nullable="false" />
-    <Property Name="dfisc_Id" Type="char" MaxLength="2" Nullable="false" />
-  </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'ERP_GMEDINA.Gral.UDV_Inv_Nombre_Empleado' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-  <EntityType Name="UDV_Inv_Nombre_Empleado">
-    <Key>
-      <PropertyRef Name="emp_Id" />
-      <PropertyRef Name="Empleados" />
-    </Key>
-    <Property Name="emp_Id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Empleados" Type="nvarchar" MaxLength="201" Nullable="false" />
-  </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Productos' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-  <EntityType Name="UDV_Inv_Consultar_Existencias_Productos">
-    <Key>
-      <PropertyRef Name="prod_Descripcion" />
-      <PropertyRef Name="prod_Marca" />
-      <PropertyRef Name="bodd_CantidadExistente" />
-      <PropertyRef Name="bodd_CantidadMinima" />
-      <PropertyRef Name="bod_Id" />
-      <PropertyRef Name="bodd_Id" />
-      <PropertyRef Name="prod_Codigo" />
-    </Key>
-    <Property Name="suc_Descripcion" Type="nvarchar" MaxLength="40" />
-    <Property Name="bod_Nombre" Type="varchar" MaxLength="100" />
-    <Property Name="prod_Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="prod_Marca" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="bodd_CantidadExistente" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-    <Property Name="bodd_CantidadMinima" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-    <Property Name="bod_Id" Type="int" Nullable="false" />
-    <Property Name="bodd_Id" Type="int" Nullable="false" />
-    <Property Name="prod_Codigo" Type="nvarchar" MaxLength="15" Nullable="false" />
-  </EntityType>
-  <!--Errors Found During Generation:
 warning 6002: The table/view 'ERP_GMEDINA.Vent.UDP_Vent_listExoneracion_Select' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="UDP_Vent_listExoneracion_Select">
     <Key>
@@ -1188,18 +1085,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivo_Select'
     <Property Name="Apertura" Type="bit" Nullable="false" />
     <Property Name="Anulada" Type="bit" Nullable="false" />
     <Property Name="usuariocrea" Type="int" Nullable="false" />
-  </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivoDetalle_Denominacion' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-  <EntityType Name="UDP_Vent_SolicituEfectivoDetalle_Denominacion">
-    <Key>
-      <PropertyRef Name="denoId" />
-      <PropertyRef Name="DenoDescripcion" />
-      <PropertyRef Name="valor" />
-    </Key>
-    <Property Name="denoId" Type="smallint" Nullable="false" />
-    <Property Name="DenoDescripcion" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="valor" Type="decimal" Precision="10" Scale="2" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Clientes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -1307,23 +1192,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
     <Property Name="fact_FechaModifica" Type="datetime" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_DevolucionesPorFecha' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-  <EntityType Name="UDV_Vent_DevolucionesPorFecha">
-    <Key>
-      <PropertyRef Name="dev_Id" />
-      <PropertyRef Name="fact_Codigo" />
-      <PropertyRef Name="clte_Identificacion" />
-      <PropertyRef Name="clte_Nombres" />
-      <PropertyRef Name="dev_Fecha" />
-    </Key>
-    <Property Name="dev_Id" Type="int" Nullable="false" />
-    <Property Name="fact_Codigo" Type="nvarchar" MaxLength="19" Nullable="false" />
-    <Property Name="clte_Identificacion" Type="nvarchar" MaxLength="26" Nullable="false" />
-    <Property Name="clte_Nombres" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="dev_Fecha" Type="datetime" Nullable="false" />
-    <Property Name="dev_Estado" Type="bit" />
-  </EntityType>
-  <!--Errors Found During Generation:
 warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_FacturaPagoSelect' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="UDV_Vent_FacturaPagoSelect">
     <Key>
@@ -1341,28 +1209,32 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_FacturaPagoSelect' does 
     <Property Name="SaldoFactura" Type="decimal" Precision="18" Scale="2" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_FacturaPuntoEmision' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-  <EntityType Name="UDV_Vent_FacturaPuntoEmision1">
+warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_InventarioNumeraciones' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="UDV_Vent_InventarioNumeraciones">
     <Key>
-      <PropertyRef Name="cja_Id" />
       <PropertyRef Name="suc_Id" />
-      <PropertyRef Name="fact_Id" />
-      <PropertyRef Name="pemi_Id" />
+      <PropertyRef Name="suc_Descripcion" />
+      <PropertyRef Name="suc_Telefono" />
       <PropertyRef Name="pemi_NumeroCAI" />
+      <PropertyRef Name="dfisc_Descripcion" />
       <PropertyRef Name="pemid_RangoInicio" />
       <PropertyRef Name="pemid_RangoFinal" />
+      <PropertyRef Name="pemid_NumeroActual" />
       <PropertyRef Name="pemid_FechaLimite" />
-      <PropertyRef Name="dfisc_Id" />
+      <PropertyRef Name="Estado" />
     </Key>
-    <Property Name="cja_Id" Type="smallint" Nullable="false" />
     <Property Name="suc_Id" Type="int" Nullable="false" />
-    <Property Name="fact_Id" Type="bigint" Nullable="false" />
-    <Property Name="pemi_Id" Type="int" Nullable="false" />
+    <Property Name="suc_Descripcion" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="suc_Telefono" Type="nvarchar" MaxLength="9" Nullable="false" />
     <Property Name="pemi_NumeroCAI" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="dfisc_Descripcion" Type="nvarchar" MaxLength="60" Nullable="false" />
     <Property Name="pemid_RangoInicio" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="pemid_RangoFinal" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="pemid_NumeroActual" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="pemid_FechaLimite" Type="date" Nullable="false" />
-    <Property Name="dfisc_Id" Type="char" MaxLength="2" Nullable="false" />
+    <Property Name="Estado" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="DiasDisponibles" Type="varchar(max)" />
+    <Property Name="NumeracionesDisponibles" Type="int" />
   </EntityType>
   <Association Name="FK__DatosCons__fact___4DAB2CE2">
     <End Role="tbFactura" Type="Self.tbFactura" Multiplicity="1" />
@@ -2708,7 +2580,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_FacturaPuntoEmision' doe
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Inv_tbBox_tbUsuario_box_UsuarioCrea">
+  <Association Name="FK_Inv_tbBox_tbUsuario_usu_Id">
     <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
     <End Role="tbBox" Type="Self.tbBox" Multiplicity="*" />
     <ReferentialConstraint>
@@ -2717,6 +2589,42 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_FacturaPuntoEmision' doe
       </Principal>
       <Dependent Role="tbBox">
         <PropertyRef Name="box_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inv_tbBoxDetalle_box_Codigo">
+    <End Role="tbBox" Type="Self.tbBox" Multiplicity="1" />
+    <End Role="tbBoxDetalle" Type="Self.tbBoxDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbBox">
+        <PropertyRef Name="box_Codigo" />
+      </Principal>
+      <Dependent Role="tbBoxDetalle">
+        <PropertyRef Name="box_Codigo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inv_tbBoxDetalle_tbProducto_prod_Codigo">
+    <End Role="tbProducto" Type="Self.tbProducto" Multiplicity="1" />
+    <End Role="tbBoxDetalle" Type="Self.tbBoxDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbProducto">
+        <PropertyRef Name="prod_Codigo" />
+      </Principal>
+      <Dependent Role="tbBoxDetalle">
+        <PropertyRef Name="prod_Codigo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inv_tbBoxDetalle_tbUsuario_boxd_UsuarioCrea">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="tbBoxDetalle" Type="Self.tbBoxDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbBoxDetalle">
+        <PropertyRef Name="boxd_UsuarioCrea" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -4645,13 +4553,15 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_FacturaPuntoEmision' doe
   <Function Name="UDP_Inv_tbBox_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="box_Codigo" Type="varchar" Mode="In" />
     <Parameter Name="box_Descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="bod_Id" Type="int" Mode="In" />
     <Parameter Name="box_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="box_FechaCrea" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Inv_tbBox_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="box_Codigo" Type="varchar" Mode="In" />
     <Parameter Name="box_Descripcion" Type="varchar" Mode="In" />
-    <Parameter Name="box_Estado" Type="bit" Mode="In" />
+    <Parameter Name="bod_Id" Type="int" Mode="In" />
+    <Parameter Name="box_Estado" Type="tinyint" Mode="In" />
     <Parameter Name="box_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="box_FechaCrea" Type="datetime" Mode="In" />
     <Parameter Name="box_UsuarioModifica" Type="int" Mode="In" />
@@ -5979,7 +5889,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_FacturaPuntoEmision' doe
     <EntitySet Name="tbRol" EntityType="Self.tbRol" Schema="Acce" store:Type="Tables" />
     <EntitySet Name="tbRolesUsuario" EntityType="Self.tbRolesUsuario" Schema="Acce" store:Type="Tables" />
     <EntitySet Name="tbUsuario" EntityType="Self.tbUsuario" Schema="Acce" store:Type="Tables" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbActividadEconomica" EntityType="Self.tbActividadEconomica" Schema="Gral" store:Type="Tables" />
     <EntitySet Name="tbBanco" EntityType="Self.tbBanco" Schema="Gral" store:Type="Tables" />
     <EntitySet Name="tbCuentasBanco" EntityType="Self.tbCuentasBanco" Schema="Gral" store:Type="Tables" />
@@ -5995,6 +5904,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_FacturaPuntoEmision' doe
     <EntitySet Name="tbBodega" EntityType="Self.tbBodega" Schema="Inv" store:Type="Tables" />
     <EntitySet Name="tbBodegaDetalle" EntityType="Self.tbBodegaDetalle" Schema="Inv" store:Type="Tables" />
     <EntitySet Name="tbBox" EntityType="Self.tbBox" Schema="Inv" store:Type="Tables" />
+    <EntitySet Name="tbBoxDetalle" EntityType="Self.tbBoxDetalle" Schema="Inv" store:Type="Tables" />
     <EntitySet Name="tbEntrada" EntityType="Self.tbEntrada" Schema="Inv" store:Type="Tables" />
     <EntitySet Name="tbEntradaDetalle" EntityType="Self.tbEntradaDetalle" Schema="Inv" store:Type="Tables" />
     <EntitySet Name="tbEstadoInventarioFisico" EntityType="Self.tbEstadoInventarioFisico" Schema="Inv" store:Type="Tables" />
@@ -6040,71 +5950,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_FacturaPuntoEmision' doe
     <EntitySet Name="tbSolicitudEfectivoDetalle" EntityType="Self.tbSolicitudEfectivoDetalle" Schema="Vent" store:Type="Tables" />
     <EntitySet Name="tbSucursal" EntityType="Self.tbSucursal" Schema="Vent" store:Type="Tables" />
     <EntitySet Name="tbTipoPago" EntityType="Self.tbTipoPago" Schema="Vent" store:Type="Tables" />
-    <EntitySet Name="UDV_Acce_Usuario_Roles" EntityType="Self.UDV_Acce_Usuario_Roles" store:Type="Views" store:Schema="Acce">
-      <DefiningQuery>SELECT 
-    [UDV_Acce_Usuario_Roles].[rolu_Id] AS [rolu_Id], 
-    [UDV_Acce_Usuario_Roles].[rol_Id] AS [rol_Id], 
-    [UDV_Acce_Usuario_Roles].[usu_Id] AS [usu_Id], 
-    [UDV_Acce_Usuario_Roles].[rolu_UsuarioCrea] AS [rolu_UsuarioCrea], 
-    [UDV_Acce_Usuario_Roles].[rolu_FechaCrea] AS [rolu_FechaCrea], 
-    [UDV_Acce_Usuario_Roles].[rolu_UsuarioModifica] AS [rolu_UsuarioModifica], 
-    [UDV_Acce_Usuario_Roles].[rolu_FechaModifica] AS [rolu_FechaModifica], 
-    [UDV_Acce_Usuario_Roles].[acrol_Id] AS [acrol_Id], 
-    [UDV_Acce_Usuario_Roles].[obj_Id] AS [obj_Id], 
-    [UDV_Acce_Usuario_Roles].[acrol_UsuarioCrea] AS [acrol_UsuarioCrea], 
-    [UDV_Acce_Usuario_Roles].[acrol_FechaCrea] AS [acrol_FechaCrea], 
-    [UDV_Acce_Usuario_Roles].[acrol_UsuarioModifica] AS [acrol_UsuarioModifica], 
-    [UDV_Acce_Usuario_Roles].[acrol_FechaModifica] AS [acrol_FechaModifica], 
-    [UDV_Acce_Usuario_Roles].[obj_Pantalla] AS [obj_Pantalla], 
-    [UDV_Acce_Usuario_Roles].[obj_Referencia] AS [obj_Referencia], 
-    [UDV_Acce_Usuario_Roles].[obj_UsuarioCrea] AS [obj_UsuarioCrea], 
-    [UDV_Acce_Usuario_Roles].[obj_FechaCrea] AS [obj_FechaCrea], 
-    [UDV_Acce_Usuario_Roles].[obj_UsuarioModifica] AS [obj_UsuarioModifica], 
-    [UDV_Acce_Usuario_Roles].[obj_FechaModifica] AS [obj_FechaModifica], 
-    [UDV_Acce_Usuario_Roles].[obj_Estado] AS [obj_Estado]
-    FROM [Acce].[UDV_Acce_Usuario_Roles] AS [UDV_Acce_Usuario_Roles]</DefiningQuery>
-    </EntitySet>
-    <EntitySet Name="V_Objetos" EntityType="Self.V_Objetos" store:Type="Views" store:Schema="Acce">
-      <DefiningQuery>SELECT 
-    [V_Objetos].[obj_Id] AS [obj_Id], 
-    [V_Objetos].[obj_Pantalla] AS [obj_Pantalla], 
-    [V_Objetos].[usu_NombreUsuario] AS [usu_NombreUsuario], 
-    [V_Objetos].[obj_FechaCrea] AS [obj_FechaCrea], 
-    [V_Objetos].[obj_UsuarioModifica] AS [obj_UsuarioModifica], 
-    [V_Objetos].[obj_FechaModifica] AS [obj_FechaModifica]
-    FROM [Acce].[V_Objetos] AS [V_Objetos]</DefiningQuery>
-    </EntitySet>
-    <EntitySet Name="UDV_Vent_FacturaPuntoEmision" EntityType="Self.UDV_Vent_FacturaPuntoEmision" store:Type="Views" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [UDV_Vent_FacturaPuntoEmision].[cja_Id] AS [cja_Id], 
-    [UDV_Vent_FacturaPuntoEmision].[suc_Id] AS [suc_Id], 
-    [UDV_Vent_FacturaPuntoEmision].[pemi_Id] AS [pemi_Id], 
-    [UDV_Vent_FacturaPuntoEmision].[pemi_NumeroCAI] AS [pemi_NumeroCAI], 
-    [UDV_Vent_FacturaPuntoEmision].[pemid_RangoInicio] AS [pemid_RangoInicio], 
-    [UDV_Vent_FacturaPuntoEmision].[pemid_RangoFinal] AS [pemid_RangoFinal], 
-    [UDV_Vent_FacturaPuntoEmision].[pemid_FechaLimite] AS [pemid_FechaLimite], 
-    [UDV_Vent_FacturaPuntoEmision].[dfisc_Id] AS [dfisc_Id]
-    FROM [dbo].[UDV_Vent_FacturaPuntoEmision] AS [UDV_Vent_FacturaPuntoEmision]</DefiningQuery>
-    </EntitySet>
-    <EntitySet Name="UDV_Inv_Nombre_Empleado" EntityType="Self.UDV_Inv_Nombre_Empleado" store:Type="Views" store:Schema="Gral">
-      <DefiningQuery>SELECT 
-    [UDV_Inv_Nombre_Empleado].[emp_Id] AS [emp_Id], 
-    [UDV_Inv_Nombre_Empleado].[Empleados] AS [Empleados]
-    FROM [Gral].[UDV_Inv_Nombre_Empleado] AS [UDV_Inv_Nombre_Empleado]</DefiningQuery>
-    </EntitySet>
-    <EntitySet Name="UDV_Inv_Consultar_Existencias_Productos" EntityType="Self.UDV_Inv_Consultar_Existencias_Productos" store:Type="Views" store:Schema="Inv">
-      <DefiningQuery>SELECT 
-    [UDV_Inv_Consultar_Existencias_Productos].[suc_Descripcion] AS [suc_Descripcion], 
-    [UDV_Inv_Consultar_Existencias_Productos].[bod_Nombre] AS [bod_Nombre], 
-    [UDV_Inv_Consultar_Existencias_Productos].[prod_Descripcion] AS [prod_Descripcion], 
-    [UDV_Inv_Consultar_Existencias_Productos].[prod_Marca] AS [prod_Marca], 
-    [UDV_Inv_Consultar_Existencias_Productos].[bodd_CantidadExistente] AS [bodd_CantidadExistente], 
-    [UDV_Inv_Consultar_Existencias_Productos].[bodd_CantidadMinima] AS [bodd_CantidadMinima], 
-    [UDV_Inv_Consultar_Existencias_Productos].[bod_Id] AS [bod_Id], 
-    [UDV_Inv_Consultar_Existencias_Productos].[bodd_Id] AS [bodd_Id], 
-    [UDV_Inv_Consultar_Existencias_Productos].[prod_Codigo] AS [prod_Codigo]
-    FROM [Inv].[UDV_Inv_Consultar_Existencias_Productos] AS [UDV_Inv_Consultar_Existencias_Productos]</DefiningQuery>
-    </EntitySet>
     <EntitySet Name="UDP_Vent_listExoneracion_Select" EntityType="Self.UDP_Vent_listExoneracion_Select" store:Type="Views" store:Schema="Vent">
       <DefiningQuery>SELECT 
     [UDP_Vent_listExoneracion_Select].[Id] AS [Id], 
@@ -6145,13 +5990,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_FacturaPuntoEmision' doe
     [UDP_Vent_SolicituEfectivo_Select].[Anulada] AS [Anulada], 
     [UDP_Vent_SolicituEfectivo_Select].[usuariocrea] AS [usuariocrea]
     FROM [Vent].[UDP_Vent_SolicituEfectivo_Select] AS [UDP_Vent_SolicituEfectivo_Select]</DefiningQuery>
-    </EntitySet>
-    <EntitySet Name="UDP_Vent_SolicituEfectivoDetalle_Denominacion" EntityType="Self.UDP_Vent_SolicituEfectivoDetalle_Denominacion" store:Type="Views" store:Schema="Vent">
-      <DefiningQuery>SELECT 
-    [UDP_Vent_SolicituEfectivoDetalle_Denominacion].[denoId] AS [denoId], 
-    [UDP_Vent_SolicituEfectivoDetalle_Denominacion].[DenoDescripcion] AS [DenoDescripcion], 
-    [UDP_Vent_SolicituEfectivoDetalle_Denominacion].[valor] AS [valor]
-    FROM [Vent].[UDP_Vent_SolicituEfectivoDetalle_Denominacion] AS [UDP_Vent_SolicituEfectivoDetalle_Denominacion]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="UDV_Vent_Busqueda_Clientes" EntityType="Self.UDV_Vent_Busqueda_Clientes" store:Type="Views" store:Schema="Vent">
       <DefiningQuery>SELECT 
@@ -6216,16 +6054,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_FacturaPuntoEmision' doe
     [UDV_Vent_Busqueda_Factura].[fact_FechaModifica] AS [fact_FechaModifica]
     FROM [Vent].[UDV_Vent_Busqueda_Factura] AS [UDV_Vent_Busqueda_Factura]</DefiningQuery>
     </EntitySet>
-    <EntitySet Name="UDV_Vent_DevolucionesPorFecha" EntityType="Self.UDV_Vent_DevolucionesPorFecha" store:Type="Views" store:Schema="Vent">
-      <DefiningQuery>SELECT 
-    [UDV_Vent_DevolucionesPorFecha].[dev_Id] AS [dev_Id], 
-    [UDV_Vent_DevolucionesPorFecha].[fact_Codigo] AS [fact_Codigo], 
-    [UDV_Vent_DevolucionesPorFecha].[clte_Identificacion] AS [clte_Identificacion], 
-    [UDV_Vent_DevolucionesPorFecha].[clte_Nombres] AS [clte_Nombres], 
-    [UDV_Vent_DevolucionesPorFecha].[dev_Fecha] AS [dev_Fecha], 
-    [UDV_Vent_DevolucionesPorFecha].[dev_Estado] AS [dev_Estado]
-    FROM [Vent].[UDV_Vent_DevolucionesPorFecha] AS [UDV_Vent_DevolucionesPorFecha]</DefiningQuery>
-    </EntitySet>
     <EntitySet Name="UDV_Vent_FacturaPagoSelect" EntityType="Self.UDV_Vent_FacturaPagoSelect" store:Type="Views" store:Schema="Vent">
       <DefiningQuery>SELECT 
     [UDV_Vent_FacturaPagoSelect].[fact_Id] AS [fact_Id], 
@@ -6237,18 +6065,21 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_FacturaPuntoEmision' doe
     [UDV_Vent_FacturaPagoSelect].[SaldoFactura] AS [SaldoFactura]
     FROM [Vent].[UDV_Vent_FacturaPagoSelect] AS [UDV_Vent_FacturaPagoSelect]</DefiningQuery>
     </EntitySet>
-    <EntitySet Name="UDV_Vent_FacturaPuntoEmision1" EntityType="Self.UDV_Vent_FacturaPuntoEmision1" store:Type="Views" store:Schema="Vent" store:Name="UDV_Vent_FacturaPuntoEmision">
+    <EntitySet Name="UDV_Vent_InventarioNumeraciones" EntityType="Self.UDV_Vent_InventarioNumeraciones" store:Type="Views" store:Schema="Vent">
       <DefiningQuery>SELECT 
-    [UDV_Vent_FacturaPuntoEmision1].[cja_Id] AS [cja_Id], 
-    [UDV_Vent_FacturaPuntoEmision1].[suc_Id] AS [suc_Id], 
-    [UDV_Vent_FacturaPuntoEmision1].[fact_Id] AS [fact_Id], 
-    [UDV_Vent_FacturaPuntoEmision1].[pemi_Id] AS [pemi_Id], 
-    [UDV_Vent_FacturaPuntoEmision1].[pemi_NumeroCAI] AS [pemi_NumeroCAI], 
-    [UDV_Vent_FacturaPuntoEmision1].[pemid_RangoInicio] AS [pemid_RangoInicio], 
-    [UDV_Vent_FacturaPuntoEmision1].[pemid_RangoFinal] AS [pemid_RangoFinal], 
-    [UDV_Vent_FacturaPuntoEmision1].[pemid_FechaLimite] AS [pemid_FechaLimite], 
-    [UDV_Vent_FacturaPuntoEmision1].[dfisc_Id] AS [dfisc_Id]
-    FROM [Vent].[UDV_Vent_FacturaPuntoEmision] AS [UDV_Vent_FacturaPuntoEmision1]</DefiningQuery>
+    [UDV_Vent_InventarioNumeraciones].[suc_Id] AS [suc_Id], 
+    [UDV_Vent_InventarioNumeraciones].[suc_Descripcion] AS [suc_Descripcion], 
+    [UDV_Vent_InventarioNumeraciones].[suc_Telefono] AS [suc_Telefono], 
+    [UDV_Vent_InventarioNumeraciones].[pemi_NumeroCAI] AS [pemi_NumeroCAI], 
+    [UDV_Vent_InventarioNumeraciones].[dfisc_Descripcion] AS [dfisc_Descripcion], 
+    [UDV_Vent_InventarioNumeraciones].[pemid_RangoInicio] AS [pemid_RangoInicio], 
+    [UDV_Vent_InventarioNumeraciones].[pemid_RangoFinal] AS [pemid_RangoFinal], 
+    [UDV_Vent_InventarioNumeraciones].[pemid_NumeroActual] AS [pemid_NumeroActual], 
+    [UDV_Vent_InventarioNumeraciones].[pemid_FechaLimite] AS [pemid_FechaLimite], 
+    [UDV_Vent_InventarioNumeraciones].[Estado] AS [Estado], 
+    [UDV_Vent_InventarioNumeraciones].[DiasDisponibles] AS [DiasDisponibles], 
+    [UDV_Vent_InventarioNumeraciones].[NumeracionesDisponibles] AS [NumeracionesDisponibles]
+    FROM [Vent].[UDV_Vent_InventarioNumeraciones] AS [UDV_Vent_InventarioNumeraciones]</DefiningQuery>
     </EntitySet>
     <AssociationSet Name="FK__DatosCons__fact___4DAB2CE2" Association="Self.FK__DatosCons__fact___4DAB2CE2">
       <End Role="tbFactura" EntitySet="tbFactura" />
@@ -6698,9 +6529,21 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_FacturaPuntoEmision' doe
       <End Role="tbProducto" EntitySet="tbProducto" />
       <End Role="tbBodegaDetalle" EntitySet="tbBodegaDetalle" />
     </AssociationSet>
-    <AssociationSet Name="FK_Inv_tbBox_tbUsuario_box_UsuarioCrea" Association="Self.FK_Inv_tbBox_tbUsuario_box_UsuarioCrea">
+    <AssociationSet Name="FK_Inv_tbBox_tbUsuario_usu_Id" Association="Self.FK_Inv_tbBox_tbUsuario_usu_Id">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbBox" EntitySet="tbBox" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inv_tbBoxDetalle_box_Codigo" Association="Self.FK_Inv_tbBoxDetalle_box_Codigo">
+      <End Role="tbBox" EntitySet="tbBox" />
+      <End Role="tbBoxDetalle" EntitySet="tbBoxDetalle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inv_tbBoxDetalle_tbProducto_prod_Codigo" Association="Self.FK_Inv_tbBoxDetalle_tbProducto_prod_Codigo">
+      <End Role="tbProducto" EntitySet="tbProducto" />
+      <End Role="tbBoxDetalle" EntitySet="tbBoxDetalle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inv_tbBoxDetalle_tbUsuario_boxd_UsuarioCrea" Association="Self.FK_Inv_tbBoxDetalle_tbUsuario_boxd_UsuarioCrea">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbBoxDetalle" EntitySet="tbBoxDetalle" />
     </AssociationSet>
     <AssociationSet Name="FK_Inv_tbEntrada_ent_BodegaDestino" Association="Self.FK_Inv_tbEntrada_ent_BodegaDestino">
       <End Role="tbBodega" EntitySet="tbBodega" />

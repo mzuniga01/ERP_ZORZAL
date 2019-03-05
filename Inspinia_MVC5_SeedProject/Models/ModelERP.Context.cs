@@ -34,7 +34,6 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbRol> tbRol { get; set; }
         public virtual DbSet<tbRolesUsuario> tbRolesUsuario { get; set; }
         public virtual DbSet<tbUsuario> tbUsuario { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<tbActividadEconomica> tbActividadEconomica { get; set; }
         public virtual DbSet<tbBanco> tbBanco { get; set; }
         public virtual DbSet<tbCuentasBanco> tbCuentasBanco { get; set; }
@@ -50,6 +49,7 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbBodega> tbBodega { get; set; }
         public virtual DbSet<tbBodegaDetalle> tbBodegaDetalle { get; set; }
         public virtual DbSet<tbBox> tbBox { get; set; }
+        public virtual DbSet<tbBoxDetalle> tbBoxDetalle { get; set; }
         public virtual DbSet<tbEntrada> tbEntrada { get; set; }
         public virtual DbSet<tbEntradaDetalle> tbEntradaDetalle { get; set; }
         public virtual DbSet<tbEstadoInventarioFisico> tbEstadoInventarioFisico { get; set; }
@@ -94,20 +94,12 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbSolicitudEfectivoDetalle> tbSolicitudEfectivoDetalle { get; set; }
         public virtual DbSet<tbSucursal> tbSucursal { get; set; }
         public virtual DbSet<tbTipoPago> tbTipoPago { get; set; }
-        public virtual DbSet<UDV_Acce_Usuario_Roles> UDV_Acce_Usuario_Roles { get; set; }
-        public virtual DbSet<V_Objetos> V_Objetos { get; set; }
-        public virtual DbSet<UDV_Vent_FacturaPuntoEmision> UDV_Vent_FacturaPuntoEmision { get; set; }
-        public virtual DbSet<UDV_Inv_Nombre_Empleado> UDV_Inv_Nombre_Empleado { get; set; }
-        public virtual DbSet<UDV_Inv_Consultar_Existencias_Productos> UDV_Inv_Consultar_Existencias_Productos { get; set; }
-        public virtual DbSet<UDP_Vent_listExoneracion_Select> UDP_Vent_listExoneracion_Select { get; set; }
-        public virtual DbSet<UDP_Vent_SolicituEfectivo_Detalles_Select> UDP_Vent_SolicituEfectivo_Detalles_Select { get; set; }
-        public virtual DbSet<UDP_Vent_SolicituEfectivoDetalle_Denominacion> UDP_Vent_SolicituEfectivoDetalle_Denominacion { get; set; }
         public virtual DbSet<UDV_Vent_Busqueda_Clientes> UDV_Vent_Busqueda_Clientes { get; set; }
         public virtual DbSet<UDV_Vent_Busqueda_Factura> UDV_Vent_Busqueda_Factura { get; set; }
-        public virtual DbSet<UDV_Vent_FacturaPuntoEmision1> UDV_Vent_FacturaPuntoEmision1 { get; set; }
+        public virtual DbSet<UDP_Vent_listExoneracion_Select> UDP_Vent_listExoneracion_Select { get; set; }
         public virtual DbSet<UDP_Vent_SolicituEfectivo_Select> UDP_Vent_SolicituEfectivo_Select { get; set; }
-        public virtual DbSet<UDV_Vent_DevolucionesPorFecha> UDV_Vent_DevolucionesPorFecha { get; set; }
         public virtual DbSet<UDV_Vent_FacturaPagoSelect> UDV_Vent_FacturaPagoSelect { get; set; }
+        public virtual DbSet<UDP_Vent_SolicituEfectivo_Detalles_Select> UDP_Vent_SolicituEfectivo_Detalles_Select { get; set; }
         public virtual DbSet<UDV_Vent_InventarioNumeraciones> UDV_Vent_InventarioNumeraciones { get; set; }
     
         public virtual ObjectResult<Nullable<short>> UDP_Vent_tbPedido_Select(Nullable<int> ped_Id)

@@ -18,6 +18,7 @@ namespace ERP_GMEDINA.Models
         public tbProducto()
         {
             this.tbBodegaDetalle = new HashSet<tbBodegaDetalle>();
+            this.tbBoxDetalle = new HashSet<tbBoxDetalle>();
             this.tbEntradaDetalle = new HashSet<tbEntradaDetalle>();
             this.tbInventarioFisicoDetalle = new HashSet<tbInventarioFisicoDetalle>();
             this.tbDevolucionDetalle = new HashSet<tbDevolucionDetalle>();
@@ -49,6 +50,8 @@ namespace ERP_GMEDINA.Models
         public virtual tbUnidadMedida tbUnidadMedida { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbBodegaDetalle> tbBodegaDetalle { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbBoxDetalle> tbBoxDetalle { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbEntradaDetalle> tbEntradaDetalle { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

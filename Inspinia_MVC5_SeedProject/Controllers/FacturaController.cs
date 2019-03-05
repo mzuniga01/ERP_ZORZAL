@@ -905,12 +905,12 @@ namespace ERP_GMEDINA.Controllers
             }
         }
 
-        public JsonResult GetEmpleados(string term)
-        {
-            var results = db.UDV_Inv_Nombre_Empleado.Where(s => term == null || s.Empleados.ToLower().Contains(term.ToLower())).Select(x => new { id = x.emp_Id, value = x.Empleados }).Take(5).ToList();
+        //public JsonResult GetEmpleados(string term)
+        //{
+        //    var results = db.UDV_Inv_Nombre_Empleado.Where(s => term == null || s.Empleados.ToLower().Contains(term.ToLower())).Select(x => new { id = x.emp_Id, value = x.Empleados }).Take(5).ToList();
 
-            return Json(results, JsonRequestBehavior.AllowGet);
-        }
+        //    return Json(results, JsonRequestBehavior.AllowGet);
+        //}
 
         [HttpPost]
         public JsonResult AnularFactura(int CodFactura, bool FacturaAnulado, string RazonAnulado)
