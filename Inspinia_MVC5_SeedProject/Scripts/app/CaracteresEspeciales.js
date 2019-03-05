@@ -50,21 +50,21 @@ function validarI(e) {
 //Validar Teléfono
 function validartel(e) {
     campo = event.target;
-
     $(campo).on("input", function (event) {
-        //$(this).val('+');
-        var Telefono = $(this).val();
-        if (!/^[0-9\s+]*$/i.test(this.value)) {
-            this.value = this.value.replace(/[^ 0-9\s]/ig, "");
-        }
+        var Telefono = this.value.match(/[0-9\s]+/);
         
-        console.log(Telefono)
-        if (Telefono == ' ') {
-         $(this).val('+');
+        if (Telefono != null) {
+            this.value = '+' + ((Telefono).toString().replace(/[a-záéíóúüñ#/=]+/ig, "", ''));
         }
-        else if (Telefono == '') {
-         $(this).val('+');
+        else {
+            this.value = '+' + ((Telefono).toString().replace(/[a-záéíóúüñ#/=]+/ig, "", ''));
         }
-    });
+        console.log('Telefono', Telefono)   
 
+
+
+    });
 }
+
+
+
