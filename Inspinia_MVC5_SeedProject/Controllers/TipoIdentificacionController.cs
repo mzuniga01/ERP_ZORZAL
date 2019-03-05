@@ -48,32 +48,49 @@ namespace ERP_GMEDINA.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include="tpi_Id,tpi_Descripcion,tpi_UsuarioCrea,tpi_FechaCrea,tpi_UsuarioModifica,tpi_FechaModifica")] tbTipoIdentificacion tbTipoIdentificacion)
         {
-            try
+
+
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
+                try
                 {
-                    var MensajeError = "";
-                    IEnumerable<object> list = null;
-                    list = db.UDP_Gral_tbTipoIdentificacion_Insert(tbTipoIdentificacion.tpi_Descripcion, Function.GetUser(), Function.DatetimeNow());
-                    foreach (UDP_Gral_tbTipoIdentificacion_Insert_Result TipoIdentificacion in list)
-                        MensajeError = TipoIdentificacion.MensajeError;
-                    if (MensajeError == "-1")
+                    if (db.tbTipoIdentificacion.Any(a => a.tpi_Descripcion == tbTipoIdentificacion.tpi_Descripcion))
                     {
+
+                        ModelState.AddModelError("", "Ya existe este Tipo De Identificación.");
+                        //var colores =
+                        return View(tbTipoIdentificacion);
                     }
+
                     else
                     {
-                        return RedirectToAction("Index");
+
+                        var MensajeError = "";
+                        IEnumerable<object> list = null;
+                        list = db.UDP_Gral_tbTipoIdentificacion_Insert(tbTipoIdentificacion.tpi_Descripcion, Function.GetUser(), Function.DatetimeNow());
+                        foreach (UDP_Gral_tbTipoIdentificacion_Insert_Result tipoidentificacion in list)
+                            MensajeError = tipoidentificacion.MensajeError;
+                        if (MensajeError == "-1")
+                        {
+                        }
+                        else
+                        {
+                            return RedirectToAction("index");
+                        }
+
                     }
 
                 }
-
+                catch (Exception Ex)
+                {
+                    ModelState.AddModelError("", "No se ha podido ingresar el registro, favor contacte al administrador " + Ex.Message.ToString());
+                    return View(tbTipoIdentificacion);
+                }
+                //db.tbTipoPago.Add(tbTipoPago);
+                //db.SaveChanges();
+                //return RedirectToAction("Index");
             }
-            catch(Exception Ex)
-            {
-                Ex.Message.ToString();
-            }
 
-            
 
             return View(tbTipoIdentificacion);
         }
