@@ -5442,15 +5442,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbSolicitudEfectivo_EsAnulada_Result>("UDP_Vent_tbSolicitudEfectivo_EsAnulada", solef_IdParameter, solef_EsAnuladaParameter, motivoParameter);
         }
     
-        public virtual ObjectResult<UDP_Vent_tbSolicitudEfectivo_Imprimir_Result> UDP_Vent_tbSolicitudEfectivo_Imprimir(Nullable<int> sOLEF_ID)
-        {
-            var sOLEF_IDParameter = sOLEF_ID.HasValue ?
-                new ObjectParameter("SOLEF_ID", sOLEF_ID) :
-                new ObjectParameter("SOLEF_ID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbSolicitudEfectivo_Imprimir_Result>("UDP_Vent_tbSolicitudEfectivo_Imprimir", sOLEF_IDParameter);
-        }
-    
         public virtual ObjectResult<UDP_Vent_tbSolicitudEfectivo_DatosEncabezado_Result1> UDP_Vent_tbSolicitudEfectivo_DatosEncabezado(Nullable<int> uSER_ID)
         {
             var uSER_IDParameter = uSER_ID.HasValue ?
@@ -6876,6 +6867,15 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("bod_Id", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_Inv_tbBodegaDetalle_Select_Producto_Result>("SDP_Inv_tbBodegaDetalle_Select_Producto", bod_IdParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbSolicitudEfectivo_Imprimir_Result> UDP_Vent_tbSolicitudEfectivo_Imprimir(Nullable<int> sOLEF_ID)
+        {
+            var sOLEF_IDParameter = sOLEF_ID.HasValue ?
+                new ObjectParameter("SOLEF_ID", sOLEF_ID) :
+                new ObjectParameter("SOLEF_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbSolicitudEfectivo_Imprimir_Result>("UDP_Vent_tbSolicitudEfectivo_Imprimir", sOLEF_IDParameter);
         }
     }
 }

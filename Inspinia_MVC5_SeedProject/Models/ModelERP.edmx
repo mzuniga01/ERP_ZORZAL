@@ -8498,9 +8498,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_InventarioNumeraciones' 
             <Parameter Name="solef_EsAnulada" Mode="In" Type="Boolean" />
             <Parameter Name="Motivo" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Vent_tbSolicitudEfectivo_Imprimir" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivo_Imprimir_Result)">
-          <Parameter Name="SOLEF_ID" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbSolicitudEfectivo_DatosEncabezado" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivo_DatosEncabezado_Result1)">
           <Parameter Name="USER_ID" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -9898,6 +9895,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_InventarioNumeraciones' 
           <EntitySet Name="UDV_Vent_FacturaPagoSelect" EntityType="ERP_ZORZALModel.UDV_Vent_FacturaPagoSelect" />
           <EntitySet Name="UDP_Vent_SolicituEfectivo_Detalles_Select" EntityType="ERP_ZORZALModel.UDP_Vent_SolicituEfectivo_Detalles_Select" />
           <EntitySet Name="UDV_Vent_InventarioNumeraciones" EntityType="ERP_ZORZALModel.UDV_Vent_InventarioNumeraciones" />
+          <FunctionImport Name="UDP_Vent_tbSolicitudEfectivo_Imprimir" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivo_Imprimir_Result)">
+            <Parameter Name="SOLEF_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
           <Key>
@@ -10533,24 +10533,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_InventarioNumeraciones' 
         </ComplexType>
         <ComplexType Name="UDP_Vent_tbNotaCredito_EsImpreso_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-        </ComplexType>
-        <ComplexType Name="UDP_Vent_tbSolicitudEfectivo_Imprimir_Result">
-          <Property Type="Int32" Name="solef_Id" Nullable="false" />
-          <Property Type="String" Name="cja_Descripcion" Nullable="false" MaxLength="10" />
-          <Property Type="String" Name="suc_Descripcion" Nullable="false" MaxLength="40" />
-          <Property Type="Int32" Name="mocja_Id" Nullable="false" />
-          <Property Type="String" Name="TipoSolicitus" Nullable="true" MaxLength="8000" />
-          <Property Type="DateTime" Name="solef_FechaEntrega" Nullable="true" Precision="23" />
-          <Property Type="String" Name="UsuarioEntrega" Nullable="false" MaxLength="301" />
-          <Property Type="String" Name="Cajero" Nullable="false" MaxLength="301" />
-          <Property Type="String" Name="mnda_Nombre" Nullable="false" MaxLength="100" />
-          <Property Type="Int32" Name="soled_Id" Nullable="false" />
-          <Property Type="Int16" Name="deno_Id" Nullable="false" />
-          <Property Type="String" Name="deno_Descripcion" Nullable="false" MaxLength="50" />
-          <Property Type="Int16" Name="soled_CantidadSolicitada" Nullable="false" />
-          <Property Type="Decimal" Name="MontoSolicitado" Nullable="true" Precision="16" Scale="2" />
-          <Property Type="Int16" Name="soled_CantidadEntregada" Nullable="false" />
-          <Property Type="Decimal" Name="MontoEntregado" Nullable="true" Precision="16" Scale="2" />
         </ComplexType>
         <ComplexType Name="UDP_Vent_tbSolicitudEfectivo_EsAnulada_Result">
           <Property Type="Int32" Name="MensajeError" Nullable="false" />
@@ -15454,6 +15436,25 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_InventarioNumeraciones' 
           <Property Name="DiasDisponibles" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="NumeracionesDisponibles" Type="Int32" />
         </EntityType>
+        <ComplexType Name="UDP_Vent_tbSolicitudEfectivo_Imprimir_Result">
+          <Property Type="Int32" Name="solef_Id" Nullable="false" />
+          <Property Type="String" Name="cja_Descripcion" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="suc_Descripcion" Nullable="false" MaxLength="40" />
+          <Property Type="Int32" Name="mocja_Id" Nullable="false" />
+          <Property Type="String" Name="TipoSolicitus" Nullable="true" MaxLength="8000" />
+          <Property Type="DateTime" Name="solef_FechaEntrega" Nullable="true" Precision="23" />
+          <Property Type="String" Name="UsuarioEntrega" Nullable="false" MaxLength="301" />
+          <Property Type="String" Name="Cajero" Nullable="false" MaxLength="301" />
+          <Property Type="String" Name="mnda_Nombre" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="soled_Id" Nullable="false" />
+          <Property Type="Int16" Name="deno_Id" Nullable="false" />
+          <Property Type="String" Name="deno_Descripcion" Nullable="false" MaxLength="50" />
+          <Property Type="Decimal" Name="deno_valor" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Int16" Name="soled_CantidadSolicitada" Nullable="false" />
+          <Property Type="Decimal" Name="MontoSolicitado" Nullable="true" Precision="16" Scale="2" />
+          <Property Type="Int16" Name="soled_CantidadEntregada" Nullable="false" />
+          <Property Type="Decimal" Name="MontoEntregado" Nullable="true" Precision="16" Scale="2" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -16560,28 +16561,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_InventarioNumeraciones' 
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivo_EsAnulada_Result">
                 <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudEfectivo_Imprimir" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudEfectivo_Imprimir">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivo_Imprimir_Result">
-                <ScalarProperty Name="solef_Id" ColumnName="solef_Id" />
-                <ScalarProperty Name="cja_Descripcion" ColumnName="cja_Descripcion" />
-                <ScalarProperty Name="suc_Descripcion" ColumnName="suc_Descripcion" />
-                <ScalarProperty Name="mocja_Id" ColumnName="mocja_Id" />
-                <ScalarProperty Name="TipoSolicitus" ColumnName="TipoSolicitus" />
-                <ScalarProperty Name="solef_FechaEntrega" ColumnName="solef_FechaEntrega" />
-                <ScalarProperty Name="UsuarioEntrega" ColumnName="UsuarioEntrega" />
-                <ScalarProperty Name="Cajero" ColumnName="Cajero" />
-                <ScalarProperty Name="mnda_Nombre" ColumnName="mnda_Nombre" />
-                <ScalarProperty Name="soled_Id" ColumnName="soled_Id" />
-                <ScalarProperty Name="deno_Id" ColumnName="deno_Id" />
-                <ScalarProperty Name="deno_Descripcion" ColumnName="deno_Descripcion" />
-                <ScalarProperty Name="soled_CantidadSolicitada" ColumnName="soled_CantidadSolicitada" />
-                <ScalarProperty Name="MontoSolicitado" ColumnName="MontoSolicitado" />
-                <ScalarProperty Name="soled_CantidadEntregada" ColumnName="soled_CantidadEntregada" />
-                <ScalarProperty Name="MontoEntregado" ColumnName="MontoEntregado" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -18428,6 +18407,29 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_InventarioNumeraciones' 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudEfectivo_Imprimir" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudEfectivo_Imprimir">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivo_Imprimir_Result">
+                <ScalarProperty Name="solef_Id" ColumnName="solef_Id" />
+                <ScalarProperty Name="cja_Descripcion" ColumnName="cja_Descripcion" />
+                <ScalarProperty Name="suc_Descripcion" ColumnName="suc_Descripcion" />
+                <ScalarProperty Name="mocja_Id" ColumnName="mocja_Id" />
+                <ScalarProperty Name="TipoSolicitus" ColumnName="TipoSolicitus" />
+                <ScalarProperty Name="solef_FechaEntrega" ColumnName="solef_FechaEntrega" />
+                <ScalarProperty Name="UsuarioEntrega" ColumnName="UsuarioEntrega" />
+                <ScalarProperty Name="Cajero" ColumnName="Cajero" />
+                <ScalarProperty Name="mnda_Nombre" ColumnName="mnda_Nombre" />
+                <ScalarProperty Name="soled_Id" ColumnName="soled_Id" />
+                <ScalarProperty Name="deno_Id" ColumnName="deno_Id" />
+                <ScalarProperty Name="deno_Descripcion" ColumnName="deno_Descripcion" />
+                <ScalarProperty Name="deno_valor" ColumnName="deno_valor" />
+                <ScalarProperty Name="soled_CantidadSolicitada" ColumnName="soled_CantidadSolicitada" />
+                <ScalarProperty Name="MontoSolicitado" ColumnName="MontoSolicitado" />
+                <ScalarProperty Name="soled_CantidadEntregada" ColumnName="soled_CantidadEntregada" />
+                <ScalarProperty Name="MontoEntregado" ColumnName="MontoEntregado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

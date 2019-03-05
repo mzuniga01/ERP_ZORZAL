@@ -2,14 +2,15 @@
 <xs:schema id="SolicitudEFectivo" targetNamespace="http://tempuri.org/SolicitudEFectivo.xsd" xmlns:mstns="http://tempuri.org/SolicitudEFectivo.xsd" xmlns="http://tempuri.org/SolicitudEFectivo.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
           <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="ERP_GMEDINAConnectionString1" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_GMEDINAConnectionString1 (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.ERP_GMEDINAConnectionString1.ConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="ERP_GMEDINAConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_GMEDINAConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.ERP_GMEDINAConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="UDP_Vent_tbSolicitudEfectivo_ImprimirTableAdapter" GeneratorDataComponentClassName="UDP_Vent_tbSolicitudEfectivo_ImprimirTableAdapter" Name="UDP_Vent_tbSolicitudEfectivo_Imprimir" UserDataComponentName="UDP_Vent_tbSolicitudEfectivo_ImprimirTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="ERP_GMEDINAConnectionString1 (Web.config)" DbObjectName="ERP_GMEDINA.Vent.UDP_Vent_tbSolicitudEfectivo_Imprimir" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="ERP_GMEDINAConnectionString (Web.config)" DbObjectName="ERP_GMEDINA.Vent.UDP_Vent_tbSolicitudEfectivo_Imprimir" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>Vent.UDP_Vent_tbSolicitudEfectivo_Imprimir</CommandText>
@@ -34,6 +35,7 @@
               <Mapping SourceColumn="soled_Id" DataSetColumn="soled_Id" />
               <Mapping SourceColumn="deno_Id" DataSetColumn="deno_Id" />
               <Mapping SourceColumn="deno_Descripcion" DataSetColumn="deno_Descripcion" />
+              <Mapping SourceColumn="deno_valor" DataSetColumn="deno_valor" />
               <Mapping SourceColumn="soled_CantidadSolicitada" DataSetColumn="soled_CantidadSolicitada" />
               <Mapping SourceColumn="MontoSolicitado" DataSetColumn="MontoSolicitado" />
               <Mapping SourceColumn="soled_CantidadEntregada" DataSetColumn="soled_CantidadEntregada" />
@@ -106,6 +108,7 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="deno_valor" msprop:Generator_ColumnVarNameInTable="columndeno_valor" msprop:Generator_ColumnPropNameInRow="deno_valor" msprop:Generator_ColumnPropNameInTable="deno_valorColumn" msprop:Generator_UserColumnName="deno_valor" type="xs:decimal" />
               <xs:element name="soled_CantidadSolicitada" msprop:Generator_ColumnVarNameInTable="columnsoled_CantidadSolicitada" msprop:Generator_ColumnPropNameInRow="soled_CantidadSolicitada" msprop:Generator_ColumnPropNameInTable="soled_CantidadSolicitadaColumn" msprop:Generator_UserColumnName="soled_CantidadSolicitada" type="xs:short" />
               <xs:element name="MontoSolicitado" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnMontoSolicitado" msprop:Generator_ColumnPropNameInRow="MontoSolicitado" msprop:Generator_ColumnPropNameInTable="MontoSolicitadoColumn" msprop:Generator_UserColumnName="MontoSolicitado" type="xs:decimal" minOccurs="0" />
               <xs:element name="soled_CantidadEntregada" msprop:Generator_ColumnVarNameInTable="columnsoled_CantidadEntregada" msprop:Generator_ColumnPropNameInRow="soled_CantidadEntregada" msprop:Generator_ColumnPropNameInTable="soled_CantidadEntregadaColumn" msprop:Generator_UserColumnName="soled_CantidadEntregada" type="xs:short" />

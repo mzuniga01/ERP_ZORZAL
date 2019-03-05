@@ -31,7 +31,8 @@ namespace ERP_GMEDINA.Controllers
                     {
                         idUser = Convert.ToInt32(Usuario.usu_Id);
                     }
-                    return View(db.UDP_Vent_SolicituEfectivo_Select.Where(a => a.Anulada == false && a.usuariocrea == idUser).ToList());
+                    return View(db.UDP_Vent_SolicituEfectivo_Select.Where(a => a.usuariocrea == idUser).OrderByDescending(a => a.IdSolicitud).ToList());
+                    //return View(db.UDP_Vent_SolicituEfectivo_Select.Where(a => a.Anulada == false && a.usuariocrea == idUser).ToList());
                 }
                 else
                 {
@@ -786,6 +787,7 @@ namespace ERP_GMEDINA.Controllers
                             mnda_Nombre = r.mnda_Nombre,
                             solef_FechaEntrega = DateTime.Parse(r.solef_FechaEntrega.ToString()).ToString("dd / MM / yyyy  hh: mm tt"),
                             MontoSolicitado = (decimal)r.MontoSolicitado,
+                            deno_valor = (decimal)r.deno_valor,
                             deno_Descripcion = r.deno_Descripcion,
                             soled_CantidadSolicitada = r.soled_CantidadSolicitada,
                             MontoEntregado = (decimal)r.MontoEntregado,
