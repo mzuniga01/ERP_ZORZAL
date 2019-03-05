@@ -589,7 +589,7 @@
             var Monto = $(this).parents("tr").find("td")[4].innerHTML;
             console.log('Monto Entregado:', Monto);
             console.log('----------------------------');
-            var SolicitudEfectivoDetalle = GetEntregaEfectivoDetalle();
+            var SolicitudEfectivoDetalle = UpdateEfectivoDetalle();
 
             $.ajax({
                 url: "/SolicitudEfectivo/SaveEditSolicitudEfectivoDetalleCantidad",
@@ -606,15 +606,15 @@
                 else {
                 }
             });
-            function GetEntregaEfectivoDetalle() {
-                var EntregaEfectivoDetalle = {
+            function UpdateEfectivoDetalle() {
+                var ActualizarEfectivoDetalle = {
                     soled_Id: IdSolicitudDetalle,
                     soled_CantidadSolicitada: CantidadSolicitada,
                     soled_CantidadEntregada: CantidadEntregada,
                     soled_MontoEntregado: Monto,
                     deno_Id: denoID,
                 }
-                return EntregaEfectivoDetalle
+                return ActualizarEfectivoDetalle
             };
         });
     </script>
