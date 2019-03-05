@@ -307,6 +307,7 @@
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbEstadoInventarioFisico_estif_UsuarioModifica" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Inv_tbEstadoInventarioFisico_tbUsuario_estif_UsuarioCrea" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.UDV_Vent_FacturaPagoSelect" Width="1.5" PointX="11.375" PointY="4.75" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.UDV_Vent_InventarioNumeraciones" Width="1.5" PointX="11.375" PointY="8.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

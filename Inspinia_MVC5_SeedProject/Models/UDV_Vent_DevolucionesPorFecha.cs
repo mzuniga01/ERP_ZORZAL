@@ -20,5 +20,18 @@ namespace ERP_GMEDINA.Models
         public string clte_Nombres { get; set; }
         public System.DateTime dev_Fecha { get; set; }
         public Nullable<bool> dev_Estado { get; set; }
+        public System.DateTime Fecha_Devolucion { get; set; }
+        public System.DateTime Fecha_Factura { get; set; }
+        public long Numero_Factura { get; set; }
+        public string RTN { get; set; }
+        public string Nombre_Cliente { get; set; }
+        public Nullable<decimal> Total_Devolución { get; set; }
+        public string Nota_Crédito { get; set; }
+        public string Código_Factura { get; set; }
+        public string Nombre_Producto { get; set; }
+        public decimal Precio_Unitario { get; set; }
+        public decimal Cantidad_Facturada { get; set; }
+        public decimal Cantidad_Devuelta { get; set; }
+        public Nullable<decimal> Monto_Devolución { get; set; }
     }
 }

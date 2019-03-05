@@ -75,18 +75,18 @@
     <Reference Include="CrystalDecisions.ReportAppServer.DataDefModel, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
-    <Reference Include="CrystalDecisions.ReportAppServer.DataSetConversion, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportAppServer.DataSetConversion, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.ReportAppServer.ReportDefModel, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="CrystalDecisions.ReportAppServer.XmlSerialize, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
-    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.VSDesigner, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
-    <Reference Include="CrystalDecisions.Web, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
-    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Web, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -413,6 +413,9 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SDP_Gral_tbEmpleado_Select_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SDP_Inv_tbBodegaDetalle_Select_Producto_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SDP_Inv_tbSalidaDetalle_Select_Result.cs">
@@ -788,9 +791,6 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Vent_FacturasPagoSelect_Result.cs">
-      <DependentUpon>ModelERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\UDP_Vent_InventarioNumeraciones_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Vent_listExoneracion_Select.cs">
@@ -1498,29 +1498,24 @@
     <Content Include="Scripts\app\AceptarSolicitudCre.js" />
     <Content Include="Scripts\app\Activo.js" />
     <Content Include="Scripts\app\ActivoExoneracion.js" />
+    <Content Include="Scripts\app\ActualizarListaPrecioDetalle.js" />
     <Content Include="Scripts\app\AnularDevolucion.js" />
-    <Content Include="Scripts\app\AnularFactura.js" />
     <Content Include="Scripts\app\AnularPedido.js" />
     <Content Include="Scripts\app\Apertura.js" />
     <Content Include="Scripts\app\AperturaDetalle.js" />
     <Content Include="Scripts\app\AperturaSolicitudEfectivo.js" />
     <Content Include="Scripts\app\AperturaSolicitudEfectivoDetalle.js" />
     <Content Include="Scripts\app\ArqueoCaja.js" />
-    <Content Include="Scripts\app\AutorizarDescuento.js" />
     <Content Include="Scripts\app\Banco.js" />
     <Content Include="Scripts\app\BCliente.js" />
-    <Content Include="Scripts\app\CalculoFactura.js" />
-    <Content Include="Scripts\app\Cantidad.js" />
     <Content Include="Scripts\app\CaracteresEspeciales.js" />
     <Content Include="Scripts\app\ClienteDevolucion.js" />
     <Content Include="Scripts\app\ClienteExoneracion.js" />
-    <Content Include="Scripts\app\ClienteFactura.js" />
     <Content Include="Scripts\app\ClientePago.js" />
     <Content Include="Scripts\app\Clientes-Pedido-Credito.js" />
     <Content Include="Scripts\app\ComandoGuardar.js" />
     <Content Include="Scripts\app\CreateListaPrecioDetails.js" />
     <Content Include="Scripts\app\CreateNumeracionDetails.js" />
-    <Content Include="Scripts\app\Credito.js" />
     <Content Include="Scripts\app\CreditoCambio.js" />
     <Content Include="Scripts\app\CuentaBanco.js" />
     <Content Include="Scripts\app\CuponDescuentoEsImpreso.js" />
@@ -1535,7 +1530,6 @@
     <Content Include="Scripts\app\DevolucionDetalle.js" />
     <Content Include="Scripts\app\EditNumeracion.js" />
     <Content Include="Scripts\app\EmitirNotaCredito.js" />
-    <Content Include="Scripts\app\Empleados.js" />
     <Content Include="Scripts\app\EntregaEfectivo.js" />
     <Content Include="Scripts\app\EntregaEfectivoDetalle.js" />
     <Content Include="Scripts\app\Factura.js" />
@@ -1547,10 +1541,7 @@
     <Content Include="Scripts\app\fechaExoneracion.js" />
     <Content Include="Scripts\app\FuncionResta.js" />
     <Content Include="Scripts\app\GetCodigoNotaCredito.js" />
-    <Content Include="Scripts\app\GetDetalleFactura.js" />
-    <Content Include="Scripts\app\GetFacturaDetalleEdit.js" />
     <Content Include="Scripts\app\GetListadoDetalleEdit.js" />
-    <Content Include="Scripts\app\GetNumeroFact.js" />
     <Content Include="Scripts\app\GuardarDetalleEdit.js" />
     <Content Include="Scripts\app\GuardarListadoPrecioDetalle.js" />
     <Content Include="Scripts\app\Identificacion.js" />
@@ -1846,8 +1837,6 @@
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Shared\_Navigation.cshtml" />
     <Content Include="Views\Shared\_TopNavbar.cshtml" />
-    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.3.1.min.map" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\EstadoFactura\Create.cshtml" />
     <Content Include="Views\EstadoFactura\Details.cshtml" />
@@ -1928,7 +1917,6 @@
     <Content Include="Views\SolicitudEfectivo\Details.cshtml" />
     <Content Include="Views\SolicitudEfectivo\Edit.cshtml" />
     <Content Include="Views\SolicitudEfectivo\Index.cshtml" />
-    <Content Include="Views\SolicitudEfectivo\_CreateSolicitudEfectivoDetalle.cshtml" />
     <Content Include="Views\PuntoEmision\_DetailsNumeracion.cshtml" />
     <Content Include="Views\NotaCredito\_IndexCliente.cshtml" />
     <Content Include="Views\SolicitudCredito\_IndexCliente.cshtml" />
@@ -1982,14 +1970,11 @@
     <Content Include="Views\Factura\_IndexProducto.cshtml" />
     <Content Include="Views\Factura\_CreateFacturaDetalleModal.cshtml" />
     <Content Include="Views\NotaCredito\_IndexDevolucion.cshtml" />
-    <Content Include="Views\SolicitudEfectivo\_DetailsSolicitudEfectivoDetalle.cshtml" />
-    <Content Include="Views\SolicitudEfectivo\_IndexEditSolicitudEfectivoDetalle.cshtml" />
     <Content Include="Views\DenominacionArqueo\Create.cshtml" />
     <Content Include="Views\DenominacionArqueo\Details.cshtml" />
     <Content Include="Views\DenominacionArqueo\Edit.cshtml" />
     <Content Include="Views\DenominacionArqueo\Index.cshtml" />
     <Content Include="Views\Pedido\_DetailsPedidoDetalle.cshtml" />
-    <Content Include="Views\SolicitudEfectivo\_EditarSolicitudEfectivoDetalle.cshtml" />
     <Content Include="Views\Pedido\_EditPedidoDetalle.cshtml" />
     <Content Include="Views\PuntoEmision\_CreateNumeracionDetails.cshtml" />
     <Content Include="Views\PuntoEmision\_IndexNumeracionEdit.cshtml" />
@@ -2013,7 +1998,6 @@
     <Content Include="Views\SolicitudEfectivo\EditEntregaEfectivo.cshtml" />
     <Content Include="Views\ListaPrecios\_IndexListaPrecioDetalle.cshtml" />
     <Content Include="Views\SolicitudEfectivo\_EntregaEfectivoDetalle.cshtml" />
-    <Content Include="Views\SolicitudEfectivo\_IndexDetails.cshtml" />
     <Content Include="Views\SolicitudEfectivo\_ListaDenominaciones.cshtml" />
     <Content Include="Views\Devolucion\CreateNotaCredito.cshtml" />
     <Content Include="Views\Pago\_IndexFacturaPago.cshtml" />
@@ -2024,8 +2008,6 @@
     <Content Include="Views\ListaPrecios\_CreateListaPrecioDetalleEdit.cshtml" />
     <Content Include="Views\ListaPrecios\_CreateListaPrecioEdit.cshtml" />
     <Content Include="Views\Exoneracion\ClientesnoExonerado.cshtml" />
-    <Content Include="Views\SolicitudEfectivo\_AddDetalle.cshtml" />
-    <Content Include="Views\SolicitudEfectivo\_Detalle_Insert.cshtml" />
     <Content Include="Views\SolicitudEfectivo\IndexOriginal.cshtml" />
     <Content Include="Views\Pago\_IndexNotaCredito.cshtml" />
     <Content Include="Views\ListaPrecios\_PrecioDetalle.cshtml" />

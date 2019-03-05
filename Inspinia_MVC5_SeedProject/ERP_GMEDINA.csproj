@@ -289,11 +289,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dsPago.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Dataset\InventarioNumeraciones.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>InventarioNumeraciones.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Dataset\PuntoEmision.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -306,6 +301,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reportes.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dataset\SolicitudCredito.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SolicitudCredito.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Dataset\SolicitudEFectivo.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1183,6 +1184,9 @@
     <Compile Include="Models\UDV_Vent_FacturaPuntoEmision1.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UDV_Vent_InventarioNumeraciones.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UnidadesMedida.cs" />
     <Compile Include="Models\UPD_Vent_tbUsuario_Rol_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
@@ -1251,10 +1255,28 @@
       <DependentUpon>PagoImprimir.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\Pedidos.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Pedidos.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\SolicitudCredito.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SolicitudCredito.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\SolicitudEfectivo.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SolicitudEfectivo.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\VentasExoneradas.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VentasExoneradas.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Startup.cs" />
@@ -1685,17 +1707,6 @@
     <Content Include="Dataset\dsPago.xss">
       <DependentUpon>dsPago.xsd</DependentUpon>
     </Content>
-    <Content Include="Dataset\InventarioNumeraciones.xsc">
-      <DependentUpon>InventarioNumeraciones.xsd</DependentUpon>
-    </Content>
-    <None Include="Dataset\InventarioNumeraciones.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>InventarioNumeraciones.Designer.cs</LastGenOutput>
-    </None>
-    <Content Include="Dataset\InventarioNumeraciones.xss">
-      <DependentUpon>InventarioNumeraciones.xsd</DependentUpon>
-    </Content>
     <None Include="Dataset\PuntoEmision.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
@@ -2040,6 +2051,10 @@
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Dataset\SolicitudCredito.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SolicitudCredito.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\ArqueoCaja.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ArqueoCaja.cs</LastGenOutput>
@@ -2080,10 +2095,22 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>PagoImprimir1.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Pedidos.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Pedidos.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\PuntoEmision.rdlc" />
+    <EmbeddedResource Include="Reports\SolicitudCredito.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SolicitudCredito.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\SolicitudEfectivo.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>SolicitudEfectivo.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\VentasExoneradas.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>VentasExoneradas.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

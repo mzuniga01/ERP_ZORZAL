@@ -303,7 +303,8 @@
           </Key>
           <Property Name="box_Codigo" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="box_Descripcion" Type="varchar" MaxLength="200" Nullable="false" />
-          <Property Name="box_Estado" Type="bit" Nullable="false" />
+          <Property Name="bod_Id" Type="int" Nullable="false" />
+          <Property Name="box_Estado" Type="tinyint" Nullable="false" />
           <Property Name="box_UsuarioCrea" Type="int" Nullable="false" />
           <Property Name="box_FechaCrea" Type="datetime" Nullable="false" />
           <Property Name="box_UsuarioModifica" Type="int" />
@@ -1315,18 +1316,30 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Factura' does n
 warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_DevolucionesPorFecha' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="UDV_Vent_DevolucionesPorFecha">
           <Key>
-            <PropertyRef Name="dev_Id" />
-            <PropertyRef Name="fact_Codigo" />
-            <PropertyRef Name="clte_Identificacion" />
-            <PropertyRef Name="clte_Nombres" />
-            <PropertyRef Name="dev_Fecha" />
+            <PropertyRef Name="Fecha Devolucion" />
+            <PropertyRef Name="Fecha Factura" />
+            <PropertyRef Name="Numero Factura" />
+            <PropertyRef Name="RTN" />
+            <PropertyRef Name="Nombre Cliente" />
+            <PropertyRef Name="Código Factura" />
+            <PropertyRef Name="Nombre Producto" />
+            <PropertyRef Name="Precio Unitario" />
+            <PropertyRef Name="Cantidad Facturada" />
+            <PropertyRef Name="Cantidad Devuelta" />
           </Key>
-          <Property Name="dev_Id" Type="int" Nullable="false" />
-          <Property Name="fact_Codigo" Type="nvarchar" MaxLength="19" Nullable="false" />
-          <Property Name="clte_Identificacion" Type="nvarchar" MaxLength="26" Nullable="false" />
-          <Property Name="clte_Nombres" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="dev_Fecha" Type="datetime" Nullable="false" />
-          <Property Name="dev_Estado" Type="bit" />
+          <Property Name="Fecha Devolucion" Type="datetime" Nullable="false" />
+          <Property Name="Fecha Factura" Type="datetime" Nullable="false" />
+          <Property Name="Numero Factura" Type="bigint" Nullable="false" />
+          <Property Name="RTN" Type="nvarchar" MaxLength="26" Nullable="false" />
+          <Property Name="Nombre Cliente" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Total Devolución" Type="decimal" Precision="38" Scale="10" />
+          <Property Name="Nota Crédito" Type="nvarchar" MaxLength="19" />
+          <Property Name="Código Factura" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Nombre Producto" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Precio Unitario" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Cantidad Facturada" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="Cantidad Devuelta" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="Monto Devolución" Type="decimal" Precision="38" Scale="10" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_FacturaPagoSelect' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -1368,6 +1381,34 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_FacturaPuntoEmision' doe
           <Property Name="pemid_RangoFinal" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="pemid_FechaLimite" Type="date" Nullable="false" />
           <Property Name="dfisc_Id" Type="char" MaxLength="2" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_InventarioNumeraciones' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="UDV_Vent_InventarioNumeraciones">
+          <Key>
+            <PropertyRef Name="suc_Id" />
+            <PropertyRef Name="suc_Descripcion" />
+            <PropertyRef Name="suc_Telefono" />
+            <PropertyRef Name="pemi_NumeroCAI" />
+            <PropertyRef Name="dfisc_Descripcion" />
+            <PropertyRef Name="pemid_RangoInicio" />
+            <PropertyRef Name="pemid_RangoFinal" />
+            <PropertyRef Name="pemid_NumeroActual" />
+            <PropertyRef Name="pemid_FechaLimite" />
+            <PropertyRef Name="Estado" />
+          </Key>
+          <Property Name="suc_Id" Type="int" Nullable="false" />
+          <Property Name="suc_Descripcion" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="suc_Telefono" Type="nvarchar" MaxLength="9" Nullable="false" />
+          <Property Name="pemi_NumeroCAI" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="dfisc_Descripcion" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="pemid_RangoInicio" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="pemid_RangoFinal" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="pemid_NumeroActual" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="pemid_FechaLimite" Type="date" Nullable="false" />
+          <Property Name="Estado" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="DiasDisponibles" Type="varchar(max)" />
+          <Property Name="NumeracionesDisponibles" Type="int" />
         </EntityType>
         <Association Name="FK__DatosCons__fact___4DAB2CE2">
           <End Role="tbFactura" Type="Self.tbFactura" Multiplicity="1" />
@@ -2713,7 +2754,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_FacturaPuntoEmision' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Inv_tbBox_tbUsuario_box_UsuarioCrea">
+        <Association Name="FK_Inv_tbBox_tbUsuario_usu_Id">
           <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
           <End Role="tbBox" Type="Self.tbBox" Multiplicity="*" />
           <ReferentialConstraint>
@@ -4650,13 +4691,15 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_FacturaPuntoEmision' doe
         <Function Name="UDP_Inv_tbBox_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="box_Codigo" Type="varchar" Mode="In" />
           <Parameter Name="box_Descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="bod_Id" Type="int" Mode="In" />
           <Parameter Name="box_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="box_FechaCrea" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Inv_tbBox_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="box_Codigo" Type="varchar" Mode="In" />
           <Parameter Name="box_Descripcion" Type="varchar" Mode="In" />
-          <Parameter Name="box_Estado" Type="bit" Mode="In" />
+          <Parameter Name="bod_Id" Type="int" Mode="In" />
+          <Parameter Name="box_Estado" Type="tinyint" Mode="In" />
           <Parameter Name="box_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="box_FechaCrea" Type="datetime" Mode="In" />
           <Parameter Name="box_UsuarioModifica" Type="int" Mode="In" />
@@ -6223,12 +6266,19 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_FacturaPuntoEmision' doe
           </EntitySet>
           <EntitySet Name="UDV_Vent_DevolucionesPorFecha" EntityType="Self.UDV_Vent_DevolucionesPorFecha" store:Type="Views" store:Schema="Vent">
             <DefiningQuery>SELECT 
-    [UDV_Vent_DevolucionesPorFecha].[dev_Id] AS [dev_Id], 
-    [UDV_Vent_DevolucionesPorFecha].[fact_Codigo] AS [fact_Codigo], 
-    [UDV_Vent_DevolucionesPorFecha].[clte_Identificacion] AS [clte_Identificacion], 
-    [UDV_Vent_DevolucionesPorFecha].[clte_Nombres] AS [clte_Nombres], 
-    [UDV_Vent_DevolucionesPorFecha].[dev_Fecha] AS [dev_Fecha], 
-    [UDV_Vent_DevolucionesPorFecha].[dev_Estado] AS [dev_Estado]
+    [UDV_Vent_DevolucionesPorFecha].[Fecha Devolucion] AS [Fecha Devolucion], 
+    [UDV_Vent_DevolucionesPorFecha].[Fecha Factura] AS [Fecha Factura], 
+    [UDV_Vent_DevolucionesPorFecha].[Numero Factura] AS [Numero Factura], 
+    [UDV_Vent_DevolucionesPorFecha].[RTN] AS [RTN], 
+    [UDV_Vent_DevolucionesPorFecha].[Nombre Cliente] AS [Nombre Cliente], 
+    [UDV_Vent_DevolucionesPorFecha].[Total Devolución] AS [Total Devolución], 
+    [UDV_Vent_DevolucionesPorFecha].[Nota Crédito] AS [Nota Crédito], 
+    [UDV_Vent_DevolucionesPorFecha].[Código Factura] AS [Código Factura], 
+    [UDV_Vent_DevolucionesPorFecha].[Nombre Producto] AS [Nombre Producto], 
+    [UDV_Vent_DevolucionesPorFecha].[Precio Unitario] AS [Precio Unitario], 
+    [UDV_Vent_DevolucionesPorFecha].[Cantidad Facturada] AS [Cantidad Facturada], 
+    [UDV_Vent_DevolucionesPorFecha].[Cantidad Devuelta] AS [Cantidad Devuelta], 
+    [UDV_Vent_DevolucionesPorFecha].[Monto Devolución] AS [Monto Devolución]
     FROM [Vent].[UDV_Vent_DevolucionesPorFecha] AS [UDV_Vent_DevolucionesPorFecha]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="UDV_Vent_FacturaPagoSelect" EntityType="Self.UDV_Vent_FacturaPagoSelect" store:Type="Views" store:Schema="Vent">
@@ -6254,6 +6304,22 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_FacturaPuntoEmision' doe
     [UDV_Vent_FacturaPuntoEmision1].[pemid_FechaLimite] AS [pemid_FechaLimite], 
     [UDV_Vent_FacturaPuntoEmision1].[dfisc_Id] AS [dfisc_Id]
     FROM [Vent].[UDV_Vent_FacturaPuntoEmision] AS [UDV_Vent_FacturaPuntoEmision1]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="UDV_Vent_InventarioNumeraciones" EntityType="Self.UDV_Vent_InventarioNumeraciones" store:Type="Views" store:Schema="Vent">
+            <DefiningQuery>SELECT 
+    [UDV_Vent_InventarioNumeraciones].[suc_Id] AS [suc_Id], 
+    [UDV_Vent_InventarioNumeraciones].[suc_Descripcion] AS [suc_Descripcion], 
+    [UDV_Vent_InventarioNumeraciones].[suc_Telefono] AS [suc_Telefono], 
+    [UDV_Vent_InventarioNumeraciones].[pemi_NumeroCAI] AS [pemi_NumeroCAI], 
+    [UDV_Vent_InventarioNumeraciones].[dfisc_Descripcion] AS [dfisc_Descripcion], 
+    [UDV_Vent_InventarioNumeraciones].[pemid_RangoInicio] AS [pemid_RangoInicio], 
+    [UDV_Vent_InventarioNumeraciones].[pemid_RangoFinal] AS [pemid_RangoFinal], 
+    [UDV_Vent_InventarioNumeraciones].[pemid_NumeroActual] AS [pemid_NumeroActual], 
+    [UDV_Vent_InventarioNumeraciones].[pemid_FechaLimite] AS [pemid_FechaLimite], 
+    [UDV_Vent_InventarioNumeraciones].[Estado] AS [Estado], 
+    [UDV_Vent_InventarioNumeraciones].[DiasDisponibles] AS [DiasDisponibles], 
+    [UDV_Vent_InventarioNumeraciones].[NumeracionesDisponibles] AS [NumeracionesDisponibles]
+    FROM [Vent].[UDV_Vent_InventarioNumeraciones] AS [UDV_Vent_InventarioNumeraciones]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK__DatosCons__fact___4DAB2CE2" Association="Self.FK__DatosCons__fact___4DAB2CE2">
             <End Role="tbFactura" EntitySet="tbFactura" />
@@ -6703,7 +6769,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_FacturaPuntoEmision' doe
             <End Role="tbProducto" EntitySet="tbProducto" />
             <End Role="tbBodegaDetalle" EntitySet="tbBodegaDetalle" />
           </AssociationSet>
-          <AssociationSet Name="FK_Inv_tbBox_tbUsuario_box_UsuarioCrea" Association="Self.FK_Inv_tbBox_tbUsuario_box_UsuarioCrea">
+          <AssociationSet Name="FK_Inv_tbBox_tbUsuario_usu_Id" Association="Self.FK_Inv_tbBox_tbUsuario_usu_Id">
             <End Role="tbUsuario" EntitySet="tbUsuario" />
             <End Role="tbBox" EntitySet="tbBox" />
           </AssociationSet>
@@ -7596,13 +7662,15 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_FacturaPuntoEmision' doe
           <FunctionImport Name="UDP_Inv_tbBox_Insert" ReturnType="Collection(String)">
             <Parameter Name="box_Codigo" Mode="In" Type="String" />
             <Parameter Name="box_Descripcion" Mode="In" Type="String" />
+            <Parameter Name="bod_Id" Mode="In" Type="Int32" />
             <Parameter Name="box_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="box_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Inv_tbBox_Update" ReturnType="Collection(String)">
             <Parameter Name="box_Codigo" Mode="In" Type="String" />
             <Parameter Name="box_Descripcion" Mode="In" Type="String" />
-            <Parameter Name="box_Estado" Mode="In" Type="Boolean" />
+            <Parameter Name="bod_Id" Mode="In" Type="Int32" />
+            <Parameter Name="box_Estado" Mode="In" Type="Byte" />
             <Parameter Name="box_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="box_FechaCrea" Mode="In" Type="DateTime" />
             <Parameter Name="box_UsuarioModifica" Mode="In" Type="Int32" />
@@ -10046,8 +10114,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_FacturaPuntoEmision' doe
           </FunctionImport>
           <EntitySet Name="UDV_Vent_FacturaPagoSelect" EntityType="ERP_ZORZALModel.UDV_Vent_FacturaPagoSelect" />
           <FunctionImport Name="SDP_Inv_tbBodegaDetalle_Select_Producto" ReturnType="Collection(ERP_ZORZALModel.SDP_Inv_tbBodegaDetalle_Select_Producto_Result)">
-            <Parameter Name="bod_Id" Mode="In" Type="Int32" />
+          <Parameter Name="bod_Id" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="UDV_Vent_InventarioNumeraciones" EntityType="ERP_ZORZALModel.UDV_Vent_InventarioNumeraciones" />
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
           <Key>
@@ -11636,6 +11705,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_FacturaPuntoEmision' doe
           <Property Name="box_FechaModifica" Type="DateTime" Precision="3" />
           <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Inv_tbBox_tbUsuario_box_UsuarioCrea" FromRole="tbBox" ToRole="tbUsuario" />
           <NavigationProperty Name="tbSalidaDetalle" Relationship="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_box_Codigo" FromRole="tbBox" ToRole="tbSalidaDetalle" />
+          <Property Name="bod_Id" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="tbEntrada">
           <Key>
@@ -15600,6 +15670,16 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_FacturaPuntoEmision' doe
             <PropertyRef Name="clte_Identificacion" />
             <PropertyRef Name="clte_Nombres" />
             <PropertyRef Name="dev_Fecha" />
+            <PropertyRef Name="Fecha_Devolucion" />
+            <PropertyRef Name="Fecha_Factura" />
+            <PropertyRef Name="Numero_Factura" />
+            <PropertyRef Name="RTN" />
+            <PropertyRef Name="Nombre_Cliente" />
+            <PropertyRef Name="Código_Factura" />
+            <PropertyRef Name="Nombre_Producto" />
+            <PropertyRef Name="Precio_Unitario" />
+            <PropertyRef Name="Cantidad_Facturada" />
+            <PropertyRef Name="Cantidad_Devuelta" />
           </Key>
           <Property Name="dev_Id" Type="Int32" Nullable="false" />
           <Property Name="fact_Codigo" Type="String" Nullable="false" MaxLength="19" FixedLength="false" Unicode="true" />
@@ -15607,6 +15687,19 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_FacturaPuntoEmision' doe
           <Property Name="clte_Nombres" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="dev_Fecha" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="dev_Estado" Type="Boolean" />
+          <Property Name="Fecha_Devolucion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Fecha_Factura" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Numero_Factura" Type="Int64" Nullable="false" />
+          <Property Name="RTN" Type="String" Nullable="false" MaxLength="26" FixedLength="false" Unicode="true" />
+          <Property Name="Nombre_Cliente" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Total_Devolución" Type="Decimal" Precision="38" Scale="10" />
+          <Property Name="Nota_Crédito" Type="String" MaxLength="19" FixedLength="false" Unicode="true" />
+          <Property Name="Código_Factura" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Nombre_Producto" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Precio_Unitario" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Cantidad_Facturada" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+          <Property Name="Cantidad_Devuelta" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+          <Property Name="Monto_Devolución" Type="Decimal" Precision="38" Scale="10" />
         </EntityType>
         <Association Name="FK_Inv_tbEstadoInventarioFisico_estif_UsuarioModifica">
           <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
@@ -15676,6 +15769,32 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_FacturaPuntoEmision' doe
           <Property Type="String" Name="uni_Descripcion" Nullable="false" MaxLength="150" />
           <Property Type="String" Name="prod_CodigoBarras" Nullable="false" MaxLength="15" />
         </ComplexType>
+        <EntityType Name="UDV_Vent_InventarioNumeraciones">
+          <Key>
+            <PropertyRef Name="suc_Id" />
+            <PropertyRef Name="suc_Descripcion" />
+            <PropertyRef Name="suc_Telefono" />
+            <PropertyRef Name="pemi_NumeroCAI" />
+            <PropertyRef Name="dfisc_Descripcion" />
+            <PropertyRef Name="pemid_RangoInicio" />
+            <PropertyRef Name="pemid_RangoFinal" />
+            <PropertyRef Name="pemid_NumeroActual" />
+            <PropertyRef Name="pemid_FechaLimite" />
+            <PropertyRef Name="Estado" />
+          </Key>
+          <Property Name="suc_Id" Type="Int32" Nullable="false" />
+          <Property Name="suc_Descripcion" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="suc_Telefono" Type="String" Nullable="false" MaxLength="9" FixedLength="false" Unicode="true" />
+          <Property Name="pemi_NumeroCAI" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="dfisc_Descripcion" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="pemid_RangoInicio" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="pemid_RangoFinal" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="pemid_NumeroActual" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="pemid_FechaLimite" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Estado" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DiasDisponibles" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="NumeracionesDisponibles" Type="Int32" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -17664,6 +17783,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_FacturaPuntoEmision' doe
           <EntitySetMapping Name="tbBox">
             <EntityTypeMapping TypeName="ERP_ZORZALModel.tbBox">
               <MappingFragment StoreEntitySet="tbBox">
+                <ScalarProperty Name="bod_Id" ColumnName="bod_Id" />
                 <ScalarProperty Name="box_FechaModifica" ColumnName="box_FechaModifica" />
                 <ScalarProperty Name="box_UsuarioModifica" ColumnName="box_UsuarioModifica" />
                 <ScalarProperty Name="box_FechaCrea" ColumnName="box_FechaCrea" />
@@ -18679,12 +18799,19 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_FacturaPuntoEmision' doe
           <EntitySetMapping Name="UDV_Vent_DevolucionesPorFecha">
             <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Vent_DevolucionesPorFecha">
               <MappingFragment StoreEntitySet="UDV_Vent_DevolucionesPorFecha">
-                <ScalarProperty Name="dev_Estado" ColumnName="dev_Estado" />
-                <ScalarProperty Name="dev_Fecha" ColumnName="dev_Fecha" />
-                <ScalarProperty Name="clte_Nombres" ColumnName="clte_Nombres" />
-                <ScalarProperty Name="clte_Identificacion" ColumnName="clte_Identificacion" />
-                <ScalarProperty Name="fact_Codigo" ColumnName="fact_Codigo" />
-                <ScalarProperty Name="dev_Id" ColumnName="dev_Id" />
+                <ScalarProperty Name="Monto_Devolución" ColumnName="Monto Devolución" />
+                <ScalarProperty Name="Cantidad_Devuelta" ColumnName="Cantidad Devuelta" />
+                <ScalarProperty Name="Cantidad_Facturada" ColumnName="Cantidad Facturada" />
+                <ScalarProperty Name="Precio_Unitario" ColumnName="Precio Unitario" />
+                <ScalarProperty Name="Nombre_Producto" ColumnName="Nombre Producto" />
+                <ScalarProperty Name="Código_Factura" ColumnName="Código Factura" />
+                <ScalarProperty Name="Nota_Crédito" ColumnName="Nota Crédito" />
+                <ScalarProperty Name="Total_Devolución" ColumnName="Total Devolución" />
+                <ScalarProperty Name="Nombre_Cliente" ColumnName="Nombre Cliente" />
+                <ScalarProperty Name="RTN" ColumnName="RTN" />
+                <ScalarProperty Name="Numero_Factura" ColumnName="Numero Factura" />
+                <ScalarProperty Name="Fecha_Factura" ColumnName="Fecha Factura" />
+                <ScalarProperty Name="Fecha_Devolucion" ColumnName="Fecha Devolucion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -18739,6 +18866,24 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_FacturaPuntoEmision' doe
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="UDV_Vent_InventarioNumeraciones">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Vent_InventarioNumeraciones">
+              <MappingFragment StoreEntitySet="UDV_Vent_InventarioNumeraciones">
+                <ScalarProperty Name="NumeracionesDisponibles" ColumnName="NumeracionesDisponibles" />
+                <ScalarProperty Name="DiasDisponibles" ColumnName="DiasDisponibles" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="pemid_FechaLimite" ColumnName="pemid_FechaLimite" />
+                <ScalarProperty Name="pemid_NumeroActual" ColumnName="pemid_NumeroActual" />
+                <ScalarProperty Name="pemid_RangoFinal" ColumnName="pemid_RangoFinal" />
+                <ScalarProperty Name="pemid_RangoInicio" ColumnName="pemid_RangoInicio" />
+                <ScalarProperty Name="dfisc_Descripcion" ColumnName="dfisc_Descripcion" />
+                <ScalarProperty Name="pemi_NumeroCAI" ColumnName="pemi_NumeroCAI" />
+                <ScalarProperty Name="suc_Telefono" ColumnName="suc_Telefono" />
+                <ScalarProperty Name="suc_Descripcion" ColumnName="suc_Descripcion" />
+                <ScalarProperty Name="suc_Id" ColumnName="suc_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
