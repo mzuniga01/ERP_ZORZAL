@@ -5,6 +5,7 @@ function validar(e) {
     return /^[a-záéíóúñ\s]*$/i.test(tecla);
 }
 
+
 //Validar letras y números
 function validarJ(e) {
     tecla = (document.all) ? e.keyCode : e.which;
@@ -31,13 +32,11 @@ function correo(e) {
             valido.innerText = "";
 
         } else {
-            //valido.innerText = "Direccion de Correo Electronico Incorrecta";
             $(this).next("p").text("Direccion de Correo Electronico Incorrecta");
             return false
         }
 
-    })
-    
+    })    
 }
 
 //TextArea
@@ -54,17 +53,14 @@ function validartel(e) {
         var Telefono = this.value.match(/[0-9\s]+/);
         
         if (Telefono != null) {
-            this.value = '+' + ((Telefono).toString().replace(/[a-záéíóúüñ#/=]+/ig, "", ''));
+            this.value = '+' + ((Telefono).toString().replace(/[^ 0-9a-záéíóúñ@._-\s]\d +/ig, ""));
         }
         else {
-            this.value = '+' + ((Telefono).toString().replace(/[a-záéíóúüñ#/=]+/ig, "", ''));
-        }
-        console.log('Telefono', Telefono)   
-
-
-
+            this.value = null;           
+        }  
     });
 }
 
 
 
+ 

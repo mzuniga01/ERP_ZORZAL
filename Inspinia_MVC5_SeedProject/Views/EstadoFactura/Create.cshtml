@@ -38,7 +38,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.esfac_Descripcion, new { @class = "control-label col-md-2" })
                 <div class="col-md-4">
-                    @Html.EditorFor(model => model.esfac_Descripcion, new { htmlAttributes = new { @autocomplete = "off", @onkeyup = "format(this)", @style = "text-transform:uppercase;", onkeypress = "return validar(event)" } })
+                    @Html.EditorFor(model => model.esfac_Descripcion, new { htmlAttributes = new { @autocomplete = "off", @style = "text-transform:uppercase;", onkeypress = "return validar(event)" } })
                     <p style="color:red"> @Html.ValidationMessageFor(model => model.esfac_Descripcion)</p>
                 </div>
             </div>
@@ -65,10 +65,8 @@
     @Scripts.Render("~/bundles/jqueryval")
 }
 <script src="~/Scripts/jquery-3.3.1.js"></script>
-<script src="~/Scripts/app/Factura.js"></script>
 <script src="~/Scripts/app/CaracteresEspeciales.js"></script>
 <script src="~/Scripts/app/ComandoGuardar.js"></script>
-<script src="~/Scripts/app/Banco.js"></script>
 
 <script>
     $(document).ready(function () {
