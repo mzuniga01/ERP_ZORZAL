@@ -2977,15 +2977,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_tbentradaImprimir_Select_Result>("SDP_tbentradaImprimir_Select", tipoEntradaParameter, fechaElaboracionParameter, estadoParameter, bodegaParameter);
         }
     
-        public virtual ObjectResult<SP_tbInventariofisico_ProductosRepetidos_Result> SP_tbInventariofisico_ProductosRepetidos(string prod_CodigoBarras)
-        {
-            var prod_CodigoBarrasParameter = prod_CodigoBarras != null ?
-                new ObjectParameter("prod_CodigoBarras", prod_CodigoBarras) :
-                new ObjectParameter("prod_CodigoBarras", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_tbInventariofisico_ProductosRepetidos_Result>("SP_tbInventariofisico_ProductosRepetidos", prod_CodigoBarrasParameter);
-        }
-    
         public virtual ObjectResult<UDP_Inv_tbEstadoInventarioFisico_Insert_Result> UDP_Inv_tbEstadoInventarioFisico_Insert(Nullable<byte> estif_Id, string estif_Descripcion, Nullable<int> estif_UsuarioCrea, Nullable<System.DateTime> estif_FechaCrea)
         {
             var estif_IdParameter = estif_Id.HasValue ?
@@ -3200,6 +3191,15 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("prod_Codigo", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_Inv_Cantidad_Salida_Emitida_Result>("SDP_Inv_Cantidad_Salida_Emitida", prod_CodigoParameter);
+        }
+    
+        public virtual ObjectResult<SP_tbInventariofisico_ProductosRepetidos_Result1> SP_tbInventariofisico_ProductosRepetidos(string prod_CodigoBarras)
+        {
+            var prod_CodigoBarrasParameter = prod_CodigoBarras != null ?
+                new ObjectParameter("prod_CodigoBarras", prod_CodigoBarras) :
+                new ObjectParameter("prod_CodigoBarras", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_tbInventariofisico_ProductosRepetidos_Result1>("SP_tbInventariofisico_ProductosRepetidos", prod_CodigoBarrasParameter);
         }
     }
 }

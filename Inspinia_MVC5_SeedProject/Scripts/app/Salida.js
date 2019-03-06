@@ -34,6 +34,7 @@ $('#Productos').click(function () {
     }
     else {
         $('#ModalAgregarProducto').modal('show');
+        $('#bod_IdError').text('')
         ListaProductos()
         //test()
     }
@@ -470,10 +471,12 @@ function Producto(bod_Id, prod_CodigoBarrasItem) {
 }
 
 $(document).on("click", "#tblBusquedaGenerica tbody tr td button#seleccionar", function () {
+
     var currentRow = $(this).closest("tr");
     var prod_CodigoBarrasItem = currentRow.find("td:eq(5)").text();
     var bod_Id = $('#bod_Id').val()
-
+    $('#CodigoError').text('')
+    
     //var bod_Id = $(this).closest('tr').data('cod_barra');
     //var prod_CodigoBarrasItem = $(this).closest('tr').data('cod_barra');
     console.log(prod_CodigoBarrasItem)

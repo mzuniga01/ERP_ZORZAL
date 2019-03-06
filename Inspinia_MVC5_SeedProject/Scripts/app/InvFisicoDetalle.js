@@ -429,6 +429,7 @@ $('#AgregarNuevoDetalle').click(function () {
                             copiar += "<td>" + '<button id="removerInvFisicoDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
                             copiar += "</tr>";
                             $('#InvDetalle').append(copiar);
+                            $("#invfd_Cantidad").val('1');
                         }
                     });
                 }
@@ -447,6 +448,7 @@ $('#AgregarNuevoDetalle').click(function () {
                     copiar += "<td>" + '<button id="removerInvFisicoDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
                     copiar += "</tr>";
                     $('#InvDetalle').append(copiar);
+                    $("#invfd_Cantidad").val('1');
                 }
             }).done(function (data) {
 
@@ -512,12 +514,14 @@ $(document).keypress(function (e) {
                         $.each(data, function (key, val) {
                             data_producto = val.prod_Codigo;
                             data_cantidadfisica = val.invfd_Cantidad;
+                            data_uniId = val.uni_Id;
                             data_unidad = val.uni_Descripcion;
                             data_Descripcion = val.prod_Descripcion;
                             seleccionar(data_producto);
                             $('#prod_Codigo').val(data_producto);
                             $('#invfd_CantidadSistema').val('0');
                             $('#invfd_Cantidad').val('1');
+                            $('#uni_Ids').val(data_uniId);
                             $('#uni_Id').val(data_unidad);
                             $('#prod_Descripcion').val(data_Descripcion);
                         })

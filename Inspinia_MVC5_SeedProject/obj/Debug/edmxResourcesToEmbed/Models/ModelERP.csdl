@@ -1762,9 +1762,6 @@
       <Parameter Name="estado" Mode="In" Type="Byte" />
       <Parameter Name="bodega" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="SP_tbInventariofisico_ProductosRepetidos" ReturnType="Collection(ERP_ZORZALModel.SP_tbInventariofisico_ProductosRepetidos_Result)">
-      <Parameter Name="prod_CodigoBarras" Mode="In" Type="String" />
-    </FunctionImport>
     <AssociationSet Name="FK_Inv_tbEstadoInventarioFisico_estif_UsuarioModifica" Association="ERP_ZORZALModel.FK_Inv_tbEstadoInventarioFisico_estif_UsuarioModifica">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbEstadoInventarioFisico" EntitySet="tbEstadoInventarioFisico" />
@@ -1860,6 +1857,9 @@
     </FunctionImport>
     <FunctionImport Name="SDP_Inv_Cantidad_Salida_Emitida" ReturnType="Collection(ERP_ZORZALModel.SDP_Inv_Cantidad_Salida_Emitida_Result)">
       <Parameter Name="prod_Codigo" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_tbInventariofisico_ProductosRepetidos" ReturnType="Collection(ERP_ZORZALModel.SP_tbInventariofisico_ProductosRepetidos_Result1)">
+      <Parameter Name="prod_CodigoBarras" Mode="In" Type="String" />
     </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
@@ -6808,5 +6808,12 @@
   <ComplexType Name="SDP_Inv_Cantidad_Salida_Emitida_Result">
     <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
     <Property Type="Decimal" Name="sald_Cantidad" Nullable="true" Precision="38" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="SP_tbInventariofisico_ProductosRepetidos_Result1">
+    <Property Type="String" Name="prod_CodigoBarras" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="prod_Descripcion" Nullable="false" MaxLength="100" />
+    <Property Type="Int32" Name="uni_Id" Nullable="false" />
+    <Property Type="String" Name="uni_Descripcion" Nullable="false" MaxLength="150" />
   </ComplexType>
 </Schema>
