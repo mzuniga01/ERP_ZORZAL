@@ -393,6 +393,7 @@ $('#AgregarSalidaDetalle').click(function () {
     var Unidad_Medida = $('#pscat_Id').val();
     var Cantidad = $('#sald_Cantidad').val();
     var data_producto = $("#prod_Codigo").val();
+    $('#sald_CantidadError').text();
     ProductoCantidad(bod_Id, Cod_Producto).done(function (data) {
         var CantidadAceptada = data.CantidadAceptada
         var CantidadMinima = data.CantidadMinima
@@ -427,8 +428,8 @@ $('#AgregarSalidaDetalle').click(function () {
         else if (Cantidad == '' || Cantidad < 0.25) {
             $('#MessageError').text('');
             $('#CodigoError').text('');
-            $('#NombreError').text('');
-            $('#sald_Cantidad').after('<ul id="CodigoError" class="validation-summary-errors text-danger">Cantidad Requerido</ul>');
+            $('#sald_CantidadError').text('');
+            $('#sald_Cantidad').after('<ul id="sald_CantidadError" class="validation-summary-errors text-danger">Cantidad Requerido</ul>');
         }
         else if (Cantidad > CantidadExit) {
             $('#MessageError').text('');
