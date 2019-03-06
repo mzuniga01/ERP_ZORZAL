@@ -12,9 +12,7 @@ function Validar() {
         data: JSON.stringify({}),
     })
   .done(function (CodPedido) {
-      console.log(CodPedido)
       if (CodPedido != 0) {
-          console.log("Traigo registros")
           GetDetallePedido()
           function GetDetallePedido() {
               $.ajax({
@@ -118,7 +116,6 @@ function Validar() {
 
       }
       else {
-          console.log("No traigo absolutamente nada")
       }
 
 

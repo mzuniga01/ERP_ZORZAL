@@ -35,5 +35,6 @@ namespace ERP_GMEDINA.Models
         public virtual ICollection<tbBoxDetalle> tbBoxDetalle { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbSalidaDetalle> tbSalidaDetalle { get; set; }
+        public virtual tbBodega tbBodega { get; set; }
     }
 }

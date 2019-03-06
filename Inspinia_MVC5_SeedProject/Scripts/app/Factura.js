@@ -117,11 +117,11 @@ $('#AgregarTerceraEdad').click(function () {
                 })
                 .done(function (data) {
                     $.each(data, function (key, val) {
-                        $('#fact_PorcentajeDescuento').val(val.par_PorcentajeDescuentoTE);
+                        $('#fact_PorcentajeDescuento').val(val.par_PorcentajeDescuentoTE);                                               
                         $('#factd_PorcentajeDescuento').val(val.par_PorcentajeDescuentoTE);
+                        $('#factd_MontoDescuento').val(val.par_PorcentajeDescuentoTE);
                     });
 
-                    console.log(data)
                 });
             }
             document.getElementById("MostrarTerceraEdad").disabled = true;
@@ -188,7 +188,6 @@ function soloNumeros(e) {
 
 $("#confi_Telefono").on("keypress keyup blur", function (event) {
     var Telefono = $(this).val();
-    console.log(Telefono)
     if (Telefono == '') {
         $(this).val('+');
     }
@@ -228,7 +227,6 @@ function ValidarAutorizacion() {
         data: JSON.stringify({ User: User, Password: Password }),
     })
     .done(function (data) {
-        console.log()
         if (data==true) {
            
                var Porcentaje = $("#PorcentajeDescuento").val();
@@ -254,7 +252,6 @@ function ValidarAutorizacionDetalle() {
         data: JSON.stringify({ User: User, Password: Password }),
     })
     .done(function (data) {
-        console.log()
         if (data == true) {
 
             var Porcentaje = $("#PorcentajeDescuentoDetalle").val();
@@ -338,7 +335,6 @@ $(document).on("click", "#tbCliente tbody tr td button#seleccionar", function ()
     ConCredito = $(this).parents("tr").find("td")[6].innerHTML;
     DiasCred = $(this).parents("tr").find("td")[7].innerHTML;
     DiasCredito = parseInt(DiasCred.trim())
-    console.log(DiasCredito)
     $('#fact_DiasCredito').change(function () {
         var Dias = $('#fact_DiasCredito').val()
         if (Dias > DiasCredito) {
@@ -447,7 +443,6 @@ $('#consumidorFinal').change(function () {
                     $('#clte_Id').val(val.par_IdConsumidorFinal);
                 });
 
-                console.log(data)
             });
         }
 
@@ -619,7 +614,6 @@ $(document).change(function () {
 
 $("#fact_AlCredito").click(function () {
     var x = $('#fact_DiasCredito').val();
-    console.log(x);
     if (x == '') {
         $('#fact_DiasCredito').val(0);
     }
@@ -630,7 +624,6 @@ $("#fact_AlCredito").click(function () {
 
 $("#fact_AutorizarDescuento").click(function () {
     var x = $('#fact_PorcentajeDescuento').val();
-    console.log(x);
     if (x == '') {
         $('#fact_PorcentajeDescuento').val(0);
     }
@@ -661,7 +654,6 @@ function GetNumeroFact(CodSucursal, CodCaja) {
             } else if (Mensaje == -2) {
                 alert("El Numero CAI no tiene numeracion")
                 var url = $("#RedirectTo").val();
-                console.log("hola")
                 location.href = url;
             }
             else {
@@ -775,13 +767,8 @@ $("#factd_Cantidad").on("blur", function (event) {
 
 function GetCantidad() {
     var CodSucursal = $('#suc_Id').val();
-    console.log(CodSucursal)
     var CodProducto = $('#prod_Codigo').val();
-    console.log(CodProducto)
     var CantidadIngresada = $('#factd_Cantidad').val();
-    console.log(CantidadIngresada)
-
-
     $.ajax({
         url: "/Factura/GetCantidad",
         method: "POST",
@@ -794,12 +781,9 @@ function GetCantidad() {
         if (data.length > 0) {
             $.each(data, function (key, val) {
                 var MENSAJE = data[0]['MENSAJE'];
-                console.log(MENSAJE)
-
                 if (MENSAJE) {
                     var can = data[0]['CANTIDAD'];
                     var CANTIDAD = parseFloat(can)
-                    console.log(CANTIDAD)
                     if (CANTIDAD < CantidadIngresada) {
                         alert('La cantidad de productos no esta disponible, Cantidad disponible: ' + CANTIDAD)
                         $('#factd_Impuesto').val(0.00);
@@ -813,7 +797,6 @@ function GetCantidad() {
                     else if (CANTIDAD == 10) {
                         alert('Pocos productos en exitencia, cantidad existente: ' + CANTIDAD)
                     } else {
-                        document.getElementById("AgregarDetalleFactura").disabled = false;
                     }
 
                 }

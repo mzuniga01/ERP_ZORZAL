@@ -52,7 +52,6 @@ $('#AgregarDetalleFactura').click(function () {
             .done(function (datos) {
                 if (datos == CodigoProducto) {
                     //alert('Es Igual.')
-                    console.log('Repetido');
                     var cantfisica_nueva = $('#factd_Cantidad').val();
                     $("#tblDetalleFactura td").each(function () {
                         var prueba = $(this).text()
@@ -60,7 +59,6 @@ $('#AgregarDetalleFactura').click(function () {
                             var idcontador = $(this).closest('tr').data('id');
                             var cantfisica_anterior = $(this).closest("tr").find("td:eq(2)").text();
                             var sumacantidades = parseInt(cantfisica_nueva) + parseInt(cantfisica_anterior);
-                            console.log(sumacantidades);
                             $(this).closest('tr').remove();
                             copiar = "<tr data-id=" + idcontador + ">";
                             copiar += "<td id = 'prod_CodigoCreate'>" + CodigoProducto + "</td>";
@@ -122,7 +120,6 @@ $('#AgregarDetalleFactura').click(function () {
                 var impuestotal = parseFloat(document.getElementById("isv").innerHTML);
                 var porcentaje = parseFloat(impuesto / 100);
                 var impuestos = (Cantidad * Precio) * porcentaje;
-                console.log(impuestos)
 
                 if (document.getElementById("isv").innerHTML == '') {
                     impuesto = document.getElementById("factd_Impuesto").value;
@@ -352,7 +349,6 @@ function EditStudentRecord(StudentId) {
 $("#EditFacturaDetalle").click(function () {
     var factd_Ids = $('#factd_Id').val();
     var data = $("#SubmitForm").serializeArray();
-    console.log(data)
     $.ajax({
         type: "POST",
         url: "/Factura/UpdateFacturaDetalle",
@@ -570,7 +566,6 @@ $(document).change(function () {
 
 $("#fact_AlCredito").click(function () {
     var x = $('#fact_DiasCredito').val();
-    console.log(x);
     if (x == '') {
         $('#fact_DiasCredito').val(0);
     }
@@ -581,7 +576,6 @@ $("#fact_AlCredito").click(function () {
 
 $("#fact_AutorizarDescuento").click(function () {
     var x = $('#fact_PorcentajeDescuento').val();
-    console.log(x);
     if (x == '') {
         $('#fact_PorcentajeDescuento').val(0);
     }
@@ -597,12 +591,8 @@ $("#factd_Cantidad").on("blur", function (event) {
 
 function GetCantidad() {
     var CodSucursal = $('#suc_Id').val();
-    console.log(CodSucursal)
     var CodProducto = $('#prod_Codigo').val();
-    console.log(CodProducto)
     var CantidadIngresada = $('#factd_Cantidad').val();
-    console.log(CantidadIngresada)
-
 
     $.ajax({
         url: "/Factura/GetCantidad",
@@ -616,12 +606,9 @@ function GetCantidad() {
         if (data.length > 0) {
             $.each(data, function (key, val) {
                 var MENSAJE = data[0]['MENSAJE'];
-                console.log(MENSAJE)
-
                 if (MENSAJE) {
                     var can = data[0]['CANTIDAD'];
                     var CANTIDAD = parseFloat(can)
-                    console.log(CANTIDAD)
                     if (CANTIDAD < CantidadIngresada) {
                         alert('La cantidad de productos no esta disponible, Cantidad disponible: ' + CANTIDAD)
                         $('#factd_Impuesto').val(0.00);

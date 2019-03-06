@@ -1020,11 +1020,6 @@
       <Parameter Name="IDSucursal" Mode="In" Type="Int32" />
       <Parameter Name="IDCAJA" Mode="In" Type="Int16" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente_Result)">
-      <Parameter Name="IDSUCURSAL" Mode="In" Type="Int32" />
-      <Parameter Name="CODIGOBARRAS" Mode="In" Type="String" />
-      <Parameter Name="IDCLIENTE" Mode="In" Type="Int32" />
-    </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbFactura_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFactura_Insert_Result)">
       <Parameter Name="fact_Codigo" Mode="In" Type="String" />
       <Parameter Name="fact_Fecha" Mode="In" Type="DateTime" />
@@ -1862,9 +1857,7 @@
       <Parameter Name="suc_UsuarioModifica" Mode="In" Type="Int32" />
       <Parameter Name="suc_FechaModifica" Mode="In" Type="DateTime" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbNotaCredito_Select" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbNotaCredito_Select_Result)">
-      <Parameter Name="dev_Id" Mode="In" Type="Int32" />
-    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbNotaCredito_Select" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbNotaCredito_Select_Result)" />
     <FunctionImport Name="UDP_Vent_tbCuponDescuentoSelect" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbCuponDescuentoSelect_Result)" />
     <FunctionImport Name="UDP_Vent_tbPedido_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPedido_Insert_Result)">
       <Parameter Name="esped_Id" Mode="In" Type="Byte" />
@@ -2887,6 +2880,16 @@
     <FunctionImport Name="UDP_Vent_tbSolicitudEfectivo_Imprimir" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivo_Imprimir_Result)">
       <Parameter Name="SOLEF_ID" Mode="In" Type="Int32" />
     </FunctionImport>
+    <EntitySet Name="UDV_Inv_Nombre_Empleado" EntityType="ERP_ZORZALModel.UDV_Inv_Nombre_Empleado" />
+    <AssociationSet Name="FK_Inv_tbBox_tbBodega_bod_Id" Association="ERP_ZORZALModel.FK_Inv_tbBox_tbBodega_bod_Id">
+      <End Role="tbBodega" EntitySet="tbBodega" />
+      <End Role="tbBox" EntitySet="tbBox" />
+    </AssociationSet>
+    <FunctionImport Name="UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente_Result)">
+      <Parameter Name="IDSUCURSAL" Mode="In" Type="Int32" />
+      <Parameter Name="CODIGOBARRAS" Mode="In" Type="String" />
+      <Parameter Name="IDCLIENTE" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -3281,13 +3284,6 @@
   <ComplexType Name="UDP_Vent_tbNotaCredito_CodigoNotaCredito_Result">
     <Property Type="String" Name="CODNOTACREDITO" Nullable="true" MaxLength="19" />
     <Property Type="String" Name="CAI" Nullable="true" MaxLength="40" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente_Result">
-    <Property Type="String" Name="DESCRIPCIONPRODUCTO" Nullable="true" MaxLength="100" />
-    <Property Type="String" Name="CODIGOPRODUCTO" Nullable="true" MaxLength="15" />
-    <Property Type="Decimal" Name="IMPUESTOPRODUCTO" Nullable="true" Precision="5" Scale="2" />
-    <Property Type="Decimal" Name="PRECIOUNITARIO" Nullable="true" Precision="10" Scale="2" />
-    <Property Type="Boolean" Name="EXISTE" Nullable="true" />
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbFactura_Insert_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
@@ -4485,6 +4481,7 @@
     <NavigationProperty Name="tbSalida" Relationship="ERP_ZORZALModel.FK_Inv_tbSalida_Inv_tbBodega_bod_Id" FromRole="tbBodega" ToRole="tbSalida" />
     <NavigationProperty Name="tbSalida1" Relationship="ERP_ZORZALModel.FK_Inv_tbSalida_tbBodega_sal_BodDestino" FromRole="tbBodega" ToRole="tbSalida" />
     <NavigationProperty Name="tbSucursal" Relationship="ERP_ZORZALModel.FK_Vent_tbBodega_tbSucursal_bod_Id" FromRole="tbBodega" ToRole="tbSucursal" />
+    <NavigationProperty Name="tbBox" Relationship="ERP_ZORZALModel.FK_Inv_tbBox_tbBodega_bod_Id" FromRole="tbBodega" ToRole="tbBox" />
   </EntityType>
   <EntityType Name="tbBodegaDetalle">
     <Key>
@@ -4523,6 +4520,7 @@
     <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Inv_tbBox_tbUsuario_usu_Id" FromRole="tbBox" ToRole="tbUsuario" />
     <NavigationProperty Name="tbBoxDetalle" Relationship="ERP_ZORZALModel.FK_Inv_tbBoxDetalle_box_Codigo" FromRole="tbBox" ToRole="tbBoxDetalle" />
     <NavigationProperty Name="tbSalidaDetalle" Relationship="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_box_Codigo" FromRole="tbBox" ToRole="tbSalidaDetalle" />
+    <NavigationProperty Name="tbBodega" Relationship="ERP_ZORZALModel.FK_Inv_tbBox_tbBodega_bod_Id" FromRole="tbBox" ToRole="tbBodega" />
   </EntityType>
   <EntityType Name="tbBoxDetalle">
     <Key>
@@ -8443,5 +8441,32 @@
     <Property Type="Decimal" Name="MontoSolicitado" Nullable="true" Precision="16" Scale="2" />
     <Property Type="Int16" Name="soled_CantidadEntregada" Nullable="false" />
     <Property Type="Decimal" Name="MontoEntregado" Nullable="true" Precision="16" Scale="2" />
+  </ComplexType>
+  <EntityType Name="UDV_Inv_Nombre_Empleado">
+    <Key>
+      <PropertyRef Name="emp_Id" />
+      <PropertyRef Name="Empleados" />
+    </Key>
+    <Property Name="emp_Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Empleados" Type="String" Nullable="false" MaxLength="201" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_Inv_tbBox_tbBodega_bod_Id">
+    <End Type="ERP_ZORZALModel.tbBodega" Role="tbBodega" Multiplicity="1" />
+    <End Type="ERP_ZORZALModel.tbBox" Role="tbBox" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbBodega">
+        <PropertyRef Name="bod_Id" />
+      </Principal>
+      <Dependent Role="tbBox">
+        <PropertyRef Name="bod_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente_Result">
+    <Property Type="String" Name="DESCRIPCIONPRODUCTO" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="CODIGOPRODUCTO" Nullable="true" MaxLength="15" />
+    <Property Type="Decimal" Name="IMPUESTOPRODUCTO" Nullable="true" Precision="5" Scale="2" />
+    <Property Type="Decimal" Name="PRECIOUNITARIO" Nullable="true" Precision="10" Scale="2" />
+    <Property Type="Boolean" Name="EXISTE" Nullable="true" />
   </ComplexType>
 </Schema>

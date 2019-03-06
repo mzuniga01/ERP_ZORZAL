@@ -22,8 +22,8 @@
                                 </div>
                             </div>
                             <div class="col-md-1">
-                                <button class="btn btn-primary btn-sm" type="button" id="AgregarDetalleFactura">Añadir</button>
-                            </div>
+                                <button type="button" class="btn btn-primary btn-sm" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#AutorizarDescuentoDetalle">Descuento</button>
+                            </div> 
                         </div>
 
                         <div class="form-group">
@@ -48,9 +48,7 @@
                                     @Html.ValidationMessageFor(model => model.factd_MontoDescuento)
                                 </div>
                             </div>
-                            <div class="col-md-1">
-                                <button type="button" class="btn btn-primary btn-sm" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#AutorizarDescuentoDetalle">Descuento</button>
-                            </div>                           
+                                                     
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(model => model.factd_Cantidad, new { @class = "control-label required col-md-1" })
