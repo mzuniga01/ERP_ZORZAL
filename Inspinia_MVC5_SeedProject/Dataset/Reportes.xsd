@@ -39,53 +39,6 @@ WHERE        (suc_Id = @suc_Id)</CommandText>
             </Mappings>
             <Sources />
           </TableAdapter>
-          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="UDV_Vent_AnalisisDeMoraTableAdapter" GeneratorDataComponentClassName="UDV_Vent_AnalisisDeMoraTableAdapter" Name="UDV_Vent_AnalisisDeMora" UserDataComponentName="UDV_Vent_AnalisisDeMoraTableAdapter">
-            <MainSource>
-              <DbSource ConnectionRef="ERP_GMEDINAConnectionString (Web.config)" DbObjectName="ERP_GMEDINA.Vent.UDV_Vent_AnalisisDeMora" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillFiltros" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="FillFiltros" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="FillFiltros">
-                <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT        UDV_Vent_AnalisisDeMora.*
-FROM            Vent.UDV_Vent_AnalisisDeMora</CommandText>
-                    <Parameters />
-                  </DbCommand>
-                </SelectCommand>
-              </DbSource>
-            </MainSource>
-            <Mappings>
-              <Mapping SourceColumn="fact_Id" DataSetColumn="fact_Id" />
-              <Mapping SourceColumn="fact_Codigo" DataSetColumn="fact_Codigo" />
-              <Mapping SourceColumn="clte_Identificacion" DataSetColumn="clte_Identificacion" />
-              <Mapping SourceColumn="clte_Nombres" DataSetColumn="clte_Nombres" />
-              <Mapping SourceColumn="clte_EsPersonaNatural" DataSetColumn="clte_EsPersonaNatural" />
-              <Mapping SourceColumn="clte_DiasCredito" DataSetColumn="clte_DiasCredito" />
-              <Mapping SourceColumn="fact_DiasCredito" DataSetColumn="fact_DiasCredito" />
-              <Mapping SourceColumn="fact_Fecha" DataSetColumn="fact_Fecha" />
-              <Mapping SourceColumn="pago_TotalPago" DataSetColumn="pago_TotalPago" />
-            </Mappings>
-            <Sources />
-          </TableAdapter>
-          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="UDV_Vent_DevolucionesPorFechaTableAdapter" GeneratorDataComponentClassName="UDV_Vent_DevolucionesPorFechaTableAdapter" Name="UDV_Vent_DevolucionesPorFecha" UserDataComponentName="UDV_Vent_DevolucionesPorFechaTableAdapter">
-            <MainSource>
-              <DbSource ConnectionRef="ERP_GMEDINAConnectionString (Web.config)" DbObjectName="ERP_GMEDINA.Vent.UDV_Vent_DevolucionesPorFecha" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillFiltros" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="FillFiltros" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="FillFiltros">
-                <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT        UDV_Vent_DevolucionesPorFecha.*
-FROM            Vent.UDV_Vent_DevolucionesPorFecha</CommandText>
-                    <Parameters />
-                  </DbCommand>
-                </SelectCommand>
-              </DbSource>
-            </MainSource>
-            <Mappings>
-              <Mapping SourceColumn="dev_Id" DataSetColumn="dev_Id" />
-              <Mapping SourceColumn="fact_Codigo" DataSetColumn="fact_Codigo" />
-              <Mapping SourceColumn="clte_Identificacion" DataSetColumn="clte_Identificacion" />
-              <Mapping SourceColumn="clte_Nombres" DataSetColumn="clte_Nombres" />
-              <Mapping SourceColumn="dev_Fecha" DataSetColumn="dev_Fecha" />
-              <Mapping SourceColumn="dev_Estado" DataSetColumn="dev_Estado" />
-            </Mappings>
-            <Sources />
-          </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="UDV_Vent_VentasConsumidorFinalTableAdapter" GeneratorDataComponentClassName="UDV_Vent_VentasConsumidorFinalTableAdapter" Name="UDV_Vent_VentasConsumidorFinal" UserDataComponentName="UDV_Vent_VentasConsumidorFinalTableAdapter">
             <MainSource>
               <DbSource ConnectionRef="ERP_GMEDINAConnectionString (Web.config)" DbObjectName="ERP_GMEDINA.Vent.UDV_Vent_VentasConsumidorFinal" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillFiltros" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="FillFiltros" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="FillFiltros">
@@ -353,6 +306,72 @@ WHERE        (Nombres LIKE ISNULL('%' + @Nombres + '%', Nombres)) AND (Tipo_Fact
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="UDV_Vent_DevolucionesPorFechaTableAdapter" GeneratorDataComponentClassName="UDV_Vent_DevolucionesPorFechaTableAdapter" Name="UDV_Vent_DevolucionesPorFecha" UserDataComponentName="UDV_Vent_DevolucionesPorFechaTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_GMEDINAConnectionString1 (Web.config)" DbObjectName="ERP_GMEDINA.Vent.UDV_Vent_DevolucionesPorFecha" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillFiltros" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="FillFiltros" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="FillFiltros">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        [Fecha Devolucion], [Fecha Factura], [Numero Factura], RTN, [Nombre Cliente], [Total Devolución], [Nota Crédito], [Código Producto], [Nombre Producto], [Precio Unitario], [Cantidad Facturada], [Cantidad Devuelta], 
+                         [Monto Devolución]
+FROM            Vent.UDV_Vent_DevolucionesPorFecha
+WHERE        (RTN = @RTN) OR
+                         ([Nombre Cliente] = @Nombre) OR
+                         ([Fecha Devolucion] = @Fecha)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="RTN" ColumnName="RTN" DataSourceName="ERP_GMEDINA.Vent.UDV_Vent_DevolucionesPorFecha" DataTypeServer="nvarchar(26)" DbType="String" Direction="Input" ParameterName="@RTN" Precision="0" ProviderType="NVarChar" Scale="0" Size="26" SourceColumn="RTN" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Nombre" ColumnName="Nombre Cliente" DataSourceName="ERP_GMEDINA.Vent.UDV_Vent_DevolucionesPorFecha" DataTypeServer="nvarchar(50)" DbType="String" Direction="Input" ParameterName="@Nombre" Precision="0" ProviderType="NVarChar" Scale="0" Size="50" SourceColumn="Nombre Cliente" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Fecha" ColumnName="Fecha Devolucion" DataSourceName="ERP_GMEDINA.Vent.UDV_Vent_DevolucionesPorFecha" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@Fecha" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="Fecha Devolucion" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Fecha Devolucion" DataSetColumn="Fecha Devolucion" />
+              <Mapping SourceColumn="Fecha Factura" DataSetColumn="Fecha Factura" />
+              <Mapping SourceColumn="Numero Factura" DataSetColumn="Numero Factura" />
+              <Mapping SourceColumn="RTN" DataSetColumn="RTN" />
+              <Mapping SourceColumn="Nombre Cliente" DataSetColumn="Nombre Cliente" />
+              <Mapping SourceColumn="Total Devolución" DataSetColumn="Total Devolución" />
+              <Mapping SourceColumn="Nota Crédito" DataSetColumn="Nota Crédito" />
+              <Mapping SourceColumn="Código Producto" DataSetColumn="Código Producto" />
+              <Mapping SourceColumn="Nombre Producto" DataSetColumn="Nombre Producto" />
+              <Mapping SourceColumn="Precio Unitario" DataSetColumn="Precio Unitario" />
+              <Mapping SourceColumn="Cantidad Facturada" DataSetColumn="Cantidad Facturada" />
+              <Mapping SourceColumn="Cantidad Devuelta" DataSetColumn="Cantidad Devuelta" />
+              <Mapping SourceColumn="Monto Devolución" DataSetColumn="Monto Devolución" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="UDV_Vent_AnalisisDeMoraTableAdapter" GeneratorDataComponentClassName="UDV_Vent_AnalisisDeMoraTableAdapter" Name="UDV_Vent_AnalisisDeMora" UserDataComponentName="UDV_Vent_AnalisisDeMoraTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_GMEDINAConnectionString1 (Web.config)" DbObjectName="ERP_GMEDINA.Vent.UDV_Vent_AnalisisDeMora" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillFiltros" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="FillFiltros" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="FillFiltros">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        fact_Id, RTN, Nombre, Saldoactual, [Máximo Días Crédito], [Máximo Monto Crédito], fact_Fecha, FechaVencimiento
+FROM            Vent.UDV_Vent_AnalisisDeMora
+WHERE        (RTN = @RTN) OR
+                         (Nombre = @Nombre)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="RTN" ColumnName="RTN" DataSourceName="ERP_GMEDINA.Vent.UDV_Vent_AnalisisDeMora" DataTypeServer="nvarchar(26)" DbType="String" Direction="Input" ParameterName="@RTN" Precision="0" ProviderType="NVarChar" Scale="0" Size="26" SourceColumn="RTN" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Nombre" ColumnName="Nombre" DataSourceName="ERP_GMEDINA.Vent.UDV_Vent_AnalisisDeMora" DataTypeServer="nvarchar(50)" DbType="String" Direction="Input" ParameterName="@Nombre" Precision="0" ProviderType="NVarChar" Scale="0" Size="50" SourceColumn="Nombre" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="fact_Id" DataSetColumn="fact_Id" />
+              <Mapping SourceColumn="RTN" DataSetColumn="RTN" />
+              <Mapping SourceColumn="Nombre" DataSetColumn="Nombre" />
+              <Mapping SourceColumn="Saldoactual" DataSetColumn="Saldoactual" />
+              <Mapping SourceColumn="Máximo Días Crédito" DataSetColumn="Máximo Días Crédito" />
+              <Mapping SourceColumn="Máximo Monto Crédito" DataSetColumn="Máximo Monto Crédito" />
+              <Mapping SourceColumn="fact_Fecha" DataSetColumn="fact_Fecha" />
+              <Mapping SourceColumn="FechaVencimiento" DataSetColumn="FechaVencimiento" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
@@ -361,7 +380,7 @@ WHERE        (Nombres LIKE ISNULL('%' + @Nombres + '%', Nombres)) AND (Tipo_Fact
   <xs:element name="Reportes" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="Reportes" msprop:Generator_UserDSName="Reportes">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="UDV_Vent_InventarioNumeraciones" msprop:Generator_TableClassName="UDV_Vent_InventarioNumeracionesDataTable" msprop:Generator_TableVarName="tableUDV_Vent_InventarioNumeraciones" msprop:Generator_RowChangedName="UDV_Vent_InventarioNumeracionesRowChanged" msprop:Generator_TablePropName="UDV_Vent_InventarioNumeraciones" msprop:Generator_RowDeletingName="UDV_Vent_InventarioNumeracionesRowDeleting" msprop:Generator_RowChangingName="UDV_Vent_InventarioNumeracionesRowChanging" msprop:Generator_RowEvHandlerName="UDV_Vent_InventarioNumeracionesRowChangeEventHandler" msprop:Generator_RowDeletedName="UDV_Vent_InventarioNumeracionesRowDeleted" msprop:Generator_RowClassName="UDV_Vent_InventarioNumeracionesRow" msprop:Generator_UserTableName="UDV_Vent_InventarioNumeraciones" msprop:Generator_RowEvArgName="UDV_Vent_InventarioNumeracionesRowChangeEvent">
+        <xs:element name="UDV_Vent_InventarioNumeraciones" msprop:Generator_TableClassName="UDV_Vent_InventarioNumeracionesDataTable" msprop:Generator_TableVarName="tableUDV_Vent_InventarioNumeraciones" msprop:Generator_TablePropName="UDV_Vent_InventarioNumeraciones" msprop:Generator_RowDeletingName="UDV_Vent_InventarioNumeracionesRowDeleting" msprop:Generator_RowChangingName="UDV_Vent_InventarioNumeracionesRowChanging" msprop:Generator_RowEvHandlerName="UDV_Vent_InventarioNumeracionesRowChangeEventHandler" msprop:Generator_RowDeletedName="UDV_Vent_InventarioNumeracionesRowDeleted" msprop:Generator_UserTableName="UDV_Vent_InventarioNumeraciones" msprop:Generator_RowChangedName="UDV_Vent_InventarioNumeracionesRowChanged" msprop:Generator_RowEvArgName="UDV_Vent_InventarioNumeracionesRowChangeEvent" msprop:Generator_RowClassName="UDV_Vent_InventarioNumeracionesRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="suc_Id" msprop:Generator_ColumnVarNameInTable="columnsuc_Id" msprop:Generator_ColumnPropNameInRow="suc_Id" msprop:Generator_ColumnPropNameInTable="suc_IdColumn" msprop:Generator_UserColumnName="suc_Id" type="xs:int" />
@@ -433,70 +452,7 @@ WHERE        (Nombres LIKE ISNULL('%' + @Nombres + '%', Nombres)) AND (Tipo_Fact
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="UDV_Vent_AnalisisDeMora" msprop:Generator_TableClassName="UDV_Vent_AnalisisDeMoraDataTable" msprop:Generator_TableVarName="tableUDV_Vent_AnalisisDeMora" msprop:Generator_RowChangedName="UDV_Vent_AnalisisDeMoraRowChanged" msprop:Generator_TablePropName="UDV_Vent_AnalisisDeMora" msprop:Generator_RowDeletingName="UDV_Vent_AnalisisDeMoraRowDeleting" msprop:Generator_RowChangingName="UDV_Vent_AnalisisDeMoraRowChanging" msprop:Generator_RowEvHandlerName="UDV_Vent_AnalisisDeMoraRowChangeEventHandler" msprop:Generator_RowDeletedName="UDV_Vent_AnalisisDeMoraRowDeleted" msprop:Generator_RowClassName="UDV_Vent_AnalisisDeMoraRow" msprop:Generator_UserTableName="UDV_Vent_AnalisisDeMora" msprop:Generator_RowEvArgName="UDV_Vent_AnalisisDeMoraRowChangeEvent">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="fact_Id" msprop:Generator_ColumnVarNameInTable="columnfact_Id" msprop:Generator_ColumnPropNameInRow="fact_Id" msprop:Generator_ColumnPropNameInTable="fact_IdColumn" msprop:Generator_UserColumnName="fact_Id" type="xs:long" />
-              <xs:element name="fact_Codigo" msprop:Generator_ColumnVarNameInTable="columnfact_Codigo" msprop:Generator_ColumnPropNameInRow="fact_Codigo" msprop:Generator_ColumnPropNameInTable="fact_CodigoColumn" msprop:Generator_UserColumnName="fact_Codigo">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="19" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="clte_Identificacion" msprop:Generator_ColumnVarNameInTable="columnclte_Identificacion" msprop:Generator_ColumnPropNameInRow="clte_Identificacion" msprop:Generator_ColumnPropNameInTable="clte_IdentificacionColumn" msprop:Generator_UserColumnName="clte_Identificacion">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="26" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="clte_Nombres" msprop:Generator_ColumnVarNameInTable="columnclte_Nombres" msprop:Generator_ColumnPropNameInRow="clte_Nombres" msprop:Generator_ColumnPropNameInTable="clte_NombresColumn" msprop:Generator_UserColumnName="clte_Nombres">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="50" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="clte_EsPersonaNatural" msprop:Generator_ColumnVarNameInTable="columnclte_EsPersonaNatural" msprop:Generator_ColumnPropNameInRow="clte_EsPersonaNatural" msprop:Generator_ColumnPropNameInTable="clte_EsPersonaNaturalColumn" msprop:Generator_UserColumnName="clte_EsPersonaNatural" type="xs:boolean" />
-              <xs:element name="clte_DiasCredito" msprop:Generator_ColumnVarNameInTable="columnclte_DiasCredito" msprop:Generator_ColumnPropNameInRow="clte_DiasCredito" msprop:Generator_ColumnPropNameInTable="clte_DiasCreditoColumn" msprop:Generator_UserColumnName="clte_DiasCredito" type="xs:int" />
-              <xs:element name="fact_DiasCredito" msprop:Generator_ColumnVarNameInTable="columnfact_DiasCredito" msprop:Generator_ColumnPropNameInRow="fact_DiasCredito" msprop:Generator_ColumnPropNameInTable="fact_DiasCreditoColumn" msprop:Generator_UserColumnName="fact_DiasCredito" type="xs:int" />
-              <xs:element name="fact_Fecha" msprop:Generator_ColumnVarNameInTable="columnfact_Fecha" msprop:Generator_ColumnPropNameInRow="fact_Fecha" msprop:Generator_ColumnPropNameInTable="fact_FechaColumn" msprop:Generator_UserColumnName="fact_Fecha" type="xs:dateTime" />
-              <xs:element name="pago_TotalPago" msprop:Generator_ColumnVarNameInTable="columnpago_TotalPago" msprop:Generator_ColumnPropNameInRow="pago_TotalPago" msprop:Generator_ColumnPropNameInTable="pago_TotalPagoColumn" msprop:Generator_UserColumnName="pago_TotalPago" type="xs:decimal" />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="UDV_Vent_DevolucionesPorFecha" msprop:Generator_TableClassName="UDV_Vent_DevolucionesPorFechaDataTable" msprop:Generator_TableVarName="tableUDV_Vent_DevolucionesPorFecha" msprop:Generator_RowChangedName="UDV_Vent_DevolucionesPorFechaRowChanged" msprop:Generator_TablePropName="UDV_Vent_DevolucionesPorFecha" msprop:Generator_RowDeletingName="UDV_Vent_DevolucionesPorFechaRowDeleting" msprop:Generator_RowChangingName="UDV_Vent_DevolucionesPorFechaRowChanging" msprop:Generator_RowEvHandlerName="UDV_Vent_DevolucionesPorFechaRowChangeEventHandler" msprop:Generator_RowDeletedName="UDV_Vent_DevolucionesPorFechaRowDeleted" msprop:Generator_RowClassName="UDV_Vent_DevolucionesPorFechaRow" msprop:Generator_UserTableName="UDV_Vent_DevolucionesPorFecha" msprop:Generator_RowEvArgName="UDV_Vent_DevolucionesPorFechaRowChangeEvent">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="dev_Id" msprop:Generator_ColumnVarNameInTable="columndev_Id" msprop:Generator_ColumnPropNameInRow="dev_Id" msprop:Generator_ColumnPropNameInTable="dev_IdColumn" msprop:Generator_UserColumnName="dev_Id" type="xs:int" />
-              <xs:element name="fact_Codigo" msprop:Generator_ColumnVarNameInTable="columnfact_Codigo" msprop:Generator_ColumnPropNameInRow="fact_Codigo" msprop:Generator_ColumnPropNameInTable="fact_CodigoColumn" msprop:Generator_UserColumnName="fact_Codigo">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="19" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="clte_Identificacion" msprop:Generator_ColumnVarNameInTable="columnclte_Identificacion" msprop:Generator_ColumnPropNameInRow="clte_Identificacion" msprop:Generator_ColumnPropNameInTable="clte_IdentificacionColumn" msprop:Generator_UserColumnName="clte_Identificacion">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="26" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="clte_Nombres" msprop:Generator_ColumnVarNameInTable="columnclte_Nombres" msprop:Generator_ColumnPropNameInRow="clte_Nombres" msprop:Generator_ColumnPropNameInTable="clte_NombresColumn" msprop:Generator_UserColumnName="clte_Nombres">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="50" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="dev_Fecha" msprop:Generator_ColumnVarNameInTable="columndev_Fecha" msprop:Generator_ColumnPropNameInRow="dev_Fecha" msprop:Generator_ColumnPropNameInTable="dev_FechaColumn" msprop:Generator_UserColumnName="dev_Fecha" type="xs:dateTime" />
-              <xs:element name="dev_Estado" msprop:Generator_ColumnVarNameInTable="columndev_Estado" msprop:Generator_ColumnPropNameInRow="dev_Estado" msprop:Generator_ColumnPropNameInTable="dev_EstadoColumn" msprop:Generator_UserColumnName="dev_Estado" type="xs:boolean" minOccurs="0" />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="UDV_Vent_VentasConsumidorFinal" msprop:Generator_TableClassName="UDV_Vent_VentasConsumidorFinalDataTable" msprop:Generator_TableVarName="tableUDV_Vent_VentasConsumidorFinal" msprop:Generator_RowChangedName="UDV_Vent_VentasConsumidorFinalRowChanged" msprop:Generator_TablePropName="UDV_Vent_VentasConsumidorFinal" msprop:Generator_RowDeletingName="UDV_Vent_VentasConsumidorFinalRowDeleting" msprop:Generator_RowChangingName="UDV_Vent_VentasConsumidorFinalRowChanging" msprop:Generator_RowEvHandlerName="UDV_Vent_VentasConsumidorFinalRowChangeEventHandler" msprop:Generator_RowDeletedName="UDV_Vent_VentasConsumidorFinalRowDeleted" msprop:Generator_RowClassName="UDV_Vent_VentasConsumidorFinalRow" msprop:Generator_UserTableName="UDV_Vent_VentasConsumidorFinal" msprop:Generator_RowEvArgName="UDV_Vent_VentasConsumidorFinalRowChangeEvent">
+        <xs:element name="UDV_Vent_VentasConsumidorFinal" msprop:Generator_TableClassName="UDV_Vent_VentasConsumidorFinalDataTable" msprop:Generator_TableVarName="tableUDV_Vent_VentasConsumidorFinal" msprop:Generator_TablePropName="UDV_Vent_VentasConsumidorFinal" msprop:Generator_RowDeletingName="UDV_Vent_VentasConsumidorFinalRowDeleting" msprop:Generator_RowChangingName="UDV_Vent_VentasConsumidorFinalRowChanging" msprop:Generator_RowEvHandlerName="UDV_Vent_VentasConsumidorFinalRowChangeEventHandler" msprop:Generator_RowDeletedName="UDV_Vent_VentasConsumidorFinalRowDeleted" msprop:Generator_UserTableName="UDV_Vent_VentasConsumidorFinal" msprop:Generator_RowChangedName="UDV_Vent_VentasConsumidorFinalRowChanged" msprop:Generator_RowEvArgName="UDV_Vent_VentasConsumidorFinalRowChangeEvent" msprop:Generator_RowClassName="UDV_Vent_VentasConsumidorFinalRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="fact_Codigo" msprop:Generator_ColumnVarNameInTable="columnfact_Codigo" msprop:Generator_ColumnPropNameInRow="fact_Codigo" msprop:Generator_ColumnPropNameInTable="fact_CodigoColumn" msprop:Generator_UserColumnName="fact_Codigo">
@@ -534,7 +490,7 @@ WHERE        (Nombres LIKE ISNULL('%' + @Nombres + '%', Nombres)) AND (Tipo_Fact
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="UDV_Vent_EstadoCuenta" msprop:Generator_TableClassName="UDV_Vent_EstadoCuentaDataTable" msprop:Generator_TableVarName="tableUDV_Vent_EstadoCuenta" msprop:Generator_RowChangedName="UDV_Vent_EstadoCuentaRowChanged" msprop:Generator_TablePropName="UDV_Vent_EstadoCuenta" msprop:Generator_RowDeletingName="UDV_Vent_EstadoCuentaRowDeleting" msprop:Generator_RowChangingName="UDV_Vent_EstadoCuentaRowChanging" msprop:Generator_RowEvHandlerName="UDV_Vent_EstadoCuentaRowChangeEventHandler" msprop:Generator_RowDeletedName="UDV_Vent_EstadoCuentaRowDeleted" msprop:Generator_RowClassName="UDV_Vent_EstadoCuentaRow" msprop:Generator_UserTableName="UDV_Vent_EstadoCuenta" msprop:Generator_RowEvArgName="UDV_Vent_EstadoCuentaRowChangeEvent">
+        <xs:element name="UDV_Vent_EstadoCuenta" msprop:Generator_TableClassName="UDV_Vent_EstadoCuentaDataTable" msprop:Generator_TableVarName="tableUDV_Vent_EstadoCuenta" msprop:Generator_TablePropName="UDV_Vent_EstadoCuenta" msprop:Generator_RowDeletingName="UDV_Vent_EstadoCuentaRowDeleting" msprop:Generator_RowChangingName="UDV_Vent_EstadoCuentaRowChanging" msprop:Generator_RowEvHandlerName="UDV_Vent_EstadoCuentaRowChangeEventHandler" msprop:Generator_RowDeletedName="UDV_Vent_EstadoCuentaRowDeleted" msprop:Generator_UserTableName="UDV_Vent_EstadoCuenta" msprop:Generator_RowChangedName="UDV_Vent_EstadoCuentaRowChanged" msprop:Generator_RowEvArgName="UDV_Vent_EstadoCuentaRowChangeEvent" msprop:Generator_RowClassName="UDV_Vent_EstadoCuentaRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Identificación" msprop:Generator_ColumnVarNameInTable="columnIdentificación" msprop:Generator_ColumnPropNameInRow="Identificación" msprop:Generator_ColumnPropNameInTable="IdentificaciónColumn" msprop:Generator_UserColumnName="Identificación">
@@ -589,7 +545,7 @@ WHERE        (Nombres LIKE ISNULL('%' + @Nombres + '%', Nombres)) AND (Tipo_Fact
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="UDV_Vent_FacturasPendientesDePago" msprop:Generator_TableClassName="UDV_Vent_FacturasPendientesDePagoDataTable" msprop:Generator_TableVarName="tableUDV_Vent_FacturasPendientesDePago" msprop:Generator_TablePropName="UDV_Vent_FacturasPendientesDePago" msprop:Generator_RowDeletingName="UDV_Vent_FacturasPendientesDePagoRowDeleting" msprop:Generator_RowChangingName="UDV_Vent_FacturasPendientesDePagoRowChanging" msprop:Generator_RowEvHandlerName="UDV_Vent_FacturasPendientesDePagoRowChangeEventHandler" msprop:Generator_RowDeletedName="UDV_Vent_FacturasPendientesDePagoRowDeleted" msprop:Generator_UserTableName="UDV_Vent_FacturasPendientesDePago" msprop:Generator_RowChangedName="UDV_Vent_FacturasPendientesDePagoRowChanged" msprop:Generator_RowEvArgName="UDV_Vent_FacturasPendientesDePagoRowChangeEvent" msprop:Generator_RowClassName="UDV_Vent_FacturasPendientesDePagoRow">
+        <xs:element name="UDV_Vent_FacturasPendientesDePago" msprop:Generator_TableClassName="UDV_Vent_FacturasPendientesDePagoDataTable" msprop:Generator_TableVarName="tableUDV_Vent_FacturasPendientesDePago" msprop:Generator_RowChangedName="UDV_Vent_FacturasPendientesDePagoRowChanged" msprop:Generator_TablePropName="UDV_Vent_FacturasPendientesDePago" msprop:Generator_RowDeletingName="UDV_Vent_FacturasPendientesDePagoRowDeleting" msprop:Generator_RowChangingName="UDV_Vent_FacturasPendientesDePagoRowChanging" msprop:Generator_RowEvHandlerName="UDV_Vent_FacturasPendientesDePagoRowChangeEventHandler" msprop:Generator_RowDeletedName="UDV_Vent_FacturasPendientesDePagoRowDeleted" msprop:Generator_RowClassName="UDV_Vent_FacturasPendientesDePagoRow" msprop:Generator_UserTableName="UDV_Vent_FacturasPendientesDePago" msprop:Generator_RowEvArgName="UDV_Vent_FacturasPendientesDePagoRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="clte_Identificacion" msprop:Generator_ColumnVarNameInTable="columnclte_Identificacion" msprop:Generator_ColumnPropNameInRow="clte_Identificacion" msprop:Generator_ColumnPropNameInTable="clte_IdentificacionColumn" msprop:Generator_UserColumnName="clte_Identificacion">
@@ -629,7 +585,7 @@ WHERE        (Nombres LIKE ISNULL('%' + @Nombres + '%', Nombres)) AND (Tipo_Fact
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporte" msprop:Generator_TableClassName="UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporteDataTable" msprop:Generator_TableVarName="tableUDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporte" msprop:Generator_RowChangedName="UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporteRowChanged" msprop:Generator_TablePropName="UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporte" msprop:Generator_RowDeletingName="UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporteRowDeleting" msprop:Generator_RowChangingName="UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporteRowChanging" msprop:Generator_RowEvHandlerName="UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporteRowChangeEventHandler" msprop:Generator_RowDeletedName="UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporteRowDeleted" msprop:Generator_RowClassName="UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporteRow" msprop:Generator_UserTableName="UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporte" msprop:Generator_RowEvArgName="UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporteRowChangeEvent">
+        <xs:element name="UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporte" msprop:Generator_TableClassName="UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporteDataTable" msprop:Generator_TableVarName="tableUDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporte" msprop:Generator_TablePropName="UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporte" msprop:Generator_RowDeletingName="UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporteRowDeleting" msprop:Generator_RowChangingName="UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporteRowChanging" msprop:Generator_RowEvHandlerName="UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporteRowChangeEventHandler" msprop:Generator_RowDeletedName="UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporteRowDeleted" msprop:Generator_UserTableName="UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporte" msprop:Generator_RowChangedName="UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporteRowChanged" msprop:Generator_RowEvArgName="UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporteRowChangeEvent" msprop:Generator_RowClassName="UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporteRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="FECHA_SOLICITUD" msprop:Generator_ColumnVarNameInTable="columnFECHA_SOLICITUD" msprop:Generator_ColumnPropNameInRow="FECHA_SOLICITUD" msprop:Generator_ColumnPropNameInTable="FECHA_SOLICITUDColumn" msprop:Generator_UserColumnName="FECHA_SOLICITUD" type="xs:dateTime" />
@@ -666,7 +622,7 @@ WHERE        (Nombres LIKE ISNULL('%' + @Nombres + '%', Nombres)) AND (Tipo_Fact
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="UDV_Vent_VentasExoneradas" msprop:Generator_TableClassName="UDV_Vent_VentasExoneradasDataTable" msprop:Generator_TableVarName="tableUDV_Vent_VentasExoneradas" msprop:Generator_RowChangedName="UDV_Vent_VentasExoneradasRowChanged" msprop:Generator_TablePropName="UDV_Vent_VentasExoneradas" msprop:Generator_RowDeletingName="UDV_Vent_VentasExoneradasRowDeleting" msprop:Generator_RowChangingName="UDV_Vent_VentasExoneradasRowChanging" msprop:Generator_RowEvHandlerName="UDV_Vent_VentasExoneradasRowChangeEventHandler" msprop:Generator_RowDeletedName="UDV_Vent_VentasExoneradasRowDeleted" msprop:Generator_RowClassName="UDV_Vent_VentasExoneradasRow" msprop:Generator_UserTableName="UDV_Vent_VentasExoneradas" msprop:Generator_RowEvArgName="UDV_Vent_VentasExoneradasRowChangeEvent">
+        <xs:element name="UDV_Vent_VentasExoneradas" msprop:Generator_TableClassName="UDV_Vent_VentasExoneradasDataTable" msprop:Generator_TableVarName="tableUDV_Vent_VentasExoneradas" msprop:Generator_TablePropName="UDV_Vent_VentasExoneradas" msprop:Generator_RowDeletingName="UDV_Vent_VentasExoneradasRowDeleting" msprop:Generator_RowChangingName="UDV_Vent_VentasExoneradasRowChanging" msprop:Generator_RowEvHandlerName="UDV_Vent_VentasExoneradasRowChangeEventHandler" msprop:Generator_RowDeletedName="UDV_Vent_VentasExoneradasRowDeleted" msprop:Generator_UserTableName="UDV_Vent_VentasExoneradas" msprop:Generator_RowChangedName="UDV_Vent_VentasExoneradasRowChanged" msprop:Generator_RowEvArgName="UDV_Vent_VentasExoneradasRowChangeEvent" msprop:Generator_RowClassName="UDV_Vent_VentasExoneradasRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Fecha_factura" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnFecha_factura" msprop:Generator_ColumnPropNameInRow="Fecha_factura" msprop:Generator_ColumnPropNameInTable="Fecha_facturaColumn" msprop:Generator_UserColumnName="Fecha_factura" type="xs:dateTime" minOccurs="0" />
@@ -717,7 +673,7 @@ WHERE        (Nombres LIKE ISNULL('%' + @Nombres + '%', Nombres)) AND (Tipo_Fact
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="UDV_Vent_Pedido_EntreFechas" msprop:Generator_TableClassName="UDV_Vent_Pedido_EntreFechasDataTable" msprop:Generator_TableVarName="tableUDV_Vent_Pedido_EntreFechas" msprop:Generator_RowChangedName="UDV_Vent_Pedido_EntreFechasRowChanged" msprop:Generator_TablePropName="UDV_Vent_Pedido_EntreFechas" msprop:Generator_RowDeletingName="UDV_Vent_Pedido_EntreFechasRowDeleting" msprop:Generator_RowChangingName="UDV_Vent_Pedido_EntreFechasRowChanging" msprop:Generator_RowEvHandlerName="UDV_Vent_Pedido_EntreFechasRowChangeEventHandler" msprop:Generator_RowDeletedName="UDV_Vent_Pedido_EntreFechasRowDeleted" msprop:Generator_RowClassName="UDV_Vent_Pedido_EntreFechasRow" msprop:Generator_UserTableName="UDV_Vent_Pedido_EntreFechas" msprop:Generator_RowEvArgName="UDV_Vent_Pedido_EntreFechasRowChangeEvent">
+        <xs:element name="UDV_Vent_Pedido_EntreFechas" msprop:Generator_TableClassName="UDV_Vent_Pedido_EntreFechasDataTable" msprop:Generator_TableVarName="tableUDV_Vent_Pedido_EntreFechas" msprop:Generator_TablePropName="UDV_Vent_Pedido_EntreFechas" msprop:Generator_RowDeletingName="UDV_Vent_Pedido_EntreFechasRowDeleting" msprop:Generator_RowChangingName="UDV_Vent_Pedido_EntreFechasRowChanging" msprop:Generator_RowEvHandlerName="UDV_Vent_Pedido_EntreFechasRowChangeEventHandler" msprop:Generator_RowDeletedName="UDV_Vent_Pedido_EntreFechasRowDeleted" msprop:Generator_UserTableName="UDV_Vent_Pedido_EntreFechas" msprop:Generator_RowChangedName="UDV_Vent_Pedido_EntreFechasRowChanged" msprop:Generator_RowEvArgName="UDV_Vent_Pedido_EntreFechasRowChangeEvent" msprop:Generator_RowClassName="UDV_Vent_Pedido_EntreFechasRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="FECHA_x0020_PEDIDO" msprop:Generator_ColumnVarNameInTable="columnFECHA_PEDIDO" msprop:Generator_ColumnPropNameInRow="FECHA_PEDIDO" msprop:Generator_ColumnPropNameInTable="FECHA_PEDIDOColumn" msprop:Generator_UserColumnName="FECHA PEDIDO" type="xs:dateTime" />
@@ -755,7 +711,7 @@ WHERE        (Nombres LIKE ISNULL('%' + @Nombres + '%', Nombres)) AND (Tipo_Fact
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="UDV_Vent_PagosPorFechas" msprop:Generator_TableClassName="UDV_Vent_PagosPorFechasDataTable" msprop:Generator_TableVarName="tableUDV_Vent_PagosPorFechas" msprop:Generator_RowChangedName="UDV_Vent_PagosPorFechasRowChanged" msprop:Generator_TablePropName="UDV_Vent_PagosPorFechas" msprop:Generator_RowDeletingName="UDV_Vent_PagosPorFechasRowDeleting" msprop:Generator_RowChangingName="UDV_Vent_PagosPorFechasRowChanging" msprop:Generator_RowEvHandlerName="UDV_Vent_PagosPorFechasRowChangeEventHandler" msprop:Generator_RowDeletedName="UDV_Vent_PagosPorFechasRowDeleted" msprop:Generator_RowClassName="UDV_Vent_PagosPorFechasRow" msprop:Generator_UserTableName="UDV_Vent_PagosPorFechas" msprop:Generator_RowEvArgName="UDV_Vent_PagosPorFechasRowChangeEvent">
+        <xs:element name="UDV_Vent_PagosPorFechas" msprop:Generator_TableClassName="UDV_Vent_PagosPorFechasDataTable" msprop:Generator_TableVarName="tableUDV_Vent_PagosPorFechas" msprop:Generator_TablePropName="UDV_Vent_PagosPorFechas" msprop:Generator_RowDeletingName="UDV_Vent_PagosPorFechasRowDeleting" msprop:Generator_RowChangingName="UDV_Vent_PagosPorFechasRowChanging" msprop:Generator_RowEvHandlerName="UDV_Vent_PagosPorFechasRowChangeEventHandler" msprop:Generator_RowDeletedName="UDV_Vent_PagosPorFechasRowDeleted" msprop:Generator_UserTableName="UDV_Vent_PagosPorFechas" msprop:Generator_RowChangedName="UDV_Vent_PagosPorFechasRowChanged" msprop:Generator_RowEvArgName="UDV_Vent_PagosPorFechasRowChangeEvent" msprop:Generator_RowClassName="UDV_Vent_PagosPorFechasRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Num__x0020_Linea" msdata:Caption="Num. Linea" msprop:Generator_ColumnVarNameInTable="columnNum__Linea" msprop:Generator_ColumnPropNameInRow="Num__Linea" msprop:Generator_ColumnPropNameInTable="Num__LineaColumn" msprop:Generator_UserColumnName="Num_ Linea" type="xs:int" />
@@ -793,7 +749,7 @@ WHERE        (Nombres LIKE ISNULL('%' + @Nombres + '%', Nombres)) AND (Tipo_Fact
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="UDV_Vent_NotaCreditoPorFecha" msprop:Generator_TableClassName="UDV_Vent_NotaCreditoPorFechaDataTable" msprop:Generator_TableVarName="tableUDV_Vent_NotaCreditoPorFecha" msprop:Generator_RowChangedName="UDV_Vent_NotaCreditoPorFechaRowChanged" msprop:Generator_TablePropName="UDV_Vent_NotaCreditoPorFecha" msprop:Generator_RowDeletingName="UDV_Vent_NotaCreditoPorFechaRowDeleting" msprop:Generator_RowChangingName="UDV_Vent_NotaCreditoPorFechaRowChanging" msprop:Generator_RowEvHandlerName="UDV_Vent_NotaCreditoPorFechaRowChangeEventHandler" msprop:Generator_RowDeletedName="UDV_Vent_NotaCreditoPorFechaRowDeleted" msprop:Generator_RowClassName="UDV_Vent_NotaCreditoPorFechaRow" msprop:Generator_UserTableName="UDV_Vent_NotaCreditoPorFecha" msprop:Generator_RowEvArgName="UDV_Vent_NotaCreditoPorFechaRowChangeEvent">
+        <xs:element name="UDV_Vent_NotaCreditoPorFecha" msprop:Generator_TableClassName="UDV_Vent_NotaCreditoPorFechaDataTable" msprop:Generator_TableVarName="tableUDV_Vent_NotaCreditoPorFecha" msprop:Generator_TablePropName="UDV_Vent_NotaCreditoPorFecha" msprop:Generator_RowDeletingName="UDV_Vent_NotaCreditoPorFechaRowDeleting" msprop:Generator_RowChangingName="UDV_Vent_NotaCreditoPorFechaRowChanging" msprop:Generator_RowEvHandlerName="UDV_Vent_NotaCreditoPorFechaRowChangeEventHandler" msprop:Generator_RowDeletedName="UDV_Vent_NotaCreditoPorFechaRowDeleted" msprop:Generator_UserTableName="UDV_Vent_NotaCreditoPorFecha" msprop:Generator_RowChangedName="UDV_Vent_NotaCreditoPorFechaRowChanged" msprop:Generator_RowEvArgName="UDV_Vent_NotaCreditoPorFechaRowChangeEvent" msprop:Generator_RowClassName="UDV_Vent_NotaCreditoPorFechaRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="nocre_Codigo" msprop:Generator_ColumnVarNameInTable="columnnocre_Codigo" msprop:Generator_ColumnPropNameInRow="nocre_Codigo" msprop:Generator_ColumnPropNameInTable="nocre_CodigoColumn" msprop:Generator_UserColumnName="nocre_Codigo">
@@ -839,7 +795,7 @@ WHERE        (Nombres LIKE ISNULL('%' + @Nombres + '%', Nombres)) AND (Tipo_Fact
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="UDV_Vent_Factura_VentasporFecha" msprop:Generator_TableClassName="UDV_Vent_Factura_VentasporFechaDataTable" msprop:Generator_TableVarName="tableUDV_Vent_Factura_VentasporFecha" msprop:Generator_TablePropName="UDV_Vent_Factura_VentasporFecha" msprop:Generator_RowDeletingName="UDV_Vent_Factura_VentasporFechaRowDeleting" msprop:Generator_RowChangingName="UDV_Vent_Factura_VentasporFechaRowChanging" msprop:Generator_RowEvHandlerName="UDV_Vent_Factura_VentasporFechaRowChangeEventHandler" msprop:Generator_RowDeletedName="UDV_Vent_Factura_VentasporFechaRowDeleted" msprop:Generator_UserTableName="UDV_Vent_Factura_VentasporFecha" msprop:Generator_RowChangedName="UDV_Vent_Factura_VentasporFechaRowChanged" msprop:Generator_RowEvArgName="UDV_Vent_Factura_VentasporFechaRowChangeEvent" msprop:Generator_RowClassName="UDV_Vent_Factura_VentasporFechaRow">
+        <xs:element name="UDV_Vent_Factura_VentasporFecha" msprop:Generator_TableClassName="UDV_Vent_Factura_VentasporFechaDataTable" msprop:Generator_TableVarName="tableUDV_Vent_Factura_VentasporFecha" msprop:Generator_RowChangedName="UDV_Vent_Factura_VentasporFechaRowChanged" msprop:Generator_TablePropName="UDV_Vent_Factura_VentasporFecha" msprop:Generator_RowDeletingName="UDV_Vent_Factura_VentasporFechaRowDeleting" msprop:Generator_RowChangingName="UDV_Vent_Factura_VentasporFechaRowChanging" msprop:Generator_RowEvHandlerName="UDV_Vent_Factura_VentasporFechaRowChangeEventHandler" msprop:Generator_RowDeletedName="UDV_Vent_Factura_VentasporFechaRowDeleted" msprop:Generator_RowClassName="UDV_Vent_Factura_VentasporFechaRow" msprop:Generator_UserTableName="UDV_Vent_Factura_VentasporFecha" msprop:Generator_RowEvArgName="UDV_Vent_Factura_VentasporFechaRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:long" minOccurs="0" />
@@ -880,19 +836,86 @@ WHERE        (Nombres LIKE ISNULL('%' + @Nombres + '%', Nombres)) AND (Tipo_Fact
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="UDV_Vent_DevolucionesPorFecha" msprop:Generator_TableClassName="UDV_Vent_DevolucionesPorFechaDataTable" msprop:Generator_TableVarName="tableUDV_Vent_DevolucionesPorFecha" msprop:Generator_TablePropName="UDV_Vent_DevolucionesPorFecha" msprop:Generator_RowDeletingName="UDV_Vent_DevolucionesPorFechaRowDeleting" msprop:Generator_RowChangingName="UDV_Vent_DevolucionesPorFechaRowChanging" msprop:Generator_RowEvHandlerName="UDV_Vent_DevolucionesPorFechaRowChangeEventHandler" msprop:Generator_RowDeletedName="UDV_Vent_DevolucionesPorFechaRowDeleted" msprop:Generator_UserTableName="UDV_Vent_DevolucionesPorFecha" msprop:Generator_RowChangedName="UDV_Vent_DevolucionesPorFechaRowChanged" msprop:Generator_RowEvArgName="UDV_Vent_DevolucionesPorFechaRowChangeEvent" msprop:Generator_RowClassName="UDV_Vent_DevolucionesPorFechaRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Fecha_x0020_Devolucion" msprop:Generator_ColumnVarNameInTable="columnFecha_Devolucion" msprop:Generator_ColumnPropNameInRow="Fecha_Devolucion" msprop:Generator_ColumnPropNameInTable="Fecha_DevolucionColumn" msprop:Generator_UserColumnName="Fecha Devolucion" type="xs:dateTime" />
+              <xs:element name="Fecha_x0020_Factura" msprop:Generator_ColumnVarNameInTable="columnFecha_Factura" msprop:Generator_ColumnPropNameInRow="Fecha_Factura" msprop:Generator_ColumnPropNameInTable="Fecha_FacturaColumn" msprop:Generator_UserColumnName="Fecha Factura" type="xs:dateTime" />
+              <xs:element name="Numero_x0020_Factura" msprop:Generator_ColumnVarNameInTable="columnNumero_Factura" msprop:Generator_ColumnPropNameInRow="Numero_Factura" msprop:Generator_ColumnPropNameInTable="Numero_FacturaColumn" msprop:Generator_UserColumnName="Numero Factura" type="xs:long" />
+              <xs:element name="RTN" msprop:Generator_ColumnVarNameInTable="columnRTN" msprop:Generator_ColumnPropNameInRow="RTN" msprop:Generator_ColumnPropNameInTable="RTNColumn" msprop:Generator_UserColumnName="RTN">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="26" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Nombre_x0020_Cliente" msprop:Generator_ColumnVarNameInTable="columnNombre_Cliente" msprop:Generator_ColumnPropNameInRow="Nombre_Cliente" msprop:Generator_ColumnPropNameInTable="Nombre_ClienteColumn" msprop:Generator_UserColumnName="Nombre Cliente">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Total_x0020_Devolución" msprop:Generator_ColumnVarNameInTable="columnTotal_Devolución" msprop:Generator_ColumnPropNameInRow="Total_Devolución" msprop:Generator_ColumnPropNameInTable="Total_DevoluciónColumn" msprop:Generator_UserColumnName="Total Devolución" type="xs:decimal" />
+              <xs:element name="Nota_x0020_Crédito" msprop:Generator_ColumnVarNameInTable="columnNota_Crédito" msprop:Generator_ColumnPropNameInRow="Nota_Crédito" msprop:Generator_ColumnPropNameInTable="Nota_CréditoColumn" msprop:Generator_UserColumnName="Nota Crédito">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="19" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Código_x0020_Producto" msprop:Generator_ColumnVarNameInTable="columnCódigo_Producto" msprop:Generator_ColumnPropNameInRow="Código_Producto" msprop:Generator_ColumnPropNameInTable="Código_ProductoColumn" msprop:Generator_UserColumnName="Código Producto">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Nombre_x0020_Producto" msprop:Generator_ColumnVarNameInTable="columnNombre_Producto" msprop:Generator_ColumnPropNameInRow="Nombre_Producto" msprop:Generator_ColumnPropNameInTable="Nombre_ProductoColumn" msprop:Generator_UserColumnName="Nombre Producto">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Precio_x0020_Unitario" msprop:Generator_ColumnVarNameInTable="columnPrecio_Unitario" msprop:Generator_ColumnPropNameInRow="Precio_Unitario" msprop:Generator_ColumnPropNameInTable="Precio_UnitarioColumn" msprop:Generator_UserColumnName="Precio Unitario" type="xs:decimal" />
+              <xs:element name="Cantidad_x0020_Facturada" msprop:Generator_ColumnVarNameInTable="columnCantidad_Facturada" msprop:Generator_ColumnPropNameInRow="Cantidad_Facturada" msprop:Generator_ColumnPropNameInTable="Cantidad_FacturadaColumn" msprop:Generator_UserColumnName="Cantidad Facturada" type="xs:decimal" />
+              <xs:element name="Cantidad_x0020_Devuelta" msprop:Generator_ColumnVarNameInTable="columnCantidad_Devuelta" msprop:Generator_ColumnPropNameInRow="Cantidad_Devuelta" msprop:Generator_ColumnPropNameInTable="Cantidad_DevueltaColumn" msprop:Generator_UserColumnName="Cantidad Devuelta" type="xs:decimal" />
+              <xs:element name="Monto_x0020_Devolución" msprop:Generator_ColumnVarNameInTable="columnMonto_Devolución" msprop:Generator_ColumnPropNameInRow="Monto_Devolución" msprop:Generator_ColumnPropNameInTable="Monto_DevoluciónColumn" msprop:Generator_UserColumnName="Monto Devolución" type="xs:decimal" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="UDV_Vent_AnalisisDeMora" msprop:Generator_TableClassName="UDV_Vent_AnalisisDeMoraDataTable" msprop:Generator_TableVarName="tableUDV_Vent_AnalisisDeMora" msprop:Generator_TablePropName="UDV_Vent_AnalisisDeMora" msprop:Generator_RowDeletingName="UDV_Vent_AnalisisDeMoraRowDeleting" msprop:Generator_RowChangingName="UDV_Vent_AnalisisDeMoraRowChanging" msprop:Generator_RowEvHandlerName="UDV_Vent_AnalisisDeMoraRowChangeEventHandler" msprop:Generator_RowDeletedName="UDV_Vent_AnalisisDeMoraRowDeleted" msprop:Generator_UserTableName="UDV_Vent_AnalisisDeMora" msprop:Generator_RowChangedName="UDV_Vent_AnalisisDeMoraRowChanged" msprop:Generator_RowEvArgName="UDV_Vent_AnalisisDeMoraRowChangeEvent" msprop:Generator_RowClassName="UDV_Vent_AnalisisDeMoraRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="fact_Id" msprop:Generator_ColumnVarNameInTable="columnfact_Id" msprop:Generator_ColumnPropNameInRow="fact_Id" msprop:Generator_ColumnPropNameInTable="fact_IdColumn" msprop:Generator_UserColumnName="fact_Id" type="xs:long" />
+              <xs:element name="RTN" msprop:Generator_ColumnVarNameInTable="columnRTN" msprop:Generator_ColumnPropNameInRow="RTN" msprop:Generator_ColumnPropNameInTable="RTNColumn" msprop:Generator_UserColumnName="RTN">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="26" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Nombre" msprop:Generator_ColumnVarNameInTable="columnNombre" msprop:Generator_ColumnPropNameInRow="Nombre" msprop:Generator_ColumnPropNameInTable="NombreColumn" msprop:Generator_UserColumnName="Nombre">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Saldoactual" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnSaldoactual" msprop:Generator_ColumnPropNameInRow="Saldoactual" msprop:Generator_ColumnPropNameInTable="SaldoactualColumn" msprop:Generator_UserColumnName="Saldoactual" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Máximo_x0020_Días_x0020_Crédito" msprop:Generator_ColumnVarNameInTable="columnMáximo_Días_Crédito" msprop:Generator_ColumnPropNameInRow="Máximo_Días_Crédito" msprop:Generator_ColumnPropNameInTable="Máximo_Días_CréditoColumn" msprop:Generator_UserColumnName="Máximo Días Crédito" type="xs:int" />
+              <xs:element name="Máximo_x0020_Monto_x0020_Crédito" msprop:Generator_ColumnVarNameInTable="columnMáximo_Monto_Crédito" msprop:Generator_ColumnPropNameInRow="Máximo_Monto_Crédito" msprop:Generator_ColumnPropNameInTable="Máximo_Monto_CréditoColumn" msprop:Generator_UserColumnName="Máximo Monto Crédito" type="xs:decimal" />
+              <xs:element name="fact_Fecha" msprop:Generator_ColumnVarNameInTable="columnfact_Fecha" msprop:Generator_ColumnPropNameInRow="fact_Fecha" msprop:Generator_ColumnPropNameInTable="fact_FechaColumn" msprop:Generator_UserColumnName="fact_Fecha" type="xs:dateTime" />
+              <xs:element name="FechaVencimiento" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnFechaVencimiento" msprop:Generator_ColumnPropNameInRow="FechaVencimiento" msprop:Generator_ColumnPropNameInTable="FechaVencimientoColumn" msprop:Generator_UserColumnName="FechaVencimiento" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:UDV_Vent_InventarioNumeraciones" />
       <xs:field xpath="mstns:suc_Id" />
-    </xs:unique>
-    <xs:unique name="UDV_Vent_AnalisisDeMora_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
-      <xs:selector xpath=".//mstns:UDV_Vent_AnalisisDeMora" />
-      <xs:field xpath="mstns:fact_Id" />
-    </xs:unique>
-    <xs:unique name="UDV_Vent_DevolucionesPorFecha_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
-      <xs:selector xpath=".//mstns:UDV_Vent_DevolucionesPorFecha" />
-      <xs:field xpath="mstns:dev_Id" />
     </xs:unique>
     <xs:unique name="UDV_Vent_VentasExoneradas_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:UDV_Vent_VentasExoneradas" />
@@ -901,6 +924,14 @@ WHERE        (Nombres LIKE ISNULL('%' + @Nombres + '%', Nombres)) AND (Tipo_Fact
     <xs:unique name="UDV_Vent_PagosPorFechas_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:UDV_Vent_PagosPorFechas" />
       <xs:field xpath="mstns:Num__x0020_Linea" />
+    </xs:unique>
+    <xs:unique name="UDV_Vent_DevolucionesPorFecha_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:UDV_Vent_DevolucionesPorFecha" />
+      <xs:field xpath="mstns:Numero_x0020_Factura" />
+    </xs:unique>
+    <xs:unique name="UDV_Vent_AnalisisDeMora_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:UDV_Vent_AnalisisDeMora" />
+      <xs:field xpath="mstns:fact_Id" />
     </xs:unique>
   </xs:element>
 </xs:schema>
