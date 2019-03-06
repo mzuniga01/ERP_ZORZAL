@@ -3192,5 +3192,14 @@ namespace ERP_GMEDINA.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_Inv_tbBoxDetalle_Select_Result>("SDP_Inv_tbBoxDetalle_Select", boxd_IdParameter);
         }
+    
+        public virtual ObjectResult<SDP_Inv_Cantidad_Salida_Emitida_Result> SDP_Inv_Cantidad_Salida_Emitida(string prod_Codigo)
+        {
+            var prod_CodigoParameter = prod_Codigo != null ?
+                new ObjectParameter("prod_Codigo", prod_Codigo) :
+                new ObjectParameter("prod_Codigo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_Inv_Cantidad_Salida_Emitida_Result>("SDP_Inv_Cantidad_Salida_Emitida", prod_CodigoParameter);
+        }
     }
 }

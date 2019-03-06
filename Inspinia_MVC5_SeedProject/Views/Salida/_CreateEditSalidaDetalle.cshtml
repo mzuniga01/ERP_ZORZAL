@@ -2,92 +2,86 @@
 @using ERP_GMEDINA.Models
 
 <div class="wrapper wrapper-content animated fadeInRight">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <h5>Ingresar Detalle Salida</h5>
-                </div>
-                <div class="ibox-content">
-                    @Html.HiddenFor(model => model.sal_Id)
-                    <input name="sal_Id" id="txtsal_Id" type="hidden" value="@ViewBag.IdSal">
-                    <input type="hidden" id="prod_Marca" placeholder="" class="form-control" readonly />
-                    <input type="hidden" id="prod_Modelo" placeholder="" class="form-control" readonly />
-                    <input type="hidden" id="prod_Talla" placeholder="" class="form-control" readonly />
-                    <input type="hidden" id="prod_Color" placeholder="" class="form-control" readonly />
-                    <div class="form-horizontal">
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.tbProducto.prod_CodigoBarras, "Codigo de Barras", new { @class = "control-label col-md-2 required" })
-                            <div class="col-md-4">
-                                <input type="text" id="prod_CodigoBarras" placeholder="" class="form-control" />
-                                <div id="validationprod_CodigoBarras">
-                                    @Html.ValidationMessageFor(model => model.tbProducto.prod_Codigo)
-                                </div>
-                            </div>
-                            <div class="col-md-1">
-                                <button type="button" id="Productos" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarProducto"><span class="glyphicon glyphicon-search"></span></button>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.prod_Codigo, "Producto", new { @class = "control-label col-md-2" })
-                            <div class="col-md-4">
-                                <input type="text" id="prod_Codigo" placeholder="" class="form-control" readonly />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.tbProducto.prod_Descripcion, "Descripcion", new { @class = "control-label col-md-2" })
-                            <div class="col-md-4">
-                                <input type="text" id="prod_Descripcion" placeholder="" class="form-control" readonly />
-                                @Html.ValidationMessageFor(model => model.tbProducto.prod_Descripcion)
-                            </div>
-                            @Html.LabelFor(model => model.tbProducto.pscat_Id, "Subcategoria", new { @class = "control-label col-md-2" })
-                            <div class="col-md-4">
-                                <input type="text" id="pscat_Id" placeholder="" class="form-control" readonly />
-                                @Html.ValidationMessageFor(model => model.tbProducto.pscat_Id)
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.sald_Cantidad, "Cantidad", new { @class = "control-label col-md-2 required" })
-                            <div class="col-md-4">
-                                @Html.EditorFor(model => model.sald_Cantidad, new { HtmlAttributes = new { name = "sald_Cantidad", @onkeypress = "return filterFloat(event,this);" } })
-                                <div id="CantidaExistente">
-                                </div>
-                            </div>
-                            @Html.LabelFor(model => model.tbProducto.tbProductoSubcategoria.tbProductoCategoria, "Categoria", new { @class = "control-label col-md-2" })
-                            <div class="col-md-4">
-                                <input type="text" id="pcat_Id" placeholder="" class="form-control" readonly />
-                                @Html.ValidationMessageFor(model => model.tbProducto.pscat_Id)
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.tbProducto.uni_Id, "Unidad Medida", new { @class = "control-label col-md-2" })
-                            <div class="col-md-4">
-                                @*@Html.DropDownList("uni_Id", (IEnumerable<SelectListItem>)ViewBag.uni_Id, "Seleccione", new { @class = "form-control" })*@
-                                <input type="text" id="uni_Id" placeholder="" class="form-control" readonly />
-                                @Html.ValidationMessageFor(model => model.tbProducto.uni_Id)
-                            </div>
-                            <div class="form-group col-md-1">
-                                <button class="btn btn-primary" type="button" id="AgregarSalidaDetalleEdit">Añadir</button>
-                            </div>
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>Ingresar Detalle Salida</h5>
+        </div>
+        <div class="ibox-content">
+            @Html.HiddenFor(model => model.sal_Id)
+            <input name="sal_Id" id="txtsal_Id" type="hidden" value="@ViewBag.IdSal">
+            <input type="hidden" id="prod_Marca" placeholder="" class="form-control" readonly />
+            <input type="hidden" id="prod_Modelo" placeholder="" class="form-control" readonly />
+            <input type="hidden" id="prod_Talla" placeholder="" class="form-control" readonly />
+            <input type="hidden" id="prod_Color" placeholder="" class="form-control" readonly />
+            <div class="form-horizontal">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.tbProducto.prod_CodigoBarras, "Codigo de Barras", new { @class = "control-label col-md-2 required" })
+                    <div class="col-md-4">
+                        <input type="text" id="prod_CodigoBarras" placeholder="" class="form-control" />
+                        <div id="validationprod_CodigoBarras">
+                            @Html.ValidationMessageFor(model => model.tbProducto.prod_Codigo)
                         </div>
                     </div>
-
-                    @*<table id="tblSalidaDetalle" class="table table table-striped table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Codigo Producto</th>
-                                    <th>Descripcion del Producto</th>
-                                    <th>Unidad Medida</th>
-                                    <th>Cantidad</th>
-                                    <th>Eliminiar</th>
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
-                        </table>*@
+                    <div class="col-md-1">
+                        <button type="button" id="Productos" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+                    </div>
                 </div>
-            </div>  <div class="form-group col-md-1">
-                <button class="btn btn-primary" type="button" id="btnCreateSalidaDetalle">Guardar</button>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.prod_Codigo, "Producto", new { @class = "control-label col-md-2" })
+                    <div class="col-md-4">
+                        <input type="text" id="prod_Codigo" placeholder="" class="form-control" readonly />
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.tbProducto.prod_Descripcion, "Descripcion", new { @class = "control-label col-md-2" })
+                    <div class="col-md-4">
+                        <input type="text" id="prod_Descripcion" placeholder="" class="form-control" readonly />
+                        @Html.ValidationMessageFor(model => model.tbProducto.prod_Descripcion)
+                    </div>
+                    @Html.LabelFor(model => model.tbProducto.pscat_Id, "Subcategoria", new { @class = "control-label col-md-2" })
+                    <div class="col-md-4">
+                        <input type="text" id="pscat_Id" placeholder="" class="form-control" readonly />
+                        @Html.ValidationMessageFor(model => model.tbProducto.pscat_Id)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.sald_Cantidad, "Cantidad", new { @class = "control-label col-md-2 required" })
+                    <div class="col-md-4">
+                        @Html.EditorFor(model => model.sald_Cantidad, new { HtmlAttributes = new { name = "sald_Cantidad", @onkeypress = "return filterFloat(event,this);" } })
+                        <div id="CantidaExistente">
+                        </div>
+                    </div>
+                    @Html.LabelFor(model => model.tbProducto.tbProductoSubcategoria.tbProductoCategoria, "Categoria", new { @class = "control-label col-md-2" })
+                    <div class="col-md-4">
+                        <input type="text" id="pcat_Id" placeholder="" class="form-control" readonly />
+                        @Html.ValidationMessageFor(model => model.tbProducto.pscat_Id)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.tbProducto.uni_Id, "Unidad Medida", new { @class = "control-label col-md-2" })
+                    <div class="col-md-4">
+                        @*@Html.DropDownList("uni_Id", (IEnumerable<SelectListItem>)ViewBag.uni_Id, "Seleccione", new { @class = "form-control" })*@
+                        <input type="text" id="uni_Id" placeholder="" class="form-control" readonly />
+                        @Html.ValidationMessageFor(model => model.tbProducto.uni_Id)
+                    </div>
+                    <div class="form-group col-md-1">
+                        <button class="btn btn-primary" type="button" id="AgregarSalidaDetalleEdit">Añadir</button>
+                    </div>
+                </div>
             </div>
+
+            @*<table id="tblSalidaDetalle" class="table table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Codigo Producto</th>
+                            <th>Descripcion del Producto</th>
+                            <th>Unidad Medida</th>
+                            <th>Cantidad</th>
+                            <th>Eliminiar</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>*@
         </div>
     </div>
 </div>

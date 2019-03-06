@@ -25,7 +25,7 @@ namespace ERP_GMEDINA.Models
         public int uni_Descripcion { get; set; }
 
         [NotMapped]
-        [Display(Name = "SubCaegoria")]
+        [Display(Name = "SubCategoria")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int pscat_Descripcion { get; set; }
 
@@ -34,7 +34,7 @@ namespace ERP_GMEDINA.Models
     public class ProductosMetadata
     {
         [Display(Name = "Código")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido,Seleccione Categoria y SubCategoria")]
         //[RegularExpression("^[A-Z]{4}-[0-9]{4}-[A-Z0-9]{4}$|[A-Z0-9]{14}", ErrorMessage = "No es un Codigo válido. Ejemplo AAAA-9999-AA999")]
         public string prod_Codigo { get; set; }
 
@@ -98,8 +98,7 @@ namespace ERP_GMEDINA.Models
 
         [Display(Name = "Carrelativo")]
         public Nullable<int> prod_Correlativo { get; set; }
-
-
+       
         [NotMapped]
         [Display(Name = "Categoria")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
@@ -111,9 +110,8 @@ namespace ERP_GMEDINA.Models
         public int uni_Descripcion { get; set; }
 
         [NotMapped]
-        [Display(Name = "SubCaegoria")]
+        [Display(Name = "SubCategoria")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int pscat_Descripcion { get; set; }
-
     }
 }

@@ -223,6 +223,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>InventarioFisico.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Dataset\Salida.cs">
+      <DependentUpon>Salida.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dataset\Salida.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Salida.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Entrada.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -255,6 +263,7 @@
     <Compile Include="Models\estadomovimientos.cs" />
     <Compile Include="Models\Estados.cs" />
     <Compile Include="Models\EstadoSubCategoria.cs" />
+    <Compile Include="Models\FuctionIndexP.cs" />
     <Compile Include="Models\GeneralFunctions.cs" />
     <Compile Include="Models\Helpers.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -308,6 +317,9 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SDP_Gral_tbEmpleado_Select_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SDP_Inv_Cantidad_Salida_Emitida_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SDP_Inv_Salida_Imprimir_Reporte_Result.cs">
@@ -929,6 +941,12 @@
       <DependentUpon>ImprimirEntradaTraslado.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\Salida.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Salida.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportViewer\ImprimirEntrada.aspx.cs">
       <DependentUpon>ImprimirEntrada.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1233,9 +1251,11 @@
     <Content Include="Scripts\app\RolObjetos.js" />
     <Content Include="Scripts\app\Salida.js" />
     <Content Include="Scripts\app\SalidaDetalle.js" />
+    <Content Include="Scripts\app\SalidaEdit.js" />
     <Content Include="Scripts\app\search.js" />
     <Content Include="Scripts\app\SolicitarProducto.js" />
     <Content Include="Scripts\app\SubCategoriaProducto.js" />
+    <Content Include="Scripts\app\SubCategoriaProductoEdit.js" />
     <Content Include="Scripts\app\TipoDevolucion.js" />
     <Content Include="Scripts\app\ValidacionProveedor.js" />
     <Content Include="Scripts\app\ValidationEmail.js" />
@@ -1303,6 +1323,17 @@
     </None>
     <Content Include="Dataset\InventarioFisico.xss">
       <DependentUpon>InventarioFisico.xsd</DependentUpon>
+    </Content>
+    <Content Include="Dataset\Salida.xsc">
+      <DependentUpon>Salida.xsd</DependentUpon>
+    </Content>
+    <None Include="Dataset\Salida.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Salida.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Dataset\Salida.xss">
+      <DependentUpon>Salida.xsd</DependentUpon>
     </Content>
     <None Include="Entrada.xsd">
       <Generator>MSDataSetGenerator</Generator>
@@ -1648,6 +1679,10 @@
       <LastGenOutput>ImprimirEntradaTraslado.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\ImprimirPorId.rdlc" />
+    <EmbeddedResource Include="Reports\Salida.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Salida.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

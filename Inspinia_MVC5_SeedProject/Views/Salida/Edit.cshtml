@@ -36,18 +36,18 @@
     </div>
 </div>
 @{
-//string UserName = "";
-//int idUser = 0;
-//int czx = 0;
-//GeneralFunctions Login = new GeneralFunctions();
-//List<tbUsuario> User = Login.getUserInformation();
-//tbBodega tbBod = new tbBodega();
-//foreach (tbUsuario Usuario in User)
-//{
-//    UserName = Usuario.usu_Nombres + " " + Usuario.usu_Apellidos;
-//    idUser = Convert.ToInt32(Usuario.emp_Id);
-//    int czx = Usuario.tbBodega.Where(x => x.bod_ResponsableBodega == idUser).Select(x => x.bod_Id).SingleOrDefault();
-//}
+    //string UserName = "";
+    //int idUser = 0;
+    //int czx = 0;
+    //GeneralFunctions Login = new GeneralFunctions();
+    //List<tbUsuario> User = Login.getUserInformation();
+    //tbBodega tbBod = new tbBodega();
+    //foreach (tbUsuario Usuario in User)
+    //{
+    //    UserName = Usuario.usu_Nombres + " " + Usuario.usu_Apellidos;
+    //    idUser = Convert.ToInt32(Usuario.emp_Id);
+    //    int czx = Usuario.tbBodega.Where(x => x.bod_ResponsableBodega == idUser).Select(x => x.bod_Id).SingleOrDefault();
+    //}
 
 }
 
@@ -66,6 +66,11 @@
                         @Html.ValidationSummary(true)
 
                         @Html.HiddenFor(model => model.sal_Id)
+                        @Html.HiddenFor(model => model.fact_Id)
+                        @Html.HiddenFor(model => model.fact_Codigo, new { Value = ViewBag.vbfact_Codigo })
+
+                        @*<input name="fact_Codigo" id="fact_Codigo" value="">*@
+
                         @*<input type="hidden" name="sal_Id" id="sal_Id" value="@ViewBag.IdSal">*@
                         <div class="form-horizontal">
 
@@ -75,7 +80,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.sal_FechaElaboracion, "Fecha de Elaboración", new { @class = "control-label col-md-2 required" })
                                     <div class="col-md-4">
-                                        @Html.EditorFor(model => model.sal_FechaElaboracion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                        @Html.EditorFor(model => model.sal_FechaElaboracion, "{0:dd/MM/yyyy}", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                         @Html.ValidationMessageFor(model => model.sal_FechaElaboracion)
                                     </div>
                                 </div>
@@ -117,7 +122,7 @@
                                     if (Model.sal_EsAnulada)
                                     {
                                         <div class="form-group">
-                                            @Html.LabelFor(model => model.sal_EsAnulada, "Es Anulada?", new { @class = "control-label col-md-2 required" })
+                                            @Html.LabelFor(model => model.sal_EsAnulada, "¿Es Anulada?", new { @class = "control-label col-md-2 required" })
                                             <div class="col-md-4">
                                                 @Html.EditorFor(model => model.sal_EsAnulada, new { htmlAttributes = new { @class = "form-control", @checked = "checked", @disabled = "disabled" } })
                                             </div>
@@ -138,13 +143,12 @@
                                 <legend class="box-border" id="TitleVenta">Venta</legend>
                                 <legend class="box-border" id="TitleDevolucion">Devolucion</legend>
                                 <div class="form-group">
-                                    @Html.LabelFor(model => model.fact_Codigo, new { @class = "control-label col-md-2 required" })
+                                    @Html.LabelFor(model => model.fact_Id, new { @class = "control-label col-md-2 required" })
                                     <div class="col-md-4">
                                         @Html.EditorFor(model => model.tbFactura.fact_Codigo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                        @Html.HiddenFor(model => model.fact_Codigo)
                                         <p style="color:red">
 
-                                            @Html.ValidationMessageFor(model => model.fact_Codigo)
+                                            @Html.ValidationMessageFor(model => model.fact_Id)
                                         </p>
                                     </div>
 
@@ -241,38 +245,38 @@
 
                         @*<div class="modal fade" id="Nuevo" tabindex="-1" role="dialog" aria-labelledby="DetalleNumeracion" aria-hidden="true">
 
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Seleccione un Producto</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body" id="AjaxCreateNumeracion">
-                                        @Html.Partial("_CreateEditSalidaDetalle", new ERP_GMEDINA.Models.tbSalidaDetalle())
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Seleccione un Producto</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body" id="AjaxCreateNumeracion">
+                                            @Html.Partial("_CreateEditSalidaDetalle", new ERP_GMEDINA.Models.tbSalidaDetalle())
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>*@
+                            </div>*@
                         <div class="col-lg-12"> </div>
                         @*<div class="row">
-                <div class="col-lg-12">
-                    <div class="ibox float-e-margins">
-                        <div class="ibox-title">
-                            <div class="title-action">
-                                <div class="box-border">
-                                    <h5></h5>
-                                    <button type="button" class="btn btn-whiteglyphicon glyphicon-download" data-toggle="collapse" data-target="#Crear">Agregar Producto</button>
+                                <div class="col-lg-12">
+                                    <div class="ibox float-e-margins">
+                                        <div class="ibox-title">
+                                            <div class="title-action">
+                                                <div class="box-border">
+                                                    <h5></h5>
+                                                    <button type="button" class="btn btn-whiteglyphicon glyphicon-download" data-toggle="collapse" data-target="#Crear">Agregar Producto</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="ibox-content collapse" id="Crear">
+                                            @Html.Partial("_CreateEditSalidaDetalle", new tbSalidaDetalle())
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="ibox-content collapse" id="Crear">
-                            @Html.Partial("_CreateEditSalidaDetalle", new tbSalidaDetalle())
-                        </div>
-                    </div>
-                </div>
-            </div>*@
+                            </div>*@
 
                         @* Llama la vista  *@
                         <div class="ibox float-e-margins">
@@ -284,8 +288,8 @@
                                         <div class="ibox-content">
 
                                             <fieldset class="box-border">
-                                                
-                                                <legend class="box-border">SalidaDetalle</legend>
+
+                                                <legend class="box-border">Salida Detalle</legend>
                                                 @Html.Partial("_EditSalidaDetalle", Model.tbSalidaDetalle, new ViewDataDictionary(new { clave = Model.sal_Id }))
                                             </fieldset>
                                         </div>
@@ -299,6 +303,28 @@
                         <br />
                     }
                 </div>
+            </div>
+            <div class="ibox-content">
+                <fieldset class="box-border">
+                    <legend class="box-border">Datos Auditoria</legend>
+                    <table class="table table-striped dataTable no-footer" style="width:100%">
+                        <tr>
+                            <th>Acciones</th>
+                            <th>Usuario</th>
+                            <th>Fecha</th>
+                        </tr>
+                        <tr>
+                            <td>Creado</td>
+                            <td>@Html.DisplayFor(model => model.tbUsuario.usu_Nombres) @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)</td>
+                            <td>@Html.DisplayFor(model => model.sal_FechaCrea)</td>
+                        </tr>
+                        <tr>
+                            <td>Modificado</td>
+                            <td>@Html.DisplayFor(model => model.tbUsuario.usu_Nombres) @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)</td>
+                            <td>@Html.DisplayFor(model => model.sal_FechaModifica)</td>
+                        </tr>
+                    </table>
+                </fieldset>
             </div>
         </div>
     </div>
@@ -333,6 +359,8 @@
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script src="~/Scripts/app/Salida.js"></script>
+<script src="~/Scripts/app/SalidaEdit.js"></script>
+
 <script src="~/Scripts/app/SalidaDetalle.js"></script>
 <script src="~/Scripts/app/DataTable.js"></script>>
 <script type="text/javascript">
@@ -361,6 +389,23 @@
 </script>
 
 <script>
+    // Copiar y Pegar///
+    $(document).ready(function () {
+        $('#sal_RazonAnulada').bind("cut copy paste", function (e) {
+            e.preventDefault();
+        });
+    });
+    function check(e) {
+        tecla = (document.all) ? e.keyCode : e.which;
+        //Tecla de retroceso para borrar, siempre la permite
+        if (tecla == 8) {
+            return true;
+        }
+        // Patron de entrada, en este caso solo acepta numeros y letras
+        patron = /[A-Za-z0-9]/;
+        tecla_final = String.fromCharCode(tecla);
+        return patron.test(tecla_final);
+    }
     //$(":input").inputmask();
     //$.ajax({
     //    method: "POST",
@@ -376,14 +421,12 @@
     //})
     //$("#sald_Cantidad").inputmask({ "mask": "999.99" });
 
-    var selector = "#fact_Codigo";
-    $(selector).val('');
-    $(selector).mask("999-999-99-99999999", { reverse: true });
+    //var selector = "#fact_Codigo";
+    //$(selector).mask("999-999-99-99999999", { reverse: true });
     //Output is shown as: 1,000,000
 
     var value = $(selector).cleanVal();
     //Mask will be removed on next line
-    $(selector).val('');
 
     $(function () {
         $("#sal_FechaElaboracion").datepicker({

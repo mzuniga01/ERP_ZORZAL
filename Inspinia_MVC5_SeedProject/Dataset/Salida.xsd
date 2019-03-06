@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Salida" targetNamespace="http://tempuri.org/Salida.xsd" xmlns:mstns="http://tempuri.org/Salida.xsd" xmlns="http://tempuri.org/Salida.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="ERP_GMEDINAConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_GMEDINAConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.ERP_GMEDINAConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="UDV_Inv_Salida_Imprimir_ReporteTableAdapter" GeneratorDataComponentClassName="UDV_Inv_Salida_Imprimir_ReporteTableAdapter" Name="UDV_Inv_Salida_Imprimir_Reporte" UserDataComponentName="UDV_Inv_Salida_Imprimir_ReporteTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_GMEDINAConnectionString (Web.config)" DbObjectName="ERP_GMEDINA.Inv.UDV_Inv_Salida_Imprimir_Reporte" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        sal_FechaElaboracion, tsal_Id, tsal_Descripcion, bod_Id, bod_Nombre, estm_Id, estm_Descripcion, sal_BodDestino, fact_Codigo, bod_ResponsableBodega, prod_Codigo, prod_Descripcion, prod_Marca, prod_Modelo, 
+                         prod_Talla, prod_Color, pscat_Descripcion, pcat_Nombre, uni_Descripcion, prod_CodigoBarras, sald_Cantidad
+FROM            Inv.UDV_Inv_Salida_Imprimir_Reporte
+</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="sal_FechaElaboracion" DataSetColumn="sal_FechaElaboracion" />
+              <Mapping SourceColumn="tsal_Id" DataSetColumn="tsal_Id" />
+              <Mapping SourceColumn="tsal_Descripcion" DataSetColumn="tsal_Descripcion" />
+              <Mapping SourceColumn="bod_Id" DataSetColumn="bod_Id" />
+              <Mapping SourceColumn="bod_Nombre" DataSetColumn="bod_Nombre" />
+              <Mapping SourceColumn="estm_Id" DataSetColumn="estm_Id" />
+              <Mapping SourceColumn="estm_Descripcion" DataSetColumn="estm_Descripcion" />
+              <Mapping SourceColumn="sal_BodDestino" DataSetColumn="sal_BodDestino" />
+              <Mapping SourceColumn="fact_Codigo" DataSetColumn="fact_Codigo" />
+              <Mapping SourceColumn="bod_ResponsableBodega" DataSetColumn="bod_ResponsableBodega" />
+              <Mapping SourceColumn="prod_Codigo" DataSetColumn="prod_Codigo" />
+              <Mapping SourceColumn="prod_Descripcion" DataSetColumn="prod_Descripcion" />
+              <Mapping SourceColumn="prod_Marca" DataSetColumn="prod_Marca" />
+              <Mapping SourceColumn="prod_Modelo" DataSetColumn="prod_Modelo" />
+              <Mapping SourceColumn="prod_Talla" DataSetColumn="prod_Talla" />
+              <Mapping SourceColumn="prod_Color" DataSetColumn="prod_Color" />
+              <Mapping SourceColumn="pscat_Descripcion" DataSetColumn="pscat_Descripcion" />
+              <Mapping SourceColumn="pcat_Nombre" DataSetColumn="pcat_Nombre" />
+              <Mapping SourceColumn="uni_Descripcion" DataSetColumn="uni_Descripcion" />
+              <Mapping SourceColumn="prod_CodigoBarras" DataSetColumn="prod_CodigoBarras" />
+              <Mapping SourceColumn="sald_Cantidad" DataSetColumn="sald_Cantidad" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Salida" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="Salida" msprop:Generator_UserDSName="Salida">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="UDV_Inv_Salida_Imprimir_Reporte" msprop:Generator_TableClassName="UDV_Inv_Salida_Imprimir_ReporteDataTable" msprop:Generator_TableVarName="tableUDV_Inv_Salida_Imprimir_Reporte" msprop:Generator_TablePropName="UDV_Inv_Salida_Imprimir_Reporte" msprop:Generator_RowDeletingName="UDV_Inv_Salida_Imprimir_ReporteRowDeleting" msprop:Generator_RowChangingName="UDV_Inv_Salida_Imprimir_ReporteRowChanging" msprop:Generator_RowEvHandlerName="UDV_Inv_Salida_Imprimir_ReporteRowChangeEventHandler" msprop:Generator_RowDeletedName="UDV_Inv_Salida_Imprimir_ReporteRowDeleted" msprop:Generator_UserTableName="UDV_Inv_Salida_Imprimir_Reporte" msprop:Generator_RowChangedName="UDV_Inv_Salida_Imprimir_ReporteRowChanged" msprop:Generator_RowEvArgName="UDV_Inv_Salida_Imprimir_ReporteRowChangeEvent" msprop:Generator_RowClassName="UDV_Inv_Salida_Imprimir_ReporteRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="sal_FechaElaboracion" msprop:Generator_ColumnVarNameInTable="columnsal_FechaElaboracion" msprop:Generator_ColumnPropNameInRow="sal_FechaElaboracion" msprop:Generator_ColumnPropNameInTable="sal_FechaElaboracionColumn" msprop:Generator_UserColumnName="sal_FechaElaboracion" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="tsal_Id" msprop:Generator_ColumnVarNameInTable="columntsal_Id" msprop:Generator_ColumnPropNameInRow="tsal_Id" msprop:Generator_ColumnPropNameInTable="tsal_IdColumn" msprop:Generator_UserColumnName="tsal_Id" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="tsal_Descripcion" msprop:Generator_ColumnVarNameInTable="columntsal_Descripcion" msprop:Generator_ColumnPropNameInRow="tsal_Descripcion" msprop:Generator_ColumnPropNameInTable="tsal_DescripcionColumn" msprop:Generator_UserColumnName="tsal_Descripcion" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="bod_Id" msprop:Generator_ColumnVarNameInTable="columnbod_Id" msprop:Generator_ColumnPropNameInRow="bod_Id" msprop:Generator_ColumnPropNameInTable="bod_IdColumn" msprop:Generator_UserColumnName="bod_Id" type="xs:int" minOccurs="0" />
+              <xs:element name="bod_Nombre" msprop:Generator_ColumnVarNameInTable="columnbod_Nombre" msprop:Generator_ColumnPropNameInRow="bod_Nombre" msprop:Generator_ColumnPropNameInTable="bod_NombreColumn" msprop:Generator_UserColumnName="bod_Nombre" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="estm_Id" msprop:Generator_ColumnVarNameInTable="columnestm_Id" msprop:Generator_ColumnPropNameInRow="estm_Id" msprop:Generator_ColumnPropNameInTable="estm_IdColumn" msprop:Generator_UserColumnName="estm_Id" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="estm_Descripcion" msprop:Generator_ColumnVarNameInTable="columnestm_Descripcion" msprop:Generator_ColumnPropNameInRow="estm_Descripcion" msprop:Generator_ColumnPropNameInTable="estm_DescripcionColumn" msprop:Generator_UserColumnName="estm_Descripcion" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="sal_BodDestino" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnsal_BodDestino" msprop:Generator_ColumnPropNameInRow="sal_BodDestino" msprop:Generator_ColumnPropNameInTable="sal_BodDestinoColumn" msprop:Generator_UserColumnName="sal_BodDestino" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="fact_Codigo" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnfact_Codigo" msprop:Generator_ColumnPropNameInRow="fact_Codigo" msprop:Generator_ColumnPropNameInTable="fact_CodigoColumn" msprop:Generator_UserColumnName="fact_Codigo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="19" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="bod_ResponsableBodega" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnbod_ResponsableBodega" msprop:Generator_ColumnPropNameInRow="bod_ResponsableBodega" msprop:Generator_ColumnPropNameInTable="bod_ResponsableBodegaColumn" msprop:Generator_UserColumnName="bod_ResponsableBodega" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="201" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="prod_Codigo" msprop:Generator_ColumnVarNameInTable="columnprod_Codigo" msprop:Generator_ColumnPropNameInRow="prod_Codigo" msprop:Generator_ColumnPropNameInTable="prod_CodigoColumn" msprop:Generator_UserColumnName="prod_Codigo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="prod_Descripcion" msprop:Generator_ColumnVarNameInTable="columnprod_Descripcion" msprop:Generator_ColumnPropNameInRow="prod_Descripcion" msprop:Generator_ColumnPropNameInTable="prod_DescripcionColumn" msprop:Generator_UserColumnName="prod_Descripcion">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="prod_Marca" msprop:Generator_ColumnVarNameInTable="columnprod_Marca" msprop:Generator_ColumnPropNameInRow="prod_Marca" msprop:Generator_ColumnPropNameInTable="prod_MarcaColumn" msprop:Generator_UserColumnName="prod_Marca">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="prod_Modelo" msprop:Generator_ColumnVarNameInTable="columnprod_Modelo" msprop:Generator_ColumnPropNameInRow="prod_Modelo" msprop:Generator_ColumnPropNameInTable="prod_ModeloColumn" msprop:Generator_UserColumnName="prod_Modelo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="25" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="prod_Talla" msprop:Generator_ColumnVarNameInTable="columnprod_Talla" msprop:Generator_ColumnPropNameInRow="prod_Talla" msprop:Generator_ColumnPropNameInTable="prod_TallaColumn" msprop:Generator_UserColumnName="prod_Talla">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="prod_Color" msprop:Generator_ColumnVarNameInTable="columnprod_Color" msprop:Generator_ColumnPropNameInRow="prod_Color" msprop:Generator_ColumnPropNameInTable="prod_ColorColumn" msprop:Generator_UserColumnName="prod_Color">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="pscat_Descripcion" msprop:Generator_ColumnVarNameInTable="columnpscat_Descripcion" msprop:Generator_ColumnPropNameInRow="pscat_Descripcion" msprop:Generator_ColumnPropNameInTable="pscat_DescripcionColumn" msprop:Generator_UserColumnName="pscat_Descripcion" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="pcat_Nombre" msprop:Generator_ColumnVarNameInTable="columnpcat_Nombre" msprop:Generator_ColumnPropNameInRow="pcat_Nombre" msprop:Generator_ColumnPropNameInTable="pcat_NombreColumn" msprop:Generator_UserColumnName="pcat_Nombre">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="uni_Descripcion" msprop:Generator_ColumnVarNameInTable="columnuni_Descripcion" msprop:Generator_ColumnPropNameInRow="uni_Descripcion" msprop:Generator_ColumnPropNameInTable="uni_DescripcionColumn" msprop:Generator_UserColumnName="uni_Descripcion">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="prod_CodigoBarras" msprop:Generator_ColumnVarNameInTable="columnprod_CodigoBarras" msprop:Generator_ColumnPropNameInRow="prod_CodigoBarras" msprop:Generator_ColumnPropNameInTable="prod_CodigoBarrasColumn" msprop:Generator_UserColumnName="prod_CodigoBarras">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="sald_Cantidad" msprop:Generator_ColumnVarNameInTable="columnsald_Cantidad" msprop:Generator_ColumnPropNameInRow="sald_Cantidad" msprop:Generator_ColumnPropNameInTable="sald_CantidadColumn" msprop:Generator_UserColumnName="sald_Cantidad" type="xs:decimal" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -329,12 +329,7 @@ function seleccionar(prod_Codigo) {
             if (data.length > 0) {
                 $('#invfd_CantidadSistema').val(val.bodd_CantidadExistente);
             } else {
-                $("#prod_Codigo").val(id);
-                $("#prod_Descripcion").val(descripcion);
-                $("#prod_CodigoBarras").val(barras);
-                $("#uni_Id").val(uni);
-                $("#uni_Ids").val(uniid);
-                $('#invfd_Cantidad').val('1');
+       
                 $('#invfd_CantidadSistema').val('0');
             }
        

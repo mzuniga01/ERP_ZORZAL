@@ -4086,6 +4086,9 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
     <Parameter Name="uni_UsuarioModifica" Type="int" Mode="In" />
     <Parameter Name="uni_FechaModifica" Type="datetime" Mode="In" />
   </Function>
+  <Function Name="SDP_Inv_Cantidad_Salida_Emitida" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+    <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
+  </Function>
   <Function Name="SDP_Inv_Salida_Imprimir" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
     <Parameter Name="sal_Id" Type="int" Mode="In" />
   </Function>

@@ -10,7 +10,6 @@ namespace ERP_GMEDINA.Models
     [MetadataType(typeof(SalidaMetaData))]
     public partial class tbSalida
     {
-        
         [NotMapped]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         [Display(Name = "Codigo de Factura")]
@@ -24,27 +23,24 @@ namespace ERP_GMEDINA.Models
         public int sal_Id { get; set; }
 
         [Display(Name = "Bodega")]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int bod_Id { get; set; }
 
         [Display(Name = "N# de Factura")]
         public long fact_Id { get; set; }
 
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         [Display(Name = "Fecha de Salida")]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public System.DateTime sal_FechaElaboracion { get; set; }
 
         [Display(Name = "Estado Movimiento")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public byte estm_Id { get; set; }
 
-
         [Display(Name = "Tipo de Salida")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public byte tsal_Id { get; set; }
 
         [Display(Name = "Razon de Devolucion")]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string sal_RazonDevolucion { get; set; }
 
         [Display(Name = "Bodega de Destino")]
@@ -55,7 +51,7 @@ namespace ERP_GMEDINA.Models
 
         [Display(Name = "Razon de Anulacion")]
         public string sal_RazonAnulada { get; set; }
-        
+
         [Display(Name = "Creado por")]
         public int sal_UsuarioCrea { get; set; }
 
@@ -67,8 +63,5 @@ namespace ERP_GMEDINA.Models
 
         [Display(Name = "Fecha de Modificaion")]
         public Nullable<System.DateTime> sal_FechaModifica { get; set; }
-
-
     }
-
 }

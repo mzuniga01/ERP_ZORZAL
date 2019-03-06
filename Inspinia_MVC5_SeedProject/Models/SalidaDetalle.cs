@@ -29,8 +29,6 @@ namespace ERP_GMEDINA.Models
         public int sald_UsuarioCrea { get; set; }
         [Display(Name = "Creado el")]
         public System.DateTime sald_FechaCrea { get; set; }
-
-
         [Display(Name = "Modificado Por")]
         public Nullable<int> sald_UsuarioModifica { get; set; }
         [Display(Name = "Modificado el")]

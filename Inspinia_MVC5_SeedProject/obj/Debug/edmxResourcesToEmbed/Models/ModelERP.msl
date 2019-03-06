@@ -2278,5 +2278,13 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SDP_Inv_Cantidad_Salida_Emitida" FunctionName="ERP_ZORZALModel.Store.SDP_Inv_Cantidad_Salida_Emitida">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_Inv_Cantidad_Salida_Emitida_Result">
+          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+          <ScalarProperty Name="sald_Cantidad" ColumnName="sald_Cantidad" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

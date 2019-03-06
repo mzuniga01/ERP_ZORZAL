@@ -4091,6 +4091,9 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
           <Parameter Name="uni_UsuarioModifica" Type="int" Mode="In" />
           <Parameter Name="uni_FechaModifica" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="SDP_Inv_Cantidad_Salida_Emitida" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
+          <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="SDP_Inv_Salida_Imprimir" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Inv">
           <Parameter Name="sal_Id" Type="int" Mode="In" />
         </Function>
@@ -7508,7 +7511,10 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
             <End Role="tbSalidaDetalle" EntitySet="tbSalidaDetalle" />
           </AssociationSet>
           <FunctionImport Name="SDP_Inv_tbBoxDetalle_Select" ReturnType="Collection(ERP_ZORZALModel.SDP_Inv_tbBoxDetalle_Select_Result)">
-            <Parameter Name="boxd_Id" Mode="In" Type="Int32" />
+          <Parameter Name="boxd_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SDP_Inv_Cantidad_Salida_Emitida" ReturnType="Collection(ERP_ZORZALModel.SDP_Inv_Cantidad_Salida_Emitida_Result)">
+            <Parameter Name="prod_Codigo" Mode="In" Type="String" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
@@ -12454,6 +12460,10 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
           <Property Type="String" Name="prod_CodigoBarras" Nullable="false" MaxLength="15" />
           <Property Type="String" Name="box_Codigo" Nullable="false" MaxLength="20" />
         </ComplexType>
+        <ComplexType Name="SDP_Inv_Cantidad_Salida_Emitida_Result">
+          <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
+          <Property Type="Decimal" Name="sald_Cantidad" Nullable="true" Precision="38" Scale="2" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -14734,6 +14744,14 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencia
                 <ScalarProperty Name="boxd_Cantidad" ColumnName="boxd_Cantidad" />
                 <ScalarProperty Name="prod_CodigoBarras" ColumnName="prod_CodigoBarras" />
                 <ScalarProperty Name="box_Codigo" ColumnName="box_Codigo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SDP_Inv_Cantidad_Salida_Emitida" FunctionName="ERP_ZORZALModel.Store.SDP_Inv_Cantidad_Salida_Emitida">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_Inv_Cantidad_Salida_Emitida_Result">
+                <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+                <ScalarProperty Name="sald_Cantidad" ColumnName="sald_Cantidad" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

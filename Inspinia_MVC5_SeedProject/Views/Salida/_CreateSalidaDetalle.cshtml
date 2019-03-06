@@ -14,12 +14,16 @@
                             @Html.LabelFor(model => model.tbProducto.prod_CodigoBarras, "Codigo de Barra", new { @class = "control-label col-md-2 required" })
                             <div class="col-md-4">
                                 <input type="text" id="prod_CodigoBarras" placeholder="" class="form-control" />
+                                <input type="hidden" id="prod_Marca" placeholder="" class="form-control" readonly />
+                                <input type="hidden" id="prod_Modelo" placeholder="" class="form-control" readonly />
+                                <input type="hidden" id="prod_Talla" placeholder="" class="form-control" readonly />
+                                <input type="hidden" id="prod_Color" placeholder="" class="form-control" readonly />
                                 <div id="validationprod_CodigoBarras">
                                     @Html.ValidationMessageFor(model => model.tbProducto.prod_Codigo)
                                 </div>
                             </div>
                             <div class="col-md-1">
-                                <button type="button" id="Productos" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarProducto"><span class="glyphicon glyphicon-search"></span></button>
+                                <button type="button" id="Productos" class="btn btn-primary" ><span class="glyphicon glyphicon-search"></span></button>
                             </div>
 
                             @Html.LabelFor(model => model.prod_Codigo, "Producto", new { @class = "control-label col-md-1" })
@@ -73,11 +77,32 @@
                         <table id="tblSalidaDetalle" style="width:100%" class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th>@Html.DisplayNameFor(model => model.prod_Codigo)</th>
-                                    <th>@Html.DisplayNameFor(model => model.tbProducto.prod_Descripcion)</th>
-                                    <th>@Html.DisplayNameFor(model => model.tbProducto.uni_Id)</th>
-                                    <th>@Html.DisplayNameFor(model => model.sald_Cantidad)</th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.prod_Codigo)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.tbProducto.prod_Descripcion)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.tbProducto.prod_Marca)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.tbProducto.prod_Modelo)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.tbProducto.prod_Talla)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.tbProducto.pcat_Id)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.tbProducto.uni_Id)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.sald_Cantidad)
+                                    </th>
                                     <th>Eliminiar</th>
+
                                 </tr>
                             </thead>
                             <tbody></tbody>

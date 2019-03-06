@@ -53,7 +53,11 @@ namespace ERP_GMEDINA.Models
         public const int sal_Activa = 5;
 
         public const int sal_Impresa = 6;
+        public const bool sal_EsAnulada = true;
+        public const int sal_Prestamo = 1;
 
+        public const int sal_Venta = 2;
+        public const int sal_Devolucion = 3;
         ///ESTADO OBJETO
         public const bool ObjetoActivo = true;
 

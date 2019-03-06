@@ -58,9 +58,72 @@ $('#pscat_Id').change(function () {
 //Validacion de solo letras
 function soloLetras(e) {
     key = e.keyCode || e.which;
-    tecla = String.fromCharCode(key).toLowerCase();
-    letras = " áéíóúabcdefghijklmnñopqrstuvwxyz1234567890";
+    tecla = String.fromCharCode(key).toUpperCase();
+    letras = " ABCDEFGHIJKLMNOPQRSTUVWXYZáéíóúabcdefghijklmnñopqrstuvwxyz1234567890-+()$.";
     especiales = "8-37-39-46";
+    
+
+    tecla_especial = false
+    for (var i in especiales) {
+        if (key == especiales[i]) {
+            tecla_especial = true;
+            break;
+        }
+    }
+    
+    if (letras.indexOf(tecla) == -1 && !tecla_especial) {
+        return false;
+    }
+
+}
+
+
+$('#prod_Descripcion').on("keypress", function () {
+    $input = $(this);
+    setTimeout(function () {
+        $input.val($input.val().toUpperCase());
+    }, 50);
+
+});
+
+$('#prod_Marca').on("keypress", function () {
+    $input = $(this);
+    setTimeout(function () {
+        $input.val($input.val().toUpperCase());
+    }, 50);
+
+});
+
+$('#prod_Modelo').on("keypress", function () {
+    $input = $(this);
+    setTimeout(function () {
+        $input.val($input.val().toUpperCase());
+    }, 50);
+
+});
+
+$('#prod_Color').on("keypress", function () {
+    $input = $(this);
+    setTimeout(function () {
+        $input.val($input.val().toUpperCase());
+    }, 50);
+
+});
+
+$('#prod_Talla').on("keypress", function () {
+    $input = $(this);
+    setTimeout(function () {
+        $input.val($input.val().toUpperCase());
+    }, 50);
+
+});
+
+function solonumeros(e) {
+    key = e.keyCode || e.which;
+    tecla = String.fromCharCode(key).toUpperCase();
+    letras = "1234567890";
+    especiales = "8-37-39-46";
+
 
     tecla_especial = false
     for (var i in especiales) {
@@ -73,4 +136,47 @@ function soloLetras(e) {
     if (letras.indexOf(tecla) == -1 && !tecla_especial) {
         return false;
     }
+
 }
+
+
+$("#prod_CodigoBarras").on("keypress keyup blur", function (event) {
+    $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
+    if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+        event.preventDefault();
+    }
+});
+
+//$('#btnGuardar').click(function () {
+//    $("#ErrorValidacionGeneral").remove();
+//    $("#errorActividad").remove();
+//    $("#errorActividada").remove();
+//    $("#errorcategoria").remove();
+//    var unidad = $("#uni_Id").find('option:selected').val();
+//    var subcategoria = $("#pscat_Id").find('option:selected').val();
+//    var categoria = $("#pcat_Id").find('option:selected').val();
+//    if (unidad == '') {
+//        $('#unidad').text('');
+//        $('#errorActividad').text('');
+//        $('#validationUnidad').after('<ul id="errorActividad" class="validation-summary-errors text-danger">Campo Unidad de Medida Requerido</ul>');
+//    }
+//    if (subcategoria == '') {
+//        $('#subcategoria').text('');
+//        $('#errorActividada').text('');
+//        $('#validationSubCategoria').after('<ul id="errorActividada" class="validation-summary-errors text-danger">Campo SubCategoria Requerido</ul>');
+//    }
+//    if (categoria == '') {
+//        $('#categoria').text('');
+//        $('#errorcategoria').text('');
+//        $('#validationCategoria').after('<ul id="errorcategoria" class="validation-summary-errors text-danger">Campo Categoria Requerido</ul>');
+//    }
+//});
+
+
+//$('#pscat_Id').change(function (e) {
+//    var subcategoria = $.trim(this.value);
+//    if (subcategoria != '') {
+//        $('#subcategoria').text('');
+//        $('#errorActividada').text('');
+//    }
+//});

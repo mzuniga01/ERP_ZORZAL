@@ -1,7 +1,6 @@
 ﻿using CrystalDecisions.CrystalReports.Engine;
 using ERP_GMEDINA.Attribute;
 using ERP_GMEDINA.Models;
-using ERP_GMEDINA.Reports;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -9,6 +8,10 @@ using System.IO;
 using System.Linq;
 using System.Transactions;
 using System.Web.Mvc;
+using System.Web.Services;
+using ERP_GMEDINA.Dataset.SalidaTableAdapters;
+using ERP_GMEDINA.Dataset;
+using Salida = ERP_GMEDINA.Dataset.Salida;
 
 namespace ERP_GMEDINA.Controllers
 {
@@ -30,6 +33,47 @@ namespace ERP_GMEDINA.Controllers
             return View(tbsalida.ToList());
         }
 
+        //[WebMethod]
+        //public static object GetProductoList(int bod_Id)
+        //{
+        //    IEnumerable<object> list = null;
+        //    List<tbBodegaDetalle> lista = new List<tbBodegaDetalle>();
+        //    //try
+        //    //{
+        //    //    //string json = JsonConvert.SerializeObject(lista);
+        //    //}
+        //    //catch (Exception Ex)
+        //    //{
+        //    //    var msj = Ex.Message.ToString();
+        //    //    //< object > list = new { Result = "", msj };
+        //    //    //object list = new { "", msj };
+        //    //}
+        //    object json = new { data = lista };
+        //    return json;
+        //    //return Json(list, JsonRequestBehavior.AllowGet);
+        //}
+
+        public JsonResult GetProducto(int? bod_Id)
+        {
+            IEnumerable<object> list = null;
+            //list = db.tbBodegaDetalle.Select(p => new
+            //{
+            //    prod_Codigo = p.prod_Codigo,
+            //    bodd_CantidadExistente = p.bodd_CantidadExistente
+            //}).ToList();
+            try
+            {
+                list = db.SDP_Inv_tbBodegaDetalle_Select_Producto(bod_Id).ToList();
+            }
+            catch (Exception Ex)
+            {
+                var msj = Ex.Message.ToString();
+                //< object > list = new { Result = "", msj };
+                //object list = new { "", msj };
+            }
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
         public int Usuario()
         {
             int idUser = 0;
@@ -49,26 +93,31 @@ namespace ERP_GMEDINA.Controllers
             }
         }
 
-        public ActionResult ExportReport()
+
+
+        public ActionResult GenerarReporte(tbSalida tbSalida, string FechaElaboracion)
         {
             ReportDocument rd = new ReportDocument();
-            rd.Load(Path.Combine(Server.MapPath("~/Reports"), "Salida.rpt"));
-            var tbsalida = db.tbSalida.ToList();
-            var todo = (from r in tbsalida
-                        select new
-                        {
-                            sal_Id = r.sal_Id,
-                            fact_Codigo = r.fact_Codigo,
-                            bod_Id = r.bod_Id,
-                            tsal_Id = r.tsal_Id
-                        }).ToList();
+            UDV_Inv_Salida_Imprimir_ReporteTableAdapter SalidaTableAdapter = new UDV_Inv_Salida_Imprimir_ReporteTableAdapter();
+            Salida.UDV_Inv_Salida_Imprimir_ReporteDataTable SalidaDataTable = new Salida.UDV_Inv_Salida_Imprimir_ReporteDataTable();
+            IEnumerable<object> Salida = null;
+            //var vFechaElaboracion = Convert.ToDateTime(FechaElaboracion);
+            //SalidaTableAdapter.Fill(SalidaDataTable, vFechaElaboracion, tbSalida.tsal_Id, tbSalida.bod_Id, tbSalida.estm_Id);
+            //Salida = SalidaTableAdapter.GetData(vFechaElaboracion, tbSalida.tsal_Id, tbSalida.bod_Id, tbSalida.estm_Id).ToList();
 
-            rd.SetDataSource(todo);
+            rd.Load(Path.Combine(Server.MapPath("~/Reports"), "Salida.rpt"));
+
             Response.Buffer = false;
             Response.ClearContent();
             Response.ClearHeaders();
+            //var TipoSalida = tbSalida.tsal_Id;
+            //var Bodega = tbSalida.bod_Id;
+            //var Estado = tbSalida.estm_Id;
+
             try
             {
+                rd.SetDataSource(Salida);
+
                 Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
                 stream.Seek(0, SeekOrigin.Begin);
                 return File(stream, "application/pdf", "Salida_List.pdf");
@@ -126,15 +175,9 @@ namespace ERP_GMEDINA.Controllers
         [SessionManager("Salida/Create")]
         public ActionResult Create([Bind(Include = "bod_Id,fact_Id,fact_Codigo,sal_FechaElaboracion,estm_Id,tsal_Id,sal_RazonDevolucion, sal_BodDestino, sal_EsAnulada, sal_RazonAnulada")] tbSalida tbSalida)
         {
-            int idUser = 0;
             try
             {
-                GeneralFunctions Login = new GeneralFunctions();
-                List<tbUsuario> User = Login.getUserInformation();
-                foreach (tbUsuario Usuario in User)
-                {
-                    idUser = Convert.ToInt32(Usuario.emp_Id);
-                }
+                int idUser = Usuario();
                 ViewBag.Producto = db.tbBodegaDetalle.ToList();
                 ViewBag.bod_Id = new SelectList(db.tbBodega.Where(x => x.bod_ResponsableBodega == idUser).ToList(), "bod_Id", "bod_Nombre");
                 ViewBag.sal_BodDestinosa = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
@@ -154,10 +197,10 @@ namespace ERP_GMEDINA.Controllers
                     {
                         var vFactura = db.tbFactura.Where(x => x.fact_Codigo == tbSalida.fact_Codigo).Select(x => x.fact_Id).SingleOrDefault();
                         //tbSalida.bod_Id
-                        listSalida = db.UDP_Inv_tbSalida_Insert(tbSalida.bod_Id, vFactura, tbSalida.sal_FechaElaboracion, tbSalida.estm_Id, tbSalida.tsal_Id, tbSalida.sal_BodDestino, tbSalida.sal_EsAnulada, tbSalida.sal_RazonAnulada, tbSalida.sal_RazonDevolucion, Function.GetUser(), Function.DatetimeNow());
+                        listSalida = db.UDP_Inv_tbSalida_Insert(tbSalida.bod_Id, vFactura, tbSalida.sal_FechaElaboracion, Helpers.sal_Emitida, tbSalida.tsal_Id, tbSalida.sal_BodDestino, tbSalida.sal_EsAnulada, tbSalida.sal_RazonAnulada, tbSalida.sal_RazonDevolucion, Function.GetUser(), Function.DatetimeNow());
                         foreach (UDP_Inv_tbSalida_Insert_Result Salida in listSalida)
                             MensajeError = Salida.MensajeError;
-                        if (MensajeError == "-1")
+                        if (MensajeError.StartsWith("-1"))
                         {
                             ModelState.AddModelError("", "No se pudo agregar el registro");
                             return View(tbSalida);
@@ -223,29 +266,7 @@ namespace ERP_GMEDINA.Controllers
             return View(tbSalida);
         }
 
-        public ActionResult GenReporte(tbSalida tbSalida)
-        {
-            ReportDocument rd = new ReportDocument();
-            rd.Load(Path.Combine(Server.MapPath("~/Reports"), "Salida.rpt"));
-            var tbsalida = db.tbSalida.ToList();
-            var todo = db.SDP_Inv_Salida_Imprimir(13).ToList();
-
-            rd.SetDataSource(todo);
-            Response.Buffer = false;
-            Response.ClearContent();
-            Response.ClearHeaders();
-            try
-            {
-                Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
-                stream.Seek(0, SeekOrigin.Begin);
-                return File(stream, "application/pdf", "Salida_List.pdf");
-            }
-            catch
-            {
-                throw;
-            }
-        }
-
+       
         public JsonResult BodegaDestino(int? id)
         {
             IEnumerable<object> list = null;
@@ -277,9 +298,11 @@ namespace ERP_GMEDINA.Controllers
         public JsonResult GetProdList(tbBodegaDetalle tbBodegaDetalle)
         {
             IEnumerable<object> list = null;
+
             try
             {
-                list = db.SDP_Inv_tbBodegaDetalle_Select_Producto(tbBodegaDetalle.bod_Id).ToList();
+                //tbBodegaDetalle.bod_Id
+                list = db.SDP_Inv_tbBodegaDetalle_Select_Producto(4).ToList();
             }
             catch (Exception Ex)
             {
@@ -402,17 +425,18 @@ namespace ERP_GMEDINA.Controllers
             {
                 return RedirectToAction("NotFound", "Login");
             }
-            string UserName = "";
-            int idUser = 0;
-            GeneralFunctions Login = new GeneralFunctions();
-            List<tbUsuario> User = Login.getUserInformation();
-            tbBodega tbBod = new tbBodega();
-            foreach (tbUsuario Usuario in User)
-            {
-                UserName = Usuario.usu_Nombres + " " + Usuario.usu_Apellidos;
-                idUser = Convert.ToInt32(Usuario.emp_Id);
-            }
+            int idUser = Usuario();
+
             ViewBag.IdSal = id;
+            if (tbSalida.tsal_Id == Helpers.sal_Venta)
+            {
+                ViewBag.vbfact_Codigo = db.tbFactura.Find(tbSalida.fact_Id).fact_Codigo.ToString();
+            }
+            else
+            {
+                ViewBag.fact_Codigo = "0";
+            }
+
             ViewBag.bod_Id = new SelectList(db.tbBodega.Where(x => x.bod_ResponsableBodega == idUser).ToList(), "bod_Id", "bod_Nombre");
 
             ViewBag.estm_Id = new SelectList(db.tbEstadoMovimiento, "estm_Id", "estm_Descripcion", tbSalida.estm_Id);
@@ -510,13 +534,29 @@ namespace ERP_GMEDINA.Controllers
                 var CantidadExistente = db.tbBodegaDetalle.Where(x =>
                 x.bod_Id == bod_Id
                 &&
-                x.prod_Codigo == prod_Codigo).Select(c => c.bodd_CantidadExistente).SingleOrDefault();
+                x.prod_Codigo == prod_Codigo).Select(c => c.bodd_CantidadExistente).FirstOrDefault();
+
                 var CantidadMinima = db.tbBodegaDetalle.Where(x =>
                  x.bod_Id == bod_Id
                  &&
-                 x.prod_Codigo == prod_Codigo).Select(c => c.bodd_CantidadMinima).SingleOrDefault();
+                 x.prod_Codigo == prod_Codigo).Select(c => c.bodd_CantidadMinima).FirstOrDefault();
 
-                var CantidadAceptada = CantidadExistente - CantidadMinima;
+                //var CantidadSalida = db.tbSalida.Where(x => x.sal_EsAnulada == false && x.estm_Id == Helpers.sal_Emitida).Select(p => p.sal_Id).ToList();
+                var CantidadSalidaDetalle = db.SDP_Inv_Cantidad_Salida_Emitida(prod_Codigo).Select(x => x.sald_Cantidad).SingleOrDefault();
+                object CantidadPermitida = null;
+                var vCantidad = CantidadExistente - CantidadMinima;
+                if(CantidadSalidaDetalle == null)
+                {
+                    var CantidadAceptada = vCantidad;
+                    CantidadPermitida = new { CantidadAceptada, CantidadMinima };
+
+                }
+                else
+                {
+                    var CantidadAceptada = vCantidad - CantidadSalidaDetalle;
+                    CantidadPermitida = new { CantidadAceptada, CantidadMinima };
+
+                }
 
                 //if (CantidadPermitida == 0 && CantidadMinima > 0)
                 //{
@@ -528,7 +568,6 @@ namespace ERP_GMEDINA.Controllers
                 //    return Json(CantidadPermitida, JsonRequestBehavior.AllowGet);
                 //}
 
-                object CantidadPermitida = new { CantidadAceptada, CantidadMinima };
                 return Json(CantidadPermitida, JsonRequestBehavior.AllowGet);
             }
             catch (Exception Ex)
@@ -547,12 +586,138 @@ namespace ERP_GMEDINA.Controllers
         [SessionManager("Salida/Edit")]
         public ActionResult Edit(int? id, [Bind(Include = "sal_Id, bod_Id,fact_Id,fact_Codigo,sal_FechaElaboracion,estm_Id,tsal_Id,  sal_RazonDevolucion, sal_UsuarioCrea, sal_FechaCrea,tbFactura_fact_Codigo, sal_BodDestino")] tbSalida tbSalida)
         {
-            ViewBag.sal_BodDestino = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbSalida.sal_BodDestino);
-            if (ModelState.IsValid)
+            using (TransactionScope _Tran = new TransactionScope())
             {
                 try
                 {
                     ViewBag.sal_BodDestino = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbSalida.sal_BodDestino);
+                    if (ModelState.IsValid)
+                    {
+                        var list = (List<tbSalidaDetalle>)Session["SalidaDetalle"];
+                        var MensajeError = "0";
+                        var MensajeErrorDetalle = "0";
+                        IEnumerable<object> listSalidaDetalle = null;
+                        IEnumerable<object> listSalida = null;
+
+                        ViewBag.sal_BodDestino = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbSalida.sal_BodDestino);
+                        ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion");
+                        ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_ResponsableBodega", tbSalida.bod_Id);
+                        ViewBag.bod_Nombre = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
+                        ViewBag.estm_Id = new SelectList(db.tbEstadoMovimiento, "estm_Id", "estm_Descripcion", tbSalida.estm_Id);
+                        ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo", tbSalida.fact_Id);
+                        ViewBag.tsal_Id = new SelectList(db.tbTipoSalida, "tsal_Id", "tsal_Descripcion", tbSalida.tsal_Id);
+                        ViewBag.Producto = db.tbBodegaDetalle.ToList();
+                        ViewBag.Cliente = db.tbCliente.ToList();
+
+                        tbSalida pSalida = db.tbSalida.Find(id);
+
+                        listSalida = db.UDP_Inv_tbSalida_Update(tbSalida.sal_Id,
+                                                        tbSalida.bod_Id,
+                                                        tbSalida.fact_Id,
+                                                        tbSalida.sal_FechaElaboracion,
+                                                        tbSalida.estm_Id,
+                                                        tbSalida.tsal_Id,
+                                                        tbSalida.sal_BodDestino,
+                                                        tbSalida.sal_EsAnulada,
+                                                        tbSalida.sal_RazonAnulada,
+                                                        tbSalida.sal_RazonDevolucion,
+                                                        pSalida.sal_UsuarioCrea,
+                                                        pSalida.sal_FechaCrea,
+                                                        Function.GetUser(), Function.DatetimeNow());
+
+                        foreach (UDP_Inv_tbSalida_Update_Result vSalida in listSalida)
+                            MensajeError = vSalida.MensajeError;
+                        if (MensajeError.StartsWith("-1"))
+                        {
+                            ModelState.AddModelError("", "No se pudo agregar el registro");
+                            return View(tbSalida);
+                        }
+                        else
+                        {
+                            var MsjError = Convert.ToInt32(MensajeError);
+                            if (MsjError > 0)
+                            {
+                                if (list != null)
+                                {
+                                    if (list.Count != 0)
+                                    {
+                                        foreach (tbSalidaDetalle Detalle in list)
+                                        {
+                                            var Exits = db.tbSalidaDetalle.Where(
+                                                x => x.prod_Codigo == Detalle.prod_Codigo
+                                                &&
+                                                x.sal_Id == Detalle.sal_Id).FirstOrDefault();
+
+                                            if (Exits != null)
+                                            {
+                                                var Cantidad = db.tbSalidaDetalle.Where(
+                                                x => x.prod_Codigo == Detalle.prod_Codigo
+                                                &&
+                                                x.sal_Id == Detalle.sal_Id).Select(c => c.sald_Cantidad).FirstOrDefault();
+
+                                                var pSalidaDetalle = db.tbSalidaDetalle.Where(x => x.sal_Id == Detalle.sal_Id).Select(c => c.sald_Id).FirstOrDefault();
+                                                tbSalidaDetalle vSalidaDetalle = db.tbSalidaDetalle.Find(pSalidaDetalle);
+
+                                                decimal CantidadNew = Convert.ToDecimal(Exits.sald_Cantidad) + Convert.ToDecimal(Detalle.sald_Cantidad);
+                                                listSalidaDetalle = db.UDP_Inv_tbSalidaDetalle_Update(Exits.sald_Id,
+                                                                                    Exits.sal_Id,
+                                                                                    Detalle.prod_Codigo,
+                                                                                    CantidadNew,
+                                                                                    Exits.box_Codigo,
+                                                                                    Exits.sald_UsuarioCrea,
+                                                                                    Exits.sald_FechaCrea,
+                                                                                    Function.GetUser(),
+                                                                                    Function.DatetimeNow());
+
+                                                foreach (UDP_Inv_tbSalidaDetalle_Update_Result RSSalidaDetalle in listSalidaDetalle)
+                                                    MensajeError = RSSalidaDetalle.MensajeError;
+                                                if (MensajeError.StartsWith("-1"))
+                                                {
+                                                    ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                                                    //return PartialView("_EditSalidaDetalle");
+                                                    return Json(ModelState, JsonRequestBehavior.AllowGet);
+                                                }
+                                            }
+                                            else
+                                            {
+                                                var box_Codigo = "0";
+                                                Detalle.box_Codigo = MensajeError;
+                                                listSalidaDetalle = db.UDP_Inv_tbSalidaDetalle_Insert(
+                                                    Detalle.sal_Id,
+                                                    Detalle.prod_Codigo,
+                                                    Detalle.sald_Cantidad,
+                                                    box_Codigo
+                                                    , Function.GetUser(), Function.DatetimeNow());
+                                                foreach (UDP_Inv_tbSalidaDetalle_Insert_Result spDetalle in listSalidaDetalle)
+                                                {
+                                                    MensajeErrorDetalle = spDetalle.MensajeError;
+                                                    if (MensajeError.StartsWith("-1"))
+                                                    {
+                                                        ModelState.AddModelError("", "No se pudo agregar el registro detalle");
+                                                        return Json("", JsonRequestBehavior.AllowGet);
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                ModelState.AddModelError("", "No se pudo agregar el registro");
+                                Session["SalidaDetalle"] = null;
+                                return View(tbSalida);
+                            }
+                        }
+                        _Tran.Complete();
+                        Session["SalidaDetalle"] = null;
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.Producto = db.tbBodegaDetalle.ToList();
+                        var errors = ModelState.Values.SelectMany(v => v.Errors);
+                    }
                     ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion");
                     ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_ResponsableBodega", tbSalida.bod_Id);
                     ViewBag.bod_Nombre = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
@@ -560,35 +725,8 @@ namespace ERP_GMEDINA.Controllers
                     ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo", tbSalida.fact_Id);
                     ViewBag.tsal_Id = new SelectList(db.tbTipoSalida, "tsal_Id", "tsal_Descripcion", tbSalida.tsal_Id);
                     ViewBag.Producto = db.tbBodegaDetalle.ToList();
-                    ViewBag.Cliente = db.tbCliente.ToList();
-
-                    tbSalida pSalida = db.tbSalida.Find(id);
-
-                    var MensajeError = "";
-                    IEnumerable<object> list = null;
-                    list = db.UDP_Inv_tbSalida_Update(tbSalida.sal_Id,
-                                                    tbSalida.bod_Id,
-                                                    tbSalida.fact_Id,
-                                                    tbSalida.sal_FechaElaboracion,
-                                                    tbSalida.estm_Id,
-                                                    tbSalida.tsal_Id,
-                                                    tbSalida.sal_BodDestino,
-                                                    tbSalida.sal_EsAnulada,
-                                                    tbSalida.sal_RazonAnulada,
-                                                    tbSalida.sal_RazonDevolucion,
-                                                    pSalida.sal_UsuarioCrea,
-                                                    pSalida.sal_FechaCrea,
-                                                    Function.GetUser(), Function.DatetimeNow());
-
-                    foreach (UDP_Inv_tbSalida_Update_Result ListaPrecio in list)
-                        MensajeError = ListaPrecio.MensajeError;
-                    if (MensajeError == "-1")
-                    {
-                    }
-                    else
-                    {
-                        return RedirectToAction("Index");
-                    }
+                    Session["SalidaDetalle"] = null;
+                    return View(tbSalida);
                 }
                 catch (Exception Ex)
                 {
@@ -597,23 +735,9 @@ namespace ERP_GMEDINA.Controllers
                     ViewBag.sal_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbSalida.sal_UsuarioModifica);
                     ViewBag.Producto = db.tbBodegaDetalle.ToList();
                 }
-                Session["SalidaDetalle"] = null;
-                return RedirectToAction("Index");
             }
-            else
-            {
-                ViewBag.Producto = db.tbBodegaDetalle.ToList();
-                var errors = ModelState.Values.SelectMany(v => v.Errors);
-            }
-            ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion");
-            ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_ResponsableBodega", tbSalida.bod_Id);
-            ViewBag.bod_Nombre = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
-            ViewBag.estm_Id = new SelectList(db.tbEstadoMovimiento, "estm_Id", "estm_Descripcion", tbSalida.estm_Id);
-            ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo", tbSalida.fact_Id);
-            ViewBag.tsal_Id = new SelectList(db.tbTipoSalida, "tsal_Id", "tsal_Descripcion", tbSalida.tsal_Id);
-            ViewBag.Producto = db.tbBodegaDetalle.ToList();
             Session["SalidaDetalle"] = null;
-            return View(tbSalida);
+            return RedirectToAction("Index");
         }
 
         public JsonResult FacturaExist(string fact_Codigo)
@@ -644,14 +768,14 @@ namespace ERP_GMEDINA.Controllers
                             if (vFactura.Count() > 0)
                             {
                                 var vFacturaID = db.tbFactura.Where(x => x.fact_Codigo == fact_Codigo).Select(x => x.fact_Id).First();
-                                var vSalida = db.tbSalida.Where(x => x.fact_Id == vFacturaID).ToList();
+                                var vSalida = db.tbSalida.Where(x => x.fact_Id == vFacturaID && x.sal_EsAnulada != true).ToList();
                                 if (vSalida.Count() > 0)
                                 {
                                     Message = "Ya existe una Salida con ese Codigo de Factura";
                                 }
                                 else
                                 {
-                                    Message = "";
+                                    Message = "Factura Disponible";
                                 }
                             }
                             else
@@ -676,14 +800,13 @@ namespace ERP_GMEDINA.Controllers
                 if (ModelState.IsValid)
                 {
                     var MensajeError = "";
-                    byte Estado = 2;
                     IEnumerable<object> list = null;
                     tbSalida tbSalida = db.tbSalida.Find(id);
                     list = db.UDP_Inv_tbSalida_Update(tbSalida.sal_Id,
                                                     tbSalida.bod_Id,
                                                     tbSalida.fact_Id,
                                                     tbSalida.sal_FechaElaboracion,
-                                                    Estado,
+                                                    Helpers.sal_Aplicada,
                                                     tbSalida.tsal_Id,
                                                     tbSalida.sal_BodDestino,
                                                     tbSalida.sal_EsAnulada,
@@ -695,7 +818,7 @@ namespace ERP_GMEDINA.Controllers
 
                     foreach (UDP_Inv_tbSalida_Update_Result Salida in list)
                         MensajeError = Salida.MensajeError;
-                    if (MensajeError == "-1")
+                    if (MensajeError.StartsWith("-1"))
                     {
                     }
                     else
@@ -716,44 +839,13 @@ namespace ERP_GMEDINA.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Imprimir(int id)
-        {
-            //Salida SalidaRD = new Salida();
-            //SalidaRD.SetParameterValue("@sal_Id", id);
-            //var si = SalidaRD;
-
-            ReportDocument rd = new ReportDocument();
-            //    Reports.Salida SalidaRD = new Reports.Salida();
-            //    SalidaRD.SetParameterValue("@sal_Id", id);
-
-            //    SalidaRD.SetDataSource(rd);
-
-            rd.Load(Path.Combine(Server.MapPath("~/Reports"), "Salida.rpt"));
-            //    //var tbsalida = db.tbSalida.ToList();
-            var todo = db.SDP_Inv_Salida_Imprimir(id).ToList();
-
-            rd.SetDataSource(todo);
-            Response.Buffer = false;
-            Response.ClearContent();
-            Response.ClearHeaders();
-            try
-            {
-                Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
-                stream.Seek(0, SeekOrigin.Begin);
-                return File(stream, "application/pdf", "Salida_List.pdf");
-            }
-            catch
-            {
-                throw;
-            }
-        }
+     
 
         public JsonResult Anular(tbSalida Salida)
         {
             try
             {
                 var MensajeError = "";
-                bool EsAnulada = true;
 
                 IEnumerable<object> list = null;
                 tbSalida vSalida = db.tbSalida.Find(Salida.sal_Id);
@@ -764,7 +856,7 @@ namespace ERP_GMEDINA.Controllers
                                                 Helpers.sal_Anulada,
                                                 vSalida.tsal_Id,
                                                 vSalida.sal_BodDestino,
-                                                EsAnulada,
+                                                Helpers.sal_EsAnulada,
                                                 vSalida.sal_RazonDevolucion,
                                                 Salida.sal_RazonAnulada,
                                                 vSalida.sal_UsuarioCrea,
@@ -773,7 +865,7 @@ namespace ERP_GMEDINA.Controllers
 
                 foreach (UDP_Inv_tbSalida_Update_Result RSSalida in list)
                     MensajeError = RSSalida.MensajeError;
-                if (MensajeError == "-1")
+                if (MensajeError.StartsWith("-1"))
                 {
                 }
                 else

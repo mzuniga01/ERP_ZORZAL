@@ -1858,6 +1858,9 @@
     <FunctionImport Name="SDP_Inv_tbBoxDetalle_Select" ReturnType="Collection(ERP_ZORZALModel.SDP_Inv_tbBoxDetalle_Select_Result)">
       <Parameter Name="boxd_Id" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="SDP_Inv_Cantidad_Salida_Emitida" ReturnType="Collection(ERP_ZORZALModel.SDP_Inv_Cantidad_Salida_Emitida_Result)">
+      <Parameter Name="prod_Codigo" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -6801,5 +6804,9 @@
     <Property Type="Decimal" Name="boxd_Cantidad" Nullable="false" Precision="10" Scale="2" />
     <Property Type="String" Name="prod_CodigoBarras" Nullable="false" MaxLength="15" />
     <Property Type="String" Name="box_Codigo" Nullable="false" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="SDP_Inv_Cantidad_Salida_Emitida_Result">
+    <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
+    <Property Type="Decimal" Name="sald_Cantidad" Nullable="true" Precision="38" Scale="2" />
   </ComplexType>
 </Schema>
