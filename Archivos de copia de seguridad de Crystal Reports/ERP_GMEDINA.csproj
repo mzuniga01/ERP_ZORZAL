@@ -1220,7 +1220,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>InventarioNumeraciones.rpt</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\PagoImprimir1.cs">
       <AutoGen>True</AutoGen>
@@ -1264,6 +1263,20 @@
     </Compile>
     <Compile Include="ReportViewer\EstadoCuenta.aspx.designer.cs">
       <DependentUpon>EstadoCuenta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReportViewer\InventarioNumeraciones.aspx.cs">
+      <DependentUpon>InventarioNumeraciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReportViewer\InventarioNumeraciones.aspx.designer.cs">
+      <DependentUpon>InventarioNumeraciones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReportViewer\PuntoEmision.aspx.cs">
+      <DependentUpon>PuntoEmision.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReportViewer\PuntoEmision.aspx.designer.cs">
+      <DependentUpon>PuntoEmision.aspx</DependentUpon>
     </Compile>
     <Compile Include="ReportViewer\VentasentreFechas.aspx.cs">
       <DependentUpon>VentasentreFechas.aspx</DependentUpon>
@@ -1511,6 +1524,8 @@
       <LastGenOutput>ModelERP.cs</LastGenOutput>
     </Content>
     <Content Include="ReportViewer\EstadoCuenta.aspx" />
+    <Content Include="ReportViewer\InventarioNumeraciones.aspx" />
+    <Content Include="ReportViewer\PuntoEmision.aspx" />
     <Content Include="ReportViewer\VentasentreFechas.aspx" />
     <Content Include="Scripts\app\AceptarSolicitudCre.js" />
     <Content Include="Scripts\app\Activo.js" />
