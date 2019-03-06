@@ -41,7 +41,6 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbIdentificacionCliente> tbIdentificacionCliente { get; set; }
         public virtual DbSet<tbMoneda> tbMoneda { get; set; }
         public virtual DbSet<tbMunicipio> tbMunicipio { get; set; }
-        public virtual DbSet<tbParametro> tbParametro { get; set; }
         public virtual DbSet<tbTipoIdentificacion> tbTipoIdentificacion { get; set; }
         public virtual DbSet<tbUnidadMedida> tbUnidadMedida { get; set; }
         public virtual DbSet<tbBodega> tbBodega { get; set; }
@@ -94,152 +93,7 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbProducto> tbProducto { get; set; }
         public virtual DbSet<tbBoxDetalle> tbBoxDetalle { get; set; }
         public virtual DbSet<tbBox> tbBox { get; set; }
-    
-        public virtual ObjectResult<UDP_Gral_tbParametro_Insert_Result> UDP_Gral_tbParametro_Insert(Nullable<byte> par_Id, string par_NombreEmpresa, string par_TelefonoEmpresa, string par_CorreoEmpresa, string par_PathLogo, Nullable<short> mnda_Id, Nullable<int> par_RolGerenteTienda, Nullable<int> par_RolCreditoCobranza, Nullable<int> par_RolSupervisorCaja, Nullable<int> par_RolCajero, Nullable<int> par_RolAuditor, Nullable<short> par_SucursalPrincipal, Nullable<decimal> par_PorcentajeDescuentoTE, Nullable<int> par_IdConsumidorFinal, Nullable<int> par_UsuarioCrea, Nullable<System.DateTime> par_FechaCrea)
-        {
-            var par_IdParameter = par_Id.HasValue ?
-                new ObjectParameter("par_Id", par_Id) :
-                new ObjectParameter("par_Id", typeof(byte));
-    
-            var par_NombreEmpresaParameter = par_NombreEmpresa != null ?
-                new ObjectParameter("par_NombreEmpresa", par_NombreEmpresa) :
-                new ObjectParameter("par_NombreEmpresa", typeof(string));
-    
-            var par_TelefonoEmpresaParameter = par_TelefonoEmpresa != null ?
-                new ObjectParameter("par_TelefonoEmpresa", par_TelefonoEmpresa) :
-                new ObjectParameter("par_TelefonoEmpresa", typeof(string));
-    
-            var par_CorreoEmpresaParameter = par_CorreoEmpresa != null ?
-                new ObjectParameter("par_CorreoEmpresa", par_CorreoEmpresa) :
-                new ObjectParameter("par_CorreoEmpresa", typeof(string));
-    
-            var par_PathLogoParameter = par_PathLogo != null ?
-                new ObjectParameter("par_PathLogo", par_PathLogo) :
-                new ObjectParameter("par_PathLogo", typeof(string));
-    
-            var mnda_IdParameter = mnda_Id.HasValue ?
-                new ObjectParameter("mnda_Id", mnda_Id) :
-                new ObjectParameter("mnda_Id", typeof(short));
-    
-            var par_RolGerenteTiendaParameter = par_RolGerenteTienda.HasValue ?
-                new ObjectParameter("par_RolGerenteTienda", par_RolGerenteTienda) :
-                new ObjectParameter("par_RolGerenteTienda", typeof(int));
-    
-            var par_RolCreditoCobranzaParameter = par_RolCreditoCobranza.HasValue ?
-                new ObjectParameter("par_RolCreditoCobranza", par_RolCreditoCobranza) :
-                new ObjectParameter("par_RolCreditoCobranza", typeof(int));
-    
-            var par_RolSupervisorCajaParameter = par_RolSupervisorCaja.HasValue ?
-                new ObjectParameter("par_RolSupervisorCaja", par_RolSupervisorCaja) :
-                new ObjectParameter("par_RolSupervisorCaja", typeof(int));
-    
-            var par_RolCajeroParameter = par_RolCajero.HasValue ?
-                new ObjectParameter("par_RolCajero", par_RolCajero) :
-                new ObjectParameter("par_RolCajero", typeof(int));
-    
-            var par_RolAuditorParameter = par_RolAuditor.HasValue ?
-                new ObjectParameter("par_RolAuditor", par_RolAuditor) :
-                new ObjectParameter("par_RolAuditor", typeof(int));
-    
-            var par_SucursalPrincipalParameter = par_SucursalPrincipal.HasValue ?
-                new ObjectParameter("par_SucursalPrincipal", par_SucursalPrincipal) :
-                new ObjectParameter("par_SucursalPrincipal", typeof(short));
-    
-            var par_PorcentajeDescuentoTEParameter = par_PorcentajeDescuentoTE.HasValue ?
-                new ObjectParameter("par_PorcentajeDescuentoTE", par_PorcentajeDescuentoTE) :
-                new ObjectParameter("par_PorcentajeDescuentoTE", typeof(decimal));
-    
-            var par_IdConsumidorFinalParameter = par_IdConsumidorFinal.HasValue ?
-                new ObjectParameter("par_IdConsumidorFinal", par_IdConsumidorFinal) :
-                new ObjectParameter("par_IdConsumidorFinal", typeof(int));
-    
-            var par_UsuarioCreaParameter = par_UsuarioCrea.HasValue ?
-                new ObjectParameter("par_UsuarioCrea", par_UsuarioCrea) :
-                new ObjectParameter("par_UsuarioCrea", typeof(int));
-    
-            var par_FechaCreaParameter = par_FechaCrea.HasValue ?
-                new ObjectParameter("par_FechaCrea", par_FechaCrea) :
-                new ObjectParameter("par_FechaCrea", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbParametro_Insert_Result>("UDP_Gral_tbParametro_Insert", par_IdParameter, par_NombreEmpresaParameter, par_TelefonoEmpresaParameter, par_CorreoEmpresaParameter, par_PathLogoParameter, mnda_IdParameter, par_RolGerenteTiendaParameter, par_RolCreditoCobranzaParameter, par_RolSupervisorCajaParameter, par_RolCajeroParameter, par_RolAuditorParameter, par_SucursalPrincipalParameter, par_PorcentajeDescuentoTEParameter, par_IdConsumidorFinalParameter, par_UsuarioCreaParameter, par_FechaCreaParameter);
-        }
-    
-        public virtual ObjectResult<UDP_Gral_tbParametro_Update_Result> UDP_Gral_tbParametro_Update(Nullable<byte> par_Id, string par_NombreEmpresa, string par_TelefonoEmpresa, string par_CorreoEmpresa, string par_PathLogo, Nullable<short> mnda_Id, Nullable<int> par_RolGerenteTienda, Nullable<int> par_RolCreditoCobranza, Nullable<int> par_RolSupervisorCaja, Nullable<int> par_RolCajero, Nullable<int> par_RolAuditor, Nullable<short> par_SucursalPrincipal, Nullable<int> par_UsuarioCrea, Nullable<System.DateTime> par_FechaCrea, Nullable<decimal> par_PorcentajeDescuentoTE, Nullable<int> par_IdConsumidorFinal, Nullable<int> par_UsuarioModifica, Nullable<System.DateTime> par_FechaModifica)
-        {
-            var par_IdParameter = par_Id.HasValue ?
-                new ObjectParameter("par_Id", par_Id) :
-                new ObjectParameter("par_Id", typeof(byte));
-    
-            var par_NombreEmpresaParameter = par_NombreEmpresa != null ?
-                new ObjectParameter("par_NombreEmpresa", par_NombreEmpresa) :
-                new ObjectParameter("par_NombreEmpresa", typeof(string));
-    
-            var par_TelefonoEmpresaParameter = par_TelefonoEmpresa != null ?
-                new ObjectParameter("par_TelefonoEmpresa", par_TelefonoEmpresa) :
-                new ObjectParameter("par_TelefonoEmpresa", typeof(string));
-    
-            var par_CorreoEmpresaParameter = par_CorreoEmpresa != null ?
-                new ObjectParameter("par_CorreoEmpresa", par_CorreoEmpresa) :
-                new ObjectParameter("par_CorreoEmpresa", typeof(string));
-    
-            var par_PathLogoParameter = par_PathLogo != null ?
-                new ObjectParameter("par_PathLogo", par_PathLogo) :
-                new ObjectParameter("par_PathLogo", typeof(string));
-    
-            var mnda_IdParameter = mnda_Id.HasValue ?
-                new ObjectParameter("mnda_Id", mnda_Id) :
-                new ObjectParameter("mnda_Id", typeof(short));
-    
-            var par_RolGerenteTiendaParameter = par_RolGerenteTienda.HasValue ?
-                new ObjectParameter("par_RolGerenteTienda", par_RolGerenteTienda) :
-                new ObjectParameter("par_RolGerenteTienda", typeof(int));
-    
-            var par_RolCreditoCobranzaParameter = par_RolCreditoCobranza.HasValue ?
-                new ObjectParameter("par_RolCreditoCobranza", par_RolCreditoCobranza) :
-                new ObjectParameter("par_RolCreditoCobranza", typeof(int));
-    
-            var par_RolSupervisorCajaParameter = par_RolSupervisorCaja.HasValue ?
-                new ObjectParameter("par_RolSupervisorCaja", par_RolSupervisorCaja) :
-                new ObjectParameter("par_RolSupervisorCaja", typeof(int));
-    
-            var par_RolCajeroParameter = par_RolCajero.HasValue ?
-                new ObjectParameter("par_RolCajero", par_RolCajero) :
-                new ObjectParameter("par_RolCajero", typeof(int));
-    
-            var par_RolAuditorParameter = par_RolAuditor.HasValue ?
-                new ObjectParameter("par_RolAuditor", par_RolAuditor) :
-                new ObjectParameter("par_RolAuditor", typeof(int));
-    
-            var par_SucursalPrincipalParameter = par_SucursalPrincipal.HasValue ?
-                new ObjectParameter("par_SucursalPrincipal", par_SucursalPrincipal) :
-                new ObjectParameter("par_SucursalPrincipal", typeof(short));
-    
-            var par_UsuarioCreaParameter = par_UsuarioCrea.HasValue ?
-                new ObjectParameter("par_UsuarioCrea", par_UsuarioCrea) :
-                new ObjectParameter("par_UsuarioCrea", typeof(int));
-    
-            var par_FechaCreaParameter = par_FechaCrea.HasValue ?
-                new ObjectParameter("par_FechaCrea", par_FechaCrea) :
-                new ObjectParameter("par_FechaCrea", typeof(System.DateTime));
-    
-            var par_PorcentajeDescuentoTEParameter = par_PorcentajeDescuentoTE.HasValue ?
-                new ObjectParameter("par_PorcentajeDescuentoTE", par_PorcentajeDescuentoTE) :
-                new ObjectParameter("par_PorcentajeDescuentoTE", typeof(decimal));
-    
-            var par_IdConsumidorFinalParameter = par_IdConsumidorFinal.HasValue ?
-                new ObjectParameter("par_IdConsumidorFinal", par_IdConsumidorFinal) :
-                new ObjectParameter("par_IdConsumidorFinal", typeof(int));
-    
-            var par_UsuarioModificaParameter = par_UsuarioModifica.HasValue ?
-                new ObjectParameter("par_UsuarioModifica", par_UsuarioModifica) :
-                new ObjectParameter("par_UsuarioModifica", typeof(int));
-    
-            var par_FechaModificaParameter = par_FechaModifica.HasValue ?
-                new ObjectParameter("par_FechaModifica", par_FechaModifica) :
-                new ObjectParameter("par_FechaModifica", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbParametro_Update_Result>("UDP_Gral_tbParametro_Update", par_IdParameter, par_NombreEmpresaParameter, par_TelefonoEmpresaParameter, par_CorreoEmpresaParameter, par_PathLogoParameter, mnda_IdParameter, par_RolGerenteTiendaParameter, par_RolCreditoCobranzaParameter, par_RolSupervisorCajaParameter, par_RolCajeroParameter, par_RolAuditorParameter, par_SucursalPrincipalParameter, par_UsuarioCreaParameter, par_FechaCreaParameter, par_PorcentajeDescuentoTEParameter, par_IdConsumidorFinalParameter, par_UsuarioModificaParameter, par_FechaModificaParameter);
-        }
+        public virtual DbSet<tbParametro> tbParametro { get; set; }
     
         public virtual ObjectResult<UDP_Acce_tbRolesUsuario_Update_Result> UDP_Acce_tbRolesUsuario_Update(Nullable<int> rolu_Id, Nullable<int> rol_Id, Nullable<int> usu_Id, Nullable<int> rolu_UsuarioCrea, Nullable<System.DateTime> rolu_FechaCrea)
         {
@@ -3200,6 +3054,152 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("prod_CodigoBarras", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_tbInventariofisico_ProductosRepetidos_Result1>("SP_tbInventariofisico_ProductosRepetidos", prod_CodigoBarrasParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Gral_tbParametro_Insert_Result> UDP_Gral_tbParametro_Insert(Nullable<byte> par_Id, string par_NombreEmpresa, string par_TelefonoEmpresa, string par_CorreoEmpresa, string par_PathLogo, Nullable<short> mnda_Id, Nullable<int> par_RolGerenteTienda, Nullable<int> par_RolCreditoCobranza, Nullable<int> par_RolSupervisorCaja, Nullable<int> par_RolCajero, Nullable<int> par_RolAuditor, Nullable<int> par_SucursalPrincipal, Nullable<decimal> par_PorcentajeDescuentoTE, Nullable<int> par_IdConsumidorFinal, Nullable<int> par_UsuarioCrea, Nullable<System.DateTime> par_FechaCrea)
+        {
+            var par_IdParameter = par_Id.HasValue ?
+                new ObjectParameter("par_Id", par_Id) :
+                new ObjectParameter("par_Id", typeof(byte));
+    
+            var par_NombreEmpresaParameter = par_NombreEmpresa != null ?
+                new ObjectParameter("par_NombreEmpresa", par_NombreEmpresa) :
+                new ObjectParameter("par_NombreEmpresa", typeof(string));
+    
+            var par_TelefonoEmpresaParameter = par_TelefonoEmpresa != null ?
+                new ObjectParameter("par_TelefonoEmpresa", par_TelefonoEmpresa) :
+                new ObjectParameter("par_TelefonoEmpresa", typeof(string));
+    
+            var par_CorreoEmpresaParameter = par_CorreoEmpresa != null ?
+                new ObjectParameter("par_CorreoEmpresa", par_CorreoEmpresa) :
+                new ObjectParameter("par_CorreoEmpresa", typeof(string));
+    
+            var par_PathLogoParameter = par_PathLogo != null ?
+                new ObjectParameter("par_PathLogo", par_PathLogo) :
+                new ObjectParameter("par_PathLogo", typeof(string));
+    
+            var mnda_IdParameter = mnda_Id.HasValue ?
+                new ObjectParameter("mnda_Id", mnda_Id) :
+                new ObjectParameter("mnda_Id", typeof(short));
+    
+            var par_RolGerenteTiendaParameter = par_RolGerenteTienda.HasValue ?
+                new ObjectParameter("par_RolGerenteTienda", par_RolGerenteTienda) :
+                new ObjectParameter("par_RolGerenteTienda", typeof(int));
+    
+            var par_RolCreditoCobranzaParameter = par_RolCreditoCobranza.HasValue ?
+                new ObjectParameter("par_RolCreditoCobranza", par_RolCreditoCobranza) :
+                new ObjectParameter("par_RolCreditoCobranza", typeof(int));
+    
+            var par_RolSupervisorCajaParameter = par_RolSupervisorCaja.HasValue ?
+                new ObjectParameter("par_RolSupervisorCaja", par_RolSupervisorCaja) :
+                new ObjectParameter("par_RolSupervisorCaja", typeof(int));
+    
+            var par_RolCajeroParameter = par_RolCajero.HasValue ?
+                new ObjectParameter("par_RolCajero", par_RolCajero) :
+                new ObjectParameter("par_RolCajero", typeof(int));
+    
+            var par_RolAuditorParameter = par_RolAuditor.HasValue ?
+                new ObjectParameter("par_RolAuditor", par_RolAuditor) :
+                new ObjectParameter("par_RolAuditor", typeof(int));
+    
+            var par_SucursalPrincipalParameter = par_SucursalPrincipal.HasValue ?
+                new ObjectParameter("par_SucursalPrincipal", par_SucursalPrincipal) :
+                new ObjectParameter("par_SucursalPrincipal", typeof(int));
+    
+            var par_PorcentajeDescuentoTEParameter = par_PorcentajeDescuentoTE.HasValue ?
+                new ObjectParameter("par_PorcentajeDescuentoTE", par_PorcentajeDescuentoTE) :
+                new ObjectParameter("par_PorcentajeDescuentoTE", typeof(decimal));
+    
+            var par_IdConsumidorFinalParameter = par_IdConsumidorFinal.HasValue ?
+                new ObjectParameter("par_IdConsumidorFinal", par_IdConsumidorFinal) :
+                new ObjectParameter("par_IdConsumidorFinal", typeof(int));
+    
+            var par_UsuarioCreaParameter = par_UsuarioCrea.HasValue ?
+                new ObjectParameter("par_UsuarioCrea", par_UsuarioCrea) :
+                new ObjectParameter("par_UsuarioCrea", typeof(int));
+    
+            var par_FechaCreaParameter = par_FechaCrea.HasValue ?
+                new ObjectParameter("par_FechaCrea", par_FechaCrea) :
+                new ObjectParameter("par_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbParametro_Insert_Result>("UDP_Gral_tbParametro_Insert", par_IdParameter, par_NombreEmpresaParameter, par_TelefonoEmpresaParameter, par_CorreoEmpresaParameter, par_PathLogoParameter, mnda_IdParameter, par_RolGerenteTiendaParameter, par_RolCreditoCobranzaParameter, par_RolSupervisorCajaParameter, par_RolCajeroParameter, par_RolAuditorParameter, par_SucursalPrincipalParameter, par_PorcentajeDescuentoTEParameter, par_IdConsumidorFinalParameter, par_UsuarioCreaParameter, par_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Gral_tbParametro_Update_Result> UDP_Gral_tbParametro_Update(Nullable<byte> par_Id, string par_NombreEmpresa, string par_TelefonoEmpresa, string par_CorreoEmpresa, string par_PathLogo, Nullable<short> mnda_Id, Nullable<int> par_RolGerenteTienda, Nullable<int> par_RolCreditoCobranza, Nullable<int> par_RolSupervisorCaja, Nullable<int> par_RolCajero, Nullable<int> par_RolAuditor, Nullable<int> par_SucursalPrincipal, Nullable<int> par_UsuarioCrea, Nullable<System.DateTime> par_FechaCrea, Nullable<decimal> par_PorcentajeDescuentoTE, Nullable<int> par_IdConsumidorFinal, Nullable<int> par_UsuarioModifica, Nullable<System.DateTime> par_FechaModifica)
+        {
+            var par_IdParameter = par_Id.HasValue ?
+                new ObjectParameter("par_Id", par_Id) :
+                new ObjectParameter("par_Id", typeof(byte));
+    
+            var par_NombreEmpresaParameter = par_NombreEmpresa != null ?
+                new ObjectParameter("par_NombreEmpresa", par_NombreEmpresa) :
+                new ObjectParameter("par_NombreEmpresa", typeof(string));
+    
+            var par_TelefonoEmpresaParameter = par_TelefonoEmpresa != null ?
+                new ObjectParameter("par_TelefonoEmpresa", par_TelefonoEmpresa) :
+                new ObjectParameter("par_TelefonoEmpresa", typeof(string));
+    
+            var par_CorreoEmpresaParameter = par_CorreoEmpresa != null ?
+                new ObjectParameter("par_CorreoEmpresa", par_CorreoEmpresa) :
+                new ObjectParameter("par_CorreoEmpresa", typeof(string));
+    
+            var par_PathLogoParameter = par_PathLogo != null ?
+                new ObjectParameter("par_PathLogo", par_PathLogo) :
+                new ObjectParameter("par_PathLogo", typeof(string));
+    
+            var mnda_IdParameter = mnda_Id.HasValue ?
+                new ObjectParameter("mnda_Id", mnda_Id) :
+                new ObjectParameter("mnda_Id", typeof(short));
+    
+            var par_RolGerenteTiendaParameter = par_RolGerenteTienda.HasValue ?
+                new ObjectParameter("par_RolGerenteTienda", par_RolGerenteTienda) :
+                new ObjectParameter("par_RolGerenteTienda", typeof(int));
+    
+            var par_RolCreditoCobranzaParameter = par_RolCreditoCobranza.HasValue ?
+                new ObjectParameter("par_RolCreditoCobranza", par_RolCreditoCobranza) :
+                new ObjectParameter("par_RolCreditoCobranza", typeof(int));
+    
+            var par_RolSupervisorCajaParameter = par_RolSupervisorCaja.HasValue ?
+                new ObjectParameter("par_RolSupervisorCaja", par_RolSupervisorCaja) :
+                new ObjectParameter("par_RolSupervisorCaja", typeof(int));
+    
+            var par_RolCajeroParameter = par_RolCajero.HasValue ?
+                new ObjectParameter("par_RolCajero", par_RolCajero) :
+                new ObjectParameter("par_RolCajero", typeof(int));
+    
+            var par_RolAuditorParameter = par_RolAuditor.HasValue ?
+                new ObjectParameter("par_RolAuditor", par_RolAuditor) :
+                new ObjectParameter("par_RolAuditor", typeof(int));
+    
+            var par_SucursalPrincipalParameter = par_SucursalPrincipal.HasValue ?
+                new ObjectParameter("par_SucursalPrincipal", par_SucursalPrincipal) :
+                new ObjectParameter("par_SucursalPrincipal", typeof(int));
+    
+            var par_UsuarioCreaParameter = par_UsuarioCrea.HasValue ?
+                new ObjectParameter("par_UsuarioCrea", par_UsuarioCrea) :
+                new ObjectParameter("par_UsuarioCrea", typeof(int));
+    
+            var par_FechaCreaParameter = par_FechaCrea.HasValue ?
+                new ObjectParameter("par_FechaCrea", par_FechaCrea) :
+                new ObjectParameter("par_FechaCrea", typeof(System.DateTime));
+    
+            var par_PorcentajeDescuentoTEParameter = par_PorcentajeDescuentoTE.HasValue ?
+                new ObjectParameter("par_PorcentajeDescuentoTE", par_PorcentajeDescuentoTE) :
+                new ObjectParameter("par_PorcentajeDescuentoTE", typeof(decimal));
+    
+            var par_IdConsumidorFinalParameter = par_IdConsumidorFinal.HasValue ?
+                new ObjectParameter("par_IdConsumidorFinal", par_IdConsumidorFinal) :
+                new ObjectParameter("par_IdConsumidorFinal", typeof(int));
+    
+            var par_UsuarioModificaParameter = par_UsuarioModifica.HasValue ?
+                new ObjectParameter("par_UsuarioModifica", par_UsuarioModifica) :
+                new ObjectParameter("par_UsuarioModifica", typeof(int));
+    
+            var par_FechaModificaParameter = par_FechaModifica.HasValue ?
+                new ObjectParameter("par_FechaModifica", par_FechaModifica) :
+                new ObjectParameter("par_FechaModifica", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbParametro_Update_Result>("UDP_Gral_tbParametro_Update", par_IdParameter, par_NombreEmpresaParameter, par_TelefonoEmpresaParameter, par_CorreoEmpresaParameter, par_PathLogoParameter, mnda_IdParameter, par_RolGerenteTiendaParameter, par_RolCreditoCobranzaParameter, par_RolSupervisorCajaParameter, par_RolCajeroParameter, par_RolAuditorParameter, par_SucursalPrincipalParameter, par_UsuarioCreaParameter, par_FechaCreaParameter, par_PorcentajeDescuentoTEParameter, par_IdConsumidorFinalParameter, par_UsuarioModificaParameter, par_FechaModificaParameter);
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿$(function () {
     //Factura
     $("#emp_FechaNacimiento").datepicker({
-        dateFormat: 'dd-mm-yy',               
+        dateFormat: 'mm-dd-yy',               
         changeMonth: true,
         monthNamesShort: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
@@ -12,7 +12,7 @@
     
         //Factura
     $("#emp_FechaNacimientoEdit").datepicker({
-        dateFormat: 'dd-mm-yy',
+        dateFormat: 'mm-dd-yy',
         changeMonth: true,
         monthNamesShort: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
@@ -26,13 +26,13 @@
 $(function () {
     //Factura
     $("#emp_FechaIngreso").datepicker({
-        dateFormat: 'dd-mm-yy',
+        dateFormat: 'mm-dd-yy',
         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá']
     }).datepicker("setDate", new Date());
 
     $("#emp_FechaIngresoEdit").datepicker({
-        dateFormat: 'dd-mm-yy',
+        dateFormat: 'mm-dd-yy',
         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá']
     }).datepicker();
@@ -41,7 +41,7 @@ $(function () {
 $(function () {
     //Factura
     $("#emp_FechaDeSalida").datepicker({
-        dateFormat: 'dd-mm-yy',
+        dateFormat: 'mm-dd-yy',
         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá']
     }).datepicker("setDate", new Date());
@@ -105,9 +105,14 @@ $("#emp_Telefono").on("keypress keyup blur", function (event) {
     $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
     if ((event.which != 46 || $(this).val().indexOf('') != -1) && (event.which < 48 || event.which > 57)) {
         event.preventDefault();
+        
     }
    
 });
+
+
+
+
 $('#emp_Telefono').change(function (e) {
 
     $('#Errortelefono').text('');

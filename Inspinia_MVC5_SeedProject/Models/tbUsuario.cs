@@ -88,8 +88,6 @@ namespace ERP_GMEDINA.Models
             this.tbDepartamento1 = new HashSet<tbDepartamento>();
             this.tbMunicipio = new HashSet<tbMunicipio>();
             this.tbMunicipio1 = new HashSet<tbMunicipio>();
-            this.tbParametro = new HashSet<tbParametro>();
-            this.tbParametro1 = new HashSet<tbParametro>();
             this.tbUnidadMedida = new HashSet<tbUnidadMedida>();
             this.tbUnidadMedida1 = new HashSet<tbUnidadMedida>();
             this.tbBodega = new HashSet<tbBodega>();
@@ -143,6 +141,8 @@ namespace ERP_GMEDINA.Models
             this.tbEstadoInventarioFisico1 = new HashSet<tbEstadoInventarioFisico>();
             this.tbBoxDetalle = new HashSet<tbBoxDetalle>();
             this.tbBox = new HashSet<tbBox>();
+            this.tbParametro = new HashSet<tbParametro>();
+            this.tbParametro1 = new HashSet<tbParametro>();
         }
     
         public int usu_Id { get; set; }
@@ -302,10 +302,6 @@ namespace ERP_GMEDINA.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbMunicipio> tbMunicipio1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbParametro> tbParametro { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbParametro> tbParametro1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbUnidadMedida> tbUnidadMedida { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbUnidadMedida> tbUnidadMedida1 { get; set; }
@@ -413,5 +409,9 @@ namespace ERP_GMEDINA.Models
         public virtual ICollection<tbBoxDetalle> tbBoxDetalle { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbBox> tbBox { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbParametro> tbParametro { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbParametro> tbParametro1 { get; set; }
     }
 }

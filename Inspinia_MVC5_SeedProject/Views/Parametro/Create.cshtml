@@ -145,7 +145,7 @@
         <div class="form-group">
             <label class="control-label col-md-2">Sucursal Principal<span style="color:red">*</span></label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.par_SucursalPrincipal)
+               @Html.DropDownList("par_SucursalPrincipal", (IEnumerable<SelectListItem>)ViewBag.sucursal, "Seleccione", new { @class = "form-control" })
                  @Html.ValidationMessageFor(model => model.par_SucursalPrincipal, null, new { style = "color:red", id = "errorsucursalprincipal" })
 </div>
         </div>
@@ -183,6 +183,7 @@
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/Parametro.js"></script>
+<script src="~/Scripts/jquery.maskedinput.min.js"></script>
                 
 
 @section Scripts {

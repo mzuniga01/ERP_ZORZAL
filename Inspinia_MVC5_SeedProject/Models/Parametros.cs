@@ -51,7 +51,7 @@ namespace ERP_GMEDINA.Models
         public int par_RolAuditor { get; set; }
         [Display(Name = "Sucursal Principal")]
         [Required]
-        public short par_SucursalPrincipal { get; set; }
+        public int par_SucursalPrincipal { get; set; }
         public int par_UsuarioCrea { get; set; }
         public System.DateTime par_FechaCrea { get; set; }
         public Nullable<int> par_UsuarioModifica { get; set; }

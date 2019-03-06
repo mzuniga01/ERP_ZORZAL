@@ -97,7 +97,8 @@ $('#CargarFoto').change(function () {
 });
 
 //Numero de telefono
-
+var selector = "#par_TelefonoEmpresa";
+$(selector).mask("+999-99999-9999", { reverse: true });
 
 
 
