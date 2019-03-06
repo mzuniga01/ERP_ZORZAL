@@ -5,6 +5,18 @@ function validar(e) {
     return /^[a-záéíóúñ\s]*$/i.test(tecla);
 }
 
+function Copy(string) {//solo letras y numeros
+    var out = '';
+    //Se añaden las letras validas
+    var filtro = 'abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZáéíóúÁÉÍÓÚ ,.';
+    for (var i = 0; i < string.length; i++)
+        if (filtro.indexOf(string.charAt(i)) != -1)
+            out += string.charAt(i);
+
+    return out;
+}
+
+
 
 //Validar letras y números
 function validarJ(e) {
@@ -62,5 +74,14 @@ function validartel(e) {
 }
 
 
+///Validacion para no pegar caracteres
+ function Caracteres(string) {
+    var out = '';
+    //Se añaden las letras validas
+    var filtro = '1234567890-+ ';
+    for (var i = 0; i < string.length; i++)
+        if (filtro.indexOf(string.charAt(i)) != -1)
+            out += string.charAt(i);
 
- 
+    return out;
+}

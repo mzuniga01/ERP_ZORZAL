@@ -58,7 +58,7 @@
         <div class="form-group">
             <label class="control-label col-md-2">Descripción<span style="color:red"> *</span></label>
             <div class="col-md-5">
-                @Html.EditorFor(model => model.esfac_Descripcion, new { htmlAttributes = new { @autocomplete = "off", @style = "text-transform:uppercase;", onkeypress = "return validar(event)" } })
+                @Html.EditorFor(model => model.esfac_Descripcion, new { htmlAttributes = new { @autocomplete = "off", @style = "text-transform:uppercase;", onkeypress = "return validar(event)", @onkeyup = "this.value=Copy(this.value)" } })
                 <p style="color:red">  @Html.ValidationMessageFor(model => model.esfac_Descripcion)</p>
             </div>
         </div>
