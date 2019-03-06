@@ -10,6 +10,8 @@ using ERP_GMEDINA.Models;
 using System.Transactions;
 using CrystalDecisions.CrystalReports.Engine;
 using System.IO;
+using ERP_GMEDINA.Dataset.ReportesTableAdapters;
+using ERP_GMEDINA.Dataset;
 
 namespace ERP_ZORZAL.Controllers
 {
@@ -386,34 +388,20 @@ namespace ERP_ZORZAL.Controllers
 
         public ActionResult ExportReport(int suc_Id)
         {
-            ReportDocument rd = new ReportDocument();
-            rd.Load(Path.Combine(Server.MapPath("~/Reports"), "InventarioNumeraciones.rpt"));
-            //var tbSucursal = db.UDP_Vent_InventarioNumeraciones(suc_Id).ToList();
-            var todo = (from s in db.UDV_Vent_InventarioNumeraciones
-                        where s.suc_Id == suc_Id
-                        select new
-                        {
-                            suc_Id = s.suc_Id,
-                            suc_Descripcion = s.suc_Descripcion,
-                            suc_Telefono = s.suc_Telefono,
-                            pemi_NumeroCAI = s.pemi_NumeroCAI,
-                            pemid_RangoInicio = s.pemid_RangoInicio,
-                            pemid_RangoFinal = s.pemid_RangoFinal,
-                            pemid_NumeroActual = s.pemid_NumeroActual,
-                            pemid_FechaLimite = s.pemid_FechaLimite
-                        }).ToList();
+            UDV_Vent_InventarioNumeracionesTableAdapter InventarioNumeracionTableAdapter = new UDV_Vent_InventarioNumeracionesTableAdapter();
+            Reportes.UDV_Vent_InventarioNumeracionesDataTable InventarioNumeracionDataTable = new Reportes.UDV_Vent_InventarioNumeracionesDataTable();
 
-            rd.SetDataSource(todo);
-            Response.Buffer = false;
-            Response.ClearContent();
-            Response.ClearHeaders();
             try
             {
-                Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
-                return File(stream, "application/pdf");
+                InventarioNumeracionTableAdapter.FillFiltros(InventarioNumeracionDataTable, suc_Id);
+                var DataSetResult = InventarioNumeracionTableAdapter.GetData(suc_Id).ToList();
+
+                var Url = "../ReportViewer/InventarioNumeraciones.aspx";
+                return RedirectToAction(Url);
             }
-            catch
+            catch (Exception Ex)
             {
+                Ex.Message.ToString();
                 throw;
             }
         }

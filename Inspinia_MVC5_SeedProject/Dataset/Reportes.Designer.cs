@@ -664,8 +664,6 @@ namespace ERP_GMEDINA.Dataset {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class UDV_Vent_InventarioNumeracionesDataTable : global::System.Data.TypedTableBase<UDV_Vent_InventarioNumeracionesRow> {
             
-            private global::System.Data.DataColumn columnsuc_Id;
-            
             private global::System.Data.DataColumn columnsuc_Descripcion;
             
             private global::System.Data.DataColumn columnsuc_Telefono;
@@ -719,14 +717,6 @@ namespace ERP_GMEDINA.Dataset {
             protected UDV_Vent_InventarioNumeracionesDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn suc_IdColumn {
-                get {
-                    return this.columnsuc_Id;
-                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -854,10 +844,9 @@ namespace ERP_GMEDINA.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public UDV_Vent_InventarioNumeracionesRow AddUDV_Vent_InventarioNumeracionesRow(int suc_Id, string suc_Descripcion, string suc_Telefono, string pemi_NumeroCAI, string pemid_RangoInicio, string pemid_RangoFinal, string pemid_NumeroActual, System.DateTime pemid_FechaLimite, string dfisc_Descripcion, string Estado, string DiasDisponibles, int NumeracionesDisponibles) {
+            public UDV_Vent_InventarioNumeracionesRow AddUDV_Vent_InventarioNumeracionesRow(string suc_Descripcion, string suc_Telefono, string pemi_NumeroCAI, string pemid_RangoInicio, string pemid_RangoFinal, string pemid_NumeroActual, System.DateTime pemid_FechaLimite, string dfisc_Descripcion, string Estado, string DiasDisponibles, int NumeracionesDisponibles) {
                 UDV_Vent_InventarioNumeracionesRow rowUDV_Vent_InventarioNumeracionesRow = ((UDV_Vent_InventarioNumeracionesRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        suc_Id,
                         suc_Descripcion,
                         suc_Telefono,
                         pemi_NumeroCAI,
@@ -872,13 +861,6 @@ namespace ERP_GMEDINA.Dataset {
                 rowUDV_Vent_InventarioNumeracionesRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowUDV_Vent_InventarioNumeracionesRow);
                 return rowUDV_Vent_InventarioNumeracionesRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public UDV_Vent_InventarioNumeracionesRow FindBysuc_Id(int suc_Id) {
-                return ((UDV_Vent_InventarioNumeracionesRow)(this.Rows.Find(new object[] {
-                            suc_Id})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -898,7 +880,6 @@ namespace ERP_GMEDINA.Dataset {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnsuc_Id = base.Columns["suc_Id"];
                 this.columnsuc_Descripcion = base.Columns["suc_Descripcion"];
                 this.columnsuc_Telefono = base.Columns["suc_Telefono"];
                 this.columnpemi_NumeroCAI = base.Columns["pemi_NumeroCAI"];
@@ -915,8 +896,6 @@ namespace ERP_GMEDINA.Dataset {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnsuc_Id = new global::System.Data.DataColumn("suc_Id", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnsuc_Id);
                 this.columnsuc_Descripcion = new global::System.Data.DataColumn("suc_Descripcion", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnsuc_Descripcion);
                 this.columnsuc_Telefono = new global::System.Data.DataColumn("suc_Telefono", typeof(string), null, global::System.Data.MappingType.Element);
@@ -939,10 +918,6 @@ namespace ERP_GMEDINA.Dataset {
                 base.Columns.Add(this.columnDiasDisponibles);
                 this.columnNumeracionesDisponibles = new global::System.Data.DataColumn("NumeracionesDisponibles", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNumeracionesDisponibles);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnsuc_Id}, true));
-                this.columnsuc_Id.AllowDBNull = false;
-                this.columnsuc_Id.Unique = true;
                 this.columnsuc_Descripcion.AllowDBNull = false;
                 this.columnsuc_Descripcion.MaxLength = 40;
                 this.columnsuc_Telefono.AllowDBNull = false;
@@ -5320,17 +5295,6 @@ namespace ERP_GMEDINA.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int suc_Id {
-                get {
-                    return ((int)(this[this.tableUDV_Vent_InventarioNumeraciones.suc_IdColumn]));
-                }
-                set {
-                    this[this.tableUDV_Vent_InventarioNumeraciones.suc_IdColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string suc_Descripcion {
                 get {
                     return ((string)(this[this.tableUDV_Vent_InventarioNumeraciones.suc_DescripcionColumn]));
@@ -8233,7 +8197,6 @@ namespace ERP_GMEDINA.Dataset.ReportesTableAdapters {
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "UDV_Vent_InventarioNumeraciones";
-            tableMapping.ColumnMappings.Add("suc_Id", "suc_Id");
             tableMapping.ColumnMappings.Add("suc_Descripcion", "suc_Descripcion");
             tableMapping.ColumnMappings.Add("suc_Telefono", "suc_Telefono");
             tableMapping.ColumnMappings.Add("pemi_NumeroCAI", "pemi_NumeroCAI");
@@ -8261,7 +8224,7 @@ namespace ERP_GMEDINA.Dataset.ReportesTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT        suc_Id, suc_Descripcion, suc_Telefono, pemi_NumeroCAI, dfisc_Descripcion, pemid_RangoInicio, pemid_RangoFinal, pemid_NumeroActual, pemid_FechaLimite, Estado, DiasDisponibles, NumeracionesDisponibles
+            this._commandCollection[0].CommandText = @"SELECT        suc_Descripcion, suc_Telefono, pemi_NumeroCAI, dfisc_Descripcion, pemid_RangoInicio, pemid_RangoFinal, pemid_NumeroActual, pemid_FechaLimite, Estado, DiasDisponibles, NumeracionesDisponibles
 FROM            Vent.UDV_Vent_InventarioNumeraciones
 WHERE        (suc_Id = @suc_Id)";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
