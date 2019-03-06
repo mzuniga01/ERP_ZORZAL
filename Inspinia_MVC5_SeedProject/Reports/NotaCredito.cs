@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ERP_GMEDINA.Dataset {
+namespace ERP_GMEDINA.Reports {
     using System;
     using System.ComponentModel;
     using CrystalDecisions.Shared;
@@ -16,14 +16,14 @@ namespace ERP_GMEDINA.Dataset {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class SolicitudCredito : ReportClass {
+    public class NotaCredito : ReportClass {
         
-        public SolicitudCredito() {
+        public NotaCredito() {
         }
         
         public override string ResourceName {
             get {
-                return "SolicitudCredito.rpt";
+                return "NotaCredito.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace ERP_GMEDINA.Dataset {
         
         public override string FullResourceName {
             get {
-                return "ERP_GMEDINA.Dataset.SolicitudCredito.rpt";
+                return "ERP_GMEDINA.Reports.NotaCredito.rpt";
             }
             set {
                 // Do nothing
@@ -90,9 +90,9 @@ namespace ERP_GMEDINA.Dataset {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedSolicitudCredito : Component, ICachedReport {
+    public class CachedNotaCredito : Component, ICachedReport {
         
-        public CachedSolicitudCredito() {
+        public CachedNotaCredito() {
         }
         
         [Browsable(false)]
@@ -129,7 +129,7 @@ namespace ERP_GMEDINA.Dataset {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            SolicitudCredito rpt = new SolicitudCredito();
+            NotaCredito rpt = new NotaCredito();
             rpt.Site = this.Site;
             return rpt;
         }
