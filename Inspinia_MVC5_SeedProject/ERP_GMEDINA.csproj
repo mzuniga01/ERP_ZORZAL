@@ -218,6 +218,11 @@
     <Compile Include="Controllers\TipoSalidaController.cs" />
     <Compile Include="Controllers\UnidadMedidaController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
+    <Compile Include="Dataset\Reportes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reportes.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Dataset\dsPackingList.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -927,6 +932,12 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Reports\CatalogoProducto.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CatalogoProducto.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\ImprimirConciliacion2.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -961,6 +972,24 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ImprimirPackingList.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\ListadoProveedores.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\ListadoProveedores1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ListadoProveedores.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\ProyeccionMovimientoProducto.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\ProyeccionMovimientoProducto1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProyeccionMovimientoProducto.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Salida.cs">
@@ -1341,6 +1370,17 @@
     <Content Include="Dataset\dsPackingList.xsc">
       <DependentUpon>dsPackingList.xsd</DependentUpon>
     </Content>
+    <Content Include="Dataset\Reportes.xsc">
+      <DependentUpon>Reportes.xsd</DependentUpon>
+    </Content>
+    <None Include="Dataset\Reportes.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Reportes.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Dataset\Reportes.xss">
+      <DependentUpon>Reportes.xsd</DependentUpon>
+    </Content>
     <None Include="Dataset\dsPackingList.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
@@ -1690,6 +1730,10 @@
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Reports\CatalogoProducto.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CatalogoProducto.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\ImprimirConciliacion.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ImprimirConciliacion2.cs</LastGenOutput>
@@ -1718,6 +1762,14 @@
       <LastGenOutput>ImprimirPackingList.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\ImprimirPorId.rdlc" />
+    <EmbeddedResource Include="Reports\ListadoProveedores.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ListadoProveedores1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ProyeccionMovimientoProducto.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ProyeccionMovimientoProducto1.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Salida.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Salida.cs</LastGenOutput>
