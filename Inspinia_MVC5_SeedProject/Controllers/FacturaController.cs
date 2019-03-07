@@ -873,6 +873,7 @@ namespace ERP_GMEDINA.Controllers
                 IEnumerable<object> list = null;
                 list = db.UDP_Vent_tbFacturaDetalle_Update(
                             EditFacturaDetalle.factd_Id,
+                            EditFacturaDetalle.prod_Codigo,
                             EditFacturaDetalle.factd_Cantidad,
                             EditFacturaDetalle.factd_MontoDescuento,
                             EditFacturaDetalle.factd_PorcentajeDescuento,

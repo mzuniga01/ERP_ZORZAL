@@ -43,10 +43,7 @@ namespace ERP_GMEDINA.Controllers
                 return RedirectToAction("Index", "Login");
         }
 
-        public ActionResult IndexDetails()
-        {
-            return View(db.UDP_Vent_SolicituEfectivo_Detalles_Select);
-        }
+       
 
         // GET: /SolicitudEfectivo/Details/5
         public ActionResult Details(int? id)

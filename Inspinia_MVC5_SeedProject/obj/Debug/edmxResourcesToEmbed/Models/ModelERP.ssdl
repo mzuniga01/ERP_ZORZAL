@@ -216,7 +216,7 @@
     <Property Name="par_RolSupervisorCaja" Type="int" Nullable="false" />
     <Property Name="par_RolCajero" Type="int" Nullable="false" />
     <Property Name="par_RolAuditor" Type="int" Nullable="false" />
-    <Property Name="par_SucursalPrincipal" Type="smallint" Nullable="false" />
+    <Property Name="par_SucursalPrincipal" Type="int" Nullable="false" />
     <Property Name="par_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="par_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="par_UsuarioModifica" Type="int" />
@@ -1045,34 +1045,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDP_Vent_listExoneracion_Select' 
     <Property Name="RTN/Identificacion" Type="nvarchar" MaxLength="26" Nullable="false" />
     <Property Name="persona comercial" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="apellido" Type="nvarchar" MaxLength="50" Nullable="false" />
-  </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivo_Detalles_Select' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-  <EntityType Name="UDP_Vent_SolicituEfectivo_Detalles_Select">
-    <Key>
-      <PropertyRef Name="soled_Id" />
-      <PropertyRef Name="solef_Id" />
-      <PropertyRef Name="deno_Id" />
-      <PropertyRef Name="deno_Descripcion" />
-      <PropertyRef Name="deno_valor" />
-      <PropertyRef Name="soled_CantidadSolicitada" />
-      <PropertyRef Name="soled_CantidadEntregada" />
-      <PropertyRef Name="soled_UsuarioCrea" />
-      <PropertyRef Name="soled_FechaCrea" />
-    </Key>
-    <Property Name="soled_Id" Type="int" Nullable="false" />
-    <Property Name="solef_Id" Type="int" Nullable="false" />
-    <Property Name="deno_Id" Type="smallint" Nullable="false" />
-    <Property Name="deno_Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="deno_valor" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-    <Property Name="soled_CantidadSolicitada" Type="smallint" Nullable="false" />
-    <Property Name="MontoSolicitado" Type="decimal" Precision="16" Scale="2" />
-    <Property Name="soled_CantidadEntregada" Type="smallint" Nullable="false" />
-    <Property Name="MontoEntregado" Type="decimal" Precision="21" Scale="4" />
-    <Property Name="soled_UsuarioCrea" Type="int" Nullable="false" />
-    <Property Name="soled_FechaCrea" Type="datetime" Nullable="false" />
-    <Property Name="soled_UsuarioModifica" Type="int" />
-    <Property Name="soled_FechaModifica" Type="datetime" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'ERP_GMEDINA.Vent.UDP_Vent_SolicituEfectivo_Select' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -2455,6 +2427,18 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_InventarioNumeraciones' 
       </Principal>
       <Dependent Role="tbParametro">
         <PropertyRef Name="mnda_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Gral_tbParametro_tbSucursal_suc_Id">
+    <End Role="tbSucursal" Type="Self.tbSucursal" Multiplicity="1" />
+    <End Role="tbParametro" Type="Self.tbParametro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbSucursal">
+        <PropertyRef Name="suc_Id" />
+      </Principal>
+      <Dependent Role="tbParametro">
+        <PropertyRef Name="par_SucursalPrincipal" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -4424,7 +4408,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_InventarioNumeraciones' 
     <Parameter Name="par_RolSupervisorCaja" Type="int" Mode="In" />
     <Parameter Name="par_RolCajero" Type="int" Mode="In" />
     <Parameter Name="par_RolAuditor" Type="int" Mode="In" />
-    <Parameter Name="par_SucursalPrincipal" Type="smallint" Mode="In" />
+    <Parameter Name="par_SucursalPrincipal" Type="int" Mode="In" />
     <Parameter Name="par_PorcentajeDescuentoTE" Type="decimal" Mode="In" />
     <Parameter Name="par_IdConsumidorFinal" Type="int" Mode="In" />
     <Parameter Name="par_UsuarioCrea" Type="int" Mode="In" />
@@ -4442,7 +4426,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_InventarioNumeraciones' 
     <Parameter Name="par_RolSupervisorCaja" Type="int" Mode="In" />
     <Parameter Name="par_RolCajero" Type="int" Mode="In" />
     <Parameter Name="par_RolAuditor" Type="int" Mode="In" />
-    <Parameter Name="par_SucursalPrincipal" Type="smallint" Mode="In" />
+    <Parameter Name="par_SucursalPrincipal" Type="int" Mode="In" />
     <Parameter Name="par_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="par_FechaCrea" Type="datetime" Mode="In" />
     <Parameter Name="par_PorcentajeDescuentoTE" Type="decimal" Mode="In" />
@@ -4997,6 +4981,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_InventarioNumeraciones' 
   <Function Name="UDP_Vent_FacturasPagoSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="fact_Id" Type="int" Mode="In" />
   </Function>
+  <Function Name="UDP_Vent_Pedido_EntreFechas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent" />
   <Function Name="UDP_Vent_tbCaja_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="cja_Descripcion" Type="nvarchar" Mode="In" />
     <Parameter Name="suc_Id" Type="int" Mode="In" />
@@ -5376,6 +5361,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_InventarioNumeraciones' 
   </Function>
   <Function Name="UDP_Vent_tbFacturaDetalle_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="factd_Id" Type="smallint" Mode="In" />
+    <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
     <Parameter Name="factd_Cantidad" Type="decimal" Mode="In" />
     <Parameter Name="factd_MontoDescuento" Type="decimal" Mode="In" />
     <Parameter Name="factd_PorcentajeDescuento" Type="decimal" Mode="In" />
@@ -5986,23 +5972,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_InventarioNumeraciones' 
     [UDP_Vent_listExoneracion_Select].[apellido] AS [apellido]
     FROM [Vent].[UDP_Vent_listExoneracion_Select] AS [UDP_Vent_listExoneracion_Select]</DefiningQuery>
     </EntitySet>
-    <EntitySet Name="UDP_Vent_SolicituEfectivo_Detalles_Select" EntityType="Self.UDP_Vent_SolicituEfectivo_Detalles_Select" store:Type="Views" store:Schema="Vent">
-      <DefiningQuery>SELECT 
-    [UDP_Vent_SolicituEfectivo_Detalles_Select].[soled_Id] AS [soled_Id], 
-    [UDP_Vent_SolicituEfectivo_Detalles_Select].[solef_Id] AS [solef_Id], 
-    [UDP_Vent_SolicituEfectivo_Detalles_Select].[deno_Id] AS [deno_Id], 
-    [UDP_Vent_SolicituEfectivo_Detalles_Select].[deno_Descripcion] AS [deno_Descripcion], 
-    [UDP_Vent_SolicituEfectivo_Detalles_Select].[deno_valor] AS [deno_valor], 
-    [UDP_Vent_SolicituEfectivo_Detalles_Select].[soled_CantidadSolicitada] AS [soled_CantidadSolicitada], 
-    [UDP_Vent_SolicituEfectivo_Detalles_Select].[MontoSolicitado] AS [MontoSolicitado], 
-    [UDP_Vent_SolicituEfectivo_Detalles_Select].[soled_CantidadEntregada] AS [soled_CantidadEntregada], 
-    [UDP_Vent_SolicituEfectivo_Detalles_Select].[MontoEntregado] AS [MontoEntregado], 
-    [UDP_Vent_SolicituEfectivo_Detalles_Select].[soled_UsuarioCrea] AS [soled_UsuarioCrea], 
-    [UDP_Vent_SolicituEfectivo_Detalles_Select].[soled_FechaCrea] AS [soled_FechaCrea], 
-    [UDP_Vent_SolicituEfectivo_Detalles_Select].[soled_UsuarioModifica] AS [soled_UsuarioModifica], 
-    [UDP_Vent_SolicituEfectivo_Detalles_Select].[soled_FechaModifica] AS [soled_FechaModifica]
-    FROM [Vent].[UDP_Vent_SolicituEfectivo_Detalles_Select] AS [UDP_Vent_SolicituEfectivo_Detalles_Select]</DefiningQuery>
-    </EntitySet>
     <EntitySet Name="UDP_Vent_SolicituEfectivo_Select" EntityType="Self.UDP_Vent_SolicituEfectivo_Select" store:Type="Views" store:Schema="Vent">
       <DefiningQuery>SELECT 
     [UDP_Vent_SolicituEfectivo_Select].[IdSolicitud] AS [IdSolicitud], 
@@ -6509,6 +6478,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_InventarioNumeraciones' 
     </AssociationSet>
     <AssociationSet Name="FK_Gral_tbParametro_tbMoneda_mnda_Id" Association="Self.FK_Gral_tbParametro_tbMoneda_mnda_Id">
       <End Role="tbMoneda" EntitySet="tbMoneda" />
+      <End Role="tbParametro" EntitySet="tbParametro" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Gral_tbParametro_tbSucursal_suc_Id" Association="Self.FK_Gral_tbParametro_tbSucursal_suc_Id">
+      <End Role="tbSucursal" EntitySet="tbSucursal" />
       <End Role="tbParametro" EntitySet="tbParametro" />
     </AssociationSet>
     <AssociationSet Name="FK_Gral_tbParametro_tbUsuario_par_UsuarioCrea" Association="Self.FK_Gral_tbParametro_tbUsuario_par_UsuarioCrea">
