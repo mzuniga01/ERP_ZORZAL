@@ -218,11 +218,6 @@
     <Compile Include="Controllers\TipoSalidaController.cs" />
     <Compile Include="Controllers\UnidadMedidaController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
-    <Compile Include="Dataset\Reportes.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reportes.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Dataset\dsPackingList.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -232,6 +227,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>InventarioFisico.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dataset\Reportes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reportes.xsd</DependentUpon>
     </Compile>
     <Compile Include="Dataset\Salida.cs">
       <DependentUpon>Salida.xsd</DependentUpon>
@@ -974,19 +974,22 @@
       <DependentUpon>ImprimirPackingList.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\InventarioActual.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InventarioActual.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\ListadoProveedores.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\ListadoProveedores1.cs">
+    <Compile Include="Reports\Movimiento_Entre_Fechas.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ListadoProveedores.rpt</DependentUpon>
+      <DependentUpon>Movimiento_Entre_Fechas.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\ProyeccionMovimientoProducto.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\ProyeccionMovimientoProducto1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ProyeccionMovimientoProducto.rpt</DependentUpon>
@@ -1370,17 +1373,6 @@
     <Content Include="Dataset\dsPackingList.xsc">
       <DependentUpon>dsPackingList.xsd</DependentUpon>
     </Content>
-    <Content Include="Dataset\Reportes.xsc">
-      <DependentUpon>Reportes.xsd</DependentUpon>
-    </Content>
-    <None Include="Dataset\Reportes.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>Reportes.Designer.cs</LastGenOutput>
-    </None>
-    <Content Include="Dataset\Reportes.xss">
-      <DependentUpon>Reportes.xsd</DependentUpon>
-    </Content>
     <None Include="Dataset\dsPackingList.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
@@ -1399,6 +1391,17 @@
     </Content>
     <Content Include="Dataset\Salida.xsc">
       <DependentUpon>Salida.xsd</DependentUpon>
+    </Content>
+    <Content Include="Dataset\Reportes.xsc">
+      <DependentUpon>Reportes.xsd</DependentUpon>
+    </Content>
+    <None Include="Dataset\Reportes.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Reportes.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Dataset\Reportes.xss">
+      <DependentUpon>Reportes.xsd</DependentUpon>
     </Content>
     <None Include="Dataset\Salida.xsd">
       <Generator>MSDataSetGenerator</Generator>
@@ -1762,13 +1765,21 @@
       <LastGenOutput>ImprimirPackingList.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\ImprimirPorId.rdlc" />
+    <EmbeddedResource Include="Reports\InventarioActual.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>InventarioActual.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\ListadoProveedores.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ListadoProveedores1.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Movimiento_Entre_Fechas.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Movimiento_Entre_Fechas.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\ProyeccionMovimientoProducto.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>ProyeccionMovimientoProducto1.cs</LastGenOutput>
+      <LastGenOutput>ProyeccionMovimientoProducto.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Salida.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

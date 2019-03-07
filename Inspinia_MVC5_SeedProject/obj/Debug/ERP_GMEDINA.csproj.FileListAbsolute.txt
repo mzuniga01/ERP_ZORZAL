@@ -1323,3 +1323,5 @@ C:\Users\usuario\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\Cryst
 C:\Users\usuario\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
 C:\Users\usuario\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
 C:\Users\Lab 2\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.csprojFakesResolveAssemblyReference.cache
+C:\Users\Lab 2\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.csprojResolveAssemblyReference.cache
+C:\Users\Lab 2\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\es\Microsoft.ReportViewer.WebForms.resources.dll
