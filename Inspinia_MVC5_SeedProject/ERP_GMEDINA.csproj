@@ -218,6 +218,11 @@
     <Compile Include="Controllers\TipoSalidaController.cs" />
     <Compile Include="Controllers\UnidadMedidaController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
+    <Compile Include="Dataset\dsPackingList.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsPackingList.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Dataset\InventarioFisico.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -911,9 +916,17 @@
     <Compile Include="Models\UDV_Inv_Consultar_Existencias_Productos.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UDV_Inv_PackingList.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UnidadMedida.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Reports\ImprimirConciliacion2.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -942,6 +955,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ImprimirEntradaTraslado.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\ImprimirPackingList.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImprimirPackingList.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Salida.cs">
@@ -1319,6 +1338,17 @@
     <Content Include="Dataset\InventarioFisico.xsc">
       <DependentUpon>InventarioFisico.xsd</DependentUpon>
     </Content>
+    <Content Include="Dataset\dsPackingList.xsc">
+      <DependentUpon>dsPackingList.xsd</DependentUpon>
+    </Content>
+    <None Include="Dataset\dsPackingList.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsPackingList.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Dataset\dsPackingList.xss">
+      <DependentUpon>dsPackingList.xsd</DependentUpon>
+    </Content>
     <None Include="Dataset\InventarioFisico.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
@@ -1424,6 +1454,10 @@
     <Content Include="Scripts\DataTables\responsive.semanticui.js" />
     <Content Include="Scripts\DataTables\responsive.semanticui.min.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -1678,6 +1712,10 @@
     <EmbeddedResource Include="Reports\ImprimirEntradaTraslado.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ImprimirEntradaTraslado.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ImprimirPackingList.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ImprimirPackingList.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\ImprimirPorId.rdlc" />
     <EmbeddedResource Include="Reports\Salida.rpt">

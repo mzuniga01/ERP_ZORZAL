@@ -2287,5 +2287,25 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <EntitySetMapping Name="UDV_Inv_PackingList">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Inv_PackingList">
+        <MappingFragment StoreEntitySet="UDV_Inv_PackingList">
+          <ScalarProperty Name="Creada_El_" ColumnName="Creada El:" />
+          <ScalarProperty Name="Creado_Por_" ColumnName="Creado Por:" />
+          <ScalarProperty Name="Bodega_Destino" ColumnName="Bodega Destino" />
+          <ScalarProperty Name="Bodega" ColumnName="Bodega" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+          <ScalarProperty Name="Unidad" ColumnName="Unidad" />
+          <ScalarProperty Name="Talla" ColumnName="Talla" />
+          <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+          <ScalarProperty Name="Marca" ColumnName="Marca" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Producto" ColumnName="Producto" />
+          <ScalarProperty Name="Codigo_de_Barras_" ColumnName="Codigo de Barras:" />
+          <ScalarProperty Name="Descripción" ColumnName="Descripción" />
+          <ScalarProperty Name="box_Codigo" ColumnName="box_Codigo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

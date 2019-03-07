@@ -1865,6 +1865,7 @@
       <Parameter Name="par_UsuarioModifica" Mode="In" Type="Int32" />
       <Parameter Name="par_FechaModifica" Mode="In" Type="DateTime" />
     </FunctionImport>
+    <EntitySet Name="UDV_Inv_PackingList" EntityType="ERP_ZORZALModel.UDV_Inv_PackingList" />
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -6834,4 +6835,27 @@
   <ComplexType Name="UDP_Gral_tbParametro_Update_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
+  <EntityType Name="UDV_Inv_PackingList">
+    <Key>
+      <PropertyRef Name="Descripción" />
+      <PropertyRef Name="Producto" />
+      <PropertyRef Name="Cantidad" />
+      <PropertyRef Name="Bodega_Destino" />
+      <PropertyRef Name="Creada_El_" />
+    </Key>
+    <Property Name="box_Codigo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Descripción" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Codigo_de_Barras_" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Producto" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Marca" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Modelo" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="Talla" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Unidad" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Cantidad" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="Bodega" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Bodega_Destino" Type="Int32" Nullable="false" />
+    <Property Name="Creado_Por_" Type="String" MaxLength="301" FixedLength="false" Unicode="false" />
+    <Property Name="Creada_El_" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
 </Schema>

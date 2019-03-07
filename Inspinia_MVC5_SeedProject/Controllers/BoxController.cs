@@ -8,6 +8,8 @@ using System.Transactions;
 using System.Web.Mvc;
 using Newtonsoft.Json;
 using ERP_GMEDINA.Attribute;
+using CrystalDecisions.CrystalReports.Engine;
+using System.IO;
 
 namespace ERP_ZORZAL.Controllers
 {
@@ -333,6 +335,57 @@ namespace ERP_ZORZAL.Controllers
                 return View(tbBox);
             }
         }
+
+        public ActionResult ExportReport(string id)
+        {
+            ReportDocument rd = new ReportDocument();
+            rd.Load(Path.Combine(Server.MapPath("~/Reports"), "ImprimirPackingList.rpt"));
+            var tbSalidaDetalle = db.tbSalidaDetalle.ToList();
+            var tbBox = db.tbBox.ToList();
+            var tbProducto = db.tbProducto.ToList();
+            var tbUnidadMedida = db.tbUnidadMedida.ToList();
+            var tbUsuario = db.tbUsuario.ToList();
+            var tbSalida = db.tbSalida.ToList();
+            var tbBodega = db.tbBodega.ToList();
+            var todo = (from sd in tbSalidaDetalle
+                        join bx in tbBox on sd.box_Codigo equals bx.box_Codigo
+                        join p in tbProducto on sd.prod_Codigo equals p.prod_Codigo
+                        join u in tbUnidadMedida on p.uni_Id equals u.uni_Id
+                        join usu in tbUsuario on bx.box_UsuarioCrea equals usu.usu_Id
+                        join s in tbSalida on sd.sald_Id equals s.sal_Id
+                        join bd in tbBodega on s.bod_Id equals bd.bod_Id
+                        where sd.box_Codigo == id
+                        select new
+                        {
+                            box_Codigo = sd.box_Codigo,
+                            box_Descripcion = bx.box_Descripcion,
+                            prod_Codigo =sd.prod_Codigo,
+                            prod_Descripcion = p.prod_Descripcion,
+                            prod_Talla = p.prod_Talla,
+                            uni_Descripcion = u.uni_Descripcion,
+                            sald_Cantidad = sd.sald_Cantidad,
+                            bod_Nombre = bd.bod_Nombre,
+                            sal_BodDestino = s.sal_BodDestino,
+                            usu_Nombre = usu.usu_Nombres + "" + usu.usu_Apellidos,
+                            box_FechaCrea = bx.box_FechaCrea
+                        }).ToList();
+
+            rd.SetDataSource(todo);
+            Response.Buffer = false;
+            Response.ClearContent();
+            Response.ClearHeaders();
+            try
+            {
+                Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+                return File(stream, "application/pdf");
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+
 
         protected override void Dispose(bool disposing)
         {
