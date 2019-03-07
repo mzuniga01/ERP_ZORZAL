@@ -11,7 +11,6 @@ using System.Web.Mvc;
 using System.Web.Services;
 using ERP_GMEDINA.Dataset.SalidaTableAdapters;
 using ERP_GMEDINA.Dataset;
-using Salida = ERP_GMEDINA.Dataset.Salida;
 
 namespace ERP_GMEDINA.Controllers
 {
@@ -93,37 +92,93 @@ namespace ERP_GMEDINA.Controllers
             }
         }
 
+        //public ActionResult GenerarReporte(tbSalida tbSalida, string FechaElaboracion)
+        //{
+        //    ReportDocument rd = new ReportDocument();
+        //    UDV_Inv_Salida_Imprimir_ReporteTableAdapter SalidaTableAdapter = new UDV_Inv_Salida_Imprimir_ReporteTableAdapter();
+        //     var SalidaDataTable = new Salida.UDV_Inv_Salida_Imprimir_ReporteDataTable();
+        //    IEnumerable<object> SalidaResult = null;
+        //    //var vFechaElaboracion = Convert.ToDateTime(FechaElaboracion);
+        //    //SalidaTableAdapter.Fill(SalidaDataTable, vFechaElaboracion, tbSalida.tsal_Id, tbSalida.bod_Id, tbSalida.estm_Id);
+        //    //Salida = SalidaTableAdapter.GetData(vFechaElaboracion, tbSalida.tsal_Id, tbSalida.bod_Id, tbSalida.estm_Id).ToList();
+        //    SalidaTableAdapter.Fill(SalidaDataTable);
 
+        //    SalidaResult = SalidaTableAdapter.GetData().ToList();
+        //    rd.Load(Path.Combine(Server.MapPath("~/Reports"), "Salida.rpt"));
+
+        //    Response.Buffer = false;
+        //    Response.ClearContent();
+        //    Response.ClearHeaders();
+        //    //var TipoSalida = tbSalida.tsal_Id;
+        //    //var Bodega = tbSalida.bod_Id;
+        //    //var Estado = tbSalida.estm_Id;
+
+        //    try
+        //    {
+        //        rd.SetDataSource(SalidaResult);
+
+        //        Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+        //        stream.Seek(0, SeekOrigin.Begin);
+        //        return File(stream, "application/pdf", "Salida_List.pdf");
+        //    }
+        //    catch (Exception Ex)
+        //    {
+        //        Ex.Message.ToString();
+        //        throw;
+        //    }
+        //}
+        public RedirectResult RedirectToAspx()
+        {
+            return Redirect("~/Reports/Salida.aspx");
+        }
+
+        //public void ObtenerParametros(tbSalida tbSalida, string FechaElaboracion)
+        //{
+        //    object jsonlist = new { tbSalida, FechaElaboracion };
+        //    //Redirect("~/Reports/Salida.aspx");
+        //    return Response.Redirect("~/Reports/Salida.aspx");
+        //}
 
         public ActionResult GenerarReporte(tbSalida tbSalida, string FechaElaboracion)
         {
-            ReportDocument rd = new ReportDocument();
-            UDV_Inv_Salida_Imprimir_ReporteTableAdapter SalidaTableAdapter = new UDV_Inv_Salida_Imprimir_ReporteTableAdapter();
-            Salida.UDV_Inv_Salida_Imprimir_ReporteDataTable SalidaDataTable = new Salida.UDV_Inv_Salida_Imprimir_ReporteDataTable();
-            IEnumerable<object> Salida = null;
-            //var vFechaElaboracion = Convert.ToDateTime(FechaElaboracion);
-            //SalidaTableAdapter.Fill(SalidaDataTable, vFechaElaboracion, tbSalida.tsal_Id, tbSalida.bod_Id, tbSalida.estm_Id);
-            //Salida = SalidaTableAdapter.GetData(vFechaElaboracion, tbSalida.tsal_Id, tbSalida.bod_Id, tbSalida.estm_Id).ToList();
+            var vFechaElaboracion = Convert.ToDateTime(FechaElaboracion);
+            Reports.Salida SalidaRV = new Reports.Salida();
 
-            rd.Load(Path.Combine(Server.MapPath("~/Reports"), "Salida.rpt"));
+            Salida SalidaDST = new Salida();
 
-            Response.Buffer = false;
-            Response.ClearContent();
-            Response.ClearHeaders();
+            var SalidaTableAdapter = new UDV_Inv_Salida_Imprimir_ReporteTableAdapter();
+
+            //var SalidaDataTable = new SalidaDS.UDV_Inv_Salida_Imprimir_ReporteDataTable();
+            //SalidaTableAdapter.Fill(SalidaDataTable);
+            //SalidaTableAdapter.GetData();
+
+            //Response.Buffer = false;
+            //Response.ClearContent();
+            //Response.ClearHeaders();
             //var TipoSalida = tbSalida.tsal_Id;
             //var Bodega = tbSalida.bod_Id;
             //var Estado = tbSalida.estm_Id;
-
+            //CrystalDecisions.ReportSource = SalidaRV;
             try
             {
-                rd.SetDataSource(Salida);
+                SalidaTableAdapter.Fill(SalidaDST.UDV_Inv_Salida_Imprimir_Reporte, vFechaElaboracion, tbSalida.tsal_Id, tbSalida.bod_Id, tbSalida.estm_Id);
 
-                Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+                SalidaRV.SetDataSource(SalidaDST);
+                //SalidaRV.PrintToPrinter(1, false, 0, 0);
+                Stream stream = SalidaRV.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
                 stream.Seek(0, SeekOrigin.Begin);
-                return File(stream, "application/pdf", "Salida_List.pdf");
+                //return File(stream, "application/pdf", "Salida_List.pdf");
+
+                SalidaRV.Close();
+                SalidaRV.Dispose();
+                //return Redirect("~/Reports/Salida.aspx");
+                string fileName = "Salida_List.pdf";
+                Response.AppendHeader("Content-Disposition", "inline; filename=" + fileName);
+                return File(stream, "application/pdf");
             }
-            catch
+            catch (Exception Ex)
             {
+                Ex.Message.ToString();
                 throw;
             }
         }
@@ -266,7 +321,6 @@ namespace ERP_GMEDINA.Controllers
             return View(tbSalida);
         }
 
-       
         public JsonResult BodegaDestino(int? id)
         {
             IEnumerable<object> list = null;
@@ -545,17 +599,15 @@ namespace ERP_GMEDINA.Controllers
                 var CantidadSalidaDetalle = db.SDP_Inv_Cantidad_Salida_Emitida(prod_Codigo).Select(x => x.sald_Cantidad).SingleOrDefault();
                 object CantidadPermitida = null;
                 var vCantidad = CantidadExistente - CantidadMinima;
-                if(CantidadSalidaDetalle == null)
+                if (CantidadSalidaDetalle == null)
                 {
                     var CantidadAceptada = vCantidad;
                     CantidadPermitida = new { CantidadAceptada, CantidadMinima };
-
                 }
                 else
                 {
                     var CantidadAceptada = vCantidad - CantidadSalidaDetalle;
                     CantidadPermitida = new { CantidadAceptada, CantidadMinima };
-
                 }
 
                 //if (CantidadPermitida == 0 && CantidadMinima > 0)
@@ -742,7 +794,6 @@ namespace ERP_GMEDINA.Controllers
 
         public JsonResult FacturaExist(string fact_Codigo)
         {
-            IEnumerable<object> fact = null;
             string Message = "";
             try
             {
@@ -767,7 +818,7 @@ namespace ERP_GMEDINA.Controllers
                             var vFactura = db.tbFactura.Where(x => x.fact_Codigo == fact_Codigo).ToList();
                             if (vFactura.Count() > 0)
                             {
-                                var vFacturaID = db.tbFactura.Where(x => x.fact_Codigo == fact_Codigo).Select(x => x.fact_Id).First();
+                                var vFacturaID = db.tbFactura.Where(x => x.fact_Codigo == fact_Codigo && x.esfac_Id == Helpers.esfac_Pagada || x.esfac_Id == Helpers.esfac_PagoPendiente).Select(x => x.fact_Id).First();
                                 var vSalida = db.tbSalida.Where(x => x.fact_Id == vFacturaID && x.sal_EsAnulada != true).ToList();
                                 if (vSalida.Count() > 0)
                                 {
@@ -838,8 +889,6 @@ namespace ERP_GMEDINA.Controllers
 
             return RedirectToAction("Index");
         }
-
-     
 
         public JsonResult Anular(tbSalida Salida)
         {

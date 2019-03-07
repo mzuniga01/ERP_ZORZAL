@@ -1,10 +1,9 @@
 ﻿@model ERP_GMEDINA.Models.tbSalida
 
-@using (Ajax.BeginForm("GenReporte", "Salida", new AjaxOptions() { HttpMethod = "POST", UpdateTargetId = "GenerarReporte" }))
+@using (Ajax.BeginForm("GenerarReporte", "Salida", new AjaxOptions() { HttpMethod = "POST", UpdateTargetId = "GenerarReporte" }))
 {
     <div class="ibox-content">
         <div class="form-horizontal">
-            @*//UpdateTargetId = "EditarProductoSalidaDetalle"*@
             <div class="form-group">
                 @Html.LabelFor(model => model.sal_FechaElaboracion, new { @class = "control-label col-md-2" })
                 <div class="col-md-6">

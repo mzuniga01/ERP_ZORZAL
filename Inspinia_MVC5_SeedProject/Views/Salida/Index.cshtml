@@ -25,6 +25,7 @@
                     <div class="ibox-tools">
                         <input type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalGenReporte" value="Generar Reporte" />
                         @Html.ActionLink("Registrar Salida", "Create", null, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("RedirectToAspx", "RedirectToAspx", null, new { @class = "btn btn-success" })
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -58,52 +59,50 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.sal_Id)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.sal_FechaElaboracion)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.tbBodega.bod_Nombre)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.tbTipoSalida.tsal_Descripcion)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.tbEstadoMovimiento.estm_Descripcion)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.tbBodega.tbEmpleado.emp_Nombres) @Html.DisplayFor(modelItem => item.tbBodega.tbEmpleado.emp_Apellidos)
-                                </td>
-                                <td>
-                                    @{
-                                        if (item.sal_EsAnulada)
-                                        {
-                                            @*<input type="button" class="btn btn-xs" style="background-color:red;color:white" value="Anulada">*@
-                                            <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="No se puede Editar, esta anulada.">
-                                                <button class="btn  btn-xs" style="pointer-events: none; background-color:red;color:white" type="button" disabled>Anulada</button>
-                                            </span>
-                                        }
-                                        else
-                                        {
-                                            if (item.estm_Id == Helpers.sal_Aplicada)
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.sal_Id)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.sal_FechaElaboracion)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbBodega.bod_Nombre)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbTipoSalida.tsal_Descripcion)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbEstadoMovimiento.estm_Descripcion)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbBodega.tbEmpleado.emp_Nombres) @Html.DisplayFor(modelItem => item.tbBodega.tbEmpleado.emp_Apellidos)
+                                    </td>
+                                    <td>
+                                        @{
+                                            if (item.sal_EsAnulada)
                                             {
-                                                @*<input type="button" class="btn  btn-xs" style="background-color:green;color:white" value="Aplicada">*@
-                                                <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="No se puede Editar, esta aplicado.">
-                                                    <button class="btn  btn-xs" style="pointer-events: none; background-color:green;color:white" type="button" disabled>Aplicada</button>
+                                                <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="No se puede Editar, esta anulada.">
+                                                    <button class="btn  btn-xs" style="pointer-events: none; background-color:red;color:white" type="button" disabled>Anulada</button>
                                                 </span>
                                             }
                                             else
                                             {
-                                                @Html.ActionLink("Editar", "Edit", new { id = item.sal_Id }, new { @class = "btn btn-primary btn-xs" });
+                                                if (item.estm_Id == Helpers.sal_Aplicada)
+                                                {
+                                                    <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="No se puede Editar, esta aplicado.">
+                                                        <button class="btn  btn-xs" style="pointer-events: none; background-color:green;color:white" type="button" disabled>Aplicada</button>
+                                                    </span>
+                                                }
+                                                else
+                                                {
+                                                    @Html.ActionLink("Editar", "Edit", new { id = item.sal_Id }, new { @class = "btn btn-primary btn-xs" });
+                                                }
                                             }
                                         }
-                                    }
-                                    @Html.ActionLink("Detalles", "Details", new { id = item.sal_Id }, new { @class = "btn btn-white btn-xs" })
-                                </td>
-                            </tr>
+                                        @Html.ActionLink("Detalles", "Details", new { id = item.sal_Id }, new { @class = "btn btn-white btn-xs" })
+                                    </td>
+                                </tr>
                             }
                         </tbody>
                     </table>
@@ -146,9 +145,7 @@
             inline: true
         }).datepicker("setDate", new Date());
     });
-    //var Name = '#Datatables';
-    //Datatable(Name)
-    //new Date(1999, 10 - 1, 25)
+
     $(document).ready(function () {
         $('#Datatables').DataTable(
             {

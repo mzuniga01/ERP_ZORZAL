@@ -1,26 +1,5 @@
 ﻿@model ERP_GMEDINA.Models.tbSalida
 @using ERP_GMEDINA.Models
-@*@{
-    string UserName = "";
-    int idUser = 0;
-    var vbod_Id = 0;
-     Login = new GeneralFunctions();
-    GeneralFunctions bod = new GeneralFunctions();
-    List<tbUsuario> User = Login.getUserInformation();
-    List<tbBodega> Bodega = bod.();
-    tbBodega tbBod = new tbBodega();
-    foreach (tbUsuario Usuario in User)
-    {
-        UserName = Usuario.usu_Nombres + " " + Usuario.usu_Apellidos;
-        idUser = Convert.ToInt32(Usuario.emp_Id);
-        //vbod_Id = Usuario.tbBodega.Where(x => x.bod_ResponsableBodega == idUser).SingleOrDefault();
-        foreach (tbBodega Bodega in User)
-        {
-            vbod_Id = Usuario.tbBodega.Where(x => x.bod_ResponsableBodega == idUser).Select(x => x.bod_Id).SingleOrDefault();
-        }
-    }
-
-    }*@
 @{
     /**/
 
@@ -78,9 +57,6 @@
         <div id="Without" style="display:none">
             <div class="alert alert-danger alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                @*<button type="button" onclick=" $('#Without').css('display', 'none');" class="close" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>*@
                 <strong>Detalle Vacio</strong>
             </div>
         </div>
@@ -221,13 +197,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="ibox float-e-margins">
-                            <div class="ibox-title">
-                                <div class="title-action">
-
-                                </div>
-                            </div>
                             <div class="ibox-content" id="Crear">
-                                @*@Html.Partial("_CreateInstructorCasosExitos", new InstructorCasosExitos())*@
                                 @Html.Partial("_CreateSalidaDetalle", new tbSalidaDetalle())
                             </div>
                         </div>
@@ -251,7 +221,6 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    @*<button type="button" class="btn btn-primary">Save changes</button>*@
                 </div>
             </div>
         </div>
@@ -271,28 +240,11 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" id="ChangeBodega" data-dismiss="modal">Cambiar</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    @*<button type="button" class="btn btn-primary">Save changes</button>*@
                 </div>
             </div>
         </div>
     </div>
 }
-@*<div class="modal fade" id="ModalImprimir" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel">Desea Imprimir la Salida</h4>
-                </div>
-                <div class="modal-body" id="frmBuscarProducto">
-                    @Html.ActionLink("Si", "Imprimir", new { id = Model.sal_Id }, new { @class = "btn btn-primary btn-xs" });
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                </div>
-            </div>
-        </div>
-    </div>*@
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
@@ -303,95 +255,12 @@
 <script src="~/Scripts/app/SalidaDetalle.js"></script>
 <script src="~/Scripts/app/Salida.js"></script>
 <script src="~/Scripts/wp-embed.min.js"></script>
-@*<script>
-       $(document).ready(function()
-       {
-           $("#ModalSelect").modal("show");
-       });
-    </script>*@
-@*<script>
-        function myFunction() {
-            var x = document.getElementById("myDIV");
-            var z = document.getElementById("rbtm")
-            if (z.checked) {
-                x.style.display = "block";
-            } else {
-                x.style.display = "none";
-            }
-        }
-    </script>*@
 
-@*<script type="text/javascript">
-        var contadorp = 0;
-        $(document).ready(function () {
-            $.get('/Salida/GetProdList', function (data) {
-
-                $("#cuerpo").html("");
-                $.each(data, function (index, row) {
-                    contadorp = contadorp + 1;
-                    copy = "<tr data-id=" + contadorp + ">";
-                    copy += "<td id = 'Cod_Producto'>" + row.prod_Codigo + "</td>";
-                    copy += "<td id = 'Producto'>" + row.data(tbProducto) + "</td>";
-                    copy += "<td id = 'Unidad_Medida'>" + row.prod_Codigo + "</td>";
-                    copy += "<td id = 'Cantidad'>" + row.prod_Codigo + "</td>";
-                    copy += "<td>" + '<button class="btn btn-primary btn-xs" value="'+row.prod_Codigo+'" id="seleccionar" data-dismiss="modal">Seleccionar</button>' + "</td>";
-                    copy += "</tr>";
-                    $('#cuerpo').append(copy);
-                });
-
-                })
-            })
-    </script>*@
-@*<div class="modal fade" id="ModalSelect" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Salida</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                        Seleccione el tipo de salida
-                        <div class="form-group">
-                            <form action="">
-                                <input type="radio" name="selec" value="1" onclick="myFunction()" id="rbtm1"> Listado<br>
-                                <input type="radio" name="selec" value="2" onclick="myFunction()" id="rbtm"> Caja<br>
-                            </form>
-                            <div class="form-group" id="myDIV" style="display: none;">
-                                @Html.LabelFor(model => model.tbSalidaDetalle, new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-                                  @Html.DropDownList("box_Codigo", (IEnumerable<SelectListItem>)ViewBag.box_Codigo, "Seleccionar", new { @class = "form-control" })
-                                </div>
-                            </div>
-                        </div>
-    </div>
-                <div class="modal-footer">
-                    @tml.ActionLink("Sí", "EstadoInactivar", new { id = Model.ent_Id }, new { @class = "btn btn-danger" })
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Aceptar</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                    </div>
-                    </div>
-                    </div>
-                    </div>*@
-@*<script>
-        $(function () {
-            __showUsers();
-        });
-    </script>*@
 <script>
-
-    //$(":input").inputmask();
-
-    //$("#sald_Cantidad").inputmask({ "mask": "999.99" });
-
     var selector = "#fact_Codigo";
     $(selector).val('');
     $(selector).mask("999-999-99-99999999", { reverse: true });
-    //Output is shown as: 1,000,000
-
-    //var value = $(selector).cleanVal();
-    //Mask will be removed on next line
+    
 
     function filterFloat(evt, input) {
         // Backspace = 8, Enter = 13, ‘0′ = 48, ‘9′ = 57, ‘.’ = 46, ‘-’ = 43

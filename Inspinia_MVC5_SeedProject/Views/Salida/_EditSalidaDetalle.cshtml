@@ -202,8 +202,9 @@
                                 <div class="form-group">
                                     @Html.LabelFor(m => SalidaDetalle.sald_Cantidad, new { @class = "control-label col-sm-2 required" })
                                     <div class="col-sm-10">
-                                        <input type="text" id="sald_Cantidad_SD" name="sald_Cantidad" class="form-control" onkeypress="return filterFloat(event,this);" />
-                                        <div id="validationsald_Cantidad">
+                                        <input type="text" id="sald_Cantidad_SD" name="sald_Cantidad" class="form-control" onkeypress="return filterFloat(event, this); ValidacionCantidad();" />
+                                        <div id="CantidaExistente">
+                                        </div><div id="validationsald_Cantidad">
                                             @Html.ValidationMessageFor(m => SalidaDetalle.sald_Cantidad)
                                         </div>
                                     </div>

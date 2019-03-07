@@ -12,13 +12,9 @@
     <div class="col-sm-8">
         <div class="title-action">
             <a href="@Url.Action("Index","Salida")">Regresar</a>
-
         </div>
     </div>
 </div>
-
-
-
 
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
@@ -28,7 +24,6 @@
                     <h5>Salida</h5>
                 </div>
                 <div class="ibox-content">
-
 
                     <dl class="dl-horizontal">
                         <dt>
@@ -85,7 +80,6 @@
                             </dd>
                         }
 
-
                         <dt>
                             @Html.DisplayNameFor(model => model.tsal_Id)
                         </dt>
@@ -123,7 +117,6 @@
                     </dl>
 
                     @Html.ActionLink("Editar", "Edit", new { id = Model.sal_Id }, new { @class = "btn btn-primary" })
-                    @*@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white"})*@
                 </div>
             </div>
 
@@ -142,6 +135,7 @@
                     </div>
                 </div>
             </div>
+
             @*Campos de Auditoria*@
             <div class="ibox-content">
                 <fieldset class="box-border">
@@ -166,20 +160,9 @@
                 </fieldset>
             </div>
         </div>
-       
     </div>
 </div>
 
-
-
 <script src="~/Scripts/jquery-3.1.1.min.js"></script>
 <script src="~/Scripts/app/DataTable.js"></script>>
-
 <script src="~/Scripts/app/SalidaDetalle.js"></script>
-
-
-
-
-
-
-

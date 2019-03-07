@@ -29,7 +29,7 @@ namespace ERP_GMEDINA.ReportViewer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.ScriptManager ScriptManager1;
-        
+
         /// <summary>
         /// ReportViewer1 control.
         /// </summary>
@@ -37,8 +37,8 @@ namespace ERP_GMEDINA.ReportViewer {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.Reporting.WebForms.ReportViewer ReportViewer1;
-        
+        //protected global::Microsoft.Reporting.WebForms.ReportViewer ReportViewer1;
+
         /// <summary>
         /// ObjectDataSource3 control.
         /// </summary>

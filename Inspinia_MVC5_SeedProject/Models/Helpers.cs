@@ -58,6 +58,10 @@ namespace ERP_GMEDINA.Models
 
         public const int sal_Venta = 2;
         public const int sal_Devolucion = 3;
+        public const int esfac_Pagada = 3;
+        public const int esfac_PagoPendiente = 4;
+
+
         ///ESTADO OBJETO
         public const bool ObjetoActivo = true;
 

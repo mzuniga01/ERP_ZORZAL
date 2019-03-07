@@ -35,21 +35,6 @@
         </div>
     </div>
 </div>
-@{
-    //string UserName = "";
-    //int idUser = 0;
-    //int czx = 0;
-    //GeneralFunctions Login = new GeneralFunctions();
-    //List<tbUsuario> User = Login.getUserInformation();
-    //tbBodega tbBod = new tbBodega();
-    //foreach (tbUsuario Usuario in User)
-    //{
-    //    UserName = Usuario.usu_Nombres + " " + Usuario.usu_Apellidos;
-    //    idUser = Convert.ToInt32(Usuario.emp_Id);
-    //    int czx = Usuario.tbBodega.Where(x => x.bod_ResponsableBodega == idUser).Select(x => x.bod_Id).SingleOrDefault();
-    //}
-
-}
 
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
@@ -69,9 +54,6 @@
                         @Html.HiddenFor(model => model.fact_Id)
                         @Html.HiddenFor(model => model.fact_Codigo, new { Value = ViewBag.vbfact_Codigo })
 
-                        @*<input name="fact_Codigo" id="fact_Codigo" value="">*@
-
-                        @*<input type="hidden" name="sal_Id" id="sal_Id" value="@ViewBag.IdSal">*@
                         <div class="form-horizontal">
 
                             <fieldset class="box-border">
@@ -84,8 +66,6 @@
                                         @Html.ValidationMessageFor(model => model.sal_FechaElaboracion)
                                     </div>
                                 </div>
-                                @*, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @id = "FechaElaboracionSalida" } }*@
-
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.bod_Id, "Nombre de Bodega", new { @class = "control-label col-md-2 required" })
                                     <div class="col-md-4">
@@ -226,7 +206,6 @@
                             </div>
                         </div>
                         <div class="col-lg-12">
-                            @*<div class="ibox float-e-margins">*@
                             <div class="ibox-title">
                                 @if (!Model.sal_EsAnulada && Model.estm_Id == Helpers.sal_Emitida)
                                 {
@@ -239,12 +218,10 @@
                             </div>
                             <div class="ibox-content collapse" id="Nuevo">
                                 @Html.Partial("_EditCreateSalidaDetalle", new ERP_GMEDINA.Models.tbSalidaDetalle())
-                                @*</div>*@
                             </div>
                         </div>
 
                         <div class="col-lg-12"> </div>
-                      
 
                         @* Llama la vista  *@
                         <div class="ibox float-e-margins">
@@ -265,8 +242,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        @*botones*@
 
                         <br />
                     }
@@ -299,37 +274,10 @@
 </div>
 @Html.Partial("_Modales")
 
-<script type="text/javascript">
-
-    //$(document).ready(function () {
-    //    $('#tbSalidaDetalle').DataTable(
-    //        {
-    //            "searching": true,
-
-    //            "oLanguage": {
-    //                "oPaginate": {
-    //                    "sNext": "Siguiente",
-    //                    "sPrevious": "Anterior",
-    //                },
-    //                "sProcessing": "Procesando...",
-    //                "sLengthMenu": "Mostrar _MENU_ registros",
-    //                "sZeroRecords": "No se encontraron resultados",
-    //                "sEmptyTable": "Ningún dato disponible en esta tabla",
-    //                "sEmptyTable": "No hay registros",
-    //                "sInfoEmpty": "Mostrando 0 de 0 Entradas",
-    //                "sSearch": "Buscar",
-    //                "sInfo": "Mostrando _START_ a _END_ Entradas",
-    //                "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-    //            }
-    //        });
-    //});
-</script>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script src="~/Scripts/app/Salida.js"></script>
 <script src="~/Scripts/app/SalidaEdit.js"></script>
-
-<script src="~/Scripts/app/SalidaDetalle.js"></script>
 <script src="~/Scripts/app/DataTable.js"></script>>
 <script type="text/javascript">
 
@@ -374,24 +322,6 @@
         tecla_final = String.fromCharCode(tecla);
         return patron.test(tecla_final);
     }
-    //$(":input").inputmask();
-    //$.ajax({
-    //    method: "POST",
-    //    url: "/Salida/BodegaDestino",
-    //    contentType: "application/json; charset=utf-8",
-    //    dataType: 'json', data: JSON.stringify({ id: $('#bod_Id').val() }),
-    //}).done(function (data) {
-    //    $("#sal_BodDestino").empty();
-    //    $("#sal_BodDestino").append("<option placeholder='Seleccione una Bodega de Destino'>Seleccione una Bodega de Destino</option>")
-    //    $.each(data, function (index, row) {
-    //        $("#sal_BodDestino").append("<option value ='" + row.bod_Id + "'>" + row.bod_Nombre + "</option>")
-    //    });
-    //})
-    //$("#sald_Cantidad").inputmask({ "mask": "999.99" });
-
-    //var selector = "#fact_Codigo";
-    //$(selector).mask("999-999-99-99999999", { reverse: true });
-    //Output is shown as: 1,000,000
 
     var value = $(selector).cleanVal();
     //Mask will be removed on next line
@@ -439,27 +369,6 @@
 
     }
 </script>
-@*<script type="text/javascript">
-        var contadorp = 0;
-        $(document).ready(function () {
-            $.get('/Salida/GetProdList', function (data) {
-
-                $("#cuerpo").html("");
-                $.each(data, function (index, row) {
-                    contadorp = contadorp + 1;
-                    copy = "<tr data-id=" + contadorp + ">";
-                    copy += "<td id = 'Cod_Producto'>" + row.prod_Codigo + "</td>";
-                    copy += "<td id = 'Producto'>" + row.data(tbProducto) + "</td>";
-                    copy += "<td id = 'Unidad_Medida'>" + row.prod_Codigo + "</td>";
-                    copy += "<td id = 'Cantidad'>" + row.prod_Codigo + "</td>";
-                    copy += "<td>" + '<button class="btn btn-primary btn-xs" value="' + row.prod_Codigo + '" id="seleccionar" data-dismiss="modal">Seleccionar</button>' + "</td>";
-                    copy += "</tr>";
-                    $('#cuerpo').append(copy);
-                });
-
-            })
-        })
-    </script>*@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

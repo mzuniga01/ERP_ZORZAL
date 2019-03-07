@@ -5,7 +5,5 @@ namespace ERP_GMEDINA.Dataset
 {
     partial class Salida
     {
-        UDV_Inv_Salida_Imprimir_ReporteTableAdapter SalidaTableAdapter = new UDV_Inv_Salida_Imprimir_ReporteTableAdapter();
-
     }
 }

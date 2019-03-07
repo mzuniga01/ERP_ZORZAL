@@ -311,9 +311,9 @@ namespace ERP_GMEDINA.Dataset {
             
             private global::System.Data.DataColumn columnprod_Color;
             
-            private global::System.Data.DataColumn columnpscat_Descripcion;
-            
             private global::System.Data.DataColumn columnpcat_Nombre;
+            
+            private global::System.Data.DataColumn columnpscat_Descripcion;
             
             private global::System.Data.DataColumn columnuni_Descripcion;
             
@@ -484,17 +484,17 @@ namespace ERP_GMEDINA.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn pscat_DescripcionColumn {
+            public global::System.Data.DataColumn pcat_NombreColumn {
                 get {
-                    return this.columnpscat_Descripcion;
+                    return this.columnpcat_Nombre;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn pcat_NombreColumn {
+            public global::System.Data.DataColumn pscat_DescripcionColumn {
                 get {
-                    return this.columnpcat_Nombre;
+                    return this.columnpscat_Descripcion;
                 }
             }
             
@@ -576,8 +576,8 @@ namespace ERP_GMEDINA.Dataset {
                         string prod_Modelo, 
                         string prod_Talla, 
                         string prod_Color, 
-                        string pscat_Descripcion, 
                         string pcat_Nombre, 
+                        string pscat_Descripcion, 
                         string uni_Descripcion, 
                         string prod_CodigoBarras, 
                         decimal sald_Cantidad) {
@@ -599,8 +599,8 @@ namespace ERP_GMEDINA.Dataset {
                         prod_Modelo,
                         prod_Talla,
                         prod_Color,
-                        pscat_Descripcion,
                         pcat_Nombre,
+                        pscat_Descripcion,
                         uni_Descripcion,
                         prod_CodigoBarras,
                         sald_Cantidad};
@@ -642,8 +642,8 @@ namespace ERP_GMEDINA.Dataset {
                 this.columnprod_Modelo = base.Columns["prod_Modelo"];
                 this.columnprod_Talla = base.Columns["prod_Talla"];
                 this.columnprod_Color = base.Columns["prod_Color"];
-                this.columnpscat_Descripcion = base.Columns["pscat_Descripcion"];
                 this.columnpcat_Nombre = base.Columns["pcat_Nombre"];
+                this.columnpscat_Descripcion = base.Columns["pscat_Descripcion"];
                 this.columnuni_Descripcion = base.Columns["uni_Descripcion"];
                 this.columnprod_CodigoBarras = base.Columns["prod_CodigoBarras"];
                 this.columnsald_Cantidad = base.Columns["sald_Cantidad"];
@@ -684,10 +684,10 @@ namespace ERP_GMEDINA.Dataset {
                 base.Columns.Add(this.columnprod_Talla);
                 this.columnprod_Color = new global::System.Data.DataColumn("prod_Color", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnprod_Color);
-                this.columnpscat_Descripcion = new global::System.Data.DataColumn("pscat_Descripcion", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnpscat_Descripcion);
                 this.columnpcat_Nombre = new global::System.Data.DataColumn("pcat_Nombre", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnpcat_Nombre);
+                this.columnpscat_Descripcion = new global::System.Data.DataColumn("pscat_Descripcion", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnpscat_Descripcion);
                 this.columnuni_Descripcion = new global::System.Data.DataColumn("uni_Descripcion", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnuni_Descripcion);
                 this.columnprod_CodigoBarras = new global::System.Data.DataColumn("prod_CodigoBarras", typeof(string), null, global::System.Data.MappingType.Element);
@@ -715,9 +715,9 @@ namespace ERP_GMEDINA.Dataset {
                 this.columnprod_Talla.MaxLength = 15;
                 this.columnprod_Color.AllowDBNull = false;
                 this.columnprod_Color.MaxLength = 20;
-                this.columnpscat_Descripcion.MaxLength = 150;
                 this.columnpcat_Nombre.AllowDBNull = false;
                 this.columnpcat_Nombre.MaxLength = 50;
+                this.columnpscat_Descripcion.MaxLength = 150;
                 this.columnuni_Descripcion.AllowDBNull = false;
                 this.columnuni_Descripcion.MaxLength = 150;
                 this.columnprod_CodigoBarras.AllowDBNull = false;
@@ -1101,6 +1101,17 @@ namespace ERP_GMEDINA.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string pcat_Nombre {
+                get {
+                    return ((string)(this[this.tableUDV_Inv_Salida_Imprimir_Reporte.pcat_NombreColumn]));
+                }
+                set {
+                    this[this.tableUDV_Inv_Salida_Imprimir_Reporte.pcat_NombreColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public string pscat_Descripcion {
                 get {
                     try {
@@ -1113,17 +1124,6 @@ namespace ERP_GMEDINA.Dataset {
                 }
                 set {
                     this[this.tableUDV_Inv_Salida_Imprimir_Reporte.pscat_DescripcionColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string pcat_Nombre {
-                get {
-                    return ((string)(this[this.tableUDV_Inv_Salida_Imprimir_Reporte.pcat_NombreColumn]));
-                }
-                set {
-                    this[this.tableUDV_Inv_Salida_Imprimir_Reporte.pcat_NombreColumn] = value;
                 }
             }
             
@@ -1468,8 +1468,8 @@ namespace ERP_GMEDINA.Dataset.SalidaTableAdapters {
             tableMapping.ColumnMappings.Add("prod_Modelo", "prod_Modelo");
             tableMapping.ColumnMappings.Add("prod_Talla", "prod_Talla");
             tableMapping.ColumnMappings.Add("prod_Color", "prod_Color");
-            tableMapping.ColumnMappings.Add("pscat_Descripcion", "pscat_Descripcion");
             tableMapping.ColumnMappings.Add("pcat_Nombre", "pcat_Nombre");
+            tableMapping.ColumnMappings.Add("pscat_Descripcion", "pscat_Descripcion");
             tableMapping.ColumnMappings.Add("uni_Descripcion", "uni_Descripcion");
             tableMapping.ColumnMappings.Add("prod_CodigoBarras", "prod_CodigoBarras");
             tableMapping.ColumnMappings.Add("sald_Cantidad", "sald_Cantidad");
@@ -1489,19 +1489,45 @@ namespace ERP_GMEDINA.Dataset.SalidaTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT        sal_FechaElaboracion, tsal_Id, tsal_Descripcion, bod_Id, bod_Nombre, estm_Id, estm_Descripcion, sal_BodDestino, fact_Codigo, bod_ResponsableBodega, prod_Codigo, prod_Descripcion, prod_Marca, prod_Modelo, 
-                         prod_Talla, prod_Color, pscat_Descripcion, pcat_Nombre, uni_Descripcion, prod_CodigoBarras, sald_Cantidad
-FROM            Inv.UDV_Inv_Salida_Imprimir_Reporte
-";
+            this._commandCollection[0].CommandText = @"SELECT sal_FechaElaboracion, tsal_Id, tsal_Descripcion, bod_Id, bod_Nombre, estm_Id, estm_Descripcion, sal_BodDestino, fact_Codigo, bod_ResponsableBodega, prod_Codigo, prod_Descripcion, prod_Marca, prod_Modelo, prod_Talla, prod_Color, pcat_Nombre, pscat_Descripcion, uni_Descripcion, prod_CodigoBarras, sald_Cantidad FROM Inv.UDV_Inv_Salida_Imprimir_Reporte
+WHERE        (sal_FechaElaboracion BETWEEN @sal_FechaElaboracion AND GETDATE()) AND (tsal_Id = @tsal_Id) AND (bod_Id = @bod_Id) AND (estm_Id = @estm_Id)";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@sal_FechaElaboracion", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "sal_FechaElaboracion", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@tsal_Id", global::System.Data.SqlDbType.TinyInt, 1, global::System.Data.ParameterDirection.Input, 0, 0, "tsal_Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@bod_Id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "bod_Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@estm_Id", global::System.Data.SqlDbType.TinyInt, 1, global::System.Data.ParameterDirection.Input, 0, 0, "estm_Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(Salida.UDV_Inv_Salida_Imprimir_ReporteDataTable dataTable) {
+        public virtual int Fill(Salida.UDV_Inv_Salida_Imprimir_ReporteDataTable dataTable, global::System.Nullable<global::System.DateTime> sal_FechaElaboracion, global::System.Nullable<byte> tsal_Id, global::System.Nullable<int> bod_Id, global::System.Nullable<byte> estm_Id) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((sal_FechaElaboracion.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((System.DateTime)(sal_FechaElaboracion.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((tsal_Id.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((byte)(tsal_Id.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((bod_Id.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(bod_Id.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((estm_Id.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[3].Value = ((byte)(estm_Id.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
@@ -1513,8 +1539,32 @@ FROM            Inv.UDV_Inv_Salida_Imprimir_Reporte
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual Salida.UDV_Inv_Salida_Imprimir_ReporteDataTable GetData() {
+        public virtual Salida.UDV_Inv_Salida_Imprimir_ReporteDataTable GetData(global::System.Nullable<global::System.DateTime> sal_FechaElaboracion, global::System.Nullable<byte> tsal_Id, global::System.Nullable<int> bod_Id, global::System.Nullable<byte> estm_Id) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((sal_FechaElaboracion.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((System.DateTime)(sal_FechaElaboracion.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((tsal_Id.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((byte)(tsal_Id.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((bod_Id.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(bod_Id.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((estm_Id.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[3].Value = ((byte)(estm_Id.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
             Salida.UDV_Inv_Salida_Imprimir_ReporteDataTable dataTable = new Salida.UDV_Inv_Salida_Imprimir_ReporteDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;

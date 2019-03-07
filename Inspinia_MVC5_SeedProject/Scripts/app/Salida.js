@@ -4,6 +4,7 @@
 $('#fact_Codigo').keypress(function () {
     FaturaExist()
 })
+
 //Tipo de Salida
 $("#bod_Id").click(function () {
     var Bod = document.getElementById("bod_Id");
@@ -24,7 +25,6 @@ $("#sal_FechaElaboracion").click(function () {
 });
 
 $('#Productos').click(function () {
-    //data - toggle="modal" data - target="#ModalAgregarProducto"
     var Bod = document.getElementById("bod_Id");
     var Bodega = Bod.options[Bod.selectedIndex].text;
     if (Bodega.startsWith("Seleccione")) {
@@ -36,82 +36,8 @@ $('#Productos').click(function () {
         $('#ModalAgregarProducto').modal('show');
         $('#bod_IdError').text('')
         ListaProductos()
-        //test()
     }
-    //var Bodega = $("#bod_Id").val();
 });
-
-//function Busqueda() {
-//    var tbBodegaDetalle = {
-//        bod_Id: $('#prod_Codigo').val(),
-//    };
-//    var bod_Id = $('#bod_Id').val()
-//    //var url = "/Factura/GetDetalleEdit?StudentId=" + StudentId;
-//    var url = "/Salida/GetProducto?bod_Id=" + bod_Id;
-//    var table = $("#table-users").DataTable({
-//        destroy: true,
-//        responsive: true,
-//        ajax: {
-//            method: "POST",
-//            url: url,
-//            contentType: "application/json; charset=utf-8",
-//            dataType: "json",
-//            dataSrc: "list"
-//             },
-//        columns: [
-//            { "list": ".prod_Codigo"}
-//                 ]
-//    });
-//}
-//}
-
-//function ListaProductos() {
-//    var bod_Id = $('#bod_Id').val()
-//    url = "/Salida/GetProducto?bod_Id=" + bod_Id;
-//    var table = $('#table-users').dataTable({
-//        destroy: true,
-//        resposive: true,
-//        ajax: {
-//            method: "POST",
-//            url: url,
-//            contentType: "application/json; charset=utf-8",
-//            dataType: 'json',
-//            dataSrc: "list"
-//        },
-//        columns: [
-//            { "list": "prod_Codigo" }
-//        ]
-//    })
-//    console.log(list);
-//}
-
-//dataSrc: "d.data"
-//        },
-//prod_Codigo	25 - 32 - 00002
-//prod_Descripcion	Sierra Electrica
-//pcat_Nombre	Herramientass
-//pscat_Descripcion	Herramientas para carpinteria
-//uni_Descripcion	Unidad
-//prod_CodigoBarras	7421212012
-
-//function test() {
-//    var bod_Id = $('#bod_Id').val()
-//    url = "/Salida/GetProducto?bod_Id=" + bod_Id;
-//    $.ajax({
-//        method: "POST",
-//        url: url,
-//        contentType: "application/json; charset=utf-8",
-//        dataType: 'json',
-//    }).done(function (info) {
-//        console.log(info);
-//    });
-//}
-
-$(document).ready(function () {
-});
-
-//function __showUsers() {
-//}
 
 function ListaProductos() {
     var bod_Id = $('#bod_Id').val()
@@ -153,50 +79,10 @@ function ListaProductos() {
             "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
         }
     })
-    //$('#tblBusquedaGenerica tbody').on('click', 'button', function () {
-    //    var data = table.row($(this).parents('tr')).data();
-    //    alert(data[0]);
-    //});
 }
-//$('#Productos').on("click", function () {
-//    test()
-//    ListaProductos2()
-//    });
-
-//$('#tblBusquedaGenerica tbody').on('click', '[id*=btnDetails]', function () {
-//    var data = table.row($(this).parents('tr')).data();
-//});
-//,
-//"columnDefs": [{
-//    "targets": -1,
-//    "data": null,
-//    "defaultContent": "<button>Click!</button>"
-//}],
-//function ListaProductos() {
-//    var table = $("#").DataTable({
-//        destroy: true,
-//        responsive: true,
-//        ajax: {
-//            method: "POST",
-//            url: "/Salida/GetProdList",
-//            contentType: "application/json; charset=utf-8",
-//            dataType: "json",
-//            data: function (d) {
-//                return JSON.stringify(d);
-//            },
-//            dataSrc: "d.data"
-//        },
-//        columns: [
-//            { "data": "prod_Codigo" }
-//        ]
-//    });
-//}
 
 $("#Editar").click(function () {
     $("#tblSalidaDetalle >tbody >tr").each(function () {
-        //document.getElementById("myDiv");  find("td:eq(0)").
-        //var elem =
-        //var elem =
         console.log($(this).data("id"))
         console.log($(this).val(this.dataset))
 
@@ -230,8 +116,6 @@ $("#ChangeBodega").change(function () {
 
 function LimpiarTable() {
     $("#Body_BuscarProducto").html("");
-
-    //$("#Body_BuscarProducto").remove()
 }
 
 function ChangeBodega() {
@@ -295,34 +179,6 @@ function BodegaDestino() {
     })
 };
 
-//function ListaProductos() {
-//    var vbod_Id = $('#bod_Id').val()
-//    var BodegaDetalle = {
-//        bod_Id: vbod_Id
-//    };
-//    $.ajax({
-//        url: "/Salida/GetProdList",
-//        method: "POST",
-//        dataType: 'json',
-//        contentType: "application/json; charset=utf-8",
-//        data: JSON.stringify({ tbBodegaDetalle: BodegaDetalle }),
-//    }).done(function (data) {
-//        $("#Body_BuscarProducto").html("");
-//        $.each(data, function (key, value) {
-//            key = "<tr tr data-id =" + value.prod_Codigo + " , tr data-content =" + value.prod_Descripcion + " tr data-container =" + value.pscat_Descripcion + " , tr data-keyboard =" + value.uni_Descripcion + " , tr data-pcat=" + value.pcat_Nombre + " , tr data-cod_Barra=" + value.prod_CodigoBarras + " >";
-//            key += "<td id ='prod_Codigo' >" + value.prod_Codigo + "</td>";
-//            key += "<td id ='prod_Descripcion' >" + value.prod_Descripcion + "</td>";
-//            key += "<td id = 'pcat_Nombre'>" + value.pcat_Nombre + "</td>";
-//            key += "<td id = 'pscat_Descripcion'>" + value.pscat_Descripcion + "</td>";
-//            key += "<td id = 'uni_Descripcion'>" + value.uni_Descripcion + "</td>";
-//            key += "<td id = 'prod_CodigoBarras'>" + value.prod_CodigoBarras + "</td>";
-//            key += "<td>" + "<button class='btn btn-primary btn-xs' value=" + value.prod_Codigo + " id='seleccionar' data-dismiss='modal'>Seleccionar</button>" + "</td>"
-//            key += "</tr>";
-//            $("#Body_BuscarProducto").append(key)
-//        })
-//    });
-//}
-
 function TipodeSalida() {
     var txtTipoSalida = document.getElementById("tsal_Id");
     var valTipoSalida = txtTipoSalida.options[txtTipoSalida.selectedIndex].text;
@@ -345,7 +201,7 @@ function TipodeSalida() {
         if (valTipoSalida == "Venta") {
             var fact_Codigo = $('#fact_Codigo').val();
             if (fact_Codigo == '***-***-**-********') {
-                $('#fact_Codigo').val('') 
+                $('#fact_Codigo').val('')
             }
             $('#sal_RazonDevolucion').val('*****');
             ///////////////////////////////////////
@@ -471,19 +327,17 @@ function Producto(bod_Id, prod_CodigoBarrasItem) {
 }
 
 $(document).on("click", "#tblBusquedaGenerica tbody tr td button#seleccionar", function () {
-
     var currentRow = $(this).closest("tr");
     var prod_CodigoBarrasItem = currentRow.find("td:eq(5)").text();
     var bod_Id = $('#bod_Id').val()
     $('#CodigoError').text('')
-    
-    //var bod_Id = $(this).closest('tr').data('cod_barra');
-    //var prod_CodigoBarrasItem = $(this).closest('tr').data('cod_barra');
     console.log(prod_CodigoBarrasItem)
     Producto(bod_Id, prod_CodigoBarrasItem)
 });
 
 $(document).keypress(function (e) {
+    ValidacionCantidad()
+
     console.log('Hola', e.target.id);
     var IDInput = e.target.id;
     if (e.which == 13) {
@@ -498,7 +352,6 @@ $(document).keypress(function (e) {
     }
 });
 $(document).on("click", "#tblSalidaDetalle tbody tr td button#removeSalidaDetalle", function () {
-    //$(this).closest('tr').remove();
     idItem = $(this).closest('tr').data('id');
     var vprod_Codigo = $(this).closest("tr").find("td:eq(0)").text();
     var tbSalidaDetalle = {
@@ -523,5 +376,4 @@ $(document).on("click", "#tblSalidaDetalle tbody tr td button#removeSalidaDetall
 var table = $('#example').DataTable();
 
 $('#example tbody').on('click', 'img.icon-delete', function () {
-   
 })
