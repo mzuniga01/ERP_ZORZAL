@@ -1213,16 +1213,17 @@
       <DependentUpon>ImprimirNotaCreditoclteNaturalxOtros.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\InventarioNumeraciones.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>InventarioNumeraciones.rpt</DependentUpon>
-    </Compile>
     <Compile Include="Reports\CuponDescuento.cs">
       <DependentUpon>CuponDescuento.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\InventarioNumeraciones.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InventarioNumeraciones.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\NotaCredito.cs">
       <AutoGen>True</AutoGen>
@@ -1253,6 +1254,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SolicitudEfectivo.rpt</DependentUpon>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\VentasConsumidorFinal.cs">
+      <SubType>Component</SubType>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VentasConsumidorFinal.rpt</DependentUpon>
     </Compile>
     <Compile Include="Reports\VentasExoneradas.cs">
       <AutoGen>True</AutoGen>
@@ -2101,13 +2108,13 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ImprimirNotaCreditoclteNaturalxOtros.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\InventarioNumeraciones.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>InventarioNumeraciones.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="Reports\CuponDescuento.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CuponDescuento.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\InventarioNumeraciones.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>InventarioNumeraciones.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\NotaCredito.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -2129,6 +2136,10 @@
     <EmbeddedResource Include="Reports\SolicitudEfectivo.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>SolicitudEfectivo.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\VentasConsumidorFinal.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>VentasConsumidorFinal.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\VentasExoneradas.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

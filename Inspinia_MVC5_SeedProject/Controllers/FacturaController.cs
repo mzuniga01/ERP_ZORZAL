@@ -539,7 +539,7 @@ namespace ERP_GMEDINA.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "fact_Id,fact_Codigo,fact_Fecha,esfac_Id,cja_Id,suc_Id,clte_Id,pemi_NumeroCAI,fact_AlCredito,fact_DiasCredito,fact_PorcentajeDescuento,fact_Vendedor,clte_Identificacion,clte_Nombres,fact_UsuarioCrea,fact_FechaCrea,fact_UsuarioModifica,fact_FechaModifica,tbUsuario,tbUsuario1")] tbFactura tbFactura)
         {
-            var listEdit = (List<tbFacturaDetalle>)Session["FacturaEdit"];
+            var listEdit = (List<tbFacturaDetalle>)Session["FacturaEdit"];  
             string MensajeError = "";
             var MensajeErrorDetalle = "";
             IEnumerable<object> listFactura = null;
@@ -578,7 +578,7 @@ namespace ERP_GMEDINA.Controllers
                                                 Function.DatetimeNow());
                         foreach (UDP_Vent_tbFactura_Update_Result Factura in listFactura)
                             MensajeError = Factura.MensajeError;
-                        if (MensajeError == "-1")
+                        if (MensajeError.StartsWith("-1"))
                         {
                             Function.InsertBitacoraErrores("Factura/Edit", MensajeError, "Edit");
                             ModelState.AddModelError("", "No se pudo agregar el registro");
@@ -594,28 +594,71 @@ namespace ERP_GMEDINA.Controllers
                                     {
                                         foreach (tbFacturaDetalle Detalle in listEdit)
                                         {
-                                            var FacturaD_Id = Convert.ToInt64(MensajeError);
-                                            Detalle.fact_Id = FacturaD_Id;
-                                            listFacturaDetalle = db.UDP_Vent_tbFacturaDetalle_Insert(
+                                            var Exits = db.tbFacturaDetalle.Where(
+                                                x => x.prod_Codigo == Detalle.prod_Codigo
+                                                &&
+                                                x.fact_Id == Detalle.fact_Id).FirstOrDefault();
+
+                                            if (Exits != null)
+                                            {
+                                                var Cantidad = db.tbFacturaDetalle.Where(
+                                                x => x.prod_Codigo == Detalle.prod_Codigo
+                                                &&
+                                                x.fact_Id == Detalle.fact_Id).Select(c => c.factd_Cantidad).FirstOrDefault();
+
+                                                var pFacturaDetalle = db.tbFacturaDetalle.Where(x => x.fact_Id == Detalle.fact_Id).Select(c => c.fact_Id).FirstOrDefault();
+                                                tbFacturaDetalle vSalidaDetalle = db.tbFacturaDetalle.Find(pFacturaDetalle);
+
+                                                decimal CantidadNew = Convert.ToDecimal(Exits.factd_Cantidad) + Convert.ToDecimal(Detalle.factd_Cantidad);
+                                                listFacturaDetalle = db.UDP_Vent_tbFacturaDetalle_Update(
+                                                                    Exits.factd_Id,
+
+                                                                    Detalle.prod_Codigo,
+                                                                    Detalle.factd_Cantidad,
+                                                                    Detalle.factd_MontoDescuento,
+                                                                    Detalle.factd_PorcentajeDescuento,
+                                                                    Detalle.factd_Impuesto,
+                                                                    Detalle.factd_PrecioUnitario,
+                                                                    Detalle.factd_UsuarioAutoriza,
+                                                                    Detalle.factd_FechaAutoriza,
+                                                                    Detalle.factd_UsuarioCrea,
+                                                                    Detalle.factd_FechaCrea,
+                                                                    Function.GetUser(),
+                                                                    Function.DatetimeNow());
+                                                foreach (UDP_Vent_tbFacturaDetalle_Update_Result RSSalidaDetalle in listFacturaDetalle)
+                                                    MensajeError = RSSalidaDetalle.MensajeError;
+                                                if (MensajeError.StartsWith("-1"))
+                                                {
+                                                    ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                                                    return Json(ModelState, JsonRequestBehavior.AllowGet);
+                                                }
+                                            }
+                                            else
+                                            {
+                                                var FacturaD_Id = Convert.ToInt64(MensajeError);
+                                                Detalle.fact_Id = FacturaD_Id;
+                                                listFacturaDetalle = db.UDP_Vent_tbFacturaDetalle_Insert(
                                                 Detalle.fact_Id,
                                                 Detalle.prod_Codigo,
                                                 Detalle.factd_Cantidad,
                                                 Detalle.factd_MontoDescuento,
                                                 Detalle.factd_PorcentajeDescuento,
                                                 Detalle.factd_Impuesto,
-                                                Detalle.factd_PrecioUnitario,                                            
+                                                Detalle.factd_PrecioUnitario,
                                                 Function.GetUser(),
                                                 Function.DatetimeNow());
-                                            foreach (UDP_Vent_tbFacturaDetalle_Insert_Result SPfacturadet in listFacturaDetalle)
-                                            {
-                                                MensajeErrorDetalle = SPfacturadet.MensajeError;
-                                                if (MensajeError.StartsWith("-1"))
+                                                foreach (UDP_Vent_tbFacturaDetalle_Insert_Result SPfacturadet in listFacturaDetalle)
                                                 {
-                                                    Function.InsertBitacoraErrores("Factura/Edit", MensajeError, "Edit");
-                                                    ModelState.AddModelError("", "No se pudo agregar el registro detalle");
-                                                    return View(tbFactura);
+                                                    MensajeErrorDetalle = SPfacturadet.MensajeError;
+                                                    if (MensajeError.StartsWith("-1"))
+                                                    {
+                                                        Function.InsertBitacoraErrores("Factura/Edit", MensajeError, "Edit");
+                                                        ModelState.AddModelError("", "No se pudo agregar el registro detalle");
+                                                        return View(tbFactura);
+                                                    }
                                                 }
                                             }
+                                            
                                         }
                                     }
                                 }
@@ -840,30 +883,7 @@ namespace ERP_GMEDINA.Controllers
             return Json("", JsonRequestBehavior.AllowGet);
         }
 
-        [HttpPost]
-        public JsonResult IncrementarProducto(string data_producto)
-        {
-            var Datos = "";
-            if (Session["Factura"] == null)
-            {
-
-            }
-            else
-            {
-                var menu = Session["Factura"] as List<tbFacturaDetalle>;
-
-                foreach (var t in menu)
-                {
-                    if (t.prod_Codigo == data_producto)
-                        Datos = data_producto;
-                }
-
-
-            }
-
-            return Json(Datos);
-        }
-        [HttpPost]
+       [HttpPost]
         public ActionResult UpdateFacturaDetalle(tbFacturaDetalle EditFacturaDetalle)
         {
             try

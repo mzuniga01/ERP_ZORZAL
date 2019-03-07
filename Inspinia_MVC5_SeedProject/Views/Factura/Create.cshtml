@@ -432,8 +432,7 @@
             if (IDInput == 'prod_CodigoBarras' || IDInput=='factd_Cantidad') {
                 var cantfisica_nueva = $('#factd_Cantidad').val();               
                 var total1 = $('#TotalProducto').val();
-                SeleccionProducto(cantfisica_nueva, total1)
-               
+                SeleccionProducto(cantfisica_nueva, total1)              
 
                 return false;
             }
@@ -695,8 +694,6 @@
                         })
                     }
                     else {
-                        alert("Este producto no esta en existencia.")
-                        $("#prod_CodigoBarras").val('')
                     }
 
                 })

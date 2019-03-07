@@ -385,25 +385,5 @@ namespace ERP_ZORZAL.Controllers
             }
             return Json(Msj, JsonRequestBehavior.AllowGet);
         }
-
-        public ActionResult ExportReport(int suc_Id)
-        {
-            UDV_Vent_InventarioNumeracionesTableAdapter InventarioNumeracionTableAdapter = new UDV_Vent_InventarioNumeracionesTableAdapter();
-            Reportes.UDV_Vent_InventarioNumeracionesDataTable InventarioNumeracionDataTable = new Reportes.UDV_Vent_InventarioNumeracionesDataTable();
-
-            try
-            {
-                InventarioNumeracionTableAdapter.FillFiltros(InventarioNumeracionDataTable, suc_Id);
-                var DataSetResult = InventarioNumeracionTableAdapter.GetData(suc_Id).ToList();
-
-                var Url = "../ReportViewer/InventarioNumeraciones.aspx";
-                return RedirectToAction(Url);
-            }
-            catch (Exception Ex)
-            {
-                Ex.Message.ToString();
-                throw;
-            }
-        }
     }
 }

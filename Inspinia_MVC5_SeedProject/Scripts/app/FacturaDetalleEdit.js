@@ -41,13 +41,13 @@ $('#AgregarDetalleFactura').click(function () {
     }
     else {
         //ajax para el controlador
-        var FacturaDetalleEdit = GetFacturaDetalleEdit();
+        var FacturaDetalle = GetFacturaDetalle();
         $.ajax({
             url: "/Factura/SaveFacturaDetalleEdit",
             method: "POST",
             dataType: 'json',
             contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ FacturaDetalleEdit: FacturaDetalleEdit, data_producto: CodigoProducto })
+            data: JSON.stringify({ FacturaDetalleEdit: FacturaDetalle, data_producto: CodigoProducto })
         })
             .done(function (datos) {
                 if (datos == CodigoProducto) {
@@ -85,7 +85,7 @@ $('#AgregarDetalleFactura').click(function () {
                     copiar += "<td id = 'ImpuestoCreate' align='right'>" + Impuesto + "</td>";
                     copiar += "<td id = 'factd_MontoDescuentoCreate' align='right'>" + MontoDescuento + "</td>";
                     copiar += "<td id = 'TotalProductoCreate' align='right'>" + Total + "</td>";
-                    copiar += "<td>" + '<button id="removeFacturaDetalleEdit" class="btn btn-danger glyphicon glyphicon-trash btn-xs eliminar" type="button"></button>' + "</td>";
+                    copiar += "<td>" + '<button id="removeFacturaDetalle" class="btn btn-danger glyphicon glyphicon-trash btn-xs eliminar" type="button"></button>' + "</td>";
                     copiar += "</tr>";
                     $('#tblDetalleFactura').append(copiar);
                 }
@@ -120,7 +120,6 @@ $('#AgregarDetalleFactura').click(function () {
                 var impuestotal = parseFloat(document.getElementById("isv").innerHTML);
                 var porcentaje = parseFloat(impuesto / 100);
                 var impuestos = (Cantidad * Precio) * porcentaje;
-
                 if (document.getElementById("isv").innerHTML == '') {
                     impuesto = document.getElementById("factd_Impuesto").value;
                     document.getElementById("isv").innerHTML = parseFloat(impuestos);
@@ -159,9 +158,9 @@ $('#AgregarDetalleFactura').click(function () {
     }
 })
 
-function GetFacturaDetalleEdit() {
+function GetFacturaDetalle() {
 
-    var FacturaDetalleEdit = {
+    var FacturaDetalle = {
         prod_Codigo: $('#prod_Codigo').val(),
         factd_PorcentajeDescuento: $('#factd_PorcentajeDescuento').val(),
         factd_MontoDescuento: $('#factd_MontoDescuento').val(),
@@ -173,10 +172,10 @@ function GetFacturaDetalleEdit() {
         TotalProducto: $('#TotalProducto').val(),
         factd_Id: contador
     }
-    return FacturaDetalleEdit
+    return FacturaDetalle
 };
 
-$(document).on("click", "#tblDetalleFactura tbody tr td button#removeFacturaDetalleEdit", function () {
+$(document).on("click", "#tblDetalleFactura tbody tr td button#removeFacturaDetalle", function () {
 
     //Descuento
     var Descuento = $(this).parents("tr").find("td")[5].innerHTML;
@@ -208,7 +207,7 @@ $(document).on("click", "#tblDetalleFactura tbody tr td button#removeFacturaDeta
     };
 
     $.ajax({
-        url: "/Factura/RemoveFacturaDetalle",
+        url: "/Factura/RemoveFacturaDetalleEdit",
         method: "POST",
         dataType: 'json',
         contentType: "application/json; charset=utf-8",
@@ -665,57 +664,19 @@ $(document).ready(function () {
 
 // Factura Seleccionar Producto
 $(document).on("click", "#tbProductoFactura tbody tr td button#seleccionar", function () {
-    idbarraItem = $(this).closest('tr').data('barra');
+    var currentRow = $(this).closest("tr");
+    var prod_CodigoBarrasItem = currentRow.find("td:eq(2)").text();
+    var bod_Id = $('#bod_Id').val()
+    SeleccionProducto(prod_CodigoBarrasItem)
     idItem = $(this).closest('tr').data('id');
     DescItem = $(this).closest('tr').data('desc');
     ISVItem = $(this).closest('tr').data('isv');
-    $("#prod_CodigoBarras").val(idbarraItem);
+    $("#prod_CodigoBarras").val(prod_CodigoBarrasItem);
     $("#prod_Codigo").val(idItem);
-    $("#tbProducto_prod_CodigoBarras").val(idCbItem);
     $("#tbProducto_prod_Descripcion").val(DescItem);
     $("#factd_Impuesto").val(ISVItem);
     $('#ModalAgregarProducto').modal('hide');
 });
-
-//Facturar RowSeleccionar Producto
-$(document).ready(function () {
-    var table = $('#tbProductoFactura').DataTable();
-
-    $('#tbProductoFactura tbody').on('click', 'tr', function () {
-        idbarraItem = $(this).closest('tr').data('barra');
-        idItem = $(this).closest('tr').data('id');
-        DescItem = $(this).closest('tr').data('desc');
-        ISVItem = $(this).closest('tr').data('isv');
-        $("#prod_CodigoBarras").val(idbarraItem);
-        $("#prod_Codigo").val(idItem);
-        $("#tbProducto_prod_Descripcion").val(DescItem);
-        $("#factd_Impuesto").val(ISVItem);
-        $('#ModalAgregarProducto').modal('hide');
-        var Cliente = $('#clte_Id').val();
-        if (Cliente == '') {
-            Cliente = 0;
-            GetPrecio(Cliente, idItem);
-        }
-        else {
-            GetPrecio(Cliente, idItem);
-        }
-
-        function GetPrecio(Cliente, idItem) {
-            $.ajax({
-                url: "/Factura/GetPrecio",
-                method: "POST",
-                dataType: 'json',
-                contentType: "application/json; charset=utf-8",
-                data: JSON.stringify({ Cliente: Cliente, idItem: idItem }),
-            })
-            .done(function (data) {
-                var g = data;
-                $("#factd_PrecioUnitario").val(g);
-            });
-        }
-    });
-});
-
 $(function () {
     $("#CantidadEdit").keyup(function (e) {
         var Cantidad = document.getElementById("CantidadEdit").value;
@@ -734,3 +695,44 @@ $(function () {
         $("#TotalEdit").val(result1);
     });
 });
+$("#Producto").click(function () {
+    ListaProductos();
+})
+function ListaProductos() {
+    url = "/Factura/ListaProductos";
+    $('#ModalAgregarProducto').modal('show');
+    var table = $('#tbProductoFactura').dataTable({
+        destroy: true,
+        resposive: true,
+        ajax: {
+            method: "POST",
+            url: url,
+            contentType: "application/json; charset=utf-8",
+            dataType: 'json',
+            "dataSrc": ""
+        },
+        "columns": [
+            { "data": "prod_Codigo" },
+            { "data": "prod_Descripcion" },
+            { "data": "prod_CodigoBarras" },
+            { "defaultContent": "<button class='btn btn-primary btn-xs'  id='seleccionar' data-dismiss='modal'>Seleccionar</button>" }
+        ],
+        "searching": false,
+        "lengthChange": false,
+        "oLanguage": {
+            "oPaginate": {
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior",
+            },
+            "sProcessing": "Procesando...",
+            "sLengthMenu": "Mostrar _MENU_ registros",
+            "sZeroRecords": "No se encontraron resultados",
+            "sEmptyTable": "Ningún dato disponible en esta tabla",
+            "sEmptyTable": "No hay registros",
+            "sInfoEmpty": "Mostrando 0 de 0 Entradas",
+            "sSearch": "Buscar",
+            "sInfo": "Mostrando _START_ a _END_ Entradas",
+            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+        }
+    })
+}

@@ -20,7 +20,7 @@
                                 <input id="prod_CodigoBarras" type="text" class="form-control" onKeyPress = "return soloNumeros(event)" />
                             </div>
                             <div class="col-md-1">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarProducto"><span class="glyphicon glyphicon-search"></span></button>
+                                <button id="Producto" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
                             </div>
                             @Html.LabelFor(model => model.tbProducto.prod_Descripcion, new { @class = "control-label col-md-1" })
                             <div class="col-md-5">
@@ -29,9 +29,9 @@
                                     @Html.ValidationMessageFor(model => model.tbProducto.prod_Descripcion)
                                 </div>
                             </div>
-                            <div class="col-md-1">
-                                <button class="btn btn-primary btn-sm" type="button" id="AgregarDetalleFactura">Añadir</button>
-                            </div>
+                            @*<div class="col-md-1">
+                                <button type="button" class="btn btn-primary btn-sm" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#AutorizarDescuentoDetalle">Descuento</button>
+                            </div>*@ 
                         </div>
 
                         <div class="form-group">
@@ -161,31 +161,70 @@
     <p style="color:red"></p>
 </div>
 <div>
-    <div class="modal fade" id="AutorizarDescuentoDetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
+    <div class="modal fade" id="FacturaDetalleEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="CloseAutorizarDetalle">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="modal-title" id="myModalLabel">Código Autorizado</h4>
+                    <h4 class="modal-title" id="myModalLabel">Editar Producto</h4>
                 </div>
                 <div class="modal-body" id="frmAutorizarDescuento">
                     <div class="ibox-content">
                         <div class="form-horizontal">
-                            <form method="post">
-                                <div class="form-group">
-                                    <label class="control-label col-md-4">Contraseña</label>
-                                    <div class="col-md-6">
-                                        <input id="passdetalle" name="pass" class="form-control" autocomplete="on">
+                            <form id="form">
+                                <fieldset id="SubmitForm">
+                                    <div class="form-group">
+                                        <input id="factdd" name="factd_Id" type="hidden" class="form-control" hidden />
+                                        <label class="control-label col-md-1">Producto</label>
+                                        <div class="col-md-4">
+                                            <input id="IDProducto" name="prod_Codigo" type="text" class="form-control" readonly />
+                                        </div>
+                                        <label class="control-label col-md-2">Descripción</label>
+                                        <div class="col-md-5">
+                                            <input id="DescProducto" name="DescProducto" type="text" class="form-control" readonly />
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-4">Porcentaje de Descuento</label>
-                                    <div class="col-md-6">
-                                        <input id="PorcentajeDescuentoAuditoria" type="text" class="form-control" />
+                                    <div class="form-group">
+                                        <label class="control-label col-md-1">Cantidad</label>
+                                        <div class="col-md-4">
+                                            <input id="CantidadEdit" name="factd_Cantidad" type="text" class="form-control" />
+                                        </div>
+                                        <label class="control-label col-md-2">Precio</label>
+                                        <div class="col-md-4">
+                                            <input id="PrecioUnitarioEdit" name="factd_PrecioUnitario" type="text" class="form-control" readonly />
+                                        </div>
                                     </div>
-                                </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-1">Impuesto</label>
+                                        <div class="col-md-3">
+                                            <input id="ImpuestoEdit" name="factd_Impuesto" type="text" class="form-control" readonly />
+                                        </div>
+                                        <label class="control-label col-md-3">Monto Descuento</label>
+                                        <div class="col-md-4">
+                                            <input id="MontoDescuentoEdit" name="factd_MontoDescuento" type="text" class="form-control" readonly />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-1">Subtotal</label>
+                                        <div class="col-md-3">
+                                            <input id="SubtotalEdit" type="text" class="form-control" readonly />
+                                        </div>
+                                        <label class="control-label col-md-3">Total</label>
+                                        <div class="col-md-4">
+                                            <input id="TotalEdit" type="text" value="" class="form-control" readonly />
+                                        </div>
+                                        <input id="UsuCrea" name="factd_UsuarioCrea" type="hidden" class="form-control" hidden />
+                                        <input id="FechaCrea" name="factd_FechaCrea" type="hidden" class="form-control" hidden />
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-lg-offset-5 col-md-10">
+                                            <a href="#" class="btn btn-primary btn-sm" id="EditFacturaDetalle">Guardar</a>
+                                            <button type="button" class="btn btn-white btn-sm" data-dismiss="modal">Cancelar</button>
+                                        </div>
+                                    </div>
+                                </fieldset>
                             </form>
                         </div>
                     </div>
@@ -211,80 +250,4 @@
         </div>
     </div>
 </div>
-<div>
-    <div class="modal fade" id="FacturaDetalleEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="CloseAutorizarDetalle">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel">Editar Producto</h4>
-                </div>
-                <div class="modal-body" id="frmAutorizarDescuento">
-                    <div class="ibox-content">
-                        <div class="form-horizontal">
-                            <form id="form">                               
-                                <fieldset id="SubmitForm">                                                               
-                                    <div class="form-group">
-                                       <input id="factdd" name="factd_Id" type="hidden" class="form-control" hidden />                                                                            
-                                        <label class="control-label col-md-1">Producto</label>
-                                        <div class="col-md-4">
-                                            <input id="IDProducto" name="prod_Codigo" type="text" class="form-control" readonly />
-                                        </div>
-                                        <label class="control-label col-md-2">Descripción</label>
-                                        <div class="col-md-5">
-                                            <input id="DescProducto" name="DescProducto" type="text" class="form-control" readonly/>
-                                        </div>                                        
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-1">Cantidad</label>
-                                        <div class="col-md-4">
-                                            <input id="CantidadEdit" name="factd_Cantidad" type="text" class="form-control"/>
-                                        </div>
-                                        <label class="control-label col-md-2">Precio</label>
-                                        <div class="col-md-4">
-                                            <input id="PrecioUnitarioEdit" name="factd_PrecioUnitario" type="text" class="form-control" readonly />
-                                        </div>                                                                              
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-1">Impuesto</label>
-                                        <div class="col-md-3">
-                                            <input id="ImpuestoEdit" name="factd_Impuesto" type="text" class="form-control" readonly />
-                                        </div>
-                                        <label class="control-label col-md-3">Monto Descuento</label>
-                                        <div class="col-md-4">
-                                            <input id="MontoDescuentoEdit" name="factd_MontoDescuento" type="text" class="form-control" readonly />
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-1">Subtotal</label>
-                                        <div class="col-md-3">
-                                            <input id="SubtotalEdit" type="text" class="form-control" readonly />
-                                        </div>
-                                        <label class="control-label col-md-3">Total</label>
-                                        <div class="col-md-4">
-                                            <input id="TotalEdit" type="text" value="" class="form-control" readonly />
-                                        </div>
-                                        <input id="UsuCrea" name="factd_UsuarioCrea" type="hidden"  class="form-control" hidden />
-                                        <input id="FechaCrea" name="factd_FechaCrea" type="hidden"  class="form-control" hidden />  
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-lg-offset-5 col-md-10">
-                                            <a href="#" class="btn btn-primary btn-sm" id="EditFacturaDetalle">Guardar</a>
-                                            <button type="button" class="btn btn-white btn-sm" data-dismiss="modal">Cancelar</button>
-                                        </div>
-                                    </div>
-                                </fieldset>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<script>
-   
-</script>
 
