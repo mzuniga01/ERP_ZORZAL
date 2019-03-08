@@ -7318,10 +7318,6 @@ namespace ERP_GMEDINA.Dataset {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class UDV_Vent_DevolucionesPorFechaDataTable : global::System.Data.TypedTableBase<UDV_Vent_DevolucionesPorFechaRow> {
             
-            private global::System.Data.DataColumn columndev_Id;
-            
-            private global::System.Data.DataColumn columndevd_Id;
-            
             private global::System.Data.DataColumn columnFechaDevolucion;
             
             private global::System.Data.DataColumn columnFechaFactura;
@@ -7351,6 +7347,8 @@ namespace ERP_GMEDINA.Dataset {
             private global::System.Data.DataColumn columnCantidad_Devuelta;
             
             private global::System.Data.DataColumn columnMonto_Devolución;
+            
+            private global::System.Data.DataColumn columnCajero;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -7383,22 +7381,6 @@ namespace ERP_GMEDINA.Dataset {
             protected UDV_Vent_DevolucionesPorFechaDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn dev_IdColumn {
-                get {
-                    return this.columndev_Id;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn devd_IdColumn {
-                get {
-                    return this.columndevd_Id;
-                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7523,6 +7505,14 @@ namespace ERP_GMEDINA.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CajeroColumn {
+                get {
+                    return this.columnCajero;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -7559,8 +7549,6 @@ namespace ERP_GMEDINA.Dataset {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public UDV_Vent_DevolucionesPorFechaRow AddUDV_Vent_DevolucionesPorFechaRow(
-                        int dev_Id, 
-                        int devd_Id, 
                         System.DateTime FechaDevolucion, 
                         System.DateTime FechaFactura, 
                         long Numero_Factura, 
@@ -7575,11 +7563,10 @@ namespace ERP_GMEDINA.Dataset {
                         decimal Precio_Unitario, 
                         decimal Cantidad_Facturada, 
                         decimal Cantidad_Devuelta, 
-                        decimal Monto_Devolución) {
+                        decimal Monto_Devolución, 
+                        string Cajero) {
                 UDV_Vent_DevolucionesPorFechaRow rowUDV_Vent_DevolucionesPorFechaRow = ((UDV_Vent_DevolucionesPorFechaRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        dev_Id,
-                        devd_Id,
                         FechaDevolucion,
                         FechaFactura,
                         Numero_Factura,
@@ -7594,7 +7581,8 @@ namespace ERP_GMEDINA.Dataset {
                         Precio_Unitario,
                         Cantidad_Facturada,
                         Cantidad_Devuelta,
-                        Monto_Devolución};
+                        Monto_Devolución,
+                        Cajero};
                 rowUDV_Vent_DevolucionesPorFechaRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowUDV_Vent_DevolucionesPorFechaRow);
                 return rowUDV_Vent_DevolucionesPorFechaRow;
@@ -7617,8 +7605,6 @@ namespace ERP_GMEDINA.Dataset {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columndev_Id = base.Columns["dev_Id"];
-                this.columndevd_Id = base.Columns["devd_Id"];
                 this.columnFechaDevolucion = base.Columns["FechaDevolucion"];
                 this.columnFechaFactura = base.Columns["FechaFactura"];
                 this.columnNumero_Factura = base.Columns["Numero Factura"];
@@ -7634,15 +7620,12 @@ namespace ERP_GMEDINA.Dataset {
                 this.columnCantidad_Facturada = base.Columns["Cantidad Facturada"];
                 this.columnCantidad_Devuelta = base.Columns["Cantidad Devuelta"];
                 this.columnMonto_Devolución = base.Columns["Monto Devolución"];
+                this.columnCajero = base.Columns["Cajero"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columndev_Id = new global::System.Data.DataColumn("dev_Id", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columndev_Id);
-                this.columndevd_Id = new global::System.Data.DataColumn("devd_Id", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columndevd_Id);
                 this.columnFechaDevolucion = new global::System.Data.DataColumn("FechaDevolucion", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFechaDevolucion);
                 this.columnFechaFactura = new global::System.Data.DataColumn("FechaFactura", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
@@ -7673,8 +7656,8 @@ namespace ERP_GMEDINA.Dataset {
                 base.Columns.Add(this.columnCantidad_Devuelta);
                 this.columnMonto_Devolución = new global::System.Data.DataColumn("Monto Devolución", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMonto_Devolución);
-                this.columndev_Id.AllowDBNull = false;
-                this.columndevd_Id.AllowDBNull = false;
+                this.columnCajero = new global::System.Data.DataColumn("Cajero", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCajero);
                 this.columnFechaDevolucion.ReadOnly = true;
                 this.columnFechaFactura.ReadOnly = true;
                 this.columnNumero_Factura.AllowDBNull = false;
@@ -7695,6 +7678,8 @@ namespace ERP_GMEDINA.Dataset {
                 this.columnCantidad_Facturada.AllowDBNull = false;
                 this.columnCantidad_Devuelta.AllowDBNull = false;
                 this.columnMonto_Devolución.AllowDBNull = false;
+                this.columnCajero.ReadOnly = true;
+                this.columnCajero.MaxLength = 301;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -11464,28 +11449,6 @@ namespace ERP_GMEDINA.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int dev_Id {
-                get {
-                    return ((int)(this[this.tableUDV_Vent_DevolucionesPorFecha.dev_IdColumn]));
-                }
-                set {
-                    this[this.tableUDV_Vent_DevolucionesPorFecha.dev_IdColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int devd_Id {
-                get {
-                    return ((int)(this[this.tableUDV_Vent_DevolucionesPorFecha.devd_IdColumn]));
-                }
-                set {
-                    this[this.tableUDV_Vent_DevolucionesPorFecha.devd_IdColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public System.DateTime FechaDevolucion {
                 get {
                     try {
@@ -11669,6 +11632,23 @@ namespace ERP_GMEDINA.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Cajero {
+                get {
+                    try {
+                        return ((string)(this[this.tableUDV_Vent_DevolucionesPorFecha.CajeroColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Cajero\' in table \'UDV_Vent_DevolucionesPorFecha\' is DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tableUDV_Vent_DevolucionesPorFecha.CajeroColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsFechaDevolucionNull() {
                 return this.IsNull(this.tableUDV_Vent_DevolucionesPorFecha.FechaDevolucionColumn);
             }
@@ -11701,6 +11681,18 @@ namespace ERP_GMEDINA.Dataset {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetNombresNull() {
                 this[this.tableUDV_Vent_DevolucionesPorFecha.NombresColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCajeroNull() {
+                return this.IsNull(this.tableUDV_Vent_DevolucionesPorFecha.CajeroColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCajeroNull() {
+                this[this.tableUDV_Vent_DevolucionesPorFecha.CajeroColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -15544,30 +15536,30 @@ WHERE        (Nombres LIKE ISNULL('%' + @NombreNuevo + '%', Nombres)) AND (Tipo_
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = @"SELECT        fact_Id, RTN, Nombres, [Máximo Días Crédito], [Máximo Monto Crédito], fact_Fecha, FechaVencimiento, SaldoActual, MORADE30, MORADE60, MORADE90
 FROM            Vent.UDV_Vent_AnalisisDeMora
-WHERE        (Nombres LIKE ISNULL('%' + @NombreNuevo + '%', Nombres)) OR
-                         (RTN LIKE ISNULL('%' + @RTN + '%', RTN))";
+WHERE        (RTN LIKE ISNULL('%' + @RTN + '%', RTN)) OR
+                         (Nombres LIKE ISNULL('%' + @NombreNuevo + '%', Nombres))";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NombreNuevo", global::System.Data.SqlDbType.NVarChar, 101, global::System.Data.ParameterDirection.Input, 0, 0, "Nombres", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RTN", global::System.Data.SqlDbType.NVarChar, 26, global::System.Data.ParameterDirection.Input, 0, 0, "RTN", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NombreNuevo", global::System.Data.SqlDbType.NVarChar, 101, global::System.Data.ParameterDirection.Input, 0, 0, "Nombres", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int FillFiltros(Reportes.UDV_Vent_AnalisisDeMoraDataTable dataTable, string NombreNuevo, string RTN) {
+        public virtual int FillFiltros(Reportes.UDV_Vent_AnalisisDeMoraDataTable dataTable, string RTN, string NombreNuevo) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((NombreNuevo == null)) {
-                throw new global::System.ArgumentNullException("NombreNuevo");
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(NombreNuevo));
-            }
             if ((RTN == null)) {
                 throw new global::System.ArgumentNullException("RTN");
             }
             else {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(RTN));
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(RTN));
+            }
+            if ((NombreNuevo == null)) {
+                throw new global::System.ArgumentNullException("NombreNuevo");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(NombreNuevo));
             }
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -15580,19 +15572,19 @@ WHERE        (Nombres LIKE ISNULL('%' + @NombreNuevo + '%', Nombres)) OR
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual Reportes.UDV_Vent_AnalisisDeMoraDataTable GetData(string NombreNuevo, string RTN) {
+        public virtual Reportes.UDV_Vent_AnalisisDeMoraDataTable GetData(string RTN, string NombreNuevo) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((NombreNuevo == null)) {
-                throw new global::System.ArgumentNullException("NombreNuevo");
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(NombreNuevo));
-            }
             if ((RTN == null)) {
                 throw new global::System.ArgumentNullException("RTN");
             }
             else {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(RTN));
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(RTN));
+            }
+            if ((NombreNuevo == null)) {
+                throw new global::System.ArgumentNullException("NombreNuevo");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(NombreNuevo));
             }
             Reportes.UDV_Vent_AnalisisDeMoraDataTable dataTable = new Reportes.UDV_Vent_AnalisisDeMoraDataTable();
             this.Adapter.Fill(dataTable);
@@ -15721,8 +15713,6 @@ WHERE        (Nombres LIKE ISNULL('%' + @NombreNuevo + '%', Nombres)) OR
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "UDV_Vent_DevolucionesPorFecha";
-            tableMapping.ColumnMappings.Add("dev_Id", "dev_Id");
-            tableMapping.ColumnMappings.Add("devd_Id", "devd_Id");
             tableMapping.ColumnMappings.Add("FechaDevolucion", "FechaDevolucion");
             tableMapping.ColumnMappings.Add("FechaFactura", "FechaFactura");
             tableMapping.ColumnMappings.Add("Numero Factura", "Numero Factura");
@@ -15738,6 +15728,7 @@ WHERE        (Nombres LIKE ISNULL('%' + @NombreNuevo + '%', Nombres)) OR
             tableMapping.ColumnMappings.Add("Cantidad Facturada", "Cantidad Facturada");
             tableMapping.ColumnMappings.Add("Cantidad Devuelta", "Cantidad Devuelta");
             tableMapping.ColumnMappings.Add("Monto Devolución", "Monto Devolución");
+            tableMapping.ColumnMappings.Add("Cajero", "Cajero");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -15754,33 +15745,41 @@ WHERE        (Nombres LIKE ISNULL('%' + @NombreNuevo + '%', Nombres)) OR
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT        dev_Id, devd_Id, FechaDevolucion, FechaFactura, [Numero Factura], factd_Id, clte_Id, RTN, Nombres, [Total Devolución], [Nota Crédito], [Código Producto], [Nombre Producto], [Precio Unitario], [Cantidad Facturada], 
-                         [Cantidad Devuelta], [Monto Devolución]
+            this._commandCollection[0].CommandText = @"SELECT        FechaDevolucion, FechaFactura, [Numero Factura], factd_Id, clte_Id, RTN, Nombres, [Total Devolución], [Nota Crédito], [Código Producto], [Nombre Producto], [Precio Unitario], [Cantidad Facturada], [Cantidad Devuelta], 
+                         [Monto Devolución], Cajero
 FROM            Vent.UDV_Vent_DevolucionesPorFecha
-WHERE        (Nombres LIKE ISNULL('%' + @NombreNuevo + '%', Nombres)) OR
-                         (RTN LIKE ISNULL('%' + @RTN + '%', RTN))";
+WHERE        (RTN LIKE ISNULL('%' + @RTN + '%', RTN)) OR
+                         (Nombres LIKE ISNULL('%' + @NombreNuevo + '%', Nombres)) OR
+                         (Cajero LIKE ISNULL('%' + @Cajero + '%', Cajero))";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NombreNuevo", global::System.Data.SqlDbType.NVarChar, 101, global::System.Data.ParameterDirection.Input, 0, 0, "Nombres", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RTN", global::System.Data.SqlDbType.NVarChar, 26, global::System.Data.ParameterDirection.Input, 0, 0, "RTN", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NombreNuevo", global::System.Data.SqlDbType.NVarChar, 101, global::System.Data.ParameterDirection.Input, 0, 0, "Nombres", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Cajero", global::System.Data.SqlDbType.VarChar, 301, global::System.Data.ParameterDirection.Input, 0, 0, "Cajero", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int FillFiltros(Reportes.UDV_Vent_DevolucionesPorFechaDataTable dataTable, string NombreNuevo, string RTN) {
+        public virtual int Fill(Reportes.UDV_Vent_DevolucionesPorFechaDataTable dataTable, string RTN, string NombreNuevo, string Cajero) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((NombreNuevo == null)) {
-                throw new global::System.ArgumentNullException("NombreNuevo");
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(NombreNuevo));
-            }
             if ((RTN == null)) {
                 throw new global::System.ArgumentNullException("RTN");
             }
             else {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(RTN));
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(RTN));
+            }
+            if ((NombreNuevo == null)) {
+                throw new global::System.ArgumentNullException("NombreNuevo");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(NombreNuevo));
+            }
+            if ((Cajero == null)) {
+                throw new global::System.ArgumentNullException("Cajero");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((string)(Cajero));
             }
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -15793,19 +15792,25 @@ WHERE        (Nombres LIKE ISNULL('%' + @NombreNuevo + '%', Nombres)) OR
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual Reportes.UDV_Vent_DevolucionesPorFechaDataTable GetData(string NombreNuevo, string RTN) {
+        public virtual Reportes.UDV_Vent_DevolucionesPorFechaDataTable GetData(string RTN, string NombreNuevo, string Cajero) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((NombreNuevo == null)) {
-                throw new global::System.ArgumentNullException("NombreNuevo");
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(NombreNuevo));
-            }
             if ((RTN == null)) {
                 throw new global::System.ArgumentNullException("RTN");
             }
             else {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(RTN));
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(RTN));
+            }
+            if ((NombreNuevo == null)) {
+                throw new global::System.ArgumentNullException("NombreNuevo");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(NombreNuevo));
+            }
+            if ((Cajero == null)) {
+                throw new global::System.ArgumentNullException("Cajero");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((string)(Cajero));
             }
             Reportes.UDV_Vent_DevolucionesPorFechaDataTable dataTable = new Reportes.UDV_Vent_DevolucionesPorFechaDataTable();
             this.Adapter.Fill(dataTable);
