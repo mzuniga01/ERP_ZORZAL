@@ -5666,10 +5666,6 @@ namespace ERP_GMEDINA.Dataset {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class UDV_Vent_EstadoCuentaDataTable : global::System.Data.TypedTableBase<UDV_Vent_EstadoCuentaRow> {
             
-            private global::System.Data.DataColumn columnID_Cliente;
-            
-            private global::System.Data.DataColumn columnIdentificación;
-            
             private global::System.Data.DataColumn columnNombres;
             
             private global::System.Data.DataColumn columnTeléfono;
@@ -5679,8 +5675,6 @@ namespace ERP_GMEDINA.Dataset {
             private global::System.Data.DataColumn columnFecha;
             
             private global::System.Data.DataColumn columnTipo;
-            
-            private global::System.Data.DataColumn columnNúmero_Factura;
             
             private global::System.Data.DataColumn columnFecha_Vencimiento;
             
@@ -5692,7 +5686,9 @@ namespace ERP_GMEDINA.Dataset {
             
             private global::System.Data.DataColumn columnSaldo_Actual;
             
-            private global::System.Data.DataColumn columnTotal_Final;
+            private global::System.Data.DataColumn columnRTN;
+            
+            private global::System.Data.DataColumn columnNúmero__de_Factura;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -5725,22 +5721,6 @@ namespace ERP_GMEDINA.Dataset {
             protected UDV_Vent_EstadoCuentaDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn ID_ClienteColumn {
-                get {
-                    return this.columnID_Cliente;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn IdentificaciónColumn {
-                get {
-                    return this.columnIdentificación;
-                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5780,14 +5760,6 @@ namespace ERP_GMEDINA.Dataset {
             public global::System.Data.DataColumn TipoColumn {
                 get {
                     return this.columnTipo;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn Número_FacturaColumn {
-                get {
-                    return this.columnNúmero_Factura;
                 }
             }
             
@@ -5833,9 +5805,17 @@ namespace ERP_GMEDINA.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn Total_FinalColumn {
+            public global::System.Data.DataColumn RTNColumn {
                 get {
-                    return this.columnTotal_Final;
+                    return this.columnRTN;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Número__de_FacturaColumn {
+                get {
+                    return this.columnNúmero__de_Factura;
                 }
             }
             
@@ -5876,33 +5856,24 @@ namespace ERP_GMEDINA.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public UDV_Vent_EstadoCuentaRow AddUDV_Vent_EstadoCuentaRow(int ID_Cliente, string Identificación, string Nombres, string Teléfono, string Correo_Electrónico, System.DateTime Fecha, string Tipo, string Número_Factura, System.DateTime Fecha_Vencimiento, decimal Saldo_Anterior, decimal Monto_Cargo, decimal Monto_Crédito, decimal Saldo_Actual, decimal Total_Final) {
+            public UDV_Vent_EstadoCuentaRow AddUDV_Vent_EstadoCuentaRow(string Nombres, string Teléfono, string Correo_Electrónico, System.DateTime Fecha, string Tipo, System.DateTime Fecha_Vencimiento, decimal Saldo_Anterior, decimal Monto_Cargo, decimal Monto_Crédito, decimal Saldo_Actual, string RTN, string Número__de_Factura) {
                 UDV_Vent_EstadoCuentaRow rowUDV_Vent_EstadoCuentaRow = ((UDV_Vent_EstadoCuentaRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        ID_Cliente,
-                        Identificación,
                         Nombres,
                         Teléfono,
                         Correo_Electrónico,
                         Fecha,
                         Tipo,
-                        Número_Factura,
                         Fecha_Vencimiento,
                         Saldo_Anterior,
                         Monto_Cargo,
                         Monto_Crédito,
                         Saldo_Actual,
-                        Total_Final};
+                        RTN,
+                        Número__de_Factura};
                 rowUDV_Vent_EstadoCuentaRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowUDV_Vent_EstadoCuentaRow);
                 return rowUDV_Vent_EstadoCuentaRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public UDV_Vent_EstadoCuentaRow FindByID_Cliente(int ID_Cliente) {
-                return ((UDV_Vent_EstadoCuentaRow)(this.Rows.Find(new object[] {
-                            ID_Cliente})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5922,29 +5893,23 @@ namespace ERP_GMEDINA.Dataset {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnID_Cliente = base.Columns["ID Cliente"];
-                this.columnIdentificación = base.Columns["Identificación"];
                 this.columnNombres = base.Columns["Nombres"];
                 this.columnTeléfono = base.Columns["Teléfono"];
                 this.columnCorreo_Electrónico = base.Columns["Correo Electrónico"];
                 this.columnFecha = base.Columns["Fecha"];
                 this.columnTipo = base.Columns["Tipo"];
-                this.columnNúmero_Factura = base.Columns["Número Factura"];
                 this.columnFecha_Vencimiento = base.Columns["Fecha Vencimiento"];
                 this.columnSaldo_Anterior = base.Columns["Saldo Anterior"];
                 this.columnMonto_Cargo = base.Columns["Monto Cargo"];
                 this.columnMonto_Crédito = base.Columns["Monto Crédito"];
                 this.columnSaldo_Actual = base.Columns["Saldo Actual"];
-                this.columnTotal_Final = base.Columns["Total Final"];
+                this.columnRTN = base.Columns["RTN"];
+                this.columnNúmero__de_Factura = base.Columns["Número  de Factura"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnID_Cliente = new global::System.Data.DataColumn("ID Cliente", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnID_Cliente);
-                this.columnIdentificación = new global::System.Data.DataColumn("Identificación", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnIdentificación);
                 this.columnNombres = new global::System.Data.DataColumn("Nombres", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNombres);
                 this.columnTeléfono = new global::System.Data.DataColumn("Teléfono", typeof(string), null, global::System.Data.MappingType.Element);
@@ -5955,8 +5920,6 @@ namespace ERP_GMEDINA.Dataset {
                 base.Columns.Add(this.columnFecha);
                 this.columnTipo = new global::System.Data.DataColumn("Tipo", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTipo);
-                this.columnNúmero_Factura = new global::System.Data.DataColumn("Número Factura", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnNúmero_Factura);
                 this.columnFecha_Vencimiento = new global::System.Data.DataColumn("Fecha Vencimiento", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFecha_Vencimiento);
                 this.columnSaldo_Anterior = new global::System.Data.DataColumn("Saldo Anterior", typeof(decimal), null, global::System.Data.MappingType.Element);
@@ -5967,30 +5930,29 @@ namespace ERP_GMEDINA.Dataset {
                 base.Columns.Add(this.columnMonto_Crédito);
                 this.columnSaldo_Actual = new global::System.Data.DataColumn("Saldo Actual", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSaldo_Actual);
-                this.columnTotal_Final = new global::System.Data.DataColumn("Total Final", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTotal_Final);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnID_Cliente}, true));
-                this.columnID_Cliente.AllowDBNull = false;
-                this.columnID_Cliente.Unique = true;
-                this.columnIdentificación.AllowDBNull = false;
-                this.columnIdentificación.MaxLength = 26;
+                this.columnRTN = new global::System.Data.DataColumn("RTN", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRTN);
+                this.columnNúmero__de_Factura = new global::System.Data.DataColumn("Número  de Factura", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNúmero__de_Factura);
                 this.columnNombres.ReadOnly = true;
                 this.columnNombres.MaxLength = 101;
-                this.columnTeléfono.AllowDBNull = false;
                 this.columnTeléfono.MaxLength = 25;
                 this.columnCorreo_Electrónico.MaxLength = 50;
                 this.columnFecha.AllowDBNull = false;
                 this.columnTipo.AllowDBNull = false;
                 this.columnTipo.MaxLength = 50;
-                this.columnNúmero_Factura.AllowDBNull = false;
-                this.columnNúmero_Factura.MaxLength = 19;
                 this.columnFecha_Vencimiento.ReadOnly = true;
+                this.columnSaldo_Anterior.AllowDBNull = false;
                 this.columnSaldo_Anterior.ReadOnly = true;
+                this.columnMonto_Cargo.AllowDBNull = false;
                 this.columnMonto_Cargo.ReadOnly = true;
+                this.columnMonto_Crédito.AllowDBNull = false;
                 this.columnMonto_Crédito.ReadOnly = true;
                 this.columnSaldo_Actual.ReadOnly = true;
-                this.columnTotal_Final.ReadOnly = true;
+                this.columnRTN.AllowDBNull = false;
+                this.columnRTN.MaxLength = 26;
+                this.columnNúmero__de_Factura.AllowDBNull = false;
+                this.columnNúmero__de_Factura.MaxLength = 19;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -10438,28 +10400,6 @@ namespace ERP_GMEDINA.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int ID_Cliente {
-                get {
-                    return ((int)(this[this.tableUDV_Vent_EstadoCuenta.ID_ClienteColumn]));
-                }
-                set {
-                    this[this.tableUDV_Vent_EstadoCuenta.ID_ClienteColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Identificación {
-                get {
-                    return ((string)(this[this.tableUDV_Vent_EstadoCuenta.IdentificaciónColumn]));
-                }
-                set {
-                    this[this.tableUDV_Vent_EstadoCuenta.IdentificaciónColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string Nombres {
                 get {
                     try {
@@ -10478,7 +10418,12 @@ namespace ERP_GMEDINA.Dataset {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string Teléfono {
                 get {
-                    return ((string)(this[this.tableUDV_Vent_EstadoCuenta.TeléfonoColumn]));
+                    try {
+                        return ((string)(this[this.tableUDV_Vent_EstadoCuenta.TeléfonoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Teléfono\' in table \'UDV_Vent_EstadoCuenta\' is DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tableUDV_Vent_EstadoCuenta.TeléfonoColumn] = value;
@@ -10526,17 +10471,6 @@ namespace ERP_GMEDINA.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Número_Factura {
-                get {
-                    return ((string)(this[this.tableUDV_Vent_EstadoCuenta.Número_FacturaColumn]));
-                }
-                set {
-                    this[this.tableUDV_Vent_EstadoCuenta.Número_FacturaColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public System.DateTime Fecha_Vencimiento {
                 get {
                     try {
@@ -10556,13 +10490,7 @@ namespace ERP_GMEDINA.Dataset {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public decimal Saldo_Anterior {
                 get {
-                    try {
-                        return ((decimal)(this[this.tableUDV_Vent_EstadoCuenta.Saldo_AnteriorColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Saldo Anterior\' in table \'UDV_Vent_EstadoCuenta\' is DBNull." +
-                                "", e);
-                    }
+                    return ((decimal)(this[this.tableUDV_Vent_EstadoCuenta.Saldo_AnteriorColumn]));
                 }
                 set {
                     this[this.tableUDV_Vent_EstadoCuenta.Saldo_AnteriorColumn] = value;
@@ -10573,12 +10501,7 @@ namespace ERP_GMEDINA.Dataset {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public decimal Monto_Cargo {
                 get {
-                    try {
-                        return ((decimal)(this[this.tableUDV_Vent_EstadoCuenta.Monto_CargoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Monto Cargo\' in table \'UDV_Vent_EstadoCuenta\' is DBNull.", e);
-                    }
+                    return ((decimal)(this[this.tableUDV_Vent_EstadoCuenta.Monto_CargoColumn]));
                 }
                 set {
                     this[this.tableUDV_Vent_EstadoCuenta.Monto_CargoColumn] = value;
@@ -10589,12 +10512,7 @@ namespace ERP_GMEDINA.Dataset {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public decimal Monto_Crédito {
                 get {
-                    try {
-                        return ((decimal)(this[this.tableUDV_Vent_EstadoCuenta.Monto_CréditoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Monto Crédito\' in table \'UDV_Vent_EstadoCuenta\' is DBNull.", e);
-                    }
+                    return ((decimal)(this[this.tableUDV_Vent_EstadoCuenta.Monto_CréditoColumn]));
                 }
                 set {
                     this[this.tableUDV_Vent_EstadoCuenta.Monto_CréditoColumn] = value;
@@ -10619,17 +10537,23 @@ namespace ERP_GMEDINA.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal Total_Final {
+            public string RTN {
                 get {
-                    try {
-                        return ((decimal)(this[this.tableUDV_Vent_EstadoCuenta.Total_FinalColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Total Final\' in table \'UDV_Vent_EstadoCuenta\' is DBNull.", e);
-                    }
+                    return ((string)(this[this.tableUDV_Vent_EstadoCuenta.RTNColumn]));
                 }
                 set {
-                    this[this.tableUDV_Vent_EstadoCuenta.Total_FinalColumn] = value;
+                    this[this.tableUDV_Vent_EstadoCuenta.RTNColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Número__de_Factura {
+                get {
+                    return ((string)(this[this.tableUDV_Vent_EstadoCuenta.Número__de_FacturaColumn]));
+                }
+                set {
+                    this[this.tableUDV_Vent_EstadoCuenta.Número__de_FacturaColumn] = value;
                 }
             }
             
@@ -10643,6 +10567,18 @@ namespace ERP_GMEDINA.Dataset {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetNombresNull() {
                 this[this.tableUDV_Vent_EstadoCuenta.NombresColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsTeléfonoNull() {
+                return this.IsNull(this.tableUDV_Vent_EstadoCuenta.TeléfonoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetTeléfonoNull() {
+                this[this.tableUDV_Vent_EstadoCuenta.TeléfonoColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -10671,42 +10607,6 @@ namespace ERP_GMEDINA.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsSaldo_AnteriorNull() {
-                return this.IsNull(this.tableUDV_Vent_EstadoCuenta.Saldo_AnteriorColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetSaldo_AnteriorNull() {
-                this[this.tableUDV_Vent_EstadoCuenta.Saldo_AnteriorColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsMonto_CargoNull() {
-                return this.IsNull(this.tableUDV_Vent_EstadoCuenta.Monto_CargoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetMonto_CargoNull() {
-                this[this.tableUDV_Vent_EstadoCuenta.Monto_CargoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsMonto_CréditoNull() {
-                return this.IsNull(this.tableUDV_Vent_EstadoCuenta.Monto_CréditoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetMonto_CréditoNull() {
-                this[this.tableUDV_Vent_EstadoCuenta.Monto_CréditoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsSaldo_ActualNull() {
                 return this.IsNull(this.tableUDV_Vent_EstadoCuenta.Saldo_ActualColumn);
             }
@@ -10715,18 +10615,6 @@ namespace ERP_GMEDINA.Dataset {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetSaldo_ActualNull() {
                 this[this.tableUDV_Vent_EstadoCuenta.Saldo_ActualColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsTotal_FinalNull() {
-                return this.IsNull(this.tableUDV_Vent_EstadoCuenta.Total_FinalColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetTotal_FinalNull() {
-                this[this.tableUDV_Vent_EstadoCuenta.Total_FinalColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -14841,20 +14729,18 @@ WHERE        (solef_UsuarioCrea = @CAJERO) AND (cja_Id = @CAJA) AND (solef_EsApe
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "UDV_Vent_EstadoCuenta";
-            tableMapping.ColumnMappings.Add("ID Cliente", "ID Cliente");
-            tableMapping.ColumnMappings.Add("Identificación", "Identificación");
             tableMapping.ColumnMappings.Add("Nombres", "Nombres");
             tableMapping.ColumnMappings.Add("Teléfono", "Teléfono");
             tableMapping.ColumnMappings.Add("Correo Electrónico", "Correo Electrónico");
             tableMapping.ColumnMappings.Add("Fecha", "Fecha");
             tableMapping.ColumnMappings.Add("Tipo", "Tipo");
-            tableMapping.ColumnMappings.Add("Número Factura", "Número Factura");
             tableMapping.ColumnMappings.Add("Fecha Vencimiento", "Fecha Vencimiento");
             tableMapping.ColumnMappings.Add("Saldo Anterior", "Saldo Anterior");
             tableMapping.ColumnMappings.Add("Monto Cargo", "Monto Cargo");
             tableMapping.ColumnMappings.Add("Monto Crédito", "Monto Crédito");
             tableMapping.ColumnMappings.Add("Saldo Actual", "Saldo Actual");
-            tableMapping.ColumnMappings.Add("Total Final", "Total Final");
+            tableMapping.ColumnMappings.Add("RTN", "RTN");
+            tableMapping.ColumnMappings.Add("Número  de Factura", "Número  de Factura");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -14871,25 +14757,38 @@ WHERE        (solef_UsuarioCrea = @CAJERO) AND (cja_Id = @CAJA) AND (solef_EsApe
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT        [ID Cliente], Identificación, Nombres, Teléfono, [Correo Electrónico], Fecha, Tipo, [Número Factura], [Fecha Vencimiento], [Saldo Anterior], [Monto Cargo], [Monto Crédito], [Saldo Actual], [Total Final]
+            this._commandCollection[0].CommandText = @"SELECT        RTN, Nombres, Teléfono, [Correo Electrónico], Fecha, Tipo, [Número  de Factura], [Fecha Vencimiento], [Saldo Anterior], [Monto Cargo], [Monto Crédito], [Saldo Actual]
 FROM            Vent.UDV_Vent_EstadoCuenta
-WHERE        (Fecha BETWEEN @FechaDesde AND @FechaHasta) OR
-                         ([ID Cliente] = @clte_Id)";
+WHERE        (RTN LIKE ISNULL('%' + @RTN + '%', RTN)) OR
+                         (Nombres LIKE ISNULL('%' + @NombreNuevo + '%', Nombres)) OR
+                         (Fecha BETWEEN @FechaDesde AND @FechaHasta)";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RTN", global::System.Data.SqlDbType.NVarChar, 26, global::System.Data.ParameterDirection.Input, 0, 0, "RTN", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NombreNuevo", global::System.Data.SqlDbType.NVarChar, 101, global::System.Data.ParameterDirection.Input, 0, 0, "Nombres", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FechaDesde", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "Fecha", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FechaHasta", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "Fecha", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@clte_Id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ID Cliente", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int FillFiltros(Reportes.UDV_Vent_EstadoCuentaDataTable dataTable, System.DateTime FechaDesde, System.DateTime FechaHasta, int clte_Id) {
+        public virtual int FillFiltros(Reportes.UDV_Vent_EstadoCuentaDataTable dataTable, string RTN, string NombreNuevo, System.DateTime FechaDesde, System.DateTime FechaHasta) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            this.Adapter.SelectCommand.Parameters[0].Value = ((System.DateTime)(FechaDesde));
-            this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(FechaHasta));
-            this.Adapter.SelectCommand.Parameters[2].Value = ((int)(clte_Id));
+            if ((RTN == null)) {
+                throw new global::System.ArgumentNullException("RTN");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(RTN));
+            }
+            if ((NombreNuevo == null)) {
+                throw new global::System.ArgumentNullException("NombreNuevo");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(NombreNuevo));
+            }
+            this.Adapter.SelectCommand.Parameters[2].Value = ((System.DateTime)(FechaDesde));
+            this.Adapter.SelectCommand.Parameters[3].Value = ((System.DateTime)(FechaHasta));
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
@@ -14901,11 +14800,22 @@ WHERE        (Fecha BETWEEN @FechaDesde AND @FechaHasta) OR
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual Reportes.UDV_Vent_EstadoCuentaDataTable GetData(System.DateTime FechaDesde, System.DateTime FechaHasta, int clte_Id) {
+        public virtual Reportes.UDV_Vent_EstadoCuentaDataTable GetData(string RTN, string NombreNuevo, System.DateTime FechaDesde, System.DateTime FechaHasta) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            this.Adapter.SelectCommand.Parameters[0].Value = ((System.DateTime)(FechaDesde));
-            this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(FechaHasta));
-            this.Adapter.SelectCommand.Parameters[2].Value = ((int)(clte_Id));
+            if ((RTN == null)) {
+                throw new global::System.ArgumentNullException("RTN");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(RTN));
+            }
+            if ((NombreNuevo == null)) {
+                throw new global::System.ArgumentNullException("NombreNuevo");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(NombreNuevo));
+            }
+            this.Adapter.SelectCommand.Parameters[2].Value = ((System.DateTime)(FechaDesde));
+            this.Adapter.SelectCommand.Parameters[3].Value = ((System.DateTime)(FechaHasta));
             Reportes.UDV_Vent_EstadoCuentaDataTable dataTable = new Reportes.UDV_Vent_EstadoCuentaDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
