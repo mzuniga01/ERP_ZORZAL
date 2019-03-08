@@ -1,5 +1,5 @@
 ﻿@model ERP_GMEDINA.Models.tbEntrada
-    <style>
+<style>
     .validation-error {
         color: red;
         font-size: small;
@@ -20,12 +20,17 @@
                 <div class="col-md-5">
                     @Html.DropDownList("estm_Id", (IEnumerable<SelectListItem>)ViewBag.estm_Id, "Seleccionar", new { @class = "form-control" })
                 </div>
+                <div class="col-md-10">
+                    <p id="estm_IdMensaje" style="color:red"></p>
+                </div>
             </div>
             <div class="form-group">
                 @Html.LabelFor(model => model.bod_Id, new { @class = "control-label col-md-5 , required" })
                 <div class="col-md-5">
                     @Html.DropDownList("bod_Id", (IEnumerable<SelectListItem>)ViewBag.bod_Id, "Seleccionar", new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.bod_Id)
+                </div>
+                <div class="col-md-10">
+                    <p id="bod_IdMensaje" style="color:red"></p>
                 </div>
             </div>
         </div>
@@ -35,31 +40,95 @@
                 <div class="col-md-5">
                     @Html.DropDownList("tent_Id", (IEnumerable<SelectListItem>)ViewBag.tent_Id, "Seleccionar", new { @class = "form-control" })
                 </div>
+                <div class="col-md-10">
+                    <p id="tent_IdMensaje" style="color:red"></p>
+                </div>
             </div>
             <div class="form-group">
                 @Html.LabelFor(model => model.ent_FechaElaboracion, new { @class = "control-label col-md-5 , required" })
                 <div class="col-md-5">
-                    @Html.EditorFor(model => model.ent_FechaElaboracion, new { @class = "form-control", @id = "FechaElaboracionImprimir" })
-                    @Html.ValidationMessageFor(model => model.ent_FechaElaboracion)
+                    @*@Html.EditorFor(model => model.ent_FechaElaboracion, new { @class = "form-control", @id = "datepicker" })*@
+                    <input type="text" name="ent_FechaElaboracion" class="form-control" id="datepicker">
                 </div>
             </div>
         </div>
     </div>
-        <div class="modal-footer">
-            <button class="btn btn-primary" type="submit" id="btnIMPRIMIR">Generar</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="submit" id="btnIMPRIMIR">Generar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+    </div>
 }
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+  $( function() {
+      $("#datepicker").datepicker({
+      dateFormat: 'yy-mm-dd',
+      monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+      dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá']
+  }).datepicker("setDate", new Date());
+  } );
+</script>
 
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/Datepicker.js"></script>
+<script src="~/Scripts/app/EntradaDetalle.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
 
-@*<script>
-    $('FechaElaboracionImprimir').datepicker({
-        dateFormat: 'yy-mm-dd',
-        monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-        dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá']
-    }).datepicker("setDate", new Date());
+<script>
+    var Estado = $("#estm_Id").find('option:selected').val();
+    var Bodega = $("#bod_Id").find('option:selected').val();
+    var TipoEntrada = $("#tent_Id").find('option:selected').val();
+    //if ($.trim(Estado) == '') {
+    //    $('#Errorestm_IdLengthCreate').text('');
+    //    $('#estm_IdMensaje').after('<p id="Errorestm_IdLengthCreate" style="color:red">Seleccione un Estado</p>');
+    //}
+    //else if ($.trim(Bodega) == '') {
+    //    $('#Errorbod_IdLengthCreate').text('');
+    //    $('#estm_IdMensaje').after('<p id="Errorbod_IdLengthCreate" style="color:red">Seleccione una Bodega</p>');
+    //}
+    //else if ($.trim(TipoEntrada) == '') {
+    //    $('#Errortent_IdLengthCreate').text('');
+    //    $('#tent_IdMensaje').after('<p id="Errortent_IdLengthCreate" style="color:red">Seleccione un Tipo Entrada</p>');
+    //}
+    ////validacion para estado movimiento
+    //$("#estm_Id").change(function () {
+    //    var selector = $('#estm_Id').val();
+    //    if (selector == null || selector == '' || selector == 'Seleccionar') {
+    //        $('#Errorestm_IdLengthCreate').text('');
+    //        $('#estm_IdMensaje').after('<p id="Errorestm_IdLengthCreate" style="color:red">Campo Factura debe  tener 16 caracteres</p>');
+    //    }
+    //    else {
+    //        $('#Errorestm_IdLengthCreate').hide();
+    //    }
+    //});
 
-</script>*@
+    //$("#bod_Id").change(function () {
+    //    var selector = $('#bod_Id').val();
+    //    if (selector == null || selector == '' || selector == 'Seleccionar') {
+    //        $('#Errorbod_IdLengthCreate').text('');
+    //        $('#estm_IdMensaje').after('<p id="Errorbod_IdLengthCreate" style="color:red">Campo Factura debe  tener 16 caracteres</p>');
+    //    }
+    //    else {
+    //        $('#Errorbod_IdLengthCreate').hide();
+    //    }
+    //});
+
+    //$("#tent_Id").change(function () {
+    //    var selector = $('#tent_Id').val();
+    //    if (selector == null || selector == ''|| selector == 'Seleccionar') {
+    //        $('#Errortent_IdLengthCreate').text('');
+    //        $('#tent_IdMensaje').after('<p id="Errortent_IdLengthCreate" style="color:red">Campo Factura debe  tener 16 caracteres</p>');
+    //    }
+    //    else {
+    //        $('#Errortent_IdLengthCreate').hide();
+    //    }
+    //});
+</script>

@@ -241,11 +241,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Salida.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Entrada.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Entrada.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -944,28 +939,10 @@
       <DependentUpon>ImprimirConciliacion.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\ImprimirEntradaCompra.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ImprimirEntradaCompra.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\ImprimirEntradaDevolucion.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ImprimirEntradaDevolucion.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\ImprimirEntradaPorId1.cs">
+    <Compile Include="Reports\ImprimirEntradaPorId.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ImprimirEntradaPorId.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\ImprimirEntradaTraslado.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ImprimirEntradaTraslado.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\ImprimirPackingList.cs">
@@ -1011,6 +988,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ReporteFaltantes.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\ReporteTipoEntrada.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReporteTipoEntrada.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Salida.cs">
@@ -1382,9 +1365,6 @@
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
     <Fakes Include="Fakes\SimpleCrypto.fakes" />
-    <Content Include="Entrada.xsc">
-      <DependentUpon>Entrada.xsd</DependentUpon>
-    </Content>
     <Content Include="Dataset\InventarioFisico.xsc">
       <DependentUpon>InventarioFisico.xsd</DependentUpon>
     </Content>
@@ -1428,14 +1408,6 @@
     </None>
     <Content Include="Dataset\Salida.xss">
       <DependentUpon>Salida.xsd</DependentUpon>
-    </Content>
-    <None Include="Entrada.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>Entrada.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <Content Include="Entrada.xss">
-      <DependentUpon>Entrada.xsd</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\HostDemo.pubxml" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
@@ -1759,30 +1731,14 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ImprimirConciliacion2.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\ImprimirEntrada.rdlc" />
-    <EmbeddedResource Include="Reports\ImprimirEntradaCompra.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>ImprimirEntradaCompra.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\ImprimirEntradaDevolucion.rdlc" />
-    <EmbeddedResource Include="Reports\ImprimirEntradaDevolucion.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>ImprimirEntradaDevolucion.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="Reports\ImprimirEntradaPorId.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>ImprimirEntradaPorId1.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\ImprimirEntradaTraslado.rdlc" />
-    <EmbeddedResource Include="Reports\ImprimirEntradaTraslado.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>ImprimirEntradaTraslado.cs</LastGenOutput>
+      <LastGenOutput>ImprimirEntradaPorId.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\ImprimirPackingList.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ImprimirPackingList.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\ImprimirPorId.rdlc" />
     <EmbeddedResource Include="Reports\InventarioActual.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>InventarioActual.cs</LastGenOutput>
@@ -1810,6 +1766,10 @@
     <EmbeddedResource Include="Reports\ReporteFaltantes.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ReporteFaltantes.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ReporteTipoEntrada.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReporteTipoEntrada.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Salida.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
