@@ -1282,7 +1282,6 @@
     </Compile>
     <Compile Include="ReportViewer\InventarioNumeraciones.aspx.cs">
       <DependentUpon>InventarioNumeraciones.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ReportViewer\InventarioNumeraciones.aspx.designer.cs">
       <DependentUpon>InventarioNumeraciones.aspx</DependentUpon>
