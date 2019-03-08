@@ -9,6 +9,9 @@ using System.Web.Mvc;
 using ERP_GMEDINA.Models;
 using System.Transactions;
 using ERP_GMEDINA.Attribute;
+using CrystalDecisions.CrystalReports.Engine;
+using System.IO;
+using ERP_GMEDINA.Dataset;
 
 namespace ERP_GMEDINA.Controllers
 {
@@ -281,7 +284,7 @@ namespace ERP_GMEDINA.Controllers
                     if (Descripcion != null)
                     {
                         Rol = db.UDP_Acce_tbRol_Update(rolId, Descripcion, Function.GetUser(), Function.DatetimeNow());
-                        foreach (UDP_Acce_tbAccesoRol_Update_Result item in Rol)
+                        foreach (UDP_Acce_tbRol_Update_Result item in Rol)
                         {
                             Msj = Convert.ToString(item.MensajeError);
                             if (Msj.StartsWith("-1"))
@@ -332,5 +335,27 @@ namespace ERP_GMEDINA.Controllers
 
             }
         }
+        //public ActionResult ExportReport()
+        //{
+        //    ProductoSolicitadoPorEntregar ds = new ProductoSolicitadoPorEntregar();
+        //    ReportDocument rd = new ReportDocument();
+        //    rd.Load(Path.Combine(Server.MapPath("~/Reports"), "ProductoSolicitadosPorEntregar.rpt"));
+        //    rd.SetDataSource(ds.UDV_Inv_ProductosSolicitadosPorEntregar.ToList());
+        //    Response.Buffer = false;
+        //    Response.ClearContent();
+        //    Response.ClearHeaders();
+        //    try
+        //    {
+        //        Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+        //        stream.Seek(0, SeekOrigin.Begin);
+        //        string fileName = "ProductoSolicitadosPorEntregar.pdf";
+        //        Response.AppendHeader("Content-Disposition", "inline; filename=" + fileName);
+        //        return File(stream, "application/pdf");
+        //    }
+        //    catch
+        //    {
+        //        throw;
+        //    }
+        //}
     }
 }

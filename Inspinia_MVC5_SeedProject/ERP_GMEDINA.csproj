@@ -989,6 +989,12 @@
       <DependentUpon>Movimiento_Entre_Fechas.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\ProductoSolicitadosPorEntregar.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProductoSolicitadosPorEntregar.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\ProyeccionMovimientoProducto.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1776,6 +1782,10 @@
     <EmbeddedResource Include="Reports\Movimiento_Entre_Fechas.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Movimiento_Entre_Fechas.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ProductoSolicitadosPorEntregar.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ProductoSolicitadosPorEntregar.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\ProyeccionMovimientoProducto.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

@@ -22,8 +22,8 @@
             })
             $('#NoAsignadosEdit').DataTable({
                 "searching": true,
-                "scrollY": "300px",
-                "scrollCollapse": true,
+                //"scrollY": "300px",
+                //"scrollCollapse": true,
                 "paging": false,
                 "info": false,
                 "oLanguage": {

@@ -58,7 +58,7 @@ namespace ERP_GMEDINA.Controllers
                             }
                             else if (MensajeError != "-1")
                             {
-                                TempData["smserror"] = " El Pedido ha sido enviado correctamente. Codigo de referencia de la salidad Generada es: " + IDSalida;
+                                TempData["smserror"] = "El Pedido ha sido enviado correctamente. Codigo de referencia de la salidad Generada es: " + IDSalida;
                                 ViewBag.smserror = TempData["smserror"];
                                 //return RedirectToAction("Index");
                             }
