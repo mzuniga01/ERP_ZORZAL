@@ -16,14 +16,14 @@ namespace ERP_GMEDINA.Reports {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class SolicitudCredito : ReportClass {
+    public class SolicitudesCreditosPorAprobar : ReportClass {
         
-        public SolicitudCredito() {
+        public SolicitudesCreditosPorAprobar() {
         }
         
         public override string ResourceName {
             get {
-                return "SolicitudCredito.rpt";
+                return "SolicitudesCreditosPorAprobar.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace ERP_GMEDINA.Reports {
         
         public override string FullResourceName {
             get {
-                return "ERP_GMEDINA.Reports.SolicitudCredito.rpt";
+                return "ERP_GMEDINA.Reports.SolicitudesCreditosPorAprobar.rpt";
             }
             set {
                 // Do nothing
@@ -90,9 +90,9 @@ namespace ERP_GMEDINA.Reports {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedSolicitudCredito : Component, ICachedReport {
+    public class CachedSolicitudesCreditosPorAprobar : Component, ICachedReport {
         
-        public CachedSolicitudCredito() {
+        public CachedSolicitudesCreditosPorAprobar() {
         }
         
         [Browsable(false)]
@@ -129,7 +129,7 @@ namespace ERP_GMEDINA.Reports {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            SolicitudCredito rpt = new SolicitudCredito();
+            SolicitudesCreditosPorAprobar rpt = new SolicitudesCreditosPorAprobar();
             rpt.Site = this.Site;
             return rpt;
         }

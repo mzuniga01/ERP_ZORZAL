@@ -1261,6 +1261,12 @@
       <DependentUpon>Pedidos.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\rptPedidoEntreFechas.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptPedidoEntreFechas.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\SolicitudCredito.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -2151,6 +2157,10 @@
       <LastGenOutput>Pedidos.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\PuntoEmision.rdlc" />
+    <EmbeddedResource Include="Reports\rptPedidoEntreFechas.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptPedidoEntreFechas.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\SolicitudCredito.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>SolicitudCredito.cs</LastGenOutput>
