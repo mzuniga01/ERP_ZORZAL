@@ -387,31 +387,55 @@ namespace ERP_ZORZAL.Controllers
             return Json(Msj, JsonRequestBehavior.AllowGet);
         }
 
+        public int Usuario()
+        {
+            int idUser = 0;
+            try
+            {
+                List<tbUsuario> User = Function.getUserInformation();
+                foreach (tbUsuario Usuario in User)
+                {
+                    idUser = Convert.ToInt32(Usuario.emp_Id);
+                }
+                return idUser;
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                return 0;
+            }
+        }
+
         [HttpPost]
         public ActionResult Reporte(tbObjeto Objeto,int suc_Id)
         {
 
             int iTipoReporte = Objeto.obj_Id;
             var list = db.SDP_Acce_GetReportes().ToList();
+            var GetUsuario = Usuario();
+            var UsuarioName = db.tbUsuario.Where(x => x.usu_Id == GetUsuario).Select(i => new { i.usu_Nombres, i.usu_Apellidos }).FirstOrDefault();
             ReportDocument rd = new ReportDocument();
             Stream stream = null;
-            rptInventarioNumeraciones SalidaRV = new rptInventarioNumeraciones();
-            Reportes SalidaDST = new Reportes();
+            rptInventarioNumeraciones rptNumeracion = new rptInventarioNumeraciones();
+            Reportes ReporteNumeracion = new Reportes();
 
-            var SalidaTableAdapter = new UDV_Vent_InventarioNumeracionesTableAdapter();
+            var InventarioNumeracionTableAdapter = new UDV_Vent_InventarioNumeracionesTableAdapter();
 
             try
             {
-                SalidaTableAdapter.FillFiltros(SalidaDST.UDV_Vent_InventarioNumeraciones, suc_Id);
+                InventarioNumeracionTableAdapter.FillFiltros(ReporteNumeracion.UDV_Vent_InventarioNumeraciones, suc_Id);
 
-                SalidaRV.SetDataSource(SalidaDST);
-                stream = SalidaRV.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+                rptNumeracion.SetDataSource(ReporteNumeracion);
+                rptNumeracion.SetParameterValue("usuario", UsuarioName.usu_Nombres + " " + UsuarioName.usu_Apellidos);
+
+                stream = rptNumeracion.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
                 stream.Seek(0, SeekOrigin.Begin);
 
-                SalidaRV.Close();
-                SalidaRV.Dispose();
+                rptNumeracion.Close();
+                rptNumeracion.Dispose();
+               
 
-                string fileName = "Salida_List.pdf";
+                string fileName = "Reporte_InventarioNumeraciones.pdf";
                 Response.AppendHeader("Content-Disposition", "inline; filename=" + fileName);
                 return File(stream, "application/pdf");
             }
