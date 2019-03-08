@@ -19,6 +19,11 @@
                 <div class="ibox-title">
 					<div class="ibox-tools">
                         @*<a href="~/ReportViewer/PuntoEmision.aspx" class = "btn btn-primary">Generar Reporte</a>*@
+                        @using (Html.BeginForm("Reporte", "PuntoEmision", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+
+                            <button id="Reporte" type="submit" class="btn btn-primary btn-sm">Reporte</button>
+                        }
                         @Html.ActionLink("Registrar Punto Emisión", "Create", null, new { @class = "btn btn-primary" })
 					</div>
                 </div>
@@ -71,7 +76,7 @@
                 </button>
             </div>
             <div class="modal-body" id="GenerarReporteSucursal">
-                @Html.Partial("_GenerarReporte", new ERP_GMEDINA.Models.tbSucursal())
+                @*@Html.Partial("_GenerarReporte", new ERP_GMEDINA.Models.tbSucursal())*@
             </div>
             @*<div class="modal-footer">
                 <button type="button" class="btn btn-primary">Generar</button>

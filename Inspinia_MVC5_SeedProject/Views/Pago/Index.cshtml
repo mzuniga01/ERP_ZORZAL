@@ -21,6 +21,10 @@
                 <div class="ibox-title">
                     <h5>Listado de Pago</h5>
 					<div class="ibox-tools">
+                        @using (Html.BeginForm("Reporte", "Pago", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            <button id="Reporte" type="submit" class="btn btn-primary btn-sm">Reporte</button>         
+                        }
 						@Html.ActionLink("Registrar Pago", "Create", null, new { @class = "btn btn-primary "})
 					</div>
                 </div>
@@ -85,9 +89,7 @@
                                         @Html.ActionLink("Editar", "Edit", new { id = item.pago_Id }, new { @class = "btn btn-white btn-xs" })
                                         @Html.ActionLink("Imprimir", "ExportReport", new { id = item.pago_Id }, new { @class = "btn btn-info btn-xs", @id= "bottonImprimir" ,@name= "bottonImprimir"})
                                         
-                                        @using (Html.BeginForm("Reporte", "Pago", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                                        {
-                                            <button id="Reporte" type="submit" class="btn btn-primary btn-sm">Reporte</button>                                             }
+                                        
                                         @*@Html.ActionLink("Imprimir", "", new { id = item.pago_Id }, new { @class = "btn btn-white btn-xs", id = "bottonImprimir", name = "bottonImprimir", type = "button", data-toggle='modal' ,data-target='#Imprimir' })*@
                                         @*<button id="bottonImprimir" name="bottonImprimir" type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#Imprimir">
                                             Imprimir

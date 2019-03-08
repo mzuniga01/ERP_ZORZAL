@@ -12,6 +12,7 @@ using CrystalDecisions.CrystalReports.Engine;
 using System.IO;
 using ERP_GMEDINA.Dataset.ReportesTableAdapters;
 using ERP_GMEDINA.Dataset;
+using ERP_GMEDINA.Reports;
 
 namespace ERP_ZORZAL.Controllers
 {
@@ -384,6 +385,41 @@ namespace ERP_ZORZAL.Controllers
                 ModelState.AddModelError("", Msj);
             }
             return Json(Msj, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult Reporte(tbObjeto Objeto)
+        {
+
+            int iTipoReporte = Objeto.obj_Id;
+            //var list = db.SDP_Acce_GetReportes().ToList();
+            ReportDocument rd = new ReportDocument();
+            Stream stream = null;
+            rptInventarioNumeraciones SalidaRV = new rptInventarioNumeraciones();
+            Reportes SalidaDST = new Reportes();
+
+            var SalidaTableAdapter = new UDV_Vent_InventarioNumeracionesTableAdapter();
+
+            try
+            {
+                SalidaTableAdapter.FillFiltros(SalidaDST.UDV_Vent_InventarioNumeraciones, 1);
+
+                SalidaRV.SetDataSource(SalidaDST);
+                stream = SalidaRV.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+                stream.Seek(0, SeekOrigin.Begin);
+
+                SalidaRV.Close();
+                SalidaRV.Dispose();
+
+                string fileName = "Salida_List.pdf";
+                Response.AppendHeader("Content-Disposition", "inline; filename=" + fileName);
+                return File(stream, "application/pdf");
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                throw;
+            }
         }
     }
 }

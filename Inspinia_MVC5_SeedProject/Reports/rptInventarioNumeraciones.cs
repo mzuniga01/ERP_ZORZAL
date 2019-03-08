@@ -16,14 +16,14 @@ namespace ERP_GMEDINA.Reports {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class InventarioNumeraciones : ReportClass {
+    public class rptInventarioNumeraciones : ReportClass {
         
-        public InventarioNumeraciones() {
+        public rptInventarioNumeraciones() {
         }
         
         public override string ResourceName {
             get {
-                return "InventarioNumeraciones.rpt";
+                return "rptInventarioNumeraciones.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace ERP_GMEDINA.Reports {
         
         public override string FullResourceName {
             get {
-                return "ERP_GMEDINA.Reports.InventarioNumeraciones.rpt";
+                return "ERP_GMEDINA.Reports.rptInventarioNumeraciones.rpt";
             }
             set {
                 // Do nothing
@@ -90,9 +90,9 @@ namespace ERP_GMEDINA.Reports {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedInventarioNumeraciones : Component, ICachedReport {
+    public class CachedrptInventarioNumeraciones : Component, ICachedReport {
         
-        public CachedInventarioNumeraciones() {
+        public CachedrptInventarioNumeraciones() {
         }
         
         [Browsable(false)]
@@ -129,7 +129,7 @@ namespace ERP_GMEDINA.Reports {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            InventarioNumeraciones rpt = new InventarioNumeraciones();
+            rptInventarioNumeraciones rpt = new rptInventarioNumeraciones();
             rpt.Site = this.Site;
             return rpt;
         }

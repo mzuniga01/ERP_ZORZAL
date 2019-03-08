@@ -1231,10 +1231,10 @@
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Reports\InventarioNumeraciones.cs">
+    <Compile Include="Reports\rptInventarioNumeraciones.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>InventarioNumeraciones.rpt</DependentUpon>
+      <DependentUpon>rptInventarioNumeraciones.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\NotaCredito.cs">
@@ -1266,11 +1266,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>rptPedidoEntreFechas.rpt</DependentUpon>
       <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\SolicitudCredito.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SolicitudCredito.rpt</DependentUpon>
     </Compile>
     <Compile Include="Reports\SolicitudEfectivo.cs">
       <AutoGen>True</AutoGen>
@@ -2078,7 +2073,6 @@
     <Content Include="Views\Usuario\RestaurarPassword.cshtml" />
     <Content Include="Views\Usuario\_BuscarEmpleado.cshtml" />
     <Content Include="Views\Usuario\_IndexRolesUsuario.cshtml" />
-    <Content Include="Views\PuntoEmision\_GenerarReporte.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2135,9 +2129,9 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CuponDescuento.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\InventarioNumeraciones.rpt">
+    <EmbeddedResource Include="Reports\rptInventarioNumeraciones.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>InventarioNumeraciones.cs</LastGenOutput>
+      <LastGenOutput>rptInventarioNumeraciones.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\NotaCredito.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -2159,10 +2153,6 @@
     <EmbeddedResource Include="Reports\rptPedidoEntreFechas.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptPedidoEntreFechas.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\SolicitudCredito.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>SolicitudCredito.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\SolicitudEfectivo.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
