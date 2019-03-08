@@ -383,7 +383,6 @@ C:\Users\Jose Dubon\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\Sy
 C:\Users\Jose Dubon\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\System.Web.WebPages.xml
 C:\Users\Jose Dubon\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\System.Web.WebPages.Deployment.xml
 C:\Users\Jose Dubon\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\System.Web.WebPages.Razor.xml
-C:\Users\usuario\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\es\Microsoft.ReportViewer.WebForms.resources.dll
 C:\Users\usuario\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.csprojAssemblyReference.cache
 C:\Users\usuario\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.csproj.CoreCompileInputs.cache
 C:\Users\usuario\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.csproj.CopyComplete
