@@ -8,6 +8,10 @@ using System.Web.Mvc;
 using ERP_GMEDINA.Models;
 using System.IO;
 using CrystalDecisions.CrystalReports.Engine;
+using ERP_GMEDINA.Dataset;
+using ERP_GMEDINA.Reports;
+using ERP_GMEDINA.Dataset.ReportesTableAdapters;
+
 
 namespace ERP_GMEDINA.Controllers
 {
@@ -41,7 +45,12 @@ namespace ERP_GMEDINA.Controllers
                 return RedirectToAction("Index", "Login");
         }
         public ActionResult ExportReport(int? id)
+
+
+
+
         {
+
             ReportDocument rd = new ReportDocument();
             rd.Load(Path.Combine(Server.MapPath("~/Reports"), "PagoImprimir.rpt"));
             var tbpago = db.UDP_Vent_tbPago_Imprimir(id).ToList();
@@ -80,6 +89,47 @@ namespace ERP_GMEDINA.Controllers
                 throw;
             }
         }
+
+        ///----------------Reporte pagos-----------------------------
+
+        [HttpPost]
+        public ActionResult Reporte(tbObjeto Objeto)
+        {
+            int iTipoReporte = Objeto.obj_Id;
+            ReportDocument rd = new ReportDocument();
+            Stream stream = null;
+            PagosPorFecha PagosRV = new PagosPorFecha();
+            Reportes PagosDST = new Reportes();
+           
+            var PagosTableAdapter = new UDV_Vent_PagosPorFechasTableAdapter();
+
+            try
+            {
+                PagosTableAdapter.FillFiltros(PagosDST.UDV_Vent_PagosPorFechas,"EFECTIVO", "Brayan Interiano", "EDUARDO LOPEZ", Convert.ToDateTime(2019 - 08 - 03) , Convert.ToDateTime(2019 - 08-03));
+
+                PagosRV.SetDataSource(PagosDST);
+                stream = PagosRV.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+                stream.Seek(0, SeekOrigin.Begin);
+
+                PagosRV.Close();
+                PagosRV.Dispose();
+
+                string fileName = "Pagos_Fecha.pdf";
+                Response.AppendHeader("Content-Disposition", "inline; filename=" + fileName);
+                return File(stream, "application/pdf");
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                throw;
+            }
+        }
+
+
+
+
+
+
 
         [HttpGet]
         public JsonResult BuscarFacturaId(int fId)

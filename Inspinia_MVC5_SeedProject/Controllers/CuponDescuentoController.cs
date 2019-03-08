@@ -15,7 +15,9 @@ using System.Data.Entity.Core.Objects;
 using System.IO;
 using System.Reflection;
 using CrystalDecisions.Shared;
-
+using ERP_GMEDINA.Dataset;
+using ERP_GMEDINA.Reports;
+using ERP_GMEDINA.Dataset.ReportesTableAdapters;
 namespace ERP_GMEDINA.Controllers
 {
     public class CuponDescuentoController : Controller
@@ -326,6 +328,41 @@ namespace ERP_GMEDINA.Controllers
         {
             var list = db.UDP_Vent_tbCuponDescuento_EsImpreso(cdtoId, EsImpreso).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+        ///----------------Reporte de Cupon de Descuento------------------------------
+
+        [HttpPost]
+        public ActionResult Reporte(tbObjeto Objeto)
+        {
+            int iTipoReporte = Objeto.obj_Id;
+            ReportDocument rd = new ReportDocument();
+            Stream stream = null;
+            CuponDescuento CuponRV = new CuponDescuento();
+            Reportes CuponDescuentoDST = new Reportes();
+
+            var CuponTableAdapter = new UDV_Vent_CuponDescuentoPorFechaTableAdapter();
+             
+            try
+            {
+                CuponTableAdapter.FillFiltros(CuponDescuentoDST.UDV_Vent_CuponDescuentoPorFecha, "2019-01-18", "2019-01-18");
+
+                CuponRV.SetDataSource(CuponDescuentoDST);
+                stream = CuponRV.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+                stream.Seek(0, SeekOrigin.Begin);
+
+                CuponRV.Close();
+                CuponRV.Dispose();
+
+                string fileName = "cupon_descuento.pdf";
+                Response.AppendHeader("Content-Disposition", "inline; filename=" + fileName);
+                return File(stream, "application/pdf");
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                throw;
+            }
         }
 
         //----------------------Report de Imprimir PDF-----------------------

@@ -99,6 +99,14 @@
 
                                             @Html.ActionLink("Imprimir", "ExportReport", new { id = item.cdto_ID }, new { @class = "btn btn-info btn-xs", @onclick = "CuponDescuentoEsImpreso()" })
                                         </td>
+                                        @using (Html.BeginForm("Reporte", "CuponDescuento", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                        {
+
+                                            <button id="Reporte" type="submit" class="btn btn-primary btn-sm">Reporte</button>
+                                        }
+
+
+
                                     }
                                     else
                                     {

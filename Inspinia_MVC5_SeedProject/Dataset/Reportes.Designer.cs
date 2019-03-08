@@ -24,8 +24,6 @@ namespace ERP_GMEDINA.Dataset {
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
     public partial class Reportes : global::System.Data.DataSet {
         
-        private UDP_Vent_PagosPorFechas_ReportesDataTable tableUDP_Vent_PagosPorFechas_Reportes;
-        
         private UDP_Vent_tbFactura_VentasentreFechasDataTable tableUDP_Vent_tbFactura_VentasentreFechas;
         
         private UDP_Vent_tbSolicituEfectivo_EntreFechasCajeroDataTable tableUDP_Vent_tbSolicituEfectivo_EntreFechasCajero;
@@ -62,6 +60,8 @@ namespace ERP_GMEDINA.Dataset {
         
         private UDV_Vent_Pedido_EntreFechasDataTable tableUDV_Vent_Pedido_EntreFechas;
         
+        private UDV_Vent_PagosPorFechasDataTable tableUDV_Vent_PagosPorFechas;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -90,9 +90,6 @@ namespace ERP_GMEDINA.Dataset {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["UDP_Vent_PagosPorFechas_Reportes"] != null)) {
-                    base.Tables.Add(new UDP_Vent_PagosPorFechas_ReportesDataTable(ds.Tables["UDP_Vent_PagosPorFechas_Reportes"]));
-                }
                 if ((ds.Tables["UDP_Vent_tbFactura_VentasentreFechas"] != null)) {
                     base.Tables.Add(new UDP_Vent_tbFactura_VentasentreFechasDataTable(ds.Tables["UDP_Vent_tbFactura_VentasentreFechas"]));
                 }
@@ -147,6 +144,9 @@ namespace ERP_GMEDINA.Dataset {
                 if ((ds.Tables["UDV_Vent_Pedido_EntreFechas"] != null)) {
                     base.Tables.Add(new UDV_Vent_Pedido_EntreFechasDataTable(ds.Tables["UDV_Vent_Pedido_EntreFechas"]));
                 }
+                if ((ds.Tables["UDV_Vent_PagosPorFechas"] != null)) {
+                    base.Tables.Add(new UDV_Vent_PagosPorFechasDataTable(ds.Tables["UDV_Vent_PagosPorFechas"]));
+                }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
                 this.Namespace = ds.Namespace;
@@ -163,16 +163,6 @@ namespace ERP_GMEDINA.Dataset {
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
             base.Tables.CollectionChanged += schemaChangedHandler;
             this.Relations.CollectionChanged += schemaChangedHandler;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public UDP_Vent_PagosPorFechas_ReportesDataTable UDP_Vent_PagosPorFechas_Reportes {
-            get {
-                return this.tableUDP_Vent_PagosPorFechas_Reportes;
-            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -357,6 +347,16 @@ namespace ERP_GMEDINA.Dataset {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public UDV_Vent_PagosPorFechasDataTable UDV_Vent_PagosPorFechas {
+            get {
+                return this.tableUDV_Vent_PagosPorFechas;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.BrowsableAttribute(true)]
         [global::System.ComponentModel.DesignerSerializationVisibilityAttribute(global::System.ComponentModel.DesignerSerializationVisibility.Visible)]
         public override global::System.Data.SchemaSerializationMode SchemaSerializationMode {
@@ -422,9 +422,6 @@ namespace ERP_GMEDINA.Dataset {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["UDP_Vent_PagosPorFechas_Reportes"] != null)) {
-                    base.Tables.Add(new UDP_Vent_PagosPorFechas_ReportesDataTable(ds.Tables["UDP_Vent_PagosPorFechas_Reportes"]));
-                }
                 if ((ds.Tables["UDP_Vent_tbFactura_VentasentreFechas"] != null)) {
                     base.Tables.Add(new UDP_Vent_tbFactura_VentasentreFechasDataTable(ds.Tables["UDP_Vent_tbFactura_VentasentreFechas"]));
                 }
@@ -479,6 +476,9 @@ namespace ERP_GMEDINA.Dataset {
                 if ((ds.Tables["UDV_Vent_Pedido_EntreFechas"] != null)) {
                     base.Tables.Add(new UDV_Vent_Pedido_EntreFechasDataTable(ds.Tables["UDV_Vent_Pedido_EntreFechas"]));
                 }
+                if ((ds.Tables["UDV_Vent_PagosPorFechas"] != null)) {
+                    base.Tables.Add(new UDV_Vent_PagosPorFechasDataTable(ds.Tables["UDV_Vent_PagosPorFechas"]));
+                }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
                 this.Namespace = ds.Namespace;
@@ -512,12 +512,6 @@ namespace ERP_GMEDINA.Dataset {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tableUDP_Vent_PagosPorFechas_Reportes = ((UDP_Vent_PagosPorFechas_ReportesDataTable)(base.Tables["UDP_Vent_PagosPorFechas_Reportes"]));
-            if ((initTable == true)) {
-                if ((this.tableUDP_Vent_PagosPorFechas_Reportes != null)) {
-                    this.tableUDP_Vent_PagosPorFechas_Reportes.InitVars();
-                }
-            }
             this.tableUDP_Vent_tbFactura_VentasentreFechas = ((UDP_Vent_tbFactura_VentasentreFechasDataTable)(base.Tables["UDP_Vent_tbFactura_VentasentreFechas"]));
             if ((initTable == true)) {
                 if ((this.tableUDP_Vent_tbFactura_VentasentreFechas != null)) {
@@ -626,6 +620,12 @@ namespace ERP_GMEDINA.Dataset {
                     this.tableUDV_Vent_Pedido_EntreFechas.InitVars();
                 }
             }
+            this.tableUDV_Vent_PagosPorFechas = ((UDV_Vent_PagosPorFechasDataTable)(base.Tables["UDV_Vent_PagosPorFechas"]));
+            if ((initTable == true)) {
+                if ((this.tableUDV_Vent_PagosPorFechas != null)) {
+                    this.tableUDV_Vent_PagosPorFechas.InitVars();
+                }
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -636,8 +636,6 @@ namespace ERP_GMEDINA.Dataset {
             this.Namespace = "http://tempuri.org/Reportes.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableUDP_Vent_PagosPorFechas_Reportes = new UDP_Vent_PagosPorFechas_ReportesDataTable();
-            base.Tables.Add(this.tableUDP_Vent_PagosPorFechas_Reportes);
             this.tableUDP_Vent_tbFactura_VentasentreFechas = new UDP_Vent_tbFactura_VentasentreFechasDataTable();
             base.Tables.Add(this.tableUDP_Vent_tbFactura_VentasentreFechas);
             this.tableUDP_Vent_tbSolicituEfectivo_EntreFechasCajero = new UDP_Vent_tbSolicituEfectivo_EntreFechasCajeroDataTable();
@@ -674,12 +672,8 @@ namespace ERP_GMEDINA.Dataset {
             base.Tables.Add(this.tableUDV_Vent_VentasExoneradas);
             this.tableUDV_Vent_Pedido_EntreFechas = new UDV_Vent_Pedido_EntreFechasDataTable();
             base.Tables.Add(this.tableUDV_Vent_Pedido_EntreFechas);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializeUDP_Vent_PagosPorFechas_Reportes() {
-            return false;
+            this.tableUDV_Vent_PagosPorFechas = new UDV_Vent_PagosPorFechasDataTable();
+            base.Tables.Add(this.tableUDV_Vent_PagosPorFechas);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -792,6 +786,12 @@ namespace ERP_GMEDINA.Dataset {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializeUDV_Vent_PagosPorFechas() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void SchemaChanged(object sender, global::System.ComponentModel.CollectionChangeEventArgs e) {
             if ((e.Action == global::System.ComponentModel.CollectionChangeAction.Remove)) {
                 this.InitVars();
@@ -844,9 +844,6 @@ namespace ERP_GMEDINA.Dataset {
             xs.Add(dsSchema);
             return type;
         }
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void UDP_Vent_PagosPorFechas_ReportesRowChangeEventHandler(object sender, UDP_Vent_PagosPorFechas_ReportesRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void UDP_Vent_tbFactura_VentasentreFechasRowChangeEventHandler(object sender, UDP_Vent_tbFactura_VentasentreFechasRowChangeEvent e);
@@ -902,387 +899,8 @@ namespace ERP_GMEDINA.Dataset {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void UDV_Vent_Pedido_EntreFechasRowChangeEventHandler(object sender, UDV_Vent_Pedido_EntreFechasRowChangeEvent e);
         
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class UDP_Vent_PagosPorFechas_ReportesDataTable : global::System.Data.TypedTableBase<UDP_Vent_PagosPorFechas_ReportesRow> {
-            
-            private global::System.Data.DataColumn columnNum;
-            
-            private global::System.Data.DataColumn columnRTN_Cliente;
-            
-            private global::System.Data.DataColumn columnNombre_Completo;
-            
-            private global::System.Data.DataColumn columnCódigo_Factura;
-            
-            private global::System.Data.DataColumn columnTipo_Pago;
-            
-            private global::System.Data.DataColumn columnSaldo_Anterior;
-            
-            private global::System.Data.DataColumn columnTotal_Pago;
-            
-            private global::System.Data.DataColumn columnFecha_Elaboración;
-            
-            private global::System.Data.DataColumn columnSaldo_Actual;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public UDP_Vent_PagosPorFechas_ReportesDataTable() {
-                this.TableName = "UDP_Vent_PagosPorFechas_Reportes";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal UDP_Vent_PagosPorFechas_ReportesDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected UDP_Vent_PagosPorFechas_ReportesDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn NumColumn {
-                get {
-                    return this.columnNum;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn RTN_ClienteColumn {
-                get {
-                    return this.columnRTN_Cliente;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn Nombre_CompletoColumn {
-                get {
-                    return this.columnNombre_Completo;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn Código_FacturaColumn {
-                get {
-                    return this.columnCódigo_Factura;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn Tipo_PagoColumn {
-                get {
-                    return this.columnTipo_Pago;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn Saldo_AnteriorColumn {
-                get {
-                    return this.columnSaldo_Anterior;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn Total_PagoColumn {
-                get {
-                    return this.columnTotal_Pago;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn Fecha_ElaboraciónColumn {
-                get {
-                    return this.columnFecha_Elaboración;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn Saldo_ActualColumn {
-                get {
-                    return this.columnSaldo_Actual;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public UDP_Vent_PagosPorFechas_ReportesRow this[int index] {
-                get {
-                    return ((UDP_Vent_PagosPorFechas_ReportesRow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event UDP_Vent_PagosPorFechas_ReportesRowChangeEventHandler UDP_Vent_PagosPorFechas_ReportesRowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event UDP_Vent_PagosPorFechas_ReportesRowChangeEventHandler UDP_Vent_PagosPorFechas_ReportesRowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event UDP_Vent_PagosPorFechas_ReportesRowChangeEventHandler UDP_Vent_PagosPorFechas_ReportesRowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event UDP_Vent_PagosPorFechas_ReportesRowChangeEventHandler UDP_Vent_PagosPorFechas_ReportesRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddUDP_Vent_PagosPorFechas_ReportesRow(UDP_Vent_PagosPorFechas_ReportesRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public UDP_Vent_PagosPorFechas_ReportesRow AddUDP_Vent_PagosPorFechas_ReportesRow(int Num, string RTN_Cliente, string Nombre_Completo, string Código_Factura, string Tipo_Pago, decimal Saldo_Anterior, decimal Total_Pago, System.DateTime Fecha_Elaboración, decimal Saldo_Actual) {
-                UDP_Vent_PagosPorFechas_ReportesRow rowUDP_Vent_PagosPorFechas_ReportesRow = ((UDP_Vent_PagosPorFechas_ReportesRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        Num,
-                        RTN_Cliente,
-                        Nombre_Completo,
-                        Código_Factura,
-                        Tipo_Pago,
-                        Saldo_Anterior,
-                        Total_Pago,
-                        Fecha_Elaboración,
-                        Saldo_Actual};
-                rowUDP_Vent_PagosPorFechas_ReportesRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowUDP_Vent_PagosPorFechas_ReportesRow);
-                return rowUDP_Vent_PagosPorFechas_ReportesRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public UDP_Vent_PagosPorFechas_ReportesRow FindByNum(int Num) {
-                return ((UDP_Vent_PagosPorFechas_ReportesRow)(this.Rows.Find(new object[] {
-                            Num})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                UDP_Vent_PagosPorFechas_ReportesDataTable cln = ((UDP_Vent_PagosPorFechas_ReportesDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new UDP_Vent_PagosPorFechas_ReportesDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal void InitVars() {
-                this.columnNum = base.Columns["Num"];
-                this.columnRTN_Cliente = base.Columns["RTN Cliente"];
-                this.columnNombre_Completo = base.Columns["Nombre Completo"];
-                this.columnCódigo_Factura = base.Columns["Código Factura"];
-                this.columnTipo_Pago = base.Columns["Tipo Pago"];
-                this.columnSaldo_Anterior = base.Columns["Saldo Anterior"];
-                this.columnTotal_Pago = base.Columns["Total Pago"];
-                this.columnFecha_Elaboración = base.Columns["Fecha Elaboración"];
-                this.columnSaldo_Actual = base.Columns["Saldo Actual"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            private void InitClass() {
-                this.columnNum = new global::System.Data.DataColumn("Num", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnNum);
-                this.columnRTN_Cliente = new global::System.Data.DataColumn("RTN Cliente", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnRTN_Cliente);
-                this.columnNombre_Completo = new global::System.Data.DataColumn("Nombre Completo", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnNombre_Completo);
-                this.columnCódigo_Factura = new global::System.Data.DataColumn("Código Factura", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCódigo_Factura);
-                this.columnTipo_Pago = new global::System.Data.DataColumn("Tipo Pago", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTipo_Pago);
-                this.columnSaldo_Anterior = new global::System.Data.DataColumn("Saldo Anterior", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSaldo_Anterior);
-                this.columnTotal_Pago = new global::System.Data.DataColumn("Total Pago", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTotal_Pago);
-                this.columnFecha_Elaboración = new global::System.Data.DataColumn("Fecha Elaboración", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnFecha_Elaboración);
-                this.columnSaldo_Actual = new global::System.Data.DataColumn("Saldo Actual", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSaldo_Actual);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnNum}, true));
-                this.columnNum.AllowDBNull = false;
-                this.columnNum.Unique = true;
-                this.columnRTN_Cliente.AllowDBNull = false;
-                this.columnRTN_Cliente.MaxLength = 26;
-                this.columnNombre_Completo.ReadOnly = true;
-                this.columnNombre_Completo.MaxLength = 101;
-                this.columnCódigo_Factura.AllowDBNull = false;
-                this.columnCódigo_Factura.MaxLength = 19;
-                this.columnTipo_Pago.AllowDBNull = false;
-                this.columnTipo_Pago.MaxLength = 50;
-                this.columnSaldo_Anterior.AllowDBNull = false;
-                this.columnTotal_Pago.AllowDBNull = false;
-                this.columnFecha_Elaboración.AllowDBNull = false;
-                this.columnSaldo_Actual.ReadOnly = true;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public UDP_Vent_PagosPorFechas_ReportesRow NewUDP_Vent_PagosPorFechas_ReportesRow() {
-                return ((UDP_Vent_PagosPorFechas_ReportesRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new UDP_Vent_PagosPorFechas_ReportesRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(UDP_Vent_PagosPorFechas_ReportesRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.UDP_Vent_PagosPorFechas_ReportesRowChanged != null)) {
-                    this.UDP_Vent_PagosPorFechas_ReportesRowChanged(this, new UDP_Vent_PagosPorFechas_ReportesRowChangeEvent(((UDP_Vent_PagosPorFechas_ReportesRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.UDP_Vent_PagosPorFechas_ReportesRowChanging != null)) {
-                    this.UDP_Vent_PagosPorFechas_ReportesRowChanging(this, new UDP_Vent_PagosPorFechas_ReportesRowChangeEvent(((UDP_Vent_PagosPorFechas_ReportesRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.UDP_Vent_PagosPorFechas_ReportesRowDeleted != null)) {
-                    this.UDP_Vent_PagosPorFechas_ReportesRowDeleted(this, new UDP_Vent_PagosPorFechas_ReportesRowChangeEvent(((UDP_Vent_PagosPorFechas_ReportesRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.UDP_Vent_PagosPorFechas_ReportesRowDeleting != null)) {
-                    this.UDP_Vent_PagosPorFechas_ReportesRowDeleting(this, new UDP_Vent_PagosPorFechas_ReportesRowChangeEvent(((UDP_Vent_PagosPorFechas_ReportesRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemoveUDP_Vent_PagosPorFechas_ReportesRow(UDP_Vent_PagosPorFechas_ReportesRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                Reportes ds = new Reportes();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "UDP_Vent_PagosPorFechas_ReportesDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void UDV_Vent_PagosPorFechasRowChangeEventHandler(object sender, UDV_Vent_PagosPorFechasRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -8535,152 +8153,400 @@ namespace ERP_GMEDINA.Dataset {
         }
         
         /// <summary>
-        ///Represents strongly named DataRow class.
+        ///Represents the strongly named DataTable class.
         ///</summary>
-        public partial class UDP_Vent_PagosPorFechas_ReportesRow : global::System.Data.DataRow {
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class UDV_Vent_PagosPorFechasDataTable : global::System.Data.TypedTableBase<UDV_Vent_PagosPorFechasRow> {
             
-            private UDP_Vent_PagosPorFechas_ReportesDataTable tableUDP_Vent_PagosPorFechas_Reportes;
+            private global::System.Data.DataColumn columnNum;
+            
+            private global::System.Data.DataColumn columnRTN_Cliente;
+            
+            private global::System.Data.DataColumn columnNombre;
+            
+            private global::System.Data.DataColumn columnCódigo_Factura;
+            
+            private global::System.Data.DataColumn columntpa_Descripcion;
+            
+            private global::System.Data.DataColumn columnCajero;
+            
+            private global::System.Data.DataColumn columnSaldo_Anterior;
+            
+            private global::System.Data.DataColumn columnTotal_Pago;
+            
+            private global::System.Data.DataColumn columnFecha_Elaboración;
+            
+            private global::System.Data.DataColumn columnSaldo_Actual;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal UDP_Vent_PagosPorFechas_ReportesRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableUDP_Vent_PagosPorFechas_Reportes = ((UDP_Vent_PagosPorFechas_ReportesDataTable)(this.Table));
+            public UDV_Vent_PagosPorFechasDataTable() {
+                this.TableName = "UDV_Vent_PagosPorFechas";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int Num {
-                get {
-                    return ((int)(this[this.tableUDP_Vent_PagosPorFechas_Reportes.NumColumn]));
+            internal UDV_Vent_PagosPorFechasDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
                 }
-                set {
-                    this[this.tableUDP_Vent_PagosPorFechas_Reportes.NumColumn] = value;
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected UDV_Vent_PagosPorFechasDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn NumColumn {
+                get {
+                    return this.columnNum;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string RTN_Cliente {
+            public global::System.Data.DataColumn RTN_ClienteColumn {
                 get {
-                    return ((string)(this[this.tableUDP_Vent_PagosPorFechas_Reportes.RTN_ClienteColumn]));
-                }
-                set {
-                    this[this.tableUDP_Vent_PagosPorFechas_Reportes.RTN_ClienteColumn] = value;
+                    return this.columnRTN_Cliente;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Nombre_Completo {
+            public global::System.Data.DataColumn NombreColumn {
                 get {
+                    return this.columnNombre;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Código_FacturaColumn {
+                get {
+                    return this.columnCódigo_Factura;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn tpa_DescripcionColumn {
+                get {
+                    return this.columntpa_Descripcion;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CajeroColumn {
+                get {
+                    return this.columnCajero;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Saldo_AnteriorColumn {
+                get {
+                    return this.columnSaldo_Anterior;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Total_PagoColumn {
+                get {
+                    return this.columnTotal_Pago;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Fecha_ElaboraciónColumn {
+                get {
+                    return this.columnFecha_Elaboración;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Saldo_ActualColumn {
+                get {
+                    return this.columnSaldo_Actual;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public UDV_Vent_PagosPorFechasRow this[int index] {
+                get {
+                    return ((UDV_Vent_PagosPorFechasRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event UDV_Vent_PagosPorFechasRowChangeEventHandler UDV_Vent_PagosPorFechasRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event UDV_Vent_PagosPorFechasRowChangeEventHandler UDV_Vent_PagosPorFechasRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event UDV_Vent_PagosPorFechasRowChangeEventHandler UDV_Vent_PagosPorFechasRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event UDV_Vent_PagosPorFechasRowChangeEventHandler UDV_Vent_PagosPorFechasRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddUDV_Vent_PagosPorFechasRow(UDV_Vent_PagosPorFechasRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public UDV_Vent_PagosPorFechasRow AddUDV_Vent_PagosPorFechasRow(int Num, string RTN_Cliente, string Nombre, string Código_Factura, string tpa_Descripcion, string Cajero, decimal Saldo_Anterior, decimal Total_Pago, System.DateTime Fecha_Elaboración, decimal Saldo_Actual) {
+                UDV_Vent_PagosPorFechasRow rowUDV_Vent_PagosPorFechasRow = ((UDV_Vent_PagosPorFechasRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        Num,
+                        RTN_Cliente,
+                        Nombre,
+                        Código_Factura,
+                        tpa_Descripcion,
+                        Cajero,
+                        Saldo_Anterior,
+                        Total_Pago,
+                        Fecha_Elaboración,
+                        Saldo_Actual};
+                rowUDV_Vent_PagosPorFechasRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowUDV_Vent_PagosPorFechasRow);
+                return rowUDV_Vent_PagosPorFechasRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public UDV_Vent_PagosPorFechasRow FindByNum(int Num) {
+                return ((UDV_Vent_PagosPorFechasRow)(this.Rows.Find(new object[] {
+                            Num})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                UDV_Vent_PagosPorFechasDataTable cln = ((UDV_Vent_PagosPorFechasDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new UDV_Vent_PagosPorFechasDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnNum = base.Columns["Num"];
+                this.columnRTN_Cliente = base.Columns["RTN Cliente"];
+                this.columnNombre = base.Columns["Nombre"];
+                this.columnCódigo_Factura = base.Columns["Código Factura"];
+                this.columntpa_Descripcion = base.Columns["tpa_Descripcion"];
+                this.columnCajero = base.Columns["Cajero"];
+                this.columnSaldo_Anterior = base.Columns["Saldo Anterior"];
+                this.columnTotal_Pago = base.Columns["Total Pago"];
+                this.columnFecha_Elaboración = base.Columns["Fecha Elaboración"];
+                this.columnSaldo_Actual = base.Columns["Saldo Actual"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnNum = new global::System.Data.DataColumn("Num", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNum);
+                this.columnRTN_Cliente = new global::System.Data.DataColumn("RTN Cliente", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRTN_Cliente);
+                this.columnNombre = new global::System.Data.DataColumn("Nombre", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNombre);
+                this.columnCódigo_Factura = new global::System.Data.DataColumn("Código Factura", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCódigo_Factura);
+                this.columntpa_Descripcion = new global::System.Data.DataColumn("tpa_Descripcion", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columntpa_Descripcion);
+                this.columnCajero = new global::System.Data.DataColumn("Cajero", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCajero);
+                this.columnSaldo_Anterior = new global::System.Data.DataColumn("Saldo Anterior", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSaldo_Anterior);
+                this.columnTotal_Pago = new global::System.Data.DataColumn("Total Pago", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotal_Pago);
+                this.columnFecha_Elaboración = new global::System.Data.DataColumn("Fecha Elaboración", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFecha_Elaboración);
+                this.columnSaldo_Actual = new global::System.Data.DataColumn("Saldo Actual", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSaldo_Actual);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnNum}, true));
+                this.columnNum.AllowDBNull = false;
+                this.columnNum.Unique = true;
+                this.columnRTN_Cliente.AllowDBNull = false;
+                this.columnRTN_Cliente.MaxLength = 26;
+                this.columnNombre.ReadOnly = true;
+                this.columnNombre.MaxLength = 101;
+                this.columnCódigo_Factura.AllowDBNull = false;
+                this.columnCódigo_Factura.MaxLength = 19;
+                this.columntpa_Descripcion.AllowDBNull = false;
+                this.columntpa_Descripcion.MaxLength = 50;
+                this.columnCajero.ReadOnly = true;
+                this.columnCajero.MaxLength = 301;
+                this.columnSaldo_Anterior.AllowDBNull = false;
+                this.columnTotal_Pago.AllowDBNull = false;
+                this.columnFecha_Elaboración.AllowDBNull = false;
+                this.columnSaldo_Actual.ReadOnly = true;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public UDV_Vent_PagosPorFechasRow NewUDV_Vent_PagosPorFechasRow() {
+                return ((UDV_Vent_PagosPorFechasRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new UDV_Vent_PagosPorFechasRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(UDV_Vent_PagosPorFechasRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.UDV_Vent_PagosPorFechasRowChanged != null)) {
+                    this.UDV_Vent_PagosPorFechasRowChanged(this, new UDV_Vent_PagosPorFechasRowChangeEvent(((UDV_Vent_PagosPorFechasRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.UDV_Vent_PagosPorFechasRowChanging != null)) {
+                    this.UDV_Vent_PagosPorFechasRowChanging(this, new UDV_Vent_PagosPorFechasRowChangeEvent(((UDV_Vent_PagosPorFechasRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.UDV_Vent_PagosPorFechasRowDeleted != null)) {
+                    this.UDV_Vent_PagosPorFechasRowDeleted(this, new UDV_Vent_PagosPorFechasRowChangeEvent(((UDV_Vent_PagosPorFechasRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.UDV_Vent_PagosPorFechasRowDeleting != null)) {
+                    this.UDV_Vent_PagosPorFechasRowDeleting(this, new UDV_Vent_PagosPorFechasRowChangeEvent(((UDV_Vent_PagosPorFechasRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemoveUDV_Vent_PagosPorFechasRow(UDV_Vent_PagosPorFechasRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                Reportes ds = new Reportes();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "UDV_Vent_PagosPorFechasDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
                     try {
-                        return ((string)(this[this.tableUDP_Vent_PagosPorFechas_Reportes.Nombre_CompletoColumn]));
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
                     }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Nombre Completo\' in table \'UDP_Vent_PagosPorFechas_Reportes" +
-                                "\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableUDP_Vent_PagosPorFechas_Reportes.Nombre_CompletoColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Código_Factura {
-                get {
-                    return ((string)(this[this.tableUDP_Vent_PagosPorFechas_Reportes.Código_FacturaColumn]));
-                }
-                set {
-                    this[this.tableUDP_Vent_PagosPorFechas_Reportes.Código_FacturaColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Tipo_Pago {
-                get {
-                    return ((string)(this[this.tableUDP_Vent_PagosPorFechas_Reportes.Tipo_PagoColumn]));
-                }
-                set {
-                    this[this.tableUDP_Vent_PagosPorFechas_Reportes.Tipo_PagoColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal Saldo_Anterior {
-                get {
-                    return ((decimal)(this[this.tableUDP_Vent_PagosPorFechas_Reportes.Saldo_AnteriorColumn]));
-                }
-                set {
-                    this[this.tableUDP_Vent_PagosPorFechas_Reportes.Saldo_AnteriorColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal Total_Pago {
-                get {
-                    return ((decimal)(this[this.tableUDP_Vent_PagosPorFechas_Reportes.Total_PagoColumn]));
-                }
-                set {
-                    this[this.tableUDP_Vent_PagosPorFechas_Reportes.Total_PagoColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime Fecha_Elaboración {
-                get {
-                    return ((global::System.DateTime)(this[this.tableUDP_Vent_PagosPorFechas_Reportes.Fecha_ElaboraciónColumn]));
-                }
-                set {
-                    this[this.tableUDP_Vent_PagosPorFechas_Reportes.Fecha_ElaboraciónColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal Saldo_Actual {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableUDP_Vent_PagosPorFechas_Reportes.Saldo_ActualColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Saldo Actual\' in table \'UDP_Vent_PagosPorFechas_Reportes\' i" +
-                                "s DBNull.", e);
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
                     }
                 }
-                set {
-                    this[this.tableUDP_Vent_PagosPorFechas_Reportes.Saldo_ActualColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsNombre_CompletoNull() {
-                return this.IsNull(this.tableUDP_Vent_PagosPorFechas_Reportes.Nombre_CompletoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetNombre_CompletoNull() {
-                this[this.tableUDP_Vent_PagosPorFechas_Reportes.Nombre_CompletoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsSaldo_ActualNull() {
-                return this.IsNull(this.tableUDP_Vent_PagosPorFechas_Reportes.Saldo_ActualColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetSaldo_ActualNull() {
-                this[this.tableUDP_Vent_PagosPorFechas_Reportes.Saldo_ActualColumn] = global::System.Convert.DBNull;
+                xs.Add(dsSchema);
+                return type;
             }
         }
         
@@ -12725,36 +12591,179 @@ namespace ERP_GMEDINA.Dataset {
         }
         
         /// <summary>
-        ///Row event argument class
+        ///Represents strongly named DataRow class.
         ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class UDP_Vent_PagosPorFechas_ReportesRowChangeEvent : global::System.EventArgs {
+        public partial class UDV_Vent_PagosPorFechasRow : global::System.Data.DataRow {
             
-            private UDP_Vent_PagosPorFechas_ReportesRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
+            private UDV_Vent_PagosPorFechasDataTable tableUDV_Vent_PagosPorFechas;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public UDP_Vent_PagosPorFechas_ReportesRowChangeEvent(UDP_Vent_PagosPorFechas_ReportesRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
+            internal UDV_Vent_PagosPorFechasRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableUDV_Vent_PagosPorFechas = ((UDV_Vent_PagosPorFechasDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public UDP_Vent_PagosPorFechas_ReportesRow Row {
+            public int Num {
                 get {
-                    return this.eventRow;
+                    return ((int)(this[this.tableUDV_Vent_PagosPorFechas.NumColumn]));
+                }
+                set {
+                    this[this.tableUDV_Vent_PagosPorFechas.NumColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataRowAction Action {
+            public string RTN_Cliente {
                 get {
-                    return this.eventAction;
+                    return ((string)(this[this.tableUDV_Vent_PagosPorFechas.RTN_ClienteColumn]));
                 }
+                set {
+                    this[this.tableUDV_Vent_PagosPorFechas.RTN_ClienteColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Nombre {
+                get {
+                    try {
+                        return ((string)(this[this.tableUDV_Vent_PagosPorFechas.NombreColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Nombre\' in table \'UDV_Vent_PagosPorFechas\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableUDV_Vent_PagosPorFechas.NombreColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Código_Factura {
+                get {
+                    return ((string)(this[this.tableUDV_Vent_PagosPorFechas.Código_FacturaColumn]));
+                }
+                set {
+                    this[this.tableUDV_Vent_PagosPorFechas.Código_FacturaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string tpa_Descripcion {
+                get {
+                    return ((string)(this[this.tableUDV_Vent_PagosPorFechas.tpa_DescripcionColumn]));
+                }
+                set {
+                    this[this.tableUDV_Vent_PagosPorFechas.tpa_DescripcionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Cajero {
+                get {
+                    try {
+                        return ((string)(this[this.tableUDV_Vent_PagosPorFechas.CajeroColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Cajero\' in table \'UDV_Vent_PagosPorFechas\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableUDV_Vent_PagosPorFechas.CajeroColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal Saldo_Anterior {
+                get {
+                    return ((decimal)(this[this.tableUDV_Vent_PagosPorFechas.Saldo_AnteriorColumn]));
+                }
+                set {
+                    this[this.tableUDV_Vent_PagosPorFechas.Saldo_AnteriorColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal Total_Pago {
+                get {
+                    return ((decimal)(this[this.tableUDV_Vent_PagosPorFechas.Total_PagoColumn]));
+                }
+                set {
+                    this[this.tableUDV_Vent_PagosPorFechas.Total_PagoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime Fecha_Elaboración {
+                get {
+                    return ((global::System.DateTime)(this[this.tableUDV_Vent_PagosPorFechas.Fecha_ElaboraciónColumn]));
+                }
+                set {
+                    this[this.tableUDV_Vent_PagosPorFechas.Fecha_ElaboraciónColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal Saldo_Actual {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableUDV_Vent_PagosPorFechas.Saldo_ActualColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Saldo Actual\' in table \'UDV_Vent_PagosPorFechas\' is DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tableUDV_Vent_PagosPorFechas.Saldo_ActualColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsNombreNull() {
+                return this.IsNull(this.tableUDV_Vent_PagosPorFechas.NombreColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetNombreNull() {
+                this[this.tableUDV_Vent_PagosPorFechas.NombreColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCajeroNull() {
+                return this.IsNull(this.tableUDV_Vent_PagosPorFechas.CajeroColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCajeroNull() {
+                this[this.tableUDV_Vent_PagosPorFechas.CajeroColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsSaldo_ActualNull() {
+                return this.IsNull(this.tableUDV_Vent_PagosPorFechas.Saldo_ActualColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetSaldo_ActualNull() {
+                this[this.tableUDV_Vent_PagosPorFechas.Saldo_ActualColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -13369,212 +13378,44 @@ namespace ERP_GMEDINA.Dataset {
                 }
             }
         }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class UDV_Vent_PagosPorFechasRowChangeEvent : global::System.EventArgs {
+            
+            private UDV_Vent_PagosPorFechasRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public UDV_Vent_PagosPorFechasRowChangeEvent(UDV_Vent_PagosPorFechasRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public UDV_Vent_PagosPorFechasRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
     }
 }
 namespace ERP_GMEDINA.Dataset.ReportesTableAdapters {
     
-    
-    /// <summary>
-    ///Represents the connection and commands used to retrieve and save data.
-    ///</summary>
-    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
-    [global::System.ComponentModel.ToolboxItem(true)]
-    [global::System.ComponentModel.DataObjectAttribute(true)]
-    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class UDP_Vent_PagosPorFechas_ReportesTableAdapter : global::System.ComponentModel.Component {
-        
-        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
-        
-        private global::System.Data.SqlClient.SqlConnection _connection;
-        
-        private global::System.Data.SqlClient.SqlTransaction _transaction;
-        
-        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
-        
-        private bool _clearBeforeFill;
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public UDP_Vent_PagosPorFechas_ReportesTableAdapter() {
-            this.ClearBeforeFill = true;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
-            get {
-                if ((this._adapter == null)) {
-                    this.InitAdapter();
-                }
-                return this._adapter;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        internal global::System.Data.SqlClient.SqlConnection Connection {
-            get {
-                if ((this._connection == null)) {
-                    this.InitConnection();
-                }
-                return this._connection;
-            }
-            set {
-                this._connection = value;
-                if ((this.Adapter.InsertCommand != null)) {
-                    this.Adapter.InsertCommand.Connection = value;
-                }
-                if ((this.Adapter.DeleteCommand != null)) {
-                    this.Adapter.DeleteCommand.Connection = value;
-                }
-                if ((this.Adapter.UpdateCommand != null)) {
-                    this.Adapter.UpdateCommand.Connection = value;
-                }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    if ((this.CommandCollection[i] != null)) {
-                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
-                    }
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        internal global::System.Data.SqlClient.SqlTransaction Transaction {
-            get {
-                return this._transaction;
-            }
-            set {
-                this._transaction = value;
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    this.CommandCollection[i].Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.DeleteCommand != null))) {
-                    this.Adapter.DeleteCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.InsertCommand != null))) {
-                    this.Adapter.InsertCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.UpdateCommand != null))) {
-                    this.Adapter.UpdateCommand.Transaction = this._transaction;
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
-            get {
-                if ((this._commandCollection == null)) {
-                    this.InitCommandCollection();
-                }
-                return this._commandCollection;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public bool ClearBeforeFill {
-            get {
-                return this._clearBeforeFill;
-            }
-            set {
-                this._clearBeforeFill = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitAdapter() {
-            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
-            tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "UDP_Vent_PagosPorFechas_Reportes";
-            tableMapping.ColumnMappings.Add("Num", "Num");
-            tableMapping.ColumnMappings.Add("RTN Cliente", "RTN Cliente");
-            tableMapping.ColumnMappings.Add("Nombre Completo", "Nombre Completo");
-            tableMapping.ColumnMappings.Add("Código Factura", "Código Factura");
-            tableMapping.ColumnMappings.Add("Tipo Pago", "Tipo Pago");
-            tableMapping.ColumnMappings.Add("Saldo Anterior", "Saldo Anterior");
-            tableMapping.ColumnMappings.Add("Total Pago", "Total Pago");
-            tableMapping.ColumnMappings.Add("Fecha Elaboración", "Fecha Elaboración");
-            tableMapping.ColumnMappings.Add("Saldo Actual", "Saldo Actual");
-            this._adapter.TableMappings.Add(tableMapping);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitConnection() {
-            this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ERP_GMEDINAConnectionString1"].ConnectionString;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
-            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "Vent.UDP_Vent_PagosPorFechas_Reportes";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FechaInicio", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FechaFinal", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(Reportes.UDP_Vent_PagosPorFechas_ReportesDataTable dataTable, global::System.Nullable<global::System.DateTime> FechaInicio, global::System.Nullable<global::System.DateTime> FechaFinal) {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((FechaInicio.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(FechaInicio.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            if ((FechaFinal.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[2].Value = ((System.DateTime)(FechaFinal.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual Reportes.UDP_Vent_PagosPorFechas_ReportesDataTable GetData(global::System.Nullable<global::System.DateTime> FechaInicio, global::System.Nullable<global::System.DateTime> FechaFinal) {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((FechaInicio.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(FechaInicio.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            if ((FechaFinal.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[2].Value = ((System.DateTime)(FechaFinal.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            Reportes.UDP_Vent_PagosPorFechas_ReportesDataTable dataTable = new Reportes.UDP_Vent_PagosPorFechas_ReportesDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-    }
     
     /// <summary>
     ///Represents the connection and commands used to retrieve and save data.
@@ -17255,6 +17096,229 @@ WHERE        (clte_Id = @IDCLIENTE) AND (clte_EsPersonaNatural = @TIPOCLIENTE)";
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             Reportes.UDV_Vent_Pedido_EntreFechasDataTable dataTable = new Reportes.UDV_Vent_Pedido_EntreFechasDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class UDV_Vent_PagosPorFechasTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public UDV_Vent_PagosPorFechasTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "UDV_Vent_PagosPorFechas";
+            tableMapping.ColumnMappings.Add("Num", "Num");
+            tableMapping.ColumnMappings.Add("RTN Cliente", "RTN Cliente");
+            tableMapping.ColumnMappings.Add("Nombre", "Nombre");
+            tableMapping.ColumnMappings.Add("Código Factura", "Código Factura");
+            tableMapping.ColumnMappings.Add("tpa_Descripcion", "tpa_Descripcion");
+            tableMapping.ColumnMappings.Add("Cajero", "Cajero");
+            tableMapping.ColumnMappings.Add("Saldo Anterior", "Saldo Anterior");
+            tableMapping.ColumnMappings.Add("Total Pago", "Total Pago");
+            tableMapping.ColumnMappings.Add("Fecha Elaboración", "Fecha Elaboración");
+            tableMapping.ColumnMappings.Add("Saldo Actual", "Saldo Actual");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ERP_GMEDINAConnectionString1"].ConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = @"SELECT        Num, [RTN Cliente], Nombre, [Código Factura], tpa_Descripcion, Cajero, [Saldo Anterior], [Total Pago], [Fecha Elaboración], [Saldo Actual]
+FROM            Vent.UDV_Vent_PagosPorFechas
+WHERE        (tpa_Descripcion = @Descripcion) AND (Cajero = @Cajero) AND (Nombre = @Nombre) AND ([Fecha Elaboración] BETWEEN @Fechainicio AND @FechaFinal)";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Descripcion", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "tpa_Descripcion", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Cajero", global::System.Data.SqlDbType.VarChar, 301, global::System.Data.ParameterDirection.Input, 0, 0, "Cajero", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Nombre", global::System.Data.SqlDbType.NVarChar, 101, global::System.Data.ParameterDirection.Input, 0, 0, "Nombre", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Fechainicio", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "Fecha Elaboración", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FechaFinal", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "Fecha Elaboración", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int FillFiltros(Reportes.UDV_Vent_PagosPorFechasDataTable dataTable, string Descripcion, string Cajero, string Nombre, System.DateTime Fechainicio, System.DateTime FechaFinal) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((Descripcion == null)) {
+                throw new global::System.ArgumentNullException("Descripcion");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(Descripcion));
+            }
+            if ((Cajero == null)) {
+                throw new global::System.ArgumentNullException("Cajero");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(Cajero));
+            }
+            if ((Nombre == null)) {
+                throw new global::System.ArgumentNullException("Nombre");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((string)(Nombre));
+            }
+            this.Adapter.SelectCommand.Parameters[3].Value = ((System.DateTime)(Fechainicio));
+            this.Adapter.SelectCommand.Parameters[4].Value = ((System.DateTime)(FechaFinal));
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual Reportes.UDV_Vent_PagosPorFechasDataTable GetData(string Descripcion, string Cajero, string Nombre, System.DateTime Fechainicio, System.DateTime FechaFinal) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((Descripcion == null)) {
+                throw new global::System.ArgumentNullException("Descripcion");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(Descripcion));
+            }
+            if ((Cajero == null)) {
+                throw new global::System.ArgumentNullException("Cajero");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(Cajero));
+            }
+            if ((Nombre == null)) {
+                throw new global::System.ArgumentNullException("Nombre");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((string)(Nombre));
+            }
+            this.Adapter.SelectCommand.Parameters[3].Value = ((System.DateTime)(Fechainicio));
+            this.Adapter.SelectCommand.Parameters[4].Value = ((System.DateTime)(FechaFinal));
+            Reportes.UDV_Vent_PagosPorFechasDataTable dataTable = new Reportes.UDV_Vent_PagosPorFechasDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }

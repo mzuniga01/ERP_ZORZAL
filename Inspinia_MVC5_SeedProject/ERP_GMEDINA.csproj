@@ -1271,7 +1271,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SolicitudCredito.rpt</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\SolicitudEfectivo.cs">
       <AutoGen>True</AutoGen>
