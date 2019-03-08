@@ -111,7 +111,7 @@ namespace ERP_GMEDINA.Controllers
 
             try
             {
-                PagosTableAdapter.FillFiltros(PagosDST.UDV_Vent_PagosPorFechas,"EFECTIVO", "Brayan Interiano", "EDUARDO LOPEZ", Convert.ToDateTime(2019 - 08 - 03) , Convert.ToDateTime(2019 - 08-03));
+                PagosTableAdapter.FillFiltros(PagosDST.UDV_Vent_PagosPorFechas,"EFECTIVO", "Brayan Interiano", "EDUARDO LOPEZ", "2019-07-03", "2019-07-03");
 
                 PagosRV.SetDataSource(PagosDST);
                 stream = PagosRV.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);

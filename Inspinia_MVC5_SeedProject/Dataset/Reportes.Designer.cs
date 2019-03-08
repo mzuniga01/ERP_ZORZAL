@@ -8048,7 +8048,6 @@ namespace ERP_GMEDINA.Dataset {
                 this.columnSaldo_Anterior.AllowDBNull = false;
                 this.columnTotal_Pago.AllowDBNull = false;
                 this.columnSaldo_Actual.ReadOnly = true;
-                this.columnpago_FechaElaboracion.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -12202,7 +12201,13 @@ namespace ERP_GMEDINA.Dataset {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public System.DateTime pago_FechaElaboracion {
                 get {
-                    return ((global::System.DateTime)(this[this.tableUDV_Vent_PagosPorFechas.pago_FechaElaboracionColumn]));
+                    try {
+                        return ((global::System.DateTime)(this[this.tableUDV_Vent_PagosPorFechas.pago_FechaElaboracionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'pago_FechaElaboracion\' in table \'UDV_Vent_PagosPorFechas\' i" +
+                                "s DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tableUDV_Vent_PagosPorFechas.pago_FechaElaboracionColumn] = value;
@@ -12243,6 +12248,18 @@ namespace ERP_GMEDINA.Dataset {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetSaldo_ActualNull() {
                 this[this.tableUDV_Vent_PagosPorFechas.Saldo_ActualColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Ispago_FechaElaboracionNull() {
+                return this.IsNull(this.tableUDV_Vent_PagosPorFechas.pago_FechaElaboracionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setpago_FechaElaboracionNull() {
+                this[this.tableUDV_Vent_PagosPorFechas.pago_FechaElaboracionColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -16529,15 +16546,15 @@ WHERE        (tpa_Descripcion = @Descripcion) AND (Cajero = @Cajero) AND (Nombre
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Descripcion", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "tpa_Descripcion", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Cajero", global::System.Data.SqlDbType.VarChar, 301, global::System.Data.ParameterDirection.Input, 0, 0, "Cajero", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Nombre", global::System.Data.SqlDbType.NVarChar, 101, global::System.Data.ParameterDirection.Input, 0, 0, "Nombre", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FechaInicio", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "pago_FechaElaboracion", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FechaFinal", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "pago_FechaElaboracion", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FechaInicio", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 0, 0, "pago_FechaElaboracion", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FechaFinal", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 0, 0, "pago_FechaElaboracion", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int FillFiltros(Reportes.UDV_Vent_PagosPorFechasDataTable dataTable, string Descripcion, string Cajero, string Nombre, System.DateTime FechaInicio, System.DateTime FechaFinal) {
+        public virtual int FillFiltros(Reportes.UDV_Vent_PagosPorFechasDataTable dataTable, string Descripcion, string Cajero, string Nombre, string FechaInicio, string FechaFinal) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((Descripcion == null)) {
                 throw new global::System.ArgumentNullException("Descripcion");
@@ -16557,8 +16574,18 @@ WHERE        (tpa_Descripcion = @Descripcion) AND (Cajero = @Cajero) AND (Nombre
             else {
                 this.Adapter.SelectCommand.Parameters[2].Value = ((string)(Nombre));
             }
-            this.Adapter.SelectCommand.Parameters[3].Value = ((System.DateTime)(FechaInicio));
-            this.Adapter.SelectCommand.Parameters[4].Value = ((System.DateTime)(FechaFinal));
+            if ((FechaInicio == null)) {
+                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[3].Value = ((string)(FechaInicio));
+            }
+            if ((FechaFinal == null)) {
+                this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[4].Value = ((string)(FechaFinal));
+            }
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
@@ -16570,7 +16597,7 @@ WHERE        (tpa_Descripcion = @Descripcion) AND (Cajero = @Cajero) AND (Nombre
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual Reportes.UDV_Vent_PagosPorFechasDataTable GetData(string Descripcion, string Cajero, string Nombre, System.DateTime FechaInicio, System.DateTime FechaFinal) {
+        public virtual Reportes.UDV_Vent_PagosPorFechasDataTable GetData(string Descripcion, string Cajero, string Nombre, string FechaInicio, string FechaFinal) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((Descripcion == null)) {
                 throw new global::System.ArgumentNullException("Descripcion");
@@ -16590,8 +16617,18 @@ WHERE        (tpa_Descripcion = @Descripcion) AND (Cajero = @Cajero) AND (Nombre
             else {
                 this.Adapter.SelectCommand.Parameters[2].Value = ((string)(Nombre));
             }
-            this.Adapter.SelectCommand.Parameters[3].Value = ((System.DateTime)(FechaInicio));
-            this.Adapter.SelectCommand.Parameters[4].Value = ((System.DateTime)(FechaFinal));
+            if ((FechaInicio == null)) {
+                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[3].Value = ((string)(FechaInicio));
+            }
+            if ((FechaFinal == null)) {
+                this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[4].Value = ((string)(FechaFinal));
+            }
             Reportes.UDV_Vent_PagosPorFechasDataTable dataTable = new Reportes.UDV_Vent_PagosPorFechasDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
