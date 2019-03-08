@@ -388,11 +388,11 @@ namespace ERP_ZORZAL.Controllers
         }
 
         [HttpPost]
-        public ActionResult Reporte(tbObjeto Objeto)
+        public ActionResult Reporte(tbObjeto Objeto,int suc_Id)
         {
 
             int iTipoReporte = Objeto.obj_Id;
-            //var list = db.SDP_Acce_GetReportes().ToList();
+            var list = db.SDP_Acce_GetReportes().ToList();
             ReportDocument rd = new ReportDocument();
             Stream stream = null;
             rptInventarioNumeraciones SalidaRV = new rptInventarioNumeraciones();
@@ -402,7 +402,7 @@ namespace ERP_ZORZAL.Controllers
 
             try
             {
-                SalidaTableAdapter.FillFiltros(SalidaDST.UDV_Vent_InventarioNumeraciones, 1);
+                SalidaTableAdapter.FillFiltros(SalidaDST.UDV_Vent_InventarioNumeraciones, suc_Id);
 
                 SalidaRV.SetDataSource(SalidaDST);
                 stream = SalidaRV.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);

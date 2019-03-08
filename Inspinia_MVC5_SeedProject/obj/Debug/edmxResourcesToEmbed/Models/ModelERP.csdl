@@ -2894,6 +2894,7 @@
       <Parameter Name="factd_UsuarioModifica" Mode="In" Type="Int32" />
       <Parameter Name="factd_FechaModifica" Mode="In" Type="DateTime" />
     </FunctionImport>
+    <FunctionImport Name="SDP_Acce_GetReportes" ReturnType="Collection(ERP_ZORZALModel.SDP_Acce_GetReportes_Result)" />
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -8460,5 +8461,15 @@
   </Association>
   <ComplexType Name="UDP_Vent_tbFacturaDetalle_Update_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="SDP_Acce_GetReportes_Result">
+    <Property Type="Int32" Name="obj_Id" Nullable="false" />
+    <Property Type="String" Name="obj_Pantalla" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="obj_Referencia" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="obj_UsuarioCrea" Nullable="false" />
+    <Property Type="DateTime" Name="obj_FechaCrea" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="obj_UsuarioModifica" Nullable="true" />
+    <Property Type="DateTime" Name="obj_FechaModifica" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="obj_Estado" Nullable="false" />
   </ComplexType>
 </Schema>

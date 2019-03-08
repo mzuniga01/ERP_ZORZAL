@@ -395,6 +395,9 @@
     <Compile Include="Models\SDP_Acce_GetObjetos_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SDP_Acce_GetReportes_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SDP_Acce_GetRolesAsignados_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -2073,6 +2076,7 @@
     <Content Include="Views\Usuario\RestaurarPassword.cshtml" />
     <Content Include="Views\Usuario\_BuscarEmpleado.cshtml" />
     <Content Include="Views\Usuario\_IndexRolesUsuario.cshtml" />
+    <Content Include="Views\PuntoEmision\_GenerarReporte.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -4015,6 +4015,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_InventarioNumeraciones' 
         <Function Name="SDP_Acce_GetObjetosDisponibles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
           <Parameter Name="rol_Id" Type="int" Mode="In" />
         </Function>
+        <Function Name="SDP_Acce_GetReportes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce" />
         <Function Name="SDP_Acce_GetRoles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce" />
         <Function Name="SDP_Acce_GetRolesAsignados" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
           <Parameter Name="usu_Id" Type="int" Mode="In" />
@@ -4985,9 +4986,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_InventarioNumeraciones' 
         </Function>
         <Function Name="UDP_Vent_FacturasPagoSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="fact_Id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="UDP_Vent_InventarioNumeraciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
-          <Parameter Name="suc_Id" Type="int" Mode="In" />
         </Function>
         <Function Name="UDP_Vent_Pedido_EntreFechas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="FECHAELABORACION" Type="datetime" Mode="In" />
@@ -9916,6 +9914,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_InventarioNumeraciones' 
             <Parameter Name="factd_UsuarioModifica" Mode="In" Type="Int32" />
             <Parameter Name="factd_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
+          <FunctionImport Name="SDP_Acce_GetReportes" ReturnType="Collection(ERP_ZORZALModel.SDP_Acce_GetReportes_Result)" />
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
           <Key>
@@ -15483,6 +15482,16 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_InventarioNumeraciones' 
         <ComplexType Name="UDP_Vent_tbFacturaDetalle_Update_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
+        <ComplexType Name="SDP_Acce_GetReportes_Result">
+          <Property Type="Int32" Name="obj_Id" Nullable="false" />
+          <Property Type="String" Name="obj_Pantalla" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="obj_Referencia" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="obj_UsuarioCrea" Nullable="false" />
+          <Property Type="DateTime" Name="obj_FechaCrea" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="obj_UsuarioModifica" Nullable="true" />
+          <Property Type="DateTime" Name="obj_FechaModifica" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="obj_Estado" Nullable="false" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -18444,6 +18453,20 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_InventarioNumeraciones' 
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbFacturaDetalle_Update_Result">
                 <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SDP_Acce_GetReportes" FunctionName="ERP_ZORZALModel.Store.SDP_Acce_GetReportes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_Acce_GetReportes_Result">
+                <ScalarProperty Name="obj_Id" ColumnName="obj_Id" />
+                <ScalarProperty Name="obj_Pantalla" ColumnName="obj_Pantalla" />
+                <ScalarProperty Name="obj_Referencia" ColumnName="obj_Referencia" />
+                <ScalarProperty Name="obj_UsuarioCrea" ColumnName="obj_UsuarioCrea" />
+                <ScalarProperty Name="obj_FechaCrea" ColumnName="obj_FechaCrea" />
+                <ScalarProperty Name="obj_UsuarioModifica" ColumnName="obj_UsuarioModifica" />
+                <ScalarProperty Name="obj_FechaModifica" ColumnName="obj_FechaModifica" />
+                <ScalarProperty Name="obj_Estado" ColumnName="obj_Estado" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
