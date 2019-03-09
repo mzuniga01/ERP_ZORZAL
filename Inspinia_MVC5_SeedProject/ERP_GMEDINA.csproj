@@ -957,6 +957,15 @@
       <DependentUpon>InventarioActual.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\InventarioHistorico.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\InventarioHistorico1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InventarioHistorico.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\ListadoProveedores.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -1742,6 +1751,10 @@
     <EmbeddedResource Include="Reports\InventarioActual.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>InventarioActual.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\InventarioHistorico.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>InventarioHistorico1.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\ListadoProveedores.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
