@@ -12,6 +12,8 @@ using ERP_GMEDINA.Attribute;
 using CrystalDecisions.CrystalReports.Engine;
 using System.IO;
 using ERP_GMEDINA.Dataset;
+using ERP_GMEDINA.Reports;
+using ERP_GMEDINA.Dataset.ReportesTableAdapters;
 
 namespace ERP_GMEDINA.Controllers
 {
@@ -335,27 +337,50 @@ namespace ERP_GMEDINA.Controllers
 
             }
         }
-        //public ActionResult ExportReport()
-        //{
-        //    ProductoSolicitadoPorEntregar ds = new ProductoSolicitadoPorEntregar();
-        //    ReportDocument rd = new ReportDocument();
-        //    rd.Load(Path.Combine(Server.MapPath("~/Reports"), "ProductoSolicitadosPorEntregar.rpt"));
-        //    rd.SetDataSource(ds.UDV_Inv_ProductosSolicitadosPorEntregar.ToList());
-        //    Response.Buffer = false;
-        //    Response.ClearContent();
-        //    Response.ClearHeaders();
-        //    try
-        //    {
-        //        Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
-        //        stream.Seek(0, SeekOrigin.Begin);
-        //        string fileName = "ProductoSolicitadosPorEntregar.pdf";
-        //        Response.AppendHeader("Content-Disposition", "inline; filename=" + fileName);
-        //        return File(stream, "application/pdf");
-        //    }
-        //    catch
-        //    {
-        //        throw;
-        //    }
-        //}
+        
+        //[HttpPost]
+        public ActionResult ExportReport()
+        {
+            string Nombre = "";
+            string Apellido = "";
+            string UsuarioFull = "";
+            GeneralFunctions Login = new GeneralFunctions();
+            List<tbUsuario> User = Login.getUserInformation();
+            foreach (tbUsuario Usuario in User)
+            {
+                Nombre = Usuario.usu_Nombres;
+                Apellido = Usuario.usu_Apellidos;
+                UsuarioFull = Nombre + " " + Apellido;
+            }
+            ReportDocument rd = new ReportDocument();
+            Stream stream = null;
+            ProductoSolicitadosPorEntregar ProductoSolicitadosRV = new ProductoSolicitadosPorEntregar();
+            Reportes ProductoSolicitadosDST = new Reportes();
+
+            var ProductoSolicitadosTableAdapter = new UDV_Inv_ProductosSolicitadosPorEntregarTableAdapter();
+
+            try
+            {
+                var BodegaOrigen = 4;
+                var BodegaDestino = 10;
+                ProductoSolicitadosTableAdapter.Fill(ProductoSolicitadosDST.UDV_Inv_ProductosSolicitadosPorEntregar, UsuarioFull, BodegaOrigen, BodegaDestino);
+
+                ProductoSolicitadosRV.SetDataSource(ProductoSolicitadosDST);
+                stream = ProductoSolicitadosRV.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+                stream.Seek(0, SeekOrigin.Begin);
+
+                ProductoSolicitadosRV.Close();
+                ProductoSolicitadosRV.Dispose();
+
+                string fileName = "Productos_Solicitados_por_Entregar.pdf";
+                Response.AppendHeader("Content-Disposition", "inline; filename=" + fileName);
+                return File(stream, "application/pdf");
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                throw;
+            }
+        }
     }
 }
