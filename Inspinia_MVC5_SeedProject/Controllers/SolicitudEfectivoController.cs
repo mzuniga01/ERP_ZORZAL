@@ -10,6 +10,9 @@ using ERP_GMEDINA.Models;
 using System.Transactions;
 using CrystalDecisions.CrystalReports.Engine;
 using System.IO;
+using ERP_GMEDINA.Reports;
+using ERP_GMEDINA.Dataset;
+using ERP_GMEDINA.Dataset.ReportesTableAdapters;
 
 namespace ERP_GMEDINA.Controllers
 {
@@ -17,6 +20,78 @@ namespace ERP_GMEDINA.Controllers
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
         GeneralFunctions Function = new GeneralFunctions();
+
+
+        //[HttpPost]
+        //public ActionResult ReporteCajaCajero()
+        //{
+        //    //int iTipoReporte = Objeto.obj_Id;
+        //    //var list = db.SDP_Acce_GetReportes().ToList();
+        //    ReportDocument rd = new ReportDocument();
+        //    Stream stream = null;
+        //    rptSolicitudEfectivoEntreFechasCajaCajero GENERAL = new rptSolicitudEfectivoEntreFechasCajaCajero();
+        //    Reportes RPTGENERAL = new Reportes();
+
+        //    var SOLICITUDEFECTIVOTableAdapter = new UDV_Vent_tbSolicituEfectivo_EntreFechaCajaCajeroTableAdapter();
+
+        //    try
+        //    {
+        //        SOLICITUDEFECTIVOTableAdapter.Fill(RPTGENERAL.UDV_Vent_tbSolicituEfectivo_EntreFechaCajaCajero, "2019-03-08", "2019-03-09", 1, 4);
+
+        //        GENERAL.SetDataSource(RPTGENERAL);
+        //        stream = GENERAL.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+        //        stream.Seek(0, SeekOrigin.Begin);
+
+        //        GENERAL.Close();
+        //        GENERAL.Dispose();
+
+        //        string fileName = "SolicitudEfectivoEntreFechasGeneral.pdf";
+        //        Response.AppendHeader("Content-Disposition", "inline; filename=" + fileName);
+        //        return File(stream, "application/pdf");
+        //    }
+        //    catch (Exception Ex)
+        //    {
+        //        Ex.Message.ToString();
+        //        throw;
+        //    }
+        //}
+
+        ////-----------------------
+        //[HttpPost]
+        //public ActionResult ReporteGeneral()
+        //{
+        //    //int iTipoReporte = Objeto.obj_Id;
+        //    //var list = db.SDP_Acce_GetReportes().ToList();
+        //    ReportDocument rd = new ReportDocument();
+        //    Stream stream = null;
+        //    rptSolicitudEfectivoEntrefechasGeneral GENERAL = new rptSolicitudEfectivoEntrefechasGeneral();
+        //    Reportes RPTGENERAL = new Reportes();
+
+        //    var SOLICITUDEFECTIVOTableAdapter = new UDV_Vent_tbSolicituEfectivo_EntreFechasGeneralTableAdapter();
+
+        //    try
+        //    {
+        //        SOLICITUDEFECTIVOTableAdapter.Fill(RPTGENERAL.UDV_Vent_tbSolicituEfectivo_EntreFechasGeneral, "2018-02-08", "2019-03-09");
+
+        //        GENERAL.SetDataSource(RPTGENERAL);
+        //        stream = GENERAL.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+        //        stream.Seek(0, SeekOrigin.Begin);
+
+        //        GENERAL.Close();
+        //        GENERAL.Dispose();
+
+        //        string fileName = "SolicitudEfectivoEntreFechaCajaCajero.pdf";
+        //        Response.AppendHeader("Content-Disposition", "inline; filename=" + fileName);
+        //        return File(stream, "application/pdf");
+        //    }
+        //    catch (Exception Ex)
+        //    {
+        //        Ex.Message.ToString();
+        //        throw;
+        //    }
+        //}
+
+
 
         public ActionResult Index()
         {

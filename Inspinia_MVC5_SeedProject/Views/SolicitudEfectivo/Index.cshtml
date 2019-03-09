@@ -8,6 +8,17 @@
                 <div class="ibox-title">
                     <h5>Listado de Solicitudes de Efectivo</h5>
                     <div class="ibox-tools">
+                        @*@using (Html.BeginForm("ReporteGeneral", "SolicitudEfectivo", FormMethod.Post, new { enctype = "multipart/form-data" , target = "_blank" }))
+                        {
+
+                            <button id="buscar" type="submit" class="btn btn-primary btn-sm">Repor teGeneral</button>
+                        }
+                        @using (Html.BeginForm("ReporteCajaCajero", "SolicitudEfectivo", FormMethod.Post, new { enctype = "multipart/form-data", target = "_blank" }))
+                        {
+
+                            <button id="buscar" type="submit" class="btn btn-primary btn-sm">Caja Cajero</button>
+                        }*@
+                        
                         @Html.ActionLink("Registrar Solicitud Efectivo", "Create", null, new { @class = "btn btn-primary btn-primary" })
                     </div>
                 </div>

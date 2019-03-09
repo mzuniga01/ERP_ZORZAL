@@ -16,14 +16,14 @@ namespace ERP_GMEDINA.Reports {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class SolicitudEfectivoEntrefechasGeneral : ReportClass {
+    public class rptSolicitudEfectivoEntrefechasGeneral : ReportClass {
         
-        public SolicitudEfectivoEntrefechasGeneral() {
+        public rptSolicitudEfectivoEntrefechasGeneral() {
         }
         
         public override string ResourceName {
             get {
-                return "SolicitudEfectivoEntrefechasGeneral.rpt";
+                return "rptSolicitudEfectivoEntrefechasGeneral.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace ERP_GMEDINA.Reports {
         
         public override string FullResourceName {
             get {
-                return "ERP_GMEDINA.Reports.SolicitudEfectivoEntrefechasGeneral.rpt";
+                return "ERP_GMEDINA.Reports.rptSolicitudEfectivoEntrefechasGeneral.rpt";
             }
             set {
                 // Do nothing
@@ -90,9 +90,9 @@ namespace ERP_GMEDINA.Reports {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedSolicitudEfectivoEntrefechasGeneral : Component, ICachedReport {
+    public class CachedrptSolicitudEfectivoEntrefechasGeneral : Component, ICachedReport {
         
-        public CachedSolicitudEfectivoEntrefechasGeneral() {
+        public CachedrptSolicitudEfectivoEntrefechasGeneral() {
         }
         
         [Browsable(false)]
@@ -129,7 +129,7 @@ namespace ERP_GMEDINA.Reports {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            SolicitudEfectivoEntrefechasGeneral rpt = new SolicitudEfectivoEntrefechasGeneral();
+            rptSolicitudEfectivoEntrefechasGeneral rpt = new rptSolicitudEfectivoEntrefechasGeneral();
             rpt.Site = this.Site;
             return rpt;
         }
