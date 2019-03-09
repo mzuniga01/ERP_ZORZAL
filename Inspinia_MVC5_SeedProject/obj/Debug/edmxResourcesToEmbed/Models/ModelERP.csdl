@@ -1843,7 +1843,6 @@
       <Parameter Name="suc_UsuarioModifica" Mode="In" Type="Int32" />
       <Parameter Name="suc_FechaModifica" Mode="In" Type="DateTime" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbNotaCredito_Select" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbNotaCredito_Select_Result)" />
     <FunctionImport Name="UDP_Vent_tbCuponDescuentoSelect" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbCuponDescuentoSelect_Result)" />
     <FunctionImport Name="UDP_Vent_tbPedido_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPedido_Insert_Result)">
       <Parameter Name="esped_Id" Mode="In" Type="Byte" />
@@ -2895,6 +2894,7 @@
       <Parameter Name="factd_FechaModifica" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="SDP_Acce_GetReportes" ReturnType="Collection(ERP_ZORZALModel.SDP_Acce_GetReportes_Result)" />
+    <FunctionImport Name="UDP_Vent_tbNotaCredito_Select" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbNotaCredito_Select_Result)" />
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -3933,11 +3933,6 @@
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbSucursal_Update_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbNotaCredito_Select_Result">
-    <Property Type="Int32" Name="ID" Nullable="false" />
-    <Property Type="Decimal" Name="MONTO" Nullable="true" Precision="38" Scale="2" />
-    <Property Type="DateTime" Name="dev_Fecha" Nullable="false" Precision="23" />
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbCuponDescuentoSelect_Result">
     <Property Type="Int32" Name="cdto_ID" Nullable="false" />
@@ -8471,5 +8466,13 @@
     <Property Type="Int32" Name="obj_UsuarioModifica" Nullable="true" />
     <Property Type="DateTime" Name="obj_FechaModifica" Nullable="true" Precision="23" />
     <Property Type="Boolean" Name="obj_Estado" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbNotaCredito_Select_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="Decimal" Name="MONTO" Nullable="true" Precision="38" Scale="2" />
+    <Property Type="DateTime" Name="dev_Fecha" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="IDCLIENTE" Nullable="false" />
+    <Property Type="String" Name="IDENTIFICACION" Nullable="false" MaxLength="26" />
+    <Property Type="String" Name="NOMBRES" Nullable="false" MaxLength="50" />
   </ComplexType>
 </Schema>

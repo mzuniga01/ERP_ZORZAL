@@ -8862,8 +8862,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_InventarioNumeraciones' 
             <Parameter Name="suc_UsuarioModifica" Mode="In" Type="Int32" />
             <Parameter Name="suc_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Vent_tbNotaCredito_Select" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbNotaCredito_Select_Result)">
-          </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbCuponDescuentoSelect" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbCuponDescuentoSelect_Result)" />
           <FunctionImport Name="UDP_Vent_tbPedido_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbPedido_Insert_Result)">
             <Parameter Name="esped_Id" Mode="In" Type="Byte" />
@@ -9915,6 +9913,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_InventarioNumeraciones' 
             <Parameter Name="factd_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="SDP_Acce_GetReportes" ReturnType="Collection(ERP_ZORZALModel.SDP_Acce_GetReportes_Result)" />
+          <FunctionImport Name="UDP_Vent_tbNotaCredito_Select" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbNotaCredito_Select_Result)" />
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
           <Key>
@@ -10953,11 +10952,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_InventarioNumeraciones' 
         </ComplexType>
         <ComplexType Name="UDP_Vent_tbSucursal_Update_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-        </ComplexType>
-        <ComplexType Name="UDP_Vent_tbNotaCredito_Select_Result">
-          <Property Type="Int32" Name="ID" Nullable="false" />
-          <Property Type="Decimal" Name="MONTO" Nullable="true" Precision="38" Scale="2" />
-          <Property Type="DateTime" Name="dev_Fecha" Nullable="false" Precision="23" />
         </ComplexType>
         <ComplexType Name="UDP_Vent_tbCuponDescuentoSelect_Result">
           <Property Type="Int32" Name="cdto_ID" Nullable="false" />
@@ -15492,6 +15486,14 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_InventarioNumeraciones' 
           <Property Type="DateTime" Name="obj_FechaModifica" Nullable="true" Precision="23" />
           <Property Type="Boolean" Name="obj_Estado" Nullable="false" />
         </ComplexType>
+        <ComplexType Name="UDP_Vent_tbNotaCredito_Select_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="Decimal" Name="MONTO" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="DateTime" Name="dev_Fecha" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="IDCLIENTE" Nullable="false" />
+          <Property Type="String" Name="IDENTIFICACION" Nullable="false" MaxLength="26" />
+          <Property Type="String" Name="NOMBRES" Nullable="false" MaxLength="50" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -17139,15 +17141,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_InventarioNumeraciones' 
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbNotaCredito_Select" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbNotaCredito_Select">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbNotaCredito_Select_Result">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="MONTO" ColumnName="MONTO" />
-                <ScalarProperty Name="dev_Fecha" ColumnName="dev_Fecha" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbCuponDescuentoSelect" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbCuponDescuentoSelect">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbCuponDescuentoSelect_Result">
@@ -18467,6 +18460,18 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_InventarioNumeraciones' 
                 <ScalarProperty Name="obj_UsuarioModifica" ColumnName="obj_UsuarioModifica" />
                 <ScalarProperty Name="obj_FechaModifica" ColumnName="obj_FechaModifica" />
                 <ScalarProperty Name="obj_Estado" ColumnName="obj_Estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbNotaCredito_Select" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbNotaCredito_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbNotaCredito_Select_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MONTO" ColumnName="MONTO" />
+                <ScalarProperty Name="dev_Fecha" ColumnName="dev_Fecha" />
+                <ScalarProperty Name="IDCLIENTE" ColumnName="IDCLIENTE" />
+                <ScalarProperty Name="IDENTIFICACION" ColumnName="IDENTIFICACION" />
+                <ScalarProperty Name="NOMBRES" ColumnName="NOMBRES" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

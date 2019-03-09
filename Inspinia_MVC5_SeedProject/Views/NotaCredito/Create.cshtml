@@ -198,6 +198,7 @@
     </div>
 </div>
 
+@*-----------------------------------------Modeal Agregar Devolucion-------------------------------*@
 <div>
     <div class="modal fade" id="ModalAgregarDevolucion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
@@ -208,8 +209,24 @@
                     </button>
                     <h4 class="modal-title" id="myModalLabel">Agregar Devolucion</h4>
                 </div>
+                @*<div class="form-group">
+                    <div class="col-md-12">
+                        <input id="searchDevolucion" type="text" class="form-control" placeholder="Buscar Devolución..." />
+                        <br />
+                    </div>
+                </div>*@
                 <div class="modal-body">
-                    @Html.Partial("_IndexDevolucion", (List<tbDevolucionDetalle>)ViewBag.Devolucion)
+                    <table id="DevFactura" class="table table table-striped  table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Monto</th>
+                                <th>Fecha</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="BodyDevoluciones"></tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -265,6 +282,97 @@
     <script src="~/Scripts/app/NotaCredito.js"></script>
     <script src="~/Scripts/app/GetCodigoNotaCredito.js"></script>
     <script>
+        $(document).ready(function () {
+            $('#DevFactura').DataTable(
+            {
+                "searching": false,
+                "lengthChange": false,
+
+                "oLanguage": {
+                    "oPaginate": {
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior",
+                    },
+                    "sEmptyTable": "No hay registros",
+                    "sInfoEmpty": "Mostrando 0 de 0 Entradas",
+                    "sSearch": "Buscar",
+                    "sInfo": "Mostrando _START_ a _END_ Entradas",
+
+                }
+            });
+        });
+        $(document).ready(function () {
+            var $rows = $('#DevFactura tr');
+            $("#searchDevolucion").keyup(function () {
+                var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+
+                $rows.show().filter(function () {
+                    var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+                    return !~text.indexOf(val);
+                }).hide();
+            })
+        });
+        $(document).on("click", "#DevFactura tbody tr td button#AgregarDev", function () {
+            DevIdItem = $(this).closest('tr').data('devid');
+            MontoItem = $(this).closest('tr').data('monto');
+            fechaItem = $(this).closest('tr').data('fecha');
+            nombreclteItem = $(this).closest('tr').data('nombresclte');
+            console.log(nombreclteItem);
+            identificacionclteItem = $(this).closest('tr').data('identificacionclte');
+            clteidItem = $(this).closest('tr').data('idclte');
+            console.log(clteidItem);
+            $("#dev_Id").val(DevIdItem);
+            $("#nocre_Monto").val(MontoItem);
+            $("#tbDevolucion_dev_Fecha").val(fechaItem);
+            $("#tbCliente_clte_Nombres").val(nombreclteItem);
+            $("#tbCliente_clte_Identificacion").val(identificacionclteItem);
+            $("#clte_Id").val(clteidItem);
+            console.log("#clte_Id");
+            $('#ModalAgregarDevolucion').modal('hide');
+        });
+
+
+        //Modal de Devoluciones----------------------------------------------------------------------------
+
+        $('#buscarDev').click(function () {
+            $.ajax({
+                url: "/NotaCredito/BuscarDevolucion",
+                method: "POST",
+                dataType: 'json',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(),
+
+                error: function () {
+                },
+                success: function (list) {
+                    $('#BodyDevoluciones').empty();
+                    $.each(list, function (key, val) {
+
+                        var fechaString = val.dev_Fecha.substr(6);
+                        var fechaActual = new Date(parseInt(fechaString));
+                        var mes = fechaActual.getMonth() + 1;
+                        var dia = fechaActual.getDate();
+                        var anio = fechaActual.getFullYear();
+                        var Fecha = dia + "/" + mes + "/" + anio;
+
+                        copiar = "<tr  data-devid=" + val.ID + " data-monto=" + val.MONTO + " data-fecha =" + Fecha + " data-identificacionclte =" + val.IDENTIFICACION + " data-nombresclte =" + val.NOMBRES + " data-idclte =" + val.IDCLIENTE + ">";
+                        copiar += "<td id = 'b'>" + val.ID + "</td>";
+                        copiar += "<td id = 'a'>" + val.MONTO + "</td>";
+                        copiar += "<td id = 'c'>" + Fecha + "</td>";
+                        copiar += "<td id = 'd'>" + val.NOMBRES + "</td>";
+                        copiar += "<td>" + '<button id="AgregarDev" class="btn btn-primary btn-xs" type="button">Añadir</button>' + "</td>";
+                        copiar += "</tr>";
+                        $('#BodyDevoluciones').append(copiar);
+                    });
+                    console.log(list);
+                }
+
+
+            });
+
+        })
+        // --------------------------------------------------------------------------------------------------------------
+
         $(function () {
             $("#nocre_FechaEmision").datepicker({ dateFormat: 'mm/dd/yy' }).datepicker('setDate', new Date()).datepicker("destroy");
 
@@ -294,6 +402,7 @@
         }
 
         function otros() {
+            
             document.getElementById("#Username1").value = "";
             document.getElementById("#txtPassword1").value = "";
             $('#Username1').val("");
@@ -301,12 +410,14 @@
             $('#mensajerror').val("");
             $("#radioBtn").prop("checked", true);
             $("#radioBtnDev").prop("checked", false);
+            $('#ModalAutorizarNC').modal('hide');
             $('#cltesearch').show();
             $('#cltesearch').prop("disabled", false);
             $('#divDevolucion').hide();
             $('#nocre_Monto').prop('readonly', false);
             $('#nocre_Monto').val('');
             $("#divFechaDev").hide();
+            
         }
 
         //---------------------------------Ctrl + G (GuardarRegistro)------------------------------
@@ -380,7 +491,7 @@
                     document.getElementById("#nocre_MotivoEmision").value = '';
             }
         }
-
+        
         //---------------------No limpiar textos---------------------------
         $('#guardar').click(function () {
             var sucursal = $('#descripcion').val();

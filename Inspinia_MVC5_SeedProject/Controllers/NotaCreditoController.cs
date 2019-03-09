@@ -344,6 +344,15 @@ namespace ERP_GMEDINA.Controllers
             var list = db.UDP_Vent_tbNotaCredito_Anulado(nocreId, Anulado).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        public ActionResult BuscarDevolucion()
+        {
+            var list = db.UDP_Vent_tbNotaCredito_Select().ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+
         [HttpPost]
         public JsonResult GetCodigoNotaCredito(int CodSucursal, short CodCaja)
         {

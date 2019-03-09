@@ -1640,15 +1640,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Vent_tbNotaCredito_Select" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbNotaCredito_Select">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbNotaCredito_Select_Result">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="MONTO" ColumnName="MONTO" />
-          <ScalarProperty Name="dev_Fecha" ColumnName="dev_Fecha" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbCuponDescuentoSelect" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbCuponDescuentoSelect">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbCuponDescuentoSelect_Result">
@@ -2968,6 +2959,18 @@
           <ScalarProperty Name="obj_UsuarioModifica" ColumnName="obj_UsuarioModifica" />
           <ScalarProperty Name="obj_FechaModifica" ColumnName="obj_FechaModifica" />
           <ScalarProperty Name="obj_Estado" ColumnName="obj_Estado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbNotaCredito_Select" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbNotaCredito_Select">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbNotaCredito_Select_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="MONTO" ColumnName="MONTO" />
+          <ScalarProperty Name="dev_Fecha" ColumnName="dev_Fecha" />
+          <ScalarProperty Name="IDCLIENTE" ColumnName="IDCLIENTE" />
+          <ScalarProperty Name="IDENTIFICACION" ColumnName="IDENTIFICACION" />
+          <ScalarProperty Name="NOMBRES" ColumnName="NOMBRES" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

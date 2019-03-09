@@ -6700,11 +6700,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbSucursal_Update_Result>("UDP_Vent_tbSucursal_Update", suc_IdParameter, mun_CodigoParameter, bod_IdParameter, pemi_IdParameter, suc_DescripcionParameter, suc_CorreoParameter, suc_DireccionParameter, suc_TelefonoParameter, suc_UsuarioCreaParameter, suc_FechaCreaParameter, suc_UsuarioModificaParameter, suc_FechaModificaParameter);
         }
     
-        public virtual ObjectResult<UDP_Vent_tbNotaCredito_Select_Result> UDP_Vent_tbNotaCredito_Select()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbNotaCredito_Select_Result>("UDP_Vent_tbNotaCredito_Select");
-        }
-    
         public virtual ObjectResult<UDP_Vent_tbCuponDescuentoSelect_Result> UDP_Vent_tbCuponDescuentoSelect()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbCuponDescuentoSelect_Result>("UDP_Vent_tbCuponDescuentoSelect");
@@ -6881,6 +6876,11 @@ namespace ERP_GMEDINA.Models
         public virtual ObjectResult<SDP_Acce_GetReportes_Result> SDP_Acce_GetReportes()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_Acce_GetReportes_Result>("SDP_Acce_GetReportes");
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbNotaCredito_Select_Result> UDP_Vent_tbNotaCredito_Select()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbNotaCredito_Select_Result>("UDP_Vent_tbNotaCredito_Select");
         }
     }
 }
