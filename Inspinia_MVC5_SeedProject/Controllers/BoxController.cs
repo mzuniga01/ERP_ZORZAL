@@ -10,6 +10,9 @@ using Newtonsoft.Json;
 using ERP_GMEDINA.Attribute;
 using CrystalDecisions.CrystalReports.Engine;
 using System.IO;
+using ERP_GMEDINA.Dataset.ReportesTableAdapters;
+using ERP_GMEDINA.Reports;
+using ERP_GMEDINA.Dataset;
 
 namespace ERP_ZORZAL.Controllers
 {
@@ -336,6 +339,68 @@ namespace ERP_ZORZAL.Controllers
             }
         }
 
+        //[HttpPost]
+        public ActionResult PackingList(string id)
+        {
+            //string codCaja = box.box_Codigo;
+            ReportDocument rd = new ReportDocument();
+            Stream stream = null;
+            ERP_GMEDINA.Reports.ImprimirPackingList PackinglistRV = new ERP_GMEDINA.Reports.ImprimirPackingList();
+            ERP_GMEDINA.Reports.ImprimirPackingListPorCaja PackinglistPorCajaRV = new ERP_GMEDINA.Reports.ImprimirPackingListPorCaja();
+            Reportes PACK = new Reportes();
+            var PACKTableAdapter = new UDV_Inv_PackingListTableAdapter();
+            var PACKTableAdapter_Caja = new UDV_Inv_PackingList_CajaTableAdapter();
+            var caja = db.tbSalidaDetalle.Where(x => x.box_Codigo == id).ToList();
+
+            if (caja.Count() == 0)
+            {
+                try
+                {
+                    PACKTableAdapter_Caja.Fill(PACK.UDV_Inv_PackingList_Caja, id);
+                    PackinglistPorCajaRV.SetDataSource(PACK);
+                    stream = PackinglistPorCajaRV.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+                    stream.Seek(0, SeekOrigin.Begin);
+
+                    PackinglistPorCajaRV.Close();
+                    PackinglistPorCajaRV.Dispose();
+
+                    string fileName = "PackingList.pdf";
+                    Response.AppendHeader("Content-Disposition", "inline; filename=" + fileName);
+                    return File(stream, "application/pdf");
+                }
+                catch (Exception Ex)
+                {
+                    Ex.Message.ToString();
+                    throw;
+                }
+            }
+            else
+            {
+                try
+                {
+                    PACKTableAdapter.Fill(PACK.UDV_Inv_PackingList, id);
+                    PackinglistRV.SetDataSource(PACK);
+                    stream = PackinglistRV.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+                    stream.Seek(0, SeekOrigin.Begin);
+
+                    PackinglistRV.Close();
+                    PackinglistRV.Dispose();
+
+                    string fileName = "PackingList.pdf";
+                    Response.AppendHeader("Content-Disposition", "inline; filename=" + fileName);
+                    return File(stream, "application/pdf");
+                }
+                catch (Exception Ex)
+                {
+                    Ex.Message.ToString();
+                    throw;
+                }
+            }
+             
+           
+        }
+
+
         public ActionResult ExportReport(string id)
         {
             ReportDocument rd = new ReportDocument();
@@ -384,7 +449,6 @@ namespace ERP_ZORZAL.Controllers
                 throw;
             }
         }
-
 
 
         protected override void Dispose(bool disposing)

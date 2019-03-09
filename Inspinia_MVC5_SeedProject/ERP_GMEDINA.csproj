@@ -951,6 +951,12 @@
       <DependentUpon>ImprimirPackingList.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\ImprimirPackingListPorCaja.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImprimirPackingListPorCaja.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\InventarioActual.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1738,6 +1744,10 @@
     <EmbeddedResource Include="Reports\ImprimirPackingList.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ImprimirPackingList.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ImprimirPackingListPorCaja.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ImprimirPackingListPorCaja.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\InventarioActual.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
