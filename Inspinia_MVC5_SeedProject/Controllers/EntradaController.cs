@@ -74,9 +74,32 @@ namespace ERP_ZORZAL.Controllers
         {
             return Redirect("~/Reports/ReporteTipoEntrada.aspx");
         }
+        //para imprimir 
+        //Parallel recuperar el usuario de la seccion
+        public int Usuario()
+        {
+            int idUser = 0;
+            try
+            {
+                List<tbUsuario> User = Function.getUserInformation();
+                foreach (tbUsuario Usuario in User)
+                {
+                    idUser = Convert.ToInt32(Usuario.emp_Id);
+                }
+                return idUser;
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                return 0;
+            }
+        }
+        //para imprimir entrada por tipos
         [HttpPost]
         public ActionResult ExportReportGeneral(tbEntrada tbentrada, string ent_FechaElaboracion)
         {
+            var Encargado = Usuario();
+            var EncargadoName = db.tbUsuario.Where(x => x.usu_Id == Encargado).Select(i => new { i.usu_Nombres, i.usu_Apellidos }).FirstOrDefault();
             var TipoEntrada = tbentrada.tent_Id;
             var FechaElaboracion = Convert.ToDateTime(ent_FechaElaboracion);
             var estado = tbentrada.estm_Id;
@@ -85,6 +108,7 @@ namespace ERP_ZORZAL.Controllers
             ReporteTipoEntrada EntradaRV = new ReporteTipoEntrada();
             ReportDocument rd = new ReportDocument();
             Reportes EntradaDST = new Reportes();
+            
             var EntradaTableAdapter = new UDV_Inv_TipoEntradaTableAdapter();
 
             //ERP_GMEDINA.Reports.CachedImprimirEntradaGeneral entradas = new ERP_GMEDINA.Reports.CachedImprimirEntradaGeneral();
@@ -102,8 +126,9 @@ namespace ERP_ZORZAL.Controllers
             try
             {
                 EntradaTableAdapter.Fill(EntradaDST.UDV_Inv_TipoEntrada, TipoEntrada, estado, bodega, FechaElaboracion);
-
+               
                 EntradaRV.SetDataSource(EntradaDST);
+                EntradaRV.SetParameterValue("usuario", EncargadoName.usu_Nombres + " " + EncargadoName.usu_Apellidos);
                 //SalidaRV.PrintToPrinter(1, false, 0, 0);
                 Stream stream = EntradaRV.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
                 stream.Seek(0, SeekOrigin.Begin);
@@ -126,9 +151,11 @@ namespace ERP_ZORZAL.Controllers
         }
 
 
-        //para imprimir entra por id
+        //para imprimir entrada por id
         public ActionResult ExportReport(int? id)
         {
+            var Encargado = Usuario();
+            var EncargadoName = db.tbUsuario.Where(x => x.usu_Id == Encargado).Select(i => new { i.usu_Nombres, i.usu_Apellidos }).FirstOrDefault();
             var ent_id = Convert.ToInt32(id);
             //ERP_GMEDINA.Dataset.EntradaTableAdapters.UDV_Inv_EntradaPorIdTableAdapter entradasID = new ERP_GMEDINA.Dataset.EntradaTableAdapters.UDV_Inv_EntradaPorIdTableAdapter();
             //ERP_GMEDINA.Dataset.Entrada.UDV_Inv_EntradaPorIdDataTable entradadatatableId = new ERP_GMEDINA.Dataset.Entrada.UDV_Inv_EntradaPorIdDataTable();
@@ -137,6 +164,7 @@ namespace ERP_ZORZAL.Controllers
             ImprimirEntradaPorId EntradaRVId = new ImprimirEntradaPorId();
             ReportDocument rdId = new ReportDocument();
             Reportes EntradaDSTId = new Reportes();
+           
             var EntradaTableAdapterId = new UDV_Inv_EntradaPorIdTableAdapter();
             //ReportDocument rd = new ReportDocument();
             //var url = "ImprimirEntrada.aspx";
@@ -149,8 +177,9 @@ namespace ERP_ZORZAL.Controllers
             {
 
                 EntradaTableAdapterId.Fill(EntradaDSTId.UDV_Inv_EntradaPorId, ent_id);
-
+               
                 EntradaRVId.SetDataSource(EntradaDSTId);
+                EntradaRVId.SetParameterValue("usuario", EncargadoName.usu_Nombres + " " + EncargadoName.usu_Apellidos);
                 //SalidaRV.PrintToPrinter(1, false, 0, 0);
                 Stream stream = EntradaRVId.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
                 stream.Seek(0, SeekOrigin.Begin);
