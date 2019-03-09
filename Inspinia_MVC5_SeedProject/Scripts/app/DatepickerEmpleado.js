@@ -169,6 +169,20 @@ $('#emp_Apellidos').on("keypress", function () {
     }, 50);
 
 });
+$('#emp_TipoSangre').on("keypress", function () {
+    $input = $(this);
+    setTimeout(function () {
+        $input.val($input.val().toUpperCase());
+    }, 50);
+
+});
+$('#emp_Puesto').on("keypress", function () {
+    $input = $(this);
+    setTimeout(function () {
+        $input.val($input.val().toUpperCase());
+    }, 50);
+
+});
 
 ////Validacion de la direccion 
 function Direccion(e) {
