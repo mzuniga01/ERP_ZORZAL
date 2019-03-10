@@ -14,6 +14,7 @@ using System.Data.Entity.Core.Objects;
 using CrystalDecisions.CrystalReports.Engine;
 using System.IO;
 
+
 namespace ERP_GMEDINA.Controllers
 {
     public class FacturaController : Controller
