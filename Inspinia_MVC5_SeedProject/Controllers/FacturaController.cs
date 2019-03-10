@@ -257,7 +257,7 @@ namespace ERP_GMEDINA.Controllers
             }
             else
             {
-                string id = (string)Session["IDCLIENTE"];
+                int id = (int)Session["IDCLIENTE"];
                 ViewBag.Iden = id;
                 int? idped = (int)Session["PEDIDO"];
                 ViewBag.Pedid = idped;
