@@ -13507,36 +13507,27 @@ WHERE      prod_CodigoBarras = @Parametro";
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = @"SELECT        [N°], [Código Nota Crédito], [Fecha Emisión], Motivo, Monto, Redimido, [Código Factura], Id, [Tipo Cliente], [Identificación Cliente], Nombres, devd_Monto, [Monto Total]
 FROM            Vent.UDV_Vent_NotaCreditoPorFecha
-WHERE        ([Fecha Emisión] BETWEEN @FechaDesde AND @FechaHasta) OR
-                         (Id = @clte_Id) OR
-                         ([Tipo Cliente] = @clte_EsPersonaNatural)";
+WHERE        (Nombres LIKE ISNULL('%' + @NombreNuevo + '%', Nombres)) AND ([Fecha Emisión] BETWEEN @FechaDesde AND @FechaHasta)";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NombreNuevo", global::System.Data.SqlDbType.NVarChar, 101, global::System.Data.ParameterDirection.Input, 0, 0, "Nombres", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FechaDesde", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "Fecha Emisión", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FechaHasta", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "Fecha Emisión", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@clte_Id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@clte_EsPersonaNatural", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.Input, 0, 0, "Tipo Cliente", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int FillFiltros(Reportes.UDV_Vent_NotaCreditoPorFechaDataTable dataTable, System.DateTime FechaDesde, System.DateTime FechaHasta, global::System.Nullable<int> clte_Id, global::System.Nullable<bool> clte_EsPersonaNatural) {
+        public virtual int FillFiltros(Reportes.UDV_Vent_NotaCreditoPorFechaDataTable dataTable, string NombreNuevo, System.DateTime FechaDesde, System.DateTime FechaHasta) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            this.Adapter.SelectCommand.Parameters[0].Value = ((System.DateTime)(FechaDesde));
-            this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(FechaHasta));
-            if ((clte_Id.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(clte_Id.Value));
+            if ((NombreNuevo == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(NombreNuevo));
             }
-            if ((clte_EsPersonaNatural.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[3].Value = ((bool)(clte_EsPersonaNatural.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
+            this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(FechaDesde));
+            this.Adapter.SelectCommand.Parameters[2].Value = ((System.DateTime)(FechaHasta));
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
@@ -13548,22 +13539,16 @@ WHERE        ([Fecha Emisión] BETWEEN @FechaDesde AND @FechaHasta) OR
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual Reportes.UDV_Vent_NotaCreditoPorFechaDataTable GetData(System.DateTime FechaDesde, System.DateTime FechaHasta, global::System.Nullable<int> clte_Id, global::System.Nullable<bool> clte_EsPersonaNatural) {
+        public virtual Reportes.UDV_Vent_NotaCreditoPorFechaDataTable GetData(string NombreNuevo, System.DateTime FechaDesde, System.DateTime FechaHasta) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            this.Adapter.SelectCommand.Parameters[0].Value = ((System.DateTime)(FechaDesde));
-            this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(FechaHasta));
-            if ((clte_Id.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(clte_Id.Value));
+            if ((NombreNuevo == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(NombreNuevo));
             }
-            if ((clte_EsPersonaNatural.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[3].Value = ((bool)(clte_EsPersonaNatural.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
+            this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(FechaDesde));
+            this.Adapter.SelectCommand.Parameters[2].Value = ((System.DateTime)(FechaHasta));
             Reportes.UDV_Vent_NotaCreditoPorFechaDataTable dataTable = new Reportes.UDV_Vent_NotaCreditoPorFechaDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
