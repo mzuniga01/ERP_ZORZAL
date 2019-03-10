@@ -4,6 +4,13 @@
     ViewBag.Title = "ESC";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    .required:after {
+        content: "*";
+        color: red;
+        padding-left: 5px;
+        }
+</style>
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
@@ -44,7 +51,7 @@
         @Html.ValidationSummary(true)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.escre_Descripcion, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.escre_Descripcion, new { @class = "control-label required col-md-2" })
             <div class="col-md-4">
             
                 @Html.EditorFor(model => model.escre_Descripcion, new { htmlAttributes = new { @class = "form-control", @style = "text-transform:uppercase;" } })
