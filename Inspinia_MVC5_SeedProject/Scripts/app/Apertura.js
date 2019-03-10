@@ -105,33 +105,32 @@ $(document).on("change", "#DenominacionDetalle tbody tr td input#name", function
 });
 
 
-$(document).on("keypress", "#DenominacionDetalle tbody tr td input#name", function () {
-    var row = $(this).closest("tr");
-    var Cantidad = $(this).val();
-    var ValorDenominacion = $(this).parents("tr").find("td")[2].innerHTML;
-    var Subtotal = parseFloat(Cantidad * ValorDenominacion);
-    $(this).parents("tr").find("td")[3].innerHTML = Subtotal;
-    if (Subtotal != 0) {
-        MontoInicial += Subtotal;
-    }
-    else {
-        MontoInicial = 0;
-        $("#DenominacionDetalle tbody tr").each(function (index) {
-            Monto = $(this).children("td:eq(3)").html();
-            if (Monto != '') {
-                Monto = parseFloat(Monto);
-                MontoInicial += Monto;
-            }
-        })
-    }
-    var totalfinal = document.getElementById("Total").innerHTML = parseFloat(MontoInicial);
-    $("#Monto").val(parseFloat(MontoInicial));
-    console.log('MontoInicial', MontoInicial);
-    console.log('Subtotal', Subtotal);
-    console.log('Total', Total);
-    console.log('totalfinal', totalfinal);
-
-});
+//$(document).on("keypress", "#DenominacionDetalle tbody tr td input#name", function () {
+//    var row = $(this).closest("tr");
+//    var Cantidad = $(this).val();
+//    var ValorDenominacion = $(this).parents("tr").find("td")[2].innerHTML;
+//    var Subtotal = parseFloat(Cantidad * ValorDenominacion);
+//    $(this).parents("tr").find("td")[3].innerHTML = Subtotal;
+//    if (Subtotal != 0) {
+//        MontoInicial += Subtotal;
+//    }
+//    else {
+//        MontoInicial = 0;
+//        $("#DenominacionDetalle tbody tr").each(function (index) {
+//            Monto = $(this).children("td:eq(3)").html();
+//            if (Monto != '') {
+//                Monto = parseFloat(Monto);
+//                MontoInicial += Monto;
+//            }
+//        })
+//    }
+//    var totalfinal = document.getElementById("Total").innerHTML = parseFloat(MontoInicial);
+//    $("#Monto").val(parseFloat(MontoInicial));
+//    console.log('MontoInicial', MontoInicial);
+//    console.log('Subtotal', Subtotal);
+//    console.log('Total', Total);
+//    console.log('totalfinal', totalfinal);
+//});
 
 
 
