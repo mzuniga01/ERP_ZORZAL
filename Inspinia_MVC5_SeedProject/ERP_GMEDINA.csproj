@@ -1728,6 +1728,7 @@
     <Content Include="Views\EstadoInventarioFisico\Details.cshtml" />
     <Content Include="Views\EstadoInventarioFisico\Edit.cshtml" />
     <Content Include="Views\EstadoInventarioFisico\Index.cshtml" />
+    <Content Include="Views\Producto\_CatalogoProducto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
