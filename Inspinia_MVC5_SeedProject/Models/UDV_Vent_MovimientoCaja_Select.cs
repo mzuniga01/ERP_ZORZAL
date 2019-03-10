@@ -16,7 +16,6 @@ namespace ERP_GMEDINA.Models
     {
         public int mocja_Id { get; set; }
         public int solef_Id { get; set; }
-        public int soled_Id { get; set; }
         public short cja_Id { get; set; }
         public string cja_Descripcion { get; set; }
     }

@@ -1224,13 +1224,11 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_MovimientoCaja_Select' d
     <Key>
       <PropertyRef Name="mocja_Id" />
       <PropertyRef Name="solef_Id" />
-      <PropertyRef Name="soled_Id" />
       <PropertyRef Name="cja_Id" />
       <PropertyRef Name="cja_Descripcion" />
     </Key>
     <Property Name="mocja_Id" Type="int" Nullable="false" />
     <Property Name="solef_Id" Type="int" Nullable="false" />
-    <Property Name="soled_Id" Type="int" Nullable="false" />
     <Property Name="cja_Id" Type="smallint" Nullable="false" />
     <Property Name="cja_Descripcion" Type="nvarchar" MaxLength="10" Nullable="false" />
   </EntityType>
@@ -6101,7 +6099,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_MovimientoCaja_Select' d
       <DefiningQuery>SELECT 
     [UDV_Vent_MovimientoCaja_Select].[mocja_Id] AS [mocja_Id], 
     [UDV_Vent_MovimientoCaja_Select].[solef_Id] AS [solef_Id], 
-    [UDV_Vent_MovimientoCaja_Select].[soled_Id] AS [soled_Id], 
     [UDV_Vent_MovimientoCaja_Select].[cja_Id] AS [cja_Id], 
     [UDV_Vent_MovimientoCaja_Select].[cja_Descripcion] AS [cja_Descripcion]
     FROM [Vent].[UDV_Vent_MovimientoCaja_Select] AS [UDV_Vent_MovimientoCaja_Select]</DefiningQuery>

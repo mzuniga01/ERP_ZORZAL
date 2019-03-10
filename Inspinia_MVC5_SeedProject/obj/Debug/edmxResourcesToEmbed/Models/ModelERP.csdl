@@ -8480,13 +8480,11 @@
     <Key>
       <PropertyRef Name="mocja_Id" />
       <PropertyRef Name="solef_Id" />
-      <PropertyRef Name="soled_Id" />
       <PropertyRef Name="cja_Id" />
       <PropertyRef Name="cja_Descripcion" />
     </Key>
     <Property Name="mocja_Id" Type="Int32" Nullable="false" />
     <Property Name="solef_Id" Type="Int32" Nullable="false" />
-    <Property Name="soled_Id" Type="Int32" Nullable="false" />
     <Property Name="cja_Id" Type="Int16" Nullable="false" />
     <Property Name="cja_Descripcion" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
   </EntityType>
