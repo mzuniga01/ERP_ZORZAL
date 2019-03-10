@@ -395,7 +395,7 @@ namespace ERP_ZORZAL.Controllers
                 List<tbUsuario> User = Function.getUserInformation();
                 foreach (tbUsuario Usuario in User)
                 {
-                    idUser = Convert.ToInt32(Usuario.emp_Id);
+                    idUser = Convert.ToInt32(Usuario.usu_Id);
                 }
                 return idUser;
             }

@@ -1,4 +1,12 @@
-﻿//Validación Sólo letras
+﻿//Validación letras y numeros
+function format(e) {
+    tecla = (document.all) ? e.keyCode : e.which;
+    tecla = String.fromCharCode(tecla)
+    return /^[a-z0-9]*$/i.test(tecla);
+}
+
+
+//Validación Sólo letras
 function validar(e) {
     tecla = (document.all) ? e.keyCode : e.which;
     tecla = String.fromCharCode(tecla)
@@ -15,8 +23,6 @@ function Copy(string) {//solo letras y numeros
 
     return out;
 }
-
-
 
 //Validar letras y números
 function validarJ(e) {

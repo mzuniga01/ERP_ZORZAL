@@ -54,7 +54,7 @@
             <div class="form-group" id="identificacion" name="identificacion">
                 @Html.LabelFor(model => model.clte_Identificacion, new { @class = "control-label col-md-2", id = "label_identificacion" })
                 <div class="col-md-4">
-                    @Html.EditorFor(model => model.clte_Identificacion, new { htmlAttributes = new { @autocomplete = "off", @onkeyup = "format(this)", @style="text-transform:uppercase;" } })
+                    @Html.EditorFor(model => model.clte_Identificacion, new { htmlAttributes = new { @autocomplete = "off", onkeypress = "return format(event)", @style="text-transform:uppercase;" } })
                     <p id="CIdentificacion" style="color:red">@Html.ValidationMessageFor(model => model.clte_Identificacion)</p>
                 </div>
             </div>
@@ -269,7 +269,7 @@
     $('#clte_EsActivo').attr('checked', true);
     $('#clte_EsMinorista').attr('checked', true);
     $(document).ready(function () {
-        GetIdentificacion();
+        //GetIdentificacion();
 
         var x = document.getElementById("mun_Codigo").disabled;
         if (x == true) {

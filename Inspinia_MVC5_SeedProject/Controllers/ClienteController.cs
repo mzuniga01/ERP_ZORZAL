@@ -242,7 +242,12 @@ namespace ERP_GMEDINA.Controllers
                         ViewBag.clte_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
                         ViewBag.clte_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
                         ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre");
-                        ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion");
+                        var TipoIdentificacion = db.tbTipoIdentificacion.Select(s => new
+                        {
+                            tpi_Id = s.tpi_Id,
+                            tpi_Descripcion = s.tpi_Descripcion
+                        }).Where(x => x.tpi_Id == Helpers.RTN).ToList();
+                        ViewBag.tpi_Id = new SelectList(TipoIdentificacion, "tpi_Id", "tpi_Descripcion");
                         return View();
                     }
                     else
@@ -524,8 +529,24 @@ namespace ERP_GMEDINA.Controllers
         [HttpPost]
         public JsonResult GetIdentificacion(bool CodIdentificacion)
         {
-            var list = db.spGetTipoIdentificacion(CodIdentificacion).ToList();
-            return Json(list, JsonRequestBehavior.AllowGet);
+            IEnumerable<object> TipoIdentificacion = null;
+            if (CodIdentificacion)
+            {
+                TipoIdentificacion = db.tbTipoIdentificacion.Select(s => new
+                {
+                    tpi_Id = s.tpi_Id,
+                    tpi_Descripcion = s.tpi_Descripcion
+                }).ToList();
+            }
+            else
+            {
+                TipoIdentificacion = db.tbTipoIdentificacion.Select(s => new
+                {
+                    tpi_Id = s.tpi_Id,
+                    tpi_Descripcion = s.tpi_Descripcion
+                }).Where(x => x.tpi_Id == Helpers.RTN).ToList();
+            }
+            return Json(TipoIdentificacion, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]

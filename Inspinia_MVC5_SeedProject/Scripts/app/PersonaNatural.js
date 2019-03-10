@@ -281,17 +281,17 @@ $('#clte_EsPersonaNatural').on('click', function () {
 //    }
 //});
 
-$('#clte_Identificacion').on('input', function (e) {
-    if (!/^[ a-z0-9]*$/i.test(this.value)) {
-        this.value = this.value.replace(/[^ a-z0-9áéíóúüñ]+/ig, "");
-    }
-});
+//$('#clte_Identificacion').on('input', function (e) {
+//    if (!/^[ a-z0-9]*$/i.test(this.value)) {
+//        this.value = this.value.replace(/[^ a-z0-9áéíóúüñ]+/ig, "");
+//    }
+//});
 
-$('#identificacion').on('input', function (e) {
-    if (!/^[ a-z0-9]*$/i.test(this.value)) {
-        this.value = this.value.replace(/[^ a-z0-9áéíóúüñ]+/ig, "");
-    }
-});
+//$('#identificacion').on('input', function (e) {
+//    if (!/^[ a-z0-9]*$/i.test(this.value)) {
+//        this.value = this.value.replace(/[^ a-z0-9áéíóúüñ]+/ig, "");
+//    }
+//});
 
 //function format(input) {
 //    $(input).change(function () {
