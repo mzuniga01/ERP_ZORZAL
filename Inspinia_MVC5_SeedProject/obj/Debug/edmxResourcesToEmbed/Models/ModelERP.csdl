@@ -2895,6 +2895,7 @@
     </FunctionImport>
     <FunctionImport Name="SDP_Acce_GetReportes" ReturnType="Collection(ERP_ZORZALModel.SDP_Acce_GetReportes_Result)" />
     <FunctionImport Name="UDP_Vent_tbNotaCredito_Select" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbNotaCredito_Select_Result)" />
+    <EntitySet Name="UDV_Vent_MovimientoCaja_Select" EntityType="ERP_ZORZALModel.UDV_Vent_MovimientoCaja_Select" />
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -8475,4 +8476,18 @@
     <Property Type="String" Name="IDENTIFICACION" Nullable="false" MaxLength="26" />
     <Property Type="String" Name="NOMBRES" Nullable="false" MaxLength="50" />
   </ComplexType>
+  <EntityType Name="UDV_Vent_MovimientoCaja_Select">
+    <Key>
+      <PropertyRef Name="mocja_Id" />
+      <PropertyRef Name="solef_Id" />
+      <PropertyRef Name="soled_Id" />
+      <PropertyRef Name="cja_Id" />
+      <PropertyRef Name="cja_Descripcion" />
+    </Key>
+    <Property Name="mocja_Id" Type="Int32" Nullable="false" />
+    <Property Name="solef_Id" Type="Int32" Nullable="false" />
+    <Property Name="soled_Id" Type="Int32" Nullable="false" />
+    <Property Name="cja_Id" Type="Int16" Nullable="false" />
+    <Property Name="cja_Descripcion" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+  </EntityType>
 </Schema>

@@ -2974,5 +2974,16 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <EntitySetMapping Name="UDV_Vent_MovimientoCaja_Select">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Vent_MovimientoCaja_Select">
+        <MappingFragment StoreEntitySet="UDV_Vent_MovimientoCaja_Select">
+          <ScalarProperty Name="cja_Descripcion" ColumnName="cja_Descripcion" />
+          <ScalarProperty Name="cja_Id" ColumnName="cja_Id" />
+          <ScalarProperty Name="soled_Id" ColumnName="soled_Id" />
+          <ScalarProperty Name="solef_Id" ColumnName="solef_Id" />
+          <ScalarProperty Name="mocja_Id" ColumnName="mocja_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

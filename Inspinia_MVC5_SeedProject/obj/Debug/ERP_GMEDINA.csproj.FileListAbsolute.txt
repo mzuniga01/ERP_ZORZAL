@@ -1267,5 +1267,6 @@ C:\Users\USUARIO\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\Micro
 C:\Users\USUARIO\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\EnvDTE.xml
 C:\Users\USUARIO\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\VSLangProj.xml
 C:\Users\USUARIO\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\EnvDTE80.xml
+C:\Users\USUARIO\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.csprojResolveAssemblyReference.cache
 C:\Users\USUARIO\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.dll
 C:\Users\USUARIO\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.pdb

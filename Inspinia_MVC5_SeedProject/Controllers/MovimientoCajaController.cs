@@ -44,7 +44,8 @@ namespace ERP_GMEDINA.Controllers
                     }
                     ViewBag.suc_Descripcion = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.tbSucursal.suc_Descripcion).SingleOrDefault();
                     var suc_Id = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.tbSucursal.suc_Id).SingleOrDefault();
-                    return View(db.tbMovimientoCaja.ToList());
+                    //return View(db.tbMovimientoCaja.ToList());
+                    return View(db.UDV_Vent_MovimientoCaja_Select.ToList());
                 }
                 else
                 {
@@ -329,6 +330,49 @@ namespace ERP_GMEDINA.Controllers
             var list = db.UPD_Vent_tbUsuario_Rol(Sucursal).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
+
+
+        public ActionResult ExportReportApertura(int? id)
+        {
+            ReportDocument rd = new ReportDocument();
+            rd.Load(Path.Combine(Server.MapPath("~/Reports"), "SolicitudEfectivo.rpt"));
+            var tbSolicitudEfectivo = db.UDP_Vent_tbSolicitudEfectivo_Imprimir(id).ToList();
+            var todo = (from r in tbSolicitudEfectivo
+                        where r.solef_Id == id
+                        select new
+                        {
+                            solef_Id = r.solef_Id,
+                            cja_Descripcion = r.cja_Descripcion,
+                            suc_Descripcion = r.suc_Descripcion,
+                            mocja_Id = r.mocja_Id,
+                            TipoSolicitus = r.TipoSolicitus,
+                            UsuarioEntrega = r.UsuarioEntrega,
+                            Cajero = r.Cajero,
+                            mnda_Nombre = r.mnda_Nombre,
+                            solef_FechaEntrega = DateTime.Parse(r.solef_FechaEntrega.ToString()).ToString("dd / MM / yyyy  hh: mm tt"),
+                            MontoSolicitado = (decimal)r.MontoSolicitado,
+                            deno_valor = (decimal)r.deno_valor,
+                            deno_Descripcion = r.deno_Descripcion,
+                            soled_CantidadSolicitada = r.soled_CantidadSolicitada,
+                            MontoEntregado = (decimal)r.MontoEntregado,
+                            soled_CantidadEntregada = r.soled_CantidadEntregada
+                        }).ToList();
+            // list = db.UDP_Vent_tbSolicitudEfectivo_Details(Solictud).ToList();
+            rd.SetDataSource(todo);
+            Response.Buffer = false;
+            Response.ClearContent();
+            Response.ClearHeaders();
+            try
+            {
+                Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+                return File(stream, "application/pdf");
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
 
         ////////////TERMINO APERTURA////////////
 

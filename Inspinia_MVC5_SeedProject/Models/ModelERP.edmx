@@ -1223,6 +1223,22 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_InventarioNumeraciones' 
           <Property Name="DiasDisponibles" Type="varchar(max)" />
           <Property Name="NumeracionesDisponibles" Type="int" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_MovimientoCaja_Select' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="UDV_Vent_MovimientoCaja_Select">
+          <Key>
+            <PropertyRef Name="mocja_Id" />
+            <PropertyRef Name="solef_Id" />
+            <PropertyRef Name="soled_Id" />
+            <PropertyRef Name="cja_Id" />
+            <PropertyRef Name="cja_Descripcion" />
+          </Key>
+          <Property Name="mocja_Id" Type="int" Nullable="false" />
+          <Property Name="solef_Id" Type="int" Nullable="false" />
+          <Property Name="soled_Id" Type="int" Nullable="false" />
+          <Property Name="cja_Id" Type="smallint" Nullable="false" />
+          <Property Name="cja_Descripcion" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
         <Association Name="FK__DatosCons__fact___4DAB2CE2">
           <End Role="tbFactura" Type="Self.tbFactura" Multiplicity="1" />
           <End Role="DatosConsumidorFinal" Type="Self.DatosConsumidorFinal" Multiplicity="*" />
@@ -6086,6 +6102,15 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_InventarioNumeraciones' 
     [UDV_Vent_InventarioNumeraciones].[NumeracionesDisponibles] AS [NumeracionesDisponibles]
     FROM [Vent].[UDV_Vent_InventarioNumeraciones] AS [UDV_Vent_InventarioNumeraciones]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="UDV_Vent_MovimientoCaja_Select" EntityType="Self.UDV_Vent_MovimientoCaja_Select" store:Type="Views" store:Schema="Vent">
+            <DefiningQuery>SELECT 
+    [UDV_Vent_MovimientoCaja_Select].[mocja_Id] AS [mocja_Id], 
+    [UDV_Vent_MovimientoCaja_Select].[solef_Id] AS [solef_Id], 
+    [UDV_Vent_MovimientoCaja_Select].[soled_Id] AS [soled_Id], 
+    [UDV_Vent_MovimientoCaja_Select].[cja_Id] AS [cja_Id], 
+    [UDV_Vent_MovimientoCaja_Select].[cja_Descripcion] AS [cja_Descripcion]
+    FROM [Vent].[UDV_Vent_MovimientoCaja_Select] AS [UDV_Vent_MovimientoCaja_Select]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK__DatosCons__fact___4DAB2CE2" Association="Self.FK__DatosCons__fact___4DAB2CE2">
             <End Role="tbFactura" EntitySet="tbFactura" />
             <End Role="DatosConsumidorFinal" EntitySet="DatosConsumidorFinal" />
@@ -9914,6 +9939,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_InventarioNumeraciones' 
           </FunctionImport>
           <FunctionImport Name="SDP_Acce_GetReportes" ReturnType="Collection(ERP_ZORZALModel.SDP_Acce_GetReportes_Result)" />
           <FunctionImport Name="UDP_Vent_tbNotaCredito_Select" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbNotaCredito_Select_Result)" />
+          <EntitySet Name="UDV_Vent_MovimientoCaja_Select" EntityType="ERP_ZORZALModel.UDV_Vent_MovimientoCaja_Select" />
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
           <Key>
@@ -15494,6 +15520,20 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_InventarioNumeraciones' 
           <Property Type="String" Name="IDENTIFICACION" Nullable="false" MaxLength="26" />
           <Property Type="String" Name="NOMBRES" Nullable="false" MaxLength="50" />
         </ComplexType>
+        <EntityType Name="UDV_Vent_MovimientoCaja_Select">
+          <Key>
+            <PropertyRef Name="mocja_Id" />
+            <PropertyRef Name="solef_Id" />
+            <PropertyRef Name="soled_Id" />
+            <PropertyRef Name="cja_Id" />
+            <PropertyRef Name="cja_Descripcion" />
+          </Key>
+          <Property Name="mocja_Id" Type="Int32" Nullable="false" />
+          <Property Name="solef_Id" Type="Int32" Nullable="false" />
+          <Property Name="soled_Id" Type="Int32" Nullable="false" />
+          <Property Name="cja_Id" Type="Int16" Nullable="false" />
+          <Property Name="cja_Descripcion" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -18475,6 +18515,17 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_InventarioNumeraciones' 
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="UDV_Vent_MovimientoCaja_Select">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Vent_MovimientoCaja_Select">
+              <MappingFragment StoreEntitySet="UDV_Vent_MovimientoCaja_Select">
+                <ScalarProperty Name="cja_Descripcion" ColumnName="cja_Descripcion" />
+                <ScalarProperty Name="cja_Id" ColumnName="cja_Id" />
+                <ScalarProperty Name="soled_Id" ColumnName="soled_Id" />
+                <ScalarProperty Name="solef_Id" ColumnName="solef_Id" />
+                <ScalarProperty Name="mocja_Id" ColumnName="mocja_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
