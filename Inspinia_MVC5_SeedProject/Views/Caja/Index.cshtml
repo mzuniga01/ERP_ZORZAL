@@ -24,6 +24,11 @@
                 <div class="ibox-title">
                     <h5>Listado de Caja</h5>
 					<div class="ibox-tools">
+                        @using (Html.BeginForm("RVPCEF", "Caja", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+
+                            <button id="buscar" type="submit" class="btn btn-primary">Reporte VPCEF</button>
+                        }
 						@Html.ActionLink("Registrar Caja", "Create", null, new { @class = "btn btn-primary"})
 					</div>
                 </div>

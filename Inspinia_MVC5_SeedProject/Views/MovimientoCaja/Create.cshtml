@@ -131,7 +131,7 @@
 
         <div class="form-group">
             <div class="form-group col-md-5">
-                <label class="control-label col-md-5">Usuario Aceptacion</label>
+                <label class="control-label col-md-5">Usuario Aceptación</label>
                 <div class="col-md-5">
                     <input class="form-control" readonly value="@ViewBag.UsuarioAceptacion" />
                     <p id="MensajeErrorDenominacion" style="color:red"> @Html.ValidationMessageFor(model => model.mocja_UsuarioAceptacion)</p>
@@ -139,7 +139,7 @@
             </div>
 
             <div hidden class="form-group col-md-5">
-                @Html.LabelFor(model => model.mocja_UsuarioAceptacion, "Usuario Apertura", new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.mocja_UsuarioAceptacion, "Usuario Aceptación", new { @class = "control-label col-md-2" })
                 <div class="col-md-5">
                     @Html.EditorFor(model => model.mocja_UsuarioAceptacion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @Value = ViewBag.mocja_UsuarioAceptacion } })
                     <p id="MensajeErrorDenominacion" style="color:red"> @Html.ValidationMessageFor(model => model.mocja_UsuarioAceptacion)</p>

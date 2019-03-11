@@ -7,6 +7,11 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ERP_GMEDINA.Models;
+using CrystalDecisions.CrystalReports.Engine;
+using System.IO;
+using ERP_GMEDINA.Reports;
+using ERP_GMEDINA.Dataset;
+using ERP_GMEDINA.Dataset.ReportesTableAdapters;
 
 namespace ERP_GMEDINA.Controllers
 {
@@ -15,6 +20,41 @@ namespace ERP_GMEDINA.Controllers
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
         GeneralFunctions Function = new GeneralFunctions();
         // GET: /Caja/
+
+        [HttpPost]
+        public ActionResult RVPCEF()
+        {
+            //int iTipoReporte = Objeto.obj_Id;
+            //var list = db.SDP_Acce_GetReportes().ToList();
+            ReportDocument rd = new ReportDocument();
+            Stream stream = null;
+            rptVentasPorCajaEntreFecha SalidaRV = new rptVentasPorCajaEntreFecha();
+            Reportes SalidaDST = new Reportes();
+
+            var SalidaTableAdapter = new UDV_Vent_VentasPorCaja_EntreFechasTableAdapter();
+
+            try
+            {
+                SalidaTableAdapter.FillFiltros(SalidaDST.UDV_Vent_VentasPorCaja_EntreFechas,"CAJA 4", "Brayan Interiano");
+
+                SalidaRV.SetDataSource(SalidaDST);
+                stream = SalidaRV.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+                stream.Seek(0, SeekOrigin.Begin);
+
+                SalidaRV.Close();
+                SalidaRV.Dispose();
+
+                string fileName = "rptVentasPorCajaEntreFecha.pdf";
+                Response.AppendHeader("Content-Disposition", "inline; filename=" + fileName);
+                return File(stream, "application/pdf");
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                throw;
+            }
+        }
+
         public ActionResult Index()
         {
             if (Function.GetUserLogin())
