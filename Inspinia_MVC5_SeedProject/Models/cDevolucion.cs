@@ -12,15 +12,15 @@ namespace ERP_GMEDINA.Models
     }
     public class cDevolucionMetaData
     {
-        [Display(Name = "Codigo Devolución")]
+        [Display(Name = "Código Devolución")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
         public int dev_Id { get; set; }
 
-        [Display(Name = "Codigo Factura")]
+        [Display(Name = "Código Factura")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
         public long fact_Id { get; set; }
 
-        [Display(Name = "Codigo Caja")]
+        [Display(Name = "Código Caja")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
         public short cja_Id { get; set; }
 

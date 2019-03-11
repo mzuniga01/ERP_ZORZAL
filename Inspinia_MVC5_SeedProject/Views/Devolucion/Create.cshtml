@@ -24,7 +24,6 @@
 </div>
 
 
-
 <div class="wrapper wrapper-content">
     <div class="row">
         <div class="col-lg-12">
@@ -33,8 +32,7 @@
                     <h5>Registrar Devolución</h5>
                 </div>
                 <div class="ibox-content">
-
-                   @using (Html.BeginForm("create","Devolucion", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                     @using (Html.BeginForm("create","Devolucion", FormMethod.Post, new { enctype = "multipart/form-data" }))
                    {
                         @Html.AntiForgeryToken()
 
@@ -49,8 +47,9 @@
                                     <input class="form-control" readonly value="@ViewBag.suc_Descripcion" name="suc_Descripcion" id="suc_Descripcion" />
                                     <input class="form-control" readonly value="@ViewBag.suc_Id" id="suc_Id" name="suc_Id" type="hidden" />
                                     <input id="usu_Id" name="usu_Id" type="hidden" class="form-control" value="@ViewBag.usu_Id" />
-                                        <p id="SmSuc_Descripcion" style="color:red">@Html.ValidationMessageFor(model => model.tbCaja.tbSucursal.suc_Descripcion,"", new { @style = "color:red" })</p>
-                                
+                                   <div id="validationSucursalCreate">
+                                        <p id="SmSuc_Descripcion" style="color:red">@Html.ValidationMessageFor(model => model.tbCaja.tbSucursal.suc_Descripcion)</p>
+                                    </div>
                                     
                                 </div>
 
@@ -59,7 +58,7 @@
                                     <div class="col-md-4">
                                         <input class="form-control" id="cja_Descripcion" readonly />
                                         @Html.EditorFor(model => model.cja_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @type = "hidden" } })
-                                        <p id="SmCaja" style="color:red">@Html.ValidationMessageFor(model => model.cja_Id,"", new { @style = "color:red" })</p>
+                                        <span class="validation-error">@Html.ValidationMessageFor(model => model.cja_Id)</span>
                                     </div>
                                 </div>
                             </div>
@@ -73,10 +72,10 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.tbFactura.clte_Identificacion, "RTN Cliente", new { @class = "control-label col-md-2 AsteriscoRojo" })
                                 <div class="col-md-3">
-                                    @*<input type="text" id="tbFactura_clte_Identificacion" name="tbFactura_clte_Identificacion" class="form-control " Value="" onKeyPress="return soloNumeros(event)" autocomplete="off" />*@
                                     @Html.EditorFor(model => model.tbFactura.clte_Identificacion, new { htmlAttributes = new { @class = "form-control" ,  @onkeypress = "return soloNumeros(event)" } })
-                                    <p id="Smsclte_Identificacion" style="color:red">@Html.ValidationMessageFor(model => model.tbFactura.clte_Identificacion, "", new { @style = "color:red" })</p>
-                                  
+                                    <div id="validationRTNClienteCreate">
+                                        <p id="Smsclte_Identificacion" style="color:red">@Html.ValidationMessageFor(model => model.tbFactura.clte_Identificacion)</p>
+                                    </div>
                                       
 
                                 </div>
@@ -93,7 +92,7 @@
                                    {
                                        @class = "form-control" , @readonly = "readonly" }
                                })
-                                        <p id="Smsclte_Nombres" style="color:red">@Html.ValidationMessageFor(model => model.tbFactura.clte_Nombres, "", new { @style = "color:red" })</p>
+                                        @Html.ValidationMessageFor(model => model.tbFactura.clte_Nombres)
                                     </div>
                                 </div>
                             </div>
@@ -203,8 +202,6 @@
         </div>
     </div>
 </div>
-<script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
-<script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/EmitirNotaCredito.js"></script>
 <script src="~/Scripts/app/Datepicker.js"></script>
 <script src="~/Scripts/app/ProductoDevolucion.js"></script>
@@ -236,46 +233,21 @@
 
         ///Validaciones 
         $('#Guardar').click(function () {
-            var Identificacion = $('#tbFactura.clte_Identificacion').val();
-            console.log(Identificacion)
-            var monedas = $('#mnda_Id').val();
-            var description = $('#deno_Descripcion').val();
-            var valores = $('#deno_valor').val();
-            if (Identificacion == "") {
-                alert('si entra')
-                valido = document.getElementById('Smsclte_Identificacion');
-                valido.innerText = "El Campo RTN Cliente es Requerido";
-                return false;
-            }
-            else if (monedas <= 0) {
-                valido = document.getElementById('monedass');
-                valido.innerText = "El Campo Moneda es Requerido";
-                return false;
-            }
-            else if (description == "") {
-                valido = document.getElementById('descriptions');
-                valido.innerText = "El Campo Descripción es Requerido";
-                return false;
-            }
-            else if (valores == "") {
-                valido = document.getElementById('valoress');
-                valido.innerText = "El Campo Valor es Requerido";
-                return false;
-            }
-            else if (valores == 0) {
-                valido = document.getElementById('valoress');
-                valido.innerText = "El valor no  puede ser cero.";
-                return false;
-            }
-            else if (valores <= 0, 00) {
-                valido = document.getElementById('valoress');
-                valido.innerText = "El valor no  puede ser cero.";
-                return false;
+            validacion = document.getElementById('Smsclte_Identificacion');
+            var RTNCliente = $('#tbFactura_clte_Identificacion').val();
+            //var CantDevolucion = $('#devd_CantidadProducto').val();
+            //var CodProducto = $('#prod_Codigo').val();
+
+            if (RTNCliente == "") {
+                console.log("if")
+                validacion.innerText = "Campo Identificacion Cliente requerido";
             }
             else {
-                return true;
+                console.log("else")
+                validacion.innerText = "";
             }
         });
+
     </script>
 }
 <script>

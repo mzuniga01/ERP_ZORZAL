@@ -10,7 +10,7 @@
 
                     <div class="form-horizontal">
                         <div class="form-group">
-                            @Html.LabelFor(model => model.prod_Codigo, "Codigo Producto", new { @class = "col-md-1" })
+                            @Html.LabelFor(model => model.prod_Codigo, "Código Producto", new { @class = "col-md-1" })
                             <div class="col-md-3">
                                 <input type="hidden" id="fact_Id" name="fact_Id" value="" class="form-control " />
                                 <input type="text" id="prod_Codigo" name="prod_Codigo" value="" class="form-control " />
@@ -23,7 +23,7 @@
                                 <button type="button" id="btnProducto" class="btn btn-primary" data-toggle="modal" data-target="#ModalBuscarProducto"><span class="glyphicon glyphicon-search"></span></button>
                             </div>
 
-                            @Html.LabelFor(model => model.tbProducto.prod_Descripcion, "Descripcion", new { @class = "control-label col-md-1" })
+                            @Html.LabelFor(model => model.tbProducto.prod_Descripcion, "Descripción", new { @class = "control-label col-md-1" })
                             <div class="col-md-5">
                                 @Html.EditorFor(model => model.tbProducto.prod_Descripcion, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })
                                 <div id="validationDescripcionCreate">
@@ -98,7 +98,7 @@
 
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.devd_Descripcion, "Observaciones", new { @class = "control-label col-md-1" })
+                            @Html.LabelFor(model => model.devd_Descripcion, "Observación", new { @class = "control-label col-md-1" })
                             <div class="col-md-10">
                                 @Html.TextAreaFor(model => model.devd_Descripcion, new { @class = "form-control", @style = "text-transform:uppercase;" })
                                 <div id="validationComentariosCreate">

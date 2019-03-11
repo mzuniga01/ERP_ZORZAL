@@ -10,7 +10,7 @@
 
     <div class="form-horizontal">      
         <div class="form-group">
-            @Html.LabelFor(model => model.prod_Codigo,"Codigo Producto", new { @class = "col-md-1 AsteriscoRojo" })
+            @Html.LabelFor(model => model.prod_Codigo,"Código Producto", new { @class = "col-md-1 AsteriscoRojo" })
             <div class="col-md-3">
                 <input type="hidden" id="fact_Id" name="fact_Id" value="" class="form-control " />
                 <input type="text" id="prod_Codigo" name="prod_Codigo" value="" class="form-control " onkeypress = "return Numeros(event)" />
@@ -23,7 +23,7 @@
                 <button type="button" id="btnProducto" class="btn btn-primary" data-toggle="modal" data-target="#ModalBuscarProducto"><span class="glyphicon glyphicon-search"></span></button>
             </div>
 
-            @Html.LabelFor(model => model.tbProducto.prod_Descripcion, "Descripcion", new {  @class = "control-label col-md-1 AsteriscoRojo" })
+            @Html.LabelFor(model => model.tbProducto.prod_Descripcion, "Descripción", new {  @class = "control-label col-md-1" })
             <div class="col-md-5">
                 @Html.EditorFor(model => model.tbProducto.prod_Descripcion, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })
                 <div id="validationProductoDevolucionCreate">
@@ -96,9 +96,8 @@
 
        
         <div class="form-group">
-            @Html.LabelFor(model => model.devd_Descripcion, "Observaciones", new { @class = "control-label col-md-1 AsteriscoRojo" })
+            @Html.LabelFor(model => model.devd_Descripcion, "Observación", new { @class = "control-label col-md-1 AsteriscoRojo" })
             <div class="col-md-10">
-             
                 <textarea class="form-control" id="devd_Descripcion" name="devd_Descripcion"  onKeyPress = "return soloLetras(event)" style="text-transform:uppercase;"  autocomplete = "off"></textarea>
                 <div id="validationComentariosCreate">
                     @Html.ValidationMessageFor(model => model.devd_Descripcion)
