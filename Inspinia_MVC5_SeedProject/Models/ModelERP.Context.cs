@@ -102,6 +102,7 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<UDV_Inv_Nombre_Empleado> UDV_Inv_Nombre_Empleado { get; set; }
         public virtual DbSet<tbParametro> tbParametro { get; set; }
         public virtual DbSet<UDV_Vent_MovimientoCaja_Select> UDV_Vent_MovimientoCaja_Select { get; set; }
+        public virtual DbSet<UDV_Vent_FacturasPendientesDePago> UDV_Vent_FacturasPendientesDePago { get; set; }
     
         public virtual ObjectResult<Nullable<short>> UDP_Vent_tbPedido_Select(Nullable<int> ped_Id)
         {

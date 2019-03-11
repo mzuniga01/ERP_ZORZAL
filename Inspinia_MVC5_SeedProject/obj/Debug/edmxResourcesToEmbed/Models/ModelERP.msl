@@ -2988,5 +2988,21 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <EntitySetMapping Name="UDV_Vent_FacturasPendientesDePago">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Vent_FacturasPendientesDePago">
+        <MappingFragment StoreEntitySet="UDV_Vent_FacturasPendientesDePago">
+          <ScalarProperty Name="Saldoactual" ColumnName="Saldoactual" />
+          <ScalarProperty Name="TotalCreditos" ColumnName="TotalCreditos" />
+          <ScalarProperty Name="TotalCargos" ColumnName="TotalCargos" />
+          <ScalarProperty Name="MontoFacturado" ColumnName="MontoFacturado" />
+          <ScalarProperty Name="FechaVencimiento" ColumnName="FechaVencimiento" />
+          <ScalarProperty Name="fact_Codigo" ColumnName="fact_Codigo" />
+          <ScalarProperty Name="suc_Descripcion" ColumnName="suc_Descripcion" />
+          <ScalarProperty Name="fact_Fecha" ColumnName="fact_Fecha" />
+          <ScalarProperty Name="clte_Nombres" ColumnName="clte_Nombres" />
+          <ScalarProperty Name="clte_Identificacion" ColumnName="clte_Identificacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

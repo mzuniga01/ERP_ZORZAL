@@ -306,6 +306,7 @@
         <AssociationConnector Association="ERP_ZORZALModel.FK_Gral_tbParametro_tbCliente_clte_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Gral_tbParametro_tbSucursal_suc_Id" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.UDV_Vent_MovimientoCaja_Select" Width="1.5" PointX="3.375" PointY="7.75" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.UDV_Vent_FacturasPendientesDePago" Width="1.5" PointX="9.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

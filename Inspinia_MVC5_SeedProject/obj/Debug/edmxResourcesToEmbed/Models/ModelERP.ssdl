@@ -1191,6 +1191,28 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_FacturaPagoSelect' does 
     <Property Name="SaldoFactura" Type="decimal" Precision="18" Scale="2" />
   </EntityType>
   <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_FacturasPendientesDePago' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="UDV_Vent_FacturasPendientesDePago">
+    <Key>
+      <PropertyRef Name="clte_Identificacion" />
+      <PropertyRef Name="clte_Nombres" />
+      <PropertyRef Name="fact_Fecha" />
+      <PropertyRef Name="suc_Descripcion" />
+      <PropertyRef Name="fact_Codigo" />
+      <PropertyRef Name="TotalCargos" />
+    </Key>
+    <Property Name="clte_Identificacion" Type="nvarchar" MaxLength="26" Nullable="false" />
+    <Property Name="clte_Nombres" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fact_Fecha" Type="datetime" Nullable="false" />
+    <Property Name="suc_Descripcion" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="fact_Codigo" Type="nvarchar" MaxLength="19" Nullable="false" />
+    <Property Name="FechaVencimiento" Type="datetime" />
+    <Property Name="MontoFacturado" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="TotalCargos" Type="int" Nullable="false" />
+    <Property Name="TotalCreditos" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Saldoactual" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <!--Errors Found During Generation:
 warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_InventarioNumeraciones' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="UDV_Vent_InventarioNumeraciones">
     <Key>
@@ -6078,6 +6100,20 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_MovimientoCaja_Select' d
     [UDV_Vent_FacturaPagoSelect].[TotalPagado] AS [TotalPagado], 
     [UDV_Vent_FacturaPagoSelect].[SaldoFactura] AS [SaldoFactura]
     FROM [Vent].[UDV_Vent_FacturaPagoSelect] AS [UDV_Vent_FacturaPagoSelect]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="UDV_Vent_FacturasPendientesDePago" EntityType="Self.UDV_Vent_FacturasPendientesDePago" store:Type="Views" store:Schema="Vent">
+      <DefiningQuery>SELECT 
+    [UDV_Vent_FacturasPendientesDePago].[clte_Identificacion] AS [clte_Identificacion], 
+    [UDV_Vent_FacturasPendientesDePago].[clte_Nombres] AS [clte_Nombres], 
+    [UDV_Vent_FacturasPendientesDePago].[fact_Fecha] AS [fact_Fecha], 
+    [UDV_Vent_FacturasPendientesDePago].[suc_Descripcion] AS [suc_Descripcion], 
+    [UDV_Vent_FacturasPendientesDePago].[fact_Codigo] AS [fact_Codigo], 
+    [UDV_Vent_FacturasPendientesDePago].[FechaVencimiento] AS [FechaVencimiento], 
+    [UDV_Vent_FacturasPendientesDePago].[MontoFacturado] AS [MontoFacturado], 
+    [UDV_Vent_FacturasPendientesDePago].[TotalCargos] AS [TotalCargos], 
+    [UDV_Vent_FacturasPendientesDePago].[TotalCreditos] AS [TotalCreditos], 
+    [UDV_Vent_FacturasPendientesDePago].[Saldoactual] AS [Saldoactual]
+    FROM [Vent].[UDV_Vent_FacturasPendientesDePago] AS [UDV_Vent_FacturasPendientesDePago]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="UDV_Vent_InventarioNumeraciones" EntityType="Self.UDV_Vent_InventarioNumeraciones" store:Type="Views" store:Schema="Vent">
       <DefiningQuery>SELECT 

@@ -2896,6 +2896,7 @@
     <FunctionImport Name="UDP_Vent_tbFactura_Imprimir" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFactura_Imprimir_Result1)">
       <Parameter Name="fact_Id" Mode="In" Type="Int64" />
     </FunctionImport>
+    <EntitySet Name="UDV_Vent_FacturasPendientesDePago" EntityType="ERP_ZORZALModel.UDV_Vent_FacturasPendientesDePago" />
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -8520,4 +8521,24 @@
     <Property Type="String" Name="NombreTE" Nullable="true" MaxLength="50" />
     <Property Type="DateTime" Name="FechaTE" Nullable="true" />
   </ComplexType>
+  <EntityType Name="UDV_Vent_FacturasPendientesDePago">
+    <Key>
+      <PropertyRef Name="clte_Identificacion" />
+      <PropertyRef Name="clte_Nombres" />
+      <PropertyRef Name="fact_Fecha" />
+      <PropertyRef Name="suc_Descripcion" />
+      <PropertyRef Name="fact_Codigo" />
+      <PropertyRef Name="TotalCargos" />
+    </Key>
+    <Property Name="clte_Identificacion" Type="String" Nullable="false" MaxLength="26" FixedLength="false" Unicode="true" />
+    <Property Name="clte_Nombres" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fact_Fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="suc_Descripcion" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="fact_Codigo" Type="String" Nullable="false" MaxLength="19" FixedLength="false" Unicode="true" />
+    <Property Name="FechaVencimiento" Type="DateTime" Precision="3" />
+    <Property Name="MontoFacturado" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="TotalCargos" Type="Int32" Nullable="false" />
+    <Property Name="TotalCreditos" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Saldoactual" Type="Decimal" Precision="18" Scale="2" />
+  </EntityType>
 </Schema>
