@@ -216,18 +216,18 @@ function ProductoCantidad(bod_Id, prod_Codigo) {
                         var CantidatTotal = parseFloat(CantidadAceptada) + parseFloat(CantidadMinima)
                         var CantidadRestante = parseFloat(CantidadAceptada) - parseFloat(CantidadTabla)
                         if (CantidadTabla >= CantidadAceptada && CantidadRestante > 0) {
-                            $('#CantidaExistenteProd').text('');
+                            $("#CantidaExistenteProd").text('');
                             $('#CantidaExistente').after('<ul id="CantidaExistenteProd" class="validation-summary-errors text-danger">Cantidad Minima Alcanzada solo hay en existencia: ' + CantidadRestante + ' de este producto</ul>');
                         }
                         else {
                             if (CantidadTabla < CantidadAceptada) {
                                 CantidadAceptada = CantidadAceptada - CantidadTabla
-                                $('#CantidaExistenteProd').text('');
+                                $("#CantidaExistenteProd").text('');
                                 $('#CantidaExistente').after('<ul id="CantidaExistenteProd" class="validation-summary-errors text-danger">Cantidad Existente en Bodega: ' + CantidadAceptada + '</ul>');
                             }
                             else {
                                 if (CantidadTabla == CantidadAceptada) {
-                                    $('#CantidaExistenteProd').text('');
+                                    $("#CantidaExistenteProd").text('');
                                     $('#CantidaExistente').after('<ul id="CantidaExistenteProd" class="validation-summary-errors text-danger">Sin Existencias de este producto</ul>');
                                 }
                             }
@@ -236,13 +236,14 @@ function ProductoCantidad(bod_Id, prod_Codigo) {
                 })
             }
             else {
+                $("#CantidaExistenteProd").text('');
                 Aceptada = CantidadAceptada
                 if (CantidadAceptada == 0 && CantidadMinima > 0) {
-                    $('#CantidaExistenteProd').text('');
+                    $("#CantidaExistenteProd").text('');
                     $('#CantidaExistente').after('<ul id="CantidaExistenteProd" class="validation-summary-errors text-danger">Cantidad Minima Alcanzada solo hay en existencia: ' + CantidadMinima + ' de este producto</ul>');
                 }
                 else {
-                    $('#CantidaExistenteProd').text('');
+                    $("#CantidaExistenteProd").text('');
                     $('#CantidaExistente').after('<ul id="CantidaExistenteProd" class="validation-summary-errors text-danger">Cantidad Existente en Bodega: ' + Aceptada + '</ul>');
                 }
             }
@@ -318,25 +319,25 @@ $('#AgregarSalidaDetalle').click(function () {
         if (Producto == '') {
             $('#MessageError').text('');
             $('#CodigoError').text('');
-            $('#NombreError').text('');
-            $('#ValidationCodigoCreate').after('<ul id="MessageError" class="validation-summary-errors text-danger">Campo Producto Requerido</ul>');
+            $('#ValidationCodigoCreateError').text('');
+            $('#ValidationCodigoCreate').after('<ul id="ValidationCodigoCreateError" class="validation-summary-errors text-danger">Campo Producto Requerido</ul>');
         }
         else if (Cantidad == '' || Cantidad < 0.25) {
             $('#MessageError').text('');
-            $('#CodigoError').text('');
+            $('#sald_CantidadExedError').text('');
             $('#sald_CantidadError').text('');
             $('#sald_Cantidad').after('<ul id="sald_CantidadError" class="validation-summary-errors text-danger">Cantidad Requerido</ul>');
         }
         else if (Cantidad > CantidadExit) {
             $('#MessageError').text('');
-            $('#CodigoError').text('');
-            $('#NombreError').text('');
-            $('#sald_Cantidad').after('<ul id="NombreError" class="validation-summary-errors text-danger">Cantidad Superada</ul>');
+            $('#sald_CantidadError').text('');
+            $('#sald_CantidadExedError').text('');
+            $('#sald_Cantidad').after('<ul id="sald_CantidadExedError" class="validation-summary-errors text-danger">Cantidad Superada</ul>');
         }
         else {
-            $('#MessageError').text('');
-            $('#CodigoError').text('');
-            $('#NombreError').text('');
+            $('#ValidationCodigoCreateError').text('');
+            $('#sald_CantidadError').text('');
+            $('#sald_CantidadExedError').text('');
             $('#CantidaExistenteProd').text('');
             var tbSalidaDetalle = GetSalidaDetalle();
             $.ajax({

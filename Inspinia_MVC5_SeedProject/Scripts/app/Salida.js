@@ -330,7 +330,8 @@ $(document).on("click", "#tblBusquedaGenerica tbody tr td button#seleccionar", f
     var currentRow = $(this).closest("tr");
     var prod_CodigoBarrasItem = currentRow.find("td:eq(5)").text();
     var bod_Id = $('#bod_Id').val()
-    $('#CodigoError').text('')
+    //$('#CodigoError').text('')
+    $('#sald_CantidadExedError').text('')
     console.log(prod_CodigoBarrasItem)
     Producto(bod_Id, prod_CodigoBarrasItem)
 });
