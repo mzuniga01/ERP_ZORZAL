@@ -99,7 +99,7 @@ namespace ERP_GMEDINA.Controllers
                                                             tbProducto.prod_Color,
                                                             tbProducto.pscat_Id,
                                                             tbProducto.uni_Id,
-                                                            tbProducto.prod_EsActivo,
+                                                            Helpers.ProductoActivo,
                                                             tbProducto.prod_CodigoBarras,
                                                             Function.GetUser(),
                                                             Function.DatetimeNow()
@@ -301,6 +301,12 @@ namespace ERP_GMEDINA.Controllers
                 Function.InsertBitacoraErrores("Producto/EstadoInactivar", Ex.Message.ToString(), "EstadoInactivar");
                 return Json("Error", JsonRequestBehavior.AllowGet);
             }
+        }
+        [HttpPost]
+        public JsonResult Estadoactivar(string prod_Codigo, bool Activo, string Razon_Inactivacion)
+        {
+            var list = db.UDP_Inv_tbProducto_Estado(prod_Codigo, Helpers.ProductoActivo, Razon_Inactivacion).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
         }
     }
 }
