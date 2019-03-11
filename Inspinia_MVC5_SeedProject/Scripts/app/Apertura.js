@@ -72,65 +72,23 @@ function GetDenominacion() {
     }
 }
 
+//Calculos
+$(document).on("keyup", "#DenominacionDetalle tbody tr td input#name", function () {
+    let filas = $('#DenominacionDetalle tr input[name=name]')
+    let total = 0 
 
-//////Calculos
-$(document).on("change", "#DenominacionDetalle tbody tr td input#name", function () {
-    var row = $(this).closest("tr");
-    var Cantidad = $(this).val();
-    var ValorDenominacion = $(this).parents("tr").find("td")[2].innerHTML;
-    var Subtotal = parseFloat(Cantidad * ValorDenominacion);
-    $(this).parents("tr").find("td")[3].innerHTML = Subtotal;
-    if (Subtotal != 0) {
-        MontoInicial += Subtotal;
-    }
-    else
-    {
-        MontoInicial = 0;
-        $("#DenominacionDetalle tbody tr").each(function (index) {
-            Monto = $(this).children("td:eq(3)").html();
-            if (Monto != '')
-            {
-                Monto = parseFloat(Monto);
-                MontoInicial += Monto;
-            }
-        })
-    }
-    var totalfinal = document.getElementById("Total").innerHTML = parseFloat(MontoInicial);
-    $("#Monto").val(parseFloat(MontoInicial));
-    console.log('MontoInicial', MontoInicial);
-    console.log('Subtotal', Subtotal);
-    console.log('Total', Total);
-    console.log('totalfinal', totalfinal);
-   
+    $.each(filas, function (i, v) {
+        let qty = $(v).val()
+        let price = $(v).parents('tr').find('td')[2].innerHTML
+        let subtotal = parseFloat(qty * price) 
+        total += subtotal 
+
+        $(v).parents('tr').find('td')[3].innerHTML = subtotal 
+    })
+
+    $("#Total").text(total)
+    $("#Monto").val(parseFloat(total));
 });
-
-
-//$(document).on("keypress", "#DenominacionDetalle tbody tr td input#name", function () {
-//    var row = $(this).closest("tr");
-//    var Cantidad = $(this).val();
-//    var ValorDenominacion = $(this).parents("tr").find("td")[2].innerHTML;
-//    var Subtotal = parseFloat(Cantidad * ValorDenominacion);
-//    $(this).parents("tr").find("td")[3].innerHTML = Subtotal;
-//    if (Subtotal != 0) {
-//        MontoInicial += Subtotal;
-//    }
-//    else {
-//        MontoInicial = 0;
-//        $("#DenominacionDetalle tbody tr").each(function (index) {
-//            Monto = $(this).children("td:eq(3)").html();
-//            if (Monto != '') {
-//                Monto = parseFloat(Monto);
-//                MontoInicial += Monto;
-//            }
-//        })
-//    }
-//    var totalfinal = document.getElementById("Total").innerHTML = parseFloat(MontoInicial);
-//    $("#Monto").val(parseFloat(MontoInicial));
-//    console.log('MontoInicial', MontoInicial);
-//    console.log('Subtotal', Subtotal);
-//    console.log('Total', Total);
-//    console.log('totalfinal', totalfinal);
-//});
 
 
 
@@ -205,3 +163,17 @@ function GetRol() {
             }
         });
 }
+
+
+
+$("#search").click(function () {
+    var $rows = $('#DevolucionTbody tr');
+    $('#post').each(function () {
+        var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+
+        $rows.show().filter(function () {
+            var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+            return !~text.indexOf(val);
+        }).hide();
+    });
+});
