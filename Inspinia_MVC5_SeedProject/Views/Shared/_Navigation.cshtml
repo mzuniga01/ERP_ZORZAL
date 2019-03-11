@@ -179,12 +179,7 @@
                         <a href="@Url.Action("Index", "Rol")"><i class="fa fa-ticket fa-fw"></i>Roles<span class="nav-label"></span> </a>
                     </li>
                     }
-                    @if (Login.GetUserRols("Usuario/ModificarPass"))
-                    {
-                        <li class="@Html.IsSelected(action: "Index")">
-                            <a href="@Url.Action("ModificarPass", "Usuario")"><i class="fa fa-lock"></i> <span class="nav-label">Cambiar Contraseña</span> </a>
-                        </li>
-                    }
+
                     @if (Login.GetUserRols("Objeto/Index"))
                     {
                         <li class="@Html.IsSelected(action: "Index")">
