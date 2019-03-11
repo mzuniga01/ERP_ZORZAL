@@ -34,6 +34,8 @@ namespace ERP_GMEDINA.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string suc_Descripcion { get; set; }
 
+        [RegularExpression(@"^[^@]+@[^@]+\.[a-zA-Z]{2,}$",
+        ErrorMessage = "Correo Electronico Es Incorrecto.")]
         [Display(Name = "Correo")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string suc_Correo { get; set; }

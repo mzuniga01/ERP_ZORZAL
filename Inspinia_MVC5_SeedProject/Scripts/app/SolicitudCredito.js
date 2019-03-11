@@ -97,7 +97,7 @@ $("#cred_MontoAprobado").blur(function () {
             // alert('El valor Monto Aprobado no puede ser cero');
             document.getElementById('AceptarAprobacion').disabled = true
             valido = document.getElementById('AcepSolicitud2');
-            valido.innerText = "El valor Monto Aprobado no puede ser vacio";
+            valido.innerText = "El valor Monto Aprobado no puede ser vacio o mayor al monto solicitado";
         }
     }
     else {

@@ -13,7 +13,7 @@ namespace ERP_GMEDINA.Models
     }
     public class tbDocumentoFiscalMetaData
     {
-        [Display(Name = " Codigo Documento ")]
+        [Display(Name = " Código Documento ")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public byte dfisc_Id { get; set; }
         [Display(Name = " Descripción ")]

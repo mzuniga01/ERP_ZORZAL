@@ -52,6 +52,7 @@
                 @Html.HiddenFor(model => model.tbUsuario.usu_Apellidos)
                 @Html.HiddenFor(model => model.tbUsuario1.usu_Nombres)
                 @Html.HiddenFor(model => model.tbUsuario1.usu_Apellidos)
+                @Html.HiddenFor(model => model.listp_EsActivo)
 
               
 
@@ -63,7 +64,7 @@
                     </div>
                 </div>
                 <div class="form-group" id="Activo">
-                    @Html.LabelFor(model => model.listp_EsActivo, new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.listp_EsActivo, new { @class = "control-label col-md-2", @readonly = "readonly" })
                     <div class="col-md-2">
                         @if (Model.listp_EsActivo)
                         {

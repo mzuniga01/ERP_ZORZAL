@@ -62,7 +62,6 @@ namespace ERP_GMEDINA.Models
         [Required]
        [Range(1, int.MaxValue, ErrorMessage = "El campo {0} permite números mayores que cero")]
         [RegularExpression("^\\d+$", ErrorMessage = "El campo {0} permite números iguales o mayores que cero")]
-        [StringLength(3)]
         public int cred_DiasSolicitado { get; set; }
 
 

@@ -23,7 +23,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Editar Exoneracion</h5>
+                    <h5>Editar Exoneración</h5>
                 </div>
                 <div class="ibox-content">
 
@@ -38,21 +38,22 @@
 
         @Html.ValidationSummary(true)
         @Html.Hidden("RedirectTo", Url.Action("Index", "Exoneracion"))
-        @Html.HiddenFor(model => model.exo_Id)
+        @*@Html.HiddenFor(model => model.exo_Id)*@
 
         <div class="form-group">
             @Html.LabelFor(model => model.exo_Id, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 @Html.EditorFor(model => model.exo_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.exo_Id)
+                <p style="color:red">@Html.ValidationMessageFor(model => model.exo_Id)
             </div>
-        </div>
+         </div>
+
+
+
 
        
         <div class="form-group">
-            @*@Html.LabelFor(model => model.clte_Id, "clte_Id", new { @class = "control-label col-md-2" })*@
             <div class="col-md-5">
-                @*@Html.DropDownList("clte_RTN_Identidad_Pasaporte", String.Empty)*@
                 @Html.HiddenFor(model => model.clte_Id)
                 @Html.ValidationMessageFor(model => model.clte_Id)
             </div>
@@ -81,16 +82,8 @@
                 <div class="col-md-4">
                     @Html.EditorFor(model => model.exo_Documento, new { htmlAttributes = new { @autocomplete = "off", @onkeyup = "format(this)", @style = "text-transform:uppercase;" } })
                     <p id="doc" style="color:red">@Html.ValidationMessageFor(model => model.exo_Documento)
-</div>
             </div>
-
-            @*<div class="form-group" id="Activar">
-                @Html.LabelFor(model => model.exo_ExoneracionActiva, new { @class = "control-label col-md-2" })
-                <div class="col-md-4">
-                    @Html.EditorFor(model => model.exo_ExoneracionActiva)
-                    @Html.ValidationMessageFor(model => model.exo_ExoneracionActiva)
-                </div>
-            </div>*@
+              </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.exo_FechaInicialVigencia, new { @class = "control-label col-md-2" })
