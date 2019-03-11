@@ -1291,6 +1291,12 @@
       <DependentUpon>SolicitudEfectivo.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\SolicitudesCreditosPorAprobar.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SolicitudesCreditosPorAprobar.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\VentasConsumidorFinal.cs">
       <SubType>Component</SubType>
       <AutoGen>True</AutoGen>
@@ -2184,6 +2190,10 @@
     <EmbeddedResource Include="Reports\SolicitudEfectivo.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>SolicitudEfectivo.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\SolicitudesCreditosPorAprobar.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SolicitudesCreditosPorAprobar.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\VentasConsumidorFinal.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

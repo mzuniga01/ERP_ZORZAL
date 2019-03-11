@@ -48,7 +48,7 @@
                                 </div>
                             </div>
 
-                 
+
 
                             @* Datos de Cliente *@
                             <div>
@@ -69,11 +69,11 @@
                                     </div>*@
                             </div>
                             <div class="form-group">
-                           @Html.LabelFor(model => model.tbCliente.clte_Identificacion, new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.tbCliente.clte_Identificacion, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.tbCliente.clte_Identificacion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.clte_Id)
-</div>
+                                </div>
                                 <div class="col-md-1">
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarClientes"><span class="glyphicon glyphicon-search"></span></button>
                                 </div>
@@ -100,7 +100,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.cred_MontoSolicitado, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.cred_MontoSolicitado  ,new { htmlAttributes = new { @onkeypress = "return validar(event)" } }) 
+                                    @Html.EditorFor(model => model.cred_MontoSolicitado, new { htmlAttributes = new { @onkeypress = "return validar(event)" } })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.cred_MontoSolicitado)
                                 </div>
                             </div>
@@ -119,7 +119,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.cred_DiasSolicitado, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.cred_DiasSolicitado ,new { htmlAttributes = new {@onkeypress = "return validar(event)" } })
+                                    <input class="form-control" type="text" name="cred_DiasSolicitado" id="cred_DiasSolicitado" maxlength="3" onkeypress = "return validar(event)" />
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.cred_DiasSolicitado)
                                 </div>
                             </div>
@@ -172,10 +172,10 @@
             nextText: 'Sig >',
             currentText: 'Hoy',
             monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-            monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+            monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
             dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
-            dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
-            dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+            dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
+            dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
             weekHeader: 'Sm',
             dateFormat: 'dd/mm/yy',
             firstDay: 1,
@@ -190,14 +190,14 @@
             //$("#cred_FechaSolicitud").datepicker({ dateFormat: 'yy/mm/dd' });
         });
     </script>
-<script>
-    
-    function validar(e) {
-        tecla = (document.all) ? e.keyCode : e.which;
-        tecla = String.fromCharCode(tecla)
-        return /^[0-9\-]+$/.test(tecla);
-    }
-</script>   
+    <script>
+
+        function validar(e) {
+            tecla = (document.all) ? e.keyCode : e.which;
+            tecla = String.fromCharCode(tecla)
+            return /^[0-9\-]+$/.test(tecla);
+        }
+    </script>
 
     <script src="~/Scripts/app/Clientes-Pedido-Credito.js"></script>
     <script src="~/Scripts/app/Datepicker.js"></script>
@@ -214,8 +214,8 @@
             }
         });
 
-   </script>
-<script>
+    </script>
+    <script>
         //--------------------Milecimas y decimales-------------------
         function MASK(form, n, mask, format) {
             if (format == "undefined") format = false;
@@ -277,7 +277,7 @@
                 return num;
             }
         }
-</script>
+    </script>
 
 }
 
