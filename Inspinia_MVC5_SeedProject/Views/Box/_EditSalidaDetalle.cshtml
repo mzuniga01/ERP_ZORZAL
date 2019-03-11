@@ -46,7 +46,7 @@
                             {
                                 <tr tr data-id="@item.prod_Codigo" , tr data-content="@item.tbProducto.prod_Descripcion" , tr data-container="@item.tbProducto.tbProductoSubcategoria.pscat_Descripcion" , tr data-keyboard="@item.tbProducto.tbUnidadMedida.uni_Descripcion" , tr data-pcat="@item.tbProducto.tbProductoSubcategoria.tbProductoCategoria.pcat_Nombre" , tr data-sal_Id="@item.box_Codigo">
                                     <th>
-                                        @Html.DisplayFor(modelItem => item.prod_Codigo)
+                                        @Html.DisplayFor(modelItem => item.tbProducto.prod_Codigo)
                                     </th>
                                     <th>
                                         @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
@@ -67,7 +67,7 @@
                                         @Html.DisplayFor(modelItem => item.tbProducto.tbUnidadMedida.uni_Descripcion)
                                     </th>
                                     <th>
-                                        @Html.DisplayFor(modelItem => item.tbProducto.prod_CodigoBarras)
+                                        @Html.DisplayFor(modelItem => item.boxd_Cantidad)
                                     </th>
                                     <td>
                                         @if (item.tbBox.box_Estado == Helpers.box_Abrierta)
@@ -110,7 +110,7 @@
                                                 <div class="modal-body">
                                                     <div class="form-horizontal">
                                                         <div class="form-group">
-                                                            @Html.LabelFor(m => BoxDet.prod_Codigo, new { @class = "control-label col-sm-2" })
+                                                            @Html.LabelFor(m => BoxDet.tbProducto.prod_Codigo, new { @class = "control-label col-sm-2" })
                                                             <div class="col-sm-10">
                                                                 @Html.EditorFor(model => item.prod_Codigo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                                             </div>
@@ -141,7 +141,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
-                                                            @Html.LabelFor(m => BoxDet.boxd_Cantidad, new { @class = "control-label col-sm-2" })
+                                                            @Html.LabelFor(m => BoxDet.boxd_Cantidad,"Cantidad", new { @class = "control-label col-sm-2" })
                                                             <div class="col-sm-10">
                                                                 @Html.EditorFor(model => item.boxd_Cantidad, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                                             </div>
@@ -173,66 +173,70 @@
                 <a href="#" class="close" data-dismiss="modal">&times;</a>
                 <h4 id="ModalTitle">Editar Box Detalle</h4>
             </div>
-            <div class="modal-body">
-                <div class="form-horizontal">
-                    <label id="MsjError">
-                    </label>
-                    <input type="hidden" id="sal_Id_SD" name="sal_Id" class="form-control" />
-                    <input type="hidden" id="sald_Id_SD" name="sald_Id" class="form-control" />
-                    <div class="form-group">
-                        @Html.LabelFor(m => BoxDet.prod_Codigo, new { @class = "control-label col-sm-2" })
-                        <div class="col-sm-10">
-                            <input type="text" id="prod_Codigo_SD" name="prod_Codigo" class="form-control" readonly />
-                            @Html.ValidationMessageFor(m => BoxDet.prod_Codigo)
-                        </div>
-                    </div>
+                <div class="modal-body">
+                    <fieldset id="SubmitForm">
 
-                    <div class="form-group">
-                        @Html.LabelFor(m => BoxDet.tbProducto.prod_Descripcion, new { @class = "control-label col-sm-2" })
-                        <div class="col-sm-10">
-                            <input type="text" id="prod_Descripcion_SD" name="prod_Descripcion" class="form-control" readonly />
-                            @Html.ValidationMessageFor(m => BoxDet.tbProducto.prod_Descripcion)
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(m => BoxDet.tbProducto.pcat_Id, new { @class = "control-label col-sm-2" })
-                        <div class="col-sm-10">
-                            <input type="text" id="pcat_Nombre_SD" name="pcat_Nombre" class="form-control" readonly />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(m => BoxDet.tbProducto.pscat_Id, new { @class = "control-label col-sm-2" })
-                        <div class="col-sm-10">
-                            <input type="text" id="pscat_Descripcion_SD" name="pscat_Descripcion" class="form-control" readonly />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(m => BoxDet.tbProducto.uni_Id, new { @class = "control-label col-sm-2" })
-                        <div class="col-sm-10">
-                            <input type="text" id="uni_Descripcion_SD" name="uni_Descripcion" class="form-control" readonly />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(m => BoxDet.boxd_Cantidad, new { @class = "control-label col-sm-2 required" })
-                        <div class="col-sm-10">
-                            <input type="text" id="boxd_Cantidad_SD" name="boxd_Cantidad" class="form-control" />
-                            <div id="validationsald_Cantidad">
-                                @Html.ValidationMessageFor(m => BoxDet.boxd_Cantidad)
+                        <div class="form-horizontal">
+                            <label id="MsjError">
+                            </label>
+                            <input type="hidden" id="box_Id_SD" name="box_Codigo" class="form-control" />
+                            <input type="hidden" id="boxd_Id_SD" name="boxd_Id" class="form-control" />
+                            <div class="form-group">
+                                @Html.LabelFor(m => BoxDet.tbProducto.prod_Codigo, new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-10">
+                                    <input type="text" id="prod_Codigo_SD" name="prod_Codigo" class="form-control" readonly />
+                                    @Html.ValidationMessageFor(m => BoxDet.prod_Codigo)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(m => BoxDet.tbProducto.prod_Descripcion, new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-10">
+                                    <input type="text" id="prod_Descripcion_SD" name="prod_Descripcion" class="form-control" readonly />
+                                    @Html.ValidationMessageFor(m => BoxDet.tbProducto.prod_Descripcion)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => BoxDet.tbProducto.pcat_Id, new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-10">
+                                    <input type="text" id="pcat_Nombre_SD" name="pcat_Nombre" class="form-control" readonly />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => BoxDet.tbProducto.pscat_Id, new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-10">
+                                    <input type="text" id="pscat_Descripcion_SD" name="pscat_Descripcion" class="form-control" readonly />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => BoxDet.tbProducto.uni_Id, new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-10">
+                                    <input type="text" id="uni_Descripcion_SD" name="uni_Descripcion" class="form-control" readonly />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => BoxDet.boxd_Cantidad ,"Cantidad",new { @class = "control-label col-sm-2 required" })
+                                <div class="col-sm-10">
+                                    <input type="text" id="boxd_Cantidad_SD" name="boxd_Cantidad" class="form-control" />
+                                    <div id="validationsald_Cantidad">
+                                        @Html.ValidationMessageFor(m => BoxDet.boxd_Cantidad)
+                                    </div>
+                                </div>
+                            </div>
+
+                            <input type="hidden" id="sald_FechaCrea_SD" name="sald_FechaCrea" />
+                            <input type="hidden" id="sald_UsuarioCrea_SD" name="sald_UsuarioCrea" />
+
+                            <div class="form-group">
+                                <div class="col-md-12 text-center">
+                                    <button class="btn btn-primary" type="button" id="BtnsubmitEdit" tabindex="10"> Guardar </button>
+                                    <button type="button" class="btn btn-white" data-dismiss="modal" aria-label="Close">Cancelar</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </fieldset>
 
-                    <input type="hidden" id="sald_FechaCrea_SD" name="sald_FechaCrea" />
-                    <input type="hidden" id="sald_UsuarioCrea_SD" name="sald_UsuarioCrea" />
-
-                    <div class="form-group">
-                        <div class="col-md-12 text-center">
-                            <button class="btn btn-primary" type="button" id="BtnsubmitEdit" tabindex="10"> Guardar </button>
-                            <button type="button" class="btn btn-white" data-dismiss="modal" aria-label="Close">Cancelar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+</div>
+</div>
     </div>
 </div>

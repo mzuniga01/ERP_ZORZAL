@@ -506,9 +506,12 @@ function EditBoxDetalles(boxd_Id) {
                     $("#prod_Codigo_SD").val(item.prod_Codigo);
                     $("#boxd_Cantidad_SD").val(item.boxd_Cantidad);
                     $("#prod_Descripcion_SD").val(item.prod_Descripcion);
+                    $("#pcat_Nombre_SD").val(item.pcat_Nombre); 
+                    $("#pscat_Descripcion_SD").val(item.pscat_Descripcion);
+                    $("#uni_Descripcion_SD").val(item.uni_Descripcion);
                     $("#box_Codigo_SD").val(item.box_Codigo);
                     console.log(item);
-                    $("#EditarBoxDetalle").modal("show");
+                    $("#EditBoxDetalle").modal("show");
                 })
             }
         })
@@ -533,6 +536,7 @@ $("#BtnsubmitEdit").click(function () {
     var boxd_id = $('#boxd_Id').val();
     var box = $('#box_Codigo').val();
     var data = $("#SubmitForm").serializeArray();
+    console.log(data);
     $.ajax({
         type: "Post",
         url: "/Box/EditBoxDetalle",

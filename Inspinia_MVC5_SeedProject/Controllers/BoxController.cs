@@ -257,7 +257,7 @@ namespace ERP_ZORZAL.Controllers
                 list = db.UDP_Inv_tbBoxDetalle_Update(data.boxd_Id,
                                                     pBoxDetalle.box_Codigo,
                                                     data.prod_Codigo,
-                                                    data.boxd_Cantidad, data.boxd_UsuarioCrea, data.boxd_FechaCrea, Function.GetUser(), Function.DatetimeNow());
+                                                    data.boxd_Cantidad, pBoxDetalle.boxd_UsuarioCrea, pBoxDetalle.boxd_FechaCrea, Function.GetUser(), Function.DatetimeNow());
 
                 foreach (UDP_Inv_tbBoxDetalle_Update_Result RSBoxDetalle in list)
                     MensajeError = RSBoxDetalle.MensajeError;
