@@ -98,7 +98,7 @@
                                     {
                                         <td>Si</td>
                                     }
-                                    @if (item.cdto_Anulado == false)
+                                    @if (item.cdto_Anulado==false || item.cdto_Redimido==false)
                                     {
                                         <td>
                                             @Html.ActionLink("Detalles", "Details", new { id = item.cdto_ID }, new { @class = "btn btn-primary btn-xs" })

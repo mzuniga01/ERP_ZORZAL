@@ -78,7 +78,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.clte_FechaNacimiento, new { @class = "control-label col-md-2" })
                     <div class="col-md-4">
-                        @Html.EditorFor(model => model.clte_FechaNacimiento, "{0:MM-dd-yyyy}", new { htmlAttributes = new { @autocomplete = "off", @maxlength = "10" } })
+                        @Html.EditorFor(model => model.clte_FechaNacimiento, "{0:MM/dd/yyyy}", new { htmlAttributes = new { @autocomplete = "off", @maxlength = "10" } })
                         <p style="color:red" id="fechaN">@Html.ValidationMessageFor(model => model.clte_FechaNacimiento)</p>
                     </div>
                     @Html.LabelFor(model => model.clte_Sexo, new { @class = "control-label col-md-2" })
