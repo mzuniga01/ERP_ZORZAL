@@ -196,6 +196,11 @@ namespace ERP_GMEDINA.Controllers
                             prod_Descripcion = r.prod_Descripcion,
                             factd_Cantidad = r.factd_Cantidad,
                             factd_PrecioUnitario = r.factd_PrecioUnitario,
+                            MontoImpuesto = (decimal)r.MontoImpuesto,
+                            MontoDescuento = (decimal)r.MontoDescuento,
+                            MontoEfectivo = (decimal)r.MontoEfectivo,
+                            TotalCambio = (decimal)r.TotalCambio,
+                            TotalEfectivo = (decimal)r.TotalEfectivo
                         }).ToList();
 
             rd.SetDataSource(todo);

@@ -5391,15 +5391,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbPago_Imprimir_Result>("UDP_Vent_tbPago_Imprimir", pago_IdParameter);
         }
     
-        public virtual ObjectResult<UDP_Vent_tbFactura_Imprimir_Result> UDP_Vent_tbFactura_Imprimir(Nullable<long> fact_Id)
-        {
-            var fact_IdParameter = fact_Id.HasValue ?
-                new ObjectParameter("fact_Id", fact_Id) :
-                new ObjectParameter("fact_Id", typeof(long));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbFactura_Imprimir_Result>("UDP_Vent_tbFactura_Imprimir", fact_IdParameter);
-        }
-    
         public virtual ObjectResult<UDP_Vent_tbDocumentoFiscal_Insert_Result> UDP_Vent_tbDocumentoFiscal_Insert(string dfisc_Id, string dfisc_Descripcion, Nullable<int> dfisc_UsuarioCrea, Nullable<System.DateTime> dfisc_FechaCrea)
         {
             var dfisc_IdParameter = dfisc_Id != null ?
@@ -6882,6 +6873,15 @@ namespace ERP_GMEDINA.Models
         public virtual ObjectResult<UDP_Vent_tbNotaCredito_Select_Result> UDP_Vent_tbNotaCredito_Select()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbNotaCredito_Select_Result>("UDP_Vent_tbNotaCredito_Select");
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbFactura_Imprimir_Result1> UDP_Vent_tbFactura_Imprimir(Nullable<long> fact_Id)
+        {
+            var fact_IdParameter = fact_Id.HasValue ?
+                new ObjectParameter("fact_Id", fact_Id) :
+                new ObjectParameter("fact_Id", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbFactura_Imprimir_Result1>("UDP_Vent_tbFactura_Imprimir", fact_IdParameter);
         }
     }
 }

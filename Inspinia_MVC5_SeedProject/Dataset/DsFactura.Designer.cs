@@ -321,9 +321,17 @@ namespace ERP_GMEDINA.Dataset {
             
             private global::System.Data.DataColumn columnMontoFactura;
             
-            private global::System.Data.DataColumn columnTotalPagado;
+            private global::System.Data.DataColumn columnMontoDescuento;
             
-            private global::System.Data.DataColumn columnSaldoFactura;
+            private global::System.Data.DataColumn columnMontoImpuesto;
+            
+            private global::System.Data.DataColumn columnMontoEfectivo;
+            
+            private global::System.Data.DataColumn columnTotalCambio;
+            
+            private global::System.Data.DataColumn columnTotalEfectivo;
+            
+            private global::System.Data.DataColumn columnTotalPagado;
             
             private global::System.Data.DataColumn columnIdentidadTE;
             
@@ -534,17 +542,49 @@ namespace ERP_GMEDINA.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn TotalPagadoColumn {
+            public global::System.Data.DataColumn MontoDescuentoColumn {
                 get {
-                    return this.columnTotalPagado;
+                    return this.columnMontoDescuento;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn SaldoFacturaColumn {
+            public global::System.Data.DataColumn MontoImpuestoColumn {
                 get {
-                    return this.columnSaldoFactura;
+                    return this.columnMontoImpuesto;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn MontoEfectivoColumn {
+                get {
+                    return this.columnMontoEfectivo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TotalCambioColumn {
+                get {
+                    return this.columnTotalCambio;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TotalEfectivoColumn {
+                get {
+                    return this.columnTotalEfectivo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TotalPagadoColumn {
+                get {
+                    return this.columnTotalPagado;
                 }
             }
             
@@ -630,8 +670,12 @@ namespace ERP_GMEDINA.Dataset {
                         decimal factd_Cantidad, 
                         decimal Importe, 
                         decimal MontoFactura, 
+                        decimal MontoDescuento, 
+                        decimal MontoImpuesto, 
+                        decimal MontoEfectivo, 
+                        decimal TotalCambio, 
+                        decimal TotalEfectivo, 
                         decimal TotalPagado, 
-                        decimal SaldoFactura, 
                         string IdentidadTE, 
                         string NombreTE, 
                         System.DateTime FechaTE) {
@@ -658,8 +702,12 @@ namespace ERP_GMEDINA.Dataset {
                         factd_Cantidad,
                         Importe,
                         MontoFactura,
+                        MontoDescuento,
+                        MontoImpuesto,
+                        MontoEfectivo,
+                        TotalCambio,
+                        TotalEfectivo,
                         TotalPagado,
-                        SaldoFactura,
                         IdentidadTE,
                         NombreTE,
                         FechaTE};
@@ -713,8 +761,12 @@ namespace ERP_GMEDINA.Dataset {
                 this.columnfactd_Cantidad = base.Columns["factd_Cantidad"];
                 this.columnImporte = base.Columns["Importe"];
                 this.columnMontoFactura = base.Columns["MontoFactura"];
+                this.columnMontoDescuento = base.Columns["MontoDescuento"];
+                this.columnMontoImpuesto = base.Columns["MontoImpuesto"];
+                this.columnMontoEfectivo = base.Columns["MontoEfectivo"];
+                this.columnTotalCambio = base.Columns["TotalCambio"];
+                this.columnTotalEfectivo = base.Columns["TotalEfectivo"];
                 this.columnTotalPagado = base.Columns["TotalPagado"];
-                this.columnSaldoFactura = base.Columns["SaldoFactura"];
                 this.columnIdentidadTE = base.Columns["IdentidadTE"];
                 this.columnNombreTE = base.Columns["NombreTE"];
                 this.columnFechaTE = base.Columns["FechaTE"];
@@ -765,10 +817,18 @@ namespace ERP_GMEDINA.Dataset {
                 base.Columns.Add(this.columnImporte);
                 this.columnMontoFactura = new global::System.Data.DataColumn("MontoFactura", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMontoFactura);
+                this.columnMontoDescuento = new global::System.Data.DataColumn("MontoDescuento", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMontoDescuento);
+                this.columnMontoImpuesto = new global::System.Data.DataColumn("MontoImpuesto", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMontoImpuesto);
+                this.columnMontoEfectivo = new global::System.Data.DataColumn("MontoEfectivo", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMontoEfectivo);
+                this.columnTotalCambio = new global::System.Data.DataColumn("TotalCambio", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotalCambio);
+                this.columnTotalEfectivo = new global::System.Data.DataColumn("TotalEfectivo", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotalEfectivo);
                 this.columnTotalPagado = new global::System.Data.DataColumn("TotalPagado", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTotalPagado);
-                this.columnSaldoFactura = new global::System.Data.DataColumn("SaldoFactura", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSaldoFactura);
                 this.columnIdentidadTE = new global::System.Data.DataColumn("IdentidadTE", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnIdentidadTE);
                 this.columnNombreTE = new global::System.Data.DataColumn("NombreTE", typeof(string), null, global::System.Data.MappingType.Element);
@@ -815,8 +875,12 @@ namespace ERP_GMEDINA.Dataset {
                 this.columnfactd_Cantidad.AllowDBNull = false;
                 this.columnImporte.ReadOnly = true;
                 this.columnMontoFactura.ReadOnly = true;
+                this.columnMontoDescuento.ReadOnly = true;
+                this.columnMontoImpuesto.ReadOnly = true;
+                this.columnMontoEfectivo.ReadOnly = true;
+                this.columnTotalCambio.ReadOnly = true;
+                this.columnTotalEfectivo.ReadOnly = true;
                 this.columnTotalPagado.ReadOnly = true;
-                this.columnSaldoFactura.ReadOnly = true;
                 this.columnIdentidadTE.ReadOnly = true;
                 this.columnIdentidadTE.MaxLength = 26;
                 this.columnNombreTE.ReadOnly = true;
@@ -1212,6 +1276,91 @@ namespace ERP_GMEDINA.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal MontoDescuento {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableUDP_Vent_tbFactura_Imprimir.MontoDescuentoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'MontoDescuento\' in table \'UDP_Vent_tbFactura_Imprimir\' is D" +
+                                "BNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableUDP_Vent_tbFactura_Imprimir.MontoDescuentoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal MontoImpuesto {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableUDP_Vent_tbFactura_Imprimir.MontoImpuestoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'MontoImpuesto\' in table \'UDP_Vent_tbFactura_Imprimir\' is DB" +
+                                "Null.", e);
+                    }
+                }
+                set {
+                    this[this.tableUDP_Vent_tbFactura_Imprimir.MontoImpuestoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal MontoEfectivo {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableUDP_Vent_tbFactura_Imprimir.MontoEfectivoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'MontoEfectivo\' in table \'UDP_Vent_tbFactura_Imprimir\' is DB" +
+                                "Null.", e);
+                    }
+                }
+                set {
+                    this[this.tableUDP_Vent_tbFactura_Imprimir.MontoEfectivoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal TotalCambio {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableUDP_Vent_tbFactura_Imprimir.TotalCambioColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'TotalCambio\' in table \'UDP_Vent_tbFactura_Imprimir\' is DBNu" +
+                                "ll.", e);
+                    }
+                }
+                set {
+                    this[this.tableUDP_Vent_tbFactura_Imprimir.TotalCambioColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal TotalEfectivo {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableUDP_Vent_tbFactura_Imprimir.TotalEfectivoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'TotalEfectivo\' in table \'UDP_Vent_tbFactura_Imprimir\' is DB" +
+                                "Null.", e);
+                    }
+                }
+                set {
+                    this[this.tableUDP_Vent_tbFactura_Imprimir.TotalEfectivoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public decimal TotalPagado {
                 get {
                     try {
@@ -1224,23 +1373,6 @@ namespace ERP_GMEDINA.Dataset {
                 }
                 set {
                     this[this.tableUDP_Vent_tbFactura_Imprimir.TotalPagadoColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal SaldoFactura {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableUDP_Vent_tbFactura_Imprimir.SaldoFacturaColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'SaldoFactura\' in table \'UDP_Vent_tbFactura_Imprimir\' is DBN" +
-                                "ull.", e);
-                    }
-                }
-                set {
-                    this[this.tableUDP_Vent_tbFactura_Imprimir.SaldoFacturaColumn] = value;
                 }
             }
             
@@ -1332,6 +1464,66 @@ namespace ERP_GMEDINA.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsMontoDescuentoNull() {
+                return this.IsNull(this.tableUDP_Vent_tbFactura_Imprimir.MontoDescuentoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetMontoDescuentoNull() {
+                this[this.tableUDP_Vent_tbFactura_Imprimir.MontoDescuentoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsMontoImpuestoNull() {
+                return this.IsNull(this.tableUDP_Vent_tbFactura_Imprimir.MontoImpuestoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetMontoImpuestoNull() {
+                this[this.tableUDP_Vent_tbFactura_Imprimir.MontoImpuestoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsMontoEfectivoNull() {
+                return this.IsNull(this.tableUDP_Vent_tbFactura_Imprimir.MontoEfectivoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetMontoEfectivoNull() {
+                this[this.tableUDP_Vent_tbFactura_Imprimir.MontoEfectivoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsTotalCambioNull() {
+                return this.IsNull(this.tableUDP_Vent_tbFactura_Imprimir.TotalCambioColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetTotalCambioNull() {
+                this[this.tableUDP_Vent_tbFactura_Imprimir.TotalCambioColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsTotalEfectivoNull() {
+                return this.IsNull(this.tableUDP_Vent_tbFactura_Imprimir.TotalEfectivoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetTotalEfectivoNull() {
+                this[this.tableUDP_Vent_tbFactura_Imprimir.TotalEfectivoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsTotalPagadoNull() {
                 return this.IsNull(this.tableUDP_Vent_tbFactura_Imprimir.TotalPagadoColumn);
             }
@@ -1340,18 +1532,6 @@ namespace ERP_GMEDINA.Dataset {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetTotalPagadoNull() {
                 this[this.tableUDP_Vent_tbFactura_Imprimir.TotalPagadoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsSaldoFacturaNull() {
-                return this.IsNull(this.tableUDP_Vent_tbFactura_Imprimir.SaldoFacturaColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetSaldoFacturaNull() {
-                this[this.tableUDP_Vent_tbFactura_Imprimir.SaldoFacturaColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1571,8 +1751,12 @@ namespace ERP_GMEDINA.Dataset.DsFacturaTableAdapters {
             tableMapping.ColumnMappings.Add("factd_Cantidad", "factd_Cantidad");
             tableMapping.ColumnMappings.Add("Importe", "Importe");
             tableMapping.ColumnMappings.Add("MontoFactura", "MontoFactura");
+            tableMapping.ColumnMappings.Add("MontoDescuento", "MontoDescuento");
+            tableMapping.ColumnMappings.Add("MontoImpuesto", "MontoImpuesto");
+            tableMapping.ColumnMappings.Add("MontoEfectivo", "MontoEfectivo");
+            tableMapping.ColumnMappings.Add("TotalCambio", "TotalCambio");
+            tableMapping.ColumnMappings.Add("TotalEfectivo", "TotalEfectivo");
             tableMapping.ColumnMappings.Add("TotalPagado", "TotalPagado");
-            tableMapping.ColumnMappings.Add("SaldoFactura", "SaldoFactura");
             tableMapping.ColumnMappings.Add("IdentidadTE", "IdentidadTE");
             tableMapping.ColumnMappings.Add("NombreTE", "NombreTE");
             tableMapping.ColumnMappings.Add("FechaTE", "FechaTE");
@@ -1583,7 +1767,7 @@ namespace ERP_GMEDINA.Dataset.DsFacturaTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ERP_GMEDINAConnectionString"].ConnectionString;
+            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ERP_GMEDINAConnectionString1"].ConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

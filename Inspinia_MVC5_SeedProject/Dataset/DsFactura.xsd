@@ -2,14 +2,15 @@
 <xs:schema id="DsFactura" targetNamespace="http://tempuri.org/DsFactura.xsd" xmlns:mstns="http://tempuri.org/DsFactura.xsd" xmlns="http://tempuri.org/DsFactura.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
           <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="ERP_GMEDINAConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_GMEDINAConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.ERP_GMEDINAConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="ERP_GMEDINAConnectionString1" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_GMEDINAConnectionString1 (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.ERP_GMEDINAConnectionString1.ConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="UDP_Vent_tbFactura_ImprimirTableAdapter" GeneratorDataComponentClassName="UDP_Vent_tbFactura_ImprimirTableAdapter" Name="UDP_Vent_tbFactura_Imprimir" UserDataComponentName="UDP_Vent_tbFactura_ImprimirTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="ERP_GMEDINAConnectionString (Web.config)" DbObjectName="ERP_GMEDINA.Vent.UDP_Vent_tbFactura_Imprimir" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="ERP_GMEDINAConnectionString1 (Web.config)" DbObjectName="ERP_GMEDINA.Vent.UDP_Vent_tbFactura_Imprimir" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>Vent.UDP_Vent_tbFactura_Imprimir</CommandText>
@@ -43,8 +44,12 @@
               <Mapping SourceColumn="factd_Cantidad" DataSetColumn="factd_Cantidad" />
               <Mapping SourceColumn="Importe" DataSetColumn="Importe" />
               <Mapping SourceColumn="MontoFactura" DataSetColumn="MontoFactura" />
+              <Mapping SourceColumn="MontoDescuento" DataSetColumn="MontoDescuento" />
+              <Mapping SourceColumn="MontoImpuesto" DataSetColumn="MontoImpuesto" />
+              <Mapping SourceColumn="MontoEfectivo" DataSetColumn="MontoEfectivo" />
+              <Mapping SourceColumn="TotalCambio" DataSetColumn="TotalCambio" />
+              <Mapping SourceColumn="TotalEfectivo" DataSetColumn="TotalEfectivo" />
               <Mapping SourceColumn="TotalPagado" DataSetColumn="TotalPagado" />
-              <Mapping SourceColumn="SaldoFactura" DataSetColumn="SaldoFactura" />
               <Mapping SourceColumn="IdentidadTE" DataSetColumn="IdentidadTE" />
               <Mapping SourceColumn="NombreTE" DataSetColumn="NombreTE" />
               <Mapping SourceColumn="FechaTE" DataSetColumn="FechaTE" />
@@ -155,8 +160,12 @@
               <xs:element name="factd_Cantidad" msprop:Generator_ColumnVarNameInTable="columnfactd_Cantidad" msprop:Generator_ColumnPropNameInRow="factd_Cantidad" msprop:Generator_ColumnPropNameInTable="factd_CantidadColumn" msprop:Generator_UserColumnName="factd_Cantidad" type="xs:decimal" />
               <xs:element name="Importe" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnImporte" msprop:Generator_ColumnPropNameInRow="Importe" msprop:Generator_ColumnPropNameInTable="ImporteColumn" msprop:Generator_UserColumnName="Importe" type="xs:decimal" minOccurs="0" />
               <xs:element name="MontoFactura" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnMontoFactura" msprop:Generator_ColumnPropNameInRow="MontoFactura" msprop:Generator_ColumnPropNameInTable="MontoFacturaColumn" msprop:Generator_UserColumnName="MontoFactura" type="xs:decimal" minOccurs="0" />
+              <xs:element name="MontoDescuento" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnMontoDescuento" msprop:Generator_ColumnPropNameInRow="MontoDescuento" msprop:Generator_ColumnPropNameInTable="MontoDescuentoColumn" msprop:Generator_UserColumnName="MontoDescuento" type="xs:decimal" minOccurs="0" />
+              <xs:element name="MontoImpuesto" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnMontoImpuesto" msprop:Generator_ColumnPropNameInRow="MontoImpuesto" msprop:Generator_ColumnPropNameInTable="MontoImpuestoColumn" msprop:Generator_UserColumnName="MontoImpuesto" type="xs:decimal" minOccurs="0" />
+              <xs:element name="MontoEfectivo" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnMontoEfectivo" msprop:Generator_ColumnPropNameInRow="MontoEfectivo" msprop:Generator_ColumnPropNameInTable="MontoEfectivoColumn" msprop:Generator_UserColumnName="MontoEfectivo" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TotalCambio" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTotalCambio" msprop:Generator_ColumnPropNameInRow="TotalCambio" msprop:Generator_ColumnPropNameInTable="TotalCambioColumn" msprop:Generator_UserColumnName="TotalCambio" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TotalEfectivo" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTotalEfectivo" msprop:Generator_ColumnPropNameInRow="TotalEfectivo" msprop:Generator_ColumnPropNameInTable="TotalEfectivoColumn" msprop:Generator_UserColumnName="TotalEfectivo" type="xs:decimal" minOccurs="0" />
               <xs:element name="TotalPagado" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTotalPagado" msprop:Generator_ColumnPropNameInRow="TotalPagado" msprop:Generator_ColumnPropNameInTable="TotalPagadoColumn" msprop:Generator_UserColumnName="TotalPagado" type="xs:decimal" minOccurs="0" />
-              <xs:element name="SaldoFactura" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnSaldoFactura" msprop:Generator_ColumnPropNameInRow="SaldoFactura" msprop:Generator_ColumnPropNameInTable="SaldoFacturaColumn" msprop:Generator_UserColumnName="SaldoFactura" type="xs:decimal" minOccurs="0" />
               <xs:element name="IdentidadTE" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnIdentidadTE" msprop:Generator_ColumnPropNameInRow="IdentidadTE" msprop:Generator_ColumnPropNameInTable="IdentidadTEColumn" msprop:Generator_UserColumnName="IdentidadTE" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
