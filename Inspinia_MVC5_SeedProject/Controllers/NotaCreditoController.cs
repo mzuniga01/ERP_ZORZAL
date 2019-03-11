@@ -15,7 +15,7 @@ using System.Data.Entity.Core.Objects;
 using System.IO;
 using System.Reflection;
 using CrystalDecisions.Shared;
-
+using ERP_GMEDINA.Dataset; using ERP_GMEDINA.Reports; using ERP_GMEDINA.Dataset.ReportesTableAdapters;
 namespace ERP_GMEDINA.Controllers
 {
     public class NotaCreditoController : Controller
@@ -517,6 +517,40 @@ namespace ERP_GMEDINA.Controllers
         {
             var list = db.UDP_Vent_tbSolicitudCredito_RolGerenteCreditosCobranza(User, Password).SingleOrDefault();
             return Json(list, JsonRequestBehavior.AllowGet);
+        }
+        ///----------------Reporte de Cupon de Descuento------------------------------
+
+        [HttpPost]
+        public ActionResult Reporte(tbObjeto Objeto)
+        {
+            int iTipoReporte = Objeto.obj_Id;
+            ReportDocument rd = new ReportDocument();
+            Stream stream = null;
+            NotaCredito NTCreditoRV = new NotaCredito();
+            Reportes NotaCreditoDST = new Reportes();
+
+            var CreditoTableAdapter = new UDV_Vent_NotaCreditoPorFechaTableAdapter();
+
+            try
+            {
+                CreditoTableAdapter.FillFiltros(NotaCreditoDST.UDV_Vent_NotaCreditoPorFecha, "EDU", Convert.ToDateTime("2019-03-10"), Convert.ToDateTime("2019-03-10"));
+
+                NTCreditoRV.SetDataSource(NotaCreditoDST);
+                stream = NTCreditoRV.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+                stream.Seek(0, SeekOrigin.Begin);
+
+                NTCreditoRV.Close();
+                NTCreditoRV.Dispose();
+
+                string fileName = "Nota_Credito.pdf";
+                Response.AppendHeader("Content-Disposition", "inline; filename=" + fileName);
+                return File(stream, "application/pdf");
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                throw;
+            }
         }
     }
 }
