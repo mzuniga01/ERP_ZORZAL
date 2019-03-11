@@ -110,32 +110,15 @@ namespace ERP_ZORZAL.Controllers
             Reportes EntradaDST = new Reportes();
             
             var EntradaTableAdapter = new UDV_Inv_TipoEntradaTableAdapter();
-
-            //ERP_GMEDINA.Reports.CachedImprimirEntradaGeneral entradas = new ERP_GMEDINA.Reports.CachedImprimirEntradaGeneral();
-            //ERP_GMEDINA.Dataset.EntradaTableAdapters.UDV_Inv_TipoEntradaTableAdapter entradasGe = new ERP_GMEDINA.Dataset.EntradaTableAdapters.UDV_Inv_TipoEntradaTableAdapter();
-            //ERP_GMEDINA.Dataset.Entrada.UDV_Inv_TipoEntradaDataTable entradadatatable = new ERP_GMEDINA.Dataset.Entrada.UDV_Inv_TipoEntradaDataTable();
-            //entradasGe.Fill(entradadatatable, TipoEntrada, estado, bodega, FechaElaboracion);
-            //var resuldataset = entradasGe.GetData(TipoEntrada, estado, bodega, FechaElaboracion).ToList();
-            //ReportDocument rd = new ReportDocument();
-            //var pathr = "ImprimirEntradaGeneral.rpt";
-            //rd.Load(Path.Combine(Server.MapPath("~/Reports"), pathr));
-            //rd.SetDataSource(resuldataset);
-            //Response.Buffer = false;
-            //Response.ClearContent();
-            //Response.ClearHeaders();
+            
             try
             {
                 EntradaTableAdapter.Fill(EntradaDST.UDV_Inv_TipoEntrada, TipoEntrada, estado, bodega, FechaElaboracion);
                
                 EntradaRV.SetDataSource(EntradaDST);
                 EntradaRV.SetParameterValue("usuario", EncargadoName.usu_Nombres + " " + EncargadoName.usu_Apellidos);
-                //SalidaRV.PrintToPrinter(1, false, 0, 0);
                 Stream stream = EntradaRV.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
                 stream.Seek(0, SeekOrigin.Begin);
-                //var Url = "../ReportViewer/ReporteEntrada.aspx";
-                //return RedirectToAction(Url);
-                //Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
-                //stream.Seek(0, SeekOrigin.Begin);
                 EntradaRV.Close();
                 EntradaRV.Dispose();
                 string fileName = "Entrada_List.pdf";
@@ -157,22 +140,11 @@ namespace ERP_ZORZAL.Controllers
             var Encargado = Usuario();
             var EncargadoName = db.tbUsuario.Where(x => x.usu_Id == Encargado).Select(i => new { i.usu_Nombres, i.usu_Apellidos }).FirstOrDefault();
             var ent_id = Convert.ToInt32(id);
-            //ERP_GMEDINA.Dataset.EntradaTableAdapters.UDV_Inv_EntradaPorIdTableAdapter entradasID = new ERP_GMEDINA.Dataset.EntradaTableAdapters.UDV_Inv_EntradaPorIdTableAdapter();
-            //ERP_GMEDINA.Dataset.Entrada.UDV_Inv_EntradaPorIdDataTable entradadatatableId = new ERP_GMEDINA.Dataset.Entrada.UDV_Inv_EntradaPorIdDataTable();
-            //entradasID.Fill(entradadatatableId, ent_id);
-            //var resuldatasetId = entradasID.GetData(ent_id).ToList();
             ImprimirEntradaPorId EntradaRVId = new ImprimirEntradaPorId();
             ReportDocument rdId = new ReportDocument();
             Reportes EntradaDSTId = new Reportes();
            
             var EntradaTableAdapterId = new UDV_Inv_EntradaPorIdTableAdapter();
-            //ReportDocument rd = new ReportDocument();
-            //var url = "ImprimirEntrada.aspx";
-            //rd.Load(Path.Combine(Server.MapPath("~/ReportViewer"), url));
-            //rd.SetDataSource(resuldatasetId);
-            //Response.Buffer = false;
-            //Response.ClearContent();
-            //Response.ClearHeaders();
             try
             {
 
@@ -180,39 +152,13 @@ namespace ERP_ZORZAL.Controllers
                
                 EntradaRVId.SetDataSource(EntradaDSTId);
                 EntradaRVId.SetParameterValue("usuario", EncargadoName.usu_Nombres + " " + EncargadoName.usu_Apellidos);
-                //SalidaRV.PrintToPrinter(1, false, 0, 0);
                 Stream stream = EntradaRVId.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
                 stream.Seek(0, SeekOrigin.Begin);
-                //var Url = "../ReportViewer/ReporteEntrada.aspx";
-                //return RedirectToAction(Url);
-                //Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
-                //stream.Seek(0, SeekOrigin.Begin);
                 EntradaRVId.Close();
                 EntradaRVId.Dispose();
                 string fileName = "ImprimirEntrada.pdf";
                 Response.AppendHeader("Content-Disposition", "inline; filename=" + fileName);
                 return File(stream, "application/pdf");
-                //Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
-                //stream.Seek(0, SeekOrigin.Begin);
-                //string fileName = "ImprimirEntrada.pdf";
-                //Response.AppendHeader("Content-Disposition", "inline; filename=" + fileName);
-                //window.open('pagpdf.php', '_blank');
-                //return View(from Entrada in db.tbEntrada.Take(10)
-                //            select Entrada);
-                //var Url = "../ReportViewer/ImprimirEntrada.aspx";
-                //return RedirectToAction(Url);
-                //{
-                //    PageMargins margins = rd.PrintOptions.PageMargins;/* TODO ERROR: Skipped SkippedTokensTrivia */
-                //    margins.bottomMargin = 200;/* TODO ERROR: Skipped SkippedTokensTrivia */
-                //    margins.leftMargin = 200;/* TODO ERROR: Skipped SkippedTokensTrivia */
-                //    margins.rightMargin = 50;/* TODO ERROR: Skipped SkippedTokensTrivia */
-                //    margins.topMargin = 100;/* TODO ERROR: Skipped SkippedTokensTrivia */
-                //    rd.PrintOptions.ApplyPageMargins(margins);/* TODO ERROR: Skipped SkippedTokensTrivia */
-                //}
-
-
-                //rd.PrintToPrinter(1, false, 0, 0);
-                //return View();
             }
             catch
             {

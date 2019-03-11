@@ -23,7 +23,7 @@ namespace ERP_GMEDINA.Models
         public Nullable<int> entd_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> entd_FechaModifica { get; set; }
     
-        public virtual tbEntrada tbEntrada { get; set; }
         public virtual tbProducto tbProducto { get; set; }
+        public virtual tbEntrada tbEntrada { get; set; }
     }
 }

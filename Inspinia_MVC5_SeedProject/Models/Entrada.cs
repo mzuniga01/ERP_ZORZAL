@@ -49,7 +49,7 @@ namespace ERP_GMEDINA.Models
 
         [Display(Name = "Código Factura")]
         //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
-        public int fact_Id { get; set; }
+        public string fact_Id { get; set; }
 
         [Display(Name = "Razon Devolucion")]
         //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]

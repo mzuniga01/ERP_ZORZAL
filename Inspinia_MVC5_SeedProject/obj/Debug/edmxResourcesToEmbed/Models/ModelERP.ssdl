@@ -309,7 +309,7 @@
     <Property Name="prov_Id" Type="int" Nullable="false" />
     <Property Name="ent_FacturaCompra" Type="varchar" MaxLength="20" />
     <Property Name="ent_FechaCompra" Type="datetime" />
-    <Property Name="fact_Id" Type="int" />
+    <Property Name="fact_Id" Type="nvarchar" MaxLength="19" />
     <Property Name="ent_RazonDevolucion" Type="int" />
     <Property Name="ent_BodegaDestino" Type="int" />
     <Property Name="tent_Id" Type="tinyint" Nullable="false" />
@@ -1028,31 +1028,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Consultar_Existencias_Prod
     <Property Name="bod_Id" Type="int" Nullable="false" />
     <Property Name="bodd_Id" Type="int" Nullable="false" />
     <Property Name="prod_Codigo" Type="nvarchar" MaxLength="15" Nullable="false" />
-  </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_PackingList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-  <EntityType Name="UDV_Inv_PackingList">
-    <Key>
-      <PropertyRef Name="Descripción" />
-      <PropertyRef Name="Producto" />
-      <PropertyRef Name="Cantidad" />
-      <PropertyRef Name="Bodega Destino" />
-      <PropertyRef Name="Creada El:" />
-    </Key>
-    <Property Name="box_Codigo" Type="varchar" MaxLength="20" />
-    <Property Name="Descripción" Type="varchar" MaxLength="200" Nullable="false" />
-    <Property Name="Codigo de Barras:" Type="varchar" MaxLength="15" />
-    <Property Name="Producto" Type="nvarchar" MaxLength="15" Nullable="false" />
-    <Property Name="Nombre" Type="varchar" MaxLength="100" />
-    <Property Name="Marca" Type="varchar" MaxLength="50" />
-    <Property Name="Modelo" Type="nvarchar" MaxLength="25" />
-    <Property Name="Talla" Type="varchar" MaxLength="15" />
-    <Property Name="Unidad" Type="varchar" MaxLength="150" />
-    <Property Name="Cantidad" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-    <Property Name="Bodega" Type="varchar" MaxLength="100" />
-    <Property Name="Bodega Destino" Type="int" Nullable="false" />
-    <Property Name="Creado Por:" Type="varchar" MaxLength="301" />
-    <Property Name="Creada El:" Type="datetime" Nullable="false" />
   </EntityType>
   <Association Name="FK__DatosCons__fact___4DAB2CE2">
     <End Role="tbFactura" Type="Self.tbFactura" Multiplicity="1" />
@@ -4313,7 +4288,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_PackingList' does not have
     <Parameter Name="prov_Id" Type="int" Mode="In" />
     <Parameter Name="ent_FacturaCompra" Type="varchar" Mode="In" />
     <Parameter Name="ent_FechaCompra" Type="datetime" Mode="In" />
-    <Parameter Name="fact_Id" Type="int" Mode="In" />
+    <Parameter Name="fact_Id" Type="nvarchar" Mode="In" />
     <Parameter Name="ent_RazonDevolucion" Type="int" Mode="In" />
     <Parameter Name="ent_BodegaDestino" Type="int" Mode="In" />
     <Parameter Name="tent_Id" Type="tinyint" Mode="In" />
@@ -4328,7 +4303,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_PackingList' does not have
     <Parameter Name="prov_Id" Type="int" Mode="In" />
     <Parameter Name="ent_FacturaCompra" Type="varchar" Mode="In" />
     <Parameter Name="ent_FechaCompra" Type="datetime" Mode="In" />
-    <Parameter Name="fact_Id" Type="int" Mode="In" />
+    <Parameter Name="fact_Id" Type="nvarchar" Mode="In" />
     <Parameter Name="ent_RazonDevolucion" Type="int" Mode="In" />
     <Parameter Name="ent_BodegaDestino" Type="int" Mode="In" />
     <Parameter Name="tent_Id" Type="tinyint" Mode="In" />
@@ -4765,24 +4740,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_PackingList' does not have
     [UDV_Inv_Consultar_Existencias_Productos].[bodd_Id] AS [bodd_Id], 
     [UDV_Inv_Consultar_Existencias_Productos].[prod_Codigo] AS [prod_Codigo]
     FROM [Inv].[UDV_Inv_Consultar_Existencias_Productos] AS [UDV_Inv_Consultar_Existencias_Productos]</DefiningQuery>
-    </EntitySet>
-    <EntitySet Name="UDV_Inv_PackingList" EntityType="Self.UDV_Inv_PackingList" store:Type="Views" store:Schema="Inv">
-      <DefiningQuery>SELECT 
-    [UDV_Inv_PackingList].[box_Codigo] AS [box_Codigo], 
-    [UDV_Inv_PackingList].[Descripción] AS [Descripción], 
-    [UDV_Inv_PackingList].[Codigo de Barras:] AS [Codigo de Barras:], 
-    [UDV_Inv_PackingList].[Producto] AS [Producto], 
-    [UDV_Inv_PackingList].[Nombre] AS [Nombre], 
-    [UDV_Inv_PackingList].[Marca] AS [Marca], 
-    [UDV_Inv_PackingList].[Modelo] AS [Modelo], 
-    [UDV_Inv_PackingList].[Talla] AS [Talla], 
-    [UDV_Inv_PackingList].[Unidad] AS [Unidad], 
-    [UDV_Inv_PackingList].[Cantidad] AS [Cantidad], 
-    [UDV_Inv_PackingList].[Bodega] AS [Bodega], 
-    [UDV_Inv_PackingList].[Bodega Destino] AS [Bodega Destino], 
-    [UDV_Inv_PackingList].[Creado Por:] AS [Creado Por:], 
-    [UDV_Inv_PackingList].[Creada El:] AS [Creada El:]
-    FROM [Inv].[UDV_Inv_PackingList] AS [UDV_Inv_PackingList]</DefiningQuery>
     </EntitySet>
     <AssociationSet Name="FK__DatosCons__fact___4DAB2CE2" Association="Self.FK__DatosCons__fact___4DAB2CE2">
       <End Role="tbFactura" EntitySet="tbFactura" />

@@ -66,7 +66,7 @@
                                             @*@Html.EditorFor(model => model.tbBodega.bod_Nombre, new { htmlAttributes = new { @class = "form-control ", @readonly = "readonly" } })
                                                 </div>
                                                 <div style="display:none" class="col-md-4">*@
-                                            @Html.DropDownList("bod_Id", (IEnumerable<SelectListItem>)ViewBag.bod_Id, "Seleccione su Bodega", new { @class = "form-control" })
+                                            @Html.DropDownList("bod_Id", (IEnumerable<SelectListItem>)ViewBag.bod_Id, new { @class = "form-control" })
                                             <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Id)</p>
                                         </div>
                                         @Html.LabelFor(model => model.ent_FechaElaboracion, new { @class = "control-label col-md-2 , required" })
@@ -169,7 +169,7 @@
                                         @Html.LabelFor(model => model.fact_Id, new { @class = "control-label col-md-2 , required" })
                                         @*<label class="control-label col-md-2">Código Factura<span style="color:red">*</span></label>*@
                                         <div class="col-md-4">
-                                            @Html.EditorFor(model => model.fact_Id)
+                                            @Html.EditorFor(model => model.fact_Id, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @autocomplete = "off" } })
                                             <div class="col-md-10">
                                                 <p id="factu" style="color:red">@Html.ValidationMessageFor(model => model.fact_Id)</p>
                                             </div>
@@ -315,11 +315,11 @@
     });
     $("#fact_Id").change(function () {
         var selector = $('#fact_Id').val().length;
-        var Digitos = 16;
+        var Digitos = 19;
         $(selector).val('');
         if (selector < Digitos || selector > Digitos) {
             $('#Errorfact_IdLengthCreate').text('');
-            $('#factu').after('<p id="Errorfact_IdLengthCreate" style="color:red">Campo Factura debe  tener 16 caracteres</p>');
+            $('#factu').after('<p id="Errorfact_IdLengthCreate" style="color:red">Campo Factura debe  tener 19 caracteres Ejem:"999-999-99-99999999"</p>');
         }
         else {
             $('#Errorfact_IdLengthCreate').hide();
