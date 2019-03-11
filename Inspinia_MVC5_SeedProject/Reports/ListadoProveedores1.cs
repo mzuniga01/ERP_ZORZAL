@@ -16,14 +16,14 @@ namespace ERP_GMEDINA.Reports {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class InventarioActual : ReportClass {
+    public class ListadoProveedores : ReportClass {
         
-        public InventarioActual() {
+        public ListadoProveedores() {
         }
         
         public override string ResourceName {
             get {
-                return "InventarioActual.rpt";
+                return "ListadoProveedores.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace ERP_GMEDINA.Reports {
         
         public override string FullResourceName {
             get {
-                return "ERP_GMEDINA.Reports.InventarioActual.rpt";
+                return "ERP_GMEDINA.Reports.ListadoProveedores.rpt";
             }
             set {
                 // Do nothing
@@ -98,9 +98,9 @@ namespace ERP_GMEDINA.Reports {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedInventarioActual : Component, ICachedReport {
+    public class CachedListadoProveedores : Component, ICachedReport {
         
-        public CachedInventarioActual() {
+        public CachedListadoProveedores() {
         }
         
         [Browsable(false)]
@@ -137,7 +137,7 @@ namespace ERP_GMEDINA.Reports {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            InventarioActual rpt = new InventarioActual();
+            ListadoProveedores rpt = new ListadoProveedores();
             rpt.Site = this.Site;
             return rpt;
         }

@@ -969,6 +969,12 @@
     <Compile Include="Reports\ListadoProveedores.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\ListadoProveedores1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ListadoProveedores.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\Movimiento_Entre_Fechas.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
