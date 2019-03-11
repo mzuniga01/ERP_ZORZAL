@@ -100,13 +100,13 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.prod_Descripcion, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                @Html.EditorFor(model => model.prod_Descripcion, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)",@class = "form-control", @maxlength = "40" } })
+                                @Html.EditorFor(model => model.prod_Descripcion, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @maxlength = "40" } })
                                 <p style="color:red">@Html.ValidationMessageFor(model => model.prod_Descripcion)</p>
                             </div>
 
                             @Html.LabelFor(model => model.prod_Marca, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                @Html.EditorFor(model => model.prod_Marca, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @class = "form-control", @maxlength = "30" } })
+                                @Html.EditorFor(model => model.prod_Marca, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @maxlength = "30" } })
                                 <p style="color:red">@Html.ValidationMessageFor(model => model.prod_Marca)</p>
                             </div>
                             
@@ -115,13 +115,13 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.prod_Modelo, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                @Html.EditorFor(model => model.prod_Modelo, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @class = "form-control", @maxlength = "30" } })
+                                @Html.EditorFor(model => model.prod_Modelo, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @maxlength = "30" } })
                                 <p style="color:red">@Html.ValidationMessageFor(model => model.prod_Modelo)</p>
                             </div>
 
                             @Html.LabelFor(model => model.prod_Color, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                @Html.EditorFor(model => model.prod_Color, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @class = "form-control", @maxlength = "20" } })
+                                @Html.EditorFor(model => model.prod_Color, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @maxlength = "20" } })
                                 <p style="color:red">@Html.ValidationMessageFor(model => model.prod_Color)</p>
                             </div>
                             
@@ -131,7 +131,7 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.prod_Talla, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                @Html.EditorFor(model => model.prod_Talla, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @class = "form-control", @maxlength = "15" } })
+                                @Html.EditorFor(model => model.prod_Talla, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @maxlength = "15" } })
                                 <p style="color:red">@Html.ValidationMessageFor(model => model.prod_Talla)</p>
                             </div>
 
@@ -171,9 +171,9 @@
                             }
 
                         </div>
-                        @*<div class="form-group" id="nuevocodigo" >
+                        <div class="form-group" id="nuevocodigo" >
                             <input class="form-control" name="CodigoNuevo" id="CodigoNuevo" />
-                        </div>*@  
+                        </div>  
                                                                        
                            
 
@@ -188,7 +188,7 @@
                                    }
                                    else
                                    {
-                                    <button type="button" id="activar" name="activar" class="btn btn-primary" data-toggle="modal" data-target="#ModalAnular1">
+                                    <button type="button" id="activar" name="activar" class="btn btn-info" data-toggle="modal" data-target="#ModalAnular1">
                                         Activar
                                     </button>
                                    }                                                   
@@ -286,6 +286,7 @@
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 <script src="~/Scripts/app/InActivarProducto.js"></script>
+@*<script src="~/Scripts/app/SubCategoriaProducto.js"></script>*@
 <script src="~/Scripts/app/SubCategoriaProductoEdit.js"></script>
 
 @section Scripts{

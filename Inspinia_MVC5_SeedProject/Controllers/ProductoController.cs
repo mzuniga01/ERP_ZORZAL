@@ -10,6 +10,11 @@ using System.Web.Mvc;
 using ERP_GMEDINA.Models;
 using System.Data.Entity.Core.Objects;
 using ERP_GMEDINA.Attribute;
+using CrystalDecisions.CrystalReports.Engine;
+using System.IO;
+using ERP_GMEDINA.Reports;
+using ERP_GMEDINA.Dataset;
+using ERP_GMEDINA.Dataset.ReportesTableAdapters;
 
 namespace ERP_GMEDINA.Controllers
 {
@@ -99,7 +104,7 @@ namespace ERP_GMEDINA.Controllers
                                                             tbProducto.prod_Color,
                                                             tbProducto.pscat_Id,
                                                             tbProducto.uni_Id,
-                                                            Helpers.ProductoActivo,
+                                                            tbProducto.prod_EsActivo,
                                                             tbProducto.prod_CodigoBarras,
                                                             Function.GetUser(),
                                                             Function.DatetimeNow()
@@ -302,11 +307,38 @@ namespace ERP_GMEDINA.Controllers
                 return Json("Error", JsonRequestBehavior.AllowGet);
             }
         }
-        [HttpPost]
-        public JsonResult Estadoactivar(string prod_Codigo, bool Activo, string Razon_Inactivacion)
+
+        public ActionResult GenerarReporte(int pscat_Id)
         {
-            var list = db.UDP_Inv_tbProducto_Estado(prod_Codigo, Helpers.ProductoActivo, Razon_Inactivacion).ToList();
-            return Json(list, JsonRequestBehavior.AllowGet);
+
+            ReportDocument rd = new ReportDocument();
+            Stream stream = null;
+            CatalogoProducto ProductoRV = new CatalogoProducto();
+            Reportes ProductoDST = new Reportes();
+
+            var ProductoTableAdapter = new UDV_Inv_CatalogoProductosTableAdapter();
+
+            try
+            {
+                ProductoTableAdapter.Fill(ProductoDST.UDV_Inv_CatalogoProductos, pscat_Id);
+
+                ProductoRV.SetDataSource(ProductoDST);
+                stream = ProductoRV.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+                stream.Seek(0, SeekOrigin.Begin);
+
+                ProductoRV.Close();
+                ProductoRV.Dispose();
+
+                string fileName = "CatalogoProducto.pdf";
+                Response.AppendHeader("Content-Disposition", "inline; filename=" + fileName);
+                return File(stream, "application/pdf");
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                throw;
+            }
         }
+
     }
 }

@@ -61,12 +61,10 @@
                                         @Html.DisplayFor(modelItem => item.tbProducto.tbUnidadMedida.uni_Descripcion)
                                     </td>
                                     <td>
-                                        @Html.ActionLink("Seleccionar", "Reporte", new { pscat_id = item.tbProducto.tbProductoSubcategoria.pscat_Id }, new { @class = "btn btn-primary btn-xs" })
+                                        @Html.ActionLink("Seleccionar", "GenerarReporte", new { pscat_id = item.tbProducto.tbProductoSubcategoria.pscat_Id }, new { @class = "btn btn-primary btn-xs" })
                                     </td>
 
                                 </tr>
-
-
                             }
                         </tbody>
                     </table>

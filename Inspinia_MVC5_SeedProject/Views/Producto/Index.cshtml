@@ -20,7 +20,7 @@
                 <div class="ibox-title">
                     <h5>Listado de Productos</h5>
                     <div class="ibox-tools">
-                        @*@Html.ActionLink("Consultar Existencia", "Index", "ConsultarExistenciaProductos",null, new { @class = "btn btn-primary" })*@                        
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarProducto"><span>Generar Reporte</span></button>
                         @Html.ActionLink("Registrar Producto", "Create", null, new { @class = "btn btn-primary" })
                     </div>
                 </div>
@@ -118,6 +118,23 @@
                         </table>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="ModalAgregarProducto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="width:100%">
+    <div class="modal-dialog" role="document" style="width:75%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Catalogo de Productos</h4>
+            </div>
+            <div class="modal-body" id="frmBuscarProducto">
+                @Html.Partial("_CatalogoProducto", (List<ERP_GMEDINA.Models.tbBodegaDetalle>)ViewBag.Producto)
             </div>
         </div>
     </div>
