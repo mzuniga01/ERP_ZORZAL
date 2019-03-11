@@ -372,7 +372,7 @@ namespace ERP_GMEDINA.Controllers
                         {
                             nocre_Id = NC.nocre_Id,
                             nocre_Codigo = NC.nocre_Codigo,
-                            dev_Id = NC.dev_Id,
+                            dev_Id = (int)NC.dev_Id,
                             clte_Identificacion = NC.clte_Identificacion,
                             clte_Nombres = NC.clte_Nombres,
                             clte_Apellidos = NC.clte_Apellidos,
@@ -449,7 +449,7 @@ namespace ERP_GMEDINA.Controllers
                         {
                             nocre_Id = NC.nocre_Id,
                             nocre_Codigo = NC.nocre_Codigo,
-                            dev_Id = NC.dev_Id,
+                            dev_Id = (int)NC.dev_Id,
                             clte_Identificacion = NC.clte_Identificacion,
                             clte_NombreComercial = NC.clte_NombreComercial,
                             suc_Descripcion = NC.suc_Descripcion,

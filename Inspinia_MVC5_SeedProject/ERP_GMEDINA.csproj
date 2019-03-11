@@ -2121,6 +2121,7 @@
     <Content Include="Views\Usuario\_BuscarEmpleado.cshtml" />
     <Content Include="Views\Usuario\_IndexRolesUsuario.cshtml" />
     <Content Include="Views\PuntoEmision\_GenerarReporte.cshtml" />
+    <Content Include="Views\TipoPago\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
