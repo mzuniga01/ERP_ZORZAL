@@ -9935,7 +9935,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_MovimientoCaja_Select' d
           <FunctionImport Name="UDP_Vent_tbNotaCredito_Select" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbNotaCredito_Select_Result)" />
           <EntitySet Name="UDV_Vent_MovimientoCaja_Select" EntityType="ERP_ZORZALModel.UDV_Vent_MovimientoCaja_Select" />
           <FunctionImport Name="UDP_Vent_tbFactura_Imprimir" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFactura_Imprimir_Result1)">
-            <Parameter Name="fact_Id" Mode="In" Type="Int64" />
+          <Parameter Name="fact_Id" Mode="In" Type="Int64" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
