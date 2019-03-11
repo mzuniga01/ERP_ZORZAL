@@ -1285,6 +1285,12 @@
       <DependentUpon>rptSolicitudEfectivoEntrefechasGeneral.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\rptVentasPorCajaEntreFecha.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptVentasPorCajaEntreFecha.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\SolicitudEfectivo.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -2186,6 +2192,10 @@
     <EmbeddedResource Include="Reports\rptSolicitudEfectivoEntrefechasGeneral.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptSolicitudEfectivoEntrefechasGeneral.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptVentasPorCajaEntreFecha.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptVentasPorCajaEntreFecha.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\SolicitudEfectivo.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

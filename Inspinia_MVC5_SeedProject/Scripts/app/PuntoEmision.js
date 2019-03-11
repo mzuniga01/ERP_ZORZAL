@@ -8,7 +8,7 @@ $(document).ready(function () {
     $('#PuntoEmision').DataTable(
     {
         "searching": true,
-
+        "responsive": true,
         "oLanguage": {
             "oPaginate": {
                 "sNext": "Siguiente",

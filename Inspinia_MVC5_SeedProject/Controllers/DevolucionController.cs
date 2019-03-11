@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CrystalDecisions.CrystalReports.Engine;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -8,7 +9,15 @@ using System.Web;
 using System.Web.Mvc;
 using ERP_GMEDINA.Models;
 using System.Transactions;
-
+using System.Data.SqlClient;
+using System.Data.Common;
+using System.Data.Entity.Core.Objects;
+using System.IO;
+using System.Reflection;
+using CrystalDecisions.Shared;
+using ERP_GMEDINA.Dataset;
+using ERP_GMEDINA.Reports;
+using ERP_GMEDINA.Dataset.ReportesTableAdapters;
 namespace ERP_ZORZAL.Controllers
 {
     public class DevolucionController : Controller
@@ -788,6 +797,7 @@ namespace ERP_ZORZAL.Controllers
             else
                 return RedirectToAction("Index", "Login");
         }
+
     }
 }
 

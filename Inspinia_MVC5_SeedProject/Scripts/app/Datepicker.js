@@ -110,7 +110,7 @@
 
         //Lista Precio
     $("#listp_FechaInicioVigencia").datepicker({
-        dateFormat: 'mm-dd-yy',
+        dateFormat: 'mm/dd/yy',
         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
         changeMonth: true,
@@ -119,24 +119,35 @@
 
 
     $("#FIV").datepicker({
-        dateFormat: 'mm-dd-yy',
+        dateFormat: 'mm/dd/yy',
         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá']
     }).datepicker("setDate", new Date()).datepicker("destroy");
 
     $("#FFV").datepicker({
-        dateFormat: 'mm-dd-yy',
+        dateFormat: 'mm/dd/yy',
         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá']
     }).datepicker("setDate", new Date());
 
 
+    $("#FIVEdit").datepicker({
+        dateFormat: 'mm/dd/yy',
+        monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+        dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá']
+    }).datepicker( new Date()).datepicker("destroy");
+
+    $("#FFVEdit").datepicker({
+        dateFormat: 'mm/dd/yy',
+        monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+        dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá']
+    }).datepicker( new Date());
 
 
 
 
     $("#listp_FechaFinalVigencia").datepicker({
-        dateFormat: 'mm-dd-yy',
+        dateFormat: 'mm/dd/yy',
         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
         changeMonth: true,

@@ -96,43 +96,7 @@ namespace ERP_GMEDINA.Controllers
             }
         }
 
-        ///----------------Reporte pagos-----------------------------
-
-        [HttpPost]
-        public ActionResult Reporte(tbObjeto Objeto)
-        {
-            int iTipoReporte = Objeto.obj_Id;
-            ReportDocument rd = new ReportDocument();
-            Stream stream = null;
-            PagosPorFecha PagosRV = new PagosPorFecha();
-            Reportes PagosDST = new Reportes();
-           
-            var PagosTableAdapter = new UDV_Vent_PagosPorFechasTableAdapter();
-
-            try
-            {
-                PagosTableAdapter.FillFiltros(PagosDST.UDV_Vent_PagosPorFechas,"EFECTIVO", "Brayan Interiano", "EDUARDO LOPEZ", "2019-07-03", "2019-07-03");
-
-                PagosRV.SetDataSource(PagosDST);
-                stream = PagosRV.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
-                stream.Seek(0, SeekOrigin.Begin);
-
-                PagosRV.Close();
-                PagosRV.Dispose();
-
-                string fileName = "Pagos_Fecha.pdf";
-                Response.AppendHeader("Content-Disposition", "inline; filename=" + fileName);
-                return File(stream, "application/pdf");
-            }
-            catch (Exception Ex)
-            {
-                Ex.Message.ToString();
-                throw;
-            }
-        }
-
-
-
+   
 
 
 

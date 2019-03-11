@@ -20,12 +20,31 @@ namespace ERP_GMEDINA.Controllers
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
         GeneralFunctions Function = new GeneralFunctions();
         // GET: /Caja/
-
-        [HttpPost]
-        public ActionResult RVPCEF()
+        public int Usuario()
         {
-            //int iTipoReporte = Objeto.obj_Id;
-            //var list = db.SDP_Acce_GetReportes().ToList();
+            int idUser = 0;
+            try
+            {
+                List<tbUsuario> User = Function.getUserInformation();
+                foreach (tbUsuario Usuario in User)
+                {
+                    idUser = Convert.ToInt32(Usuario.usu_Id);
+                }
+                return idUser;
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                return 0;
+            }
+        }
+        [HttpPost]
+        public ActionResult RVPCEF(tbObjeto Objeto)
+        {
+            int iTipoReporte = Objeto.obj_Id;
+            var list = db.SDP_Acce_GetReportes().ToList();
+            var GetUsuario = Usuario();
+            var UsuarioName = db.tbUsuario.Where(x => x.usu_Id == GetUsuario).Select(i => new { i.usu_Nombres, i.usu_Apellidos }).FirstOrDefault();
             ReportDocument rd = new ReportDocument();
             Stream stream = null;
             rptVentasPorCajaEntreFecha SalidaRV = new rptVentasPorCajaEntreFecha();
@@ -38,6 +57,8 @@ namespace ERP_GMEDINA.Controllers
                 SalidaTableAdapter.FillFiltros(SalidaDST.UDV_Vent_VentasPorCaja_EntreFechas,"CAJA 4", "Brayan Interiano");
 
                 SalidaRV.SetDataSource(SalidaDST);
+                SalidaRV.SetParameterValue("usuario", UsuarioName.usu_Nombres + " " + UsuarioName.usu_Apellidos);
+
                 stream = SalidaRV.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
                 stream.Seek(0, SeekOrigin.Begin);
 

@@ -518,12 +518,31 @@ namespace ERP_GMEDINA.Controllers
             var list = db.UDP_Vent_tbSolicitudCredito_RolGerenteCreditosCobranza(User, Password).SingleOrDefault();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
-        ///----------------Reporte de Cupon de Descuento------------------------------
-
+        ///----------------Reporte de Nota de Credito------------------------------
+        public int Usuario()
+        {
+            int idUser = 0;
+            try
+            {
+                List<tbUsuario> User = Function.getUserInformation();
+                foreach (tbUsuario Usuario in User)
+                {
+                    idUser = Convert.ToInt32(Usuario.usu_Id);
+                }
+                return idUser;
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                return 0;
+            }
+        }
         [HttpPost]
         public ActionResult Reporte(tbObjeto Objeto)
         {
             int iTipoReporte = Objeto.obj_Id;
+            var GetUsuario = Usuario();
+            var UsuarioName = db.tbUsuario.Where(x => x.usu_Id == GetUsuario).Select(i => new { i.usu_Nombres, i.usu_Apellidos }).FirstOrDefault();
             ReportDocument rd = new ReportDocument();
             Stream stream = null;
             NotaCredito NTCreditoRV = new NotaCredito();
@@ -533,9 +552,10 @@ namespace ERP_GMEDINA.Controllers
 
             try
             {
-                CreditoTableAdapter.FillFiltros(NotaCreditoDST.UDV_Vent_NotaCreditoPorFecha, "EDU", Convert.ToDateTime("2019-03-10"), Convert.ToDateTime("2019-03-10"));
+                CreditoTableAdapter.FillFiltros(NotaCreditoDST.UDV_Vent_NotaCreditoPorFecha, "EDU", Convert.ToDateTime("2019-03-11"), Convert.ToDateTime("2019-03-11"));
 
                 NTCreditoRV.SetDataSource(NotaCreditoDST);
+                NTCreditoRV.SetParameterValue("usuario", UsuarioName.usu_Nombres + " " + UsuarioName.usu_Apellidos);
                 stream = NTCreditoRV.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
                 stream.Seek(0, SeekOrigin.Begin);
 

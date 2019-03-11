@@ -7,7 +7,7 @@ $(document).ready(function () {
     $('#Sucursal').DataTable(
     {
         "searching": true,
-
+        "responsive": true,
         "oLanguage": {
             "oPaginate": {
                 "sNext": "Siguiente",
