@@ -147,7 +147,6 @@ C:\Users\WilliamsJonathan\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\
 C:\Users\WilliamsJonathan\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\System.Web.WebPages.Razor.xml
 C:\Users\WilliamsJonathan\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.dll
 C:\Users\WilliamsJonathan\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.pdb
-C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.csproj.CoreCompileInputs.cache
 C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\ERP_GMEDINA.dll.config
 C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\ERP_GMEDINA.dll
 C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\ERP_GMEDINA.pdb
@@ -193,7 +192,6 @@ C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\Newtons
 C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\Newtonsoft.Json.xml
 C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\System.Web.Mvc.xml
 C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\System.Web.Optimization.xml
-C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.csproj.CopyComplete
 C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.dll
 C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.pdb
 C:\Users\Lab 1\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\ERP_GMEDINA.dll.config
@@ -385,23 +383,11 @@ C:\Users\usuario\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug
 C:\Users\usuario\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.csproj.CoreCompileInputs.cache
 C:\Users\usuario\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.csproj.CopyComplete
 C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\SimpleCrypto.Fakes.fakesconfig
-C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\Microsoft.ReportViewer.WebForms.dll
 C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\System.Web.Helpers.dll
 C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\System.Web.Razor.dll
 C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\System.Web.WebPages.Deployment.dll
 C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\System.Web.WebPages.dll
 C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\System.Web.WebPages.Razor.dll
-C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\Microsoft.SqlServer.Types.dll
-C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\de\Microsoft.SqlServer.Types.resources.dll
-C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\es\Microsoft.SqlServer.Types.resources.dll
-C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\fr\Microsoft.SqlServer.Types.resources.dll
-C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\it\Microsoft.SqlServer.Types.resources.dll
-C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\ja\Microsoft.SqlServer.Types.resources.dll
-C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\ko\Microsoft.SqlServer.Types.resources.dll
-C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\pt\Microsoft.SqlServer.Types.resources.dll
-C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\ru\Microsoft.SqlServer.Types.resources.dll
-C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\zh-Hans\Microsoft.SqlServer.Types.resources.dll
-C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\zh-Hant\Microsoft.SqlServer.Types.resources.dll
 C:\Users\antonio\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\ERP_GMEDINA.dll
 C:\Users\Junior Diaz\Documents\GitHub\Inspinia_MVC5_SeedProject\bin\ERP_GMEDINA.dll.config
 C:\Users\Junior Diaz\Documents\GitHub\Inspinia_MVC5_SeedProject\bin\ERP_GMEDINA.dll
@@ -665,7 +651,6 @@ C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\F
 C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\Fakes\sc\b\EntityFramework.SqlServer.xml
 C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\Fakes\sc\b\EntityFramework.xml
 C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\Fakes\sc\b\es\Microsoft.QualityTools.Testing.Fakes.resources.dll
-C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\Fakes\sc\b\es\Microsoft.ReportViewer.WebForms.resources.dll
 C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\Fakes\sc\b\log4net.dll
 C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\Fakes\sc\b\log4net.xml
 C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\Fakes\sc\b\Microsoft.AspNet.Identity.Core.dll
@@ -731,7 +716,6 @@ C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\F
 C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\Fakes\sc\o\f.csprojResolveAssemblyReference.cache
 C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\Fakes\sc\o\SimpleCrypto.Fakes.dll
 C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\Fakes\sc\o\SimpleCrypto.Fakes.pdb
-C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.csprojAssemblyReference.cache
 C:\Users\MágdalyZúniga\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\ERP_GMEDINA.dll.config
 C:\Users\MágdalyZúniga\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\ERP_GMEDINA.dll
 C:\Users\MágdalyZúniga\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\ERP_GMEDINA.pdb
@@ -1222,3 +1206,25 @@ C:\Users\Fernanda\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\Syst
 C:\Users\Fernanda\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.csprojResolveAssemblyReference.cache
 C:\Users\Fernanda\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.dll
 C:\Users\Fernanda\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.pdb
+C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.CrystalReports.Design.dll
+C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.CrystalReports.Engine.dll
+C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.ReportSource.dll
+C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.Shared.dll
+C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.Web.dll
+C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\log4net.dll
+C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.ReportAppServer.DataDefModel.dll
+C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.ReportAppServer.ClientDoc.dll
+C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.ReportAppServer.Controllers.dll
+C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.ReportAppServer.CommLayer.dll
+C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.ReportAppServer.Prompting.dll
+C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
+C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\stdole.dll
+C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\log4net.xml
+C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\Fakes\sc\b\Microsoft.IdentityModel.dll
+C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.csprojResolveAssemblyReference.cache

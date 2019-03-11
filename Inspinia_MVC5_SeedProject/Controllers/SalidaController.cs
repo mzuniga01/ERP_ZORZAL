@@ -9,7 +9,7 @@ using System.Linq;
 using System.Transactions;
 using System.Web.Mvc;
 using System.Web.Services;
-using ERP_GMEDINA.Dataset.SalidaTableAdapters;
+using ERP_GMEDINA.Dataset.ReportesTableAdapters;
 using ERP_GMEDINA.Dataset;
 
 namespace ERP_GMEDINA.Controllers
@@ -144,7 +144,7 @@ namespace ERP_GMEDINA.Controllers
             var vFechaElaboracion = Convert.ToDateTime(FechaElaboracion);
             Reports.Salida SalidaRV = new Reports.Salida();
 
-            Salida SalidaDST = new Salida();
+            Reportes SalidaDST = new Reportes();
 
             var SalidaTableAdapter = new UDV_Inv_Salida_Imprimir_ReporteTableAdapter();
 
