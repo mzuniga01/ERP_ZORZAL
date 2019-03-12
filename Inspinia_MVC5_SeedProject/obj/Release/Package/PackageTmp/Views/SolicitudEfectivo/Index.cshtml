@@ -8,7 +8,18 @@
                 <div class="ibox-title">
                     <h5>Listado de Solicitudes de Efectivo</h5>
                     <div class="ibox-tools">
-                        @Html.ActionLink("Registrar Solicitud Efectivo", "Create", null, new { @class = "btn btn-primary btn-xs" })
+                        @*@using (Html.BeginForm("ReporteGeneral", "SolicitudEfectivo", FormMethod.Post, new { enctype = "multipart/form-data" , target = "_blank" }))
+                        {
+
+                            <button id="buscar" type="submit" class="btn btn-primary btn-sm">Repor teGeneral</button>
+                        }
+                        @using (Html.BeginForm("ReporteCajaCajero", "SolicitudEfectivo", FormMethod.Post, new { enctype = "multipart/form-data", target = "_blank" }))
+                        {
+
+                            <button id="buscar" type="submit" class="btn btn-primary btn-sm">Caja Cajero</button>
+                        }*@
+                        
+                        @Html.ActionLink("Registrar Solicitud Efectivo", "Create", null, new { @class = "btn btn-primary btn-primary" })
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -41,6 +52,9 @@
                                     <th class="hide">
                                         Apertura
                                     </th>
+                                    <th class="hide">
+                                        Cajero
+                                    </th>
                                     <th>
                                         Acciones
                                     </th>
@@ -65,6 +79,9 @@
                                         <td>
                                             @Html.DisplayFor(modelItem => item.Moneda)
                                         </td>
+                                        <th class="hide">
+                                            @Html.DisplayFor(modelItem => item.usuariocrea)
+                                        </th>  
                                         @{ if (Convert.ToString(item.MontoSolicitado) == "")
                                             {
                                                 <td>
@@ -97,14 +114,7 @@
                                         @{
                                             string Editar = "btnEditar";}
                                         @{
-                                            if (item.Apertura == true)
-                                            {
-                                                <td>
-                                                    @Html.ActionLink("Detalle", "Details", new { id = item.IdSolicitud }, new { @class = "btn btn-primary btn-xs" })
-                                                    @Html.ActionLink("Imprimir", "ExportReport", new { id = item.IdSolicitud }, new { @class = "btn btn-primary btn-xs", target = "_blank" })                                                   
-                                                </td>
-                                            }
-                                            else if (Convert.ToString(item.MontoSolicitado) == "")
+                                             if (Convert.ToString(item.MontoSolicitado) == "")
                                             {
                                                 <td>
                                                     @Html.ActionLink("Detalle", "Details", new { id = item.IdSolicitud }, new { @class = "btn btn-primary btn-xs" })

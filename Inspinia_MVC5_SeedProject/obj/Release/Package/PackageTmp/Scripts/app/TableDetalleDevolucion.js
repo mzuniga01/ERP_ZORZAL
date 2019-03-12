@@ -38,22 +38,16 @@ function GetDetalle() {
                   });
                   var suma = data.reduce(function (a, b) { return a + b; }, 0);
 
-
-                  $("#Dev_Monto").val(suma);
                   $('#nocre_Monto').val(suma);
-                  console.log("nocre_Monto", suma)
-
-               
-                  var MontoDev = $("#Dev_Monto").val();
                   $.ajax({
                       url: "/Devolucion/MontoDevolucion",
                       method: "POST",
                       dataType: 'json',
                       contentType: "application/json; charset=utf-8",
-                      data: JSON.stringify({ MontoDev: MontoDev }),
+                      data: JSON.stringify({ MontoDev: suma }),
                   })
                   console.log("Data",data);
-                  console.log(suma);
+                  console.log("suma", suma);
               });
           });
       })

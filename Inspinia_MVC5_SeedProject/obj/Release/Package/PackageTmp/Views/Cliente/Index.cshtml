@@ -29,11 +29,11 @@
                             <div class="form-group">
                                 <label class="control-label col-md-2">Identificación</label>
                                 <div class="col-md-4">
-                                    <input type="text" value="@ViewBag.Ident" id="identificacion" autocomplete="off" onkeypress = "return validarI(event)"  name="identificacion" class="form-control" />
+                                    <input type="text" value="@ViewBag.Ident" id="identificacion" autocomplete="off" onkeypress = "return format(event)" style="text-transform:uppercase"  name="identificacion" class="form-control" />
                                 </div>
                                 <label class="control-label col-md-1">Nombres</label>
                                 <div class="col-md-4">
-                                    <input type="text" value="@ViewBag.Nombres" id="nombre" name="nombre" autocomplete="off" onkeyup = "format(this)" onkeypress = "return validar(event)" class="form-control" style="text-transform:uppercase"/>
+                                    <input type="text" value="@ViewBag.Nombres" id="nombre" name="nombre" autocomplete="off" onkeypress = "return validarJ(event)" style="text-transform:uppercase" class="form-control"/>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -140,36 +140,4 @@
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/DataTableBusquedaGenerica.js"></script>
-<script src="~/Scripts/app/BCliente.js"></script>
 <script src="~/Scripts/app/CaracteresEspeciales.js"></script>
-<script>
-    $("#telefono").on("keypress keyup blur", function (event) {
-        var Telefono = $(this).val();
-        console.log(Telefono)
-        if (Telefono == '') {
-            //$(this).val('+');
-        }
-        this.value = this.value.replace(/[a-záéíóúüñ#/=]+/ig, "");
-    });
-
-
-    function validartel(e) {
-        tecla = (document.all) ? e.keyCode : e.which;
-        tecla = String.fromCharCode(tecla)
-        return /^[ 0-9\s]*$/i.test(tecla);
-    }
-
-    function format(input) {
-        $(input).change(function () {
-            var str = $(input).val();
-            var res = str.toUpperCase();
-            $(input).val(res);
-        });
-        $(input).on("keypress", function () {
-            $input = $(this);
-            setTimeout(function () {
-                $input.val($input.val().toUpperCase());
-            }, 50);
-        })
-    }
-</script>

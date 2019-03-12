@@ -124,14 +124,13 @@
                                 </div>
                             </div>
 
-                            <div class="form-group">
+                             <div class="form-group">
                                 @Html.LabelFor(model => model.cred_DiasSolicitado, new { @class = "control-label col-md-2" })
-                                <div class="col-md-5">
-                                    @Html.EditorFor(model => model.cred_DiasSolicitado)
-                                    <p id="Dias" style="color:red">@Html.ValidationMessageFor(model => model.cred_DiasSolicitado)
-</div>
+                                <div class="col-md-4">
+                                   @Html.TextBoxFor(model => model.cred_DiasSolicitado, new { @onkeypress = "return validar(event)", @class = "form-control", maxlength = 3 })
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.cred_DiasSolicitado)
+                                </div>
                             </div>
-
                             <div class="form-group">
                                 @Html.LabelFor(model => model.cred_DiasAprobado, new { @class = "control-label col-md-2" })
                                 <div class="col-md-5">

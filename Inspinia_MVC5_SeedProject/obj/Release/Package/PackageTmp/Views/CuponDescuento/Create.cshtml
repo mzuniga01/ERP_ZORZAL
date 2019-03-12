@@ -20,7 +20,6 @@
     color:red;}
 </style>
 
-
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
@@ -29,14 +28,11 @@
                     <h5>Registrar Cupón Descuento</h5>
                 </div>
                 <div class="ibox-content">
-
                     @using (Html.BeginForm())
                     {
                         @Html.AntiForgeryToken()
-
                         <div class="form-horizontal">
                             @Html.ValidationSummary(true)
-
                             <div class="form-group">
                                 @Html.LabelFor(model => model.suc_Id, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
@@ -49,7 +45,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-2 AsteriscoRojo">% Descuento</label>
                                 <div class="col-md-4">
-                                   <input type="text" id="cdto_PorcentajeDescuentoH" name="cdto_PorcentajeDescuentoH" class="form-control validanumericos" style="text-align:right" />
+                                   <input type="text" id="cdto_PorcentajeDescuentoH" name="cdto_PorcentajeDescuentoH" class="form-control" style="text-align:right" onkeypress="return valideKey(event);" maxlength="3"/>
                                     <input type="hidden" id="cdto_PorcentajeDescuento" name="cdto_PorcentajeDescuento" />
                                     <p id="smsCantidad" style="color:red">@Html.ValidationMessageFor(model => model.cdto_PorcentajeDescuento)</p>
                                 </div>
@@ -58,7 +54,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-2 AsteriscoRojo">Máximo Monto Descuento</label>
                                 <div class="col-md-4">
-                                   <input type="text" class="form-control validanumericos" data-val="true" data-val-number="El campo Máximo Monto Descuento tiene que ser un Números." data-val-required="*El campo Máximo Monto Descuento es requerido" id="cdto_MaximoMontoDescuentoH" min="0" name="cdto_MaximoMontoDescuentoH" onchange="MASK(this, this.value, '-##,###,##0.00', 1)" onkeypres="MASK(this, this.value, '-##,###,##0.00', 1)" style="text-align:right">
+                                   <input type="text" class="form-control validanumericos" data-val="true" data-val-number="El campo Máximo Monto Descuento tiene que ser un Números." data-val-required="*El campo Máximo Monto Descuento es requerido" id="cdto_MaximoMontoDescuentoH" min="0" name="cdto_MaximoMontoDescuentoH" onchange="MASK(this, this.value, '-##,###,##0.00', 1)" onkeypres="MASK(this, this.value, '-##,###,##0.00', 1); return valideKey(event);" maxlength="6" style="text-align:right">
                                    <input type="hidden" id="cdto_MaximoMontoDescuento" name="cdto_MaximoMontoDescuento" />
                                     <p id="msjMaximoMonto" style="color:red">@Html.ValidationMessageFor(model => model.cdto_MaximoMontoDescuento)</p>
                                 </div>
@@ -67,7 +63,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-2 AsteriscoRojo">Monto Descuento</label>
                                 <div class="col-md-4">
-                                    <input class="form-control validanumericos" data-val="true" data-val-number="The field Monto Descuento must be a number." data-val-required="*El campo Monto Descuento es requerido" id="cdto_MontoDescuentoH" min="0" name="cdto_MontoDescuentoH" onchange="MASK(this,this.value,'-##,###,##0.00',1)" onkeypres="MASK(this,this.value,'-##,###,##0.00',1)" style="text-align:right" type="text" value>
+                                    <input class="form-control validanumericos" data-val="true" data-val-number="The field Monto Descuento must be a number." data-val-required="*El campo Monto Descuento es requerido" id="cdto_MontoDescuentoH" min="0" name="cdto_MontoDescuentoH" onchange="MASK(this,this.value,'-##,###,##0.00',1)" onkeypres="MASK(this, this.value, '-##,###,##0.00', 1); return valideKey(event);" maxlength="6" style ="text-align:right" type="text" >
                                     <input type="hidden" id="cdto_MontoDescuento" name="cdto_MontoDescuento" />
                                     <p id="msjMontoDescuento" style="color:red">@Html.ValidationMessageFor(model => model.cdto_MaximoMontoDescuento)</p>
                                 </div>
@@ -76,7 +72,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-2 AsteriscoRojo">Compra Mínima</label>
                                 <div class="col-md-4">
-                                    <input class="form-control validanumericos" data-val="true" data-val-number="The field Compra Mínima must be a number." data-val-required="*El campo Compra Mínima es requerido" id="cdto_CantidadCompraMinimaH" min="0" name="cdto_CantidadCompraMinimaH" onchange="MASK(this,this.value,'-##,###,##0.00',1)" onkeypres="MASK(this,this.value,'-##,###,##0.00',1)" style="text-align:right" type="text" value>
+                                    <input class="form-control validanumericos" data-val="true" data-val-number="The field Compra Mínima must be a number." data-val-required="*El campo Compra Mínima es requerido" id="cdto_CantidadCompraMinimaH" min="0" name="cdto_CantidadCompraMinimaH" onchange="MASK(this,this.value,'-##,###,##0.00',1)" onkeypres="MASK(this, this.value, '-##,###,##0.00', 1)" maxlength="6" style="text-align:right" type="text" >
                                      <input type="hidden" id="cdto_CantidadCompraMinima" name="cdto_CantidadCompraMinima" />
                                     <p id="smsCantidadMinima" style="color:red">@Html.ValidationMessageFor(model => model.cdto_CantidadCompraMinima)</p>
                                 </div>
@@ -98,13 +94,13 @@
                                 </div>
                             </div>
 
-                            <div class="form-group">
+                            @*<div class="form-group">
                                 @Html.LabelFor(model => model.cdto_FechaRedencion, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.cdto_FechaRedencion, new { htmlAttributes = new { @class= "form-control", @readonly = "readonly" } })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_FechaRedencion)</p>
                                 </div>
-                            </div>
+                            </div>*@
 
                             <div class="form-group">
                                 <div class="col-md-4">
@@ -129,45 +125,29 @@
         </div>
     </div>
 </div>
-
 <input onkeypress="hola();" />
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script>
-        $.datepicker.regional['es'] = {
-            closeText: 'Cerrar',
-            prevText: '< Ant',
-            nextText: 'Sig >',
-            currentText: 'Hoy',
+        $('#cdto_FechaEmision').datepicker({
+            dateFormat: 'mm/dd/yy',
             monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-            monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
-            dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
-            dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
             dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
-            weekHeader: 'Sm',
-            dateFormat: 'dd/mm/yy',
-            firstDay: 1,
-            isRTL: false,
-            showMonthAfterYear: false,
-            yearSuffix: ''
-        };
-        $.datepicker.setDefaults($.datepicker.regional['es']);
+            prevText: 'Ant',
+            nextText: 'Sig'
+        }).datepicker('setDate', new Date());
 
         //-------------Fecha Actual-----------------------
         $(function () {
-            $("#cdto_FechaEmision").datepicker({ dateFormat: 'dd/mm/yy' }).datepicker('setDate', new Date()).datepicker("destroy");
+            $("#cdto_FechaEmision").datepicker({ dateFormat: 'mm/dd/yy' }).datepicker('setDate', new Date()).datepicker("destroy");
 
         });
 
         //-----------Fecha Vencimiento (1 año)--------------------
         var d = new Date();
-        var strDate = d.getDate() + "/" + (d.getMonth() + 1) + "/" + (d.getFullYear() + 1);
+        var strDate = (d.getMonth() + 1) + "/" + d.getDate() + "/" + (d.getFullYear() + 1);
         $("#cdto_FechaVencimiento").val(strDate);
 
-    </script>
-
-    <script>
         //------------------------CantidadMinima > MontoDescuento------------------
         $('#cdto_CantidadCompraMinimaH').blur(function () {
             valido = document.getElementById('smsCantidadMinima');
@@ -182,7 +162,6 @@
             }else
                 valido.innerText = "";
         });
-
 
         //--------------------Digitar Datos--------------------------------
         $(document).ready(function () {
@@ -261,11 +240,9 @@
                         }
                     });
                     //---------------------FIN > 0.00-------------------------
-
                 }
         });
         //--------------------FIN Digitar Datos--------------------------------
-
 
         //--------------------------keyup----------------------
             $('#cdto_PorcentajeDescuentoH').keydown(function () {
@@ -287,9 +264,6 @@
                 var value = $(this).val();
                 $('#cdto_CantidadCompraMinima').val(value);
             });
-    </script>
-
-    <script type="text/javascript">
         //---------------------asteriscos Rojos-------------------------------
         jQuery('input,select').each(function () {
             var req = jQuery(this).attr('data-val-required');
@@ -313,7 +287,6 @@
         });
 
         //--------------------Milecimas y decimales-------------------
-
         function MASK(form, n, mask, format) {
             if (format == "undefined") format = false;
             if (format || NUM(n)) {
@@ -386,5 +359,53 @@
                 e.preventDefault();
             }
         }
+
+        //Solo permite introducir numeros.
+
+        //function valideKey(evt) 
+        $('#cdto_MontoDescuentoH').keypress(function valideKey(evt) {
+            var code = (evt.which) ? evt.which : evt.keyCode;
+            if (code == 8) {
+                //backspace
+                return true;
+            }
+            else if (code >= 48 && code <= 57) {
+                //is a number
+                return true;
+            }
+            else {
+                return false;
+            }
+        });
+
+        $('#cdto_CantidadCompraMinimaH').keypress(function valideKey(evt) {
+            var code = (evt.which) ? evt.which : evt.keyCode;
+            if (code == 8) {
+                //backspace
+                return true;
+            }
+            else if (code >= 48 && code <= 57) {
+                //is a number
+                return true;
+            }
+            else {
+                return false;
+            }
+        });
+
+        function valideKey(evt) {
+            var code = (evt.which) ? evt.which : evt.keyCode;
+            if (code == 8) {
+                //backspace
+                return true;
+            }
+            else if (code >= 48 && code <= 57) {
+                //is a number
+                return true;
+            }
+            else {
+                return false;
+            }
+       }
     </script>
 }

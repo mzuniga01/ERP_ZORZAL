@@ -98,7 +98,7 @@
                                     </div>
                                 </div>
                             </div>
-                         
+
                             <div class="ibox-content">
                                 <h4 style="color:dodgerblue">Denominaciones Solicitadas</h4>
                                 <div class="table table-responsive">
@@ -244,9 +244,10 @@
             $(this).parents("tr").find("td")[3].innerHTML = montosoli;
             if (montosoli != 0) {
                 MontoInicial += montosoli;
-               //Calculo Total
+                //Calculo Total
                 $("td.sumTotal").each(function () {
-                    data.push(parseFloat($(this).text()));                });
+                    data.push(parseFloat($(this).text()));
+                });
                 var suma = data.reduce(function (a, b) { return a + b; }, 0);
                 $("#Monto1").val(suma);
 
@@ -308,7 +309,7 @@
             }
         });
     </script>
-    
+
     <script>
         function AnularSolictud() {
             var solefId = $('#solef_Id').val();
@@ -350,7 +351,7 @@
 
         $("#total").val(MontoSolicitado);
     </script>
-    
+
     <script>
         $(document).ready(function () {
             var montoprimero = 0;
@@ -358,10 +359,10 @@
             var montofinal = 0;
             $("#Monto1").val(montoprimero);
             $("#Monto2").val(montosegunto);
-            $("#MontoNuevo").val(montofinal);           
+            $("#MontoNuevo").val(montofinal);
         });
     </script>
-    
+
     <script>
         $(document).ready(function () {
             if (jQuery("#solef_EsAnulada").is(":checked")) {
@@ -378,11 +379,16 @@
             }
         });
     </script>
-     @* ________________________Remplazar Ceros por espacio y bloquiar letras_________________________________________ *@
+    @* ________________________Remplazar Ceros por espacio y bloquiar letras_________________________________________ *@
     <script>
+        //function soloNumeros(e) {
+        //    var key = window.Event ? e.which : e.keyCode;
+        //    return ((key >= 48 && key <= 57) || (key == 8))
+        //}
         function soloNumeros(e) {
-            var key = window.Event ? e.which : e.keyCode;
-            return ((key >= 48 && key <= 57) || (key == 8))
+            tecla = (document.all) ? e.keyCode : e.which;
+            tecla = String.fromCharCode(tecla)
+            return /^[0-9\-]+$/.test(tecla);
         }
         function pierdeFoco(e) {
             var valor = e.value.replace(/^0*/, '');
@@ -406,10 +412,10 @@
                             var rows = "<tr data-id=" + item.deno_Id + ">" +
                                        "<td hidden>" + item.deno_Id + "</td>" +
                                        "<td>" + item.deno_Descripcion + "</td>" +
-                                        "<td>" + '<input type="text" id="cantidad" name="name" maxlength="3" onKeyPress="return soloNumeros(event)" onKeyUp="pierdeFoco(this)" autocomplete="off" class="form-control" ize="3">' + "</td>" +
+                                        "<td>" + '<input type="number" id="cantidad" name="name" onKeyPress="if(this.value.length==3) return false;" onKeyPress="return soloNumeros(event)" onKeyUp="pierdeFoco(this)" autocomplete="off" class="form-control" ize="3">' + "</td>" +
                                         "<td class='sumTotal'>" + 0 + "</td>" +
-                                        "<td>" +  0 +   "</td>" +
-                                        "<td >" + 0+ "</td>" +
+                                        "<td>" + 0 + "</td>" +
+                                        "<td >" + 0 + "</td>" +
                                        "<td hidden>" + item.deno_valor + "</td>" +
                                        "</tr>";
                             $('#TBSolicitarDenominacion tbody').append(rows);
@@ -426,39 +432,39 @@
         $(document).ready(function () {
             GetDenominacion()
             $('#TBSolicitarDenominacion').hide();
-        function GetDenominacion() {
-            var DENOID = $("#solef_Id").val();
-            var idSolicitud = $("#solef_Id").val();
+            function GetDenominacion() {
+                var DENOID = $("#solef_Id").val();
+                var idSolicitud = $("#solef_Id").val();
 
-            $.ajax({
-                type: 'GET',
-                url: '/SolicitudEfectivo/GetAddDenominacion',
-                datatype: 'JSON',
-                data: { 'DENOID': DENOID },
-                success: function (data) {
-                    $('#TBSolicitarDenominacion tbody').empty();
-                    $.each(data, function (i, item) {
-                        var rows = "<tr data-id=" + item.denoId + ">" +
-                                   "<td hidden>" + item.denoId + "</td>" +
-                                   "<td>" + item.DenoDescripcion + "</td>" +
-                                    "<td>" + '<input type="text" id="cantidad" maxlength="3" name="name" onKeyPress="return soloNumeros(event)" onKeyUp="pierdeFoco(this)" autocomplete="off" class="form-control" ize="3">' + "</td>" +
-                                    "<td class='monto'>" + 0 + "</td>" +
-                                    "<td>" + 0 + "</td>" +
-                                    "<td >" + 0 + "</td>" +
-                                    "<td hidden>" + item.valor + "</td>" +
-                                    "<td hidden>" + idSolicitud + "</td>" +
-                                   "</tr>";
-                        $('#TBSolicitarDenominacion tbody').append(rows);
-                        if ($('#TBSolicitarDenominacion >tbody >tr').length == 0) {
-                        }
-                        else {
-                            $('#TBSolicitarDenominacion').show();
-                        }
-                    });
-                },
-                error: function (data) { alert(data.responseText); }
-            });
-        };
+                $.ajax({
+                    type: 'GET',
+                    url: '/SolicitudEfectivo/GetAddDenominacion',
+                    datatype: 'JSON',
+                    data: { 'DENOID': DENOID },
+                    success: function (data) {
+                        $('#TBSolicitarDenominacion tbody').empty();
+                        $.each(data, function (i, item) {
+                            var rows = "<tr data-id=" + item.denoId + ">" +
+                                       "<td hidden>" + item.denoId + "</td>" +
+                                       "<td>" + item.DenoDescripcion + "</td>" +
+                                        "<td>" + '<input type="number" id="cantidad" onKeyPress="if(this.value.length==3) return false;" name="name" onKeyPress="return soloNumeros(event)" onKeyUp="pierdeFoco(this)" autocomplete="off" class="form-control" ize="3">' + "</td>" +
+                                        "<td class='monto'>" + 0 + "</td>" +
+                                        "<td>" + 0 + "</td>" +
+                                        "<td >" + 0 + "</td>" +
+                                        "<td hidden>" + item.valor + "</td>" +
+                                        "<td hidden>" + idSolicitud + "</td>" +
+                                       "</tr>";
+                            $('#TBSolicitarDenominacion tbody').append(rows);
+                            if ($('#TBSolicitarDenominacion >tbody >tr').length == 0) {
+                            }
+                            else {
+                                $('#TBSolicitarDenominacion').show();
+                            }
+                        });
+                    },
+                    error: function (data) { alert(data.responseText); }
+                });
+            };
         });
 
     </script>
@@ -467,54 +473,53 @@
         $('#guardaencabezado').click(function () {
             $('#mnda_Id').attr("readOnly", "False");
             var obj = document.getElementById('mnda_Id');
-            if (obj.getAttribute("readonly") == "readonly") 
+            if (obj.getAttribute("readonly") == "readonly")
                 alert('Moneda es Nula');
-            else
-                {
+            else {
                 $('#mnda_Id').attr("readOnly", "False");
                 var idmovimiento
-            var Detail = [];
-            var monedas = $('#mnda_Id').val();
+                var Detail = [];
+                var monedas = $('#mnda_Id').val();
 
-            if (monedas <= 0) {
-                valido = document.getElementById('mone');
-                valido.innerText = "El Campo Moneda es Requierido";
-                return false;
-            }
-            else if (monedas > 0) {
-                $('#TBSolicitarDenominacion > tbody  > tr').each(function () {
-                    idItem = $(this).data('id');
-                    var soledCantidadSolicitada = $(this).find("td:eq(2)").find("input").val();
-                    var idSolicitud = ($(this).children("td:eq(7)").html());
-                    if (soledCantidadSolicitada != '' && soledCantidadSolicitada != 0) {
-                        console.log('idItem', idItem);
-                        console.log('soledCantidadSolicitada', soledCantidadSolicitada);
-                        var item = {
-                            deno_Id: idItem,
-                            soled_CantidadSolicitada: parseInt(soledCantidadSolicitada),
-                            solef_Id: parseInt(idSolicitud),
+                if (monedas <= 0) {
+                    valido = document.getElementById('mone');
+                    valido.innerText = "El Campo Moneda es Requierido";
+                    return false;
+                }
+                else if (monedas > 0) {
+                    $('#TBSolicitarDenominacion > tbody  > tr').each(function () {
+                        idItem = $(this).data('id');
+                        var soledCantidadSolicitada = $(this).find("td:eq(2)").find("input").val();
+                        var idSolicitud = ($(this).children("td:eq(7)").html());
+                        if (soledCantidadSolicitada != '' && soledCantidadSolicitada != 0) {
+                            console.log('idItem', idItem);
+                            console.log('soledCantidadSolicitada', soledCantidadSolicitada);
+                            var item = {
+                                deno_Id: idItem,
+                                soled_CantidadSolicitada: parseInt(soledCantidadSolicitada),
+                                solef_Id: parseInt(idSolicitud),
+                            }
+                            Detail.push(item);
                         }
-                        Detail.push(item);
-                    }
-                });
-                console.log(Detail);
-                $.ajax({
-                    url: "/SolicitudEfectivo/InsertDetalleSolicitudDetalle",
-                    method: 'POST',
-                    dataType: "json",
-                    contentType: "application/json; charset=utf-8",
-                    data: JSON.stringify({ procesoData: Detail }),
-                })
-                .done(function (data) {
-                    if (data == 'Error') {
-                        alert('No Enviado');
-                    }
-                    else {                      
-                        console.log(procesoData);
-                        console.log(cantisoli);
-                    }
-                });
-            }  
+                    });
+                    console.log(Detail);
+                    $.ajax({
+                        url: "/SolicitudEfectivo/InsertDetalleSolicitudDetalle",
+                        method: 'POST',
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8",
+                        data: JSON.stringify({ procesoData: Detail }),
+                    })
+                    .done(function (data) {
+                        if (data == 'Error') {
+                            alert('No Enviado');
+                        }
+                        else {
+                            console.log(procesoData);
+                            console.log(cantisoli);
+                        }
+                    });
+                }
             }
         });
     </script>
@@ -537,7 +542,7 @@
                         var rows = "<tr data-id=" + item.soled_Id + ">" +
                             "<td hidden>" + item.soled_Id + "</td>" +
                             "<td>" + item.deno_Descripcion + "</td>" +
-                            '<td><input type="text" id="csolicitada" min="1" maxlength="3" onKeyPress="return soloNumeros(event)" onKeyUp="pierdeFoco(this)" autocomplete="off" class="form-control" ize="3"  value="' + item.soled_CantidadSolicitada + '"  /></td>' +
+                            '<td><input type="number" id="csolicitada" onKeyPress="if(this.value.length==3) return false;" onKeyPress="return soloNumeros(event)" onKeyUp="pierdeFoco(this)" autocomplete="off" class="form-control" ize="3"  value="' + item.soled_CantidadSolicitada + '"  /></td>' +
                             "<td class='sumTotal'>" + item.MontoSolicitado + "</td>" +
                             "<td>" + item.soled_CantidadEntregada + "</td>" +
                             "<td>" + item.MontoEntregado + "</td>" +
@@ -584,7 +589,7 @@
             var Monto = $(this).parents("tr").find("td")[4].innerHTML;
             console.log('Monto Entregado:', Monto);
             console.log('----------------------------');
-            var SolicitudEfectivoDetalle = GetEntregaEfectivoDetalle();
+            var SolicitudEfectivoDetalle = UpdateEfectivoDetalle();
 
             $.ajax({
                 url: "/SolicitudEfectivo/SaveEditSolicitudEfectivoDetalleCantidad",
@@ -596,20 +601,20 @@
                 }
             })
             .done(function (data) {
-                if (data == 'El registro se guardó exitosamente') {                
+                if (data == 'El registro se guardó exitosamente') {
                 }
                 else {
                 }
             });
-            function GetEntregaEfectivoDetalle() {
-                var EntregaEfectivoDetalle = {
+            function UpdateEfectivoDetalle() {
+                var ActualizarEfectivoDetalle = {
                     soled_Id: IdSolicitudDetalle,
                     soled_CantidadSolicitada: CantidadSolicitada,
                     soled_CantidadEntregada: CantidadEntregada,
                     soled_MontoEntregado: Monto,
                     deno_Id: denoID,
                 }
-                return EntregaEfectivoDetalle
+                return ActualizarEfectivoDetalle
             };
         });
     </script>
@@ -622,4 +627,21 @@
             /^([0-9]+\.?[0-9]{0,2})$/
         }
     </script>
+    <script>
+        $(document).keydown(function (e) {
+            if ((e.key == 'g' || e.key == 'G') && (e.ctrlKey || e.metaKey)) {
+                e.preventDefault();
+                //alert("Ctrl-g pressed");
+                $("#guardaencabezado").click();
+                return false;
+            }
+            return true;
+        });
+    </script>
+
+
+
+
+
+
 }

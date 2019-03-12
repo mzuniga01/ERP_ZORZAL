@@ -76,7 +76,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.solef_FechaEntrega, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.solef_FechaEntrega, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.EditorFor(model => model.solef_FechaEntrega, "{0:mm-dd-yyyy}", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     @Html.ValidationMessageFor(model => model.solef_FechaEntrega)
                                 </div>
                                 <label class="control-label col-md-2">Usuario Entrega</label>
@@ -88,7 +88,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => detalle.soled_MontoEntregado, "Monto Entregado", new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => detalle.soled_MontoEntregado, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.EditorFor(model => detalle.soled_MontoEntregado, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     <p style="color:red">@Html.ValidationMessageFor(model => detalle.soled_MontoEntregado)</p>
                             </div>
                             </div>
@@ -97,7 +97,7 @@
                             <div hidden class="form-group col-md-5">
                                 @Html.LabelFor(model => model.solef_UsuarioEntrega, "Usuario Apertura", new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.solef_UsuarioEntrega, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @Value = ViewBag.solef_UsuarioEntrega } })
+                                    @Html.EditorFor(model => model.tbUsuario2.usu_Nombres, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @Value = ViewBag.solef_UsuarioEntrega } })
                                     <p id="MensajeErrorDenominacion" style="color:red"> @Html.ValidationMessageFor(model => model.solef_UsuarioEntrega)</p>
                                 </div>
                             </div>
@@ -181,6 +181,9 @@
             })
         });
 
+
+
+
 </script>
 
 <script type="text/javascript">
@@ -195,7 +198,7 @@
             dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
             dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
             weekHeader: 'Sm',
-            dateFormat: 'dd/mm/yy',
+            dateFormat: 'mm/dd/yy',
             firstDay: 1,
             isRTL: false,
             showMonthAfterYear: false,
@@ -204,7 +207,7 @@
         $.datepicker.setDefaults($.datepicker.regional['es']);
 
         $(function () {
-            $("#solef_FechaEntrega").datepicker({ dateFormat: 'dd/mm/yy', minDate: 0 }).datepicker('setDate', new Date());
+            $("#solef_FechaEntrega").datepicker({ dateFormat: 'mm/dd/yy', minDate: 0 }).datepicker('setDate', new Date());
 
         });
 </script>

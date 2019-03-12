@@ -67,7 +67,7 @@
             @Html.LabelFor(model => model.exo_Documento, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                
-                @Html.EditorFor(model => model.exo_Documento)
+                @Html.EditorFor(model => model.exo_Documento, new { htmlAttributes = new { @autocomplete = "off", @onkeyup = "format(this)", @style = "text-transform:uppercase;" } })
                 <p id="doc" style="color:red">@Html.ValidationMessageFor(model => model.exo_Documento)
 </div>
         </div>
@@ -76,7 +76,7 @@
             @Html.LabelFor(model => model.exo_FechaInicialVigencia, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
 
-                @Html.EditorFor(model => model.exo_FechaInicialVigencia, new { htmlAttributes = new { @readonly = "readonly" } })
+                @Html.EditorFor(model => model.exo_FechaInicialVigencia, "{0:MM/dd/yyyy}", new { htmlAttributes = new { @autocomplete = "off", @readonly = "readonly" } })
                 <p id="cc" style="color:red">@Html.ValidationMessageFor(model => model.exo_FechaInicialVigencia)</p>
 </div>
         </div>
@@ -85,7 +85,7 @@
             @Html.LabelFor(model => model.exo_FechaIFinalVigencia, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
 
-                @Html.EditorFor(model => model.exo_FechaIFinalVigencia, new { htmlAttributes = new { @readonly = "readonly" } })
+                @Html.EditorFor(model => model.exo_FechaIFinalVigencia, "{0:MM/dd/yyyy}", new { htmlAttributes = new { @autocomplete = "off", @readonly = "readonly" } })
                 <p id="ccc" style="color:red">@Html.ValidationMessageFor(model => model.exo_FechaIFinalVigencia)</p>
 </div>
         </div>
@@ -144,7 +144,7 @@
             dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
             dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
             weekHeader: 'Sm',
-            dateFormat: 'dd/mm/yy',
+            dateFormat: 'mm/dd/yy',
             firstDay: 1,
             isRTL: false,
             showMonthAfterYear: false,
@@ -154,8 +154,8 @@
 
         //-------------Fecha Actual-----------------------
         $(function () {
-            $("#exo_FechaInicialVigencia").datepicker({ dateFormat: 'dd/mm/yy' });
-            $("#exo_FechaIFinalVigencia").datepicker({ dateFormat: 'dd/mm/yy' });
+            $("#exo_FechaInicialVigencia").datepicker();
+            $("#exo_FechaIFinalVigencia").datepicker();
 
         });
         </script>

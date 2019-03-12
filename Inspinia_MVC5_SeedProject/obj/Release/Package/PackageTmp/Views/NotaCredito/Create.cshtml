@@ -40,7 +40,7 @@
                     <h5>Registrar Nota Crédito</h5>
                 </div>
                 <div class="ibox-content">
-
+                    <div class="alert alert-danger text-center text-uppercase" id="alertaCaja" style="display:none;">...Por favor realizar una apertura de caja...</div>
                     @using (Html.BeginForm())
                     {
                         @Html.AntiForgeryToken()
@@ -51,8 +51,9 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.suc_Id, new { @class = "control-label required col-md-2" })
                                 <div class="col-md-4">
-                                    <input class="form-control" readonly value="@ViewBag.suc_Descripcion" id="descripcion"/>
+                                    <input class="form-control" readonly value="@ViewBag.suc_Descripcion" id="descripcion" />
                                     <input class="form-control" value="@ViewBag.suc_Id" id="suc_Id" name="suc_Id" type="hidden" />
+                                    <input id="usu_Id" name="usu_Id" type="hidden" class="form-control" value="@ViewBag.usu_Id" />
                                     <span class="validation-error">  @Html.ValidationMessageFor(model => model.suc_Id)</span>
                                 </div>
                             </div>
@@ -60,7 +61,8 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.cja_Id, new { @class = "control-label required col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.cja_Id, new { htmlAttributes = new { @class = "form-control"@*, @readonly = "readonly"*@ }})
+                                    <input class="form-control" id="cja_Descripcion" readonly />
+                                    @Html.EditorFor(model => model.cja_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @type = "hidden" } })
                                     <span class="validation-error">@Html.ValidationMessageFor(model => model.cja_Id)</span>
                                 </div>
                             </div>
@@ -68,8 +70,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.tbUsuario.tbEmpleado.emp_Nombres, "Cajero", new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    
-                                    <input class="form-control" readonly value="@UserName"/>
+                                    <input class="form-control" readonly value="@UserName" />
                                 </div>
                             </div>
 
@@ -96,8 +97,7 @@
                             @*FIN Check box*@
 
                             <div class="form-group" id="divDevolucion">
-                                @Html.LabelFor(model => model.dev_Id, new { @class = "control-label col-md-2" })
-                                @*<label class="control-label col-md-2" id="labeldev" name="labeldev">Devolución</label>*@
+                                @Html.LabelFor(model => model.dev_Id, new { @class = "control-label col-md-2 AsteriscoRojo" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.dev_Id, new { htmlAttributes = new { @readonly = "readonly" } })
                                     <p id="valido" style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.dev_Id)</span></p>
@@ -138,9 +138,9 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.nocre_MotivoEmision, new { @class = "control-label col-md-2 AsteriscoRojo" })
                                 <div class="col-md-4">
-                                    @Html.TextAreaFor(model => model.nocre_MotivoEmision, new { @class = "form-control", @onkeypress = "return soloLetras(event)", @onblur = "limpia()" })
+                                    @Html.TextAreaFor(model => model.nocre_MotivoEmision, new { @class = "form-control", @onkeypress = "return soloLetras(event)", @style = "text-transform:uppercase;", @autocomplete = "off", @onblur = "limpia()" })
                                     <p id="smsMotivoNC" style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.nocre_MotivoEmision)</span></p>
-</div>
+                                </div>
                             </div>
 
                             <div class="form-group">
@@ -150,7 +150,6 @@
                                     <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.nocre_FechaEmision)</span></p>
                                 </div>
                             </div>
-
 
                             <div class="form-group" id="divFechaDev">
                                 @Html.LabelFor(model => model.tbDevolucion.dev_Fecha, new { @class = "control-label col-md-2" })
@@ -199,6 +198,7 @@
     </div>
 </div>
 
+@*-----------------------------------------Modeal Agregar Devolucion-------------------------------*@
 <div>
     <div class="modal fade" id="ModalAgregarDevolucion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
@@ -209,8 +209,24 @@
                     </button>
                     <h4 class="modal-title" id="myModalLabel">Agregar Devolucion</h4>
                 </div>
+                @*<div class="form-group">
+                    <div class="col-md-12">
+                        <input id="searchDevolucion" type="text" class="form-control" placeholder="Buscar Devolución..." />
+                        <br />
+                    </div>
+                </div>*@
                 <div class="modal-body">
-                    @Html.Partial("_IndexDevolucion", (List<tbDevolucionDetalle>)ViewBag.Devolucion)
+                    <table id="DevFactura" class="table table table-striped  table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Monto</th>
+                                <th>Fecha</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="BodyDevoluciones"></tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -223,7 +239,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="CloseAutorizar">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="CloseAutorizar" onclick="devolucionNC()">
                         <span aria-hidden="true">&times;</span>
                     </button>
                     <h4 class="modal-title" id="myModalLabel">Autoriza Nota de Crédito</h4>
@@ -235,13 +251,13 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-4">Usuario</label>
                                     <div class="col-md-6">
-                                        <input id="Username" type="text" placeholder="Usuario" name="Username" class="form-control" autocomplete="off" value="" defautlvalue="false"/>
+                                        <input id="Username1" type="text" placeholder="Usuario" name="Username1" class="form-control" autocomplete="off" value="" defautlvalue="false" />
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-4">Contraseña</label>
                                     <div class="col-md-6">
-                                        <input id="txtPassword" name="txtPassword" class="form-control" type="password" placeholder="Contraseña" value="" defautlvalue="false"/>
+                                        <input id="txtPassword1" name="txtPassword1" class="form-control" type="password" placeholder="Contraseña" value="" defautlvalue="false" />
                                     </div>
                                 </div>
                                 <div><p id="mensajerror" style="color:red"></p></div>
@@ -259,44 +275,115 @@
 </div>
 @*------------------------------------------FINAL MODAL AUTORIZAR NOTA CREDITO--------------------------------------*@
 
-
+<script src="~/Scripts/app/CaracteresEspeciales.js"></script>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    <script>
-        $.datepicker.regional['es'] = {
-            closeText: 'Cerrar',
-            prevText: '< Ant',
-            nextText: 'Sig >',
-            currentText: 'Hoy',
-            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-            monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
-            dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
-            dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
-            dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
-            weekHeader: 'Sm',
-            dateFormat: 'dd/mm/yy',
-            firstDay: 1,
-            isRTL: false,
-            showMonthAfterYear: false,
-            yearSuffix: ''
-        };
-        $.datepicker.setDefaults($.datepicker.regional['es']);
-        $(function () {
-            $("#nocre_FechaEmision").datepicker({ dateFormat: 'dd/mm/yy' }).datepicker('setDate', new Date()).datepicker("destroy");
-
-            $("#tbDevolucion_dev_Fecha").datepicker({ dateFormat: 'dd/mm/yy' }).datepicker("destroy")
-        });
-    </script>
-    <script>
-        $("#cdto_FechaEmision").datepicker({
-        }).datepicker('setDate', new Date());
-    </script>
+    <script src="~/Scripts/app/CaracteresEspeciales.js"></script>
     <script src="~/Scripts/app/NotaCredito.js"></script>
     <script src="~/Scripts/app/GetCodigoNotaCredito.js"></script>
-    @*------------------------radiobutton--------------------------*@
     <script>
+        $(document).ready(function () {
+            $('#DevFactura').DataTable(
+            {
+                "searching": false,
+                "lengthChange": false,
+
+                "oLanguage": {
+                    "oPaginate": {
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior",
+                    },
+                    "sEmptyTable": "No hay registros",
+                    "sInfoEmpty": "Mostrando 0 de 0 Entradas",
+                    "sSearch": "Buscar",
+                    "sInfo": "Mostrando _START_ a _END_ Entradas",
+
+                }
+            });
+        });
+        $(document).ready(function () {
+            var $rows = $('#DevFactura tr');
+            $("#searchDevolucion").keyup(function () {
+                var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+
+                $rows.show().filter(function () {
+                    var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+                    return !~text.indexOf(val);
+                }).hide();
+            })
+        });
+        $(document).on("click", "#DevFactura tbody tr td button#AgregarDev", function () {
+            DevIdItem = $(this).closest('tr').data('devid');
+            MontoItem = $(this).closest('tr').data('monto');
+            fechaItem = $(this).closest('tr').data('fecha');
+            nombreclteItem = $(this).closest('tr').data('nombresclte');
+            console.log(nombreclteItem);
+            identificacionclteItem = $(this).closest('tr').data('identificacionclte');
+            clteidItem = $(this).closest('tr').data('idclte');
+            console.log(clteidItem);
+            $("#dev_Id").val(DevIdItem);
+            $("#nocre_Monto").val(MontoItem);
+            $("#tbDevolucion_dev_Fecha").val(fechaItem);
+            $("#tbCliente_clte_Nombres").val(nombreclteItem);
+            $("#tbCliente_clte_Identificacion").val(identificacionclteItem);
+            $("#clte_Id").val(clteidItem);
+            console.log("#clte_Id");
+            $('#ModalAgregarDevolucion').modal('hide');
+        });
+
+
+        //Modal de Devoluciones----------------------------------------------------------------------------
+
+        $('#buscarDev').click(function () {
+            $.ajax({
+                url: "/NotaCredito/BuscarDevolucion",
+                method: "POST",
+                dataType: 'json',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(),
+
+                error: function () {
+                },
+                success: function (list) {
+                    $('#BodyDevoluciones').empty();
+                    $.each(list, function (key, val) {
+
+                        var fechaString = val.dev_Fecha.substr(6);
+                        var fechaActual = new Date(parseInt(fechaString));
+                        var mes = fechaActual.getMonth() + 1;
+                        var dia = fechaActual.getDate();
+                        var anio = fechaActual.getFullYear();
+                        var Fecha = dia + "/" + mes + "/" + anio;
+
+                        copiar = "<tr  data-devid=" + val.ID + " data-monto=" + val.MONTO + " data-fecha =" + Fecha + " data-identificacionclte =" + val.IDENTIFICACION + " data-nombresclte =" + val.NOMBRES + " data-idclte =" + val.IDCLIENTE + ">";
+                        copiar += "<td id = 'b'>" + val.ID + "</td>";
+                        copiar += "<td id = 'a'>" + val.MONTO + "</td>";
+                        copiar += "<td id = 'c'>" + Fecha + "</td>";
+                        copiar += "<td id = 'd'>" + val.NOMBRES + "</td>";
+                        copiar += "<td>" + '<button id="AgregarDev" class="btn btn-primary btn-xs" type="button">Añadir</button>' + "</td>";
+                        copiar += "</tr>";
+                        $('#BodyDevoluciones').append(copiar);
+                    });
+                    console.log(list);
+                }
+
+
+            });
+
+        })
+        // --------------------------------------------------------------------------------------------------------------
+
+        $(function () {
+            $("#nocre_FechaEmision").datepicker({ dateFormat: 'mm/dd/yy' }).datepicker('setDate', new Date()).datepicker("destroy");
+
+            $("#tbDevolucion_dev_Fecha").datepicker({ dateFormat: 'mm/dd/yy' }).datepicker("destroy")
+        });
+
+        $("#cdto_FechaEmision").datepicker({
+        }).datepicker('setDate', new Date());
+
+    @*------------------------radiobutton--------------------------*@
         function devolucionNC() {
-            //$('#radioBtnDev').click(function () {
             $("#radioBtnDev").prop("checked", true);
             $("#radioBtn").prop("checked", false);
             $("#buscarclte").hide();
@@ -307,26 +394,31 @@
             $('#cltesearch').hide();         //prop("disabled", true);
             $('#dev_Id').val('');
             $("#divFechaDev").show();
-
-            //});
+            document.getElementById("#Username1").value = "";
+            document.getElementById("#txtPassword1").value = "";
+            $('#Username1').val("");
+            $('#txtPassword1').val("");
+            $('#mensajerror').val("");
         }
 
         function otros() {
-            //$('#radioBtn').click(function () {
-            $('#Username').val("");
-            $('#txtPassword').val("");
+            
+            document.getElementById("#Username1").value = "";
+            document.getElementById("#txtPassword1").value = "";
+            $('#Username1').val("");
+            $('#txtPassword1').val("");
             $('#mensajerror').val("");
             $("#radioBtn").prop("checked", true);
             $("#radioBtnDev").prop("checked", false);
+            $('#ModalAutorizarNC').modal('hide');
             $('#cltesearch').show();
             $('#cltesearch').prop("disabled", false);
             $('#divDevolucion').hide();
             $('#nocre_Monto').prop('readonly', false);
             $('#nocre_Monto').val('');
             $("#divFechaDev").hide();
-            //});
+            
         }
-
 
         //---------------------------------Ctrl + G (GuardarRegistro)------------------------------
         $(document).keydown(function (e) {
@@ -337,7 +429,6 @@
             }
             return true;
         });
-
 
         //--------------------------------Asterisco Rojo---------------------------------
         jQuery('input,select').each(function () {
@@ -351,7 +442,6 @@
             }
         });
 
-
         $('#nocre_Monto').blur(function () {
             valido = document.getElementById('smsMontoNC');
             var montoNC = $('#nocre_Monto').val();
@@ -362,7 +452,6 @@
                 valido.innerText = "";
             }
         });
-
 
         $('#nocre_MotivoEmision').blur(function () {
             valido = document.getElementById('smsMotivoNC');
@@ -376,136 +465,144 @@
         });
         //--------------------mascara-----------------------------
 
-    </script>
+        function soloLetras(e) {
+            key = e.keyCode || e.which;
+            tecla = String.fromCharCode(key).toLowerCase();
+            letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
+            especiales = [8, 37, 39, 46];
 
-<script>
-function soloLetras(e) {
-    key = e.keyCode || e.which;
-    tecla = String.fromCharCode(key).toLowerCase();
-    letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
-    especiales = [8, 37, 39, 46];
+            tecla_especial = false
+            for (var i in especiales) {
+                if (key == especiales[i]) {
+                    tecla_especial = true;
+                    break;
+                }
+            }
 
-    tecla_especial = false
-    for(var i in especiales) {
-        if(key == especiales[i]) {
-            tecla_especial = true;
-            break;
+            if (letras.indexOf(tecla) == -1 && !tecla_especial)
+                return false;
         }
-    }
 
-    if(letras.indexOf(tecla) == -1 && !tecla_especial)
-        return false;
-}
-
-function limpia() {
-    var val = document.getElementById("#nocre_MotivoEmision").value;
-    var tam = val.length;
-    for(i = 0; i < tam; i++) {
-        if(!isNaN(val[i]))
-            document.getElementById("#nocre_MotivoEmision").value = '';
-    }
-}
-
-    //---------------------No limpiar textos---------------------------
-$('#guardar').click(function () {
-    var sucursal = $('#descripcion').val();
-    var codigoNC = $('#nocre_Codigo').val();
-    var IDdev = $('#dev_Id').val();
-    var identificacion = $('#tbCliente_clte_Identificacion').val();
-    var cliente = $('#tbCliente_clte_Nombres').val();
-    var monto = $('#nocre_Monto').val();
-    var motivo = $('#nocre_MotivoEmision').val();
-    var fechaEmision = $('#nocre_FechaEmision').val();
-    var fechaDevolucion = $('#tbDevolucion_dev_Fecha').val();
-
-    if (sucursal == "") {
-        valido = document.getElementById('sucursal');
-        valido.innerText = "El Campo Sucursal es Requierido";
-        return false;
-    } else if (codigoNC == ""){
-        valido = document.getElementById('codigoNC');
-        valido.innerText = "El Campo Sucursal es Requierido";
-        return false;
-    } else if (identificacion == "") {
-        valido = document.getElementById('identificacion');
-        valido.innerText = "El Campo Identificación es Requierido";
-        return false;
-    } else if (cliente == "") {
-        valido = document.getElementById('cliente');
-        valido.innerText = "El Campo Cliente es Requierido";
-        return false;
-    } else if (IDdev <= 0 || IDdev == "") {
-        valido = document.getElementById('IDdev');
-        valido.innerText = "El Campo Devolución es Requierido, porfavor seleccione una devolución";
-        return false;
-    }else
-    {
-        return true;
-    }
-});
-
-function filterFloat(evt, input) {
-    // Backspace = 8, Enter = 13, ‘0′ = 48, ‘9′ = 57, ‘.’ = 46, ‘-’ = 43
-    var key = window.Event ? evt.which : evt.keyCode;
-    var chark = String.fromCharCode(key);
-    var tempValue = input.value + chark;
-    if (key >= 48 && key <= 57) {
-        if (filter(tempValue) === false) {
-            return false;
-        } else {
-            return true;
+        function limpia() {
+            var val = document.getElementById("#nocre_MotivoEmision").value;
+            var tam = val.length;
+            for (i = 0; i < tam; i++) {
+                if (!isNaN(val[i]))
+                    document.getElementById("#nocre_MotivoEmision").value = '';
+            }
         }
-    } else {
-        if (key == 8 || key == 13 || key == 0) {
-            return true;
-        } else if (key == 46) {
-            if (filter(tempValue) === false) {
+        
+        //---------------------No limpiar textos---------------------------
+        $('#guardar').click(function () {
+            var sucursal = $('#descripcion').val();
+            var codigoNC = $('#nocre_Codigo').val();
+            var IDdev = $('#dev_Id').val();
+            var identificacion = $('#tbCliente_clte_Identificacion').val();
+            var cliente = $('#tbCliente_clte_Nombres').val();
+            var monto = $('#nocre_Monto').val();
+            var motivo = $('#nocre_MotivoEmision').val();
+            var fechaEmision = $('#nocre_FechaEmision').val();
+            var fechaDevolucion = $('#tbDevolucion_dev_Fecha').val();
+
+            if (sucursal == "") {
+                valido = document.getElementById('sucursal');
+                valido.innerText = "El Campo Sucursal es Requierido";
+                return false;
+            } else if (codigoNC == "") {
+                valido = document.getElementById('codigoNC');
+                valido.innerText = "El Campo Sucursal es Requierido";
+                return false;
+            } else if (identificacion == "") {
+                valido = document.getElementById('identificacion');
+                valido.innerText = "El Campo Identificación es Requierido";
+                return false;
+            } else if (cliente == "") {
+                valido = document.getElementById('cliente');
+                valido.innerText = "El Campo Cliente es Requierido";
+                return false;
+            } else if (IDdev <= 0 || IDdev == "") {
+                valido = document.getElementById('IDdev');
+                valido.innerText = "El Campo Devolución es Requierido, porfavor seleccione una devolución";
                 return false;
             } else {
                 return true;
             }
-        } else {
-            return false;
+        });
+
+        function filterFloat(evt, input) {
+            // Backspace = 8, Enter = 13, ‘0′ = 48, ‘9′ = 57, ‘.’ = 46, ‘-’ = 43
+            var key = window.Event ? evt.which : evt.keyCode;
+            var chark = String.fromCharCode(key);
+            var tempValue = input.value + chark;
+            if (key >= 48 && key <= 57) {
+                if (filter(tempValue) === false) {
+                    return false;
+                } else {
+                    return true;
+                }
+            } else {
+                if (key == 8 || key == 13 || key == 0) {
+                    return true;
+                } else if (key == 46) {
+                    if (filter(tempValue) === false) {
+                        return false;
+                    } else {
+                        return true;
+                    }
+                } else {
+                    return false;
+                }
+            }
         }
-    }
-}
-function filter(__val__) {
-    var preg = /^([0-9]+\.?[0-9]{0,2})$/;
-    if (preg.test(__val__) === true) {
-        return true;
-    } else {
-        return false;
-    }
-
-}
-
-
-    //Autorizar Nota de Credito
-function AprobarCredito() {
-    var User = $("#Username").val();
-    var Password = $("#txtPassword").val();
-    console.log(User)
-    console.log(Password)
-    $.ajax({
-        url: "/NotaCredito/AprobarDescuento",
-        method: "POST",
-        dataType: 'json',
-        contentType: "application/json; charset=utf-8",
-        data: JSON.stringify({ User: User, Password: Password }),
-    })
-    .done(function (data) {
-        console.log(data)
-        if (data == true) {
-            $('#ModalAutorizarNC').modal('hide');
-            otros();
-            valido.innerText = "";
-            //$('#AutorizarDescuentoModal').modal('hide');
+        function filter(__val__) {
+            var preg = /^([0-9]+\.?[0-9]{0,2})$/;
+            if (preg.test(__val__) === true) {
+                return true;
+            } else {
+                return false;
+            }
         }
-        else {
+
+        //Autorizar Nota de Credito
+        function AprobarCredito() {
+            var User = $("#Username1").val();
+            var Password = $("#txtPassword1").val();
+            console.log(User)
+            console.log(Password)
+            $.ajax({
+                url: "/NotaCredito/AprobarDescuento",
+                method: "POST",
+                dataType: 'json',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ User: User, Password: Password }),
+            })
+            .done(function (data) {
+                console.log(data)
+                if (data == true) {
+                    $('#ModalAutorizarNC').modal('hide');
+                    otros();
+                    valido.innerText = "";
+                }
+                else {
+                    valido = document.getElementById('mensajerror');
+                    valido.innerText = "Usuario o contraseña incorrectos";
+                }
+            });
+        }
+        $("#Username1").click(function () {
             valido = document.getElementById('mensajerror');
-            valido.innerText = "Usuario o contraseña incorrectos";
+            valido.innerText = "";
+        });
+        $("#txtPassword1").click(function () {
+            valido = document.getElementById('mensajerror');
+            valido.innerText = "";
+        });
+        //------------solo letras-----------------------
+        //Validacion de letras//
+        function soloLetras(e) {
+            tecla = (document.all) ? e.keyCode : e.which;
+            tecla = String.fromCharCode(tecla)
+            return /^[a-zA-ZáéíóúñÁÉÍÓÚÑ ]+$/.test(tecla);
         }
-    });
-}
-</script>
+    </script>
 }

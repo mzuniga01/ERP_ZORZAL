@@ -53,7 +53,6 @@ $('#AgregarDetalleFactura').click(function () {
             .done(function(datos) {
                 if (datos == CodigoProducto) {
                 //alert('Es Igual.')
-                console.log('Repetido');
                 var cantfisica_nueva = $('#factd_Cantidad').val();
                 $("#tblDetalleFactura td").each(function () {
                     var prueba = $(this).text()
@@ -61,7 +60,6 @@ $('#AgregarDetalleFactura').click(function () {
                         var idcontador = $(this).closest('tr').data('id');
                         var cantfisica_anterior = $(this).closest("tr").find("td:eq(2)").text();
                         var sumacantidades = parseInt(cantfisica_nueva) + parseInt(cantfisica_anterior);
-                        console.log(sumacantidades);
                         $(this).closest('tr').remove();
                         copiar = "<tr data-id=" + idcontador + ">";
                         copiar += "<td id = 'prod_CodigoCreate'>" + CodigoProducto + "</td>";
@@ -123,8 +121,6 @@ $('#AgregarDetalleFactura').click(function () {
         var impuestotal = parseFloat(document.getElementById("isv").innerHTML);
         var porcentaje = parseFloat(impuesto / 100);
         var impuestos = (Cantidad * Precio) * porcentaje;
-        console.log(impuestos)
-
         if (document.getElementById("isv").innerHTML == '') {
             impuesto = document.getElementById("factd_Impuesto").value;
             document.getElementById("isv").innerHTML = parseFloat(impuestos);
@@ -241,4 +237,47 @@ function validar(e) {
     tecla = (document.all) ? e.keyCode : e.which;
     tecla = String.fromCharCode(tecla)
     return /^[a-z0-9A-Z\-]+$/.test(tecla);
+}
+
+$("#Producto").click(function()
+{
+    ListaProductos();
+})
+function ListaProductos() {
+    url = "/Factura/ListaProductos";
+    $('#ModalAgregarProducto').modal('show');
+    var table = $('#tbProductoFactura').dataTable({
+        destroy: true,
+        resposive: true,
+        ajax: {
+            method: "POST",
+            url: url,
+            contentType: "application/json; charset=utf-8",
+            dataType: 'json',
+            "dataSrc": ""
+        },
+        "columns": [
+            { "data": "prod_Codigo" },
+            { "data": "prod_Descripcion" },
+            { "data": "prod_CodigoBarras" },
+            { "defaultContent": "<button class='btn btn-primary btn-xs'  id='seleccionar' data-dismiss='modal'>Seleccionar</button>" }
+        ],
+        "searching": false,
+        "lengthChange": false,
+        "oLanguage": {
+            "oPaginate": {
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior",
+            },
+            "sProcessing": "Procesando...",
+            "sLengthMenu": "Mostrar _MENU_ registros",
+            "sZeroRecords": "No se encontraron resultados",
+            "sEmptyTable": "Ningún dato disponible en esta tabla",
+            "sEmptyTable": "No hay registros",
+            "sInfoEmpty": "Mostrando 0 de 0 Entradas",
+            "sSearch": "Buscar",
+            "sInfo": "Mostrando _START_ a _END_ Entradas",
+            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+        }
+    })
 }

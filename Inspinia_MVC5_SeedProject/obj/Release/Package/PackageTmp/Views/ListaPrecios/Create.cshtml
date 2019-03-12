@@ -58,21 +58,21 @@
                                 <label class="control-label col-md-2 AsteriscoRojo">Fecha Inicio Vigencia</label>
                                 @*@Html.LabelFor(model => model.listp_FechaInicioVigencia, new { @class = "control-label col-md-2" })*@
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.listp_FechaInicioVigencia, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @id = "FIV" } })
+                                    @Html.EditorFor(model => model.listp_FechaInicioVigencia, "{0:MM/dd/yyyy}", new { htmlAttributes = new { @class = "form-control",  @id = "FIV", @readonly = "readonly" } })
                                    @Html.ValidationMessageFor(model => model.listp_FechaInicioVigencia)
 </div>
                             </div>
-                            <br /><br />
+                            <br /><br /><br /><br />
                             <div class="form-group">
                                 <label class="control-label col-md-2 AsteriscoRojo">Fecha Final Vigencia</label>
                                 @*@Html.LabelFor(model => model.listp_FechaFinalVigencia, new { @class = "control-label col-md-2" })*@
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.listp_FechaFinalVigencia, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "FFV" } })
+                                    @Html.EditorFor(model => model.listp_FechaFinalVigencia, "{0:MM/dd/yyyy}", new { htmlAttributes = new { @class = "form-control", @id = "FFV", @autocomplete = "off" } })
                                     @Html.ValidationMessageFor(model => model.listp_FechaFinalVigencia)
 </div>
                             </div>
-
-                            <br /><br />
+                     
+                            <br /><br /><br /><br />
                             <div class="form-group">
                                 <label class="control-label col-md-2 AsteriscoRojo">Prioridad</label>
                                @* @Html.LabelFor(model => model.listp_Prioridad, new { @class = "control-label col-md-2" })*@
@@ -121,10 +121,52 @@
     function nombre(e) {
         tecla = (document.all) ? e.keyCode : e.which;
         tecla = String.fromCharCode(tecla)
-        return /^[a-zñA-ZÑáéíóúÁÉÍÓÚ0-9]+$/.test(tecla);
+        return /^[a-z ñA-Z ÑáéíóúÁÉÍÓÚ 0-9]+$/.test(tecla);
+    }
+
+
+</script>
+<script>
+    function ListaPrecioFechaFinal() {
+        var CodBarra = $('#prod_CodigoBarras').val();
+        $.ajax({
+            url: "/ListaPrecios/IncrementarProducto",
+            method: "POST",
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ data_producto: data_producto }),
+        })
+          .done(function (datos) {
+              console.log(datos)
+              //if (datos.length > 0) {
+              if (datos == data_producto) {
+
+              }
+              else {
+                  var ListaDetalle = {
+                      prod_Codigo: $('#prod_Codigo').val(),
+                      prod_CodigoBarra: $('#tbProducto_prod_CodigoBarras').val(),
+                      lispd_PrecioMayorista: $('#lispd_PrecioMayorista').val(),
+                      lispd_PrecioMinorista: $('#lispd_PrecioMinorista').val(),
+                      lispd_DescCaja: $('#lispd_DescCaja').val(),
+                      lispd_DescGerente: $('#lispd_DescGerente').val(),
+                      //listpd_Id: contador
+                      //Fecha: $('#fechaCreate').val(),
+                  };
+                  console.log(ListaDetalle)
+
+              }
+          })
+        $.each(data, function (key, val) {
+            data_producto = val.CODIGOPRODUCTO;
+            $('#prod_Codigo').val(data_producto);
+        });
+
+
+
+
     }
 </script>
-
 <script type="text/javascript">
 jQuery('input,select').each(function() {
     var req = jQuery(this).attr('data-val-required');

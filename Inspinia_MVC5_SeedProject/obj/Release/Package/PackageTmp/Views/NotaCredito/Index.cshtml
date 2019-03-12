@@ -18,6 +18,12 @@
                 <div class="ibox-title">
                     <h5>Listado Nota Crédito</h5>
                     <div class="ibox-tools">
+
+                        @using (Html.BeginForm("Reporte", "NotaCredito", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            <button id="buscar" type="submit" class="btn btn-primary btn-sm">Generar Reporte</button>
+                        }
+
                         @Html.ActionLink("Registrar Nota Crédito", "Create", null, new { @class = "btn btn-primary" })
                     </div>
                 </div>
@@ -42,22 +48,19 @@
                                     Código
                                     @Html.DisplayNameFor(model => model.dev_Id)
                                 </th>
-                                @*<th>
-                                    @Html.DisplayNameFor(model => model.nocre_Estado)
-                                </th>*@
                                 <th>
                                     @Html.DisplayNameFor(model => model.nocre_FechaEmision)
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.nocre_Anulado)
                                 </th>
-                                <th>Opción</th>
+                                <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (var item in Model)
                             {
-                                 <tr>
+                                <tr>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.tbSucursal.suc_Descripcion)
                                     </td>
@@ -65,7 +68,7 @@
                                         @Html.DisplayFor(modelItem => item.nocre_Codigo)
                                     </td>
                                     @if (item.tbCliente.clte_EsPersonaNatural == true)
-                                                {
+                                    {
                                         <td>
                                             @Html.DisplayFor(modelItem => item.tbCliente.clte_Nombres)
                                             @Html.DisplayFor(modelItem => item.tbCliente.clte_Apellidos)
@@ -84,35 +87,27 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.tbDevolucion.dev_Id)
                                     </td>
-                                    @*@if (item.nocre_Estado == true)
-                            {
-                                        <td>Activo</td>
-                                    }
-                                    else
-                                    {
-                                        <td>Inactivo</td>
-                                    }*@
 
                                     <td>
                                         @Html.DisplayFor(modelItem => item.nocre_FechaEmision)
                                     </td>
-                                    @if(item.nocre_Anulado==false)
-                                                {
+                                    @if (item.nocre_Anulado == false)
+                                    {
                                         <td>No</td>
-                                    }else
+                                    }
+                                    else
                                     {
                                         <td>Si</td>
                                     }
 
-
-                                            @if (item.nocre_Anulado == false)
-                                                {
+                                    @if (item.nocre_Anulado == false && item.nocre_Redimido == false)
+                                    {
                                         <td>
 
                                             @Html.ActionLink("Detalles", "Details", new { id = item.nocre_Id }, new { @class = "btn btn-primary btn-xs" })
                                             @Html.ActionLink("Editar", "Edit", new { id = item.nocre_Id }, new { @class = "btn btn-white btn-xs" })
 
-                                            @if (item.tbCliente.clte_EsPersonaNatural==true && item.dev_Id != null)
+                                            @if (item.tbCliente.clte_EsPersonaNatural == true && item.dev_Id != null)
                                             {
                                                 @Html.ActionLink("Imprimir", "ExportReportclteNaturalxDEV", new { id = item.nocre_Id }, new { @class = "btn btn-info btn-xs" })
                                             }
@@ -129,9 +124,9 @@
                                                 @Html.ActionLink("Imprimir", "ExportReportclteJuridicoxOtros", new { id = item.nocre_Id }, new { @class = "btn btn-info btn-xs" })
                                             }
                                         </td>
-                                            }
-                                            else
-                                            {
+                                    }
+                                    else
+                                    {
                                         <td>
 
                                             @Html.ActionLink("Detalles", "Details", new { id = item.nocre_Id }, new { @class = "btn btn-primary btn-xs" })
@@ -145,7 +140,6 @@
 
                                         </td>
                                     }
-                                   
                                 </tr>
                             }
                         </tbody>
@@ -181,8 +175,7 @@
     $('#btnImprimir').click(function () {
         confirm('¿Deseas Imprimir Cupón Descuento?');
     });
-</script>
-<script>
+
     $(document).ready(function () {
         var Estado = $('#nocre_Anulado').val();
         if (Estado == false) {
@@ -207,4 +200,3 @@
         $('[data-toggle="tooltip"]').tooltip()
     });
 </script>
-

@@ -28,6 +28,8 @@ function ListaPrecioFechaFinal() {
 
             if (FechaFinal <= fechaPrioridad) {
                 alert("Ya Hay una Lista Precio Para Esta Fecha");
+                $('#listp_Prioridad').val("");
+                $('#listp_Prioridad').focus();
             }
         });
     });

@@ -139,7 +139,6 @@
         });
     }
     
-
     function GetPuntoEmisionDetalle() {
         var PuntoEmisionDetalle = {
             pemi_Id: $('#txtpemi_Id').val(),
@@ -152,8 +151,6 @@
         return PuntoEmisionDetalle
     };
 });
-
-
 
 //Datepicker
 $(function () {
@@ -219,4 +216,20 @@ $("#txtRangoInicial").keyup(function () {
     var divisiones = RangoInicio.split("-", 4);
     var ultimo = divisiones[3]
     var NumeroActual = $('#txtNumeroActual').val(ultimo);
+});
+
+$('#btnCancelarModalCreateNumeracion').click(function () {
+    $('#dfisc_Id').val('');
+    $('#txtRangoInicial').val('');
+    $('#txtRangoFinal').val('');
+    $('#txtNumeroActual').val('');
+    $('#txtFechalimite').val('');
+    $('#ErrorDocumentoFiscalCreate').text('');
+    $('#ErrorRangoInicioCreate').text('');
+    $('#ErrorRangoFinalCreate').text('');
+    $('#ErrorRangoInicioLengthCreate').text('');
+    $('#ErrorRangoFinalSplitCreate').text('');
+    $('#ErrorRangoFinalLengthCreate').text('');
+    $('#ErrorFechaLimiteCreate').text('');
+    $('#ErrorFechaLimiteMenorCreate').text('');
 });

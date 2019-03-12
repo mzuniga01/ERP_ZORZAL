@@ -41,7 +41,7 @@
                         <div class="form-horizontal">
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             @* --------Mnesaje ------- *@
-                            <div class="alert alert-success text-center text-uppercase" id="alerta" style="display:none;">...No hay ninguna apertura realizada por favor aperture caja...</div>
+                            <div class="alert alert-danger  text-center text-uppercase" id="alerta" style="display:none;">...No hay ninguna apertura realizada por favor aperture caja...</div>
                             @* ----------------------- *@
                             <div class="form-group">
                                 @Html.LabelFor(model => sucursal.suc_Descripcion, new { @class = "control-label col-md-2" })
@@ -62,9 +62,9 @@
                                     @Html.EditorFor(model => model.mocja_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     @Html.ValidationMessageFor(model => model.mocja_Id, "", new { style = "Color:red" })
                                 </div>
-                                @Html.LabelFor(model => model.tbMovimientoCaja.tbCaja.tbSucursal.suc_Descripcion, "Moneda", new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-
+                                @*@Html.LabelFor(model => model.tbMovimientoCaja.tbCaja.tbSucursal.suc_Descripcion, "Moneda", new { @class = "control-label col-md-2" })*@
+                                <label class="control-label col-md-2" id="moneda">Moneda</label>
+                                 <div class="col-md-4">
                                     <select id="mnda_Id" name="mnda_Id" class="form-control select2 select2-hidden-accessible"
                                             style="width: 100%;" tabindex="-1" aria-hidden="true">
                                         <option value="0">Seleccione la Moneda</option>
@@ -79,12 +79,14 @@
                                     <input id="total" class="form-control" readonly />
                                 </div>
                             </div>
-
-                            <div class="form-group">
-                                <div class="col-md-12">
-                                    @Html.Partial("_ListaDenominaciones", (List<tbDenominacion>)ViewBag.Denominacion)
+                            <div class="ibox-content">
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        @Html.Partial("_ListaDenominaciones", (List<tbDenominacion>)ViewBag.Denominacion)
+                                    </div>
                                 </div>
                             </div>
+
                             <div class="form-group">
                                 <div class="col-md-offset-5 col-md-10">
                                     <input type="submit" value="Guardar" id="guardar" class="btn btn-primary" />
@@ -104,6 +106,12 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+<script>
+        //Ateriscos
+    $('#moneda').append('<span style="color:red"> *</span>');
+
+        //____________________
+</script>
     <script>
         $('#mnda_Id').click(function () {
             valido = document.getElementById('mone');
@@ -226,7 +234,7 @@
                             var rows = "<tr data-id=" + item.deno_Id + ">" +
                                        "<td hidden>" + item.deno_Id + "</td>" +
                                        "<td>" + item.deno_Descripcion + "</td>" +
-                                        "<td>" + '<input type="text" id="cantidad" maxlength="3" name="name" onKeyPress="return soloNumeros(event)" onKeyUp="pierdeFoco(this)" autocomplete="off" class="form-control" ize="3">' + "</td>" +
+                                        "<td>" + '<input type="number" id="cantidad" onKeyPress="if(this.value.length==3) return false;" name="name" onKeyPress="return soloNumeros(event)" onKeyUp="pierdeFoco(this)" autocomplete="off" class="form-control" ize="3">' + "</td>" +
                                         "<td class='sumTotal'>" + 0 + "</td>" +
                                         "<td>" + 0 + "</td>" +
                                         "<td >" + 0 + "</td>" +
@@ -242,15 +250,20 @@
     </script>
 
     <script>
+        //function soloNumeros(e) {
+        //    var key = window.Event ? e.which : e.keyCode;
+        //    return ((key >= 48 && key <= 57) || (key == 8))
+        //}
         function soloNumeros(e) {
-            var key = window.Event ? e.which : e.keyCode;
-            return ((key >= 48 && key <= 57) || (key == 8))
+            tecla = (document.all) ? e.keyCode : e.which;
+            tecla = String.fromCharCode(tecla)
+            return /^[0-9\-]+$/.test(tecla);
         }
 
         function pierdeFoco(e) {
             var valor = e.value.replace(/^0*/, '');
             e.value = valor;
-         }
+        }
     </script>
 
     <script>
@@ -298,7 +311,17 @@
             }
         });
     </script>
-
+    <script>
+        $(document).keydown(function (e) {
+            if ((e.key == 'g' || e.key == 'G') && (e.ctrlKey || e.metaKey)) {
+                e.preventDefault();
+                //alert("Ctrl-g pressed");
+                $("#guardar").click();
+                return false;
+            }
+            return true;
+        });
+    </script>
 }
 
 

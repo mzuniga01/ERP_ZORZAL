@@ -23,10 +23,7 @@
                     <h5>Detalles Nota Crédito</h5>
                 </div>
                 <div class="ibox-content">
-
-
                     <dl class="dl-horizontal">
-
 
                         <dt>
                             @Html.DisplayNameFor(model => model.suc_Id)
@@ -89,7 +86,7 @@
                         @if (Model.dev_Id == null)
                         {
                             <dd>
-                               ----
+                                ----
                             </dd>
                         }
                         else
@@ -98,7 +95,6 @@
                                 @Html.DisplayFor(model => model.tbDevolucion.dev_Id)
                             </dd>
                         }
-                        
 
                         <dt>
                             @Html.DisplayNameFor(model => model.nocre_Redimido)
@@ -191,16 +187,4 @@
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
     });
-
 </script>
-
-
-
-
-
-
-
-
-
-
-

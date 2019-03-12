@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ERP_GMEDINA.Models.tbMovimientoCaja>
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbCaja>
 
 @{
     ViewBag.Title = "Index";
@@ -7,7 +7,7 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Arqueo Caja</h2>
+        <h2>Caja</h2>
         <ol class="breadcrumb">
             <li class="active">
                 <strong></strong>
@@ -22,9 +22,14 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Listado Arqueo Caja</h5>
+                    <h5>Listado de Caja</h5>
 					<div class="ibox-tools">
-						@Html.ActionLink("Registrar Arqueo Caja", "Create", null, new { @class = "btn btn-primary"})
+                        @using (Html.BeginForm("cabo1", "Caja", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+
+                            <button id="buscar" type="submit" class="btn btn-primary btn-sm">Reporte VPCEF</button>
+                        }
+						@Html.ActionLink("Registrar Caja", "Create", null, new { @class = "btn btn-primary"})
 					</div>
                 </div>
                 <div class="ibox-content">
@@ -33,19 +38,13 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.tbCaja.tbSucursal.suc_Descripcion)
+                @Html.DisplayNameFor(model => model.suc_Id)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.tbCaja.cja_Id)
+                @Html.DisplayNameFor(model => model.cja_Id)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.mocja_FechaApertura)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.mocja_FechaArqueo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.mocja_FechaAceptacion)
+                @Html.DisplayNameFor(model => model.cja_Descripcion)
             </th>
             <th>Acciones</th>
         </tr>
@@ -57,31 +56,21 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.tbCaja.tbSucursal.suc_Descripcion)
+                    @Html.DisplayFor(modelItem => item.tbSucursal.suc_Descripcion)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.tbCaja.cja_Descripcion)
+                    @Html.DisplayFor(modelItem => item.cja_Id)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.mocja_FechaApertura)
+                    @Html.DisplayFor(modelItem => item.cja_Descripcion)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.mocja_FechaArqueo)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.mocja_FechaAceptacion)
-                </td>
-
-                <td>
-                    @Html.ActionLink("Detalle", "Details", new { id = item.mocja_Id }, new { @class = "btn btn-primary btn-xs" })
-                    @Html.ActionLink("Editar", "Edit", new { id = item.mocja_Id }, new { @class = "btn btn-primary btn-xs" })
-                    @Html.ActionLink("Imprimir", "ExportReport", new { id = item.mocja_Id }, new { @class = "btn btn-primary btn-xs" })
-
+                    @Html.ActionLink("Detalles", "Details", new { id = item.cja_Id }, new { @class = "btn btn-primary btn-xs" })
+                    @Html.ActionLink("Editar", "Edit", new { id = item.cja_Id }, new { @class = "btn btn-white btn-xs" })
                 </td>
             </tr>
         }
     </tbody>
-
 </table>
 
                 </div>
@@ -89,11 +78,7 @@
         </div>
     </div>
  </div>
-
-
-
-
-
-
 <script src="~/Scripts/jquery-3.3.1.js"></script>
-<script src="~/Scripts/app/MovientoCaja.js"></script>
+<script src="~/Scripts/app/DataTable.js"></script>
+
+

@@ -1,11 +1,7 @@
-﻿@model IEnumerable<ERP_GMEDINA.Models.tbMovimientoCaja>
+﻿@model IEnumerable<ERP_GMEDINA.Models.UDV_Vent_MovimientoCaja_Select>
 
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-@{
-    var test = new ERP_GMEDINA.Models.tbCaja();
-}
-
 @{
     var sucursal = new ERP_GMEDINA.Models.tbSucursal();
 }
@@ -39,10 +35,13 @@
                         <thead>
                             <tr>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.tbCaja.cja_Id)
+                                    Número
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.tbCaja.cja_Descripcion)
+                                    Descripción
+                                </th>
+                                <th class="hidden">
+                                 Id Solicitud
                                 </th>
                                 <th>Acciones</th>
                             </tr>
@@ -52,13 +51,16 @@
                             {
                                 <tr>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.tbCaja.cja_Id)
+                                        @Html.DisplayFor(modelItem => item.cja_Id)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.tbCaja.cja_Descripcion)
+                                        @Html.DisplayFor(modelItem => item.cja_Descripcion)
+                                    </td>
+                                    <td class="hidden">
+                                        @Html.DisplayFor(modelItem => item.solef_Id)
                                     </td>
                                     <td>
-                                        @Html.ActionLink("Aperturar", "CreateApertura", null, new { @class = "btn btn-primary btn-xs" })
+                                        @Html.ActionLink("Imprimir", "ExportReportApertura", new { id = item.solef_Id }, new { @class = "btn btn-primary btn-xs", target = "_blank" })
                                     </td>
                                 </tr>
                             }

@@ -31,7 +31,6 @@
                     <div class="form-horizontal">
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         @Html.HiddenFor(model => model.pemi_Id)
-                        @*Auditoria*@
                         @Html.HiddenFor(model => model.pemi_UsuarioCrea)
                         @Html.HiddenFor(model => model.pemi_FechaCrea)
                         @Html.HiddenFor(model => model.pemi_UsuarioModifica)
@@ -48,7 +47,7 @@
                                 @Html.LabelFor(model => model.pemi_NumeroCAI, new { @class = "control-label col-md-2" })
                                 <div class="col-md-7">
                                     @Html.EditorFor(model => model.pemi_NumeroCAI, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })
-                                    <small style="color:red">No se puede actualizar el número CAI porque ya existe un documento fiscal con este número.</small>  
+                                    <small style="color:red">No se puede actualizar el número CAI porque ya existe uno o varios documentos fiscales con este número.</small>  
                                 </div>
                             </div>
                         }
@@ -57,7 +56,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.pemi_NumeroCAI, new { @class = "control-label col-md-2" })
                                 <div class="col-md-7">
-                                    @Html.EditorFor(model => model.pemi_NumeroCAI, new { htmlAttributes = new { @onkeypress = "return validarNúmeroCAI(event)", autocomplete = "off" } })
+                                    @Html.EditorFor(model => model.pemi_NumeroCAI, new { htmlAttributes = new { @onkeypress = "return validarNúmeroCAI(event)", autocomplete = "off", @style = "text-transform:uppercase;" } })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.pemi_NumeroCAI)</p>
                                 </div>
                             </div>

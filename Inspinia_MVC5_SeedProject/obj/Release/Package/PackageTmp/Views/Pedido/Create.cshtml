@@ -5,13 +5,9 @@
     ViewBag.Title = "Pedidos";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-
-
-
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Ingresar Pedido</h2>
+        <h2>Pedidos</h2>
 
     </div>
     <div class="col-sm-8">
@@ -25,7 +21,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Pedidos</h5>
+                    <h5>Registrar Pedidos</h5>
                 </div>
                 <div class="ibox-content">
 
@@ -39,7 +35,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.suc_Id, new { @class = "control-label col-md-2" })
                                 <div class="col-md-3">
-                                    @Html.EditorFor(model => model.suc_Id, "1", new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly" } })
+                                    @Html.EditorFor(model => model.tbSucursal.suc_Descripcion, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly" ,Value = ViewBag.Sucursal} })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.suc_Id)</p>
                                 </div>
 
@@ -99,6 +95,13 @@
                         </div>
                         @Html.Partial("_ListPedidoDetalle", new tbPedidoDetalle())
 
+
+                        <div class="form-group">
+                            <div class="col-md-offset-5 col-md-10">
+                                <input id="Save" type="submit" value="Guardar" class="btn btn-primary" />
+                                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                            </div>
+                        </div>
                     }
                 </div>
             </div>
@@ -142,6 +145,12 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script>
+        $(document).ready(function () {
+            $("#pedd_Cantidad").val('');
+        });
+    </script>
+    <script src="~/Scripts/app/SavePedidoDetalle.js"></script>
+    <script>
         $.datepicker.regional['es'] = {
             closeText: 'Cerrar',
             prevText: '< Ant',
@@ -167,14 +176,10 @@
         });
 
 
-    </script>
-
-
-    
+    </script> 
     <script src="~/Scripts/app/Datepicker.js"></script>
     <script src="~/Scripts/app/FacturaDetalle.js"></script>
     <script src="~/Scripts/app/ProductoListaPrecios.js"></script>
-
     <script src="~/Scripts/app/Empleados.js"></script>
     <script src="~/Scripts/app/Clientes-Pedido-Credito.js"></script>
     <script>
@@ -182,10 +187,7 @@
             this.value = this.value.replace(/[a-záéíóúüñ#/=]+/ig, "");
             this.value = this.value.replace(/[a-záéíóúüñ#/=\s-+*,.;]+/ig, "");
         });
-
     </script>
-
-
     <script>
         $("#pedd_Cantidad").on("keypress keyup blur", function (event) {
             this.value = this.value.replace(/[a-záéíóúüñ#/=]+/ig, "");
@@ -193,6 +195,34 @@
         });
 
     </script>
+
+<script>
+        $('#Save').click(function () {
+        var Identificacion = $('#cliente_Identificacionxx').val();
+        var diascredito = $('#fact_DiasCredito').val();
+
+
+        console.log(Identificacion)
+        if (Identificacion == "") {
+            valido = document.getElementById('err_cliente');
+            valido.innerText = "Seleccione un cliente";
+            return false;
+        }
+        else if ($('#pedd_Cantidad').is(':checked') && diascredito <= 0) {
+            valido = document.getElementById('DiasError');
+            valido.innerText = "Los dias de credito no deben de ser menores o iguales a 0.";
+            return false;
+        }
+        else if ($('#tblPedidoDetalle >tbody >tr').length == 0) {
+            $('#alerta').show();
+           return false;
+        }
+        else {
+            return true;
+        }
+    });
+    </script>
+
 }
 
 
