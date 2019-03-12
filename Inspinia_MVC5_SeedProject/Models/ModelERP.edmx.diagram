@@ -350,6 +350,8 @@
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbPuntoEmision_tbSucursal_pemi_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbPuntoEmisionDetalle_tbPuntoEmision_pemi_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbSolicitudEfectivo_tbSolicitudEfectivoDetalle_solef_Id" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbEstadoPedido_tbUsuario_usu_Id_Crea" />
+        <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbEstadoPedido_tbUsuario_usu_Id_Modifica" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

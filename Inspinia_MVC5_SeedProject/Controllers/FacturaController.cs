@@ -978,8 +978,17 @@ namespace ERP_GMEDINA.Controllers
         [HttpPost]
         public JsonResult GetParametro()
         {
-            var list = db.spGetParametro().ToList();
-            return Json(list, JsonRequestBehavior.AllowGet);
+            try
+            {
+                var list = db.spGetParametro().ToList();
+                return Json(list, JsonRequestBehavior.AllowGet);
+            }
+            catch(Exception Ex)
+            {
+                Ex.Message.ToString();
+                return Json(Ex.Message.ToString(), JsonRequestBehavior.AllowGet);
+            }
+            
         }
 
         [HttpPost]

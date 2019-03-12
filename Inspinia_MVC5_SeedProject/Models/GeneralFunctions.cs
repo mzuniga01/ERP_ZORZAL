@@ -22,17 +22,15 @@ namespace ERP_GMEDINA.Models
                 UserID = (int)HttpContext.Current.Session["UserLogin"];
                 Sesion = (byte)HttpContext.Current.Session["UserLoginSesion"];
                 if (Sesion > 1)
-                {
                     Retorno = true;
-                }
-                else
-                {
-                    var list = (IEnumerable<SDP_Acce_GetUserRols_Result>)HttpContext.Current.Session["UserLoginRols"];
-                    var BuscarList = list.Where(x => x.obj_Referencia == sPantalla);
-                    int Conteo = BuscarList.Count();
-                    if (Conteo > 0)
-                        Retorno = true;
-                }
+                //else
+                //{
+                //    var list = (IEnumerable<SDP_Acce_GetUserRols_Result>)HttpContext.Current.Session["UserLoginRols"];
+                //    var BuscarList = list.Where(x => x.obj_Referencia == sPantalla);
+                //    int Conteo = BuscarList.Count();
+                //    if (Conteo > 0)
+                //        Retorno = true;
+                //}
             }
             catch (Exception Ex)
             {

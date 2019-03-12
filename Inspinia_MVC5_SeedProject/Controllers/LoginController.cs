@@ -61,7 +61,6 @@ namespace ERP_GMEDINA.Controllers
             }
             catch (Exception Ex)
             {
-                ModelState.AddModelError("usu_NombreUsuario", Ex.Message.ToString());
                 Ex.Message.ToString();
                 return View(Login);
             }
@@ -80,6 +79,7 @@ namespace ERP_GMEDINA.Controllers
             Session["UserLogin"] = null;
             Session["UserLoginRols"] = null;
             Session["UserLoginEsAdmin"] = null;
+            Session["UserLoginSesion"] = null;
             return RedirectToAction("Index", "Login");
         }
 
@@ -102,15 +102,6 @@ namespace ERP_GMEDINA.Controllers
         }
 
         public ActionResult NotFound()
-        {
-            //Validar Inicio de Sesión
-            GeneralFunctions Function = new GeneralFunctions();
-            if (Function.GetUserLogin())
-                return View();
-            else
-                return RedirectToAction("Index", "Login");
-        }
-        public ActionResult SinRol()
         {
             //Validar Inicio de Sesión
             GeneralFunctions Function = new GeneralFunctions();

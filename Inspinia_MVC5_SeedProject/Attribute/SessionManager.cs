@@ -28,27 +28,31 @@ namespace ERP_GMEDINA.Attribute
             var valuesIndex = new RouteValueDictionary(new { action = "Index", controller = "Login" });
             var valuesCambiarPass = new RouteValueDictionary(new { action = "ModificarPass/" + HttpContext.Current.Session["UserLogin"], controller = "Usuario" });
 
-            if (Function.Sesiones(_screenId))
+            if (Function.GetUserLogin())
             {
-                if (Function.GetUserLogin())
+                if (_screenId != "Usuario/ModificarPass")
                 {
-                    if (Function.GetRol())
+                    if (Function.Sesiones(_screenId))
                     {
-                        if (!Function.GetUserRols(_screenId))
+                        if (Function.GetRol())
                         {
-                            filterContext.Result = new RedirectToRouteResult(valuesSinAcceso);
+                            if (_screenId != "Home/Index")
+                            {
+                                if (!Function.GetUserRols(_screenId))
+                                    filterContext.Result = new RedirectToRouteResult(valuesSinAcceso);
+                            }
                         }
+                        else
+                            filterContext.Result = new RedirectToRouteResult(valuesSinRol);
                     }
                     else
-                        filterContext.Result = new RedirectToRouteResult(valuesSinRol);
+                    {
+                        filterContext.Result = new RedirectToRouteResult(valuesCambiarPass);
+                    }
                 }
-                else
-                    filterContext.Result = new RedirectToRouteResult(valuesIndex);
             }
             else
-            {
-                filterContext.Result = new RedirectToRouteResult(valuesCambiarPass);
-            }
+                filterContext.Result = new RedirectToRouteResult(valuesIndex);
         }
     }
 }

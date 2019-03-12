@@ -24,7 +24,7 @@ namespace ERP_GMEDINA.Models
         public int par_RolSupervisorCaja { get; set; }
         public int par_RolCajero { get; set; }
         public int par_RolAuditor { get; set; }
-        public short par_SucursalPrincipal { get; set; }
+        public int par_SucursalPrincipal { get; set; }
         public int par_UsuarioCrea { get; set; }
         public System.DateTime par_FechaCrea { get; set; }
         public Nullable<int> par_UsuarioModifica { get; set; }

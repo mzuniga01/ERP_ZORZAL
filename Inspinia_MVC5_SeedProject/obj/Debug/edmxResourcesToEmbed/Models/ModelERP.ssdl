@@ -4681,6 +4681,30 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_Entr
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Vent_tbEstadoPedido_tbUsuario_usu_Id_Crea">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="tbEstadoPedido" Type="Self.tbEstadoPedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbEstadoPedido">
+        <PropertyRef Name="esped_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vent_tbEstadoPedido_tbUsuario_usu_Id_Modifica">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbEstadoPedido" Type="Self.tbEstadoPedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbEstadoPedido">
+        <PropertyRef Name="esped_UsuarioModifica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Vent_tbFactura_tbDevolucion_fact_Id">
     <End Role="tbFactura" Type="Self.tbFactura" Multiplicity="1" />
     <End Role="tbDevolucion" Type="Self.tbDevolucion" Multiplicity="*" />
@@ -5321,6 +5345,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_Entr
   <Function Name="UDP_Acce_tbRolesUsuario_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
     <Parameter Name="usu_Id" Type="int" Mode="In" />
     <Parameter Name="rol_Id" Type="int" Mode="In" />
+    <Parameter Name="rolu_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="rolu_FechaCrea" Type="date" Mode="In" />
   </Function>
   <Function Name="UDP_Acce_tbRolesUsuario_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
     <Parameter Name="rolu_Id" Type="int" Mode="In" />
@@ -6812,7 +6838,7 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_Entr
     <Parameter Name="arqpg_PagosSistema" Type="decimal" Mode="In" />
     <Parameter Name="arqpg_PagosConteo" Type="decimal" Mode="In" />
     <Parameter Name="arqpg_UsuarioCrea" Type="int" Mode="In" />
-    <Parameter Name="p_arqpg_FechaCrea" Type="datetime" Mode="In" />
+    <Parameter Name="arqpg_FechaCrea" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbPagosArqueo_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="arqpg_Id" Type="int" Mode="In" />
@@ -6869,6 +6895,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_Entr
     <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
     <Parameter Name="pedd_Cantidad" Type="decimal" Mode="In" />
     <Parameter Name="pedd_CantidadFacturada" Type="decimal" Mode="In" />
+    <Parameter Name="pedd_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="pedd_FechaCrea" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbPedidoDetalle_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="pedd_Id" Type="int" Mode="In" />
@@ -8765,6 +8793,14 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_Entr
     <AssociationSet Name="FK_Vent_tbEstadoFactura_tbUsuario_usu_Id_Modifica" Association="Self.FK_Vent_tbEstadoFactura_tbUsuario_usu_Id_Modifica">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbEstadoFactura" EntitySet="tbEstadoFactura" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbEstadoPedido_tbUsuario_usu_Id_Crea" Association="Self.FK_Vent_tbEstadoPedido_tbUsuario_usu_Id_Crea">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbEstadoPedido" EntitySet="tbEstadoPedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbEstadoPedido_tbUsuario_usu_Id_Modifica" Association="Self.FK_Vent_tbEstadoPedido_tbUsuario_usu_Id_Modifica">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbEstadoPedido" EntitySet="tbEstadoPedido" />
     </AssociationSet>
     <AssociationSet Name="FK_Vent_tbFactura_tbDevolucion_fact_Id" Association="Self.FK_Vent_tbFactura_tbDevolucion_fact_Id">
       <End Role="tbFactura" EntitySet="tbFactura" />

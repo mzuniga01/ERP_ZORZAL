@@ -29,5 +29,7 @@ namespace ERP_GMEDINA.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbPedido> tbPedido { get; set; }
+        public virtual tbUsuario tbUsuario { get; set; }
+        public virtual tbUsuario tbUsuario1 { get; set; }
     }
 }
