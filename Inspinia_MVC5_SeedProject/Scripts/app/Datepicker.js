@@ -4,7 +4,7 @@
 
     //Cliente
     $("#clte_FechaNacimiento").datepicker({
-        dateFormat: 'mm-dd-yy',
+        dateFormat: 'dd/mm/yy',
         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
         minDate: '-100Y',
@@ -19,7 +19,7 @@
     }).datepicker('setDate', new Date());
 
     $("#fechaNacimientoEdit").datepicker({
-        dateFormat: 'mm-dd-yy',
+        dateFormat: 'dd/mm/yy',
         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
         minDate: '-100Y',
@@ -36,7 +36,7 @@
 
     var FechaInicio1 = new Date();
     $("#clte_FechaConstitucion").datepicker({
-        dateFormat: 'mm-dd-yy',
+        dateFormat: 'dd/mm/yy',
         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
         minDate: '-100Y',
@@ -51,7 +51,7 @@
     }).datepicker('setDate', new Date());
 
     $("#fechaConstitucionEdit").datepicker({
-        dateFormat: 'mm-dd-yy',
+        dateFormat: 'dd/mm/yy',
         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
         minDate: '-100Y',

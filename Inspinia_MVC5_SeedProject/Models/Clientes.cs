@@ -45,7 +45,7 @@ namespace ERP_GMEDINA.Models
 
         [Display(Name = "Fecha Nacimiento")]
         //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> clte_FechaNacimiento { get; set; }
 
         [Display(Name = "Nacionalidad")]
@@ -83,7 +83,7 @@ namespace ERP_GMEDINA.Models
 
         [Display(Name = "Fecha Constitución")]
         //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> clte_FechaConstitucion { get; set; }
 
         [Display(Name = "Código Municipio")]
