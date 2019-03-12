@@ -21,10 +21,7 @@
                 <div class="ibox-title">
                     <h5>Listado de Pago</h5>
 					<div class="ibox-tools">
-                        @using (Html.BeginForm("Reporte", "Pago", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                        {
-                            <button id="Reporte" type="submit" class="btn btn-primary btn-sm">Reporte</button>         
-                        }
+
 						@Html.ActionLink("Registrar Pago", "Create", null, new { @class = "btn btn-primary "})
 					</div>
                 </div>

@@ -133,7 +133,7 @@ namespace ERP_GMEDINA.Controllers
                     SolicitudesCreditosPorAprobar Reporte = new SolicitudesCreditosPorAprobar();
                     Reportes DataSet = new Reportes();
                     var TableAdapter = new UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporteTableAdapter();
-                    TableAdapter.Fill(DataSet.UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporte, clte_Identificacion_1, clte_EsPersonaNatural, FechaDesde, FechaHasta);
+                    TableAdapter.FillFiltros(DataSet.UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporte, clte_Identificacion_1, FechaDesde, FechaHasta);
                     Reporte.SetDataSource(DataSet);
                     stream = Reporte.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
                     stream.Seek(0, SeekOrigin.Begin);

@@ -19,11 +19,6 @@
                     <h5>Lista Cupón Descuento</h5>
                     <div class="ibox-tools">
 
-                        @using (Html.BeginForm("Reporte", "CuponDescuento", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                        {
-
-                            <button id="Reporte" type="submit" class="btn btn-primary btn-sm">Reporte</button>
-                        }
                         @Html.ActionLink("Registrar Cupón Descuento", "Create", null, new { @class = "btn btn-primary" })
                     </div>
                 </div>

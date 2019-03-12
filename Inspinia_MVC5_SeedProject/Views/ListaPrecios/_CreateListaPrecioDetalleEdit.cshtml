@@ -73,7 +73,7 @@
                                     @Html.EditorFor(model => model.lispd_PrecioMinorista, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @onkeypress = "return solonum(event)" } })
                                     @*@Html.ValidationMessageFor(model => model.lispd_PrecioMayorista)*@
                                     <div id="validacionPrecioMinoristaCreate">
-                                        <p style="color:red" id="validacionPreciosMM">@Html.ValidationMessageFor(model => model.lispd_PrecioMinorista)</p>
+                                        <p id="validacionPreciosMM" style="color:red">@Html.ValidationMessageFor(model => model.lispd_PrecioMinorista)</p>
                                     </div>
 
 
@@ -162,32 +162,42 @@
         </script>
 
         <script>
-
-    $("#lispd_PrecioMinorista").blur(function () {
-        valido = document.getElementById('validacionPreciosMM');
-
-
-        var PrecioMinorista = $('#lispd_PrecioMinorista').val();
-        var PrecioMayorista = $('#lispd_PrecioMayorista').val();
+            $("#lispd_PrecioMinorista").blur(function () {
+                valido = document.getElementById('validacionPreciosMM');
 
 
-
-        if (parseFloat(PrecioMinorista) < parseFloat(PrecioMayorista)) {
-
-            valido.innerText = "El precio minorista debe ser mayor a precio mayorista.";
-            $('#lispd_PrecioMinorista').val("");
-            $('#lispd_PrecioMinorista').focus();
-
-        }
-        else {
-
-            valido.innerText = "";
-        }
+                var PrecioMinorista = $('#lispd_PrecioMinorista').val();
+                var PrecioMayorista = $('#lispd_PrecioMayorista').val();
 
 
-    });
+
+                if (parseFloat(PrecioMinorista) < parseFloat(PrecioMayorista)) {
+
+                    valido.innerText = "El precio minorista debe ser mayor a precio mayorista.";
+                    $('#lispd_PrecioMinorista').val("");
+                    $('#lispd_PrecioMinorista').focus();
+
+                }
+                else {
+
+                    valido.innerText = "";
+                }
 
 
+            });
+            function comprobar() {
+
+                var PMA = $('#lispd_PrecioMayorista').val();
+                var PMI = $('#lispd_PrecioMinorista').val();
+                if (PMA < PMI) {
+                    alert("El precio mayorista debe ser menor que el precio minorista.");
+                    return false;
+                }
+                return true;
+            }
+
+</script>
+        <script>
 
     $("#lispd_DescCaja").blur(function () {
         valido = document.getElementById('smsCantidad');

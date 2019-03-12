@@ -8,6 +8,11 @@ using System.Web;
 using System.Web.Mvc;
 using ERP_GMEDINA.Models;
 using System.Transactions;
+using CrystalDecisions.CrystalReports.Engine;
+using System.IO;
+using ERP_GMEDINA.Reports;
+using ERP_GMEDINA.Dataset.ReportesTableAdapters;
+using ERP_GMEDINA.Dataset;
 
 namespace ERP_GMEDINA.Controllers
 {
@@ -627,6 +632,7 @@ namespace ERP_GMEDINA.Controllers
             var list = db.UDP_Vent_tbSolicitudCredito_RolGerenteCreditosCobranza(User, Password).SingleOrDefault();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
+
 
     }
 }
