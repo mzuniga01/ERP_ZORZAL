@@ -54,7 +54,7 @@ namespace ERP_GMEDINA.Controllers
 
             try
             {
-                SalidaTableAdapter.FillFiltros(SalidaDST.UDV_Vent_VentasPorCaja_EntreFechas,"CAJA 4", "Brayan Interiano");
+                //SalidaTableAdapter.FillFiltros(SalidaDST.UDV_Vent_VentasPorCaja_EntreFechas,"CAJA 4", "Brayan Interiano");
 
                 SalidaRV.SetDataSource(SalidaDST);
                 SalidaRV.SetParameterValue("usuario", UsuarioName.usu_Nombres + " " + UsuarioName.usu_Apellidos);

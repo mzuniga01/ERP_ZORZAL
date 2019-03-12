@@ -95,48 +95,7 @@ namespace ERP_GMEDINA.Controllers
                 throw;
             }
         }
-
-        ///----------------Reporte pagos-----------------------------
-
-        [HttpPost]
-        public ActionResult Reporte(tbObjeto Objeto)
-        {
-            int iTipoReporte = Objeto.obj_Id;
-            ReportDocument rd = new ReportDocument();
-            Stream stream = null;
-            FacturasPendienteDePago FactPdts = new FacturasPendienteDePago();
-            Reportes PagosPendientes = new Reportes();
-           
-            var PagosTableAdapter = new UDV_Vent_FacturasPendientesDePagoTableAdapter();
-
-            try
-            {
-                PagosTableAdapter.FillFiltros(PagosPendientes.UDV_Vent_FacturasPendientesDePago,Convert.ToDateTime("2018-01-01"), Convert.ToDateTime("2020-01-01"), "0801199602365");
-
-                FactPdts.SetDataSource(PagosPendientes);
-                stream = FactPdts.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
-                stream.Seek(0, SeekOrigin.Begin);
-
-                FactPdts.Close();
-                FactPdts.Dispose();
-
-                string fileName = "Pagos_Fecha.pdf";
-                Response.AppendHeader("Content-Disposition", "inline; filename=" + fileName);
-                return File(stream, "application/pdf");
-            }
-            catch (Exception Ex)
-            {
-                Ex.Message.ToString();
-                throw;
-            }
-        }
-
-
-
-
-
-
-
+        
         [HttpGet]
         public JsonResult BuscarFacturaId(int fId)
         {

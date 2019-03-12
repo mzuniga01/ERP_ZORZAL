@@ -35,5 +35,16 @@ namespace ERP_GMEDINA.Models
         //Estados Exoneración 
         public const bool ExoneracionActiva = true;
         public const bool ExoneracionInactiva = false;
+
+        //Reportes
+        public const int rptVentasFechas = 195;
+        public const int rptVentasCajaFechas = 196;
+        public const int rptFacturasPendientesPago = 197;
+        public const int rptVentasConsumidorFinal = 198;
+        public const int rptNotasCreditoEntreFechas = 199;
+        public const int rptAnalisisMora = 200;
+        public const int rptSolicitudesCreditoAprobar = 202;
+        public const int rptCuponesDescuentoFechas = 205;
+        
     }
 }

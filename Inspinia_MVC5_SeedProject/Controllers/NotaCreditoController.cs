@@ -537,40 +537,5 @@ namespace ERP_GMEDINA.Controllers
                 return 0;
             }
         }
-        [HttpPost]
-        public ActionResult Reporte(tbObjeto Objeto)
-        {
-            int iTipoReporte = Objeto.obj_Id;
-            var GetUsuario = Usuario();
-            var UsuarioName = db.tbUsuario.Where(x => x.usu_Id == GetUsuario).Select(i => new { i.usu_Nombres, i.usu_Apellidos }).FirstOrDefault();
-            ReportDocument rd = new ReportDocument();
-            Stream stream = null;
-            NotaCredito NTCreditoRV = new NotaCredito();
-            Reportes NotaCreditoDST = new Reportes();
-
-            var CreditoTableAdapter = new UDV_Vent_NotaCreditoPorFechaTableAdapter();
-
-            try
-            {
-                CreditoTableAdapter.FillFiltros(NotaCreditoDST.UDV_Vent_NotaCreditoPorFecha, "EDU", Convert.ToDateTime("2019-03-11"), Convert.ToDateTime("2019-03-11"));
-
-                NTCreditoRV.SetDataSource(NotaCreditoDST);
-                NTCreditoRV.SetParameterValue("usuario", UsuarioName.usu_Nombres + " " + UsuarioName.usu_Apellidos);
-                stream = NTCreditoRV.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
-                stream.Seek(0, SeekOrigin.Begin);
-
-                NTCreditoRV.Close();
-                NTCreditoRV.Dispose();
-
-                string fileName = "Nota_Credito.pdf";
-                Response.AppendHeader("Content-Disposition", "inline; filename=" + fileName);
-                return File(stream, "application/pdf");
-            }
-            catch (Exception Ex)
-            {
-                Ex.Message.ToString();
-                throw;
-            }
-        }
     }
 }
