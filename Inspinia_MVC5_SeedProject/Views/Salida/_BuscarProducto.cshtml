@@ -6,7 +6,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-content">
-                    <table id="tblBusquedaGenerica" class="table table table-striped  table-bordered">
+                    <table id="tblBusquedaGenerica" class="table table table-striped  table-bordered" style="width:100%">
                         <thead>
                             <tr>
                                 <th>
@@ -15,10 +15,22 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.tbProducto.prod_Descripcion)
                                 </th>
+                                <td>
+                                    @Html.DisplayNameFor(model => model.tbProducto.prod_Marca)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayNameFor(model => model.tbProducto.prod_Modelo)
+                                </td>
+                                <td>
+                                    @Html.DisplayNameFor(model => model.tbProducto.prod_Talla)
+                                </td>
+                                <td>
+                                    @Html.DisplayNameFor(model => model.tbProducto.prod_Color)
+                                </td>
                                 <th>
                                     @Html.DisplayNameFor(model => model.tbProducto.tbProductoSubcategoria.pcat_Id)
-                                </th>
-                                <th>
+                                    -
                                     @Html.DisplayNameFor(model => model.tbProducto.pscat_Id)
                                 </th>
                                 <th>
@@ -32,7 +44,46 @@
                                 </th>
                             </tr>
                         </thead>
-                        <tbody></tbody>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    @Html.HiddenFor(modelItem => item.tbProducto.tbProductoSubcategoria.tbProductoCategoria.pcat_Id)
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.prod_Codigo)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbProducto.prod_Marca)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbProducto.prod_Modelo)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbProducto.prod_Talla)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbProducto.prod_Color)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbProducto.tbProductoSubcategoria.tbProductoCategoria.pcat_Nombre)
+                                        -
+                                        @Html.DisplayFor(modelItem => item.tbProducto.tbProductoSubcategoria.pscat_Descripcion)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbProducto.tbUnidadMedida.uni_Descripcion)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbProducto.prod_CodigoBarras)
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-primary btn-xs" value="@item.tbProducto.prod_CodigoBarras" id="seleccionar" data-dismiss="modal">Seleccionar</button>
+                                    </td>
+                                </tr>
+                                }
+                        </tbody>
                     </table>
                 </div>
             </div>

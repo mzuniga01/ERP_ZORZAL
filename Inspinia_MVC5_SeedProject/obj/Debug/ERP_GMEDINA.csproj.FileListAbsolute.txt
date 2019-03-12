@@ -678,7 +678,6 @@ C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\F
 C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\Fakes\sc\b\Microsoft.Owin.Security.xml
 C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\Fakes\sc\b\Microsoft.Owin.xml
 C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\Fakes\sc\b\Microsoft.QualityTools.Testing.Fakes.dll
-C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\Fakes\sc\b\Microsoft.ReportViewer.WebForms.dll
 C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\Fakes\sc\b\Microsoft.VisualStudio.QualityTools.WebTestFramework.dll
 C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\Fakes\sc\b\Microsoft.Web.Infrastructure.dll
 C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\Fakes\sc\b\Newtonsoft.Json.dll
@@ -1225,5 +1224,4 @@ C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\Crystal
 C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\stdole.dll
 C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\bin\log4net.xml
 C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\Fakes\sc\b\Microsoft.IdentityModel.dll
-C:\Users\crist\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.csprojResolveAssemblyReference.cache
 C:\Users\DELL\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\obj\Debug\ERP_GMEDINA.csprojResolveAssemblyReference.cache

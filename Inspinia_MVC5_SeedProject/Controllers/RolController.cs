@@ -363,7 +363,7 @@ namespace ERP_GMEDINA.Controllers
             {
                 var BodegaOrigen = 4;
                 var BodegaDestino = 10;
-                ProductoSolicitadosTableAdapter.Fill(ProductoSolicitadosDST.UDV_Inv_ProductosSolicitadosPorEntregar, UsuarioFull, BodegaOrigen, BodegaDestino);
+                ProductoSolicitadosTableAdapter.Fill(ProductoSolicitadosDST.UDV_Inv_ProductosSolicitadosPorEntregar, BodegaOrigen, BodegaDestino);
 
                 ProductoSolicitadosRV.SetDataSource(ProductoSolicitadosDST);
                 stream = ProductoSolicitadosRV.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);

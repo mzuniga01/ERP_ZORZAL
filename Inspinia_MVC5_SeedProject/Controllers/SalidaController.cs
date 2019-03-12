@@ -82,6 +82,7 @@ namespace ERP_GMEDINA.Controllers
                 foreach (tbUsuario Usuario in User)
                 {
                     idUser = Convert.ToInt32(Usuario.emp_Id);
+
                 }
                 return idUser;
             }
@@ -206,13 +207,17 @@ namespace ERP_GMEDINA.Controllers
             try
             {
                 Session["SalidaDetalle"] = null;
-                ViewBag.sal_BodDestino = db.SDP_tbBodega_Listado(3).ToList();
                 int idUser = Usuario();
-                ViewBag.bod_Id = new SelectList(db.tbBodega.Where(x => x.bod_ResponsableBodega == idUser).ToList(), "bod_Id", "bod_Nombre");
-                ViewBag.sal_BodDestino = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
+                var vbod_Id = (from bodega in db.tbBodega where bodega.bod_ResponsableBodega == idUser select new { bodId = bodega.bod_Id, bod_Nombre = bodega.bod_Nombre }).FirstOrDefault();
+                ViewBag.BodegaSelec = vbod_Id.bod_Nombre;
+                ViewBag.bod_Id = vbod_Id.bodId;
+                //ViewBag.bod_Id = new SelectList(db.tbBodega.Where(x => x.bod_ResponsableBodega == idUser).ToList(), "bod_Id", "bod_Nombre");
+                //ViewBag.sal_BodDestino = db.SDP_tbBodega_Listado(3).ToList();
+                ViewBag.sal_BodDestino = new SelectList(db.tbBodega.Where(x => x.bod_Id != vbod_Id.bodId), "bod_Id", "bod_Nombre");
                 ViewBag.estm_Id = new SelectList(db.tbEstadoMovimiento, "estm_Id", "estm_Descripcion");
                 ViewBag.tsal_Id = new SelectList(db.tbTipoSalida, "tsal_Id", "tsal_Descripcion");
-                ViewBag.Producto = db.tbBodegaDetalle.ToList();
+                
+                ViewBag.Producto = db.tbBodegaDetalle.Where(x => x.bod_Id == vbod_Id.bodId && x.bodd_CantidadExistente > x.bodd_CantidadMinima).ToList();
                 return View();
             }
             catch (Exception Ex)
@@ -230,16 +235,18 @@ namespace ERP_GMEDINA.Controllers
         [SessionManager("Salida/Create")]
         public ActionResult Create([Bind(Include = "bod_Id,fact_Id,fact_Codigo,sal_FechaElaboracion,estm_Id,tsal_Id,sal_RazonDevolucion, sal_BodDestino, sal_EsAnulada, sal_RazonAnulada")] tbSalida tbSalida)
         {
+            int idUser = Usuario();
+            var vbod_Id = (from bodega in db.tbBodega where bodega.bod_ResponsableBodega == idUser select new { bodId = bodega.bod_Id, bod_Nombre = bodega.bod_Nombre }).FirstOrDefault();
             try
             {
-                int idUser = Usuario();
-                ViewBag.Producto = db.tbBodegaDetalle.ToList();
-                ViewBag.bod_Id = new SelectList(db.tbBodega.Where(x => x.bod_ResponsableBodega == idUser).ToList(), "bod_Id", "bod_Nombre");
-                ViewBag.sal_BodDestinosa = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
+                ViewBag.BodegaSelec = vbod_Id.bod_Nombre;
+                ViewBag.bod_Id = vbod_Id.bodId;
+                ViewBag.Producto = db.tbBodegaDetalle.Where(x => x.bod_Id == vbod_Id.bodId && x.bodd_CantidadExistente > x.bodd_CantidadMinima).ToList();
+               
                 ViewBag.estm_Id = new SelectList(db.tbEstadoMovimiento, "estm_Id", "estm_Descripcion");
                 ViewBag.tsal_Id = new SelectList(db.tbTipoSalida, "tsal_Id", "tsal_Descripcion");
                 ViewBag.prod_Codigo = new SelectList(db.tbProducto, "prod_Codigo", "prod_Descripcion");
-                ViewBag.sal_BodDestino = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
+                ViewBag.sal_BodDestino = new SelectList(db.tbBodega.Where(x => x.bod_Id != vbod_Id.bodId), "bod_Id", "bod_Nombre");
                 var list = (List<tbSalidaDetalle>)Session["SalidaDetalle"];
 
                 var MensajeError = "0";
@@ -306,7 +313,7 @@ namespace ERP_GMEDINA.Controllers
                 }
                 else
                 {
-                    ViewBag.Producto = db.tbBodegaDetalle.ToList();
+                    ViewBag.Producto = db.tbBodegaDetalle.Where(x => x.bod_Id == vbod_Id.bodId && x.bodd_CantidadExistente < x.bodd_CantidadMinima).ToList();
                     var errors = ModelState.Values.SelectMany(v => v.Errors);
                     return View(tbSalida);
                 }
@@ -315,7 +322,7 @@ namespace ERP_GMEDINA.Controllers
             {
                 ModelState.AddModelError("", "No se pudo agregar el registros" + Ex.Message.ToString());
 
-                ViewBag.Producto = db.tbBodegaDetalle.ToList();
+                ViewBag.Producto = db.tbBodegaDetalle.Where(x => x.bod_Id == vbod_Id.bodId && x.bodd_CantidadExistente < x.bodd_CantidadMinima).ToList();
             }
             Session["SalidaDetalle"] = null;
             return View(tbSalida);

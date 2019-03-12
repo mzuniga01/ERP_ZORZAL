@@ -25,7 +25,6 @@
                     <div class="ibox-tools">
                         <input type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalGenReporte" value="Generar Reporte" />
                         @Html.ActionLink("Registrar Salida", "Create", null, new { @class = "btn btn-primary" })
-                        @Html.ActionLink("RedirectToAspx", "RedirectToAspx", null, new { @class = "btn btn-success" })
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -149,8 +148,8 @@
     $(document).ready(function () {
         $('#Datatables').DataTable(
             {
-                "searching": false,
-                "lengthChange": false,
+                "searching": true,
+                "lengthChange": true,
 
                 "oLanguage": {
                     "oPaginate": {

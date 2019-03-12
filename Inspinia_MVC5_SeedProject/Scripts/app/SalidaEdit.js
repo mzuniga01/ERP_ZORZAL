@@ -159,6 +159,15 @@ function SeleccionProducto() {
         });
     }
     else {
+        $('#prod_Codigo').val('');
+        $('#prod_Descripcion').val('');
+        $('#pscat_Id').val('');
+        $('#uni_Id').val('');
+        $('#pcat_Id').val('');
+        $("#prod_CodigoBarras").val('');
+        $('#sald_Cantidad').val('');
+        $('#Error_Barras').text('');
+        $('#NombreError').text('');
     }
 };
 function GetNewSalidaDetalle() {
@@ -239,6 +248,8 @@ function ProductoCantidad(bod_Id, prod_Codigo) {
                 $('#CantidaExistente').after('<ul id="CantidaExistenteProd" class="validation-summary-errors text-danger">Sin existencia de este producto</ul>');
             }
             else {
+                $('#CantidaExistenteProd').text('');
+
             }
         }
     })
@@ -981,7 +992,7 @@ console.log(sumacantidades);
 //            tem = /\brv[ :]+(\d+)/g.exec(ua) || [];
 //            return 'IE ' + (tem[1] || '');
 //        }
-//        if (M[1] === 'Chrome') {
+//        if (M[1] == 'Chrome') {
 //            tem = ua.match(/\b(OPR|Edge)\/(\d+)/);
 //            if (tem != null) return tem.slice(1).join(' ').replace('OPR', 'Opera');
 //        }

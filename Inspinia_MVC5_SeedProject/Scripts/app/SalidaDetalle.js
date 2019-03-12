@@ -77,8 +77,8 @@ function validateMyForm() {
         }
         else {
             if (TipoSalida == "Venta") {
-                var validacionFactura = $("#CodigoError").text()
-                if (validacionFactura != '') {
+                validacionFactura = $("#CodigoError").text()
+                if (validacionFactura !== '') {
                     vFactura = false;
                     $('#fact_Codigo').focus()
 
@@ -95,7 +95,7 @@ function validateMyForm() {
             }
             else {
                 if (TipoSalida == "DEVOLUCION") {
-                    if (validacionFactura != 'Factura Disponible') {
+                    if (validacionFactura !== 'Factura Disponible') {
                         $('#validationFactura').text('');
                         vDFactura = false;
                         $('#fact_Codigo').focus()
@@ -161,7 +161,6 @@ function TipoSalida() {
     var e = document.getElementById("tsal_Id");
     var vTipoSalida = e.options[e.selectedIndex].text;
     return false;
-    return vTipoSalida
 };
 
 $(document).ready(function () {
@@ -178,7 +177,6 @@ $(document).ready(function () {
                 "sProcessing": "Procesando...",
                 "sLengthMenu": "Mostrar _MENU_ registros",
                 "sZeroRecords": "No se encontraron resultados",
-                "sEmptyTable": "Ningún dato disponible en esta tabla",
                 "sEmptyTable": "No hay registros",
                 "sInfoEmpty": "Mostrando 0 de 0 Entradas",
                 "sSearch": "Buscar",
@@ -190,6 +188,7 @@ $(document).ready(function () {
 
 function ProductoCantidad(bod_Id, prod_Codigo) {
     $("#prod_CodigoBarras").val();
+    $("#CantidaExistenteProd").text('');
     var cod_Barras = $("#prod_CodigoBarras").val();
     return $.ajax({
         url: "/Salida/Cantidad",
@@ -205,14 +204,18 @@ function ProductoCantidad(bod_Id, prod_Codigo) {
             var CantidadMinima = data.CantidadMinima
             var prod_CodigoCampo = $('#prod_Codigo').val();
             var currentRow = $("#tblSalidaDetalle tbody tr");
+            //var DataTable = $("#tblSalidaDetalle >tbody >tr").DataTable();
+            //$("#tblSalidaDetalle td").each(function () {
             var prod_CodigoTabla = currentRow.find("td:eq(0)").text();
-            if (prod_CodigoTabla != "No hay registros") {
-                $("#tblSalidaDetalle >tbody >tr").each(function () {
-                    console.log(prod_CodigoTabla)
-
-                    if (prod_CodigoCampo == prod_CodigoTabla) {
-                        var CantidadTabla = currentRow.find("td:eq(7)").text();
-
+            var idcontador = $(this).closest('tr').data('id');
+            var cantfisica_anterior = $(this).closest("tr").find("td:eq(7)").text();
+            console.log(prod_CodigoTabla)
+            if (prod_CodigoTabla !== "No hay registros") {
+                currentRow.each(function () {
+                    var prod_CodigoTablaeach = $(this).closest("tr").find("td:eq(0)").text();
+                    
+                    if (prod_CodigoCampo == prod_CodigoTablaeach) {
+                        var CantidadTabla = $(this).closest("tr").find("td:eq(7)").text();
                         var CantidatTotal = parseFloat(CantidadAceptada) + parseFloat(CantidadMinima)
                         var CantidadRestante = parseFloat(CantidadAceptada) - parseFloat(CantidadTabla)
                         if (CantidadTabla >= CantidadAceptada && CantidadRestante > 0) {
@@ -232,6 +235,10 @@ function ProductoCantidad(bod_Id, prod_Codigo) {
                                 }
                             }
                         }
+                    }
+                    else {
+                            $("#CantidaExistenteProd").text('');
+                            $('#CantidaExistente').after('<ul id="CantidaExistenteProd" class="validation-summary-errors text-danger">Cantidad Existente en Bodega: ' + CantidadAceptada + '</ul>');
                     }
                 })
             }
@@ -271,6 +278,7 @@ function CantidadExiste(Cod_Producto, CantidadAceptada) {
                 return CantidadExit
             }
             else {
+                return 0
             }
         })
     }
@@ -283,6 +291,8 @@ $('#sal_BodDestino').click(function () {
         $('#validationbod_Id').after('<ul id="bod_IdError" class="validation-summary-errors text-danger">Seleccione una Bodega</ul>');
     }
     else {
+        $('#bod_IdError').text('');
+
     }
 })
 
@@ -353,7 +363,7 @@ $('#AgregarSalidaDetalle').click(function () {
                     $("#tblSalidaDetalle td").each(function () {
                         var prueba = $(this).text()
                         if (prueba == data_producto) {
-                            t.row($(this).parents('tr')).remove().draw();
+                            table.row($(this).parents('tr')).remove().draw();
                             var idcontador = $(this).closest('tr').data('id');
                             var cantfisica_anterior = $(this).closest("tr").find("td:eq(7)").text();
                             var sumacantidades = parseInt(cantfisica_nueva) + parseInt(cantfisica_anterior);

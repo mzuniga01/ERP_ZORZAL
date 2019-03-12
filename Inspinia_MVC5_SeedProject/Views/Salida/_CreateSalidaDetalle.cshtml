@@ -22,10 +22,12 @@
                                     @Html.ValidationMessageFor(model => model.tbProducto.prod_Codigo)
                                 </div>
                             </div>
-                            <div class="col-md-1">
+                            @*<div class="col-md-1">
                                 <button type="button" id="Productos" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+                            </div>*@
+                            <div class="col-md-1">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarProducto"><span class="glyphicon glyphicon-search"></span></button>
                             </div>
-
                             @Html.LabelFor(model => model.prod_Codigo, "Producto", new { @class = "control-label col-md-1" })
                             <div class="col-md-4">
                                 <input type="text" id="prod_Codigo" placeholder="" class="form-control" readonly />
@@ -114,7 +116,7 @@
 
 @*PARA AGREGAR NUEVO PRODUCTO*@
 <div class="modal fade" id="ModalAgregarProducto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="width:100%">
-    <div class="modal-dialog" role="document" style="width:75%">
+    <div class="modal-dialog" role="document" style="width:90%">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">

@@ -233,14 +233,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reportes.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Dataset\Salida.cs">
-      <DependentUpon>Salida.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Dataset\Salida.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Salida.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -969,12 +961,6 @@
     <Compile Include="Reports\ListadoProveedores.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\ListadoProveedores1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ListadoProveedores.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Reports\Movimiento_Entre_Fechas.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1408,9 +1394,6 @@
     <Content Include="Dataset\InventarioFisico.xss">
       <DependentUpon>InventarioFisico.xsd</DependentUpon>
     </Content>
-    <Content Include="Dataset\Salida.xsc">
-      <DependentUpon>Salida.xsd</DependentUpon>
-    </Content>
     <Content Include="Dataset\Reportes.xsc">
       <DependentUpon>Reportes.xsd</DependentUpon>
     </Content>
@@ -1421,14 +1404,6 @@
     </None>
     <Content Include="Dataset\Reportes.xss">
       <DependentUpon>Reportes.xsd</DependentUpon>
-    </Content>
-    <None Include="Dataset\Salida.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>Salida.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <Content Include="Dataset\Salida.xss">
-      <DependentUpon>Salida.xsd</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\HostDemo.pubxml" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />

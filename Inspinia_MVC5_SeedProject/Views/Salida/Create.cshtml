@@ -35,6 +35,7 @@
 
     @Html.HiddenFor(model => model.estm_Id, new { Value = Helpers.sal_Emitida })
     @Html.HiddenFor(model => model.tbUsuario.usu_Id)
+    @Html.HiddenFor(model => model.bod_Id, new { Value = ViewBag.bod_Id })
 
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-sm-4">
@@ -87,7 +88,9 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.bod_Id, "Nombre de Bodega", new { @class = "control-label col-md-2 required" })
                                     <div style="display:block" class="col-md-4">
-                                        @Html.DropDownList("bod_Id", (IEnumerable<SelectListItem>)ViewBag.bod_Id, "Seleccione una Bodega", new { @class = "form-control" })
+                                        @*@Html.EditorFor(model => (string)ViewBag.BodegaSelec, new { @autocomplete = "off", @readonly = "readonly"})*@
+                                        @*@Html.EditorFor(model => model.tbBodega.bod_Nombre, (string)ViewBag.BodegaSelec, new { @autocomplete = "off", @readonly = "readonly", @class = "form-control" })*@
+                                        @Html.TextBox("bod_Name", (String)ViewBag.BodegaSelec, new { @autocomplete = "off", @readonly = "readonly", @class = "form-control" })
                                         <div id="validationbod_Id" class="validation-error">
                                             <p>@Html.ValidationMessageFor(model => model.bod_Id)</p>
                                         </div>
