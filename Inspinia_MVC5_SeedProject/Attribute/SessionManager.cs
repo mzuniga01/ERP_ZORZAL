@@ -34,16 +34,16 @@ namespace ERP_GMEDINA.Attribute
                 {
                     if (Function.Sesiones(_screenId))
                     {
-                        if (Function.GetRol())
+                        if (_screenId != "Usuario/ModificarPass" && _screenId != "Home/Index")
                         {
-                            if (_screenId != "Home/Index")
+                            if (Function.GetRol())
                             {
-                                if (!Function.GetUserRols(_screenId))
-                                    filterContext.Result = new RedirectToRouteResult(valuesSinAcceso);
+                                    if (!Function.GetUserRols(_screenId))
+                                        filterContext.Result = new RedirectToRouteResult(valuesSinAcceso);
                             }
+                            else
+                                filterContext.Result = new RedirectToRouteResult(valuesSinRol);
                         }
-                        else
-                            filterContext.Result = new RedirectToRouteResult(valuesSinRol);
                     }
                     else
                     {

@@ -19,10 +19,6 @@
                     <h5>Listado Nota Crédito</h5>
                     <div class="ibox-tools">
 
-                        @using (Html.BeginForm("Reporte", "NotaCredito", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                        {
-                            <button id="buscar" type="submit" class="btn btn-primary btn-sm">Generar Reporte</button>
-                        }
 
                         @Html.ActionLink("Registrar Nota Crédito", "Create", null, new { @class = "btn btn-primary" })
                     </div>

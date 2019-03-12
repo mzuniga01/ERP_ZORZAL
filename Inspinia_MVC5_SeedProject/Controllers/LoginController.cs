@@ -110,5 +110,15 @@ namespace ERP_GMEDINA.Controllers
             else
                 return RedirectToAction("Index", "Login");
         }
+
+        public ActionResult SinRol()
+        {
+            //Validar Inicio de Sesión
+            GeneralFunctions Function = new GeneralFunctions();
+            if (Function.GetUserLogin())
+                return View();
+            else
+                return RedirectToAction("Index", "Login");
+        }
     }
 }

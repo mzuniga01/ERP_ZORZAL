@@ -99,20 +99,27 @@ namespace ERP_GMEDINA.Controllers
                 {
                     if (Function.GetUserRols("Pedido/Create"))
                     {
-                        ViewBag.esped_Id = new SelectList(db.tbEstadoPedido, "esped_Id", "esped_Descripcion");
+                        //ViewBag.ped_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+                        //ViewBag.ped_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
+                        //ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte");
+                        //ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo");
+                        //ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo");
 
-                        ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo");
-                        ViewBag.Cliente = db.tbCliente.ToList();
-                        Session["tbPedidoDetalle"] = null;
-                        ViewBag.Producto = db.tbProducto.ToList();
-                        tbPedido Pedido = new tbPedido();
-                        Pedido.esped_Id = Helpers.Pendiente;
-                        Pedido.suc_Id = Usuario();
+
+                        ViewBag.esped_Id = new SelectList(db.tbEstadoPedido, "esped_Id", "esped_Descripcion");
+     
+            ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo");
+            ViewBag.Cliente = db.tbCliente.ToList();
+            Session["tbPedidoDetalle"] = null;
+            ViewBag.Producto = db.tbProducto.ToList();
+            tbPedido Pedido = new tbPedido();
+            Pedido.esped_Id = Helpers.Pendiente;
+            Pedido.suc_Id = Usuario();
                         tbSucursal tbSucursal = new tbSucursal();
                         int suc = Usuario();
                         ViewBag.Sucursal = db.tbSucursal.Find(suc).suc_Descripcion;
 
-                        return View(Pedido);
+            return View(Pedido);
                     }
                     else
                     {
@@ -191,8 +198,8 @@ namespace ERP_GMEDINA.Controllers
                                             listPedidoDetalles = db.UDP_Vent_tbPedidoDetalle_Insert(PedDetalle.ped_Id,
                                                 PedDetalle.prod_Codigo,
                                                 PedDetalle.pedd_Cantidad,
-                                                PedDetalle.pedd_CantidadFacturada,
-                                                Function.GetUser(), 
+                                                PedDetalle.pedd_CantidadFacturada, 
+                                                Function.GetUser(),
                                                 Function.DatetimeNow());
                                             foreach (UDP_Vent_tbPedidoDetalle_Insert_Result SPpedidodetalle in listPedidoDetalles)
                                             {
@@ -477,8 +484,8 @@ namespace ERP_GMEDINA.Controllers
                                                                     Function.GetUser(),
                                                                     Function.DatetimeNow());
 
-                                foreach (UDP_Vent_tbPedido_Update_Result ListaPrecio in list)
-                                    MensajeError = ListaPrecio.MensajeError;
+                                foreach (UDP_Vent_tbPedido_Update_Result PedidoDetalle1 in list)
+                                    MensajeError = PedidoDetalle1.MensajeError;
                                 if (MensajeError == "-1")
                                 {
 
@@ -505,6 +512,7 @@ namespace ERP_GMEDINA.Controllers
                         ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo", tbPedido.fact_Id);
                         ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo", tbPedido.suc_Id);
                         ViewBag.esped_Id = new SelectList(db.tbEstadoPedido, "esped_Id", "esped_Descripcion", tbPedido.esped_Id);
+                        ViewBag.Cliente = db.tbCliente.ToList();
                         ViewBag.Producto = db.tbProducto.ToList();
                         return View(tbPedido);
 
@@ -614,9 +622,8 @@ namespace ERP_GMEDINA.Controllers
                            PedidoDetalles.ped_Id,
                            PedidoDetalles.prod_Codigo,
                            PedidoDetalles.pedd_Cantidad,
-                           0,
-                           Function.GetUser(), 
-                           Function.DatetimeNow());
+                           0, Function.GetUser(),
+                          Function.DatetimeNow());
                 foreach (UDP_Vent_tbPedidoDetalle_Insert_Result PedidoDetalleD in list)
                     MensajeError = PedidoDetalleD.MensajeError;
                 Msj = "El registro se guardo exitosamente";

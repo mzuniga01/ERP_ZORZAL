@@ -1278,9 +1278,6 @@
     <Compile Include="Models\UDV_Vent_prueba.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\UDV_Vent_PuntoEmisionEstado.cs">
-      <DependentUpon>ModelERP.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporte.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>

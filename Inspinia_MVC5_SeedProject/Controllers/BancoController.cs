@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ERP_GMEDINA.Models;
+using ERP_GMEDINA.Attribute;
 
 namespace ERP_GMEDINA.Controllers
 {
@@ -15,233 +16,137 @@ namespace ERP_GMEDINA.Controllers
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
         GeneralFunctions Function = new GeneralFunctions();
         // GET: /Banco/
+        [SessionManager("Banco/Index")]
         public ActionResult Index()
         {
-            if (Function.GetUserLogin())
-            {
-                if(Function.GetRol())
-                {
-                    if (Function.GetUserRols("Banco/Index"))
-                    {
-                        return View(db.tbBanco.ToList());
-                    }
-                    else
-                    {
-                        return RedirectToAction("SinAcceso", "Login");
-                    }
-                }
-                else
-                    return RedirectToAction("SinRol", "Login");
-            }
-            else
-                return RedirectToAction("Index", "Login");
+            return View(db.tbBanco.ToList());
         }
 
         // GET: /Banco/Details/5
+        [SessionManager("Banco/Details")]
         public ActionResult Details(short? id)
         {
-            if (Function.GetUserLogin())
+            if (id == null)
             {
-                if (Function.GetRol())
-                {
-                    if (Function.GetUserRols("Banco/Details"))
-                    {
-                        if (id == null)
-                        {
-                            return RedirectToAction("Index");
-                        }
-                        tbBanco tbBanco = db.tbBanco.Find(id);
-                        if (tbBanco == null)
-                        {
-                            return RedirectToAction("NotFound", "Login");
-                        }
-                        return View(tbBanco);
-                    }
-                    else
-                    {
-                        return RedirectToAction("SinAcceso", "Login");
-                    }
-                }
-                else
-                    return RedirectToAction("SinRol", "Login");
+                return RedirectToAction("Index");
             }
-            else
-                return RedirectToAction("Index", "Login");
+            tbBanco tbBanco = db.tbBanco.Find(id);
+            if (tbBanco == null)
+            {
+                return RedirectToAction("NotFound", "Login");
+            }
+            return View(tbBanco);
         }
 
         // GET: /Banco/Create
+        [SessionManager("Banco/Create")]
         public ActionResult Create()
         {
-            if (Function.GetUserLogin())
-            {
-                if (Function.GetRol())
-                {
-                    if (Function.GetUserRols("Banco/Create"))
-                    {
-                        return View();
-                    }
-                    else
-                    {
-                        return RedirectToAction("SinAcceso", "Login");
-                    }
-                }
-                else
-                    return RedirectToAction("SinRol", "Login");
-            }
-            else
-                return RedirectToAction("Index", "Login");
+            return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="ban_Id,ban_Nombre,ban_NombreContacto,ban_TelefonoContacto,ban_UsuarioCrea,ban_FechaCrea,ban_UsuarioModifica,ban_FechaModifica")] tbBanco tbBanco)
+        [SessionManager("Banco/Create")]
+        public ActionResult Create([Bind(Include = "ban_Id,ban_Nombre,ban_NombreContacto,ban_TelefonoContacto,ban_UsuarioCrea,ban_FechaCrea,ban_UsuarioModifica,ban_FechaModifica")] tbBanco tbBanco)
         {
-            if (Function.GetUserLogin())
+
+            if (ModelState.IsValid)
             {
-                if (Function.GetRol())
+                try
                 {
-                    if (Function.GetUserRols("Banco/Create"))
+                    if (db.tbBanco.Any(a => a.ban_Nombre == tbBanco.ban_Nombre))
                     {
-                       
-                        if (ModelState.IsValid)
-                        {
-                            try
-                            {
-                                if (db.tbBanco.Any(a => a.ban_Nombre == tbBanco.ban_Nombre))
-                            {
-                                ModelState.AddModelError("", "Ya existe este Banco.");
-                                return View(tbBanco);
-                            }
-                            else
-                            {
-                                //////////Aqui va la lista//////////////
-                                string MensajeError = "";
-                                IEnumerable<object> list = null;
-                                list = db.UDP_Gral_tbBanco_Insert(tbBanco.ban_Nombre, tbBanco.ban_NombreContacto, tbBanco.ban_TelefonoContacto, Function.GetUser(), Function.DatetimeNow());
-                                foreach (UDP_Gral_tbBanco_Insert_Result banco in list)
-                                    MensajeError = banco.MensajeError.ToString();
-                                if (MensajeError.StartsWith("-1"))
-                                {
-                                    Function.InsertBitacoraErrores("Banco/Create", MensajeError, "Create");
-                                    ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
-                                    return View(tbBanco);
-                                }
-                                else
-                                {
-                                    return RedirectToAction("Index");
-                                }
-                            }
-                            }
-                            catch (Exception Ex)
-                            {
-                                Function.InsertBitacoraErrores("Banco/Create", Ex.Message.ToString(), "Create");
-                                ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
-                                return View(tbBanco);
-                            }
-                        }
+                        ModelState.AddModelError("", "Ya existe este Banco.");
                         return View(tbBanco);
                     }
                     else
                     {
-                        return RedirectToAction("SinAcceso", "Login");
-                    }
-                }
-                else
-                    return RedirectToAction("SinRol", "Login");
-            }
-            else
-                return RedirectToAction("Index", "Login");
-        }
-
-        // GET: /Banco/Edit/5
-        public ActionResult Edit(short? id)
-        {
-            if (Function.GetUserLogin())
-            {
-                if (Function.GetRol())
-                {
-                    if (Function.GetUserRols("Banco/Edit"))
-                    {
-                        if (id == null)
+                        //////////Aqui va la lista//////////////
+                        string MensajeError = "";
+                        IEnumerable<object> list = null;
+                        list = db.UDP_Gral_tbBanco_Insert(tbBanco.ban_Nombre, tbBanco.ban_NombreContacto, tbBanco.ban_TelefonoContacto, Function.GetUser(), Function.DatetimeNow());
+                        foreach (UDP_Gral_tbBanco_Insert_Result banco in list)
+                            MensajeError = banco.MensajeError.ToString();
+                        if (MensajeError.StartsWith("-1"))
+                        {
+                            Function.InsertBitacoraErrores("Banco/Create", MensajeError, "Create");
+                            ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                            return View(tbBanco);
+                        }
+                        else
                         {
                             return RedirectToAction("Index");
                         }
-                        tbBanco tbBanco = db.tbBanco.Find(id);
-                        if (tbBanco == null)
-                        {
-                            return RedirectToAction("NotFound", "Login");
-                        }
-                        return View(tbBanco);
-                    }
-                    else
-                    {
-                        return RedirectToAction("SinAcceso", "Login");
                     }
                 }
-                else
-                    return RedirectToAction("SinRol", "Login");
+                catch (Exception Ex)
+                {
+                    Function.InsertBitacoraErrores("Banco/Create", Ex.Message.ToString(), "Create");
+                    ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                    return View(tbBanco);
+                }
             }
-            else
-                return RedirectToAction("Index", "Login");
+            return View(tbBanco);
         }
-        
+
+        // GET: /Banco/Edit/5
+        [SessionManager("Banco/Edit")]
+        public ActionResult Edit(short? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction("Index");
+            }
+            tbBanco tbBanco = db.tbBanco.Find(id);
+            if (tbBanco == null)
+            {
+                return RedirectToAction("NotFound", "Login");
+            }
+            return View(tbBanco);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include= "ban_Id,ban_Nombre,ban_NombreContacto,ban_TelefonoContacto,ban_UsuarioCrea,ban_FechaCrea,ban_UsuarioModifica,ban_FechaModifica,tbUsuario, tbUsuario1")] tbBanco tbBanco)
+        [SessionManager("Banco/Edit")]
+        public ActionResult Edit([Bind(Include = "ban_Id,ban_Nombre,ban_NombreContacto,ban_TelefonoContacto,ban_UsuarioCrea,ban_FechaCrea,ban_UsuarioModifica,ban_FechaModifica,tbUsuario, tbUsuario1")] tbBanco tbBanco)
         {
-            if (Function.GetUserLogin())
+            if (ModelState.IsValid)
             {
-                if (Function.GetRol())
+                try
                 {
-                    if (Function.GetUserRols("Banco/Edit"))
+                    //////////Aqui va la lista//////////////
+                    string MensajeError = "";
+                    IEnumerable<object> list = null;
+                    list = db.UDP_Gral_tbBanco_Update(tbBanco.ban_Id,
+                        tbBanco.ban_Nombre,
+                        tbBanco.ban_NombreContacto,
+                        tbBanco.ban_TelefonoContacto,
+                        tbBanco.ban_UsuarioCrea,
+                        tbBanco.ban_FechaCrea,
+                        Function.GetUser(),
+                        Function.DatetimeNow());
+                    foreach (UDP_Gral_tbBanco_Update_Result banco in list)
+                        MensajeError = banco.MensajeError.ToString();
+                    if (MensajeError.StartsWith("-1"))
                     {
-                        if (ModelState.IsValid)
-                        {
-                            try
-                            {
-                                //////////Aqui va la lista//////////////
-                                string MensajeError = "";
-                                IEnumerable<object> list = null;
-                                list = db.UDP_Gral_tbBanco_Update(tbBanco.ban_Id, 
-                                    tbBanco.ban_Nombre, 
-                                    tbBanco.ban_NombreContacto, 
-                                    tbBanco.ban_TelefonoContacto, 
-                                    tbBanco.ban_UsuarioCrea, 
-                                    tbBanco.ban_FechaCrea, 
-                                    Function.GetUser(), 
-                                    Function.DatetimeNow());
-                                foreach (UDP_Gral_tbBanco_Update_Result banco in list)
-                                    MensajeError = banco.MensajeError.ToString();
-                                if (MensajeError.StartsWith("-1"))
-                                {
-                                    Function.InsertBitacoraErrores("Banco/Create", MensajeError, "Edit");
-                                    ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
-                                    return View(tbBanco);
-                                }
-                                else
-                                {
-                                    return RedirectToAction("Index");
-                                }
-                            }
-                            catch (Exception Ex)
-                            {
-                                Function.InsertBitacoraErrores("Banco/Create", Ex.Message.ToString(), "Create");
-                                ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
-                                return View(tbBanco);
-                            }
-                        }
+                        Function.InsertBitacoraErrores("Banco/Create", MensajeError, "Edit");
+                        ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
                         return View(tbBanco);
                     }
                     else
                     {
-                        return RedirectToAction("SinAcceso", "Login");
+                        return RedirectToAction("Index");
                     }
                 }
-                else
-                    return RedirectToAction("SinRol", "Login");
+                catch (Exception Ex)
+                {
+                    Function.InsertBitacoraErrores("Banco/Create", Ex.Message.ToString(), "Create");
+                    ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                    return View(tbBanco);
+                }
             }
-            else
-                return RedirectToAction("Index", "Login");
+            return View(tbBanco);
         }
 
         protected override void Dispose(bool disposing)

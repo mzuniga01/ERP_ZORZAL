@@ -3672,18 +3672,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="UDV_Vent_PuntoEmisionEstado">
-      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Vent_PuntoEmisionEstado">
-        <MappingFragment StoreEntitySet="UDV_Vent_PuntoEmisionEstado">
-          <ScalarProperty Name="Estado" ColumnName="Estado" />
-          <ScalarProperty Name="pemid_FechaLimite" ColumnName="pemid_FechaLimite" />
-          <ScalarProperty Name="pemid_NumeroActual" ColumnName="pemid_NumeroActual" />
-          <ScalarProperty Name="pemid_RangoFinal" ColumnName="pemid_RangoFinal" />
-          <ScalarProperty Name="pemi_Id" ColumnName="pemi_Id" />
-          <ScalarProperty Name="pemid_Id" ColumnName="pemid_Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporte">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporte">
         <MappingFragment StoreEntitySet="UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporte">

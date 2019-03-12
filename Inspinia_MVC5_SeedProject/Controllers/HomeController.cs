@@ -1,4 +1,5 @@
-﻿using ERP_GMEDINA.Models;
+﻿using ERP_GMEDINA.Attribute;
+using ERP_GMEDINA.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,26 +10,15 @@ namespace ERP_GMEDINA.Controllers
 {
     public class HomeController : Controller
     {
+        [SessionManager("Home/Index")]
         public ActionResult Index()
         {
-            //Validar Inicio de Sesión
-            GeneralFunctions Function = new GeneralFunctions();
-            if (Function.GetUserLogin())
-            {
-                if (Function.GetRol())
-                {
-                    ViewData["SubTitle"] = "Welcome in ASP.NET MVC 5 INSPINIA SeedProject ";
-                    ViewData["Message"] = "It is an application skeleton for a typical MVC 5 project. You can use it to quickly bootstrap your webapp projects.";
+            ViewData["SubTitle"] = "Welcome in ASP.NET MVC 5 INSPINIA SeedProject ";
+            ViewData["Message"] = "It is an application skeleton for a typical MVC 5 project. You can use it to quickly bootstrap your webapp projects.";
 
-                    return View();
-                }
-                else
-                    return RedirectToAction("SinRol", "Login");
-            }
-            else
-                return RedirectToAction("Index", "Login");
+            return View();
         }
-
+    
         public ActionResult Minor()
         {
             ViewData["SubTitle"] = "Simple example of second view";

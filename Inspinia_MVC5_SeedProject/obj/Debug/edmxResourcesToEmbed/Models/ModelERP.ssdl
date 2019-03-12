@@ -2303,24 +2303,6 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_prueba' no tiene d
     <Property Name="MONTO_SOLICITADO" Type="decimal" Precision="10" Scale="2" Nullable="false" />
   </EntityType>
   <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_PuntoEmisionEstado' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
-  <EntityType Name="UDV_Vent_PuntoEmisionEstado">
-    <Key>
-      <PropertyRef Name="pemid_Id" />
-      <PropertyRef Name="pemi_Id" />
-      <PropertyRef Name="pemid_RangoFinal" />
-      <PropertyRef Name="pemid_NumeroActual" />
-      <PropertyRef Name="pemid_FechaLimite" />
-      <PropertyRef Name="Estado" />
-    </Key>
-    <Property Name="pemid_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="pemi_Id" Type="int" Nullable="false" />
-    <Property Name="pemid_RangoFinal" Type="varchar" MaxLength="20" Nullable="false" />
-    <Property Name="pemid_NumeroActual" Type="varchar" MaxLength="10" Nullable="false" />
-    <Property Name="pemid_FechaLimite" Type="date" Nullable="false" />
-    <Property Name="Estado" Type="varchar" MaxLength="10" Nullable="false" />
-  </EntityType>
-  <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporte' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
   <EntityType Name="UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporte">
     <Key>
@@ -5245,7 +5227,6 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_Entr
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Function Name="GetUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce" ReturnType="int" />
   <Function Name="SDP_Acce_GetObjetos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce" />
   <Function Name="SDP_Acce_GetObjetosAsignados" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
     <Parameter Name="rol_Id" Type="int" Mode="In" />
@@ -5265,7 +5246,6 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_Entr
     <Parameter Name="usu_Id" Type="int" Mode="In" />
     <Parameter Name="obj_Pantalla" Type="nvarchar" Mode="In" />
   </Function>
-  <Function Name="UDF_Acce_GetUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce" ReturnType="int" />
   <Function Name="UDP_Acce_Login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
     <Parameter Name="UsuarioId" Type="varchar" Mode="In" />
     <Parameter Name="password" Type="varchar" Mode="In" />
@@ -5427,7 +5407,6 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_Entr
   <Function Name="SPGetResponsableBodega" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="bod_id" Type="int" Mode="In" />
   </Function>
-  <Function Name="UDF_Acee_GetUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
   <Function Name="UDF_Vent_EsClienteMinorista" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="bit">
     <Parameter Name="IDCLIENTE" Type="int" Mode="In" />
   </Function>
@@ -7966,16 +7945,6 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_Entr
     [UDV_Vent_prueba].[DÍAS_SOLICITADOS] AS [DÍAS_SOLICITADOS], 
     [UDV_Vent_prueba].[MONTO_SOLICITADO] AS [MONTO_SOLICITADO]
     FROM [Vent].[UDV_Vent_prueba] AS [UDV_Vent_prueba]</DefiningQuery>
-    </EntitySet>
-    <EntitySet Name="UDV_Vent_PuntoEmisionEstado" EntityType="Self.UDV_Vent_PuntoEmisionEstado" store:Type="Views" store:Schema="Vent">
-      <DefiningQuery>SELECT 
-    [UDV_Vent_PuntoEmisionEstado].[pemid_Id] AS [pemid_Id], 
-    [UDV_Vent_PuntoEmisionEstado].[pemi_Id] AS [pemi_Id], 
-    [UDV_Vent_PuntoEmisionEstado].[pemid_RangoFinal] AS [pemid_RangoFinal], 
-    [UDV_Vent_PuntoEmisionEstado].[pemid_NumeroActual] AS [pemid_NumeroActual], 
-    [UDV_Vent_PuntoEmisionEstado].[pemid_FechaLimite] AS [pemid_FechaLimite], 
-    [UDV_Vent_PuntoEmisionEstado].[Estado] AS [Estado]
-    FROM [Vent].[UDV_Vent_PuntoEmisionEstado] AS [UDV_Vent_PuntoEmisionEstado]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporte" EntityType="Self.UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporte" store:Type="Views" store:Schema="Vent">
       <DefiningQuery>SELECT 
