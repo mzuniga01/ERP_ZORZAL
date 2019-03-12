@@ -3,3 +3,4 @@
     tecla = String.fromCharCode(tecla)
     return /^[a-zA-ZáéíóúñÁÉÍÓÚÑ]+$/.test(tecla);
 }
+

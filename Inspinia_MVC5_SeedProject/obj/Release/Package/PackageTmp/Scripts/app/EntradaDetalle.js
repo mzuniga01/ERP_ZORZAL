@@ -14,6 +14,25 @@ $("#prod_CodigoBarras").on("keypress keyup blur", function (event) {
         event.preventDefault();
     }
 });
+//para q fact_Id acepte numeros(create)
+function soloLetras(e) {
+    key = e.keyCode || e.which;
+    tecla = String.fromCharCode(key).toLowerCase();
+    letras = " -123456789";
+    especiales = "8-37-39-46";
+
+    tecla_especial = false
+    for (var i in especiales) {
+        if (key == especiales[i]) {
+            tecla_especial = true;
+            break;
+        }
+    }
+
+    if (letras.indexOf(tecla) == -1 && !tecla_especial) {
+        return false;
+    }
+}
 //para q ent_FacturaCompra acepte numeros(create)
 $("#ent_FacturaCompra").on("keypress keyup blur", function (event) {
     //this.value = this.value.replace(/[^0-9\.]/g,'');
@@ -187,10 +206,11 @@ $('#seleccionarModal').click(function () {
 //para eliminar detalle
 $(document).on("click", "#tbentrada tbody tr td button#Eliminardetalleentrada", function () {
     $(this).closest('tr').remove();
-    idItem = $(this).closest('tr').data('id');
+    var currentRow = $(this).closest("tr");
+    var prod_Codigo = currentRow.find("td:eq(0)").text();
 
     var Eliminar = {
-        ent_Id: idItem,
+        prod_Codigo: prod_Codigo,
     };
     $.ajax({
         url: "/Entrada/Eliminardetalleentrada",
@@ -204,10 +224,11 @@ $(document).on("click", "#tbentrada tbody tr td button#Eliminardetalleentrada", 
 
 $(document).on("click", "#tbEntradaDetalle tbody tr td button#Eliminardetalleentrada_Edit", function () {
     $(this).closest('tr').remove();
-    idItem = $(this).closest('tr').data('id');
+    var currentRow = $(this).closest("tr");
+    var prod_Codigo = currentRow.find("td:eq(0)").text(); 
 
     var Eliminar = {
-        ent_Id: idItem,
+        prod_Codigo: prod_Codigo,
     };
     $.ajax({
         url: "/Entrada/Eliminardetalleentrada",
@@ -217,7 +238,7 @@ $(document).on("click", "#tbEntradaDetalle tbody tr td button#Eliminardetalleent
         data: JSON.stringify({ EntradaDetalle: Eliminar }),
     });
 });
-//para añadir codigo a la tabla temporal(Create)
+//para añadir codigo a la tabla temporal(Editar)
 $('#AgregarDetalleEntrada_Craete').click(function () {
     var codigobarra = $("#prod_CodigoBarras").val();
     var entrada = $("#ent_Id").val();
@@ -283,7 +304,6 @@ $('#AgregarDetalleEntrada_Craete').click(function () {
                                 $(this).closest('tr').remove();
 
                                 copiar = "<tr data-id=" + idcontador + ">";
-                                copiar += "<td id = 'data_producto' hidden='hidden'>" + $('#prod_Codigo').val() + "</td>";
                                 copiar += "<td id = 'codigoproducto'>" + $('#prod_Codigo').val() + "</td>";
                                 copiar += "<td id = 'desprod'>" + $('#prod_Descripcion').val() + "</td>";
 
@@ -410,7 +430,6 @@ $('#AgregarDetalleEntrada').click(function () {
                             $(this).closest('tr').remove();
 
                             copiar = "<tr data-id=" + idcontador + ">";
-                            copiar += "<td id = 'data_producto' hidden='hidden'>" + $('#prod_Codigo').val() + "</td>";
                             copiar += "<td id = 'codigoproducto'>" + $('#prod_Codigo').val() + "</td>";
                             copiar += "<td id = 'desprod'>" + $('#prod_Descripcion').val() + "</td>";
 
@@ -563,7 +582,8 @@ $('#AnularEntrada').click(function () {
     {
         valido = document.getElementById('RazonANULADA');
         valido.innerText = "La razón Anulado es requerida";
-    } else {
+    }
+    else {
         var anularentrada = GetAnualarEntrada();
         $.ajax({
             url: "/Entrada/EstadoAnular",
@@ -574,12 +594,17 @@ $('#AnularEntrada').click(function () {
         })
         .done(function (data) {
             $("#entd_RazonAnulada").val('');
-            //$('#ent_Id').val('');
-            location.reload();
-            //window.location.reload();
+            if (data.length > 0) {
+                var url = $("#RedirectTo").val();
+                location.href = url;
+            }
+            else {
+                alert("Registro No Actualizado");
+            }
         });
+        location.reload();
     }
-     window.location.reload();
+
 })
 function GetAnualarEntrada() {
 

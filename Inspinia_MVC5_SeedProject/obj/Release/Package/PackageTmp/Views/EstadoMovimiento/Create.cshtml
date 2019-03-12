@@ -5,6 +5,28 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    .validation-error {
+        color: red;
+        font-size: small;
+    }
+ 
+    .validation-summary-errors {
+        color: red;
+        font-size: small;
+    }
+ 
+    .required:after {
+        content: "*";
+        font-weight: bold;
+        color: red;
+    }
+ 
+     #estm_Descripcion {
+        text-transform: uppercase;
+    }
+</style>
+
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Estado Movimiento</h2>
@@ -32,6 +54,7 @@
                         @Html.AntiForgeryToken()
 
                     <div class="form-horizontal">
+
                     @Html.ValidationSummary(true) 
 
                         <div class="form-group">
@@ -77,6 +100,10 @@
                 }
             }
         });
-
+        $("#estm_Descripcion").change(function () {
+            var str = $("#estm_Descripcion").val();
+            var res = str.toUpperCase();
+            $("#estm_Descripcion").val(res);
+        });
     </script>
 }

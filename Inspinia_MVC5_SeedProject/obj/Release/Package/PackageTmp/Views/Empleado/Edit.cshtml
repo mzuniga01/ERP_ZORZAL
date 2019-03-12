@@ -56,13 +56,13 @@
         <div class="form-group">
             @Html.LabelFor(model => model.emp_Nombres, new { @class = "control-label col-md-2 , required" })
             <div class="col-md-4">
-                @Html.TextBoxFor(model => model.emp_Nombres,new {@class="single-line", @onkeypress = "return soloLetras(event)", onblur = "limpia()", id = "miInput", MaxLength =100 })
+                @Html.TextBoxFor(model => model.emp_Nombres,new {@class="single-line", @onkeypress = "return soloLetras(event)", onblur = "limpia()", id = "emp_Nombres", MaxLength =100 })
                 <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_Nombres)</p>
             </div>
             
                 @Html.LabelFor(model => model.emp_Apellidos, new { @class = "control-label col-md-2 , required" })
                 <div class="col-md-4">
-                    @Html.TextBoxFor(model => model.emp_Apellidos, new { @class = "single-line", @onkeypress = "return soloLetras(event)", onblur = "limpiaApellido()", id = "emp_Apellido", MaxLength = 100 })
+                    @Html.TextBoxFor(model => model.emp_Apellidos, new { @class = "single-line", @onkeypress = "return soloLetras(event)", onblur = "limpiaApellido()", id = "emp_Apellidos", MaxLength = 100 })
                     <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_Apellidos)</p>
                 </div>
         </div>
@@ -97,7 +97,10 @@
            @Html.LabelFor(model => model.emp_Identificacion, new { @class = "control-label col-md-2 , required" })
         <div class="col-md-4">
             @Html.EditorFor(model => model.emp_Identificacion, new { htmlAttributes = new { MaxLength = 14 } })
-            <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_Identificacion)</p>
+            <div id="ValidacionIdentificacion">
+                <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_Identificacion)</p>
+            </div>
+            
         </div>
 
                 @Html.LabelFor(model => model.tpi_Id, "Tipo Identificación", new { @class = "control-label col-md-2 , required" })
@@ -113,7 +116,10 @@
             @Html.LabelFor(model => model.emp_Telefono, new { @class = "control-label col-md-2 , required" })
             <div class="col-md-4">
                 @Html.EditorFor(model => model.emp_Telefono, new { htmlAttributes = new { MaxLength = 10 } })
-                <p style="color:red">@Html.ValidationMessageFor(model => model.emp_Telefono)</p>
+                <div id="ValidacionTelefono">
+                    <p style="color:red">@Html.ValidationMessageFor(model => model.emp_Telefono)</p>
+                </div>
+                
             </div>
 
             @Html.LabelFor(model => model.emp_Correoelectronico, new { @class = "control-label col-md-2" })
@@ -154,7 +160,7 @@
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
+                <input type="submit" id="btnguardar" value="Guardar" class="btn btn-primary" />
 				
                 @{if (Model.emp_Estado == true)
                     {  <button type="button" id="EditarModal" class="btn btn-danger" onclick='EditStudentRecord(@Model.emp_Id)'>

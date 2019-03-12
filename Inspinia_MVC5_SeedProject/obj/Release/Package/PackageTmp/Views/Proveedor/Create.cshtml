@@ -8,6 +8,34 @@
                 Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    .validation-error {
+        color: red;
+        font-size: small;
+    }
+
+    .validation-summary-errors {
+        color: red;
+        font-size: small;
+    }
+
+    .required:after {
+        content: "*";
+        font-weight: bold;
+        color: red;
+    }
+
+    #prov_Nombre {
+        text-transform: uppercase;
+    }
+     #prov_NombreContacto {
+        text-transform: uppercase;
+    }
+     #prov_Direccion {
+        text-transform: uppercase;
+    }
+     
+</style>
 
           
       
@@ -172,6 +200,20 @@
                 }
             }
         });
-
+        $("#prov_Nombre").change(function () {
+            var str = $("#prov_Nombre").val();
+            var res = str.toUpperCase();
+            $("#prov_Nombre").val(res);
+        });
+        $("#prov_NombreContacto").change(function () {
+            var str = $("#prov_NombreContacto").val();
+            var res = str.toUpperCase();
+            $("#prov_NombreContacto").val(res);
+        });
+        $("#prov_Direccion").change(function () {
+            var str = $("#prov_Direccion").val();
+            var res = str.toUpperCase();
+            $("#prov_Direccion").val(res);
+        });
     </script>
 }

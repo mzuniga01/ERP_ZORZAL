@@ -17,37 +17,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Gral_tbParametro_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbParametro_Insert">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbParametro_Insert_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Gral_tbParametro_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbParametro_Update">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbParametro_Update_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="UDP_Acce_tbRolesUsuario_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbRolesUsuario_Update">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_tbRolesUsuario_Update_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Inv_tbBox_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBox_Insert">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbBox_Insert_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Inv_tbBox_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBox_Update">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbBox_Update_Result">
           <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
         </ComplexTypeMapping>
       </ResultMapping>
@@ -152,35 +124,9 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SDP_Acce_GetRoles" FunctionName="ERP_ZORZALModel.Store.SDP_Acce_GetRoles">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_Acce_GetRoles_Result">
-          <ScalarProperty Name="rol_Id" ColumnName="rol_Id" />
-          <ScalarProperty Name="rol_Descripcion" ColumnName="rol_Descripcion" />
-          <ScalarProperty Name="rol_UsuarioCrea" ColumnName="rol_UsuarioCrea" />
-          <ScalarProperty Name="rol_FechaCrea" ColumnName="rol_FechaCrea" />
-          <ScalarProperty Name="rol_UsuarioModifica" ColumnName="rol_UsuarioModifica" />
-          <ScalarProperty Name="rol_FechaModifica" ColumnName="rol_FechaModifica" />
-          <ScalarProperty Name="rol_Estado" ColumnName="rol_Estado" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="SDP_Acce_GetRolesAsignados" FunctionName="ERP_ZORZALModel.Store.SDP_Acce_GetRolesAsignados">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_Acce_GetRolesAsignados_Result">
-          <ScalarProperty Name="rol_Id" ColumnName="rol_Id" />
-          <ScalarProperty Name="rol_Descripcion" ColumnName="rol_Descripcion" />
-          <ScalarProperty Name="rol_UsuarioCrea" ColumnName="rol_UsuarioCrea" />
-          <ScalarProperty Name="rol_FechaCrea" ColumnName="rol_FechaCrea" />
-          <ScalarProperty Name="rol_UsuarioModifica" ColumnName="rol_UsuarioModifica" />
-          <ScalarProperty Name="rol_FechaModifica" ColumnName="rol_FechaModifica" />
-          <ScalarProperty Name="rol_Estado" ColumnName="rol_Estado" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SDP_Acce_GetRolesDisponibles" FunctionName="ERP_ZORZALModel.Store.SDP_Acce_GetRolesDisponibles">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_Acce_GetRolesDisponibles_Result">
           <ScalarProperty Name="rol_Id" ColumnName="rol_Id" />
           <ScalarProperty Name="rol_Descripcion" ColumnName="rol_Descripcion" />
           <ScalarProperty Name="rol_UsuarioCrea" ColumnName="rol_UsuarioCrea" />
@@ -552,16 +498,720 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Inv_tbEntrada_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEntrada_Update">
+    <FunctionImportMapping FunctionImportName="UDP_Acce_tbRol_Inactivar" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbRol_Inactivar">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbEntrada_Update_Result">
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_tbRol_Inactivar_Result">
           <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Acce_tbRol_Inactivar" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbRol_Inactivar">
+    <FunctionImportMapping FunctionImportName="UDP_Acce_Login" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_Login">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_tbRol_Inactivar_Result">
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_Login_Result">
+          <ScalarProperty Name="usu_Id" ColumnName="usu_Id" />
+          <ScalarProperty Name="usu_NombreUsuario" ColumnName="usu_NombreUsuario" />
+          <ScalarProperty Name="usu_Password" ColumnName="usu_Password" />
+          <ScalarProperty Name="usu_Nombres" ColumnName="usu_Nombres" />
+          <ScalarProperty Name="usu_Apellidos" ColumnName="usu_Apellidos" />
+          <ScalarProperty Name="usu_Correo" ColumnName="usu_Correo" />
+          <ScalarProperty Name="usu_EsActivo" ColumnName="usu_EsActivo" />
+          <ScalarProperty Name="usu_RazonInactivo" ColumnName="usu_RazonInactivo" />
+          <ScalarProperty Name="usu_EsAdministrador" ColumnName="usu_EsAdministrador" />
+          <ScalarProperty Name="usu_SesionesValidas" ColumnName="usu_SesionesValidas" />
+          <ScalarProperty Name="suc_Id" ColumnName="suc_Id" />
+          <ScalarProperty Name="emp_Id" ColumnName="emp_Id" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Acce_tbUsuario_PasswordRestore" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbUsuario_PasswordRestore">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_tbUsuario_PasswordRestore_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbSalida_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbSalida_Insert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbSalida_Insert_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbSalida_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbSalida_Update">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbSalida_Update_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbSalidaDetalle_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbSalidaDetalle_Insert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbSalidaDetalle_Insert_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbSalidaDetalle_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbSalidaDetalle_Update">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbSalidaDetalle_Update_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SDP_Inv_tbSalidaDetalle_Edit_Select" FunctionName="ERP_ZORZALModel.Store.SDP_Inv_tbSalidaDetalle_Edit_Select">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_Inv_tbSalidaDetalle_Edit_Select_Result">
+          <ScalarProperty Name="sald_Id" ColumnName="sald_Id" />
+          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+          <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
+          <ScalarProperty Name="prod_Marca" ColumnName="prod_Marca" />
+          <ScalarProperty Name="prod_Modelo" ColumnName="prod_Modelo" />
+          <ScalarProperty Name="prod_Talla" ColumnName="prod_Talla" />
+          <ScalarProperty Name="prod_Color" ColumnName="prod_Color" />
+          <ScalarProperty Name="uni_Descripcion" ColumnName="uni_Descripcion" />
+          <ScalarProperty Name="pcat_Nombre" ColumnName="pcat_Nombre" />
+          <ScalarProperty Name="pscat_Descripcion" ColumnName="pscat_Descripcion" />
+          <ScalarProperty Name="sald_Cantidad" ColumnName="sald_Cantidad" />
+          <ScalarProperty Name="box_Codigo" ColumnName="box_Codigo" />
+          <ScalarProperty Name="prod_CodigoBarras" ColumnName="prod_CodigoBarras" />
+          <ScalarProperty Name="sal_Id" ColumnName="sal_Id" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SDP_Inv_tbSalidaDetalle_Select" FunctionName="ERP_ZORZALModel.Store.SDP_Inv_tbSalidaDetalle_Select">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_Inv_tbSalidaDetalle_Select_Result">
+          <ScalarProperty Name="sald_Id" ColumnName="sald_Id" />
+          <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
+          <ScalarProperty Name="prod_Marca" ColumnName="prod_Marca" />
+          <ScalarProperty Name="prod_Modelo" ColumnName="prod_Modelo" />
+          <ScalarProperty Name="prod_Talla" ColumnName="prod_Talla" />
+          <ScalarProperty Name="prod_Color" ColumnName="prod_Color" />
+          <ScalarProperty Name="uni_Descripcion" ColumnName="uni_Descripcion" />
+          <ScalarProperty Name="pcat_Nombre" ColumnName="pcat_Nombre" />
+          <ScalarProperty Name="pscat_Descripcion" ColumnName="pscat_Descripcion" />
+          <ScalarProperty Name="box_Codigo" ColumnName="box_Codigo" />
+          <ScalarProperty Name="prod_CodigoBarras" ColumnName="prod_CodigoBarras" />
+          <ScalarProperty Name="sald_Cantidad" ColumnName="sald_Cantidad" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbSalidaDetalle_Delete" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbSalidaDetalle_Delete">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbSalidaDetalle_Delete_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Acce_tbUsuario_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbUsuario_Update">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_tbUsuario_Update_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SDP_tbEmpleado_Consulta" FunctionName="ERP_ZORZALModel.Store.SDP_tbEmpleado_Consulta">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_tbEmpleado_Consulta_Result">
+          <ScalarProperty Name="emp_Id" ColumnName="emp_Id" />
+          <ScalarProperty Name="emp_Nombres" ColumnName="emp_Nombres" />
+          <ScalarProperty Name="emp_Apellidos" ColumnName="emp_Apellidos" />
+          <ScalarProperty Name="emp_Sexo" ColumnName="emp_Sexo" />
+          <ScalarProperty Name="emp_FechaNacimiento" ColumnName="emp_FechaNacimiento" />
+          <ScalarProperty Name="tpi_Id" ColumnName="tpi_Id" />
+          <ScalarProperty Name="emp_Identificacion" ColumnName="emp_Identificacion" />
+          <ScalarProperty Name="emp_Telefono" ColumnName="emp_Telefono" />
+          <ScalarProperty Name="emp_Correoelectronico" ColumnName="emp_Correoelectronico" />
+          <ScalarProperty Name="emp_TipoSangre" ColumnName="emp_TipoSangre" />
+          <ScalarProperty Name="emp_Puesto" ColumnName="emp_Puesto" />
+          <ScalarProperty Name="emp_FechaIngreso" ColumnName="emp_FechaIngreso" />
+          <ScalarProperty Name="emp_Direccion" ColumnName="emp_Direccion" />
+          <ScalarProperty Name="emp_RazonInactivacion" ColumnName="emp_RazonInactivacion" />
+          <ScalarProperty Name="emp_UsuarioCrea" ColumnName="emp_UsuarioCrea" />
+          <ScalarProperty Name="emp_FechaCrea" ColumnName="emp_FechaCrea" />
+          <ScalarProperty Name="emp_UsuarioModifica" ColumnName="emp_UsuarioModifica" />
+          <ScalarProperty Name="emp_FechaModifica" ColumnName="emp_FechaModifica" />
+          <ScalarProperty Name="emp_Estado" ColumnName="emp_Estado" />
+          <ScalarProperty Name="emp_RazonSalida" ColumnName="emp_RazonSalida" />
+          <ScalarProperty Name="emp_FechaDeSalida" ColumnName="emp_FechaDeSalida" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Gral_tbEmpleado_Update_RazonInactivacion" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbEmpleado_Update_RazonInactivacion">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbEmpleado_Update_RazonInactivacion_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbProducto_GetCategoria" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProducto_GetCategoria">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProducto_GetCategoria_Result">
+          <ScalarProperty Name="pcat_Id" ColumnName="pcat_Id" />
+          <ScalarProperty Name="pcat_Nombre" ColumnName="pcat_Nombre" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbProducto_ValorCodigo" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProducto_ValorCodigo">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProducto_ValorCodigo_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_SolicitarProducto_ValidacionPorBodega" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_SolicitarProducto_ValidacionPorBodega">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_SolicitarProducto_ValidacionPorBodega_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_ValidacionCantidadExistente" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_ValidacionCantidadExistente">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_ValidacionCantidadExistente_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SPGetRTNproveedor" FunctionName="ERP_ZORZALModel.Store.SPGetRTNproveedor">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SPGetRTNproveedor_Result">
+          <ScalarProperty Name="prov_RTN" ColumnName="prov_RTN" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbBodega_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBodega_Update">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbBodega_Update_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbTipoEntrada_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbTipoEntrada_Update">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbTipoEntrada_Update_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Gral_tbEmpleados_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbEmpleados_Update">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbEmpleados_Update_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SDP_tbEmpleado_Select" FunctionName="ERP_ZORZALModel.Store.SDP_tbEmpleado_Select">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_tbEmpleado_Select_Result">
+          <ScalarProperty Name="emp_Id" ColumnName="emp_Id" />
+          <ScalarProperty Name="emp_Nombres" ColumnName="emp_Nombres" />
+          <ScalarProperty Name="emp_Apellidos" ColumnName="emp_Apellidos" />
+          <ScalarProperty Name="emp_Sexo" ColumnName="emp_Sexo" />
+          <ScalarProperty Name="emp_FechaNacimiento" ColumnName="emp_FechaNacimiento" />
+          <ScalarProperty Name="tpi_Id" ColumnName="tpi_Id" />
+          <ScalarProperty Name="emp_Identificacion" ColumnName="emp_Identificacion" />
+          <ScalarProperty Name="emp_Telefono" ColumnName="emp_Telefono" />
+          <ScalarProperty Name="emp_Correoelectronico" ColumnName="emp_Correoelectronico" />
+          <ScalarProperty Name="emp_TipoSangre" ColumnName="emp_TipoSangre" />
+          <ScalarProperty Name="emp_Puesto" ColumnName="emp_Puesto" />
+          <ScalarProperty Name="emp_FechaIngreso" ColumnName="emp_FechaIngreso" />
+          <ScalarProperty Name="emp_Direccion" ColumnName="emp_Direccion" />
+          <ScalarProperty Name="emp_RazonInactivacion" ColumnName="emp_RazonInactivacion" />
+          <ScalarProperty Name="emp_UsuarioCrea" ColumnName="emp_UsuarioCrea" />
+          <ScalarProperty Name="emp_FechaCrea" ColumnName="emp_FechaCrea" />
+          <ScalarProperty Name="emp_UsuarioModifica" ColumnName="emp_UsuarioModifica" />
+          <ScalarProperty Name="emp_FechaModifica" ColumnName="emp_FechaModifica" />
+          <ScalarProperty Name="emp_Estado" ColumnName="emp_Estado" />
+          <ScalarProperty Name="emp_RazonSalida" ColumnName="emp_RazonSalida" />
+          <ScalarProperty Name="emp_FechaDeSalida" ColumnName="emp_FechaDeSalida" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbBodega_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBodega_Insert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbBodega_Insert_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbTipoEntrada_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbTipoEntrada_Insert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbTipoEntrada_Insert_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbProductoCategoria_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProductoCategoria_Insert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProductoCategoria_Insert_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbProductoCategoria_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProductoCategoria_Update">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProductoCategoria_Update_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Gral_tbEmpleados_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbEmpleados_Insert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbEmpleados_Insert_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Gral_tbUnidadMedida_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbUnidadMedida_Insert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbUnidadMedida_Insert_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Gral_tbUnidadMedida_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbUnidadMedida_Update">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbUnidadMedida_Update_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbTipoSalida_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbTipoSalida_Insert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbTipoSalida_Insert_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbTipoSalida_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbTipoSalida_Update">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbTipoSalida_Update_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbProductoSubcategoria_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProductoSubcategoria_Insert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProductoSubcategoria_Insert_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SPGetResponsableBodega" FunctionName="ERP_ZORZALModel.Store.SPGetResponsableBodega">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SPGetResponsableBodega_Result">
+          <ScalarProperty Name="bod_Id" ColumnName="bod_Id" />
+          <ScalarProperty Name="bod_ResponsableBodega" ColumnName="bod_ResponsableBodega" />
+          <ScalarProperty Name="emp_Nombres" ColumnName="emp_Nombres" />
+          <ScalarProperty Name="emp_Apellidos" ColumnName="emp_Apellidos" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbProducto_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProducto_Estado">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProducto_Estado_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbProducto_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProducto_Insert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProducto_Insert_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbProducto_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProducto_Update">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProducto_Update_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetActividadEconomica" FunctionName="ERP_ZORZALModel.Store.spGetActividadEconomica">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.spGetActividadEconomica_Result">
+          <ScalarProperty Name="acte_Id" ColumnName="acte_Id" />
+          <ScalarProperty Name="acte_Descripcion" ColumnName="acte_Descripcion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Acce_tbRol_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbRol_Insert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_tbRol_Insert_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Acce_tbRol_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbRol_Update">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_tbRol_Update_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Gral_tbEmpleado_Update_RazonSalida" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbEmpleado_Update_RazonSalida">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbEmpleado_Update_RazonSalida_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbProducto_GetSubCategoria" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProducto_GetSubCategoria">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProducto_GetSubCategoria_Result">
+          <ScalarProperty Name="pscat_Id" ColumnName="pscat_Id" />
+          <ScalarProperty Name="pscat_Descripcion" ColumnName="pscat_Descripcion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SDP_Inv_Salida_Imprimir" FunctionName="ERP_ZORZALModel.Store.SDP_Inv_Salida_Imprimir">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_Inv_Salida_Imprimir_Result">
+          <ScalarProperty Name="sal_FechaElaboracion" ColumnName="sal_FechaElaboracion" />
+          <ScalarProperty Name="tsal_Descripcion" ColumnName="tsal_Descripcion" />
+          <ScalarProperty Name="bod_Nombre" ColumnName="bod_Nombre" />
+          <ScalarProperty Name="sal_BodDestino" ColumnName="sal_BodDestino" />
+          <ScalarProperty Name="fact_Codigo" ColumnName="fact_Codigo" />
+          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+          <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
+          <ScalarProperty Name="prod_Marca" ColumnName="prod_Marca" />
+          <ScalarProperty Name="prod_Modelo" ColumnName="prod_Modelo" />
+          <ScalarProperty Name="prod_Talla" ColumnName="prod_Talla" />
+          <ScalarProperty Name="prod_Color" ColumnName="prod_Color" />
+          <ScalarProperty Name="pscat_Descripcion" ColumnName="pscat_Descripcion" />
+          <ScalarProperty Name="pcat_Nombre" ColumnName="pcat_Nombre" />
+          <ScalarProperty Name="uni_Descripcion" ColumnName="uni_Descripcion" />
+          <ScalarProperty Name="prod_CodigoBarras" ColumnName="prod_CodigoBarras" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SDP_Inv_tbBodegaDetalle_Select_Producto" FunctionName="ERP_ZORZALModel.Store.SDP_Inv_tbBodegaDetalle_Select_Producto">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_Inv_tbBodegaDetalle_Select_Producto_Result">
+          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+          <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
+          <ScalarProperty Name="pcat_Nombre" ColumnName="pcat_Nombre" />
+          <ScalarProperty Name="pscat_Descripcion" ColumnName="pscat_Descripcion" />
+          <ScalarProperty Name="uni_Descripcion" ColumnName="uni_Descripcion" />
+          <ScalarProperty Name="prod_CodigoBarras" ColumnName="prod_CodigoBarras" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SDP_Inv_tbSalida_Factura_Exist" FunctionName="ERP_ZORZALModel.Store.SDP_Inv_tbSalida_Factura_Exist" />
+    <FunctionImportMapping FunctionImportName="UDP_Acce_tbRolesUsuario_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbRolesUsuario_Insert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_tbRolesUsuario_Insert_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SDP_Gral_tbEmpleado_Select" FunctionName="ERP_ZORZALModel.Store.SDP_Gral_tbEmpleado_Select">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_Gral_tbEmpleado_Select_Result">
+          <ScalarProperty Name="emp_Id" ColumnName="emp_Id" />
+          <ScalarProperty Name="emp_Nombres" ColumnName="emp_Nombres" />
+          <ScalarProperty Name="emp_Apellidos" ColumnName="emp_Apellidos" />
+          <ScalarProperty Name="emp_Sexo" ColumnName="emp_Sexo" />
+          <ScalarProperty Name="emp_FechaNacimiento" ColumnName="emp_FechaNacimiento" />
+          <ScalarProperty Name="tpi_Id" ColumnName="tpi_Id" />
+          <ScalarProperty Name="emp_Identificacion" ColumnName="emp_Identificacion" />
+          <ScalarProperty Name="emp_Telefono" ColumnName="emp_Telefono" />
+          <ScalarProperty Name="emp_Correoelectronico" ColumnName="emp_Correoelectronico" />
+          <ScalarProperty Name="emp_TipoSangre" ColumnName="emp_TipoSangre" />
+          <ScalarProperty Name="emp_Puesto" ColumnName="emp_Puesto" />
+          <ScalarProperty Name="emp_FechaIngreso" ColumnName="emp_FechaIngreso" />
+          <ScalarProperty Name="emp_Direccion" ColumnName="emp_Direccion" />
+          <ScalarProperty Name="emp_RazonInactivacion" ColumnName="emp_RazonInactivacion" />
+          <ScalarProperty Name="emp_UsuarioCrea" ColumnName="emp_UsuarioCrea" />
+          <ScalarProperty Name="emp_FechaCrea" ColumnName="emp_FechaCrea" />
+          <ScalarProperty Name="emp_UsuarioModifica" ColumnName="emp_UsuarioModifica" />
+          <ScalarProperty Name="emp_FechaModifica" ColumnName="emp_FechaModifica" />
+          <ScalarProperty Name="emp_Estado" ColumnName="emp_Estado" />
+          <ScalarProperty Name="emp_RazonSalida" ColumnName="emp_RazonSalida" />
+          <ScalarProperty Name="emp_FechaDeSalida" ColumnName="emp_FechaDeSalida" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Acce_tbBitacoraErrores_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbBitacoraErrores_Insert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_tbBitacoraErrores_Insert_Result">
+          <ScalarProperty Name="Column1" ColumnName="Column1" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbProveedor_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProveedor_Update" />
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbProductoCategoria_Update_Estado_Validacion" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProductoCategoria_Update_Estado_Validacion">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProductoCategoria_Update_Estado_Validacion_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbProductoSubCategoria_Update_Estado_Validacion" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProductoSubCategoria_Update_Estado_Validacion">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProductoSubCategoria_Update_Estado_Validacion_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbBodega_Update_Estado_Validacion" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBodega_Update_Estado_Validacion">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbBodega_Update_Estado_Validacion_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbBodegaDetalle_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBodegaDetalle_Insert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbBodegaDetalle_Insert_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbBodegaDetalle_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBodegaDetalle_Update">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbBodegaDetalle_Update_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Acce_tbRolEstado_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbRolEstado_Update">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_tbRolEstado_Update_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SDP_Inv_Salida_Imprimir_Reporte" FunctionName="ERP_ZORZALModel.Store.SDP_Inv_Salida_Imprimir_Reporte">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_Inv_Salida_Imprimir_Reporte_Result">
+          <ScalarProperty Name="sal_Id" ColumnName="sal_Id" />
+          <ScalarProperty Name="sal_FechaElaboracion" ColumnName="sal_FechaElaboracion" />
+          <ScalarProperty Name="tsal_Descripcion" ColumnName="tsal_Descripcion" />
+          <ScalarProperty Name="bod_Nombre" ColumnName="bod_Nombre" />
+          <ScalarProperty Name="sal_BodDestino" ColumnName="sal_BodDestino" />
+          <ScalarProperty Name="fact_Codigo" ColumnName="fact_Codigo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SDP_tbBodega_Listado" FunctionName="ERP_ZORZALModel.Store.SDP_tbBodega_Listado">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_tbBodega_Listado_Result">
+          <ScalarProperty Name="bod_Id" ColumnName="bod_Id" />
+          <ScalarProperty Name="bod_Nombre" ColumnName="bod_Nombre" />
+          <ScalarProperty Name="bod_ResponsableBodega" ColumnName="bod_ResponsableBodega" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_tbEntrada_ProductosRepetidos" FunctionName="ERP_ZORZALModel.Store.SP_tbEntrada_ProductosRepetidos">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SP_tbEntrada_ProductosRepetidos_Result">
+          <ScalarProperty Name="prod_CodigoBarras" ColumnName="prod_CodigoBarras" />
+          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+          <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
+          <ScalarProperty Name="prod_Marca" ColumnName="prod_Marca" />
+          <ScalarProperty Name="prod_Modelo" ColumnName="prod_Modelo" />
+          <ScalarProperty Name="prod_Talla" ColumnName="prod_Talla" />
+          <ScalarProperty Name="prod_Color" ColumnName="prod_Color" />
+          <ScalarProperty Name="pcat_Nombre" ColumnName="pcat_Nombre" />
+          <ScalarProperty Name="pscat_Descripcion" ColumnName="pscat_Descripcion" />
+          <ScalarProperty Name="uni_Descripcion" ColumnName="uni_Descripcion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SDP_Inv_tbProducto_Select_CodBar" FunctionName="ERP_ZORZALModel.Store.SDP_Inv_tbProducto_Select_CodBar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_Inv_tbProducto_Select_CodBar_Result">
+          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+          <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
+          <ScalarProperty Name="pcat_Nombre" ColumnName="pcat_Nombre" />
+          <ScalarProperty Name="pscat_Descripcion" ColumnName="pscat_Descripcion" />
+          <ScalarProperty Name="uni_Descripcion" ColumnName="uni_Descripcion" />
+          <ScalarProperty Name="prod_CodigoBarras" ColumnName="prod_CodigoBarras" />
+          <ScalarProperty Name="prod_Marca" ColumnName="prod_Marca" />
+          <ScalarProperty Name="prod_Modelo" ColumnName="prod_Modelo" />
+          <ScalarProperty Name="prod_Talla" ColumnName="prod_Talla" />
+          <ScalarProperty Name="prod_Color" ColumnName="prod_Color" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbProducto_Estado_Prueba" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProducto_Estado_Prueba">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProducto_Estado_Prueba_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbProducto_Update_RazonInactivacion" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProducto_Update_RazonInactivacion">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProducto_Update_RazonInactivacion_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SDP_tbentradaImprimir_Select" FunctionName="ERP_ZORZALModel.Store.SDP_tbentradaImprimir_Select">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_tbentradaImprimir_Select_Result">
+          <ScalarProperty Name="ent_NumeroFormato" ColumnName="ent_NumeroFormato" />
+          <ScalarProperty Name="bod_Nombre" ColumnName="bod_Nombre" />
+          <ScalarProperty Name="ent_FechaElaboracion" ColumnName="ent_FechaElaboracion" />
+          <ScalarProperty Name="prov_Nombre" ColumnName="prov_Nombre" />
+          <ScalarProperty Name="estm_Descripcion" ColumnName="estm_Descripcion" />
+          <ScalarProperty Name="tent_Descripcion" ColumnName="tent_Descripcion" />
+          <ScalarProperty Name="ent_FacturaCompra" ColumnName="ent_FacturaCompra" />
+          <ScalarProperty Name="ent_FechaCompra" ColumnName="ent_FechaCompra" />
+          <ScalarProperty Name="tdev_descripcion" ColumnName="tdev_descripcion" />
+          <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
+          <ScalarProperty Name="ent_BodegaDestino" ColumnName="ent_BodegaDestino" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbEstadoInventarioFisico_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEstadoInventarioFisico_Insert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbEstadoInventarioFisico_Insert_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbEstadoInventarioFisico_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEstadoInventarioFisico_Update">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbEstadoInventarioFisico_Update_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SDP_Acce_GetRoles" FunctionName="ERP_ZORZALModel.Store.SDP_Acce_GetRoles">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_Acce_GetRoles_Result">
+          <ScalarProperty Name="rol_Id" ColumnName="rol_Id" />
+          <ScalarProperty Name="rol_Descripcion" ColumnName="rol_Descripcion" />
+          <ScalarProperty Name="rol_UsuarioCrea" ColumnName="rol_UsuarioCrea" />
+          <ScalarProperty Name="rol_FechaCrea" ColumnName="rol_FechaCrea" />
+          <ScalarProperty Name="rol_UsuarioModifica" ColumnName="rol_UsuarioModifica" />
+          <ScalarProperty Name="rol_FechaModifica" ColumnName="rol_FechaModifica" />
+          <ScalarProperty Name="rol_Estado" ColumnName="rol_Estado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SDP_Acce_GetRolesDisponibles" FunctionName="ERP_ZORZALModel.Store.SDP_Acce_GetRolesDisponibles">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_Acce_GetRolesDisponibles_Result">
+          <ScalarProperty Name="rol_Id" ColumnName="rol_Id" />
+          <ScalarProperty Name="rol_Descripcion" ColumnName="rol_Descripcion" />
+          <ScalarProperty Name="rol_UsuarioCrea" ColumnName="rol_UsuarioCrea" />
+          <ScalarProperty Name="rol_FechaCrea" ColumnName="rol_FechaCrea" />
+          <ScalarProperty Name="rol_UsuarioModifica" ColumnName="rol_UsuarioModifica" />
+          <ScalarProperty Name="rol_FechaModifica" ColumnName="rol_FechaModifica" />
+          <ScalarProperty Name="rol_Estado" ColumnName="rol_Estado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbBox_Delete" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBox_Delete">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbBox_Delete_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbBox_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBox_Insert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbBox_Insert_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbBoxDetalle_Delete" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBoxDetalle_Delete">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbBoxDetalle_Delete_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbBoxDetalle_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBoxDetalle_Insert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbBoxDetalle_Insert_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbBoxDetalle_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBoxDetalle_Update">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbBoxDetalle_Update_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbBox_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBox_Update">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbBox_Update_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SDP_Inv_tbBoxDetalle_Select" FunctionName="ERP_ZORZALModel.Store.SDP_Inv_tbBoxDetalle_Select">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_Inv_tbBoxDetalle_Select_Result">
+          <ScalarProperty Name="boxd_Id" ColumnName="boxd_Id" />
+          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+          <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
+          <ScalarProperty Name="prod_Marca" ColumnName="prod_Marca" />
+          <ScalarProperty Name="prod_Modelo" ColumnName="prod_Modelo" />
+          <ScalarProperty Name="prod_Talla" ColumnName="prod_Talla" />
+          <ScalarProperty Name="prod_Color" ColumnName="prod_Color" />
+          <ScalarProperty Name="uni_Descripcion" ColumnName="uni_Descripcion" />
+          <ScalarProperty Name="pcat_Nombre" ColumnName="pcat_Nombre" />
+          <ScalarProperty Name="pscat_Descripcion" ColumnName="pscat_Descripcion" />
+          <ScalarProperty Name="boxd_Cantidad" ColumnName="boxd_Cantidad" />
+          <ScalarProperty Name="prod_CodigoBarras" ColumnName="prod_CodigoBarras" />
+          <ScalarProperty Name="box_Codigo" ColumnName="box_Codigo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SDP_Inv_Cantidad_Salida_Emitida" FunctionName="ERP_ZORZALModel.Store.SDP_Inv_Cantidad_Salida_Emitida">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_Inv_Cantidad_Salida_Emitida_Result">
+          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+          <ScalarProperty Name="sald_Cantidad" ColumnName="sald_Cantidad" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_tbInventariofisico_ProductosRepetidos" FunctionName="ERP_ZORZALModel.Store.SP_tbInventariofisico_ProductosRepetidos">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SP_tbInventariofisico_ProductosRepetidos_Result1">
+          <ScalarProperty Name="prod_CodigoBarras" ColumnName="prod_CodigoBarras" />
+          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+          <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
+          <ScalarProperty Name="uni_Id" ColumnName="uni_Id" />
+          <ScalarProperty Name="uni_Descripcion" ColumnName="uni_Descripcion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Gral_tbParametro_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbParametro_Insert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbParametro_Insert_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Gral_tbParametro_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbParametro_Update">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbParametro_Update_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbEntrada_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEntrada_Insert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbEntrada_Insert_Result">
+          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_tbEntrada_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEntrada_Update">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbEntrada_Update_Result">
           <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
         </ComplexTypeMapping>
       </ResultMapping>
@@ -576,6 +1226,18 @@
           <ScalarProperty Name="obj_Id" ColumnName="obj_Id" />
           <ScalarProperty Name="rol_Id" ColumnName="rol_Id" />
           <ScalarProperty Name="acrol_Id" ColumnName="acrol_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbBitacoraErrores">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbBitacoraErrores">
+        <MappingFragment StoreEntitySet="tbBitacoraErrores">
+          <ScalarProperty Name="bite_Accion" ColumnName="bite_Accion" />
+          <ScalarProperty Name="bite_MensajeError" ColumnName="bite_MensajeError" />
+          <ScalarProperty Name="bite_Fecha" ColumnName="bite_Fecha" />
+          <ScalarProperty Name="bite_Usuario" ColumnName="bite_Usuario" />
+          <ScalarProperty Name="obj_Id" ColumnName="obj_Id" />
+          <ScalarProperty Name="bite_Id" ColumnName="bite_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -634,6 +1296,17 @@
           <ScalarProperty Name="usu_Password" ColumnName="usu_Password" />
           <ScalarProperty Name="usu_NombreUsuario" ColumnName="usu_NombreUsuario" />
           <ScalarProperty Name="usu_Id" ColumnName="usu_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -705,6 +1378,33 @@
           <ScalarProperty Name="dep_UsuarioCrea" ColumnName="dep_UsuarioCrea" />
           <ScalarProperty Name="dep_Nombre" ColumnName="dep_Nombre" />
           <ScalarProperty Name="dep_Codigo" ColumnName="dep_Codigo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbEmpleado">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbEmpleado">
+        <MappingFragment StoreEntitySet="tbEmpleado">
+          <ScalarProperty Name="emp_FechaDeSalida" ColumnName="emp_FechaDeSalida" />
+          <ScalarProperty Name="emp_RazonSalida" ColumnName="emp_RazonSalida" />
+          <ScalarProperty Name="emp_Estado" ColumnName="emp_Estado" />
+          <ScalarProperty Name="emp_FechaModifica" ColumnName="emp_FechaModifica" />
+          <ScalarProperty Name="emp_UsuarioModifica" ColumnName="emp_UsuarioModifica" />
+          <ScalarProperty Name="emp_FechaCrea" ColumnName="emp_FechaCrea" />
+          <ScalarProperty Name="emp_UsuarioCrea" ColumnName="emp_UsuarioCrea" />
+          <ScalarProperty Name="emp_RazonInactivacion" ColumnName="emp_RazonInactivacion" />
+          <ScalarProperty Name="emp_Direccion" ColumnName="emp_Direccion" />
+          <ScalarProperty Name="emp_FechaIngreso" ColumnName="emp_FechaIngreso" />
+          <ScalarProperty Name="emp_Puesto" ColumnName="emp_Puesto" />
+          <ScalarProperty Name="emp_TipoSangre" ColumnName="emp_TipoSangre" />
+          <ScalarProperty Name="emp_Correoelectronico" ColumnName="emp_Correoelectronico" />
+          <ScalarProperty Name="emp_Telefono" ColumnName="emp_Telefono" />
+          <ScalarProperty Name="emp_Identificacion" ColumnName="emp_Identificacion" />
+          <ScalarProperty Name="tpi_Id" ColumnName="tpi_Id" />
+          <ScalarProperty Name="emp_FechaNacimiento" ColumnName="emp_FechaNacimiento" />
+          <ScalarProperty Name="emp_Sexo" ColumnName="emp_Sexo" />
+          <ScalarProperty Name="emp_Apellidos" ColumnName="emp_Apellidos" />
+          <ScalarProperty Name="emp_Nombres" ColumnName="emp_Nombres" />
+          <ScalarProperty Name="emp_Id" ColumnName="emp_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -836,8 +1536,48 @@
           <ScalarProperty Name="box_FechaCrea" ColumnName="box_FechaCrea" />
           <ScalarProperty Name="box_UsuarioCrea" ColumnName="box_UsuarioCrea" />
           <ScalarProperty Name="box_Estado" ColumnName="box_Estado" />
+          <ScalarProperty Name="bod_Id" ColumnName="bod_Id" />
           <ScalarProperty Name="box_Descripcion" ColumnName="box_Descripcion" />
           <ScalarProperty Name="box_Codigo" ColumnName="box_Codigo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbBoxDetalle">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbBoxDetalle">
+        <MappingFragment StoreEntitySet="tbBoxDetalle">
+          <ScalarProperty Name="boxd_FechaModifica" ColumnName="boxd_FechaModifica" />
+          <ScalarProperty Name="boxd_UsuarioModifica" ColumnName="boxd_UsuarioModifica" />
+          <ScalarProperty Name="boxd_FechaCrea" ColumnName="boxd_FechaCrea" />
+          <ScalarProperty Name="boxd_UsuarioCrea" ColumnName="boxd_UsuarioCrea" />
+          <ScalarProperty Name="boxd_Cantidad" ColumnName="boxd_Cantidad" />
+          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+          <ScalarProperty Name="box_Codigo" ColumnName="box_Codigo" />
+          <ScalarProperty Name="boxd_Id" ColumnName="boxd_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbEntrada">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbEntrada">
+        <MappingFragment StoreEntitySet="tbEntrada">
+          <ScalarProperty Name="ent_FechaModifica" ColumnName="ent_FechaModifica" />
+          <ScalarProperty Name="ent_UsuarioModifica" ColumnName="ent_UsuarioModifica" />
+          <ScalarProperty Name="ent_FechaCrea" ColumnName="ent_FechaCrea" />
+          <ScalarProperty Name="ent_UsuarioCrea" ColumnName="ent_UsuarioCrea" />
+          <ScalarProperty Name="ent_SalidaOrigen" ColumnName="ent_SalidaOrigen" />
+          <ScalarProperty Name="entd_RazonAnulada" ColumnName="entd_RazonAnulada" />
+          <ScalarProperty Name="entd_EsAnulada" ColumnName="entd_EsAnulada" />
+          <ScalarProperty Name="tent_Id" ColumnName="tent_Id" />
+          <ScalarProperty Name="ent_BodegaDestino" ColumnName="ent_BodegaDestino" />
+          <ScalarProperty Name="ent_RazonDevolucion" ColumnName="ent_RazonDevolucion" />
+          <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
+          <ScalarProperty Name="ent_FechaCompra" ColumnName="ent_FechaCompra" />
+          <ScalarProperty Name="ent_FacturaCompra" ColumnName="ent_FacturaCompra" />
+          <ScalarProperty Name="prov_Id" ColumnName="prov_Id" />
+          <ScalarProperty Name="estm_Id" ColumnName="estm_Id" />
+          <ScalarProperty Name="bod_Id" ColumnName="bod_Id" />
+          <ScalarProperty Name="ent_FechaElaboracion" ColumnName="ent_FechaElaboracion" />
+          <ScalarProperty Name="ent_NumeroFormato" ColumnName="ent_NumeroFormato" />
+          <ScalarProperty Name="ent_Id" ColumnName="ent_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -895,6 +1635,28 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="tbProducto">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbProducto">
+        <MappingFragment StoreEntitySet="tbProducto">
+          <ScalarProperty Name="prod_Correlativo" ColumnName="prod_Correlativo" />
+          <ScalarProperty Name="prod_CodigoBarras" ColumnName="prod_CodigoBarras" />
+          <ScalarProperty Name="prod_Razon_Inactivacion" ColumnName="prod_Razon_Inactivacion" />
+          <ScalarProperty Name="prod_EsActivo" ColumnName="prod_EsActivo" />
+          <ScalarProperty Name="prod_FechaModifica" ColumnName="prod_FechaModifica" />
+          <ScalarProperty Name="prod_UsuarioModifica" ColumnName="prod_UsuarioModifica" />
+          <ScalarProperty Name="prod_FechaCrea" ColumnName="prod_FechaCrea" />
+          <ScalarProperty Name="prod_UsuarioCrea" ColumnName="prod_UsuarioCrea" />
+          <ScalarProperty Name="uni_Id" ColumnName="uni_Id" />
+          <ScalarProperty Name="pscat_Id" ColumnName="pscat_Id" />
+          <ScalarProperty Name="prod_Color" ColumnName="prod_Color" />
+          <ScalarProperty Name="prod_Talla" ColumnName="prod_Talla" />
+          <ScalarProperty Name="prod_Modelo" ColumnName="prod_Modelo" />
+          <ScalarProperty Name="prod_Marca" ColumnName="prod_Marca" />
+          <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
+          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="tbProductoCategoria">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbProductoCategoria">
         <MappingFragment StoreEntitySet="tbProductoCategoria">
@@ -938,6 +1700,41 @@
           <ScalarProperty Name="prov_NombreContacto" ColumnName="prov_NombreContacto" />
           <ScalarProperty Name="prov_Nombre" ColumnName="prov_Nombre" />
           <ScalarProperty Name="prov_Id" ColumnName="prov_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbSalida">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbSalida">
+        <MappingFragment StoreEntitySet="tbSalida">
+          <ScalarProperty Name="sal_FechaModifica" ColumnName="sal_FechaModifica" />
+          <ScalarProperty Name="sal_UsuarioModifica" ColumnName="sal_UsuarioModifica" />
+          <ScalarProperty Name="sal_FechaCrea" ColumnName="sal_FechaCrea" />
+          <ScalarProperty Name="sal_UsuarioCrea" ColumnName="sal_UsuarioCrea" />
+          <ScalarProperty Name="sal_RazonAnulada" ColumnName="sal_RazonAnulada" />
+          <ScalarProperty Name="sal_RazonDevolucion" ColumnName="sal_RazonDevolucion" />
+          <ScalarProperty Name="sal_EsAnulada" ColumnName="sal_EsAnulada" />
+          <ScalarProperty Name="sal_BodDestino" ColumnName="sal_BodDestino" />
+          <ScalarProperty Name="tsal_Id" ColumnName="tsal_Id" />
+          <ScalarProperty Name="estm_Id" ColumnName="estm_Id" />
+          <ScalarProperty Name="sal_FechaElaboracion" ColumnName="sal_FechaElaboracion" />
+          <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
+          <ScalarProperty Name="bod_Id" ColumnName="bod_Id" />
+          <ScalarProperty Name="sal_Id" ColumnName="sal_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbSalidaDetalle">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbSalidaDetalle">
+        <MappingFragment StoreEntitySet="tbSalidaDetalle">
+          <ScalarProperty Name="sald_FechaModifica" ColumnName="sald_FechaModifica" />
+          <ScalarProperty Name="sald_UsuarioModifica" ColumnName="sald_UsuarioModifica" />
+          <ScalarProperty Name="sald_FechaCrea" ColumnName="sald_FechaCrea" />
+          <ScalarProperty Name="sald_UsuarioCrea" ColumnName="sald_UsuarioCrea" />
+          <ScalarProperty Name="box_Codigo" ColumnName="box_Codigo" />
+          <ScalarProperty Name="sald_Cantidad" ColumnName="sald_Cantidad" />
+          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+          <ScalarProperty Name="sal_Id" ColumnName="sal_Id" />
+          <ScalarProperty Name="sald_Id" ColumnName="sald_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1072,6 +1869,22 @@
           <ScalarProperty Name="deno_Id" ColumnName="deno_Id" />
           <ScalarProperty Name="mocja_Id" ColumnName="mocja_Id" />
           <ScalarProperty Name="arqde_Id" ColumnName="arqde_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbDevolucion">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbDevolucion">
+        <MappingFragment StoreEntitySet="tbDevolucion">
+          <ScalarProperty Name="dev_FechaModifica" ColumnName="dev_FechaModifica" />
+          <ScalarProperty Name="dev_UsuarioModifica" ColumnName="dev_UsuarioModifica" />
+          <ScalarProperty Name="dev_FechaCrea" ColumnName="dev_FechaCrea" />
+          <ScalarProperty Name="dev_UsuarioCrea" ColumnName="dev_UsuarioCrea" />
+          <ScalarProperty Name="dev_Fecha" ColumnName="dev_Fecha" />
+          <ScalarProperty Name="dev_Estado" ColumnName="dev_Estado" />
+          <ScalarProperty Name="nocre_Codigo" ColumnName="nocre_Codigo" />
+          <ScalarProperty Name="cja_Id" ColumnName="cja_Id" />
+          <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
+          <ScalarProperty Name="dev_Id" ColumnName="dev_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1252,7 +2065,6 @@
     <EntitySetMapping Name="tbMovimientoCaja">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbMovimientoCaja">
         <MappingFragment StoreEntitySet="tbMovimientoCaja">
-          <ScalarProperty Name="usu_Id" ColumnName="usu_Id" />
           <ScalarProperty Name="mocja_FechaModifica" ColumnName="mocja_FechaModifica" />
           <ScalarProperty Name="mocja_UsuarioModifica" ColumnName="mocja_UsuarioModifica" />
           <ScalarProperty Name="mocja_FechaCrea" ColumnName="mocja_FechaCrea" />
@@ -1261,6 +2073,7 @@
           <ScalarProperty Name="mocja_FechaAceptacion" ColumnName="mocja_FechaAceptacion" />
           <ScalarProperty Name="mocja_UsuarioArquea" ColumnName="mocja_UsuarioArquea" />
           <ScalarProperty Name="mocja_FechaArqueo" ColumnName="mocja_FechaArqueo" />
+          <ScalarProperty Name="usu_Id" ColumnName="usu_Id" />
           <ScalarProperty Name="mocja_UsuarioApertura" ColumnName="mocja_UsuarioApertura" />
           <ScalarProperty Name="mocja_FechaApertura" ColumnName="mocja_FechaApertura" />
           <ScalarProperty Name="cja_Id" ColumnName="cja_Id" />
@@ -1482,6 +2295,129 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="UDV_Acce_Usuario_Roles">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Acce_Usuario_Roles">
+        <MappingFragment StoreEntitySet="UDV_Acce_Usuario_Roles">
+          <ScalarProperty Name="obj_Estado" ColumnName="obj_Estado" />
+          <ScalarProperty Name="obj_FechaModifica" ColumnName="obj_FechaModifica" />
+          <ScalarProperty Name="obj_UsuarioModifica" ColumnName="obj_UsuarioModifica" />
+          <ScalarProperty Name="obj_FechaCrea" ColumnName="obj_FechaCrea" />
+          <ScalarProperty Name="obj_UsuarioCrea" ColumnName="obj_UsuarioCrea" />
+          <ScalarProperty Name="obj_Referencia" ColumnName="obj_Referencia" />
+          <ScalarProperty Name="obj_Pantalla" ColumnName="obj_Pantalla" />
+          <ScalarProperty Name="acrol_FechaModifica" ColumnName="acrol_FechaModifica" />
+          <ScalarProperty Name="acrol_UsuarioModifica" ColumnName="acrol_UsuarioModifica" />
+          <ScalarProperty Name="acrol_FechaCrea" ColumnName="acrol_FechaCrea" />
+          <ScalarProperty Name="acrol_UsuarioCrea" ColumnName="acrol_UsuarioCrea" />
+          <ScalarProperty Name="obj_Id" ColumnName="obj_Id" />
+          <ScalarProperty Name="acrol_Id" ColumnName="acrol_Id" />
+          <ScalarProperty Name="rolu_FechaModifica" ColumnName="rolu_FechaModifica" />
+          <ScalarProperty Name="rolu_UsuarioModifica" ColumnName="rolu_UsuarioModifica" />
+          <ScalarProperty Name="rolu_FechaCrea" ColumnName="rolu_FechaCrea" />
+          <ScalarProperty Name="rolu_UsuarioCrea" ColumnName="rolu_UsuarioCrea" />
+          <ScalarProperty Name="usu_Id" ColumnName="usu_Id" />
+          <ScalarProperty Name="rol_Id" ColumnName="rol_Id" />
+          <ScalarProperty Name="rolu_Id" ColumnName="rolu_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_Objetos">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.V_Objetos">
+        <MappingFragment StoreEntitySet="V_Objetos">
+          <ScalarProperty Name="obj_FechaModifica" ColumnName="obj_FechaModifica" />
+          <ScalarProperty Name="obj_UsuarioModifica" ColumnName="obj_UsuarioModifica" />
+          <ScalarProperty Name="obj_FechaCrea" ColumnName="obj_FechaCrea" />
+          <ScalarProperty Name="usu_NombreUsuario" ColumnName="usu_NombreUsuario" />
+          <ScalarProperty Name="obj_Pantalla" ColumnName="obj_Pantalla" />
+          <ScalarProperty Name="obj_Id" ColumnName="obj_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UDP_Vent_PagosPorFechas">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_PagosPorFechas">
+        <MappingFragment StoreEntitySet="UDP_Vent_PagosPorFechas">
+          <ScalarProperty Name="Saldo_Actual" ColumnName="Saldo Actual" />
+          <ScalarProperty Name="Total_Pago" ColumnName="Total Pago" />
+          <ScalarProperty Name="Saldo_Anterior" ColumnName="Saldo Anterior" />
+          <ScalarProperty Name="Tipo_Pago" ColumnName="Tipo Pago" />
+          <ScalarProperty Name="Código_Factura" ColumnName="Código Factura" />
+          <ScalarProperty Name="Nombre_Completo" ColumnName="Nombre Completo" />
+          <ScalarProperty Name="RTN_Cliente" ColumnName="RTN Cliente" />
+          <ScalarProperty Name="Num__Linea" ColumnName="Num. Linea" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UDV_TBInventarioFisico_ImprimirConciliacion">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_TBInventarioFisico_ImprimirConciliacion">
+        <MappingFragment StoreEntitySet="UDV_TBInventarioFisico_ImprimirConciliacion">
+          <ScalarProperty Name="invf_Id" ColumnName="invf_Id" />
+          <ScalarProperty Name="invfd_Cantidad" ColumnName="invfd_Cantidad" />
+          <ScalarProperty Name="invfd_CantidadSistema" ColumnName="invfd_CantidadSistema" />
+          <ScalarProperty Name="uni_Descripcion" ColumnName="uni_Descripcion" />
+          <ScalarProperty Name="prod_Modelo" ColumnName="prod_Modelo" />
+          <ScalarProperty Name="prod_Marca" ColumnName="prod_Marca" />
+          <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
+          <ScalarProperty Name="prod_CodigoBarras" ColumnName="prod_CodigoBarras" />
+          <ScalarProperty Name="emp_Apellidos" ColumnName="emp_Apellidos" />
+          <ScalarProperty Name="emp_Nombres" ColumnName="emp_Nombres" />
+          <ScalarProperty Name="bod_Nombre" ColumnName="bod_Nombre" />
+          <ScalarProperty Name="estif_Descripcion" ColumnName="estif_Descripcion" />
+          <ScalarProperty Name="invf_FechaInventario" ColumnName="invf_FechaInventario" />
+          <ScalarProperty Name="invf_Descripcion" ColumnName="invf_Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UDV_Vent_FacturaPuntoEmision">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Vent_FacturaPuntoEmision">
+        <MappingFragment StoreEntitySet="UDV_Vent_FacturaPuntoEmision">
+          <ScalarProperty Name="dfisc_Id" ColumnName="dfisc_Id" />
+          <ScalarProperty Name="pemid_FechaLimite" ColumnName="pemid_FechaLimite" />
+          <ScalarProperty Name="pemid_RangoFinal" ColumnName="pemid_RangoFinal" />
+          <ScalarProperty Name="pemid_RangoInicio" ColumnName="pemid_RangoInicio" />
+          <ScalarProperty Name="pemi_NumeroCAI" ColumnName="pemi_NumeroCAI" />
+          <ScalarProperty Name="pemi_Id" ColumnName="pemi_Id" />
+          <ScalarProperty Name="suc_Id" ColumnName="suc_Id" />
+          <ScalarProperty Name="cja_Id" ColumnName="cja_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UDV_Inv_Nombre_Empleado">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Inv_Nombre_Empleado">
+        <MappingFragment StoreEntitySet="UDV_Inv_Nombre_Empleado">
+          <ScalarProperty Name="Empleados" ColumnName="Empleados" />
+          <ScalarProperty Name="emp_Id" ColumnName="emp_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UDP_ListadoDeProveedores">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDP_ListadoDeProveedores">
+        <MappingFragment StoreEntitySet="UDP_ListadoDeProveedores">
+          <ScalarProperty Name="prov_Telefono" ColumnName="prov_Telefono" />
+          <ScalarProperty Name="prov_Email" ColumnName="prov_Email" />
+          <ScalarProperty Name="acte_Descripcion" ColumnName="acte_Descripcion" />
+          <ScalarProperty Name="prov_NombreContacto" ColumnName="prov_NombreContacto" />
+          <ScalarProperty Name="prov_Nombre" ColumnName="prov_Nombre" />
+          <ScalarProperty Name="prov_RTN" ColumnName="prov_RTN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UDV_Inv_CatalogoProductos">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Inv_CatalogoProductos">
+        <MappingFragment StoreEntitySet="UDV_Inv_CatalogoProductos">
+          <ScalarProperty Name="uni_Descripcion" ColumnName="uni_Descripcion" />
+          <ScalarProperty Name="prod_Color" ColumnName="prod_Color" />
+          <ScalarProperty Name="prod_Talla" ColumnName="prod_Talla" />
+          <ScalarProperty Name="prod_Modelo" ColumnName="prod_Modelo" />
+          <ScalarProperty Name="prod_Marca" ColumnName="prod_Marca" />
+          <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
+          <ScalarProperty Name="prod_CodigoBarras" ColumnName="prod_CodigoBarras" />
+          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+          <ScalarProperty Name="pscat_Descripcion" ColumnName="pscat_Descripcion" />
+          <ScalarProperty Name="pcat_Nombre" ColumnName="pcat_Nombre" />
+          <ScalarProperty Name="pscat_Id" ColumnName="pscat_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="UDV_Inv_Consultar_Existencias_Productos">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Inv_Consultar_Existencias_Productos">
         <MappingFragment StoreEntitySet="UDV_Inv_Consultar_Existencias_Productos">
@@ -1497,731 +2433,806 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="tbEntrada">
-      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbEntrada">
-        <MappingFragment StoreEntitySet="tbEntrada">
-          <ScalarProperty Name="ent_FechaModifica" ColumnName="ent_FechaModifica" />
-          <ScalarProperty Name="ent_UsuarioModifica" ColumnName="ent_UsuarioModifica" />
-          <ScalarProperty Name="ent_FechaCrea" ColumnName="ent_FechaCrea" />
-          <ScalarProperty Name="ent_UsuarioCrea" ColumnName="ent_UsuarioCrea" />
-          <ScalarProperty Name="ent_SalidaOrigen" ColumnName="ent_SalidaOrigen" />
-          <ScalarProperty Name="entd_RazonAnulada" ColumnName="entd_RazonAnulada" />
-          <ScalarProperty Name="entd_EsAnulada" ColumnName="entd_EsAnulada" />
-          <ScalarProperty Name="tent_Id" ColumnName="tent_Id" />
+    <EntitySetMapping Name="UDV_Inv_ConsultarInventarioFisicoSobrantes">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Inv_ConsultarInventarioFisicoSobrantes">
+        <MappingFragment StoreEntitySet="UDV_Inv_ConsultarInventarioFisicoSobrantes">
+          <ScalarProperty Name="Sobrante_Faltante" ColumnName="Sobrante/Faltante" />
+          <ScalarProperty Name="invfd_CantidadSistema" ColumnName="invfd_CantidadSistema" />
+          <ScalarProperty Name="invfd_Cantidad" ColumnName="invfd_Cantidad" />
+          <ScalarProperty Name="uni_Descripcion" ColumnName="uni_Descripcion" />
+          <ScalarProperty Name="prod_Talla" ColumnName="prod_Talla" />
+          <ScalarProperty Name="prod_Modelo" ColumnName="prod_Modelo" />
+          <ScalarProperty Name="prod_Marca" ColumnName="prod_Marca" />
+          <ScalarProperty Name="prod_CodigoBarras" ColumnName="prod_CodigoBarras" />
+          <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
+          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+          <ScalarProperty Name="invf_ResponsableBodega" ColumnName="invf_ResponsableBodega" />
+          <ScalarProperty Name="bod_Telefono" ColumnName="bod_Telefono" />
+          <ScalarProperty Name="bod_Id" ColumnName="bod_Id" />
+          <ScalarProperty Name="bod_Nombre" ColumnName="bod_Nombre" />
+          <ScalarProperty Name="invf_Descripcion" ColumnName="invf_Descripcion" />
+          <ScalarProperty Name="invf_FechaInventario" ColumnName="invf_FechaInventario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UDV_Inv_EntradaPorId">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Inv_EntradaPorId">
+        <MappingFragment StoreEntitySet="UDV_Inv_EntradaPorId">
+          <ScalarProperty Name="uni_Descripcion" ColumnName="uni_Descripcion" />
+          <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
+          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+          <ScalarProperty Name="entd_Cantidad" ColumnName="entd_Cantidad" />
           <ScalarProperty Name="ent_BodegaDestino" ColumnName="ent_BodegaDestino" />
-          <ScalarProperty Name="ent_RazonDevolucion" ColumnName="ent_RazonDevolucion" />
           <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
+          <ScalarProperty Name="tdev_descripcion" ColumnName="tdev_descripcion" />
           <ScalarProperty Name="ent_FechaCompra" ColumnName="ent_FechaCompra" />
           <ScalarProperty Name="ent_FacturaCompra" ColumnName="ent_FacturaCompra" />
-          <ScalarProperty Name="prov_Id" ColumnName="prov_Id" />
-          <ScalarProperty Name="estm_Id" ColumnName="estm_Id" />
-          <ScalarProperty Name="bod_Id" ColumnName="bod_Id" />
+          <ScalarProperty Name="tent_Descripcion" ColumnName="tent_Descripcion" />
+          <ScalarProperty Name="estm_Descripcion" ColumnName="estm_Descripcion" />
+          <ScalarProperty Name="tent_id" ColumnName="tent_id" />
+          <ScalarProperty Name="prov_Nombre" ColumnName="prov_Nombre" />
           <ScalarProperty Name="ent_FechaElaboracion" ColumnName="ent_FechaElaboracion" />
+          <ScalarProperty Name="bod_Nombre" ColumnName="bod_Nombre" />
           <ScalarProperty Name="ent_NumeroFormato" ColumnName="ent_NumeroFormato" />
           <ScalarProperty Name="ent_Id" ColumnName="ent_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Acce_Login" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_Login">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_Login_Result">
-          <ScalarProperty Name="usu_Id" ColumnName="usu_Id" />
-          <ScalarProperty Name="usu_NombreUsuario" ColumnName="usu_NombreUsuario" />
-          <ScalarProperty Name="usu_Password" ColumnName="usu_Password" />
-          <ScalarProperty Name="usu_Nombres" ColumnName="usu_Nombres" />
-          <ScalarProperty Name="usu_Apellidos" ColumnName="usu_Apellidos" />
-          <ScalarProperty Name="usu_Correo" ColumnName="usu_Correo" />
-          <ScalarProperty Name="usu_EsActivo" ColumnName="usu_EsActivo" />
-          <ScalarProperty Name="usu_RazonInactivo" ColumnName="usu_RazonInactivo" />
-          <ScalarProperty Name="usu_EsAdministrador" ColumnName="usu_EsAdministrador" />
-          <ScalarProperty Name="usu_SesionesValidas" ColumnName="usu_SesionesValidas" />
-          <ScalarProperty Name="suc_Id" ColumnName="suc_Id" />
-          <ScalarProperty Name="emp_Id" ColumnName="emp_Id" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Acce_tbUsuario_PasswordRestore" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbUsuario_PasswordRestore">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_tbUsuario_PasswordRestore_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Inv_tbBox_Delete" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBox_Delete">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbBox_Delete_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Inv_tbSalida_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbSalida_Insert">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbSalida_Insert_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Inv_tbSalida_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbSalida_Update">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbSalida_Update_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Inv_tbSalidaDetalle_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbSalidaDetalle_Insert">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbSalidaDetalle_Insert_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Inv_tbSalidaDetalle_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbSalidaDetalle_Update">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbSalidaDetalle_Update_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <EntitySetMapping Name="tbSalida">
-      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbSalida">
-        <MappingFragment StoreEntitySet="tbSalida">
-          <ScalarProperty Name="sal_FechaModifica" ColumnName="sal_FechaModifica" />
-          <ScalarProperty Name="sal_UsuarioModifica" ColumnName="sal_UsuarioModifica" />
-          <ScalarProperty Name="sal_FechaCrea" ColumnName="sal_FechaCrea" />
-          <ScalarProperty Name="sal_UsuarioCrea" ColumnName="sal_UsuarioCrea" />
-          <ScalarProperty Name="sal_RazonAnulada" ColumnName="sal_RazonAnulada" />
-          <ScalarProperty Name="sal_RazonDevolucion" ColumnName="sal_RazonDevolucion" />
-          <ScalarProperty Name="sal_EsAnulada" ColumnName="sal_EsAnulada" />
-          <ScalarProperty Name="sal_BodDestino" ColumnName="sal_BodDestino" />
+    <EntitySetMapping Name="UDV_INV_Frecuencia_Movimiento_Productos">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_INV_Frecuencia_Movimiento_Productos">
+        <MappingFragment StoreEntitySet="UDV_INV_Frecuencia_Movimiento_Productos">
+          <ScalarProperty Name="FRECUENCIA" ColumnName="FRECUENCIA" />
+          <ScalarProperty Name="sal_FechaElaboracion" ColumnName="sal_FechaElaboracion" />
+          <ScalarProperty Name="sald_Cantidad" ColumnName="sald_Cantidad" />
           <ScalarProperty Name="tsal_Id" ColumnName="tsal_Id" />
+          <ScalarProperty Name="prod_Talla" ColumnName="prod_Talla" />
+          <ScalarProperty Name="prod_Modelo" ColumnName="prod_Modelo" />
+          <ScalarProperty Name="PROD_MARCA" ColumnName="PROD_MARCA" />
+          <ScalarProperty Name="pscat_Descripcion" ColumnName="pscat_Descripcion" />
+          <ScalarProperty Name="pcat_Nombre" ColumnName="pcat_Nombre" />
+          <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
+          <ScalarProperty Name="prod_CodigoBarras" ColumnName="prod_CodigoBarras" />
+          <ScalarProperty Name="bod_Telefono" ColumnName="bod_Telefono" />
+          <ScalarProperty Name="RESPONSABLE" ColumnName="RESPONSABLE" />
+          <ScalarProperty Name="BOD_NOMBRE" ColumnName="BOD_NOMBRE" />
+          <ScalarProperty Name="bod_Id" ColumnName="bod_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UDV_INV_Frecuencia_Movimiento_Productos_Prueba">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_INV_Frecuencia_Movimiento_Productos_Prueba">
+        <MappingFragment StoreEntitySet="UDV_INV_Frecuencia_Movimiento_Productos_Prueba">
+          <ScalarProperty Name="FRECUENCIA" ColumnName="FRECUENCIA" />
+          <ScalarProperty Name="sal_FechaElaboracion" ColumnName="sal_FechaElaboracion" />
+          <ScalarProperty Name="sald_Cantidad" ColumnName="sald_Cantidad" />
+          <ScalarProperty Name="tsal_Id" ColumnName="tsal_Id" />
+          <ScalarProperty Name="prod_Talla" ColumnName="prod_Talla" />
+          <ScalarProperty Name="prod_Modelo" ColumnName="prod_Modelo" />
+          <ScalarProperty Name="PROD_MARCA" ColumnName="PROD_MARCA" />
+          <ScalarProperty Name="pscat_Descripcion" ColumnName="pscat_Descripcion" />
+          <ScalarProperty Name="pcat_Nombre" ColumnName="pcat_Nombre" />
+          <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
+          <ScalarProperty Name="prod_CodigoBarras" ColumnName="prod_CodigoBarras" />
+          <ScalarProperty Name="bod_Telefono" ColumnName="bod_Telefono" />
+          <ScalarProperty Name="RESPONSABLE" ColumnName="RESPONSABLE" />
+          <ScalarProperty Name="bod_Id" ColumnName="bod_Id" />
+          <ScalarProperty Name="BOD_NOMBRE" ColumnName="BOD_NOMBRE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UDV_Inv_Inventario_Historico_Por_Fechas">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Inv_Inventario_Historico_Por_Fechas">
+        <MappingFragment StoreEntitySet="UDV_Inv_Inventario_Historico_Por_Fechas">
+          <ScalarProperty Name="sal_FechaModifica" ColumnName="sal_FechaModifica" />
+          <ScalarProperty Name="Estado_Salida" ColumnName="Estado_Salida" />
+          <ScalarProperty Name="SALIDA_ID" ColumnName="SALIDA_ID" />
+          <ScalarProperty Name="SALIDA_DETALLE_ID" ColumnName="SALIDA_DETALLE_ID" />
+          <ScalarProperty Name="CANTIDAD_EXISTENTE_ANTES_DE_SALIDA" ColumnName="CANTIDAD_EXISTENTE_ANTES_DE_SALIDA" />
+          <ScalarProperty Name="ent_FechaModifica" ColumnName="ent_FechaModifica" />
+          <ScalarProperty Name="Estado_entrada" ColumnName="Estado_entrada" />
+          <ScalarProperty Name="ENTRADA_ID" ColumnName="ENTRADA_ID" />
+          <ScalarProperty Name="ENTRADA_DETALLE_ID" ColumnName="ENTRADA_DETALLE_ID" />
+          <ScalarProperty Name="CANTIDAD_EXISTENTE_ANTES_DE_ENTRADA" ColumnName="CANTIDAD_EXISTENTE_ANTES_DE_ENTRADA" />
+          <ScalarProperty Name="CANTIDAD_EXISTENTE_EN_BODEGA" ColumnName="CANTIDAD_EXISTENTE_EN_BODEGA" />
+          <ScalarProperty Name="UNIDAD_DE_MEDIDA" ColumnName="UNIDAD_DE_MEDIDA" />
+          <ScalarProperty Name="TALLA" ColumnName="TALLA" />
+          <ScalarProperty Name="MODELO" ColumnName="MODELO" />
+          <ScalarProperty Name="MARCA" ColumnName="MARCA" />
+          <ScalarProperty Name="CATEGORIA" ColumnName="CATEGORIA" />
+          <ScalarProperty Name="PRODUCTO" ColumnName="PRODUCTO" />
+          <ScalarProperty Name="CODIGO_BARRAS" ColumnName="CODIGO_BARRAS" />
+          <ScalarProperty Name="CODIGO_PRODUCTO" ColumnName="CODIGO_PRODUCTO" />
+          <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+          <ScalarProperty Name="ENCARGADO" ColumnName="ENCARGADO" />
+          <ScalarProperty Name="NOMBRE_BODEGA" ColumnName="NOMBRE_BODEGA" />
+          <ScalarProperty Name="BODEGA_ID" ColumnName="BODEGA_ID" />
+          <ScalarProperty Name="BODEGA_DETALLE_ID" ColumnName="BODEGA_DETALLE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UDV_Inv_Movimiento_Entre_Fechas">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Inv_Movimiento_Entre_Fechas">
+        <MappingFragment StoreEntitySet="UDV_Inv_Movimiento_Entre_Fechas">
+          <ScalarProperty Name="TIPO" ColumnName="TIPO" />
+          <ScalarProperty Name="Row_" ColumnName="Row#" />
+          <ScalarProperty Name="Cantidad_Salidas_Entradas" ColumnName="Cantidad Salidas/Entradas" />
+          <ScalarProperty Name="uni_Descripcion" ColumnName="uni_Descripcion" />
+          <ScalarProperty Name="prod_Talla" ColumnName="prod_Talla" />
+          <ScalarProperty Name="prod_Modelo" ColumnName="prod_Modelo" />
+          <ScalarProperty Name="pscat_Descripcion" ColumnName="pscat_Descripcion" />
+          <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
+          <ScalarProperty Name="prod_CodigoBarras" ColumnName="prod_CodigoBarras" />
+          <ScalarProperty Name="bod_Telefono" ColumnName="bod_Telefono" />
+          <ScalarProperty Name="bod_ResponsableBodega" ColumnName="bod_ResponsableBodega" />
+          <ScalarProperty Name="bod_Nombre" ColumnName="bod_Nombre" />
+          <ScalarProperty Name="bod_Id" ColumnName="bod_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UDV_Inv_PackingList">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Inv_PackingList">
+        <MappingFragment StoreEntitySet="UDV_Inv_PackingList">
+          <ScalarProperty Name="box_FechaCrea" ColumnName="box_FechaCrea" />
+          <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+          <ScalarProperty Name="sal_BodDestino" ColumnName="sal_BodDestino" />
+          <ScalarProperty Name="bod_Nombre" ColumnName="bod_Nombre" />
+          <ScalarProperty Name="sald_Cantidad" ColumnName="sald_Cantidad" />
+          <ScalarProperty Name="uni_Descripcion" ColumnName="uni_Descripcion" />
+          <ScalarProperty Name="prod_Talla" ColumnName="prod_Talla" />
+          <ScalarProperty Name="prod_Modelo" ColumnName="prod_Modelo" />
+          <ScalarProperty Name="prod_Marca" ColumnName="prod_Marca" />
+          <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
+          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+          <ScalarProperty Name="prod_CodigoBarras" ColumnName="prod_CodigoBarras" />
+          <ScalarProperty Name="box_Descripcion" ColumnName="box_Descripcion" />
+          <ScalarProperty Name="box_Codigo" ColumnName="box_Codigo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UDV_Inv_PackingList_Caja">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Inv_PackingList_Caja">
+        <MappingFragment StoreEntitySet="UDV_Inv_PackingList_Caja">
+          <ScalarProperty Name="bod_Nombre" ColumnName="bod_Nombre" />
+          <ScalarProperty Name="pcat_Nombre" ColumnName="pcat_Nombre" />
+          <ScalarProperty Name="uni_Descripcion" ColumnName="uni_Descripcion" />
+          <ScalarProperty Name="boxd_Cantidad" ColumnName="boxd_Cantidad" />
+          <ScalarProperty Name="box_Descripcion" ColumnName="box_Descripcion" />
+          <ScalarProperty Name="prod_Talla" ColumnName="prod_Talla" />
+          <ScalarProperty Name="prod_Modelo" ColumnName="prod_Modelo" />
+          <ScalarProperty Name="prod_Marca" ColumnName="prod_Marca" />
+          <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
+          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+          <ScalarProperty Name="prod_CodigoBarras" ColumnName="prod_CodigoBarras" />
+          <ScalarProperty Name="box_Codigo" ColumnName="box_Codigo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UDV_Inv_ProductosSolicitadosPorEntregar">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Inv_ProductosSolicitadosPorEntregar">
+        <MappingFragment StoreEntitySet="UDV_Inv_ProductosSolicitadosPorEntregar">
+          <ScalarProperty Name="uni_Descripcion" ColumnName="uni_Descripcion" />
+          <ScalarProperty Name="uni_Id" ColumnName="uni_Id" />
+          <ScalarProperty Name="prod_Talla" ColumnName="prod_Talla" />
+          <ScalarProperty Name="prod_Modelo" ColumnName="prod_Modelo" />
+          <ScalarProperty Name="prod_Marca" ColumnName="prod_Marca" />
+          <ScalarProperty Name="prod_CodigoBarras" ColumnName="prod_CodigoBarras" />
+          <ScalarProperty Name="sald_Id" ColumnName="sald_Id" />
+          <ScalarProperty Name="sald_Cantidad" ColumnName="sald_Cantidad" />
+          <ScalarProperty Name="BodegaDestino" ColumnName="BodegaDestino" />
+          <ScalarProperty Name="sal_BodDestino" ColumnName="sal_BodDestino" />
+          <ScalarProperty Name="tsal_Descripcion" ColumnName="tsal_Descripcion" />
+          <ScalarProperty Name="tsal_Id" ColumnName="tsal_Id" />
+          <ScalarProperty Name="estm_Descripcion" ColumnName="estm_Descripcion" />
           <ScalarProperty Name="estm_Id" ColumnName="estm_Id" />
           <ScalarProperty Name="sal_FechaElaboracion" ColumnName="sal_FechaElaboracion" />
-          <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
+          <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
+          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+          <ScalarProperty Name="BodegaOrigen" ColumnName="BodegaOrigen" />
           <ScalarProperty Name="bod_Id" ColumnName="bod_Id" />
           <ScalarProperty Name="sal_Id" ColumnName="sal_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="tbSalidaDetalle">
-      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbSalidaDetalle">
-        <MappingFragment StoreEntitySet="tbSalidaDetalle">
-          <ScalarProperty Name="sald_FechaModifica" ColumnName="sald_FechaModifica" />
-          <ScalarProperty Name="sald_UsuarioModifica" ColumnName="sald_UsuarioModifica" />
-          <ScalarProperty Name="sald_FechaCrea" ColumnName="sald_FechaCrea" />
-          <ScalarProperty Name="sald_UsuarioCrea" ColumnName="sald_UsuarioCrea" />
-          <ScalarProperty Name="box_Codigo" ColumnName="box_Codigo" />
-          <ScalarProperty Name="sald_Cantidad" ColumnName="sald_Cantidad" />
-          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
-          <ScalarProperty Name="sal_Id" ColumnName="sal_Id" />
-          <ScalarProperty Name="sald_Id" ColumnName="sald_Id" />
+    <EntitySetMapping Name="UDV_Inv_Proyeccion_de_Movimiento_de_Producto">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Inv_Proyeccion_de_Movimiento_de_Producto">
+        <MappingFragment StoreEntitySet="UDV_Inv_Proyeccion_de_Movimiento_de_Producto">
+          <ScalarProperty Name="Creado_el_" ColumnName="Creado el:" />
+          <ScalarProperty Name="Creado_por_" ColumnName="Creado por:" />
+          <ScalarProperty Name="Proyección_Días" ColumnName="Proyección Días" />
+          <ScalarProperty Name="Promedio_Vent__Diaria" ColumnName="Promedio Vent. Diaria" />
+          <ScalarProperty Name="Cantidad_Inventario" ColumnName="Cantidad Inventario" />
+          <ScalarProperty Name="Talla" ColumnName="Talla" />
+          <ScalarProperty Name="Unidad_Medida" ColumnName="Unidad Medida" />
+          <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+          <ScalarProperty Name="Marca" ColumnName="Marca" />
+          <ScalarProperty Name="Nombre_Producto" ColumnName="Nombre Producto" />
+          <ScalarProperty Name="prod_CodigoBarras" ColumnName="prod_CodigoBarras" />
+          <ScalarProperty Name="Télefono" ColumnName="Télefono" />
+          <ScalarProperty Name="Responsable" ColumnName="Responsable" />
+          <ScalarProperty Name="Nombre_de_la_Bodega" ColumnName="Nombre de la Bodega" />
+          <ScalarProperty Name="Código_Bodega" ColumnName="Código Bodega" />
+          <ScalarProperty Name="suc_Direccion" ColumnName="suc_Direccion" />
+          <ScalarProperty Name="Prod_Codigo" ColumnName="Prod_Codigo" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="SDP_Inv_tbSalidaDetalle_Edit_Select" FunctionName="ERP_ZORZALModel.Store.SDP_Inv_tbSalidaDetalle_Edit_Select">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_Inv_tbSalidaDetalle_Edit_Select_Result">
-          <ScalarProperty Name="sald_Id" ColumnName="sald_Id" />
-          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
-          <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
-          <ScalarProperty Name="prod_Marca" ColumnName="prod_Marca" />
-          <ScalarProperty Name="prod_Modelo" ColumnName="prod_Modelo" />
-          <ScalarProperty Name="prod_Talla" ColumnName="prod_Talla" />
-          <ScalarProperty Name="prod_Color" ColumnName="prod_Color" />
-          <ScalarProperty Name="uni_Descripcion" ColumnName="uni_Descripcion" />
-          <ScalarProperty Name="pcat_Nombre" ColumnName="pcat_Nombre" />
-          <ScalarProperty Name="pscat_Descripcion" ColumnName="pscat_Descripcion" />
+    <EntitySetMapping Name="UDV_Inv_Salida_Imprimir_Reporte">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Inv_Salida_Imprimir_Reporte">
+        <MappingFragment StoreEntitySet="UDV_Inv_Salida_Imprimir_Reporte">
           <ScalarProperty Name="sald_Cantidad" ColumnName="sald_Cantidad" />
-          <ScalarProperty Name="box_Codigo" ColumnName="box_Codigo" />
           <ScalarProperty Name="prod_CodigoBarras" ColumnName="prod_CodigoBarras" />
-          <ScalarProperty Name="sal_Id" ColumnName="sal_Id" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SDP_Inv_tbSalidaDetalle_Select" FunctionName="ERP_ZORZALModel.Store.SDP_Inv_tbSalidaDetalle_Select">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_Inv_tbSalidaDetalle_Select_Result">
-          <ScalarProperty Name="sald_Id" ColumnName="sald_Id" />
-          <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
-          <ScalarProperty Name="prod_Marca" ColumnName="prod_Marca" />
-          <ScalarProperty Name="prod_Modelo" ColumnName="prod_Modelo" />
-          <ScalarProperty Name="prod_Talla" ColumnName="prod_Talla" />
-          <ScalarProperty Name="prod_Color" ColumnName="prod_Color" />
           <ScalarProperty Name="uni_Descripcion" ColumnName="uni_Descripcion" />
-          <ScalarProperty Name="pcat_Nombre" ColumnName="pcat_Nombre" />
           <ScalarProperty Name="pscat_Descripcion" ColumnName="pscat_Descripcion" />
-          <ScalarProperty Name="box_Codigo" ColumnName="box_Codigo" />
-          <ScalarProperty Name="prod_CodigoBarras" ColumnName="prod_CodigoBarras" />
-          <ScalarProperty Name="sald_Cantidad" ColumnName="sald_Cantidad" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Inv_tbSalidaDetalle_Delete" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbSalidaDetalle_Delete">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbSalidaDetalle_Delete_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Acce_tbUsuario_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbUsuario_Update">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_tbUsuario_Update_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SDP_tbEmpleado_Consulta" FunctionName="ERP_ZORZALModel.Store.SDP_tbEmpleado_Consulta">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_tbEmpleado_Consulta_Result">
-          <ScalarProperty Name="emp_Id" ColumnName="emp_Id" />
-          <ScalarProperty Name="emp_Nombres" ColumnName="emp_Nombres" />
-          <ScalarProperty Name="emp_Apellidos" ColumnName="emp_Apellidos" />
-          <ScalarProperty Name="emp_Sexo" ColumnName="emp_Sexo" />
-          <ScalarProperty Name="emp_FechaNacimiento" ColumnName="emp_FechaNacimiento" />
-          <ScalarProperty Name="tpi_Id" ColumnName="tpi_Id" />
-          <ScalarProperty Name="emp_Identificacion" ColumnName="emp_Identificacion" />
-          <ScalarProperty Name="emp_Telefono" ColumnName="emp_Telefono" />
-          <ScalarProperty Name="emp_Correoelectronico" ColumnName="emp_Correoelectronico" />
-          <ScalarProperty Name="emp_TipoSangre" ColumnName="emp_TipoSangre" />
-          <ScalarProperty Name="emp_Puesto" ColumnName="emp_Puesto" />
-          <ScalarProperty Name="emp_FechaIngreso" ColumnName="emp_FechaIngreso" />
-          <ScalarProperty Name="emp_Direccion" ColumnName="emp_Direccion" />
-          <ScalarProperty Name="emp_RazonInactivacion" ColumnName="emp_RazonInactivacion" />
-          <ScalarProperty Name="emp_UsuarioCrea" ColumnName="emp_UsuarioCrea" />
-          <ScalarProperty Name="emp_FechaCrea" ColumnName="emp_FechaCrea" />
-          <ScalarProperty Name="emp_UsuarioModifica" ColumnName="emp_UsuarioModifica" />
-          <ScalarProperty Name="emp_FechaModifica" ColumnName="emp_FechaModifica" />
-          <ScalarProperty Name="emp_Estado" ColumnName="emp_Estado" />
-          <ScalarProperty Name="emp_RazonSalida" ColumnName="emp_RazonSalida" />
-          <ScalarProperty Name="emp_FechaDeSalida" ColumnName="emp_FechaDeSalida" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Gral_tbEmpleado_Update_RazonInactivacion" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbEmpleado_Update_RazonInactivacion">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbEmpleado_Update_RazonInactivacion_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Inv_tbProducto_GetCategoria" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProducto_GetCategoria">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProducto_GetCategoria_Result">
-          <ScalarProperty Name="pcat_Id" ColumnName="pcat_Id" />
           <ScalarProperty Name="pcat_Nombre" ColumnName="pcat_Nombre" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Inv_tbProducto_ValorCodigo" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProducto_ValorCodigo">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProducto_ValorCodigo_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Inv_SolicitarProducto_ValidacionPorBodega" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_SolicitarProducto_ValidacionPorBodega">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_SolicitarProducto_ValidacionPorBodega_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Inv_ValidacionCantidadExistente" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_ValidacionCantidadExistente">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_ValidacionCantidadExistente_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SPGetRTNproveedor" FunctionName="ERP_ZORZALModel.Store.SPGetRTNproveedor">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SPGetRTNproveedor_Result">
-          <ScalarProperty Name="prov_RTN" ColumnName="prov_RTN" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Inv_tbBodega_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBodega_Update">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbBodega_Update_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Inv_tbTipoEntrada_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbTipoEntrada_Update">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbTipoEntrada_Update_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Gral_tbEmpleados_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbEmpleados_Update">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbEmpleados_Update_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <EntitySetMapping Name="tbEmpleado">
-      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbEmpleado">
-        <MappingFragment StoreEntitySet="tbEmpleado">
-          <ScalarProperty Name="emp_FechaDeSalida" ColumnName="emp_FechaDeSalida" />
-          <ScalarProperty Name="emp_RazonSalida" ColumnName="emp_RazonSalida" />
-          <ScalarProperty Name="emp_Estado" ColumnName="emp_Estado" />
-          <ScalarProperty Name="emp_FechaModifica" ColumnName="emp_FechaModifica" />
-          <ScalarProperty Name="emp_UsuarioModifica" ColumnName="emp_UsuarioModifica" />
-          <ScalarProperty Name="emp_FechaCrea" ColumnName="emp_FechaCrea" />
-          <ScalarProperty Name="emp_UsuarioCrea" ColumnName="emp_UsuarioCrea" />
-          <ScalarProperty Name="emp_RazonInactivacion" ColumnName="emp_RazonInactivacion" />
-          <ScalarProperty Name="emp_Direccion" ColumnName="emp_Direccion" />
-          <ScalarProperty Name="emp_FechaIngreso" ColumnName="emp_FechaIngreso" />
-          <ScalarProperty Name="emp_Puesto" ColumnName="emp_Puesto" />
-          <ScalarProperty Name="emp_TipoSangre" ColumnName="emp_TipoSangre" />
-          <ScalarProperty Name="emp_Correoelectronico" ColumnName="emp_Correoelectronico" />
-          <ScalarProperty Name="emp_Telefono" ColumnName="emp_Telefono" />
-          <ScalarProperty Name="emp_Identificacion" ColumnName="emp_Identificacion" />
-          <ScalarProperty Name="tpi_Id" ColumnName="tpi_Id" />
-          <ScalarProperty Name="emp_FechaNacimiento" ColumnName="emp_FechaNacimiento" />
-          <ScalarProperty Name="emp_Sexo" ColumnName="emp_Sexo" />
-          <ScalarProperty Name="emp_Apellidos" ColumnName="emp_Apellidos" />
-          <ScalarProperty Name="emp_Nombres" ColumnName="emp_Nombres" />
-          <ScalarProperty Name="emp_Id" ColumnName="emp_Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="SDP_tbEmpleado_Select" FunctionName="ERP_ZORZALModel.Store.SDP_tbEmpleado_Select">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_tbEmpleado_Select_Result">
-          <ScalarProperty Name="emp_Id" ColumnName="emp_Id" />
-          <ScalarProperty Name="emp_Nombres" ColumnName="emp_Nombres" />
-          <ScalarProperty Name="emp_Apellidos" ColumnName="emp_Apellidos" />
-          <ScalarProperty Name="emp_Sexo" ColumnName="emp_Sexo" />
-          <ScalarProperty Name="emp_FechaNacimiento" ColumnName="emp_FechaNacimiento" />
-          <ScalarProperty Name="tpi_Id" ColumnName="tpi_Id" />
-          <ScalarProperty Name="emp_Identificacion" ColumnName="emp_Identificacion" />
-          <ScalarProperty Name="emp_Telefono" ColumnName="emp_Telefono" />
-          <ScalarProperty Name="emp_Correoelectronico" ColumnName="emp_Correoelectronico" />
-          <ScalarProperty Name="emp_TipoSangre" ColumnName="emp_TipoSangre" />
-          <ScalarProperty Name="emp_Puesto" ColumnName="emp_Puesto" />
-          <ScalarProperty Name="emp_FechaIngreso" ColumnName="emp_FechaIngreso" />
-          <ScalarProperty Name="emp_Direccion" ColumnName="emp_Direccion" />
-          <ScalarProperty Name="emp_RazonInactivacion" ColumnName="emp_RazonInactivacion" />
-          <ScalarProperty Name="emp_UsuarioCrea" ColumnName="emp_UsuarioCrea" />
-          <ScalarProperty Name="emp_FechaCrea" ColumnName="emp_FechaCrea" />
-          <ScalarProperty Name="emp_UsuarioModifica" ColumnName="emp_UsuarioModifica" />
-          <ScalarProperty Name="emp_FechaModifica" ColumnName="emp_FechaModifica" />
-          <ScalarProperty Name="emp_Estado" ColumnName="emp_Estado" />
-          <ScalarProperty Name="emp_RazonSalida" ColumnName="emp_RazonSalida" />
-          <ScalarProperty Name="emp_FechaDeSalida" ColumnName="emp_FechaDeSalida" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Inv_tbBodega_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBodega_Insert">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbBodega_Insert_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Inv_tbTipoEntrada_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbTipoEntrada_Insert">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbTipoEntrada_Insert_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Inv_tbProductoCategoria_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProductoCategoria_Insert">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProductoCategoria_Insert_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Inv_tbProductoCategoria_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProductoCategoria_Update">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProductoCategoria_Update_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Gral_tbEmpleados_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbEmpleados_Insert">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbEmpleados_Insert_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Gral_tbUnidadMedida_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbUnidadMedida_Insert">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbUnidadMedida_Insert_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Gral_tbUnidadMedida_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbUnidadMedida_Update">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbUnidadMedida_Update_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Inv_tbTipoSalida_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbTipoSalida_Insert">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbTipoSalida_Insert_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Inv_tbTipoSalida_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbTipoSalida_Update">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbTipoSalida_Update_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Inv_tbInventarioFisico_ListaProductos" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbInventarioFisico_ListaProductos">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbInventarioFisico_ListaProductos_Result">
-          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
-          <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
-          <ScalarProperty Name="prod_Marca" ColumnName="prod_Marca" />
-          <ScalarProperty Name="prod_CodigoBarras" ColumnName="prod_CodigoBarras" />
+          <ScalarProperty Name="prod_Color" ColumnName="prod_Color" />
+          <ScalarProperty Name="prod_Talla" ColumnName="prod_Talla" />
           <ScalarProperty Name="prod_Modelo" ColumnName="prod_Modelo" />
-          <ScalarProperty Name="uni_Id" ColumnName="uni_Id" />
-          <ScalarProperty Name="uni_Descripcion" ColumnName="uni_Descripcion" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Inv_tbProductoSubcategoria_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProductoSubcategoria_Insert">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProductoSubcategoria_Insert_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SPGetResponsableBodega" FunctionName="ERP_ZORZALModel.Store.SPGetResponsableBodega">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SPGetResponsableBodega_Result">
-          <ScalarProperty Name="bod_Id" ColumnName="bod_Id" />
+          <ScalarProperty Name="prod_Marca" ColumnName="prod_Marca" />
+          <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
+          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
           <ScalarProperty Name="bod_ResponsableBodega" ColumnName="bod_ResponsableBodega" />
-          <ScalarProperty Name="emp_Nombres" ColumnName="emp_Nombres" />
-          <ScalarProperty Name="emp_Apellidos" ColumnName="emp_Apellidos" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <EntitySetMapping Name="tbDevolucion">
-      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbDevolucion">
-        <MappingFragment StoreEntitySet="tbDevolucion">
-          <ScalarProperty Name="dev_FechaModifica" ColumnName="dev_FechaModifica" />
-          <ScalarProperty Name="dev_UsuarioModifica" ColumnName="dev_UsuarioModifica" />
-          <ScalarProperty Name="dev_FechaCrea" ColumnName="dev_FechaCrea" />
-          <ScalarProperty Name="dev_UsuarioCrea" ColumnName="dev_UsuarioCrea" />
-          <ScalarProperty Name="dev_Fecha" ColumnName="dev_Fecha" />
-          <ScalarProperty Name="dev_Estado" ColumnName="dev_Estado" />
-          <ScalarProperty Name="nocre_Codigo" ColumnName="nocre_Codigo" />
-          <ScalarProperty Name="cja_Id" ColumnName="cja_Id" />
+          <ScalarProperty Name="fact_Codigo" ColumnName="fact_Codigo" />
+          <ScalarProperty Name="sal_BodDestino" ColumnName="sal_BodDestino" />
+          <ScalarProperty Name="estm_Descripcion" ColumnName="estm_Descripcion" />
+          <ScalarProperty Name="estm_Id" ColumnName="estm_Id" />
+          <ScalarProperty Name="bod_Nombre" ColumnName="bod_Nombre" />
+          <ScalarProperty Name="bod_Id" ColumnName="bod_Id" />
+          <ScalarProperty Name="tsal_Descripcion" ColumnName="tsal_Descripcion" />
+          <ScalarProperty Name="tsal_Id" ColumnName="tsal_Id" />
+          <ScalarProperty Name="sal_FechaElaboracion" ColumnName="sal_FechaElaboracion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UDV_inv_tbinventariofisico_reporteFaltantes">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_inv_tbinventariofisico_reporteFaltantes">
+        <MappingFragment StoreEntitySet="UDV_inv_tbinventariofisico_reporteFaltantes">
+          <ScalarProperty Name="uni_Id" ColumnName="uni_Id" />
+          <ScalarProperty Name="bod_Id" ColumnName="bod_Id" />
+          <ScalarProperty Name="Sobrante_Faltante" ColumnName="Sobrante/Faltante" />
+          <ScalarProperty Name="invfd_CantidadSistema" ColumnName="invfd_CantidadSistema" />
+          <ScalarProperty Name="invfd_Cantidad" ColumnName="invfd_Cantidad" />
+          <ScalarProperty Name="uni_Descripcion" ColumnName="uni_Descripcion" />
+          <ScalarProperty Name="prod_Talla" ColumnName="prod_Talla" />
+          <ScalarProperty Name="prod_Marca" ColumnName="prod_Marca" />
+          <ScalarProperty Name="prod_CodigoBarras" ColumnName="prod_CodigoBarras" />
+          <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
+          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+          <ScalarProperty Name="invf_ResponsableBodega" ColumnName="invf_ResponsableBodega" />
+          <ScalarProperty Name="bod_Nombre" ColumnName="bod_Nombre" />
+          <ScalarProperty Name="invf_Descripcion" ColumnName="invf_Descripcion" />
+          <ScalarProperty Name="invf_FechaInventario" ColumnName="invf_FechaInventario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UDV_Inv_TipoEntrada">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Inv_TipoEntrada">
+        <MappingFragment StoreEntitySet="UDV_Inv_TipoEntrada">
+          <ScalarProperty Name="ent_BodegaDestino" ColumnName="ent_BodegaDestino" />
           <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
+          <ScalarProperty Name="tdev_descripcion" ColumnName="tdev_descripcion" />
+          <ScalarProperty Name="ent_FechaCompra" ColumnName="ent_FechaCompra" />
+          <ScalarProperty Name="ent_FacturaCompra" ColumnName="ent_FacturaCompra" />
+          <ScalarProperty Name="tent_Descripcion" ColumnName="tent_Descripcion" />
+          <ScalarProperty Name="estm_Descripcion" ColumnName="estm_Descripcion" />
+          <ScalarProperty Name="prov_Nombre" ColumnName="prov_Nombre" />
+          <ScalarProperty Name="tent_id" ColumnName="tent_id" />
+          <ScalarProperty Name="estm_id" ColumnName="estm_id" />
+          <ScalarProperty Name="bod_id" ColumnName="bod_id" />
+          <ScalarProperty Name="ent_FechaElaboracion" ColumnName="ent_FechaElaboracion" />
+          <ScalarProperty Name="bod_Nombre" ColumnName="bod_Nombre" />
+          <ScalarProperty Name="ent_NumeroFormato" ColumnName="ent_NumeroFormato" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UDV_InventarioActual">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_InventarioActual">
+        <MappingFragment StoreEntitySet="UDV_InventarioActual">
+          <ScalarProperty Name="bodd_CantidadExistente" ColumnName="bodd_CantidadExistente" />
+          <ScalarProperty Name="bodd_Id" ColumnName="bodd_Id" />
+          <ScalarProperty Name="uni_Descripcion" ColumnName="uni_Descripcion" />
+          <ScalarProperty Name="prod_Modelo" ColumnName="prod_Modelo" />
+          <ScalarProperty Name="prod_Marca" ColumnName="prod_Marca" />
+          <ScalarProperty Name="pscat_Descripcion" ColumnName="pscat_Descripcion" />
+          <ScalarProperty Name="pcat_Nombre" ColumnName="pcat_Nombre" />
+          <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
+          <ScalarProperty Name="prod_CodigoBarras" ColumnName="prod_CodigoBarras" />
+          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+          <ScalarProperty Name="bod_Telefono" ColumnName="bod_Telefono" />
+          <ScalarProperty Name="emp_Apellidos" ColumnName="emp_Apellidos" />
+          <ScalarProperty Name="emp_Nombres" ColumnName="emp_Nombres" />
+          <ScalarProperty Name="bod_Nombre" ColumnName="bod_Nombre" />
+          <ScalarProperty Name="bod_Id" ColumnName="bod_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VistaInventarioHistorico">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.VistaInventarioHistorico">
+        <MappingFragment StoreEntitySet="VistaInventarioHistorico">
+          <ScalarProperty Name="sal_Id" ColumnName="sal_Id" />
+          <ScalarProperty Name="sald_Id" ColumnName="sald_Id" />
+          <ScalarProperty Name="Cantidad_por_salida" ColumnName="Cantidad_por_salida" />
+          <ScalarProperty Name="ent_Id" ColumnName="ent_Id" />
+          <ScalarProperty Name="entd_Id" ColumnName="entd_Id" />
+          <ScalarProperty Name="cantidad_Por_Entrada" ColumnName="cantidad_Por_Entrada" />
+          <ScalarProperty Name="bodd_CantidadExistente" ColumnName="bodd_CantidadExistente" />
+          <ScalarProperty Name="uni_Descripcion" ColumnName="uni_Descripcion" />
+          <ScalarProperty Name="prod_Talla" ColumnName="prod_Talla" />
+          <ScalarProperty Name="prod_Modelo" ColumnName="prod_Modelo" />
+          <ScalarProperty Name="prod_Marca" ColumnName="prod_Marca" />
+          <ScalarProperty Name="pcat_Nombre" ColumnName="pcat_Nombre" />
+          <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
+          <ScalarProperty Name="prod_CodigoBarras" ColumnName="prod_CodigoBarras" />
+          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+          <ScalarProperty Name="bod_Telefono" ColumnName="bod_Telefono" />
+          <ScalarProperty Name="Encargado" ColumnName="Encargado" />
+          <ScalarProperty Name="bod_Nombre" ColumnName="bod_Nombre" />
+          <ScalarProperty Name="bod_Id" ColumnName="bod_Id" />
+          <ScalarProperty Name="bodd_Id" ColumnName="bodd_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="database_firewall_rules">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.database_firewall_rules">
+        <MappingFragment StoreEntitySet="database_firewall_rules">
+          <ScalarProperty Name="modify_date" ColumnName="modify_date" />
+          <ScalarProperty Name="create_date" ColumnName="create_date" />
+          <ScalarProperty Name="end_ip_address" ColumnName="end_ip_address" />
+          <ScalarProperty Name="start_ip_address" ColumnName="start_ip_address" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UDP_Vent_listExoneracion_Select">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_listExoneracion_Select">
+        <MappingFragment StoreEntitySet="UDP_Vent_listExoneracion_Select">
+          <ScalarProperty Name="apellido" ColumnName="apellido" />
+          <ScalarProperty Name="persona_comercial" ColumnName="persona comercial" />
+          <ScalarProperty Name="RTN_Identificacion" ColumnName="RTN/Identificacion" />
+          <ScalarProperty Name="persona_natural" ColumnName="persona natural" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UDP_Vent_SolicituEfectivo_Select">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_SolicituEfectivo_Select">
+        <MappingFragment StoreEntitySet="UDP_Vent_SolicituEfectivo_Select">
+          <ScalarProperty Name="usuariocrea" ColumnName="usuariocrea" />
+          <ScalarProperty Name="Anulada" ColumnName="Anulada" />
+          <ScalarProperty Name="Apertura" ColumnName="Apertura" />
+          <ScalarProperty Name="MontoEntregado" ColumnName="MontoEntregado" />
+          <ScalarProperty Name="MontoSolicitado" ColumnName="MontoSolicitado" />
+          <ScalarProperty Name="Moneda" ColumnName="Moneda" />
+          <ScalarProperty Name="Caja" ColumnName="Caja" />
+          <ScalarProperty Name="Sucursal" ColumnName="Sucursal" />
+          <ScalarProperty Name="FechaSolicitud" ColumnName="FechaSolicitud" />
+          <ScalarProperty Name="IdSolicitud" ColumnName="IdSolicitud" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UDV_Vent_AnalisisDeMora">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Vent_AnalisisDeMora">
+        <MappingFragment StoreEntitySet="UDV_Vent_AnalisisDeMora">
+          <ScalarProperty Name="MORADE90" ColumnName="MORADE90" />
+          <ScalarProperty Name="MORADE60" ColumnName="MORADE60" />
+          <ScalarProperty Name="MORADE30" ColumnName="MORADE30" />
+          <ScalarProperty Name="SaldoActual" ColumnName="SaldoActual" />
+          <ScalarProperty Name="FechaVencimiento" ColumnName="FechaVencimiento" />
+          <ScalarProperty Name="fact_Fecha" ColumnName="fact_Fecha" />
+          <ScalarProperty Name="Máximo_Monto_Crédito" ColumnName="Máximo Monto Crédito" />
+          <ScalarProperty Name="Máximo_Días_Crédito" ColumnName="Máximo Días Crédito" />
+          <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+          <ScalarProperty Name="RTN" ColumnName="RTN" />
+          <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UDV_Vent_Busqueda_Clientes">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Vent_Busqueda_Clientes">
+        <MappingFragment StoreEntitySet="UDV_Vent_Busqueda_Clientes">
+          <ScalarProperty Name="clte_FechaModifica" ColumnName="clte_FechaModifica" />
+          <ScalarProperty Name="clte_UsuarioModifica" ColumnName="clte_UsuarioModifica" />
+          <ScalarProperty Name="clte_FechaCrea" ColumnName="clte_FechaCrea" />
+          <ScalarProperty Name="clte_UsuarioCrea" ColumnName="clte_UsuarioCrea" />
+          <ScalarProperty Name="clte_Observaciones" ColumnName="clte_Observaciones" />
+          <ScalarProperty Name="clte_EsMinorista" ColumnName="clte_EsMinorista" />
+          <ScalarProperty Name="clte_ConCredito" ColumnName="clte_ConCredito" />
+          <ScalarProperty Name="clte_RazonInactivo" ColumnName="clte_RazonInactivo" />
+          <ScalarProperty Name="clte_EsActivo" ColumnName="clte_EsActivo" />
+          <ScalarProperty Name="clte_CorreoElectronico" ColumnName="clte_CorreoElectronico" />
+          <ScalarProperty Name="clte_Direccion" ColumnName="clte_Direccion" />
+          <ScalarProperty Name="mun_Codigo" ColumnName="mun_Codigo" />
+          <ScalarProperty Name="clte_FechaConstitucion" ColumnName="clte_FechaConstitucion" />
+          <ScalarProperty Name="clte_ContactoTelefono" ColumnName="clte_ContactoTelefono" />
+          <ScalarProperty Name="clte_ContactoEmail" ColumnName="clte_ContactoEmail" />
+          <ScalarProperty Name="clte_ContactoNombre" ColumnName="clte_ContactoNombre" />
+          <ScalarProperty Name="clte_RazonSocial" ColumnName="clte_RazonSocial" />
+          <ScalarProperty Name="clte_NombreComercial" ColumnName="clte_NombreComercial" />
+          <ScalarProperty Name="clte_Telefono" ColumnName="clte_Telefono" />
+          <ScalarProperty Name="clte_Sexo" ColumnName="clte_Sexo" />
+          <ScalarProperty Name="clte_Nacionalidad" ColumnName="clte_Nacionalidad" />
+          <ScalarProperty Name="clte_FechaNacimiento" ColumnName="clte_FechaNacimiento" />
+          <ScalarProperty Name="clte_Apellidos" ColumnName="clte_Apellidos" />
+          <ScalarProperty Name="clte_Nombres" ColumnName="clte_Nombres" />
+          <ScalarProperty Name="clte_EsPersonaNatural" ColumnName="clte_EsPersonaNatural" />
+          <ScalarProperty Name="clte_Identificacion" ColumnName="clte_Identificacion" />
+          <ScalarProperty Name="tpi_Descripcion" ColumnName="tpi_Descripcion" />
+          <ScalarProperty Name="tpi_Id" ColumnName="tpi_Id" />
+          <ScalarProperty Name="clte_Id" ColumnName="clte_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UDV_Vent_Busqueda_Factura">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Vent_Busqueda_Factura">
+        <MappingFragment StoreEntitySet="UDV_Vent_Busqueda_Factura">
+          <ScalarProperty Name="fact_FechaModifica" ColumnName="fact_FechaModifica" />
+          <ScalarProperty Name="fact_UsuarioModifica" ColumnName="fact_UsuarioModifica" />
+          <ScalarProperty Name="fact_FechaCrea" ColumnName="fact_FechaCrea" />
+          <ScalarProperty Name="fact_UsuarioCrea" ColumnName="fact_UsuarioCrea" />
+          <ScalarProperty Name="fact_EsAnulada" ColumnName="fact_EsAnulada" />
+          <ScalarProperty Name="fact_FechaAutoriza" ColumnName="fact_FechaAutoriza" />
+          <ScalarProperty Name="fact_UsuarioAutoriza" ColumnName="fact_UsuarioAutoriza" />
+          <ScalarProperty Name="fact_FechaNacimientoTE" ColumnName="fact_FechaNacimientoTE" />
+          <ScalarProperty Name="fact_NombresTE" ColumnName="fact_NombresTE" />
+          <ScalarProperty Name="fact_IdentidadTE" ColumnName="fact_IdentidadTE" />
+          <ScalarProperty Name="clte_Nombres" ColumnName="clte_Nombres" />
+          <ScalarProperty Name="clte_Identificacion" ColumnName="clte_Identificacion" />
+          <ScalarProperty Name="fact_Vendedor" ColumnName="fact_Vendedor" />
+          <ScalarProperty Name="fact_PorcentajeDescuento" ColumnName="fact_PorcentajeDescuento" />
+          <ScalarProperty Name="fact_DiasCredito" ColumnName="fact_DiasCredito" />
+          <ScalarProperty Name="fact_AlCredito" ColumnName="fact_AlCredito" />
+          <ScalarProperty Name="pemi_NumeroCAI" ColumnName="pemi_NumeroCAI" />
+          <ScalarProperty Name="clte_Id" ColumnName="clte_Id" />
+          <ScalarProperty Name="suc_Id" ColumnName="suc_Id" />
+          <ScalarProperty Name="cja_Descripcion" ColumnName="cja_Descripcion" />
+          <ScalarProperty Name="cja_Id" ColumnName="cja_Id" />
+          <ScalarProperty Name="esfac_Descripcion" ColumnName="esfac_Descripcion" />
+          <ScalarProperty Name="esfac_Id" ColumnName="esfac_Id" />
+          <ScalarProperty Name="fact_Fecha" ColumnName="fact_Fecha" />
+          <ScalarProperty Name="fact_Codigo" ColumnName="fact_Codigo" />
+          <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UDV_Vent_CuponDescuentoPorFecha">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Vent_CuponDescuentoPorFecha">
+        <MappingFragment StoreEntitySet="UDV_Vent_CuponDescuentoPorFecha">
+          <ScalarProperty Name="cdto_Anulado" ColumnName="cdto_Anulado" />
+          <ScalarProperty Name="cdto_Redimido" ColumnName="cdto_Redimido" />
+          <ScalarProperty Name="cdto_CantidadCompraMinima" ColumnName="cdto_CantidadCompraMinima" />
+          <ScalarProperty Name="cdto_MontoDescuento" ColumnName="cdto_MontoDescuento" />
+          <ScalarProperty Name="cdto_PorcentajeDescuento" ColumnName="cdto_PorcentajeDescuento" />
+          <ScalarProperty Name="cdto_FechaVencimiento" ColumnName="cdto_FechaVencimiento" />
+          <ScalarProperty Name="cdto_FechaEmision" ColumnName="cdto_FechaEmision" />
+          <ScalarProperty Name="suc_Descripcion" ColumnName="suc_Descripcion" />
+          <ScalarProperty Name="clte_Nombres" ColumnName="clte_Nombres" />
+          <ScalarProperty Name="clte_Identificacion" ColumnName="clte_Identificacion" />
+          <ScalarProperty Name="cdto_ID" ColumnName="cdto_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UDV_Vent_DescuentosporFecha">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Vent_DescuentosporFecha">
+        <MappingFragment StoreEntitySet="UDV_Vent_DescuentosporFecha">
+          <ScalarProperty Name="TotalFactura" ColumnName="TotalFactura" />
+          <ScalarProperty Name="Descuento" ColumnName="Descuento" />
+          <ScalarProperty Name="TIPO_DESCUENTO" ColumnName="TIPO_DESCUENTO" />
+          <ScalarProperty Name="TIPO_DE_CLIENTE" ColumnName="TIPO_DE_CLIENTE" />
+          <ScalarProperty Name="Tipo_Factura" ColumnName="Tipo_Factura" />
+          <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+          <ScalarProperty Name="clte_Identificacion" ColumnName="clte_Identificacion" />
+          <ScalarProperty Name="fact_Codigo" ColumnName="fact_Codigo" />
+          <ScalarProperty Name="Fecha_factura" ColumnName="Fecha_factura" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UDV_Vent_DevolucionesPorFecha">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Vent_DevolucionesPorFecha">
+        <MappingFragment StoreEntitySet="UDV_Vent_DevolucionesPorFecha">
+          <ScalarProperty Name="Monto_Devolución" ColumnName="Monto Devolución" />
+          <ScalarProperty Name="Cantidad_Devuelta" ColumnName="Cantidad Devuelta" />
+          <ScalarProperty Name="Cantidad_Facturada" ColumnName="Cantidad Facturada" />
+          <ScalarProperty Name="Precio_Unitario" ColumnName="Precio Unitario" />
+          <ScalarProperty Name="Nombre_Producto" ColumnName="Nombre Producto" />
+          <ScalarProperty Name="Código_Producto" ColumnName="Código Producto" />
+          <ScalarProperty Name="Nota_Crédito" ColumnName="Nota Crédito" />
+          <ScalarProperty Name="Total_Devolución" ColumnName="Total Devolución" />
+          <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+          <ScalarProperty Name="RTN" ColumnName="RTN" />
+          <ScalarProperty Name="clte_Id" ColumnName="clte_Id" />
+          <ScalarProperty Name="factd_Id" ColumnName="factd_Id" />
+          <ScalarProperty Name="Numero_Factura" ColumnName="Numero Factura" />
+          <ScalarProperty Name="FechaFactura" ColumnName="FechaFactura" />
+          <ScalarProperty Name="FechaDevolucion" ColumnName="FechaDevolucion" />
+          <ScalarProperty Name="Cajero" ColumnName="Cajero" />
+          <ScalarProperty Name="devd_Id" ColumnName="devd_Id" />
           <ScalarProperty Name="dev_Id" ColumnName="dev_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Inv_tbProducto_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProducto_Estado">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProducto_Estado_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Inv_tbProducto_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProducto_Insert">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProducto_Insert_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Inv_tbProducto_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProducto_Update">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProducto_Update_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <EntitySetMapping Name="tbProducto">
-      <EntityTypeMapping TypeName="ERP_ZORZALModel.tbProducto">
-        <MappingFragment StoreEntitySet="tbProducto">
-          <ScalarProperty Name="prod_Correlativo" ColumnName="prod_Correlativo" />
-          <ScalarProperty Name="prod_CodigoBarras" ColumnName="prod_CodigoBarras" />
-          <ScalarProperty Name="prod_Razon_Inactivacion" ColumnName="prod_Razon_Inactivacion" />
-          <ScalarProperty Name="prod_EsActivo" ColumnName="prod_EsActivo" />
-          <ScalarProperty Name="prod_FechaModifica" ColumnName="prod_FechaModifica" />
-          <ScalarProperty Name="prod_UsuarioModifica" ColumnName="prod_UsuarioModifica" />
-          <ScalarProperty Name="prod_FechaCrea" ColumnName="prod_FechaCrea" />
-          <ScalarProperty Name="prod_UsuarioCrea" ColumnName="prod_UsuarioCrea" />
-          <ScalarProperty Name="uni_Id" ColumnName="uni_Id" />
-          <ScalarProperty Name="pscat_Id" ColumnName="pscat_Id" />
-          <ScalarProperty Name="prod_Color" ColumnName="prod_Color" />
-          <ScalarProperty Name="prod_Talla" ColumnName="prod_Talla" />
-          <ScalarProperty Name="prod_Modelo" ColumnName="prod_Modelo" />
-          <ScalarProperty Name="prod_Marca" ColumnName="prod_Marca" />
-          <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
-          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+    <EntitySetMapping Name="UDV_Vent_EstadoCuenta">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Vent_EstadoCuenta">
+        <MappingFragment StoreEntitySet="UDV_Vent_EstadoCuenta">
+          <ScalarProperty Name="Saldo_Actual" ColumnName="Saldo Actual" />
+          <ScalarProperty Name="Monto_Crédito" ColumnName="Monto Crédito" />
+          <ScalarProperty Name="Monto_Cargo" ColumnName="Monto Cargo" />
+          <ScalarProperty Name="Saldo_Anterior" ColumnName="Saldo Anterior" />
+          <ScalarProperty Name="Fecha_Vencimiento" ColumnName="Fecha Vencimiento" />
+          <ScalarProperty Name="Número__de_Factura" ColumnName="Número  de Factura" />
+          <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Correo_Electrónico" ColumnName="Correo Electrónico" />
+          <ScalarProperty Name="Teléfono" ColumnName="Teléfono" />
+          <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+          <ScalarProperty Name="RTN" ColumnName="RTN" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="spGetActividadEconomica" FunctionName="ERP_ZORZALModel.Store.spGetActividadEconomica">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.spGetActividadEconomica_Result">
-          <ScalarProperty Name="acte_Id" ColumnName="acte_Id" />
-          <ScalarProperty Name="acte_Descripcion" ColumnName="acte_Descripcion" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Acce_tbRol_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbRol_Insert">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_tbRol_Insert_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Acce_tbRol_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbRol_Update">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_tbRol_Update_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Gral_tbEmpleado_Update_RazonSalida" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbEmpleado_Update_RazonSalida">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbEmpleado_Update_RazonSalida_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SDP_tbentradaImprimir_Select" FunctionName="ERP_ZORZALModel.Store.SDP_tbentradaImprimir_Select">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_tbentradaImprimir_Select_Result">
-          <ScalarProperty Name="ent_NumeroFormato" ColumnName="ent_NumeroFormato" />
-          <ScalarProperty Name="bod_Nombre" ColumnName="bod_Nombre" />
-          <ScalarProperty Name="ent_FechaElaboracion" ColumnName="ent_FechaElaboracion" />
-          <ScalarProperty Name="prov_Nombre" ColumnName="prov_Nombre" />
-          <ScalarProperty Name="estm_Descripcion" ColumnName="estm_Descripcion" />
-          <ScalarProperty Name="tent_Descripcion" ColumnName="tent_Descripcion" />
-          <ScalarProperty Name="ent_FacturaCompra" ColumnName="ent_FacturaCompra" />
-          <ScalarProperty Name="ent_FechaCompra" ColumnName="ent_FechaCompra" />
-          <ScalarProperty Name="tdev_descripcion" ColumnName="tdev_descripcion" />
+    <EntitySetMapping Name="UDV_Vent_Factura_VentasporFecha">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Vent_Factura_VentasporFecha">
+        <MappingFragment StoreEntitySet="UDV_Vent_Factura_VentasporFecha">
+          <ScalarProperty Name="TotalFactura" ColumnName="TotalFactura" />
+          <ScalarProperty Name="Impuesto" ColumnName="Impuesto" />
+          <ScalarProperty Name="Descuento" ColumnName="Descuento" />
+          <ScalarProperty Name="MontoFactura" ColumnName="MontoFactura" />
+          <ScalarProperty Name="Fecha_vencimiento" ColumnName="Fecha_vencimiento" />
+          <ScalarProperty Name="Tipo_Factura" ColumnName="Tipo_Factura" />
+          <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+          <ScalarProperty Name="clte_Identificacion" ColumnName="clte_Identificacion" />
+          <ScalarProperty Name="Fecha_factura" ColumnName="Fecha_factura" />
+          <ScalarProperty Name="fact_Codigo" ColumnName="fact_Codigo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UDV_Vent_FacturaPagoSelect">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Vent_FacturaPagoSelect">
+        <MappingFragment StoreEntitySet="UDV_Vent_FacturaPagoSelect">
+          <ScalarProperty Name="SaldoFactura" ColumnName="SaldoFactura" />
+          <ScalarProperty Name="TotalPagado" ColumnName="TotalPagado" />
+          <ScalarProperty Name="MontoFactura" ColumnName="MontoFactura" />
+          <ScalarProperty Name="fact_AlCredito" ColumnName="fact_AlCredito" />
+          <ScalarProperty Name="fact_Codigo" ColumnName="fact_Codigo" />
+          <ScalarProperty Name="clte_Id" ColumnName="clte_Id" />
           <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
-          <ScalarProperty Name="ent_BodegaDestino" ColumnName="ent_BodegaDestino" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Inv_tbProducto_GetSubCategoria" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProducto_GetSubCategoria">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProducto_GetSubCategoria_Result">
-          <ScalarProperty Name="pscat_Id" ColumnName="pscat_Id" />
-          <ScalarProperty Name="pscat_Descripcion" ColumnName="pscat_Descripcion" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SDP_Inv_Salida_Imprimir" FunctionName="ERP_ZORZALModel.Store.SDP_Inv_Salida_Imprimir">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_Inv_Salida_Imprimir_Result">
-          <ScalarProperty Name="sal_FechaElaboracion" ColumnName="sal_FechaElaboracion" />
-          <ScalarProperty Name="tsal_Descripcion" ColumnName="tsal_Descripcion" />
-          <ScalarProperty Name="bod_Nombre" ColumnName="bod_Nombre" />
-          <ScalarProperty Name="sal_BodDestino" ColumnName="sal_BodDestino" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UDV_Vent_FacturaPuntoEmision1">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Vent_FacturaPuntoEmision1">
+        <MappingFragment StoreEntitySet="UDV_Vent_FacturaPuntoEmision1">
+          <ScalarProperty Name="dfisc_Id" ColumnName="dfisc_Id" />
+          <ScalarProperty Name="pemid_FechaLimite" ColumnName="pemid_FechaLimite" />
+          <ScalarProperty Name="pemid_RangoFinal" ColumnName="pemid_RangoFinal" />
+          <ScalarProperty Name="pemid_RangoInicio" ColumnName="pemid_RangoInicio" />
+          <ScalarProperty Name="pemi_NumeroCAI" ColumnName="pemi_NumeroCAI" />
+          <ScalarProperty Name="pemi_Id" ColumnName="pemi_Id" />
+          <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
+          <ScalarProperty Name="suc_Id" ColumnName="suc_Id" />
+          <ScalarProperty Name="cja_Id" ColumnName="cja_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UDV_Vent_FacturasPendientesDePago">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Vent_FacturasPendientesDePago">
+        <MappingFragment StoreEntitySet="UDV_Vent_FacturasPendientesDePago">
+          <ScalarProperty Name="Saldoactual" ColumnName="Saldoactual" />
+          <ScalarProperty Name="TotalCreditos" ColumnName="TotalCreditos" />
+          <ScalarProperty Name="TotalCargos" ColumnName="TotalCargos" />
+          <ScalarProperty Name="MontoFacturado" ColumnName="MontoFacturado" />
+          <ScalarProperty Name="FechaVencimiento" ColumnName="FechaVencimiento" />
           <ScalarProperty Name="fact_Codigo" ColumnName="fact_Codigo" />
-          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
-          <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
-          <ScalarProperty Name="prod_Marca" ColumnName="prod_Marca" />
-          <ScalarProperty Name="prod_Modelo" ColumnName="prod_Modelo" />
+          <ScalarProperty Name="suc_Descripcion" ColumnName="suc_Descripcion" />
+          <ScalarProperty Name="fact_Fecha" ColumnName="fact_Fecha" />
+          <ScalarProperty Name="clte_Nombres" ColumnName="clte_Nombres" />
+          <ScalarProperty Name="clte_Identificacion" ColumnName="clte_Identificacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UDV_Vent_InventarioNumeraciones">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Vent_InventarioNumeraciones">
+        <MappingFragment StoreEntitySet="UDV_Vent_InventarioNumeraciones">
+          <ScalarProperty Name="NumeracionesDisponibles" ColumnName="NumeracionesDisponibles" />
+          <ScalarProperty Name="DiasDisponibles" ColumnName="DiasDisponibles" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="pemid_FechaLimite" ColumnName="pemid_FechaLimite" />
+          <ScalarProperty Name="pemid_NumeroActual" ColumnName="pemid_NumeroActual" />
+          <ScalarProperty Name="pemid_RangoFinal" ColumnName="pemid_RangoFinal" />
+          <ScalarProperty Name="pemid_RangoInicio" ColumnName="pemid_RangoInicio" />
+          <ScalarProperty Name="dfisc_Descripcion" ColumnName="dfisc_Descripcion" />
+          <ScalarProperty Name="pemi_NumeroCAI" ColumnName="pemi_NumeroCAI" />
+          <ScalarProperty Name="suc_Telefono" ColumnName="suc_Telefono" />
+          <ScalarProperty Name="suc_Descripcion" ColumnName="suc_Descripcion" />
+          <ScalarProperty Name="suc_Id" ColumnName="suc_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UDV_Vent_ListadodePrecios">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Vent_ListadodePrecios">
+        <MappingFragment StoreEntitySet="UDV_Vent_ListadodePrecios">
+          <ScalarProperty Name="lispd_PrecioMinorista" ColumnName="lispd_PrecioMinorista" />
+          <ScalarProperty Name="lispd_PrecioMayorista" ColumnName="lispd_PrecioMayorista" />
+          <ScalarProperty Name="uni_Id" ColumnName="uni_Id" />
           <ScalarProperty Name="prod_Talla" ColumnName="prod_Talla" />
-          <ScalarProperty Name="prod_Color" ColumnName="prod_Color" />
-          <ScalarProperty Name="pscat_Descripcion" ColumnName="pscat_Descripcion" />
-          <ScalarProperty Name="pcat_Nombre" ColumnName="pcat_Nombre" />
-          <ScalarProperty Name="uni_Descripcion" ColumnName="uni_Descripcion" />
-          <ScalarProperty Name="prod_CodigoBarras" ColumnName="prod_CodigoBarras" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SDP_Inv_tbBodegaDetalle_Select_Producto" FunctionName="ERP_ZORZALModel.Store.SDP_Inv_tbBodegaDetalle_Select_Producto">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_Inv_tbBodegaDetalle_Select_Producto_Result">
-          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+          <ScalarProperty Name="prod_Modelo" ColumnName="prod_Modelo" />
+          <ScalarProperty Name="prod_Marca" ColumnName="prod_Marca" />
           <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
-          <ScalarProperty Name="pcat_Nombre" ColumnName="pcat_Nombre" />
-          <ScalarProperty Name="pscat_Descripcion" ColumnName="pscat_Descripcion" />
-          <ScalarProperty Name="uni_Descripcion" ColumnName="uni_Descripcion" />
           <ScalarProperty Name="prod_CodigoBarras" ColumnName="prod_CodigoBarras" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SDP_Inv_tbSalida_Factura_Exist" FunctionName="ERP_ZORZALModel.Store.SDP_Inv_tbSalida_Factura_Exist" />
-    <FunctionImportMapping FunctionImportName="UDP_Acce_tbRolesUsuario_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbRolesUsuario_Insert">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_tbRolesUsuario_Insert_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SDP_Gral_tbEmpleado_Select" FunctionName="ERP_ZORZALModel.Store.SDP_Gral_tbEmpleado_Select">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_Gral_tbEmpleado_Select_Result">
-          <ScalarProperty Name="emp_Id" ColumnName="emp_Id" />
-          <ScalarProperty Name="emp_Nombres" ColumnName="emp_Nombres" />
-          <ScalarProperty Name="emp_Apellidos" ColumnName="emp_Apellidos" />
-          <ScalarProperty Name="emp_Sexo" ColumnName="emp_Sexo" />
-          <ScalarProperty Name="emp_FechaNacimiento" ColumnName="emp_FechaNacimiento" />
-          <ScalarProperty Name="tpi_Id" ColumnName="tpi_Id" />
-          <ScalarProperty Name="emp_Identificacion" ColumnName="emp_Identificacion" />
-          <ScalarProperty Name="emp_Telefono" ColumnName="emp_Telefono" />
-          <ScalarProperty Name="emp_Correoelectronico" ColumnName="emp_Correoelectronico" />
-          <ScalarProperty Name="emp_TipoSangre" ColumnName="emp_TipoSangre" />
-          <ScalarProperty Name="emp_Puesto" ColumnName="emp_Puesto" />
-          <ScalarProperty Name="emp_FechaIngreso" ColumnName="emp_FechaIngreso" />
-          <ScalarProperty Name="emp_Direccion" ColumnName="emp_Direccion" />
-          <ScalarProperty Name="emp_RazonInactivacion" ColumnName="emp_RazonInactivacion" />
-          <ScalarProperty Name="emp_UsuarioCrea" ColumnName="emp_UsuarioCrea" />
-          <ScalarProperty Name="emp_FechaCrea" ColumnName="emp_FechaCrea" />
-          <ScalarProperty Name="emp_UsuarioModifica" ColumnName="emp_UsuarioModifica" />
-          <ScalarProperty Name="emp_FechaModifica" ColumnName="emp_FechaModifica" />
-          <ScalarProperty Name="emp_Estado" ColumnName="emp_Estado" />
-          <ScalarProperty Name="emp_RazonSalida" ColumnName="emp_RazonSalida" />
-          <ScalarProperty Name="emp_FechaDeSalida" ColumnName="emp_FechaDeSalida" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Acce_tbBitacoraErrores_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbBitacoraErrores_Insert">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_tbBitacoraErrores_Insert_Result">
-          <ScalarProperty Name="Column1" ColumnName="Column1" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Inv_tbProveedor_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProveedor_Update" />
-    <FunctionImportMapping FunctionImportName="UDP_Inv_tbProductoCategoria_Update_Estado_Validacion" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProductoCategoria_Update_Estado_Validacion">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProductoCategoria_Update_Estado_Validacion_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Inv_tbProductoSubCategoria_Update_Estado_Validacion" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProductoSubCategoria_Update_Estado_Validacion">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProductoSubCategoria_Update_Estado_Validacion_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Inv_tbBodega_Update_Estado_Validacion" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBodega_Update_Estado_Validacion">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbBodega_Update_Estado_Validacion_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Inv_tbBodegaDetalle_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBodegaDetalle_Insert">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbBodegaDetalle_Insert_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Inv_tbBodegaDetalle_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbBodegaDetalle_Update">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbBodegaDetalle_Update_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Acce_tbRolEstado_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Acce_tbRolEstado_Update">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Acce_tbRolEstado_Update_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_tbInventariofisico_ProductosRepetidos" FunctionName="ERP_ZORZALModel.Store.SP_tbInventariofisico_ProductosRepetidos">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SP_tbInventariofisico_ProductosRepetidos_Result">
-          <ScalarProperty Name="prod_CodigoBarras" ColumnName="prod_CodigoBarras" />
-          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
-          <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
-          <ScalarProperty Name="uni_Descripcion" ColumnName="uni_Descripcion" />
-          <ScalarProperty Name="bodd_CantidadExistente" ColumnName="bodd_CantidadExistente" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SDP_Inv_Salida_Imprimir_Reporte" FunctionName="ERP_ZORZALModel.Store.SDP_Inv_Salida_Imprimir_Reporte">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_Inv_Salida_Imprimir_Reporte_Result">
-          <ScalarProperty Name="sal_Id" ColumnName="sal_Id" />
-          <ScalarProperty Name="sal_FechaElaboracion" ColumnName="sal_FechaElaboracion" />
-          <ScalarProperty Name="tsal_Descripcion" ColumnName="tsal_Descripcion" />
-          <ScalarProperty Name="bod_Nombre" ColumnName="bod_Nombre" />
-          <ScalarProperty Name="sal_BodDestino" ColumnName="sal_BodDestino" />
+          <ScalarProperty Name="listp_Prioridad" ColumnName="listp_Prioridad" />
+          <ScalarProperty Name="listp_FechaFinalVigencia" ColumnName="listp_FechaFinalVigencia" />
+          <ScalarProperty Name="listp_FechaInicioVigencia" ColumnName="listp_FechaInicioVigencia" />
+          <ScalarProperty Name="listp_Nombre" ColumnName="listp_Nombre" />
+          <ScalarProperty Name="listp_Id" ColumnName="listp_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UDV_Vent_MovimientoCaja_Select">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Vent_MovimientoCaja_Select">
+        <MappingFragment StoreEntitySet="UDV_Vent_MovimientoCaja_Select">
+          <ScalarProperty Name="cja_Descripcion" ColumnName="cja_Descripcion" />
+          <ScalarProperty Name="cja_Id" ColumnName="cja_Id" />
+          <ScalarProperty Name="solef_Id" ColumnName="solef_Id" />
+          <ScalarProperty Name="mocja_Id" ColumnName="mocja_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UDV_Vent_NotaCreditoPorFecha">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Vent_NotaCreditoPorFecha">
+        <MappingFragment StoreEntitySet="UDV_Vent_NotaCreditoPorFecha">
+          <ScalarProperty Name="Monto_Total" ColumnName="Monto Total" />
+          <ScalarProperty Name="devd_Monto" ColumnName="devd_Monto" />
+          <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+          <ScalarProperty Name="Identificación_Cliente" ColumnName="Identificación Cliente" />
+          <ScalarProperty Name="Tipo_Cliente" ColumnName="Tipo Cliente" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Código_Factura" ColumnName="Código Factura" />
+          <ScalarProperty Name="Redimido" ColumnName="Redimido" />
+          <ScalarProperty Name="Monto" ColumnName="Monto" />
+          <ScalarProperty Name="Motivo" ColumnName="Motivo" />
+          <ScalarProperty Name="Fecha_Emisión" ColumnName="Fecha Emisión" />
+          <ScalarProperty Name="Código_Nota_Crédito" ColumnName="Código Nota Crédito" />
+          <ScalarProperty Name="N_" ColumnName="N°" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UDV_Vent_PagosPorFechas">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Vent_PagosPorFechas">
+        <MappingFragment StoreEntitySet="UDV_Vent_PagosPorFechas">
+          <ScalarProperty Name="Saldo_Actual" ColumnName="Saldo Actual" />
+          <ScalarProperty Name="pago_FechaElaboracion" ColumnName="pago_FechaElaboracion" />
+          <ScalarProperty Name="Total_Pago" ColumnName="Total Pago" />
+          <ScalarProperty Name="Saldo_Anterior" ColumnName="Saldo Anterior" />
+          <ScalarProperty Name="Cajero" ColumnName="Cajero" />
+          <ScalarProperty Name="tpa_Descripcion" ColumnName="tpa_Descripcion" />
+          <ScalarProperty Name="Código_Factura" ColumnName="Código Factura" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="RTN_Cliente" ColumnName="RTN Cliente" />
+          <ScalarProperty Name="Num" ColumnName="Num" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UDV_Vent_Pedido_EntreFechas">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Vent_Pedido_EntreFechas">
+        <MappingFragment StoreEntitySet="UDV_Vent_Pedido_EntreFechas">
+          <ScalarProperty Name="CANTIDAD_FACTURADA" ColumnName="CANTIDAD_FACTURADA" />
+          <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
+          <ScalarProperty Name="CÓDIGO_PRODUCTO" ColumnName="CÓDIGO_PRODUCTO" />
+          <ScalarProperty Name="FECHA_FACTURACIÓN" ColumnName="FECHA_FACTURACIÓN" />
+          <ScalarProperty Name="ESTADO_DEL_PEDIDO" ColumnName="ESTADO_DEL_PEDIDO" />
+          <ScalarProperty Name="NOMBRE_CLIENTE" ColumnName="NOMBRE_CLIENTE" />
+          <ScalarProperty Name="RTN_CLIENTE" ColumnName="RTN_CLIENTE" />
+          <ScalarProperty Name="FECHA_PEDIDO" ColumnName="FECHA_PEDIDO" />
+          <ScalarProperty Name="clte_EsPersonaNatural" ColumnName="clte_EsPersonaNatural" />
+          <ScalarProperty Name="clte_Id" ColumnName="clte_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UDV_Vent_prueba">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Vent_prueba">
+        <MappingFragment StoreEntitySet="UDV_Vent_prueba">
+          <ScalarProperty Name="MONTO_SOLICITADO" ColumnName="MONTO_SOLICITADO" />
+          <ScalarProperty Name="DÍAS_SOLICITADOS" ColumnName="DÍAS_SOLICITADOS" />
+          <ScalarProperty Name="SUCURSAL" ColumnName="SUCURSAL" />
+          <ScalarProperty Name="TIPO_DE_CLIENTE" ColumnName="TIPO_DE_CLIENTE" />
+          <ScalarProperty Name="NOMBRE_CLIENTE" ColumnName="NOMBRE_CLIENTE" />
+          <ScalarProperty Name="RTN_CLIENTE" ColumnName="RTN_CLIENTE" />
+          <ScalarProperty Name="FECHA_SOLICITUD" ColumnName="FECHA_SOLICITUD" />
+          <ScalarProperty Name="clte_EsPersonaNatural" ColumnName="clte_EsPersonaNatural" />
+          <ScalarProperty Name="clte_Id" ColumnName="clte_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UDV_Vent_PuntoEmisionEstado">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Vent_PuntoEmisionEstado">
+        <MappingFragment StoreEntitySet="UDV_Vent_PuntoEmisionEstado">
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="pemid_FechaLimite" ColumnName="pemid_FechaLimite" />
+          <ScalarProperty Name="pemid_NumeroActual" ColumnName="pemid_NumeroActual" />
+          <ScalarProperty Name="pemid_RangoFinal" ColumnName="pemid_RangoFinal" />
+          <ScalarProperty Name="pemi_Id" ColumnName="pemi_Id" />
+          <ScalarProperty Name="pemid_Id" ColumnName="pemid_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporte">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporte">
+        <MappingFragment StoreEntitySet="UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporte">
+          <ScalarProperty Name="MONTO_SOLICITADO" ColumnName="MONTO_SOLICITADO" />
+          <ScalarProperty Name="DÍAS_SOLICITADOS" ColumnName="DÍAS_SOLICITADOS" />
+          <ScalarProperty Name="SUCURSAL" ColumnName="SUCURSAL" />
+          <ScalarProperty Name="TIPO_DE_CLIENTE" ColumnName="TIPO_DE_CLIENTE" />
+          <ScalarProperty Name="NOMBRE_CLIENTE" ColumnName="NOMBRE_CLIENTE" />
+          <ScalarProperty Name="RTN_CLIENTE" ColumnName="RTN_CLIENTE" />
+          <ScalarProperty Name="FECHA_SOLICITUD" ColumnName="FECHA_SOLICITUD" />
+          <ScalarProperty Name="clte_EsPersonaNatural" ColumnName="clte_EsPersonaNatural" />
+          <ScalarProperty Name="clte_Id" ColumnName="clte_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UDV_Vent_tbSolicituEfectivo_EntreFechas">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Vent_tbSolicituEfectivo_EntreFechas">
+        <MappingFragment StoreEntitySet="UDV_Vent_tbSolicituEfectivo_EntreFechas">
+          <ScalarProperty Name="cja_Id" ColumnName="cja_Id" />
+          <ScalarProperty Name="solef_UsuarioCrea" ColumnName="solef_UsuarioCrea" />
+          <ScalarProperty Name="solef_EsAnulada" ColumnName="solef_EsAnulada" />
+          <ScalarProperty Name="solef_EsApertura" ColumnName="solef_EsApertura" />
+          <ScalarProperty Name="MontoEntregado" ColumnName="MontoEntregado" />
+          <ScalarProperty Name="MontoSolicitado" ColumnName="MontoSolicitado" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="mnda_Nombre" ColumnName="mnda_Nombre" />
+          <ScalarProperty Name="Cajero" ColumnName="Cajero" />
+          <ScalarProperty Name="suc_Descripcion" ColumnName="suc_Descripcion" />
+          <ScalarProperty Name="cja_Descripcion" ColumnName="cja_Descripcion" />
+          <ScalarProperty Name="solef_Id" ColumnName="solef_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UDV_Vent_VentasConsumidorFinal">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Vent_VentasConsumidorFinal">
+        <MappingFragment StoreEntitySet="UDV_Vent_VentasConsumidorFinal">
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="MontoImpuesto" ColumnName="MontoImpuesto" />
+          <ScalarProperty Name="MontoDescuento" ColumnName="MontoDescuento" />
+          <ScalarProperty Name="MontoFactura" ColumnName="MontoFactura" />
+          <ScalarProperty Name="TipoDescuento" ColumnName="TipoDescuento" />
+          <ScalarProperty Name="cja_Id" ColumnName="cja_Id" />
+          <ScalarProperty Name="Sucursal" ColumnName="Sucursal" />
           <ScalarProperty Name="fact_Codigo" ColumnName="fact_Codigo" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SDP_tbBodega_Listado" FunctionName="ERP_ZORZALModel.Store.SDP_tbBodega_Listado">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_tbBodega_Listado_Result">
-          <ScalarProperty Name="bod_Id" ColumnName="bod_Id" />
-          <ScalarProperty Name="bod_Nombre" ColumnName="bod_Nombre" />
-          <ScalarProperty Name="bod_ResponsableBodega" ColumnName="bod_ResponsableBodega" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_tbEntrada_ProductosRepetidos" FunctionName="ERP_ZORZALModel.Store.SP_tbEntrada_ProductosRepetidos">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SP_tbEntrada_ProductosRepetidos_Result">
-          <ScalarProperty Name="prod_CodigoBarras" ColumnName="prod_CodigoBarras" />
-          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+          <ScalarProperty Name="fact_Fecha" ColumnName="fact_Fecha" />
+          <ScalarProperty Name="clte_Id" ColumnName="clte_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UDV_Vent_VentasExoneradas">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Vent_VentasExoneradas">
+        <MappingFragment StoreEntitySet="UDV_Vent_VentasExoneradas">
+          <ScalarProperty Name="Impuesto_Exonerado" ColumnName="Impuesto Exonerado" />
+          <ScalarProperty Name="Monto_Facturado" ColumnName="Monto Facturado" />
           <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
-          <ScalarProperty Name="prod_Marca" ColumnName="prod_Marca" />
-          <ScalarProperty Name="prod_Modelo" ColumnName="prod_Modelo" />
-          <ScalarProperty Name="prod_Talla" ColumnName="prod_Talla" />
-          <ScalarProperty Name="prod_Color" ColumnName="prod_Color" />
-          <ScalarProperty Name="pcat_Nombre" ColumnName="pcat_Nombre" />
-          <ScalarProperty Name="pscat_Descripcion" ColumnName="pscat_Descripcion" />
-          <ScalarProperty Name="uni_Descripcion" ColumnName="uni_Descripcion" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Inv_tbEntrada_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEntrada_Insert">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbEntrada_Insert_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SDP_Inv_tbProducto_Select_CodBar" FunctionName="ERP_ZORZALModel.Store.SDP_Inv_tbProducto_Select_CodBar">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_Inv_tbProducto_Select_CodBar_Result">
+          <ScalarProperty Name="fact_Codigo" ColumnName="fact_Codigo" />
+          <ScalarProperty Name="clte_NombreComercial" ColumnName="clte_NombreComercial" />
+          <ScalarProperty Name="clte_Identificacion" ColumnName="clte_Identificacion" />
           <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
-          <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
-          <ScalarProperty Name="pcat_Nombre" ColumnName="pcat_Nombre" />
-          <ScalarProperty Name="pscat_Descripcion" ColumnName="pscat_Descripcion" />
-          <ScalarProperty Name="uni_Descripcion" ColumnName="uni_Descripcion" />
-          <ScalarProperty Name="prod_CodigoBarras" ColumnName="prod_CodigoBarras" />
-          <ScalarProperty Name="prod_Marca" ColumnName="prod_Marca" />
-          <ScalarProperty Name="prod_Modelo" ColumnName="prod_Modelo" />
-          <ScalarProperty Name="prod_Talla" ColumnName="prod_Talla" />
-          <ScalarProperty Name="prod_Color" ColumnName="prod_Color" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Inv_tbProducto_Estado_Prueba" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProducto_Estado_Prueba">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProducto_Estado_Prueba_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Inv_tbProducto_Update_RazonInactivacion" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProducto_Update_RazonInactivacion">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProducto_Update_RazonInactivacion_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
+          <ScalarProperty Name="suc_Descripcion" ColumnName="suc_Descripcion" />
+          <ScalarProperty Name="Fecha_factura" ColumnName="Fecha_factura" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UDV_Vent_VentasPorCaja_EntreFechas">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Vent_VentasPorCaja_EntreFechas">
+        <MappingFragment StoreEntitySet="UDV_Vent_VentasPorCaja_EntreFechas">
+          <ScalarProperty Name="suc_Id" ColumnName="suc_Id" />
+          <ScalarProperty Name="fact_UsuarioCrea" ColumnName="fact_UsuarioCrea" />
+          <ScalarProperty Name="cja_Id" ColumnName="cja_Id" />
+          <ScalarProperty Name="pago_TotalPago" ColumnName="pago_TotalPago" />
+          <ScalarProperty Name="Total_facturado" ColumnName="Total facturado" />
+          <ScalarProperty Name="Cajero" ColumnName="Cajero" />
+          <ScalarProperty Name="cja_Descripcion" ColumnName="cja_Descripcion" />
+          <ScalarProperty Name="suc_Descripcion" ColumnName="suc_Descripcion" />
+          <ScalarProperty Name="fact_Fecha" ColumnName="fact_Fecha" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

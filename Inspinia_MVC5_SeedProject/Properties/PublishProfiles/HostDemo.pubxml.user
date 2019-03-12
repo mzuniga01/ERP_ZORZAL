@@ -10,193 +10,193 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/Antlr3.Runtime.dll">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:32</publishTime>
     </File>
     <File Include="bin/CrystalDecisions.CrystalReports.Design.dll">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="bin/CrystalDecisions.CrystalReports.Engine.dll">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="bin/CrystalDecisions.ReportAppServer.ClientDoc.dll">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="bin/CrystalDecisions.ReportAppServer.CommLayer.dll">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="bin/CrystalDecisions.ReportAppServer.CommonControls.dll">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="bin/CrystalDecisions.ReportAppServer.CommonObjectModel.dll">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="bin/CrystalDecisions.ReportAppServer.Controllers.dll">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="bin/CrystalDecisions.ReportAppServer.CubeDefModel.dll">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="bin/CrystalDecisions.ReportAppServer.DataDefModel.dll">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="bin/CrystalDecisions.ReportAppServer.DataSetConversion.dll">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="bin/CrystalDecisions.ReportAppServer.ObjectFactory.dll">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="bin/CrystalDecisions.ReportAppServer.Prompting.dll">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="bin/CrystalDecisions.ReportAppServer.ReportDefModel.dll">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="bin/CrystalDecisions.ReportAppServer.XmlSerialize.dll">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="bin/CrystalDecisions.ReportSource.dll">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="bin/CrystalDecisions.Shared.dll">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="bin/CrystalDecisions.Web.dll">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="bin/de/Microsoft.SqlServer.Types.resources.dll">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
-      <publishTime>02/27/2019 03:06:36</publishTime>
+      <publishTime>03/12/2019 08:40:33</publishTime>
     </File>
     <File Include="bin/EntityFramework.SqlServer.dll">
-      <publishTime>02/27/2019 03:06:36</publishTime>
+      <publishTime>03/12/2019 08:40:33</publishTime>
     </File>
     <File Include="bin/ERP_GMEDINA.dll">
-      <publishTime>02/27/2019 03:17:38</publishTime>
+      <publishTime>03/12/2019 08:54:04</publishTime>
     </File>
     <File Include="bin/es/Microsoft.ReportViewer.WebForms.resources.dll">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="bin/es/Microsoft.SqlServer.Types.resources.dll">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="bin/fr/Microsoft.SqlServer.Types.resources.dll">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="bin/Inspinia_MVC5_SeedProject.dll">
       <publishTime>01/05/2017 18:29:35</publishTime>
     </File>
     <File Include="bin/it/Microsoft.SqlServer.Types.resources.dll">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="bin/ja/Microsoft.SqlServer.Types.resources.dll">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="bin/ko/Microsoft.SqlServer.Types.resources.dll">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="bin/log4net.dll">
-      <publishTime>02/27/2019 03:06:37</publishTime>
+      <publishTime>03/12/2019 08:40:33</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.Identity.Core.dll">
-      <publishTime>02/27/2019 03:06:36</publishTime>
+      <publishTime>03/12/2019 08:40:33</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.Identity.EntityFramework.dll">
-      <publishTime>02/27/2019 03:06:36</publishTime>
+      <publishTime>03/12/2019 08:40:33</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.Identity.Owin.dll">
-      <publishTime>02/27/2019 03:06:36</publishTime>
+      <publishTime>03/12/2019 08:40:33</publishTime>
     </File>
     <File Include="bin/Microsoft.Owin.dll">
-      <publishTime>02/27/2019 03:06:36</publishTime>
+      <publishTime>03/12/2019 08:40:33</publishTime>
     </File>
     <File Include="bin/Microsoft.Owin.Host.SystemWeb.dll">
-      <publishTime>02/27/2019 03:06:36</publishTime>
+      <publishTime>03/12/2019 08:40:33</publishTime>
     </File>
     <File Include="bin/Microsoft.Owin.Security.Cookies.dll">
-      <publishTime>02/27/2019 03:06:36</publishTime>
+      <publishTime>03/12/2019 08:40:33</publishTime>
     </File>
     <File Include="bin/Microsoft.Owin.Security.dll">
-      <publishTime>02/27/2019 03:06:36</publishTime>
+      <publishTime>03/12/2019 08:40:33</publishTime>
     </File>
     <File Include="bin/Microsoft.Owin.Security.Facebook.dll">
-      <publishTime>02/27/2019 03:06:36</publishTime>
+      <publishTime>03/12/2019 08:40:33</publishTime>
     </File>
     <File Include="bin/Microsoft.Owin.Security.Google.dll">
-      <publishTime>02/27/2019 03:06:36</publishTime>
+      <publishTime>03/12/2019 08:40:33</publishTime>
     </File>
     <File Include="bin/Microsoft.Owin.Security.MicrosoftAccount.dll">
-      <publishTime>02/27/2019 03:06:36</publishTime>
+      <publishTime>03/12/2019 08:40:33</publishTime>
     </File>
     <File Include="bin/Microsoft.Owin.Security.OAuth.dll">
-      <publishTime>02/27/2019 03:06:36</publishTime>
+      <publishTime>03/12/2019 08:40:33</publishTime>
     </File>
     <File Include="bin/Microsoft.Owin.Security.Twitter.dll">
-      <publishTime>02/27/2019 03:06:36</publishTime>
+      <publishTime>03/12/2019 08:40:33</publishTime>
     </File>
     <File Include="bin/Microsoft.ReportViewer.WebForms.dll">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="bin/Microsoft.SqlServer.Types.dll">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="bin/Microsoft.VisualStudio.QualityTools.WebTestFramework.dll">
-      <publishTime>02/27/2019 03:06:36</publishTime>
+      <publishTime>03/12/2019 08:40:33</publishTime>
     </File>
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
-      <publishTime>02/27/2019 03:06:36</publishTime>
+      <publishTime>03/12/2019 08:40:33</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
-      <publishTime>02/27/2019 03:06:36</publishTime>
+      <publishTime>03/12/2019 08:40:33</publishTime>
     </File>
     <File Include="bin/Owin.dll">
-      <publishTime>02/27/2019 03:06:36</publishTime>
+      <publishTime>03/12/2019 08:40:33</publishTime>
     </File>
     <File Include="bin/pt/Microsoft.SqlServer.Types.resources.dll">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="bin/ru/Microsoft.SqlServer.Types.resources.dll">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="bin/SimpleCrypto.dll">
-      <publishTime>02/27/2019 03:06:36</publishTime>
+      <publishTime>03/12/2019 08:40:33</publishTime>
     </File>
     <File Include="bin/SimpleCrypto.Fakes.fakesconfig">
-      <publishTime>02/27/2019 03:11:04</publishTime>
+      <publishTime>03/12/2019 08:49:41</publishTime>
     </File>
     <File Include="bin/stdole.dll">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="bin/System.Web.Helpers.dll">
-      <publishTime>02/27/2019 03:06:36</publishTime>
+      <publishTime>03/12/2019 08:40:33</publishTime>
     </File>
     <File Include="bin/System.Web.Mvc.dll">
-      <publishTime>02/27/2019 03:06:36</publishTime>
+      <publishTime>03/12/2019 08:40:33</publishTime>
     </File>
     <File Include="bin/System.Web.Optimization.dll">
-      <publishTime>02/27/2019 03:06:36</publishTime>
+      <publishTime>03/12/2019 08:40:33</publishTime>
     </File>
     <File Include="bin/System.Web.Razor.dll">
-      <publishTime>02/27/2019 03:06:36</publishTime>
+      <publishTime>03/12/2019 08:40:33</publishTime>
     </File>
     <File Include="bin/System.Web.WebPages.Deployment.dll">
-      <publishTime>02/27/2019 03:06:36</publishTime>
+      <publishTime>03/12/2019 08:40:33</publishTime>
     </File>
     <File Include="bin/System.Web.WebPages.dll">
-      <publishTime>02/27/2019 03:06:36</publishTime>
+      <publishTime>03/12/2019 08:40:33</publishTime>
     </File>
     <File Include="bin/System.Web.WebPages.Razor.dll">
-      <publishTime>02/27/2019 03:06:36</publishTime>
+      <publishTime>03/12/2019 08:40:33</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
-      <publishTime>02/27/2019 03:06:36</publishTime>
+      <publishTime>03/12/2019 08:40:33</publishTime>
     </File>
     <File Include="bin/zh-Hans/Microsoft.SqlServer.Types.resources.dll">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="bin/zh-Hant/Microsoft.SqlServer.Types.resources.dll">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Content/animate.css">
       <publishTime>11/23/2018 09:54:32</publishTime>
@@ -223,13 +223,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/10/2017 19:15:32</publishTime>
     </File>
     <File Include="Content/css/Auditoria.css">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:30</publishTime>
     </File>
     <File Include="Content/css/master.css">
       <publishTime>11/26/2018 07:50:10</publishTime>
     </File>
     <File Include="Content/css/tables.css">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:30</publishTime>
     </File>
     <File Include="Content/DataTables/css/autoFill.bootstrap.css">
       <publishTime>11/26/2018 07:50:10</publishTime>
@@ -712,7 +712,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/26/2018 07:50:10</publishTime>
     </File>
     <File Include="Content/img/404.png">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:30</publishTime>
     </File>
     <File Include="Content/img/Business_and_Commerce_Career_Prospects_and_Trends_Report_final_for_web2-1[1].jpg">
       <publishTime>11/26/2018 07:50:10</publishTime>
@@ -751,7 +751,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/10/2017 19:15:32</publishTime>
     </File>
     <File Include="Content/style.css">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:30</publishTime>
     </File>
     <File Include="Content/themes/base/accordion.css">
       <publishTime>12/15/2018 11:45:13</publishTime>
@@ -876,11 +876,23 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Content/themes/base/tooltip.css">
       <publishTime>12/15/2018 11:45:13</publishTime>
     </File>
+    <File Include="Dataset/dsPackingList.xsc">
+      <publishTime>03/12/2019 08:40:23</publishTime>
+    </File>
+    <File Include="Dataset/dsPackingList.xss">
+      <publishTime>03/12/2019 08:40:23</publishTime>
+    </File>
     <File Include="Dataset/InventarioFisico.xsc">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:30</publishTime>
     </File>
     <File Include="Dataset/InventarioFisico.xss">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:30</publishTime>
+    </File>
+    <File Include="Dataset/Reportes.xsc">
+      <publishTime>03/12/2019 00:23:04</publishTime>
+    </File>
+    <File Include="Dataset/Reportes.xss">
+      <publishTime>03/12/2019 08:40:23</publishTime>
     </File>
     <File Include="Entrada.xsc">
       <publishTime>02/27/2019 03:06:34</publishTime>
@@ -1017,161 +1029,176 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Global.asax">
       <publishTime>02/22/2019 12:57:04</publishTime>
     </File>
+    <File Include="Logo/1.jpg">
+      <publishTime>03/12/2019 08:40:23</publishTime>
+    </File>
+    <File Include="Logo/1.png">
+      <publishTime>03/12/2019 08:40:23</publishTime>
+    </File>
     <File Include="Models/ModelERP.edmx.diagram">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:47:19</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:32</publishTime>
     </File>
     <File Include="ReportViewer/ImprimirEntrada.aspx">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:30</publishTime>
     </File>
     <File Include="ReportViewer/ImprimirEntradaDevolucion.aspx">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:30</publishTime>
     </File>
     <File Include="ReportViewer/ImprimirEntradaTraslado.aspx">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:30</publishTime>
     </File>
     <File Include="Scripts/app/Activo.js">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:30</publishTime>
     </File>
     <File Include="Scripts/app/ActivoP.js">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:30</publishTime>
     </File>
     <File Include="Scripts/app/AgregarMunicipio.js">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:30</publishTime>
     </File>
     <File Include="Scripts/app/BodegaDetalle.js">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:25</publishTime>
     </File>
     <File Include="Scripts/app/BusquedaGenerica.js">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:30</publishTime>
     </File>
     <File Include="Scripts/app/Categoria.js">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:25</publishTime>
     </File>
     <File Include="Scripts/app/Comparar.js">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:30</publishTime>
     </File>
     <File Include="Scripts/app/CrearActualizarEliminar.js">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:30</publishTime>
     </File>
     <File Include="Scripts/app/DataTable.js">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:25</publishTime>
     </File>
     <File Include="Scripts/app/Datepicker.js">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:30</publishTime>
     </File>
     <File Include="Scripts/app/DatepickerEmpleado.js">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:25</publishTime>
     </File>
     <File Include="Scripts/app/Departamento.js">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:30</publishTime>
     </File>
     <File Include="Scripts/app/DetalleBox.js">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:25</publishTime>
     </File>
     <File Include="Scripts/app/disableSubmits.js">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:30</publishTime>
     </File>
     <File Include="Scripts/app/EditBodegaDetalle.js">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:30</publishTime>
     </File>
     <File Include="Scripts/app/emailvalidation.js">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:30</publishTime>
     </File>
     <File Include="Scripts/app/EntradaDetalle.js">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:25</publishTime>
     </File>
     <File Include="Scripts/app/InActivarProducto.js">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:25</publishTime>
     </File>
     <File Include="Scripts/app/InActivarUsuario.js">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:30</publishTime>
     </File>
     <File Include="Scripts/app/inspinia.js">
       <publishTime>11/23/2018 09:54:34</publishTime>
     </File>
     <File Include="Scripts/app/InvFisicoDetalle.js">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:25</publishTime>
     </File>
     <File Include="Scripts/app/letras.js">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:30</publishTime>
     </File>
     <File Include="Scripts/app/MostrarCamposEditar.js">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:30</publishTime>
     </File>
     <File Include="Scripts/app/MostrarCamposEntradajs.js">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:30</publishTime>
     </File>
     <File Include="Scripts/app/MostrarCamposSalida.js">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:30</publishTime>
     </File>
     <File Include="Scripts/app/MostrarOcultar.js">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:30</publishTime>
     </File>
     <File Include="Scripts/app/Municipio.js">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:30</publishTime>
     </File>
     <File Include="Scripts/app/Objeto.js">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:25</publishTime>
     </File>
     <File Include="Scripts/app/Parametro.js">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:25</publishTime>
     </File>
     <File Include="Scripts/app/PartialViewGetObjectos.js">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:30</publishTime>
     </File>
     <File Include="Scripts/app/PersonaNatural.js">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:30</publishTime>
     </File>
     <File Include="Scripts/app/ProductoCodigo.js">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:30</publishTime>
     </File>
     <File Include="Scripts/app/RolesUsuario.js">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:26</publishTime>
     </File>
     <File Include="Scripts/app/RolesUsuarioEdit.js">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:30</publishTime>
     </File>
     <File Include="Scripts/app/RolObjetos.js">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:25</publishTime>
     </File>
     <File Include="Scripts/app/RolObjetosEdit.js">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:25</publishTime>
     </File>
     <File Include="Scripts/app/Salida.js">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:26</publishTime>
     </File>
     <File Include="Scripts/app/SalidaDetalle.js">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:26</publishTime>
+    </File>
+    <File Include="Scripts/app/SalidaEdit.js">
+      <publishTime>03/12/2019 08:40:26</publishTime>
     </File>
     <File Include="Scripts/app/search.js">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:30</publishTime>
     </File>
     <File Include="Scripts/app/SolicitarProducto.js">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:26</publishTime>
     </File>
     <File Include="Scripts/app/SubCategoriaProducto.js">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:26</publishTime>
+    </File>
+    <File Include="Scripts/app/SubCategoriaProductoEdit.js">
+      <publishTime>03/12/2019 08:40:26</publishTime>
     </File>
     <File Include="Scripts/app/TipoDevolucion.js">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:26</publishTime>
     </File>
     <File Include="Scripts/app/ValidacionProveedor.js">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:30</publishTime>
     </File>
     <File Include="Scripts/app/ValidationEmail.js">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:30</publishTime>
     </File>
     <File Include="Scripts/app/ValidationErrorsBodega.js">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:30</publishTime>
+    </File>
+    <File Include="Scripts/app/ValidationEstadoInventarioFisico.js">
+      <publishTime>03/12/2019 08:40:26</publishTime>
     </File>
     <File Include="Scripts/app/ValidationEstadoMovimientojs.js">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:26</publishTime>
     </File>
     <File Include="Scripts/app/ValidationNumber.js">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:30</publishTime>
     </File>
     <File Include="Scripts/bootstrap.js">
       <publishTime>11/23/2018 09:54:34</publishTime>
@@ -1443,11 +1470,17 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Scripts/jquery-ui-1.12.1.min.js">
       <publishTime>12/15/2018 11:45:13</publishTime>
     </File>
+    <File Include="Scripts/jquery.inputmask.bundle.js">
+      <publishTime>03/12/2019 08:40:26</publishTime>
+    </File>
+    <File Include="Scripts/jquery.maskedinput.min.js">
+      <publishTime>03/12/2019 08:40:26</publishTime>
+    </File>
     <File Include="Scripts/jquery.unobtrusive-ajax.js">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:30</publishTime>
     </File>
     <File Include="Scripts/jquery.unobtrusive-ajax.min.js">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:30</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.js">
       <publishTime>11/23/2018 09:54:34</publishTime>
@@ -1474,10 +1507,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/23/2018 09:54:34</publishTime>
     </File>
     <File Include="Scripts/Salida.js">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:30</publishTime>
     </File>
     <File Include="Scripts/SalidaDetalle.js">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:30</publishTime>
+    </File>
+    <File Include="Scripts/wp-embed.min.js">
+      <publishTime>03/12/2019 08:40:26</publishTime>
     </File>
     <File Include="Views/Account/ExternalLoginConfirmation.cshtml">
       <publishTime>12/15/2014 09:38:32</publishTime>
@@ -1507,268 +1543,283 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/15/2014 10:33:44</publishTime>
     </File>
     <File Include="Views/Bodega/Create.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:26</publishTime>
     </File>
     <File Include="Views/Bodega/Delete.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:30</publishTime>
     </File>
     <File Include="Views/Bodega/Details.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:30</publishTime>
     </File>
     <File Include="Views/Bodega/Edit.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:26</publishTime>
     </File>
     <File Include="Views/Bodega/Index.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:30</publishTime>
     </File>
     <File Include="Views/Bodega/_BuscarProducto.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:30</publishTime>
     </File>
     <File Include="Views/Bodega/_BuscarProductoAutocomplete.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:30</publishTime>
     </File>
     <File Include="Views/Bodega/_CreateBodegaDetalle.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/Bodega/_CreateNuevoBodegaDetalle_Modal.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:26</publishTime>
     </File>
     <File Include="Views/Bodega/_DetailsBodegaDetalle.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/Bodega/_DetailsProductoModal.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/Bodega/_DetallesProductos.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/Bodega/_EditBodegaDetalle.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/Bodega/_EditBodegaDetalleModal.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/Bodega/_IndexBodegaDetalle.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/Bodega/_ListBodegaDetalles.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/Box/Create.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:26</publishTime>
     </File>
     <File Include="Views/Box/Delete.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/Box/Details.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:26</publishTime>
     </File>
     <File Include="Views/Box/Edit.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:26</publishTime>
     </File>
     <File Include="Views/Box/Index.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:26</publishTime>
     </File>
     <File Include="Views/Box/_BoxDetalle.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:26</publishTime>
     </File>
     <File Include="Views/Box/_BuscarProducto.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:26</publishTime>
     </File>
     <File Include="Views/Box/_CreateEditSalidaDetalle.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:26</publishTime>
     </File>
     <File Include="Views/Box/_CreateSalidaDetalle.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/Box/_DetailsSalidaDetalle.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:26</publishTime>
     </File>
     <File Include="Views/Box/_EditarModal.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/Box/_EditarSalidaDetalle.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:26</publishTime>
     </File>
     <File Include="Views/Box/_EditProducto.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/Box/_EditProductoSalidaDetalle.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/Box/_EditSalidaDetalle.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:26</publishTime>
     </File>
     <File Include="Views/Box/_IndexBoxDetalle.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:26</publishTime>
     </File>
     <File Include="Views/Box/_IndexSalidaDetalle.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/Box/_ListSalidaDetalle.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:26</publishTime>
     </File>
     <File Include="Views/Box/_Producto.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/Box/_SalidaDetalle.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/ConsultarExistenciaProductos/Index.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:26</publishTime>
     </File>
     <File Include="Views/Departamento/Create.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:26</publishTime>
     </File>
     <File Include="Views/Departamento/Delete.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/Departamento/Details.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/Departamento/Edit.cshtml">
-      <publishTime>02/27/2019 03:10:27</publishTime>
+      <publishTime>03/12/2019 08:40:26</publishTime>
     </File>
     <File Include="Views/Departamento/Index.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/Departamento/_CreateMunicipio.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/Departamento/_DeleteMunicipio.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/Departamento/_DetailsMunicipio.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/Departamento/_EditMunicipio.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/Departamento/_IndexMunicipio.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/Departamento/_IndexMunicipio_Botones.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/Empleado/Create.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:26</publishTime>
     </File>
     <File Include="Views/Empleado/Delete.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/Empleado/Details.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/Empleado/Edit.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:26</publishTime>
     </File>
     <File Include="Views/Empleado/Index.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/Entrada/Create.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:26</publishTime>
     </File>
     <File Include="Views/Entrada/Delete.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/Entrada/Details.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:26</publishTime>
     </File>
     <File Include="Views/Entrada/Edit.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:26</publishTime>
     </File>
     <File Include="Views/Entrada/Index.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:26</publishTime>
     </File>
     <File Include="Views/Entrada/_BuscarProducto.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/Entrada/_CrearDetalleEntrada.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/Entrada/_CrearDetalleEntradaEditar.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/Entrada/_DetallesDeEntrada.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/Entrada/_EditarDetalleEntrada.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
+    </File>
+    <File Include="Views/Entrada/_GenerarReportes.cshtml">
+      <publishTime>03/12/2019 08:40:26</publishTime>
     </File>
     <File Include="Views/Entrada/_IndexDetalleEntrada.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/Entrada/_IndexEditar.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
+    </File>
+    <File Include="Views/EstadoInventarioFisico/Create.cshtml">
+      <publishTime>03/12/2019 08:40:26</publishTime>
+    </File>
+    <File Include="Views/EstadoInventarioFisico/Details.cshtml">
+      <publishTime>03/12/2019 08:40:26</publishTime>
+    </File>
+    <File Include="Views/EstadoInventarioFisico/Edit.cshtml">
+      <publishTime>03/12/2019 08:40:26</publishTime>
+    </File>
+    <File Include="Views/EstadoInventarioFisico/Index.cshtml">
+      <publishTime>03/12/2019 08:40:26</publishTime>
     </File>
     <File Include="Views/EstadoMovimiento/Create.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:26</publishTime>
     </File>
     <File Include="Views/EstadoMovimiento/Delete.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/EstadoMovimiento/Details.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/EstadoMovimiento/Edit.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:26</publishTime>
     </File>
     <File Include="Views/EstadoMovimiento/Index.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/Home/Minor.cshtml">
       <publishTime>11/23/2018 09:54:34</publishTime>
     </File>
     <File Include="Views/InventarioFisico/Create.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:26</publishTime>
     </File>
     <File Include="Views/InventarioFisico/Delete.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/InventarioFisico/Details.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/InventarioFisico/Edit.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/InventarioFisico/Index.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/InventarioFisico/_CreateInvFisicoDetalle.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:26</publishTime>
     </File>
     <File Include="Views/InventarioFisico/_CreateInvFisicoDetalle_nuevo.cshtml">
-      <publishTime>02/27/2019 03:06:34</publishTime>
+      <publishTime>03/12/2019 08:40:26</publishTime>
     </File>
     <File Include="Views/InventarioFisico/_DetailsInvFisicoDetalle.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/InventarioFisico/_EditInvFisicoDetalle.cshtml">
       <publishTime>02/27/2019 03:06:35</publishTime>
     </File>
     <File Include="Views/InventarioFisico/_IndexInvFisicoDetalle.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:26</publishTime>
     </File>
     <File Include="Views/InventarioFisico/_IndexInvFisicoDetalle_Botones.cshtml">
       <publishTime>02/27/2019 03:06:35</publishTime>
     </File>
     <File Include="Views/InventarioFisico/_IndexProductos.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:27</publishTime>
     </File>
     <File Include="Views/InventarioFisico/_ListadoInventarioFisicoDetalle.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:27</publishTime>
     </File>
     <File Include="Views/InventarioFisico/_ListadoInventarioFisicoDetalleConciliado.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:27</publishTime>
     </File>
     <File Include="Views/Login/Index.cshtml">
-      <publishTime>01/28/2019 15:15:16</publishTime>
+      <publishTime>03/12/2019 08:40:27</publishTime>
     </File>
     <File Include="Views/Login/NotFound.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/Login/SinAcceso.cshtml">
       <publishTime>01/28/2019 15:15:16</publishTime>
@@ -1777,175 +1828,184 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/22/2019 12:57:06</publishTime>
     </File>
     <File Include="Views/Objeto/Create.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:27</publishTime>
     </File>
     <File Include="Views/Objeto/Delete.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/Objeto/Details.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/Objeto/Edit.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:27</publishTime>
     </File>
     <File Include="Views/Objeto/Index.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/Parametro/Create.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:27</publishTime>
     </File>
     <File Include="Views/Parametro/Delete.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/Parametro/Details.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:27</publishTime>
     </File>
     <File Include="Views/Parametro/Edit.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:27</publishTime>
     </File>
     <File Include="Views/Parametro/Index.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/Producto/Create.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:27</publishTime>
     </File>
     <File Include="Views/Producto/Delete.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/Producto/Details.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/Producto/Edit.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:27</publishTime>
     </File>
     <File Include="Views/Producto/Index.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:27</publishTime>
+    </File>
+    <File Include="Views/Producto/_CatalogoProducto.cshtml">
+      <publishTime>03/12/2019 08:40:27</publishTime>
     </File>
     <File Include="Views/ProductoCategoria/Create.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:27</publishTime>
     </File>
     <File Include="Views/ProductoCategoria/Delete.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/ProductoCategoria/Details.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/ProductoCategoria/Edit.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:27</publishTime>
     </File>
     <File Include="Views/ProductoCategoria/Index.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:27</publishTime>
     </File>
     <File Include="Views/ProductoCategoria/_CreateSubCategoria.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:27</publishTime>
     </File>
     <File Include="Views/ProductoCategoria/_CreateSubCategoriaModal.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:27</publishTime>
     </File>
     <File Include="Views/ProductoCategoria/_DetailsSubCategoria.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/ProductoCategoria/_EditarSubCategoria.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/ProductoCategoria/_EditSubCategoriaModal.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/ProductoCategoria/_IndexSubCategoria.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/ProductoCategoria/_ListSubCategoria.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:27</publishTime>
     </File>
     <File Include="Views/ProductoCategoria/_ListSubCategoriaDetalle.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/ProductoCategoria/_ListSubCategoriaEditar.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/Proveedor/Create.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:27</publishTime>
     </File>
     <File Include="Views/Proveedor/Details.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/Proveedor/Edit.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:27</publishTime>
     </File>
     <File Include="Views/Proveedor/Index.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/Rol/Create.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:27</publishTime>
     </File>
     <File Include="Views/Rol/Delete.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/Rol/Details.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/Rol/Edit.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:27</publishTime>
     </File>
     <File Include="Views/Rol/Index.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:27</publishTime>
     </File>
     <File Include="Views/Rol/_IndexAccesoRol.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/RolesUsuario/Create.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/RolesUsuario/Delete.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/RolesUsuario/Details.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/RolesUsuario/Edit.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/RolesUsuario/Index.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/Salida/Create.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:27</publishTime>
     </File>
     <File Include="Views/Salida/Delete.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/Salida/Details.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:27</publishTime>
     </File>
     <File Include="Views/Salida/Edit.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:27</publishTime>
     </File>
     <File Include="Views/Salida/Index.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:27</publishTime>
     </File>
     <File Include="Views/Salida/View.cshtml">
       <publishTime>02/27/2019 03:06:35</publishTime>
     </File>
     <File Include="Views/Salida/_BuscarProducto.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:27</publishTime>
     </File>
     <File Include="Views/Salida/_CreateEditSalidaDetalle.cshtml">
       <publishTime>02/27/2019 03:06:35</publishTime>
     </File>
     <File Include="Views/Salida/_CreateSalidaDetalle.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:27</publishTime>
     </File>
     <File Include="Views/Salida/_DetailsSalidaDetalle.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:27</publishTime>
+    </File>
+    <File Include="Views/Salida/_EditCreateSalidaDetalle.cshtml">
+      <publishTime>03/12/2019 08:40:27</publishTime>
     </File>
     <File Include="Views/Salida/_EditProductoSalidaDetalle.cshtml">
       <publishTime>02/27/2019 03:06:35</publishTime>
     </File>
     <File Include="Views/Salida/_EditSalidaDetalle.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:27</publishTime>
+    </File>
+    <File Include="Views/Salida/_GenReporte.cshtml">
+      <publishTime>03/12/2019 08:40:27</publishTime>
     </File>
     <File Include="Views/Salida/_Modales.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:27</publishTime>
     </File>
     <File Include="Views/Salida/_SalidaDetalle.cshtml">
       <publishTime>02/27/2019 03:06:35</publishTime>
@@ -1954,79 +2014,79 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/28/2019 15:15:16</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>01/28/2019 15:15:16</publishTime>
     </File>
     <File Include="Views/Shared/_Navigation.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:27</publishTime>
     </File>
     <File Include="Views/Shared/_TopNavbar.cshtml">
       <publishTime>11/26/2018 07:50:10</publishTime>
     </File>
     <File Include="Views/TipoDevolucion/Create.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:27</publishTime>
     </File>
     <File Include="Views/TipoDevolucion/Delete.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/TipoDevolucion/Details.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/TipoDevolucion/Edit.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:27</publishTime>
     </File>
     <File Include="Views/TipoDevolucion/Index.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/TipoEntrada/Create.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:27</publishTime>
     </File>
     <File Include="Views/TipoEntrada/Delete.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/TipoEntrada/Details.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/TipoEntrada/Edit.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:27</publishTime>
     </File>
     <File Include="Views/TipoEntrada/Index.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/TipoSalida/Create.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:27</publishTime>
     </File>
     <File Include="Views/TipoSalida/Delete.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/TipoSalida/Details.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/TipoSalida/Edit.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:27</publishTime>
     </File>
     <File Include="Views/TipoSalida/Index.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/UnidadMedida/Create.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:27</publishTime>
     </File>
     <File Include="Views/UnidadMedida/Delete.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/UnidadMedida/Details.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/UnidadMedida/Edit.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:27</publishTime>
     </File>
     <File Include="Views/UnidadMedida/Index.cshtml">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/Usuario/Create.cshtml">
-      <publishTime>02/27/2019 02:17:47</publishTime>
+      <publishTime>03/12/2019 08:40:27</publishTime>
     </File>
     <File Include="Views/Usuario/Delete.cshtml">
       <publishTime>02/27/2019 02:17:47</publishTime>
@@ -2035,16 +2095,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/27/2019 02:17:47</publishTime>
     </File>
     <File Include="Views/Usuario/Edit.cshtml">
-      <publishTime>02/27/2019 02:17:47</publishTime>
+      <publishTime>03/12/2019 08:40:27</publishTime>
     </File>
     <File Include="Views/Usuario/Index.cshtml">
       <publishTime>02/27/2019 02:17:47</publishTime>
     </File>
     <File Include="Views/Usuario/ModificarCuenta.cshtml">
-      <publishTime>02/27/2019 02:17:47</publishTime>
+      <publishTime>03/12/2019 08:40:27</publishTime>
     </File>
     <File Include="Views/Usuario/ModificarPass.cshtml">
-      <publishTime>02/27/2019 02:17:47</publishTime>
+      <publishTime>03/12/2019 08:40:27</publishTime>
     </File>
     <File Include="Views/Usuario/RestaurarPassword.cshtml">
       <publishTime>02/27/2019 02:17:47</publishTime>
@@ -2056,13 +2116,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/27/2019 02:17:47</publishTime>
     </File>
     <File Include="Views/Web.config">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:40:31</publishTime>
     </File>
     <File Include="Views/_ViewStart.cshtml">
       <publishTime>11/23/2018 09:54:34</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>02/27/2019 03:06:35</publishTime>
+      <publishTime>03/12/2019 08:54:15</publishTime>
     </File>
   </ItemGroup>
 </Project>

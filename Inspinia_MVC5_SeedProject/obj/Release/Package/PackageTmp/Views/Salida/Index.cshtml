@@ -16,7 +16,6 @@
     </div>
 </div>
 
-
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
@@ -30,9 +29,12 @@
                 </div>
                 <div class="ibox-content">
 
-                    <table class="table table table-striped  table-bordered" style="width:100%" id="Datatable">
+                    <table class="table table table-striped  table-bordered" style="width:100%" id="Datatables">
                         <thead>
                             <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.sal_Id)
+                                </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.sal_FechaElaboracion)
                                 </th>
@@ -58,6 +60,9 @@
                             {
                                 <tr>
                                     <td>
+                                        @Html.DisplayFor(modelItem => item.sal_Id)
+                                    </td>
+                                    <td>
                                         @Html.DisplayFor(modelItem => item.sal_FechaElaboracion)
                                     </td>
                                     <td>
@@ -76,13 +81,17 @@
                                         @{
                                             if (item.sal_EsAnulada)
                                             {
-                                                <input type="button" class="btn btn-xs" style="background-color:red;color:white" value="Anulada">
+                                                <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="No se puede Editar, esta anulada.">
+                                                    <button class="btn  btn-xs" style="pointer-events: none; background-color:red;color:white" type="button" disabled>Anulada</button>
+                                                </span>
                                             }
                                             else
                                             {
-                                                if (item.estm_Id == Helpers.Aplicada)
+                                                if (item.estm_Id == Helpers.sal_Aplicada)
                                                 {
-                                                    <input type="button" class="btn  btn-xs" style="background-color:green;color:white" value="Aplicada">
+                                                    <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="No se puede Editar, esta aplicado.">
+                                                        <button class="btn  btn-xs" style="pointer-events: none; background-color:green;color:white" type="button" disabled>Aplicada</button>
+                                                    </span>
                                                 }
                                                 else
                                                 {
@@ -96,8 +105,6 @@
                             }
                         </tbody>
                     </table>
-
-
                 </div>
             </div>
         </div>
@@ -116,11 +123,50 @@
             <div id="GenerarReporte" class="modal-body">
                 @Html.Partial("_GenReporte", new ERP_GMEDINA.Models.tbSalida())
             </div>
-            
-
         </div>
     </div>
 </div>
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
-<script src="~/Scripts/app/DataTable.js"></script>
+<script src="~/Scripts/app/SalidaDetalle.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    });
+    $(function () {
+        $("#FechaElaboracion").datepicker({
+            dateFormat: 'mm-dd-yy',
+            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+            buttonImageOnly: true,
+            minDate: '-30Y',
+            maxDate: '0',
+            inline: true
+        }).datepicker("setDate", new Date());
+    });
+
+    $(document).ready(function () {
+        $('#Datatables').DataTable(
+            {
+                "searching": true,
+                "lengthChange": true,
+
+                "oLanguage": {
+                    "oPaginate": {
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior",
+                    },
+                    "sProcessing": "Procesando...",
+                    "sLengthMenu": "Mostrar _MENU_ registros",
+                    "sZeroRecords": "No se encontraron resultados",
+                    "sEmptyTable": "Ningún dato disponible en esta tabla",
+                    "sEmptyTable": "No hay registros",
+                    "sInfoEmpty": "Mostrando 0 de 0 Entradas",
+                    "sSearch": "Buscar",
+                    "sInfo": "Mostrando _START_ a _END_ Entradas",
+                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+
+                }
+            });
+    });
+</script>

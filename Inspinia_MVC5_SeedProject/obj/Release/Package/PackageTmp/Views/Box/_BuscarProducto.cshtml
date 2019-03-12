@@ -1,13 +1,11 @@
-﻿@model IEnumerable<ERP_GMEDINA.Models.tbProducto>
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbBodegaDetalle>
 @using ERP_GMEDINA.Models
-
 
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-content">
-                    <input type="text" id="search" placeholder="Buscar Producto" class="form-control" />
                     <table id="Table_BuscarProducto" class="table table table-striped  table-bordered">
                         <thead>
                             <tr>
@@ -15,54 +13,26 @@
                                     @Html.DisplayNameFor(model => model.prod_Codigo)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.prod_Descripcion)
+                                    @Html.DisplayNameFor(model => model.tbProducto.prod_Descripcion)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.tbProductoSubcategoria.pcat_Id)
+                                    @Html.DisplayNameFor(model => model.tbProducto.tbProductoSubcategoria.pcat_Id)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.pscat_Id)
+                                    @Html.DisplayNameFor(model => model.tbProducto.pscat_Id)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.uni_Id)
+                                    @Html.DisplayNameFor(model => model.tbProducto.uni_Id)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.prod_CodigoBarras)
+                                    @Html.DisplayNameFor(model => model.tbProducto.prod_CodigoBarras)
                                 </th>
                                 <th>
                                     Acciones
                                 </th>
                             </tr>
                         </thead>
-                        <tbody >
-                       @foreach (var item in Model)
-                       {
-                        <tr tr data-id="@item.prod_CodigoBarras" data-content="@item.prod_Descripcion" data-container="@item.tbProductoSubcategoria.pscat_Descripcion" data-keyboard="@item.tbUnidadMedida.uni_Descripcion" data-interval="@item.tbProductoSubcategoria.tbProductoCategoria.pcat_Nombre" data-animation="@item.prod_Codigo">
-                            <th>
-                                @Html.DisplayFor(model => item.prod_Codigo)
-                            </th>
-                            <th>
-                                @Html.DisplayFor(model => item.prod_Descripcion)
-                            </th>
-                            <th>
-                                @Html.DisplayFor(model => item.tbProductoSubcategoria.tbProductoCategoria.pcat_Nombre)
-                            </th>
-                            <th>
-                                @Html.DisplayFor(model => item.tbProductoSubcategoria.pscat_Descripcion)
-                            </th>
-                            <th>
-                                @Html.DisplayFor(model => item.tbUnidadMedida.uni_Descripcion)
-                            </th>
-                            <th>
-                                @Html.DisplayFor(model => item.prod_CodigoBarras)
-                            </th>
-                            <td>
-                                <button class="btn btn-primary btn-xs" value="@item.prod_CodigoBarras = prod_CodigoBarras" id="seleccionar" data-dismiss="modal">Seleccionar</button>
-                                @*@Html.ActionLink("", "_DetallesProductos", new { id = item.prod_Codigo }, new { @class = "btn btn-white btn-xs" })*@
-                            </td>
-                        </tr>
-                       }
-                        </tbody>
+                        <tbody></tbody>
                     </table>
                 </div>
             </div>

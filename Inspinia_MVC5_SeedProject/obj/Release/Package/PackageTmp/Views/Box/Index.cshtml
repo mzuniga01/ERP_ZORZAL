@@ -35,6 +35,9 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.box_Descripcion)
                                 </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tbBodega.bod_Nombre)
+                                </th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -47,6 +50,9 @@
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.box_Descripcion)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbBodega.bod_Nombre)
                                     </td>
                                     <td>
                                         @Html.ActionLink("Detalles", "Details", new { id = item.box_Codigo }, new { @class = "btn btn-primary btn-xs" })

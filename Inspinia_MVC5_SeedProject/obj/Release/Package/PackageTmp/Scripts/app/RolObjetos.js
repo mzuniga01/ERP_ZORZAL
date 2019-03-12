@@ -22,8 +22,8 @@
             })
             $('#NoAsignados').DataTable({
                 "searching": true,
-                "scrollY": "300px",
-                "scrollCollapse": true,
+                //"scrollY": "300px",
+                //"scrollCollapse": true,
                 "paging": false,
                 "info": false,
                     "oLanguage": {
@@ -41,10 +41,12 @@
                     },
 
             });
-
+            
+            
                 $('#Asignados').DataTable({
                     "searching": true,
                     "scrollY": "300px",
+                    "order": false,
                     "scrollCollapse": true,
                     "paging": false,
                     "info": false,
@@ -75,9 +77,6 @@
 
 
 $('#Add').click(function () {
-    $('#Asignados> tbody > tr').each(function () {
-        $(this).remove();
-    })
     $('#NoAsignados> tbody > tr').each(function () {
         idItem = $(this).data('id');
         var objpantalla;

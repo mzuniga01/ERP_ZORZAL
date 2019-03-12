@@ -19,6 +19,9 @@
         font-weight: bold;
         color: red; 
                         }
+    #miInput {
+        text-transform: uppercase;
+    }
 </style>
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
@@ -74,6 +77,7 @@
         </div>
     </div>
  </div>
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
 <script>
     //Validar Los campos Stringg
     function soloLetras(e) {
@@ -90,6 +94,11 @@
                 document.getElementById("miInput").value = '';
         }
     }
+    $("#miInput").change(function () {
+        var str = $("#miInput").val();
+        var res = str.toUpperCase();
+        $("#miInput").val(res);
+    });
 </script>
  
 

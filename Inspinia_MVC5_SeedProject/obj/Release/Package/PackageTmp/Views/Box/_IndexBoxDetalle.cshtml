@@ -1,15 +1,14 @@
-﻿@model IEnumerable<ERP_GMEDINA.Models.tbSalidaDetalle>
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbBoxDetalle>
 @using ERP_GMEDINA.Models
 @ViewData["clave"]
 @{
-    tbSalidaDetalle SalidaDetalle = new tbSalidaDetalle();
+    //tbSalidaDetalle SalidaDetalle = new tbSalidaDetalle();
 }
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-content">
-                    <input type="text" id="search" placeholder="Buscar Productos" class="form-control" />
                     <table id="Table_BuscarProducto" class="table table table-striped  table-bordered">
                         <thead>
                             <tr>
@@ -25,7 +24,6 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.tbProducto.prod_Modelo)
                                 </th>
-                               
                             </tr>
                         </thead>
 
@@ -43,7 +41,7 @@
                                         @Html.DisplayFor(modelItem => item.tbProducto.prod_Modelo)
                                     </td>
                                     <th>
-                                        @Html.DisplayFor(modelItem => item.sald_Cantidad)
+                                        @Html.DisplayFor(modelItem => item.boxd_Cantidad)
                                     </th>
                                 </tr>
                             }

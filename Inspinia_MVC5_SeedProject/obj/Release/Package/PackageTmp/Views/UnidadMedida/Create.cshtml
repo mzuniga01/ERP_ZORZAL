@@ -4,7 +4,15 @@
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<style>
+    .validation-error {
+        color: red;
+        font-size: small;
+    }
+     #miInput {
+        text-transform: uppercase;
+    }
+</style>
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Unidades de Medida</h2>
@@ -64,54 +72,7 @@
         </div>
     </div>
 </div>
-<script>
-    //Validar Los campos Stringg
-    function soloLetras(e) {
-        tecla = (document.all) ? e.keyCode : e.which;
-        tecla = String.fromCharCode(tecla)
-        return /^[a-zA-ZáéíóúñÁÉÍÓÚÑ ]+$/.test(tecla);
-    }
-    ////Limpiar campo de campos copiados y no permitidos por el campo de nombre
-    function limpia() {
-        var val = document.getElementById("miInput").value;
-        var tam = val.length;
-        for (i = 0; i < tam; i++) {
-            if (!isNaN(val[i]))
-                document.getElementById("miInput").value = '';
-        }
-    }
-    ///validar not copy paste uni_Descripcion///
-    window.onload =
-        function () {
-            var myInput = document.getElementById('miInput');
-            myInput.onpaste = function (e) {
-                e.preventDefault();
-                //alert("esta acción está prohibida");
-            }
-
-            myInput.oncopy = function (e) {
-                e.preventDefault();
-                //alert("esta acción está prohibida");
-            }
-        };
-
-    ///validar not copy paste uni_Abreviatura///
-    //window.onload =
-    //    function () {
-    //        var myPut = document.getElementById('miPut');
-    //        myPut.onpaste = function (e) {
-    //            e.preventDefault();
-    //            //alert("esta acción está prohibida");
-    //        }
-
-    //        myPut.oncopy = function (e) {
-    //            e.preventDefault();
-    //            //alert("esta acción está prohibida");
-    //        }
-    //    };
-
-
-</script>
+<script src="~/Scripts/app/UnidadMedida.js"></script>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

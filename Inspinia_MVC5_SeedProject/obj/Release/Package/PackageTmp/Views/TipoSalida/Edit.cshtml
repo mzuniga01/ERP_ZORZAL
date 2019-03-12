@@ -15,6 +15,9 @@
         font-weight: bold;
         color: red;
     }
+     #tsal_Descripcion {
+        text-transform: uppercase;
+    }
 </style>
 <link href="~/Content/css/Auditoria.css" rel="stylesheet" />
 <div class="row wrapper border-bottom white-bg page-heading">
@@ -80,7 +83,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.tsal_Descripcion, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.tsal_Descripcion, new { htmlAttributes = new { @autocomplete = "off", @onKeyPress = "return soloLetras(event)" } })
+                                    @Html.EditorFor(model => model.tsal_Descripcion, new { htmlAttributes = new { @autocomplete = "off", @onKeyPress = "return soloLetras(event), return ValidarNumero(event,this)" } })
                                     @*<p style="color:red">@Html.ValidationMessageFor(model => model.tsal_Descripcion)</p>*@
                                     <span style="color:red">@Html.ValidationSummary(true)</span>
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.tsal_Descripcion)</p>
@@ -89,7 +92,7 @@
 
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                                    <input type="submit" value="Guardar" class="btn btn-primary" id="btn_edit_tiposalida"/>
                                     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                                 </div>
                             </div>
@@ -126,29 +129,28 @@
         </div>
     </div>
 </div>
-<script>
+<script src="~/Scripts/app/TipoSalida.js"></script>
+@*<script>
     //Validar Los campos Stringg
     //Validar Los campos Stringg
     function soloLetras(e) {
         tecla = (document.all) ? e.keyCode : e.which;
         tecla = String.fromCharCode(tecla)
-        return /^[a-zA-ZáéíóúñÁÉÍÓÚÑ ]+$/.test(tecla);
-    }
+        return /^[a-zA-ZÑ ]+$/.test(tecla);
+    };
     ///validar not copy paste///
     window.onload =
         function () {
             var myInput = document.getElementById('tsal_Descripcion');
             myInput.onpaste = function (e) {
                 e.preventDefault();
-                //alert("esta acción está prohibida");
             }
 
             myInput.oncopy = function (e) {
                 e.preventDefault();
-                //alert("esta acción está prohibida");
             }
-        }
-</script>
+        };
+</script>*@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

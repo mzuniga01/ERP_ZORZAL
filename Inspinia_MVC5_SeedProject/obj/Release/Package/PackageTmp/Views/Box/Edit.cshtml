@@ -50,64 +50,89 @@
                     {
                         @Html.AntiForgeryToken()
 
-                        <div class="form-horizontal">
+                    <div class="form-horizontal">
 
-                            @Html.ValidationSummary(true)
-                            @Html.HiddenFor(model => model.box_Codigo)
+                        @Html.ValidationSummary(true)
+                        @Html.HiddenFor(model => model.box_Codigo)
 
-                            @*Datos de Auditoria*@
-                            @Html.HiddenFor(model => model.box_UsuarioCrea)
-                            @Html.HiddenFor(model => model.box_FechaCrea)
-                            @Html.HiddenFor(model => model.box_UsuarioModifica)
-                            @Html.HiddenFor(model => model.box_FechaModifica)
-                            @Html.HiddenFor(model => model.tbUsuario.usu_Nombres)
-                            @Html.HiddenFor(model => model.tbUsuario.usu_Apellidos)
+                        @*Datos de Auditoria*@
+                        @Html.HiddenFor(model => model.box_UsuarioCrea)
+                        @Html.HiddenFor(model => model.box_FechaCrea)
+                        @Html.HiddenFor(model => model.box_UsuarioModifica)
+                        @Html.HiddenFor(model => model.box_FechaModifica)
+                        @Html.HiddenFor(model => model.tbUsuario.usu_Nombres)
+                        @Html.HiddenFor(model => model.tbUsuario.usu_Apellidos)
 
-                            @Html.HiddenFor(model => model.tbUsuario.usu_NombreUsuario)
-                            @Html.HiddenFor(model => model.tbUsuario.usu_Password)
-                            @Html.HiddenFor(model => model.tbUsuario.usu_Correo)
-                            @Html.HiddenFor(model => model.tbUsuario.usu_EsActivo)
-                            @Html.HiddenFor(model => model.tbUsuario.usu_EsAdministrador)
-                   
+                        @Html.HiddenFor(model => model.tbUsuario.usu_NombreUsuario)
+                        @Html.HiddenFor(model => model.tbUsuario.usu_Password)
+                        @Html.HiddenFor(model => model.tbUsuario.usu_Correo)
+                        @Html.HiddenFor(model => model.tbUsuario.usu_EsActivo)
+                        @Html.HiddenFor(model => model.tbUsuario.usu_EsAdministrador)
 
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.box_Codigo, new { @class = "control-label col-md-2 , required"  })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.box_Codigo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                    @Html.ValidationMessageFor(model => model.box_Codigo)
-                                </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.box_Codigo, new { @class = "control-label col-md-2 , required" })
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.box_Codigo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                @Html.ValidationMessageFor(model => model.box_Codigo)
                             </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.box_Descripcion, new { @class = "control-label col-md-2 , required" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.box_Descripcion, new { htmlAttributes = new { @class = "form-control",  @onKeyPress = "return controlCaracteres(event)"} })
-                                    @Html.ValidationMessageFor(model => model.box_Descripcion)
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.box_Descripcion, new { @class = "control-label col-md-2 , required" })
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.box_Descripcion, new { htmlAttributes = new { @class = "form-control", @onKeyPress = "return controlCaracteres(event)" , @readonly = "readonly" } })
+                                @Html.ValidationMessageFor(model => model.box_Descripcion)
                             </div>
-
-                            <div class="form-group">
-                                <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="Guardar" class="btn btn-primary" />
-                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.bod_Id, "Nombre de Bodega", new { @class = "control-label col-md-2 required" })
+                            <div style="display:block" class="col-md-4">
+                                @Html.DropDownList("bod_Id", (IEnumerable<SelectListItem>)ViewBag.bod_Id, new { @class = "form-control" })
+                                <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Id)</p>
                             </div>
-                            <div class="modal fade" id="Nuevo" tabindex="-1" role="dialog" aria-labelledby="DetalleNumeracion" aria-hidden="true">
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.box_Estado, "Estado", new { @class = "control-label col-md-2 required" })
+                            <div style="display:block" class="col-md-4">
+                                @if (Model.box_Estado == Helpers.box_Abrierta)
+                                {
+                                    @Html.EditorFor(model => model.box_Descripcion, new { htmlAttributes = new { @class = "form-control", Value = "Abierta", @readonly = "readonly" } })
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Id)</p>
+                                }
+                                else
+                                {
+                                    @Html.EditorFor(model => model.box_Descripcion, new { htmlAttributes = new { @class = "form-control", Value = "Cerrada", @readonly = "readonly" } })
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Id)</p>
+                                }
 
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Seleccione un Producto</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body" id="AjaxCreateNumeracion">
-                                            @Html.Partial("_CreateEditSalidaDetalle", new ERP_GMEDINA.Models.tbSalidaDetalle())
-                                        </div>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Guardar" class="btn btn-primary" />
+                                @Html.ActionLink("Imprimir", "PackingList", new { id = Model.box_Codigo }, new { @class = "btn btn-primary", @Id = "Imprimir" })
+                                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                            </div>
+                        </div>
+
+                        <div class="modal fade" id="Nuevo" tabindex="-1" role="dialog" aria-labelledby="DetalleNumeracion" aria-hidden="true">
+
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Seleccione un Producto</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body" id="AjaxCreateNumeracion">
+                                        @Html.Partial("_CreateEditSalidaDetalle", new ERP_GMEDINA.Models.tbBoxDetalle())
                                     </div>
                                 </div>
                             </div>
-                            </div><div class="row">
+                        </div>
+                    </div><div class="row">
 
                                       @* Llama la vista  *@
                                       <div class="ibox float-e-margins">
@@ -125,7 +150,7 @@
                                                                       Agregar Producto
                                                                   </button>
                                                               </div>
-                                                              @Html.Partial("_EditSalidaDetalle", Model.tbSalidaDetalle, new ViewDataDictionary(new { clave = Model.box_Codigo }))
+                                                              @Html.Partial("_EditSalidaDetalle", Model.tbBoxDetalle, new ViewDataDictionary(new { clave = Model.box_Codigo }))
                                                           </fieldset>
                                                       </div>
                                                   </div>
@@ -167,11 +192,9 @@
         </div>
     </div>
 
-
 <script src="~/Scripts/jquery-3.1.1.min.js"></script>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/Datepicker.js"></script>
-<script src="~/Scripts/app/DataTable.js"></script>
 <script src="~/Scripts/app/DetalleBox.js"></script>
 
 <script>

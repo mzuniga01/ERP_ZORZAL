@@ -12,23 +12,18 @@
     <div class="col-sm-8">
         <div class="title-action">
             <a href="@Url.Action("Index","Salida")">Regresar</a>
-
         </div>
     </div>
 </div>
-
-
-
 
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Detalles Salida</h5>
+                    <h5>Salida</h5>
                 </div>
                 <div class="ibox-content">
-
 
                     <dl class="dl-horizontal">
                         <dt>
@@ -53,7 +48,7 @@
                             </dt>
 
                             <dd>
-                                @Html.DisplayFor(model => model.tbBodega.bod_Nombre)
+                                @Html.DisplayFor(model => model.tbBodega1.bod_Nombre)
                             </dd>
                         }
 
@@ -84,7 +79,6 @@
                                 @Html.DisplayFor(model => model.sal_RazonDevolucion)
                             </dd>
                         }
-
 
                         <dt>
                             @Html.DisplayNameFor(model => model.tsal_Id)
@@ -123,7 +117,6 @@
                     </dl>
 
                     @Html.ActionLink("Editar", "Edit", new { id = Model.sal_Id }, new { @class = "btn btn-primary" })
-                    @*@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white"})*@
                 </div>
             </div>
 
@@ -134,7 +127,7 @@
                         <div class="col-lg-12">
                             <div class="ibox-content">
                                 <fieldset class="box-border">
-                                    <legend class="box-border">SalidaDetalle</legend>
+                                    <legend class="box-border">Salida Detalle</legend>
                                     @Html.Partial("_DetailsSalidaDetalle", Model.tbSalidaDetalle, new ViewDataDictionary(new { clave = Model.sal_Id }))
                                 </fieldset>
                             </div>
@@ -142,6 +135,7 @@
                     </div>
                 </div>
             </div>
+
             @*Campos de Auditoria*@
             <div class="ibox-content">
                 <fieldset class="box-border">
@@ -154,7 +148,7 @@
                         </tr>
                         <tr>
                             <td>Creado</td>
-                            <td>@Html.DisplayFor(model => model.tbUsuario.usu_Nombres) @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)</td>
+                            <td>@Html.DisplayFor(model => model.tbUsuario1.usu_Nombres) @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)</td>
                             <td>@Html.DisplayFor(model => model.sal_FechaCrea)</td>
                         </tr>
                         <tr>
@@ -169,15 +163,6 @@
     </div>
 </div>
 
-
-
 <script src="~/Scripts/jquery-3.1.1.min.js"></script>
-<script src="~/Scripts/app/DataTable.js"></script>
+<script src="~/Scripts/app/DataTable.js"></script>>
 <script src="~/Scripts/app/SalidaDetalle.js"></script>
-
-
-
-
-
-
-

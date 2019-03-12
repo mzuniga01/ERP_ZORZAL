@@ -1,23 +1,23 @@
 ﻿$(function () {
     //Factura
     $("#emp_FechaNacimiento").datepicker({
-        dateFormat: 'dd-mm-yy',               
+        dateFormat: 'mm-dd-yy',               
         changeMonth: true,
         monthNamesShort: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         changeYear: true,
-        yearRange: '1980:2000',
+        yearRange: '1500:2000',
         dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá']
     }).datepicker("setDate", new Date());
     
         //Factura
     $("#emp_FechaNacimientoEdit").datepicker({
-       dateFormat: 'dd-mm-yy',               
+        dateFormat: 'mm-dd-yy',
         changeMonth: true,
         monthNamesShort: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         changeYear: true,
-        yearRange: '1980:2000',
+        yearRange: '1500:2000',
         dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá']
     }).datepicker();
     
@@ -26,13 +26,13 @@
 $(function () {
     //Factura
     $("#emp_FechaIngreso").datepicker({
-        dateFormat: 'dd-mm-yy',
+        dateFormat: 'mm-dd-yy',
         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá']
     }).datepicker("setDate", new Date());
 
     $("#emp_FechaIngresoEdit").datepicker({
-        dateFormat: 'dd-mm-yy',
+        dateFormat: 'mm-dd-yy',
         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá']
     }).datepicker();
@@ -41,7 +41,7 @@ $(function () {
 $(function () {
     //Factura
     $("#emp_FechaDeSalida").datepicker({
-        dateFormat: 'dd-mm-yy',
+        dateFormat: 'mm-dd-yy',
         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá']
     }).datepicker("setDate", new Date());
@@ -75,13 +75,63 @@ $("#emp_Identificacion").on("keypress keyup blur", function (event) {
         event.preventDefault();
     }
 });
+$('#emp_Identificacion').change(function (e) {
+
+    $('#ErrorCorreo').text('');
+    var RTN = $("#emp_Identificacion").val();
+    var telefono1 = $("#emp_Telefono").val();
+    var Letras = RTN.length;
+    var numero = telefono1.length;
+    if (Letras < 13) {
+        $('#ErrorCorreo').text('');
+        $('#btnguardar').attr('disabled', 'disabled');
+        $('#ValidacionIdentificacion').after('<ul id="ErrorCorreo" class="validation-summary-errors text-danger">la identificacion debe tener 13 dígitos</ul>');
+    }   
+    else if (numero < 8) {
+        $('#ErrorCorreo').text('');
+        $('#btnguardar').attr('disabled', 'disabled');
+        $('#ValidacionTelefono').text('Ingrese un numero de telefono para continuar');
+    }
+    else {
+        document.getElementById('btnguardar').disabled = false;
+        $('#ValidacionTelefono').text('');
+    }
+
+
+});
+
 $("#emp_Telefono").on("keypress keyup blur", function (event) {
     //this.value = this.value.replace(/[^0-9\.]/g,'');
     $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
     if ((event.which != 46 || $(this).val().indexOf('') != -1) && (event.which < 48 || event.which > 57)) {
         event.preventDefault();
+        
     }
+   
 });
+
+
+
+
+$('#emp_Telefono').change(function (e) {
+
+    $('#Errortelefono').text('');
+    var telefono = $("#emp_Telefono").val();
+    var Letras = telefono.length;
+    if (Letras < 8) {
+        $('#Errortelefono').text('');
+        $('#btnguardar').attr('disabled', 'disabled');
+        $('#ValidacionTelefono').text('telefono debe tener al menos 8 digitos');
+    }
+    else {
+        $('#ValidacionTelefono').text('');
+        document.getElementById('btnguardar').disabled = false;
+    }
+
+
+});
+
+
 
 
 
@@ -104,6 +154,36 @@ function soloLetras(e) {
         return false;
     }
 }
+
+$('#emp_Nombres').on("keypress", function () {
+    $input = $(this);
+    setTimeout(function () {
+        $input.val($input.val().toUpperCase());
+    }, 50);
+
+});
+$('#emp_Apellidos').on("keypress", function () {
+    $input = $(this);
+    setTimeout(function () {
+        $input.val($input.val().toUpperCase());
+    }, 50);
+
+});
+$('#emp_TipoSangre').on("keypress", function () {
+    $input = $(this);
+    setTimeout(function () {
+        $input.val($input.val().toUpperCase());
+    }, 50);
+
+});
+$('#emp_Puesto').on("keypress", function () {
+    $input = $(this);
+    setTimeout(function () {
+        $input.val($input.val().toUpperCase());
+    }, 50);
+
+});
+
 ////Validacion de la direccion 
 function Direccion(e) {
     //$(this).val($(this).val().replace(/[^0-9\.]/g, ''));

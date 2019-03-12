@@ -69,13 +69,16 @@
                             @Html.LabelFor(model => model.tbProductoSubcategoria.tbProductoCategoria.pcat_Nombre, "Categoria", new { @class = "control-label col-md-2 , required" })
                             <div class="col-md-4">
 
-                                @Html.DropDownList("pcat_Id", null, "Seleccione una Categoria", new { @class = "form-control"})
+                                @Html.DropDownList("pcat_Id",null, new { @class = "form-control"})
+                                <p style="color:red">@Html.ValidationMessageFor(model => model.pcat_Id)</p>
                             </div>
+
                             @Html.LabelFor(model => model.tbProductoSubcategoria.pscat_Descripcion, "SubCategoria", new { @class = "control-label col-md-2 , required" })
                             <div class="col-md-4">
 
-                                @Html.DropDownList("pscat_Id", null, "Seleccione una Subcategoria",new { @class = "form-control"})
+                                @Html.DropDownList("pscat_Id", null,new { @class = "form-control"})
                                 <p style="color:red">@Html.ValidationMessageFor(model => model.pscat_Id)</p>
+                               
                             </div>
 
                         </div>                                           
@@ -83,13 +86,13 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.prod_Codigo, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                @Html.EditorFor(model => model.prod_Codigo, new { htmlAttributes = new { @id = "CodigoPro", @class = "form-control"} })
+                                @Html.EditorFor(model => model.prod_Codigo, new { htmlAttributes = new { @id = "CodigoPro", @class = "form-control", @readonly = "readonly" } })
                                 <p style="color:red">@Html.ValidationMessageFor(model => model.prod_Codigo)</p>
                             </div>
 
                             @Html.LabelFor(model => model.prod_CodigoBarras, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                @Html.EditorFor(model => model.prod_CodigoBarras, new { htmlAttributes = new { @class = "form-control",@onkeypress = "return soloLetras(event)", @maxlength = "15", @readonly = "readonly" } })
+                                @Html.EditorFor(model => model.prod_CodigoBarras, new { htmlAttributes = new { @class = "form-control",@onkeypress = "return solonumeros(event)", @maxlength = "15", @readonly = "readonly" } })
                                 <p style="color:red">@Html.ValidationMessageFor(model => model.prod_CodigoBarras)</p>
                             </div>                            
                         </div>
@@ -139,7 +142,7 @@
                             </div>                                                                       
                         </div>    
 
-                        <div class="form-group" id="" >
+                        <div class="form-group" id="">
                             @Html.LabelFor(model => model.prod_EsActivo, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
                                 @if (Model.prod_EsActivo == Helpers.ProductoActivo)
@@ -150,10 +153,10 @@
                                 {
                                     <p>No</p>
                                 }
-                                
+
                             </div>
-                            <p style="color:red">  @Html.ValidationMessageFor(model => model.prod_EsActivo)</p>  
-                                                         
+                            <p style="color:red">  @Html.ValidationMessageFor(model => model.prod_EsActivo)</p>
+
 
                             @if (Model.prod_EsActivo == Helpers.ProductoInactivo)
                             {
@@ -168,22 +171,27 @@
                             }
 
                         </div>
+                        <div class="form-group" id="nuevocodigo" >
+                            <input class="form-control" name="CodigoNuevo" id="CodigoNuevo" />
+                        </div>  
                                                                        
                            
 
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="Guardar" class="btn btn-primary" />
-                                    @if (Model.prod_EsActivo == Helpers.ProductoActivo)
-                                    {
-                                        <button type="button" id="inactivar" name="inactivar" class="btn btn-danger" data-toggle="modal" data-target="#ModalAnular">
-                                            Inactivar
-                                        </button>                                        
-                                    }
-                                    else
-                                    {
-                                        @Html.ActionLink("Activar", "Estadoactivar", new { id = Model.prod_Codigo }, new { @class = "btn btn-success" })
-                                    }                                                 
+                                    <input type="submit" value="Guardar" class="btn btn-primary" id="btnGuardar"/>
+                                   @if (Model.prod_EsActivo == Helpers.ProductoActivo)
+                                   {
+                                    <button type="button" id="inactivar" name="inactivar" class="btn btn-danger" data-toggle="modal" data-target="#ModalAnular">
+                                        Inactivar
+                                    </button>
+                                   }
+                                   else
+                                   {
+                                    <button type="button" id="activar" name="activar" class="btn btn-info" data-toggle="modal" data-target="#ModalAnular1">
+                                        Activar
+                                    </button>
+                                   }                                                   
                                     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
 
 
@@ -249,6 +257,27 @@
     </div>
 </div>
 
+<div class="modal fade" id="ModalAnular1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title" id="exampleModalLabel">Activar Producto</h5>
+            </div>
+            <div class="modal-body">
+                ¿Se Volvera a activar este Producto?
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary btn-sm" type="button" id="Activar">Si</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
@@ -257,7 +286,8 @@
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 <script src="~/Scripts/app/InActivarProducto.js"></script>
-<script src="~/Scripts/app/SubCategoriaProducto.js"></script>
+@*<script src="~/Scripts/app/SubCategoriaProducto.js"></script>*@
+<script src="~/Scripts/app/SubCategoriaProductoEdit.js"></script>
 
 @section Scripts{
 @Scripts.Render("~/bundles/jqueryval")
@@ -275,7 +305,6 @@
         });
 
     </script>  
-
 }
 
 

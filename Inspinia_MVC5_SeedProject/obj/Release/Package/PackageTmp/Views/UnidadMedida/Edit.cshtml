@@ -44,7 +44,7 @@
                     @Html.AntiForgeryToken()
     
                     <div class="form-horizontal">
-                        @*@Html.ValidationSummary(true)*@
+                        <span style="color:red">@Html.ValidationSummary(true)</span>
                         @Html.HiddenFor(model => model.uni_Id)
                         @Html.HiddenFor(model => model.uni_UsuarioCrea)
                         @Html.HiddenFor(model => model.uni_FechaCrea)
@@ -69,7 +69,7 @@
                             @Html.LabelFor(model => model.uni_Descripcion, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
                                 @Html.EditorFor(model => model.uni_Descripcion, new { htmlAttributes = new { @autocomplete = "off", @onKeyPress = "return soloLetras(event)" } })
-                                <span style="color:red">@Html.ValidationSummary(true)</span>
+
                                 <p style="color:red">@Html.ValidationMessageFor(model => model.uni_Descripcion)</p>
                             </div>
                         </div>
@@ -122,32 +122,7 @@
     </div>
  </div>
 </div>
-<script>
-    //Validar Los campos Stringg
-    //Validar Los campos Stringg
-    function soloLetras(e) {
-        tecla = (document.all) ? e.keyCode : e.which;
-        tecla = String.fromCharCode(tecla)
-        return /^[a-zA-ZáéíóúñÁÉÍÓÚÑ ]+$/.test(tecla);
-    }
-    ///validar not copy paste///
-    window.onload =
-        function () {
-            var myInput = document.getElementById('uni_Descripcion');
-            var myInput = document.getElementById('uni_Abreviatura');
-            myInput.onpaste = function (e) {
-                e.preventDefault();
-                //alert("esta acción está prohibida");
-            }
-
-            myInput.oncopy = function (e) {
-                e.preventDefault();
-                //alert("esta acción está prohibida");
-            }
-        }
-</script>
-
-
+<script src="~/Scripts/app/UnidadMedida.js"></script>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

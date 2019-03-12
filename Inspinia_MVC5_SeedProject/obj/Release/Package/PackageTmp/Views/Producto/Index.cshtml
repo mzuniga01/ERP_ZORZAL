@@ -20,7 +20,7 @@
                 <div class="ibox-title">
                     <h5>Listado de Productos</h5>
                     <div class="ibox-tools">
-                        @*@Html.ActionLink("Consultar Existencia", "Index", "ConsultarExistenciaProductos",null, new { @class = "btn btn-primary" })*@                        
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarProducto"><span>Generar Reporte</span></button>
                         @Html.ActionLink("Registrar Producto", "Create", null, new { @class = "btn btn-primary" })
                     </div>
                 </div>
@@ -95,15 +95,16 @@
 
                                            }
                                              @Html.ActionLink("Detalles", "Details", new { id = item.prod_Codigo }, new { @class = "btn btn-primary btn-xs" })                                           
-                                            @{
-                                                ERP_ZORZALEntities db2 = new ERP_ZORZALEntities();
-                                                var id2 = item.prod_Codigo;
-                                                string query = "SELECT COUNT(prod_Codigo) FROM Inv.tbBodegaDetalle WHERE prod_Codigo ='" + id2 + "'";
-                                                var count = db2.Database.SqlQuery<int>(query, id2).Single();
+                                            @{                                             
 
-                                                if (count > 0)
+                                                FuctionIndexP Function = new FuctionIndexP();
+                                                List<tbBodegaDetalle> Listado = Function.getProductoInformation(item.prod_Codigo);
+                                                List<tbPedidoDetalle> Listado2 = Function.getProductoInformation2(item.prod_Codigo);
+                                                List<tbListadoPrecioDetalle> Listado3= Function.getProductoInformation3(item.prod_Codigo);
+                                                List<tbInventarioFisicoDetalle> Listado4 = Function.getProductoInformation4(item.prod_Codigo);
+                                                if (Listado.Count > 0 || Listado2.Count > 0|| Listado3.Count > 0|| Listado4.Count > 0)
                                                 {
-                                                    <button class = "btn btn-white btn-xs" title = "El Producto Ya esta en Uso"  disabled >Editar</button>                                                   
+                                                <button class="btn btn-white btn-xs" title="El Producto Ya esta en Uso" disabled>Editar</button>
                                                 }
                                                 else
                                                 {
@@ -117,6 +118,23 @@
                         </table>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="ModalAgregarProducto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="width:100%">
+    <div class="modal-dialog" role="document" style="width:75%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Catalogo de Productos</h4>
+            </div>
+            <div class="modal-body" id="frmBuscarProducto">
+                @Html.Partial("_CatalogoProducto", (List<ERP_GMEDINA.Models.tbBodegaDetalle>)ViewBag.Producto)
             </div>
         </div>
     </div>

@@ -1,11 +1,5 @@
 ﻿@model ERP_GMEDINA.Models.tbSalida
 
-
-
-
-
-
-
 <div class="modal fade" id="ModalAplicar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -13,10 +7,10 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title" id="myModalLabel">Desea Aplicar la Salida</h4>
+                <h4 class="modal-title" id="myModalLabel">Aplicar Salida</h4>
             </div>
             <div class="modal-body" id="frmBuscarProducto">
-                Esta Salida se Aplicara y no sera Editable
+                ¿Esta seguro de aplicar esta salida?. No prodras editarla.
             </div>
             <div class="modal-body">
                 <p style="color:maroon"></p>
@@ -31,7 +25,6 @@
     </div>
 </div>
 
-
 <div class="modal fade" id="ModalAnular" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -44,7 +37,7 @@
             <div class="modal-body">
                 @Html.LabelFor(model => model.sal_RazonAnulada, "Razon de Anulacion", new { @class = "control-label col-md-8 required" })
                 <div class="form-group">
-                    @Html.TextAreaFor(model => model.sal_RazonAnulada, new { @class = "form-control", @rows = "5", @cols = "12" })
+                    @Html.TextAreaFor(model => model.sal_RazonAnulada, new { @class = "form-control", @rows = "5", @cols = "12", onkeypress = "return check(event)" })
                     <p style="color:red">
                         @Html.ValidationMessageFor(model => model.sal_RazonAnulada)
                     </p>
@@ -91,7 +84,6 @@
                 <h4 class="modal-title" id="myModalLabel">Desea Inactivar la Salida la Salida</h4>
             </div>
             <div class="modal-body" id="frmBuscarProducto">
-
             </div>
             <div class="modal-footer">
                 @Html.ActionLink("Si", "Inactivar", new { id = Model.sal_Id }, new { @class = "btn btn-primary" })

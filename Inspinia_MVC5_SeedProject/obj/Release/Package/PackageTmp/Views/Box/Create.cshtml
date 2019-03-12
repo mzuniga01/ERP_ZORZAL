@@ -1,7 +1,9 @@
 ﻿@model ERP_GMEDINA.Models.tbBox
 @using ERP_GMEDINA.Models
 @{
-    tbSalidaDetalle tbSalidaDetalle = new tbSalidaDetalle();
+                /**/
+
+                tbBoxDetalle tbBoxDetalle = new tbBoxDetalle();
 
 }
 
@@ -12,55 +14,48 @@
 }
 
 <style>
-   .validation-error {
+    .validation-error {
         color: red;
         font-size: small;
     }
+
     .validation-summary-errors {
         color: red;
         font-size: small;
     }
-      .required:after {
-                            content: "*";
-                            font-weight: bold;
-                            color: red;
-                        }
+
+    .required:after {
+        content: "*";
+        font-weight: bold;
+        color: red;
+    }
 </style>
-
-
-
-
-
-
 
 @using (Html.BeginForm("Create", "Box", FormMethod.Post, new { enctype = "multipart/form-data" }))
 
-
 {
 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-
-
-<div class="row wrapper border-bottom white-bg page-heading">
-    <div class="col-sm-4">
-        <h2>Caja</h2> 
-    </div>
-    <div class="col-sm-8">
-        <div class="title-action">
-            <a href="@Url.Action("Index", "Box")">Regresar</a>
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-sm-4">
+            <h2>Caja</h2>
+        </div>
+        <div class="col-sm-8">
+            <div class="title-action">
+                <a href="@Url.Action("Index", "Box")">Regresar</a>
+            </div>
         </div>
     </div>
-</div>
 
-<div class="wrapper wrapper-content animated fadeInRight">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <h5>Registrar Caja</h5>
-                </div>
-                <div class="ibox-content">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Registrar Caja</h5>
+                    </div>
+                    <div class="ibox-content">
                         @Html.AntiForgeryToken()
                         <div class="form-horizontal">
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -74,9 +69,23 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.box_Descripcion, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-5">
-                                    @Html.EditorFor(model => model.box_Descripcion, new { htmlAttributes = new { @class = "form-control col-md-4", onKeyPress = " return controlCaracteres(event)", maxlength = 200 }})
+                                    @Html.EditorFor(model => model.box_Descripcion, new { htmlAttributes = new { @class = "form-control col-md-4", onKeyPress = " return controlCaracteres(event)", maxlength = 200 } })
                                     <p style="color:red;"> @Html.ValidationMessageFor(model => model.box_Descripcion)</p>
-</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.bod_Id, "Nombre de Bodega", new { @class = "control-label col-md-2 required" })
+                                <div style="display:block" class="col-md-4">
+                                    @Html.DropDownList("bod_Id", (IEnumerable<SelectListItem>)ViewBag.bod_Id, new { @class = "form-control" })
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Id)</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.box_Estado, "Estado", new { @class = "control-label col-md-2" })
+                                <div style="display:block" class="col-md-4">
+                                    @Html.EditorFor(model => model.box_Descripcion, new { htmlAttributes = new { @class = "form-control", Value = "Abierta" , @readonly = "readonly" } })
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Id)</p>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
@@ -85,76 +94,61 @@
                                 </div>
                             </div>
                         </div>
-                </div>
-            </div>
-            <div class="form-horizontal" name="compra" id="compra" style="display:none">
-                <fieldset class="box-border">
-                    <legend class="box-border">Compra</legend>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.box_Codigo, new { @class = "control-label col-md-2" })
-                        <div class="col-md-4">
-                            @Html.EditorFor(model => model.box_Codigo)
-                            @Html.ValidationMessageFor(model => model.box_Codigo)
-                        </div>
                     </div>
-                </fieldset>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="ibox float-e-margins">
-                        <div class="ibox-title">
-                            <div class="title-action">
-                                <div class="box-border">
-                                    <h5></h5>
-                                    <button type="button" class="btn btn-white @*glyphicon glyphicon-download*@" data-toggle="collapse" data-target="#Crear">Llenar Caja</button>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <div class="title-action">
+                                    <div class="box-border">
+                                        <h5></h5>
+                                        <button type="button" class="btn btn-white @*glyphicon glyphicon-download*@" data-toggle="collapse" data-target="#Crear">Llenar Caja</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="ibox-content collapse" id="Crear">
-                            @Html.Partial("_BoxDetalle", new tbSalidaDetalle())
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Caja</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            Esta Creando una Caja sin Detalle
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            @*<button type="button" class="btn btn-primary">Save changes</button>*@
+                            <div class="ibox-content collapse" id="Crear">
+                                @Html.Partial("_BoxDetalle", new tbBoxDetalle())
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Caja</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Esta Creando una Caja sin Detalle
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                @*<button type="button" class="btn btn-primary">Save changes</button>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-</div>
-                 }
+    </div>
+}
 <script src="~/Scripts/jquery-3.1.1.min.js"></script>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/Datepicker.js"></script>
 
 <script src="~/Scripts/app/DetalleBox.js"></script>
 
-
-
 @*<script type="text/javascript">
-jQuery('input,select').each(function() {
-    var req = jQuery(this).attr('data-val-required');
-     var label = jQuery('label[for="' + jQuery(this).attr('id') + '"]');
-     var text = label.text();
-     if (text.length > 0) {
-      label.append('<span style="color:red">*</span>');
-    }
-});
-</script>*@
+    jQuery('input,select').each(function() {
+        var req = jQuery(this).attr('data-val-required');
+         var label = jQuery('label[for="' + jQuery(this).attr('id') + '"]');
+         var text = label.text();
+         if (text.length > 0) {
+          label.append('<span style="color:red">*</span>');
+        }
+    });
+    </script>*@

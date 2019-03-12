@@ -40,10 +40,10 @@
                         </dd>
                     </dl>
                     @Html.ActionLink("Editar", "Edit", new { id = Model.box_Codigo }, new { @class = "btn btn-primary" })
-                    @Html.ActionLink("Eliminar", "Delete", new { id = Model.box_Codigo }, new { @class = "btn btn-danger " })
+                  
                 </div>
             </div>
-            <div class="row">
+            @*<div class="row">
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
@@ -53,11 +53,11 @@
                             </div>
                         </div>
                         <div class="ibox-content collapse" id="CreateProducto">
-                           @Html.Partial("_IndexBoxDetalle", Model.tbSalidaDetalle, new ViewDataDictionary(new { clave = Model.box_Codigo }))
+                           @Html.Partial("_IndexBoxDetalle", Model.tbBoxDetalle, new ViewDataDictionary(new { clave = Model.box_Codigo }))
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>*@
      
 
             @*Datos de Auditoria*@ 

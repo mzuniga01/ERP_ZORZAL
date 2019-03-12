@@ -2,13 +2,38 @@
 
 @using ERP_GMEDINA.Models
 
-@{ 
+@{
     tbProductoSubcategoria subcategoria = new tbProductoSubcategoria();
 }
 
 @{
     tbProductoCategoria categoria = new tbProductoCategoria();
 }
+
+@if (ViewBag.smserror != "" && ViewBag.smserror != null)
+{
+    <div class="col-md-12" id="mensaje">
+        <div class="alert alert-warning alert-danger">
+
+            <button type="button" class="close" data-dissmiss="alert" aria-hidden="true">@Html.ActionLink("x", "index", new { @class = "btn btn-primary " })</button>
+            <h4><i class="icon fa fa-warning"></i>         Alerta</h4>
+            <h2>@ViewBag.smserror</h2>
+
+
+        </div>
+    </div>
+}
+    <style>
+        .validation-error {
+            color: red;
+            font-size: small;
+        }
+
+        #pscat_Descripcion_edit {
+            text-transform: uppercase;
+        }
+    </style>
+
 
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
@@ -140,7 +165,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            
+
                                 <div class="modal fade" id="ModalEstado_@item.pscat_Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
@@ -200,9 +225,10 @@
                             <div class="form-group">
                                 @Html.LabelFor(m => subcategoria.pscat_Descripcion, new { @class = "control-label col-sm-2" })
                                 <div class="col-sm-10">
-                                    <input type="text" onkeypress="return soloLetras(event)" id="pscat_Descripcion_edit" name="pscat_Descripcion" class="form-control" />
-                                    <div id="ValidationDes">
-                                    @Html.ValidationMessageFor(m => subcategoria.pscat_Descripcion)
+                                    <input type="text" onkeypress="return soloLetras(event)" id="pscat_Descripcion_edit" name="pscat_Descripcion" class="form-control" maxlength="150" />
+                                    <p style="color:red" id="DescripcionErrorEdit">@Html.ValidationMessageFor(m => subcategoria.pscat_Descripcion)</p>
+                                    <div id="validationDescripcionEdit">
+                                        <p style="color:red"></p>
                                     </div>
                                 </div>
                             </div>
@@ -215,13 +241,18 @@
 
                             <input type="hidden" id="pscat_FechaCrea_Edit" name="pscat_FechaCrea" />
 
+
                             <div class="form-group">
-                                @Html.LabelFor(m => subcategoria.pscat_ISV, new { @class = "control-label col-sm-2" })
-                                <div class="col-sm-10">
-                                    <input type="number" id="pscat_ISV_Edit" name="pscat_ISV" class="form-control" />
-                                    @Html.ValidationMessageFor(m => subcategoria.pscat_ISV)
+                                @Html.LabelFor(model => subcategoria.pscat_ISV, "Impuesto Sobre la Venta", new { @class = "control-label col-md-2" })
+                                <div class="col-sm-8">
+                                    <input type="text" id="pscat_ISV_Edit" name="pscat_ISV" class="form-control" />
+                                    <div id="validationISV">
+                                        <label id="MsjISV" class="text-danger"></label>
+                                    </div>
                                 </div>
+
                             </div>
+
                             <div class="form-group">
                                 <div class="col-sm-10">
                                     <label id="MsjError" class="text-danger"></label>

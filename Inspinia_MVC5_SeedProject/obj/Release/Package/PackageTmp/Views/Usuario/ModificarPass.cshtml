@@ -1,6 +1,22 @@
 ﻿@model ERP_GMEDINA.Models.tbUsuario
 
+<style>
+    .validation-error {
+        color: red;
+        font-size: small;
+    }
 
+    .validation-summary-errors {
+        color: red;
+        font-size: small;
+    }
+
+    .required:after {
+        content: "*";
+        font-weight: bold;
+        color: red;
+    }
+</style>
 
 
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -23,6 +39,7 @@
         @Html.HiddenFor(model => model.usu_Correo)
         @Html.HiddenFor(model => model.usu_Apellidos)
         @Html.HiddenFor(model => model.usu_Nombres)
+        @Html.HiddenFor(model => model.suc_Id)
         @Html.Hidden("ConfirmarPassword", (string)ViewBag.ConfirmarPassword)
 
         <div class="form-group">
@@ -34,7 +51,7 @@
         </div>
 
         <div class="form-group">
-            <label class="col-md-2">Contraseña Actual</label>
+            <label class="col-md-2 , required">Contraseña Actual</label>
             <div class="col-md-4">
                
                 <input class="form-control" data-val="true"  id="txtPassword" name="txtPassword" type="password" 
@@ -45,7 +62,7 @@
 
         <div class="form-group">
             
-            <label class="col-md-2">Contraseña Nueva</label>
+            <label class="col-md-2 , required">Contraseña Nueva</label>
             <div class="col-md-4">
         
                 <input class="text-box single-line" data-val="true" data-val-required="El campo Usuario es requerido" id="usu_Password" maxlength="64"
@@ -55,7 +72,7 @@
         </div>
 
         <div class="form-group">
-            <label class="col-md-2">Vuelve a escribir la contraseña nueva</label>
+            <label class="col-md-2 , required">Vuelve a escribir la contraseña nueva</label>
             <div class="col-md-4">
                 <input class="form-control" data-val="true" data-val-required="El campo Usuario es requerido" id="confirmar-pass" name="confirmar" type="password" 
                        maxlength="64" value="" onKeyPress = "return Contraseña(event)">

@@ -23,6 +23,9 @@
         font-weight: bold;
         color: red;
     }
+    #bod_Nombre {
+        text-transform: uppercase;
+    }
 </style>
 @{
     var ListadoMunicipio = new ERP_GMEDINA.Models.tbMunicipio();
@@ -99,7 +102,7 @@
                                 </div>
                                 @Html.LabelFor(model => model.bod_Telefono, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-lg-4">
-                                    @Html.TextBoxFor(model => model.bod_Telefono, new { @class = "single-line", MaxLength = 13, @onKeyPress = "return CaracteresTelefono(event)", @autocomplete = "off", @onkeyup = "this.value=CaracteresTelefono_borrar(this.value)" })
+                                    @Html.TextBoxFor(model => model.bod_Telefono, new { @class = "single-line", MaxLength = 13, @Placeholder="(Código Areá) Teléfono" ,@onKeyPress = "return CaracteresTelefono(event)", @autocomplete = "off", @onkeyup = "this.value=CaracteresTelefono_borrar(this.value)" })
                                     <div id="MessageForTelephone">
                                         <p style="color:red" id="telefono_error">@Html.ValidationMessageFor(model => model.bod_Telefono)</p>
                                     </div>
@@ -117,14 +120,14 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="ibox float-e-margins">
-                                        <div class="ibox-title">
+                                        @*<div class="ibox-title">*@
                                             <div class="title-action">
                                                 <div class="box-border">
                                                     <h5>Detalle Bodega</h5>
                                                     <button type="button" class="btn btn-white glyphicon glyphicon-download" data-toggle="collapse" data-target="#Crear"></button>
                                                 </div>
                                             </div>
-                                        </div>
+                                        @*</div>*@
                                         <div class="ibox-content collapse" id="Crear">
                                             @Html.Partial("_CreateBodegaDetalle", new tbBodegaDetalle())
                                         </div>
@@ -158,18 +161,26 @@
         $(document).ready(function () {
             $('#mun_Codigo').empty();
             $('#mun_Codigo').append("<option value=''>Seleccione</option>");
-            //$("#bod_Telefono").blur(function () {
-            //    campo = event.target;
-            //    var reg2 = /^[+]{1}[0-9\s]*$/;
-            //    if (reg2.test(campo.value)) {
-            //        $('#ErrorTelephone').text('');
-            //    }
-            //    else {
-            //        $('#ErrorTelephone').text('');
-            //        $('#MessageForTelephone').after('<ul id="ErrorTelephone" class="validation-summary-errors text-danger">Formato de Télefono: +### ######## </ul>');
-            //        $("#bod_Telefono").focus();
-            //    }
-            //});
+            $("#bod_Telefono").on("keypress keyup blur", function (event) {
+                var Telefono = $(this).val();
+                console.log(Telefono)
+                if (Telefono == '') {
+                    $(this).val('+');
+                }
+                this.value = this.value.replace(/[a-záéíóúüñ#/=]+/ig, "");
+            });
+            $("#bod_Telefono").blur(function () {
+                campo = event.target;
+                var reg2 = /^[+]{1}[0-9\s]*$/;
+                if (reg2.test(campo.value)) {
+                    $('#ErrorTelephone').text('');
+                }
+                else {
+                    $('#ErrorTelephone').text('');
+                    $('#telefono_error').after('<ul id="ErrorTelephone" class="validation-summary-errors text-danger">Formato de Télefono: +### ######## </ul>');
+                    $("#bod_Telefono").focus();
+                }
+            });
             //Esto lo Agregó Mirian
             //$("#bod_Telefono").on("keypress keyup blur", function (event) {
             //    var Telefono = $(this).val();
