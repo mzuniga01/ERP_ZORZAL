@@ -93,7 +93,7 @@
 
             @Html.LabelFor(model => model.mocja_FechaApertura, new { @class = "control-label col-md-2" })
             <div class="col-md-2">
-                @Html.EditorFor(model => model.mocja_FechaApertura, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechaapertura" } })
+                @Html.EditorFor(model => model.mocja_FechaApertura, "{0:yyyy/MM/dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechaapertura" } })
                 <span style="color:red" class="validation-error">@Html.ValidationMessageFor(model => model.mocja_FechaApertura)</span>
             </div>
         </div>
@@ -124,7 +124,7 @@
 
             @Html.LabelFor(model => model.mocja_FechaArqueo, new { @class = "control-label col-md-2" })
             <div class="col-md-2">
-                @Html.EditorFor(model => model.mocja_FechaArqueo, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechaarqueo" } })
+                @Html.EditorFor(model => model.mocja_FechaArqueo, "{0:yyyy/MM/dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechaarqueo" } })
                 <span class="validation-error">@Html.ValidationMessageFor(model => model.mocja_FechaArqueo)</span>
             </div>
         </div>
@@ -150,7 +150,7 @@
 
             @Html.LabelFor(model => model.mocja_FechaAceptacion, new { @class = "control-label col-md-2" })
             <div class="col-md-2">
-                @Html.EditorFor(model => model.mocja_FechaAceptacion, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechaaceptacion" } })
+                @Html.EditorFor(model => model.mocja_FechaAceptacion, "{0:yyyy/MM/dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechaaceptacion" } })
                 <span class="validation-error">@Html.ValidationMessageFor(model => model.mocja_FechaAceptacion)</span>
             </div>            
         </div>

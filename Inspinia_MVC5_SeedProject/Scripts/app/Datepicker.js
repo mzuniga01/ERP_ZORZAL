@@ -198,13 +198,21 @@
 
 
     $("#fechaarqueo").datepicker({
-        dateFormat: 'mm-dd-yy',
+        dateFormat: 'mm/dd/yy',
         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá']
     }).datepicker("setDate", new Date());
 
+    $('#fechaapertura').datepicker({
+        dateFormat: 'mm/dd/yy',
+        monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+        dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+        prevText: 'Ant',
+        nextText: 'Sig'
+    }).datepicker('setDate', new Date());
+
     $("#fechasarqueo").datepicker({
-        dateFormat: 'mm-dd-yy',
+        dateFormat: 'mm/dd/yy',
         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá']
     }).datepicker("setDate", new Date());
@@ -222,7 +230,7 @@
     }).datepicker("setDate", new Date());
 
     $("#fechaaceptacion").datepicker({
-        dateFormat: 'mm-dd-yy',
+        dateFormat: 'mm/dd/yy',
         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá']
     }).datepicker("setDate", new Date());

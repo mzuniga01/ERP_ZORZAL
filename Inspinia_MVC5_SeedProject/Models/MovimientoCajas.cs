@@ -39,7 +39,7 @@ namespace ERP_GMEDINA.Models
         public Nullable<int> usu_Id { get; set; }
 
         [Display(Name = "Fecha Arqueo")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public System.DateTime mocja_FechaArqueo { get; set; }
 
 
@@ -49,7 +49,7 @@ namespace ERP_GMEDINA.Models
 
 
         [Display(Name = "Fecha Aceptacion")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public System.DateTime mocja_FechaAceptacion { get; set; }
 
 
