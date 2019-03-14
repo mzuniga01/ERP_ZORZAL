@@ -74,6 +74,10 @@
                     @Html.ValidationMessageFor(model => model.invfd_Cantidad)
                 </div>
             </div>
+            <div class="col-md-1">
+                @*<button class="btn btn-primary" type="button" id="AgregarInvFisicoDetalle">Añadir</button>*@
+                <input type="button" value="Añadir" id="AgregarInvFisicoDetalle" class="btn btn-primary" />
+            </div>
         </div>
 
 
@@ -81,35 +85,30 @@
 
 
                     @* Tabla del detalle *@
-                    <div class="form-group col-md-1">
-                        <button class="btn btn-primary" type="button" id="AgregarInvFisicoDetalle">Añadir</button>
-                    </div>
-                    <table class="table table-responsive" style="width:100%" id="detalle">
-                        <thead>
-                            <tr>
-                                <th>
-                                    Codigo de Barras
-                                </th>
-                                <th>
-                                   Descripcion del Producto
-                                </th>
-                                <th>
-                                    Unidad de Medida
-                                </th>
-                                <th>
-                                    Cantidad Fisica
-                                </th>
-                                <th>
-                                    Cantidad de Sistema
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        
-                        </tbody>
-                    </table>
+                        <table class="table table-striped table-responsive table-bordered table-hover" style="width:100%" id="detalle">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Codigo de Barras
+                                    </th>
+                                    <th>
+                                        Descripcion del Producto
+                                    </th>
+                                    <th>
+                                        Unidad de Medida
+                                    </th>
+                                    <th>
+                                        Cantidad Fisica
+                                    </th>
+                                    <th>
+                                        Cantidad de Sistema
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
 
-                </div>
+                    </div>
             </div>
         </div>
     </div>

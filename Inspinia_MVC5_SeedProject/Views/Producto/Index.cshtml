@@ -27,25 +27,22 @@
                 <div class="ibox-content">
                     <div class="form-group">
 
-                        <table class="table table table-striped  table-bordered" id="DataTable">
+                        <table class="table table-striped table-responsive table-bordered table-hover" id="DataTable">
                             <thead>
                                 <tr>
                                     <th>
                                         @Html.DisplayNameFor(model => model.prod_Codigo)
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.prod_Descripcion)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.prod_Marca)
-                                    </th>
-                                    <th>
-                                        Categoria
-                                        @Html.DisplayNameFor(model => model.pscat_Id)
-                                    </th>
-                                    <th>
+                                        @Html.DisplayNameFor(model => model.prod_Descripcion)-
+                                        @Html.DisplayNameFor(model => model.prod_Marca)-
                                         @Html.DisplayNameFor(model => model.prod_Modelo)
                                     </th>
+                                   
+                                    <th>
+                                        Categoria -
+                                        @Html.DisplayNameFor(model => model.pscat_Id)
+                                    </th>                                
                                     <th>
                                         @Html.DisplayNameFor(model => model.prod_Talla)
                                     </th>
@@ -53,9 +50,12 @@
                                         @Html.DisplayNameFor(model => model.prod_Color)
                                     </th>
                                     <th>
-                                        Unidad Medida                                     
-                                    </th>                                    
-                                    <th></th>
+                                        @Html.DisplayNameFor(model => model.tbUnidadMedida.uni_Descripcion)                                   
+                                    </th>   
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.prod_EsActivo)
+                                    </th>                                  
+                                    <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -67,18 +67,14 @@
                                             @Html.DisplayFor(modelItem => item.prod_Codigo)
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.prod_Descripcion)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.prod_Marca)
+                                            @Html.DisplayFor(modelItem => item.prod_Descripcion)-
+                                            @Html.DisplayFor(modelItem => item.prod_Marca)-
+                                            @Html.DisplayFor(modelItem => item.prod_Modelo)
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => item.tbProductoSubcategoria.tbProductoCategoria.pcat_Nombre)
-                                            -
+                                            
                                             @Html.DisplayFor(modelItem => item.tbProductoSubcategoria.pscat_Descripcion)                                                  
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.prod_Modelo)
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => item.prod_Talla)
@@ -88,6 +84,9 @@
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => item.tbUnidadMedida.uni_Descripcion)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.prod_EsActivo)
                                         </td>
                                        
                                         <td>

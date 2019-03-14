@@ -4,6 +4,21 @@ $("#bod_Nombre").change(function () {
     var res = str.toUpperCase();
     $("#bod_Nombre").val(res);
 });
+//Telefono Formato Correcto
+//Validar Teléfono
+function validartel(e) {
+    campo = event.target;
+    $(campo).on("input", function (event) {
+        var Telefono = this.value.match(/[0-9\s]+/);
+
+        if (Telefono != null) {
+            this.value = '+' + ((Telefono).toString().replace(/[^ 0-9a-záéíóúñ@._-\s]\d +/ig, ""));
+        }
+        else {
+            this.value = null;
+        }
+    });
+}
 //Validar Correo Electronico
 $('#bod_Correo').change(function (e) {
     var emailRegex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
@@ -19,7 +34,7 @@ $('#bod_Correo').change(function (e) {
     {
         if (correo != "") {
             valido = document.getElementById('correo_error');
-            valido.innerText = "Corro Electronico Incorrecto";
+            valido.innerText = "Dirección de Correo Electrónico Incorrecto";
             return false
             
         }
@@ -241,17 +256,17 @@ function CaracteresNombre(e) {
     return /^[a-zA-ZáéíóúñÁÉÍÓÚÑ1234567890 ]+$/.test(tecla);
 
 }
-function CaracteresTelefono_borrar(string) {//solo letras y numeros
-    var out = '';
-    //Se añaden las letras validas
-    var filtro = '1234567890-+';//Caracteres validos
+//function CaracteresTelefono_borrar(string) {//solo letras y numeros
+//    var out = '';
+//    //Se añaden las letras validas
+//    var filtro = '1234567890-+';//Caracteres validos
 
-    for (var i = 0; i < string.length; i++)
-        if (filtro.indexOf(string.charAt(i)) != -1)
-            out += string.charAt(i);
+//    for (var i = 0; i < string.length; i++)
+//        if (filtro.indexOf(string.charAt(i)) != -1)
+//            out += string.charAt(i);
 
-    return out;
-}
+//    return out;
+//}
 
 //Crear Nuevo Detalle Bodega Atraves de Modal
 $('#btnGuardarNuevoDetalle').click(function () {

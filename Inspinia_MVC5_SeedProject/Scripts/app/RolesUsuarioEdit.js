@@ -20,7 +20,7 @@
                 $('#NoAsignadosEdit tbody').append(newTr)
             })
             $('#NoAsignadosEdit').DataTable({
-                "searching": false,
+                "searching": true,
                 "scrollY": "300px",
                 "scrollCollapse": true,
                 "paging": false,
@@ -49,7 +49,7 @@
     .done(function (data) {
         if (data.length < 1) {
             $('#AsignadosEdit').DataTable({
-                "searching": false,
+                "searching": true,
                 "scrollY": "300px",
                 "scrollCollapse": true,
                 "paging": false,

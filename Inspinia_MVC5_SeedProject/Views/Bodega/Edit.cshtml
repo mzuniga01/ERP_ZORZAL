@@ -80,7 +80,7 @@
     <div class="row">
         <div class="col-lg-12">
             @*@using (Html.BeginForm("Edit", "Bodega", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                {*@
+        {*@
             @using (Html.BeginForm())
             {
                 <div class="ibox float-e-margins">
@@ -157,24 +157,25 @@
                                 </div>
                                 @Html.LabelFor(model => model.mun_Codigo, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    @Html.DropDownList("mun_Codigo",@*null, "Seleccione Municipio",*@                                                                                                              /**/
-                                                                                                                                                  /**/
-                                                                                                                                                  (IEnumerable<SelectListItem>)ViewBag.municipio_Edit, new { @class = "form-control" })
+                                    @Html.DropDownList("mun_Codigo",@*null, "Seleccione Municipio",*@                              /**/
+                                                                                                                                                                       /**/
+                                                                                                                                                                       /**/
+                                                                                                                                                                       (IEnumerable<SelectListItem>)ViewBag.municipio_Edit, new { @class = "form-control" })
                                     <p id="Municipio" style="color:red">@Html.ValidationMessageFor(model => model.mun_Codigo)</p>
                                 </div>
                                 @*<div class="form-group">
-                                        @Html.LabelFor(model => model.mun_Codigo, "mun_Codigo", new { @class = "control-label col-md-2" })
-                                        <div class="col-md-10">
-                                            @Html.DropDownList("mun_Codigo", String.Empty)
-                                            @Html.ValidationMessageFor(model => model.mun_Codigo)
-                                        </div>
-                                    </div>*@
+                                @Html.LabelFor(model => model.mun_Codigo, "mun_Codigo", new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("mun_Codigo", String.Empty)
+                                    @Html.ValidationMessageFor(model => model.mun_Codigo)
+                                </div>
+                            </div>*@
                             </div>
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.bod_Telefono, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.bod_Telefono, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @onKeyPress = "return CaracteresTelefono(event)", @onkeyup = "this.value=CaracteresTelefono_borrar(this.value)" } })
+                                    @Html.EditorFor(model => model.bod_Telefono, new { htmlAttributes = new { onkeypress = "return validartel(event)" } })
                                     <p style="color:red" id="telefono_error">@Html.ValidationMessageFor(model => model.bod_Telefono)</p>
                                 </div>
                                 @Html.LabelFor(model => model.bod_ResponsableBodega, new { @class = "control-label col-md-2 , required" })
@@ -241,7 +242,7 @@
                                 </div>
                             </div>
                             <div class="form-group ">
-                                <div class="col-md-offset-8 col-md-10">
+                                <div class="col-md-offset-4 col-md-10">
 
                                     @{if (Model.bod_EsActiva == 1)
                                         {
@@ -263,34 +264,63 @@
                         </div>
                     </div>
                 </div>
-                                        }
-
-
-            <div class="ibox-content">
-                <table class="table table-striped">
-                    <tr>
-                        <th>Acción</th>
-                        <th>Usuario</th>
-                        <th>Fecha</th>
-                    </tr>
-                    <tr>
-                        <td>Creado</td>
-                        <td>
-                            @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
-                            @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
-                        </td>
-                        <td>@Html.DisplayFor(model => model.bod_FechaCrea)</td>
-                    </tr>
-                    <tr>
-                        <td>Modificado</td>
-                        <td>
-                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
-                        </td>
-                        <td>@Html.DisplayFor(model => model.bod_FechaModifica)</td>
-                    </tr>
-                </table>
+            }
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Auditoría</h5>
+                </div>
+                <div class="ibox-content">
+                    <table class="table table-striped">
+                        <tr>
+                            <th>Acción</th>
+                            <th>Usuario</th>
+                            <th>Fecha</th>
+                        </tr>
+                        <tr>
+                            <td>Creado</td>
+                            <td>
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                            </td>
+                            <td>@Html.DisplayFor(model => model.bod_FechaCrea)</td>
+                        </tr>
+                        <tr>
+                            <td>Modificado</td>
+                            <td>
+                                @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                                @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                            </td>
+                            <td>@Html.DisplayFor(model => model.bod_FechaModifica)</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
+
+            @*<div class="ibox-content">
+            <table class="table table-striped">
+                <tr>
+                    <th>Acción</th>
+                    <th>Usuario</th>
+                    <th>Fecha</th>
+                </tr>
+                <tr>
+                    <td>Creado</td>
+                    <td>
+                        @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                        @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                    </td>
+                    <td>@Html.DisplayFor(model => model.bod_FechaCrea)</td>
+                </tr>
+                <tr>
+                    <td>Modificado</td>
+                    <td>
+                        @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                        @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                    </td>
+                    <td>@Html.DisplayFor(model => model.bod_FechaModifica)</td>
+                </tr>
+            </table>
+        </div>*@
         </div>
     </div>
 </div>

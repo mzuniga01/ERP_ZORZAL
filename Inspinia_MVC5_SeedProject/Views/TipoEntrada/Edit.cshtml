@@ -86,7 +86,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.tent_Descripcion, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-5">
-                                    @Html.EditorFor(model => model.tent_Descripcion , new { htmlAttributes = new { @autocomplete = "off", @onKeyPress = "return soloLetras(event)"} })
+                                    @Html.EditorFor(model => model.tent_Descripcion, new { htmlAttributes = new { @autocomplete = "off", @onKeyPress = "return soloLetras(event)" } })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.tent_Descripcion)</p>
                                 </div>
                             </div>
@@ -100,33 +100,37 @@
                     }
                 </div>
             </div>
-            <div class="ibox-content">
-                <table class="table table-striped">
-                    <tr>
-                        <th>Acción</th>
-                        <th>Usuario</th>
-                        <th>Fecha</th>
-                    </tr>
-                    <tr>
-                        <td>Creado</td>
-                        <td>
-                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
-                         
-                        </td>
-                        <td>@Html.DisplayFor(model => model.tent_FechaCrea)</td>
-                    </tr>
-                    <tr>
-                        <td>Modificado</td>
-                        <td>
-                            @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
-                            @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
-
-                        </td>
-                        <td>@Html.DisplayFor(model => model.tent_FechaModifica)</td>
-                    </tr>
-                </table>
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Auditoría</h5>
+                </div>
+                <div class="ibox-content">
+                    <table class="table table-striped">
+                        <tr>
+                            <th>Acción</th>
+                            <th>Usuario</th>
+                            <th>Fecha</th>
+                        </tr>
+                        <tr>
+                            <td>Creado</td>
+                            <td>
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                            </td>
+                            <td>@Html.DisplayFor(model => model.tent_FechaCrea)</td>
+                        </tr>
+                        <tr>
+                            <td>Modificado</td>
+                            <td>
+                                @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                                @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                            </td>
+                            <td>@Html.DisplayFor(model => model.tent_FechaModifica)</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
+
         </div>
     </div>
 </div>

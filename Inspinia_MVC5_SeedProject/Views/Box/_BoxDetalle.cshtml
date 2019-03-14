@@ -5,10 +5,6 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <h5>Llenar Caja</h5>
-                </div>
-                <div class="ibox-content">
                     <div class="form-horizontal">
                         <div class="form-group">
                             @Html.LabelFor(model => model.tbProducto.prod_CodigoBarras, "Codigo de Barra", new { @class = "control-label col-md-2 required" })
@@ -71,7 +67,7 @@
                         <table id="tblBoxDetalle" style="width:100%" class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th>@Html.DisplayNameFor(model => model.prod_Codigo)</th>
+                                    <th>@Html.DisplayNameFor(model => model.tbProducto.prod_Codigo)</th>
                                     <th>@Html.DisplayNameFor(model => model.tbProducto.prod_Descripcion)</th>
                                     <th>@Html.DisplayNameFor(model => model.tbProducto.uni_Id)</th>
                                     <th>@Html.DisplayNameFor(model => model.boxd_Cantidad)</th>
@@ -85,7 +81,7 @@
             </div>
         </div>
     </div>
-</div>
+
 
 @*PARA AGREGAR NUEVO PRODUCTO*@
 <div class="modal fade" id="ModalAgregarProducto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="width:100%">

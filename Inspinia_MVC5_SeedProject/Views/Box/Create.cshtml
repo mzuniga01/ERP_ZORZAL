@@ -87,28 +87,23 @@
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Id)</p>
                                 </div>
                             </div>
+                            <div class="box-border, col-md-offset-10 col-md-12">
+                                <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#Crear">Registrar Detalle</button>
+                            </div>
+                                <div class="col-lg-12">
+                                    <div class="ibox float-e-margins">
+                                       
+                                               
+                                        <div class="ibox-content collapse" id="Crear">
+                                            @Html.Partial("_BoxDetalle", new tbBoxDetalle())
+                                        </div>
+                                    </div>
+                                </div>
                             <div class="form-group">
-                                <div class="col-md-offset-2 col-md-10">
+                                <div class="col-md-offset-5 col-md-10">
                                     <input type="submit" value="Registrar" class="btn btn-primary" />
                                     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="ibox float-e-margins">
-                            <div class="ibox-title">
-                                <div class="title-action">
-                                    <div class="box-border">
-                                        <h5></h5>
-                                        <button type="button" class="btn btn-white @*glyphicon glyphicon-download*@" data-toggle="collapse" data-target="#Crear">Llenar Caja</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="ibox-content collapse" id="Crear">
-                                @Html.Partial("_BoxDetalle", new tbBoxDetalle())
                             </div>
                         </div>
                     </div>

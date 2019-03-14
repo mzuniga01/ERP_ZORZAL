@@ -14,6 +14,9 @@
          content: "*";
          font-weight: bold;
          color: red; }
+    .MayusText {
+        text-transform:uppercase;
+    }
 </style>
 
 
@@ -51,7 +54,7 @@
 
                                 @Html.LabelFor(model => model.emp_Nombres, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.emp_Nombres, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @onkeyup= "return mayus(empleados)" } })
+                                    @Html.EditorFor(model => model.emp_Nombres, new { htmlAttributes = new { @class= "MayusText", @onkeypress = "return soloLetras(event)" } })
                                     <p style="color:red">
                                         @Html.ValidationMessageFor(model => model.emp_Nombres)
                                     </p>
@@ -59,7 +62,7 @@
 
                                 @Html.LabelFor(model => model.emp_Apellidos, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.emp_Apellidos, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)" } })
+                                    @Html.EditorFor(model => model.emp_Apellidos, new { htmlAttributes = new { @class = "MayusText", @onkeypress = "return soloLetras(event)" } })
                                     <p style="color:red">
                                         @Html.ValidationMessageFor(model => model.emp_Apellidos)
                                     </p>
@@ -108,7 +111,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.emp_Telefono, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    @Html.TextBoxFor(model => model.emp_Telefono, new { @class = "form-control", maxlength = 10 })
+                                    @Html.TextBoxFor(model => model.emp_Telefono, new { @class = "form-control", @placeholder="(area) 9999-9999", maxlength = 10 })
                                     <div id="ValidacionTelefono" style="color:red">
                                          @Html.ValidationMessageFor(model => model.emp_Telefono)
                                     </div>
@@ -127,7 +130,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.emp_TipoSangre, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.emp_TipoSangre, new { htmlAttributes = new { @onkeypress = "return TipoSangre(event)", onblur = "limpiaTipoSangre()", id = "emp_TipoSangre",MaxLength =2 } })
+                                    @Html.EditorFor(model => model.emp_TipoSangre, new { htmlAttributes = new { @class = "MayusText", @onkeypress = "return TipoSangre(event)", onblur = "limpiaTipoSangre()", id = "emp_TipoSangre",MaxLength =2 } })
                                     <p style="color:red">
                                         @Html.ValidationMessageFor(model => model.emp_TipoSangre)
                                     </p>
@@ -135,7 +138,7 @@
 
                                 @Html.LabelFor(model => model.emp_Puesto, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.emp_Puesto, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)" ,  MaxLength = 50 } })
+                                    @Html.EditorFor(model => model.emp_Puesto, new { htmlAttributes = new { @class = "MayusText", @onkeypress = "return soloLetras(event)" ,  MaxLength = 50 } })
                                     <p style="color:red">
                                         @Html.ValidationMessageFor(model => model.emp_Puesto)
                                     </p>

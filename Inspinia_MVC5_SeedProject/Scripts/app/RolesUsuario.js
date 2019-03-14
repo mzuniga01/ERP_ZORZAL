@@ -24,7 +24,7 @@
             })
             $('#NoAsignados').DataTable({
 
-                "searching": false,
+                "searching": true,
                 "scrollY": "300px",
                 "scrollCollapse": true,
                 "paging": false,
@@ -44,7 +44,7 @@
 
             $('#Asignados').DataTable({
 
-                "searching": false,
+                "searching": true,
                 "scrollY": "300px",
                 "scrollCollapse": true,
                 "paging": false,

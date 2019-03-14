@@ -94,7 +94,7 @@
                                 @Html.LabelFor(model => model.bod_Correo, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-lg-4">
                                     @*@Html.TextBoxFor(model => model.bod_Correo, new { @class = "single-line", MaxLength = 5000 })*@
-                                    @Html.TextBoxFor(model => model.bod_Correo, new { @class = "form-control", type = "email", maxlength = 5000, @autocomplete = "off", @onKeyPress = "return Caracteres_Email(event)", @onkeyup = "this.value=CorreoElectronico(this.value)" })
+                                    @Html.TextBoxFor(model => model.bod_Correo, new  { @class = "form-control", type = "email", maxlength = 5000, @autocomplete = "off", @onKeyPress = "return Caracteres_Email(event)", @onkeyup = "this.value=CorreoElectronico(this.value)" })
                                     <div id="MessageForCorreo">
                                         <p style="color:red" id="correo_error">@Html.ValidationMessageFor(model => model.bod_Correo)</p>
                                     </div>
@@ -102,7 +102,7 @@
                                 </div>
                                 @Html.LabelFor(model => model.bod_Telefono, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-lg-4">
-                                    @Html.TextBoxFor(model => model.bod_Telefono, new { @class = "single-line", MaxLength = 13, @Placeholder="(Código Areá) Teléfono" ,@onKeyPress = "return CaracteresTelefono(event)", @autocomplete = "off", @onkeyup = "this.value=CaracteresTelefono_borrar(this.value)" })
+                                    @Html.EditorFor(model => model.bod_Telefono, new { htmlAttributes = new { onkeypress = "return validartel(event)" } })
                                     <div id="MessageForTelephone">
                                         <p style="color:red" id="telefono_error">@Html.ValidationMessageFor(model => model.bod_Telefono)</p>
                                     </div>
@@ -123,8 +123,8 @@
                                         @*<div class="ibox-title">*@
                                             <div class="title-action">
                                                 <div class="box-border">
-                                                    <h5>Detalle Bodega</h5>
-                                                    <button type="button" class="btn btn-white glyphicon glyphicon-download" data-toggle="collapse" data-target="#Crear"></button>
+                                                    @*<h5>Detalle Bodega</h5>*@
+                                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="collapse" data-target="#Crear">Registrar Detalle</button>
                                                 </div>
                                             </div>
                                         @*</div>*@
@@ -136,7 +136,7 @@
                             </div>
                             @*////*@
                             <div class="form-group">
-                                <div class="col-md-offset-9 col-md-10">
+                                <div class="col-md-offset-5 col-md-10">
                                     <input type="submit" value="Guardar" class="btn btn-primary" id="guardar" />
                                     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                                 </div>
@@ -161,14 +161,14 @@
         $(document).ready(function () {
             $('#mun_Codigo').empty();
             $('#mun_Codigo').append("<option value=''>Seleccione</option>");
-            $("#bod_Telefono").on("keypress keyup blur", function (event) {
-                var Telefono = $(this).val();
-                console.log(Telefono)
-                if (Telefono == '') {
-                    $(this).val('+');
-                }
-                this.value = this.value.replace(/[a-záéíóúüñ#/=]+/ig, "");
-            });
+            //$("#bod_Telefono").on("keypress keyup blur", function (event) {
+            //    var Telefono = $(this).val();
+            //    console.log(Telefono)
+            //    if (Telefono == '') {
+            //        $(this).val('+');
+            //    }
+            //    this.value = this.value.replace(/[a-záéíóúüñ#/=]+/ig, "");
+            //});
             $("#bod_Telefono").blur(function () {
                 campo = event.target;
                 var reg2 = /^[+]{1}[0-9\s]*$/;
@@ -418,7 +418,7 @@
                 copiar += "<td id = 'Cmaxima'  >" + $('#bodd_CantidadMaxima').val() + "</td>";
                 copiar += "<td>" + '<button id="removeBodegaDetalle" class="btn btn-danger btn-xs eliminar" type="button">Quitar</button>' + "</td>";
                 copiar += "</tr>";
-                $('#tblBodega').append(copiar);
+                $('#tbBodega').append(copiar);
 
                 var tbBodegaDetalle = Getbodegadetalle();
                 $.ajax({

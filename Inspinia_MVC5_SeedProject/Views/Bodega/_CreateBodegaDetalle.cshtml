@@ -15,7 +15,7 @@
                     <div class="form-group">
                         <label class="control-label col-md-2">Codigo De Barras<span style="color:red">*</span></label>
                         <div class="col-md-4">
-                            <input type="text" id="prod_CodigoBarras" placeholder="" class="form-control" onKeyPress="return soloNumeros(event)" autocomplete = "off"  />
+                            <input type="text" id="prod_CodigoBarras" placeholder="" class="form-control" onKeyPress="return soloNumeros(event)" autocomplete="off" />
                             <div id="ErrorBarras_Create">
                                 @Html.ValidationMessageFor(model => model.tbProducto.prod_CodigoBarras)
                             </div>
@@ -62,14 +62,14 @@
                         <label class="control-label col-md-2">Cantidad Miníma<span style="color:red">*</span></label>
                         <div class="col-md-4">
                             @*@Html.EditorFor(model => model.bodd_CantidadMinima, new { htmlAttributes = new { @Value = "", @onkeyup = "format(this)", onKeyPress = "return soloNumeros(event)", @autocomplete = "off" } })*@
-                            <input type="text" id="bodd_CantidadMinima" placeholder="" class="form-control" autocomplete = "off", onKeyPress = "return camposDecimales(event)" />
+                            <input type="text" id="bodd_CantidadMinima" placeholder="" class="form-control" autocomplete="off" , onKeyPress="return camposDecimales(event)" />
                             <div id="ErrorCantidadMinima_Create">@Html.ValidationMessageFor(model => model.bodd_CantidadMinima)</div>
 
                         </div>
                         <label class="control-label col-md-2">Punto Reorden<span style="color:red">*</span></label>
                         <div class="col-md-4">
                             @*@Html.EditorFor(model => model.bodd_PuntoReorden, new { htmlAttributes = new { @Value = "", @onkeyup = "format(this)", @autocomplete = "off" , onKeyPress = "return soloNumeros(event)" } })*@
-                            <input type="text" id="bodd_PuntoReorden" placeholder="" class="form-control" autocomplete = "off", onKeyPress = "return camposDecimales(event)" />
+                            <input type="text" id="bodd_PuntoReorden" placeholder="" class="form-control" autocomplete="off" , onKeyPress="return camposDecimales(event)" />
                             <div id="ErrorPuntoReorden_Create">@Html.ValidationMessageFor(model => model.bodd_PuntoReorden)</div>
 
                         </div>
@@ -78,7 +78,7 @@
                         <label class="control-label col-md-2">Cantidad Máxima<span style="color:red">*</span></label>
                         <div class="col-md-4">
                             @*@Html.EditorFor(model => model.bodd_CantidadMaxima, new { htmlAttributes = new { @Value = "", @onkeyup = "format(this)", @autocomplete = "off" , onKeyPress = "return soloNumeros(event)" } })*@
-                            <input type="text" id="bodd_CantidadMaxima" placeholder="" class="form-control" autocomplete = "off" , onKeyPress = "return camposDecimales(event)"/>
+                            <input type="text" id="bodd_CantidadMaxima" placeholder="" class="form-control" autocomplete="off" , onKeyPress="return camposDecimales(event)" />
                             @Html.ValidationMessageFor(model => model.bodd_CantidadMaxima)
                             <div id="ErrorCantidadMaxima_Create">@Html.ValidationMessageFor(model => model.bodd_CantidadMaxima)</div>
                         </div>
@@ -86,7 +86,7 @@
                         <label class="control-label col-md-2">Costo<span style="color:red">*</span></label>
                         <div class="col-md-4">
                             @*@Html.EditorFor(model => model.bodd_Costo, new { htmlAttributes = new { @Value = "", @onkeyup = "format(this)", @autocomplete = "off" , onKeyPress = "return soloNumeros(event)" } })*@
-                            <input type="text" id="bodd_Costo" placeholder="" class="form-control" autocomplete = "off", onKeyPress = "return camposDecimales(event)" />
+                            <input type="text" id="bodd_Costo" placeholder="" class="form-control" autocomplete="off" , onKeyPress="return camposDecimales(event)" />
                             @Html.ValidationMessageFor(model => model.bodd_Costo)
                             <div id="ErrorCosto_Create">@Html.ValidationMessageFor(model => model.bodd_CantidadMaxima)</div>
 
@@ -97,7 +97,7 @@
                         <label class="control-label col-md-2">Costo Promedio<span style="color:red">*</span></label>
                         <div class="col-md-4">
                             @*@Html.EditorFor(model => model.bodd_CostoPromedio, new { htmlAttributes = new { @Value = "", @onkeyup = "format(this)", @autocomplete = "off", onKeyPress = "return soloNumeros(event)" } })*@
-                            <input type="text" id="bodd_CostoPromedio" placeholder="" class="form-control" autocomplete = "off", onKeyPress = "return camposDecimales(event)"/>
+                            <input type="text" id="bodd_CostoPromedio" placeholder="" class="form-control" autocomplete="off" , onKeyPress="return camposDecimales(event)" />
                             <div id="ErrorCostoPromedio_Create"><p style="color:red">@Html.ValidationMessageFor(model => model.bodd_CostoPromedio)</p> </div>
                             <div id="ErrorNumerico"></div>
                         </div>
@@ -108,7 +108,7 @@
                     @*<div class="form-group col-md-1">
             <button class="btn btn-primary" type="button" id="AgregarBodegaDetalle">Añadir</button>
         </div>*@
-                    <table id="tblBodega" class="table table table-striped">
+                    @*<table id="tblBodega" class="table table table-striped" i>
                         <thead>
                             <tr>
                                 <th>Cod. Barras</th>
@@ -123,8 +123,80 @@
                             </tr>
                         </thead>
                         <tbody></tbody>
-                    </table>
+                    </table>*@
 
+                    <table class="table table-striped table-responsive table-bordered table-hover" id="tbBodega">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tbProducto.prod_CodigoBarras)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tbProducto.prod_Codigo)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tbProducto.prod_Descripcion)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.bodd_PuntoReorden)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.bodd_CantidadMinima)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.bodd_CantidadMaxima)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.bodd_Costo)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.bodd_CostoPromedio)
+                                </th>
+                                <th>
+                                    Acciones
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @*foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.bod_Id)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.bod_Nombre)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbMunicipio.tbDepartamento.dep_Nombre)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbMunicipio.mun_Nombre)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbEmpleado.emp_Nombres)
+                                        @Html.DisplayFor(modelItem => item.tbEmpleado.emp_Apellidos)
+                                    </td>
+                                    <td>
+
+                                        @{if (item.bod_EsActiva == 1)
+                                            {
+                                                <p>Activa</p>
+                                            }
+                                            else
+                                            {
+                                                <p>Inactiva</p>;
+                                            }
+                                        }
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Detalles", "Details", new { id = item.bod_Id }, new { @class = "btn btn-primary btn-xs" })
+                                        @Html.ActionLink("Editar", "Edit", new { id = item.bod_Id }, new { @class = "btn btn-white btn-xs" })
+                                    </td>
+                                </tr>
+                            }*@
+                        </tbody>
+                    </table>
                 </div>
 
                     @*<div class="row">

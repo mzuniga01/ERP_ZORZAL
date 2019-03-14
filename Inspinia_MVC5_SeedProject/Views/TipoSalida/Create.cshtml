@@ -10,10 +10,23 @@
         color: red;
         font-size: small;
     }
-    #miInput {
+
+    .validation-summary-errors {
+        color: red;
+        font-size: small;
+    }
+
+    .required:after {
+        content: "*";
+        font-weight: bold;
+        color: red;
+    }
+
+     #tsal_Descripcion {
         text-transform: uppercase;
     }
 </style>
+
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Tipos de Salida</h2>
@@ -45,7 +58,7 @@
                                     @Html.LabelFor(model => model.tsal_Descripcion, new { @class = "control-label col-md-2" })
                                     <div class="col-md-5">
                                         @*@Html.EditorFor(model => model.tsal_Descripcion , new { @class = "text-danger", id = "TipoSalida_Descripcion" })*@
-                                        <input type="text" id="miInput" name="tsal_Descripcion" onblur="limpia()" class="form-control " Value="" onKeyPress="return soloLetras(event),Mayús(this)" autocomplete="off" />
+                                        <input type="text" id="tsal_Descripcion" name="tsal_Descripcion" onblur="limpia()" class="form-control " Value="" onKeyPress="return soloLetras(event),Mayús(this)" autocomplete="off" />
                                         <span style="color:red">@Html.ValidationSummary(true)</span>
                                         <p style="color:red">@Html.ValidationMessageFor(model => model.tsal_Descripcion)</p>
 
@@ -71,8 +84,26 @@
     </div>
  <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/DataTable.js"></script>
-<script src="~/Scripts/app/TipoSalida.js"></script>
+<script src="~/Scripts/app/Tipo_Salida.js"></script>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        jQuery('input,select').each(function () {
+            var req = jQuery(this).attr('data-val-required');
+            if (undefined != req) {
+                var label = jQuery('label[for="' + jQuery(this).attr('id') + '"]');
+                var text = label.text();
+                if (text.length > 0) {
+                    label.append('<span style="color:red"> *</span>');
+                }
+            }
+        });
+        $("#tsal_Descripcion").change(function () {
+            var str = $("#tsal_Descripcion").val();
+            var res = str.toUpperCase();
+            $("#tsal_Descripcion").val(res);
+        });
+    </script>
 }

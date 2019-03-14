@@ -90,7 +90,6 @@ $('#emp_Identificacion').change(function (e) {
     else if (numero < 8) {
         $('#ErrorCorreo').text('');
         $('#btnguardar').attr('disabled', 'disabled');
-        $('#ValidacionTelefono').text('Ingrese un numero de telefono para continuar');
     }
     else {
         document.getElementById('btnguardar').disabled = false;
@@ -102,14 +101,12 @@ $('#emp_Identificacion').change(function (e) {
 
 $("#emp_Telefono").on("keypress keyup blur", function (event) {
     //this.value = this.value.replace(/[^0-9\.]/g,'');
-    $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
+
+    $(this).val($(this).val().replace(/[^ 0-9]\d +/ig, ''));
     if ((event.which != 46 || $(this).val().indexOf('') != -1) && (event.which < 48 || event.which > 57)) {
         event.preventDefault();
-        
-    }
-   
+    } 
 });
-
 
 
 
@@ -155,34 +152,7 @@ function soloLetras(e) {
     }
 }
 
-$('#emp_Nombres').on("keypress", function () {
-    $input = $(this);
-    setTimeout(function () {
-        $input.val($input.val().toUpperCase());
-    }, 50);
-
-});
-$('#emp_Apellidos').on("keypress", function () {
-    $input = $(this);
-    setTimeout(function () {
-        $input.val($input.val().toUpperCase());
-    }, 50);
-
-});
-$('#emp_TipoSangre').on("keypress", function () {
-    $input = $(this);
-    setTimeout(function () {
-        $input.val($input.val().toUpperCase());
-    }, 50);
-
-});
-$('#emp_Puesto').on("keypress", function () {
-    $input = $(this);
-    setTimeout(function () {
-        $input.val($input.val().toUpperCase());
-    }, 50);
-
-});
+//
 
 ////Validacion de la direccion 
 function Direccion(e) {
@@ -215,6 +185,37 @@ function limpiaNombre() {
     }  
     
 }
+
+$('#emp_Nombres').on("keypress", function () {
+    $input = $(this);
+    setTimeout(function () {
+        $input.val($input.val().toUpperCase());
+    },50)
+
+});
+
+$('#emp_Apellidos').on("keypress", function () {
+    $input = $(this);
+    setTimeout(function () {
+        $input.val($input.val().toUpperCase());
+    }, 50)
+
+});
+$('#emp_TipoSangre').on("keypress", function () {
+    $input = $(this);
+    setTimeout(function () {
+        $input.val($input.val().toUpperCase());
+    }, 50)
+
+});
+$('#emp_Puesto').on("keypress", function () {
+    $input = $(this);
+    setTimeout(function () {
+        $input.val($input.val().toUpperCase());
+    }, 50)
+
+});
+
 
 //function limpiaApellido() {
 //    var val = document.getElementById("emp_Apellido").value;

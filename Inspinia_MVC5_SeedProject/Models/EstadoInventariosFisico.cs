@@ -16,7 +16,7 @@ namespace ERP_GMEDINA.Models
        [Display(Name ="Id")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public byte estif_Id { get; set; }
-        [Display(Name ="Descripcion Estado Inventario Fisico ")]
+        [Display(Name ="Descripcion")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string estif_Descripcion { get; set; }
         public int estif_UsuarioCrea { get; set; }

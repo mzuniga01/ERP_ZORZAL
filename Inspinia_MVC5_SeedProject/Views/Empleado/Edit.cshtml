@@ -18,6 +18,9 @@
         font-weight: bold;
         color: red;
     }
+    .MayusText {
+        text-transform:uppercase;
+    }
 </style>
 
 <div class="row wrapper border-bottom white-bg page-heading">
@@ -56,13 +59,13 @@
         <div class="form-group">
             @Html.LabelFor(model => model.emp_Nombres, new { @class = "control-label col-md-2 , required" })
             <div class="col-md-4">
-                @Html.TextBoxFor(model => model.emp_Nombres,new {@class="single-line", @onkeypress = "return soloLetras(event)", onblur = "limpia()", id = "emp_Nombres", MaxLength =100 })
+                @Html.TextBoxFor(model => model.emp_Nombres,new {@class= "single-line , MayusText", @onkeypress = "return soloLetras(event)", onblur = "limpia()", id = "emp_Nombres", MaxLength =100 })
                 <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_Nombres)</p>
             </div>
             
                 @Html.LabelFor(model => model.emp_Apellidos, new { @class = "control-label col-md-2 , required" })
                 <div class="col-md-4">
-                    @Html.TextBoxFor(model => model.emp_Apellidos, new { @class = "single-line", @onkeypress = "return soloLetras(event)", onblur = "limpiaApellido()", id = "emp_Apellidos", MaxLength = 100 })
+                    @Html.TextBoxFor(model => model.emp_Apellidos, new { @class = "single-line , MayusText", @onkeypress = "return soloLetras(event)", onblur = "limpiaApellido()", id = "emp_Apellidos", MaxLength = 100 })
                     <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_Apellidos)</p>
                 </div>
         </div>
@@ -133,13 +136,13 @@
             
             @Html.LabelFor(model => model.emp_TipoSangre, new { @class = "control-label col-md-2 , required" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.emp_TipoSangre, new { htmlAttributes = new { @onkeypress = "return TipoSangre(event)", onblur = "limpiaTipoSangre()", id = "emp_TipoSangre", MaxLength = 2 } })
+                @Html.EditorFor(model => model.emp_TipoSangre, new { htmlAttributes = new { @class= "MayusText", @onkeypress = "return TipoSangre(event)", onblur = "limpiaTipoSangre()", id = "emp_TipoSangre", MaxLength = 2 } })
                 <p style="color:red">@Html.ValidationMessageFor(model => model.emp_TipoSangre)</p>
             </div>
 
             @Html.LabelFor(model => model.emp_Puesto, new { @class = "control-label col-md-2 , required" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.emp_Puesto, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", MaxLength = 50 } })
+                @Html.EditorFor(model => model.emp_Puesto, new { htmlAttributes = new { @class = "MayusText", @onkeypress = "return soloLetras(event)", MaxLength = 50 } })
                 <p style="color:red">@Html.ValidationMessageFor(model => model.emp_Puesto)</p>
             </div>
                            
@@ -173,7 +176,7 @@
                     }
                     else
                     {
-                        @Html.ActionLink("Activar", "Estadoactivar", new { id = Model.emp_Id }, new { @class = "btn btn-success" })
+                        @Html.ActionLink("Activar", "Estadoactivar", new { id = Model.emp_Id }, new { @class = "btn btn-primary" })
                     }
                 }
                 @{if (Model.emp_Estado == false)

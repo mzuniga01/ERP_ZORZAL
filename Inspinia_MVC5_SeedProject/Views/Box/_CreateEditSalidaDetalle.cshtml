@@ -6,10 +6,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <h5>Ingresar Detalle Caja</h5>
-                </div>
-                <div class="ibox-content">
+                
                     @Html.HiddenFor(model => model.box_Codigo)
                     <input name="box_Codigo" id="txtbox_Codigo" type="hidden" value="@ViewBag.Cod_Box">
                     <div class="form-horizontal">
@@ -22,7 +19,7 @@
                                 </div>
                             </div>
                             <div class="col-md-1">
-                                <button type="button" id="Productos" class="btn btn-primary" ><span class="glyphicon glyphicon-search"></span></button>
+                                <button type="button" id="Productos" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
                             </div>
 
                         </div>
@@ -49,7 +46,7 @@
                             <div class="col-md-4">
                                 @Html.EditorFor(model => model.boxd_Cantidad, new { HtmlAttributes = new { name = "sald_Cantidad", @onkeypress = "return filterFloat(event,this);" } })
                                 <div id="validationcantidad">
-                                  @Html.ValidationMessageFor(model => model.boxd_Cantidad)
+                                    @Html.ValidationMessageFor(model => model.boxd_Cantidad)
                                 </div>
                             </div>
                             @Html.LabelFor(model => model.tbProducto.tbProductoSubcategoria.tbProductoCategoria, "Categoria", new { @class = "control-label col-md-2" })
@@ -66,32 +63,29 @@
                                 @Html.ValidationMessageFor(model => model.tbProducto.uni_Id)
                             </div>
                             <div class="form-group col-md-1">
-                                <button class="btn btn-primary" type="button" id="AgregarBoxDetalleEdit">Añadir</button>
+                                <button class="btn btn-primary" type="button" id="btnCreateBoxDetalle">Añadir</button>
                             </div>
                         </div>
                     </div>
 
-                    <table id="tblBoxDetalle" class="table table table-striped table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Codigo Producto</th>
-                                <th>Descripcion del Producto</th>
-                                <th>Unidad Medida</th>
-                                <th>Cantidad</th>
-                                <th>Eliminiar</th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
+                    @*<table id="tblBoxDetalle" class="table table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Codigo Producto</th>
+                                    <th>Descripcion del Producto</th>
+                                    <th>Unidad Medida</th>
+                                    <th>Cantidad</th>
+                                    <th>Eliminiar</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>*@
                 </div>
 
-            </div>  <div class="form-group col-md-1">
-                <button class="btn btn-primary" type="button" id="btnCreateBoxDetalle">Guardar</button>
             </div>
-
         </div>
     </div>
-</div>
+
 @*PARA AGREGAR NUEVO PRODUCTO*@
 <div class="modal fade" id="ModalAgregarProducto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="width:100%">
     <div class="modal-dialog" role="document" style="width:75%">

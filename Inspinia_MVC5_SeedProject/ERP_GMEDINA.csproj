@@ -1472,6 +1472,8 @@
     <Content Include="Scripts\app\SubCategoriaProducto.js" />
     <Content Include="Scripts\app\SubCategoriaProductoEdit.js" />
     <Content Include="Scripts\app\TipoDevolucion.js" />
+    <Content Include="Scripts\app\Tipo_Salida.js" />
+    <Content Include="Scripts\app\Unidad_Medida.js" />
     <Content Include="Scripts\app\ValidacionProveedor.js" />
     <Content Include="Scripts\app\ValidationEmail.js" />
     <Content Include="Scripts\app\ValidationErrorsBodega.js" />
