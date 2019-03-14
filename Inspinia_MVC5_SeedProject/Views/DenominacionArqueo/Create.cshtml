@@ -5,6 +5,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    .validation-error {
+        color: red;
+        font-size: small;
+    }
+</style>
+
+
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Denominacion Arqueo</h2>
@@ -16,14 +24,6 @@
         </div>
     </div>
 </div>
-
-
-<style>
-    .validation-error {
-        color: red;
-        font-size: small;
-    }
-</style>
 
 
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -93,7 +93,10 @@
     </div>
  </div>
 
-<script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
         jQuery('input,select').each(function () {
             var req = jQuery(this).attr('data-val-required');
             if (undefined != req) {
@@ -105,4 +108,9 @@
             }
         });
 
-</script>
+    </script>
+}
+
+
+
+
