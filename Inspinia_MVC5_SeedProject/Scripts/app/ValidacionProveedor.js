@@ -20,26 +20,57 @@ function NumText1(string) {//solo letras y numeros
 
     return out;
 }
-//NombreDeProveedor
+////Validacion De solo letras 
 function CaracteresNombre(e) {
     tecla = (document.all) ? e.keyCode : e.which;
     tecla = String.fromCharCode(tecla)
-    return /^[a-zA-ZáéíóúñÁÉÍÓÚÑ1234567890 ]+$/.test(tecla);
+    return /^[a-zA-ZáéíóúñÁÉÍÓÚÑ ]+$/.test(tecla);
 
 }
-//////////////////////////////////////////////////////////
-$("#prov_Telefono").on("keypress keyup blur", function (event) {
-    //this.value = this.value.replace(/[^0-9\.]/g,'');
-    $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
-    if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
-        event.preventDefault();
-    }
-});
-///SoloNumerosy+Telefono
-$("#prov_Telefono").on("keypress keyup blur", function (event) {
-    var Telefono = $(this).val();
-    this.value = this.value.replace(/[a-záéíóúüñ#/=]+/ig, "");
-});
+//ValidacionNombreDeProveedor
+function soloLetras(e) {
+    tecla = (document.all) ? e.keyCode : e.which;
+    tecla = String.fromCharCode(tecla)
+    return /^[a-zA-ZáéíóúñÁÉÍÓÚÑ1234567890 #,.]+$/.test(tecla);
+}
+///Validacion De Email
+
+
+function Caracteres_Email(e) {
+
+    tecla = (document.all) ? e.keyCode : e.which;
+    tecla = String.fromCharCode(tecla)
+    return /^[a-zA-ZáéíóúñÁÉÍÓÚÑ1234567890@.-_]+$/.test(tecla);
+
+}
+
+function CorreoElectronico(string) {//Algunos caracteres especiales para el correo
+    var out = '';
+    //Se añaden las letras validas
+    var filtro = 'abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ1234567890@ .-_';//Caracteres validos
+
+    for (var i = 0; i < string.length; i++)
+        if (filtro.indexOf(string.charAt(i)) != -1)
+            out += string.charAt(i);
+
+    return out;
+}
+
+//Caracteres al pegar
+function CaracteresTelefono_borrar(string) {//solo letras y numeros
+    var out = '';
+    //Se añaden las letras validas
+    var filtro = '1234567890-+';//Caracteres validos
+
+    for (var i = 0; i < string.length; i++)
+        if (filtro.indexOf(string.charAt(i)) != -1)
+            out += string.charAt(i);
+
+    return out;
+}
+
+
+onkeypress = "return validartel(event)"
 ///SoloNumerosRTN
 $("#prov_RTN").on("keypress keyup blur", function (event) {
   
@@ -239,12 +270,7 @@ $('#btnActualizar').click(function () {
 });
 
 
-////Validacion De solo letras 
-function soloLetras(e) {
-    tecla = (document.all) ? e.keyCode : e.which;
-    tecla = String.fromCharCode(tecla)
-    return /^[a-zA-ZáéíóúñÁÉÍÓÚÑ ]+$/.test(tecla);
-}
+
 /////Validacion de RTN<14
 $('#prov_RTN').change(function (e) {
     var RTN = $.trim(this.value);
@@ -339,12 +365,13 @@ $('#prov_Email').change(function (e) {
     else { //si el input es cero
 
         $('#ErrorCorreo').text('');
-        $('#MessageForCorreo').after('<ul id="ErrorCorreo" class="validation-summary-errors text-danger">Correo Electronico Es Incorrecto </ul>');
+        $('#MessageForCorreo').after('<ul id="ErrorCorreo" class="validation-summary-errors text-danger">Correo electronico incorrecto</ul>');
         $("#prov_Email").focus();
-        $('#btnGuardar').attr('disabled', 'disabled');
-        $('#btnActualizar').attr('disabled', 'disabled');
+        
     }
 });
+
+
 
 $('#prov_Telefono').change(function (e) {
     var Telefono = this.value;
@@ -361,4 +388,16 @@ $('#acte_Id').change(function (e) {
         $('#errorActividad').text('');
     }
 });
-    
+function validartel(e) {
+    campo = event.target;
+    $(campo).on("input", function (event) {
+        var Telefono = this.value.match(/[0-9\s]+/);
+
+        if (Telefono != null) {
+            this.value = '+' + ((Telefono).toString().replace(/[^ 0-9a-záéíóúñ@._-\s]\d +/ig, ""));
+        }
+        else {
+            this.value = null;
+        }
+    });
+}

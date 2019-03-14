@@ -90,7 +90,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.prov_Nombre, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.prov_Nombre, new { htmlAttributes = new { @maxlength = "50", @onKeyPress = "return CaracteresNombre(event)", @onkeyup = "this.value=NumText(this.value)", @autocomplete = "off" } })
+                                    @Html.EditorFor(model => model.prov_Nombre, new { htmlAttributes = new { @maxlength = "100", @onKeyPress = "return soloLetras(event)", @onkeyup = "this.value=NumText(this.value)", @autocomplete = "off" } })
                                     <p style="color:red" id="NombreError">@Html.ValidationMessageFor(model => model.prov_Nombre)</p>
                                     <div id="validationNombre">
                                         <p style="color:red"></p>
@@ -102,7 +102,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.prov_NombreContacto, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.prov_NombreContacto, new { htmlAttributes = new { @maxlength = "50", @onKeyPress = "return soloLetras(event)", @onkeyup = "this.value=NumText(this.value)", @autocomplete = "off" } })
+                                    @Html.EditorFor(model => model.prov_NombreContacto, new { htmlAttributes = new { @maxlength = "100", @onKeyPress =  "return CaracteresNombre(event)", @onkeyup = "this.value=NumText(this.value)", @autocomplete = "off" } })
                                     <p style="color:red" id="ContactoError"> @Html.ValidationMessageFor(model => model.prov_NombreContacto)</p>
 
                                     <div id="validationContacto">
@@ -113,10 +113,10 @@
 
 
                             <div class="form-group">
-                                <label class="control-label col-md-2">Direccion<span style="color:red">*</span></label>
+                                <label class="control-label col-md-2">Dirección<span style="color:red">*</span></label>
                                 <div class="col-md-4">
 
-                                    @Html.TextAreaFor(model => model.prov_Direccion, new { @class = "form-control", MaxLength = 200, @onKeyPress = "return CaracteresNombre(event)", @onkeyup = "this.value=NumText1(this.value)", @autocomplete = "off" })
+                                    @Html.TextAreaFor(model => model.prov_Direccion, new { @class = "form-control", MaxLength = 200, @onKeyPress = "return soloLetras(event)", @onkeyup = "this.value=NumText1(this.value)", @autocomplete = "off" })
                                     <p style="color:red" id="DireccionError">
                                         @Html.ValidationMessageFor(model => model.prov_Direccion)
                                     </p>
@@ -129,7 +129,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.prov_Email, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.TextBoxFor(model => model.prov_Email, new { @class = "form-control", type = "email", @autocomplete = "off",MaxLength = 50 })
+                                    @Html.EditorFor(model => model.prov_Email, new { @class = "form-control", type = "email", @autocomplete = "off", @onKeyPress = "return Caracteres_Email(event)", @onkeyup = "this.value=CorreoElectronico(this.value)", maxlength = 50})
 
                                   
                                     <div id="validationEmail">
@@ -137,28 +137,28 @@
                                     </div>
 
                                     <div id="MessageForCorreo">
-                                        <p style="color:red"></p>
+                                        <p style="color:red" id="correo_error">@Html.ValidationMessageFor(model => model.prov_Email)</p>
                                     </div>
-
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.prov_Telefono, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.prov_Telefono, new { htmlAttributes = new { @maxlength = "25", @onKeyPress = "return CaracteresNombre(event)", @onkeyup = "this.value=NumText(this.value)", @autocomplete = "off" } })
-                                    <p style="color:red" id="TelefonoError">
-                                        @Html.ValidationMessageFor(model => model.prov_Telefono)
-                                    </p>
-
+                                    @Html.EditorFor(model => model.prov_Telefono, new { htmlAttributes = new { @maxlength = "25", @Placeholder = "(Código Areá) Teléfono", @onKeyPress = "return validartel(event)", @autocomplete = "off", @onkeyup = "this.value=CaracteresTelefono_borrar(this.value)" } })
                                     <div id="validationTelefono">
                                         <p style="color:red"></p>
                                     </div>
 
+                                    <p style="color:red" id="TelefonoError">
+                                        @Html.ValidationMessageFor(model => model.prov_Telefono)
+                                    </p>
+
+
                                 </div>
                             </div>
                             <div class="form-group">
-                                @Html.LabelFor(model => model.acte_Id, new { @class = "control-label col-md-2" })
+                                <label class="control-label col-md-2">Actividad Ecónomica<span style="color:red">*</span></label>
                                 <div class="col-md-4">
 
                                     @Html.DropDownList("acte_Id", (IEnumerable<SelectListItem>)ViewBag.Actividad, "Seleccione", new { @class = "form-control" })
@@ -170,7 +170,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
-                                    @*<input type="submit" value="Guardar" class="btn btn-primary" />*@
+                                 
                                     <button type="button" id="btnGuardar" class="btn btn-primary">Guardar</button>
                                     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                                 </div>

@@ -4,6 +4,26 @@
     ViewBag.Title = "Editar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    .validation-error {
+        color: red;
+        font-size: small;
+    }
+ 
+    .validation-summary-errors {
+        color: red;
+        font-size: small;
+    }
+ 
+    .required:after {
+        content: "*";
+        font-weight: bold;
+        color: red;
+    }
+</style>
+ 
+
+
 @{
     tbMunicipio Municipio = new tbMunicipio();
 }
@@ -61,14 +81,14 @@
                         
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.dep_Codigo, new { @class = "control-label col-md-2" })
+                            @Html.LabelFor(model => model.dep_Codigo, new { @class = "control-label col-md-2"})
                             <div class="col-md-4">
                                 @Html.TextBoxFor(model => model.dep_Codigo, new { @class = "form-control", @readonly = "readonly" })
                                 @Html.ValidationMessageFor(model => model.dep_Codigo)
                             </div>
                         </div>
                      <div class="form-group">
-                         @Html.LabelFor(model => model.dep_Nombre, new { @class = "control-label col-md-2" })
+                         @Html.LabelFor(model => model.dep_Nombre, new { @class = "control-label col-md-2 , required" })
                          <div class="col-md-4">
                              @Html.EditorFor(model => model.dep_Nombre)
                              <p style="color:red">@Html.ValidationMessageFor(model => model.dep_Nombre)</p>
@@ -96,7 +116,7 @@
                 
 
             <div class="ibox-content">
-                <table class="table table table-striped table-bordered dataTable no-footer">
+                <table class="table table-striped">
                     <tr>
                         <th>Acción</th>
                         <th>Usuario</th>
@@ -152,14 +172,14 @@
                             </div>
                         </div>  
                         <div class="form-group">
-                            @Html.LabelFor(model => Municipio.mun_Codigo, new { @class = "control-label col-md-2" })
+                            @Html.LabelFor(model => Municipio.mun_Codigo, new { @class = "control-label col-md-2 , required" })
                             <div class="col-md-2">
                                 <input type="text" id="mun_CodigoEdit"   name="mun_Codigo" class="form-control" required; />
                                 <div id="ValidacionMunCodigoEdit">
                                     @Html.ValidationMessageFor(model => Municipio.mun_Codigo)
                                 </div>
                             </div>
-                            @Html.LabelFor(model => Municipio.mun_Nombre, new { @class = "control-label col-md-2" })
+                            @Html.LabelFor(model => Municipio.mun_Nombre, new { @class = "control-label col-md-2 , required" })
                             <div class="col-md-4">
                                 <input type="text" id="mun_NombreEdit" name="mun_Nombre" class="form-control" required; minLength="4"/>
                                 <div id="ValidacionMunNombreEdit">
@@ -167,7 +187,7 @@
                                 </div>
                             </div>
                             <div class="col-md-2 text-center">
-                                <button class="btn btn-primary btn-sm" type="button" id="AgregarMunicipiosEdit">Añadir</button>
+                                <button class="btn btn-primary btn-sm" type="button" id="AgregarMunicipiosEdit">Agregar</button>
                             </div>
                         </div>   
                         <div class="form-group">
@@ -211,14 +231,14 @@
                             <label id="MsjError">
                             </label>
                             <div class="form-group">
-                                @Html.LabelFor(m => Municipio.mun_Codigo, new { @class = "control-label col-sm-2" })
+                                @Html.LabelFor(m => Municipio.mun_Codigo, new { @class = "control-label col-sm-2 , required" })
                                 <div class="col-sm-10">
                                     <input type="text" id="mun_CodigoEdit_" name="mun_Codigo" class="form-control" readonly; minLength ="4" />
                                     @Html.ValidationMessageFor(m => Municipio.mun_Codigo)
                                 </div>
                             </div>
                             <div class="form-group">
-                                @Html.LabelFor(m => Municipio.mun_Nombre, new { @class = "control-label col-sm-2" })
+                                @Html.LabelFor(m => Municipio.mun_Nombre, new { @class = "control-label col-sm-2 , required" })
                                
                                 <div class="col-sm-10">
                                     <input type="text" id="mun_NombreEdit_"  name="mun_Nombre" class="form-control" readonly; />
@@ -234,31 +254,6 @@
                         </div>
                     </fieldset>
                 </form>
-               
-                @*<div class="form-group">
-                    <table class="table table-striped">
-                        <tr>
-                            <th>Acción</th>
-                            <th>Usuario</th>
-                            <th> Fecha</th>
-                        </tr>
-                        <tr>
-                            <td>Creado por  </td>
-                            <td id="UsuarioCreaEdit">
-                            </td>
-                            <td id="FechaCreaEdit"></td>
-
-                        </tr>
-                        <tr>
-                            <td>Modificado por</td>
-                            <td>
-                                @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                                @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
-                            </td>
-                            <td>@Html.DisplayFor(model => model.dep_FechaModifica)</td>
-                        </tr>
-                    </table>
-                </div>*@
             </div>
         </div>
     </div>

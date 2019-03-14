@@ -55,7 +55,7 @@ $('#AgregarMunicipios').click(function () {
         //copiar += "<td hidden id='MunCodigo'>" + $('#mun_Codigo option:selected').val() + "</td>";
         copiar += "<td id = 'MunCodigo'>" + $('#mun_Codigo').val() + "</td>";
         copiar += "<td id = 'MunNombre'>" + $('#mun_Nombre').val() + "</td>";
-        copiar += "<td>" + '<button id="removeMunicipios" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
+        copiar += "<td>" + '<button id="removeMunicipios" class="btn btn-danger btn-xs eliminar" type="button">Quitar</button>' + "</td>";
         copiar += "</tr>";
         $('#tblMunicipios').append(copiar);
 
@@ -170,7 +170,7 @@ $('#AgregarMunicipiosEdit').click(function () {
             copiar = "<tr data-id=" + contadorEdit + ">";
             copiar += "<td id = 'MunCodigo'>" + $('#mun_CodigoEdit').val() + "</td>";
             copiar += "<td id = 'MunNombre'>" + $('#mun_NombreEdit').val() + "</td>";
-            copiar += "<td>" + '<button id="removeMunicipiosEdit" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
+            copiar += "<td>" + '<button id="removeMunicipiosEdit" class="btn btn-danger btn-xs eliminar" type="button">Quitar</button>' + "</td>";
             copiar += "</tr>";
             $('#tblMunicipiosEdit').append(copiar);
 

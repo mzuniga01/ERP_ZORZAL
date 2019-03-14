@@ -38,15 +38,16 @@
                         <dd>
                             @Html.DisplayFor(model => model.dep_Nombre)
                         </dd>
-                        <div>
-                            <br /><br />
-                        </div>
-                        <div class="col-md-12">
-                            @Html.ActionLink("Editar", "Edit", new { id = Model.dep_Codigo }, new { @class = "btn btn-primary" })
-                        </div>
                     </dl>
+
+                    <div class="col-md-12">
+                        @Html.ActionLink("Editar", "Edit", new { id = Model.dep_Codigo }, new { @class = "btn btn-primary" })
+                    </div>
+                    <div>
+                        <br /><br />
+                    </div>
                 </div>
-                </div>
+           </div>
 
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
@@ -61,7 +62,8 @@
                 </div>
             </div>
         <div class="ibox-content">
-            <table class="table table table-striped table-bordered dataTable no-footer">
+            <table class="table table-striped">
+
                 <tr>
                     <th>Acción</th>
                     <th>Usuario</th>
@@ -93,7 +95,6 @@
 
 <script src="~/Scripts/jquery-3.1.1.min.js"></script>
 <script src="~/Scripts/app/CrearActualizarEliminar.js"></script>
-
 <script>
     $(document).ready(function () {
         $('#DataTable').DataTable({

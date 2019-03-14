@@ -108,14 +108,14 @@
                                 <p style="color:red"></p>
                             </div>
 
-                            @Html.LabelFor(model => model.prov_Id, new { @class = "control-label col-md-2" })
+                            <label class="control-label col-md-2">Numero</label>
                             <div class="col-md-4">
                                 @Html.TextBoxFor(model => model.prov_Id, new { @class = "form-control", @readonly = "readonly" })
                                 @*@Html.ValidationMessageFor(model => model.prov_Id)*@
                             </div>
                         </div>
                         <div class="form-group">
-                            @Html.LabelFor(model => model.prov_RTN, new { @class = "control-label col-md-2" })
+                            <label class="control-label col-md-2">RTN</label>
                             <div class="col-md-4">
 
                                 @Html.EditorFor(model => model.prov_RTN, new { htmlAttributes = new { @maxlength = "14", @autocomplete = "off" } })
@@ -126,9 +126,9 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            @Html.LabelFor(model => model.prov_Nombre, new { @class = "control-label col-md-2" })
+                            <label class="control-label col-md-2">Nombre<span style="color:red">*</span></label>
                             <div class="col-md-4">
-                                @Html.EditorFor(model => model.prov_Nombre, new { htmlAttributes = new { @maxlength = "100", @onKeyPress = "return CaracteresNombre(event)", @onkeyup = "this.value=NumText(this.value)" } })
+                                @Html.EditorFor(model => model.prov_Nombre, new { htmlAttributes = new { @maxlength = "100", @onKeyPress = "return soloLetras(event)", @onkeyup = "this.value=NumText(this.value)", @autocomplete = "off" } })
                                 <div id="validationNombre">
                                     <p style="color:red"></p>
                                 </div>
@@ -137,9 +137,9 @@
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.prov_NombreContacto, new { @class = "control-label col-md-2" })
+                            <label class="control-label col-md-2">Nombre Contacto<span style="color:red">*</span></label>
                             <div class="col-md-4">
-                                @Html.EditorFor(model => model.prov_NombreContacto, new { htmlAttributes = new { @maxlength = "100", @onKeyPress = "return soloLetras(event)", @onkeyup = "this.value=NumText(this.value)" } })
+                                @Html.EditorFor(model => model.prov_NombreContacto, new { htmlAttributes = new { @maxlength = "100", @onKeyPress = "return CaracteresNombre(event)", @onkeyup = "this.value=NumText(this.value)", @autocomplete = "off" } })
                                 <div id="validationContacto">
                                     <p style="color:red"></p>
                                 </div>
@@ -148,9 +148,9 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label col-md-2">Direccion<span style="color:red">*</span></label>
+                            <label class="control-label col-md-2">Dirección<span style="color:red">*</span></label>
                             <div class="col-md-4">
-                                <span>@Html.TextAreaFor(model => model.prov_Direccion, new { @class = "form-control", MaxLength = 200, @onKeyPress = "return CaracteresNombre(event)", @onkeyup = "this.value=NumText1(this.value)" })</span>
+                                <span>@Html.TextAreaFor(model => model.prov_Direccion, new { @class = "form-control", MaxLength = 200, @onKeyPress = "return soloLetras(event)", @onkeyup = "this.value=NumText1(this.value)", @autocomplete = "off" })</span>
                                 <div id="validationDireccion">
                                     <p style="color:red"></p>
                                 </div>
@@ -159,20 +159,24 @@
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.prov_Email, new { @class = "control-label col-md-2" })
+                            <label class="control-label col-md-2">Email<span style="color:red">*</span></label>
                             <div class="col-md-4">
-                                @Html.TextBoxFor(model => model.prov_Email, new { @class = "form-control", @onKeyPress = "return CaracteresNombre(event)", @onkeyup = "this.value=NumText(this.value)", maxlength = 50 })
+                                @Html.TextBoxFor(model => model.prov_Email, new { @class = "form-control", type = "email", @autocomplete = "off", @onKeyPress = "return Caracteres_Email(event)", @onkeyup = "this.value=CorreoElectronico(this.value)", maxlength = 50 })
                                 <div id="validationEmail">
                                     <p style="color:red"></p>
+                                </div>
+
+                                <div id="MessageForCorreo">
+                                    <p style="color:red" id="correo_error">@Html.ValidationMessageFor(model => model.prov_Email)</p>
                                 </div>
 
                             </div>
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.prov_Telefono, new { @class = "control-label col-md-2" })
+                            <label class="control-label col-md-2">Telefono<span style="color:red">*</span></label>
                             <div class="col-md-4">
-                                @Html.EditorFor(model => model.prov_Telefono, new { htmlAttributes = new { @maxlength = "25", @onKeyPress = "return CaracteresNombre(event)", @onkeyup = "this.value=NumText(this.value)" } })
+                                @Html.EditorFor(model => model.prov_Telefono, new { htmlAttributes = new { @maxlength = "25", @Placeholder = "(Código Areá) Teléfono", @onKeyPress = "return validartel(event)", @autocomplete = "off", @onkeyup = "this.value=CaracteresTelefono_borrar(this.value)" } })
                                 <div id="validationTelefono">
                                     <p style="color:red"></p>
                                 </div>
@@ -181,7 +185,7 @@
                         </div>
                         <div class="form-group">
 
-                            @Html.LabelFor(model => model.acte_Id, new { @class = "control-label col-md-2 , required" })
+                            <label class="control-label col-md-2">Actividad Ecónomica<span style="color:red">*</span></label>
                             <div class="col-md-4">
                                 @Html.DropDownList("acte_Id", (IEnumerable<SelectListItem>)ViewBag.Actividad, new { @class = "form-control" })
                             
@@ -203,30 +207,35 @@
 
 
             </div>
-            <div class="ibox-content">
-                <table class="table table-striped">
-                    <tr>
-                        <th>Acción</th>
-                        <th>Usuario</th>
-                        <th>Fecha</th>
-                    </tr>
-                    <tr>
-                        <td>Creado</td>
-                        <td>
-                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
-                        </td>
-                        <td>@Html.DisplayFor(model => model.prov_FechaCrea)</td>
-                    </tr>
-                    <tr>
-                        <td>Modificado</td>
-                        <td>
-                            @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
-                            @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
-                        </td>
-                        <td>@Html.DisplayFor(model => model.prov_FechaModifica)</td>
-                    </tr>
-                </table>
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Auditoría</h5>
+                </div>
+                <div class="ibox-content">
+                    <table class="table table-striped">
+                        <tr>
+                            <th>Acción</th>
+                            <th>Usuario</th>
+                            <th>Fecha</th>
+                        </tr>
+                        <tr>
+                            <td>Creado</td>
+                            <td>
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                            </td>
+                            <td>@Html.DisplayFor(model => model.prov_FechaCrea)</td>
+                        </tr>
+                        <tr>
+                            <td>Modificado</td>
+                            <td>
+                                @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                                @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                            </td>
+                            <td>@Html.DisplayFor(model => model.prov_FechaModifica)</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -264,6 +273,6 @@
             var str = $("#prov_Direccion").val();
             var res = str.toUpperCase();
             $("#prov_Direccion").val(res);
-
+        });
     </script>
 }
