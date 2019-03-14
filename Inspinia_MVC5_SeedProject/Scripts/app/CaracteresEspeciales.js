@@ -50,7 +50,7 @@ function correo(e) {
             valido.innerText = "";
 
         } else {
-            $(this).next("p").text("Direccion de Correo Electronico Incorrecta");
+            $(this).next("p").text("Dirección de Correo Electrónico Incorrecta");
             return false
         }
 

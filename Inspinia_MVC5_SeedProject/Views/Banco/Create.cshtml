@@ -49,7 +49,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.ban_NombreContacto, new { @class = "control-label col-md-2" })
                                 <div class="col-md-5">
-                                    @Html.EditorFor(model => model.ban_NombreContacto, new { htmlAttributes = new { @autocomplete = "off", @style = "text-transform:uppercase;", onkeypress = "return validar(event)", @onkeyup = "this.value=Copy(this.value)" } })
+                                     @Html.EditorFor(model => model.ban_NombreContacto, new { htmlAttributes = new { autocomplete = "off", @style = "text-transform:uppercase;", onkeypress = "return validar(event)", @onkeyup = "this.value=Copy(this.value)" } })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.ban_NombreContacto)</p>
                                 </div>
                             </div>
@@ -57,7 +57,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.ban_TelefonoContacto, new { @class = "control-label col-md-2" })
                                 <div class="col-md-5">
-                                    @Html.EditorFor(model => model.ban_TelefonoContacto, new { htmlAttributes = new { @autocomplete = "off", @Placeholder = "(Codigo Areá) Telefono", onkeypress = "return validartel(event)", @onkeyup = "this.value=Caracteres(this.value)" } })
+                                    @Html.EditorFor(model => model.ban_TelefonoContacto, new { htmlAttributes = new { @autocomplete = "off", @Placeholder = "(Código Área) Teléfono", onkeypress = "return validartel(event)", @onkeyup = "this.value=Caracteres(this.value)" } })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.ban_TelefonoContacto) </p>
                                 </div>
                             </div>
