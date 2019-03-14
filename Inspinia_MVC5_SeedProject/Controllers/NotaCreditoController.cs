@@ -390,6 +390,7 @@ namespace ERP_GMEDINA.Controllers
             Response.ClearHeaders();
             try
             {
+                var list = db.UDP_Vent_tbNotaCredito_EsImpreso(id, Helpers.EsImpreso).ToList();
                 Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
                 return File(stream, "application/pdf");
             }
@@ -428,6 +429,7 @@ namespace ERP_GMEDINA.Controllers
             Response.ClearHeaders();
             try
             {
+                var list = db.UDP_Vent_tbNotaCredito_EsImpreso(id, Helpers.EsImpreso).ToList();
                 Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
                 return File(stream, "application/pdf");
             }
@@ -466,6 +468,7 @@ namespace ERP_GMEDINA.Controllers
             Response.ClearHeaders();
             try
             {
+                var list = db.UDP_Vent_tbNotaCredito_EsImpreso(id, Helpers.EsImpreso).ToList();
                 Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
                 return File(stream, "application/pdf");
             }
@@ -503,6 +506,7 @@ namespace ERP_GMEDINA.Controllers
             Response.ClearHeaders();
             try
             {
+                var list = db.UDP_Vent_tbNotaCredito_EsImpreso(id, Helpers.EsImpreso).ToList();
                 Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
                 return File(stream, "application/pdf");
             }

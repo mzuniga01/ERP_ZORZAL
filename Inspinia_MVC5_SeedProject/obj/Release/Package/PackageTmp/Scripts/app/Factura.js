@@ -228,10 +228,10 @@ function ValidarAutorizacion() {
     })
     .done(function (data) {
         if (data==true) {
-           
                var Porcentaje = $("#PorcentajeDescuento").val();
                $("#factd_PorcentajeDescuento").val(Porcentaje);
                $('#AutorizarDescuentoModal').modal('hide');
+               $("#btnAutorizarDescuentoDetalle").attr("style", "display:none")
         }
         else
         {
@@ -253,11 +253,12 @@ function ValidarAutorizacionDetalle() {
     })
     .done(function (data) {
         if (data == true) {
-
             var Porcentaje = $("#PorcentajeDescuentoDetalle").val();
             $("#factd_PorcentajeDescuento").val(Porcentaje);
             $('#AutorizarDescuentoDetalle').modal('hide');
-        }
+            //$("#divfact_AutorizarDescuento").attr("style", "display:none")+
+            $("#divfact_AutorizarDescuento").attr("style", "display:none");
+       }
         else {
             valido = document.getElementById('mensajerrorDetalle');
             valido.innerText = "Usuario o contraseña incorrectos";
@@ -288,16 +289,51 @@ $(document).ready(function () {
 $(document).on("click", "#tbProductoFactura tbody tr td button#seleccionar", function () {
     var currentRow = $(this).closest("tr");
     var prod_CodigoBarrasItem = currentRow.find("td:eq(2)").text();
+    var prod_DescripcionItem = currentRow.find("td:eq(1)").text();
+    var prod_CodigoItem = currentRow.find("td:eq(0)").text();
     var bod_Id = $('#bod_Id').val()
-    SeleccionProducto(prod_CodigoBarrasItem)
-    idItem = $(this).closest('tr').data('id');
-    DescItem = $(this).closest('tr').data('desc');
-    ISVItem = $(this).closest('tr').data('isv');
-    $("#prod_CodigoBarras").val(prod_CodigoBarrasItem);
-    $("#prod_Codigo").val(idItem);
-    $("#tbProducto_prod_Descripcion").val(DescItem);
-    $("#factd_Impuesto").val(ISVItem);
+    $('#prod_CodigoBarras').val(prod_CodigoBarrasItem);
+    document.getElementById("prod_CodigoBarras").focus();
+    $('#tbProducto_prod_Descripcion').val(prod_DescripcionItem);
+    $('#prod_Codigo').val(prod_CodigoItem);
     $('#ModalAgregarProducto').modal('hide');
+    $('#factd_Cantidad').val(1);
+    var CodBarra = prod_CodigoBarrasItem;
+    var Cantidad = $('#factd_Cantidad').val();
+    var IDSucursal = $('#suc_Id').val();
+    var IDCliente = $('#clte_Id').val();
+    SeleccionProducto()
+    //$.ajax({
+    //    type: 'POST',
+    //    url: '/Factura/BuscarCodigoBarras',
+    //    data: JSON.stringify({ IDSucursal: IDSucursal, CodBarra: CodBarra, IDCliente: IDCliente }),
+    //    contentType: 'application/json;',
+    //    dataType: 'json',
+    //}).done(function (data) {
+    //    if (data.length > 0) {
+    //        $.each(data, function (key, val) {
+    //            if (val.EXISTE) {
+    //                data_producto = val.CODIGOPRODUCTO;
+    //                data_descripcion = val.DESCRIPCIONPRODUCTO;
+    //                data_impuesto = val.IMPUESTOPRODUCTO;
+    //                data_precio = val.PRECIOUNITARIO;
+    //                $('#prod_Codigo').val(data_producto);
+    //                $('#tbProducto_prod_Descripcion').val(data_descripcion);
+    //                $('#factd_Impuesto').val(data_impuesto);
+    //                $('#factd_PrecioUnitario').val(data_precio);
+    //                ////Codigo Prueba///
+    //                $('#factd_Cantidad').val('1')
+    //                //ajax para el controlador
+    //            }
+    //            else {
+    //            }
+
+    //        })
+
+    //    }
+
+    //});
+
 });
 //Factura Buscar Cliente
 $(document).ready(function () {

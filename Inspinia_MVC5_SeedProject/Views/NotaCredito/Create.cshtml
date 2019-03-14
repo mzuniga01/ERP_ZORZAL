@@ -262,7 +262,7 @@
                                 </div>
                                 <div><p id="mensajerror" style="color:red"></p></div>
                                 <div class="modal-footer">
-                                    <button class="btn btn-primary btn-sm" type="button" id="Autorizar" onclick="AprobarCredito()">Autorizar</button>
+                                    <button class="btn btn-primary btn-sm" type="button" id="Autorizar"  onclick="AprobarCredito()">Autorizar</button>
                                     <button type="button" class="btn btn-white btn-sm" data-dismiss="modal" onclick="devolucionNC()">Cancelar</button>
                                 </div>
                             </form>
@@ -401,10 +401,7 @@
             $('#mensajerror').val("");
         }
 
-        function otros() {
-            
-            document.getElementById("#Username1").value = "";
-            document.getElementById("#txtPassword1").value = "";
+        function otros() {  
             $('#Username1').val("");
             $('#txtPassword1').val("");
             $('#mensajerror').val("");

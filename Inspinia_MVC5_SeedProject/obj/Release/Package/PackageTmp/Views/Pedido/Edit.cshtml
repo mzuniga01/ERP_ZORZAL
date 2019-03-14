@@ -1,7 +1,9 @@
 ﻿@model ERP_GMEDINA.Models.tbPedido
 @using ERP_GMEDINA.Models
-
-
+@{
+    GeneralFunctions Funtions = new GeneralFunctions();
+}
+  
 
 
 
@@ -98,19 +100,22 @@
 
                 @Html.LabelFor(model => model.tbCliente.clte_Nombres, new { @class = "control-label col-md-2" })
                 <div class="col-md-3">
-                    @if (Model.tbCliente.clte_EsPersonaNatural == true)
-                {
-                        @Html.EditorFor(model => model.tbCliente.clte_Nombres, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                        <p style="color:red"> @Html.ValidationMessageFor(model => model.tbCliente.clte_Nombres)&nbsp;
-                            @Html.ValidationMessageFor(model => model.tbCliente.clte_Apellidos)</p>
-                        @Html.HiddenFor(model => model.tbCliente.clte_NombreComercial)
-                    }
-                    else
-                    {
-                        @Html.EditorFor(model => model.tbCliente.clte_NombreComercial, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                        <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.tbCliente.clte_NombreComercial)</span></p>
+                    @{int Clte_Id = Model.clte_Id;
+                        //Cliente.clte_EsPersonaNatural;
+                        if (Funtions.EsPersonaNatural(Clte_Id))
+                        {
+                                @Html.EditorFor(model => model.tbCliente.clte_Nombres, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                <p style="color:red"> @Html.ValidationMessageFor(model => model.tbCliente.clte_Nombres)&nbsp;
+                                @Html.ValidationMessageFor(model => model.tbCliente.clte_Apellidos)</p>
+                            @Html.HiddenFor(model => model.tbCliente.clte_NombreComercial)
+                        }
+                            else
+                            {
+                                @Html.EditorFor(model => model.tbCliente.clte_NombreComercial, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.tbCliente.clte_NombreComercial)</span></p>
                         @Html.HiddenFor(model => model.tbCliente.clte_Nombres)
-                    }
+                            }
+                        }
                 </div>
 
             </div>
@@ -119,7 +124,7 @@
 
                 @Html.LabelFor(model => model.ped_FechaElaboracion, new { @class = "control-label col-md-2" })
                 <div class="col-md-3">
-                    @Html.EditorFor(model => model.ped_FechaElaboracion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    @Html.EditorFor(model => model.ped_FechaElaboracion, "{0:MM-dd-yyyy}", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                     @Html.ValidationMessageFor(model => model.ped_FechaElaboracion)
                 </div>
 
@@ -261,7 +266,7 @@
             dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
             dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
             weekHeader: 'Sm',
-            dateFormat: 'dd/mm/yy',
+            dateFormat: 'mm/dd/yy',
             firstDay: 1,
             isRTL: false,
             showMonthAfterYear: false,
@@ -271,7 +276,7 @@
 
         $(function () {
             //$("#ped_FechaElaboracion").datepicker({ dateFormat: 'dd/mm/yy' }).datepicker('setDate', new Date()).datepicker("destroy");
-            $("#ped_FechaEntrega").datepicker({ dateFormat: 'dd/mm/yy', minDate: 0 }).datepicker();
+            $("#ped_FechaEntrega").datepicker({ dateFormat: 'mm/dd/yy', minDate: 0 }).datepicker();
 
         });
 

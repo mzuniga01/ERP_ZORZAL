@@ -123,13 +123,13 @@
                             <dd>No</dd>
                         }
                     </dl>
-                    @if (Model.nocre_Anulado == false)
+                    @if (Model.nocre_Anulado == false && Model.nocre_Redimido == false && Model.nocre_Redimido == false)
                     {
                         @Html.ActionLink("Editar", "Edit", new { id = Model.nocre_Id }, new { @class = "btn btn-primary" })
                     }
                     else
                     {
-                        <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="No se puede Editar, esta Anulado">
+                        <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="No se puede Editar">
                             <button class="btn btn-primary" style="pointer-events: none;" type="button" disabled>Editar</button>
                         </span>
                     }

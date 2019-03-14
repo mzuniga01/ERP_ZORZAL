@@ -209,6 +209,7 @@ namespace ERP_GMEDINA.Controllers
             Response.ClearHeaders();
             try
             {
+                var list = db.UDP_Vent_tbFactura_EstadoImpreso(id, Helpers.EstadoImpreso).ToList();
                 Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
                 return File(stream, "application/pdf");
             }
@@ -312,8 +313,8 @@ namespace ERP_GMEDINA.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "fact_Id,fact_Codigo,fact_Fecha,esfac_Id,cja_Id,suc_Id,clte_Id,pemi_NumeroCAI,fact_AlCredito,fact_DiasCredito,fact_PorcentajeDescuento,fact_Vendedor,clte_Identificacion,clte_Nombres,fact_UsuarioCrea,fact_FechaCrea,fact_UsuarioModifica,fact_FechaModifica,tbUsuario,tbUsuario1")] tbFactura tbFactura)
-        
-{
+
+        {
             if (tbFactura.fact_Vendedor == null)
             {
                 tbFactura.fact_Vendedor = "Ninguno";
@@ -323,7 +324,7 @@ namespace ERP_GMEDINA.Controllers
             List<tbUsuario> User = Login.getUserInformation();
             foreach (tbUsuario Usuario in User)
             {
-                idUser = Convert.ToInt32(Usuario.emp_Id);
+                idUser = Convert.ToInt32(Usuario.usu_Id);
             }
 
             var list = (List<tbFacturaDetalle>)Session["Factura"];
@@ -430,7 +431,7 @@ namespace ERP_GMEDINA.Controllers
                                         {
                                             var FacturaD_Id = Convert.ToInt64(MensajeError);
                                             listConsumidorFinal = db.UDP_Vent_DatosConsumidorFinal_Insert(
-                                                FacturaD_Id ,
+                                                FacturaD_Id,
                                                 ConsuFinal.confi_Nombres,
                                                 ConsuFinal.confi_Telefono,
                                                 ConsuFinal.confi_Correo
@@ -461,7 +462,7 @@ namespace ERP_GMEDINA.Controllers
                         Session["IDENTIFICACION"] = null;
                         Session["NOMBRES"] = null;
                         return RedirectToAction("Index");
-                    }                    
+                    }
 
                 }
                 catch (Exception Ex)
@@ -546,7 +547,7 @@ namespace ERP_GMEDINA.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "fact_Id,fact_Codigo,fact_Fecha,esfac_Id,cja_Id,suc_Id,clte_Id,pemi_NumeroCAI,fact_AlCredito,fact_DiasCredito,fact_PorcentajeDescuento,fact_Vendedor,clte_Identificacion,clte_Nombres,fact_UsuarioCrea,fact_FechaCrea,fact_UsuarioModifica,fact_FechaModifica,tbUsuario,tbUsuario1")] tbFactura tbFactura)
         {
-            var listEdit = (List<tbFacturaDetalle>)Session["FacturaEdit"];  
+            var listEdit = (List<tbFacturaDetalle>)Session["FacturaEdit"];
             string MensajeError = "";
             var MensajeErrorDetalle = "";
             IEnumerable<object> listFactura = null;
@@ -575,7 +576,7 @@ namespace ERP_GMEDINA.Controllers
                                                 tbFactura.fact_IdentidadTE,
                                                 tbFactura.fact_NombresTE,
                                                 tbFactura.fact_FechaNacimientoTE,
-                                                tbFactura.fact_UsuarioAutoriza,
+                                                Function.GetUser(),
                                                 tbFactura.fact_FechaAutoriza,
                                                 tbFactura.fact_EsAnulada,
                                                 tbFactura.fact_RazonAnulado,
@@ -665,7 +666,7 @@ namespace ERP_GMEDINA.Controllers
                                                     }
                                                 }
                                             }
-                                            
+
                                         }
                                     }
                                 }
@@ -827,7 +828,7 @@ namespace ERP_GMEDINA.Controllers
             return Json("Exito", JsonRequestBehavior.AllowGet);
         }
 
-       [HttpPost]
+        [HttpPost]
         public JsonResult SaveTerceraEdad(tbFactura TerceraEdadC)
         {
             List<tbFactura> sessionTercera = new List<tbFactura>();
@@ -890,7 +891,7 @@ namespace ERP_GMEDINA.Controllers
             return Json("", JsonRequestBehavior.AllowGet);
         }
 
-       [HttpPost]
+        [HttpPost]
         public ActionResult UpdateFacturaDetalle(tbFacturaDetalle EditFacturaDetalle)
         {
             try
@@ -934,12 +935,12 @@ namespace ERP_GMEDINA.Controllers
             }
         }
 
-        //public JsonResult GetEmpleados(string term)
-        //{
-        //    var results = db.UDV_Inv_Nombre_Empleado.Where(s => term == null || s.Empleados.ToLower().Contains(term.ToLower())).Select(x => new { id = x.emp_Id, value = x.Empleados }).Take(5).ToList();
+        public JsonResult GetEmpleados(string term)
+        {
+            var results = db.UDV_Inv_Nombre_Empleado.Where(s => term == null || s.Empleados.ToLower().Contains(term.ToLower())).Select(x => new { id = x.emp_Id, value = x.Empleados }).Take(5).ToList();
 
-        //    return Json(results, JsonRequestBehavior.AllowGet);
-        //}
+            return Json(results, JsonRequestBehavior.AllowGet);
+        }
 
         [HttpPost]
         public JsonResult AnularFactura(int CodFactura, bool FacturaAnulado, string RazonAnulado)
@@ -978,17 +979,8 @@ namespace ERP_GMEDINA.Controllers
         [HttpPost]
         public JsonResult GetParametro()
         {
-            try
-            {
-                var list = db.spGetParametro().ToList();
-                return Json(list, JsonRequestBehavior.AllowGet);
-            }
-            catch(Exception Ex)
-            {
-                Ex.Message.ToString();
-                return Json(Ex.Message.ToString(), JsonRequestBehavior.AllowGet);
-            }
-            
+            var list = db.spGetParametro().ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -999,9 +991,9 @@ namespace ERP_GMEDINA.Controllers
         }
 
         [HttpPost]
-        public ActionResult FacturaPedido(int CodPedido,int CodFactura)
+        public ActionResult FacturaPedido(int CodPedido, int CodFactura)
         {
-            var list = db.UDP_Vent_tbPedido_Factura(CodPedido,CodFactura).ToList();
+            var list = db.UDP_Vent_tbPedido_Factura(CodPedido, CodFactura).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
@@ -1132,7 +1124,7 @@ namespace ERP_GMEDINA.Controllers
             tbCliente Cliente = new tbCliente();
             ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre", dep_Codigo);
             ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbCliente.mun_Codigo);
-                ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion", tbCliente.tpi_Id);
+            ViewBag.tpi_Id = new SelectList(db.tbTipoIdentificacion, "tpi_Id", "tpi_Descripcion", tbCliente.tpi_Id);
             return View(tbCliente);
         }
 
@@ -1145,9 +1137,9 @@ namespace ERP_GMEDINA.Controllers
                 var SucId = db.tbUsuario.Where(x => x.usu_Id == UserId).Select(p => p.suc_Id).FirstOrDefault();
                 var bod_Id = db.tbSucursal.Where(x => x.suc_Id == SucId).Select(p => p.bod_Id).FirstOrDefault();
                 Lista = db.SDP_Inv_tbBodegaDetalle_Select_Producto(bod_Id).ToList();
-                
+
             }
-            catch(Exception Ex)
+            catch (Exception Ex)
             {
                 Ex.Message.ToString();
             }

@@ -8,6 +8,8 @@ namespace ERP_GMEDINA.Models
     public class Helpers
     {
         public const bool AnuladoFactura = true;
+        public const bool EsImpreso = true;
+        public const int EstadoImpreso = 2;
         public const int RTN = 3;
         public const int ID = 2;
 

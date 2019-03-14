@@ -176,6 +176,7 @@ function GetFacturaDetalle() {
     return FacturaDetalle
 };
 
+
 $(document).on("click", "#tblDetalleFactura tbody tr td button#removeFacturaDetalle", function () {
 
     //Descuento
@@ -201,7 +202,12 @@ $(document).on("click", "#tblDetalleFactura tbody tr td button#removeFacturaDeta
     var TotalEncabezado = document.getElementById("total").innerHTML = (parseFloat(subtotal) - parseFloat(SubtotalProducto)) + (parseFloat(impuestotal) - parseFloat(impuestos));
     $("#TotalProductoEncabezado").val(TotalEncabezado);
 
-    $(this).closest('tr').remove();
+    var table = $('#tblDetalleFactura').DataTable();
+    table.row($(this).parents('tr'))
+        .remove()
+        .draw();
+
+    //$(this).closest('tr').remove();
     idItem = $(this).closest('tr').data('id');
     var FacturaDetalle = {
         factd_Id: idItem,

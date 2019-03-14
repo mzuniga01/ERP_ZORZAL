@@ -93,7 +93,7 @@
                                     {
                                         <td>Si</td>
                                     }
-                                    @if (item.cdto_Anulado==false && item.cdto_Redimido == false)
+                                    @if (item.cdto_Anulado==false && item.cdto_Redimido == false && item.cdto_EsImpreso)
                                     {
                                         <td>
                                             @Html.ActionLink("Detalles", "Details", new { id = item.cdto_ID }, new { @class = "btn btn-primary btn-xs" })
@@ -109,11 +109,11 @@
                                             @Html.ActionLink("Detalles", "Details", new { id = item.cdto_ID }, new { @class = "btn btn-primary btn-xs" })
 
                                             @*btn no update ya esta anulado*@
-                                            <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="No se puede Editar, esta Anulado">
+                                            <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="No se puede Editar">
                                                 <button class="btn btn-white btn-xs" style="pointer-events: none;" type="button" disabled>Editar</button>
                                             </span>
 
-                                            <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="No se puede Imprimir, esta Anulado">
+                                            <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="No se puede Imprimir">
                                                 <button id="bottonImprimir" class="btn btn-info btn-xs" style="pointer-events: none;" type="button" disabled>Imprimir</button>
                                             </span>
                                         </td>

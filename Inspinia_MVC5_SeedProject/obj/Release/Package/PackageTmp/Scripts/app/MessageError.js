@@ -20,21 +20,13 @@ $("#clte_Identificacion").change(function () {
         document.getElementById("clte_Identificacion").focus();
 
     }
-    else if (tpi_Id == 'Identidad' && Identificacion.length == 13) {
+    else if (tpi_Id == 'IDENTIDAD' && Identificacion.length == 13) {
         valido = document.getElementById('CIdentificacion');
         valido.innerText = "Identidad debe tener 13 dígitos";
         document.getElementById("#clte_Identificacion").focus();
     }
 });
-//$("#clte_Identificacion").blur(function () {
-//    valido = document.getElementById('CIdentificacion');
-//    if (valido == "") {
-//        document.getElementById("clte_Identificacion").blur();
-//    }
-//    else {
-//        document.getElementById("clte_Identificacion").focus();
-//    }
-//});
+
 //Cliente Juridico
 $("#clte_NombreComercial").change(function () {
     var clte_NombreComercial = $("#clte_NombreComercial").val();

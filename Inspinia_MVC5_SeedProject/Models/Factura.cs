@@ -20,7 +20,7 @@ namespace ERP_GMEDINA.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public string fact_Codigo { get; set; }
         [Display(Name = "Fecha")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}", HtmlEncode = false)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}", HtmlEncode = false)]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public System.DateTime fact_Fecha { get; set; }
         [Display(Name = "Estado")]
@@ -54,6 +54,7 @@ namespace ERP_GMEDINA.Models
         [Display(Name = "Nombres")]
         public string fact_NombresTE { get; set; }
         [Display(Name = "Fecha Nacimiento")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}", HtmlEncode = false)]
         public Nullable<System.DateTime> fact_FechaNacimientoTE { get; set; }
         [Display(Name = "Razón Anulada")]
         public string fact_RazonAnulado { get; set; }

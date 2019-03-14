@@ -57,52 +57,48 @@
                                 <label class="control-label col-md-2 AsteriscoRojo">Fecha Inicio Vigencia</label>
                                 @*@Html.LabelFor(model => model.listp_FechaInicioVigencia, new { @class = "control-label col-md-2" })*@
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.listp_FechaInicioVigencia, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @id = "FIV", } })
-                                   @Html.ValidationMessageFor(model => model.listp_FechaInicioVigencia)
-</div>
+                                    @Html.EditorFor(model => model.listp_FechaInicioVigencia, "{0:MM-dd-yyyy}", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @id = "FIV", } })
+                                    @Html.ValidationMessageFor(model => model.listp_FechaInicioVigencia)
+                                </div>
                             </div>
                             <br /><br />
                             <div class="form-group">
                                 <label class="control-label col-md-2 AsteriscoRojo">Fecha Final Vigencia</label>
                                 @*@Html.LabelFor(model => model.listp_FechaFinalVigencia, new { @class = "control-label col-md-2" })*@
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.listp_FechaFinalVigencia, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "FFV" } })
+                                    @Html.EditorFor(model => model.listp_FechaFinalVigencia, "{0:MM-dd-yyyy}", new { htmlAttributes = new { @class = "form-control", @id = "FFV" } })
                                     @Html.ValidationMessageFor(model => model.listp_FechaFinalVigencia)
-</div>
+                                </div>
                             </div>
 
                             <br /><br />
                             <div class="form-group">
                                 <label class="control-label col-md-2 AsteriscoRojo">Prioridad</label>
-                               @* @Html.LabelFor(model => model.listp_Prioridad, new { @class = "control-label col-md-2" })*@
+                                @* @Html.LabelFor(model => model.listp_Prioridad, new { @class = "control-label col-md-2" })*@
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.listp_Prioridad, new { htmlAttributes = new { @maxlength = "1", @onkeypress = "return validar(event)" } })
                                     <p id="nprioridad" style="color:red">@Html.ValidationMessageFor(model => model.listp_Prioridad)
                                 </div>
                             </div>
-
-
-
-
                             <br /><br />
                         </div>
-                            @Html.Partial("_CreateListaPrecioDetalle", new tbListadoPrecioDetalle())
+                        @Html.Partial("_CreateListaPrecioDetalle", new tbListadoPrecioDetalle())
 
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="ibox float-e-margins">
-                                        <div class="ibox-content">
-                                            <div class="form-group">
-                                                <div class="col-md-12 text-center">
-                                                    <input type="submit" value="Guardar" class="btn btn-primary" />
-                                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
-                                                </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="ibox float-e-margins">
+                                    <div class="ibox-content">
+                                        <div class="form-group">
+                                            <div class="col-md-12 text-center">
+                                                <input type="submit" value="Guardar" class="btn btn-primary" />
+                                                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                                             </div>
-                                            <br />
                                         </div>
+                                        <br />
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
                     }
 

@@ -41,7 +41,7 @@ namespace ERP_GMEDINA.Models
 
         [Display(Name = "Fecha Crea")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt }", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy H:mm:ss tt }", ApplyFormatInEditMode = true)]
         public System.DateTime listp_FechaCrea { get; set; }
 
 
@@ -52,16 +52,16 @@ namespace ERP_GMEDINA.Models
 
         [Display(Name = "Fecha Modifico")]
 
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> listp_FechaModifica { get; set; }
         //[Display(Name = "Código")]
         //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         [Display(Name = "Fecha Inicio Vigencia")]
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy }", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> listp_FechaInicioVigencia { get; set; }
 
         [Display(Name = "Fecha Final Vigencia")]
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> listp_FechaFinalVigencia { get; set; }
 
         public virtual tbUsuario tbUsuario { get; set; }

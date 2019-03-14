@@ -26,7 +26,7 @@ namespace ERP_GMEDINA.Models
         [Display(Name = "Fecha Solicitud")]
  //       [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true,
-            DataFormatString = "{0:dd/MM/yyyy}",
+            DataFormatString = "{0:MM/dd/yyyy}",
             HtmlEncode = false)]
         public System.DateTime cred_FechaSolicitud { get; set; }
         /// <summary>
@@ -40,7 +40,7 @@ namespace ERP_GMEDINA.Models
         [Display(Name = "Fecha Aprobación")]
         //      [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true,
-            DataFormatString = "{0:dd/MM/yyyy}",
+            DataFormatString = "{0:MM/dd/yyyy}",
             HtmlEncode = false)]
         public System.DateTime cred_FechaAprobacion { get; set; }
 

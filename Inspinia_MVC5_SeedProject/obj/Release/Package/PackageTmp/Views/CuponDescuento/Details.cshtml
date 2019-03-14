@@ -118,13 +118,13 @@
                             @Html.DisplayFor(model => model.cdto_FechaRedencion)
                         </dd>
                     </dl>
-                    @if (Model.cdto_Anulado == false)
+                    @if (Model.cdto_Anulado == false && Model.cdto_Redimido == false && Model.cdto_EsImpreso==false)
                     {
                         @Html.ActionLink("Editar", "Edit", new { id = Model.cdto_ID }, new { @class = "btn btn-primary" })
                     }
                     else
                     {
-                        <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="No se puede Editar, esta Anulado">
+                        <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="No se puede Editar">
                             <button class="btn btn-primary" style="pointer-events: none;" type="button" disabled>Editar</button>
                         </span>
                     }
