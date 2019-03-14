@@ -31,24 +31,20 @@
                                 <div id="validationDescripcion">
                                     <p style="color:red"></p>
                                 </div>
-
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.pscat_ISV, new { @class = "control-label col-md-2" })
-                            <div class="col-md-4">
+                            @Html.LabelFor(model => model.pscat_ISV, new { @class = "control-label col-md-3" })
+                            <div class="col-md-2">
                                 <input type="number" id="pscat_ISV" placeholder="" class="form-control" name="pscat_ISV" min="1" />
                                 <p style="color:red" id="ISVError">@Html.ValidationMessageFor(model => model.pscat_ISV)</p>
                                 <div id="ValidationISV">
                                     <p style="color:red"></p>
                                 </div>
                             </div>
-                            <div class="form-group col-md-1">
+                            <div class="col-md-1">
                                 <button class="btn btn-primary" type="button" id="CrearSubCategoria">Añadir</button>
                             </div>
                         </div>
-
 
                         <table id="TablaSub" class="table table table-striped">
                             <thead>

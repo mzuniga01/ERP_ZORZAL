@@ -75,16 +75,13 @@
                             @Html.HiddenFor(model => model.tbUsuario1.usu_EsAdministrador)
                             <div class="form-group">
                                 @Html.LabelFor(model => model.ent_Id, new { @class = "control-label col-md-2 , required" })
-                                @*<label class="control-label col-md-2">Codigó Entrada<span style="color:red">*</span></label>*@
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.ent_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     @Html.ValidationMessageFor(model => model.ent_Id)
                                 </div>
                                 @Html.LabelFor(model => model.bod_Id, new { @class = "control-label col-md-2 , required" })
-                                @*<label class="control-label col-md-2">Nombre Bodega<span style="color:red">*</span></label>*@
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.tbBodega1.bod_Nombre, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                    @*@Html.DropDownListFor(model => model.bod_Id, (SelectList)ViewBag.bodega, new { @class = "form-control", @readonly = "readonly" })*@
                                     @Html.ValidationMessageFor(model => model.bod_Id)
                                     <div style="display:none" class="col-md-4">
                                         @Html.DropDownListFor(model => model.bod_Id, (SelectList)ViewBag.bodega, new { @class = "form-control" })
@@ -92,7 +89,6 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                @*<label class="control-label col-md-2">Numero Fórmato<span style="color:red">*</span></label>*@
                                 @Html.LabelFor(model => model.ent_NumeroFormato, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.ent_NumeroFormato, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
@@ -101,8 +97,7 @@
 
                                 @Html.LabelFor(model => model.ent_FechaElaboracion, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.ent_FechaElaboracion, "{yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                    @*@Html.ValidationMessageFor(model => model.ent_FechaElaboracion)*@
+                                    @Html.EditorFor(model => model.ent_FechaElaboracion, "{0:MM-dd-yyyy}", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                 </div>
                             </div>
                             <div class="form-group">
@@ -117,12 +112,10 @@
                                 </div>
                                 <label class="control-label col-md-2">RTN Proveedor<span style="color:red">*</span></label>
                                 <div class="col-md-4">
-                                    @*<input type="text" value="1" id="Rtn"/>*@
                                     @Html.EditorFor(item => item.tbProveedor.prov_RTN, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @Id = "Rtn" } })
                                 </div>  
                             </div>
                                 <div class="form-group">
-                                    @*<label class="control-label col-md-2">Tipo Entrada<span style="color:red">*</span></label>*@
                                     @Html.LabelFor(model => model.tent_Id, new { @class = "control-label col-md-2 , required" })
                                     <div class="col-md-4">
                                         @Html.EditorFor(model => model.tbTipoEntrada.tent_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
@@ -154,33 +147,24 @@
                             </div>
                         <div class="form-horizontal" name="compra" id="CamposCompra" style="display:none">
                             <div class="form-group">
-                                @*<label class="control-label col-md-2">Fáctura Compra<span style="color:red">*</span></label>*@
                                 @Html.LabelFor(model => model.ent_FacturaCompra, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.ent_FacturaCompra, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     @Html.ValidationMessageFor(model => model.ent_FacturaCompra)
                                 </div>
-                                @*<label class="control-label col-md-2">Fecha Compra<span style="color:red">*</span></label>*@
                                 @Html.LabelFor(model => model.ent_FechaCompra, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.ent_FechaCompra, "{0:dd-MM-yyyy}", new { htmlAttributes = new { @class = "form-control",  @readonly = "readonly" } })
-                                    @*@Html.ValidationMessageFor(model => model.ent_FechaCompra)*@
+                                    @Html.EditorFor(model => model.ent_FechaCompra, "{0:MM-dd-yyyy}", new { htmlAttributes = new { @class = "form-control",  @readonly = "readonly" } })
                                 </div>
                             </div>
                         </div>
                         <div class="form-horizontal" name="compra" id="CamposDevoluciones" style="display:none">
                             <div class="form-group">
-                                @*<label class="control-label col-md-2">Razón Devolucion<span style="color:red">*</span></label>*@
                                 @Html.LabelFor(model => model.ent_RazonDevolucion, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    @*@Html.EditorFor(model => model.tbTipoDevolucion.tdev_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                    <div style="display:none" class="col-md-4">*@
                                         @Html.DropDownListFor(model => model.ent_RazonDevolucion, (SelectList)ViewBag.tdev_Id, new { @class = "form-control"})
-                                    @*</div>*@
-                                    @*@Html.EditorFor(model => model.ent_RazonDevolucion)*@
                                     @Html.ValidationMessageFor(model => model.ent_RazonDevolucion)
                                 </div>
-                                @*<label class="control-label col-md-2">Código Factura<span style="color:red">*</span></label>*@
                                 @Html.LabelFor(model => model.fact_Id, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.fact_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
@@ -191,7 +175,6 @@
 
                         <div class="form-horizontal" name="compra" id="CamposTraslado" style="display:none">
                             <div class="form-group">
-                                @*<label class="control-label col-md-2">Bodega Destino<span style="color:red">*</span></label>*@
                                 @Html.LabelFor(model => model.bod_Id, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.tbBodega.bod_Nombre, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
@@ -205,8 +188,6 @@
                         
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
-
-                                
                                 @{if (Model.estm_Id == Helpers.EntradaEmitida)
                                     {
                                         <input type="submit" value="Guardar" class="btn btn-primary" />
@@ -214,7 +195,6 @@
                                         <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalEstado" value="Inactivar" />
                                         <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalAplicar" value="Aplicar" />
                                         @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
-                                            @*@Html.ActionLink("Inactivar", "EstadoInactivar", new { id = Model.bod_Id }, new { @class = "btn btn-danger" })*@
                                     }
                                     else if (Model.estm_Id == Helpers.EntradaInactivada)
                                     {
@@ -320,7 +300,6 @@
                             <div class="col-lg-12">
                                 <div class="form-group">
                                     <div class="col-md-12">
-                                        @*@Html.Partial("_CreateInstructorCasosExitos", new InstructorCasosExitos())*@
                                         @Html.Partial("_IndexEditar", Model.tbEntradaDetalle, new ViewDataDictionary { { "ent_Id", Model.ent_Id } })
                                     </div>
                                 </div>

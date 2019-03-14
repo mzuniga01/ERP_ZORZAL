@@ -21,7 +21,7 @@
         font-weight: bold;
         color: red;
     }
-    #estm_Descripcion {
+    #estif_Descripcion {
         text-transform: uppercase;
     }
 </style>
@@ -117,30 +117,9 @@
                                 <div class="col-md-offset-2 col-md-10">
                                     <input type="submit" class="btn btn-primary" value="Guardar"/>
                                     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
-                                    @*<button type="button" class="btn btn-danger btn" data-toggle="modal" data-target="#ModalEstado_@Model.estm_Id" value="Eliminar">Eliminar</button>*@
                                 </div>
                             </div>
                         </div>
-
-                        @*<div class="modal fade" id="ModalEstado_@Model.estm_Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Eliminar Estado</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        ¿Está seguro que quiere Eliminar?
-                                    </div>
-                                    <div class="modal-footer">
-                                        @Html.ActionLink("Sí", "Eliminar", new { id = Model.estm_Id }, new { @class = "btn btn-danger" })
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>*@
                     }
 
 

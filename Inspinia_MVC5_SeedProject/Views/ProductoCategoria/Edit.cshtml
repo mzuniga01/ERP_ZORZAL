@@ -65,7 +65,7 @@
                             @*Esto lo agregó Mágdaly Zúniga*@
                             @Html.HiddenFor(m => subcategoria.pscat_UsuarioCrea)
                             @Html.HiddenFor(m => subcategoria.pscat_FechaCrea)
-                            @Html.HiddenFor(m=> subcategoria.pscat_FechaModifica)
+                            @Html.HiddenFor(m => subcategoria.pscat_FechaModifica)
                             @Html.HiddenFor(m => subcategoria.pscat_UsuarioModifica)
 
 
@@ -91,16 +91,13 @@
                                     @Html.EditorFor(model => model.pcat_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     @Html.ValidationMessageFor(model => model.pcat_Id)
                                 </div>
-                            </div>
 
-                            <div class="form-group">
                                 @Html.LabelFor(model => model.pcat_Nombre, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.pcat_Nombre, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @maxlength = "50" } })
                                     <p style="color:red">
                                         @Html.ValidationMessageFor(model => model.pcat_Nombre)
                                     </p>
-
                                 </div>
                             </div>
 
@@ -125,15 +122,14 @@
                             @{
                                 if (Model.pcat_EsActivo == 1)
                                 {
-
-                                    <div class="col-lg-12">
-                                        <div class="ibox-title">
-                                            <div class="title-action">
-                                                <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#Crear">Registrar Detalle</button>
+                                    <div class="form-group">
+                                        <div class="col-lg-12">
+                                                <div class="title-action">
+                                                    <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#Crear">Registrar Detalle</button>
+                                                </div>
+                                            <div class="ibox-content collapse" id="Crear">
+                                                @Html.Partial("_CreateSubCategoriaModal", new tbProductoSubcategoria())
                                             </div>
-                                        </div>
-                                        <div class="ibox-content collapse" id="Crear">
-                                            @Html.Partial("_CreateSubCategoriaModal", new tbProductoSubcategoria())
                                         </div>
                                     </div>
                                 }
@@ -151,7 +147,6 @@
                                     </div>
                                 }
                             }
-                            @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
 
                             <div class="row">
                                 <div class="col-lg-14">
@@ -164,9 +159,7 @@
                             </div>
 
                             <div class="form-group">
-                                <div class="col-md-offset-2 col-md-10">
-
-
+                                <div class="col-md-10 text-center">
                                     @{if (Model.pcat_EsActivo == 1)
                                         {
                                             <input type="submit" value="Guardar" class="btn btn-primary" />
@@ -174,13 +167,11 @@
                                             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalEstado_@Model.pcat_Id">
                                                 Eliminar
                                             </button>
-                                            @*@Html.ActionLink("Inactivar", "InactivarCate", new { id = Model.pcat_Id }, new { @class = "btn btn-danger" })*@
                                         }
                                         else
                                         {
                                             <input type="submit" value="Guardar" class="btn btn-primary" disabled />
                                             @Html.ActionLink("Activar", "ActivarCateValidacion", new { id = Model.pcat_Id }, new { @class = "btn btn-primary" })
-
                                         }
 
                                     }
@@ -193,7 +184,7 @@
                     </div>
 
                 </div>
-            }
+                                        }
 
         </div>
     </div>

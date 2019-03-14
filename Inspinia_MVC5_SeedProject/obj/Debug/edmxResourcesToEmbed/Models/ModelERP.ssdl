@@ -1547,38 +1547,30 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_ProductosSolicitados
 advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Proyeccion_de_Movimiento_de_Producto' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
   <EntityType Name="UDV_Inv_Proyeccion_de_Movimiento_de_Producto">
     <Key>
-      <PropertyRef Name="Prod_Codigo" />
-      <PropertyRef Name="suc_Direccion" />
-      <PropertyRef Name="Código Bodega" />
-      <PropertyRef Name="Responsable" />
+      <PropertyRef Name="bod_Id" />
+      <PropertyRef Name="bod_ResponsableBodega" />
       <PropertyRef Name="prod_CodigoBarras" />
-      <PropertyRef Name="Nombre Producto" />
-      <PropertyRef Name="Marca" />
-      <PropertyRef Name="Modelo" />
-      <PropertyRef Name="Unidad Medida" />
-      <PropertyRef Name="Talla" />
-      <PropertyRef Name="Cantidad Inventario" />
-      <PropertyRef Name="Promedio Vent. Diaria" />
-      <PropertyRef Name="Creado por:" />
-      <PropertyRef Name="Creado el:" />
+      <PropertyRef Name="prod_Descripcion" />
+      <PropertyRef Name="prod_Marca" />
+      <PropertyRef Name="prod_Modelo" />
+      <PropertyRef Name="uni_Descripcion" />
+      <PropertyRef Name="prod_Talla" />
+      <PropertyRef Name="bodd_CantidadExistente" />
+      <PropertyRef Name="factd_Cantidad" />
     </Key>
-    <Property Name="Prod_Codigo" Type="nvarchar" MaxLength="15" Nullable="false" />
-    <Property Name="suc_Direccion" Type="nvarchar" MaxLength="100" Nullable="false" />
-    <Property Name="Código Bodega" Type="int" Nullable="false" />
-    <Property Name="Nombre de la Bodega" Type="varchar" MaxLength="100" />
-    <Property Name="Responsable" Type="smallint" Nullable="false" />
-    <Property Name="Télefono" Type="varchar" MaxLength="13" />
+    <Property Name="bod_Id" Type="int" Nullable="false" />
+    <Property Name="bod_Nombre" Type="varchar" MaxLength="100" />
+    <Property Name="bod_ResponsableBodega" Type="smallint" Nullable="false" />
+    <Property Name="bod_Telefono" Type="varchar" MaxLength="13" />
     <Property Name="prod_CodigoBarras" Type="varchar" MaxLength="15" Nullable="false" />
-    <Property Name="Nombre Producto" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="Marca" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="Modelo" Type="nvarchar" MaxLength="25" Nullable="false" />
-    <Property Name="Unidad Medida" Type="varchar" MaxLength="150" Nullable="false" />
-    <Property Name="Talla" Type="varchar" MaxLength="15" Nullable="false" />
-    <Property Name="Cantidad Inventario" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-    <Property Name="Promedio Vent. Diaria" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+    <Property Name="prod_Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="prod_Marca" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="prod_Modelo" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="uni_Descripcion" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="prod_Talla" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="bodd_CantidadExistente" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="factd_Cantidad" Type="decimal" Precision="5" Scale="2" Nullable="false" />
     <Property Name="Proyección Días" Type="decimal" Precision="38" Scale="0" />
-    <Property Name="Creado por:" Type="varchar" MaxLength="301" Nullable="false" />
-    <Property Name="Creado el:" Type="datetime" Nullable="false" />
   </EntityType>
   <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'ERP_GMEDINA.Inv.UDV_Inv_Salida_Imprimir_Reporte' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
@@ -2301,24 +2293,6 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_prueba' no tiene d
     <Property Name="SUCURSAL" Type="nvarchar" MaxLength="40" Nullable="false" />
     <Property Name="DÍAS_SOLICITADOS" Type="int" Nullable="false" />
     <Property Name="MONTO_SOLICITADO" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-  </EntityType>
-  <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_PuntoEmisionEstado' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
-  <EntityType Name="UDV_Vent_PuntoEmisionEstado">
-    <Key>
-      <PropertyRef Name="pemid_Id" />
-      <PropertyRef Name="pemi_Id" />
-      <PropertyRef Name="pemid_RangoFinal" />
-      <PropertyRef Name="pemid_NumeroActual" />
-      <PropertyRef Name="pemid_FechaLimite" />
-      <PropertyRef Name="Estado" />
-    </Key>
-    <Property Name="pemid_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="pemi_Id" Type="int" Nullable="false" />
-    <Property Name="pemid_RangoFinal" Type="varchar" MaxLength="20" Nullable="false" />
-    <Property Name="pemid_NumeroActual" Type="varchar" MaxLength="10" Nullable="false" />
-    <Property Name="pemid_FechaLimite" Type="date" Nullable="false" />
-    <Property Name="Estado" Type="varchar" MaxLength="10" Nullable="false" />
   </EntityType>
   <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporte' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
@@ -4681,6 +4655,30 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_Entr
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Vent_tbEstadoPedido_tbUsuario_usu_Id_Crea">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="1" />
+    <End Role="tbEstadoPedido" Type="Self.tbEstadoPedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbEstadoPedido">
+        <PropertyRef Name="esped_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vent_tbEstadoPedido_tbUsuario_usu_Id_Modifica">
+    <End Role="tbUsuario" Type="Self.tbUsuario" Multiplicity="0..1" />
+    <End Role="tbEstadoPedido" Type="Self.tbEstadoPedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbEstadoPedido">
+        <PropertyRef Name="esped_UsuarioModifica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Vent_tbFactura_tbDevolucion_fact_Id">
     <End Role="tbFactura" Type="Self.tbFactura" Multiplicity="1" />
     <End Role="tbDevolucion" Type="Self.tbDevolucion" Multiplicity="*" />
@@ -5221,7 +5219,6 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_Entr
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Function Name="GetUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce" ReturnType="int" />
   <Function Name="SDP_Acce_GetObjetos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce" />
   <Function Name="SDP_Acce_GetObjetosAsignados" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
     <Parameter Name="rol_Id" Type="int" Mode="In" />
@@ -5240,7 +5237,6 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_Entr
     <Parameter Name="usu_Id" Type="int" Mode="In" />
     <Parameter Name="obj_Pantalla" Type="nvarchar" Mode="In" />
   </Function>
-  <Function Name="UDF_Acce_GetUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce" ReturnType="int" />
   <Function Name="UDP_Acce_Login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
     <Parameter Name="UsuarioId" Type="varchar" Mode="In" />
     <Parameter Name="password" Type="varchar" Mode="In" />
@@ -5320,6 +5316,8 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_Entr
   <Function Name="UDP_Acce_tbRolesUsuario_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
     <Parameter Name="usu_Id" Type="int" Mode="In" />
     <Parameter Name="rol_Id" Type="int" Mode="In" />
+    <Parameter Name="rolu_UsuarioCrea" Type="int" Mode="In" />
+    <Parameter Name="rolu_FechaCrea" Type="date" Mode="In" />
   </Function>
   <Function Name="UDP_Acce_tbRolesUsuario_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
     <Parameter Name="rolu_Id" Type="int" Mode="In" />
@@ -6466,23 +6464,19 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_Entr
     </EntitySet>
     <EntitySet Name="UDV_Inv_Proyeccion_de_Movimiento_de_Producto" EntityType="Self.UDV_Inv_Proyeccion_de_Movimiento_de_Producto" store:Type="Views" store:Schema="Inv">
       <DefiningQuery>SELECT 
-    [UDV_Inv_Proyeccion_de_Movimiento_de_Producto].[Prod_Codigo] AS [Prod_Codigo], 
-    [UDV_Inv_Proyeccion_de_Movimiento_de_Producto].[suc_Direccion] AS [suc_Direccion], 
-    [UDV_Inv_Proyeccion_de_Movimiento_de_Producto].[Código Bodega] AS [Código Bodega], 
-    [UDV_Inv_Proyeccion_de_Movimiento_de_Producto].[Nombre de la Bodega] AS [Nombre de la Bodega], 
-    [UDV_Inv_Proyeccion_de_Movimiento_de_Producto].[Responsable] AS [Responsable], 
-    [UDV_Inv_Proyeccion_de_Movimiento_de_Producto].[Télefono] AS [Télefono], 
+    [UDV_Inv_Proyeccion_de_Movimiento_de_Producto].[bod_Id] AS [bod_Id], 
+    [UDV_Inv_Proyeccion_de_Movimiento_de_Producto].[bod_Nombre] AS [bod_Nombre], 
+    [UDV_Inv_Proyeccion_de_Movimiento_de_Producto].[bod_ResponsableBodega] AS [bod_ResponsableBodega], 
+    [UDV_Inv_Proyeccion_de_Movimiento_de_Producto].[bod_Telefono] AS [bod_Telefono], 
     [UDV_Inv_Proyeccion_de_Movimiento_de_Producto].[prod_CodigoBarras] AS [prod_CodigoBarras], 
-    [UDV_Inv_Proyeccion_de_Movimiento_de_Producto].[Nombre Producto] AS [Nombre Producto], 
-    [UDV_Inv_Proyeccion_de_Movimiento_de_Producto].[Marca] AS [Marca], 
-    [UDV_Inv_Proyeccion_de_Movimiento_de_Producto].[Modelo] AS [Modelo], 
-    [UDV_Inv_Proyeccion_de_Movimiento_de_Producto].[Unidad Medida] AS [Unidad Medida], 
-    [UDV_Inv_Proyeccion_de_Movimiento_de_Producto].[Talla] AS [Talla], 
-    [UDV_Inv_Proyeccion_de_Movimiento_de_Producto].[Cantidad Inventario] AS [Cantidad Inventario], 
-    [UDV_Inv_Proyeccion_de_Movimiento_de_Producto].[Promedio Vent. Diaria] AS [Promedio Vent. Diaria], 
-    [UDV_Inv_Proyeccion_de_Movimiento_de_Producto].[Proyección Días] AS [Proyección Días], 
-    [UDV_Inv_Proyeccion_de_Movimiento_de_Producto].[Creado por:] AS [Creado por:], 
-    [UDV_Inv_Proyeccion_de_Movimiento_de_Producto].[Creado el:] AS [Creado el:]
+    [UDV_Inv_Proyeccion_de_Movimiento_de_Producto].[prod_Descripcion] AS [prod_Descripcion], 
+    [UDV_Inv_Proyeccion_de_Movimiento_de_Producto].[prod_Marca] AS [prod_Marca], 
+    [UDV_Inv_Proyeccion_de_Movimiento_de_Producto].[prod_Modelo] AS [prod_Modelo], 
+    [UDV_Inv_Proyeccion_de_Movimiento_de_Producto].[uni_Descripcion] AS [uni_Descripcion], 
+    [UDV_Inv_Proyeccion_de_Movimiento_de_Producto].[prod_Talla] AS [prod_Talla], 
+    [UDV_Inv_Proyeccion_de_Movimiento_de_Producto].[bodd_CantidadExistente] AS [bodd_CantidadExistente], 
+    [UDV_Inv_Proyeccion_de_Movimiento_de_Producto].[factd_Cantidad] AS [factd_Cantidad], 
+    [UDV_Inv_Proyeccion_de_Movimiento_de_Producto].[Proyección Días] AS [Proyección Días]
     FROM [Inv].[UDV_Inv_Proyeccion_de_Movimiento_de_Producto] AS [UDV_Inv_Proyeccion_de_Movimiento_de_Producto]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="UDV_Inv_Salida_Imprimir_Reporte" EntityType="Self.UDV_Inv_Salida_Imprimir_Reporte" store:Type="Views" store:Schema="Inv">
@@ -6919,16 +6913,6 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_Entr
     [UDV_Vent_prueba].[DÍAS_SOLICITADOS] AS [DÍAS_SOLICITADOS], 
     [UDV_Vent_prueba].[MONTO_SOLICITADO] AS [MONTO_SOLICITADO]
     FROM [Vent].[UDV_Vent_prueba] AS [UDV_Vent_prueba]</DefiningQuery>
-    </EntitySet>
-    <EntitySet Name="UDV_Vent_PuntoEmisionEstado" EntityType="Self.UDV_Vent_PuntoEmisionEstado" store:Type="Views" store:Schema="Vent">
-      <DefiningQuery>SELECT 
-    [UDV_Vent_PuntoEmisionEstado].[pemid_Id] AS [pemid_Id], 
-    [UDV_Vent_PuntoEmisionEstado].[pemi_Id] AS [pemi_Id], 
-    [UDV_Vent_PuntoEmisionEstado].[pemid_RangoFinal] AS [pemid_RangoFinal], 
-    [UDV_Vent_PuntoEmisionEstado].[pemid_NumeroActual] AS [pemid_NumeroActual], 
-    [UDV_Vent_PuntoEmisionEstado].[pemid_FechaLimite] AS [pemid_FechaLimite], 
-    [UDV_Vent_PuntoEmisionEstado].[Estado] AS [Estado]
-    FROM [Vent].[UDV_Vent_PuntoEmisionEstado] AS [UDV_Vent_PuntoEmisionEstado]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporte" EntityType="Self.UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporte" store:Type="Views" store:Schema="Vent">
       <DefiningQuery>SELECT 
@@ -7746,6 +7730,14 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_Entr
     <AssociationSet Name="FK_Vent_tbEstadoFactura_tbUsuario_usu_Id_Modifica" Association="Self.FK_Vent_tbEstadoFactura_tbUsuario_usu_Id_Modifica">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbEstadoFactura" EntitySet="tbEstadoFactura" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbEstadoPedido_tbUsuario_usu_Id_Crea" Association="Self.FK_Vent_tbEstadoPedido_tbUsuario_usu_Id_Crea">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbEstadoPedido" EntitySet="tbEstadoPedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbEstadoPedido_tbUsuario_usu_Id_Modifica" Association="Self.FK_Vent_tbEstadoPedido_tbUsuario_usu_Id_Modifica">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbEstadoPedido" EntitySet="tbEstadoPedido" />
     </AssociationSet>
     <AssociationSet Name="FK_Vent_tbFactura_tbDevolucion_fact_Id" Association="Self.FK_Vent_tbFactura_tbDevolucion_fact_Id">
       <End Role="tbFactura" EntitySet="tbFactura" />

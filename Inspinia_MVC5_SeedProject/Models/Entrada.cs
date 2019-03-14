@@ -14,16 +14,13 @@ namespace ERP_GMEDINA.Models
     public class EntradaMetaData
     {
         [Display(Name = "Código Entrada")]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int ent_Id { get; set; }
 
         [Display(Name = "Numero Formato")]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string ent_NumeroFormato { get; set; }
 
         [Display(Name = "Fecha Elaboracion")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
-        //[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM-dd-yyyy}")]
         public System.DateTime ent_FechaElaboracion { get; set; }
 
         [Display(Name = "Nombre Bodega")]
@@ -31,7 +28,6 @@ namespace ERP_GMEDINA.Models
         public int bod_Id { get; set; }
 
         [Display(Name = "Estado")]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public byte estm_Id { get; set; }
 
         [Display(Name = "Nombre Proveedor")]
@@ -39,24 +35,19 @@ namespace ERP_GMEDINA.Models
         public int prov_Id { get; set; }
 
         [Display(Name = "Factura Compra")]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string ent_FacturaCompra { get; set; }
 
         [Display(Name = "Fecha Compra")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM-dd-yyyy}")]
         public System.DateTime ent_FechaCompra { get; set; }
 
         [Display(Name = "Código Factura")]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string fact_Id { get; set; }
 
         [Display(Name = "Razon Devolucion")]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string ent_RazonDevolucion { get; set; }
 
         [Display(Name = "Bodega Destino")]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int ent_BodegaDestino { get; set; }
 
         [Display(Name = "Tipo Entrada")]
@@ -64,11 +55,9 @@ namespace ERP_GMEDINA.Models
         public byte tent_Id { get; set; }
 
         [Display(Name = "Creado por")]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int ent_UsuarioCrea { get; set; }
 
         [Display(Name = "Creado en")]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public System.DateTime ent_FechaCrea { get; set; }
 
@@ -81,19 +70,15 @@ namespace ERP_GMEDINA.Models
 
 
         [Display(Name = "Nombre Bodega")]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public virtual tbBodega tbBodega { get; set; }
 
         [Display(Name = "Estado")]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public virtual tbEstadoMovimiento tbEstadoMovimiento { get; set; }
 
         [Display(Name = "Nombre Proveedor")]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public virtual tbProveedor tbProveedor { get; set; }
 
         [Display(Name = "Tipo Entrada")]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public virtual tbTipoEntrada tbTipoEntrada { get; set; }
 
     }

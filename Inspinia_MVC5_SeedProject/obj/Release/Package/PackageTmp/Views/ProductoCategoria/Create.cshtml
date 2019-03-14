@@ -17,7 +17,7 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Crear</h2>
+        <h2>Producto Categoría</h2>
     </div>
     <div class="col-sm-8">
         <div class="title-action">
@@ -60,12 +60,8 @@
                 
             </div>
             @* Modal *@
-            <div class="ibox float-e-margins">
-                <div class="ibox-content">
-                    <div class="form-horizontal">
-                        @Html.Partial("_CreateSubCategoria", new tbProductoSubcategoria())
-                    </div>
-                </div>
+            <div class="form-horizontal">
+                @Html.Partial("_CreateSubCategoria", new tbProductoSubcategoria())
             </div>
         </div>
     </div>

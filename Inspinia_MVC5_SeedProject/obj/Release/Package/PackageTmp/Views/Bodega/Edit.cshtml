@@ -127,7 +127,7 @@
                                     @Html.EditorFor(model => model.bod_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     @Html.ValidationMessageFor(model => model.bod_Id)
                                 </div>
-                                
+
                                 @Html.LabelFor(model => model.bod_Direccion, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.bod_Direccion, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @onKeyPress = "return controlCaracteres(event)", @onkeyup = "this.value=NumText(this.value)" } })
@@ -137,11 +137,11 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.bod_Nombre, new { @class = "control-label col-md-2 , required", @onKeyPress = "return soloLetras(event)" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.bod_Nombre, new { htmlAttributes = new { @class = "form-control", @onKeyPress = "return CaracteresNombre(event)", @onkeyup = "this.value=NumText(this.value)" , @autocomplete = "off" } })
+                                    @Html.EditorFor(model => model.bod_Nombre, new { htmlAttributes = new { @class = "form-control", @onKeyPress = "return CaracteresNombre(event)", @onkeyup = "this.value=NumText(this.value)", @autocomplete = "off" } })
                                     <p style="color:red" id="nombre_error">@Html.ValidationMessageFor(model => model.bod_Nombre) </p>
                                 </div>
                                 @Html.LabelFor(model => model.bod_Correo, new { @class = "control-label col-md-2 , required" })
-                                <div class="col-md-4"> 
+                                <div class="col-md-4">
                                     @Html.EditorFor(model => model.bod_Correo, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @onKeyPress = "return Caracteres_Email(event)", @onkeyup = "this.value=CorreoElectronico(this.value)" } })
                                     @*<p style="color:red"> @Html.ValidationMessageFor(model => model.bod_Correo)</p>*@
                                     <div id="MessageForCorreo">
@@ -157,7 +157,7 @@
                                 </div>
                                 @Html.LabelFor(model => model.mun_Codigo, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    @Html.DropDownList("mun_Codigo",@*null, "Seleccione Municipio",*@         /**/
+                                    @Html.DropDownList("mun_Codigo",@*null, "Seleccione Municipio",*@                                                                                                              /**/
                                                                                                                                                   /**/
                                                                                                                                                   (IEnumerable<SelectListItem>)ViewBag.municipio_Edit, new { @class = "form-control" })
                                     <p id="Municipio" style="color:red">@Html.ValidationMessageFor(model => model.mun_Codigo)</p>
@@ -207,9 +207,9 @@
 
                                     <div class="col-lg-12">
                                         @*<div class="ibox-title">*@
-                                            <div class="title-action">
-                                                <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#Crear">Registrar Detalle</button>
-                                            </div>
+                                        <div class="title-action">
+                                            <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#Crear">Registrar Detalle</button>
+                                        </div>
                                         @*</div>*@
                                         <div class="ibox-content collapse" id="Crear">
                                             @Html.Partial("_CreateNuevoBodegaDetalle_Modal", new tbBodegaDetalle())
@@ -219,11 +219,9 @@
                                 else
                                 {
                                     <div class="col-lg-12">
-                                        @*<div class="ibox-title">*@
-                                            <div class="title-action">
-                                                <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#Crear" disabled>Registrar Detalle</button>
-                                            </div>
-                                        @*</div>*@
+                                        <div class="title-action">
+                                            <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#Crear" disabled>Registrar Detalle</button>
+                                        </div>
                                         <div class="ibox-content collapse" id="Crear">
                                             @Html.Partial("_CreateNuevoBodegaDetalle_Modal", new tbBodegaDetalle())
                                         </div>
@@ -265,7 +263,7 @@
                         </div>
                     </div>
                 </div>
-            }
+                                        }
 
 
             <div class="ibox-content">

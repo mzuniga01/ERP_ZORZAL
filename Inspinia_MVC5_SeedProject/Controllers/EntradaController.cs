@@ -398,7 +398,7 @@ namespace ERP_ZORZAL.Controllers
                             if (MsjError.StartsWith("-1"))
                             {
                                 Function.InsertBitacoraErrores("Entrada/Create", MsjError, "Create");
-                                ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                                ModelState.AddModelError("", "1. No se pudo insertar el registro, favor contacte al administrador.");
                                 return View(tbEntrada);
                             }
                             else if (MsjError.StartsWith("-2"))
@@ -436,20 +436,13 @@ namespace ERP_ZORZAL.Controllers
                         catch (Exception Ex)
                         {
                             Function.InsertBitacoraErrores("Entrada/Create", Ex.Message.ToString(), "Create");
-                            ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                            ModelState.AddModelError("", "2. No se pudo insertar el registro, favor contacte al administrador.");
                             return View(tbEntrada);
                         }
-                        //ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbEntrada.bod_Id);
-                        //ViewBag.tdev_Id = new SelectList(db.tbTipoDevolucion, "tdev_Id", "tdev_Descripcion", tbEntrada.ent_RazonDevolucion);
-                        //ViewBag.prov_Id = new SelectList(db.tbProveedor, "prov_Id", "prov_Nombre", tbEntrada.prov_Id);
-                        //ViewBag.tent_Id = new SelectList(db.tbTipoEntrada, "tent_Id", "tent_Descripcion", tbEntrada.tent_Id);
-                        //ViewBag.ent_BodegaDestino = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbEntrada.ent_BodegaDestino);
-                        //ViewBag.Producto = db.SDP_Inv_tbProducto_Select().ToList();
                     }
                 }
                 return RedirectToAction("Index");
             }
-            //listaDetalle = (List<tbEntradaDetalle>)Session["CrearDetalleEntrada"];
             return View(tbEntrada);
         }
 
@@ -502,7 +495,7 @@ namespace ERP_ZORZAL.Controllers
                         if (MsjError.StartsWith("-1"))
                         {
                             Function.InsertBitacoraErrores("Entrada/Edit", MsjError, "Edit");
-                            ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                            ModelState.AddModelError("", "1. No se pudo actualizar el registro, favor contacte al administrador.");
                             return View(tbEntrada);
                         }
                         else
@@ -537,21 +530,12 @@ namespace ERP_ZORZAL.Controllers
                     catch (Exception Ex)
                     {
                         Function.InsertBitacoraErrores("Entrada/Create", Ex.Message.ToString(), "Create");
-                        ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                        ModelState.AddModelError("", "2. No se pudo actualizar el registro, favor contacte al administrador.");
                         return View(tbEntrada);
                     }
                 }
                 return RedirectToAction("Index");
             }
-            //ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbEntrada.bod_Id);
-            //ViewBag.estm_Id = new SelectList(db.tbEstadoMovimiento, "estm_Id", "estm_Descripcion", tbEntrada.estm_Id);
-            //ViewBag.prov_Id = new SelectList(db.tbProveedor, "prov_Id", "prov_Nombre", tbEntrada.prov_Id);
-            //ViewBag.tent_Id = new SelectList(db.tbTipoEntrada, "tent_Id", "tent_Descripcion", tbEntrada.tent_Id);
-            //ViewBag.ent_BodegaDestino = new SelectList(db.tbBodega, "bod_Id", "bod_ResponsableBodega", tbEntrada.ent_BodegaDestino);
-            //ViewBag.prod_Codigo = new SelectList(db.tbProducto, "prod_Codigo", "prod_Descripcion");
-            //ViewBag.ent_RazonDevolucion = new SelectList(db.tbTipoDevolucion, "tdev_Id", "tdev_Descripcion", tbEntrada.ent_RazonDevolucion);
-            //ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion");
-            //ViewBag.Producto = db.SDP_Inv_tbProducto_Select().ToList();
             return View(tbEntrada);
         }
 

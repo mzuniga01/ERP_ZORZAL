@@ -116,11 +116,6 @@ namespace ERP_ZORZAL.Controllers
         [SessionManager("TipoSalida/Edit")]
         public ActionResult Edit(byte? id, [Bind(Include= "tsal_Id,tsal_Descripcion,tsal_UsuarioCrea,tsal_FechaCrea,tsal_UsuarioModifica,tsal_FechaModifica")] tbTipoSalida tbTipoSalida)
         {
-            if (db.tbTipoSalida.Any(a => a.tsal_Descripcion == tbTipoSalida.tsal_Descripcion))
-            {
-                ModelState.AddModelError("", "La Descripcion ya Existe.");
-                ViewBag.UsuarioCrea = db.tbUsuario.Find(tbTipoSalida.tsal_UsuarioCrea).usu_NombreUsuario;
-            }
             if (ModelState.IsValid)
             {
                 try

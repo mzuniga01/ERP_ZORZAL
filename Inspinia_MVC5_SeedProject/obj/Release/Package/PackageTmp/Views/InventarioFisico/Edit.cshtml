@@ -78,42 +78,28 @@
                                         @{if (Model.estif_Id == 1)
                                             {
                                                 <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalConciliar" value="Conciliar" />
-                                                @*@Html.ActionLink("Inactivar", "EstadoInactivar", new { id = Model.bod_Id }, new { @class = "btn btn-danger" })*@
                                             }
                                             else if (Model.estif_Id == 2)
                                             {
-                                                @*@Html.ActionLink("Activar", "Estadoactivar", new { id = Model.ent_Id }, new { @class = "btn btn-primary" })*@
 
                                             }
                                         }
                                         @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })   
-                                        @*@using (Html.BeginForm("Edit", "Inventario Fisico"))
-                                        { <input type="button" value="click" onclick="return showfile();" />}*@
                                         @Html.ActionLink("Imprimir", "ExportReport", new { id = Model.invf_Id }, new { @class = "btn btn-primary", @Id = "Imprimir" })
 
                                     </div>
                                 </div>
                             </div>
                         }
-
-
-
-
-
                         <div class="row">
                             <div class="col-lg-12">
-                                @*<div class="ibox float-e-margins">*@
                                 <div class="ibox-title">
                                     <div class="title-action">
-                                        @*<div class="box-border">*@
-                                        @*<h5>Registrar Detalle Bodega</h5>*@
                                         <button type="button" class="btn btn-primary" id="Detalle" data-toggle="collapse" data-target="#Crear">Nuevo Detalle</button>
-                                        @*</div>*@
                                     </div>
                                 </div>
                                 <div class="ibox-content collapse" id="Crear">
                                   @Html.Partial("_CreateInvFisicoDetalle_nuevo", new ERP_GMEDINA.Models.tbInventarioFisicoDetalle())
-                                    @*</div>*@
                                 </div>
                             </div>
 
@@ -210,32 +196,6 @@
             </div>
         </div>
     </div>
-
-@* Modal Nuevo Detalle *@
-@*<div>
-    <div class="modal fade" id="RegistrarNuevoDetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel">Registrar Nuevo Detalle</h4>
-                </div>
-                <div class="modal-body" id="frmAgregarCasoExito">
-                    @Html.Partial("_CreateNuevoInvFisicoDetalle_Modal", new tbInventarioFisicoDetalle())
-                    <div class="form-group">
-                        <div class="col-md-12 text-center">
-                            <button class="btn btn-primary" data-toggle="modal" data-dismiss="modal" aria-label="Close" type="button" id="GuardarNuevoDetalle" onclick="GuardarNuevoDetalle">Guardar</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>*@
-
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

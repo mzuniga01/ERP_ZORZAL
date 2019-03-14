@@ -263,7 +263,7 @@ namespace ERP_GMEDINA.Controllers
 
 
         //para que cambie estado a activar
-        [SessionManager("Bodega/InactivarEstado")]
+        //[SessionManager("Bodega/InactivarEstado")]
         public ActionResult EstadoInactivar(int? id)
         {
 
@@ -323,7 +323,7 @@ namespace ERP_GMEDINA.Controllers
             }
         }
         //para que cambie estado a inactivar
-        [SessionManager("Bodega/ActivarEstado")]
+        //[SessionManager("Bodega/ActivarEstado")]
         public ActionResult Estadoactivar(int? id)
         {
 
@@ -355,7 +355,7 @@ namespace ERP_GMEDINA.Controllers
             }
 
         }
-        [SessionManager("Bodega/DeleteDetalle")]
+        //[SessionManager("Bodega/DeleteDetalle")]
         public ActionResult DeleteDetalle(int? id)
         {
 

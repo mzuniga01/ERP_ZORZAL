@@ -44,7 +44,7 @@
                                 @Html.LabelFor(model => model.uni_Descripcion, new { @class = "control-label col-md-2" })
                                 <div class="col-md-5">
                                     @*@Html.EditorFor(model => model.uni_Descripcion)*@
-                                    <input type="text" id="miInput" name="uni_Descripcion" onblur="limpia()" class="form-control " Value="" onKeyPress="return soloLetras(event)" autocomplete="off" />
+                                    <input type="text" id="miInput" name="uni_Descripcion" onblur="limpia()" class="form-control " Value="" onKeyPress="return soloLetras(event)" autocomplete="off" style="text-transform:uppercase"/>
                                     <span style="color:red">@Html.ValidationSummary(true)</span>
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.uni_Descripcion)</p>
                                  </div>

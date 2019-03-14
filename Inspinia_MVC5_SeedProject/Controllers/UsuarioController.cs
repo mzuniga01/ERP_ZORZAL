@@ -180,7 +180,8 @@ namespace ERP_GMEDINA.Controllers
                                 {
                                     foreach (tbRolesUsuario URoles in listRoles)
                                     {
-                                        Roles = db.UDP_Acce_tbRolesUsuario_Insert(Convert.ToInt32(MsjError), URoles.rol_Id);
+                                        Roles = db.UDP_Acce_tbRolesUsuario_Insert(Convert.ToInt32(MsjError), URoles.rol_Id, Function.GetUser()
+                                                        , Function.DatetimeNow());
                                         foreach (UDP_Acce_tbRolesUsuario_Insert_Result Resultado in Roles)
                                             MsjErrorRoles = Resultado.MensajeError;
                                         if (MsjError.StartsWith("-1"))
@@ -522,7 +523,8 @@ namespace ERP_GMEDINA.Controllers
                     {
                         foreach (tbRolesUsuario vRolUsuario in RolUsuario)
                         {
-                            Rol = db.UDP_Acce_tbRolesUsuario_Insert(idRol, vRolUsuario.rol_Id);
+                            Rol = db.UDP_Acce_tbRolesUsuario_Insert(idRol, vRolUsuario.rol_Id, Function.GetUser()
+                                                        , Function.DatetimeNow());
                             foreach (UDP_Acce_tbRolesUsuario_Insert_Result item in Rol)
                             {
                                 Msj = Convert.ToString(item.MensajeError);

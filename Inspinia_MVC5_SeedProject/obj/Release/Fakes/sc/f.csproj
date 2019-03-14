@@ -8,7 +8,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.21022</ProductVersion>
-    <ProjectGuid>5f5b75db-4a17-4172-a643-5d3407351871</ProjectGuid>
+    <ProjectGuid>0b81e8ab-a32e-4d4e-a1b3-b7dc328e667b</ProjectGuid>
     <!-- update GUID here -->
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -50,12 +50,12 @@
       <Aliases>mqttf</Aliases>
     </Reference>
     <Reference Include="SimpleCrypto">
-      <HintPath>C:\Users\MágdalyZúniga\Documents\GitHub\ERP_ZORZAL\packages\SimpleCrypto.0.3.30.26\lib\SimpleCrypto.dll</HintPath>
+      <HintPath>C:\Users\MágdalyZúniga\Desktop\ERP_ZORZAL_Inventario\packages\SimpleCrypto.0.3.30.26\lib\SimpleCrypto.dll</HintPath>
       <Aliases>sc</Aliases>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="Antlr3.Runtime">
-      <HintPath>C:\Users\MágdalyZúniga\Documents\GitHub\ERP_ZORZAL\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+      <HintPath>C:\Users\MágdalyZúniga\Desktop\ERP_ZORZAL_Inventario\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="CrystalDecisions.CrystalReports.Design">
@@ -79,27 +79,27 @@
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="EntityFramework">
-      <HintPath>C:\Users\MágdalyZúniga\Documents\GitHub\ERP_ZORZAL\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>C:\Users\MágdalyZúniga\Desktop\ERP_ZORZAL_Inventario\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="EntityFramework.SqlServer">
-      <HintPath>C:\Users\MágdalyZúniga\Documents\GitHub\ERP_ZORZAL\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>C:\Users\MágdalyZúniga\Desktop\ERP_ZORZAL_Inventario\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="log4net">
-      <HintPath>C:\Users\MágdalyZúniga\Documents\GitHub\ERP_ZORZAL\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
+      <HintPath>C:\Users\MágdalyZúniga\Desktop\ERP_ZORZAL_Inventario\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
-      <HintPath>C:\Users\MágdalyZúniga\Documents\GitHub\ERP_ZORZAL\packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <HintPath>C:\Users\MágdalyZúniga\Desktop\ERP_ZORZAL_Inventario\packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
-      <HintPath>C:\Users\MágdalyZúniga\Documents\GitHub\ERP_ZORZAL\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.2\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <HintPath>C:\Users\MágdalyZúniga\Desktop\ERP_ZORZAL_Inventario\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.2\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Owin">
-      <HintPath>C:\Users\MágdalyZúniga\Documents\GitHub\ERP_ZORZAL\packages\Microsoft.AspNet.Identity.Owin.2.2.2\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+      <HintPath>C:\Users\MágdalyZúniga\Desktop\ERP_ZORZAL_Inventario\packages\Microsoft.AspNet.Identity.Owin.2.2.2\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.CSharp">
@@ -107,39 +107,39 @@
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.Owin">
-      <HintPath>C:\Users\MágdalyZúniga\Documents\GitHub\ERP_ZORZAL\packages\Microsoft.Owin.4.0.0\lib\net451\Microsoft.Owin.dll</HintPath>
+      <HintPath>C:\Users\MágdalyZúniga\Desktop\ERP_ZORZAL_Inventario\packages\Microsoft.Owin.4.0.0\lib\net451\Microsoft.Owin.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.Owin.Host.SystemWeb">
-      <HintPath>C:\Users\MágdalyZúniga\Documents\GitHub\ERP_ZORZAL\packages\Microsoft.Owin.Host.SystemWeb.4.0.0\lib\net451\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+      <HintPath>C:\Users\MágdalyZúniga\Desktop\ERP_ZORZAL_Inventario\packages\Microsoft.Owin.Host.SystemWeb.4.0.0\lib\net451\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.Owin.Security.Cookies">
-      <HintPath>C:\Users\MágdalyZúniga\Documents\GitHub\ERP_ZORZAL\packages\Microsoft.Owin.Security.Cookies.4.0.0\lib\net451\Microsoft.Owin.Security.Cookies.dll</HintPath>
+      <HintPath>C:\Users\MágdalyZúniga\Desktop\ERP_ZORZAL_Inventario\packages\Microsoft.Owin.Security.Cookies.4.0.0\lib\net451\Microsoft.Owin.Security.Cookies.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.Owin.Security">
-      <HintPath>C:\Users\MágdalyZúniga\Documents\GitHub\ERP_ZORZAL\packages\Microsoft.Owin.Security.4.0.0\lib\net451\Microsoft.Owin.Security.dll</HintPath>
+      <HintPath>C:\Users\MágdalyZúniga\Desktop\ERP_ZORZAL_Inventario\packages\Microsoft.Owin.Security.4.0.0\lib\net451\Microsoft.Owin.Security.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.Owin.Security.Facebook">
-      <HintPath>C:\Users\MágdalyZúniga\Documents\GitHub\ERP_ZORZAL\packages\Microsoft.Owin.Security.Facebook.4.0.0\lib\net451\Microsoft.Owin.Security.Facebook.dll</HintPath>
+      <HintPath>C:\Users\MágdalyZúniga\Desktop\ERP_ZORZAL_Inventario\packages\Microsoft.Owin.Security.Facebook.4.0.0\lib\net451\Microsoft.Owin.Security.Facebook.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.Owin.Security.Google">
-      <HintPath>C:\Users\MágdalyZúniga\Documents\GitHub\ERP_ZORZAL\packages\Microsoft.Owin.Security.Google.4.0.0\lib\net451\Microsoft.Owin.Security.Google.dll</HintPath>
+      <HintPath>C:\Users\MágdalyZúniga\Desktop\ERP_ZORZAL_Inventario\packages\Microsoft.Owin.Security.Google.4.0.0\lib\net451\Microsoft.Owin.Security.Google.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
-      <HintPath>C:\Users\MágdalyZúniga\Documents\GitHub\ERP_ZORZAL\packages\Microsoft.Owin.Security.MicrosoftAccount.4.0.0\lib\net451\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+      <HintPath>C:\Users\MágdalyZúniga\Desktop\ERP_ZORZAL_Inventario\packages\Microsoft.Owin.Security.MicrosoftAccount.4.0.0\lib\net451\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.Owin.Security.OAuth">
-      <HintPath>C:\Users\MágdalyZúniga\Documents\GitHub\ERP_ZORZAL\packages\Microsoft.Owin.Security.OAuth.4.0.0\lib\net451\Microsoft.Owin.Security.OAuth.dll</HintPath>
+      <HintPath>C:\Users\MágdalyZúniga\Desktop\ERP_ZORZAL_Inventario\packages\Microsoft.Owin.Security.OAuth.4.0.0\lib\net451\Microsoft.Owin.Security.OAuth.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.Owin.Security.Twitter">
-      <HintPath>C:\Users\MágdalyZúniga\Documents\GitHub\ERP_ZORZAL\packages\Microsoft.Owin.Security.Twitter.4.0.0\lib\net451\Microsoft.Owin.Security.Twitter.dll</HintPath>
+      <HintPath>C:\Users\MágdalyZúniga\Desktop\ERP_ZORZAL_Inventario\packages\Microsoft.Owin.Security.Twitter.4.0.0\lib\net451\Microsoft.Owin.Security.Twitter.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WebForms">
@@ -147,19 +147,19 @@
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.QualityTools.WebTestFramework">
-      <HintPath>C:\Users\MágdalyZúniga\Documents\GitHub\ERP_ZORZAL\packages\Microsoft.VisualStudio.QualityTools.WebTestFramework.12.0.40629.1\lib\net40\Microsoft.VisualStudio.QualityTools.WebTestFramework.dll</HintPath>
+      <HintPath>C:\Users\MágdalyZúniga\Desktop\ERP_ZORZAL_Inventario\packages\Microsoft.VisualStudio.QualityTools.WebTestFramework.12.0.40629.1\lib\net40\Microsoft.VisualStudio.QualityTools.WebTestFramework.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.Web.Infrastructure">
-      <HintPath>C:\Users\MágdalyZúniga\Documents\GitHub\ERP_ZORZAL\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <HintPath>C:\Users\MágdalyZúniga\Desktop\ERP_ZORZAL_Inventario\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>C:\Users\MágdalyZúniga\Documents\GitHub\ERP_ZORZAL\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>C:\Users\MágdalyZúniga\Desktop\ERP_ZORZAL_Inventario\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="Owin">
-      <HintPath>C:\Users\MágdalyZúniga\Documents\GitHub\ERP_ZORZAL\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+      <HintPath>C:\Users\MágdalyZúniga\Desktop\ERP_ZORZAL_Inventario\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations">
@@ -247,19 +247,19 @@
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="System.Web.Helpers">
-      <HintPath>C:\Users\MágdalyZúniga\Documents\GitHub\ERP_ZORZAL\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+      <HintPath>C:\Users\MágdalyZúniga\Desktop\ERP_ZORZAL_Inventario\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="System.Web.Mvc">
-      <HintPath>C:\Users\MágdalyZúniga\Documents\GitHub\ERP_ZORZAL\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+      <HintPath>C:\Users\MágdalyZúniga\Desktop\ERP_ZORZAL_Inventario\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="System.Web.Optimization">
-      <HintPath>C:\Users\MágdalyZúniga\Documents\GitHub\ERP_ZORZAL\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+      <HintPath>C:\Users\MágdalyZúniga\Desktop\ERP_ZORZAL_Inventario\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="System.Web.Razor">
-      <HintPath>C:\Users\MágdalyZúniga\Documents\GitHub\ERP_ZORZAL\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+      <HintPath>C:\Users\MágdalyZúniga\Desktop\ERP_ZORZAL_Inventario\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="System.Web.Routing">
@@ -271,15 +271,15 @@
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="System.Web.WebPages.Deployment">
-      <HintPath>C:\Users\MágdalyZúniga\Documents\GitHub\ERP_ZORZAL\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <HintPath>C:\Users\MágdalyZúniga\Desktop\ERP_ZORZAL_Inventario\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="System.Web.WebPages">
-      <HintPath>C:\Users\MágdalyZúniga\Documents\GitHub\ERP_ZORZAL\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+      <HintPath>C:\Users\MágdalyZúniga\Desktop\ERP_ZORZAL_Inventario\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="System.Web.WebPages.Razor">
-      <HintPath>C:\Users\MágdalyZúniga\Documents\GitHub\ERP_ZORZAL\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <HintPath>C:\Users\MágdalyZúniga\Desktop\ERP_ZORZAL_Inventario\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="System.Xml">
@@ -291,7 +291,7 @@
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="WebGrease">
-      <HintPath>C:\Users\MágdalyZúniga\Documents\GitHub\ERP_ZORZAL\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+      <HintPath>C:\Users\MágdalyZúniga\Desktop\ERP_ZORZAL_Inventario\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="System.Design">

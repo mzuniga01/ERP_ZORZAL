@@ -140,7 +140,6 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<UDV_Vent_PagosPorFechas> UDV_Vent_PagosPorFechas { get; set; }
         public virtual DbSet<UDV_Vent_Pedido_EntreFechas> UDV_Vent_Pedido_EntreFechas { get; set; }
         public virtual DbSet<UDV_Vent_prueba> UDV_Vent_prueba { get; set; }
-        public virtual DbSet<UDV_Vent_PuntoEmisionEstado> UDV_Vent_PuntoEmisionEstado { get; set; }
         public virtual DbSet<UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporte> UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporte { get; set; }
         public virtual DbSet<UDV_Vent_tbSolicituEfectivo_EntreFechas> UDV_Vent_tbSolicituEfectivo_EntreFechas { get; set; }
         public virtual DbSet<UDV_Vent_VentasConsumidorFinal> UDV_Vent_VentasConsumidorFinal { get; set; }
@@ -2376,7 +2375,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<long>>("SDP_Inv_tbSalida_Factura_Exist", fact_CodigoParameter);
         }
     
-        public virtual ObjectResult<UDP_Acce_tbRolesUsuario_Insert_Result> UDP_Acce_tbRolesUsuario_Insert(Nullable<int> usu_Id, Nullable<int> rol_Id)
+        public virtual ObjectResult<UDP_Acce_tbRolesUsuario_Insert_Result> UDP_Acce_tbRolesUsuario_Insert(Nullable<int> usu_Id, Nullable<int> rol_Id, Nullable<int> rolu_UsuarioCrea, Nullable<System.DateTime> rolu_FechaCrea)
         {
             var usu_IdParameter = usu_Id.HasValue ?
                 new ObjectParameter("usu_Id", usu_Id) :
@@ -2386,7 +2385,15 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("rol_Id", rol_Id) :
                 new ObjectParameter("rol_Id", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Acce_tbRolesUsuario_Insert_Result>("UDP_Acce_tbRolesUsuario_Insert", usu_IdParameter, rol_IdParameter);
+            var rolu_UsuarioCreaParameter = rolu_UsuarioCrea.HasValue ?
+                new ObjectParameter("rolu_UsuarioCrea", rolu_UsuarioCrea) :
+                new ObjectParameter("rolu_UsuarioCrea", typeof(int));
+    
+            var rolu_FechaCreaParameter = rolu_FechaCrea.HasValue ?
+                new ObjectParameter("rolu_FechaCrea", rolu_FechaCrea) :
+                new ObjectParameter("rolu_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Acce_tbRolesUsuario_Insert_Result>("UDP_Acce_tbRolesUsuario_Insert", usu_IdParameter, rol_IdParameter, rolu_UsuarioCreaParameter, rolu_FechaCreaParameter);
         }
     
         public virtual ObjectResult<SDP_Gral_tbEmpleado_Select_Result> SDP_Gral_tbEmpleado_Select(Nullable<short> emp_Id)
@@ -2396,31 +2403,6 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("emp_Id", typeof(short));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_Gral_tbEmpleado_Select_Result>("SDP_Gral_tbEmpleado_Select", emp_IdParameter);
-        }
-    
-        public virtual ObjectResult<UDP_Acce_tbBitacoraErrores_Insert_Result> UDP_Acce_tbBitacoraErrores_Insert(Nullable<int> obj_Id, Nullable<int> bite_Usuario, Nullable<System.DateTime> bite_Fecha, string bite_MensajeError, string bite_Accion)
-        {
-            var obj_IdParameter = obj_Id.HasValue ?
-                new ObjectParameter("obj_Id", obj_Id) :
-                new ObjectParameter("obj_Id", typeof(int));
-    
-            var bite_UsuarioParameter = bite_Usuario.HasValue ?
-                new ObjectParameter("bite_Usuario", bite_Usuario) :
-                new ObjectParameter("bite_Usuario", typeof(int));
-    
-            var bite_FechaParameter = bite_Fecha.HasValue ?
-                new ObjectParameter("bite_Fecha", bite_Fecha) :
-                new ObjectParameter("bite_Fecha", typeof(System.DateTime));
-    
-            var bite_MensajeErrorParameter = bite_MensajeError != null ?
-                new ObjectParameter("bite_MensajeError", bite_MensajeError) :
-                new ObjectParameter("bite_MensajeError", typeof(string));
-    
-            var bite_AccionParameter = bite_Accion != null ?
-                new ObjectParameter("bite_Accion", bite_Accion) :
-                new ObjectParameter("bite_Accion", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Acce_tbBitacoraErrores_Insert_Result>("UDP_Acce_tbBitacoraErrores_Insert", obj_IdParameter, bite_UsuarioParameter, bite_FechaParameter, bite_MensajeErrorParameter, bite_AccionParameter);
         }
     
         public virtual ObjectResult<string> UDP_Inv_tbProveedor_Update(Nullable<int> prov_Id, string prov_Nombre, string prov_NombreContacto, string prov_Direccion, string prov_Email, string prov_Telefono, string prov_RTN, Nullable<short> acte_Id, Nullable<int> prov_UsuarioCrea, Nullable<System.DateTime> prov_FechaCrea, Nullable<int> prov_UsuarioModifica, Nullable<System.DateTime> prov_FechaModifica)
@@ -3252,6 +3234,31 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("ent_FechaModifica", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbEntrada_Update_Result>("UDP_Inv_tbEntrada_Update", ent_IdParameter, ent_NumeroFormatoParameter, ent_FechaElaboracionParameter, bod_IdParameter, prov_IdParameter, ent_FacturaCompraParameter, ent_FechaCompraParameter, fact_IdParameter, ent_RazonDevolucionParameter, ent_BodegaDestinoParameter, tent_IdParameter, ent_UsuarioCreaParameter, ent_FechaCreaParameter, ent_UsuarioModificaParameter, ent_FechaModificaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Acce_tbBitacoraErrores_Insert_Result> UDP_Acce_tbBitacoraErrores_Insert(Nullable<int> obj_Id, Nullable<int> bite_Usuario, Nullable<System.DateTime> bite_Fecha, string bite_MensajeError, string bite_Accion)
+        {
+            var obj_IdParameter = obj_Id.HasValue ?
+                new ObjectParameter("obj_Id", obj_Id) :
+                new ObjectParameter("obj_Id", typeof(int));
+    
+            var bite_UsuarioParameter = bite_Usuario.HasValue ?
+                new ObjectParameter("bite_Usuario", bite_Usuario) :
+                new ObjectParameter("bite_Usuario", typeof(int));
+    
+            var bite_FechaParameter = bite_Fecha.HasValue ?
+                new ObjectParameter("bite_Fecha", bite_Fecha) :
+                new ObjectParameter("bite_Fecha", typeof(System.DateTime));
+    
+            var bite_MensajeErrorParameter = bite_MensajeError != null ?
+                new ObjectParameter("bite_MensajeError", bite_MensajeError) :
+                new ObjectParameter("bite_MensajeError", typeof(string));
+    
+            var bite_AccionParameter = bite_Accion != null ?
+                new ObjectParameter("bite_Accion", bite_Accion) :
+                new ObjectParameter("bite_Accion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Acce_tbBitacoraErrores_Insert_Result>("UDP_Acce_tbBitacoraErrores_Insert", obj_IdParameter, bite_UsuarioParameter, bite_FechaParameter, bite_MensajeErrorParameter, bite_AccionParameter);
         }
     }
 }

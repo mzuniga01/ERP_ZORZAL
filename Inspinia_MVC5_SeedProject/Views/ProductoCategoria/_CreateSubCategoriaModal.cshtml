@@ -10,35 +10,32 @@
         text-transform: uppercase;
     }
 </style>
-                <div class="ibox-title">
-                    <h5>Crear SubCategoría</h5>
-                </div>
-                <div class="ibox-content">
-                    <div class="form-horizontal">
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.pscat_Descripcion, new { @class = "control-label col-md-2" })
-                            <div class="col-md-4">
-                                <input type="text" id="pscat_Descripcion" onkeypress="return soloLetras(event)" placeholder="" class="form-control" maxlength = "150" />
-                                <div id="DescripcionError">
-                                    <p style="color:red">
-                                        @Html.ValidationMessageFor(model => model.pscat_Descripcion)
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+<div class="form-horizontal">
+    <div class="form-group">
+        @Html.LabelFor(model => model.pscat_Descripcion, new { @class = "control-label col-md-2" })
+        <div class="col-md-4">
+            <input type="text" id="pscat_Descripcion" onkeypress="return soloLetras(event)" placeholder="" class="form-control" maxlength="150" />
+            <div id="DescripcionError">
+                <p style="color:red">
+                    @Html.ValidationMessageFor(model => model.pscat_Descripcion)
+                </p>
+            </div>
+        </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.pscat_ISV, new { @class = "control-label col-md-2" })
-                            <div class="col-md-4">
-                                <input type="number" id="pscat_ISV" placeholder="" class="form-control" min="1" />
-                                <div id="ISVError">
-                                    @Html.ValidationMessageFor(model => model.pscat_ISV)
-                                </div>
-                            </div>
-                          
-                            <div class="col-md-offset-4">
-                                <input type="button" value="Agregar" id="AgregarSubCategorias" class="btn btn btn-primary" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        @Html.LabelFor(model => model.pscat_ISV, new { @class = "control-label col-md-3" })
+        <div class="col-md-2">
+            <input type="number" id="pscat_ISV" placeholder="" class="form-control" min="1" />
+            <div id="ISVError">
+                @Html.ValidationMessageFor(model => model.pscat_ISV)
+            </div>
+        </div>
+
+        <div class="col-md-1">
+            <input type="button" value="Agregar" id="AgregarSubCategorias" class="btn btn btn-primary" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        
+    </div>
+</div>

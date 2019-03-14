@@ -91,7 +91,7 @@ namespace ERP_GMEDINA.Controllers
                         if (MsjError.StartsWith("-1"))
                         {
                             Function.InsertBitacoraErrores("ProductoCategoria/Create", MsjError, "Create");
-                            ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                            ModelState.AddModelError("", "1. No se pudo insertar el registro, favor contacte al administrador." + MsjError);
                             return View(tbProductoCategoria);
                         }
                         else
@@ -124,9 +124,10 @@ namespace ERP_GMEDINA.Controllers
                     }
                     catch (Exception Ex)
                     {
+                        
                         Ex.Message.ToString();
-                        Function.InsertBitacoraErrores("ProductoCategoria/Create", Ex.Message.ToString(), "Create");
-                        ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                        string msj = Function.InsertBitacoraErrores("ProductoCategoria/Create", Ex.Message.ToString(), "Create");
+                        ModelState.AddModelError("", "2. No se pudo insertar el registro, favor contacte al administrador");
                         return View(tbProductoCategoria);
                     }
                 }
@@ -244,60 +245,51 @@ namespace ERP_GMEDINA.Controllers
                         foreach (UDP_Inv_tbProductoCategoria_Update_Result ProductoCategoria in cate)
                             MsjError = ProductoCategoria.MensajeError;
 
-                        if (MsjError == "-1")
+                        if (MsjError.StartsWith("-1"))
                         {
-                            ModelState.AddModelError("", "No se Actualizó el Registro");
-                            ViewBag.pcat_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbProductoCategoria.pcat_UsuarioModifica);
-                            ViewBag.pcat_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbProductoCategoria.pcat_UsuarioCrea);
+                            Function.InsertBitacoraErrores("ProductoCategoria/Edit", MsjError, "Edit");
+                            ModelState.AddModelError("", "1. No se pudo actualizar el registro, favor contacte al administrador.");
                             return View(tbProductoCategoria);
                         }
                         else
                         {
-                            if (List != null)
+                            if (List != null && List.Count > 0)
                             {
-                                    ViewBag.pcat_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbProductoCategoria.pcat_UsuarioModifica);
-                                if (List.Count > 0)
+                                foreach (tbProductoSubcategoria subcategoria in List)
                                 {
+                                    subcate = db.UDP_Inv_tbProductoSubcategoria_Insert(subcategoria.pscat_Descripcion
+                                                                                , Convert.ToInt16(MsjError),
+                                                                                Function.GetUser(), Function.DatetimeNow(),
+                                                                                subcategoria.pscat_ISV
+                                                                                );
 
-                                    foreach (tbProductoSubcategoria subcategoria in List)
+                                    foreach (UDP_Inv_tbProductoSubcategoria_Insert_Result ProdSubCate in subcate)
+                                        MensajeError = ProdSubCate.MensajeError;
+                                    if (MensajeError.StartsWith("-1"))
                                     {
-                                        subcate = db.UDP_Inv_tbProductoSubcategoria_Insert(subcategoria.pscat_Descripcion
-                                                                                    , Convert.ToInt16(MsjError),
-                                                                                    Function.GetUser(), Function.DatetimeNow(),
-                                                                                    subcategoria.pscat_ISV
-                                                                                    );
-
-                                        foreach (UDP_Inv_tbProductoSubcategoria_Insert_Result ProdSubCate in subcate)
-                                            MensajeError = ProdSubCate.MensajeError;
-                                        if (MensajeError.StartsWith("-1"))
-                                        {
-                                            Function.InsertBitacoraErrores("ProductoCategoria/Edit", MsjError, "Edit");
-                                            ModelState.AddModelError("", "No se pudo insertar el registro detalle, favor contacte al administrador.");
-                                            return RedirectToAction("Edit/" + MsjError);
-                                        }
+                                        string esto = Function.InsertBitacoraErrores("ProductoCategoria/Edit", MensajeError, "Edit");
+                                        ModelState.AddModelError("", "No se pudo insertar el registro detalle, favor contacte al administrador.");
+                                        return View(tbProductoCategoria);
                                     }
                                 }
                             }
                             _Tran.Complete();
-                            return RedirectToAction("Edit/" + MsjError);
+                            return View(tbProductoCategoria);
                         }
                     }
                     catch (Exception Ex)
                     {
                         Function.InsertBitacoraErrores("ProductoCategoria/Edit", Ex.Message.ToString(), "Edit");
-                        ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
-                        ViewBag.pcat_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbProductoCategoria.pcat_UsuarioModifica);
-                        ViewBag.pcat_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbProductoCategoria.pcat_UsuarioCrea);
-                        return RedirectToAction("Edit/" + MsjError);
+                        ModelState.AddModelError("", "2. No se pudo actualizar el registro, favor contacte al administrador.");
+                        return View(tbProductoCategoria);
                     }
                 }
             }
-            ViewBag.pcat_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbProductoCategoria.pcat_UsuarioModifica);
-            ViewBag.pcat_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbProductoCategoria.pcat_UsuarioCrea);
             return View(tbProductoCategoria);
         }
 
         //funciona 
+        [SessionManager("ProductoCategoria/Delete")]
         public ActionResult EliminarProductoCategoria(int? id)
         {
 
