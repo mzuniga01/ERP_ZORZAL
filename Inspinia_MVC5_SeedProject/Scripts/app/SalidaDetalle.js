@@ -4,16 +4,22 @@ var CantidadExit = 0.00;
 
 $(function () {
     $("#sal_FechaElaboracion").datepicker({
-        dateFormat: 'mm-dd-yy',
+        dateFormat: 'dd-mm-yy',
         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-        dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá']
-    }).datepicker("setDate", new Date());
+        dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+        buttonImageOnly: true,
+        minDate: '0',
+        inline: true,
+        changeMonth: true,
+        changeYear: true
+    }).datepicker("setDate", new Date()), { showAnim: "fade-in" };
 });
+//maxDate: '0',
 
 function validateMyForm() {
     //Bodega
-    var Bod = document.getElementById("bod_Id");
-    var Bodega = Bod.options[Bod.selectedIndex].text;
+    //var Bod = document.getElementById("bod_Id");
+    //var Bodega = Bod.options[Bod.selectedIndex].text;
 
     /////////
     //TipoSalida
@@ -38,16 +44,16 @@ function validateMyForm() {
         $('#sal_FechaElaboracionError').text('');
         vFecha = true
     }
-    if (Bodega.startsWith("Seleccione")) {
-        $('#bod_IdError').text('');
-        $('#validationbod_Id').after('<ul id="bod_IdError" class="validation-summary-errors text-danger">Seleccione una Bodega</ul>');
-        vBodega = false;
-    }
-    else {
-        $('#bod_IdError').text('');
+    //if (Bodega.startsWith("Seleccione")) {
+    //    $('#bod_IdError').text('');
+    //    $('#validationbod_Id').after('<ul id="bod_IdError" class="validation-summary-errors text-danger">Seleccione una Bodega</ul>');
+    //    vBodega = false;
+    //}
+    //else {
+    //    $('#bod_IdError').text('');
 
-        vBodega = true
-    }
+    //    vBodega = true
+    //}|| !vBodega
     if (TipoSalida.startsWith("Seleccionar")) {
         $('#NombreError').text('');
         $('#validationtsal_Id').after('<ul id="NombreError" class="validation-summary-errors text-danger">Seleccione un tipo de salida</ul>');
@@ -57,7 +63,7 @@ function validateMyForm() {
         $('#NombreError').text('');
         vTipoSalida = true;
         if (TipoSalida == "Prestamo") {
-            if (BodDestino == 'Seleccione una Bodega de Destino') {
+            if (BodDestino == 'Seleccione una Bodega de Destino' || BodDestino == "") {
                 $('#sal_BodDestinoError').text('');
                 $('#validationsal_BodDestino').after('<ul id="sal_BodDestinoError" class="validation-summary-errors text-danger">Seleccione una bodega de Destino</ul>');
                 vBodDestino = false;
@@ -131,31 +137,96 @@ function validateMyForm() {
     }
     if (Tabla == "No hay registros") {
         vSalidaDetalle = false;
+        //window.location.hash = '#alert_message';
+        //$('#').focus();
+        $("#alert_message").css("display", "block");
+        $('#alert_message').html('<div class="alert alert-danger alert-dismissible" role="alert">'
+                                            +'<button type="button" class="close" data-dismiss="alert" aria-label="Close">'
+                                                    +'<span aria-hidden="true">&times;</span>'
+                                            +'</button>'
+                                        +'<strong>Detalle Vacio</strong>'
+                                  + '</div>');
+        //document.getElementById('alert_message').scrollIntoView()
+        window.location.hash = '#alert_message';
 
-        $('#alert_message').focus();
 
-        $('#alert_message').html('<div class="alert alert-danger">No hay Detalle</div>');
-        setInterval(function () {
-            $('#alert_message').html('');
-            $('#prod_CodigoBarras').focus()
-        }, 5000);
+        //setInterval(function () {
+        //    $('#alert_message').html('');
+        //    $('#prod_CodigoBarras').focus()
+        //}, 5000);
     }
     else {
         vSalidaDetalle = true;
     }
-    if (!vFecha || !vBodega || !vTipoSalida || !vBodDestino || !vFactura || !vDevolucion || !vSalidaDetalle) {
+    if (!vFecha  || !vTipoSalida || !vBodDestino || !vFactura || !vDevolucion || !vSalidaDetalle) {
         return false;
     }
     else {
         return true
     }
+} 
+
+// Copiar y Pegar///
+$(document).ready(function () {
+    $('#prod_CodigoBarras').bind("cut copy paste", function (e) {
+        e.preventDefault();
+    });
+    $('#sal_RazonDevolucion').bind("cut copy paste", function (e) {
+        e.preventDefault();
+    });
+});
+function check(e) {
+    tecla = (document.all) ? e.keyCode : e.which;
+    //Tecla de retroceso para borrar, siempre la permite
+    if (tecla == 8) {
+        return true;
+    }
+    // Patron de entrada, en este caso solo acepta numeros y letras
+    patron = /[A-Za-z0-9]/;
+    tecla_final = String.fromCharCode(tecla);
+    return patron.test(tecla_final);
 }
 
-function fBodega() {
-    var e = document.getElementById("bod_Id");
-    var vBodega = e.options[e.selectedIndex].text;
-    return vBodega
-};
+function filterFloat(evt, input) {
+    // Backspace = 8, Enter = 13, ‘0′ = 48, ‘9′ = 57, ‘.’ = 46, ‘-’ = 43
+    var key = window.Event ? evt.which : evt.keyCode;
+    var chark = String.fromCharCode(key);
+    var tempValue = input.value + chark;
+    if (key >= 48 && key <= 57) {
+        if (filter(tempValue) === false) {
+            return false;
+        } else {
+            return true;
+        }
+    } else {
+        if (key == 8 || key == 13 || key == 0) {
+            return true;
+        } else if (key == 46) {
+            if (filter(tempValue) === false) {
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            return false;
+        }
+    }
+}
+function filter(__val__) {
+    var preg = /^([0-9]+\.?[0-9]{0,2})$/;
+    if (preg.test(__val__) === true) {
+        return true;
+    } else {
+        return false;
+    }
+
+}
+
+//function fBodega() {
+//    var e = document.getElementById("bod_Id");
+//    var vBodega = e.options[e.selectedIndex].text;
+//    return vBodega
+//};
 
 function TipoSalida() {
     var e = document.getElementById("tsal_Id");
@@ -266,7 +337,13 @@ function GetSalidaDetalle() {
     };
     return SalidaDetalle;
 }
+$(document).on("click", "#Datatable tbody tr td button#SeleccionarFactura", function () {
+    var fact_Codigo = this.value;
 
+    console.log(fact_Codigo);
+    $('#fact_Codigo').val(fact_Codigo);
+    FaturaExist()
+})
 function CantidadExiste(Cod_Producto, CantidadAceptada) {
     if ($('#tblSalidaDetalle >tbody >tr').length > 0) {
         $('#tblSalidaDetalle >tbody >tr').each(function () {
@@ -283,18 +360,18 @@ function CantidadExiste(Cod_Producto, CantidadAceptada) {
         })
     }
 }
-$('#sal_BodDestino').click(function () {
-    var Bod = document.getElementById("bod_Id");
-    var Bodega = Bod.options[Bod.selectedIndex].text;
-    if (Bodega.startsWith("Seleccione")) {
-        $('#bod_IdError').text('');
-        $('#validationbod_Id').after('<ul id="bod_IdError" class="validation-summary-errors text-danger">Seleccione una Bodega</ul>');
-    }
-    else {
-        $('#bod_IdError').text('');
+//$('#sal_BodDestino').click(function () {
+//    var Bod = document.getElementById("bod_Id");
+//    var Bodega = Bod.options[Bod.selectedIndex].text;
+//    if (Bodega.startsWith("Seleccione")) {
+//        $('#bod_IdError').text('');
+//        $('#validationbod_Id').after('<ul id="bod_IdError" class="validation-summary-errors text-danger">Seleccione una Bodega</ul>');
+//    }
+//    else {
+//        $('#bod_IdError').text('');
 
-    }
-})
+//    }
+//})
 
 $('#AgregarSalidaDetalle').click(function () {
     var table = $('#tblSalidaDetalle').DataTable();
@@ -305,112 +382,136 @@ $('#AgregarSalidaDetalle').click(function () {
     var Unidad_Medida = $('#pscat_Id').val();
     var Cantidad = $('#sald_Cantidad').val();
     var data_producto = $("#prod_Codigo").val();
+    var CodBarra_Producto = $('#prod_CodigoBarras').val();
     $('#sald_CantidadError').text();
-    ProductoCantidad(bod_Id, Cod_Producto).done(function (data) {
-        var CantidadAceptada = data.CantidadAceptada
-        var CantidadMinima = data.CantidadMinima
+    var vCodBarra_Producto = true;
+    var vCantidad = true;
 
-        if ($('#tblSalidaDetalle >tbody >tr').length > 0) {
-            $('#tblSalidaDetalle >tbody >tr').each(function () {
-                var prod_CodigoTabla = $(this).find("td:eq(0)").text()
-                if (Cod_Producto == prod_CodigoTabla) {
-                    var CantidadTabla = $(this).find("td:eq(7)").text();
-                    CantidadExit = parseFloat(CantidadAceptada) - parseFloat(CantidadTabla);
-                }
-                else {
-                    CantidadExit = CantidadAceptada
-                }
-            })
-        }
-        else {
-            CantidadExit = CantidadAceptada
-        }
-        console.log(CantidadExit)
-        if (Producto == '') {
-            $('#MessageError').text('');
-            $('#CodigoError').text('');
-            $('#ValidationCodigoCreateError').text('');
-            $('#ValidationCodigoCreate').after('<ul id="ValidationCodigoCreateError" class="validation-summary-errors text-danger">Campo Producto Requerido</ul>');
-        }
-        else if (Cantidad == '' || Cantidad < 0.25) {
-            $('#MessageError').text('');
-            $('#sald_CantidadExedError').text('');
-            $('#sald_CantidadError').text('');
-            $('#sald_Cantidad').after('<ul id="sald_CantidadError" class="validation-summary-errors text-danger">Cantidad Requerido</ul>');
-        }
-        else if (Cantidad > CantidadExit) {
-            $('#MessageError').text('');
-            $('#sald_CantidadError').text('');
-            $('#sald_CantidadExedError').text('');
-            $('#sald_Cantidad').after('<ul id="sald_CantidadExedError" class="validation-summary-errors text-danger">Cantidad Superada</ul>');
-        }
-        else {
-            $('#ValidationCodigoCreateError').text('');
-            $('#sald_CantidadError').text('');
-            $('#sald_CantidadExedError').text('');
-            $('#CantidaExistenteProd').text('');
-            var tbSalidaDetalle = GetSalidaDetalle();
-            $.ajax({
-                url: "/Salida/SaveSalidaDetalle",
-                method: "POST",
-                dataType: 'json',
-                contentType: "application/json; charset=utf-8",
-                data: JSON.stringify({ SalidaDetalle: tbSalidaDetalle, data_producto: data_producto }),
-            }).done(function (datos) {
-                if (datos == data_producto) {
-                    console.log('Repetido');
-                    var cantfisica_nueva = $('#sald_Cantidad').val();
-                    $("#tblSalidaDetalle td").each(function () {
-                        var prueba = $(this).text()
-                        if (prueba == data_producto) {
-                            table.row($(this).parents('tr')).remove().draw();
-                            var idcontador = $(this).closest('tr').data('id');
-                            var cantfisica_anterior = $(this).closest("tr").find("td:eq(7)").text();
-                            var sumacantidades = parseInt(cantfisica_nueva) + parseInt(cantfisica_anterior);
+    if (CodBarra_Producto == "") {
+        $('#ValidationCodigoBarrasCreateError').text('');
+        $('#validationprod_CodigoBarras').after('<ul id="ValidationCodigoBarrasCreateError" class="validation-summary-errors text-danger">Campo de Barras Requerido</ul>');
+        vCodBarra_Producto = false;
+    }
+    if (Cantidad == "") {
+        $('#MessageError').text('');
+        $('#sald_CantidadExedError').text('');
+        $('#sald_CantidadError').text('');
+        $('#sald_Cantidad').after('<ul id="sald_CantidadError" class="validation-summary-errors text-danger">Cantidad Requerida</ul>');
+        vCantidad = false;
+    }
+    if (!vCantidad || !vCodBarra_Producto) {
+        return false;
+    }
+    else {
+        $('#ValidationCodigoBarrasCreateError').text('');
+        ProductoCantidad(bod_Id, Cod_Producto).done(function (data) {
+            var CantidadAceptada = data.CantidadAceptada
+            var CantidadMinima = data.CantidadMinima
+            if ($('#tblSalidaDetalle >tbody >tr').length > 0) {
+                $('#tblSalidaDetalle >tbody >tr').each(function () {
+                    var prod_CodigoTabla = $(this).find("td:eq(0)").text()
+                    if (Cod_Producto == prod_CodigoTabla) {
+                        var CantidadTabla = $(this).find("td:eq(7)").text();
+                        CantidadExit = parseFloat(CantidadAceptada) - parseFloat(CantidadTabla);
+                    }
+                    else {
+                        CantidadExit = CantidadAceptada
+                    }
+                })
+            }
+            else {
+                CantidadExit = CantidadAceptada
+            }
+            console.log(CantidadExit)
+            if (Producto == '') {
+                $('#MessageError').text('');
+                $('#CodigoError').text('');
+                $('#ValidationCodigoCreateError').text('');
+                $('#ValidationCodigoCreate').after('<ul id="ValidationCodigoCreateError" class="validation-summary-errors text-danger">Campo Producto Requerido</ul>');
+            }
+            else if (Cantidad == '' || Cantidad < 0.25) {
+                $('#MessageError').text('');
+                $('#sald_CantidadExedError').text('');
+                $('#sald_CantidadError').text('');
+                $('#sald_Cantidad').after('<ul id="sald_CantidadError" class="validation-summary-errors text-danger">Cantidad Requerido</ul>');
+            }
+            else if (Cantidad > CantidadExit) {
+                $('#MessageError').text('');
+                $('#sald_CantidadError').text('');
+                $('#sald_CantidadExedError').text('');
+                $('#sald_Cantidad').after('<ul id="sald_CantidadExedError" class="validation-summary-errors text-danger">Cantidad Superada</ul>');
+            }
+            else {
+                $('#ValidationCodigoCreateError').text('');
+                $('#sald_CantidadError').text('');
+                $('#sald_CantidadExedError').text('');
+                $('#CantidaExistenteProd').text('');
+                var tbSalidaDetalle = GetSalidaDetalle();
+                $.ajax({
+                    url: "/Salida/SaveSalidaDetalle",
+                    method: "POST",
+                    dataType: 'json',
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify({ SalidaDetalle: tbSalidaDetalle, data_producto: data_producto }),
+                }).done(function (datos) {
+                    $("#prod_CodigoBarras").removeAttr("readonly");
+                    if (datos == data_producto) {
+                        console.log('Repetido');
+                        var cantfisica_nueva = $('#sald_Cantidad').val();
+                        $("#tblSalidaDetalle td").each(function () {
+                            var prueba = $(this).text()
+                            if (prueba == data_producto) {
+                                table.row($(this).parents('tr')).remove().draw();
+                                var idcontador = $(this).closest('tr').data('id');
+                                var cantfisica_anterior = $(this).closest("tr").find("td:eq(7)").text();
+                                var sumacantidades = parseInt(cantfisica_nueva) + parseInt(cantfisica_anterior);
 
-                            table.row.add([
-                                $('#prod_Codigo').val(),
-                                $('#prod_Descripcion').val(),
-                                $('#prod_Marca').val(),
-                                $('#prod_Modelo').val(),
-                                $('#prod_Talla').val(),
-                                $('#pcat_Id').val(),
-                                $('#uni_Id').val(),
-                                sumacantidades,
-                                '<button id = "removeSalidaDetalle" class= "btn btn-danger btn-xs eliminar" type = "button">-</button>'
+                                table.row.add([
+                                    $('#prod_Codigo').val(),
+                                    $('#prod_Descripcion').val(),
+                                    $('#prod_Marca').val(),
+                                    $('#prod_Modelo').val(),
+                                    $('#prod_Talla').val(),
+                                    $('#pcat_Id').val(),
+                                    $('#uni_Id').val(),
+                                    sumacantidades,
+                                    '<button id = "removeSalidaDetalle" class= "btn btn-danger btn-xs eliminar" type = "button">-</button>'
 
-                            ]).draw(false);
-                        }
-                    });
-                } else {
-                    table.row.add([
-                        $('#prod_Codigo').val(),
-                        $('#prod_Descripcion').val(),
-                        $('#prod_Marca').val(),
-                        $('#prod_Modelo').val(),
-                        $('#prod_Talla').val(),
-                        $('#pcat_Id').val(),
-                        $('#uni_Id').val(),
-                        $('#sald_Cantidad').val(),
-                        '<button id = "removeSalidaDetalle" class= "btn btn-danger btn-xs eliminar" type = "button">-</button>'
+                                ]).draw(false);
+                            }
+                        });
+                    } else {
+                        table.row.add([
+                            $('#prod_Codigo').val(),
+                            $('#prod_Descripcion').val(),
+                            $('#prod_Marca').val(),
+                            $('#prod_Modelo').val(),
+                            $('#prod_Talla').val(),
+                            $('#pcat_Id').val(),
+                            $('#uni_Id').val(),
+                            $('#sald_Cantidad').val(),
+                            '<button id = "removeSalidaDetalle" class= "btn btn-danger btn-xs eliminar" type = "button">-</button>'
 
-                    ]).draw(false);
-                }
-            }).done(function (data) {
-                $('#prod_Codigo').val('');
-                $('#prod_Descripcion').val('');
-                $('#pscat_Id').val('');
-                $('#uni_Id').val('');
-                $('#pcat_Id').val('');
-
-                $("#prod_CodigoBarras").val('');
-                $('#sald_Cantidad').val('');
-                $('#Error_Barras').text('');
-                $('#NombreError').text('');
-                console.log('Hola');
-            });
-        }
-    });
+                        ]).draw(false);
+                    }
+                }).done(function (data) {
+                    $('#prod_Codigo').val('');
+                    $('#prod_Descripcion').val('');
+                    $('#pscat_Id').val('');
+                    $('#uni_Id').val('');
+                    $('#pcat_Id').val('');
+                    $("#prod_CodigoBarras").val('');
+                    $('#sald_Cantidad').val('');
+                    $('#Error_Barras').text('');
+                    $('#NombreError').text('');
+                    $('#sald_CantidadError').text('');
+                    $('#CantidaExistenteProd').text('');
+                    $('#prod_CodigoBarras').focus();
+                    console.log('Hola');
+                });
+            }
+        });
+    }
 });
 function SeleccionProductoTabla() {
     console.log(cantfisica_anterior)

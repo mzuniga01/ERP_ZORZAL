@@ -1,0 +1,186 @@
+﻿@model IEnumerable<ERP_GMEDINA.Models.tbFactura>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                @*<div class="ibox-title">
+                    <h5>List of tbFactura</h5>
+					<div class="ibox-tools">
+						@Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary btn-xs"})
+					</div>
+                </div>*@
+                <div class="ibox-content">
+
+<table class="table table table-striped  table-bordered" id="Datatable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.fact_Codigo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fact_Fecha)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.pemi_NumeroCAI)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.fact_AlCredito)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.fact_DiasCredito)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.fact_PorcentajeDescuento)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.fact_Vendedor)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.clte_Identificacion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.clte_Nombres)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.fact_IdentidadTE)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.fact_NombresTE)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.fact_FechaNacimientoTE)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.fact_FechaAutoriza)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.fact_EsAnulada)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.fact_RazonAnulado)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.fact_FechaCrea)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.fact_FechaModifica)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.tbUsuario.usu_NombreUsuario)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.tbUsuario1.usu_NombreUsuario)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.tbUsuario2.usu_NombreUsuario)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.tbCaja.cja_Descripcion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.tbCliente.clte_Identificacion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.tbEstadoFactura.esfac_Descripcion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.tbSucursal.mun_Codigo)
+                </th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fact_Codigo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fact_Fecha)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.pemi_NumeroCAI)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.fact_AlCredito)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fact_DiasCredito)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fact_PorcentajeDescuento)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fact_Vendedor)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.clte_Identificacion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.clte_Nombres)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fact_IdentidadTE)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fact_NombresTE)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fact_FechaNacimientoTE)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fact_FechaAutoriza)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fact_EsAnulada)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fact_RazonAnulado)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fact_FechaCrea)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fact_FechaModifica)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tbUsuario.usu_NombreUsuario)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tbUsuario1.usu_NombreUsuario)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tbUsuario2.usu_NombreUsuario)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tbCaja.cja_Descripcion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tbCliente.clte_Identificacion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tbEstadoFactura.esfac_Descripcion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tbSucursal.mun_Codigo)
+                    </td>*@
+                <td>
+                    <button class="btn btn-primary btn-xs" value="@item.fact_Codigo" id="SeleccionarFactura" data-dismiss="modal">Seleccionar</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+

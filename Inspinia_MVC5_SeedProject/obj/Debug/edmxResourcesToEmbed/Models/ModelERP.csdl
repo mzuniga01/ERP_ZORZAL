@@ -1880,6 +1880,25 @@
       <Parameter Name="usu_EsActivo" Mode="In" Type="Boolean" />
       <Parameter Name="usu_RazonInactivo" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="UDP_Inv_tbSalidaDetalle_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbSalidaDetalle_Insert_Result)">
+      <Parameter Name="sal_Id" Mode="In" Type="Int32" />
+      <Parameter Name="prod_Codigo" Mode="In" Type="String" />
+      <Parameter Name="sald_Cantidad" Mode="In" Type="Decimal" />
+      <Parameter Name="box_Codigo" Mode="In" Type="String" />
+      <Parameter Name="sald_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="sald_FechaCrea" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Inv_tbSalidaDetalle_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbSalidaDetalle_Update_Result)">
+      <Parameter Name="sald_Id" Mode="In" Type="Int32" />
+      <Parameter Name="sal_Id" Mode="In" Type="Int32" />
+      <Parameter Name="prod_Codigo" Mode="In" Type="String" />
+      <Parameter Name="sald_Cantidad" Mode="In" Type="Decimal" />
+      <Parameter Name="box_Codigo" Mode="In" Type="String" />
+      <Parameter Name="sald_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="sald_FechaCrea" Mode="In" Type="DateTime" />
+      <Parameter Name="sald_UsuarioModifica" Mode="In" Type="Int32" />
+      <Parameter Name="sald_FechaModifica" Mode="In" Type="DateTime" />
+    </FunctionImport>
     <EntitySet Name="tbSalida" EntityType="ERP_ZORZALModel.tbSalida" />
     <AssociationSet Name="FK_Inv_tbSalida_Sal_UsuarioModifica" Association="ERP_ZORZALModel.FK_Inv_tbSalida_Sal_UsuarioModifica">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
@@ -1909,6 +1928,10 @@
       <End Role="tbFactura" EntitySet="tbFactura" />
       <End Role="tbSalida" EntitySet="tbSalida" />
     </AssociationSet>
+    <AssociationSet Name="FK_Inv_tbSalida_tbTipoDevolucion_tdev_Id" Association="ERP_ZORZALModel.FK_Inv_tbSalida_tbTipoDevolucion_tdev_Id">
+      <End Role="tbTipoDevolucion" EntitySet="tbTipoDevolucion" />
+      <End Role="tbSalida" EntitySet="tbSalida" />
+    </AssociationSet>
     <AssociationSet Name="FK_Inv_tbSalida_tbTipoSalida_tsal_Id" Association="ERP_ZORZALModel.FK_Inv_tbSalida_tbTipoSalida_tsal_Id">
       <End Role="tbTipoSalida" EntitySet="tbTipoSalida" />
       <End Role="tbSalida" EntitySet="tbSalida" />
@@ -1917,25 +1940,6 @@
       <End Role="tbSalida" EntitySet="tbSalida" />
       <End Role="tbSalidaDetalle" EntitySet="tbSalidaDetalle" />
     </AssociationSet>
-    <FunctionImport Name="UDP_Inv_tbSalidaDetalle_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbSalidaDetalle_Insert_Result)">
-      <Parameter Name="sal_Id" Mode="In" Type="Int32" />
-      <Parameter Name="prod_Codigo" Mode="In" Type="String" />
-      <Parameter Name="sald_Cantidad" Mode="In" Type="Decimal" />
-      <Parameter Name="box_Codigo" Mode="In" Type="String" />
-      <Parameter Name="sald_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="sald_FechaCrea" Mode="In" Type="DateTime" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Inv_tbSalidaDetalle_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbSalidaDetalle_Update_Result)">
-      <Parameter Name="sald_Id" Mode="In" Type="Int32" />
-      <Parameter Name="sal_Id" Mode="In" Type="Int32" />
-      <Parameter Name="prod_Codigo" Mode="In" Type="String" />
-      <Parameter Name="sald_Cantidad" Mode="In" Type="Decimal" />
-      <Parameter Name="box_Codigo" Mode="In" Type="String" />
-      <Parameter Name="sald_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="sald_FechaCrea" Mode="In" Type="DateTime" />
-      <Parameter Name="sald_UsuarioModifica" Mode="In" Type="Int32" />
-      <Parameter Name="sald_FechaModifica" Mode="In" Type="DateTime" />
-    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -3423,6 +3427,7 @@
     <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Inv_tbTipoDevolucion_tdev_UsuarioCrea" FromRole="tbTipoDevolucion" ToRole="tbUsuario" />
     <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Inv_tbTipoDevolucion_tdev_UsuarioModifica" FromRole="tbTipoDevolucion" ToRole="tbUsuario" />
     <NavigationProperty Name="tbEntrada" Relationship="ERP_ZORZALModel.FK_Inv_tbEntrada_tbTipoDevolucion_ent_RazonDevolucion" FromRole="tbTipoDevolucion" ToRole="tbEntrada" />
+    <NavigationProperty Name="tbSalida" Relationship="ERP_ZORZALModel.FK_Inv_tbSalida_tbTipoDevolucion_tdev_Id" FromRole="tbTipoDevolucion" ToRole="tbSalida" />
   </EntityType>
   <EntityType Name="tbTipoEntrada">
     <Key>
@@ -8107,6 +8112,12 @@
   <ComplexType Name="UDP_Acce_tbUsuario_Estado_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
+  <ComplexType Name="UDP_Inv_tbSalidaDetalle_Insert_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Inv_tbSalidaDetalle_Update_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
   <EntityType Name="tbSalida">
     <Key>
       <PropertyRef Name="sal_Id" />
@@ -8132,6 +8143,7 @@
     <NavigationProperty Name="tbEntrada" Relationship="ERP_ZORZALModel.FK_Inv_tbEntrada_tbSalida_fact_Id" FromRole="tbSalida" ToRole="tbEntrada" />
     <NavigationProperty Name="tbEstadoMovimiento" Relationship="ERP_ZORZALModel.FK_Inv_tbSalida_tbEstadoMovimiento_estm_Id" FromRole="tbSalida" ToRole="tbEstadoMovimiento" />
     <NavigationProperty Name="tbFactura" Relationship="ERP_ZORZALModel.FK_Inv_tbSalida_tbFactura_fact_Id" FromRole="tbSalida" ToRole="tbFactura" />
+    <NavigationProperty Name="tbTipoDevolucion" Relationship="ERP_ZORZALModel.FK_Inv_tbSalida_tbTipoDevolucion_tdev_Id" FromRole="tbSalida" ToRole="tbTipoDevolucion" />
     <NavigationProperty Name="tbTipoSalida" Relationship="ERP_ZORZALModel.FK_Inv_tbSalida_tbTipoSalida_tsal_Id" FromRole="tbSalida" ToRole="tbTipoSalida" />
     <NavigationProperty Name="tbSalidaDetalle" Relationship="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_tbSalida_sal_Id" FromRole="tbSalida" ToRole="tbSalidaDetalle" />
   </EntityType>
@@ -8219,6 +8231,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Inv_tbSalida_tbTipoDevolucion_tdev_Id">
+    <End Type="ERP_ZORZALModel.tbTipoDevolucion" Role="tbTipoDevolucion" Multiplicity="1" />
+    <End Type="ERP_ZORZALModel.tbSalida" Role="tbSalida" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbTipoDevolucion">
+        <PropertyRef Name="tdev_Id" />
+      </Principal>
+      <Dependent Role="tbSalida">
+        <PropertyRef Name="tdev_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Inv_tbSalida_tbTipoSalida_tsal_Id">
     <End Type="ERP_ZORZALModel.tbTipoSalida" Role="tbTipoSalida" Multiplicity="1" />
     <End Type="ERP_ZORZALModel.tbSalida" Role="tbSalida" Multiplicity="*" />
@@ -8243,10 +8267,4 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <ComplexType Name="UDP_Inv_tbSalidaDetalle_Insert_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="UDP_Inv_tbSalidaDetalle_Update_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
 </Schema>

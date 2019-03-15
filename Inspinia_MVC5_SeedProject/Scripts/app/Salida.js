@@ -1,4 +1,89 @@
-﻿$('#fact_Codigo').change(function () {
+﻿//// Show an element
+//var show = function (elem) {
+
+//    // Get the natural height of the element
+//    var getHeight = function () {
+//        elem.style.display = 'block'; // Make it visible
+//        var height = elem.scrollHeight + 'px'; // Get it's height
+//        elem.style.display = ''; //  Hide it again
+//        return height;
+//    };
+
+//    var height = getHeight(); // Get the natural height
+//    elem.classList.add('is-visible'); // Make the element visible
+//    elem.style.height = height; // Update the max-height
+
+//    // Once the transition is complete, remove the inline max-height so the content can scale responsively
+//    window.setTimeout(function () {
+//        elem.style.height = '';
+//    }, 350);
+
+//};
+
+//// Hide an element
+//var hide = function (elem) {
+
+//    // Give the element a height to change from
+//    elem.style.height = elem.scrollHeight + 'px';
+
+//    // Set the height back to 0
+//    window.setTimeout(function () {
+//        elem.style.height = '0';
+//    }, 1);
+
+//    // When the transition is complete, hide it
+//    window.setTimeout(function () {
+//        elem.classList.remove('is-visible');
+//    }, 350);
+
+//};
+
+//// Toggle element visibility
+//var toggle = function (elem, timing) {
+
+//    // If the element is visible, hide it
+//    if (elem.classList.contains('is-visible')) {
+//        hide(elem);
+//        return;
+//    }
+
+//    // Otherwise, show it
+//    show(elem);
+
+//};
+
+//// Listen for click events
+//document.addEventListener('click', function (event) {
+
+//    // Make sure clicked element is our toggle
+//    if (!event.target.classList.contains('#tsal_Id')) return;
+
+//    // Prevent default link behavior
+//    event.preventDefault();
+
+//    // Get the content
+//    var content = document.querySelector(event.target.hash);
+//    if (!content) return;
+
+//    // Toggle the content
+//    toggle(content);
+
+//}, false);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$('#fact_Codigo').change(function () {
     FaturaExist()
 })
 $('#fact_Codigo').keypress(function () {
@@ -119,13 +204,13 @@ $(document).ready(function () {
 });
 $("#tsal_Id").change(function () {
     TipodeSalida();
-    var Bodega = fBodega();
-    if (Bodega.startsWith("Seleccione")) {
-        console.log("Si")
-    }
-    else {
-        console.log("No")
-    }
+    //var Bodega = fBodega();
+    //if (Bodega.startsWith("Seleccione")) {
+    //    console.log("Si")
+    //}
+    //else {
+    //    console.log("No")
+    //}
 });
 
 $("#ChangeBodega").change(function () {
@@ -177,13 +262,25 @@ function FaturaExist() {
         data: JSON.stringify({ fact_Codigo: $('#fact_Codigo').val() }),
     })
         .done(function (data) {
-            if (data.startsWith("Factura")) {
+            console.log(data);
+            if (data.Message.startsWith("Factura Disponible")) {
+                $('#FacturaCodigoError').text('');
                 $('#CodigoError').text('');
-                $('#validationFactura').after('<ul id="CodigoError" class="Factura" >' + data + '</ul>');
+                $('#validationFactura').after('<ul id="CodigoError" class="Factura" >' + data.Message + '</ul>');
             }
             else {
-                $('#CodigoError').text('');
-                $('#validationFactura').after('<ul id="CodigoError" class="validation-summary-errors text-danger">' + data + '</ul>');
+                if (data.Message.startsWith("Ya existe una Salida con ese Codigo de Factura")) {
+                    var sal_Id = data.SalidaFact;
+                    $('#FacturaCodigoError').text('');
+                    $('#CodigoError').text('');
+                    $('#validationFactura').after('<a id="FacturaCodigoError" href="/Salida/Edit/' + sal_Id + '">Haga Click aqui si desea ver la Salida de Esta Factura</a>');
+                }
+                else {
+                    $('#FacturaCodigoError').text('');
+                    $('#CodigoError').text('');
+                    $('#validationFactura').after('<ul id="CodigoError" class="validation-summary-errors text-danger">' + data.Message + '</ul>');
+                }
+                
             }
         })
 }
@@ -202,32 +299,62 @@ function FaturaExist() {
 //        });
 //    })
 //};
+var normalize = (function () {
+    var from = "ÃÀÁÄÂÈÉËÊÌÍÏÎÒÓÖÔÙÚÜÛãàáäâèéëêìíïîòóöôùúüûÑñÇç",
+        to = "AAAAAEEEEIIIIOOOOUUUUaaaaaeeeeiiiioooouuuunncc",
+        mapping = {};
+
+    for (var i = 0, j = from.length; i < j; i++)
+        mapping[from.charAt(i)] = to.charAt(i);
+
+    return function (str) {
+        var ret = [];
+        for (var i = 0, j = str.length; i < j; i++) {
+            var c = str.charAt(i);
+            if (mapping.hasOwnProperty(str.charAt(i)))
+                ret.push(mapping[c]);
+            else
+                ret.push(c);
+        }
+        return ret.join('');
+    }
+
+})();
 
 function TipodeSalida() {
+    
+    $('#NombreError').text("");
     var txtTipoSalida = document.getElementById("tsal_Id");
-    var valTipoSalida = txtTipoSalida.options[txtTipoSalida.selectedIndex].text;
-
+    var lblTipoSalida = txtTipoSalida.options[txtTipoSalida.selectedIndex].text;
+    var valTipoSalida = normalize(lblTipoSalida.toUpperCase());
     var TipoSal = $("#tsal_Id").val()
-    if (valTipoSalida == "Prestamo") {
+    if (valTipoSalida == "PRESTAMO") {
+        //var elemento = document.getElementById("Prestamo");
+        //var reelemento = document.getElementById("Prestamo");
         $('#fact_Codigo').val('***-***-**-********');
         $('#tbFactura_fact_Codigo').val('***-***-**-********');
+        //elemento.classList.remove('toggle-content');
+        document.getElementById("tdev_Id").value = "0";
 
-        $('#sal_RazonDevolucion').val('*****');
+        //$('#sal_RazonDevolucion').val('*****'); 
         ///////////////////////////////////////
+        //elemento.classList.add('toggle-content.is-visible')
         $("#Prestamo").css("display", "block");
         ///////////////////////////////////////
+        //reelemento.classList.add('toggle-content')
         $("#VentaoDevolucion").css("display", "none");
         //BodegaDestino()
     }
     else {
         $("#Prestamo").css("display", "none");
         $("#Devolucion").css("display", "none");
-        if (valTipoSalida == "Venta") {
+        FaturaExist()
+        if (valTipoSalida == "VENTA") {
             var fact_Codigo = $('#fact_Codigo').val();
             if (fact_Codigo == '***-***-**-********') {
                 $('#fact_Codigo').val('')
             }
-            $('#sal_RazonDevolucion').val('*****');
+            document.getElementById("tdev_Id").value = "0";
             ///////////////////////////////////////
             $("#sal_BodDestino").empty();
             $("#VentaoDevolucion").css("display", "block");
@@ -242,7 +369,7 @@ function TipodeSalida() {
             $("#Venta").css("display", "none");
             $("#Prestamo").css("display", "none");
 
-            if (valTipoSalida == "DEVOLUCION") {
+            if (valTipoSalida == "DEVOLUCION" ) {
                 $('#fact_Codigo').val('');
                 $('#sal_RazonDevolucion').val('');
                 $("#sal_BodDestino").empty();
@@ -260,7 +387,6 @@ function TipodeSalida() {
             }
         }
     }
-    FaturaExist()
 }
 
 $(document).ready(function () {
@@ -295,9 +421,27 @@ $('#btnAnularSalida').click(function () {
     }
 });
 
+$('#prod_CodigoBarras').click(function () {
+    $("#prod_CodigoBarras").removeAttr("readonly");
+    $("#prod_CodigoBarras").val('');
+    $('#prod_Codigo').val('');
+    $('#prod_Descripcion').val('');
+    $("#uni_Id").val('');
+    $("#pscat_Id").val('');
+    $("#pcat_Id").val('');
+    $("#prod_Marca").val('');
+    $("#prod_Modelo").val('');
+    $("#prod_Talla").val('');
+    $("#prod_Color").val('');
+    $('#sald_Cantidad').val('');
+    $("#CantidaExistenteProd").text('');
+
+})
+
 function Producto(bod_Id, prod_CodigoBarrasItem) {
     $("#prod_CodigoBarras").val();
     var cod_Barras = $("#prod_Codigo").val();
+    var pro_CodBarras = $("#prod_CodigoBarras").val();
     $.ajax({
         url: "/Salida/GetProdCodBar",
         method: "POST",
@@ -309,6 +453,10 @@ function Producto(bod_Id, prod_CodigoBarrasItem) {
         }),
     }).done(function (data) {
         if (data.length > 0) {
+            $("#prod_CodigoBarras").attr("readonly", "true")
+            $('#Error_Barras').text('');
+            $('#prod_CodigoBarras').text('');
+            $('#sald_Cantidad').val('');
             $.each(data, function (key, value) {
                 $("#prod_CodigoBarras").val(value.prod_CodigoBarras);
                 $('#prod_Codigo').val(value.prod_Codigo);
@@ -321,16 +469,18 @@ function Producto(bod_Id, prod_CodigoBarrasItem) {
                 $("#prod_Talla").val(value.prod_Talla);
                 $("#prod_Color").val(value.prod_Color);
                 ProductoCantidad(bod_Id, value.prod_Codigo);
+                $('#sald_Cantidad').focus();
             })
+
+            
             $("#ModalAgregarProducto").on('hidden.bs.modal', function () {
-                $('#prod_CodigoBarras').text('');
-                $('#sald_Cantidad').text('');
-                $("#sald_Cantidad").focus();
+                $('#sald_Cantidad').focus();
             });
         }
         else {
             $('#Error_Barras').text('');
-            $('#validationprod_CodigoBarras').after('<ul id="Error_Barras" class="validation-summary-errors text-danger">*Producto no existe</ul>');
+            $("#CantidaExistenteProd").text('');
+            $('#validationprod_CodigoBarras').after('<ul id="Error_Barras" class="validation-summary-errors text-danger">Producto no existe</ul>');
 
             idItem = $(this).closest('tr').data('id');
             contentItem = $(this).closest('tr').data('content');
@@ -344,9 +494,11 @@ function Producto(bod_Id, prod_CodigoBarrasItem) {
             $("#pscat_Id").val(psubctItem);
             $("#pcat_Id").val(pcatItem);
             $("#prod_CodigoBarras").val(prod_CodigoBarrasItem);
-            $("#sald_Cantidad").focus();
+            $('#prod_CodigoBarras').focus();
+
         }
     });
+ 
     return false;
 }
 
@@ -355,27 +507,51 @@ $(document).on("click", "#tblBusquedaGenerica tbody tr td button#seleccionar", f
     //var prod_CodigoBarrasItem = currentRow.find("td:eq(8)").text();
     var prod_CodigoBarrasItem = this.value;
     var bod_Id = $('#bod_Id').val()
+    $("#prod_CodigoBarras").attr("readonly","true")
     //$('#CodigoError').text('')
     $('#sald_CantidadExedError').text('')
+   
     console.log(prod_CodigoBarrasItem)
     Producto(bod_Id, prod_CodigoBarrasItem)
 });
 
 $(document).keypress(function (e) {
-    ValidacionCantidad()
+    //ValidacionCantidad()
 
     console.log('Hola', e.target.id);
     var IDInput = e.target.id;
     if (e.which == 13) {
         if (IDInput == 'prod_CodigoBarras') {
+
             var bod_Id = $('#bod_Id').val()
             var prod_CodigoBarras = $('#prod_CodigoBarras').val()
-            Producto(bod_Id, prod_CodigoBarras);
+            if (prod_CodigoBarras == '') {
+                    $('#ValidationCodigoBarrasCreateError').text('');
+                    $('#validationprod_CodigoBarras').after('<ul id="ValidationCodigoBarrasCreateError" class="validation-summary-errors text-danger">Codigo de Barras Requerido</ul>');
+            }
+            else {
+                $('#ValidationCodigoBarrasCreateError').text('');
+                Producto(bod_Id, prod_CodigoBarras);
+            }
+            // var Productos = $('#prod_Codigo').val();
+            //if (prod_CodigoBarras != '') {
+            //    $('#sald_Cantidad').focus();
+
+            //}
+                return false;
+        }
+        if (IDInput == 'sald_Cantidad') {
+            document.getElementById('AgregarSalidaDetalle').click();
             return false;
+        }
+    } else {
+        if (IDInput == 'sald_Cantidad' || IDInput == 'prod_CodigoBarras' || 'sal_RazonDevolucion') {
         }
         else
             return false;
     }
+   
+
 });
 $(document).on("click", "#tblSalidaDetalle tbody tr td button#removeSalidaDetalle", function () {
     idItem = $(this).closest('tr').data('id');
@@ -399,7 +575,7 @@ $(document).on("click", "#tblSalidaDetalle tbody tr td button#removeSalidaDetall
     });
 });
 
-var table = $('#example').DataTable();
+//var table = $('#example').DataTable();
 
-$('#example tbody').on('click', 'img.icon-delete', function () {
-})
+//$('#example tbody').on('click', 'img.icon-delete', function () {
+//})

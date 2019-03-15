@@ -41,7 +41,8 @@ namespace ERP_GMEDINA.Models
         public byte tsal_Id { get; set; }
 
         [Display(Name = "Razon de Devolucion")]
-        public int sal_RazonDevolucion { get; set; }
+        public int tdev_Id { get; set; }
+
 
         [Display(Name = "Bodega de Destino")]
         public int sal_BodDestino { get; set; }

@@ -216,8 +216,9 @@ namespace ERP_GMEDINA.Controllers
                 ViewBag.sal_BodDestino = new SelectList(db.tbBodega.Where(x => x.bod_Id != vbod_Id.bodId), "bod_Id", "bod_Nombre");
                 ViewBag.estm_Id = new SelectList(db.tbEstadoMovimiento, "estm_Id", "estm_Descripcion");
                 ViewBag.tsal_Id = new SelectList(db.tbTipoSalida, "tsal_Id", "tsal_Descripcion");
-                
+                ViewBag.Factura = db.tbFactura.Where(x => x.fact_EsAnulada != Helpers.fact_EsAnulada && x.esfac_Id == Helpers.esfac_Pagada || x.esfac_Id == Helpers.esfac_PagoPendiente).ToList();
                 ViewBag.Producto = db.tbBodegaDetalle.Where(x => x.bod_Id == vbod_Id.bodId && x.bodd_CantidadExistente > x.bodd_CantidadMinima).ToList();
+                ViewBag.tdev_Id = new SelectList(db.tbTipoDevolucion, "tdev_Id", "tdev_Descripcion");
                 return View();
             }
             catch (Exception Ex)
@@ -233,7 +234,7 @@ namespace ERP_GMEDINA.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [SessionManager("Salida/Create")]
-        public ActionResult Create([Bind(Include = "bod_Id,fact_Id,fact_Codigo,sal_FechaElaboracion,estm_Id,tsal_Id,sal_RazonDevolucion, sal_BodDestino, sal_EsAnulada, sal_RazonAnulada")] tbSalida tbSalida)
+        public ActionResult Create([Bind(Include = "bod_Id,fact_Id,fact_Codigo,sal_FechaElaboracion,estm_Id,tsal_Id,tdev_Id, sal_BodDestino, sal_EsAnulada, sal_RazonAnulada")] tbSalida tbSalida)
         {
             int idUser = Usuario();
             var vbod_Id = (from bodega in db.tbBodega where bodega.bod_ResponsableBodega == idUser select new { bodId = bodega.bod_Id, bod_Nombre = bodega.bod_Nombre }).FirstOrDefault();
@@ -242,11 +243,13 @@ namespace ERP_GMEDINA.Controllers
                 ViewBag.BodegaSelec = vbod_Id.bod_Nombre;
                 ViewBag.bod_Id = vbod_Id.bodId;
                 ViewBag.Producto = db.tbBodegaDetalle.Where(x => x.bod_Id == vbod_Id.bodId && x.bodd_CantidadExistente > x.bodd_CantidadMinima).ToList();
-               
+                ViewBag.Factura = db.tbFactura.Where(x => x.fact_EsAnulada != Helpers.fact_EsAnulada && x.esfac_Id == Helpers.esfac_Pagada || x.esfac_Id == Helpers.esfac_PagoPendiente).ToList();
                 ViewBag.estm_Id = new SelectList(db.tbEstadoMovimiento, "estm_Id", "estm_Descripcion");
                 ViewBag.tsal_Id = new SelectList(db.tbTipoSalida, "tsal_Id", "tsal_Descripcion");
                 ViewBag.prod_Codigo = new SelectList(db.tbProducto, "prod_Codigo", "prod_Descripcion");
                 ViewBag.sal_BodDestino = new SelectList(db.tbBodega.Where(x => x.bod_Id != vbod_Id.bodId), "bod_Id", "bod_Nombre");
+                ViewBag.tdev_Id = new SelectList(db.tbTipoDevolucion, "tdev_Id", "tdev_Descripcion");
+
                 var list = (List<tbSalidaDetalle>)Session["SalidaDetalle"];
 
                 var MensajeError = "0";
@@ -499,6 +502,7 @@ namespace ERP_GMEDINA.Controllers
             }
 
             ViewBag.bod_Id = new SelectList(db.tbBodega.Where(x => x.bod_ResponsableBodega == idUser).ToList(), "bod_Id", "bod_Nombre");
+            ViewBag.tdev_Id = new SelectList(db.tbTipoDevolucion, "tdev_Id", "tdev_Descripcion", tbSalida.tdev_Id);
 
             ViewBag.estm_Id = new SelectList(db.tbEstadoMovimiento, "estm_Id", "estm_Descripcion", tbSalida.estm_Id);
             ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo", tbSalida.fact_Id);
@@ -511,7 +515,7 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.box_Codigo = new SelectList(db.tbSalidaDetalle, "sald_Id", "box_Codigo", tbSalida.estm_Id);
 
             ViewBag.sal_Id = new SelectList(db.tbProductoSubcategoria, "sal_Id", "sal_Id", tbSalida.sal_Id);
-            ViewBag.Producto = db.tbBodegaDetalle.ToList();
+            ViewBag.Producto = db.tbBodegaDetalle.Where(x => x.bod_Id == tbSalida.bod_Id && x.bodd_CantidadExistente > x.bodd_CantidadMinima).ToList();
 
             return View(tbSalida);
         }
@@ -657,6 +661,7 @@ namespace ERP_GMEDINA.Controllers
                         var MensajeErrorDetalle = "0";
                         IEnumerable<object> listSalidaDetalle = null;
                         IEnumerable<object> listSalida = null;
+                        ViewBag.tdev_Id = new SelectList(db.tbTipoDevolucion, "tdev_Id", "tdev_Descripcion", tbSalida.tdev_Id);
 
                         ViewBag.sal_BodDestino = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbSalida.sal_BodDestino);
                         ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion");
@@ -678,7 +683,7 @@ namespace ERP_GMEDINA.Controllers
                                                         tbSalida.tsal_Id,
                                                         tbSalida.sal_BodDestino,
                                                         tbSalida.sal_EsAnulada,
-                                                        tbSalida.tdev_Id,
+                                                        tbSalida.tdev_Id, 
                                                         tbSalida.sal_RazonAnulada,
                                                         pSalida.sal_UsuarioCrea,
                                                         pSalida.sal_FechaCrea,
@@ -802,6 +807,10 @@ namespace ERP_GMEDINA.Controllers
         public JsonResult FacturaExist(string fact_Codigo)
         {
             string Message = "";
+            long vFacturaIDS = 0;
+            int SalidaFact = 0;
+            IEnumerable<object> vSalida = null;
+            object vreturn = null;
             try
             {
                 if (fact_Codigo == "")
@@ -823,17 +832,48 @@ namespace ERP_GMEDINA.Controllers
                         {
                             //.Select(x => x.fact_Id).SingleOrDefault()
                             var vFactura = db.tbFactura.Where(x => x.fact_Codigo == fact_Codigo).ToList();
-                            if (vFactura.Count() > 0)
+                           if (vFactura.Count() > 0)
                             {
-                                var vFacturaID = db.tbFactura.Where(x => x.fact_Codigo == fact_Codigo && x.esfac_Id == Helpers.esfac_Pagada || x.esfac_Id == Helpers.esfac_PagoPendiente).Select(x => x.fact_Id).First();
-                                var vSalida = db.tbSalida.Where(x => x.fact_Id == vFacturaID && x.sal_EsAnulada != true).ToList();
-                                if (vSalida.Count() > 0)
+                                var vFacturaID = (from factura in db.tbFactura
+                                                  where factura.fact_Codigo == fact_Codigo
+                                                  select new { fact_Id = factura.fact_Id, fact_EsAnulada = factura.fact_EsAnulada, esfac_Id = factura.esfac_Id}).FirstOrDefault();
+
+
+                                //db.tbFactura.Where(x => x.fact_Codigo == fact_Codigo && x.esfac_Id == Helpers.esfac_Pagada || x.esfac_Id == Helpers.esfac_PagoPendiente && x.fact_EsAnulada != true ).Select(x => x.fact_Id);
+                                if (vFacturaID.fact_EsAnulada)
                                 {
-                                    Message = "Ya existe una Salida con ese Codigo de Factura";
+                                    Message = "Factura Anulada";
+
                                 }
                                 else
                                 {
-                                    Message = "Factura Disponible";
+                                    if (vFacturaID.esfac_Id == Helpers.esfac_Pagada || vFacturaID.esfac_Id == Helpers.esfac_PagoPendiente)
+                                    {
+                                        vSalida = db.tbSalida.Where(x => x.fact_Id == vFacturaID.fact_Id && x.sal_EsAnulada != true).ToList();
+                                        if (vSalida.Count() > 0)
+                                        {
+                                            Message = "Ya existe una Salida con ese Codigo de Factura";
+                                            SalidaFact = db.tbSalida.Where(x => x.fact_Id == vFacturaID.fact_Id && x.sal_EsAnulada != true).Select(x =>x.sal_Id).FirstOrDefault();
+                                        }
+                                        else
+                                        {
+                                            Message = "Factura Disponible";
+                                        }
+                                    }
+                                    else
+                                    {
+                                        Message = "Factura No Disponible";
+                                        //vFacturaIDS = vFacturaID.fact_Id;
+                                        //vSalida = db.tbSalida.Where(x => x.fact_Id == vFacturaIDS && x.sal_EsAnulada != true).ToList();
+                                        //if (vSalida.Count() > 0)
+                                        //{
+                                        //    Message = "Ya existe una Salida con ese Codigo de Factura";
+                                        //}
+                                        //else
+                                        //{
+                                        //    Message = "Factura Disponible";
+                                        //}
+                                    }
                                 }
                             }
                             else
@@ -843,7 +883,8 @@ namespace ERP_GMEDINA.Controllers
                         }
                     }
                 }
-                return Json(Message, JsonRequestBehavior.AllowGet);
+                vreturn = new { Message, SalidaFact };
+                return Json(vreturn, JsonRequestBehavior.AllowGet);
             }
             catch (Exception Ex)
             {
@@ -868,7 +909,7 @@ namespace ERP_GMEDINA.Controllers
                                                     tbSalida.tsal_Id,
                                                     tbSalida.sal_BodDestino,
                                                     tbSalida.sal_EsAnulada,
-                                                    tbSalida.tdev_Id,
+                                                    tbSalida.tdev_Id, 
                                                     tbSalida.sal_RazonAnulada,
                                                     tbSalida.sal_UsuarioCrea,
                                                     tbSalida.sal_FechaCrea,

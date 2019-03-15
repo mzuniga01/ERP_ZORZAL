@@ -18,6 +18,7 @@ namespace ERP_GMEDINA.Models
         public tbTipoDevolucion()
         {
             this.tbEntrada = new HashSet<tbEntrada>();
+            this.tbSalida = new HashSet<tbSalida>();
         }
     
         public int tdev_Id { get; set; }
@@ -31,5 +32,7 @@ namespace ERP_GMEDINA.Models
         public virtual tbUsuario tbUsuario1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbEntrada> tbEntrada { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbSalida> tbSalida { get; set; }
     }
 }

@@ -44,7 +44,7 @@ namespace ERP_GMEDINA.Models
         //estado movimiento
         public const int EntradaEstadoAnulada = 3;
 
-        //Estado Salida
+        //Salida
         public const int sal_Aplicada = 1;
 
         public const int sal_Emitida = 2;
@@ -60,6 +60,8 @@ namespace ERP_GMEDINA.Models
         public const int sal_Devolucion = 3;
         public const int esfac_Pagada = 3;
         public const int esfac_PagoPendiente = 4;
+        public const bool fact_EsAnulada = true;
+        public const string sal_Estado = "Emitida";
 
 
         ///ESTADO OBJETO

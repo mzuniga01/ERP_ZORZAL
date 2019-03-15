@@ -4323,6 +4323,18 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_Entr
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Inv_tbSalida_tbTipoDevolucion_tdev_Id">
+    <End Role="tbTipoDevolucion" Type="Self.tbTipoDevolucion" Multiplicity="1" />
+    <End Role="tbSalida" Type="Self.tbSalida" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbTipoDevolucion">
+        <PropertyRef Name="tdev_Id" />
+      </Principal>
+      <Dependent Role="tbSalida">
+        <PropertyRef Name="tdev_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Inv_tbSalida_tbTipoSalida_tsal_Id">
     <End Role="tbTipoSalida" Type="Self.tbTipoSalida" Multiplicity="1" />
     <End Role="tbSalida" Type="Self.tbSalida" Multiplicity="*" />
@@ -7539,6 +7551,10 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_Entr
     </AssociationSet>
     <AssociationSet Name="FK_Inv_tbSalida_tbFactura_fact_Id" Association="Self.FK_Inv_tbSalida_tbFactura_fact_Id">
       <End Role="tbFactura" EntitySet="tbFactura" />
+      <End Role="tbSalida" EntitySet="tbSalida" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inv_tbSalida_tbTipoDevolucion_tdev_Id" Association="Self.FK_Inv_tbSalida_tbTipoDevolucion_tdev_Id">
+      <End Role="tbTipoDevolucion" EntitySet="tbTipoDevolucion" />
       <End Role="tbSalida" EntitySet="tbSalida" />
     </AssociationSet>
     <AssociationSet Name="FK_Inv_tbSalida_tbTipoSalida_tsal_Id" Association="Self.FK_Inv_tbSalida_tbTipoSalida_tsal_Id">

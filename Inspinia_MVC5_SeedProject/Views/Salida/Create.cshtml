@@ -27,6 +27,17 @@
         font-weight: bold;
         color: red;
     }
+    .toggle-content {
+	display: none;
+	height: 0;
+	overflow: hidden;
+	transition: height 350ms ease-in-out;
+    }
+
+    .toggle-content.is-visible {
+	    display: block;
+	    height: auto;
+    }
 </style>
 @using (Html.BeginForm("Create", "Salida", FormMethod.Post, new { name = "Miform", enctype = "multipart/form-data", onsubmit = "return validateMyForm();" }))
 {
@@ -51,16 +62,9 @@
         <p></p>
     </div>
     <div class="wrapper wrapper-content animated fadeInRight">
-        <div id="alert_message">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <div id="alert_message"style="display:none" tabindex="-1">
         </div>
 
-        <div id="Without" style="display:none">
-            <div class="alert alert-danger alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <strong>Detalle Vacio</strong>
-            </div>
-        </div>
         <div class="row">
             <div class="col-lg-12">
                 <div class="ibox float-e-margins">
@@ -76,7 +80,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.sal_FechaElaboracion, "Fecha de Elaboración", new { @class = "control-label col-md-2 required" })
                                     <div class="col-md-4">
-                                        @Html.EditorFor(model => model.sal_FechaElaboracion, new { @autocomplete = "off", @readonly = "readonly" })
+                                        @Html.EditorFor(model => model.sal_FechaElaboracion, new { @autocomplete = "off", @readonly = "readonly", @style = "position:absolute; z-index:3" })
                                         <div id="validationsal_FechaElaboracion" class="validation-error">
                                             <p style="color:red">
                                                 @Html.ValidationMessageFor(model => model.sal_FechaElaboracion)
@@ -86,10 +90,8 @@
                                 </div>
 
                                 <div class="form-group">
-                                    @Html.LabelFor(model => model.bod_Id, "Nombre de Bodega", new { @class = "control-label col-md-2 required" })
+                                    @Html.LabelFor(model => model.bod_Id, "Nombre de Bodega", new { @class = "control-label col-md-2" })
                                     <div style="display:block" class="col-md-4">
-                                        @*@Html.EditorFor(model => (string)ViewBag.BodegaSelec, new { @autocomplete = "off", @readonly = "readonly"})*@
-                                        @*@Html.EditorFor(model => model.tbBodega.bod_Nombre, (string)ViewBag.BodegaSelec, new { @autocomplete = "off", @readonly = "readonly", @class = "form-control" })*@
                                         @Html.TextBox("bod_Name", (String)ViewBag.BodegaSelec, new { @autocomplete = "off", @readonly = "readonly", @class = "form-control" })
                                         <div id="validationbod_Id" class="validation-error">
                                             <p>@Html.ValidationMessageFor(model => model.bod_Id)</p>
@@ -117,7 +119,7 @@
                                     <div class="form-group">
                                         @Html.LabelFor(model => model.estm_Id, "Estado", new { @class = "control-label col-md-2" })
                                         <div class="col-md-4">
-                                            @Html.TextBoxFor(model => model.tbEstadoMovimiento.estm_Descripcion, new { @class = "form-control", Value = "Emitida", @readonly = "readonly" })
+                                            @Html.TextBoxFor(model => model.tbEstadoMovimiento.estm_Descripcion, new { @class = "form-control", Value = Helpers.sal_Estado, @readonly = "readonly" })
                                             <div id="validationtsal_Id">
                                                 <p style="color:red">
                                                     @*@Html.ValidationMessageFor(model => model.tsal_Id)*@
@@ -125,29 +127,38 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @*style="display:none"*@
                                     <div class="form-horizontal" id="VentaoDevolucion" style="display:none">
                                         <fieldset class="box-border">
-                                            <legend class="box-border" id="TitleVenta">Venta</legend>
-                                            <legend class="box-border" id="TitleDevolucion">Devolucion</legend>
+                                            <legend class="box-border toggle-content" id="TitleVenta">Venta</legend>
+                                            <legend class="box-border toggle-content" id="TitleDevolucion">Devolucion</legend>
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.fact_Codigo, new { @class = "control-label col-md-2 required" })
-                                                <div class="col-md-4">
+                                                <div class="col-md-3">
                                                     @Html.EditorFor(model => model.fact_Codigo, new { @autocomplete = "off" })
+
                                                     <div id="validationFactura">
                                                         @*@Html.ValidationMessageFor(model => model.fact_Codigo)*@
                                                     </div>
+
                                                 </div>
 
+                                                <div class="col-md-1">
+                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalSeleccionarFactura"><span class="glyphicon glyphicon-search"></span></button>
+                                                </div>
+                                            
                                                 <div id="div_sal_RazonDevolucion">
-                                                    @Html.LabelFor(model => model.sal_RazonDevolucion, new { @class = "control-label col-md-2 required" })
+                                                    @Html.LabelFor(model => model.tdev_Id, new { @class = "control-label col-md-2 required" })
                                                     <div class="col-md-4">
-                                                        @Html.EditorFor(model => model.sal_RazonDevolucion)
+                                                        @Html.DropDownList("tdev_Id", (IEnumerable<SelectListItem>)ViewBag.tdev_Id, "Seleccionar", new { @class = "form-control" })
+                                                        @*@Html.TextBoxFor(model => model.tdev_Id, htmlAttributes: new { @autocomplete = "off", @onkeypress = "return check(event)", @class = "form-control" })*@
                                                         <div id="validationsal_RazonDevolucion">
                                                             @*@Html.ValidationMessageFor(model => model.fact_Codigo)*@
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+
                                         </fieldset>
                                     </div>
 
@@ -157,7 +168,7 @@
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.sal_BodDestino, "Bodega de Destino", new { @class = "control-label col-md-2 required" })
                                                 <div class="col-md-4">
-                                                    @Html.DropDownList("sal_BodDestino", (IEnumerable<SelectListItem>)null, "Seleccionar", new { @class = "form-control" })
+                                                    @Html.DropDownList("sal_BodDestino", (IEnumerable<SelectListItem>)ViewBag.sal_BodDestino, "Seleccionar", new { @class = "form-control" })
                                                     <div id="validationsal_BodDestino">
                                                         <p style="color:red">
                                                         </p>
@@ -202,6 +213,22 @@
                         <div class="ibox float-e-margins">
                             <div class="ibox-content" id="Crear">
                                 @Html.Partial("_CreateSalidaDetalle", new tbSalidaDetalle())
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal fade" id="ModalSeleccionarFactura" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="width:100%">
+                    <div class="modal-dialog" role="document" style="width:90%">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h4 class="modal-title" id="myModalLabel">Buscar Productos</h4>
+                            </div>
+                            <div class="modal-body" id="frmBuscarProducto">
+                                @Html.Partial("_SeleccionarFactura", (List<tbFactura>)ViewBag.Factura)
                             </div>
                         </div>
                     </div>
@@ -255,9 +282,10 @@
 <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
 <script src="~/Scripts/app/DataTable.js"></script>
 <script src="~/Scripts/jquery.maskedinput.min.js"></script>
+<script src="~/Scripts/wp-embed.min.js"></script>
+
 <script src="~/Scripts/app/SalidaDetalle.js"></script>
 <script src="~/Scripts/app/Salida.js"></script>
-<script src="~/Scripts/wp-embed.min.js"></script>
 
 <script>
     var selector = "#fact_Codigo";

@@ -1,5 +1,5 @@
 ﻿@model ERP_GMEDINA.Models.tbSalida
-
+@using ERP_GMEDINA.Models
 @{
     ViewBag.Title = "Detalles";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -137,7 +137,37 @@
             </div>
 
             @*Campos de Auditoria*@
-            <div class="ibox-content">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Auditoría</h5>
+                </div>
+                <div class="ibox-content">
+                    <table class="table table-striped">
+                        <tr>
+                            <th>Acción</th>
+                            <th>Usuario</th>
+                            <th>Fecha</th>
+                        </tr>
+                        <tr>
+                            <td>Creado</td>
+                            <td>
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                            </td>
+                            <td>@Html.DisplayFor(model => model.sal_FechaCrea)</td>
+                        </tr>
+                        <tr>
+                            <td>Modificado</td>
+                            <td>
+                                @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                                @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                            </td>
+                            <td>@Html.DisplayFor(model => model.sal_FechaModifica)</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            @*<div class="ibox-content">
                 <fieldset class="box-border">
                     <legend class="box-border">Datos Auditoria</legend>
                     <table class="table table-responsive" style="width:100%">
@@ -158,7 +188,7 @@
                         </tr>
                     </table>
                 </fieldset>
-            </div>
+            </div>*@
         </div>
     </div>
 </div>
