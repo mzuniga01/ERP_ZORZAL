@@ -47,9 +47,12 @@ namespace ERP_GMEDINA.Models
         [Display(Name = "Fecha Creación")]
         //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public System.DateTime solef_FechaCrea { get; set; }
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy }", ApplyFormatInEditMode = true)]
+
         [Display(Name = "Usuario Modificación")]
         public Nullable<int> solef_UsuarioModifica { get; set; }
         [Display(Name = "Fecha Modificación")]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> solef_FechaModifica { get; set; }
 
         //[Display(Name = "Usuario")]
