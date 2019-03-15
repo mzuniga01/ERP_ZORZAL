@@ -1,23 +1,25 @@
 ﻿ 
 $("#tent_Id").change(function () {
 
-    var valor = this.value;
-    if (valor == 1) {
-        console.log(valor);
-        document.getElementById("CamposCompra").style.display = 'block';
-        document.getElementById("CamposDevoluciones").style.display = 'none';
-        document.getElementById("CamposTraslado").style.display = 'none';
+    var valorid = this.value;
+    if (valorid == 1) {
+        document.getElementById("compra").style.display = 'block';
+        document.getElementById("Devolucion").style.display = 'none';
+        document.getElementById("traslado").style.display = 'none';
     }
-    else if (valor == 2) {
-        console.log(valor);
-        document.getElementById("CamposDevoluciones").style.display = 'block';
-        document.getElementById("CamposCompra").style.display = 'none';
-        document.getElementById("CamposTraslado").style.display = 'none';
+    else if (valorid == 2) {
+        document.getElementById("Devolucion").style.display = 'block';
+        document.getElementById("compra").style.display = 'none';
+        document.getElementById("traslado").style.display = 'none';
+    }
+    else if (valorid == 3) {
+        document.getElementById("traslado").style.display = 'block';
+        document.getElementById("Devolucion").style.display = 'none';
+        document.getElementById("compra").style.display = 'none';
     }
     else {
-        console.log(valor);
-        document.getElementById("CamposTraslado").style.display = 'block';
-        document.getElementById("CamposDevoluciones").style.display = 'none';
-        document.getElementById("CamposCompra").style.display = 'none';
+        document.getElementById("traslado").style.display = 'none';
+        document.getElementById("Devolucion").style.display = 'none';
+        document.getElementById("compra").style.display = 'none';
     }
 });

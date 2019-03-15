@@ -1,21 +1,23 @@
 ﻿$("#tent_Id").change(function () {
 
-    var valor = this.value;
-    if (valor == 1) {
-        console.log(valor);
+    var valorid = this.value;
+    if (valorid == 1) {
         document.getElementById("compra").style.display = 'block';
         document.getElementById("Devolucion").style.display = 'none';
         document.getElementById("traslado").style.display = 'none';
     }
-    else if (valor == 2) {
-        console.log(valor);
+    else if (valorid == 2) {
         document.getElementById("Devolucion").style.display = 'block';
         document.getElementById("compra").style.display = 'none';
         document.getElementById("traslado").style.display = 'none';
     }
-    else {
-        console.log(valor);
+    else if (valorid == 3) {
         document.getElementById("traslado").style.display = 'block';
+        document.getElementById("Devolucion").style.display = 'none';
+        document.getElementById("compra").style.display = 'none';
+    }
+    else {
+        document.getElementById("traslado").style.display = 'none';
         document.getElementById("Devolucion").style.display = 'none';
         document.getElementById("compra").style.display = 'none';
     }

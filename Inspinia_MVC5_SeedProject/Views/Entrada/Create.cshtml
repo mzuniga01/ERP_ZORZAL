@@ -273,28 +273,7 @@
         });
     });
 </script>
-<script>
-    window.onload = function () {
-        console.log('hola');
-        var valorid = document.getElementById("tent_Id").value;
-        console.log(valorid);
-            if (valorid == 1) {
-                document.getElementById("compra").style.display = 'block';
-                document.getElementById("Devolucion").style.display = 'none';
-                document.getElementById("traslado").style.display = 'none';
-            }
-            else if (valorid == 2) {
-                document.getElementById("Devolucion").style.display = 'block';
-                document.getElementById("compra").style.display = 'none';
-                document.getElementById("traslado").style.display = 'none';
-            }
-            else if (valorid == 3) {
-                document.getElementById("traslado").style.display = 'block';
-                document.getElementById("Devolucion").style.display = 'none';
-                document.getElementById("compra").style.display = 'none';
-            }
-    };
-</script>
+
 @*validacion apara q acepte mas de 3 digistos la factura*@
 <script>
     $("#ent_FacturaCompra").change(function () {

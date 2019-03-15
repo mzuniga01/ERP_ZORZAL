@@ -22,8 +22,11 @@
             })
             $('#NoAsignados').DataTable({
                 "searching": true,
+
                 //"scrollY": "300px",
                 //"scrollCollapse": true,
+                //"dom": 't',
+                //"select": true,
                 "paging": false,
                 "info": false,
                     "oLanguage": {
@@ -45,9 +48,9 @@
             
                 $('#Asignados').DataTable({
                     "searching": true,
-                    "scrollY": "300px",
+                    //"scrollY": "300px",
                     "order": false,
-                    "scrollCollapse": true,
+                    //"scrollCollapse": true,
                     "paging": false,
                     "info": false,
                     "oLanguage": {
@@ -182,7 +185,3 @@ $("#rol_Descripcion").change(function () {
         $('#Remove').attr("disabled", false);
     }
 });
-
-
-
-

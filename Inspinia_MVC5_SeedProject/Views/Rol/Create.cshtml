@@ -31,7 +31,7 @@
 
                     <div class="form-horizontal">
                         <style>
-                            .table-wrapper-scroll-y {
+                            /*.table-wrapper-scroll-y {
                                 display: block;
                                 
                             }
@@ -39,8 +39,18 @@
                                 position: relative;
                                 height: 300px;
                                 overflow: auto;
-                            }
+                            }*/
                             #NoAsignados {
+                                display: block;
+                                position: relative;
+                                height: 335px;
+                                overflow: auto;
+                            }
+                            .dataTables_filter {
+                                /*text-align: left !Important;*/
+                                float: left !Important;
+                            }
+                            #Asignados {
                                 display: block;
                                 position: relative;
                                 height: 335px;
@@ -59,10 +69,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="ibox-content">
-                            <div class="col-md-5">
+                        <div style="width:100%" class="ibox-content">
+                            <div style="width:45%" class="col-md-5">
                                 <label class="col-md-10" style="text-align:center">Pantallas No Asignadas</label>
-                                    <table class="table table-striped table-responsive table-bordered table-hover" style="width:100px" id="NoAsignados">
+                                    <table class="table table-striped table-responsive table-bordered table-hover" style="border:0px" id="NoAsignados">
                                         <thead>
                                             <tr>
                                                 <td style="background-color:#1ab394;color:white" id="RegistrosNoAsignados">Pantallas</td>
@@ -73,7 +83,7 @@
                                     </table>
                             </div>
 
-                            <div class="col-md-2" align="center">
+                            <div style="width:10%" class="col-md-2">
                                 <br /><br /><br>
                                 <div>
                                     <input id="Add" type="button" disabled value="Agregar &#9658;" class="btn btn-primary btn-xs" />
@@ -83,9 +93,9 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-5">
+                            <div style="width:45%" class="col-md-5">
                                 <label class="col-md-10" style="text-align:center">Pantallas Asignadas</label>
-                                <table class="table table-striped table-responsive table-bordered table-hover" style="width:100px" id="Asignados">
+                                <table class="table table-striped table-responsive table-bordered table-hover" style="border:0px" id="Asignados">
                                     <thead>
                                         <tr>
                                             <td id="RegistrosAsignados" style="background-color:#1ab394;color:white">Pantallas</td>

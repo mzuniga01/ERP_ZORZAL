@@ -3,7 +3,8 @@
         $('#msj_success').show();
         //console.log("Hola");
         var serialCode = localStorage.getItem("MensajeExito")
-        $('#MensajeExito').text("El Pedido ha sido enviado correctamente. Codigo de referencia de la salida Generada es: " + serialCode);
+        var BodegaOrigen = localStorage.getItem("BodegaOrigen")
+        $('#MensajeExito').text("El Pedido ha sido enviado correctamente, A la Bodega con código: " + BodegaOrigen + ". Codigo de referencia de la salida Generada es: " + serialCode);
         //console.log("serialCode", serialCode);
         localStorage.clear();
     }
@@ -101,6 +102,7 @@
                                     }
                                     else {
                                         localStorage.setItem("MensajeExito", data);
+                                        localStorage.setItem("BodegaOrigen", bod_Id);
                                         location.reload('/ConsultarExistenciaProductos/Index');
                                         $("#ErrorValidacionGeneral").remove();
                                         $("#errorDescripcionRol").remove();

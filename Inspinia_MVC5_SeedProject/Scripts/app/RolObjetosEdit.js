@@ -55,8 +55,8 @@
         if (data.length < 1) {
             $('#AsignadosEdit').DataTable({
                 "searching": true,
-                "scrollY": "300px",
-                "scrollCollapse": true,
+                //"scrollY": "300px",
+                //"scrollCollapse": true,
                 "paging": false,
                 "info": false,
                 "oLanguage": {
@@ -91,8 +91,8 @@
             })
             $('#AsignadosEdit').DataTable({
                 "searching": true,
-                "scrollY": "300px",
-                "scrollCollapse": true,
+                //"scrollY": "300px",
+                //"scrollCollapse": true,
                 "paging": false,
                 "info": false,
                 "oLanguage": {
