@@ -15,7 +15,7 @@ $("#prod_CodigoBarras").on("keypress keyup blur", function (event) {
     }
 });
 //para q fact_Id acepte numeros(create)
-function soloLetras(e) {
+function solonumeros(e) {
     key = e.keyCode || e.which;
     tecla = String.fromCharCode(key).toLowerCase();
     letras = " -123456789";
@@ -33,14 +33,7 @@ function soloLetras(e) {
         return false;
     }
 }
-//para q ent_FacturaCompra acepte numeros(create)
-$("#ent_FacturaCompra").on("keypress keyup blur", function (event) {
-    //this.value = this.value.replace(/[^0-9\.]/g,'');
-    $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
-    if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
-        event.preventDefault();
-    }
-});
+
 //para q cantidad acepte numeros(editar detalle)
     $("#cantidadEdit").on("keypress keyup blur", function (event) {
         //this.value = this.value.replace(/[^0-9\.]/g,'');

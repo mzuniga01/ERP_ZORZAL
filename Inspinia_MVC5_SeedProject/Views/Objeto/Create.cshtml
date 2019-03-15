@@ -59,14 +59,14 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.obj_Pantalla, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                @Html.EditorFor(model => model.obj_Pantalla, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @maxlength = "50", @autocomplete = "off" } })
+                                @Html.EditorFor(model => model.obj_Pantalla, new { htmlAttributes = new { @onkeypress = "return soloLetras1(event)", @maxlength = "50", @autocomplete = "off" } })
                                 <p style="color:red"> @Html.ValidationMessageFor(model => model.obj_Pantalla)</p>
                             </div>
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(model => model.obj_Referencia, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                @Html.EditorFor(model => model.obj_Referencia, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @maxlength = "100", @autocomplete = "off" } })
+                                @Html.EditorFor(model => model.obj_Referencia, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @placeholder="Ejemplo: Controlador/metodo" , @maxlength = "100", @autocomplete = "off" } })
                                 <p style="color:red"> @Html.ValidationMessageFor(model => model.obj_Referencia)</p>
                             </div>
                         </div>
@@ -93,10 +93,13 @@
 }
 <script src="~/Scripts/app/Objeto.js"></script>
 <script>
-
+   
+   
     $("#obj_Pantalla").change(function () {
         var str = $("#obj_Pantalla").val();
         var res = str.toUpperCase();
         $("#obj_Pantalla").val(res);
+
+
     });
 </script>

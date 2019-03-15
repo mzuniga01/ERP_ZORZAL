@@ -187,7 +187,7 @@
                         @*Botoness*@
                         
                         <div class="form-group">
-                            <div class="col-md-offset-2 col-md-10">
+                            <div class="col-md-offset-3 col-md-10">
                                 @{if (Model.estm_Id == Helpers.EntradaEmitida)
                                     {
                                         <input type="submit" value="Guardar" class="btn btn-primary" />
@@ -310,32 +310,37 @@
                 </div>
             </div>
             @*datos de auditoriaa*@
-            <div class="ibox-content">
-                <table class="table table-striped">
-                    <tr>
-                        <th>Acción</th>
-                        <th>Usuario</th>
-                        <th>Fecha</th>
-                    </tr>
-                    <tr>
-                        <td>Creado</td>
-                        <td>
-                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
-                        </td>
-                        <td>@Html.DisplayFor(model => model.ent_FechaCrea)</td>
-                    </tr>
-                    <tr>
-                        <td>Modificado</td>
-                        <td>
-                            @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
-                            @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
-                        </td>
-                        <td>@Html.DisplayFor(model => model.ent_FechaModifica)</td>
-                    </tr>
-                </table>
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Auditoría</h5>
+                </div>
+                <div class="ibox-content">
+                    <table class="table table-striped">
+                        <tr>
+                            <th>Acción</th>
+                            <th>Usuario</th>
+                            <th>Fecha</th>
+                        </tr>
+                        <tr>
+                            <td>Creado</td>
+                            <td>
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                            </td>
+                            <td>@Html.DisplayFor(model => model.ent_FechaCrea)</td>
+                        </tr>
+                        <tr>
+                            <td>Modificado</td>
+                            <td>
+                                @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                                @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                            </td>
+                            <td>@Html.DisplayFor(model => model.ent_FechaModifica)</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
-        </div>
+             </div> 
     </div>
 </div>
 

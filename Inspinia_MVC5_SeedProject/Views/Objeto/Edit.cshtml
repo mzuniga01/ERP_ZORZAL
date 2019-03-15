@@ -95,7 +95,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.obj_Pantalla, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.obj_Pantalla, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @maxlength = "50", @autocomplete = "off" } })
+                                    @Html.EditorFor(model => model.obj_Pantalla, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)1", @maxlength = "50", @autocomplete = "off" } })
                                     <p style="color:red">  @Html.ValidationMessageFor(model => model.obj_Pantalla)</p>
                                 </div>
                             </div>
@@ -108,7 +108,7 @@
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(model => model.obj_Estado, new { @class = "control-label col-md-2" })
-                                <div class="col-md-3">
+                                <div class="col-md-3" >
                                     @if (Model.obj_Estado == true)
                                     {
                                         <p> Activo</p>
@@ -152,34 +152,35 @@
 
                 </div>
             </div>
-            <div class="ibox-content">
-                <table class="table table-striped">
-                    <tr>
-                        <th>Acción</th>
-                        <th>Usuario</th>
-                        <th>Fecha</th>
-                    </tr>
-                    <tr>
-                        <td>Creado</td>
-                        <td>
-
-                            @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
-                            @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
-
-                        </td>
-                        <td>@Html.DisplayFor(model => model.obj_FechaCrea)</td>
-                    </tr>
-                    <tr>
-                        <td>Modificado</td>
-                        <td>
-                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
-
-                          
-                        </td>
-                        <td>  @Html.DisplayFor(model => model.obj_FechaModifica) </td>
-                    </tr>
-                </table>
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Auditoría</h5>
+                </div>
+                <div class="ibox-content">
+                    <table class="table table-striped">
+                        <tr>
+                            <th>Acción</th>
+                            <th>Usuario</th>
+                            <th>Fecha</th>
+                        </tr>
+                        <tr>
+                            <td>Creado</td>
+                            <td>
+                                @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                                @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                            </td>
+                            <td>@Html.DisplayFor(model => model.obj_FechaCrea)</td>
+                        </tr>
+                        <tr>
+                            <td>Modificado</td>
+                            <td>
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                            </td>
+                            <td>@Html.DisplayFor(model => model.obj_FechaModifica)</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
             </div>
             <div class="modal fade" id="ModalEstado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -213,7 +214,8 @@
 }
 <script src="~/Scripts/app/Objeto.js"></script>
 <script>
-
+    
+    
     $("#obj_Pantalla").change(function () {
         var str = $("#obj_Pantalla").val();
         var res = str.toUpperCase();

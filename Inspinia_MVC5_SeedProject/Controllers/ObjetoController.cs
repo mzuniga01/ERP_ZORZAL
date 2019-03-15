@@ -53,9 +53,13 @@ namespace ERP_GMEDINA.Controllers
         [SessionManager("Objeto/Create")]
         public ActionResult Create([Bind(Include = "obj_Id,obj_Pantalla,obj_Referencia,obj_UsuarioCrea,obj_FechaCrea,obj_UsuarioModifica,obj_FechaModifica,obj_Estado")] tbObjeto tbObjeto)
         {
-            if (db.tbObjeto.Any(a => a.obj_Pantalla == tbObjeto.obj_Pantalla))
+            if (db.tbObjeto.Any(a => a.obj_Pantalla == tbObjeto.obj_Pantalla ))
             {
-                ModelState.AddModelError("", "Ya existe un objeto con este nombre, favor registrar otro");
+                ModelState.AddModelError("", "Ya existe un objeto con este nombre de Pantalla, favor registrar otro");
+            }
+            if (db.tbObjeto.Any(a =>  a.obj_Referencia == tbObjeto.obj_Referencia))
+            {
+                ModelState.AddModelError("", "Ya existe un objeto con esta Referencia, favor registrar otro");
             }
             if (ModelState.IsValid)
             {

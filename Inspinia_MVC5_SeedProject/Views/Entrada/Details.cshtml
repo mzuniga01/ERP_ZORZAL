@@ -92,19 +92,15 @@
                             else if (Model.estm_Id == Helpers.EntradaEstadoAnulada)
                             {
                                 <p style="color:maroon">Anulada</p>
+                                <dt>
+                                Razon Anulacion
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.entd_RazonAnulada)
+                                </dd>
                             }
                         </dd>
-                        @if (Model.estm_Id == Helpers.EntradaEstadoAnulada)
-                        {
-                            <dt>
-                                Razon Devolucion
-                            </dt>
-
-                            <dd>
-                                @Html.DisplayFor(model => model.entd_RazonAnulada)
-                            </dd>
-                        }
-                        
                         <dt>
                             Tipo Entrada
                         </dt>
@@ -171,17 +167,26 @@
                                     </dd>
 
                             }
-                            
-                        </dl>
-
-                        <div class="form-group">
                             @Html.ActionLink("Editar", "Edit", new { id = Model.ent_Id }, new { @class = "btn btn-primary" })
-                            @Html.Partial("_IndexDetalleEntrada", Model.tbEntradaDetalle)
+
+                        </dl>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    @Html.Partial("_IndexDetalleEntrada", Model.tbEntradaDetalle)
+                                </div>
+                            </div>
                         </div>
+                    </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+<div class="ibox float-e-margins">
+    <div class="ibox-title">
+        <h5>Auditoría</h5>
     </div>
     <div class="ibox-content">
         <table class="table table-striped">
@@ -208,3 +213,4 @@
             </tr>
         </table>
     </div>
+</div>

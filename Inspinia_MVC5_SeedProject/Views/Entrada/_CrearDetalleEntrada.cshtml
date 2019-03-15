@@ -6,10 +6,10 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
-                <div class="ibox-title">
+                @*<div class="ibox-title">
                     <h5>Ingresar Detalle Entrada</h5>
                 </div>
-                <div class="ibox-content">
+                <div class="ibox-content">*@
                     <div class="form-horizontal">
                        
                         <div class="form-group">
@@ -66,20 +66,20 @@
                             </div>
                         </div>
 
-                        <table id="tbentrada" class="table table-hover">
+                        <table id="tbentrada" class="table table-striped table-responsive table-bordered table-hover">
                             <thead>
                                 <tr>
-                                    <th>Producto</th>
-                                    <th>Descripción</th>
-                                    <th>Código Barra</th>
+                                    <th>@Html.DisplayNameFor(model => model.tbProducto.prod_Codigo)</th>
+                                    <th>@Html.DisplayNameFor(model => model.tbProducto.prod_Descripcion)</th>
+                                    <th>@Html.DisplayNameFor(model => model.tbProducto.prod_CodigoBarras)</th>
                                     <th>Cantidad</th>
-                                    <th>Eliminiar</th>
+                                    <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody></tbody>
                         </table>
                     </div>
-                </div>
+                @*</div>*@
              </div>
         </div>
    </div>

@@ -1,4 +1,23 @@
-﻿function soloLetras(e) {
+﻿function soloLetras1(e) {
+    key = e.keyCode || e.which;
+    tecla = String.fromCharCode(key).toLowerCase();
+    letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
+    especiales = "8-37-39-46";
+
+    tecla_especial = false
+    for (var i in especiales) {
+        if (key == especiales[i]) {
+            tecla_especial = true;
+            break;
+        }
+    }
+
+    if (letras.indexOf(tecla) == -1 && !tecla_especial) {
+        return false;
+    }
+}
+
+function soloLetras(e) {
     key = e.keyCode || e.which;
     tecla = String.fromCharCode(key).toLowerCase();
     letras = " /áéíóúabcdefghijklmnñopqrstuvwxyz";
@@ -16,20 +35,23 @@
         return false;
     }
 }
+
 ///validar not copy paste///
 window.onload =
     function () {
-        var myInput = document.getElementById('obj_Pantalla');
-        myInput.onpaste = function (e) {
+        var myInput1 = document.getElementById('obj_Pantalla');
+        myInput1.onpaste = function (e) {
             e.preventDefault();
             //alert("esta acción está prohibida");
         }
 
-        myInput.oncopy = function (e) {
+        myInput1.oncopy = function (e) {
             e.preventDefault();
             //alert("esta acción está prohibida");
         }
     }
+
+
 ///validar not copy paste///
 window.onload =
     function () {
