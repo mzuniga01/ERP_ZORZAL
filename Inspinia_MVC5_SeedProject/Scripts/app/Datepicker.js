@@ -189,6 +189,19 @@
         changeYear: true
     }).datepicker('setDate', new Date()).datepicker("destroy");
 
+
+
+
+
+    //Arqueo
+    $("#fechaapertura").datepicker({
+        dateFormat: 'mm/dd/yy',
+        monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+        dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+        prevText: 'Ant',
+        nextText: 'Sig'
+    }).datepicker('setDate', new Date());
+
     $("#fechaarqueo").datepicker({
         dateFormat: 'mm/dd/yy',
         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
@@ -197,13 +210,14 @@
         nextText: 'Sig'
     }).datepicker('setDate', new Date());
 
-    $("#fechasarqueo").datepicker({
+    $("#fechaaceptacion").datepicker({
         dateFormat: 'mm/dd/yy',
         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
         prevText: 'Ant',
         nextText: 'Sig'
     }).datepicker('setDate', new Date());
+ //-------------------------------------------------------------//
 
     $("#fechainicio").datepicker({
         dateFormat: 'mm/dd/yy',
@@ -221,13 +235,7 @@
         nextText: 'Sig'
     }).datepicker('setDate', new Date());
 
-    $("#fechaaceptacion").datepicker({
-        dateFormat: 'mm/dd/yy',
-        monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-        dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
-        prevText: 'Ant',
-        nextText: 'Sig'
-    }).datepicker('setDate', new Date());
+    
 
     $("#bcta_FechaApertura").datepicker({
         dateFormat: 'mm/dd/yy',
