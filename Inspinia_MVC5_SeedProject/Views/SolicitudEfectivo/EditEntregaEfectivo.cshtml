@@ -97,7 +97,7 @@
                             <div hidden class="form-group col-md-5">
                                 @Html.LabelFor(model => model.solef_UsuarioEntrega, "Usuario Apertura", new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.tbUsuario2.usu_Nombres, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @Value = ViewBag.UsuarioEntrega } })
+                                    @Html.EditorFor(model => model.tbUsuario2.usu_Nombres, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @Value = ViewBag.solef_UsuarioEntrega } })
                                     <p id="MensajeErrorDenominacion" style="color:red"> @Html.ValidationMessageFor(model => model.solef_UsuarioEntrega)</p>
                                 </div>
                             </div>
@@ -128,35 +128,30 @@
                     }
                 </div>
             </div>
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <h5>Auditoría</h5>
-                </div>
-                <div class="ibox-content">
-                    <table class="table table table-striped  table-bordered">
-                        <tr>
-                            <th>Acción</th>
-                            <th>Usuario</th>
-                            <th>Fecha</th>
-                        </tr>
-                        <tr>
-                            <td>Creado</td>
-                            <td>
-                                @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                                @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
-                            </td>
-                            <td>@Html.DisplayFor(model => model.solef_FechaCrea)</td>
-                        </tr>
-                        <tr>
-                            <td>Modificado</td>
-                            <td>
-                                @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
-                                @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
-                            </td>
-                            <td>@Html.DisplayFor(model => model.solef_FechaModifica)</td>
-                        </tr>
-                    </table>
-                </div>
+            <div class="ibox-content">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Acción</th>
+                        <th>Usuario</th>
+                        <th>Fecha</th>
+                    </tr>
+                    <tr>
+                        <td>Creado</td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                        </td>
+                        <td>@Html.DisplayFor(model => model.solef_FechaCrea)</td>
+                    </tr>
+                    <tr>
+                        <td>Modificado</td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario2.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario2.usu_Apellidos)
+                        </td>
+                        <td>@Html.DisplayFor(model => model.solef_FechaModifica)</td>
+                    </tr>
+                </table>
             </div>
 
         </div>

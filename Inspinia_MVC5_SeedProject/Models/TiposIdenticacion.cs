@@ -19,7 +19,7 @@ namespace ERP_GMEDINA.Models
         public byte tpi_Id { get; set; }
 
         [Display(Name = "Descripción")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         [StringLength(25)]
         public string tpi_Descripcion { get; set; }
 

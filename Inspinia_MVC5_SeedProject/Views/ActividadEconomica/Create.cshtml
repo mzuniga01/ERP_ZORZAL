@@ -47,7 +47,8 @@
             <label class="control-label col-md-2 AsteriscoRojo">Descripción</label>
             @*@Html.LabelFor(model => model.acte_Descripcion, new { @class = "control-label col-md-2" })*@
             <div class="col-md-5">
-                @Html.EditorFor(model => model.acte_Descripcion, new { htmlAttributes = new { @autocomplete = "off", @style = "text-transform:uppercase;", onkeypress = "return validar(event)"@*, @maxlenght = 3*@ } })
+                @Html.EditorFor(model => model.acte_Descripcion, new { htmlAttributes = new {
+               @class = "form-control",@autocomplete = "off", @style = "text-transform:uppercase;", onkeypress = "return validar(event)"@*, @maxlenght = 3*@ } })
                 <p style="color:red">@Html.ValidationMessageFor(model => model.acte_Descripcion)</p>
        </div>
         </div>
@@ -67,8 +68,28 @@
     </div>
  </div>
 
+
  <script src="~/Scripts/app/CaracteresEspeciales.js"></script>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+<script>
+    $(document).ready(function () {
+
+
+        //VALIDAR SOLO LETRAS
+        $('#acte_Descripcion').on('input', function (e) {
+            if (!/^[ a-z-áéíóúüñ]*$/i.test(this.value)) {
+                this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
+            }
+        });
+        $('#acte_Descripcion').on('input', function (e) {
+            if (!/^[ a-z-áéíóúüñ]*$/i.test(this.value)) {
+                this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
+            }
+        });
+
+
+    });
+</script>
 }

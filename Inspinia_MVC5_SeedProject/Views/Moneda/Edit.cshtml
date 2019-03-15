@@ -87,29 +87,35 @@
                 </div>
             </div>
 
-            <div class="ibox-content">
-                <table class="table table-striped">
-                    <tr>
-                        <th>Acción</th>
-                        <th>Usuario</th>
-                        <th>Fecha</th>
-                    </tr>
-                    <tr>
-                        <td>Creado</td>
-                        <td>
-                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)</td>
-                        <td>@Html.DisplayFor(model => model.mnda_FechaCrea)</td>
-                    </tr>
-                    <tr>
-                        <td>Modificado</td>
-                        <td>
-                            @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
-                            @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)</td>
-                        <td>@Html.DisplayFor(model => model.mnda_FechaModifica)</td>
-                </tr>
-               
-                </table>
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Auditoría</h5>
+                </div>
+                <div class="ibox-content">
+                    <table class="table table table-striped  table-bordered">
+                        <tr>
+                            <th>Acción</th>
+                            <th>Usuario</th>
+                            <th>Fecha</th>
+                        </tr>
+                        <tr>
+                            <td>Creado</td>
+                            <td>
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                            </td>
+                            <td>@Html.DisplayFor(model => model.mnda_FechaCrea)</td>
+                        </tr>
+                        <tr>
+                            <td>Modificado</td>
+                            <td>
+                                @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                                @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                            </td>
+                            <td>@Html.DisplayFor(model => model.mnda_FechaModifica)</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
 
         </div>
@@ -122,4 +128,35 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+<script>
+    $(document).ready(function () {
+
+
+        //VALIDAR SOLO LETRAS
+        $('#mnda_Abreviatura').on('input', function (e) {
+            if (!/^[ a-z-áéíóúüñ]*$/i.test(this.value)) {
+                this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
+            }
+        });
+        $('#mnda_Abreviatura').on('input', function (e) {
+            if (!/^[ a-z-áéíóúüñ]*$/i.test(this.value)) {
+                this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
+            }
+        });
+
+
+        //VALIDAR SOLO LETRAS
+        $('#mnda_Nombre').on('input', function (e) {
+            if (!/^[ a-z-áéíóúüñ]*$/i.test(this.value)) {
+                this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
+            }
+        });
+        $('#mnda_Nombre').on('input', function (e) {
+            if (!/^[ a-z-áéíóúüñ]*$/i.test(this.value)) {
+                this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
+            }
+        });
+
+    });
+</script>
 }

@@ -17,7 +17,7 @@ namespace ERP_GMEDINA.Models
         public short acte_Id { get; set; }
 
         [Display(Name = "Descripción")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string acte_Descripcion { get; set; }
 
         [Display(Name = "Usuario Crea")]
