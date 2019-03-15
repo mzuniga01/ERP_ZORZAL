@@ -12,7 +12,7 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Detalles Punto Emisión</h2>
+        <h2>Punto Emisión</h2>
     </div>
     <div class="col-sm-8">
         <div class="title-action">
@@ -26,9 +26,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <div class="ibox-tools">
-                        @Html.ActionLink("Editar", "Edit", new { id = Model.pemi_Id }, new { @class = "btn btn-primary" })
-                    </div>
+                    <h5>Detalles Punto Emisión</h5>
                 </div>
                 <div class="ibox-content">
                   
@@ -59,6 +57,7 @@
                                 @Html.DisplayFor(model => model.pemi_NumeroCAI)
                             </dd>
                         </dl>
+                    @Html.ActionLink("Editar", "Edit", new { id = Model.pemi_Id }, new { @class = "btn btn-primary" })
                 </div>
             </div>
             <div class="row">
@@ -175,11 +174,11 @@
 
             if (i <= d) {
                 $("#btnModalEditarEdit_" + parseInt(ID)).prop("disabled", true);
-                $("#Circulos_" + parseInt(ID)).removeClass().addClass("red");
+                $("#Circulos_" + parseInt(ID)).removeClass().addClass("red").attr('title', 'No vigente');
             }
             else if (NumeroActualCasteado == RangoFinalCasteado) {
                 $("#btnModalEditarEdit_" + parseInt(ID)).prop("disabled", true);
-                $("#Circulos_" + parseInt(ID)).removeClass().addClass("red");
+                $("#Circulos_" + parseInt(ID)).removeClass().addClass("red").attr('title', 'No vigente');
             }
             else {
                 $("#btnModalEditarEdit_" + parseInt(ID)).prop("disabled", false);

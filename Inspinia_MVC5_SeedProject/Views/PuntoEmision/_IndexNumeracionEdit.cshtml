@@ -49,7 +49,7 @@
                 <div class="ibox-title">
                     <h3><b>Listado de Numeración</b></h3>
                     <div class="ibox-tools">
-                        <button type="button" id="btnModalGuardarNumeracion" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#Nuevo">
+                        <button type="button" id="btnModalGuardarNumeracion" class="btn btn-primary" data-toggle="modal" data-target="#Nuevo">
                             Registrar Numeración
                         </button>
                     </div>
@@ -120,7 +120,7 @@
                                         @Html.DisplayFor(modelItem => item.pemid_FechaLimite)
                                     </td>
                                     <td>
-                                        <span id="Circulos_@item.pemid_Id" data-toggle="tooltip" title="Vigente">&nbsp;</span>
+                                        <span id="Circulos_@item.pemid_Id" data-toggle="tooltip">&nbsp;</span>
                                     </td>
                                     <td hidden>
                                         @Html.DisplayFor(modelItem => item.tbUsuario.usu_Nombres)

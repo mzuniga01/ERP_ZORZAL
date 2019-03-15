@@ -14,7 +14,7 @@ namespace ERP_GMEDINA.Models
 
     public class EstadoFacturaMetaData
     {
-        [Display(Name = "Estado Factura")]
+        [Display(Name = "Número")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public byte esfac_Id { get; set; }
 

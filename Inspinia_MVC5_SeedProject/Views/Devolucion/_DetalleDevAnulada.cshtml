@@ -14,7 +14,7 @@
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-            @Html.ActionLink("Regresar", "Index")
+            @Html.ActionLink("Regresar", "_DevolucionesAnuladas")
         </div>
     </div>
 </div>
@@ -119,47 +119,8 @@
                             </dd>
                             }
                         }
-                            @Html.Hidden("Redireccionar", Url.Action("Index", "Devolucion"))
-
-                            @Html.Hidden("RedirectTo", Url.Action("CreateNotaCredito", "Devolucion", new { id = Model.dev_Id }))
-
-                        @if (ViewBag.NotaCredito == "1")
-                        {
-                            <dt>
-                                Código Nota Crédito
-                                @*@Html.DisplayNameFor(model => model.nocre_Codigo)*@
-                            </dt>
-
-                            <dd>
-                                @Html.DisplayFor(model => model.nocre_Codigo)
-                            </dd>
-                            <br />
-                            @Html.Partial("_IndexDetalleDevolucion", Model.tbDevolucionDetalle)
-
-                            //Aqui finaliza el If
-                        }
-                        else
-                        {
-                            <div class="form-group">
-                                @Html.Partial("_IndexDetalleDevolucion", Model.tbDevolucionDetalle)
-
-
-                                <div class="col-md-offset col-md-11">
-
-                                    @Html.ActionLink("Editar", "Edit", new { id = Model.dev_Id }, new { @class = "btn btn-primary  btn-ms" })
-
-                                    @*<button id="bottonNotaCredito" name="bottonNotaCredito" type="button" class="btn btn-primary btn-ms" data-toggle="modal" data-target="#ModalNotaCredito">
-                                        Emitir Nota de Credito
-                                    </button>*@
-                                    <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-danger" data-toggle="modal" data-target="#Anular">Anular</button>
-
-                                </div>
-                            </div>
-                            //Aqui finaliza el Else
-                        }
-   
-                        
                       
+                            @Html.Partial("_IndexDetalleDevolucion", Model.tbDevolucionDetalle)
 </dl>
 
                    
@@ -200,54 +161,6 @@
     </div>
  </div>
 
-@* -------------------Modal Anular----------------*@
-<div class="modal fade" id="Anular" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Anular Devolución</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                ¿Está seguro de Anular esta Devolución?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="AnularDevolucion();" data-dismiss="modal">Si</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="ModalNotaCredito" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLabel">Emitir Nota Credito</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <h3>
-                    <strong>
-                        ¿Esta seguro que desea crear una Nota de Credito? <br /><br />
-                        Recuerde que no podra volver hacerlo, esta acción es irreversible.
-                    </strong>
-                </h3>
-            </div>
-            <div class="modal-footer">
-                @Html.ActionLink("Si", "EmitirNotaCredito", null, new { @class = "btn btn-primary btn-sm" })
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-            </div>
-        </div>
-    </div>
-</div>
-<script src="~/Scripts/app/EmitirNotaCredito.js"></script>
-<script src="~/Scripts/app/AnularDevolucion.js"></script>
-@*<script src="~/Scripts/app/TableDetalleDevolucion.js"></script>*@
 
 
 
