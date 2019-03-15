@@ -113,6 +113,7 @@ namespace ERP_ZORZAL.Controllers
                                 MensajeError = PuntoEmisionL.MensajeError;
                             if (MensajeError.StartsWith("-1"))
                             {
+                                ViewBag.DocumentoFiscal = new SelectList(_documentofiscal, "CodDocumentoFiscal", "DescDocumentoFiscal");
                                 ModelState.AddModelError("", "No se pudo agregar el registro");
                                 return View(tbPuntoEmision);
                             }
@@ -144,6 +145,7 @@ namespace ERP_ZORZAL.Controllers
                                                     MensajeErrorDetalle = SPpuntoemisiondet.MensajeError;
                                                     if (MensajeErrorDetalle.StartsWith("-1"))
                                                     {
+                                                        ViewBag.DocumentoFiscal = new SelectList(_documentofiscal, "CodDocumentoFiscal", "DescDocumentoFiscal");
                                                         ModelState.AddModelError("", "No se pudo agregar el registro detalle");
                                                         return View(tbPuntoEmision);
                                                     }
@@ -154,6 +156,7 @@ namespace ERP_ZORZAL.Controllers
                                 }
                                 else
                                 {
+                                    ViewBag.DocumentoFiscal = new SelectList(_documentofiscal, "CodDocumentoFiscal", "DescDocumentoFiscal");
                                     ModelState.AddModelError("", "No se pudo agregar el registro");
                                     return View(tbPuntoEmision);
                                 }
@@ -243,7 +246,9 @@ namespace ERP_ZORZAL.Controllers
                             MensajeError = puntoemision.MensajeError;
                         if (MensajeError.StartsWith("-1"))
                         {
-                            ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                            System.Web.HttpContext.Current.Items[cas] = new SelectList(DocumentoFiscal, "dfisc_Id", "dfisc_Descripcion");
+                            ViewBag.IdPuntoEmisionEdit = PuntoEmision.pemi_Id;
+                            ModelState.AddModelError("", "No se pudo actualizar el registro");
                             return View(PuntoEmision);
                         }
                         else
@@ -257,7 +262,7 @@ namespace ERP_ZORZAL.Controllers
                 {
                     Ex.Message.ToString();
                     System.Web.HttpContext.Current.Items[cas] = new SelectList(DocumentoFiscal, "dfisc_Id", "dfisc_Descripcion");
-                    ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                    ModelState.AddModelError("", "No se pudo actualizar el registro");
                     return View(PuntoEmision);
                 }
             }

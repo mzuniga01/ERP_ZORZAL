@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ERP_GMEDINA.Models.tbMovimientoCaja>
+﻿@model IEnumerable<ERP_GMEDINA.Models.UDV_Vent_ArqueoCaja_Select>
 
 @{
     ViewBag.Title = "Index";
@@ -33,19 +33,19 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.tbCaja.tbSucursal.suc_Descripcion)
+               Sucursal
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.tbCaja.cja_Id)
+               Caja
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.mocja_FechaApertura)
+                Fecha Apertura
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.mocja_FechaArqueo)
+               Fecha Arqueo
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.mocja_FechaAceptacion)
+                Fecha Aceptación
             </th>
             <th>Acciones</th>
         </tr>
@@ -57,10 +57,10 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.tbCaja.tbSucursal.suc_Descripcion)
+                    @Html.DisplayFor(modelItem => item.suc_Descripcion)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.tbCaja.cja_Descripcion)
+                    @Html.DisplayFor(modelItem => item.cja_Descripcion)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.mocja_FechaApertura)

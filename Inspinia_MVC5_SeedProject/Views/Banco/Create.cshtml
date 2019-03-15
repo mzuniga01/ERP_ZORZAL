@@ -35,7 +35,7 @@
 
                         <div class="form-horizontal">
 
-                            <div class="form-horizontal">
+                            <div class="form-horizontal" >
                                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.ban_Nombre, new { @class = "control-label col-md-2" })
@@ -57,7 +57,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.ban_TelefonoContacto, new { @class = "control-label col-md-2" })
                                 <div class="col-md-5">
-                                    @Html.EditorFor(model => model.ban_TelefonoContacto, new { htmlAttributes = new { @autocomplete = "off", @Placeholder = "(Código Área) Teléfono", onkeypress = "return validartel(event)", @onkeyup = "this.value=Caracteres(this.value)" } })
+                                    @Html.EditorFor(model => model.ban_TelefonoContacto, new { htmlAttributes = new { @autocomplete = "off",@Placeholder = "(Código Área) Teléfono", onkeypress = "return validartel(event)", @onkeyup = "this.value=Caracteres(this.value)" } })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.ban_TelefonoContacto) </p>
                                 </div>
                             </div>
@@ -101,3 +101,6 @@
         }
     });
 </script>
+
+
+

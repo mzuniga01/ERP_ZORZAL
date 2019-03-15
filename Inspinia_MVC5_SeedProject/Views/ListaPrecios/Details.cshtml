@@ -9,6 +9,12 @@
     <div class="col-sm-4">
         <h2>Lista Precio</h2>
     </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            <a href="@Url.Action("Index","ListaPrecios")">Regresar</a>
+            @*@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary"})*@
+        </div>
+    </div>
 </div>
 
 
@@ -73,8 +79,21 @@
                             @Html.DisplayFor(model => model.listp_Prioridad)
                         </dd>
 
+                        <dt>
+                            @Html.DisplayNameFor(model => model.listp_FechaInicioVigencia)
+                        </dt>
 
+                        <dd>
+                            @Html.DisplayFor(model => model.listp_FechaInicioVigencia)
+                        </dd>
 
+                        <dt>
+                            @Html.DisplayNameFor(model => model.listp_FechaFinalVigencia)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.listp_FechaFinalVigencia)
+                        </dd>
                     </dl>
           
                     <div class="ibox-content">
@@ -83,8 +102,7 @@
 
 
                     @Html.ActionLink("Editar", "Edit", new { id = Model.listp_Id }, new { @class = "btn btn-primary" })
-                    @Html.ActionLink("Regresar", "Index", null, new { @class = "btn btn-white" })
-
+                 
 
                 </div>
             </div>

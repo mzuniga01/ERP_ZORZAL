@@ -17,95 +17,99 @@
 
                             </div>
 
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.tbProducto.prod_CodigoBarras, "Código Barra", new { @class = "control-label col-md-3" })
-                                <div class="col-md-6">
-                                    @Html.EditorFor(model => model.tbProducto.prod_CodigoBarras, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly" } })
-                                    @Html.ValidationMessageFor(model => model.tbProducto.prod_CodigoBarras)
+                          <div class="form-group">
+                            <label class="control-label col-md-2 ">Código Barra Producto</label>
+                            @*@Html.LabelFor(model => model.tbProducto.prod_CodigoBarras, "Código Producto Barra", new { @class = "control-label col-md-2" })*@
+                            <div class="col-md-4 ">
+                                @Html.EditorFor(model => model.tbProducto.prod_CodigoBarras, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                <div id="validacionNombreProductoCreate">
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.tbProducto.prod_CodigoBarras)</p>
                                 </div>
-                            
+                            </div>
 
 
+                            <div class="col-md-3">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarProducto"><span class="glyphicon glyphicon-search"></span></button>
+                            </div>
 
-                                <div class="col-md-1">
-                                    <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#ModalAgregarProducto"><span class="glyphicon glyphicon-search"></span></button>
+                        </div>
+
+                        <div class="form-group">
+
+                            <label class="control-label col-md-2 AsteriscoRojo">Código Producto</label>
+                            @*@Html.LabelFor(model => model.prod_Codigo , "Código Producto", new { @class = "control-label col-md-2" })*@
+                            <div class="col-md-4 ">
+                                @Html.EditorFor(model => model.prod_Codigo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                <div id="validacionCodigoProductoCreate">
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.prod_Codigo)</p>
+                                </div>
+
+                            </div>
+
+                            <label class="control-label col-md-2 AsteriscoRojo">Nombre Producto</label>
+                            @*@Html.LabelFor(model => model.tbProducto.prod_Descripcion, "Nombre Producto", new { @class = "control-label col-md-2" })*@
+                            <div class="col-md-4 ">
+                                @Html.EditorFor(model => model.tbProducto.prod_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                <div id="validacionNombreProductoCreate">
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.tbProducto.prod_Descripcion)</p>
                                 </div>
                             </div>
 
 
 
-                            <div class="form-group">
+                        </div>
 
 
-                                @Html.LabelFor(model => model.prod_Codigo, new { @class = "control-label col-md-3" })
 
-                                <div class="col-md-6">
-                                    @Html.EditorFor(model => model.prod_Codigo, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly" } })
-                                    <p style="color:red">
-                                        @Html.ValidationMessageFor(model => model.prod_Codigo)
-                                </div></div>
 
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.tbProducto.prod_Descripcion, new { @class = "control-label col-md-3" })
-                                    <div class="col-md-6">
-                                        @Html.EditorFor(model => model.tbProducto.prod_Descripcion, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly" } })
-                                        @Html.ValidationMessageFor(model => model.tbProducto.prod_Descripcion)
-                                    </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2 AsteriscoRojo">Precio Mayorista</label>
+                            @*@Html.LabelFor(model => model.lispd_PrecioMayorista, "Precio Mayorista", new { @class = "control-label col-md-2" })*@
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.lispd_PrecioMayorista, new { htmlAttributes = new { @type = "number", @min = "0", @step = "0.01", @value = "0" } })
+                                <div id="validacionPrecioMayoristaCreate">
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.lispd_PrecioMayorista)</p>
                                 </div>
 
-
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.lispd_PrecioMayorista, new { @class = "control-label col-md-3" })
-                                <div class="col-md-6">
-
-                                    @Html.EditorFor(model => model.lispd_PrecioMayorista, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @onkeypress = "return solonum(event)" } })
-                                    @*@Html.ValidationMessageFor(model => model.lispd_PrecioMayorista)*@
-                                    <div id="validacionPrecioMayoristaCreate">
-                                        <p style="color:red">@Html.ValidationMessageFor(model => model.lispd_PrecioMayorista)</p>
-                                    </div>
-
-
-                                </div>
                             </div>
                             <div class="form-group">
-                                @Html.LabelFor(model => model.lispd_PrecioMinorista, new { @class = "control-label col-md-3" })
-                                <div class="col-md-6">
-                                    @Html.EditorFor(model => model.lispd_PrecioMinorista, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @onkeypress = "return solonum(event)" } })
-                                    @*@Html.ValidationMessageFor(model => model.lispd_PrecioMayorista)*@
+                                <label class="control-label col-md-2 AsteriscoRojo">Precio Minorista</label>
+                                @* @Html.LabelFor(model => model.lispd_PrecioMinorista, "Precio Minorista", new { @class = "control-label col-md-2" })*@
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.lispd_PrecioMinorista, new { htmlAttributes = new { @type = "number", @min = "0", @step = "0.01", @value = "0" } })
                                     <div id="validacionPrecioMinoristaCreate">
                                         <p id="validacionPreciosMM" style="color:red">@Html.ValidationMessageFor(model => model.lispd_PrecioMinorista)</p>
                                     </div>
 
-
                                 </div>
                             </div>
-                     
+                        </div>
 
-            
 
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.lispd_DescCaja, new { @class = "control-label col-md-3", @id = "pedd_Cantidad_Ped" })
 
-                                    <div class="col-md-6">
-                                        @Html.EditorFor(model => model.lispd_DescCaja, new { htmlAttributes = new { @autocomplete = "off", @onkeypress = "return solonum(event)" } })
-                                        @*@Html.ValidationMessageFor(model => model.lispd_DescCaja)*@
-                                        <p id="smsCantidad" style="color:red"> @Html.ValidationMessageFor(model => model.lispd_DescCaja)</p>
 
-                                    </div>
-                                </div>
-                                     
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.lispd_DescGerente, new { @class = "control-label col-md-3", @id = "pedd_Cantidad_Ped" })
-
-                                    <div class="col-md-6">
-                                        @Html.EditorFor(model => model.lispd_DescGerente, new { htmlAttributes = new { @autocomplete = "off", @onkeypress = "return solonum(event)" } })
-                                        @*@Html.ValidationMessageFor(model => model.lispd_DescGerente)*@
-                                        <p id="desccaja" style="color:red">@Html.ValidationMessageFor(model => model.lispd_DescGerente)</p>
-
-                                    </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.lispd_DescCaja, "Descuento Caja (%)", new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.lispd_DescCaja, new { htmlAttributes = new { @type = "number", @min = "0", @max = 100, @step = "0.01", @value = "0" } })
+                                <div id="validacionDescuentoCajaCreate">
+                                    <p id="smsCantidad" style="color:red"> @Html.ValidationMessageFor(model => model.lispd_DescCaja)</p>
                                 </div>
 
 
+                            </div>
+
+                            @Html.LabelFor(model => model.lispd_DescGerente, "Descuento Gerente (%)", new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.lispd_DescGerente, new { htmlAttributes = new { @type = "number", @min = "0", @step = "0.01", @value = "0" } })
+                                <div id="validacionDescuentoGerenteCreate">
+                                    <p id="desccaja" style="color:red">@Html.ValidationMessageFor(model => model.lispd_DescGerente)</p>
+                                </div>
+
+                            </div>
+
+                        </div>
 
 
                                 <input type="hidden" id="lispd_UsuarioCrea_Lp" name="lispd_UsuarioCrea" />
@@ -121,7 +125,7 @@
                                 <div class="form-group">
                                     <div class="col-md-offset-5 col-md-10">
                                         <button class="btn btn-primary" type="submit" id="BtnGuardarDetalle" tabindex="10"> Guardar </button>
-                                        @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                            
                                     </div>
                                 </div>
 
@@ -151,6 +155,8 @@
         </div>
     </div>
 </div>
+
+  
         <div id="validationSummary">
             <p style="color:red"></p>
         </div>

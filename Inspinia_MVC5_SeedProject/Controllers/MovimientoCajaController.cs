@@ -21,8 +21,8 @@ namespace ERP_GMEDINA.Controllers
 
         public ActionResult Index()
         {
-            var tbmovimientocaja = db.tbMovimientoCaja.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbCaja);
-            return View(tbmovimientocaja.ToList());
+            var tbArqueoCaja = db.UDV_Vent_ArqueoCaja_Select;
+            return View(tbArqueoCaja.ToList());
         }
 
 
@@ -165,7 +165,7 @@ namespace ERP_GMEDINA.Controllers
                                 foreach (UDP_Vent_tbMovimientoCaja_Apertura_Insert_Result apertura in listMovimientoCaja)
 
                                     MensajeError = apertura.MensajeError;
-                                if (MensajeError == "-1")
+                                if (MensajeError.StartsWith("-1"))
                                 {
                                     Function.InsertBitacoraErrores("MovimientoCaja/CreateApertura", MensajeError, "CreateApertura");
                                     ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
@@ -184,7 +184,7 @@ namespace ERP_GMEDINA.Controllers
                                             Function.DatetimeNow());
                                     foreach (UDP_Vent_tbSolicitudEfectivo_Apertura_Insert_Result SolicitudEfectivoMon in listSolicitudEfectivo)
                                         MensajeErrorSolicitud = SolicitudEfectivoMon.MensajeError;
-                                    if (MensajeErrorSolicitud == "-1")
+                                    if (MensajeErrorSolicitud.StartsWith("-1"))
                                     {
                                         Function.InsertBitacoraErrores("MovimientoCaja/CreateApertura", MensajeError, "CreateApertura");
                                         ModelState.AddModelError("", "No se pudo agregar el registro detalle");
@@ -215,7 +215,7 @@ namespace ERP_GMEDINA.Controllers
                                                         foreach (UDP_Vent_tbSolicitudEfectivoDetalle_Apertura_Insert_Result SolicitudEfectivoDet in listSolicitudEfectivoDetalle)
                                                         {
                                                             MensajeErrorSolicitudDetalle = SolicitudEfectivoDet.MensajeError;
-                                                            if (MensajeErrorSolicitudDetalle == "-1")
+                                                            if (MensajeErrorSolicitudDetalle.StartsWith("-1"))
                                                             {
                                                                 Function.InsertBitacoraErrores("MovimientoCaja/CreateApertura", MensajeError, "CreateApertura");
                                                                 ModelState.AddModelError("", "No se pudo agregar el registro detalle");
@@ -376,8 +376,13 @@ namespace ERP_GMEDINA.Controllers
 
         ////////////TERMINO APERTURA////////////
 
-
-
+        ///traer la caja que este arqueada
+        [HttpPost]
+        public JsonResult GetCaja(int CodUsuario)
+        {
+            var list = db.spGetCaja(CodUsuario).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
 
         // GET: /MovimientoCaja/Details/5
         public ActionResult Details(int? id)
@@ -425,22 +430,9 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.usu_Id = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.usu_Id).SingleOrDefault();
 
 
-            tbMovimientoCaja MC = new tbMovimientoCaja();
-            MC.cja_Id = 4;
-            return View(MC);
+            return View();
 
-
-
-
-
-
-
-
-
-
-
-
-
+            
         }
 
         // POST: /MovimientoCaja/Create
@@ -470,7 +462,7 @@ namespace ERP_GMEDINA.Controllers
                         Function.DatetimeNow());
                     foreach (UDP_Vent_tbMovimientoCaja_Insert_Result denoarq in list)
                         MensajeError = denoarq.MensajeError;
-                    if (MensajeError == "-1")
+                    if (MensajeError.StartsWith("-1"))
                     {
                         ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
                         return View(tbMovimientoCaja);
@@ -549,14 +541,13 @@ namespace ERP_GMEDINA.Controllers
                                     Function.DatetimeNow());
                     foreach (UDP_Vent_tbMovimientoCaja_Update_Result denoarq in list)
                         MensajeError = denoarq.MensajeError;
-                    if (MensajeError == "-1")
+                    if (MensajeError.StartsWith("-1"))
                     {
                         ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
                         return View(tbMovimientoCaja);
                     }
                     else
                     {
-
                         return RedirectToAction("Index");
                     }
                 }
@@ -586,33 +577,6 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.deno_Id = new SelectList(db.tbDenominacionArqueo, "deno_Id", "deno_Descripcion", tbMovimientoCaja.cja_Id);
             return View(tbMovimientoCaja);
         }
-
-        // GET: /MovimientoCaja/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return RedirectToAction("Index");
-            }
-            tbMovimientoCaja tbMovimientoCaja = db.tbMovimientoCaja.Find(id);
-            if (tbMovimientoCaja == null)
-            {
-                return RedirectToAction("NotFound", "Login");
-            }
-            return View(tbMovimientoCaja);
-        }
-
-        // POST: /MovimientoCaja/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            tbMovimientoCaja tbMovimientoCaja = db.tbMovimientoCaja.Find(id);
-            db.tbMovimientoCaja.Remove(tbMovimientoCaja);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)

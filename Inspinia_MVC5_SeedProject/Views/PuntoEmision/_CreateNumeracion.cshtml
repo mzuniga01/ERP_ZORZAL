@@ -24,7 +24,7 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.pemid_RangoInicio, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                @Html.EditorFor(model => model.pemid_RangoInicio, new { htmlAttributes = new { @onkeypress = "return validar(event)"} })
+                                @Html.EditorFor(model => model.pemid_RangoInicio, new { htmlAttributes = new {@autocomplete = "off" ,@onkeypress = "return validar(event)"} })
                                 <div id="validacionRangoInicioCreate">
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.pemid_RangoInicio)</p>
                                 </div>
@@ -32,7 +32,7 @@
 
                             @Html.LabelFor(model => model.pemid_RangoFinal, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                @Html.EditorFor(model => model.pemid_RangoFinal, new { htmlAttributes = new { @onkeypress = "return validar(event)" } })
+                                @Html.EditorFor(model => model.pemid_RangoFinal, new { htmlAttributes = new { @autocomplete = "off", @onkeypress = "return validar(event)" } })
                                 <div id="validacionRangoFinalCreate">
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.pemid_RangoFinal)</p>
                                 </div>
@@ -72,6 +72,3 @@
     </thead>
     <tbody></tbody>
 </table>
-<div id="validationSummary">
-    <p style="color:red"></p>
-</div>

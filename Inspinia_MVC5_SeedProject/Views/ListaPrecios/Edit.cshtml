@@ -97,7 +97,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.listp_FechaFinalVigencia, new { @class = "control-label col-md-2" })
                     <div class="col-md-3">
-                        @Html.EditorFor(model => model.listp_FechaFinalVigencia, "{0:MM/dd/yyyy}", new { htmlAttributes = new { @class = "form-control", @id = "FFVEdit" } })
+                        @Html.EditorFor(model => model.listp_FechaFinalVigencia, "{0:MM/dd/yyyy}", new { htmlAttributes = new { @class = "form-control", @id = "FFVEdit", @autocomplete = "off" } })
                         @Html.ValidationMessageFor(model => model.listp_FechaFinalVigencia)
                     </div>
                 </div>
@@ -138,9 +138,6 @@
 
 
 
-            <div class="ibox-title">
-                <h5>Listas Precio Detalle</h5>
-            </div>
 
 
             <div class="ibox-content">

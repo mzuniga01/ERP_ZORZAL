@@ -28,7 +28,6 @@
                 </div>
                 <div class="ibox-content">
                     @using (Html.BeginForm("Create", "PuntoEmision", FormMethod.Post, new { enctype = "multipart/form-data" }))
-
                     {
                         @Html.AntiForgeryToken()
 
@@ -85,6 +84,20 @@
 <script src="~/Scripts/app/Datepicker.js"></script>
 <script src="~/Scripts/app/ComandoGuardar.js"></script>
 <script type="text/javascript">
+    $('#btnGuardar').click(function () {
+        var NumeroCAI = $('#pemi_NumeroCAI').val();
+        console.log(NumeroCAI);
+         
+        if (NumeroCAI == '') {
+            $('#MessageRequeridoNumeroCAI').text('');
+            $('#validacionNumeroCAICreate').after('<p id="MessageRequeridoNumeroCAI" style="color:red">El campo es requerido</p>');
+        }
+    });
+
+    $("#pemi_NumeroCAI").keyup(function () {
+        $('#MessageRequeridoNumeroCAI').text('');
+    });
+
     jQuery('input,select').each(function() {
         var req = jQuery(this).attr('data-val-required');
          var label = jQuery('label[for="' + jQuery(this).attr('id') + '"]');
