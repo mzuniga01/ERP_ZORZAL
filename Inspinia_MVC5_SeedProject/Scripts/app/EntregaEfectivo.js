@@ -26,7 +26,6 @@ $(document).on("change", "#EntregaEfectivo tbody tr td input#CantidadE", functio
     console.log('MontoEntregado', MontoEntregado);
     console.log('Subtotal', Subtotal);
     console.log('Total', Total);
-    console.log('TotalFinal', totalfinal);
     //document.getElementById("soled_MontoEntregado").innerHTML = parseFloat(MontoEntregado);
 
     //document.getElementById("Monto").innerHTML = parseFloat(MontoEntregado);

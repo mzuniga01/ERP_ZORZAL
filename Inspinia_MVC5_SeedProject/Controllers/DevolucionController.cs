@@ -48,29 +48,6 @@ namespace ERP_ZORZAL.Controllers
                 return RedirectToAction("Index", "Login");
         }
 
-        public ActionResult _DevolucionesAnuladas()
-        {
-            if (Function.GetUserLogin())
-            {
-                if (Function.GetRol())
-                {
-                    if (Function.GetUserRols("Devolucion/Index"))
-                    {
-                        var tbdevolucion = db.tbDevolucion.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbCaja).Include(t => t.tbFactura);
-                        return View(tbdevolucion.Where(a => a.dev_Estado == true).ToList());
-                    }
-                    else
-                    {
-                        return RedirectToAction("SinAcceso", "Login");
-                    }
-                }
-                else
-                    return RedirectToAction("SinRol", "Login");
-            }
-            else
-                return RedirectToAction("Index", "Login");
-        }
-
         [HttpPost]
         public JsonResult InsertDevolucion(tbDevolucionDetalle DetalleDevolucioncont)
         {
@@ -134,43 +111,6 @@ namespace ERP_ZORZAL.Controllers
                         Session["IDCLIENTE"] = tbDevolucion.tbFactura.clte_Id;
                         Session["NOMBRE"] = tbDevolucion.tbFactura.clte_Nombres;
 
-                        var ExiteNotaCredito = db.tbNotaCredito.Where(x => x.dev_Id == tbDevolucion.dev_Id).ToList();
-                        if (ExiteNotaCredito.Count() > 0)
-                        {
-                            ViewBag.NotaCredito = "1";
-                        }
-                        return View(tbDevolucion);
-                    }
-                    else
-                    {
-                        return RedirectToAction("SinAcceso", "Login");
-                    }
-                }
-                else
-                    return RedirectToAction("SinRol", "Login");
-            }
-            else
-                return RedirectToAction("Index", "Login");
-        }
-
-        public ActionResult _DetalleDevAnulada(int? id)
-        {
-            if (Function.GetUserLogin())
-            {
-                if (Function.GetRol())
-                {
-                    if (Function.GetUserRols("Devolucion/Details"))
-                    {
-                        if (id == null)
-                        {
-                            return RedirectToAction("Index");
-                        }
-                        tbDevolucionDetalle tbDevolucionDetalle = new tbDevolucionDetalle();
-                        tbDevolucion tbDevolucion = db.tbDevolucion.Find(id);
-                        if (tbDevolucion == null)
-                        {
-                            return RedirectToAction("NotFound", "Login");
-                        }
                         var ExiteNotaCredito = db.tbNotaCredito.Where(x => x.dev_Id == tbDevolucion.dev_Id).ToList();
                         if (ExiteNotaCredito.Count() > 0)
                         {
@@ -789,7 +729,7 @@ namespace ERP_ZORZAL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateNotaCredito([Bind(Include = "nocre_Id,nocre_Codigo,dev_Id,clte_Id,suc_Id,cja_Id,nocre_Anulado,nocre_FechaEmision,nocre_MotivoEmision,nocre_Monto,nocre_Redimido,nocre_FechaRedimido,nocre_EsImpreso,nocre_UsuarioCrea,nocre_FechaCrea,nocre_UsuarioModifica,nocre_FechaModifica")] tbNotaCredito tbNotaCredito)
+        public ActionResult CreateNotaCredito([Bind(Include = "nocre_Id,nocre_Codigo,dev_Id,clte_Id,suc_Id,cja_Id,nocre_Anulado,nocre_RazonAnulado,nocre_FechaEmision,nocre_MotivoEmision,nocre_Monto,nocre_Redimido,nocre_FechaRedimido,nocre_EsImpreso,nocre_UsuarioCrea,nocre_FechaCrea,nocre_UsuarioModifica,nocre_FechaModifica")] tbNotaCredito tbNotaCredito)
 
         {
             if (Function.GetUserLogin())
@@ -817,6 +757,7 @@ namespace ERP_ZORZAL.Controllers
                                                                         tbNotaCredito.suc_Id,
                                                                         tbNotaCredito.cja_Id,
                                                                         tbNotaCredito.nocre_Anulado,
+                                                                        tbNotaCredito.nocre_RazonAnulado,
                                                                         tbNotaCredito.nocre_FechaEmision,
                                                                         tbNotaCredito.nocre_MotivoEmision,
                                                                         tbNotaCredito.nocre_Monto,

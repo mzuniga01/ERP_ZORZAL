@@ -118,7 +118,7 @@
                             @Html.DisplayFor(model => model.cdto_FechaRedencion)
                         </dd>
                     </dl>
-                    @if (Model.cdto_Anulado == false && Model.cdto_Redimido == false && Model.cdto_EsImpreso==false)
+                    @if (Model.cdto_Anulado == false && Model.cdto_Redimido == false && Model.cdto_EsImpreso == false)
                     {
                         @Html.ActionLink("Editar", "Edit", new { id = Model.cdto_ID }, new { @class = "btn btn-primary" })
                     }

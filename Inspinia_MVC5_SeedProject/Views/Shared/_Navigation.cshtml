@@ -178,6 +178,12 @@
                             <a href="@Url.Action("Index", "EstadoSolicitudCredito")"><i class="fa fa-clipboard"></i>Estado Solicitud Crédito<span class="nav-label"></span> </a>
                         </li>
                     }
+                    @if (Login.GetUserRols("EstadoPedido/Index"))
+                    {
+                        <li class="@Html.IsSelected(action: "Index")">
+                            <a href="@Url.Action("Index", "EstadoPedido")"><i class="fa fa-clipboard"></i>Estado Pedido<span class="nav-label"></span> </a>
+                        </li>
+                    }
                     @if (Login.GetUserRols("CuentaBanco/Index"))
                     {
                         <li class="@Html.IsSelected(action: "Index")">

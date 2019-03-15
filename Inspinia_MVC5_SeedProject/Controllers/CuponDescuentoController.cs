@@ -112,7 +112,7 @@ namespace ERP_GMEDINA.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "cdto_ID,suc_Id,cdto_FechaEmision,cdto_FechaVencimiento,cdto_PorcentajeDescuento,cdto_MontoDescuento,cdto_MaximoMontoDescuento,cdto_CantidadCompraMinima,cdto_Redimido,cdto_FechaRedencion,cdto_Anulado,cdto_EsImpreso,cdto_UsuarioCrea,cdto_FechaCrea,cdto_UsuarioModifica,cdto_FechaModifica")] tbCuponDescuento tbCuponDescuento)
+        public ActionResult Create([Bind(Include = "cdto_ID,suc_Id,cdto_FechaEmision,cdto_FechaVencimiento,cdto_PorcentajeDescuento,cdto_MontoDescuento,cdto_MaximoMontoDescuento,cdto_CantidadCompraMinima,cdto_Redimido,cdto_FechaRedencion,cdto_Anulado,cdto_RazonAnulado,cdto_EsImpreso,cdto_UsuarioCrea,cdto_FechaCrea,cdto_UsuarioModifica,cdto_FechaModifica")] tbCuponDescuento tbCuponDescuento)
         {
             if (Function.GetUserLogin())
             {
@@ -142,6 +142,7 @@ namespace ERP_GMEDINA.Controllers
                                         tbCuponDescuento.cdto_Redimido,
                                         tbCuponDescuento.cdto_FechaRedencion,
                                         tbCuponDescuento.cdto_Anulado,
+                                        tbCuponDescuento.cdto_RazonAnulado,
                                         tbCuponDescuento.cdto_EsImpreso,
                                         Function.GetUser(),
                                         Function.DatetimeNow());

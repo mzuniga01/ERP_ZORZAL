@@ -43,8 +43,8 @@
                                 @Html.LabelFor(model => model.ped_FechaElaboracion, new { @class = "control-label col-md-3" })
 
                                 <div class="col-md-3">
-                                    @Html.EditorFor(model => model.ped_FechaElaboracion, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly" } })
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.ped_FechaElaboracion)
+                                @Html.EditorFor(model => model.ped_FechaElaboracion, "{0:MM-dd-yyyy}", new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly"} })
+                                <p style="color:red">@Html.ValidationMessageFor(model => model.ped_FechaElaboracion)
                                 </div>
 
                             </div>
@@ -78,7 +78,8 @@
 
                                 @Html.LabelFor(model => model.ped_FechaEntrega, new { @class = "control-label col-md-2" })
                                 <div class="col-md-3">
-                                    @Html.EditorFor(model => model.ped_FechaEntrega)
+                                    @Html.EditorFor(model => model.ped_FechaEntrega, "{0:MM-dd-yyyy}", new { htmlAttributes = new { @class = "form-control" } } )
+                                    
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.ped_FechaEntrega)</p>
                                 </div>
                             </div>
@@ -143,13 +144,14 @@
     }
 </script>
 @section Scripts {
+<script src="~/Scripts/app/SavePedidoDetalle.js"></script>
     @Scripts.Render("~/bundles/jqueryval")
     <script>
         $(document).ready(function () {
             $("#pedd_Cantidad").val('');
         });
     </script>
-    <script src="~/Scripts/app/SavePedidoDetalle.js"></script>
+
     <script>
         $.datepicker.regional['es'] = {
             closeText: 'Cerrar',
@@ -162,7 +164,7 @@
             dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
             dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
             weekHeader: 'Sm',
-            dateFormat: 'dd/mm/yy',
+            dateFormat: 'mm/dd/yy',
             firstDay: 1,
             isRTL: false,
             showMonthAfterYear: false,
@@ -171,17 +173,18 @@
         $.datepicker.setDefaults($.datepicker.regional['es']);
 
         $(function () {
-            $("#ped_FechaElaboracion").datepicker({ dateFormat: 'dd/mm/yy' }).datepicker('setDate', new Date()).datepicker("destroy");
-            $("#ped_FechaEntrega").datepicker({ dateFormat: 'dd/mm/yy', minDate: 0 }).datepicker('setDate', new Date());
+            $("#ped_FechaElaboracion").datepicker({ dateFormat: 'mm/dd/yy' }).datepicker('setDate', new Date()).datepicker("destroy");
+            $("#ped_FechaEntrega").datepicker({ dateFormat: 'mm/dd/yy', minDate: 0 }).datepicker('setDate', new Date());
         });
 
 
     </script> 
+
     <script src="~/Scripts/app/Datepicker.js"></script>
     <script src="~/Scripts/app/FacturaDetalle.js"></script>
     <script src="~/Scripts/app/ProductoListaPrecios.js"></script>
-    <script src="~/Scripts/app/Empleados.js"></script>
     <script src="~/Scripts/app/Clientes-Pedido-Credito.js"></script>
+   
     <script>
         $("#pedd_Cantidad").on("keypress keyup blur", function (event) {
             this.value = this.value.replace(/[a-záéíóúüñ#/=]+/ig, "");
@@ -223,8 +226,21 @@
     });
     </script>
 
-}
+<script>
+        function soloNumeros(e) {
+           var key = window.Event ? e.which : e.keyCode;
+           return ((key >= 48 && key <= 57) ||(key==8))
+         }
 
+         function pierdeFoco(e){
+            var valor = e.value.replace(/^0*/, '');
+            e.value = valor;
+         }
+</script>
+<script src="~/Scripts/jquery.mask.min.js"></script>
+<script src="~/Scripts/jquery.mask.js"></script>
+}
+}
 
 
 

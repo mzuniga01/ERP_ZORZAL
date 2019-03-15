@@ -378,7 +378,7 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.Cliente = db.tbCliente.ToList();
             tbPedido.esped_Id = Helpers.Pendiente;
 
-            Session["ID"] = tbPedido.tbCliente.clte_Id;
+            Session["ID"] = Convert.ToString(tbPedido.tbCliente.clte_Id) ;
             Session["PEDID"] = tbPedido.ped_Id;
             Session["IDENT"] = tbPedido.tbCliente.clte_Identificacion;
 

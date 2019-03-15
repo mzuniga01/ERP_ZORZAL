@@ -91,6 +91,7 @@
         if (NumeroCAI == '') {
             $('#MessageRequeridoNumeroCAI').text('');
             $('#validacionNumeroCAICreate').after('<p id="MessageRequeridoNumeroCAI" style="color:red">El campo es requerido</p>');
+            return false;
         }
     });
 

@@ -172,5 +172,29 @@ namespace ERP_GMEDINA.Models
             return state;
         }
 
+
+
+        public bool EsPersonaNatural(int clte_Id)
+        {
+            bool Retorno = false;
+            try
+            {
+                var Cliente = (from vCliente in db.tbCliente where vCliente.clte_Id == clte_Id select vCliente.clte_EsPersonaNatural).FirstOrDefault();
+                if (Cliente)
+                {
+                    Retorno = true;
+                }
+                else
+                {
+                    Retorno = false;
+                }
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                Retorno = false;
+            }
+            return Retorno;
+        }
     }
 }

@@ -64,9 +64,11 @@
                             </div>
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.tbDevolucion.tbCaja.cja_Descripcion, "Caja", new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.tbDevolucion.tbCaja.cja_Descripcion, "Caja", new { @class = "control-label col-md-2", @readonly="readonly" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.tbDevolucion.tbCaja.cja_Descripcion)
+                                    @Html.EditorFor(model => model.tbCaja.cja_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @type = "text" } })
+                                    @Html.EditorFor(model => model.cja_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @type = "hidden" } })
+                                    @*@Html.EditorFor(model => model.cja_Id)*@
                                 </div>
                             </div>
 
@@ -81,7 +83,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.nocre_Codigo, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.nocre_Codigo, new { htmlAttributes = new { @readonly = "readonly" } })
+                                    @Html.EditorFor(model => model.nocre_Codigo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     <p style="color:red"><span class="validation-error"> @Html.ValidationMessageFor(model => model.nocre_Codigo)</span></p>
                                 </div>
                             </div>
@@ -102,12 +104,12 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.tbCliente.clte_Identificacion, "Identificación Cliente", new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.EditorFor(model => model.tbCliente.clte_Identificacion, new { htmlAttributes = new { @readonly = "readonly" } })
+                                        @Html.EditorFor(model => model.tbCliente.clte_Identificacion, new { htmlAttributes = new { @class = "form-control",  @readonly = "readonly" } })
                                         <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.tbCliente.clte_Identificacion)</span></p>
                                     </div>
-                                    <div class="col-md-">
+                                    @*<div class="col-md-">
                                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarCliente" disabled><span class="glyphicon glyphicon-search"></span></button>
-                                    </div>
+                                    </div>*@
                                 </div>
 
                                 <div class="form-group">
@@ -115,11 +117,12 @@
                                     <div class="col-md-4">
                                         @if (Model.tbCliente.clte_EsPersonaNatural)
                                         {
-                                            @Html.EditorFor(model => model.tbCliente.clte_Nombres, new { htmlAttributes = new { @readonly = "readonly" } })
+                                            @Html.EditorFor(model => model.tbDevolucion.tbFactura.clte_Nombres, new { htmlAttributes = new { @class = "form-control",  @readonly = "readonly" } })
                                             <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.tbCliente.clte_Nombres)</span></p>
                                         }
                                         else
                                         {
+                                            @Html.EditorFor(model => model.tbDevolucion.tbFactura.clte_Nombres, new { htmlAttributes = new { @readonly = "readonly" } })
                                             @Html.EditorFor(model => model.tbCliente.clte_NombreComercial, new { htmlAttributes = new { @readonly = "readonly" } })
                                             <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.tbCliente.clte_NombreComercial)</span></p>
                                         }
@@ -137,7 +140,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.nocre_MotivoEmision, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.TextAreaFor(model => model.nocre_MotivoEmision, new { @class = "form-control", @onkeypress = "return soloLetras(event)", @onblur = "limpia()" })
+                                        @Html.TextAreaFor(model => model.nocre_MotivoEmision, new { @class = "form-control",  @onkeypress = "return soloLetras(event)", @onblur = "limpia()" })
                                         <p id="smsMotivoNC" style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.nocre_MotivoEmision)</span></p>
                                     </div>
                                 </div>
@@ -145,7 +148,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.nocre_FechaEmision, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.EditorFor(model => model.nocre_FechaEmision, new { htmlAttributes = new { @readonly = "readonly" } })
+                                        @Html.EditorFor(model => model.nocre_FechaEmision, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                         <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.nocre_FechaEmision)</span></p>
                                     </div>
                                 </div>
@@ -163,7 +166,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.tbCliente.clte_Identificacion, "Identificación Cliente", new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.EditorFor(model => model.tbCliente.clte_Identificacion, new { htmlAttributes = new { @readonly = "readonly" } })
+                                        @Html.EditorFor(model => model.tbCliente.clte_Identificacion, new { htmlAttributes = new { @class= "form-control", @readonly = "readonly" } })
                                         <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.tbCliente.clte_Identificacion)</span></p>
                                     </div>
                                     <div class="col-md-">
@@ -176,12 +179,12 @@
                                     <div class="col-md-4">
                                         @if (Model.tbCliente.clte_EsPersonaNatural)
                                         {
-                                            @Html.EditorFor(model => model.tbCliente.clte_Nombres, new { htmlAttributes = new { @readonly = "readonly" } })
+                                            <input type="text" value="@ViewBag.Nombres" readonly class="form-control" />
                                             <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.tbCliente.clte_Nombres)</span></p>
                                         }
                                         else
                                         {
-                                            @Html.EditorFor(model => model.tbCliente.clte_NombreComercial, new { htmlAttributes = new { @readonly = "readonly" } })
+                                            @Html.EditorFor(model => model.tbCliente.clte_NombreComercial, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                             <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.tbCliente.clte_NombreComercial)</span></p>
                                         }
                                     </div>
@@ -206,7 +209,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.nocre_FechaEmision, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.EditorFor(model => model.nocre_FechaEmision, new { htmlAttributes = new { @readonly = "readonly" } })
+                                        @Html.EditorFor(model => model.nocre_FechaEmision, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                         <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.nocre_FechaEmision)</span></p>
                                     </div>
                                 </div>

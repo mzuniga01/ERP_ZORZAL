@@ -104,9 +104,6 @@ function GetPedidoDetalle() {
 }
 
 
-$("#pedd_Cantidad")[0].maxLength = 10; 
-$("#pedd_Cantidad_Ped")[0].maxLength = 10;
-
 
 
 
@@ -121,51 +118,6 @@ $('#pedd_Cantidad_Ped').blur(function () {
     }
 });
 
-
-//function EditStudentRecord(pedd_Id) {
-//    $("#MsjError").text("");
-
-//    $.ajax({
-//        url: "/Pedido/GetPedidoDetalle",
-//        method: "POST",
-//        dataType: 'json',
-//        contentType: "application/json; charset=utf-8",
-//        data: JSON.stringify({ pedd_Id }),
-//    })
-//    .done(function (data) {
-//        $.each(data, function (i, item) {
-//            $("#pedd_Id").val(item.pedd_Id);
-//            $("#prod_Codigo").val(item.prod_Codigo);
-//            $("#pedd_Cantidad").val(item.pedd_Cantidad);
-//            $("#pedd_CantidadFacturada").val(item.pedd_CantidadFacturada);
-//            $("#MyModal").modal();
-
-//            console.log('Holaaaa');
-//        })
-//    })
-//    .fail( function( jqXHR, textStatus, errorThrown ) {
-//        console.log('jqXHR', jqXHR);
-//        console.log('textStatus', textStatus);
-//        console.log('errorThrown', errorThrown);
-//    })
-//}
-
-//$("#Btnsubmit").click(function () {
-//    var data = $("#SubmitForm").serializeArray();
-
-//    $.ajax({
-//        type: "Post",
-//        url: "/Pedido/UpdatePedidoDetalle",
-//        data: data,
-//        success: function (result) {
-//            if (result == '-1')
-//                $("#MsjError").text("No se pudo actualizar el registro, contacte al administrador");
-//            else
-//                $("#MyModal").modal("hide");
-//        }
-//    });
-
-//});
 
 function EditPedidoDetalles(pedd_Id) {
     $.ajax({
@@ -268,18 +220,6 @@ function EditPedidoDetalleM(pedd_Id) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 $('#AñadirPedidoDetalle').click(function () {
     var prod_Codigo = $('#prod_Codigo').val();
     var CodigoBarra = $('#tbProducto_prod_CodigoBarras').val();
@@ -374,6 +314,16 @@ function GetPedidoDetalle() {
     return PedidoDetalle;
 }
 
+$("#pedd_Cantidad").mask(
+'PN',
+{
+    translation:
+       {
+           P: { pattern: /[1-9]/ },
+           N: { pattern: /\d/, recursive: true }
+       }
+}
+);
 
 
 

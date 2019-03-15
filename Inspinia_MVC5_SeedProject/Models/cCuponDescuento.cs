@@ -55,6 +55,9 @@ namespace ERP_GMEDINA.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
         public bool cdto_Anulado { get; set; }
 
+        [Display(Name = "Razón Anulada")]
+        public string cdto_RazonAnulado { get; set; }
+
         [Display(Name = "Usuario Crea")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
         public int cdto_UsuarioCrea { get; set; }
