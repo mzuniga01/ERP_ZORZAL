@@ -259,7 +259,7 @@ namespace ERP_GMEDINA.Controllers
                     {
                         var vFactura = db.tbFactura.Where(x => x.fact_Codigo == tbSalida.fact_Codigo).Select(x => x.fact_Id).SingleOrDefault();
                         //tbSalida.bod_Id
-                        listSalida = db.UDP_Inv_tbSalida_Insert(tbSalida.bod_Id, vFactura, tbSalida.sal_FechaElaboracion, Helpers.sal_Emitida, tbSalida.tsal_Id, tbSalida.sal_BodDestino, tbSalida.sal_EsAnulada, tbSalida.sal_RazonAnulada, tbSalida.sal_RazonDevolucion, Function.GetUser(), Function.DatetimeNow());
+                        listSalida = db.UDP_Inv_tbSalida_Insert(tbSalida.bod_Id, vFactura, tbSalida.sal_FechaElaboracion, Helpers.sal_Emitida, tbSalida.tsal_Id, tbSalida.sal_BodDestino, tbSalida.sal_EsAnulada, tbSalida.tdev_Id, tbSalida.sal_RazonAnulada, Function.GetUser(), Function.DatetimeNow());
                         foreach (UDP_Inv_tbSalida_Insert_Result Salida in listSalida)
                             MensajeError = Salida.MensajeError;
                         if (MensajeError.StartsWith("-1"))
@@ -678,8 +678,8 @@ namespace ERP_GMEDINA.Controllers
                                                         tbSalida.tsal_Id,
                                                         tbSalida.sal_BodDestino,
                                                         tbSalida.sal_EsAnulada,
+                                                        tbSalida.tdev_Id,
                                                         tbSalida.sal_RazonAnulada,
-                                                        tbSalida.sal_RazonDevolucion,
                                                         pSalida.sal_UsuarioCrea,
                                                         pSalida.sal_FechaCrea,
                                                         Function.GetUser(), Function.DatetimeNow());
@@ -868,8 +868,8 @@ namespace ERP_GMEDINA.Controllers
                                                     tbSalida.tsal_Id,
                                                     tbSalida.sal_BodDestino,
                                                     tbSalida.sal_EsAnulada,
+                                                    tbSalida.tdev_Id,
                                                     tbSalida.sal_RazonAnulada,
-                                                    tbSalida.sal_RazonDevolucion,
                                                     tbSalida.sal_UsuarioCrea,
                                                     tbSalida.sal_FechaCrea,
                                                     Function.GetUser(), Function.DatetimeNow());
@@ -913,7 +913,7 @@ namespace ERP_GMEDINA.Controllers
                                                 vSalida.tsal_Id,
                                                 vSalida.sal_BodDestino,
                                                 Helpers.sal_EsAnulada,
-                                                vSalida.sal_RazonDevolucion,
+                                                vSalida.tdev_Id,
                                                 Salida.sal_RazonAnulada,
                                                 vSalida.sal_UsuarioCrea,
                                                 vSalida.sal_FechaCrea,

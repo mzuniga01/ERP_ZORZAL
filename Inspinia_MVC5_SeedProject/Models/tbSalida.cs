@@ -29,7 +29,7 @@ namespace ERP_GMEDINA.Models
         public byte tsal_Id { get; set; }
         public int sal_BodDestino { get; set; }
         public bool sal_EsAnulada { get; set; }
-        public string sal_RazonDevolucion { get; set; }
+        public int tdev_Id { get; set; }
         public string sal_RazonAnulada { get; set; }
         public int sal_UsuarioCrea { get; set; }
         public System.DateTime sal_FechaCrea { get; set; }

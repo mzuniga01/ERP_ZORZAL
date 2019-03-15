@@ -18,6 +18,7 @@ namespace ERP_GMEDINA.Models
         public int ent_Id { get; set; }
         public string prod_Codigo { get; set; }
         public decimal entd_Cantidad { get; set; }
+        public string box_Codigo { get; set; }
         public int entd_UsuarioCrea { get; set; }
         public System.DateTime entd_FechaCrea { get; set; }
         public Nullable<int> entd_UsuarioModifica { get; set; }

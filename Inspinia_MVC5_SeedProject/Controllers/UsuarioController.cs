@@ -497,16 +497,16 @@ namespace ERP_GMEDINA.Controllers
         }
 
         [HttpPost]
-        public JsonResult EstadoInactivar(string prod_Codigo, bool Activo, string Razon_Inactivacion)
+        public JsonResult EstadoInactivar(int usu_id, bool Activo, string Razon_Inactivacion)
         {
-            var list = db.UDP_Acce_tbUsuario_Estado(prod_Codigo, Activo, Razon_Inactivacion).ToList();
+            var list = db.UDP_Acce_tbUsuario_Estado(usu_id, Activo, Razon_Inactivacion).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
-        public JsonResult Estadoactivar(string prod_Codigo, bool Activo, string Razon_Inactivacion)
+        public JsonResult Estadoactivar(int usu_id, bool Activo, string Razon_Inactivacion)
         {
-            var list = db.UDP_Acce_tbUsuario_Estado(prod_Codigo, Activo, Razon_Inactivacion).ToList();
+            var list = db.UDP_Acce_tbUsuario_Estado(usu_id, Activo, Razon_Inactivacion).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
