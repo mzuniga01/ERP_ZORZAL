@@ -298,6 +298,7 @@ namespace ERP_GMEDINA.Controllers
                 tbProductoCategoria obj = db.tbProductoCategoria.Find(id);
                 IEnumerable<object> list = null;
                 var MsjError = "";
+               
                 list = db.UDP_Inv_tbProductoCategoria_Delete(id);
                 foreach (UDP_Inv_tbProductoCategoria_Delete_Result obje in list)
                     MsjError = obje.MensajeError;
@@ -341,13 +342,13 @@ namespace ERP_GMEDINA.Controllers
                 foreach (UDP_Inv_tbProductoSubCategoria_Delete_Result obje in list)
                     MsjError = obje.MensajeError;
 
-                if (MsjError.StartsWith (null))
+                if (MsjError.StartsWith ("-2"))
                 {
                     TempData["smserror"] = " No se puede eliminar el dato porque tiene dependencia.";
                     ViewBag.smserror = TempData["smserror"];
 
                     ModelState.AddModelError("", "No se puede borrar el registro");
-                    return RedirectToAction("Edit/" + id);
+                    return RedirectToAction("Index");
                 }
 
                 else
@@ -358,9 +359,6 @@ namespace ERP_GMEDINA.Controllers
             }
             catch (Exception Ex)
             {
-                TempData["smserror"] = " No se puede eliminar el dato porque tiene dependencia.";
-                ViewBag.smserror = TempData["smserror"];
-
                 Ex.Message.ToString();
                 ModelState.AddModelError("", "No se puede borrar el registro");
                 return RedirectToAction("Index");
@@ -446,7 +444,7 @@ namespace ERP_GMEDINA.Controllers
                 foreach (UDP_Inv_tbProductoSubCategoria_Update_Estado_Validacion_Result obje in list)
                     MsjError = obje.MensajeError;
 
-                if (MsjError.StartsWith("-1"))
+                if (MsjError.StartsWith("-2"))
                 {
                     TempData["smserror"] = " No se puede cambiar el estado del dato porque tiene dependencia.";
                     ViewBag.smserror = TempData["smserror"];

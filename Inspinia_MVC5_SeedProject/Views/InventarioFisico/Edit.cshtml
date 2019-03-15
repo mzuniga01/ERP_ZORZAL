@@ -81,7 +81,7 @@
                                             }
                                             else if (Model.estif_Id == 2)
                                             {
-
+                                                <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalReconteo" value="Reconteo" />
                                             }
                                         }
                                         @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })   
@@ -93,11 +93,9 @@
                         }
                         <div class="row">
                             <div class="col-lg-12">
-                                <div class="ibox-title">
                                     <div class="title-action">
                                         <button type="button" class="btn btn-primary" id="Detalle" data-toggle="collapse" data-target="#Crear">Registrar Detalle</button>
                                     </div>
-                                </div>
                                 <div class="ibox-content collapse" id="Crear">
                                   @Html.Partial("_CreateInvFisicoDetalle_nuevo", new ERP_GMEDINA.Models.tbInventarioFisicoDetalle())
                                 </div>
@@ -123,51 +121,49 @@
                                 </div>
                             </div>
 
-
-                            @* Tabla de los datos de auditoria *@
-                            <div class="ibox float-e-margins">
-                                <div class="ibox-title">
-                                    <h5>Auditoría</h5>
-                                </div>
-                                <div class="ibox-content">
-                                    <table class="table table-striped">
-                                        <tr>
-                                            <th>Acción</th>
-                                            <th>Usuario</th>
-                                            <th>Fecha</th>
-                                        </tr>
-                                        <tr>
-                                            <td>Creado</td>
-                                            <td>
-                                                @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
-                                                @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
-                                            </td>
-                                            <td>@Html.DisplayFor(model => model.invf_FechaCrea)</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Modificado</td>
-                                            <td>
-                                                @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                                                @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
-                                            </td>
-                                            <td>@Html.DisplayFor(model => model.invf_FechaModifica)</td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </div>
                         </div>
                     </div>
             </div>
         </div>
     </div>
 
+    @* Tabla de los datos de auditoria *@
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>Auditoría</h5>
+        </div>
+        <div class="ibox-content">
+            <table class="table table-striped">
+                <tr>
+                    <th>Acción</th>
+                    <th>Usuario</th>
+                    <th>Fecha</th>
+                </tr>
+                <tr>
+                    <td>Creado</td>
+                    <td>
+                        @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                        @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                    </td>
+                    <td>@Html.DisplayFor(model => model.invf_FechaCrea)</td>
+                </tr>
+                <tr>
+                    <td>Modificado</td>
+                    <td>
+                        @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                        @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                    </td>
+                    <td>@Html.DisplayFor(model => model.invf_FechaModifica)</td>
+                </tr>
+            </table>
+        </div>
+    </div>
 
     @* ESTADO CONCILIAR *@
     <div class="modal fade" id="ModalConciliar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Inactivar Entrada</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -176,7 +172,31 @@
                     ¿Está seguro que quiere Conciliar el Inventario Fisico?
                 </div>
                 <div class="modal-footer">
-                    @Html.ActionLink("Sí", "Conciliar", new { id = Model.invf_Id }, new { @class = "btn btn-danger" })
+                    @Html.ActionLink("Sí", "Conciliar", new { id = Model.invf_Id }, new { @class = "btn btn-primary" })
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @* ESTADO RECONTEO *@
+    <div class="modal fade" id="ModalReconteo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Reconteo de Inventario Fisico</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    @Html.LabelFor(model => model.tbUsuario.usu_NombreUsuario, new { @class = "control-label col-md-2" })
+                    <input type="text" id="User_NombreUsuario" name="User_NombreUsuario" class="form-control"  />
+                    @Html.LabelFor(model => model.tbUsuario.usu_Password, new { @class = "control-label col-md-2" })
+                    <input type="text" id="User_Password" name="User_Password" class="form-control" />
+                </div>
+                <div class="modal-footer">
+                    @Html.ActionLink("Aceptar", "Reconteo", new { id = Model.invf_Id }, new { @class = "btn btn-primary" })
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
                 </div>
             </div>

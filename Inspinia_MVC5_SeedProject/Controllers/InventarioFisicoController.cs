@@ -527,6 +527,41 @@ namespace ERP_GMEDINA.Controllers
                 return RedirectToAction("Edit/" + id);
             }
         }
+
+        public ActionResult Reconteo(int? id,string User_NombreUsuario,string User_Password)
+        {
+            try
+            {
+                tbUsuario usuario = new tbUsuario();
+                var credenciales = db.UDP_Acce_Login(User_NombreUsuario, User_Password).ToList();
+                if (credenciales.Count > 0)
+                {
+
+                }
+                    tbInventarioFisico obj = db.tbInventarioFisico.Find(id);
+                IEnumerable<object> list = null;
+                var MsjError = "";
+                list = db.UDP_Inv_tbInventarioFisico_Update_Estado(id, Helpers.InvFisicoReconteo, Function.GetUser(), Function.DatetimeNow());
+                foreach (UDP_Inv_tbInventarioFisico_Update_Estado_Result obje in list)
+                    MsjError = obje.MensajeError;
+
+                if (MsjError == "-1")
+                {
+                    ModelState.AddModelError("", "No se Actualizo el registro");
+                    return RedirectToAction("Edit/" + id);
+                }
+                else
+                {
+                    return RedirectToAction("Edit");
+                }
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                ModelState.AddModelError("", "No se Actualizo el registro");
+                return RedirectToAction("Edit/" + id);
+            }
+        }
     }
 }
 

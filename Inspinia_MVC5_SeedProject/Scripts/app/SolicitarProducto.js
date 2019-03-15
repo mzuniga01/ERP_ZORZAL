@@ -4,7 +4,7 @@
         //console.log("Hola");
         var serialCode = localStorage.getItem("MensajeExito")
         var BodegaOrigen = localStorage.getItem("BodegaOrigen")
-        $('#MensajeExito').text("El Pedido ha sido enviado correctamente, A la Bodega con código: " + BodegaOrigen + ". Codigo de referencia de la salida Generada es: " + serialCode);
+        $('#MensajeExito').text("El Pedido ha sido enviado correctamente, A la Bodega con código: " + BodegaOrigen + ". Código de referencia de la salida Generada es: " + serialCode);
         //console.log("serialCode", serialCode);
         localStorage.clear();
     }

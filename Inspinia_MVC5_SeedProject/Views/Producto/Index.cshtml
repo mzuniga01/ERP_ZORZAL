@@ -98,10 +98,7 @@
 
                                                 FuctionIndexP Function = new FuctionIndexP();
                                                 List<tbBodegaDetalle> Listado = Function.getProductoInformation(item.prod_Codigo);
-                                                List<tbPedidoDetalle> Listado2 = Function.getProductoInformation2(item.prod_Codigo);
-                                                List<tbListadoPrecioDetalle> Listado3= Function.getProductoInformation3(item.prod_Codigo);
-                                                List<tbInventarioFisicoDetalle> Listado4 = Function.getProductoInformation4(item.prod_Codigo);
-                                                if (Listado.Count > 0 || Listado2.Count > 0|| Listado3.Count > 0|| Listado4.Count > 0)
+                                                if (Listado.Count > 0 )
                                                 {
                                                 <button class="btn btn-white btn-xs" title="El Producto Ya esta en Uso" disabled>Editar</button>
                                                 }

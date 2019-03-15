@@ -106,7 +106,7 @@
                                         @{
                                             if (item.pscat_EsActiva == 1)
                                             {
-                                                <button type="button" class="btn btn-white btn-xs" id="Editarmodal" onclick='EditStudentRecord(@item.pscat_Id)'>
+                                                 <button type="button" class="btn btn-white btn-xs" id="Editarmodal" onclick='EditStudentRecord(@item.pscat_Id)'>
                                                     Editar
                                                 </button>
                                                 <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#ModalEstado_@item.pscat_Id">
@@ -114,7 +114,7 @@
                                                 </button>
                                                 <input type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#ModalEstadoSub_@item.pscat_Id" value="Inactivar" />
                                             }
-                                            else
+                                            else if (item.pscat_EsActiva == 2)
                                             {
                                                 <button type="button" class="btn btn-white btn-xs" disabled id="Editarmodal" onclick='EditStudentRecord(@item.pscat_Id)'>
                                                     Editar
@@ -122,10 +122,18 @@
                                                 <button type="button" class="btn btn-danger btn-xs" disabled data-toggle="modal" data-target="#ModalEstado_@item.pscat_Id">
                                                     Eliminar
                                                 </button>
-                                                @Html.ActionLink("Activar", "ActivarSubValidacion", new { id = item.pscat_Id }, new { @class = "btn btn-primary btn-xs" })
+                                                if (item.tbProductoCategoria.pcat_EsActivo == 1)
+                                                {
+                                                    @Html.ActionLink("Activar", "ActivarSubValidacion", new { id = item.pscat_Id }, new { @class = "btn btn-primary btn-xs" })
+                                                }
+                                                else
+                                                {
+                                                    <button type="button" class="btn btn-primary btn-xs" disabled>
+                                                        Activar
+                                                    </button>
+                                                }
+
                                             }
-
-
                                         }
 
                                     </td>

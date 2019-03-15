@@ -85,10 +85,9 @@
                             @*Esto lo agregó Mágdaly Zúniga*@
                             @Html.HiddenFor(m => subcategoria.pscat_UsuarioCrea)
                             @Html.HiddenFor(m => subcategoria.pscat_FechaCrea)
+                            @Html.HiddenFor(m => subcategoria.pscat_EsActiva)
                             @Html.HiddenFor(m => subcategoria.pscat_FechaModifica)
                             @Html.HiddenFor(m => subcategoria.pscat_UsuarioModifica)
-
-
 
 
                             @*Extras usuario crea*@
@@ -124,14 +123,15 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.pcat_EsActivo, "Estado", new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @if (Model.pcat_EsActivo == 1)
-                                    {
+                                    @{if (Model.pcat_EsActivo == 1)
+                                        {
                                         <p>Activa</p>
-                                    }
-                                    else
-                                    {
+                                        }
+                                        else
+                                        {
                                         <p>Inactiva</p>
-                                    }
+                                            }
+                                        }
                                 </div>
                                 <div class="col-md-4">
 

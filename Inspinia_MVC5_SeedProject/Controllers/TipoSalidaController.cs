@@ -1,4 +1,19 @@
-﻿using System;
+﻿//using System;
+//using System.Collections.Generic;
+//using System.Data;
+//using System.Data.Entity;
+//using System.Linq;
+//using System.Net;
+//using System.Web;
+//using System.Web.Mvc;
+//using ERP_GMEDINA.Models;
+//using ERP_GMEDINA.Attribute;
+//using ERP_GMEDINA.Dataset;
+//using ERP_GMEDINA.Dataset.ReportesTableAdapters;
+//using ERP_GMEDINA.Reports;
+//using CrystalDecisions.CrystalReports.Engine;
+//using System.IO;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -8,6 +23,11 @@ using System.Web;
 using System.Web.Mvc;
 using ERP_GMEDINA.Models;
 using ERP_GMEDINA.Attribute;
+using System.IO;
+using CrystalDecisions.CrystalReports.Engine;
+using ERP_GMEDINA.Dataset;
+using ERP_GMEDINA.Dataset.ReportesTableAdapters;
+using ERP_GMEDINA.Reports;
 
 namespace ERP_ZORZAL.Controllers
 {
@@ -116,6 +136,11 @@ namespace ERP_ZORZAL.Controllers
         [SessionManager("TipoSalida/Edit")]
         public ActionResult Edit(byte? id, [Bind(Include= "tsal_Id,tsal_Descripcion,tsal_UsuarioCrea,tsal_FechaCrea,tsal_UsuarioModifica,tsal_FechaModifica")] tbTipoSalida tbTipoSalida)
         {
+            if (db.tbTipoSalida.Any(a => a.tsal_Descripcion == tbTipoSalida.tsal_Descripcion))
+            {
+                ModelState.AddModelError("", "La Descripcion ya Existe.");
+                ViewBag.UsuarioCrea = db.tbUsuario.Find(tbTipoSalida.tsal_UsuarioCrea).usu_NombreUsuario;
+            }
             if (ModelState.IsValid)
             {
                 try
@@ -163,13 +188,67 @@ namespace ERP_ZORZAL.Controllers
             }
             base.Dispose(disposing);
         }
+        public ActionResult Movimiento_Entre_Fechas()
+        {
+            var Encargado = Usuario();
+            var EncargadoName = db.tbUsuario.Where(x => x.usu_Id == Encargado).Select(i => new { i.usu_Nombres, i.usu_Apellidos }).FirstOrDefault();
+
+            ReportDocument rd = new ReportDocument();
+            Stream stream = null;
+            ERP_GMEDINA.Reports.Movimiento_Entre_Fechas inv = new ERP_GMEDINA.Reports.Movimiento_Entre_Fechas();
+            ERP_GMEDINA.Dataset.Reportes SalidaDST = new ERP_GMEDINA.Dataset.Reportes();
+
+            var SalidaTableAdapter = new UDV_Inv_Movimiento_Entre_FechasTableAdapter();
+
+            try
+            {
+                SalidaTableAdapter.Fill(SalidaDST.UDV_Inv_Movimiento_Entre_Fechas);
+
+                inv.SetDataSource(SalidaDST);
+                inv.SetParameterValue("Usuario", EncargadoName.usu_Nombres + " " + EncargadoName.usu_Apellidos);
+                stream = inv.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+                stream.Seek(0, SeekOrigin.Begin);
+
+                inv.Close();
+                inv.Dispose();
+
+                string fileName = "Movimiento_Entre_Fechas.pdf";
+                Response.AppendHeader("Content-Disposition", "inline; filename=" + fileName);
+                return File(stream, "application/pdf");
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                throw;
+            }
+             
+        }
+        public int Usuario()
+        {
+            int idUser = 0;
+            try
+            {
+                List<tbUsuario> User = Function.getUserInformation();
+                foreach (tbUsuario Usuario in User)
+                {
+                    idUser = Convert.ToInt32(Usuario.emp_Id);
+                }
+                return idUser;
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                return 0;
+            }
+        }
         [HttpPost]
         public JsonResult GetTipoSalidaExist(string Descripcion)
         {
             var list = db.tbTipoSalida.Where(s => s.tsal_Descripcion == Descripcion).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
-     
 
     }
+    
+       
 }

@@ -37,7 +37,7 @@
 
 @using (Html.BeginForm("Create", "Empleado", FormMethod.Post, new { encenctype = "multipart/form-data" }))
 {
-    <div class="wrapper wrapper-content animated fadeInRight">
+    <div class="wrapper wrapper-content animated fadeInRight" style="background-color:color">
         <div class="row">
             <div class="col-lg-12">
                 <div class="ibox float-e-margins">
@@ -111,7 +111,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.emp_Telefono, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    @Html.TextBoxFor(model => model.emp_Telefono, new { @class = "form-control", @placeholder="(area) 9999-9999", maxlength = 10 })
+                                    <input type="text" class="form-control" placeholder="(Código área) 9999 9999" name="emp_Telefono" id="emp_Telefono" onkeypress="telefonoValidacion(event) " maxlength="25"/>                                      
                                     <div id="ValidacionTelefono" style="color:red">
                                          @Html.ValidationMessageFor(model => model.emp_Telefono)
                                     </div>
@@ -121,7 +121,10 @@
                                 @Html.LabelFor(model => model.emp_Correoelectronico, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
                                     @Html.TextBoxFor(model => model.emp_Correoelectronico, new { @class = "form-control", maxlength = 50 })
-                                    <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_Correoelectronico)</p>
+                                    <div id="MessageForCorreo">
+                                        <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_Correoelectronico)</p>
+                                    </div>
+                                   
                                 </div>
                             </div>
 

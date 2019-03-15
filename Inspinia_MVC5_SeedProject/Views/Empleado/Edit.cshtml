@@ -117,8 +117,8 @@
         <div class="form-group">
 
             @Html.LabelFor(model => model.emp_Telefono, new { @class = "control-label col-md-2 , required" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.emp_Telefono, new { htmlAttributes = new { MaxLength = 10 } })
+            <div class="col-md-4">               
+                @Html.EditorFor(model => model.emp_Telefono, new { htmlAttributes = new { onkeypress = "return validartel(event)", MaxLength =25} })                   
                 <div id="ValidacionTelefono">
                     <p style="color:red">@Html.ValidationMessageFor(model => model.emp_Telefono)</p>
                 </div>
@@ -128,7 +128,9 @@
             @Html.LabelFor(model => model.emp_Correoelectronico, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 @Html.TextBoxFor(model => model.emp_Correoelectronico, new { @class = "single-line", MaxLength = 50 })
-                <p style="color:red">@Html.ValidationMessageFor(model => model.emp_Correoelectronico)</p>
+                <div id="MessageForCorreo">
+                    <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_Correoelectronico)</p>
+                </div>
             </div>
                           
         </div>

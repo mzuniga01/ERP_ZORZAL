@@ -72,12 +72,30 @@
                                         @Html.DisplayFor(modelItem => item.tbTipoSalida.tsal_Descripcion)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.tbEstadoMovimiento.estm_Descripcion)
+                                        @if (item.estm_Id == Helpers.EntradaEmitida)
+                                        {
+                                            <p>@Html.DisplayFor(modelItem => item.tbEstadoMovimiento.estm_Descripcion)</p>
+                                        }
+                                        else if (item.estm_Id == Helpers.EntradaInactivada)
+                                        {
+                                            <p>@Html.DisplayFor(modelItem => item.tbEstadoMovimiento.estm_Descripcion)</p>
+                                        }
+                                        else if (item.estm_Id == Helpers.EntradaAplicada)
+                                        {
+                                            <p style="color:green">@Html.DisplayFor(modelItem => item.tbEstadoMovimiento.estm_Descripcion)</p>
+                                        }
+                                        else if (item.estm_Id == Helpers.EntradaEstadoAnulada)
+                                        {
+                                            <p style="color:maroon">@Html.DisplayFor(modelItem => item.tbEstadoMovimiento.estm_Descripcion)</p>
+                                        }
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.tbBodega.tbEmpleado.emp_Nombres) @Html.DisplayFor(modelItem => item.tbBodega.tbEmpleado.emp_Apellidos)
                                     </td>
                                     <td>
+                                        @Html.ActionLink("Detalles", "Details", new { id = item.sal_Id }, new { @class = "btn btn-primary btn-xs" })
+
+
                                         @{
                                             if (item.sal_EsAnulada)
                                             {
@@ -99,7 +117,6 @@
                                                 }
                                             }
                                         }
-                                        @Html.ActionLink("Detalles", "Details", new { id = item.sal_Id }, new { @class = "btn btn-primary btn-xs" })
                                     </td>
                                 </tr>
                             }

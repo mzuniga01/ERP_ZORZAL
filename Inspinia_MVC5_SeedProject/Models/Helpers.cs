@@ -79,6 +79,8 @@ namespace ERP_GMEDINA.Models
 
         public const int InvFisicoConciliado = 2;
 
+        public const int InvFisicoReconteo = 3;
+
         //BODEGA
         public const int BodegaActivo = 1;
 

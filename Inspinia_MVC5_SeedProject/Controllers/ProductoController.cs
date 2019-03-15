@@ -104,7 +104,7 @@ namespace ERP_GMEDINA.Controllers
                                                             tbProducto.prod_Color,
                                                             tbProducto.pscat_Id,
                                                             tbProducto.uni_Id,
-                                                            tbProducto.prod_EsActivo,
+                                                            Helpers.ProductoActivo,
                                                             tbProducto.prod_CodigoBarras,
                                                             Function.GetUser(),
                                                             Function.DatetimeNow()
@@ -114,12 +114,12 @@ namespace ERP_GMEDINA.Controllers
 
                     if (MsjError.StartsWith("-1"))
                     {
-                        ModelState.AddModelError("", "No se Guardo el registro , Contacte al Administrador");
+                       
                         ViewBag.pcat_Id = new SelectList(db.tbProductoCategoria, "pcat_Id", "pcat_Nombre");
                         ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion");
                         ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion");
                         Function.InsertBitacoraErrores("Producto/Create", MsjError, "Create");
-                        ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                        ModelState.AddModelError("", "No se Pudo Insertar el Registro, Favor Contacte al Administrador.");
                         return View(tbProducto);
                     }
                     else
@@ -130,7 +130,7 @@ namespace ERP_GMEDINA.Controllers
                 catch (Exception Ex)
                 {
                     Function.InsertBitacoraErrores("Producto/Create", Ex.Message.ToString(), "Create");
-                    ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                    ModelState.AddModelError("", "No se Pudo Insertar el Registro, Favor Contacte al Administrador.");
                     ViewBag.pcat_Id = new SelectList(db.tbProductoCategoria, "pcat_Id", "pcat_Nombre");
                     ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion");
                     ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion");
@@ -220,7 +220,7 @@ namespace ERP_GMEDINA.Controllers
                         ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion", tbProducto.uni_Id);
                         ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion ", tbProducto.pscat_Id);
                         Function.InsertBitacoraErrores("Producto/Edit", MsjError, "Edit");
-                        ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                        ModelState.AddModelError("", "No se Pudo Actualizar el registro, Favor Contacte al Administrador.");
                         return View(tbProducto);
                     }
                     else
@@ -233,7 +233,7 @@ namespace ERP_GMEDINA.Controllers
                     ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion", tbProducto.uni_Id);
                     ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion ", tbProducto.pscat_Id);
                     Function.InsertBitacoraErrores("Producto/Edit", Ex.Message.ToString(), "Edit");
-                    ModelState.AddModelError("", "No se pudo actualizar el registro detalle, favor contacte al administrador.");
+                    ModelState.AddModelError("", "No se Pudo Actualizar el registro, Favor Contacte al Administrador.");
                     return View(tbProducto);
                 }
             }
@@ -247,41 +247,6 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion ", tbProducto.pscat_Id);
             return View(tbProducto);
         }
-
-        //public ActionResult EstadoActivar(string id)
-        //{
-        //    tbProducto obj = db.tbProducto.Find(id);
-        //    try
-        //    {
-        //        tbProducto productos = new tbProducto();
-        //        IEnumerable<object> list = null;
-        //        var MsjError = "";
-        //        list = db.UDP_Inv_tbProducto_Estado_Prueba(id, Helpers.EmpleadoActivo, Function.GetUser(), Function.DatetimeNow());
-        //        foreach (UDP_Inv_tbProducto_Estado_Prueba_Result obje in list)
-        //            MsjError = obje.MensajeError;
-
-        //        if (MsjError.StartsWith("-1"))
-        //        {
-        //            ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion", obj.uni_Id);
-        //            ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion ", obj.pscat_Id);
-        //            Function.InsertBitacoraErrores("Producto/EstadoActivar", MsjError, "EstadoActivar");
-        //            ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
-        //            return RedirectToAction("Edit/" + id);
-        //        }
-        //        else
-        //        {
-        //            return RedirectToAction("Edit/" + id);
-        //        }
-        //    }
-        //    catch (Exception Ex)
-        //    {
-        //        ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion", obj.uni_Id);
-        //        ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion ", obj.pscat_Id);
-        //        Function.InsertBitacoraErrores("Producto/EstadoActivar", Ex.Message.ToString(), "EstadoActivar");
-        //        ModelState.AddModelError("", "No se pudo actualizar el registro detalle, favor contacte al administrador.");
-        //        return RedirectToAction("Edit/" + id);
-        //    }
-        //}
 
         protected override void Dispose(bool disposing)
         {
@@ -306,6 +271,37 @@ namespace ERP_GMEDINA.Controllers
                 Function.InsertBitacoraErrores("Producto/EstadoInactivar", Ex.Message.ToString(), "EstadoInactivar");
                 return Json("Error", JsonRequestBehavior.AllowGet);
             }
+        }
+
+        public ActionResult EstadoActivar(string prod_Codigo)
+        {
+            try
+            {
+                tbProducto obj = db.tbProducto.Find(prod_Codigo);
+                tbProducto producto = new tbProducto();
+                IEnumerable<object> list = null;
+                var MsjError = "";
+                list = db.UDP_Inv_tbProducto_Estado_Prueba(prod_Codigo, Helpers.ProductoActivo);
+                foreach (UDP_Inv_tbProducto_Estado_Prueba_Result obje in list)
+                    MsjError = obje.MensajeError;
+
+                if (MsjError == "-1")
+                {
+                    ModelState.AddModelError("", "No se Actualizo el registro contacte con el administrador");
+                    return RedirectToAction("Edit/" + prod_Codigo);
+                }
+                else
+                {
+                    return RedirectToAction("Edit/" + prod_Codigo);
+                }
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                ModelState.AddModelError("", "No se Actualizo el registro contacte con el administrador");
+                return RedirectToAction("Edit/" + prod_Codigo);
+            }
+            //return RedirectToAction("Index");
         }
 
         public ActionResult GenerarReporte(int pscat_Id)

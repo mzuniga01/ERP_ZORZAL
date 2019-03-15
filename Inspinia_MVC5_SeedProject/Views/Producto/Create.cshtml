@@ -20,6 +20,9 @@
         font-weight: bold;
         color: red;
     }
+    .MayusText {
+        text-transform:uppercase;
+    }
 </style>
 
 
@@ -95,13 +98,13 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.prod_Descripcion, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.prod_Descripcion, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @maxlength = "40" } })
+                                    @Html.EditorFor(model => model.prod_Descripcion, new { htmlAttributes = new { @class = "MayusText", @onkeypress = "return soloLetras(event)", @maxlength = "40" } })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.prod_Descripcion)</p>
                                 </div>
 
                                 @Html.LabelFor(model => model.prod_Marca, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.prod_Marca, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @maxlength = "30" } })
+                                    @Html.EditorFor(model => model.prod_Marca, new { htmlAttributes = new { @class = "MayusText",@onkeypress = "return soloLetras(event)", @maxlength = "30" } })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.prod_Marca)</p>
                                 </div>
                              
@@ -111,13 +114,13 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.prod_Modelo, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.prod_Modelo, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @maxlength = "30" } })
+                                    @Html.EditorFor(model => model.prod_Modelo, new { htmlAttributes = new { @class = "MayusText", @onkeypress = "return soloLetras(event)", @maxlength = "30" } })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.prod_Modelo)</p>
                                 </div>
                               
                                 @Html.LabelFor(model => model.prod_Color, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.prod_Color, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)",@maxlength = "20" } })
+                                    @Html.EditorFor(model => model.prod_Color, new { htmlAttributes = new { @class = "MayusText", @onkeypress = "return soloLetras(event)",@maxlength = "20" } })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.prod_Color)</p>
                                 </div>                              
                             </div>
@@ -125,7 +128,7 @@
                             <div class="form-group">
                                @Html.LabelFor(model => model.prod_Talla, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                @Html.EditorFor(model => model.prod_Talla, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @maxlength = "15" } })
+                                @Html.EditorFor(model => model.prod_Talla, new { htmlAttributes = new { @class = "MayusText", @onkeypress = "return soloLetras(event)", @maxlength = "15" } })
                                 <p style="color:red">@Html.ValidationMessageFor(model => model.prod_Talla)</p>
                             </div>
                                 @Html.LabelFor(model => model.uni_Descripcion, new { @class = "control-label col-md-2 , required" })
