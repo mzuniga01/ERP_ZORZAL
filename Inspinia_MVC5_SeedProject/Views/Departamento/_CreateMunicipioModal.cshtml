@@ -1,0 +1,83 @@
+﻿
+@model ERP_GMEDINA.Models.tbMunicipio
+@using ERP_GMEDINA.Models
+
+@{
+    tbDepartamento dep = new tbDepartamento();
+}
+
+@{ 
+    tbMunicipio MUN = new tbMunicipio();
+}
+
+<div class="modal fade" id="modalregistro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel">Registrar Municipio</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-horizontal">
+                        <div id="ValidationCreate_">
+                        </div>
+                        @Html.HiddenFor(model => model.dep_Codigo)
+                        <div class="form-group">
+                            @*@Html.LabelFor(model => model.dep_Codigo, new { @class = "control-label col-md-2" })*@
+                            <input type="hidden" value="@dep.dep_Nombre" />
+                            <label class="control-label col-md-2">Código Departamento</label>
+                            <div class="col-md-2">
+                                @Html.TextBoxFor(model => model.dep_Codigo, new { @class = "form-control", @readonly = "readonly" })
+                            </div>
+                            @Html.LabelFor(model => dep.dep_Nombre, new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(model => dep.dep_Nombre, new { @class = "form-control", @readonly = "readonly" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(Model => MUN.mun_Codigo, new { @class = "control-label col-md-2 , required" })
+                            <div class="col-md-2">
+                                <input type="text" id="mun_CodigoEdit" name="mun_Codigo" class="form-control" required; />
+                                <div id="ValidacionMunCodigoEdit">
+                                    @Html.ValidationMessageFor(model => MUN.mun_Codigo)
+                                </div>
+                            </div>
+                            @Html.LabelFor(model => MUN.mun_Nombre, new { @class = "control-label col-md-2 , required" })
+                            <div class="col-md-4">
+                                <input type="text" id="mun_NombreEdit" name="mun_Nombre" class="form-control" required; minLength="4" />
+                                <div id="ValidacionMunNombreEdit">
+                                    @Html.ValidationMessageFor(model => MUN.mun_Nombre)
+                                </div>
+                            </div>
+                            <div class="col-md-2 text-center">
+                                <button class="btn btn-primary btn-sm" type="button" id="AgregarMunicipiosEdit">Agregar</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div>
+                                <br /><br />
+                            </div>
+                            <table id="tblMunicipiosEdit" class="table table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Código Municipio</th>
+                                        <th>Municipio</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" aria-label="Close" type="button" id="btnNuevoEdit">Guardar</button>
+                <input type="button" class="btn btn-white btn-sm" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cancelar" />
+            </div>
+        </div>
+    </div>
+</div>

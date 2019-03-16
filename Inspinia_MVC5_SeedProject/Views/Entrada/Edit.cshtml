@@ -113,199 +113,200 @@
                                 <label class="control-label col-md-2">RTN Proveedor<span style="color:red">*</span></label>
                                 <div class="col-md-4">
                                     @Html.EditorFor(item => item.tbProveedor.prov_RTN, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @Id = "Rtn" } })
-                                </div>  
-                            </div>
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.tent_Id, new { @class = "control-label col-md-2 , required" })
-                                    <div class="col-md-4">
-                                        @Html.EditorFor(model => model.tbTipoEntrada.tent_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                        <div style="display:none" class="col-md-4">
-                                            @Html.DropDownListFor(model => model.tent_Id, (SelectList)ViewBag.tipo_Entrada, new { @class = "form-control" })
-                                            @Html.ValidationMessageFor(model => model.tent_Id)
-                                        </div>
-                                    </div>
-                                    @Html.LabelFor(model => model.estm_Id, new { @class = "control-label col-md-2 , required" })
-                                    <div class="col-md-4">
-                                        @if (Model.estm_Id == Helpers.EntradaEmitida)
-                                        {
-                                            <p>Emitida</p>
-                                        }
-                                        else if (Model.estm_Id == Helpers.EntradaInactivada)
-                                        {
-                                            <p>Inactiva</p>
-                                        }
-                                        else if (Model.estm_Id == Helpers.EntradaAplicada)
-                                        {
-                                            <p style="color:green">Aplicada</p>
-                                        }
-                                        else if (Model.estm_Id == Helpers.EntradaEstadoAnulada)
-                                        {
-                                            <p style="color:maroon">Anulada</p>
-                                        }
-                                    </div>
                                 </div>
                             </div>
-                        <div class="form-horizontal" name="compra" id="CamposCompra" style="display:none">
                             <div class="form-group">
-                                @Html.LabelFor(model => model.ent_FacturaCompra, new { @class = "control-label col-md-2 , required" })
+                                @Html.LabelFor(model => model.tent_Id, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.ent_FacturaCompra, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                    @Html.ValidationMessageFor(model => model.ent_FacturaCompra)
-                                </div>
-                                @Html.LabelFor(model => model.ent_FechaCompra, new { @class = "control-label col-md-2 , required" })
-                                <div class="col-md-4">
-                                    @Html.EditorFor(model => model.ent_FechaCompra, "{0:MM-dd-yyyy}", new { htmlAttributes = new { @class = "form-control",  @readonly = "readonly" } })
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-horizontal" name="compra" id="CamposDevoluciones" style="display:none">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.ent_RazonDevolucion, new { @class = "control-label col-md-2 , required" })
-                                <div class="col-md-4">
-                                        @Html.DropDownListFor(model => model.ent_RazonDevolucion, (SelectList)ViewBag.tdev_Id, new { @class = "form-control"})
-                                    @Html.ValidationMessageFor(model => model.ent_RazonDevolucion)
-                                </div>
-                                @Html.LabelFor(model => model.fact_Id, new { @class = "control-label col-md-2 , required" })
-                                <div class="col-md-4">
-                                    @Html.EditorFor(model => model.fact_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                    @Html.ValidationMessageFor(model => model.fact_Id)
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-horizontal" name="compra" id="CamposTraslado" style="display:none">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.bod_Id, new { @class = "control-label col-md-2 , required" })
-                                <div class="col-md-4">
-                                    @Html.EditorFor(model => model.tbBodega.bod_Nombre, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.EditorFor(model => model.tbTipoEntrada.tent_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     <div style="display:none" class="col-md-4">
-                                        @Html.DropDownListFor(model => model.ent_BodegaDestino, (SelectList)ViewBag.bbod_Id, new { @class = "form-control", @readonly = "readonly" })
+                                        @Html.DropDownListFor(model => model.tent_Id, (SelectList)ViewBag.tipo_Entrada, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.tent_Id)
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        @*Botoness*@
-                        
-                        <div class="form-group">
-                            <div class="col-md-offset-3 col-md-10">
-                                @{if (Model.estm_Id == Helpers.EntradaEmitida)
+                                @Html.LabelFor(model => model.estm_Id, new { @class = "control-label col-md-2 , required" })
+                                <div class="col-md-4">
+                                    @if (Model.estm_Id == Helpers.EntradaEmitida)
                                     {
-                                        <input type="submit" value="Guardar" class="btn btn-primary" />
-                                        <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalAnular" value="Anular"/>
-                                        <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalEstado" value="Inactivar" />
-                                        <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalAplicar" value="Aplicar" />
-                                        @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                        @Html.EditorFor(model => model.tbEstadoMovimiento.estm_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     }
                                     else if (Model.estm_Id == Helpers.EntradaInactivada)
                                     {
-                                        @Html.ActionLink("Emitir", "Estadoactivar", new { id = Model.ent_Id }, new { @class = "btn btn-primary" })
-                                        <input type="button" value="Guardar" disabled  class="btn btn-primary" title="No Puede Guardar Porque Esta Inactiva" />
-                                        <input type="button" class="btn btn-danger" disabled value="Anular" title= "No Puede Anular Porque Esta Inactiva" />
-                                        <input type="button" class="btn btn-danger" disabled value="Aplicar"  title = "No Puede Aplicar Porque Esta Inactiva"/>
-                                        @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
-                                    }
-                                    else if (Model.estm_Id == Helpers.EntradaEstadoAnulada)
-                                    {
-                                        <input type="submit" value="Guardar" disabled class="btn btn-primary" title="No Puede Guardar Porque Esta Anulada"/>
-                                        <input type="button" class="btn btn-danger" disabled value="Anular" title="Ya Esta Anulada"/>
-                                        @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                        @Html.EditorFor(model => model.tbEstadoMovimiento.estm_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     }
                                     else if (Model.estm_Id == Helpers.EntradaAplicada)
                                     {
-                                        @Html.ActionLink("Imprimir", "ExportReport", new { id = Model.ent_Id }, new { @class = "btn btn-primary",  @Id="Imprimir" })
-                                        @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                        @Html.EditorFor(model => model.tbEstadoMovimiento.estm_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     }
-                                    else
+                                    else if (Model.estm_Id == Helpers.EntradaEstadoAnulada)
                                     {
-                                        <input type="submit" value="Guardar" class="btn btn-primary" />
-                                        <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalAnular" value="Anular" />
-                                        <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalAplicar" value="Aplicar" />
-                                        @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                        @Html.EditorFor(model => model.tbEstadoMovimiento.estm_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     }
-                                }
-                                
-
+                                </div>
                             </div>
-                        </div>
 
-                        @{if (Model.estm_Id == Helpers.EntradaEmitida)
-                            {
-                                <div class="col-lg-12">
-                                    @*<div class="ibox-title">*@
-                                        <div class="title-action">
-                                            <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#RegistrarNuevoDetalle">Registrar Detalle</button>
-                                        </div>
-                                    @*</div>*@
-                                    <div class="ibox-content collapse" id="RegistrarNuevoDetalle">
-                                        @Html.Partial("_CrearDetalleEntradaEditar", new tbEntradaDetalle())
-                                    </div>
-                                </div>
-                            }
-                            else if (Model.estm_Id == Helpers.EntradaInactivada)
-                            {
-                                <div class="col-lg-12">
-                                    @*<div class="ibox-title">*@
-                                        <div class="title-action">
-                                            <button type="button" class="btn btn-primary" title="No Puede Agregar Detalle Porque Esta Inactiva" disabled>Registrar Detalle</button>
-                                        </div>
-                                    @*</div>*@
-                                    <div class="ibox-content collapse" id="RegistrarNuevoDetalle">
-                                        @Html.Partial("_CrearDetalleEntradaEditar", new tbEntradaDetalle())
-                                    </div>
-                                </div>
-                            }
-                            else if (Model.estm_Id == Helpers.EntradaEstadoAnulada)
-                            {
-                                <div class="col-lg-12">
-                                    @*<div class="ibox-title">*@
-                                        <div class="title-action">
-                                            <button type="button" class="btn btn-primary"  title="No Puede Agregar Detalle Porque Esta Anulada" disabled>Registrar Detalle</button>
-                                        </div>
-                                    @*</div>*@
-                                    <div class="ibox-content collapse" id="RegistrarNuevoDetalle">
-                                        @Html.Partial("_CrearDetalleEntradaEditar", new tbEntradaDetalle())
-                                    </div>
-                                </div>
-                            }
-                            else if (Model.estm_Id == Helpers.EntradaAplicada)
-                            {
-                                <div class="col-lg-12">
-                                    @*<div class="ibox-title">*@
-                                        <div class="title-action">
-                                            <button type="button" class="btn btn-primary"  title="No Puede Agregar Detalle Porque Esta Aplicada" disabled>Registrar Detalle</button>
-                                        </div>
-                                    @*</div>*@
-                                    <div class="ibox-content collapse" id="RegistrarNuevoDetalle">
-                                        @Html.Partial("_CrearDetalleEntradaEditar", new tbEntradaDetalle())
-                                    </div>
-                                </div>
-                            }
-                            else
-                            {
-                                <div class="col-lg-12">
-                                    @*<div class="ibox-title">*@
-                                        <div class="title-action">
-                                            <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#RegistrarNuevoDetalle">Registrar Detalle</button>
-                                        </div>
-                                    @*</div>*@
-                                    <div class="ibox-content collapse" id="RegistrarNuevoDetalle">
-                                        @Html.Partial("_CrearDetalleEntradaEditar", new tbEntradaDetalle())
-                                    </div>
-                                </div>
-                            }
-                        }
-                        
-                        @*llama la vista pasrcial de entrada detalle*@
-                        <div class="row">
-                            <div class="col-lg-12">
+                            <div class="form-horizontal" name="compra" id="CamposCompra" style="display:none">
                                 <div class="form-group">
-                                    <div class="col-md-12">
-                                        @Html.Partial("_IndexEditar", Model.tbEntradaDetalle, new ViewDataDictionary { { "ent_Id", Model.ent_Id } })
+                                    @Html.LabelFor(model => model.ent_FacturaCompra, new { @class = "control-label col-md-2 , required" })
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.ent_FacturaCompra, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                        @Html.ValidationMessageFor(model => model.ent_FacturaCompra)
+                                    </div>
+                                    @Html.LabelFor(model => model.ent_FechaCompra, new { @class = "control-label col-md-2 , required" })
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.ent_FechaCompra, "{0:MM-dd-yyyy}", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     </div>
                                 </div>
                             </div>
+                            <div class="form-horizontal" name="compra" id="CamposDevoluciones" style="display:none">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ent_RazonDevolucion, new { @class = "control-label col-md-2 , required" })
+                                    <div class="col-md-4">
+                                        @Html.DropDownListFor(model => model.ent_RazonDevolucion, (SelectList)ViewBag.tdev_Id, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.ent_RazonDevolucion)
+                                    </div>
+                                    @Html.LabelFor(model => model.fact_Id, new { @class = "control-label col-md-2 , required" })
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.fact_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                        @Html.ValidationMessageFor(model => model.fact_Id)
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-horizontal" name="compra" id="CamposTraslado" style="display:none">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.bod_Id, new { @class = "control-label col-md-2 , required" })
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.tbBodega.bod_Nombre, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                        <div style="display:none" class="col-md-4">
+                                            @Html.DropDownListFor(model => model.ent_BodegaDestino, (SelectList)ViewBag.bbod_Id, new { @class = "form-control", @readonly = "readonly" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*Botoness*@
+
+
+
+                            @{if (Model.estm_Id == Helpers.EntradaEmitida)
+                                {
+                                    <div class="col-lg-12">
+                                        @*<div class="ibox-title">*@
+                                        <div class="title-action">
+                                            <button type="button" class="btn btn-primary btn-sm" data-toggle="collapse" data-target="#RegistrarNuevoDetalle">Registrar Detalle</button>
+                                        </div>
+                                        @*</div>*@
+                                        <div class="ibox-content collapse" id="RegistrarNuevoDetalle">
+                                            @Html.Partial("_CrearDetalleEntradaEditar", new tbEntradaDetalle())
+                                        </div>
+                                    </div>
+                                }
+                                else if (Model.estm_Id == Helpers.EntradaInactivada)
+                                {
+                                    <div class="col-lg-12">
+                                        @*<div class="ibox-title">*@
+                                        <div class="title-action">
+                                            <button type="button" class="btn btn-primary btn-sm" title="No Puede Agregar Detalle Porque Esta Inactiva" disabled>Registrar Detalle</button>
+                                        </div>
+                                        @*</div>*@
+                                        <div class="ibox-content collapse" id="RegistrarNuevoDetalle">
+                                            @Html.Partial("_CrearDetalleEntradaEditar", new tbEntradaDetalle())
+                                        </div>
+                                    </div>
+                                }
+                                else if (Model.estm_Id == Helpers.EntradaEstadoAnulada)
+                                {
+                                    <div class="col-lg-12">
+                                        @*<div class="ibox-title">*@
+                                        <div class="title-action">
+                                            <button type="button" class="btn btn-primary btn-sm" title="No Puede Agregar Detalle Porque Esta Anulada" disabled>Registrar Detalle</button>
+                                        </div>
+                                        @*</div>*@
+                                        <div class="ibox-content collapse" id="RegistrarNuevoDetalle">
+                                            @Html.Partial("_CrearDetalleEntradaEditar", new tbEntradaDetalle())
+                                        </div>
+                                    </div>
+                                }
+                                else if (Model.estm_Id == Helpers.EntradaAplicada)
+                                {
+                                    <div class="col-lg-12">
+                                        @*<div class="ibox-title">*@
+                                        <div class="title-action">
+                                            <button type="button" class="btn btn-primary btn-sm" title="No Puede Agregar Detalle Porque Esta Aplicada" disabled>Registrar Detalle</button>
+                                        </div>
+                                        @*</div>*@
+                                        <div class="ibox-content collapse" id="RegistrarNuevoDetalle">
+                                            @Html.Partial("_CrearDetalleEntradaEditar", new tbEntradaDetalle())
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="col-lg-12">
+                                        @*<div class="ibox-title">*@
+                                        <div class="title-action">
+                                            <button type="button" class="btn btn-primary btn-sm" data-toggle="collapse" data-target="#RegistrarNuevoDetalle">Registrar Detalle</button>
+                                        </div>
+                                        @*</div>*@
+                                        <div class="ibox-content collapse" id="RegistrarNuevoDetalle">
+                                            @Html.Partial("_CrearDetalleEntradaEditar", new tbEntradaDetalle())
+                                        </div>
+                                    </div>
+                                }
+                            }
+
+                            @*llama la vista pasrcial de entrada detalle*@
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            @Html.Partial("_IndexEditar", Model.tbEntradaDetalle, new ViewDataDictionary { { "ent_Id", Model.ent_Id } })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-4 col-md-10">
+                                    @{if (Model.estm_Id == Helpers.EntradaEmitida)
+                                        {
+                                            <input type="submit" value="Guardar" class="btn btn-primary" />
+                                            <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalAnular" value="Anular" />
+                                            <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalEstado" value="Inactivar" />
+                                            <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalAplicar" value="Aplicar" />
+                                            @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                        }
+                                        else if (Model.estm_Id == Helpers.EntradaInactivada)
+                                        {
+                                            @Html.ActionLink("Emitir", "Estadoactivar", new { id = Model.ent_Id }, new { @class = "btn btn-primary" })
+                                            <input type="button" value="Guardar" disabled class="btn btn-primary" title="No Puede Guardar Porque Esta Inactiva" />
+                                            <input type="button" class="btn btn-danger" disabled value="Anular" title="No Puede Anular Porque Esta Inactiva" />
+                                            <input type="button" class="btn btn-danger" disabled value="Aplicar" title="No Puede Aplicar Porque Esta Inactiva" />
+                                            @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                        }
+                                        else if (Model.estm_Id == Helpers.EntradaEstadoAnulada)
+                                        {
+                                            <input type="submit" value="Guardar" disabled class="btn btn-primary" title="No Puede Guardar Porque Esta Anulada" />
+                                            <input type="button" class="btn btn-danger" disabled value="Anular" title="Ya Esta Anulada" />
+                                            @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                        }
+                                        else if (Model.estm_Id == Helpers.EntradaAplicada)
+                                        {
+                                            @Html.ActionLink("Imprimir", "ExportReport", new { id = Model.ent_Id }, new { @class = "btn btn-primary", @Id = "Imprimir" })
+                                            @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                        }
+                                        else
+                                        {
+                                            <input type="submit" value="Guardar" class="btn btn-primary" />
+                                            <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalAnular" value="Anular" />
+                                            <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalAplicar" value="Aplicar" />
+                                            @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                        }
+                                    }
+
+
+                                </div>
+                            </div>
                         </div>
-                        
                     </div>
                 </div>
             </div>
@@ -384,7 +385,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <p style="color:maroon">Recuerde que si Anula esta Entrada no la podrá editar despues.</p>
+                        <p style="color:maroon">Recuerde que si Anula esta Entrada no podrá ser editada.</p>
                         <p><span style="color:red">*</span>¿Porque desea anular esta entrada?</p>
                         <div class="col-md-12">
                             @Html.EditorFor(model => model.entd_RazonAnulada, new { htmlAttributes = new { @class = "form-control", @onkeypress = "return soloLetras(event)", @maxlength = "100", @placeholder = "Razón Anulación"} })
@@ -412,7 +413,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p style="color:maroon">Recuerde que si Aplicar esta Entrada no la podrá editar despues.</p>
+                    <p style="color:maroon">Recuerde que si Aplicar esta Entrada no podrá ser editada.</p>
                     ¿Está seguro que quiere Aplicar esta Entrada?
                 </div>
                 <div class="modal-footer">

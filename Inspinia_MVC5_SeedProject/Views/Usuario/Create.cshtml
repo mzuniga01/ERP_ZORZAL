@@ -59,7 +59,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.usu_Nombres, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.TextBoxFor(model => model.usu_Nombres, new { @class = "form-control", maxlength = "150", @readonly = "readonly" })
+                @Html.TextBoxFor(model => model.usu_Nombres, new { @class = "form-control", maxlength = "150", @readonly = "readonly", @autocomplete = "off" })
                 @Html.ValidationMessageFor(model => model.usu_Nombres, "", new { @class = "text-danger" })
             </div>
             <div class="col-sm-1">
@@ -68,7 +68,7 @@
 
             @Html.LabelFor(model => model.usu_Apellidos, new { @class = "control-label col-md-1" })
             <div class="col-md-4">
-                @Html.TextBoxFor(model => model.usu_Apellidos, new { @class = "form-control", maxlength = "150", @readonly = "readonly" })
+                @Html.TextBoxFor(model => model.usu_Apellidos, new { @class = "form-control", maxlength = "150", @readonly = "readonly", @autocomplete = "off" })
                 @Html.ValidationMessageFor(model => model.usu_Apellidos, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -82,7 +82,7 @@
             </div>
             @Html.LabelFor(model => model.usu_Correo, new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.TextBoxFor(model => model.usu_Correo, new { @class = "form-control", maxlength = "150", placeholder = "nombre.apellido@ejemplo.com", @readonly = "readonly" })
+                @Html.TextBoxFor(model => model.usu_Correo, new { @class = "form-control", maxlength = "150", placeholder = "nombre.apellido@ejemplo.com", @readonly = "readonly", @autocomplete = "off" })
                 @Html.ValidationMessageFor(model => model.usu_Correo, "", new { @class = "text-danger", id= "emailOK" })
             </div>
         </div>
@@ -101,7 +101,7 @@
             @Html.LabelFor(model => model.ConfirmarPassword, new { @class = "control-label col-md-2 , required" })
             <div class="col-md-4">
                 <input class="text-box single-line" data-val="true" data-val-required="El campo Confirmar Password es requerido" id="confirmar-pass" maxlength="64" name="ConfirmarPassword"
-                        type="password" value=""  onKeyPress = "return soloLetras(event)" autocomplete="off"> 
+                        type="password" value=""  onKeyPress = "return soloLetras(event)" autocomplete="off" > 
                 @Html.ValidationMessageFor(model => model.ConfirmarPassword, "", new { @class = "text-danger" })
             </div>
         </div>

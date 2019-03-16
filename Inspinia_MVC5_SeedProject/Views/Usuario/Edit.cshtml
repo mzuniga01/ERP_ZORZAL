@@ -105,16 +105,17 @@
                             </div>
 
                             <div class="form-group" id="Activo" name="Activo">
-                                @Html.LabelFor(model => model.usu_EsActivo, new { @class = "control-label col-md-2" })
+                                <label class="control-label col-lg-2" >Estado</label>
+                                @*@Html.LabelFor(model => model.usu_EsActivo, new { @class = "control-label col-md-2" })*@
                                 <div class="col-md-4">
-                                    @if (Model.usu_EsActivo)
-                                    {
-                                        <p> Si</p>
-                                    }
-                                    else
-                                    {
-                                        <p>No</p>
-                                    }
+                                   @if (Model.usu_EsActivo == true)
+                                   {
+                                    <p> Activo</p>
+                                   }
+                                   else
+                                   {
+                                    <p>Inactivo</p>
+                                   }
                                 </div>
                                 <p style="color:red">  @Html.ValidationMessageFor(model => model.usu_EsActivo)</p>
                             </div>

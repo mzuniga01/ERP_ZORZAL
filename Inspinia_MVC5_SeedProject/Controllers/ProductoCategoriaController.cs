@@ -223,7 +223,7 @@ namespace ERP_GMEDINA.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [SessionManager("ProductoCategoria/Edit")]
-        public ActionResult Edit(int? id, [Bind(Include = "pcat_Id,pcat_Nombre,pcat_UsuarioCrea,pcat_FechaCrea,pcat_UsuarioModifica,pcat_FechaModifica,pcat_EsActivo")] tbProductoCategoria tbProductoCategoria)
+        public ActionResult Edit(int? id, [Bind(Include = "pcat_Id,pcat_Nombre,pcat_UsuarioCrea,pcat_FechaCrea,pcat_UsuarioModifica,pcat_FechaModifica")] tbProductoCategoria tbProductoCategoria)
         {
             IEnumerable<object> cate = null;
             IEnumerable<object> subcate = null;
@@ -274,14 +274,14 @@ namespace ERP_GMEDINA.Controllers
                                 }
                             }
                             _Tran.Complete();
-                            return View(tbProductoCategoria);
+                            return RedirectToAction("Edit/" + MsjError);
                         }
                     }
                     catch (Exception Ex)
                     {
                         Function.InsertBitacoraErrores("ProductoCategoria/Edit", Ex.Message.ToString(), "Edit");
                         ModelState.AddModelError("", "2. No se pudo actualizar el registro, favor contacte al administrador.");
-                        return View(tbProductoCategoria);
+                        return RedirectToAction("Edit/" + MsjError);
                     }
                 }
             }

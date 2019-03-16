@@ -3,10 +3,6 @@
 
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="ibox float-e-margins">
-        <div class="ibox-title">
-            <h5>Ingresar Detalle Salida</h5>
-        </div>
-        <div class="ibox-content">
             @Html.HiddenFor(model => model.sal_Id)
             <input name="sal_Id" id="txtsal_Id" type="hidden" value="@ViewBag.IdSal">
             <input type="hidden" id="prod_Marca" placeholder="" class="form-control" readonly />
@@ -28,9 +24,8 @@
                     <div class="col-md-1">
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarProducto"><span class="glyphicon glyphicon-search"></span></button>
                     </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.prod_Codigo, "Producto", new { @class = "control-label col-md-2" })
+               
+                    @Html.LabelFor(model => model.prod_Codigo, "Producto", new { @class = "control-label col-md-1" })
                     <div class="col-md-4">
                         <input type="text" id="prod_Codigo" placeholder="" class="form-control" readonly />
                         
@@ -49,12 +44,12 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    @Html.LabelFor(model => model.sald_Cantidad, "Cantidad", new { @class = "control-label col-md-2 required" })
+                    @Html.LabelFor(model => model.tbProducto.uni_Id, "Unidad Medida", new { @class = "control-label col-md-2" })
                     <div class="col-md-4">
-                        @Html.EditorFor(model => model.sald_Cantidad, new { HtmlAttributes = new { name = "sald_Cantidad", @onkeypress = "return filterFloat(event,this);ValidacionCantidad();" } })
-                        <div id="CantidaExistente">
-                        </div>
+                        <input type="text" id="uni_Id" placeholder="" class="form-control" readonly />
+                        @Html.ValidationMessageFor(model => model.tbProducto.uni_Id)
                     </div>
+
                     @Html.LabelFor(model => model.tbProducto.tbProductoSubcategoria.tbProductoCategoria, "Categoria", new { @class = "control-label col-md-2" })
                     <div class="col-md-4">
                         <input type="text" id="pcat_Id" placeholder="" class="form-control" readonly />
@@ -62,37 +57,38 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    @Html.LabelFor(model => model.tbProducto.uni_Id, "Unidad Medida", new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.sald_Cantidad, "Cantidad", new { @class = "control-label col-md-2 required" })
                     <div class="col-md-4">
-                        <input type="text" id="uni_Id" placeholder="" class="form-control" readonly />
-                        @Html.ValidationMessageFor(model => model.tbProducto.uni_Id)
+                        @Html.EditorFor(model => model.sald_Cantidad, new { HtmlAttributes = new { name = "sald_Cantidad", @onkeypress = "return filterFloat(event,this);ValidacionCantidad();" } })
+                        <div id="CantidaExistente">
+                        </div>
                     </div>
                     <div class="form-group col-md-1">
-                        <button class="btn btn-primary" type="button" id="AgregarSalidaDetalleEdit">Agregar</button>
+                        <button class="btn btn-primary btn-sm" type="button" id="AgregarSalidaDetalleEdit">Agregar</button>
                     </div>
                 </div>
             </div>
-        </div>
     </div>
 </div>
 
 @*PARA AGREGAR NUEVO PRODUCTO*@
-<div class="modal fade" id="ModalAgregarProducto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="width:100%">
-    <div class="modal-dialog" role="document" style="width:90%">
+
+<div class="modal fade" id="ModalAgregarProducto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 <h4 class="modal-title" id="myModalLabel">Buscar Productos</h4>
-            </div>
-            <div class="modal-body" id="frmBuscarProducto">
+
+
                 @Html.Partial("_BuscarProducto", (List<ERP_GMEDINA.Models.tbBodegaDetalle>)ViewBag.Producto)
+
             </div>
         </div>
     </div>
 </div>
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

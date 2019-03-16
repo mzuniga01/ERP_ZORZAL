@@ -17,7 +17,7 @@ namespace ERP_GMEDINA.Models
         [Display(Name = "Número")]
         public int tdev_Id { get; set; }
 
-        [Display(Name = "Descripcion")]
+        [Display(Name = "Descripción")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} es requerido")]
         public string tdev_Descripcion { get; set; }
 

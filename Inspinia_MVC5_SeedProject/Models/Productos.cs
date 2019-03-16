@@ -15,7 +15,7 @@ namespace ERP_GMEDINA.Models
     public partial class tbProducto
     {
         [NotMapped]
-        [Display(Name = "Categoria")]
+        [Display(Name = "Categoría")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int pcat_Id { get; set; }
 
@@ -38,7 +38,7 @@ namespace ERP_GMEDINA.Models
         //[RegularExpression("^[A-Z]{4}-[0-9]{4}-[A-Z0-9]{4}$|[A-Z0-9]{14}", ErrorMessage = "No es un Codigo válido. Ejemplo AAAA-9999-AA999")]
         public string prod_Codigo { get; set; }
 
-        [Display(Name = "Descripcion")]
+        [Display(Name = "Descripción")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string prod_Descripcion { get; set; }
 
@@ -58,7 +58,7 @@ namespace ERP_GMEDINA.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string prod_Color { get; set; }
 
-        [Display(Name = "SubCategoria")]
+        [Display(Name = "SubCategoría")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int pscat_Id { get; set; }
 
@@ -66,11 +66,11 @@ namespace ERP_GMEDINA.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int uni_Id { get; set; }
 
-        [Display(Name = "Usuario")]
+        [Display(Name = "Creado Por")]
         //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int prod_UsuarioCrea { get; set; }
 
-        [Display(Name = "Fecha Crea")]
+        [Display(Name = "Creado El")]
         //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public System.DateTime prod_FechaCrea { get; set; }
 
@@ -91,7 +91,7 @@ namespace ERP_GMEDINA.Models
         //[Display(Name = "Precio")]    
         //public Nullable<int> listp_Id { get; set; }
 
-        [Display(Name = "Codigo de Barras")]
+        [Display(Name = "Código de Barras")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         [RegularExpression("^[A-Z0-9]{14}$|^[A-Z0-9]{13}$|^[A-Z0-9]{12}$|^[A-Z0-9]{10}$|^[A-Z0-9]{8}$", ErrorMessage = "Debe ser Un Codigo de Barras")]
         public string prod_CodigoBarras { get; set; }
@@ -100,7 +100,7 @@ namespace ERP_GMEDINA.Models
         public Nullable<int> prod_Correlativo { get; set; }
        
         [NotMapped]
-        [Display(Name = "Categoria")]
+        [Display(Name = "Categoría")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int pcat_Id { get; set; }
 
@@ -110,7 +110,7 @@ namespace ERP_GMEDINA.Models
         public int uni_Descripcion { get; set; }
 
         [NotMapped]
-        [Display(Name = "SubCategoria")]
+        [Display(Name = "SubCategoría")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int pscat_Descripcion { get; set; }
     }

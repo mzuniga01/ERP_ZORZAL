@@ -16,10 +16,10 @@ namespace ERP_GMEDINA.Models
         [Display(Name = "Código Entrada")]
         public int ent_Id { get; set; }
 
-        [Display(Name = "Numero Formato")]
+        [Display(Name = "Número Formato")]
         public string ent_NumeroFormato { get; set; }
 
-        [Display(Name = "Fecha Elaboracion")]
+        [Display(Name = "Fecha Elaboración")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM-dd-yyyy}")]
         public System.DateTime ent_FechaElaboracion { get; set; }
 
@@ -44,7 +44,7 @@ namespace ERP_GMEDINA.Models
         [Display(Name = "Código Factura")]
         public string fact_Id { get; set; }
 
-        [Display(Name = "Razon Devolucion")]
+        [Display(Name = "Razón Devolución")]
         public string ent_RazonDevolucion { get; set; }
 
         [Display(Name = "Bodega Destino")]
@@ -54,17 +54,17 @@ namespace ERP_GMEDINA.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public byte tent_Id { get; set; }
 
-        [Display(Name = "Creado por")]
+        [Display(Name = "Creado Por")]
         public int ent_UsuarioCrea { get; set; }
 
-        [Display(Name = "Creado en")]
+        [Display(Name = "Creado El")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public System.DateTime ent_FechaCrea { get; set; }
 
         [Display(Name = "Modificado Por")]
         public Nullable<int> ent_UsuarioModifica { get; set; }
 
-        [Display(Name = "Modificado en")]
+        [Display(Name = "Modificado El")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> ent_FechaModifica { get; set; }
 

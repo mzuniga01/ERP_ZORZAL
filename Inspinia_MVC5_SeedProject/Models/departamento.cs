@@ -24,15 +24,15 @@ namespace ERP_GMEDINA.Models
         [Display(Name = "Departamento")]
         public string dep_Nombre { get; set; }
 
-        [Display(Name = "Creado por")]
+        [Display(Name = "Creado Por")]
         public int dep_UsuarioCrea { get; set; }
-        [Display(Name = "Creado el")]
+        [Display(Name = "Creado El")]
       
         
         public System.DateTime dep_FechaCrea { get; set; }
-        [Display(Name = "Modificado por")]
+        [Display(Name = "Modificado Por")]
         public Nullable<int> dep_UsuarioModifica { get; set; }
-        [Display(Name = "Modificado el")]
+        [Display(Name = "Modificado El")]
 
         public Nullable<System.DateTime> dep_FechaModifica { get; set; }
         

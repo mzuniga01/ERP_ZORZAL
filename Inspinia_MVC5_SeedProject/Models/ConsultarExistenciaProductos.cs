@@ -23,11 +23,11 @@ namespace ERP_GMEDINA.Models
         public string prod_Marca { get; set; }
         [Display(Name = "Existente")]
         public Nullable<decimal> bodd_CantidadExistente { get; set; }
-        [Display(Name = "Minima")]
+        [Display(Name = "Mínima")]
         public decimal bodd_CantidadMinima { get; set; }
-        [Display(Name = "Numero Bodega")]
+        [Display(Name = "Número Bodega")]
         public int bod_Id { get; set; }
-        [Display(Name = "Codigo De Producto")]
+        [Display(Name = "Código De Producto")]
         public string prod_Codigo { get; set; }
     }
 }

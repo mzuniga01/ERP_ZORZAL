@@ -9,6 +9,10 @@
         color: red;
         font-size: small;
     }
+      .required:after {
+         content: "*";
+         font-weight: bold;
+         color: red; }
     .validation-summary-errors
      {
         color: red;
@@ -57,14 +61,14 @@
                         </div>*@
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.obj_Pantalla, new { @class = "control-label col-md-2" })
+                            @Html.LabelFor(model => model.obj_Pantalla, new { @class = "control-label col-md-2 , required " })
                             <div class="col-md-4">
                                 @Html.EditorFor(model => model.obj_Pantalla, new { htmlAttributes = new { @onkeypress = "return soloLetras1(event)", @maxlength = "50", @autocomplete = "off" } })
                                 <p style="color:red"> @Html.ValidationMessageFor(model => model.obj_Pantalla)</p>
                             </div>
                         </div>
                         <div class="form-group">
-                            @Html.LabelFor(model => model.obj_Referencia, new { @class = "control-label col-md-2" })
+                            @Html.LabelFor(model => model.obj_Referencia, new { @class = "control-label col-md-2 , required " })
                             <div class="col-md-4">
                                 @Html.EditorFor(model => model.obj_Referencia, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @placeholder="Ejemplo: Controlador/metodo" , @maxlength = "100", @autocomplete = "off" } })
                                 <p style="color:red"> @Html.ValidationMessageFor(model => model.obj_Referencia)</p>

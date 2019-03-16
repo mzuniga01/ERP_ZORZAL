@@ -2269,15 +2269,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_Inv_Salida_Imprimir_Result>("SDP_Inv_Salida_Imprimir", sal_IdParameter);
         }
     
-        public virtual ObjectResult<SDP_Inv_tbBodegaDetalle_Select_Producto_Result> SDP_Inv_tbBodegaDetalle_Select_Producto(Nullable<int> bod_Id)
-        {
-            var bod_IdParameter = bod_Id.HasValue ?
-                new ObjectParameter("bod_Id", bod_Id) :
-                new ObjectParameter("bod_Id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_Inv_tbBodegaDetalle_Select_Producto_Result>("SDP_Inv_tbBodegaDetalle_Select_Producto", bod_IdParameter);
-        }
-    
         public virtual ObjectResult<Nullable<long>> SDP_Inv_tbSalida_Factura_Exist(string fact_Codigo)
         {
             var fact_CodigoParameter = fact_Codigo != null ?
@@ -3267,6 +3258,15 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("pscat_FechaModifica", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbProductoSubCategoria_Update_Estado_Validacion_Result>("UDP_Inv_tbProductoSubCategoria_Update_Estado_Validacion", pscat_IdParameter, pscat_EsActivaParameter, pscat_UsuarioModificaParameter, pscat_FechaModificaParameter);
+        }
+    
+        public virtual ObjectResult<SDP_Inv_tbBodegaDetalle_Select_Producto_Result1> SDP_Inv_tbBodegaDetalle_Select_Producto(Nullable<int> bod_Id)
+        {
+            var bod_IdParameter = bod_Id.HasValue ?
+                new ObjectParameter("bod_Id", bod_Id) :
+                new ObjectParameter("bod_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_Inv_tbBodegaDetalle_Select_Producto_Result1>("SDP_Inv_tbBodegaDetalle_Select_Producto", bod_IdParameter);
         }
     }
 }

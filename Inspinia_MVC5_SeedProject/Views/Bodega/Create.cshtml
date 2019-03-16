@@ -314,6 +314,7 @@
 
         $('#AgregarBodegaDetalle_Prueba').keypress(function () {
             console.log('boton');
+            var table = $('#tbBodega').DataTable();
             var Producto = $('#prod_Codigo').val();
             var Cminima = $('#bodd_CantidadMinima').val();
             var Preorden = $('#bodd_PuntoReorden').val();
@@ -406,19 +407,19 @@
 
             else {
                 //Aqui importa el orden
-                contador = contador + 1;
-                copiar = "<tr data-id=" + contador + ">";
-                copiar += "<td id = 'Cbarras'>" + $('#prod_CodigoBarras').val() + "</td>";
-                copiar += "<td id = 'Producto'>" + $('#prod_Codigo').val() + "</td>";
-                copiar += "<td id = 'Descripcion_P'>" + $('#prod_Descripcion').val() + "</td>";
-                copiar += "<td id = 'Costo'>" + $('#bodd_Costo').val() + "</td>";
-                copiar += "<td id = 'Cpromedio'>" + $('#bodd_CostoPromedio').val() + "</td>";
-                copiar += "<td id = 'Preorden'  >" + $('#bodd_PuntoReorden').val() + "</td>";// aqui va el campo y luego se llena con el id del mismo, que ya ha capturado el valor
-                copiar += "<td id = 'Cminima' >" + $('#bodd_CantidadMinima').val() + "</td>";
-                copiar += "<td id = 'Cmaxima'  >" + $('#bodd_CantidadMaxima').val() + "</td>";
-                copiar += "<td>" + '<button id="removeBodegaDetalle" class="btn btn-danger btn-xs eliminar" type="button">Quitar</button>' + "</td>";
-                copiar += "</tr>";
-                $('#tbBodega').append(copiar);
+                //contador = contador + 1;
+                //copiar = "<tr data-id=" + contador + ">";
+                //copiar += "<td id = 'Cbarras'>" + $('#prod_CodigoBarras').val() + "</td>";
+                //copiar += "<td id = 'Producto'>" + $('#prod_Codigo').val() + "</td>";
+                //copiar += "<td id = 'Descripcion_P'>" + $('#prod_Descripcion').val() + "</td>";
+                //copiar += "<td id = 'Costo'>" + $('#bodd_Costo').val() + "</td>";
+                //copiar += "<td id = 'Cpromedio'>" + $('#bodd_CostoPromedio').val() + "</td>";
+                //copiar += "<td id = 'Preorden'  >" + $('#bodd_PuntoReorden').val() + "</td>";// aqui va el campo y luego se llena con el id del mismo, que ya ha capturado el valor
+                //copiar += "<td id = 'Cminima' >" + $('#bodd_CantidadMinima').val() + "</td>";
+                //copiar += "<td id = 'Cmaxima'  >" + $('#bodd_CantidadMaxima').val() + "</td>";
+                //copiar += "<td>" + '<button id="removeBodegaDetalle" class="btn btn-danger btn-xs eliminar" type="button">Quitar</button>' + "</td>";
+                //copiar += "</tr>";
+                //$('#tbBodega').append(copiar);
 
                 var tbBodegaDetalle = Getbodegadetalle();
                 $.ajax({
@@ -429,6 +430,43 @@
                     data: JSON.stringify({ BODEGADETALLE: tbBodegaDetalle }),
                 })
                     .done(function (data) {
+                        if (data == prod_Codigo)
+                        {
+                            $("#tbBodega td").each(function () {
+                                var prueba = $(this).text()
+                                if (prueba == prod_Codigo) {
+                                    table.row($(this).parents('tr')).remove().draw();
+                                    var trPro = parseInt(cantfisica_nueva) + parseInt(cantfisica_anterior);
+                                    table.row.add([
+                                      $('#prod_CodigoBarras').val(),
+                                        $('#prod_Codigo').val(),
+                                        $('#prod_Descripcion').val(),
+                                        $('#bodd_CantidadMinima').val(),
+                                        $('#bodd_PuntoReorden').val(),
+                                        $('#bodd_CantidadMaxima').val(),
+                                        $('#bodd_Costo').val(),
+                                        $('#bodd_CostoPromedio').val(),
+                                        '<button id = "removeSalidaDetalle" class= "btn btn-danger btn-xs eliminar" type = "button">Quitar</button>'
+
+                                    ]).draw(false);
+                                }
+                            });
+
+                        }
+                        else {
+                            table.row.add([
+                                $('#prod_CodigoBarras').val(),
+                                $('#prod_Codigo').val(),
+                                $('#prod_Descripcion').val(),
+                                $('#bodd_CantidadMinima').val(),
+                                $('#bodd_PuntoReorden').val(),
+                                $('#bodd_CantidadMaxima').val(),
+                                $('#bodd_Costo').val(),
+                                $('#bodd_CostoPromedio').val(),
+                                '<button id = "removeBodegaDetalle" class= "btn btn-danger btn-xs eliminar" type = "button">Quitar</button>'
+
+                            ]).draw(false);
+                        }
                         $('#prod_Codigo').val('');
                         $('#prod_CodigoBarras').val('');
                         $('#prod_Descripcion').val('');
@@ -449,7 +487,6 @@
                         $('#Error_CantidadMaxima').text('');
                         $('#Error_Costo').text('');
                         $('#Error_CostoPromedioo').text('');
-
                     });
 
 

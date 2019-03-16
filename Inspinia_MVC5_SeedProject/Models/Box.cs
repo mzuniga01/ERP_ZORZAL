@@ -27,13 +27,13 @@ namespace ERP_GMEDINA.Models
         [Display(Name = "Creada Por")]
         public int box_UsuarioCrea { get; set; }
 
-        [Display(Name = "Fecha de Creaciom")]
+        [Display(Name = "Creado El")]
         public System.DateTime box_FechaCrea { get; set; }
 
         [Display(Name = "Modificado Por")]
         public Nullable<int> box_UsuarioModifica { get; set; }
 
-        [Display(Name = "Fecha de Modificacion")]
+        [Display(Name = "Modificado El")]
         public Nullable<System.DateTime> box_FechaModifica { get; set; }
 
     }

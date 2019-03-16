@@ -54,7 +54,7 @@
 
                                 @Html.LabelFor(model => model.emp_Nombres, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.emp_Nombres, new { htmlAttributes = new { @class= "MayusText", @onkeypress = "return soloLetras(event)" } })
+                                    @Html.EditorFor(model => model.emp_Nombres, new { htmlAttributes = new { @class= "MayusText", @onkeypress = "return soloLetras(event)", @autocomplete = "off" } })
                                     <p style="color:red">
                                         @Html.ValidationMessageFor(model => model.emp_Nombres)
                                     </p>
@@ -62,7 +62,7 @@
 
                                 @Html.LabelFor(model => model.emp_Apellidos, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.emp_Apellidos, new { htmlAttributes = new { @class = "MayusText", @onkeypress = "return soloLetras(event)" } })
+                                    @Html.EditorFor(model => model.emp_Apellidos, new { htmlAttributes = new { @class = "MayusText", @onkeypress = "return soloLetras(event)", @autocomplete = "off" } })
                                     <p style="color:red">
                                         @Html.ValidationMessageFor(model => model.emp_Apellidos)
                                     </p>

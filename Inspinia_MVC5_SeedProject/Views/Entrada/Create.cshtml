@@ -56,8 +56,6 @@
                         @Html.AntiForgeryToken()
                         <div class="form-horizontal">
                             <div style="color:red;">@Html.ValidationSummary(true)</div>
-                            <fieldset class="box-border">
-                                <legend class="box-border">Datos Generales</legend>
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.bod_Id, new { @class = "control-label col-md-2 , required" })
                                     <div class="col-md-4">
@@ -97,13 +95,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            </fieldset>
                         </div>
 
                         <div class="form-horizontal" name="compra" id="compra" style="display:none">
-                            <fieldset class="box-border">
-                                <legend class="box-border">Compra</legend>
-
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.ent_FacturaCompra, new { @class = "control-label col-md-2 , required" })
                                     <div class="col-md-4">
@@ -121,13 +115,9 @@
                                         </div>
                                     </div>
                                 </div>
-
-                            </fieldset>
                         </div>
 
                         <div class="form-horizontal" id="traslado" style="display:none">
-                            <fieldset class="box-border">
-                                <legend class="box-border">Traslado</legend>
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.ent_BodegaDestino, new { @class = "control-label col-md-2 , required" })
                                     <div class="col-md-4">
@@ -138,12 +128,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            </fieldset>
                         </div>
 
                         <div class="form-horizontal" id="Devolucion" style="display:none">
-                            <fieldset class="box-border">
-                                <legend class="box-border">Devolucion</legend>
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.ent_RazonDevolucion, new { @class = "control-label col-md-2 , required" })
                                     <div class="col-md-4">
@@ -161,7 +148,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            </fieldset>
                         </div>
 
 

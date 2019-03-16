@@ -84,11 +84,19 @@
                         </dd>
 
                         <dt>
-                            @Html.DisplayNameFor(model => model.usu_EsActivo)
+                          Estado
                         </dt>
 
                         <dd>
-                            @Html.DisplayFor(model => model.usu_EsActivo)
+                            @if (Model.usu_EsActivo == true)
+                            {
+                                <p> Activo</p>
+                            }
+                            else
+                            {
+                                <p>Inactivo</p>
+                            }
+
                         </dd>
                         @if (Model.usu_EsActivo ==true)
                         {

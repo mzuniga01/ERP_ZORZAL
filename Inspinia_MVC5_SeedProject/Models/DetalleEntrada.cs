@@ -33,7 +33,7 @@ namespace ERP_GMEDINA.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int entd_UsuarioCrea { get; set; }
 
-        [Display(Name = "Creado en")]
+        [Display(Name = "Creado El")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public System.DateTime entd_FechaCrea { get; set; }
@@ -41,7 +41,7 @@ namespace ERP_GMEDINA.Models
         [Display(Name = "Modificado Por")]
         public Nullable<int> entd_UsuarioModifica { get; set; }
 
-        [Display(Name = "Modificado en")]
+        [Display(Name = "Modificado El")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> entd_FechaModifica { get; set; }
 

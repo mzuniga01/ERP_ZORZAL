@@ -604,9 +604,6 @@
     <FunctionImport Name="SDP_Inv_Salida_Imprimir" ReturnType="Collection(ERP_ZORZALModel.SDP_Inv_Salida_Imprimir_Result)">
       <Parameter Name="sal_Id" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="SDP_Inv_tbBodegaDetalle_Select_Producto" ReturnType="Collection(ERP_ZORZALModel.SDP_Inv_tbBodegaDetalle_Select_Producto_Result)">
-      <Parameter Name="bod_Id" Mode="In" Type="Int32" />
-    </FunctionImport>
     <FunctionImport Name="SDP_Inv_tbSalida_Factura_Exist" ReturnType="Collection(Int64)">
       <Parameter Name="fact_Codigo" Mode="In" Type="String" />
     </FunctionImport>
@@ -1939,6 +1936,9 @@
       <Parameter Name="pscat_EsActiva" Mode="In" Type="Byte" />
       <Parameter Name="pscat_UsuarioModifica" Mode="In" Type="Int32" />
       <Parameter Name="pscat_FechaModifica" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="SDP_Inv_tbBodegaDetalle_Select_Producto" ReturnType="Collection(ERP_ZORZALModel.SDP_Inv_tbBodegaDetalle_Select_Producto_Result1)">
+      <Parameter Name="bod_Id" Mode="In" Type="Int32" />
     </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
@@ -8266,5 +8266,15 @@
   </ComplexType>
   <ComplexType Name="UDP_Inv_tbProductoSubCategoria_Update_Estado_Validacion_Result">
     <Property Type="String" Name="MensajeError" Nullable="false" MaxLength="76" />
+  </ComplexType>
+  <ComplexType Name="SDP_Inv_tbBodegaDetalle_Select_Producto_Result1">
+    <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="prod_Marca" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="prod_Modelo" Nullable="false" MaxLength="25" />
+    <Property Type="String" Name="prod_Descripcion" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="pcat_Nombre" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="pscat_Descripcion" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="uni_Descripcion" Nullable="false" MaxLength="150" />
+    <Property Type="String" Name="prod_CodigoBarras" Nullable="false" MaxLength="15" />
   </ComplexType>
 </Schema>

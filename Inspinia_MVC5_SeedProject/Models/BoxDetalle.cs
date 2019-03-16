@@ -9,18 +9,15 @@ namespace ERP_GMEDINA.Models
     [MetadataType(typeof(BoxDetalleMetaData))]
     public class BoxDetalleMetaData
     {
-
+        [Display(Name = "Codigo de Caja")]
         public int boxd_Id { get; set; }
 
-        [Display(Name = "Codigo de Caja")]
-
+        [Display(Name = "Cod. Caja")]
         public string box_Codigo { get; set; }
 
-        [Display(Name = " N# Producto")]
-
+        [Display(Name = "Cod. Producto")]
         public string prod_Codigo { get; set; }
-
-
+        
         [Display(Name = "Cantidad")]
         public decimal boxd_Cantidad { get; set; }
 

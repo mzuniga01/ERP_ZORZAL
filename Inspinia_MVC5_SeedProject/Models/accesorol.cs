@@ -19,9 +19,9 @@ namespace ERP_GMEDINA.Models
         public int rol_Id { get; set; }
         [Display(Name = "Código Objeto")]
         public int obj_Id { get; set; }
-        [Display(Name = "Creado por")]
+        [Display(Name = "Creado Por")]
         public int acrol_UsuarioCrea { get; set; }
-        [Display(Name = "Creado el")]
+        [Display(Name = "Creado El")]
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
         public System.DateTime acrol_FechaCrea { get; set; }
         [Display(Name = "Modificado por")]

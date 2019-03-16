@@ -20,8 +20,8 @@
                                     @Html.ValidationMessageFor(model => model.prod_Codigo)
                                 </div>
                             </div>
-                            <div class="col-md-1">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarProducto"><span class="glyphicon glyphicon-search"></span></button>
+                            <div class="col-md-0">
+                                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalAgregarProducto"><span class="glyphicon glyphicon-search"></span></button>
                             </div>
                         </div>
                         <div class="form-group">
@@ -62,7 +62,7 @@
                             </div>
                            
                             <div class="form-group col-md-1">
-                                <button class="btn btn-primary" type="button" id="AgregarDetalleEntrada">Añadir</button>
+                                <button class="btn btn-primary btn-sm" type="button" id="AgregarDetalleEntrada">Agregar</button>
                             </div>
                         </div>
 
@@ -89,6 +89,7 @@
 @**********************************************************************************MODALES*****************************************************************************@
 @*PARA AGREGAR NUEVO PRODUCTO*@
 
+
 <div class="modal fade" id="ModalAgregarProducto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -97,8 +98,6 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
                 <h4 class="modal-title" id="myModalLabel">Buscar Productos</h4>
-            </div>
-            <div class="modal-body" id="frmEditarMunicipios">
                 @Html.Partial("_BuscarProducto", (List<SDP_Inv_tbProducto_Select_Result>)ViewBag.Producto)
             </div>
         </div>

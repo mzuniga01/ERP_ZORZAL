@@ -39,7 +39,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.pscat_Descripcion, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.EditorFor(model => model.pscat_Descripcion, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @id = "DescripcionEdit",  @maxlength = "150" } })
+                                        @Html.EditorFor(model => model.pscat_Descripcion, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @id = "DescripcionEdit",  @maxlength = "150" , @autocomplete = "off" } })
                                         <p style="color:red">
                                             @Html.ValidationMessageFor(model => model.pscat_Descripcion)
                                         </p>

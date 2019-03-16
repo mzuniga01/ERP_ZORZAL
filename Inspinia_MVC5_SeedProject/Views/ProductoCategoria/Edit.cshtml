@@ -9,6 +9,18 @@
 @{
     tbProductoSubcategoria subcategoria = new tbProductoSubcategoria();
 }
+
+
+@if (ViewBag.smserror != "" && ViewBag.smserror != null)
+{<div class="col-md-12" id="mensaje">
+        <div class="alert alert-warning alert-danger">
+            <button type="button" class="close" data-dissmiss="alert" aria-hidden="true">@Html.ActionLink("X", "Edit/" + Model.pcat_Id, new { @class = "btn btn-primary " })</button>
+            <h4><i class="icon fa fa-warning"></i>   Alerta</h4>
+            <h2>@ViewBag.smserror</h2>
+        </div>
+    </div>
+}
+
 <style>
     .validation-error {
         color: red;
@@ -30,18 +42,6 @@
         text-transform: uppercase;
     }
 </style>
-
-@if (ViewBag.smserror != "" && ViewBag.smserror != null)
-{<div class="col-md-12" id="mensaje">
-        <div class="alert alert-warning alert-danger">
-            <button type="button" class="close" data-dissmiss="alert" aria-hidden="true">@Html.ActionLink("X", "Edit/" + Model.pcat_Id, new { @class = "btn btn-primary " })</button>
-            <h4><i class="icon fa fa-warning"></i>   Alerta</h4>
-            <h2>@ViewBag.smserror</h2>
-        </div>
-    </div>
-}
-
-
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
@@ -82,7 +82,7 @@
                             @Html.HiddenFor(model => model.tbUsuario1.usu_Apellidos)
 
 
-                            @*Esto lo agregó Mágdaly Zúniga*@
+                           
                             @Html.HiddenFor(m => subcategoria.pscat_UsuarioCrea)
                             @Html.HiddenFor(m => subcategoria.pscat_FechaCrea)
                             @Html.HiddenFor(m => subcategoria.pscat_EsActiva)
@@ -113,7 +113,7 @@
 
                                 @Html.LabelFor(model => model.pcat_Nombre, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.pcat_Nombre, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @maxlength = "50" } })
+                                    @Html.EditorFor(model => model.pcat_Nombre, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)", @maxlength = "50", @autocomplete = "off" } })
                                     <p style="color:red">
                                         @Html.ValidationMessageFor(model => model.pcat_Nombre)
                                     </p>
@@ -123,55 +123,55 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.pcat_EsActivo, "Estado", new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @{if (Model.pcat_EsActivo == 1)
-                                        {
-                                        <p>Activa</p>
-                                        }
-                                        else
-                                        {
-                                        <p>Inactiva</p>
-                                            }
-                                        }
+                                    @if (Model.pcat_EsActivo == 1)
+                                    {
+                                       
+                                        <input type="text" placeholder="ACTIVA" name="Activa" readonly class = "form-control">
+                                    }
+                                    else
+                                    {
+                                        <input type="text" placeholder="INACTIVA" name="Inactiva" readonly class = "form-control">
+                                    }
                                 </div>
                                 <div class="col-md-4">
 
                                     <p style="color:red">  @Html.ValidationMessageFor(model => model.pcat_EsActivo)</p>
                                 </div>
                             </div>
-
-                            @{
-                                if (Model.pcat_EsActivo == 1)
-                                {
-                                    <div class="form-group">
-                                        <div class="col-lg-12">
-                                                <div class="title-action">
-                                                    <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#Crear">Registrar Detalle</button>
-                                                </div>
-                                            <div class="ibox-content collapse" id="Crear">
-                                                @Html.Partial("_CreateSubCategoriaModal", new tbProductoSubcategoria())
-                                            </div>
-                                        </div>
-                                    </div>
-                                }
-                                else
-                                {
-                                    <div class="col-lg-12">
-                                        <div class="ibox-title">
-                                            <div class="title-action">
-                                                <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#Crear" disabled>Registrar Detalle</button>
-                                            </div>
-                                        </div>
-                                        <div class="ibox-content collapse" id="Crear">
-                                            @Html.Partial("_CreateSubCategoriaModal", new tbProductoSubcategoria())
-                                        </div>
-                                    </div>
-                                }
-                            }
+                            
+          @{
+            if (Model.pcat_EsActivo == 1)
+            {
+               <div class="form-group">
+            <div class="col-lg-12">
+                <div class="title-action">
+                    <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#Crear">Registrar Detalle</button>
+                </div>
+                <div class="ibox-content collapse" id="Crear">
+                    @Html.Partial("_CreateSubCategoriaModal", new tbProductoSubcategoria())
+                </div>
+            </div>
+        </div>
+            }
+            else
+            {
+                <div class="col-lg-12">
+                    <div class="ibox-title">
+                        <div class="title-action">
+                            <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#Crear" disabled>Registrar Detalle</button>
+                        </div>
+                    </div>
+                    <div class="ibox-content collapse" id="Crear">
+                        @Html.Partial("_CreateSubCategoriaModal", new tbProductoSubcategoria())
+                    </div>
+                </div>
+            }
+        }
 
                             <div class="row">
-                                <div class="col-lg-14">
+                                <div class="col-lg-12">
                                     <div class="form-group">
-                                        <div class="col-md-14">
+                                        <div class="col-md-12">
                                             @Html.Partial("_ListSubCategoria", Model.tbProductoSubcategoria, new ViewDataDictionary { { "pcat_Id", Model.pcat_Id } })
                                         </div>
                                     </div>

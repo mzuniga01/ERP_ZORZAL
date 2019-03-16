@@ -145,14 +145,14 @@
                         <div class="form-group" id="">
                             @Html.LabelFor(model => model.prod_EsActivo, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                @if (Model.prod_EsActivo == Helpers.ProductoActivo)
-                                {
-                                    <p> Si</p>
-                                }
-                                else
-                                {
-                                    <p>No</p>
-                                }
+                               @if (Model.prod_EsActivo == true)
+                               {
+                                <p> Activo</p>
+                               }
+                               else
+                               {
+                                <p>Inactivo</p>
+                               }
 
                             </div>
                             <p style="color:red">  @Html.ValidationMessageFor(model => model.prod_EsActivo)</p>

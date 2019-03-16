@@ -48,7 +48,7 @@
                 @Html.DisplayNameFor(model => model.usu_Correo)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.usu_EsActivo)
+               Estado
             </th>
             @*<th>
                     @Html.DisplayNameFor(model => model.usu_RazonInactivo)
@@ -79,13 +79,13 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.usu_Correo)
                 </td>
-                @if (item.usu_EsActivo)
+                @if (item.usu_EsActivo == true)
                 {
-                    <td>Sí</td>
+                    <td> Activo</td>
                 }
                 else
                 {
-                    <td>No</td>
+                    <td>Inactivo</td>
                 }
                 @*<td>
                         @Html.DisplayFor(modelItem => item.usu_RazonInactivo)

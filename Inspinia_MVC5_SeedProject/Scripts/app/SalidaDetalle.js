@@ -475,7 +475,7 @@ $('#AgregarSalidaDetalle').click(function () {
                                     $('#pcat_Id').val(),
                                     $('#uni_Id').val(),
                                     sumacantidades,
-                                    '<button id = "removeSalidaDetalle" class= "btn btn-danger btn-xs eliminar" type = "button">-</button>'
+                                    '<button id = "removeSalidaDetalle" class= "btn btn-danger btn-xs eliminar" type = "button">Quitar</button>'
 
                                 ]).draw(false);
                             }
@@ -490,7 +490,7 @@ $('#AgregarSalidaDetalle').click(function () {
                             $('#pcat_Id').val(),
                             $('#uni_Id').val(),
                             $('#sald_Cantidad').val(),
-                            '<button id = "removeSalidaDetalle" class= "btn btn-danger btn-xs eliminar" type = "button">-</button>'
+                            '<button id = "removeSalidaDetalle" class= "btn btn-danger btn-xs eliminar" type = "button">Quitar</button>'
 
                         ]).draw(false);
                     }

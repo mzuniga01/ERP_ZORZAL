@@ -19,7 +19,7 @@ namespace ERP_GMEDINA.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int rolu_Id { get; set; }
 
-        [Display(Name = "Codigo Rol")]
+        [Display(Name = "Código Rol")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int rol_Id { get; set; }
 
@@ -27,18 +27,18 @@ namespace ERP_GMEDINA.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int usu_Id { get; set; }
 
-        [Display(Name = "Creado por")]
+        [Display(Name = "Creado Por")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int rolu_UsuarioCrea { get; set; }
 
-        [Display(Name = "Fecha de Creacion")]
+        [Display(Name = "Creado El")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public System.DateTime rolu_FechaCrea { get; set; }
 
-        [Display(Name = "Modificado por")]
+        [Display(Name = "Modificado Por")]
         public Nullable<int> rolu_UsuarioModifica { get; set; }
 
-        [Display(Name = "Fecha de Modificacion")]
+        [Display(Name = "Fecha de Modificación")]
         public Nullable<System.DateTime> rolu_FechaModifica { get; set; }
     }
 

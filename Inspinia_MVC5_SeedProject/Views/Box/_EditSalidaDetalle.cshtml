@@ -11,12 +11,11 @@
             <div class="ibox float-e-margins">
                     
                 <div class="ibox-content">   
-                    <h2>Listado de Detalle</h2></br>
                     <table id="tbProducto" class="table table-striped table-responsive table-bordered table-hover" style:width="100%">
                         <thead>
                             <tr>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.prod_Codigo)
+                                    @Html.DisplayNameFor(model => model.tbProducto.prod_Codigo)
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.tbProducto.prod_Descripcion)
@@ -37,7 +36,8 @@
                                     @Html.DisplayNameFor(model => model.tbProducto.uni_Id)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.boxd_Cantidad)
+                                    @*@Html.DisplayNameFor(model => model.boxd_Cantidad)*@
+                                    Cantidad
                                 </th>
                                 <th>
                                     Acciones
@@ -49,35 +49,35 @@
                             @foreach (var item in Model)
                             {
                                 <tr tr data-id="@item.prod_Codigo" , tr data-content="@item.tbProducto.prod_Descripcion" , tr data-container="@item.tbProducto.tbProductoSubcategoria.pscat_Descripcion" , tr data-keyboard="@item.tbProducto.tbUnidadMedida.uni_Descripcion" , tr data-pcat="@item.tbProducto.tbProductoSubcategoria.tbProductoCategoria.pcat_Nombre" , tr data-sal_Id="@item.box_Codigo">
-                                    <th>
+                                    <td>
                                         @Html.DisplayFor(modelItem => item.tbProducto.prod_Codigo)
-                                    </th>
-                                    <th>
+                                    </td>
+                                    <td>
                                         @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
-                                    </th>
-                                    <th>
+                                    </td>
+                                    <td>
                                         @Html.DisplayFor(modelItem => item.tbProducto.prod_Marca)
-                                    </th>
-                                    <th>
+                                    </td>
+                                    <td>
                                         @Html.DisplayFor(modelItem => item.tbProducto.prod_Modelo)
-                                    </th>
-                                    <th>
+                                    </td>
+                                    <td>
                                         @Html.DisplayFor(modelItem => item.tbProducto.prod_Talla)
-                                    </th>
-                                    <th>
+                                    </td>
+                                    <td>
                                         @Html.DisplayFor(modelItem => item.tbProducto.tbProductoSubcategoria.tbProductoCategoria.pcat_Nombre)  @Html.DisplayFor(modelItem => item.tbProducto.tbProductoSubcategoria.pscat_Descripcion)
-                                    </th>
-                                    <th>
+                                    </td>
+                                    <td>
                                         @Html.DisplayFor(modelItem => item.tbProducto.tbUnidadMedida.uni_Descripcion)
-                                    </th>
-                                    <th>
+                                    </td>
+                                    <td>
                                         @Html.DisplayFor(modelItem => item.boxd_Cantidad)
-                                    </th>
+                                    </td>
                                     <td>
                                         @if (item.tbBox.box_Estado == Helpers.box_Abrierta)
                                         {
                                             <button type="button" class="btn btn-white btn-xs" onclick="EditBoxDetalles('@item.boxd_Id')">Editar</button>
-                                            <input type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#ModalEliminarDetalle" value="-" />
+                                            <input type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#ModalEliminarDetalle" value="Quitar" />
                                         }
                                         else
                                         {

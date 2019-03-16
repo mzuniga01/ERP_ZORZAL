@@ -28,11 +28,11 @@ namespace ERP_GMEDINA.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string uni_Abreviatura { get; set; }
 
-        [Display(Name = "Creado por")]
+        [Display(Name = "Creado Por")]
         //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string uni_UsuarioCrea { get; set; }
 
-        [Display(Name = "Fecha de Creación")]
+        [Display(Name = "Creado El")]
         //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public System.DateTime uni_FechaCrea { get; set; }
 
@@ -40,7 +40,7 @@ namespace ERP_GMEDINA.Models
        
         public string uni_UsuarioModifica { get; set; }
 
-        [Display(Name = "Fecha de Modificación")]
+        [Display(Name = "Modificado El")]
        
         public Nullable<System.DateTime> uni_FechaModifica { get; set; }
     }

@@ -26,31 +26,31 @@ namespace ERP_GMEDINA.Models
         //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int bod_Id { get; set; }
 
-        [Display(Name = " Cantidad Mínima ")]
+        [Display(Name = "Cant. Mínima")]
         [DisplayFormat(DataFormatString = "{0}", ApplyFormatInEditMode = true)]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public decimal bodd_CantidadMinima { get; set; }
 
-        [Display(Name = " Cantidad Máxima ")]
+        [Display(Name = "Cant. Máxima")]
         [DisplayFormat(DataFormatString = "{0}", ApplyFormatInEditMode = true)]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public decimal bodd_CantidadMaxima { get; set; }
 
-        [Display(Name = " Cantidad Existente ")]
+        [Display(Name = "Cant. Existente")]
         //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public decimal bodd_CantidadExistente { get; set; }
 
-        [Display(Name = "Punto Reorden ")]
+        [Display(Name = "Punto Reorden")]
         [DisplayFormat(DataFormatString = "{0}", ApplyFormatInEditMode = true)]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public decimal bodd_PuntoReorden { get; set; }
         
-        [Display(Name = " Costo ")]
+        [Display(Name = "Costo")]
         [DisplayFormat(DataFormatString = "{0}", ApplyFormatInEditMode = true)]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public decimal bodd_Costo { get; set; }
 
-        [Display(Name = " Costo Promedio ")]
+        [Display(Name = " Cost. Promedio ")]
         [DisplayFormat(DataFormatString = "{0}", ApplyFormatInEditMode = true)]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public decimal bodd_CostoPromedio { get; set; }

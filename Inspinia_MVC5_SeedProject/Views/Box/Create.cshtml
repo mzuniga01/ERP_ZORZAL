@@ -61,14 +61,12 @@
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             <div class="form-group">
                                 @Html.LabelFor(model => model.box_Codigo, new { @class = "control-label col-md-2 , required" })
-                                <div class="col-md-5">
+                                <div class="col-md-4">
                                     @Html.EditorFor(model => model.box_Codigo, new { htmlAttributes = new { @class = "form-control col-md-4", onKeyPress = " return controlCaracteres(event)", maxlength = 20 } })
                                     <p style="color:red;">@Html.ValidationMessageFor(model => model.box_Codigo)</p>
                                 </div>
-                            </div>
-                            <div class="form-group">
                                 @Html.LabelFor(model => model.box_Descripcion, new { @class = "control-label col-md-2 , required" })
-                                <div class="col-md-5">
+                                <div class="col-md-4">
                                     @Html.EditorFor(model => model.box_Descripcion, new { htmlAttributes = new { @class = "form-control col-md-4", onKeyPress = " return controlCaracteres(event)", maxlength = 200 } })
                                     <p style="color:red;"> @Html.ValidationMessageFor(model => model.box_Descripcion)</p>
                                 </div>
@@ -79,8 +77,6 @@
                                     @Html.DropDownList("bod_Id", (IEnumerable<SelectListItem>)ViewBag.bod_Id, new { @class = "form-control" })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Id)</p>
                                 </div>
-                            </div>
-                            <div class="form-group">
                                 @Html.LabelFor(model => model.box_Estado, "Estado", new { @class = "control-label col-md-2" })
                                 <div style="display:block" class="col-md-4">
                                     @Html.EditorFor(model => model.box_Descripcion, new { htmlAttributes = new { @class = "form-control", Value = "Abierta" , @readonly = "readonly" } })
@@ -88,12 +84,10 @@
                                 </div>
                             </div>
                             <div class="box-border, col-md-offset-10 col-md-12">
-                                <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#Crear">Registrar Detalle</button>
+                                <button type="button" class="btn btn-primary btn-sm" data-toggle="collapse" data-target="#Crear">Registrar Detalle</button>
                             </div>
                                 <div class="col-lg-12">
                                     <div class="ibox float-e-margins">
-                                       
-                                               
                                         <div class="ibox-content collapse" id="Crear">
                                             @Html.Partial("_BoxDetalle", new tbBoxDetalle())
                                         </div>
@@ -134,7 +128,6 @@
 <script src="~/Scripts/jquery-3.1.1.min.js"></script>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/Datepicker.js"></script>
-
 <script src="~/Scripts/app/DetalleBox.js"></script>
 
 @*<script type="text/javascript">

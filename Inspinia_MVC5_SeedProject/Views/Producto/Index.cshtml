@@ -53,7 +53,7 @@
                                         @Html.DisplayNameFor(model => model.tbUnidadMedida.uni_Descripcion)                                   
                                     </th>   
                                     <th>
-                                        @Html.DisplayNameFor(model => model.prod_EsActivo)
+                                     Estado
                                     </th>                                  
                                     <th>Acciones</th>
                                 </tr>
@@ -86,7 +86,14 @@
                                             @Html.DisplayFor(modelItem => item.tbUnidadMedida.uni_Descripcion)
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.prod_EsActivo)
+                                            @if (item.prod_EsActivo == true)
+                                            {
+                                                <p> Activo</p>
+                                            }
+                                            else
+                                            {
+                                                <p>Inactivo</p>
+                                            }
                                         </td>
                                        
                                         <td>

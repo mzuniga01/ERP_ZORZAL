@@ -161,9 +161,12 @@ $(document).on("click", "#Table_BuscarProductoBodega tbody tr td button#seleccio
     $('#bodd_CantidadMinima').focus();
     
 });
+$("#ModalAgregarProducto").ready('hidden.bs.modal', function () {
+    $('#bodd_CantidadMinima').focus();
+});
 ///Fin
 //Remover Detalle Ventana Create
-$(document).on("click", "#tblBodega tbody tr td button#removeBodegaDetalle", function () {
+$(document).on("click", "#tbBodega tbody tr td button#removeBodegaDetalle", function () {
     $(this).closest('tr').remove();
     idItem = $(this).closest('tr').data('id');
     var BorrarItems = {
@@ -266,6 +269,7 @@ function CaracteresNombre(e) {
 //            out += string.charAt(i);
 
 //    return out;
+//}
 //}
 
 //Crear Nuevo Detalle Bodega Atraves de Modal
@@ -719,6 +723,10 @@ $(document).on("click", "#tbBodega tbody tr td button#removeBodegaDetalle", func
     var BorrarItems = {
         prod_Codigo: idItem,
     };
+    var table = $('#tblSalidaDetalle').DataTable();
+    table.row($(this).parents('tr'))
+        .remove()
+        .draw();
     $.ajax({
         url: "/Bodega/removeBodegaDetalle",
         method: "POST",
@@ -727,4 +735,6 @@ $(document).on("click", "#tbBodega tbody tr td button#removeBodegaDetalle", func
         data: JSON.stringify({ BorrarItem: BorrarItems }),
     });
 });
+
+
 ////Fin

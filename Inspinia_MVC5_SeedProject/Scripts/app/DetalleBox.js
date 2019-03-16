@@ -32,6 +32,25 @@ $(document).ready(function () {
     });
 });
 
+    $(document).ready(function () {
+        $('#tblBoxDetalle').DataTable({
+
+            "searching": true,
+            "oLanguage": {
+                "oPaginate": {
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior",
+                },
+                "sEmptyTable": "No hay registros",
+                "sInfoEmpty": "Mostrando 0 de 0 Entradas",
+                "sSearch": "Buscar",
+                "sLengthMenu": "Mostrar _MENU_ Registros por página",
+                "sInfo": "Mostrando _START_ a _END_ Entradas",
+            },
+
+        });
+    });
+
 $(document).on("click", "#Table_BuscarProducto tbody tr td button#seleccionar", function () {
     var currentRow = $(this).closest("tr");
     idItem = currentRow.find("td:eq(0)").text();
@@ -154,7 +173,7 @@ function SeleccionProducto() {
                         copiar += "<td id = 'Producto'>" + $('#prod_Descripcion').val() + "</td>";
                         copiar += "<td id = 'Unidad_Medida'>" + $('#uni_Id').val() + "</td>";
                         copiar += "<td id = 'Cantidad'>" + sumacantidades + "</td>";
-                        copiar += "<td>" + '<button id="removesBoxDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
+                        copiar += "<td>" + '<button id="removesBoxDetalle" class="btn btn-danger btn-xs eliminar" type="button">Quitar</button>' + "</td>";
                         copiar += "</tr>";
                         $('#tblBoxDetalle').append(copiar);
                     }
@@ -930,12 +949,12 @@ function ListaProductos() {
             "dataSrc": ""
         },
         "columns": [
-            { "data": "prod_Codigo" },
+            //{ "data": "prod_Codigo" },
             { "data": "prod_Descripcion" },
-            { "data": "pcat_Nombre" },
-            { "data": "pscat_Descripcion" },
-            { "data": "uni_Descripcion" },
-            { "data": "prod_CodigoBarras" },
+            { "data": "prod_Marca" },
+            { "data": "prod_Moledo" },
+            //{ "data": "uni_Descripcion" },
+            //{ "data": "prod_CodigoBarras" },
             { "defaultContent": "<button class='btn btn-primary btn-xs'  id='seleccionar' data-dismiss='modal'>Seleccionar</button>" }
         ],
         "oLanguage": {

@@ -65,21 +65,22 @@
                                             @Html.DisplayFor(modelItem => item.tbTipoEntrada.tent_Descripcion)
                                         </td>
                                         <td>
+                                           
                                             @if (item.estm_Id == Helpers.EntradaEmitida)
                                             {
-                                                <p>Emitida</p>
+                                                <p>@Html.DisplayFor(modelItem => item.tbEstadoMovimiento.estm_Descripcion)</p>
                                             }
                                             else if (item.estm_Id == Helpers.EntradaInactivada)
                                             {
-                                                <p>Inactiva</p>
+                                                <p>@Html.DisplayFor(modelItem => item.tbEstadoMovimiento.estm_Descripcion)</p>
                                             }
                                             else if (item.estm_Id == Helpers.EntradaAplicada)
                                             {
-                                                <p style="color:green">Aplicada</p>
+                                                <p style="">@Html.DisplayFor(modelItem => item.tbEstadoMovimiento.estm_Descripcion)</p>
                                             }
                                             else if (item.estm_Id == Helpers.EntradaEstadoAnulada)
                                             {
-                                                <p style="color:maroon">Anulada</p>
+                                                <p style="">@Html.DisplayFor(modelItem => item.tbEstadoMovimiento.estm_Descripcion)</p>
                                             }
                                         </td>
                                         <td>

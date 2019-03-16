@@ -13,7 +13,7 @@ namespace ERP_GMEDINA.Models
     }
     public class ParametrosMetadata
     {
-        [Display(Name = "Parametro Id")]
+        [Display(Name = "Parámetro Id")]
         [Required]
         public byte par_Id { get; set; }
         [Display(Name = "Nombre Empresa")]
@@ -21,7 +21,7 @@ namespace ERP_GMEDINA.Models
         [Required]
         public string par_NombreEmpresa { get; set; }
         [StringLength(50, ErrorMessage = "No puede ingresar mas de 50 caracteres")]
-        [Display(Name = "Telefono Empresa")]
+        [Display(Name = "Teléfono Empresa")]
         [Required]
         public string par_TelefonoEmpresa { get; set; }
         [Display(Name = "Correo Empresa")]

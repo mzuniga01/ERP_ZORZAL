@@ -59,15 +59,13 @@
       @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.dep_Codigo, new { @class = "control-label col-md-2 , required" })
-            <div class="col-md-4">
+            <div class="col-md-3">
                 @Html.EditorFor(model => model.dep_Codigo)
                 <p style="color:red"> @Html.ValidationMessageFor(model => model.dep_Codigo)</p>
             </div>
-        </div>
-
-        <div class="form-group">
+      
             @Html.LabelFor(model => model.dep_Nombre, new { @class = "control-label col-md-2 , required" })
-            <div class="col-md-4">
+            <div class="col-md-3">
                 @Html.EditorFor(model => model.dep_Nombre)
                 <p style="color:red">@Html.ValidationMessageFor(model => model.dep_Nombre)</p>
             </div>

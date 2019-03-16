@@ -10,9 +10,6 @@
                         <thead>
                             <tr>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.prod_Codigo)
-                                </th>
-                                <th>
                                     @Html.DisplayNameFor(model => model.tbProducto.prod_Descripcion)
                                 </th>
                                 <td>
@@ -22,23 +19,6 @@
                                 <td>
                                     @Html.DisplayNameFor(model => model.tbProducto.prod_Modelo)
                                 </td>
-                                <td>
-                                    @Html.DisplayNameFor(model => model.tbProducto.prod_Talla)
-                                </td>
-                                <td>
-                                    @Html.DisplayNameFor(model => model.tbProducto.prod_Color)
-                                </td>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.tbProducto.tbProductoSubcategoria.pcat_Id)
-                                    -
-                                    @Html.DisplayNameFor(model => model.tbProducto.pscat_Id)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.tbProducto.uni_Id)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.tbProducto.prod_CodigoBarras)
-                                </th>
                                 <th>
                                     Acciones
                                 </th>
@@ -49,9 +29,7 @@
                             {
                                 <tr>
                                     @Html.HiddenFor(modelItem => item.tbProducto.tbProductoSubcategoria.tbProductoCategoria.pcat_Id)
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.prod_Codigo)
-                                    </td>
+                                   
                                     <td>
                                         @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
                                     </td>
@@ -60,23 +38,6 @@
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.tbProducto.prod_Modelo)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.tbProducto.prod_Talla)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.tbProducto.prod_Color)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.tbProducto.tbProductoSubcategoria.tbProductoCategoria.pcat_Nombre)
-                                        -
-                                        @Html.DisplayFor(modelItem => item.tbProducto.tbProductoSubcategoria.pscat_Descripcion)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.tbProducto.tbUnidadMedida.uni_Descripcion)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.tbProducto.prod_CodigoBarras)
                                     </td>
                                     <td>
                                         <button class="btn btn-primary btn-xs" value="@item.tbProducto.prod_CodigoBarras" id="seleccionar" data-dismiss="modal">Seleccionar</button>

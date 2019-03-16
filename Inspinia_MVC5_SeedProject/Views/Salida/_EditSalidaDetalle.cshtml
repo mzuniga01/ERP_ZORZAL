@@ -6,8 +6,6 @@
     <div class="wrapper wrapper-content animated fadeInRight">
         <div class="row">
             <div class="col-lg-12">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-content">
                         <table id="tblSalidaDetalle" class="table table-striped table-responsive table-bordered table-hover"  style="width:100%">
                             <thead>
                                 <tr>
@@ -45,35 +43,35 @@
                                 @foreach (var item in Model)
                                 {
                                 <tr tr data-id="@item.prod_Codigo" , tr data-content="@item.tbProducto.prod_Descripcion" , tr data-container="@item.tbProducto.tbProductoSubcategoria.pscat_Descripcion" , tr data-keyboard="@item.tbProducto.tbUnidadMedida.uni_Descripcion" , tr data-pcat="@item.tbProducto.tbProductoSubcategoria.tbProductoCategoria.pcat_Nombre" , tr data-sal_Id="@item.sal_Id" , tr data-sal_cant="@item.sald_Cantidad">
-                                    <th>
+                                    <td>
                                         @Html.DisplayFor(modelItem => item.prod_Codigo)
-                                    </th>
-                                    <th>
+                                    </td>
+                                    <td>
                                         @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
-                                    </th>
-                                    <th>
+                                    </td>
+                                    <td>
                                         @Html.DisplayFor(modelItem => item.tbProducto.prod_Marca)
-                                    </th>
-                                    <th>
+                                    </td>
+                                    <td>
                                         @Html.DisplayFor(modelItem => item.tbProducto.prod_Modelo)
-                                    </th>
-                                    <th>
+                                    </td>
+                                    <td>
                                         @Html.DisplayFor(modelItem => item.tbProducto.prod_Talla)
-                                    </th>
-                                    <th>
+                                    </td>
+                                    <td>
                                         @Html.DisplayFor(modelItem => item.tbProducto.tbProductoSubcategoria.tbProductoCategoria.pcat_Nombre)  @Html.DisplayFor(modelItem => item.tbProducto.tbProductoSubcategoria.pscat_Descripcion)
-                                    </th>
-                                    <th>
+                                    </td>
+                                    <td>
                                         @Html.DisplayFor(modelItem => item.tbProducto.tbUnidadMedida.uni_Descripcion)
-                                    </th>
-                                    <th>
+                                    </td>
+                                    <td>
                                         @Html.DisplayFor(modelItem => item.sald_Cantidad)
-                                    </th>
+                                    </td>
                                     <td>
                                         @if (!item.tbSalida.sal_EsAnulada && item.tbSalida.estm_Id == Helpers.sal_Emitida)
                                         {
                                             <button type="button" class="btn btn-white btn-xs" id="Editar" onclick="EditSalidaDetalles('@item.sald_Id')">Editar</button>
-                                            <input type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#ModalEliminarDetalle" value="-" />
+                                            <input type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#ModalEliminarDetalle" value="Eliminar" />
                                         }
                                         else
                                         {
@@ -145,8 +143,6 @@
                                 }
                             </tbody>
                         </table>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

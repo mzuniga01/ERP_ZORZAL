@@ -23,7 +23,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.mun_Codigo, new { @class = "control-label col-md-2 , required" })
                         <div class="col-md-3">
-                            @Html.EditorFor(model => model.mun_Codigo)
+                            @Html.EditorFor(model => model.mun_Codigo, new { htmlAttributes = new {  } })
                             <div id="ValidationCodigoCreate">
                                 @Html.ValidationMessageFor(model => model.mun_Codigo)
                             </div>
@@ -43,7 +43,7 @@
                         </div>
                     </div>
 
-                    <table id="tblMunicipios" class="table table table-striped" style="width:100%">
+                    <table id="tblMunicipios"  class="table table-striped table-responsive table-bordered table-hover" style="width:100%">
                         <thead>
                             <tr>
                                 <th>Código Municipio</th>

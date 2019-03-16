@@ -42,7 +42,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Crear Producto Categoría</h5>
+                    <h5>Ingresar Producto Categoría</h5>
                 </div>
 
                 <div class="ibox-content">
@@ -53,7 +53,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.pcat_Nombre, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.pcat_Nombre, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)" ,  @maxlength = "50"  } })
+                                    @Html.EditorFor(model => model.pcat_Nombre, new { htmlAttributes = new { @onkeypress = "return soloLetras(event)" ,  @maxlength = "50", @autocomplete = "off" } })
                                     <p style="color:red">
                                         @Html.ValidationMessageFor(model => model.pcat_Nombre)
                                     </p>
