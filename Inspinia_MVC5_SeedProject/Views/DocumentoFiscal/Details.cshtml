@@ -7,15 +7,7 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Detalle Documento Fiscal</h2>
-        @*<ol class="breadcrumb">
-            <li>
-                @Html.ActionLink("List", "Index")
-            </li>
-            <li class="active">
-                <strong>Details</strong>
-            </li>
-        </ol>*@
+        <h2>Documento Fiscal</h2>
     </div>
     <div class="col-sm-8">
         <div class="title-action">
@@ -32,12 +24,10 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Documento Fiscal</h5>
+                    <h5>Detalle Documento Fiscal</h5>
                 </div>
                 <div class="ibox-content">
-
-
-				    <dl class="dl-horizontal">
+                    <dl class="dl-horizontal">
                         <dt>
                             @Html.DisplayNameFor(model => model.dfisc_Id)
                         </dt>
@@ -45,19 +35,15 @@
                         <dd>
                             @Html.DisplayFor(model => model.dfisc_Id)
                         </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.dfisc_Descripcion)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.dfisc_Descripcion)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.dfisc_Descripcion)
-        </dd>
-    </dl>
-
-
-	    @Html.ActionLink("Editar", "Edit", new { id = Model.dfisc_Id }, new { @class = "btn btn-primary"})
-  
-
+                        <dd>
+                            @Html.DisplayFor(model => model.dfisc_Descripcion)
+                        </dd>
+                    </dl>
+                    @Html.ActionLink("Editar", "Edit", new { id = Model.dfisc_Id }, new { @class = "btn btn-primary" })
                 </div>
             </div>
             <div class="ibox float-e-margins">
@@ -92,7 +78,7 @@
             </div>
         </div>
     </div>
- </div>
+</div>
 
 
 

@@ -130,7 +130,7 @@ namespace ERP_GMEDINA.Controllers
                         MensajeError = banco.MensajeError.ToString();
                     if (MensajeError.StartsWith("-1"))
                     {
-                        Function.InsertBitacoraErrores("Banco/Create", MensajeError, "Edit");
+                        Function.InsertBitacoraErrores("Banco/Edit", MensajeError, "Edit");
                         ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
                         return View(tbBanco);
                     }
@@ -141,7 +141,7 @@ namespace ERP_GMEDINA.Controllers
                 }
                 catch (Exception Ex)
                 {
-                    Function.InsertBitacoraErrores("Banco/Create", Ex.Message.ToString(), "Create");
+                    Function.InsertBitacoraErrores("Banco/Edit", Ex.Message.ToString(), "Edit");
                     ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
                     return View(tbBanco);
                 }

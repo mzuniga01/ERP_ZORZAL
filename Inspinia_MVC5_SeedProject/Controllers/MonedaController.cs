@@ -1,4 +1,4 @@
-﻿ using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ERP_GMEDINA.Models;
+using ERP_GMEDINA.Attribute;
 
 namespace ERP_GMEDINA.Controllers
 {
@@ -15,6 +16,7 @@ namespace ERP_GMEDINA.Controllers
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
         GeneralFunctions Function = new GeneralFunctions();
         // GET: /Moneda/
+        [SessionManager("Moneda/Index")]
         public ActionResult Index()
         {
             var tbMoneda = db.tbMoneda.Include(t => t.tbUsuario).Include(t => t.tbUsuario1);
@@ -22,6 +24,7 @@ namespace ERP_GMEDINA.Controllers
         }
 
         // GET: /Moneda/Details/5
+        [SessionManager("Moneda/Details")]
         public ActionResult Details(short? id)
         {
             if (id == null)
@@ -37,10 +40,9 @@ namespace ERP_GMEDINA.Controllers
         }
 
         // GET: /Moneda/Create
+        [SessionManager("Moneda/Create")]
         public ActionResult Create()
         {
-            //ViewBag.mnda_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
-            //ViewBag.mnda_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             return View();
         }
 
@@ -49,20 +51,16 @@ namespace ERP_GMEDINA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [SessionManager("Moneda/Create")]
         public ActionResult Create([Bind(Include="mnda_Id,mnda_Abreviatura,mnda_Nombre,mnda_UsuarioCrea,mnda_FechaCrea,mnda_UsuarioModifica,mnda_FechaModifica")] tbMoneda tbMoneda)
         {
-
-
-
             if (ModelState.IsValid)
             {
                 try
                 {
                     if (db.tbMoneda.Any(a => a.mnda_Abreviatura == tbMoneda.mnda_Abreviatura) || (db.tbMoneda.Any(a => a.mnda_Nombre == tbMoneda.mnda_Nombre)))
                     {
-                 
-                        ModelState.AddModelError("", "Ya existe este tipo de Moneda.");
-                        //var colores =
+                        ModelState.AddModelError("", "Ya existe una moneda con ese nombre");
                         return View(tbMoneda);
                     } 
              
@@ -73,8 +71,11 @@ namespace ERP_GMEDINA.Controllers
                         list = db.UDP_Gral_tbMoneda_Insert(tbMoneda.mnda_Abreviatura, tbMoneda.mnda_Nombre, Function.GetUser(), Function.DatetimeNow());
                         foreach (UDP_Gral_tbMoneda_Insert_Result Moneda in list)
                             MensajeError = Moneda.MensajeError;
-                        if (MensajeError == "-1")
+                        if (MensajeError.StartsWith("-1"))
                         {
+                            Function.InsertBitacoraErrores("Moneda/Create", MensajeError, "Create");
+                            ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                            return View(tbMoneda);
                         }
                         else
                         {
@@ -84,19 +85,16 @@ namespace ERP_GMEDINA.Controllers
                 }
                 catch (Exception Ex)
                 {
-                    ModelState.AddModelError("", "No se ha podido ingresar el registro, favor contacte al administrador " + Ex.Message.ToString());
+                    Function.InsertBitacoraErrores("Moneda/Create", Ex.Message.ToString(), "Create");
+                    ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
                     return View(tbMoneda);
                 }
-                //db.tbTipoPago.Add(tbTipoPago);
-                //db.SaveChanges();
-                //return RedirectToAction("Index");
             }
-     
             return View(tbMoneda);
-
         }
 
         // GET: /Moneda/Edit/5
+        [SessionManager("Moneda/Edit")]
         public ActionResult Edit(short? id)
         {
             if (id == null)
@@ -108,8 +106,6 @@ namespace ERP_GMEDINA.Controllers
             {
                 return RedirectToAction("NotFound", "Login");
             }
-            //ViewBag.mnda_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbMoneda.mnda_UsuarioCrea);
-            //ViewBag.mnda_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbMoneda.mnda_UsuarioModifica);
             return View(tbMoneda);
         }
 
@@ -118,6 +114,7 @@ namespace ERP_GMEDINA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [SessionManager("Moneda/Edit")]
         public ActionResult Edit([Bind(Include= "mnda_Id,mnda_Abreviatura,mnda_Nombre,mnda_UsuarioCrea,mnda_FechaCrea,mnda_UsuarioModifica,mnda_FechaModifica, tbUsuario, tbUsuario1")] tbMoneda tbMoneda)
         {
 
@@ -126,18 +123,16 @@ namespace ERP_GMEDINA.Controllers
 
                 if (ModelState.IsValid)
                 {  
-                    //    db.Entry(tbMoneda).State = EntityState.Modified;
-                   //    db.SaveChanges();
-                   //    return RedirectToAction("Index");
-
-
                     var MensajeError = "";
                     IEnumerable<object> list = null;
                     list = db.UDP_Gral_tbMoneda_Update(tbMoneda.mnda_Id, tbMoneda.mnda_Abreviatura, tbMoneda.mnda_Nombre, tbMoneda.mnda_UsuarioCrea,tbMoneda.mnda_FechaCrea, Function.GetUser(), Function.DatetimeNow());
                     foreach (UDP_Gral_tbMoneda_Update_Result Moneda in list)
                         MensajeError = Moneda.MensajeError;
-                    if (MensajeError == "-1")
+                    if (MensajeError.StartsWith("-1"))
                     {
+                        Function.InsertBitacoraErrores("Moneda/Edit", MensajeError, "Edit");
+                        ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                        return View(tbMoneda);
                     }
                     else
                     {
@@ -148,36 +143,12 @@ namespace ERP_GMEDINA.Controllers
             }
             catch (Exception Ex)
             {
-                Ex.Message.ToString();
+                Function.InsertBitacoraErrores("Moneda/Edit", Ex.Message.ToString(), "Edit");
+                ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                return View(tbMoneda);
             }
 
             return View(tbMoneda);
-        }
-
-        // GET: /Moneda/Delete/5
-        public ActionResult Delete(short? id)
-        {
-            if (id == null)
-            {
-                return RedirectToAction("Index");
-            }
-            tbMoneda tbMoneda = db.tbMoneda.Find(id);
-            if (tbMoneda == null)
-            {
-                return RedirectToAction("NotFound", "Login");
-            }
-            return View(tbMoneda);
-        }
-
-        // POST: /Moneda/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(short id)
-        {
-            tbMoneda tbMoneda = db.tbMoneda.Find(id);
-            db.tbMoneda.Remove(tbMoneda);
-            db.SaveChanges();
-            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

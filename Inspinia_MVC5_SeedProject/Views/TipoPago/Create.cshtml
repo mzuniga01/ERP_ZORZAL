@@ -7,7 +7,7 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Registrar </h2>
+        <h2>Tipo de Pago </h2>
       
     </div>
     <div class="col-sm-8">
@@ -36,7 +36,7 @@
         @Html.ValidationSummary(true)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.tpa_Descripcion, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.tpa_Descripcion, new { @class = "control-label col-md-2 AsteriscoRojo" })
             <div class="col-md-5">
                 @Html.EditorFor(model => model.tpa_Descripcion)
                 @Html.ValidationMessageFor(model => model.tpa_Descripcion, "", new { @style = "color:red" })

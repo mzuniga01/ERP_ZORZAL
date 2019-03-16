@@ -26,7 +26,7 @@
                     @if (Login.GetUserRols("Factura/Index"))
                     {
                         <li class="@Html.IsSelected(action: "Index")">
-                            <a href="@Url.Action("Index", "Factura")"><i class="fa fa-wpforms"></i>Facturas<span class="nav-label"></span> </a>
+                            <a href="@Url.Action("Index", "Factura")"><i class="fa fa-wpforms"></i>Facturas<span class="nav-label"></span></a>
                         </li>
                     }
                     @if (Login.GetUserRols("Pago/Index"))
@@ -169,13 +169,13 @@
                     @if (Login.GetUserRols("EstadoFactura/Index"))
                     {
                         <li class="@Html.IsSelected(action: "Index")">
-                            <a href="@Url.Action("Index", "EstadoFactura")"><i class="fa fa-clipboard"></i>Estado Factura<span class="nav-label"></span> </a>
+                            <a href="@Url.Action("Index", "EstadoFactura")"><i class="fa fa-sticky-note"></i>Estado Factura<span class="nav-label"></span> </a>
                         </li>
                     }
                     @if (Login.GetUserRols("EstadoSolicitudCredito/Index"))
                     {
                         <li class="@Html.IsSelected(action: "Index")">
-                            <a href="@Url.Action("Index", "EstadoSolicitudCredito")"><i class="fa fa-clipboard"></i>Estado Solicitud Crédito<span class="nav-label"></span> </a>
+                            <a href="@Url.Action("Index", "EstadoSolicitudCredito")"><i class="fa fa-area-chart"></i>Estado Solicitud Crédito<span class="nav-label"></span> </a>
                         </li>
                     }
                     @if (Login.GetUserRols("EstadoPedido/Index"))
@@ -222,12 +222,12 @@
                    }
                 </ul>
             </li>
-                    @if (Login.GetUserRols("/"))
-                    {
-                        <li>
-                            <a href="@Url.Action("Index", "Reportes")"><i class="fa fa-money"></i>Reportes<span class="nav-label"></span> </a>
-                        </li>
-                    }
+            @if (Login.GetUserRols("/"))
+            {
+                <li>
+                    <a href="@Url.Action("Index", "Reportes")"><i class="fa fa-dashboard"></i> <span class="nav-label">Reportes</span></a>
+                </li>
+            }
             <li>
                 <a href="#"><i class="fa fa-lock"></i><span class="nav-label">Seguridad</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">

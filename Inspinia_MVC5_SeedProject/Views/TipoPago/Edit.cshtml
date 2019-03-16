@@ -30,115 +30,122 @@
                 </div>
                 <div class="ibox-content">
 
-				@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
 
-        @Html.ValidationSummary(true, "", new { @style = "color:red" })
-        @Html.HiddenFor(model => model.tpa_Id)
-        @*Auditoria*@
-        @Html.HiddenFor(model => model.tpa_UsuarioCrea)
-        @Html.HiddenFor(model => model.tpa_FechaCrea)
-        @Html.HiddenFor(model => model.tpa_UsuarioModifica)
-        @Html.HiddenFor(model => model.tpa_FechaModifica)
-        @Html.HiddenFor(model => model.tbUsuario.usu_Nombres)
-        @Html.HiddenFor(model => model.tbUsuario.usu_Apellidos)
-        @Html.HiddenFor(model => model.tbUsuario1.usu_Nombres)
-        @Html.HiddenFor(model => model.tbUsuario1.usu_Apellidos)
+                        <div class="form-horizontal">
+
+                            @Html.ValidationSummary(true, "", new { @style = "color:red" })
+                            @Html.HiddenFor(model => model.tpa_Id)
+                            @*Auditoria*@
+                            @Html.HiddenFor(model => model.tpa_UsuarioCrea)
+                            @Html.HiddenFor(model => model.tpa_FechaCrea)
+                            @Html.HiddenFor(model => model.tpa_UsuarioModifica)
+                            @Html.HiddenFor(model => model.tpa_FechaModifica)
+                            @Html.HiddenFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.HiddenFor(model => model.tbUsuario.usu_Apellidos)
+                            @Html.HiddenFor(model => model.tbUsuario1.usu_Nombres)
+                            @Html.HiddenFor(model => model.tbUsuario1.usu_Apellidos)
 
 
-        
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.tpa_Id, new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
-                @Html.EditorFor(model => model.tpa_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.tpa_Id)
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.tpa_Descripcion, new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
-                @Html.EditorFor(model => model.tpa_Descripcion, new { htmlAttributes = new { @autocomplete = "off", @onkeyup = "format(this)", @style = "text-transform:capitalize;", onkeypress = "return validar(event)" } })
-                @Html.ValidationMessageFor(model => model.tpa_Descripcion, "", new { @style = "color:red" })
-            </div>
-        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.tpa_Id, new { @class = "control-label col-md-2 AsteriscoRojo" })
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.tpa_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.tpa_Id)
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.tpa_Emisor, new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
-                @Html.EditorFor(model => model.tpa_Emisor)
-                @Html.ValidationMessageFor(model => model.tpa_Emisor)
-            </div>
-        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.tpa_Descripcion, new { @class = "control-label col-md-2 AsteriscoRojo" })
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.tpa_Descripcion, new { htmlAttributes = new { @autocomplete = "off", @onkeyup = "format(this)", @style = "text-transform:capitalize;", onkeypress = "return validar(event)" } })
+                                    @Html.ValidationMessageFor(model => model.tpa_Descripcion, "", new { @style = "color:red" })
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.tpa_Cuenta, new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
-                @Html.EditorFor(model => model.tpa_Cuenta)
-                @Html.ValidationMessageFor(model => model.tpa_Cuenta)
-            </div>
-        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.tpa_Emisor, new { @class = "control-label col-md-2" })
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.tpa_Emisor)
+                                    @Html.ValidationMessageFor(model => model.tpa_Emisor)
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.tpa_FechaVencimiento, new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
-                @Html.EditorFor(model => model.tpa_FechaVencimiento)
-                @Html.ValidationMessageFor(model => model.tpa_FechaVencimiento)
-            </div>
-        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.tpa_Cuenta, new { @class = "control-label col-md-2" })
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.tpa_Cuenta)
+                                    @Html.ValidationMessageFor(model => model.tpa_Cuenta)
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.tpa_Titular, new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
-                @Html.EditorFor(model => model.tpa_Titular)
-                @Html.ValidationMessageFor(model => model.tpa_Titular)
-            </div>
-        </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.tpa_FechaVencimiento, new { @class = "control-label col-md-2" })
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.tpa_FechaVencimiento)
+                                    @Html.ValidationMessageFor(model => model.tpa_FechaVencimiento)
+                                </div>
+                            </div>
 
-      
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.tpa_Titular, new { @class = "control-label col-md-2" })
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.tpa_Titular)
+                                    @Html.ValidationMessageFor(model => model.tpa_Titular)
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
-				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
-            </div>
-        </div>
-    </div>
-}
+
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                </div>
+                            </div>
+                        </div>
+                    }
 
 
                 </div>
             </div>
-
-            <div class="ibox-content">
-                <table class="table table-striped">
-                    <tr>
-                        <th>Acción</th>
-                        <th>Usuario</th>
-                        <th>Fecha</th>
-                    </tr>
-                    <tr>
-                        <td>Creado</td>
-                        <td>@Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)</td>
-                        <td>@Html.DisplayFor(model => model.tpa_FechaCrea)</td>
-                    </tr>
-                    <tr>
-                        <td>Modificado</td>
-                        <td>@Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
-                           @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)</td>
-                        <td>@Html.DisplayFor(model => model.tpa_FechaModifica)</td>
-                    </tr>
-                </table>
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Auditoría</h5>
+                </div>
+                <div class="ibox-content">
+                    <table class="table table-striped table-bordered">
+                        <tr>
+                            <th>Acción</th>
+                            <th>Usuario</th>
+                            <th>Fecha</th>
+                        </tr>
+                        <tr>
+                            <td>Creado</td>
+                            <td>
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                            </td>
+                            <td>@Html.DisplayFor(model => model.tpa_FechaCrea)</td>
+                        </tr>
+                        <tr>
+                            <td>Modificado</td>
+                            <td>
+                                @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                                @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                            </td>
+                            <td>@Html.DisplayFor(model => model.tpa_FechaModifica)</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
- </div>
-
+</div>
 
 
 @section Scripts {
