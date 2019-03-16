@@ -666,13 +666,14 @@ namespace ERP_ZORZAL.Controllers
 
             return Json("", JsonRequestBehavior.AllowGet);
         }
-       
+
+        [HttpPost]
         public JsonResult SaveBoxDetalle(tbBoxDetalle BoxDetalle, string data_producto)
         {
             var datos = "";
-            decimal cantvieja = 0;
-            decimal cantnueva = 0;
-            data_producto = BoxDetalle.prod_Codigo;
+            decimal CantidadVieja = 0;
+            decimal CantidadNueva = 0;
+            //data_producto = SalidaDetalle.prod_Codigo;
             decimal data_cantidad = BoxDetalle.boxd_Cantidad;
             List<tbBoxDetalle> sessionBoxDetalle = new List<tbBoxDetalle>();
             var list = (List<tbBoxDetalle>)Session["BoxDetalle"];
@@ -683,15 +684,15 @@ namespace ERP_ZORZAL.Controllers
             }
             else
             {
-                foreach (var t in list)
-                    if (t.prod_Codigo == data_producto)
+                foreach (var vBoxDetalle in list)
+                    if (vBoxDetalle.prod_Codigo == data_producto)
                     {
                         datos = data_producto;
                         foreach (var viejo in list)
-                            if (viejo.prod_Codigo == BoxDetalle.prod_Codigo)
-                                cantvieja = viejo.boxd_Cantidad;
-                        cantnueva = cantvieja + data_cantidad;
-                        t.boxd_Cantidad = cantnueva;
+                            if (viejo.prod_Codigo == vBoxDetalle.prod_Codigo)
+                                CantidadVieja = viejo.boxd_Cantidad;
+                        CantidadNueva = CantidadVieja + data_cantidad;
+                        vBoxDetalle.boxd_Cantidad = CantidadNueva;
                         return Json(datos, JsonRequestBehavior.AllowGet);
                     }
                 list.Add(BoxDetalle);
@@ -700,8 +701,8 @@ namespace ERP_ZORZAL.Controllers
             }
             return Json(datos, JsonRequestBehavior.AllowGet);
         }
-
-        public JsonResult RemoveBoxDetalles(tbBoxDetalle BoxDetalle)
+        [HttpPost]
+        public JsonResult RemovesBoxDetalle(tbBoxDetalle BoxDetalle)
         {
             var list = (List<tbBoxDetalle>)Session["BoxDetalle"];
 
@@ -713,5 +714,7 @@ namespace ERP_ZORZAL.Controllers
             }
             return Json("", JsonRequestBehavior.AllowGet);
         }
+
+
     }
 }

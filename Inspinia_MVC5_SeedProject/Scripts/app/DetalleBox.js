@@ -154,7 +154,7 @@ function SeleccionProducto() {
                         copiar += "<td id = 'Producto'>" + $('#prod_Descripcion').val() + "</td>";
                         copiar += "<td id = 'Unidad_Medida'>" + $('#uni_Id').val() + "</td>";
                         copiar += "<td id = 'Cantidad'>" + sumacantidades + "</td>";
-                        copiar += "<td>" + '<button id="removeBoxDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
+                        copiar += "<td>" + '<button id="removesBoxDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
                         copiar += "</tr>";
                         $('#tblBoxDetalle').append(copiar);
                     }
@@ -169,7 +169,7 @@ function SeleccionProducto() {
                 copiar += "<td id = 'Producto'>" + $('#prod_Descripcion').val() + "</td>";
                 copiar += "<td id = 'Unidad_Medida'>" + $('#pscat_Id').val() + "</td>";
                 copiar += "<td id = 'Cantidad'>" + $('#boxd_Cantidad').val() + "</td>";
-                copiar += "<td>" + '<button id="removeBoxDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
+                copiar += "<td>" + '<button id="removesBoxDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
                 copiar += "</tr>";
                 $('#tblBoxDetalle').append(copiar);
             }
@@ -188,6 +188,81 @@ function SeleccionProducto() {
         });
     }
 };
+
+
+
+function ProductoCantidad(bod_Id, prod_Codigo) {
+    $("#prod_CodigoBarras").val();
+    $("#CantidaExistenteProd").text('');
+    var cod_Barras = $("#prod_CodigoBarras").val();
+    return $.ajax({
+        url: "/Box/Cantidad",
+        method: "POST",
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({
+            bod_Id: bod_Id,
+            prod_Codigo: prod_Codigo
+        }),
+        success: function (data) {
+            var CantidadAceptada = data.CantidadAceptada
+            var CantidadMinima = data.CantidadMinima
+            var prod_CodigoCampo = $('#prod_Codigo').val();
+            var currentRow = $("#tblSalidaDetalle tbody tr");
+            //var DataTable = $("#tblSalidaDetalle >tbody >tr").DataTable();
+            //$("#tblSalidaDetalle td").each(function () {
+            var prod_CodigoTabla = currentRow.find("td:eq(0)").text();
+            var idcontador = $(this).closest('tr').data('id');
+            var cantfisica_anterior = $(this).closest("tr").find("td:eq(7)").text();
+            console.log(prod_CodigoTabla)
+            if (prod_CodigoTabla !== "No hay registros") {
+                currentRow.each(function () {
+                    var prod_CodigoTablaeach = $(this).closest("tr").find("td:eq(0)").text();
+
+                    if (prod_CodigoCampo == prod_CodigoTablaeach) {
+                        var CantidadTabla = $(this).closest("tr").find("td:eq(7)").text();
+                        var CantidatTotal = parseFloat(CantidadAceptada) + parseFloat(CantidadMinima)
+                        var CantidadRestante = parseFloat(CantidadAceptada) - parseFloat(CantidadTabla)
+                        if (CantidadTabla >= CantidadAceptada && CantidadRestante > 0) {
+                            $("#CantidaExistenteProd").text('');
+                            $('#CantidaExistente').after('<ul id="CantidaExistenteProd" class="validation-summary-errors text-danger">Cantidad Minima Alcanzada solo hay en existencia: ' + CantidadRestante + ' de este producto</ul>');
+                        }
+                        else {
+                            if (CantidadTabla < CantidadAceptada) {
+                                CantidadAceptada = CantidadAceptada - CantidadTabla
+                                $("#CantidaExistenteProd").text('');
+                                $('#CantidaExistente').after('<ul id="CantidaExistenteProd" class="validation-summary-errors text-danger">Cantidad Existente en Bodega: ' + CantidadAceptada + '</ul>');
+                            }
+                            else {
+                                if (CantidadTabla == CantidadAceptada) {
+                                    $("#CantidaExistenteProd").text('');
+                                    $('#CantidaExistente').after('<ul id="CantidaExistenteProd" class="validation-summary-errors text-danger">Sin Existencias de este producto</ul>');
+                                }
+                            }
+                        }
+                    }
+                    else {
+                        $("#CantidaExistenteProd").text('');
+                        $('#CantidaExistente').after('<ul id="CantidaExistenteProd" class="validation-summary-errors text-danger">Cantidad Existente en Bodega: ' + CantidadAceptada + '</ul>');
+                    }
+                })
+            }
+            else {
+                $("#CantidaExistenteProd").text('');
+                Aceptada = CantidadAceptada
+                if (CantidadAceptada == 0 && CantidadMinima > 0) {
+                    $("#CantidaExistenteProd").text('');
+                    $('#CantidaExistente').after('<ul id="CantidaExistenteProd" class="validation-summary-errors text-danger">Cantidad Minima Alcanzada solo hay en existencia: ' + CantidadMinima + ' de este producto</ul>');
+                }
+                else {
+                    $("#CantidaExistenteProd").text('');
+                    $('#CantidaExistente').after('<ul id="CantidaExistenteProd" class="validation-summary-errors text-danger">Cantidad Existente en Bodega: ' + Aceptada + '</ul>');
+                }
+            }
+        }
+    })
+};
+
 
 $('#btnCreateBoxDetalle').click(function () {
     var Cod_Producto = $('#prod_Codigo').val();
@@ -275,86 +350,239 @@ $('#btnCreateBoxDetalle').click(function () {
 //    }
 //});
 
+////////////////////////////////////////////////////////////////////////////
+
+//$('#AgregarBoxDetalle').click(function () {
+//    var bodd_Id = $('#bodd_Id').val();
+//    var Cod_Producto = $('#prod_Codigo').val();
+//    var Producto = $('#prod_Descripcion').val();
+//    var Unidad_Medida = $('#pscat_Id').val();
+//    var Cantidad = $('#boxd_Cantidad').val();
+//    var data_producto = $("#prod_Codigo").val();
+//    if (Producto == '') {
+//        $('#MessageError').text('');
+//        $('#CodigoError').text('');
+//        $('#NombreError').text('');
+//        $('#ValidationCodigoCreate').after('<ul id="CodigoError" class="validation-summary-errors text-danger">Campo Producto Requerido</ul>');
+//    }
+//    else if (Cantidad == '' || Cantidad < 1) {
+//        $('#MessageError').text('');
+//        $('#CodigoError').text('');
+//        $('#NombreError').text('');
+//        $('#boxd_Cantidad').after('<ul id="NombreError" class="validation-summary-errors text-danger">Cantidad Requerido</ul>');
+//    }
+//    else {
+//        var tbBoxDetalle = GetBoxDetalle();
+//        $.ajax({
+//            url: "/Box/SaveBoxDetalle",
+//            method: "POST",
+//            dataType: 'json',
+//            contentType: "application/json; charset=utf-8",
+//            data: JSON.stringify({ BoxDetalle: tbBoxDetalle, data_producto: data_producto }),
+//        }).done(function (datos) {
+//            if (datos == data_producto) {
+//                //alert('Es Igual.')
+//                console.log('Repetido');
+//                var cantfisica_nueva = $('#boxd_Cantidad').val();
+//                $("#tblBoxDetalle td").each(function () {
+//                    var prueba = $(this).text()
+//                    if (prueba == data_producto) {
+//                        var idcontador = $(this).closest('tr').data('id');
+//                        var cantfisica_anterior = $(this).closest("tr").find("td:eq(3)").text();
+//                        var sumacantidades = parseInt(cantfisica_nueva) + parseInt(cantfisica_anterior);
+//                        console.log(sumacantidades);
+//                        $(this).closest('tr').remove();
+//                        copiar = "<tr data-id=" + idcontador + ">";
+//                        copiar += "<td id = 'Cod_Producto'>" + $('#prod_Codigo').val() + "</td>";
+//                        copiar += "<td id = 'Producto'>" + $('#prod_Descripcion').val() + "</td>";
+//                        copiar += "<td id = 'Unidad_Medida'>" + $('#uni_Id').val() + "</td>";
+//                        copiar += "<td id = 'Cantidad'>" + sumacantidades + "</td>";
+//                        copiar += "<td>" + '<button id="removeBoxDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
+//                        copiar += "</tr>";
+//                        $('#tblBoxDetalle').append(copiar);
+//                    }
+//                });
+//            } else {
+//                //alert('NO ES IGUAL')
+//                //Rellenar la tabla
+//                //contador = contador + 1;
+//                copiar = "<tr data-id=" + contador + ">";
+//                //copiar += "<td>" + $('#CodTipoCasoExitoCreate option:selected').text() + "</td>";
+//                copiar += "<td id = 'Cod_Producto'>" + $('#prod_Codigo').val() + "</td>";
+//                copiar += "<td id = 'Producto'>" + $('#prod_Descripcion').val() + "</td>";
+//                copiar += "<td id = 'Unidad_Medida'>" + $('#pscat_Id').val() + "</td>";
+//                copiar += "<td id = 'Cantidad'>" + $('#boxd_Cantidad').val() + "</td>";
+//                copiar += "<td>" + '<button id="removeBoxDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
+//                copiar += "</tr>";
+//                $('#tblBoxDetalle').append(copiar);
+//            }
+//        }).done(function (data) {
+//            $('#prod_Codigo').val('');
+//            $('#prod_Descripcion').val('');
+//            $('#pscat_Id').val('');
+//            $('#uni_Id').val('');
+//            $('#pcat_Id').val('');
+
+//            $("#prod_CodigoBarras").val('');
+//            $('#boxd_Cantidad').val('0.00');
+//            $('#Error_Barras').text('');
+//            $('#NombreError').text('');
+//            console.log('Hola');
+//        });
+//    }
+//});
+
+/////////////////////////////////////////////////////////////////
+
 $('#AgregarBoxDetalle').click(function () {
-    var bodd_Id = $('#bodd_Id').val();
+    var table = $('#tblBoxDetalle').DataTable();
+    var counter = 0;
+    var bod_Id = $('#bod_Id').val();
     var Cod_Producto = $('#prod_Codigo').val();
     var Producto = $('#prod_Descripcion').val();
     var Unidad_Medida = $('#pscat_Id').val();
     var Cantidad = $('#boxd_Cantidad').val();
     var data_producto = $("#prod_Codigo").val();
-    if (Producto == '') {
-        $('#MessageError').text('');
-        $('#CodigoError').text('');
-        $('#NombreError').text('');
-        $('#ValidationCodigoCreate').after('<ul id="CodigoError" class="validation-summary-errors text-danger">Campo Producto Requerido</ul>');
+    var CodBarra_Producto = $('#prod_CodigoBarras').val();
+    $('#boxd_CantidadError').text();
+    var vCodBarra_Producto = true;
+    var vCantidad = true;
+
+    if (CodBarra_Producto == "") {
+        $('#ValidationCodigoBarrasCreateError').text('');
+        $('#validationprod_CodigoBarras').after('<ul id="ValidationCodigoBarrasCreateError" class="validation-summary-errors text-danger">Campo de Barras Requerido</ul>');
+        vCodBarra_Producto = false;
     }
-    else if (Cantidad == '' || Cantidad < 1) {
+    if (Cantidad == "") {
         $('#MessageError').text('');
-        $('#CodigoError').text('');
-        $('#NombreError').text('');
-        $('#boxd_Cantidad').after('<ul id="NombreError" class="validation-summary-errors text-danger">Cantidad Requerido</ul>');
+        $('#boxd_CantidadExedError').text('');
+        $('#boxd_CantidadError').text('');
+        $('#boxd_Cantidad').after('<ul id="boxd_CantidadError" class="validation-summary-errors text-danger">Cantidad Requerida</ul>');
+        vCantidad = false;
+    }
+    if (!vCantidad || !vCodBarra_Producto) {
+        return false;
     }
     else {
-        var tbBoxDetalle = GetBoxDetalle();
-        $.ajax({
-            url: "/Box/SaveBoxDetalle",
-            method: "POST",
-            dataType: 'json',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ BoxDetalle: tbBoxDetalle, data_producto: data_producto }),
-        }).done(function (datos) {
-            if (datos == data_producto) {
-                //alert('Es Igual.')
-                console.log('Repetido');
-                var cantfisica_nueva = $('#boxd_Cantidad').val();
-                $("#tblBoxDetalle td").each(function () {
-                    var prueba = $(this).text()
-                    if (prueba == data_producto) {
-                        var idcontador = $(this).closest('tr').data('id');
-                        var cantfisica_anterior = $(this).closest("tr").find("td:eq(3)").text();
-                        var sumacantidades = parseInt(cantfisica_nueva) + parseInt(cantfisica_anterior);
-                        console.log(sumacantidades);
-                        $(this).closest('tr').remove();
-                        copiar = "<tr data-id=" + idcontador + ">";
-                        copiar += "<td id = 'Cod_Producto'>" + $('#prod_Codigo').val() + "</td>";
-                        copiar += "<td id = 'Producto'>" + $('#prod_Descripcion').val() + "</td>";
-                        copiar += "<td id = 'Unidad_Medida'>" + $('#uni_Id').val() + "</td>";
-                        copiar += "<td id = 'Cantidad'>" + sumacantidades + "</td>";
-                        copiar += "<td>" + '<button id="removeBoxDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
-                        copiar += "</tr>";
-                        $('#tblBoxDetalle').append(copiar);
+        $('#ValidationCodigoBarrasCreateError').text('');
+        ProductoCantidad(bod_Id, Cod_Producto).done(function (data) {
+            var CantidadAceptada = data.CantidadAceptada
+            var CantidadMinima = data.CantidadMinima
+            if ($('#tblBoxDetalle >tbody >tr').length > 0) {
+                $('#tblBoxDetalle >tbody >tr').each(function () {
+                    var prod_CodigoTabla = $(this).find("td:eq(0)").text()
+                    if (Cod_Producto == prod_CodigoTabla) {
+                        var CantidadTabla = $(this).find("td:eq(7)").text();
+                        CantidadExit = parseFloat(CantidadAceptada) - parseFloat(CantidadTabla);
                     }
-                });
-            } else {
-                //alert('NO ES IGUAL')
-                //Rellenar la tabla
-                //contador = contador + 1;
-                copiar = "<tr data-id=" + contador + ">";
-                //copiar += "<td>" + $('#CodTipoCasoExitoCreate option:selected').text() + "</td>";
-                copiar += "<td id = 'Cod_Producto'>" + $('#prod_Codigo').val() + "</td>";
-                copiar += "<td id = 'Producto'>" + $('#prod_Descripcion').val() + "</td>";
-                copiar += "<td id = 'Unidad_Medida'>" + $('#pscat_Id').val() + "</td>";
-                copiar += "<td id = 'Cantidad'>" + $('#boxd_Cantidad').val() + "</td>";
-                copiar += "<td>" + '<button id="removeBoxDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
-                copiar += "</tr>";
-                $('#tblBoxDetalle').append(copiar);
+                    else {
+                        CantidadExit = CantidadAceptada
+                    }
+                })
             }
-        }).done(function (data) {
-            $('#prod_Codigo').val('');
-            $('#prod_Descripcion').val('');
-            $('#pscat_Id').val('');
-            $('#uni_Id').val('');
-            $('#pcat_Id').val('');
+            else {
+                CantidadExit = CantidadAceptada
+            }
+            console.log(CantidadExit)
+            if (Producto == '') {
+                $('#MessageError').text('');
+                $('#CodigoError').text('');
+                $('#ValidationCodigoCreateError').text('');
+                $('#ValidationCodigoCreate').after('<ul id="ValidationCodigoCreateError" class="validation-summary-errors text-danger">Campo Producto Requerido</ul>');
+            }
+            else if (Cantidad == '' || Cantidad < 0.25) {
+                $('#MessageError').text('');
+                $('#boxd_CantidadExedError').text('');
+                $('#boxd_CantidadError').text('');
+                $('#boxd_Cantidad').after('<ul id="sald_CantidadError" class="validation-summary-errors text-danger">Cantidad Requerido</ul>');
+            }
+            else if (Cantidad > CantidadExit) {
+                $('#MessageError').text('');
+                $('#boxd_CantidadError').text('');
+                $('#boxd_CantidadExedError').text('');
+                $('#boxd_Cantidad').after('<ul id="sald_CantidadExedError" class="validation-summary-errors text-danger">Cantidad Superada</ul>');
+            }
+            else {
+                $('#ValidationCodigoCreateError').text('');
+                $('#boxd_CantidadError').text('');
+                $('#boxd_CantidadExedError').text('');
+                $('#CantidaExistenteProd').text('');
+                var tbBoxDetalle = GetBoxDetalle();
+                $.ajax({
+                    url: "/Box/SaveBoxDetalle",
+                    method: "POST",
+                    dataType: 'json',
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify({ BoxDetalle: tbBoxDetalle, data_producto: data_producto }),
+                }).done(function (datos) {
+                    $("#prod_CodigoBarras").removeAttr("readonly");
+                    if (datos == data_producto) {
+                        console.log('Repetido');
+                        var cantfisica_nueva = $('#boxd_Cantidad').val();
+                        $("#tblBoxDetalle td").each(function () {
+                            var prueba = $(this).text()
+                            if (prueba == data_producto) {
+                                table.row($(this).parents('tr')).remove().draw();
+                                var idcontador = $(this).closest('tr').data('id');
+                                var cantfisica_anterior = $(this).closest("tr").find("td:eq(7)").text();
+                                var sumacantidades = parseInt(cantfisica_nueva) + parseInt(cantfisica_anterior);
 
-            $("#prod_CodigoBarras").val('');
-            $('#boxd_Cantidad').val('0.00');
-            $('#Error_Barras').text('');
-            $('#NombreError').text('');
-            console.log('Hola');
+                                table.row.add([
+                                    $('#prod_Codigo').val(),
+                                    $('#prod_Descripcion').val(),
+                                    $('#prod_Marca').val(),
+                                    $('#prod_Modelo').val(),
+                                    $('#prod_Talla').val(),
+                                    $('#pcat_Id').val(),
+                                    $('#uni_Id').val(),
+                                    sumacantidades,
+                                    '<button id = "removeBoxDetalle" class= "btn btn-danger btn-xs eliminar" type = "button">-</button>'
+
+                                ]).draw(false);
+                            }
+                        });
+                    } else {
+                        table.row.add([
+                            $('#prod_Codigo').val(),
+                            $('#prod_Descripcion').val(),
+                            $('#prod_Marca').val(),
+                            $('#prod_Modelo').val(),
+                            $('#prod_Talla').val(),
+                            $('#pcat_Id').val(),
+                            $('#uni_Id').val(),
+                            $('#boxd_Cantidad').val(),
+                            '<button id = "removesBoxDetalle" class= "btn btn-danger btn-xs eliminar" type = "button">-</button>'
+
+                        ]).draw(false);
+                    }
+                }).done(function (data) {
+                    $('#prod_Codigo').val('');
+                    $('#prod_Descripcion').val('');
+                    $('#pscat_Id').val('');
+                    $('#uni_Id').val('');
+                    $('#pcat_Id').val('');
+                    $("#prod_CodigoBarras").val('');
+                    $('#sald_Cantidad').val('');
+                    $('#Error_Barras').text('');
+                    $('#NombreError').text('');
+                    $('#boxd_CantidadError').text('');
+                    $('#CantidaExistenteProd').text('');
+                    $('#prod_CodigoBarras').focus();
+                    console.log('Hola');
+                });
+            }
         });
     }
 });
 
+function GetBoxDetalle() {
+    var BoxDetalle = {
+        prod_Codigo: $('#prod_Codigo').val(),
+        boxd_Cantidad: $('#boxd_Cantidad').val(),
+        boxd_UsuarioCrea: contador
+    };
+    return BoxDetalle;
+}
 //$('#btnCreateBoxDetalle').click(function () {
 //    var Cod_Producto = $('#prod_Codigo').val();
 //    var Producto = $('#prod_Descripcion').val();
@@ -444,7 +672,7 @@ $('#AgregarDetalleSalida').click(function () {
         copiar += "<td id = 'Producto'>" + $('#prod_Descripcion').val() + "</td>";
         copiar += "<td id = 'Unidad_Medida'>" + $('#pscat_Id').val() + "</td>";
         copiar += "<td id = 'Cantidad'>" + $('#boxd_Cantidad').val() + "</td>";
-        copiar += "<td>" + '<button id="removeBoxDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
+        copiar += "<td>" + '<button id="removesBoxDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
         copiar += "</tr>";
         $('#tblBoxDetalle').append(copiar);
 
@@ -472,7 +700,7 @@ $('#AgregarDetalleSalida').click(function () {
 });
 
 //Remover el detalle
-$(document).on("click", "#tblBoxDetalle tbody tr td button#removeBoxDetalle", function () {
+$(document).on("click", "#tblBoxDetalle tbody tr td button#removesBoxDetalle", function () {
     var currentRow = $(this).closest("tr");
     prod_Codigo = currentRow.find("td:eq(0)").text();
     $(this).closest('tr').remove();
@@ -481,7 +709,7 @@ $(document).on("click", "#tblBoxDetalle tbody tr td button#removeBoxDetalle", fu
         prod_Codigo: prod_Codigo,
     };
     $.ajax({
-        url: "/Box/RemoveBoxDetalles",
+        url: "/Box/RemovesBoxDetalles",
         method: "POST",
         dataType: 'json',
         contentType: "application/json; charset=utf-8",

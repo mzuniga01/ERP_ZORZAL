@@ -21,6 +21,9 @@
         font-weight: bold;
         color: red;
     }
+    .MayusText {
+        text-transform:uppercase;
+    }
 </style>
 
 <div class="row wrapper border-bottom white-bg page-heading">
@@ -76,13 +79,13 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.usu_Nombres, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    @Html.TextBoxFor(model => model.usu_Nombres, new { @class = "form-control", maxlength = "150", @onKeyPress = "return soloLetras(event)" })
+                                    @Html.TextBoxFor(model => model.usu_Nombres, new { @class = "form-control , MayusText", maxlength = "150", @onKeyPress = "return soloLetras(event)"})
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.usu_Nombres)</p>
 
                                 </div>
                                 @Html.LabelFor(model => model.usu_Apellidos, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    @Html.TextBoxFor(model => model.usu_Apellidos, new { @class = "form-control", maxlength = "150", @onKeyPress = "return soloLetras(event)" })
+                                    @Html.TextBoxFor(model => model.usu_Apellidos, new { @class = "form-control , MayusText", maxlength = "150", @onKeyPress = "return soloLetras(event)" })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.usu_Apellidos)</p>
                                 </div>
 
@@ -210,18 +213,20 @@
                                         @*<button type="submit" id="btnActualizarRol" class="btn btn-primary">Guardar</button>*@
                                         @if (Model.usu_EsActivo)
                                         {
+                                           
+                                            <button type="submit" id="btnActualizarRol" class="btn btn-primary">Guardar</button>
                                             <button type="button" id="inactivar" name="inactivar" class="btn btn-danger" data-toggle="modal" data-target="#ModalAnular">
                                                 Inactivar
                                             </button>
-                                            <button type="submit" id="btnActualizarRol" class="btn btn-primary">Guardar</button>
                                         }
                                         else
                                         {
+
                                             
+                                            <button type="submit" id="btnActualizarRol" disabled class="btn btn-primary">Guardar</button>
                                             <button type="button" id="activar" name="activar" class="btn btn-primary" data-toggle="modal" data-target="#ModalAnular1">
                                                 Activar
                                             </button>
-                                            <button type="submit" id="btnActualizarRol" disabled class="btn btn-primary">Guardar</button>
                                         }
                                         @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                                     </div>
@@ -248,7 +253,7 @@
             </div>
             <div class="modal-body">
                 <p>¿Está seguro de inactivar este Usuario?</p>
-                <textarea rows="4" cols="50" placeholder="Ingrese la razon de Inactivación" id="razonInac" name="razonInac"></textarea>
+                <textarea rows="4" cols="50" placeholder="Ingrese la razon de Inactivación" id="razonInac" name="razonInac" onKeyPress =  "return CaracteresNombre(event)", onkeyup = "this.value=NumText(this.value)"></textarea>
                 <p id="Mensaje" style="color:red"></p>
             </div>
 

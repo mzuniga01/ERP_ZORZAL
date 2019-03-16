@@ -76,7 +76,7 @@
                 newTr = '';
                 newTr += '<tr data-id="' + item.rol_Id + '">'
                 newTr += '<td id="objpantalla' + item.rol_Id + '">' + item.rol_Descripcion + '</td>'
-                newTr += '<td><input name="id02" style="background-color:#1ab394" type="checkbox" id="check' + item.rol_Id + '" /></td>'
+                newTr += '<td><input name="id03" style="background-color:#1ab394" type="checkbox" id="check' + item.rol_Id + '" /></td>'
                 newTr += '</tr>'
                 $('#AsignadosEdit tbody').append(newTr)
             })
@@ -217,3 +217,19 @@ function CorreoElectronico(string) {//Algunos caracteres especiales para el corr
 
     return out;
 }
+$('#usu_Nombres').on("keypress", function () {
+    $input = $(this);
+    setTimeout(function () {
+        $input.val($input.val().toUpperCase());
+    }, 50)
+
+});
+
+$('#usu_Apellidos').on("keypress", function () {
+    $input = $(this);
+    setTimeout(function () {
+        $input.val($input.val().toUpperCase());
+    }, 50)
+
+});
+

@@ -1,8 +1,8 @@
 ﻿$('#Inactivar').click(function () {
-    var prod_Codigo = $('#usu_Id').val();
+    var usu_id = $('#usu_id').val();
     var Activo = 0
     var Razon_Inactivacion = $('#razonInac').val();
-    console.log(prod_Codigo)
+    console.log(usu_id)
     console.log(Activo)
     console.log(Razon_Inactivacion)
     if (Razon_Inactivacion == "") {
@@ -16,7 +16,7 @@
             method: "POST",
             dataType: 'json',
             contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ prod_Codigo: prod_Codigo, Activo: Activo, Razon_Inactivacion: Razon_Inactivacion }),
+            data: JSON.stringify({ usu_id: usu_id, Activo: Activo, Razon_Inactivacion: Razon_Inactivacion }),
 
         })
     .done(function (data) {
@@ -33,7 +33,7 @@
 })
 
 $('#Activar').click(function () {
-    var prod_Codigo = $('#usu_Id').val();
+    var usu_id = $('#usu_id').val();
     var Activo = 1
     var Razon_Inactivacion = null;
     $.ajax({
@@ -41,7 +41,7 @@ $('#Activar').click(function () {
         method: "POST",
         dataType: 'json',
         contentType: "application/json; charset=utf-8",
-        data: JSON.stringify({ prod_Codigo: prod_Codigo, Activo: Activo, Razon_Inactivacion: Razon_Inactivacion }),
+        data: JSON.stringify({ usu_id: usu_id, Activo: Activo, Razon_Inactivacion: Razon_Inactivacion }),
 
     })
     .done(function (data) {
