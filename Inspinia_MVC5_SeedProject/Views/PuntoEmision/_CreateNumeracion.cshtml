@@ -5,7 +5,7 @@
             <div class="ibox float-e-margins">
                     <div class="form-horizontal">
                         <div class="form-group">
-                            @Html.LabelFor(model => model.dfisc_Id, new { @class = "control-label col-md-2" })
+                            <label class="control-label col-md-2">Documento Fiscal<span style="color:red">*</span></label>
                             <div class="col-md-4">
                                 @Html.DropDownList("dfisc_Id", (IEnumerable<SelectListItem>)ViewBag.DocumentoFiscal, "Seleccione", new { @class = "form-control" })
                                 <div id="validacionDocumentoFiscalCreate">
@@ -13,7 +13,7 @@
                                 </div>
                             </div>
                           
-                            @Html.LabelFor(model => model.pemid_FechaLimite, new { @class = "control-label col-md-2" })
+                            <label class="control-label col-md-2">Fecha Límite Emisión<span style="color:red">*</span></label>
                             <div class="col-md-4">
                                  @Html.EditorFor(model => model.pemid_FechaLimite, "{0:MM/dd/yyyy}", new { htmlAttributes = new { @autocomplete = "off" } })
                                 <div id="validacionFechaLimiteCreate">
@@ -22,7 +22,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            @Html.LabelFor(model => model.pemid_RangoInicio, new { @class = "control-label col-md-2" })
+                            <label class="control-label col-md-2">Rango Inicial<span style="color:red">*</span></label>
                             <div class="col-md-4">
                                 @Html.EditorFor(model => model.pemid_RangoInicio, new { htmlAttributes = new {@autocomplete = "off" ,@onkeypress = "return validar(event)"} })
                                 <div id="validacionRangoInicioCreate">
@@ -30,7 +30,7 @@
                                 </div>
                             </div>
 
-                            @Html.LabelFor(model => model.pemid_RangoFinal, new { @class = "control-label col-md-2" })
+                            <label class="control-label col-md-2">Rango Final<span style="color:red">*</span></label>
                             <div class="col-md-4">
                                 @Html.EditorFor(model => model.pemid_RangoFinal, new { htmlAttributes = new { @autocomplete = "off", @onkeypress = "return validar(event)" } })
                                 <div id="validacionRangoFinalCreate">
@@ -50,7 +50,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-md-12 text-center">
-                                <button class="btn btn-primary btn-sm" type="button" id="AgregarPuntoEmisionDetalle">Registrar</button>
+                                <button class="btn btn-primary btn-sm" type="button" id="AgregarPuntoEmisionDetalle">Agregar</button>
                             </div>
                         </div>
                     </div>

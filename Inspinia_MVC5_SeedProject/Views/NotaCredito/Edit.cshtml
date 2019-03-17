@@ -223,7 +223,7 @@
 
                             @*---------------Botones---------------------*@
                             <div class="form-group">
-                                <div class="col-md-12 text-center">
+                                <div class="col-md-offset-2 col-md-10">
                                     <input type="submit" value="Guardar" class="btn btn-primary" />
                                     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                                     <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-danger" data-toggle="modal" data-target="#AnularNC">
@@ -313,10 +313,13 @@
                 </button>
             </div>
             <div class="modal-body">
-                ¿Está seguro de Anular este Nota Crédito?
+                Razones por las cuales desea realizar la Anulación:
+                <div class="group">
+                    <textarea class="form-control"></textarea>
+                </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="AnularNotaCredito();" data-dismiss="modal">Si</button>
+                <button type="button" class="btn btn-danger" onclick="AnularNotaCredito();" data-dismiss="modal">Si</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
             </div>
         </div>

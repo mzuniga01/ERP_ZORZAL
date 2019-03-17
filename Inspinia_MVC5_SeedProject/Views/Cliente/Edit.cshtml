@@ -201,43 +201,43 @@
                             </div>
 
                             <div class="form-group" id="Activo">
-                                @Html.LabelFor(model => model.clte_EsActivo, new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.clte_EsActivo, "Estado", new { @class = "control-label col-md-2" })
                                 <div class="col-md-1">
-                                    @if(Model.clte_EsActivo)
+                                    @if (Model.clte_EsActivo)
                                     {
-                                        <p>Si</p>
-                                        
+                                        <label class="form-control no-borders font-normal">Activo</label>
+
                                     }
                                     else
                                     {
-                                        <p>No</p>
-                                        
+                                        <label class="form-control no-borders font-normal">Inactivo</label>
+
                                     }
                                 </div>
-                                @Html.LabelFor(model => model.clte_ConCredito, new { @class = "control-label col-md-1" })
+                                @Html.LabelFor(model => model.clte_ConCredito,"Crédito", new { @class = "control-label col-md-1" })
                                 <div class="col-md-1">
                                     @if (Model.clte_ConCredito)
                                     {
-                                        <p>Si</p>
+                                        <label class="form-control no-borders font-normal">Sí</label>
 
                                     }
                                     else
                                     {
-                                        <p>No</p>
+                                        <label class="form-control no-borders font-normal">No</label>
 
                                     }
                                 </div>
 
-                                @Html.LabelFor(model => model.clte_Exonerado, new { @class = "control-label col-md-1" })
+                                @Html.LabelFor(model => model.clte_Exonerado,"Exonerado", new { @class = "control-label col-md-1" })
                                 <div class="col-md-1">
                                     @if (Model.clte_Exonerado)
                                     {
-                                        <p>Si</p>
+                                        <label class="form-control no-borders font-normal">Sí</label>
 
                                     }
                                     else
                                     {
-                                        <p>No</p>
+                                        <label class="form-control no-borders font-normal">No</label>
 
                                     }
                                 </div>

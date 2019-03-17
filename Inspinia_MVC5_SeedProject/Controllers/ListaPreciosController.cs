@@ -50,9 +50,7 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.Producto = db.tbProducto.ToList();
             Session["ListadoPrecio"] = null;
             return View();
-
         }
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -67,78 +65,83 @@ namespace ERP_GMEDINA.Controllers
             IEnumerable<object> listPrecio = null;
             IEnumerable<object> listPrecioDetalle = null;
 
-            if (db.tbListaPrecio.Any(a => a.listp_Nombre == tbListaPrecio.listp_Nombre))
-            {
-                ModelState.AddModelError("", "Ya existe una Lista Precio con este mismo nombre.");
-            }
+            
             if (ModelState.IsValid)
             {                
                 try
                 {
-                    using (TransactionScope Tran = new TransactionScope())
+                    if (db.tbListaPrecio.Any(a => a.listp_Nombre == tbListaPrecio.listp_Nombre))
                     {
-                        listPrecio = db.UDP_Vent_tbListaPrecio_Insert(
-                                                 tbListaPrecio.listp_Nombre,
-                                                                   tbListaPrecio.listp_EsActivo = true,
-                                                                 tbListaPrecio.listp_FechaInicioVigencia,
-                                                                 tbListaPrecio.listp_FechaFinalVigencia,
-                                                                tbListaPrecio.listp_Prioridad,
-                                                                Function.GetUser(),
-                                                                Function.DatetimeNow());
-                   
-                        foreach (UDP_Vent_tbListaPrecio_Insert_Result Precio in listPrecio)
-                            MensajeError = Precio.MensajeError;
-                        if (MensajeError == "-1")
+                        ModelState.AddModelError("", "Ya existe una Lista Precio con este mismo nombre.");
+                    }
+                   else if (db.tbListaPrecio.Any(a => a.listp_Prioridad == tbListaPrecio.listp_Prioridad && a.listp_FechaFinalVigencia == tbListaPrecio.listp_FechaFinalVigencia))
+                    {
+                        ModelState.AddModelError("", "Ya existe una Lista Precio con esta prioridad en estas fechas.");
+                    }
+                    else {
+                        using (TransactionScope Tran = new TransactionScope())
                         {
-                            ModelState.AddModelError("", "No se pudo agregar el registro");
-                           
-                            //TempData["message"] = "No se pudo agregar el registro,ya existe nombre de lista";
-                            return View(tbListaPrecio);
-                        }
-                        else
-                        {
-                            if (MensajeError != "-1")
-                            {
-                                if (list != null)
-                                {
-                                    if (list.Count != 0)
-                                    {
-                                        foreach (tbListadoPrecioDetalle PrecioDetalle in list)
-                                        {
-                                            var liistp_Id = Convert.ToInt32(MensajeError);
-                                            PrecioDetalle.listp_Id = liistp_Id;
-                                            PrecioDetalle.listp_Id = liistp_Id;
-                                            listPrecioDetalle = db.UDP_Vent_tbListadoPrecioDetalle_Insert(
-                                              PrecioDetalle.listp_Id,
-                                              PrecioDetalle.prod_Codigo,
-                                              PrecioDetalle.lispd_PrecioMayorista,
-                                              PrecioDetalle.lispd_PrecioMinorista,
-                                              PrecioDetalle.lispd_DescCaja,
-                                              PrecioDetalle.lispd_DescGerente,
-                                              Function.GetUser(),
-                                    Function.DatetimeNow());
-                                            foreach (UDP_Vent_tbListadoPrecioDetalle_Insert_Result SPpreciodetalle in listPrecioDetalle)
-                                            {
-                                                MensajeErrorDetalle = SPpreciodetalle.MensajeError;
-                                                if (MensajeError == "-1")
-                                                {
-                                                    ModelState.AddModelError("", "No se pudo agregar el registro detalle");
-                                                    return View(tbListaPrecio);
-                                                }
-                                            }
-                                        }
-                                    } 
-                                }
-                            }
-                            else
+                            listPrecio = db.UDP_Vent_tbListaPrecio_Insert(
+                                                     tbListaPrecio.listp_Nombre,
+                                                                       tbListaPrecio.listp_EsActivo = true,
+                                                                     tbListaPrecio.listp_FechaInicioVigencia,
+                                                                     tbListaPrecio.listp_FechaFinalVigencia,
+                                                                    tbListaPrecio.listp_Prioridad,
+                                                                    Function.GetUser(),
+                                                                    Function.DatetimeNow());
+
+                            foreach (UDP_Vent_tbListaPrecio_Insert_Result Precio in listPrecio)
+                                MensajeError = Precio.MensajeError;
+                            if (MensajeError.StartsWith("-1"))
                             {
                                 ModelState.AddModelError("", "No se pudo agregar el registro");
                                 return View(tbListaPrecio);
                             }
+                            else
+                            {
+                                if (!MensajeError.StartsWith("-1"))
+                                {
+                                    if (list != null)
+                                    {
+                                        if (list.Count != 0)
+                                        {
+                                            foreach (tbListadoPrecioDetalle PrecioDetalle in list)
+                                            {
+                                                var liistp_Id = Convert.ToInt32(MensajeError);
+                                                PrecioDetalle.listp_Id = liistp_Id;
+                                                PrecioDetalle.listp_Id = liistp_Id;
+                                                listPrecioDetalle = db.UDP_Vent_tbListadoPrecioDetalle_Insert(
+                                                  PrecioDetalle.listp_Id,
+                                                  PrecioDetalle.prod_Codigo,
+                                                  PrecioDetalle.lispd_PrecioMayorista,
+                                                  PrecioDetalle.lispd_PrecioMinorista,
+                                                  PrecioDetalle.lispd_DescCaja,
+                                                  PrecioDetalle.lispd_DescGerente,
+                                                  Function.GetUser(),
+                                        Function.DatetimeNow());
+                                                foreach (UDP_Vent_tbListadoPrecioDetalle_Insert_Result SPpreciodetalle in listPrecioDetalle)
+                                                {
+                                                    MensajeErrorDetalle = SPpreciodetalle.MensajeError;
+                                                    if (MensajeError.StartsWith("-1"))
+                                                    {
+                                                        ModelState.AddModelError("", "No se pudo agregar el registro detalle");
+                                                        return View(tbListaPrecio);
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    ModelState.AddModelError("", "No se pudo agregar el registro");
+                                    return View(tbListaPrecio);
+                                }
 
+                            }
+                            Tran.Complete();
+                            return RedirectToAction("Index");
                         }
-                        Tran.Complete();
-                        return RedirectToAction("Index");
                     }
                 }
                 catch (Exception Ex)
@@ -148,28 +151,15 @@ namespace ERP_GMEDINA.Controllers
                     ViewBag.listp_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbListaPrecio.listp_UsuarioCrea);
                     ViewBag.listp_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbListaPrecio.listp_UsuarioModifica);
                     ViewBag.listp_Id = new SelectList(db.tbListadoPrecioDetalle, "listp_Id", "prod_Codigo", tbListaPrecio.listp_Id);
-
                 }
-
             }
-         
-                
-
             ViewBag.Producto = db.tbProducto.ToList();
             ViewBag.listp_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbListaPrecio.listp_UsuarioCrea);
             ViewBag.listp_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbListaPrecio.listp_UsuarioModifica);
             ViewBag.listp_Id = new SelectList(db.tbListadoPrecioDetalle, "listp_Id", "prod_Codigo", tbListaPrecio.listp_Id);
             return View(tbListaPrecio);
         }
-
-
-
-
-
-
-
-
-
+        
         [HttpPost]
         public JsonResult SaveListaPrecioDetalle(tbListadoPrecioDetalle ListaDetalle)
         {
@@ -202,8 +192,6 @@ namespace ERP_GMEDINA.Controllers
             }
             return Json("", JsonRequestBehavior.AllowGet);
         }
-
-
 
         // GET: /ListaPrecios/Edit/5
         public ActionResult Edit(int? id)
@@ -240,35 +228,32 @@ namespace ERP_GMEDINA.Controllers
            
             if (ModelState.IsValid)
             {
-
                 try
-                {                    using (TransactionScope Tran = new TransactionScope())
+                {
+                    using (TransactionScope Tran = new TransactionScope())
                     {
                         list = db.UDP_Vent_tbListaPrecio_Update(tbListaPrecio.listp_Id,
-                                                                   tbListaPrecio.listp_Nombre,
-                                                                   tbListaPrecio.listp_EsActivo,
-                                                                       tbListaPrecio.listp_UsuarioCrea,
-                                                                   tbListaPrecio.listp_FechaCrea,
-                                                                   Function.GetUser(),
-                                                                    Function.DatetimeNow(),
-                                                                   tbListaPrecio.listp_FechaInicioVigencia,
-                                                                   tbListaPrecio.listp_FechaFinalVigencia,
-                                                               Convert.ToInt16(tbListaPrecio.listp_Prioridad)
-                                                               );
+                                   tbListaPrecio.listp_Nombre,
+                                   tbListaPrecio.listp_EsActivo,
+                                       tbListaPrecio.listp_UsuarioCrea,
+                                   tbListaPrecio.listp_FechaCrea,
+                                   Function.GetUser(),
+                                    Function.DatetimeNow(),
+                                   tbListaPrecio.listp_FechaInicioVigencia,
+                                   tbListaPrecio.listp_FechaFinalVigencia,
+                               Convert.ToInt16(tbListaPrecio.listp_Prioridad)
+                               );
                                                                   
                     foreach (UDP_Vent_tbListaPrecio_Update_Result ListaPrecio in list)
                         MensajeError = ListaPrecio.MensajeError;
-                        if (MensajeError == "-1")
+                        if (MensajeError.StartsWith("-1"))
                         {
                             ModelState.AddModelError("", "No se pudo agregar el registro");
                             return View(tbListaPrecio);
                         }
                         else
                         {
-
-                        }
-                        {
-                            if (MensajeError != "-1")
+                            if (!MensajeError.StartsWith("-1"))
                             {
                                 if (listEdit != null)
                                 {
@@ -307,7 +292,6 @@ namespace ERP_GMEDINA.Controllers
                                 ModelState.AddModelError("", "No se pudo agregar el registro");
                                 return View(tbListaPrecio);
                             }
-
                         }
                         Tran.Complete();
                         return RedirectToAction("Index");
@@ -320,13 +304,9 @@ namespace ERP_GMEDINA.Controllers
                     ViewBag.listp_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbListaPrecio.listp_UsuarioModifica);
                     ViewBag.listp_Id = new SelectList(db.tbListadoPrecioDetalle, "listp_Id", "prod_Codigo", tbListaPrecio.listp_Id);
                     ViewBag.Producto = db.tbProducto.ToList();
-
                     ModelState.AddModelError("", "No se pudo agregar el registro");
                     ModelState.AddModelError("", "Ya existe un producto con este mismo nombre.");
-                    //TempData["message"] = "No se pudo agregar el registro,ya existe producto";
-
                 }
-
                 return RedirectToAction("Index");
             }
             ViewBag.listp_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbListaPrecio.listp_UsuarioCrea);
@@ -386,24 +366,6 @@ namespace ERP_GMEDINA.Controllers
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
-
-        // GET: /ListaPrecios/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            tbListaPrecio tbListaPrecio = db.tbListaPrecio.Find(id);
-            if (tbListaPrecio == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tbListaPrecio);
-        }
-
-
-
         [HttpPost]
         public JsonResult SaveFacturaDetalleEdit(tbFacturaDetalle FacturaDetalleEdit)
         {
@@ -422,20 +384,6 @@ namespace ERP_GMEDINA.Controllers
             return Json("Exito", JsonRequestBehavior.AllowGet);
         }
 
-
-
-
-        // POST: /ListaPrecios/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            tbListaPrecio tbListaPrecio = db.tbListaPrecio.Find(id);
-            db.tbListaPrecio.Remove(tbListaPrecio);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -444,9 +392,7 @@ namespace ERP_GMEDINA.Controllers
             }
             base.Dispose(disposing);
         }
-
-
-
+        
 
         [HttpPost]
         public JsonResult GuardarListadoPrecioDetalle(tbListadoPrecioDetalle ListadoPrecioDetalles)
@@ -469,7 +415,7 @@ namespace ERP_GMEDINA.Controllers
                 foreach (UDP_Vent_tbListadoPrecioDetalle_Insert_Result ListadoDetalleD in list)
                     MensajeError = ListadoDetalleD.MensajeError;
                 Msj = "El registro se guardo exitosamente";
-                if (MensajeError == "-1")
+                if (MensajeError.StartsWith("-1"))
                 {
                     Msj = "No se pudo actualizar el registro, favor contacte al administrador.";
                     ModelState.AddModelError("", Msj);
@@ -480,12 +426,8 @@ namespace ERP_GMEDINA.Controllers
                 Msj = Ex.Message.ToString();
                 ModelState.AddModelError("", Msj);
             }
-
             return Json(Msj, JsonRequestBehavior.AllowGet);
-
         }
-
-
 
         [HttpPost]
         public ActionResult UpdateListadoPrecioDetalle(tbListadoPrecioDetalle EditListadoPrecioDetalle)
@@ -510,7 +452,7 @@ namespace ERP_GMEDINA.Controllers
 
                 foreach (UDP_Vent_tbListadoPrecioDetalle_Update_Result ListaDetalle in list)
                     MensajeError = ListaDetalle.MensajeError;
-                if (MensajeError == "-1")
+                if (MensajeError.StartsWith("-1"))
                 {
                     ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
                     return PartialView("_EditListaPrecioDetalle");
@@ -542,15 +484,6 @@ namespace ERP_GMEDINA.Controllers
             }
             return Json(list, JsonRequestBehavior.AllowGet);
         }
-
-
-
-
-
-
-
-
-
-
+        
     }
 }

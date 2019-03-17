@@ -28,7 +28,7 @@
                     @using (Html.BeginForm("Create", "Pedido", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
-
+                        @Html.HiddenFor(model => model.clte_Id)
                         <div class="form-horizontal">
                             @Html.ValidationSummary(true)
 
@@ -39,24 +39,19 @@
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.suc_Id)</p>
                                 </div>
 
-
                                 @Html.LabelFor(model => model.ped_FechaElaboracion, new { @class = "control-label col-md-3" })
-
                                 <div class="col-md-3">
-                                @Html.EditorFor(model => model.ped_FechaElaboracion, "{0:MM-dd-yyyy}", new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly"} })
-                                <p style="color:red">@Html.ValidationMessageFor(model => model.ped_FechaElaboracion)
+                                    @Html.EditorFor(model => model.ped_FechaElaboracion, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly" } })
+                                    <p style="color:red">@Html.ValidationMessageFor(model => model.ped_FechaElaboracion)</p>
                                 </div>
 
                             </div>
-                            <div class="form-group">
-                                <div class="col-md-4">
-                                    @Html.HiddenFor(model => model.clte_Id)
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.clte_Id)</p>
-                                </div>
-                            </div>
+         
+                                
+                                    
+                                   
 
                             <div class="form-group">
-
                                 @Html.LabelFor(model => model.tbCliente.clte_Identificacion, new { @class = "control-label col-md-2" })
                                 <div class="col-md-3">
                                     @Html.EditorFor(model => model.tbCliente.clte_Identificacion, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly" } })
@@ -71,15 +66,12 @@
                                     @Html.EditorFor(model => model.tbCliente.clte_Nombres, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly" } })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.tbCliente.clte_Nombres)</p>
                                 </div>
-
                             </div>
+
                             <div class="form-group">
-
-
                                 @Html.LabelFor(model => model.ped_FechaEntrega, new { @class = "control-label col-md-2" })
                                 <div class="col-md-3">
-                                    @Html.EditorFor(model => model.ped_FechaEntrega, "{0:MM-dd-yyyy}", new { htmlAttributes = new { @class = "form-control" } } )
-                                    
+                                    @Html.EditorFor(model => model.ped_FechaEntrega)
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.ped_FechaEntrega)</p>
                                 </div>
                             </div>
@@ -144,14 +136,13 @@
     }
 </script>
 @section Scripts {
-<script src="~/Scripts/app/SavePedidoDetalle.js"></script>
     @Scripts.Render("~/bundles/jqueryval")
     <script>
         $(document).ready(function () {
             $("#pedd_Cantidad").val('');
         });
     </script>
-
+    <script src="~/Scripts/app/SavePedidoDetalle.js"></script>
     <script>
         $.datepicker.regional['es'] = {
             closeText: 'Cerrar',
@@ -184,7 +175,6 @@
     <script src="~/Scripts/app/FacturaDetalle.js"></script>
     <script src="~/Scripts/app/ProductoListaPrecios.js"></script>
     <script src="~/Scripts/app/Clientes-Pedido-Credito.js"></script>
-   
     <script>
         $("#pedd_Cantidad").on("keypress keyup blur", function (event) {
             this.value = this.value.replace(/[a-záéíóúüñ#/=]+/ig, "");
@@ -226,19 +216,21 @@
     });
     </script>
 
-<script>
-        function soloNumeros(e) {
-           var key = window.Event ? e.which : e.keyCode;
-           return ((key >= 48 && key <= 57) ||(key==8))
-         }
 
-         function pierdeFoco(e){
-            var valor = e.value.replace(/^0*/, '');
-            e.value = valor;
-         }
-</script>
 <script src="~/Scripts/jquery.mask.min.js"></script>
 <script src="~/Scripts/jquery.mask.js"></script>
+<script>
+        $("#pedd_Cantidad").mask(
+'PN',
+{
+    translation:
+       {
+           P: { pattern: /[1-9]/ },
+           N: { pattern: /\d/, recursive: true }
+       }
+}
+);
+</script>
 }
 }
 

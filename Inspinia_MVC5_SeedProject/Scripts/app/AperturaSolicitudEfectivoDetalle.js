@@ -1,17 +1,9 @@
 ﻿$(document).on("change", "#DenominacionDetalle tbody tr td input#name", function () {
-
     var Cantidad = $(this).val();
-    //var denoID = $('#deno_Id').text();
     var denoID = $(this).parents("tr").find("td")[4].innerHTML;
-    console.log('denoID', denoID);
     var cantidadsolicitada = $(this).val();
     var cantidadentregada = $(this).val();
     var Total = $(this).parents("tr").find("td")[3].innerHTML;
-    console.log('cantidadsolicitada', cantidadsolicitada);
-    console.log('cantidadentregada', cantidadentregada);
-    console.log('Total', Total);
-    console.log('----------------------------');
-
 
     if (Cantidad == 0) {
         $('#ErrorDocumentoFiscalCreate').text('');   
@@ -28,8 +20,7 @@
         .done(function (data) {
             //Limpiar mensajes
             $('#Errorcajacreate').text('');
-
-            //Limpiar input
+           //Limpiar input
             $('#DenominacionCreate').val();
             $('#name').val();
             $('#SuntotalCreate').val();

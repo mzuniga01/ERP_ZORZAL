@@ -660,7 +660,7 @@
       <Parameter Name="tsal_Id" Mode="In" Type="Byte" />
       <Parameter Name="sal_BodDestino" Mode="In" Type="Int32" />
       <Parameter Name="sal_EsAnulada" Mode="In" Type="Boolean" />
-      <Parameter Name="sal_RazonDevolucion" Mode="In" Type="String" />
+      <Parameter Name="tdev_Id" Mode="In" Type="Int32" />
       <Parameter Name="sal_RazonAnulada" Mode="In" Type="String" />
       <Parameter Name="sal_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="sal_FechaCrea" Mode="In" Type="DateTime" />
@@ -674,7 +674,7 @@
       <Parameter Name="tsal_Id" Mode="In" Type="Byte" />
       <Parameter Name="sal_BodDestino" Mode="In" Type="Int32" />
       <Parameter Name="sal_EsAnulada" Mode="In" Type="Boolean" />
-      <Parameter Name="sal_RazonDevolucion" Mode="In" Type="String" />
+      <Parameter Name="tdev_Id" Mode="In" Type="Int32" />
       <Parameter Name="sal_RazonAnulada" Mode="In" Type="String" />
       <Parameter Name="sal_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="sal_FechaCrea" Mode="In" Type="DateTime" />
@@ -1805,7 +1805,7 @@
       <Parameter Name="pago_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="UDP_Acce_tbUsuario_Estado" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbUsuario_Estado_Result)">
-      <Parameter Name="usu_Id" Mode="In" Type="String" />
+      <Parameter Name="usu_Id" Mode="In" Type="Int32" />
       <Parameter Name="usu_EsActivo" Mode="In" Type="Boolean" />
       <Parameter Name="usu_RazonInactivo" Mode="In" Type="String" />
     </FunctionImport>
@@ -1906,6 +1906,24 @@
       <Parameter Name="fact_EsAnulada" Mode="In" Type="Boolean" />
       <Parameter Name="fact_RazonAnulado" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbEstadoPedido_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbEstadoPedido_Insert_Result)">
+      <Parameter Name="esped_Descripcion" Mode="In" Type="String" />
+      <Parameter Name="esped_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="esped_FechaCrea" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbEstadoPedido_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbEstadoPedido_Update_Result)">
+      <Parameter Name="esped_Id" Mode="In" Type="Byte" />
+      <Parameter Name="esped_Descripcion" Mode="In" Type="String" />
+      <Parameter Name="esped_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="esped_UsuarioModifica" Mode="In" Type="Int32" />
+      <Parameter Name="esped_FechaAgrego" Mode="In" Type="DateTime" />
+      <Parameter Name="esped_FechaModifica" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbSolicitudCredito_Denegar1" ReturnType="Collection(String)">
+      <Parameter Name="cred_Id" Mode="In" Type="Int32" />
+      <Parameter Name="escre_Id" Mode="In" Type="Byte" />
+      <Parameter Name="cred_RazonDenegacion" Mode="In" Type="String" />
+    </FunctionImport>
     <EntitySet Name="tbAccesoRol" EntityType="ERP_ZORZALModel.tbAccesoRol" />
     <EntitySet Name="tbBitacoraErrores" EntityType="ERP_ZORZALModel.tbBitacoraErrores" />
     <EntitySet Name="tbObjeto" EntityType="ERP_ZORZALModel.tbObjeto" />
@@ -1972,10 +1990,57 @@
     <EntitySet Name="tbSolicitudEfectivoDetalle" EntityType="ERP_ZORZALModel.tbSolicitudEfectivoDetalle" />
     <EntitySet Name="tbSucursal" EntityType="ERP_ZORZALModel.tbSucursal" />
     <EntitySet Name="tbTipoPago" EntityType="ERP_ZORZALModel.tbTipoPago" />
+    <EntitySet Name="UDV_Acce_Usuario_Roles" EntityType="ERP_ZORZALModel.UDV_Acce_Usuario_Roles" />
+    <EntitySet Name="V_Objetos" EntityType="ERP_ZORZALModel.V_Objetos" />
+    <EntitySet Name="UDP_Vent_PagosPorFechas" EntityType="ERP_ZORZALModel.UDP_Vent_PagosPorFechas" />
+    <EntitySet Name="UDV_Inv_tbProducto" EntityType="ERP_ZORZALModel.UDV_Inv_tbProducto" />
+    <EntitySet Name="UDV_TBInventarioFisico_ImprimirConciliacion" EntityType="ERP_ZORZALModel.UDV_TBInventarioFisico_ImprimirConciliacion" />
+    <EntitySet Name="UDV_Vent_FacturaPuntoEmision" EntityType="ERP_ZORZALModel.UDV_Vent_FacturaPuntoEmision" />
+    <EntitySet Name="UDV_Inv_Nombre_Empleado" EntityType="ERP_ZORZALModel.UDV_Inv_Nombre_Empleado" />
+    <EntitySet Name="UDP_ListadoDeProveedores" EntityType="ERP_ZORZALModel.UDP_ListadoDeProveedores" />
+    <EntitySet Name="UDV_Inv_CatalogoProductos" EntityType="ERP_ZORZALModel.UDV_Inv_CatalogoProductos" />
+    <EntitySet Name="UDV_Inv_Consultar_Existencias_Productos" EntityType="ERP_ZORZALModel.UDV_Inv_Consultar_Existencias_Productos" />
+    <EntitySet Name="UDV_Inv_ConsultarInventarioFisicoSobrantes" EntityType="ERP_ZORZALModel.UDV_Inv_ConsultarInventarioFisicoSobrantes" />
+    <EntitySet Name="UDV_Inv_EntradaPorId" EntityType="ERP_ZORZALModel.UDV_Inv_EntradaPorId" />
+    <EntitySet Name="UDV_INV_Frecuencia_Movimiento_Productos" EntityType="ERP_ZORZALModel.UDV_INV_Frecuencia_Movimiento_Productos" />
+    <EntitySet Name="UDV_INV_Frecuencia_Movimiento_Productos_Prueba" EntityType="ERP_ZORZALModel.UDV_INV_Frecuencia_Movimiento_Productos_Prueba" />
+    <EntitySet Name="UDV_Inv_Inventario_Historico_Por_Fechas" EntityType="ERP_ZORZALModel.UDV_Inv_Inventario_Historico_Por_Fechas" />
+    <EntitySet Name="UDV_Inv_Movimiento_Entre_Fechas" EntityType="ERP_ZORZALModel.UDV_Inv_Movimiento_Entre_Fechas" />
+    <EntitySet Name="UDV_Inv_PackingList" EntityType="ERP_ZORZALModel.UDV_Inv_PackingList" />
+    <EntitySet Name="UDV_Inv_PackingList_Caja" EntityType="ERP_ZORZALModel.UDV_Inv_PackingList_Caja" />
+    <EntitySet Name="UDV_Inv_ProductosSolicitadosPorEntregar" EntityType="ERP_ZORZALModel.UDV_Inv_ProductosSolicitadosPorEntregar" />
+    <EntitySet Name="UDV_Inv_Proyeccion_de_Movimiento_de_Producto" EntityType="ERP_ZORZALModel.UDV_Inv_Proyeccion_de_Movimiento_de_Producto" />
+    <EntitySet Name="UDV_Inv_Salida_Imprimir_Reporte" EntityType="ERP_ZORZALModel.UDV_Inv_Salida_Imprimir_Reporte" />
+    <EntitySet Name="UDV_inv_tbinventariofisico_reporteFaltantes" EntityType="ERP_ZORZALModel.UDV_inv_tbinventariofisico_reporteFaltantes" />
+    <EntitySet Name="UDV_Inv_TipoEntrada" EntityType="ERP_ZORZALModel.UDV_Inv_TipoEntrada" />
+    <EntitySet Name="UDV_InventarioActual" EntityType="ERP_ZORZALModel.UDV_InventarioActual" />
+    <EntitySet Name="VistaInventarioHistorico" EntityType="ERP_ZORZALModel.VistaInventarioHistorico" />
     <EntitySet Name="UDP_Vent_listExoneracion_Select" EntityType="ERP_ZORZALModel.UDP_Vent_listExoneracion_Select" />
     <EntitySet Name="UDP_Vent_SolicituEfectivo_Select" EntityType="ERP_ZORZALModel.UDP_Vent_SolicituEfectivo_Select" />
+    <EntitySet Name="UDV_Vent_AnalisisDeMora" EntityType="ERP_ZORZALModel.UDV_Vent_AnalisisDeMora" />
+    <EntitySet Name="UDV_Vent_ArqueoCaja_Select" EntityType="ERP_ZORZALModel.UDV_Vent_ArqueoCaja_Select" />
+    <EntitySet Name="UDV_Vent_Busqueda_Clientes" EntityType="ERP_ZORZALModel.UDV_Vent_Busqueda_Clientes" />
+    <EntitySet Name="UDV_Vent_Busqueda_Factura" EntityType="ERP_ZORZALModel.UDV_Vent_Busqueda_Factura" />
+    <EntitySet Name="UDV_Vent_CuponDescuentoPorFecha" EntityType="ERP_ZORZALModel.UDV_Vent_CuponDescuentoPorFecha" />
+    <EntitySet Name="UDV_Vent_DescuentosporFecha" EntityType="ERP_ZORZALModel.UDV_Vent_DescuentosporFecha" />
+    <EntitySet Name="UDV_Vent_DevolucionesPorFecha" EntityType="ERP_ZORZALModel.UDV_Vent_DevolucionesPorFecha" />
+    <EntitySet Name="UDV_Vent_EstadoCuenta" EntityType="ERP_ZORZALModel.UDV_Vent_EstadoCuenta" />
+    <EntitySet Name="UDV_Vent_Factura_VentasporFecha" EntityType="ERP_ZORZALModel.UDV_Vent_Factura_VentasporFecha" />
     <EntitySet Name="UDV_Vent_FacturaPagoSelect" EntityType="ERP_ZORZALModel.UDV_Vent_FacturaPagoSelect" />
-    <EntitySet Name="UDV_Vent_MovimientoCaja_Select" EntityType="ERP_ZORZALModel.UDV_Vent_MovimientoCaja_Select" />
+    <EntitySet Name="UDV_Vent_FacturaPuntoEmision1" EntityType="ERP_ZORZALModel.UDV_Vent_FacturaPuntoEmision1" />
+    <EntitySet Name="UDV_Vent_FacturasPendientesDePago" EntityType="ERP_ZORZALModel.UDV_Vent_FacturasPendientesDePago" />
+    <EntitySet Name="UDV_Vent_InventarioNumeraciones" EntityType="ERP_ZORZALModel.UDV_Vent_InventarioNumeraciones" />
+    <EntitySet Name="UDV_Vent_ListadodePrecios" EntityType="ERP_ZORZALModel.UDV_Vent_ListadodePrecios" />
+    <EntitySet Name="UDV_Vent_MovimientoCaja_Apertura" EntityType="ERP_ZORZALModel.UDV_Vent_MovimientoCaja_Apertura" />
+    <EntitySet Name="UDV_Vent_NotaCreditoPorFecha" EntityType="ERP_ZORZALModel.UDV_Vent_NotaCreditoPorFecha" />
+    <EntitySet Name="UDV_Vent_PagosPorFechas" EntityType="ERP_ZORZALModel.UDV_Vent_PagosPorFechas" />
+    <EntitySet Name="UDV_Vent_Pedido_EntreFechas" EntityType="ERP_ZORZALModel.UDV_Vent_Pedido_EntreFechas" />
+    <EntitySet Name="UDV_Vent_prueba" EntityType="ERP_ZORZALModel.UDV_Vent_prueba" />
+    <EntitySet Name="UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporte" EntityType="ERP_ZORZALModel.UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporte" />
+    <EntitySet Name="UDV_Vent_tbSolicituEfectivo_EntreFechas" EntityType="ERP_ZORZALModel.UDV_Vent_tbSolicituEfectivo_EntreFechas" />
+    <EntitySet Name="UDV_Vent_VentasConsumidorFinal" EntityType="ERP_ZORZALModel.UDV_Vent_VentasConsumidorFinal" />
+    <EntitySet Name="UDV_Vent_VentasExoneradas" EntityType="ERP_ZORZALModel.UDV_Vent_VentasExoneradas" />
+    <EntitySet Name="UDV_Vent_VentasPorCaja_EntreFechas" EntityType="ERP_ZORZALModel.UDV_Vent_VentasPorCaja_EntreFechas" />
     <AssociationSet Name="FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id" Association="ERP_ZORZALModel.FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id">
       <End Role="tbObjeto" EntitySet="tbObjeto" />
       <End Role="tbAccesoRol" EntitySet="tbAccesoRol" />
@@ -2195,6 +2260,14 @@
     <AssociationSet Name="FK_Acce_tbUsuario_tbMovimientoCaja_usu_Id" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbMovimientoCaja_usu_Id">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
       <End Role="tbMovimientoCaja" EntitySet="tbMovimientoCaja" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Acce_tbUsuario_tbNotaCredito_nocre_UsuarioCrea" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbNotaCredito_nocre_UsuarioCrea">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbNotaCredito" EntitySet="tbNotaCredito" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Acce_tbUsuario_tbNotaCredito_nocre_UsuarioModifica" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbNotaCredito_nocre_UsuarioModifica">
+      <End Role="tbUsuario" EntitySet="tbUsuario" />
+      <End Role="tbNotaCredito" EntitySet="tbNotaCredito" />
     </AssociationSet>
     <AssociationSet Name="FK_Acce_tbUsuario_tbPago_pago_UsuarioCrea" Association="ERP_ZORZALModel.FK_Acce_tbUsuario_tbPago_pago_UsuarioCrea">
       <End Role="tbUsuario" EntitySet="tbUsuario" />
@@ -2740,6 +2813,10 @@
       <End Role="tbFactura" EntitySet="tbFactura" />
       <End Role="tbSalida" EntitySet="tbSalida" />
     </AssociationSet>
+    <AssociationSet Name="FK_Inv_tbSalida_tbTipoDevolucion_tdev_Id" Association="ERP_ZORZALModel.FK_Inv_tbSalida_tbTipoDevolucion_tdev_Id">
+      <End Role="tbTipoDevolucion" EntitySet="tbTipoDevolucion" />
+      <End Role="tbSalida" EntitySet="tbSalida" />
+    </AssociationSet>
     <AssociationSet Name="FK_Inv_tbSalida_tbTipoSalida_tsal_Id" Association="ERP_ZORZALModel.FK_Inv_tbSalida_tbTipoSalida_tsal_Id">
       <End Role="tbTipoSalida" EntitySet="tbTipoSalida" />
       <End Role="tbSalida" EntitySet="tbSalida" />
@@ -2764,6 +2841,10 @@
       <End Role="tbCaja" EntitySet="tbCaja" />
       <End Role="tbMovimientoCaja" EntitySet="tbMovimientoCaja" />
     </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbNotaCredito_tbCaja_cja_Id" Association="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbCaja_cja_Id">
+      <End Role="tbCaja" EntitySet="tbCaja" />
+      <End Role="tbNotaCredito" EntitySet="tbNotaCredito" />
+    </AssociationSet>
     <AssociationSet Name="FK_Vent_tbSucursal_tbCaja_suc_Id" Association="ERP_ZORZALModel.FK_Vent_tbSucursal_tbCaja_suc_Id">
       <End Role="tbSucursal" EntitySet="tbSucursal" />
       <End Role="tbCaja" EntitySet="tbCaja" />
@@ -2779,6 +2860,10 @@
     <AssociationSet Name="FK_Vent_tbCliente_tbPedido_clte_id" Association="ERP_ZORZALModel.FK_Vent_tbCliente_tbPedido_clte_id">
       <End Role="tbCliente" EntitySet="tbCliente" />
       <End Role="tbPedido" EntitySet="tbPedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbNotaCredito_tbCliente_clte_Id" Association="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbCliente_clte_Id">
+      <End Role="tbCliente" EntitySet="tbCliente" />
+      <End Role="tbNotaCredito" EntitySet="tbNotaCredito" />
     </AssociationSet>
     <AssociationSet Name="FK_Vent_tbSolicitudCredito_tbCliente_clte_Id" Association="ERP_ZORZALModel.FK_Vent_tbSolicitudCredito_tbCliente_clte_Id">
       <End Role="tbCliente" EntitySet="tbCliente" />
@@ -2799,6 +2884,10 @@
     <AssociationSet Name="FK_Vent_tbFactura_tbDevolucion_fact_Id" Association="ERP_ZORZALModel.FK_Vent_tbFactura_tbDevolucion_fact_Id">
       <End Role="tbFactura" EntitySet="tbFactura" />
       <End Role="tbDevolucion" EntitySet="tbDevolucion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbNotaCredito_tbDevolucion_dev_Id" Association="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbDevolucion_dev_Id">
+      <End Role="tbDevolucion" EntitySet="tbDevolucion" />
+      <End Role="tbNotaCredito" EntitySet="tbNotaCredito" />
     </AssociationSet>
     <AssociationSet Name="FK_Vent_tbPuntoEmisionDetalle_tbDocumentoFiscal_dfisc_Id" Association="ERP_ZORZALModel.FK_Vent_tbPuntoEmisionDetalle_tbDocumentoFiscal_dfisc_Id">
       <End Role="tbDocumentoFiscal" EntitySet="tbDocumentoFiscal" />
@@ -2852,6 +2941,10 @@
       <End Role="tbMovimientoCaja" EntitySet="tbMovimientoCaja" />
       <End Role="tbSolicitudEfectivo" EntitySet="tbSolicitudEfectivo" />
     </AssociationSet>
+    <AssociationSet Name="FK_Vent_tbSucursal_tbNotaCredito_suc_Id" Association="ERP_ZORZALModel.FK_Vent_tbSucursal_tbNotaCredito_suc_Id">
+      <End Role="tbSucursal" EntitySet="tbSucursal" />
+      <End Role="tbNotaCredito" EntitySet="tbNotaCredito" />
+    </AssociationSet>
     <AssociationSet Name="FK_Vent_tbTipoPago_tbPago_tpa_Id" Association="ERP_ZORZALModel.FK_Vent_tbTipoPago_tbPago_tpa_Id">
       <End Role="tbTipoPago" EntitySet="tbTipoPago" />
       <End Role="tbPago" EntitySet="tbPago" />
@@ -2884,26 +2977,8 @@
       <End Role="tbSolicitudEfectivo" EntitySet="tbSolicitudEfectivo" />
       <End Role="tbSolicitudEfectivoDetalle" EntitySet="tbSolicitudEfectivoDetalle" />
     </AssociationSet>
-    <FunctionImport Name="UDP_Vent_tbEstadoPedido_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbEstadoPedido_Insert_Result)">
-      <Parameter Name="esped_Descripcion" Mode="In" Type="String" />
-      <Parameter Name="esped_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="esped_FechaCrea" Mode="In" Type="DateTime" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbEstadoPedido_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbEstadoPedido_Update_Result)">
-      <Parameter Name="esped_Id" Mode="In" Type="Byte" />
-      <Parameter Name="esped_Descripcion" Mode="In" Type="String" />
-      <Parameter Name="esped_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="esped_UsuarioModifica" Mode="In" Type="Int32" />
-      <Parameter Name="esped_FechaAgrego" Mode="In" Type="DateTime" />
-      <Parameter Name="esped_FechaModifica" Mode="In" Type="DateTime" />
-    </FunctionImport>
-    <EntitySet Name="UDV_Vent_ArqueoCaja_Select" EntityType="ERP_ZORZALModel.UDV_Vent_ArqueoCaja_Select" />
-    <EntitySet Name="UDV_Vent_Busqueda_Clientes" EntityType="ERP_ZORZALModel.UDV_Vent_Busqueda_Clientes" />
-    <EntitySet Name="UDV_Vent_Busqueda_Factura" EntityType="ERP_ZORZALModel.UDV_Vent_Busqueda_Factura" />
-    <EntitySet Name="UDV_Inv_Nombre_Empleado" EntityType="ERP_ZORZALModel.UDV_Inv_Nombre_Empleado" />
-    <FunctionImport Name="UDP_Vent_tbSolicitudCredito_Denegar1" ReturnType="Collection(String)">
-      <Parameter Name="cred_Id" Mode="In" Type="Int32" />
-      <Parameter Name="escre_Id" Mode="In" Type="Byte" />
+    <FunctionImport Name="UDP_Vent_tbUsuario_Rol_Apertura" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbUsuario_Rol_Apertura_Result)">
+      <Parameter Name="suc_Id" Mode="In" Type="Int32" />
     </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
@@ -4082,6 +4157,12 @@
   <ComplexType Name="UDP_Vent_tbPedido_Update_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
+  <ComplexType Name="UDP_Vent_tbEstadoPedido_Insert_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbEstadoPedido_Update_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
   <EntityType Name="tbAccesoRol">
     <Key>
       <PropertyRef Name="acrol_Id" />
@@ -4227,6 +4308,8 @@
     <NavigationProperty Name="tbMovimientoCaja3" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbMovimientoCaja_mocja_UsuarioCrea" FromRole="tbUsuario" ToRole="tbMovimientoCaja" />
     <NavigationProperty Name="tbMovimientoCaja4" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbMovimientoCaja_mocja_UsuarioModifica" FromRole="tbUsuario" ToRole="tbMovimientoCaja" />
     <NavigationProperty Name="tbMovimientoCaja5" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbMovimientoCaja_usu_Id" FromRole="tbUsuario" ToRole="tbMovimientoCaja" />
+    <NavigationProperty Name="tbNotaCredito" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbNotaCredito_nocre_UsuarioCrea" FromRole="tbUsuario" ToRole="tbNotaCredito" />
+    <NavigationProperty Name="tbNotaCredito1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbNotaCredito_nocre_UsuarioModifica" FromRole="tbUsuario" ToRole="tbNotaCredito" />
     <NavigationProperty Name="tbPago" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbPago_pago_UsuarioCrea" FromRole="tbUsuario" ToRole="tbPago" />
     <NavigationProperty Name="tbPago1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbPago_pago_UsuarioModifica" FromRole="tbUsuario" ToRole="tbPago" />
     <NavigationProperty Name="tbTipoPago" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbPagoPago_tpa_UsuarioCrea" FromRole="tbUsuario" ToRole="tbTipoPago" />
@@ -4664,6 +4747,7 @@
     <Property Name="ent_Id" Type="Int32" Nullable="false" />
     <Property Name="prod_Codigo" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
     <Property Name="entd_Cantidad" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="box_Codigo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="entd_UsuarioCrea" Type="Int32" Nullable="false" />
     <Property Name="entd_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="entd_UsuarioModifica" Type="Int32" />
@@ -4821,7 +4905,7 @@
     <Property Name="tsal_Id" Type="Byte" Nullable="false" />
     <Property Name="sal_BodDestino" Type="Int32" Nullable="false" />
     <Property Name="sal_EsAnulada" Type="Boolean" Nullable="false" />
-    <Property Name="sal_RazonDevolucion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="tdev_Id" Type="Int32" Nullable="false" />
     <Property Name="sal_RazonAnulada" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
     <Property Name="sal_UsuarioCrea" Type="Int32" Nullable="false" />
     <Property Name="sal_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
@@ -4834,6 +4918,7 @@
     <NavigationProperty Name="tbEntrada" Relationship="ERP_ZORZALModel.FK_Inv_tbEntrada_tbSalida_fact_Id" FromRole="tbSalida" ToRole="tbEntrada" />
     <NavigationProperty Name="tbEstadoMovimiento" Relationship="ERP_ZORZALModel.FK_Inv_tbSalida_tbEstadoMovimiento_estm_Id" FromRole="tbSalida" ToRole="tbEstadoMovimiento" />
     <NavigationProperty Name="tbFactura" Relationship="ERP_ZORZALModel.FK_Inv_tbSalida_tbFactura_fact_Id" FromRole="tbSalida" ToRole="tbFactura" />
+    <NavigationProperty Name="tbTipoDevolucion" Relationship="ERP_ZORZALModel.FK_Inv_tbSalida_tbTipoDevolucion_tdev_Id" FromRole="tbSalida" ToRole="tbTipoDevolucion" />
     <NavigationProperty Name="tbTipoSalida" Relationship="ERP_ZORZALModel.FK_Inv_tbSalida_tbTipoSalida_tsal_Id" FromRole="tbSalida" ToRole="tbTipoSalida" />
     <NavigationProperty Name="tbSalidaDetalle" Relationship="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_tbSalida_sal_Id" FromRole="tbSalida" ToRole="tbSalidaDetalle" />
   </EntityType>
@@ -4868,6 +4953,7 @@
     <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Inv_tbTipoDevolucion_tdev_UsuarioCrea" FromRole="tbTipoDevolucion" ToRole="tbUsuario" />
     <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Inv_tbTipoDevolucion_tdev_UsuarioModifica" FromRole="tbTipoDevolucion" ToRole="tbUsuario" />
     <NavigationProperty Name="tbEntrada" Relationship="ERP_ZORZALModel.FK_Inv_tbEntrada_tbTipoDevolucion_ent_RazonDevolucion" FromRole="tbTipoDevolucion" ToRole="tbEntrada" />
+    <NavigationProperty Name="tbSalida" Relationship="ERP_ZORZALModel.FK_Inv_tbSalida_tbTipoDevolucion_tdev_Id" FromRole="tbTipoDevolucion" ToRole="tbSalida" />
   </EntityType>
   <EntityType Name="tbTipoEntrada">
     <Key>
@@ -4924,6 +5010,7 @@
     <NavigationProperty Name="tbDevolucion" Relationship="ERP_ZORZALModel.FK_Vent_tbCaja_tbDevolucion_cja_Id" FromRole="tbCaja" ToRole="tbDevolucion" />
     <NavigationProperty Name="tbFactura" Relationship="ERP_ZORZALModel.FK_Vent_tbCaja_tbFactura_cja_Id" FromRole="tbCaja" ToRole="tbFactura" />
     <NavigationProperty Name="tbMovimientoCaja" Relationship="ERP_ZORZALModel.FK_Vent_tbCaja_tbMovimientoCaja_cja_Id" FromRole="tbCaja" ToRole="tbMovimientoCaja" />
+    <NavigationProperty Name="tbNotaCredito" Relationship="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbCaja_cja_Id" FromRole="tbCaja" ToRole="tbNotaCredito" />
     <NavigationProperty Name="tbSucursal" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbCaja_suc_Id" FromRole="tbCaja" ToRole="tbSucursal" />
   </EntityType>
   <EntityType Name="tbCliente">
@@ -4969,6 +5056,7 @@
     <NavigationProperty Name="tbExoneracion" Relationship="ERP_ZORZALModel.FK_Vent_tbCliente_tbExoneracion_clte_Id" FromRole="tbCliente" ToRole="tbExoneracion" />
     <NavigationProperty Name="tbFactura" Relationship="ERP_ZORZALModel.FK_Vent_tbCliente_tbFactura_clte_Id" FromRole="tbCliente" ToRole="tbFactura" />
     <NavigationProperty Name="tbPedido" Relationship="ERP_ZORZALModel.FK_Vent_tbCliente_tbPedido_clte_id" FromRole="tbCliente" ToRole="tbPedido" />
+    <NavigationProperty Name="tbNotaCredito" Relationship="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbCliente_clte_Id" FromRole="tbCliente" ToRole="tbNotaCredito" />
     <NavigationProperty Name="tbSolicitudCredito" Relationship="ERP_ZORZALModel.FK_Vent_tbSolicitudCredito_tbCliente_clte_Id" FromRole="tbCliente" ToRole="tbSolicitudCredito" />
   </EntityType>
   <EntityType Name="tbCuponDescuento">
@@ -5033,6 +5121,7 @@
     <NavigationProperty Name="tbCaja" Relationship="ERP_ZORZALModel.FK_Vent_tbCaja_tbDevolucion_cja_Id" FromRole="tbDevolucion" ToRole="tbCaja" />
     <NavigationProperty Name="tbDevolucionDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbDevolucion_tbDevolucionDetalle_dev_Id" FromRole="tbDevolucion" ToRole="tbDevolucionDetalle" />
     <NavigationProperty Name="tbFactura" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbDevolucion_fact_Id" FromRole="tbDevolucion" ToRole="tbFactura" />
+    <NavigationProperty Name="tbNotaCredito" Relationship="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbDevolucion_dev_Id" FromRole="tbDevolucion" ToRole="tbNotaCredito" />
   </EntityType>
   <EntityType Name="tbDevolucionDetalle">
     <Key>
@@ -5295,6 +5384,12 @@
     <Property Name="nocre_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="nocre_UsuarioModifica" Type="Int32" />
     <Property Name="nocre_FechaModifica" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbNotaCredito_nocre_UsuarioCrea" FromRole="tbNotaCredito" ToRole="tbUsuario" />
+    <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbNotaCredito_nocre_UsuarioModifica" FromRole="tbNotaCredito" ToRole="tbUsuario" />
+    <NavigationProperty Name="tbCaja" Relationship="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbCaja_cja_Id" FromRole="tbNotaCredito" ToRole="tbCaja" />
+    <NavigationProperty Name="tbCliente" Relationship="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbCliente_clte_Id" FromRole="tbNotaCredito" ToRole="tbCliente" />
+    <NavigationProperty Name="tbDevolucion" Relationship="ERP_ZORZALModel.FK_Vent_tbNotaCredito_tbDevolucion_dev_Id" FromRole="tbNotaCredito" ToRole="tbDevolucion" />
+    <NavigationProperty Name="tbSucursal" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbNotaCredito_suc_Id" FromRole="tbNotaCredito" ToRole="tbSucursal" />
   </EntityType>
   <EntityType Name="tbPago">
     <Key>
@@ -5515,6 +5610,7 @@
     <NavigationProperty Name="tbCaja" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbCaja_suc_Id" FromRole="tbSucursal" ToRole="tbCaja" />
     <NavigationProperty Name="tbCuponDescuento" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbCuponDescuento_suc_Id" FromRole="tbSucursal" ToRole="tbCuponDescuento" />
     <NavigationProperty Name="tbFactura" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbfactura_suc_Id" FromRole="tbSucursal" ToRole="tbFactura" />
+    <NavigationProperty Name="tbNotaCredito" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbNotaCredito_suc_Id" FromRole="tbSucursal" ToRole="tbNotaCredito" />
     <NavigationProperty Name="tbPedido" Relationship="ERP_ZORZALModel.FK_Vent_tbSucursal_tbPedido_suc_Id" FromRole="tbSucursal" ToRole="tbPedido" />
     <NavigationProperty Name="tbPuntoEmision" Relationship="ERP_ZORZALModel.FK_Vent_tbPuntoEmision_tbSucursal_pemi_Id" FromRole="tbSucursal" ToRole="tbPuntoEmision" />
   </EntityType>
@@ -5536,6 +5632,721 @@
     <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Acce_tbUsuario_tbPagoPago_tpa_UsuarioModifica" FromRole="tbTipoPago" ToRole="tbUsuario" />
     <NavigationProperty Name="tbPago" Relationship="ERP_ZORZALModel.FK_Vent_tbTipoPago_tbPago_tpa_Id" FromRole="tbTipoPago" ToRole="tbPago" />
     <NavigationProperty Name="tbPagosArqueo" Relationship="ERP_ZORZALModel.FK_Vent_tbTipoPago_tbPagosArqueo_tpa_Id" FromRole="tbTipoPago" ToRole="tbPagosArqueo" />
+  </EntityType>
+  <EntityType Name="UDV_Acce_Usuario_Roles">
+    <Key>
+      <PropertyRef Name="rolu_Id" />
+      <PropertyRef Name="rol_Id" />
+      <PropertyRef Name="usu_Id" />
+      <PropertyRef Name="rolu_UsuarioCrea" />
+      <PropertyRef Name="rolu_FechaCrea" />
+      <PropertyRef Name="acrol_Id" />
+      <PropertyRef Name="obj_Id" />
+      <PropertyRef Name="acrol_UsuarioCrea" />
+      <PropertyRef Name="acrol_FechaCrea" />
+      <PropertyRef Name="obj_UsuarioCrea" />
+      <PropertyRef Name="obj_FechaCrea" />
+      <PropertyRef Name="obj_Estado" />
+    </Key>
+    <Property Name="rolu_Id" Type="Int32" Nullable="false" />
+    <Property Name="rol_Id" Type="Int32" Nullable="false" />
+    <Property Name="usu_Id" Type="Int32" Nullable="false" />
+    <Property Name="rolu_UsuarioCrea" Type="Int32" Nullable="false" />
+    <Property Name="rolu_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="rolu_UsuarioModifica" Type="Int32" />
+    <Property Name="rolu_FechaModifica" Type="DateTime" Precision="3" />
+    <Property Name="acrol_Id" Type="Int32" Nullable="false" />
+    <Property Name="obj_Id" Type="Int32" Nullable="false" />
+    <Property Name="acrol_UsuarioCrea" Type="Int32" Nullable="false" />
+    <Property Name="acrol_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="acrol_UsuarioModifica" Type="Int32" />
+    <Property Name="acrol_FechaModifica" Type="DateTime" Precision="3" />
+    <Property Name="obj_Pantalla" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="obj_Referencia" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="obj_UsuarioCrea" Type="Int32" Nullable="false" />
+    <Property Name="obj_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="obj_UsuarioModifica" Type="Int32" />
+    <Property Name="obj_FechaModifica" Type="DateTime" Precision="3" />
+    <Property Name="obj_Estado" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="V_Objetos">
+    <Key>
+      <PropertyRef Name="obj_Id" />
+      <PropertyRef Name="usu_NombreUsuario" />
+      <PropertyRef Name="obj_FechaCrea" />
+    </Key>
+    <Property Name="obj_Id" Type="Int32" Nullable="false" />
+    <Property Name="obj_Pantalla" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="usu_NombreUsuario" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="obj_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="obj_UsuarioModifica" Type="Int32" />
+    <Property Name="obj_FechaModifica" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="UDP_Vent_PagosPorFechas">
+    <Key>
+      <PropertyRef Name="Num__Linea" />
+      <PropertyRef Name="RTN_Cliente" />
+      <PropertyRef Name="Nombre_Completo" />
+      <PropertyRef Name="Código_Factura" />
+      <PropertyRef Name="Tipo_Pago" />
+      <PropertyRef Name="Saldo_Anterior" />
+      <PropertyRef Name="Total_Pago" />
+    </Key>
+    <Property Name="Num__Linea" Type="Int32" Nullable="false" />
+    <Property Name="RTN_Cliente" Type="String" Nullable="false" MaxLength="26" FixedLength="false" Unicode="true" />
+    <Property Name="Nombre_Completo" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="true" />
+    <Property Name="Código_Factura" Type="String" Nullable="false" MaxLength="19" FixedLength="false" Unicode="true" />
+    <Property Name="Tipo_Pago" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Saldo_Anterior" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
+    <Property Name="Total_Pago" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="Saldo_Actual" Type="Decimal" Precision="13" Scale="2" />
+  </EntityType>
+  <EntityType Name="UDV_Inv_tbProducto">
+    <Key>
+      <PropertyRef Name="prod_Codigo" />
+      <PropertyRef Name="prod_Descripcion" />
+      <PropertyRef Name="prod_Marca" />
+      <PropertyRef Name="prod_Modelo" />
+      <PropertyRef Name="prod_Talla" />
+      <PropertyRef Name="prod_Color" />
+      <PropertyRef Name="pscat_Id" />
+      <PropertyRef Name="pcat_Id" />
+      <PropertyRef Name="pcat_Nombre" />
+      <PropertyRef Name="uni_Id" />
+      <PropertyRef Name="uni_Descripcion" />
+      <PropertyRef Name="prod_UsuarioCrea" />
+      <PropertyRef Name="prod_FechaCrea" />
+      <PropertyRef Name="prod_EsActivo" />
+      <PropertyRef Name="prod_CodigoBarras" />
+    </Key>
+    <Property Name="prod_Codigo" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="prod_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Marca" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Modelo" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="prod_Talla" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Color" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="pscat_Id" Type="Int32" Nullable="false" />
+    <Property Name="pscat_Descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="pcat_Id" Type="Int32" Nullable="false" />
+    <Property Name="pcat_Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="uni_Id" Type="Int32" Nullable="false" />
+    <Property Name="uni_Descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="prod_UsuarioCrea" Type="Int32" Nullable="false" />
+    <Property Name="prod_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="prod_UsuarioModifica" Type="Int32" />
+    <Property Name="prod_FechaModifica" Type="DateTime" Precision="3" />
+    <Property Name="prod_EsActivo" Type="Boolean" Nullable="false" />
+    <Property Name="prod_Razon_Inactivacion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="prod_CodigoBarras" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Correlativo" Type="Int32" />
+  </EntityType>
+  <EntityType Name="UDV_TBInventarioFisico_ImprimirConciliacion">
+    <Key>
+      <PropertyRef Name="invf_Descripcion" />
+      <PropertyRef Name="invf_FechaInventario" />
+      <PropertyRef Name="estif_Descripcion" />
+      <PropertyRef Name="emp_Nombres" />
+      <PropertyRef Name="emp_Apellidos" />
+      <PropertyRef Name="prod_CodigoBarras" />
+      <PropertyRef Name="prod_Descripcion" />
+      <PropertyRef Name="prod_Marca" />
+      <PropertyRef Name="prod_Modelo" />
+      <PropertyRef Name="uni_Descripcion" />
+      <PropertyRef Name="invfd_CantidadSistema" />
+      <PropertyRef Name="invfd_Cantidad" />
+      <PropertyRef Name="invf_Id" />
+    </Key>
+    <Property Name="invf_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="invf_FechaInventario" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="estif_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="bod_Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="emp_Nombres" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="emp_Apellidos" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="prod_CodigoBarras" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Marca" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Modelo" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="uni_Descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="invfd_CantidadSistema" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="invfd_Cantidad" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="invf_Id" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UDV_Vent_FacturaPuntoEmision">
+    <Key>
+      <PropertyRef Name="cja_Id" />
+      <PropertyRef Name="suc_Id" />
+      <PropertyRef Name="pemi_Id" />
+      <PropertyRef Name="pemi_NumeroCAI" />
+      <PropertyRef Name="pemid_RangoInicio" />
+      <PropertyRef Name="pemid_RangoFinal" />
+      <PropertyRef Name="pemid_FechaLimite" />
+      <PropertyRef Name="dfisc_Id" />
+    </Key>
+    <Property Name="cja_Id" Type="Int16" Nullable="false" />
+    <Property Name="suc_Id" Type="Int32" Nullable="false" />
+    <Property Name="pemi_Id" Type="Int32" Nullable="false" />
+    <Property Name="pemi_NumeroCAI" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="pemid_RangoInicio" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="pemid_RangoFinal" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="pemid_FechaLimite" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="dfisc_Id" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+  </EntityType>
+  <EntityType Name="UDV_Inv_Nombre_Empleado">
+    <Key>
+      <PropertyRef Name="emp_Id" />
+      <PropertyRef Name="Empleados" />
+    </Key>
+    <Property Name="emp_Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Empleados" Type="String" Nullable="false" MaxLength="201" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="UDP_ListadoDeProveedores">
+    <Key>
+      <PropertyRef Name="prov_Nombre" />
+      <PropertyRef Name="prov_NombreContacto" />
+      <PropertyRef Name="acte_Descripcion" />
+    </Key>
+    <Property Name="prov_RTN" Type="String" MaxLength="14" FixedLength="false" Unicode="true" />
+    <Property Name="prov_Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="prov_NombreContacto" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="false" />
+    <Property Name="acte_Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="prov_Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="prov_Telefono" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="UDV_Inv_CatalogoProductos">
+    <Key>
+      <PropertyRef Name="pscat_Id" />
+      <PropertyRef Name="pcat_Nombre" />
+      <PropertyRef Name="prod_Codigo" />
+      <PropertyRef Name="prod_CodigoBarras" />
+      <PropertyRef Name="prod_Descripcion" />
+      <PropertyRef Name="prod_Marca" />
+      <PropertyRef Name="prod_Modelo" />
+      <PropertyRef Name="prod_Talla" />
+      <PropertyRef Name="prod_Color" />
+      <PropertyRef Name="uni_Descripcion" />
+    </Key>
+    <Property Name="pscat_Id" Type="Int32" Nullable="false" />
+    <Property Name="pcat_Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="pscat_Descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Codigo" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="prod_CodigoBarras" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Marca" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Modelo" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="prod_Talla" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Color" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="uni_Descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="UDV_Inv_Consultar_Existencias_Productos">
+    <Key>
+      <PropertyRef Name="prod_Descripcion" />
+      <PropertyRef Name="prod_Marca" />
+      <PropertyRef Name="bodd_CantidadExistente" />
+      <PropertyRef Name="bodd_CantidadMinima" />
+      <PropertyRef Name="bod_Id" />
+      <PropertyRef Name="bodd_Id" />
+      <PropertyRef Name="prod_Codigo" />
+    </Key>
+    <Property Name="suc_Descripcion" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="bod_Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Marca" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="bodd_CantidadExistente" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="bodd_CantidadMinima" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="bod_Id" Type="Int32" Nullable="false" />
+    <Property Name="bodd_Id" Type="Int32" Nullable="false" />
+    <Property Name="prod_Codigo" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="UDV_Inv_ConsultarInventarioFisicoSobrantes">
+    <Key>
+      <PropertyRef Name="invf_FechaInventario" />
+      <PropertyRef Name="invf_Descripcion" />
+      <PropertyRef Name="bod_Id" />
+      <PropertyRef Name="prod_Codigo" />
+      <PropertyRef Name="prod_Descripcion" />
+      <PropertyRef Name="prod_CodigoBarras" />
+      <PropertyRef Name="prod_Marca" />
+      <PropertyRef Name="prod_Modelo" />
+      <PropertyRef Name="prod_Talla" />
+      <PropertyRef Name="uni_Descripcion" />
+      <PropertyRef Name="invfd_Cantidad" />
+      <PropertyRef Name="invfd_CantidadSistema" />
+    </Key>
+    <Property Name="invf_FechaInventario" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="invf_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="bod_Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="bod_Id" Type="Int32" Nullable="false" />
+    <Property Name="bod_Telefono" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Name="invf_ResponsableBodega" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Codigo" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="prod_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="prod_CodigoBarras" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Marca" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Modelo" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="prod_Talla" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="uni_Descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="invfd_Cantidad" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="invfd_CantidadSistema" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="Sobrante_Faltante" Type="Decimal" Precision="11" Scale="2" />
+  </EntityType>
+  <EntityType Name="UDV_Inv_EntradaPorId">
+    <Key>
+      <PropertyRef Name="ent_Id" />
+      <PropertyRef Name="ent_NumeroFormato" />
+      <PropertyRef Name="ent_FechaElaboracion" />
+      <PropertyRef Name="prov_Nombre" />
+      <PropertyRef Name="tent_id" />
+      <PropertyRef Name="estm_Descripcion" />
+      <PropertyRef Name="tent_Descripcion" />
+      <PropertyRef Name="ent_FacturaCompra" />
+      <PropertyRef Name="ent_FechaCompra" />
+      <PropertyRef Name="tdev_descripcion" />
+      <PropertyRef Name="fact_Id" />
+      <PropertyRef Name="ent_BodegaDestino" />
+      <PropertyRef Name="entd_Cantidad" />
+      <PropertyRef Name="prod_Codigo" />
+      <PropertyRef Name="prod_Descripcion" />
+      <PropertyRef Name="uni_Descripcion" />
+    </Key>
+    <Property Name="ent_Id" Type="Int32" Nullable="false" />
+    <Property Name="ent_NumeroFormato" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="bod_Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ent_FechaElaboracion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="prov_Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="tent_id" Type="Byte" Nullable="false" />
+    <Property Name="estm_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="tent_Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ent_FacturaCompra" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ent_FechaCompra" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="tdev_descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="fact_Id" Type="Int32" Nullable="false" />
+    <Property Name="ent_BodegaDestino" Type="Int32" Nullable="false" />
+    <Property Name="entd_Cantidad" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="prod_Codigo" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="prod_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="uni_Descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="UDV_INV_Frecuencia_Movimiento_Productos">
+    <Key>
+      <PropertyRef Name="bod_Id" />
+      <PropertyRef Name="RESPONSABLE" />
+      <PropertyRef Name="prod_CodigoBarras" />
+      <PropertyRef Name="prod_Descripcion" />
+      <PropertyRef Name="pcat_Nombre" />
+      <PropertyRef Name="PROD_MARCA" />
+      <PropertyRef Name="prod_Modelo" />
+      <PropertyRef Name="prod_Talla" />
+      <PropertyRef Name="tsal_Id" />
+      <PropertyRef Name="sald_Cantidad" />
+      <PropertyRef Name="sal_FechaElaboracion" />
+    </Key>
+    <Property Name="bod_Id" Type="Int32" Nullable="false" />
+    <Property Name="BOD_NOMBRE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="RESPONSABLE" Type="String" Nullable="false" MaxLength="201" FixedLength="false" Unicode="true" />
+    <Property Name="bod_Telefono" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Name="prod_CodigoBarras" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="pcat_Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="pscat_Descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="PROD_MARCA" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Modelo" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="prod_Talla" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="tsal_Id" Type="Byte" Nullable="false" />
+    <Property Name="sald_Cantidad" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="sal_FechaElaboracion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FRECUENCIA" Type="Decimal" Precision="10" Scale="2" />
+  </EntityType>
+  <EntityType Name="UDV_INV_Frecuencia_Movimiento_Productos_Prueba">
+    <Key>
+      <PropertyRef Name="bod_Id" />
+      <PropertyRef Name="RESPONSABLE" />
+      <PropertyRef Name="prod_CodigoBarras" />
+      <PropertyRef Name="prod_Descripcion" />
+      <PropertyRef Name="pcat_Nombre" />
+      <PropertyRef Name="PROD_MARCA" />
+      <PropertyRef Name="prod_Modelo" />
+      <PropertyRef Name="prod_Talla" />
+      <PropertyRef Name="tsal_Id" />
+      <PropertyRef Name="sald_Cantidad" />
+      <PropertyRef Name="sal_FechaElaboracion" />
+    </Key>
+    <Property Name="BOD_NOMBRE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="bod_Id" Type="Int32" Nullable="false" />
+    <Property Name="RESPONSABLE" Type="String" Nullable="false" MaxLength="201" FixedLength="false" Unicode="true" />
+    <Property Name="bod_Telefono" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Name="prod_CodigoBarras" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="pcat_Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="pscat_Descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="PROD_MARCA" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Modelo" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="prod_Talla" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="tsal_Id" Type="Byte" Nullable="false" />
+    <Property Name="sald_Cantidad" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="sal_FechaElaboracion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FRECUENCIA" Type="Decimal" Precision="10" Scale="2" />
+  </EntityType>
+  <EntityType Name="UDV_Inv_Inventario_Historico_Por_Fechas">
+    <Key>
+      <PropertyRef Name="BODEGA_DETALLE_ID" />
+      <PropertyRef Name="BODEGA_ID" />
+      <PropertyRef Name="ENCARGADO" />
+      <PropertyRef Name="CODIGO_PRODUCTO" />
+      <PropertyRef Name="CODIGO_BARRAS" />
+      <PropertyRef Name="PRODUCTO" />
+      <PropertyRef Name="CATEGORIA" />
+      <PropertyRef Name="MARCA" />
+      <PropertyRef Name="MODELO" />
+      <PropertyRef Name="TALLA" />
+      <PropertyRef Name="UNIDAD_DE_MEDIDA" />
+      <PropertyRef Name="CANTIDAD_EXISTENTE_EN_BODEGA" />
+      <PropertyRef Name="ENTRADA_DETALLE_ID" />
+      <PropertyRef Name="ENTRADA_ID" />
+      <PropertyRef Name="Estado_entrada" />
+      <PropertyRef Name="SALIDA_DETALLE_ID" />
+      <PropertyRef Name="SALIDA_ID" />
+      <PropertyRef Name="Estado_Salida" />
+    </Key>
+    <Property Name="BODEGA_DETALLE_ID" Type="Int32" Nullable="false" />
+    <Property Name="BODEGA_ID" Type="Int32" Nullable="false" />
+    <Property Name="NOMBRE_BODEGA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ENCARGADO" Type="String" Nullable="false" MaxLength="201" FixedLength="false" Unicode="true" />
+    <Property Name="TELEFONO" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Name="CODIGO_PRODUCTO" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="CODIGO_BARRAS" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="PRODUCTO" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CATEGORIA" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MARCA" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MODELO" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="TALLA" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="UNIDAD_DE_MEDIDA" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="CANTIDAD_EXISTENTE_EN_BODEGA" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="CANTIDAD_EXISTENTE_ANTES_DE_ENTRADA" Type="Decimal" Precision="11" Scale="2" />
+    <Property Name="ENTRADA_DETALLE_ID" Type="Int32" Nullable="false" />
+    <Property Name="ENTRADA_ID" Type="Int32" Nullable="false" />
+    <Property Name="Estado_entrada" Type="Byte" Nullable="false" />
+    <Property Name="ent_FechaModifica" Type="DateTime" Precision="3" />
+    <Property Name="CANTIDAD_EXISTENTE_ANTES_DE_SALIDA" Type="Decimal" Precision="11" Scale="2" />
+    <Property Name="SALIDA_DETALLE_ID" Type="Int32" Nullable="false" />
+    <Property Name="SALIDA_ID" Type="Int32" Nullable="false" />
+    <Property Name="Estado_Salida" Type="Byte" Nullable="false" />
+    <Property Name="sal_FechaModifica" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="UDV_Inv_Movimiento_Entre_Fechas">
+    <Key>
+      <PropertyRef Name="bod_Id" />
+      <PropertyRef Name="bod_ResponsableBodega" />
+      <PropertyRef Name="prod_CodigoBarras" />
+      <PropertyRef Name="prod_Descripcion" />
+      <PropertyRef Name="prod_Modelo" />
+      <PropertyRef Name="prod_Talla" />
+      <PropertyRef Name="uni_Descripcion" />
+      <PropertyRef Name="TIPO" />
+    </Key>
+    <Property Name="bod_Id" Type="Int32" Nullable="false" />
+    <Property Name="bod_Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="bod_ResponsableBodega" Type="String" Nullable="false" MaxLength="201" FixedLength="false" Unicode="true" />
+    <Property Name="bod_Telefono" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Name="prod_CodigoBarras" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="pscat_Descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Modelo" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="prod_Talla" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="uni_Descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Cantidad_Salidas_Entradas" Type="Int32" />
+    <Property Name="Row_" Type="Int64" />
+    <Property Name="TIPO" Type="String" Nullable="false" MaxLength="7" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="UDV_Inv_PackingList">
+    <Key>
+      <PropertyRef Name="box_Descripcion" />
+      <PropertyRef Name="prod_Codigo" />
+      <PropertyRef Name="sald_Cantidad" />
+      <PropertyRef Name="sal_BodDestino" />
+      <PropertyRef Name="box_FechaCrea" />
+    </Key>
+    <Property Name="box_Codigo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="box_Descripcion" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="prod_CodigoBarras" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Codigo" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="prod_Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Marca" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Modelo" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="prod_Talla" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="uni_Descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="sald_Cantidad" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="bod_Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="sal_BodDestino" Type="Int32" Nullable="false" />
+    <Property Name="Usuario" Type="String" MaxLength="301" FixedLength="false" Unicode="false" />
+    <Property Name="box_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="UDV_Inv_PackingList_Caja">
+    <Key>
+      <PropertyRef Name="box_Codigo" />
+      <PropertyRef Name="prod_CodigoBarras" />
+      <PropertyRef Name="prod_Codigo" />
+      <PropertyRef Name="prod_Descripcion" />
+      <PropertyRef Name="prod_Marca" />
+      <PropertyRef Name="prod_Modelo" />
+      <PropertyRef Name="prod_Talla" />
+      <PropertyRef Name="box_Descripcion" />
+      <PropertyRef Name="boxd_Cantidad" />
+      <PropertyRef Name="uni_Descripcion" />
+      <PropertyRef Name="pcat_Nombre" />
+    </Key>
+    <Property Name="box_Codigo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="prod_CodigoBarras" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Codigo" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="prod_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Marca" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Modelo" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="prod_Talla" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="box_Descripcion" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="boxd_Cantidad" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="uni_Descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="pcat_Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="bod_Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="UDV_Inv_ProductosSolicitadosPorEntregar">
+    <Key>
+      <PropertyRef Name="sal_Id" />
+      <PropertyRef Name="bod_Id" />
+      <PropertyRef Name="BodegaOrigen" />
+      <PropertyRef Name="prod_Codigo" />
+      <PropertyRef Name="prod_Descripcion" />
+      <PropertyRef Name="sal_FechaElaboracion" />
+      <PropertyRef Name="estm_Id" />
+      <PropertyRef Name="estm_Descripcion" />
+      <PropertyRef Name="tsal_Id" />
+      <PropertyRef Name="tsal_Descripcion" />
+      <PropertyRef Name="sal_BodDestino" />
+      <PropertyRef Name="BodegaDestino" />
+      <PropertyRef Name="sald_Cantidad" />
+      <PropertyRef Name="sald_Id" />
+      <PropertyRef Name="prod_CodigoBarras" />
+      <PropertyRef Name="prod_Marca" />
+      <PropertyRef Name="prod_Modelo" />
+      <PropertyRef Name="prod_Talla" />
+      <PropertyRef Name="uni_Id" />
+      <PropertyRef Name="uni_Descripcion" />
+    </Key>
+    <Property Name="sal_Id" Type="Int32" Nullable="false" />
+    <Property Name="bod_Id" Type="Int32" Nullable="false" />
+    <Property Name="BodegaOrigen" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Codigo" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="prod_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="sal_FechaElaboracion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="estm_Id" Type="Byte" Nullable="false" />
+    <Property Name="estm_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="tsal_Id" Type="Byte" Nullable="false" />
+    <Property Name="tsal_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="sal_BodDestino" Type="Int32" Nullable="false" />
+    <Property Name="BodegaDestino" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="sald_Cantidad" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="sald_Id" Type="Int32" Nullable="false" />
+    <Property Name="prod_CodigoBarras" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Marca" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Modelo" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="prod_Talla" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="uni_Id" Type="Int32" Nullable="false" />
+    <Property Name="uni_Descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="UDV_Inv_Proyeccion_de_Movimiento_de_Producto">
+    <Key>
+      <PropertyRef Name="bod_Id" />
+      <PropertyRef Name="bod_ResponsableBodega" />
+      <PropertyRef Name="prod_CodigoBarras" />
+      <PropertyRef Name="prod_Descripcion" />
+      <PropertyRef Name="prod_Marca" />
+      <PropertyRef Name="prod_Modelo" />
+      <PropertyRef Name="uni_Descripcion" />
+      <PropertyRef Name="prod_Talla" />
+      <PropertyRef Name="bodd_CantidadExistente" />
+      <PropertyRef Name="factd_Cantidad" />
+    </Key>
+    <Property Name="bod_Id" Type="Int32" Nullable="false" />
+    <Property Name="bod_Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="bod_ResponsableBodega" Type="Int16" Nullable="false" />
+    <Property Name="bod_Telefono" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Name="prod_CodigoBarras" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Marca" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Modelo" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="uni_Descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Talla" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="bodd_CantidadExistente" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="factd_Cantidad" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+    <Property Name="Proyección_Días" Type="Decimal" Precision="38" Scale="0" />
+  </EntityType>
+  <EntityType Name="UDV_Inv_Salida_Imprimir_Reporte">
+    <Key>
+      <PropertyRef Name="sal_BodDestino" />
+      <PropertyRef Name="fact_Codigo" />
+      <PropertyRef Name="prod_Codigo" />
+      <PropertyRef Name="prod_Descripcion" />
+      <PropertyRef Name="prod_Marca" />
+      <PropertyRef Name="prod_Modelo" />
+      <PropertyRef Name="prod_Talla" />
+      <PropertyRef Name="prod_Color" />
+      <PropertyRef Name="pcat_Nombre" />
+      <PropertyRef Name="uni_Descripcion" />
+      <PropertyRef Name="prod_CodigoBarras" />
+      <PropertyRef Name="sald_Cantidad" />
+    </Key>
+    <Property Name="sal_FechaElaboracion" Type="DateTime" Precision="3" />
+    <Property Name="tsal_Id" Type="Byte" />
+    <Property Name="tsal_Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="bod_Id" Type="Int32" />
+    <Property Name="bod_Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="estm_Id" Type="Byte" />
+    <Property Name="estm_Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="sal_BodDestino" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="fact_Codigo" Type="String" Nullable="false" MaxLength="19" FixedLength="false" Unicode="true" />
+    <Property Name="bod_ResponsableBodega" Type="String" MaxLength="201" FixedLength="false" Unicode="true" />
+    <Property Name="prod_Codigo" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="prod_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Marca" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Modelo" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="prod_Talla" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Color" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="pcat_Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="pscat_Descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="uni_Descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="prod_CodigoBarras" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="sald_Cantidad" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+  </EntityType>
+  <EntityType Name="UDV_inv_tbinventariofisico_reporteFaltantes">
+    <Key>
+      <PropertyRef Name="invf_FechaInventario" />
+      <PropertyRef Name="invf_Descripcion" />
+      <PropertyRef Name="prod_Codigo" />
+      <PropertyRef Name="prod_Descripcion" />
+      <PropertyRef Name="prod_CodigoBarras" />
+      <PropertyRef Name="prod_Marca" />
+      <PropertyRef Name="prod_Talla" />
+      <PropertyRef Name="uni_Descripcion" />
+      <PropertyRef Name="invfd_Cantidad" />
+      <PropertyRef Name="invfd_CantidadSistema" />
+      <PropertyRef Name="bod_Id" />
+      <PropertyRef Name="uni_Id" />
+    </Key>
+    <Property Name="invf_FechaInventario" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="invf_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="bod_Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="invf_ResponsableBodega" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Codigo" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="prod_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="prod_CodigoBarras" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Marca" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Talla" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="uni_Descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="invfd_Cantidad" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="invfd_CantidadSistema" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="Sobrante_Faltante" Type="Decimal" Precision="11" Scale="2" />
+    <Property Name="bod_Id" Type="Int32" Nullable="false" />
+    <Property Name="uni_Id" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UDV_Inv_TipoEntrada">
+    <Key>
+      <PropertyRef Name="ent_NumeroFormato" />
+      <PropertyRef Name="ent_FechaElaboracion" />
+      <PropertyRef Name="bod_id" />
+      <PropertyRef Name="estm_id" />
+      <PropertyRef Name="tent_id" />
+      <PropertyRef Name="prov_Nombre" />
+      <PropertyRef Name="estm_Descripcion" />
+      <PropertyRef Name="tent_Descripcion" />
+      <PropertyRef Name="ent_FacturaCompra" />
+      <PropertyRef Name="ent_FechaCompra" />
+      <PropertyRef Name="tdev_descripcion" />
+      <PropertyRef Name="fact_Id" />
+      <PropertyRef Name="ent_BodegaDestino" />
+    </Key>
+    <Property Name="ent_NumeroFormato" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="bod_Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ent_FechaElaboracion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="bod_id" Type="Int32" Nullable="false" />
+    <Property Name="estm_id" Type="Byte" Nullable="false" />
+    <Property Name="tent_id" Type="Byte" Nullable="false" />
+    <Property Name="prov_Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="estm_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="tent_Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ent_FacturaCompra" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ent_FechaCompra" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="tdev_descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="fact_Id" Type="Int32" Nullable="false" />
+    <Property Name="ent_BodegaDestino" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UDV_InventarioActual">
+    <Key>
+      <PropertyRef Name="bod_Id" />
+      <PropertyRef Name="emp_Nombres" />
+      <PropertyRef Name="emp_Apellidos" />
+      <PropertyRef Name="prod_Codigo" />
+      <PropertyRef Name="prod_CodigoBarras" />
+      <PropertyRef Name="prod_Descripcion" />
+      <PropertyRef Name="pcat_Nombre" />
+      <PropertyRef Name="prod_Marca" />
+      <PropertyRef Name="prod_Modelo" />
+      <PropertyRef Name="uni_Descripcion" />
+      <PropertyRef Name="bodd_Id" />
+      <PropertyRef Name="bodd_CantidadExistente" />
+    </Key>
+    <Property Name="bod_Id" Type="Int32" Nullable="false" />
+    <Property Name="bod_Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="emp_Nombres" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="emp_Apellidos" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="bod_Telefono" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Codigo" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="prod_CodigoBarras" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="pcat_Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="pscat_Descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Marca" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Modelo" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="uni_Descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="bodd_Id" Type="Int32" Nullable="false" />
+    <Property Name="bodd_CantidadExistente" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+  </EntityType>
+  <EntityType Name="VistaInventarioHistorico">
+    <Key>
+      <PropertyRef Name="bodd_Id" />
+      <PropertyRef Name="bod_Id" />
+      <PropertyRef Name="Encargado" />
+      <PropertyRef Name="prod_Codigo" />
+      <PropertyRef Name="prod_CodigoBarras" />
+      <PropertyRef Name="prod_Descripcion" />
+      <PropertyRef Name="pcat_Nombre" />
+      <PropertyRef Name="prod_Marca" />
+      <PropertyRef Name="prod_Modelo" />
+      <PropertyRef Name="prod_Talla" />
+      <PropertyRef Name="uni_Descripcion" />
+      <PropertyRef Name="bodd_CantidadExistente" />
+      <PropertyRef Name="entd_Id" />
+      <PropertyRef Name="ent_Id" />
+      <PropertyRef Name="sald_Id" />
+      <PropertyRef Name="sal_Id" />
+    </Key>
+    <Property Name="bodd_Id" Type="Int32" Nullable="false" />
+    <Property Name="bod_Id" Type="Int32" Nullable="false" />
+    <Property Name="bod_Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Encargado" Type="String" Nullable="false" MaxLength="201" FixedLength="false" Unicode="true" />
+    <Property Name="bod_Telefono" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Codigo" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="prod_CodigoBarras" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="pcat_Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Marca" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Modelo" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="prod_Talla" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="uni_Descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="bodd_CantidadExistente" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="cantidad_Por_Entrada" Type="Decimal" Precision="11" Scale="2" />
+    <Property Name="entd_Id" Type="Int32" Nullable="false" />
+    <Property Name="ent_Id" Type="Int32" Nullable="false" />
+    <Property Name="Cantidad_por_salida" Type="Decimal" Precision="11" Scale="2" />
+    <Property Name="sald_Id" Type="Int32" Nullable="false" />
+    <Property Name="sal_Id" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="UDP_Vent_listExoneracion_Select">
     <Key>
@@ -5573,6 +6384,267 @@
     <Property Name="Anulada" Type="Boolean" Nullable="false" />
     <Property Name="usuariocrea" Type="Int32" Nullable="false" />
   </EntityType>
+  <EntityType Name="UDV_Vent_AnalisisDeMora">
+    <Key>
+      <PropertyRef Name="fact_Id" />
+      <PropertyRef Name="RTN" />
+      <PropertyRef Name="Nombres" />
+      <PropertyRef Name="Máximo_Días_Crédito" />
+      <PropertyRef Name="Máximo_Monto_Crédito" />
+      <PropertyRef Name="fact_Fecha" />
+    </Key>
+    <Property Name="fact_Id" Type="Int64" Nullable="false" />
+    <Property Name="RTN" Type="String" Nullable="false" MaxLength="26" FixedLength="false" Unicode="true" />
+    <Property Name="Nombres" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="true" />
+    <Property Name="Máximo_Días_Crédito" Type="Int32" Nullable="false" />
+    <Property Name="Máximo_Monto_Crédito" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="fact_Fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FechaVencimiento" Type="DateTime" Precision="3" />
+    <Property Name="SaldoActual" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="MORADE30" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="MORADE60" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="MORADE90" Type="Decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="UDV_Vent_ArqueoCaja_Select">
+    <Key>
+      <PropertyRef Name="mocja_Id" />
+      <PropertyRef Name="suc_Descripcion" />
+      <PropertyRef Name="cja_Id" />
+      <PropertyRef Name="cja_Descripcion" />
+    </Key>
+    <Property Name="mocja_Id" Type="Int32" Nullable="false" />
+    <Property Name="suc_Descripcion" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="cja_Id" Type="Int16" Nullable="false" />
+    <Property Name="cja_Descripcion" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="mocja_FechaApertura" Type="DateTime" Precision="3" />
+    <Property Name="mocja_FechaArqueo" Type="DateTime" Precision="3" />
+    <Property Name="mocja_FechaAceptacion" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="UDV_Vent_Busqueda_Clientes">
+    <Key>
+      <PropertyRef Name="clte_Id" />
+      <PropertyRef Name="tpi_Id" />
+      <PropertyRef Name="tpi_Descripcion" />
+      <PropertyRef Name="clte_Identificacion" />
+      <PropertyRef Name="clte_EsPersonaNatural" />
+      <PropertyRef Name="clte_Nombres" />
+      <PropertyRef Name="clte_Apellidos" />
+      <PropertyRef Name="clte_Nacionalidad" />
+      <PropertyRef Name="clte_Telefono" />
+      <PropertyRef Name="clte_NombreComercial" />
+      <PropertyRef Name="clte_RazonSocial" />
+      <PropertyRef Name="clte_ContactoNombre" />
+      <PropertyRef Name="clte_ContactoTelefono" />
+      <PropertyRef Name="mun_Codigo" />
+      <PropertyRef Name="clte_EsActivo" />
+      <PropertyRef Name="clte_ConCredito" />
+      <PropertyRef Name="clte_EsMinorista" />
+      <PropertyRef Name="clte_UsuarioCrea" />
+      <PropertyRef Name="clte_FechaCrea" />
+    </Key>
+    <Property Name="clte_Id" Type="Int32" Nullable="false" />
+    <Property Name="tpi_Id" Type="Byte" Nullable="false" />
+    <Property Name="tpi_Descripcion" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="clte_Identificacion" Type="String" Nullable="false" MaxLength="26" FixedLength="false" Unicode="true" />
+    <Property Name="clte_EsPersonaNatural" Type="Boolean" Nullable="false" />
+    <Property Name="clte_Nombres" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="clte_Apellidos" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="clte_FechaNacimiento" Type="DateTime" Precision="0" />
+    <Property Name="clte_Nacionalidad" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="clte_Sexo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="clte_Telefono" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="clte_NombreComercial" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="clte_RazonSocial" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="clte_ContactoNombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="clte_ContactoEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="clte_ContactoTelefono" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="clte_FechaConstitucion" Type="DateTime" Precision="0" />
+    <Property Name="mun_Codigo" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+    <Property Name="clte_Direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="clte_CorreoElectronico" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="clte_EsActivo" Type="Boolean" Nullable="false" />
+    <Property Name="clte_RazonInactivo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="clte_ConCredito" Type="Boolean" Nullable="false" />
+    <Property Name="clte_EsMinorista" Type="Boolean" Nullable="false" />
+    <Property Name="clte_Observaciones" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="clte_UsuarioCrea" Type="Int32" Nullable="false" />
+    <Property Name="clte_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="clte_UsuarioModifica" Type="Int32" />
+    <Property Name="clte_FechaModifica" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="UDV_Vent_Busqueda_Factura">
+    <Key>
+      <PropertyRef Name="fact_Id" />
+      <PropertyRef Name="fact_Codigo" />
+      <PropertyRef Name="fact_Fecha" />
+      <PropertyRef Name="esfac_Id" />
+      <PropertyRef Name="esfac_Descripcion" />
+      <PropertyRef Name="cja_Id" />
+      <PropertyRef Name="cja_Descripcion" />
+      <PropertyRef Name="suc_Id" />
+      <PropertyRef Name="clte_Id" />
+      <PropertyRef Name="pemi_NumeroCAI" />
+      <PropertyRef Name="fact_AlCredito" />
+      <PropertyRef Name="fact_DiasCredito" />
+      <PropertyRef Name="fact_PorcentajeDescuento" />
+      <PropertyRef Name="fact_Vendedor" />
+      <PropertyRef Name="clte_Identificacion" />
+      <PropertyRef Name="clte_Nombres" />
+      <PropertyRef Name="fact_EsAnulada" />
+      <PropertyRef Name="fact_UsuarioCrea" />
+      <PropertyRef Name="fact_FechaCrea" />
+    </Key>
+    <Property Name="fact_Id" Type="Int64" Nullable="false" />
+    <Property Name="fact_Codigo" Type="String" Nullable="false" MaxLength="19" FixedLength="false" Unicode="true" />
+    <Property Name="fact_Fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="esfac_Id" Type="Byte" Nullable="false" />
+    <Property Name="esfac_Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="cja_Id" Type="Int16" Nullable="false" />
+    <Property Name="cja_Descripcion" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="suc_Id" Type="Int32" Nullable="false" />
+    <Property Name="clte_Id" Type="Int32" Nullable="false" />
+    <Property Name="pemi_NumeroCAI" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="fact_AlCredito" Type="Boolean" Nullable="false" />
+    <Property Name="fact_DiasCredito" Type="Int32" Nullable="false" />
+    <Property Name="fact_PorcentajeDescuento" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="fact_Vendedor" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="clte_Identificacion" Type="String" Nullable="false" MaxLength="26" FixedLength="false" Unicode="true" />
+    <Property Name="clte_Nombres" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fact_IdentidadTE" Type="String" MaxLength="26" FixedLength="false" Unicode="true" />
+    <Property Name="fact_NombresTE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fact_FechaNacimientoTE" Type="DateTime" Precision="0" />
+    <Property Name="fact_UsuarioAutoriza" Type="Int32" />
+    <Property Name="fact_FechaAutoriza" Type="DateTime" Precision="3" />
+    <Property Name="fact_EsAnulada" Type="Boolean" Nullable="false" />
+    <Property Name="fact_UsuarioCrea" Type="Int32" Nullable="false" />
+    <Property Name="fact_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fact_UsuarioModifica" Type="Int32" />
+    <Property Name="fact_FechaModifica" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="UDV_Vent_CuponDescuentoPorFecha">
+    <Key>
+      <PropertyRef Name="cdto_ID" />
+      <PropertyRef Name="clte_Identificacion" />
+      <PropertyRef Name="clte_Nombres" />
+      <PropertyRef Name="suc_Descripcion" />
+      <PropertyRef Name="cdto_FechaEmision" />
+      <PropertyRef Name="cdto_FechaVencimiento" />
+      <PropertyRef Name="cdto_CantidadCompraMinima" />
+      <PropertyRef Name="cdto_Redimido" />
+    </Key>
+    <Property Name="cdto_ID" Type="Int32" Nullable="false" />
+    <Property Name="clte_Identificacion" Type="String" Nullable="false" MaxLength="26" FixedLength="false" Unicode="true" />
+    <Property Name="clte_Nombres" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="suc_Descripcion" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="cdto_FechaEmision" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="cdto_FechaVencimiento" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="cdto_PorcentajeDescuento" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="cdto_MontoDescuento" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="cdto_CantidadCompraMinima" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="cdto_Redimido" Type="Boolean" Nullable="false" />
+    <Property Name="cdto_Anulado" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="UDV_Vent_DescuentosporFecha">
+    <Key>
+      <PropertyRef Name="fact_Codigo" />
+      <PropertyRef Name="clte_Identificacion" />
+      <PropertyRef Name="Nombres" />
+      <PropertyRef Name="Tipo_Factura" />
+      <PropertyRef Name="TIPO_DE_CLIENTE" />
+      <PropertyRef Name="TIPO_DESCUENTO" />
+    </Key>
+    <Property Name="Id" Type="Int64" />
+    <Property Name="Fecha_factura" Type="DateTime" Precision="0" />
+    <Property Name="fact_Codigo" Type="String" Nullable="false" MaxLength="19" FixedLength="false" Unicode="true" />
+    <Property Name="clte_Identificacion" Type="String" Nullable="false" MaxLength="26" FixedLength="false" Unicode="true" />
+    <Property Name="Nombres" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="true" />
+    <Property Name="Tipo_Factura" Type="String" Nullable="false" MaxLength="7" FixedLength="false" Unicode="false" />
+    <Property Name="TIPO_DE_CLIENTE" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="TIPO_DESCUENTO" Type="String" Nullable="false" MaxLength="29" FixedLength="false" Unicode="false" />
+    <Property Name="Descuento" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="TotalFactura" Type="Decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="UDV_Vent_DevolucionesPorFecha">
+    <Key>
+      <PropertyRef Name="dev_Id" />
+      <PropertyRef Name="devd_Id" />
+      <PropertyRef Name="Cajero" />
+      <PropertyRef Name="Numero_Factura" />
+      <PropertyRef Name="factd_Id" />
+      <PropertyRef Name="clte_Id" />
+      <PropertyRef Name="RTN" />
+      <PropertyRef Name="Nombres" />
+      <PropertyRef Name="Total_Devolución" />
+      <PropertyRef Name="Nota_Crédito" />
+      <PropertyRef Name="Código_Producto" />
+      <PropertyRef Name="Nombre_Producto" />
+      <PropertyRef Name="Precio_Unitario" />
+      <PropertyRef Name="Cantidad_Facturada" />
+      <PropertyRef Name="Cantidad_Devuelta" />
+      <PropertyRef Name="Monto_Devolución" />
+    </Key>
+    <Property Name="dev_Id" Type="Int32" Nullable="false" />
+    <Property Name="devd_Id" Type="Int32" Nullable="false" />
+    <Property Name="Cajero" Type="String" Nullable="false" MaxLength="301" FixedLength="false" Unicode="false" />
+    <Property Name="FechaDevolucion" Type="DateTime" Precision="0" />
+    <Property Name="FechaFactura" Type="DateTime" Precision="0" />
+    <Property Name="Numero_Factura" Type="Int64" Nullable="false" />
+    <Property Name="factd_Id" Type="Int16" Nullable="false" />
+    <Property Name="clte_Id" Type="Int32" Nullable="false" />
+    <Property Name="RTN" Type="String" Nullable="false" MaxLength="26" FixedLength="false" Unicode="true" />
+    <Property Name="Nombres" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="true" />
+    <Property Name="Total_Devolución" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="Nota_Crédito" Type="String" Nullable="false" MaxLength="19" FixedLength="false" Unicode="true" />
+    <Property Name="Código_Producto" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Nombre_Producto" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Precio_Unitario" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="Cantidad_Facturada" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+    <Property Name="Cantidad_Devuelta" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+    <Property Name="Monto_Devolución" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+  </EntityType>
+  <EntityType Name="UDV_Vent_EstadoCuenta">
+    <Key>
+      <PropertyRef Name="RTN" />
+      <PropertyRef Name="Nombres" />
+      <PropertyRef Name="Teléfono" />
+      <PropertyRef Name="Fecha" />
+      <PropertyRef Name="Tipo" />
+      <PropertyRef Name="Número__de_Factura" />
+      <PropertyRef Name="Saldo_Anterior" />
+      <PropertyRef Name="Monto_Cargo" />
+      <PropertyRef Name="Monto_Crédito" />
+    </Key>
+    <Property Name="RTN" Type="String" Nullable="false" MaxLength="26" FixedLength="false" Unicode="true" />
+    <Property Name="Nombres" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="true" />
+    <Property Name="Teléfono" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="Correo_Electrónico" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Tipo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Número__de_Factura" Type="String" Nullable="false" MaxLength="19" FixedLength="false" Unicode="true" />
+    <Property Name="Fecha_Vencimiento" Type="DateTime" Precision="0" />
+    <Property Name="Saldo_Anterior" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
+    <Property Name="Monto_Cargo" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="Monto_Crédito" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="Saldo_Actual" Type="Decimal" Precision="13" Scale="2" />
+  </EntityType>
+  <EntityType Name="UDV_Vent_Factura_VentasporFecha">
+    <Key>
+      <PropertyRef Name="fact_Codigo" />
+      <PropertyRef Name="clte_Identificacion" />
+      <PropertyRef Name="Nombres" />
+      <PropertyRef Name="Tipo_Factura" />
+    </Key>
+    <Property Name="fact_Codigo" Type="String" Nullable="false" MaxLength="19" FixedLength="false" Unicode="true" />
+    <Property Name="Fecha_factura" Type="DateTime" Precision="0" />
+    <Property Name="clte_Identificacion" Type="String" Nullable="false" MaxLength="26" FixedLength="false" Unicode="true" />
+    <Property Name="Nombres" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="true" />
+    <Property Name="Tipo_Factura" Type="String" Nullable="false" MaxLength="7" FixedLength="false" Unicode="false" />
+    <Property Name="Fecha_vencimiento" Type="DateTime" Precision="0" />
+    <Property Name="MontoFactura" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Descuento" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Impuesto" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="TotalFactura" Type="Decimal" Precision="18" Scale="2" />
+  </EntityType>
   <EntityType Name="UDV_Vent_FacturaPagoSelect">
     <Key>
       <PropertyRef Name="fact_Id" />
@@ -5588,17 +6660,301 @@
     <Property Name="TotalPagado" Type="Decimal" Precision="18" Scale="2" />
     <Property Name="SaldoFactura" Type="Decimal" Precision="18" Scale="2" />
   </EntityType>
-  <EntityType Name="UDV_Vent_MovimientoCaja_Select">
+  <EntityType Name="UDV_Vent_FacturaPuntoEmision1">
+    <Key>
+      <PropertyRef Name="cja_Id" />
+      <PropertyRef Name="suc_Id" />
+      <PropertyRef Name="fact_Id" />
+      <PropertyRef Name="pemi_Id" />
+      <PropertyRef Name="pemi_NumeroCAI" />
+      <PropertyRef Name="pemid_RangoInicio" />
+      <PropertyRef Name="pemid_RangoFinal" />
+      <PropertyRef Name="pemid_FechaLimite" />
+      <PropertyRef Name="dfisc_Id" />
+    </Key>
+    <Property Name="cja_Id" Type="Int16" Nullable="false" />
+    <Property Name="suc_Id" Type="Int32" Nullable="false" />
+    <Property Name="fact_Id" Type="Int64" Nullable="false" />
+    <Property Name="pemi_Id" Type="Int32" Nullable="false" />
+    <Property Name="pemi_NumeroCAI" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="pemid_RangoInicio" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="pemid_RangoFinal" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="pemid_FechaLimite" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="dfisc_Id" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+  </EntityType>
+  <EntityType Name="UDV_Vent_FacturasPendientesDePago">
+    <Key>
+      <PropertyRef Name="clte_Identificacion" />
+      <PropertyRef Name="clte_Nombres" />
+      <PropertyRef Name="fact_Fecha" />
+      <PropertyRef Name="suc_Descripcion" />
+      <PropertyRef Name="fact_Codigo" />
+      <PropertyRef Name="TotalCargos" />
+    </Key>
+    <Property Name="clte_Identificacion" Type="String" Nullable="false" MaxLength="26" FixedLength="false" Unicode="true" />
+    <Property Name="clte_Nombres" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fact_Fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="suc_Descripcion" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="fact_Codigo" Type="String" Nullable="false" MaxLength="19" FixedLength="false" Unicode="true" />
+    <Property Name="FechaVencimiento" Type="DateTime" Precision="3" />
+    <Property Name="MontoFacturado" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="TotalCargos" Type="Int32" Nullable="false" />
+    <Property Name="TotalCreditos" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Saldoactual" Type="Decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="UDV_Vent_InventarioNumeraciones">
+    <Key>
+      <PropertyRef Name="suc_Id" />
+      <PropertyRef Name="suc_Descripcion" />
+      <PropertyRef Name="suc_Telefono" />
+      <PropertyRef Name="pemi_NumeroCAI" />
+      <PropertyRef Name="dfisc_Descripcion" />
+      <PropertyRef Name="pemid_RangoInicio" />
+      <PropertyRef Name="pemid_RangoFinal" />
+      <PropertyRef Name="pemid_NumeroActual" />
+      <PropertyRef Name="pemid_FechaLimite" />
+      <PropertyRef Name="Estado" />
+    </Key>
+    <Property Name="suc_Id" Type="Int32" Nullable="false" />
+    <Property Name="suc_Descripcion" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="suc_Telefono" Type="String" Nullable="false" MaxLength="9" FixedLength="false" Unicode="true" />
+    <Property Name="pemi_NumeroCAI" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="dfisc_Descripcion" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
+    <Property Name="pemid_RangoInicio" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="pemid_RangoFinal" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="pemid_NumeroActual" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="pemid_FechaLimite" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Estado" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="DiasDisponibles" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="NumeracionesDisponibles" Type="Int32" />
+  </EntityType>
+  <EntityType Name="UDV_Vent_ListadodePrecios">
+    <Key>
+      <PropertyRef Name="listp_Id" />
+      <PropertyRef Name="listp_Nombre" />
+      <PropertyRef Name="prod_CodigoBarras" />
+      <PropertyRef Name="prod_Descripcion" />
+      <PropertyRef Name="prod_Marca" />
+      <PropertyRef Name="prod_Modelo" />
+      <PropertyRef Name="prod_Talla" />
+      <PropertyRef Name="uni_Id" />
+      <PropertyRef Name="lispd_PrecioMayorista" />
+      <PropertyRef Name="lispd_PrecioMinorista" />
+    </Key>
+    <Property Name="listp_Id" Type="Int32" Nullable="false" />
+    <Property Name="listp_Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="listp_FechaInicioVigencia" Type="DateTime" Precision="0" />
+    <Property Name="listp_FechaFinalVigencia" Type="DateTime" Precision="0" />
+    <Property Name="listp_Prioridad" Type="Int16" />
+    <Property Name="prod_CodigoBarras" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Marca" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Modelo" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="prod_Talla" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="uni_Id" Type="Int32" Nullable="false" />
+    <Property Name="lispd_PrecioMayorista" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="lispd_PrecioMinorista" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+  </EntityType>
+  <EntityType Name="UDV_Vent_MovimientoCaja_Apertura">
     <Key>
       <PropertyRef Name="mocja_Id" />
       <PropertyRef Name="solef_Id" />
       <PropertyRef Name="cja_Id" />
       <PropertyRef Name="cja_Descripcion" />
+      <PropertyRef Name="suc_Descripcion" />
     </Key>
     <Property Name="mocja_Id" Type="Int32" Nullable="false" />
     <Property Name="solef_Id" Type="Int32" Nullable="false" />
     <Property Name="cja_Id" Type="Int16" Nullable="false" />
     <Property Name="cja_Descripcion" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="suc_Descripcion" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="UDV_Vent_NotaCreditoPorFecha">
+    <Key>
+      <PropertyRef Name="Código_Nota_Crédito" />
+      <PropertyRef Name="Fecha_Emisión" />
+      <PropertyRef Name="Motivo" />
+      <PropertyRef Name="Redimido" />
+    </Key>
+    <Property Name="N_" Type="Int64" />
+    <Property Name="Código_Nota_Crédito" Type="String" Nullable="false" MaxLength="19" FixedLength="false" Unicode="true" />
+    <Property Name="Fecha_Emisión" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Motivo" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Monto" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="Redimido" Type="Boolean" Nullable="false" />
+    <Property Name="Código_Factura" Type="String" MaxLength="19" FixedLength="false" Unicode="true" />
+    <Property Name="Id" Type="Int32" />
+    <Property Name="Tipo_Cliente" Type="Boolean" />
+    <Property Name="Identificación_Cliente" Type="String" MaxLength="26" FixedLength="false" Unicode="true" />
+    <Property Name="Nombres" Type="String" MaxLength="101" FixedLength="false" Unicode="true" />
+    <Property Name="devd_Monto" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="Monto_Total" Type="Decimal" Precision="38" Scale="2" />
+  </EntityType>
+  <EntityType Name="UDV_Vent_PagosPorFechas">
+    <Key>
+      <PropertyRef Name="Num" />
+      <PropertyRef Name="RTN_Cliente" />
+      <PropertyRef Name="Nombre" />
+      <PropertyRef Name="Código_Factura" />
+      <PropertyRef Name="tpa_Descripcion" />
+      <PropertyRef Name="Cajero" />
+      <PropertyRef Name="Saldo_Anterior" />
+      <PropertyRef Name="Total_Pago" />
+    </Key>
+    <Property Name="Num" Type="Int32" Nullable="false" />
+    <Property Name="RTN_Cliente" Type="String" Nullable="false" MaxLength="26" FixedLength="false" Unicode="true" />
+    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="true" />
+    <Property Name="Código_Factura" Type="String" Nullable="false" MaxLength="19" FixedLength="false" Unicode="true" />
+    <Property Name="tpa_Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Cajero" Type="String" Nullable="false" MaxLength="301" FixedLength="false" Unicode="false" />
+    <Property Name="Saldo_Anterior" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
+    <Property Name="Total_Pago" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="pago_FechaElaboracion" Type="DateTime" Precision="0" />
+    <Property Name="Saldo_Actual" Type="Decimal" Precision="13" Scale="2" />
+  </EntityType>
+  <EntityType Name="UDV_Vent_Pedido_EntreFechas">
+    <Key>
+      <PropertyRef Name="FECHA_PEDIDO" />
+    </Key>
+    <Property Name="clte_Id" Type="Int32" />
+    <Property Name="clte_EsPersonaNatural" Type="Boolean" />
+    <Property Name="FECHA_PEDIDO" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="RTN_CLIENTE" Type="String" MaxLength="26" FixedLength="false" Unicode="true" />
+    <Property Name="NOMBRE_CLIENTE" Type="String" MaxLength="101" FixedLength="false" Unicode="true" />
+    <Property Name="ESTADO_DEL_PEDIDO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FECHA_FACTURACIÓN" Type="DateTime" Precision="3" />
+    <Property Name="CÓDIGO_PRODUCTO" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="CANTIDAD" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="CANTIDAD_FACTURADA" Type="Decimal" Precision="10" Scale="2" />
+  </EntityType>
+  <EntityType Name="UDV_Vent_prueba">
+    <Key>
+      <PropertyRef Name="clte_Id" />
+      <PropertyRef Name="clte_EsPersonaNatural" />
+      <PropertyRef Name="FECHA_SOLICITUD" />
+      <PropertyRef Name="RTN_CLIENTE" />
+      <PropertyRef Name="NOMBRE_CLIENTE" />
+      <PropertyRef Name="TIPO_DE_CLIENTE" />
+      <PropertyRef Name="SUCURSAL" />
+      <PropertyRef Name="DÍAS_SOLICITADOS" />
+      <PropertyRef Name="MONTO_SOLICITADO" />
+    </Key>
+    <Property Name="clte_Id" Type="Int32" Nullable="false" />
+    <Property Name="clte_EsPersonaNatural" Type="Boolean" Nullable="false" />
+    <Property Name="FECHA_SOLICITUD" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="RTN_CLIENTE" Type="String" Nullable="false" MaxLength="26" FixedLength="false" Unicode="true" />
+    <Property Name="NOMBRE_CLIENTE" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="true" />
+    <Property Name="TIPO_DE_CLIENTE" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="SUCURSAL" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="DÍAS_SOLICITADOS" Type="Int32" Nullable="false" />
+    <Property Name="MONTO_SOLICITADO" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+  </EntityType>
+  <EntityType Name="UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporte">
+    <Key>
+      <PropertyRef Name="clte_Id" />
+      <PropertyRef Name="clte_EsPersonaNatural" />
+      <PropertyRef Name="FECHA_SOLICITUD" />
+      <PropertyRef Name="RTN_CLIENTE" />
+      <PropertyRef Name="NOMBRE_CLIENTE" />
+      <PropertyRef Name="TIPO_DE_CLIENTE" />
+      <PropertyRef Name="SUCURSAL" />
+      <PropertyRef Name="DÍAS_SOLICITADOS" />
+      <PropertyRef Name="MONTO_SOLICITADO" />
+    </Key>
+    <Property Name="clte_Id" Type="Int32" Nullable="false" />
+    <Property Name="clte_EsPersonaNatural" Type="Boolean" Nullable="false" />
+    <Property Name="FECHA_SOLICITUD" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="RTN_CLIENTE" Type="String" Nullable="false" MaxLength="26" FixedLength="false" Unicode="true" />
+    <Property Name="NOMBRE_CLIENTE" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="true" />
+    <Property Name="TIPO_DE_CLIENTE" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="SUCURSAL" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="DÍAS_SOLICITADOS" Type="Int32" Nullable="false" />
+    <Property Name="MONTO_SOLICITADO" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+  </EntityType>
+  <EntityType Name="UDV_Vent_tbSolicituEfectivo_EntreFechas">
+    <Key>
+      <PropertyRef Name="solef_Id" />
+      <PropertyRef Name="cja_Descripcion" />
+      <PropertyRef Name="suc_Descripcion" />
+      <PropertyRef Name="Cajero" />
+      <PropertyRef Name="mnda_Nombre" />
+      <PropertyRef Name="solef_EsApertura" />
+      <PropertyRef Name="solef_EsAnulada" />
+      <PropertyRef Name="solef_UsuarioCrea" />
+      <PropertyRef Name="cja_Id" />
+    </Key>
+    <Property Name="solef_Id" Type="Int32" Nullable="false" />
+    <Property Name="cja_Descripcion" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="suc_Descripcion" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="Cajero" Type="String" Nullable="false" MaxLength="301" FixedLength="false" Unicode="false" />
+    <Property Name="mnda_Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Fecha" Type="DateTime" Precision="0" />
+    <Property Name="MontoSolicitado" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="MontoEntregado" Type="Decimal" Precision="38" Scale="2" />
+    <Property Name="solef_EsApertura" Type="Boolean" Nullable="false" />
+    <Property Name="solef_EsAnulada" Type="Boolean" Nullable="false" />
+    <Property Name="solef_UsuarioCrea" Type="Int32" Nullable="false" />
+    <Property Name="cja_Id" Type="Int16" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UDV_Vent_VentasConsumidorFinal">
+    <Key>
+      <PropertyRef Name="clte_Id" />
+      <PropertyRef Name="fact_Fecha" />
+      <PropertyRef Name="fact_Codigo" />
+      <PropertyRef Name="Sucursal" />
+      <PropertyRef Name="cja_Id" />
+      <PropertyRef Name="TipoDescuento" />
+    </Key>
+    <Property Name="clte_Id" Type="Int32" Nullable="false" />
+    <Property Name="fact_Fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fact_Codigo" Type="String" Nullable="false" MaxLength="19" FixedLength="false" Unicode="true" />
+    <Property Name="Sucursal" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="cja_Id" Type="Int16" Nullable="false" />
+    <Property Name="TipoDescuento" Type="String" Nullable="false" MaxLength="22" FixedLength="false" Unicode="false" />
+    <Property Name="MontoFactura" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="MontoDescuento" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="MontoImpuesto" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Total" Type="Decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="UDV_Vent_VentasExoneradas">
+    <Key>
+      <PropertyRef Name="suc_Descripcion" />
+      <PropertyRef Name="prod_Codigo" />
+      <PropertyRef Name="clte_Identificacion" />
+      <PropertyRef Name="clte_NombreComercial" />
+      <PropertyRef Name="fact_Codigo" />
+      <PropertyRef Name="prod_Descripcion" />
+    </Key>
+    <Property Name="Fecha_factura" Type="DateTime" Precision="0" />
+    <Property Name="suc_Descripcion" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="prod_Codigo" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="clte_Identificacion" Type="String" Nullable="false" MaxLength="26" FixedLength="false" Unicode="true" />
+    <Property Name="clte_NombreComercial" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fact_Codigo" Type="String" Nullable="false" MaxLength="19" FixedLength="false" Unicode="true" />
+    <Property Name="prod_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Monto_Facturado" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Impuesto_Exonerado" Type="Decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="UDV_Vent_VentasPorCaja_EntreFechas">
+    <Key>
+      <PropertyRef Name="fact_Fecha" />
+      <PropertyRef Name="suc_Descripcion" />
+      <PropertyRef Name="cja_Descripcion" />
+      <PropertyRef Name="Cajero" />
+      <PropertyRef Name="pago_TotalPago" />
+      <PropertyRef Name="cja_Id" />
+      <PropertyRef Name="fact_UsuarioCrea" />
+      <PropertyRef Name="suc_Id" />
+    </Key>
+    <Property Name="fact_Fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="suc_Descripcion" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="cja_Descripcion" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Cajero" Type="String" Nullable="false" MaxLength="301" FixedLength="false" Unicode="false" />
+    <Property Name="Total_facturado" Type="Decimal" Precision="33" Scale="10" />
+    <Property Name="pago_TotalPago" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="cja_Id" Type="Int16" Nullable="false" />
+    <Property Name="fact_UsuarioCrea" Type="Int32" Nullable="false" />
+    <Property Name="suc_Id" Type="Int32" Nullable="false" />
   </EntityType>
   <Association Name="FK_Acce_tbAccesoRol_Acce_tbObjeto_obj_Id">
     <End Type="ERP_ZORZALModel.tbObjeto" Role="tbObjeto" Multiplicity="1" />
@@ -6257,6 +7613,30 @@
       </Principal>
       <Dependent Role="tbMovimientoCaja">
         <PropertyRef Name="usu_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Acce_tbUsuario_tbNotaCredito_nocre_UsuarioCrea">
+    <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="1" />
+    <End Type="ERP_ZORZALModel.tbNotaCredito" Role="tbNotaCredito" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbNotaCredito">
+        <PropertyRef Name="nocre_UsuarioCrea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Acce_tbUsuario_tbNotaCredito_nocre_UsuarioModifica">
+    <End Type="ERP_ZORZALModel.tbUsuario" Role="tbUsuario" Multiplicity="0..1" />
+    <End Type="ERP_ZORZALModel.tbNotaCredito" Role="tbNotaCredito" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbUsuario">
+        <PropertyRef Name="usu_Id" />
+      </Principal>
+      <Dependent Role="tbNotaCredito">
+        <PropertyRef Name="nocre_UsuarioModifica" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -7892,6 +9272,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Inv_tbSalida_tbTipoDevolucion_tdev_Id">
+    <End Type="ERP_ZORZALModel.tbTipoDevolucion" Role="tbTipoDevolucion" Multiplicity="1" />
+    <End Type="ERP_ZORZALModel.tbSalida" Role="tbSalida" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbTipoDevolucion">
+        <PropertyRef Name="tdev_Id" />
+      </Principal>
+      <Dependent Role="tbSalida">
+        <PropertyRef Name="tdev_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Inv_tbSalida_tbTipoSalida_tsal_Id">
     <End Type="ERP_ZORZALModel.tbTipoSalida" Role="tbTipoSalida" Multiplicity="1" />
     <End Type="ERP_ZORZALModel.tbSalida" Role="tbSalida" Multiplicity="*" />
@@ -7964,6 +9356,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Vent_tbNotaCredito_tbCaja_cja_Id">
+    <End Type="ERP_ZORZALModel.tbCaja" Role="tbCaja" Multiplicity="0..1" />
+    <End Type="ERP_ZORZALModel.tbNotaCredito" Role="tbNotaCredito" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbCaja">
+        <PropertyRef Name="cja_Id" />
+      </Principal>
+      <Dependent Role="tbNotaCredito">
+        <PropertyRef Name="cja_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Vent_tbSucursal_tbCaja_suc_Id">
     <End Type="ERP_ZORZALModel.tbSucursal" Role="tbSucursal" Multiplicity="1" />
     <End Type="ERP_ZORZALModel.tbCaja" Role="tbCaja" Multiplicity="*" />
@@ -8008,6 +9412,18 @@
         <PropertyRef Name="clte_Id" />
       </Principal>
       <Dependent Role="tbPedido">
+        <PropertyRef Name="clte_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vent_tbNotaCredito_tbCliente_clte_Id">
+    <End Type="ERP_ZORZALModel.tbCliente" Role="tbCliente" Multiplicity="1" />
+    <End Type="ERP_ZORZALModel.tbNotaCredito" Role="tbNotaCredito" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbCliente">
+        <PropertyRef Name="clte_Id" />
+      </Principal>
+      <Dependent Role="tbNotaCredito">
         <PropertyRef Name="clte_Id" />
       </Dependent>
     </ReferentialConstraint>
@@ -8069,6 +9485,18 @@
       </Principal>
       <Dependent Role="tbDevolucion">
         <PropertyRef Name="fact_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vent_tbNotaCredito_tbDevolucion_dev_Id">
+    <End Type="ERP_ZORZALModel.tbDevolucion" Role="tbDevolucion" Multiplicity="0..1" />
+    <End Type="ERP_ZORZALModel.tbNotaCredito" Role="tbNotaCredito" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbDevolucion">
+        <PropertyRef Name="dev_Id" />
+      </Principal>
+      <Dependent Role="tbNotaCredito">
+        <PropertyRef Name="dev_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -8228,6 +9656,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Vent_tbSucursal_tbNotaCredito_suc_Id">
+    <End Type="ERP_ZORZALModel.tbSucursal" Role="tbSucursal" Multiplicity="0..1" />
+    <End Type="ERP_ZORZALModel.tbNotaCredito" Role="tbNotaCredito" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbSucursal">
+        <PropertyRef Name="suc_Id" />
+      </Principal>
+      <Dependent Role="tbNotaCredito">
+        <PropertyRef Name="suc_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Vent_tbTipoPago_tbPago_tpa_Id">
     <End Type="ERP_ZORZALModel.tbTipoPago" Role="tbTipoPago" Multiplicity="1" />
     <End Type="ERP_ZORZALModel.tbPago" Role="tbPago" Multiplicity="*" />
@@ -8324,134 +9764,9 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityType Name="UDV_Vent_ArqueoCaja_Select">
-    <Key>
-      <PropertyRef Name="mocja_Id" />
-      <PropertyRef Name="suc_Descripcion" />
-      <PropertyRef Name="cja_Id" />
-      <PropertyRef Name="cja_Descripcion" />
-    </Key>
-    <Property Name="mocja_Id" Type="Int32" Nullable="false" />
-    <Property Name="suc_Descripcion" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
-    <Property Name="cja_Id" Type="Int16" Nullable="false" />
-    <Property Name="cja_Descripcion" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-    <Property Name="mocja_FechaApertura" Type="DateTime" Precision="3" />
-    <Property Name="mocja_FechaArqueo" Type="DateTime" Precision="3" />
-    <Property Name="mocja_FechaAceptacion" Type="DateTime" Precision="3" />
-  </EntityType>
-  <EntityType Name="UDV_Vent_Busqueda_Clientes">
-    <Key>
-      <PropertyRef Name="clte_Id" />
-      <PropertyRef Name="tpi_Id" />
-      <PropertyRef Name="tpi_Descripcion" />
-      <PropertyRef Name="clte_Identificacion" />
-      <PropertyRef Name="clte_EsPersonaNatural" />
-      <PropertyRef Name="clte_Nombres" />
-      <PropertyRef Name="clte_Apellidos" />
-      <PropertyRef Name="clte_Nacionalidad" />
-      <PropertyRef Name="clte_Telefono" />
-      <PropertyRef Name="clte_NombreComercial" />
-      <PropertyRef Name="clte_RazonSocial" />
-      <PropertyRef Name="clte_ContactoNombre" />
-      <PropertyRef Name="clte_ContactoTelefono" />
-      <PropertyRef Name="mun_Codigo" />
-      <PropertyRef Name="clte_EsActivo" />
-      <PropertyRef Name="clte_ConCredito" />
-      <PropertyRef Name="clte_EsMinorista" />
-      <PropertyRef Name="clte_UsuarioCrea" />
-      <PropertyRef Name="clte_FechaCrea" />
-    </Key>
-    <Property Name="clte_Id" Type="Int32" Nullable="false" />
-    <Property Name="tpi_Id" Type="Byte" Nullable="false" />
-    <Property Name="tpi_Descripcion" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
-    <Property Name="clte_Identificacion" Type="String" Nullable="false" MaxLength="26" FixedLength="false" Unicode="true" />
-    <Property Name="clte_EsPersonaNatural" Type="Boolean" Nullable="false" />
-    <Property Name="clte_Nombres" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="clte_Apellidos" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="clte_FechaNacimiento" Type="DateTime" Precision="0" />
-    <Property Name="clte_Nacionalidad" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-    <Property Name="clte_Sexo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-    <Property Name="clte_Telefono" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
-    <Property Name="clte_NombreComercial" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="clte_RazonSocial" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="clte_ContactoNombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="clte_ContactoEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="clte_ContactoTelefono" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
-    <Property Name="clte_FechaConstitucion" Type="DateTime" Precision="0" />
-    <Property Name="mun_Codigo" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
-    <Property Name="clte_Direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="clte_CorreoElectronico" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="clte_EsActivo" Type="Boolean" Nullable="false" />
-    <Property Name="clte_RazonInactivo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="clte_ConCredito" Type="Boolean" Nullable="false" />
-    <Property Name="clte_EsMinorista" Type="Boolean" Nullable="false" />
-    <Property Name="clte_Observaciones" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-    <Property Name="clte_UsuarioCrea" Type="Int32" Nullable="false" />
-    <Property Name="clte_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="clte_UsuarioModifica" Type="Int32" />
-    <Property Name="clte_FechaModifica" Type="DateTime" Precision="3" />
-  </EntityType>
-  <EntityType Name="UDV_Vent_Busqueda_Factura">
-    <Key>
-      <PropertyRef Name="fact_Id" />
-      <PropertyRef Name="fact_Codigo" />
-      <PropertyRef Name="fact_Fecha" />
-      <PropertyRef Name="esfac_Id" />
-      <PropertyRef Name="esfac_Descripcion" />
-      <PropertyRef Name="cja_Id" />
-      <PropertyRef Name="cja_Descripcion" />
-      <PropertyRef Name="suc_Id" />
-      <PropertyRef Name="clte_Id" />
-      <PropertyRef Name="pemi_NumeroCAI" />
-      <PropertyRef Name="fact_AlCredito" />
-      <PropertyRef Name="fact_DiasCredito" />
-      <PropertyRef Name="fact_PorcentajeDescuento" />
-      <PropertyRef Name="fact_Vendedor" />
-      <PropertyRef Name="clte_Identificacion" />
-      <PropertyRef Name="clte_Nombres" />
-      <PropertyRef Name="fact_EsAnulada" />
-      <PropertyRef Name="fact_UsuarioCrea" />
-      <PropertyRef Name="fact_FechaCrea" />
-    </Key>
-    <Property Name="fact_Id" Type="Int64" Nullable="false" />
-    <Property Name="fact_Codigo" Type="String" Nullable="false" MaxLength="19" FixedLength="false" Unicode="true" />
-    <Property Name="fact_Fecha" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="esfac_Id" Type="Byte" Nullable="false" />
-    <Property Name="esfac_Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="cja_Id" Type="Int16" Nullable="false" />
-    <Property Name="cja_Descripcion" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-    <Property Name="suc_Id" Type="Int32" Nullable="false" />
-    <Property Name="clte_Id" Type="Int32" Nullable="false" />
-    <Property Name="pemi_NumeroCAI" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
-    <Property Name="fact_AlCredito" Type="Boolean" Nullable="false" />
-    <Property Name="fact_DiasCredito" Type="Int32" Nullable="false" />
-    <Property Name="fact_PorcentajeDescuento" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-    <Property Name="fact_Vendedor" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="clte_Identificacion" Type="String" Nullable="false" MaxLength="26" FixedLength="false" Unicode="true" />
-    <Property Name="clte_Nombres" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="fact_IdentidadTE" Type="String" MaxLength="26" FixedLength="false" Unicode="true" />
-    <Property Name="fact_NombresTE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="fact_FechaNacimientoTE" Type="DateTime" Precision="0" />
-    <Property Name="fact_UsuarioAutoriza" Type="Int32" />
-    <Property Name="fact_FechaAutoriza" Type="DateTime" Precision="3" />
-    <Property Name="fact_EsAnulada" Type="Boolean" Nullable="false" />
-    <Property Name="fact_UsuarioCrea" Type="Int32" Nullable="false" />
-    <Property Name="fact_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="fact_UsuarioModifica" Type="Int32" />
-    <Property Name="fact_FechaModifica" Type="DateTime" Precision="3" />
-  </EntityType>
-  <EntityType Name="UDV_Inv_Nombre_Empleado">
-    <Key>
-      <PropertyRef Name="emp_Id" />
-      <PropertyRef Name="Empleados" />
-    </Key>
-    <Property Name="emp_Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Empleados" Type="String" Nullable="false" MaxLength="201" FixedLength="false" Unicode="true" />
-  </EntityType>
-  <ComplexType Name="UDP_Vent_tbEstadoPedido_Insert_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbEstadoPedido_Update_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  <ComplexType Name="UDP_Vent_tbUsuario_Rol_Apertura_Result">
+    <Property Type="Int32" Name="usu_Id" Nullable="false" />
+    <Property Type="String" Name="usu_NombreUsuario" Nullable="false" MaxLength="100" />
+    <Property Type="DateTime" Name="mocja_FechaApertura" Nullable="true" />
   </ComplexType>
 </Schema>

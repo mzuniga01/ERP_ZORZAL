@@ -7,13 +7,9 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Pedidos Detalles</h5>
+                    <h5>Pedido Detalles</h5>
                 </div>
-                <div class="ibox-content">
-
-                    @*@using (Html.BeginForm())*@
-                    @*@Html.AntiForgeryToken()*@
-
+                <div class="ibox-content">          
                     <div class="form-horizontal">
                         @Html.ValidationSummary(true)
 
@@ -21,17 +17,11 @@
                             <div class="form-group">
 
                             </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.prod_Codigo, new { @class = "control-label col-md-2" })
+                       
+                            <div class="col-md-offset-11 col-md-2">
+                                <button type="button" class="btn btn-primary btn-sm" id="AñadirPedidoDetalle">Añadir</button>
+                            </div>
 
-                                <div class="col-md-3">
-                                    @Html.EditorFor(model => model.prod_Codigo, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly" } })
-                                    <p style="color:red">
-                                        @Html.ValidationMessageFor(model => model.prod_Codigo)
-                                </div>
-                                <div class="col-md-1">
-                                    <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#ModalAgregarProducto"><span class="glyphicon glyphicon-search"></span></button>
-                                </div>
 
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.tbProducto.prod_CodigoBarras, "Código Barra", new { @class = "control-label col-md-2" })
@@ -39,14 +29,24 @@
                                         @Html.EditorFor(model => model.tbProducto.prod_CodigoBarras, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly" } })
                                         <p style="color:red">@Html.ValidationMessageFor(model => model.tbProducto.prod_CodigoBarras)
                                     </div>
+                                    <div class="col-md-1">
+                                        <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#ModalAgregarProducto"><span class="glyphicon glyphicon-search"></span></button>
+                                    </div>
+                                    
+
+                                    @Html.LabelFor(model => model.prod_Codigo, new { @class = "control-label col-md-2" })
+
+                                    <div class="col-md-3">
+                                        @Html.EditorFor(model => model.prod_Codigo, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly" } })
+                                        <p style="color:red">
+                                            @Html.ValidationMessageFor(model => model.prod_Codigo)
+                                    </div>
 
                                 </div>
-
-
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.tbProducto.prod_Descripcion, new { @class = "control-label col-md-2" })
                                     <div class="col-md-3">
-                                        @Html.EditorFor(model => model.tbProducto.prod_Descripcion, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly", onKeyPress = "return soloNumeros(event)", onKeyUp = "pierdeFoco(this)" } })
+                                        @Html.EditorFor(model => model.tbProducto.prod_Descripcion, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly" } })
                                         <p style="color:red">@Html.ValidationMessageFor(model => model.tbProducto.prod_Descripcion)
                                     </div>
 
@@ -68,9 +68,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-offset-10 col-md-2">
-                                    <button type="button" class="btn btn-primary btn-sm" id="AñadirPedidoDetalle">Añadir Pedido Detalle</button>
-                                </div>
+                              
 
                                 <br />
                                 <br />
@@ -99,7 +97,7 @@
                 </div>
             </div>
 
-            <script src="~/Scripts/app/Producto.js"></script>
+       
 
 
             <div>
@@ -125,17 +123,10 @@
     </div>
 
 
-
-    <script src="~/Scripts/jquery.mask.js"></script>
     <script src="~/Scripts/jquery.mask.min.js"></script>
-
-
-    <script>
-      $("#pedd_Cantidad")[0].maxLength = 10;
-      //$("#pedd_Cantidad_Ped")[0].maxLength = 10;
-    </script>
-    
+    <script src="~/Scripts/jquery.mask.js"></script>
     <script src="~/Scripts/app/SaveDetallePedido.js"></script>
+
     <script>
         $('#pedd_CantidadFacturada').val('0');
     </script>

@@ -21,7 +21,6 @@ namespace ERP_GMEDINA.Models
 
 
         [Display(Name = "Caja")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public short cja_Id { get; set; }
 
 
@@ -35,11 +34,10 @@ namespace ERP_GMEDINA.Models
         public Nullable<int> mocja_UsuarioApertura { get; set; }
 
         [Display(Name = "Cajero")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public Nullable<int> usu_Id { get; set; }
 
         [Display(Name = "Fecha Arqueo")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public System.DateTime mocja_FechaArqueo { get; set; }
 
 
@@ -49,7 +47,7 @@ namespace ERP_GMEDINA.Models
 
 
         [Display(Name = "Fecha Aceptacion")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public System.DateTime mocja_FechaAceptacion { get; set; }
 
 
@@ -63,7 +61,7 @@ namespace ERP_GMEDINA.Models
 
 
         [Display(Name = "Fecha Crea")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
         public System.DateTime mocja_FechaCrea { get; set; }
 
 
@@ -72,7 +70,7 @@ namespace ERP_GMEDINA.Models
 
 
         [Display(Name = "Fecha Modifica")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
         public System.DateTime mocja_FechaModifica { get; set; }
     }
 }

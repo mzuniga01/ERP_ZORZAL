@@ -206,16 +206,11 @@ $("#pemid_RangoInicio").keyup(function () {
 $("#dfisc_Id").change(function () {
     var dfisc_Id = $("#dfisc_Id").val();
     if (dfisc_Id != '') {
-        $('#ErrorDocumentoFiscalCreateEventoChange').text('');
+        $('#ErrorDocumentoFiscalCreate').text('');
     }
     else {
-        $('#validacionDocumentoFiscalCreate').after('<p id="ErrorDocumentoFiscalCreateEventoChange" style="color:red">Campo Documento Fiscal requerido</p>');
+        $('#validacionDocumentoFiscalCreate').after('<p id="ErrorDocumentoFiscalCreate" style="color:red">Campo Documento Fiscal requerido</p>');
     }
-});
-
-//Limpiar mensajes en tiempo real
-$("#dfisc_Id").change(function () {
-    $('#ErrorDocumentoFiscalCreate').text('');
 });
 
 $("#pemid_RangoInicio").keyup(function () {

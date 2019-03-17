@@ -197,13 +197,15 @@
             <div class="form-group" id="Activo">
                 @Html.LabelFor(model => model.clte_EsActivo, new { @class = "control-label col-md-2" })
                 <div class="col-md-2">
-                    @Html.EditorFor(model => model.clte_EsActivo, new { htmlAttributes = new { @type = "checkbox", @checked = "true", @disabled = "disabled" } })
+                    <label class="form-control no-borders font-normal">Activo</label>
+                    @Html.EditorFor(model => model.clte_EsActivo, new { htmlAttributes = new { @type = "hidden", @checked = "true", @disabled = "disabled" } })
                     <p style="color:red">@Html.ValidationMessageFor(model => model.clte_EsActivo)</p>
                 </div>
                 <div>
                     @Html.LabelFor(model => model.clte_ConCredito, new { @class = "control-label col-md-2" })
                     <div class="col-md-2">
-                        @Html.EditorFor(model => model.clte_ConCredito, new { htmlAttributes = new { @type = "checkbox", @checked = "true", @disabled = "disabled" } })
+                        <label class="form-control no-borders font-normal">No</label>
+                        @Html.EditorFor(model => model.clte_ConCredito, new { htmlAttributes = new { @type = "hidden", @checked = "true", @disabled = "disabled" } })
                         <p style="color:red">@Html.ValidationMessageFor(model => model.clte_ConCredito)</p>
                     </div>
                 </div>

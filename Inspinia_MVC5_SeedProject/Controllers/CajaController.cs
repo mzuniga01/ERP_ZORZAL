@@ -47,21 +47,36 @@ namespace ERP_GMEDINA.Controllers
         [SessionManager("Caja/Create")]
         public ActionResult Create()
         {
-            tbCaja caja = new tbCaja();
-            List<tbUsuario> List = Function.getUserInformation();
-            int SucursalId = 0;
-            foreach (tbUsuario User in List)
+            if (Function.GetUserLogin())
             {
-                SucursalId = (int)User.suc_Id;
+                if (Function.GetRol())
+                {
+                    if (Function.GetUserRols("Caja/Create"))
+                    {
+                        int idUser = 0;
+                        GeneralFunctions Login = new GeneralFunctions();
+                        List<tbUsuario> User = Login.getUserInformation();
+                        foreach (tbUsuario Usuario in User)
+                        {
+                            idUser = Convert.ToInt32(Usuario.emp_Id);
+                        }
+                        ViewBag.usu_Id = idUser;
+                        ViewBag.suc_Descripcion = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Descripcion).SingleOrDefault();
+                        ViewBag.suc_Id = db.tbUsuario.Where(x => x.emp_Id == idUser).Select(x => x.tbSucursal.suc_Id).SingleOrDefault();
+                        return View();
+                    }
+                    else
+                    {
+                        return RedirectToAction("SinAcceso", "Login");
+                    }
+                }
+                else
+                    return RedirectToAction("SinRol", "Login");
             }
-            var Sucursal = db.tbSucursal.Select(s => new
-            {
-                suc_Id = s.suc_Id,
-                suc_Descripcion = s.suc_Descripcion
-            }).Where(x => x.suc_Id == SucursalId).ToList();
-            ViewBag.suc_Id = new SelectList(Sucursal, "suc_Id", "suc_Descripcion");
-            return View(caja);
-        }
+
+            else
+                return RedirectToAction("Index", "Login");
+    }
 
         // POST: /Caja/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 

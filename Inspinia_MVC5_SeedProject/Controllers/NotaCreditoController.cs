@@ -23,28 +23,28 @@ namespace ERP_GMEDINA.Controllers
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
         GeneralFunctions Function = new GeneralFunctions();
         // GET: /NotaCredito/
-        //public ActionResult Index()
-        //{
-        //    if (Function.GetUserLogin())
-        //    {
-        //        if (Function.GetRol())
-        //        {
-        //            if (Function.GetUserRols("NotaCredito/Index"))
-        //            {
-        //                var tbnotacredito = db.tbNotaCredito.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbCliente).Include(t => t.tbDevolucion).Include(t => t.tbSucursal);
-        //                return View(tbnotacredito.ToList());
-        //            }
-        //            else
-        //            {
-        //                return RedirectToAction("SinAcceso", "Login");
-        //            }
-        //        }
-        //        else
-        //            return RedirectToAction("SinRol", "Login");
-        //    }
-        //    else
-        //        return RedirectToAction("Index", "Login");
-        //}
+        public ActionResult Index()
+        {
+            if (Function.GetUserLogin())
+            {
+                if (Function.GetRol())
+                {
+                    if (Function.GetUserRols("NotaCredito/Index"))
+                    {
+                        var tbnotacredito = db.tbNotaCredito.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbCliente).Include(t => t.tbDevolucion).Include(t => t.tbSucursal);
+                        return View(tbnotacredito.ToList());
+                    }
+                    else
+                    {
+                        return RedirectToAction("SinAcceso", "Login");
+                    }
+                }
+                else
+                    return RedirectToAction("SinRol", "Login");
+            }
+            else
+                return RedirectToAction("Index", "Login");
+        }
 
         public ActionResult _IndexDevolucion(int? id)
         {
@@ -233,9 +233,9 @@ namespace ERP_GMEDINA.Controllers
                         {
                             return RedirectToAction("NotFound", "Login");
                         }
-                        //ViewBag.clte_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion", tbNotaCredito.cja_Id);
-                        //ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_Identificacion", tbNotaCredito.clte_Id);
-                        //ViewBag.Nombres= db.tbNotaCredito.Where(x => x.nocre_Id == id).Select(x => x.tbCliente.clte_Nombres+" "+x.tbCliente.clte_Apellidos).SingleOrDefault();
+                        ViewBag.clte_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion", tbNotaCredito.cja_Id);
+                        ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_Identificacion", tbNotaCredito.clte_Id);
+                        ViewBag.Nombres= db.tbNotaCredito.Where(x => x.nocre_Id == id).Select(x => x.tbCliente.clte_Nombres+" "+x.tbCliente.clte_Apellidos).SingleOrDefault();
                         ViewBag.dev_Id = new SelectList(db.tbDevolucion, "dev_Id", "dev_Id", tbNotaCredito.dev_Id);
                         ViewBag.Cliente = db.tbCliente.ToList();
                         ViewBag.Devolucion = db.tbDevolucionDetalle.ToList();

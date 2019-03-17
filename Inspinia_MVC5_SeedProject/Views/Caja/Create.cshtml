@@ -45,22 +45,23 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.tbSucursal.suc_Descripcion, "Sucursal", new { @class = "control-label col-md-2" })
-            <div class="col-md-5">
-                @Html.DropDownList("suc_Id", null, new { @class = "form-control", @readonly = "readonly" })
+            <div class="col-md-4">
+                <input class="form-control" readonly value="@ViewBag.suc_Descripcion" name="suc_Descripcion" id="suc_Descripcion" />
+                <input class="form-control" readonly value="@ViewBag.suc_Id" id="suc_Id" name="suc_Id" type="hidden" />
                 <p id="Identificacion" style="color:red">@Html.ValidationMessageFor(model => model.suc_Id)</p>
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.cja_Descripcion,  new { @class = "control-label col-md-2", })
-            <div class="col-md-5">
+            <div class="col-md-4">
                 @Html.EditorFor(model => model.cja_Descripcion, new { htmlAttributes = new { @autocomplete = "off", @style = "text-transform:uppercase;", onkeypress = "return validar(event)", @maxlenght = 10 }})
                 <span class="validation-error">@Html.ValidationMessageFor(model => model.cja_Descripcion)</span>
             </div>
         </div>
 
         <div class="form-group">
-            <div class="col-md-offset-5 col-md-10">
+            <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Guardar" class="btn btn-primary"/>
 				@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white"})
             </div>
@@ -89,7 +90,6 @@
                 }
             }
         });
-    S
 </script>
 
 

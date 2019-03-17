@@ -4,7 +4,7 @@ $('#AñadirPedidoDetalle').click(function () {
     var prod_Descripcion = $('#tbProducto_prod_Descripcion').val();
     var pedd_Cantidad = $('#pedd_Cantidad').val();
     //var pedd_CantidadFacturada = $('#pedd_CantidadFacturada').val();
-
+    console.log('prod_Codigo')
 
     if (prod_Codigo == '') {
         $('#MessageError').text('');
@@ -90,6 +90,7 @@ $('#AñadirPedidoDetalle').click(function () {
     }
 });
 
+
 function GetPedidoDetalle() {
     var PedidoDetalle = {
         prod_Codigo: $('#prod_Codigo').val(),
@@ -103,6 +104,9 @@ function GetPedidoDetalle() {
     return PedidoDetalle;
 }
 
+
+$("#pedd_Cantidad")[0].maxLength = 10; 
+$("#pedd_Cantidad_Ped")[0].maxLength = 10;
 
 
 
@@ -219,7 +223,6 @@ function EditPedidoDetalleM(pedd_Id) {
 
 
 
-
 $('#AñadirPedidoDetalle').click(function () {
     var prod_Codigo = $('#prod_Codigo').val();
     var CodigoBarra = $('#tbProducto_prod_CodigoBarras').val();
@@ -300,7 +303,6 @@ $('#AñadirPedidoDetalle').click(function () {
 
 });
 
-
 function GetPedidoDetalle() {
     var PedidoDetalle = {
         prod_Codigo: $('#prod_Codigo').val(),
@@ -313,17 +315,6 @@ function GetPedidoDetalle() {
     };
     return PedidoDetalle;
 }
-
-$("#pedd_Cantidad").mask(
-'PN',
-{
-    translation:
-       {
-           P: { pattern: /[1-9]/ },
-           N: { pattern: /\d/, recursive: true }
-       }
-}
-);
 
 
 

@@ -190,10 +190,14 @@
         prevText: 'Ant',
         nextText: 'Sig'
     }).datepicker('setDate', new Date());
+    $(function () {
+        $("#mocja_FechaApertura").datepicker({ dateFormat: 'mm/dd/yy' }).datepicker('setDate', new Date()).datepicker("destroy");
+
+    });
 
     //Fecha de realizacion de pago
     $("#FechaPago").datepicker({
-        dateFormat: 'mm-dd-yy',
+        dateFormat: 'mm/dd/yy',
         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
         prevText: 'Ant',
@@ -202,32 +206,42 @@
         changeYear: true,
     }).datepicker('setDate', new Date()).datepicker("destroy");
 
+    $("#pago_FechaElaboracion").datepicker({
+        dateFormat: 'mm/dd/yy',
+        monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+        dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+        prevText: 'Ant',
+        nextText: 'Sig',
+        changeMonth: true,
+        changeYear: true,
+    }).datepicker('setDate', new Date())
+
     $("#fechaarqueo").datepicker({
-        dateFormat: 'mm-dd-yy',
+        dateFormat: 'mm/dd/yy',
         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá']
     }).datepicker('setDate', new Date());
 
     $("#fechasarqueo").datepicker({
-        dateFormat: 'mm-dd-yy',
+        dateFormat: 'mm/dd/yy',
         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá']
     }).datepicker('setDate', new Date());
 
     $("#fechainicio").datepicker({
-        dateFormat: 'mm-dd-yy',
+        dateFormat: 'mm/dd/yy',
         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá']
     }).datepicker('setDate', new Date());
 
     $("#fechafin").datepicker({
-        dateFormat: 'mm-dd-yy',
+        dateFormat: 'mm/dd/yy',
         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá']
     }).datepicker('setDate', new Date());
 
     $("#fechaaceptacion").datepicker({
-        dateFormat: 'mm-dd-yy',
+        dateFormat: 'mm/dd/yy',
         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá']
     }).datepicker('setDate', new Date());
@@ -240,17 +254,18 @@
 
     //Filtros
     $("#FechaDesde").datepicker({
-        dateFormat: 'mm-dd-yy',
+        dateFormat: 'mm/dd/yy',
         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá']
     }).datepicker('setDate', new Date());
 
     $("#FechaHasta").datepicker({
-        dateFormat: 'mm-dd-yy',
+        dateFormat: 'mm/dd/yy',
         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá']
     }).datepicker('setDate', new Date());
 
 });
+
 
 

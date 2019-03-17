@@ -71,11 +71,6 @@
                                 </div>
                             </div>
 
-
-
-
-
-
                             <div class="form-group">
                                 @Html.LabelFor(model => model.nocre_Codigo, new { @class = "control-label col-md-2" })
                                 <div class="col-md-3">
@@ -91,7 +86,6 @@
                             </div>
                             <div class="form-group" id="divDevolucion">
                                 @Html.LabelFor(model => model.dev_Id, new { @class = "control-label col-md-2" })
-                                @*<label class="control-label col-md-2" id="labeldev" name="labeldev">Devolución</label>*@
                                 <div class="col-md-3">
                                     <input id="dev_Id" type="text" name="dev_Id" value="@ViewBag.IdDev" class="form-control " readonly />
                                     <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.dev_Id)</span></p>
@@ -182,7 +176,7 @@
             dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
             dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
             weekHeader: 'Sm',
-            dateFormat: 'dd/mm/yy',
+            dateFormat: 'mm/dd/yy',
             firstDay: 1,
             isRTL: false,
             showMonthAfterYear: false,
@@ -190,9 +184,9 @@
         };
         $.datepicker.setDefaults($.datepicker.regional['es']);
         $(function () {
-            $("#nocre_FechaEmision").datepicker({ dateFormat: 'dd/mm/yy' }).datepicker('setDate', new Date()).datepicker("destroy");
+            $("#nocre_FechaEmision").datepicker({ dateFormat: 'mm/dd/yy' }).datepicker('setDate', new Date()).datepicker("destroy");
 
-            $("#tbDevolucion_dev_Fecha").datepicker({ dateFormat: 'dd/mm/yy' }).datepicker("destroy")
+            $("#tbDevolucion_dev_Fecha").datepicker({ dateFormat: 'mm/dd/yy' }).datepicker("destroy")
         });
     </script>
     <script>

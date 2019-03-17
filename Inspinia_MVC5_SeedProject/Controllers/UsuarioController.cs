@@ -489,19 +489,19 @@ namespace ERP_GMEDINA.Controllers
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
-        [HttpPost]
-        public JsonResult EstadoInactivar(string prod_Codigo, bool Activo, string Razon_Inactivacion)
-        {
-            var list = db.UDP_Acce_tbUsuario_Estado(prod_Codigo, Activo, Razon_Inactivacion).ToList();
-            return Json(list, JsonRequestBehavior.AllowGet);
-        }
+        //[HttpPost]
+        //public JsonResult EstadoInactivar(string prod_Codigo, bool Activo, string Razon_Inactivacion)
+        //{
+        //    var list = db.UDP_Acce_tbUsuario_Estado(prod_Codigo, Activo, Razon_Inactivacion).ToList();
+        //    return Json(list, JsonRequestBehavior.AllowGet);
+        //}
 
-        [HttpPost]
-        public JsonResult Estadoactivar(string prod_Codigo, bool Activo, string Razon_Inactivacion)
-        {
-            var list = db.UDP_Acce_tbUsuario_Estado(prod_Codigo, Activo, Razon_Inactivacion).ToList();
-            return Json(list, JsonRequestBehavior.AllowGet);
-        }
+        //[HttpPost]
+        //public JsonResult Estadoactivar(string prod_Codigo, bool Activo, string Razon_Inactivacion)
+        //{
+        //    var list = db.UDP_Acce_tbUsuario_Estado(prod_Codigo, Activo, Razon_Inactivacion).ToList();
+        //    return Json(list, JsonRequestBehavior.AllowGet);
+        //}
 
         [HttpPost]
         public JsonResult AgregarRol(int idRol, ICollection<tbRolesUsuario> RolUsuario)

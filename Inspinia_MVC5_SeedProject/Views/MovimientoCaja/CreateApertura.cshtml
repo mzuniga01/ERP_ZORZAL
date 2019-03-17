@@ -21,7 +21,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Apertura</h5>
+                    <h5>Registrar Apertura</h5>
                 </div>
                 <div class="ibox-content">
 
@@ -46,7 +46,7 @@
             </div>
 
             <div class="form-group col-md-5">
-                @Html.LabelFor(model => model.cja_Id, "Caja", new { @class = "control-label col-md-2" })
+                <label class="control-label col-md-2">Caja<span style="color:red">*</span></label>
                 <div class="col-md-10">
                     @Html.DropDownList("cja_Id", null, "Seleccione Caja", new { @class = "form-control" })
                     <div id="validacioncajacreate">
@@ -96,10 +96,13 @@
 
 
             <div class="form-group col-md-5">
-                @Html.LabelFor(model => model.usu_Id, "Cajero", new { @class = "control-label col-md-2" })
+                <label class="control-label col-md-2">Cajero<span style="color:red">*</span></label>
                 <div class="col-md-10">
                     @Html.DropDownList("usu_Id", null, "Seleccione Cajero", new { @class = "form-control" })
-                    <p id="MensajeErrorUsuario" style="color:red">@Html.ValidationMessageFor(model => model.usu_Id)</p>
+                    <div id="MessageCajero">
+                        <p id="MensajeErrorUsuario" style="color:red">@Html.ValidationMessageFor(model => model.usu_Id)</p>
+                    </div>
+                 
                 </div>
             </div>
         </div>
@@ -149,7 +152,43 @@
     <script src="~/Scripts/app/AperturaSolicitudEfectivoDetalle.js"></script>
     <script src="~/Scripts/app/AperturaSolicitudEfectivo.js"></script>
     <script src="~/Scripts/app/ComandoGuardar.js"></script>
+    <script>
+        $('#guardar').click(function () {
+            var caja = $(cja_Id).val();
+            var cajero = $(usu_Id).val();
 
+            if (caja == '') {
+                $('#MensajeCaja').text('');
+                $('#validacioncajacreate').after('<p id="MensajeCaja" style="color:red">Campo Caja requerido</p>');
+                return false
+            }
+            else if (cajero == '') {
+                $('#MensajeCajero').text('');
+                $('#MessageCajero').after('<p id="MensajeCajero" style="color:red">Campo Cajero requerido</p>');
+                return false
+            }
+        });
+
+        $("#cja_Id").change(function () {
+            var cja_Id = $("#cja_Id").val();
+            if (cja_Id != '') {
+                $('#MensajeCaja').text('');
+            }
+            else {
+                $('#validacioncajacreate').after('<p id="MensajeCaja" style="color:red">Campo Caja requerido</p>');
+            }
+        });
+
+        $("#usu_Id").change(function () {
+            var usu_Id = $("#usu_Id").val();
+            if (usu_Id != '') {
+                $('#MensajeCajero').text('');
+            }
+            else {
+                $('#MessageCajero').after('<p id="MensajeCajero" style="color:red">Campo Cajero requerido</p>');
+            }
+        });
+    </script>
 @*<script type="text/javascript">
     //Current Date
     var d = new Date();

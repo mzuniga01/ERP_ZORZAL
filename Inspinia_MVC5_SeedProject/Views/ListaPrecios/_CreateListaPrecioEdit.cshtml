@@ -55,11 +55,6 @@
                                     </div>
 
                                 </div>
-
-
-
-
-
                             </div>
 
                             <div class="form-group">
@@ -120,23 +115,14 @@
                                     </div>
 
                                 </div>
-                            </div>
-                         
-
+                            </div>                      
                         }
                         </div>
-
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    @*</div>
-
-        </div>*@
-
                             <table id="tbListaPrecioDetalle" class="table table table-striped">
                                 <thead>
                                     <tr>
@@ -153,14 +139,9 @@
 
                                 <tbody></tbody>
                             </table>
-
-
                             <div id="validationSummary">
                                 <p style="color:red"></p>
                             </div>
-
-
-
                             <div>
                                 <div class="modal fade" id="ModalAgregarProducto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                     <div class="modal-dialog" role="document">
@@ -198,63 +179,35 @@
             }
             return true;
         }
-
-
-
     $("#lispd_DescCaja").blur(function () {
         valido = document.getElementById('smsCantidad');
 
         var DescuentoCaja = $('#lispd_DescCaja').val();
-
-
-
         if (parseFloat(DescuentoCaja) < 0 || parseFloat(DescuentoCaja)> 100) {
-            //console.log("facturada", CantFacturada)
-            //console.log(CantDevolucion)
-            //console.log("if")
+    
             valido.innerText = "El valor debe estar entre 0 a 100";
             $('#lispd_DescCaja').val("");
             $('#lispd_DescCaja').focus();
         }
-        else {
-            //console.log("else")
+        else {     
             valido.innerText = "";
         }
-
-
     });
-
     $("#lispd_DescGerente").blur(function () {
-
         valido1 = document.getElementById('desccaja');
-
         var DescuentoGerente = $('#lispd_DescGerente').val();
-
-
-
-
         if (parseFloat(DescuentoGerente) < 0 || parseFloat(DescuentoGerente) > 100) {
-            //console.log("facturada", CantFacturada)
-            //console.log(CantDevolucion)
-            //console.log("if")
+         
             valido1.innerText = "El valor debe estar entre 0 a 100";
             $('#lispd_DescGerente').val("");
             $('#lispd_DescGerente').focus();
         }
         else {
-            //console.log("else")
+
             valido1.innerText = "";
         }
 
-
-
-
-
     });
-
-
-
-
 
     //---------------------------------Ctrl + G (GuardarRegistro)------------------------------
     $(document).keydown(function (e) {
@@ -265,9 +218,4 @@
         }
         return true;
     });
-
-
-
-
-
-                            </script>
+</script>

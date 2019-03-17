@@ -29,7 +29,7 @@ namespace ERP_GMEDINA.Models
         public byte tsal_Id { get; set; }
         public int sal_BodDestino { get; set; }
         public bool sal_EsAnulada { get; set; }
-        public string sal_RazonDevolucion { get; set; }
+        public int tdev_Id { get; set; }
         public string sal_RazonAnulada { get; set; }
         public int sal_UsuarioCrea { get; set; }
         public System.DateTime sal_FechaCrea { get; set; }
@@ -44,6 +44,7 @@ namespace ERP_GMEDINA.Models
         public virtual ICollection<tbEntrada> tbEntrada { get; set; }
         public virtual tbEstadoMovimiento tbEstadoMovimiento { get; set; }
         public virtual tbFactura tbFactura { get; set; }
+        public virtual tbTipoDevolucion tbTipoDevolucion { get; set; }
         public virtual tbTipoSalida tbTipoSalida { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbSalidaDetalle> tbSalidaDetalle { get; set; }

@@ -23,7 +23,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Lista de Devolución</h5>
+                    <h5>Listado de Devolución</h5>
                     <div class="ibox-tools">
                         @Html.ActionLink("Devoluciones Anuladas", "_DevolucionesAnuladas", null, new { @class = "btn btn-primary btn-ms" })
                         @Html.ActionLink("Registrar Devolución", "Create", null, new { @class = "btn btn-primary btn-ms" })
@@ -91,7 +91,7 @@
                                     @if (ViewBag.NotaCredito == "1")
                                     {
                                         <td>
-                                            @Html.ActionLink("Detalle", "Details", new { id = item.dev_Id }, new { @class = "btn btn-primary btn-xs" })
+                                            @Html.ActionLink("Detalles", "Details", new { id = item.dev_Id }, new { @class = "btn btn-primary btn-xs" })
 
                                             <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="No se puede Editar, porque ya se emitío una nota crédito">
                                                 <button class="btn btn-white btn-xs" style="pointer-events: none;" type="button" disabled>Editar</button>
@@ -103,9 +103,9 @@
                                     else
                                     {
                                         <td>
-                                            @Html.ActionLink("Detalle", "Details", new { id = item.dev_Id }, new { @class = "btn btn-primary btn-xs" })
+                                            @Html.ActionLink("Detalles", "Details", new { id = item.dev_Id }, new { @class = "btn btn-primary btn-xs" })
 
-                                            @Html.ActionLink("Editar", "Edit", new { id = item.dev_Id }, new { @class = "btn btn-primary btn-xs" })
+                                            @Html.ActionLink("Editar", "Edit", new { id = item.dev_Id }, new { @class = "btn btn-white btn-xs" })
                                         </td>
                                     }
 

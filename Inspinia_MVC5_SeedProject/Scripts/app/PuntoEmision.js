@@ -1,10 +1,6 @@
-﻿//Máximo de caracteres
-$(document).ready(function () {
+﻿$(document).ready(function () {
     $("#pemi_NumeroCAI")[0].maxLength = 37;
-});
 
-//Datatables
-$(document).ready(function () {
     $('#PuntoEmision').DataTable(
     {
         "searching": true,

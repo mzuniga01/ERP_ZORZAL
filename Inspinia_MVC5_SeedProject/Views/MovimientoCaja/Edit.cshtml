@@ -73,7 +73,7 @@
             </div>
             @Html.LabelFor(model => model.mocja_FechaApertura, new { @class = "control-label col-md-2" })
             <div class="col-md-3">
-                @Html.EditorFor(model => model.mocja_FechaApertura, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechaapertura", @readonly = "readonly" } })
+                @Html.EditorFor(model => model.mocja_FechaApertura, "{0:yyyy/MM/dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechaapertura", @readonly = "readonly" } })
                 <span style="color:red" class="validation-error">@Html.ValidationMessageFor(model => model.mocja_FechaApertura)</span>
             </div>
         </div>
@@ -86,7 +86,7 @@
             </div>
             @Html.LabelFor(model => model.mocja_FechaArqueo, new { @class = "control-label col-md-2" })
             <div class="col-md-3">
-                @Html.EditorFor(model => model.mocja_FechaArqueo, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechaarqueo", @readonly = "readonly" } })
+                @Html.EditorFor(model => model.mocja_FechaArqueo, "{0:yyyy/MM/dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechaarqueo", @readonly = "readonly" } })
                 <span class="validation-error">@Html.ValidationMessageFor(model => model.mocja_FechaArqueo)</span>
             </div>
         </div>
@@ -99,7 +99,7 @@
             </div>
             @Html.LabelFor(model => model.mocja_FechaAceptacion, new { @class = "control-label col-md-2" })
             <div class="col-md-3">
-                @Html.EditorFor(model => model.mocja_FechaAceptacion, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechaaceptacion", @readonly = "readonly" } })
+                @Html.EditorFor(model => model.mocja_FechaAceptacion, "{0:yyyy/MM/dd}", new { htmlAttributes = new { @class = "form-control", @id = "fechaaceptacion", @readonly = "readonly" } })
                 <span class="validation-error">@Html.ValidationMessageFor(model => model.mocja_FechaAceptacion)</span>
             </div>
         </div>

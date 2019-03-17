@@ -64,7 +64,7 @@
                                     @Html.DisplayNameFor(model => model.clte_Telefono)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.clte_EsActivo)
+                                   Estado
                                 </th>
                                 <th>Acciones</th>
                             </tr>
@@ -111,11 +111,11 @@
                                     </td>
                                     @if (item.clte_EsActivo)
                                     {
-                                        <td>Sí</td>
+                                        <td>Activo</td>
                                     }
                                     else
                                     {
-                                        <td>No</td>
+                                        <td>Inactivo</td>
                                     }
                                     <td>
                                         @Html.ActionLink("Detalles", "Details", new { id = item.clte_Id }, new { @class = "btn btn-primary btn-xs" })

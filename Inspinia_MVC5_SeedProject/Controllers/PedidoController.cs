@@ -375,6 +375,7 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.suc_Id = new SelectList(db.tbSucursal, "suc_Id", "mun_Codigo", tbPedido.suc_Id);
             ViewBag.esped_Id = new SelectList(db.tbEstadoPedido, "esped_Id", "esped_Descripcion", tbPedido.esped_Id);
             ViewBag.Producto = db.tbProducto.ToList();
+            tbPedido Pedido = new tbPedido();
             ViewBag.Cliente = db.tbCliente.ToList();
             tbPedido.esped_Id = Helpers.Pendiente;
 
@@ -540,10 +541,7 @@ namespace ERP_GMEDINA.Controllers
                 try
                 {
                     tbPedido vPedido = db.tbPedido.Find(id);
-                    //db.tbTipoIdentificacion.Add(tbTipoIdentificacion);
-                    //db.SaveChanges();
-                    //return RedirectToAction("Index");
-
+                
                     var MensajeError = "";
                     IEnumerable<object> list = null;
                     list = db.UDP_Vent_tbPedido_Update(tbPedido.ped_Id,
@@ -587,28 +585,6 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.Producto = db.tbProducto.ToList();
             return View(tbPedido);
         }
-
-        // GET: /Pedido/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return RedirectToAction("Index");
-            }
-            tbPedido tbPedido = db.tbPedido.Find(id);
-            if (tbPedido == null)
-            {
-                return RedirectToAction("NotFound", "Login");
-            }
-            return View(tbPedido);
-        }
-
-
-
-
-
-
-
         [HttpPost]
         public JsonResult GuardarPedidoDetalle(tbPedidoDetalle PedidoDetalles)
         {
@@ -696,16 +672,6 @@ namespace ERP_GMEDINA.Controllers
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
-        // POST: /Pedido/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            tbPedido tbPedido = db.tbPedido.Find(id);
-            db.tbPedido.Remove(tbPedido);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
 
         protected override void Dispose(bool disposing)
         {

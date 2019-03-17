@@ -19,7 +19,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Listado de Pago</h5>
+                    <h5>Listado de Pagos</h5>
 					<div class="ibox-tools">
 
 						@Html.ActionLink("Registrar Pago", "Create", null, new { @class = "btn btn-primary "})
@@ -82,9 +82,9 @@
                             @if (item.pago_EstaAnulado == false)
                             {
                                     <td>
-                                        @Html.ActionLink("Detalle", "Details", new { id = item.pago_Id }, new { @class = "btn btn-primary btn-xs" })
+                                        @Html.ActionLink("Detalles", "Details", new { id = item.pago_Id }, new { @class = "btn btn-primary btn-xs" })
                                         @Html.ActionLink("Editar", "Edit", new { id = item.pago_Id }, new { @class = "btn btn-white btn-xs" })
-                                        @Html.ActionLink("Imprimir", "ExportReport", new { id = item.pago_Id }, new { @class = "btn btn-info btn-xs", @id= "bottonImprimir" ,@name= "bottonImprimir"})
+                                        @Html.ActionLink("Imprimir", "ExportReport", new { id = item.pago_Id }, new { @class = "btn btn-primary btn-xs", @id= "bottonImprimir" ,@name= "bottonImprimir"})
                                         
                                         
                                         @*@Html.ActionLink("Imprimir", "", new { id = item.pago_Id }, new { @class = "btn btn-white btn-xs", id = "bottonImprimir", name = "bottonImprimir", type = "button", data-toggle='modal' ,data-target='#Imprimir' })*@
@@ -106,7 +106,7 @@
                                     </span>
 
                                     <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="No se puede Imprimir, esta Anulado">
-                                        <button id="bottonImprimir" class="btn btn-info btn-xs" style="pointer-events: none;" type="button" disabled>Imprimir</button>
+                                        <button id="bottonImprimir" class="btn btn-primary btn-xs" style="pointer-events: none;" type="button" disabled>Imprimir</button>
                                     </span>
                                 </td>
                             }

@@ -23,6 +23,7 @@ namespace ERP_GMEDINA.Models
             this.tbCaja = new HashSet<tbCaja>();
             this.tbCuponDescuento = new HashSet<tbCuponDescuento>();
             this.tbFactura = new HashSet<tbFactura>();
+            this.tbNotaCredito = new HashSet<tbNotaCredito>();
             this.tbPedido = new HashSet<tbPedido>();
         }
     
@@ -55,6 +56,8 @@ namespace ERP_GMEDINA.Models
         public virtual ICollection<tbCuponDescuento> tbCuponDescuento { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbFactura> tbFactura { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbNotaCredito> tbNotaCredito { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbPedido> tbPedido { get; set; }
         public virtual tbPuntoEmision tbPuntoEmision { get; set; }

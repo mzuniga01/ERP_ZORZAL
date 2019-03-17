@@ -51,7 +51,7 @@ function GetDenominacion() {
                     contador = contador + 1;
                     copiar = "<tr data-id=" + contador + ">";
                     copiar += "<td id = 'DenominacionCreate'>"  + val.deno_Descripcion + "</td>";
-                    copiar += "<td>" + '<input type="number" min="0" id="name" name="name" class="form-control" size="3" onkeypress = "return validar(event)"  >' + "</td>";
+                    copiar += "<td>" + '<input type="number" autocomplete = "off" min="0" id="name" name="name" class="form-control" size="3" onkeypress = "return validar(event)"  >' + "</td>";
                     copiar += "<td id = 'ValorCreate'>" + val.deno_valor + "</td>";
                     copiar += "<td id = 'SuntotalCreate'></td>";
                     copiar += "<td id = 'deno_Id' hidden>" + val.deno_Id + "</td>";
@@ -65,10 +65,6 @@ function GetDenominacion() {
 
             }
         });
-    }
-    else {
-
-
     }
 }
 
@@ -129,11 +125,6 @@ $('#usu_Id').on("change", function () {
 
 $(document).ready(function () {
     $("#alerta").hide();
-})
-
-
-
-$(document).ready(function () {
     GetRol();
 })
 
@@ -153,8 +144,6 @@ function GetRol() {
                 $('#usu_Id').append("<option value=''>Seleccione Cajero </option>");
                 $.each(data, function (key, val) {
                     $('#usu_Id').append("<option value=" + val.usu_Id + ">" + val.usu_NombreUsuario + "</option>");
-                    console.log(key)
-                    console.log(val)
                 });
             }
             else {

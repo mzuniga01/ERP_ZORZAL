@@ -1,7 +1,6 @@
 ﻿var contador = 0;
 $('#mnda_Id').change(function () {
     var moneda = $('#mnda_Id').val();
-    console.log('moneda', moneda);
 
     var SolicitudEfectivoMoneda = GetSolicitudEfectivoMoneda();
     $.ajax({
@@ -12,17 +11,8 @@ $('#mnda_Id').change(function () {
         data: JSON.stringify({ SolicitudEfectivoMon: SolicitudEfectivoMoneda }),
     })
     .done(function (data) {
-        ////Limpiar mensajes
-        //$('#Errorcajacreate').text('');
-
-        //Limpiar 
-        //$('#mnda_Id').val('');
     });
 });
-
-
-
-///////////////////////////////////////////////////
 
 function GetSolicitudEfectivoMoneda() {
     var solicitudefectivo = {

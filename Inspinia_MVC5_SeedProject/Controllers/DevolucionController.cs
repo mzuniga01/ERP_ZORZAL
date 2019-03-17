@@ -47,7 +47,28 @@ namespace ERP_ZORZAL.Controllers
             else
                 return RedirectToAction("Index", "Login");
         }
-
+        public ActionResult _DevolucionesAnuladas()
+        {
+            if (Function.GetUserLogin())
+            {
+                if (Function.GetRol())
+                {
+                    if (Function.GetUserRols("Devolucion/Index"))
+                    {
+                        var tbdevolucion = db.tbDevolucion.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbCaja).Include(t => t.tbFactura);
+                        return View(tbdevolucion.Where(a => a.dev_Estado == true).ToList());
+                    }
+                    else
+                    {
+                        return RedirectToAction("SinAcceso", "Login");
+                    }
+                }
+                else
+                    return RedirectToAction("SinRol", "Login");
+            }
+            else
+                return RedirectToAction("Index", "Login");
+        }
         [HttpPost]
         public JsonResult InsertDevolucion(tbDevolucionDetalle DetalleDevolucioncont)
         {
@@ -65,7 +86,42 @@ namespace ERP_ZORZAL.Controllers
             }
             return Json("Exito", JsonRequestBehavior.AllowGet);
         }
-
+        public ActionResult _DetalleDevAnulada(int? id)
+        {
+            if (Function.GetUserLogin())
+            {
+                if (Function.GetRol())
+                {
+                    if (Function.GetUserRols("Devolucion/Details"))
+                    {
+                        if (id == null)
+                        {
+                            return RedirectToAction("Index");
+                        }
+                        tbDevolucionDetalle tbDevolucionDetalle = new tbDevolucionDetalle();
+                        tbDevolucion tbDevolucion = db.tbDevolucion.Find(id);
+                        if (tbDevolucion == null)
+                        {
+                            return RedirectToAction("NotFound", "Login");
+                        }
+                        var ExiteNotaCredito = db.tbNotaCredito.Where(x => x.dev_Id == tbDevolucion.dev_Id).ToList();
+                        if (ExiteNotaCredito.Count() > 0)
+                        {
+                            ViewBag.NotaCredito = "1";
+                        }
+                        return View(tbDevolucion);
+                    }
+                    else
+                    {
+                        return RedirectToAction("SinAcceso", "Login");
+                    }
+                }
+                else
+                    return RedirectToAction("SinRol", "Login");
+            }
+            else
+                return RedirectToAction("Index", "Login");
+        }
         [HttpPost]
         public JsonResult RemoveDevolucionDetalle(tbDevolucionDetalle DetalleDevolucioncont)
         {

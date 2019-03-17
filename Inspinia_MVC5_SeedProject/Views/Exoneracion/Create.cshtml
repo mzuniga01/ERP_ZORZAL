@@ -158,6 +158,65 @@
             $("#exo_FechaIFinalVigencia").datepicker();
 
         });
+
+
+
+
+        $(document).ready(function () {
+            //VALIDAR SOLO LETRAS
+            $('#cdto_PorcentajeDescuentoH').on('input', function (e) {
+                if (!/^[0-9. a-z-áéíóúüñ]*$/i.test(this.value)) {
+                    this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
+                }
+            });
+            $('#cdto_PorcentajeDescuentoH').on('input', function (e) {
+                if (!/^[0-9. a-z-áéíóúüñ]*$/i.test(this.value)) {
+                    this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
+                }
+            });
+        });
+        $(document).ready(function () {
+            //VALIDAR SOLO LETRAS
+            $('#cdto_MontoDescuentoH').on('input', function (e) {
+                if (!/^[0-9. a-z-áéíóúüñ]*$/i.test(this.value)) {
+                    this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
+                }
+            });
+            $('#cdto_MontoDescuentoH').on('input', function (e) {
+                if (!/^[0-9. a-z-áéíóúüñ]*$/i.test(this.value)) {
+                    this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
+                }
+            });
+        });
+
+        $(document).ready(function () {
+            //VALIDAR SOLO LETRAS
+            $('#cdto_CantidadCompraMinimaH').on('input', function (e) {
+                if (!/^[0-9. a-z-áéíóúüñ]*$/i.test(this.value)) {
+                    this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
+                }
+            });
+            $('#cdto_CantidadCompraMinimaH').on('input', function (e) {
+                if (!/^[0-9. a-z-áéíóúüñ]*$/i.test(this.value)) {
+                    this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
+                }
+            });
+        });
+
+
+        $(document).ready(function () {
+            //VALIDAR SOLO LETRAS
+            $('#cdto_MaximoMontoDescuentoH').on('input', function (e) {
+                if (!/^[0-9. a-z-áéíóúüñ]*$/i.test(this.value)) {
+                    this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
+                }
+            });
+            $('#cdto_MaximoMontoDescuentoH').on('input', function (e) {
+                if (!/^[0-9. a-z-áéíóúüñ]*$/i.test(this.value)) {
+                    this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
+                }
+            });
+        });
         </script>
 
     <script>

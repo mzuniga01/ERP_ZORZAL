@@ -59,8 +59,12 @@
             @Html.DisplayFor(model => model.cja_Descripcion)
         </dd>
     </dl>
-
-	    @Html.ActionLink("Editar", "Edit", new { id = Model.cja_Id }, new { @class = "btn btn-primary"})
+                    <div class="form-group">
+                        <div class="col-md-offset-1">
+                            @Html.ActionLink("Editar", "Edit", new { id = Model.cja_Id }, new { @class = "btn btn-primary" })
+                        </div>
+                    </div>
+	  
 
                 </div>
             </div>

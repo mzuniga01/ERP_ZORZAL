@@ -26,7 +26,7 @@ namespace ERP_GMEDINA.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public byte tpi_Id { get; set; }
 
-        [Display(Name = "RTN/Identificación")]
+        [Display(Name = "Identificación")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string clte_Identificacion { get; set; }
 
@@ -44,7 +44,6 @@ namespace ERP_GMEDINA.Models
         public string clte_Apellidos { get; set; }
 
         [Display(Name = "Fecha Nacimiento")]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> clte_FechaNacimiento { get; set; }
 
@@ -53,7 +52,6 @@ namespace ERP_GMEDINA.Models
         public string clte_Nacionalidad { get; set; }
 
         [Display(Name = "Sexo")]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string clte_Sexo { get; set; }
 
         [Display(Name = "Teléfono")]
@@ -74,7 +72,6 @@ namespace ERP_GMEDINA.Models
 
         [Display(Name = "Contacto Email")]
         [EmailAddress(ErrorMessage = "El email no tiene el formato correcto")]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string clte_ContactoEmail { get; set; }
 
         [Display(Name = "Contacto Teléfono")]
@@ -82,7 +79,6 @@ namespace ERP_GMEDINA.Models
         public string clte_ContactoTelefono { get; set; }
 
         [Display(Name = "Fecha Constitución")]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> clte_FechaConstitucion { get; set; }
 
@@ -91,32 +87,25 @@ namespace ERP_GMEDINA.Models
         public string mun_Codigo { get; set; }
 
         [Display(Name = "Dirección")]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string clte_Direccion { get; set; }
 
         [Display(Name = "Correo Electrónico")]
         [EmailAddress(ErrorMessage = "El email no tiene el formato correcto")]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string clte_CorreoElectronico { get; set; }
 
-        [Display(Name = "¿Es Activo?")]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [Display(Name = "Estado")]
         public bool clte_EsActivo { get; set; }
 
         [Display(Name = "Razón Inactivación")]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string clte_RazonInactivo { get; set; }
 
-        [Display(Name = "¿Con Crédito?")]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [Display(Name = "Crédito")]
         public bool clte_ConCredito { get; set; }
 
-        [Display(Name = "¿Es Minorista?")]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        [Display(Name = "Minorista")]
         public bool clte_EsMinorista { get; set; }
 
         [Display(Name = "Observaciones")]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public string clte_Observaciones { get; set; }
 
         [Display(Name = "Monto Crédito")]
@@ -141,7 +130,7 @@ namespace ERP_GMEDINA.Models
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy H:mm:ss tt}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> clte_FechaModifica { get; set; }
 
-        [Display(Name = "¿Exonerado?")]
+        [Display(Name = "Exonerado")]
         public bool clte_Exonerado { get; set; }
 
     }

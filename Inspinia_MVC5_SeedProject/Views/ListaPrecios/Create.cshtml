@@ -4,30 +4,22 @@
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <style>
     .AsteriscoRojo:after {
         content: "*";
         color: red;
     }
 </style>
-
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Lista Precio</h2>
     </div>
     <div class="col-sm-8">
         <div class="title-action">
-            <a href="@Url.Action("Index","ListaPrecios")">Regresar</a>
-            @*@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary"})*@
+            <a href="@Url.Action("Index","ListaPrecios")">Regresar</a>       
         </div>
     </div>
 </div>
-
-
-
-
-
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
@@ -40,43 +32,36 @@
                     @using (Html.BeginForm("Create", "ListaPrecios", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
-
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         <div class="form-group">
-                            <label class="control-label col-md-2 AsteriscoRojo">Nombre Lista</label>
-                            @*@Html.LabelFor(model => model.listp_EsActivo, new { @class = "control-label col-md-2" })*@
-                            <div class="col-md-8">
-                                @Html.EditorFor(model => model.listp_Nombre, new { htmlAttributes = new { @autocomplete = "off" }})
+                            <label class="control-label col-md-2 AsteriscoRojo">Nombre Lista</label>                       
+                            <div class="col-md-5">
+                                @Html.EditorFor(model => model.listp_Nombre, new { htmlAttributes = new { @autocomplete = "off", @style = "text-transform:Capitalize;" } })
                                 @Html.ValidationMessageFor(model => model.listp_Nombre)
                             </div>
-
                             <br /><br /><br />
-
-                            <br /><br />
-
                             <div class="form-group">
                                 <label class="control-label col-md-2 AsteriscoRojo">Fecha Inicio Vigencia</label>
-                                @*@Html.LabelFor(model => model.listp_FechaInicioVigencia, new { @class = "control-label col-md-2" })*@
-                                <div class="col-md-4">
-                                    @Html.EditorFor(model => model.listp_FechaInicioVigencia, "{0:MM-dd-yyyy}", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @id = "FIV", } })
+                           
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.listp_FechaInicioVigencia, "{0:MM/dd/yyyy}", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @id = "FIV", } })
                                     @Html.ValidationMessageFor(model => model.listp_FechaInicioVigencia)
                                 </div>
                             </div>
                             <br /><br />
                             <div class="form-group">
-                                <label class="control-label col-md-2 AsteriscoRojo">Fecha Final Vigencia</label>
-                                @*@Html.LabelFor(model => model.listp_FechaFinalVigencia, new { @class = "control-label col-md-2" })*@
-                                <div class="col-md-4">
-                                    @Html.EditorFor(model => model.listp_FechaFinalVigencia, "{0:MM-dd-yyyy}", new { htmlAttributes = new { @class = "form-control", @id = "FFV" } })
+                                <label class="control-label col-md-2 AsteriscoRojo">Fecha Final Vigencia</label>                            
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.listp_FechaFinalVigencia, "{0:MM/dd/yyyy}", new { htmlAttributes = new { @autocomplete="off",@class = "form-control", @id = "FFV" } })
                                     @Html.ValidationMessageFor(model => model.listp_FechaFinalVigencia)
                                 </div>
                             </div>
 
                             <br /><br />
                             <div class="form-group">
-                                <label class="control-label col-md-2 AsteriscoRojo">Prioridad</label>
-                                @* @Html.LabelFor(model => model.listp_Prioridad, new { @class = "control-label col-md-2" })*@
-                                <div class="col-md-4">
-                                    @Html.EditorFor(model => model.listp_Prioridad, new { htmlAttributes = new { @maxlength = "1", @onkeypress = "return validar(event)" } })
+                                <label class="control-label col-md-2 AsteriscoRojo">Prioridad</label>                        
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.listp_Prioridad, new { htmlAttributes = new { @autocomplete="off", @maxlength = "1", @onkeypress = "return validar(event)" } })
                                     <p id="nprioridad" style="color:red">@Html.ValidationMessageFor(model => model.listp_Prioridad)
                                 </div>
                             </div>
@@ -109,9 +94,7 @@
                                 </div>
                             </div>
                         </div>
-
                     }
-
 
                 </div>
             </div>
@@ -130,19 +113,10 @@ jQuery('input,select').each(function() {
       label.append('<span style="color:red"> </span>');
     }
 });
-
-
-
-
 $("#listp_Prioridad").blur(function () {
 
     valido = document.getElementById('nprioridad');
     var Prioridad = $('#listp_Prioridad').val();
-
-
-
-
-
     if (parseFloat(Prioridad) < 1 || parseFloat(Prioridad) > 3) {
 
         valido.innerText = "El valor debe estar entre 1 a 3";
@@ -155,13 +129,7 @@ $("#listp_Prioridad").blur(function () {
        
     }
 
-
-
-
-
 });
-
-
 
 //---------------------------------Ctrl + G (GuardarRegistro)------------------------------
 $(document).keydown(function (e) {
@@ -174,11 +142,9 @@ $(document).keydown(function (e) {
 });
 
 </script>
-
 <script src="~/Scripts/app/Datepicker.js"></script>
 <script src="~/Scripts/jquery-3.1.1.min.js"></script>
 <script src="~/Scripts/app/ProductoListaPrecios.js"></script>
-@*<script src="~/Scripts/app/ProductoFactura.js"></script>*@
 <script src="~/Scripts/app/ListaPrecioFechaFinal.js"></script>
 <script src="~/Scripts/app/ListaPrecioDetalle.js"></script>
 <script>
@@ -188,10 +154,86 @@ $(document).keydown(function (e) {
         return /^[0-9\-]+$/.test(tecla);
     }
 </script>
-@*@section Scripts {
+@section Scripts {
         @Scripts.Render("~/bundles/jqueryval")
+<script>
+    $(document).ready(function () {
 
-    }*@
+
+        //VALIDAR SOLO LETRAS
+        $('#listp_Nombre').on('input', function (e) {
+            if (!/^[0-9 a-z-áéíóúüñ]*$/i.test(this.value)) {
+                this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
+            }
+        });
+        $('#listp_Nombre').on('input', function (e) {
+            if (!/^[0-9 a-z-áéíóúüñ]*$/i.test(this.value)) {
+                this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
+            }
+        });
+
+
+    });
+    $(document).ready(function () {
+
+
+        //VALIDAR SOLO LETRAS
+        $('#FFV').on('input', function (e) {
+            if (!/^[0-9 a-z-áéíóúüñ]*$/i.test(this.value)) {
+                this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
+            }
+        });
+        $('#FFV').on('input', function (e) {
+            if (!/^[0-9 a-z-áéíóúüñ]*$/i.test(this.value)) {
+                this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
+            }
+        });
+
+
+    });
+    $(document).ready(function () {
+
+
+        //VALIDAR SOLO LETRAS
+        $('#listp_Prioridad').on('input', function (e) {
+            if (!/^[0-9/ a-z-áéíóúüñ]*$/i.test(this.value)) {
+                this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
+            }
+        });
+        $('#listp_Prioridad').on('input', function (e) {
+            if (!/^[0-9 a-z-áéíóúüñ]*$/i.test(this.value)) {
+                this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
+            }
+        });
+
+
+    });
+    ///Entre Fechas 
+    $("#FIV").blur(function () {
+
+        valido = document.getElementById('nprioridad');
+        var Prioridad = $('#listp_Prioridad').val();
+        var FechaInicio = $('#listp_Prioridad').val();
+        var FechaFinal = $('#listp_Prioridad').val();
+
+        if (parseFloat(Prioridad) < 1 || parseFloat(Prioridad) > 3) {
+
+            valido.innerText = "El valor debe estar entre 1 a 3";
+            $('#listp_Prioridad').val("");
+            $('#listp_Prioridad').focus();
+        }
+        else {
+            //console.log("else")
+            valido.innerText = "";
+
+        }
+
+    });
+ 
+
+</script>
+
+    }
 
 
 @{

@@ -22,7 +22,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Listado Arqueo Caja</h5>
+                    <h5>Listado de Arqueos Cajas</h5>
 					<div class="ibox-tools">
 						@Html.ActionLink("Registrar Arqueo Caja", "Create", null, new { @class = "btn btn-primary"})
 					</div>
@@ -73,8 +73,8 @@
                 </td>
 
                 <td>
-                    @Html.ActionLink("Detalle", "Details", new { id = item.mocja_Id }, new { @class = "btn btn-primary btn-xs" })
-                    @Html.ActionLink("Editar", "Edit", new { id = item.mocja_Id }, new { @class = "btn btn-primary btn-xs" })
+                    @Html.ActionLink("Detalles", "Details", new { id = item.mocja_Id }, new { @class = "btn btn-primary btn-xs" })
+                    @Html.ActionLink("Editar", "Edit", new { id = item.mocja_Id }, new { @class = "btn btn-white btn-xs" })
                     @Html.ActionLink("Imprimir", "ExportReport", new { id = item.mocja_Id }, new { @class = "btn btn-primary btn-xs" })
 
                 </td>
@@ -89,11 +89,5 @@
         </div>
     </div>
  </div>
-
-
-
-
-
-
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/MovientoCaja.js"></script>
