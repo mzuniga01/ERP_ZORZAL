@@ -28,7 +28,14 @@
 
 
                     <dl class="dl-horizontal">
-
+                        @Html.HiddenFor(model => model.uni_UsuarioCrea)
+                        @Html.HiddenFor(model => model.uni_FechaCrea)
+                        @Html.HiddenFor(model => model.uni_UsuarioModifica)
+                        @Html.HiddenFor(model => model.uni_FechaModifica)
+                        @Html.HiddenFor(model => model.tbUsuario.usu_Nombres)
+                        @Html.HiddenFor(model => model.tbUsuario.usu_Apellidos)
+                        @Html.HiddenFor(model => model.tbUsuario1.usu_Nombres)
+                        @Html.HiddenFor(model => model.tbUsuario1.usu_Apellidos)
                         <dt>
                             @Html.DisplayNameFor(model => model.uni_Id)
                         </dt>
@@ -59,32 +66,37 @@
 
                 </div>
             </div>
-
-            <div class="ibox-content">
-                <table class="table table-striped">
-                    <tr>
-                        <th>Acción</th>
-                        <th>Usuario</th>
-                        <th>Fecha</th>
-                    </tr>
-                    <tr>
-                        <td>Creado</td>
-                        <td>
-                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
-                        </td>
-                        <td>@Html.DisplayFor(model => model.uni_FechaCrea)</td>
-                    </tr>
-                    <tr>
-                        <td>Modificado</td>
-                        <td>
-                            @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
-                            @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
-                        </td>
-                        <td>@Html.DisplayFor(model => model.uni_FechaModifica)</td>
-                    </tr>
-                </table>
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Auditoría</h5>
+                </div>
+                <div class="ibox-content">
+                    <table class="table table table-striped  table-bordered">
+                        <tr>
+                            <th>Acción</th>
+                            <th>Usuario</th>
+                            <th>Fecha</th>
+                        </tr>
+                        <tr>
+                            <td>Creado</td>
+                            <td>
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                            </td>
+                            <td>@Html.DisplayFor(model => model.uni_FechaCrea)</td>
+                        </tr>
+                        <tr>
+                            <td>Modificado</td>
+                            <td>
+                                @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                                @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                            </td>
+                            <td>@Html.DisplayFor(model => model.uni_FechaModifica)</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
+          
         </div>
     </div>
 </div>

@@ -27,85 +27,85 @@
                     <h5>Detalles Producto</h5>
                 </div>
                 <div class="ibox-content">
-				    <dl class="dl-horizontal">
+                    <dl class="dl-horizontal">
                         @Html.Hidden("RedirectTo", Url.Action("Index", "Producto"))
-         <dt>
-            @Html.DisplayNameFor(model => model.prod_Codigo)
-         </dt>
-         <dd>
-             @Html.DisplayFor(model => model.prod_Codigo)
-         </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.prod_CodigoBarras)
-         </dt>
-         <dd>
-           @Html.DisplayFor(model => model.prod_CodigoBarras)
-         </dd>
-         <dt>
-            @Html.DisplayNameFor(model => model.prod_Descripcion)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.prod_Codigo)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.prod_Codigo)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.prod_CodigoBarras)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.prod_CodigoBarras)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.prod_Descripcion)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.prod_Descripcion)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.prod_Descripcion)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.prod_Marca)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.prod_Marca)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.prod_Marca)
-        </dd>
-         <dt>
-              Categoria
-         </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.prod_Marca)
+                        </dd>
+                        <dt>
+                            Categoria
+                        </dt>
 
-          <dd>
-          @Html.DisplayFor(model => model.tbProductoSubcategoria.tbProductoCategoria.pcat_Nombre)
+                        <dd>
+                            @Html.DisplayFor(model => model.tbProductoSubcategoria.tbProductoCategoria.pcat_Nombre)
 
-          </dd>
-         <dt>
-             SubCategoria
-         </dt>
+                        </dd>
+                        <dt>
+                            SubCategoria
+                        </dt>
 
-         <dd>
-           @Html.DisplayFor(model => model.tbProductoSubcategoria.pscat_Descripcion)
-         </dd>
-        <dt>
-            Unidad Medida
-          
-         </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.tbProductoSubcategoria.pscat_Descripcion)
+                        </dd>
+                        <dt>
+                            Unidad Medida
 
-         <dd>
-           @Html.DisplayFor(model => model.tbUnidadMedida.uni_Descripcion)
-         </dd>
+                        </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.prod_Modelo)
-        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.tbUnidadMedida.uni_Descripcion)
+                        </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.prod_Modelo)
-        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.prod_Modelo)
+                        </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.prod_Talla)
-        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.prod_Modelo)
+                        </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.prod_Talla)
-        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.prod_Talla)
+                        </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.prod_Color)
-        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.prod_Talla)
+                        </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.prod_Color)
-        </dd>
-        <dt>
-          Estado
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.prod_Color)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.prod_Color)
+                        </dd>
+                        <dt>
+                            Estado
+                        </dt>
 
                         <dd>
                             @if (Model.prod_EsActivo == true)
@@ -117,29 +117,29 @@
                                 <p>Inactivo</p>
                             }
                         </dd>
-      
-       @if (Model.prod_EsActivo == true)
-       {
-        <dt>
 
-        </dt>
-        <dd>
+                        @if (Model.prod_EsActivo == true)
+                        {
+                            <dt>
 
-        </dd>
-       }
-       else
-       {
-        <dt>
-            @Html.DisplayNameFor(model => model.prod_Razon_Inactivacion)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.prod_Razon_Inactivacion)
-        </dd>
-       }
+                            </dt>
+                            <dd>
 
-                        
-    </dl>
-                    
+                            </dd>
+                        }
+                        else
+                        {
+                            <dt>
+                                @Html.DisplayNameFor(model => model.prod_Razon_Inactivacion)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.prod_Razon_Inactivacion)
+                            </dd>
+                        }
+
+
+                    </dl>
+
                     @{
                         ERP_ZORZALEntities db2 = new ERP_ZORZALEntities();
                         var id2 = Model.prod_Codigo;
@@ -154,62 +154,63 @@
                         {
                             @Html.ActionLink("Editar", "Edit", new { id = Model.prod_Codigo }, new { @class = "btn btn-primary" })
                         }
-                       
+
                     }
-                                  
+
 
                     @*<div class="ibox-content">
-                        <table class="table table-striped">
-                            <tr>
-                                <th>Acción</th>
-                                <th>Usuario</th>
-                                <th>Fecha</th>
-                            </tr>
-                            <tr>
-                                <td>Creado</td>
-                                <td>@Html.DisplayFor(model => model.tbUsuario1.usu_Nombres) @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)</td>
-                                <td>@Html.DisplayFor(model => model.prod_FechaCrea)</td>
-                            </tr>
-                            <tr>
-                                <td>Modificado</td>
-                                <td> @Html.DisplayFor(model => model.tbUsuario.usu_Nombres) @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)</td>
-                                <td>@Html.DisplayFor(model => model.prod_FechaModifica)</td>
-                            </tr>
-                        </table>
-                    </div>*@
+                    <table class="table table-striped">
+                        <tr>
+                            <th>Acción</th>
+                            <th>Usuario</th>
+                            <th>Fecha</th>
+                        </tr>
+                        <tr>
+                            <td>Creado</td>
+                            <td>@Html.DisplayFor(model => model.tbUsuario1.usu_Nombres) @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)</td>
+                            <td>@Html.DisplayFor(model => model.prod_FechaCrea)</td>
+                        </tr>
+                        <tr>
+                            <td>Modificado</td>
+                            <td> @Html.DisplayFor(model => model.tbUsuario.usu_Nombres) @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)</td>
+                            <td>@Html.DisplayFor(model => model.prod_FechaModifica)</td>
+                        </tr>
+                    </table>
+                </div>*@
 
-                    <div class="ibox float-e-margins">
-                        <div class="ibox-title">
-                            <h5>Auditoría</h5>
-                        </div>
-                        <div class="ibox-content">
-                            <table class="table table-striped">
-                                <tr>
-                                    <th>Acción</th>
-                                    <th>Usuario</th>
-                                    <th>Fecha</th>
-                                </tr>
-                                <tr>
-                                    <td>Creado</td>
-                                    <td>
-                                        @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
-                                        @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
-                                    </td>
-                                    <td>@Html.DisplayFor(model => model.prod_FechaCrea)</td>
-                                </tr>
-                                <tr>
-                                    <td>Modificado</td>
-                                    <td>
-                                        @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                                        @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
-                                    </td>
-                                    <td>@Html.DisplayFor(model => model.prod_FechaModifica)</td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                   
 
+
+
+                </div>
+            </div>
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Auditoría</h5>
+                </div>
+                <div class="ibox-content">
+                    <table class="table table-striped">
+                        <tr>
+                            <th>Acción</th>
+                            <th>Usuario</th>
+                            <th>Fecha</th>
+                        </tr>
+                        <tr>
+                            <td>Creado</td>
+                            <td>
+                                @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                                @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                            </td>
+                            <td>@Html.DisplayFor(model => model.prod_FechaCrea)</td>
+                        </tr>
+                        <tr>
+                            <td>Modificado</td>
+                            <td>
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                            </td>
+                            <td>@Html.DisplayFor(model => model.prod_FechaModifica)</td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>

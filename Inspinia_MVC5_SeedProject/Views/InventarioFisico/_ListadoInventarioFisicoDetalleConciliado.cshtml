@@ -9,63 +9,61 @@
                     <h5>Listado de Inventario Fisico Detalle</h5>
 				
                 </div>
-                <div class="ibox-content">
 
-<table class="table table-striped table-responsive table-bordered table-hover" id="InvDetalleconciliado">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.tbProducto.prod_CodigoBarras)
+                    <table class="table table-striped table-responsive table-bordered table-hover" id="InvDetalleconciliado">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tbProducto.prod_CodigoBarras)
                
-            </th>
-            <th>
-                Descripcion del Producto
-            </th>
-            <th>
-                Unidad de Medida
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.invfd_Cantidad)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.invfd_CantidadSistema)
-            </th>
-            <th>
-                Sobrante/Faltante
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.tbProducto.prod_CodigoBarras)
-                </td>
-                <td>
-                  @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.tbUnidadMedida.uni_Descripcion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.invfd_Cantidad)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.invfd_CantidadSistema)
-                </td>
-                @{
-                    decimal Suma = (decimal)item.invfd_Cantidad - (decimal)item.invfd_CantidadSistema;
-                }
-                <td>
-                    @Suma
-                </td>
-            </tr>
-                    }
-    </tbody>
-</table>
+                                </th>
+                                <th>
+                                    Descripcion del Producto
+                                </th>
+                                <th>
+                                    Unidad de Medida
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.invfd_Cantidad)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.invfd_CantidadSistema)
+                                </th>
+                                <th>
+                                    Sobrante/Faltante
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbProducto.prod_CodigoBarras)
+                                    </td>
+                                    <td>
+                                      @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tbUnidadMedida.uni_Descripcion)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.invfd_Cantidad)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.invfd_CantidadSistema)
+                                    </td>
+                                    @{
+                                        decimal Suma = (decimal)item.invfd_Cantidad - (decimal)item.invfd_CantidadSistema;
+                                    }
+                                    <td>
+                                        @Suma
+                                    </td>
+                                </tr>
+                                        }
+                        </tbody>
+                    </table>
 
-                </div>
             </div>
         </div>
     </div>

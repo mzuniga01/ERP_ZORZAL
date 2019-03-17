@@ -81,7 +81,7 @@
                             </div>
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.tsal_Descripcion, new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.tsal_Descripcion, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.tsal_Descripcion, new { htmlAttributes = new { @autocomplete = "off", @onKeyPress = "return soloLetras(event), return ValidarNumero(event,this)" } })
                                     @*<p style="color:red">@Html.ValidationMessageFor(model => model.tsal_Descripcion)</p>*@
@@ -106,7 +106,7 @@
                     <h5>Auditoría</h5>
                 </div>
                 <div class="ibox-content">
-                    <table class="table table-striped">
+                    <table class="table table-striped  table-bordered">
                         <tr>
                             <th>Acción</th>
                             <th>Usuario</th>

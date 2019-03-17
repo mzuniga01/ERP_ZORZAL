@@ -60,17 +60,16 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
+                    <h5>Listados De Consultas de Existencias</h5>
                     <div id="PedidoExitoso">
                         <p style="color:red"></p>
 
                     </div>
                 </div>
                 <div class="ibox-content">
-
-                    <table id="example" class="table table-striped table-responsive table-bordered table-hover" style="width:100%">
+                    <table id="example" class="table table table-striped  table-bordered" style="width:100%">
                         <thead>
                             <tr>
-
                                 <th>
                                     @Html.DisplayNameFor(model => model.bod_Nombre)
                                 </th>
@@ -86,11 +85,10 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.bodd_CantidadExistente)
                                 </th>
-                                <th>
+                                <th >
                                     @Html.DisplayNameFor(model => model.bodd_CantidadMinima)
                                 </th>
                                 <th>
-
                                 </th>
 
                             </tr>
@@ -122,7 +120,7 @@
 
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" id="btnSolicitarProducto" data-target="#SolicitarProductomodal" onclick="SolicitarProducto(@item.bod_Id, '@item.bod_Nombre', '@item.suc_Descripcion', '@item.prod_Codigo', '@item.prod_Descripcion', '@item.prod_Marca', @item.bodd_CantidadExistente, @item.bodd_CantidadMinima, @BodegaDestino);">Solicitar</button>
+                                        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" id="btnSolicitarProducto" data-target="#SolicitarProductomodal" onclick="SolicitarProducto(@item.bod_Id, '@item.bod_Nombre', '@item.suc_Descripcion', '@item.prod_Codigo', '@item.prod_Descripcion', '@item.prod_Marca', @item.bodd_CantidadExistente, @item.bodd_CantidadMinima, @BodegaDestino);">Solicitar</button>
                                     </td>
                                 </tr>
                                 <div class="modal fade" id="SolicitarProductomodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -181,7 +179,7 @@
                                             <div class="modal-footer">
                                                 <button class="btn btn-primary" type="submit" id="btnGuardarSalida">Guardar</button>
                                                 @*@Html.ActionLink("Test", "InsertPedido", new { IDBodega = item.bod_Id, IDProducto = item.prod_Codigo, CantidadSolicitada = "" })*@
-                                                <input type="button" class="btn btn-white btn-sm" data-dismiss="modal" style="width:110px;" id="btnCerrar" value="Cancelar" />
+                                                <input type="button" class="btn btn-white" data-dismiss="modal"  id="btnCerrar" value="Cancelar" />
                                             </div>
                                         </div>
                                     </div>
@@ -224,7 +222,7 @@
             contador++;
             if (contador != nColumnas) {
                 var title = $(this).text();
-                $(this).html('<input type="text" id="txtPrueba' + contador + '" size="16" placeholder="' + '" />');
+                $(this).html('<input type="text" class="form-control" style="width:100%" id="txtPrueba' + contador + '" size="11" placeholder="' + '" />');
             }
 
 

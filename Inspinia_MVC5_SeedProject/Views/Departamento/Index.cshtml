@@ -47,7 +47,7 @@
                     @Html.DisplayFor(modelItem => item.dep_Nombre)
                 </td>
                 <td>
-                    @Html.ActionLink("Detalle", "Details", new { id = item.dep_Codigo }, new { @class = "btn btn-primary btn-xs" })
+                    @Html.ActionLink("Detalles", "Details", new { id = item.dep_Codigo }, new { @class = "btn btn-primary btn-xs" })
                     @Html.ActionLink("Editar", "Edit", new { id = item.dep_Codigo }, new { @class = "btn btn-white btn-xs" })
                 </td>
             </tr>
@@ -65,20 +65,22 @@
     $(document).ready(function () {
         $('#DataTable').DataTable({
 
-        "searching": true,
-        "oLanguage": {
-            "oPaginate": {
-                "sNext": "Siguiente",
-                "sPrevious": "Anterior",
+            "searching": true,
+            "oLanguage": {
+                "oPaginate": {
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior",
+                },
+                "sZeroRecords": "No se encontraron resultados",
+                "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                "sEmptyTable": "No hay registros",
+                "sInfoEmpty": "Mostrando 0 de 0 Entradas",
+                "sSearch": "Buscar",
+                "sLengthMenu": "Mostrar _MENU_Registros Por Página",
+                "sInfo": "Mostrando _START_ a _END_ Entradas"
+
             },
-            "sEmptyTable": "No hay registros",
-            "sInfoEmpty": "Mostrando 0 de 0 Entradas",
-            "sSearch": "Buscar",
-            "sLengthMenu": "Mostrar _MENU_ Registros por página",
-            "sInfo": "Mostrando _START_ a _END_ Entradas",
 
-        },
-
-    });
+        });
     });
 </script>

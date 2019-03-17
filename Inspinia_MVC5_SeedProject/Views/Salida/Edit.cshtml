@@ -54,179 +54,178 @@
                         @Html.HiddenFor(model => model.fact_Id)
                         @Html.HiddenFor(model => model.fact_Codigo, new { Value = ViewBag.vbfact_Codigo })
 
-                    <div class="form-horizontal">
+                        <div class="form-horizontal">
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.sal_FechaElaboracion, "Fecha de Elaboración", new { @class = "control-label col-md-2 required" })
-                            <div class="col-md-4">
-                                @Html.EditorFor(model => model.sal_FechaElaboracion, "{0:dd/MM/yyyy}", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                @Html.ValidationMessageFor(model => model.sal_FechaElaboracion)
-                            </div>
-
-                            @Html.LabelFor(model => model.bod_Id, "Nombre de Bodega", new { @class = "control-label col-md-2" })
-                            <div class="col-md-4">
-                                @Html.EditorFor(model => model.tbBodega.bod_Nombre, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                <div style="display:none" class="col-md-4">
-                                    @Html.DropDownList("bod_Id", null, htmlAttributes: new { @class = "form-control" })
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Id)</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.tsal_Id, "Tipo de Salida", new { @class = "control-label col-md-2" })
-                            <div class="col-md-4">
-                                @Html.EditorFor(model => model.tbTipoSalida.tsal_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                <div style="display:none" class="col-md-4">
-                                    @Html.DropDownList("tsal_Id", null, htmlAttributes: new { @class = "form-control" })
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.tsal_Id)</p>
-                                </div>
-                            </div>
-
-                            @Html.LabelFor(model => model.estm_Id, "Estado", new { @class = "control-label col-md-2" })
-                            <div class="col-md-4">
-                                @Html.EditorFor(model => model.tbEstadoMovimiento.estm_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                <div style="display:none" class="col-md-4">
-                                    @Html.DropDownList("estm_Id", null, htmlAttributes: new { @class = "form-control" })
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.estm_Id)</p>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        @{
-                            if (Model.sal_EsAnulada)
-                            {
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.sal_EsAnulada, "¿Es Anulada?", new { @class = "control-label col-md-2 required" })
-                                    <div class="col-md-4">
-                                        @Html.EditorFor(model => model.sal_EsAnulada, new { htmlAttributes = new { @class = "form-control", @checked = "checked", @disabled = "disabled" } })
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.sal_RazonAnulada, "Razon de Anulacion", new { @class = "control-label col-md-2 required" })
-                                    <div class="col-md-4">
-                                        @Html.EditorFor(model => model.sal_RazonAnulada, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                    </div>
-                                </div>
-                            }
-                        }
-
-
-                        <div class="form-horizontal" id="VentaoDevolucion" style="display:none">
                             <div class="form-group">
-                                @Html.LabelFor(model => model.fact_Id, new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.sal_FechaElaboracion, "Fecha de Elaboración", new { @class = "control-label col-md-2 required" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.tbFactura.fact_Codigo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                    <p style="color:red">
-
-                                        @Html.ValidationMessageFor(model => model.fact_Id)
-                                    </p>
+                                    @Html.EditorFor(model => model.sal_FechaElaboracion, "{0:dd/MM/yyyy}", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.sal_FechaElaboracion)
                                 </div>
 
-                                <div id="div_sal_RazonDevolucion">
-                                    @Html.LabelFor(model => model.tbTipoDevolucion.tdev_Id, new { @class = "control-label col-md-2 required" })
+                                @Html.LabelFor(model => model.bod_Id, "Nombre de Bodega", new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.tbBodega.bod_Nombre, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    <div style="display:none" class="col-md-4">
+                                        @Html.DropDownList("bod_Id", null, htmlAttributes: new { @class = "form-control" })
+                                        <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Id)</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.tsal_Id, "Tipo de Salida", new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.tbTipoSalida.tsal_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    <div style="display:none" class="col-md-4">
+                                        @Html.DropDownList("tsal_Id", null, htmlAttributes: new { @class = "form-control" })
+                                        <p style="color:red">@Html.ValidationMessageFor(model => model.tsal_Id)</p>
+                                    </div>
+                                </div>
+
+                                @Html.LabelFor(model => model.estm_Id, "Estado", new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.tbEstadoMovimiento.estm_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    <div style="display:none" class="col-md-4">
+                                        @Html.DropDownList("estm_Id", null, htmlAttributes: new { @class = "form-control" })
+                                        <p style="color:red">@Html.ValidationMessageFor(model => model.estm_Id)</p>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            @{
+                                if (Model.sal_EsAnulada)
+                                {
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.sal_EsAnulada, "¿Es Anulada?", new { @class = "control-label col-md-2 required" })
+                                        <div class="col-md-4">
+                                            @Html.EditorFor(model => model.sal_EsAnulada, new { htmlAttributes = new { @class = "form-control", @checked = "checked", @disabled = "disabled" } })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.sal_RazonAnulada, "Razon de Anulacion", new { @class = "control-label col-md-2 required" })
+                                        <div class="col-md-4">
+                                            @Html.EditorFor(model => model.sal_RazonAnulada, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                        </div>
+                                    </div>
+                                }
+                            }
+
+
+                            <div class="form-horizontal" id="VentaoDevolucion" style="display:none">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.fact_Id, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.EditorFor(model => model.tbTipoDevolucion.tdev_Descripcion)
+                                        @Html.EditorFor(model => model.tbFactura.fact_Codigo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                         <p style="color:red">
-                                            @Html.ValidationMessageFor(model => model.tdev_Id)
+
+                                            @Html.ValidationMessageFor(model => model.fact_Id)
+                                        </p>
+                                    </div>
+
+                                    <div id="div_sal_RazonDevolucion">
+                                        @Html.LabelFor(model => model.tbTipoDevolucion.tdev_Id, new { @class = "control-label col-md-2 required" })
+                                        <div class="col-md-4">
+                                            @Html.EditorFor(model => model.tbTipoDevolucion.tdev_Descripcion)
+                                            <p style="color:red">
+                                                @Html.ValidationMessageFor(model => model.tdev_Id)
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-horizontal" id="Prestamo" style="display:none">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.sal_BodDestino, "Bodega de Destino", new { @class = "control-label col-md-2 required" })
+                                    <div class="col-md-4">
+                                        @Html.DropDownList("sal_BodDestino", (IEnumerable<SelectListItem>)null, new { @class = "form-control" })
+                                        <p style="color:red">
+                                            @Html.ValidationMessageFor(model => model.sal_BodDestino)
                                         </p>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="form-horizontal" id="Prestamo" style="display:none">
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.sal_BodDestino, "Bodega de Destino", new { @class = "control-label col-md-2 required" })
-                                <div class="col-md-4">
-                                    @Html.DropDownList("sal_BodDestino", (IEnumerable<SelectListItem>)null, new { @class = "form-control" })
-                                    <p style="color:red">
-                                        @Html.ValidationMessageFor(model => model.sal_BodDestino)
-                                    </p>
+                            <div class="col-lg-12">
+
+                                @if (!Model.sal_EsAnulada && Model.estm_Id == Helpers.sal_Emitida)
+                                {
+                                    <div class="ibox-tools">
+                                        <button type="button" id="btnModalGuardarNumeracion" class="btn btn-primary btn-sm" data-toggle="collapse" data-target="#Nuevo">
+                                            Registar Detalle
+                                        </button>
+                                    </div>
+                                }
+
+                                <div class="ibox-content collapse" id="Nuevo">
+                                    @Html.Partial("_EditCreateSalidaDetalle", new ERP_GMEDINA.Models.tbSalidaDetalle())
                                 </div>
                             </div>
-                        </div>
+                            @* Llama la vista  *@
+                            <div class="ibox float-e-margins">
+                                <div class="ibox-content">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            @Html.Partial("_EditSalidaDetalle", Model.tbSalidaDetalle, new ViewDataDictionary(new { clave = Model.sal_Id }))
 
-                        <div class="col-lg-12">
-
-                            @if (!Model.sal_EsAnulada && Model.estm_Id == Helpers.sal_Emitida)
-                            {
-                                <div class="ibox-tools">
-                                    <button type="button" id="btnModalGuardarNumeracion" class="btn btn-primary btn-sm" data-toggle="collapse" data-target="#Nuevo">
-                                        Registar Detalle
-                                    </button>
-                                </div>
-                            }
-
-                            <div class="ibox-content collapse" id="Nuevo">
-                                @Html.Partial("_EditCreateSalidaDetalle", new ERP_GMEDINA.Models.tbSalidaDetalle())
-                            </div>
-                        </div>
-                        @* Llama la vista  *@
-                        <div class="ibox float-e-margins">
-                            <div class="ibox-content">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        @Html.Partial("_EditSalidaDetalle", Model.tbSalidaDetalle, new ViewDataDictionary(new { clave = Model.sal_Id }))
-
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-offset-4 col-md-10">
-                                @{
-                                    if (!Model.sal_EsAnulada && Model.estm_Id == Helpers.sal_Emitida)
-                                    {
-                                        <input type="submit" value="Guardar" class="btn btn-primary" />
-                                    }
-                                    else
-                                    {
-                                        <input type="submit" value="Guardar" disabled class="btn btn-primary" />
-                                    }
-                                    var Estado = Model.estm_Id;
-                                    if (Estado == Helpers.sal_Emitida && !Model.sal_EsAnulada)
-                                    {
-                                        <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalAplicar" value="Aplicar" />
-                                    }
-                                    else
-                                    {
+                            <div class="form-group">
+                                <div class="col-md-offset-4 col-md-10">
+                                    @{
+                                        if (!Model.sal_EsAnulada && Model.estm_Id == Helpers.sal_Emitida)
+                                        {
+                                            <input type="submit" value="Guardar" class="btn btn-primary" />
+                                        }
+                                        else
+                                        {
+                                            <input type="submit" value="Guardar" disabled class="btn btn-primary" />
+                                        }
+                                        var Estado = Model.estm_Id;
+                                        if (Estado == Helpers.sal_Emitida && !Model.sal_EsAnulada)
+                                        {
+                                            <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalAplicar" value="Aplicar" />
+                                        }
+                                        else
+                                        {
 
+                                        }
+                                        if (Estado == Helpers.sal_Aplicada && !Model.sal_EsAnulada)
+                                        {
+                                            @Html.ActionLink("Imprimir", "Imprimir", new { id = Model.sal_Id }, new { @class = "btn btn-primary" })
+                                        }
+                                        if (!Model.sal_EsAnulada && Estado == Helpers.sal_Emitida)
+                                        {
+                                            <input type="button" class="btn btn-danger" data-toggle="modal" id="Anular" data-target="#ModalAnular" value="Anular" />
+                                        }
+                                        if (Estado == Helpers.sal_Activa)
+                                        {
+                                            <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalInactivar" value="Inactivar" />
+                                        }
+                                        else if (Estado == Helpers.sal_Inactiva)
+                                        {
+                                            <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalActivar" value="Activar" />
+                                        }
                                     }
-                                    if (Estado == Helpers.sal_Aplicada && !Model.sal_EsAnulada)
-                                    {
-                                        @Html.ActionLink("Imprimir", "Imprimir", new { id = Model.sal_Id }, new { @class = "btn btn-primary" })
-                                    }
-                                    if (!Model.sal_EsAnulada && Estado == Helpers.sal_Emitida)
-                                    {
-                                        <input type="button" class="btn btn-danger" data-toggle="modal" id="Anular" data-target="#ModalAnular" value="Anular" />
-                                    }
-                                    if (Estado == Helpers.sal_Activa)
-                                    {
-                                        <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalInactivar" value="Inactivar" />
-                                    }
-                                    else if (Estado == Helpers.sal_Inactiva)
-                                    {
-                                        <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalActivar" value="Activar" />
-                                    }
-                                }
 
-                                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                </div>
                             </div>
                         </div>
-                    </div>
                         <br />
                     }
                 </div>
             </div>
-
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
                     <h5>Auditoría</h5>
                 </div>
                 <div class="ibox-content">
-                    <table class="table table-striped">
+                    <table class="table table-striped table-bordered">
                         <tr>
                             <th>Acción</th>
                             <th>Usuario</th>
@@ -235,44 +234,22 @@
                         <tr>
                             <td>Creado</td>
                             <td>
-                                @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                                @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                                @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                                @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
                             </td>
                             <td>@Html.DisplayFor(model => model.sal_FechaCrea)</td>
                         </tr>
                         <tr>
                             <td>Modificado</td>
                             <td>
-                                @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
-                                @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
                             </td>
                             <td>@Html.DisplayFor(model => model.sal_FechaModifica)</td>
                         </tr>
                     </table>
                 </div>
             </div>
-            @*<div class="ibox-content">
-                <fieldset class="box-border">
-                    <legend class="box-border">Datos Auditoria</legend>
-                    <table class="table table-striped dataTable no-footer" style="width:100%">
-                        <tr>
-                            <th>Acciones</th>
-                            <th>Usuario</th>
-                            <th>Fecha</th>
-                        </tr>
-                        <tr>
-                            <td>Creado</td>
-                            <td>@Html.DisplayFor(model => model.tbUsuario1.usu_Nombres) @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)</td>
-                            <td>@Html.DisplayFor(model => model.sal_FechaCrea)</td>
-                        </tr>
-                        <tr>
-                            <td>Modificado</td>
-                            <td>@Html.DisplayFor(model => model.tbUsuario.usu_Nombres) @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)</td>
-                            <td>@Html.DisplayFor(model => model.sal_FechaModifica)</td>
-                        </tr>
-                    </table>
-                </fieldset>
-            </div>*@
         </div>
     </div>
 </div>

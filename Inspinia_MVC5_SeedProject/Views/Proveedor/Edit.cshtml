@@ -113,8 +113,7 @@
                                 @Html.TextBoxFor(model => model.prov_Id, new { @class = "form-control", @readonly = "readonly" })
                                 @*@Html.ValidationMessageFor(model => model.prov_Id)*@
                             </div>
-                        </div>
-                        <div class="form-group">
+
                             <label class="control-label col-md-2">RTN</label>
                             <div class="col-md-4">
 
@@ -134,9 +133,6 @@
                                 </div>
 
                             </div>
-                        </div>
-
-                        <div class="form-group">
                             <label class="control-label col-md-2">Nombre Contacto<span style="color:red">*</span></label>
                             <div class="col-md-4">
                                 @Html.EditorFor(model => model.prov_NombreContacto, new { htmlAttributes = new { @maxlength = "100", @onKeyPress = "return CaracteresNombre(event)", @onkeyup = "this.value=NumText(this.value)", @autocomplete = "off" } })
@@ -156,9 +152,6 @@
                                 </div>
 
                             </div>
-                        </div>
-
-                        <div class="form-group">
                             <label class="control-label col-md-2">Email<span style="color:red">*</span></label>
                             <div class="col-md-4">
                                 @Html.TextBoxFor(model => model.prov_Email, new { @class = "form-control", type = "email", @autocomplete = "off", @onKeyPress = "return Caracteres_Email(event)", @onkeyup = "this.value=CorreoElectronico(this.value)", maxlength = 50 })
@@ -182,13 +175,10 @@
                                 </div>
 
                             </div>
-                        </div>
-                        <div class="form-group">
-
                             <label class="control-label col-md-2">Actividad Ecónomica<span style="color:red">*</span></label>
                             <div class="col-md-4">
                                 @Html.DropDownList("acte_Id", (IEnumerable<SelectListItem>)ViewBag.Actividad, new { @class = "form-control" })
-                            
+
                             </div>
                         </div>
 
@@ -212,7 +202,7 @@
                     <h5>Auditoría</h5>
                 </div>
                 <div class="ibox-content">
-                    <table class="table table-striped">
+                    <table class="table table-striped  table-bordered">
                         <tr>
                             <th>Acción</th>
                             <th>Usuario</th>

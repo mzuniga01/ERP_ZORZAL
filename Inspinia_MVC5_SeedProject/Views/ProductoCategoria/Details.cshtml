@@ -74,8 +74,12 @@
                         </dl>
                         @Html.ActionLink("Editar", "Edit", new { id = Model.pcat_Id }, new { @class = "btn btn-primary" })
                         @*<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalEstado_@Model.pcat_Id">
-                            Eliminar
-                        </button>*@
+                Eliminar
+            </button>*@
+                    </div>
+                    <div class="form-horizontal">
+                        @* ListaSinAcciones *@
+                        @Html.Partial("_IndexSubCategoria", Model.tbProductoSubcategoria, new ViewDataDictionary { { "pcat_Id", Model.pcat_Id } })
                     </div>
                 </div>
             </div>
@@ -100,10 +104,7 @@
             </div>
         </div>
     </div>*@
-    <div class="form-horizontal">
-        @* ListaSinAcciones *@
-        @Html.Partial("_IndexSubCategoria", Model.tbProductoSubcategoria, new ViewDataDictionary { { "pcat_Id", Model.pcat_Id } })
-    </div>
+    
 
 
     <div class="ibox float-e-margins">
