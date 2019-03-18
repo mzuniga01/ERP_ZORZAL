@@ -1499,6 +1499,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_PackingList' does not have
     <Property Name="uni_Descripcion" Type="varchar" MaxLength="150" />
     <Property Name="sald_Cantidad" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="bod_Nombre" Type="varchar" MaxLength="100" />
+    <Property Name="Nombre_Bodega" Type="varchar" MaxLength="100" />
     <Property Name="sal_BodDestino" Type="int" Nullable="false" />
     <Property Name="Usuario" Type="varchar" MaxLength="301" />
     <Property Name="box_FechaCrea" Type="datetime" Nullable="false" />
@@ -2015,7 +2016,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_DescuentosporFecha' does
     <Property Name="Nombres" Type="nvarchar" MaxLength="101" Nullable="false" />
     <Property Name="Tipo_Factura" Type="varchar" MaxLength="7" Nullable="false" />
     <Property Name="TIPO_DE_CLIENTE" Type="varchar" MaxLength="8" Nullable="false" />
-    <Property Name="TIPO_DESCUENTO" Type="varchar" MaxLength="29" Nullable="false" />
+    <Property Name="TIPO_DESCUENTO" Type="varchar" MaxLength="22" Nullable="false" />
     <Property Name="Descuento" Type="decimal" Precision="18" Scale="2" />
     <Property Name="TotalFactura" Type="decimal" Precision="18" Scale="2" />
   </EntityType>
@@ -6352,6 +6353,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
   <Function Name="UDP_Vent_tbCuponDescuento_Anulado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="cdto_ID" Type="int" Mode="In" />
     <Parameter Name="cdto_Anulado" Type="bit" Mode="In" />
+    <Parameter Name="cdto_RazonAnulado" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbCuponDescuento_EsImpreso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="cdto_ID" Type="int" Mode="In" />
@@ -6774,6 +6776,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
   <Function Name="UDP_Vent_tbNotaCredito_Anulado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="nocre_Id" Type="smallint" Mode="In" />
     <Parameter Name="nocre_Anulado" Type="bit" Mode="In" />
+    <Parameter Name="nocre_RazonAnulado" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbNotaCredito_Caja" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="CodUsuario" Type="int" Mode="In" />
@@ -7543,6 +7546,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
     [UDV_Inv_PackingList].[uni_Descripcion] AS [uni_Descripcion], 
     [UDV_Inv_PackingList].[sald_Cantidad] AS [sald_Cantidad], 
     [UDV_Inv_PackingList].[bod_Nombre] AS [bod_Nombre], 
+    [UDV_Inv_PackingList].[Nombre_Bodega] AS [Nombre_Bodega], 
     [UDV_Inv_PackingList].[sal_BodDestino] AS [sal_BodDestino], 
     [UDV_Inv_PackingList].[Usuario] AS [Usuario], 
     [UDV_Inv_PackingList].[box_FechaCrea] AS [box_FechaCrea]

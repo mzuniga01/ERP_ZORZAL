@@ -16,14 +16,14 @@ namespace ERP_GMEDINA.Reports {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class VentasExoneradas : ReportClass {
+    public class rptVentasExoneradas : ReportClass {
         
-        public VentasExoneradas() {
+        public rptVentasExoneradas() {
         }
         
         public override string ResourceName {
             get {
-                return "VentasExoneradas.rpt";
+                return "rptVentasExoneradas.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace ERP_GMEDINA.Reports {
         
         public override string FullResourceName {
             get {
-                return "ERP_GMEDINA.Reports.VentasExoneradas.rpt";
+                return "ERP_GMEDINA.Reports.rptVentasExoneradas.rpt";
             }
             set {
                 // Do nothing
@@ -87,12 +87,20 @@ namespace ERP_GMEDINA.Reports {
                 return this.ReportDefinition.Sections[4];
             }
         }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_usuario {
+            get {
+                return this.DataDefinition.ParameterFields[0];
+            }
+        }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedVentasExoneradas : Component, ICachedReport {
+    public class CachedrptVentasExoneradas : Component, ICachedReport {
         
-        public CachedVentasExoneradas() {
+        public CachedrptVentasExoneradas() {
         }
         
         [Browsable(false)]
@@ -129,7 +137,7 @@ namespace ERP_GMEDINA.Reports {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            VentasExoneradas rpt = new VentasExoneradas();
+            rptVentasExoneradas rpt = new rptVentasExoneradas();
             rpt.Site = this.Site;
             return rpt;
         }

@@ -317,9 +317,9 @@ namespace ERP_GMEDINA.Controllers
         }
         //--------------------------Anular Actualiza DB---------------------------------
         [HttpPost]
-        public JsonResult AnularCuponDescuento(int cdtoId, bool Anulada)
+        public JsonResult AnularCuponDescuento(int cdtoId, bool Anulada, string RazonAnular)
         {
-            var list = db.UDP_Vent_tbCuponDescuento_Anulado(cdtoId, Anulada).ToList();
+            var list = db.UDP_Vent_tbCuponDescuento_Anulado(cdtoId, Anulada, RazonAnular).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
         

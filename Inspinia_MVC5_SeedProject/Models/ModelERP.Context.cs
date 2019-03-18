@@ -3921,7 +3921,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbFactura_Update_Result>("UDP_Vent_tbFactura_Update", fact_IdParameter, fact_CodigoParameter, fact_FechaParameter, esfac_IdParameter, clte_IdParameter, pemi_NumeroCAIParameter, fact_AlCreditoParameter, fact_DiasCreditoParameter, fact_PorcentajeDescuentoParameter, fact_VendedorParameter, clte_IdentificacionParameter, clte_NombresParameter, fact_IdentidadTEParameter, fact_NombresTEParameter, fact_FechaNacimientoTEParameter, fact_UsuarioAutorizaParameter, fact_FechaAutorizaParameter, fact_EsAnuladaParameter, fact_RazonAnuladoParameter, fact_UsuarioCreaParameter, fact_FechaCreaParameter, fact_UsuarioModificaParameter, fact_FechaModificaParameter);
         }
     
-        public virtual ObjectResult<UDP_Vent_tbCuponDescuento_Anulado_Result> UDP_Vent_tbCuponDescuento_Anulado(Nullable<int> cdto_ID, Nullable<bool> cdto_Anulado)
+        public virtual ObjectResult<UDP_Vent_tbCuponDescuento_Anulado_Result> UDP_Vent_tbCuponDescuento_Anulado(Nullable<int> cdto_ID, Nullable<bool> cdto_Anulado, string cdto_RazonAnulado)
         {
             var cdto_IDParameter = cdto_ID.HasValue ?
                 new ObjectParameter("cdto_ID", cdto_ID) :
@@ -3931,7 +3931,11 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("cdto_Anulado", cdto_Anulado) :
                 new ObjectParameter("cdto_Anulado", typeof(bool));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbCuponDescuento_Anulado_Result>("UDP_Vent_tbCuponDescuento_Anulado", cdto_IDParameter, cdto_AnuladoParameter);
+            var cdto_RazonAnuladoParameter = cdto_RazonAnulado != null ?
+                new ObjectParameter("cdto_RazonAnulado", cdto_RazonAnulado) :
+                new ObjectParameter("cdto_RazonAnulado", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbCuponDescuento_Anulado_Result>("UDP_Vent_tbCuponDescuento_Anulado", cdto_IDParameter, cdto_AnuladoParameter, cdto_RazonAnuladoParameter);
         }
     
         public virtual ObjectResult<UDP_Vent_tbCuponDescuento_Insert_Result> UDP_Vent_tbCuponDescuento_Insert(Nullable<int> suc_Id, Nullable<System.DateTime> cdto_FechaEmision, Nullable<System.DateTime> cdto_FechaVencimiento, Nullable<decimal> cdto_PorcentajeDescuento, Nullable<decimal> cdto_MontoDescuento, Nullable<decimal> cdto_MaximoMontoDescuento, Nullable<decimal> cdto_CantidadCompraMinima, Nullable<bool> cdto_Redimido, Nullable<System.DateTime> cdto_FechaRedencion, Nullable<bool> cdto_Anulado, string cdto_RazonAnulado, Nullable<bool> cdto_EsImpreso, Nullable<int> cdto_UsuarioCrea, Nullable<System.DateTime> cdto_FechaCrea)
@@ -4064,7 +4068,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbCuponDescuento_Update_Result>("UDP_Vent_tbCuponDescuento_Update", cdto_IDParameter, suc_IdParameter, cdto_FechaEmisionParameter, cdto_FechaVencimientoParameter, cdto_PorcentajeDescuentoParameter, cdto_MontoDescuentoParameter, cdto_MaximoMontoDescuentoParameter, cdto_CantidadCompraMinimaParameter, cdto_RedimidoParameter, cdto_FechaRedencionParameter, cdto_AnuladoParameter, cdto_EsImpresoParameter, cdto_UsuarioCreaParameter, cdto_FechaCreaParameter, cdto_UsuarioModificaParameter, cdto_FechaModificaParameter);
         }
     
-        public virtual ObjectResult<UDP_Vent_tbNotaCredito_Anulado_Result> UDP_Vent_tbNotaCredito_Anulado(Nullable<short> nocre_Id, Nullable<bool> nocre_Anulado)
+        public virtual ObjectResult<UDP_Vent_tbNotaCredito_Anulado_Result> UDP_Vent_tbNotaCredito_Anulado(Nullable<short> nocre_Id, Nullable<bool> nocre_Anulado, string nocre_RazonAnulado)
         {
             var nocre_IdParameter = nocre_Id.HasValue ?
                 new ObjectParameter("nocre_Id", nocre_Id) :
@@ -4074,7 +4078,11 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("nocre_Anulado", nocre_Anulado) :
                 new ObjectParameter("nocre_Anulado", typeof(bool));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbNotaCredito_Anulado_Result>("UDP_Vent_tbNotaCredito_Anulado", nocre_IdParameter, nocre_AnuladoParameter);
+            var nocre_RazonAnuladoParameter = nocre_RazonAnulado != null ?
+                new ObjectParameter("nocre_RazonAnulado", nocre_RazonAnulado) :
+                new ObjectParameter("nocre_RazonAnulado", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbNotaCredito_Anulado_Result>("UDP_Vent_tbNotaCredito_Anulado", nocre_IdParameter, nocre_AnuladoParameter, nocre_RazonAnuladoParameter);
         }
     
         public virtual ObjectResult<UDP_Vent_tbNotaCredito_Insert_Result> UDP_Vent_tbNotaCredito_Insert(string nocre_Codigo, Nullable<int> dev_Id, Nullable<int> clte_Id, Nullable<int> suc_Id, Nullable<short> cja_Id, Nullable<bool> nocre_Anulado, string nocre_RazonAnulado, Nullable<System.DateTime> nocre_FechaEmision, string nocre_MotivoEmision, Nullable<decimal> nocre_Monto, Nullable<bool> nocre_Redimido, Nullable<System.DateTime> nocre_FechaRedimido, Nullable<bool> nocre_EsImpreso, Nullable<int> nocre_UsuarioCrea, Nullable<System.DateTime> nocre_FechaCrea)

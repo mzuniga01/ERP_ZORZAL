@@ -168,7 +168,7 @@
             MontoInicial = 0;
 
             $(this).parents("tr").find("td")[3].innerHTML = montosoli;
-            if (montosoli != 0) {
+            if (montosoli != 0 || montosoli == '') {
                 MontoInicial += montosoli;
                 //Calculo Total
                 $("td.sumTotal").each(function () {

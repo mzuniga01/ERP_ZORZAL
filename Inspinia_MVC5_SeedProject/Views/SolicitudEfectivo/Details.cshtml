@@ -99,12 +99,7 @@
                         <dd>
                             <input type="text" class="input" id="montoEntregado" readonly size="50">
                         </dd>
-                        <dt>
-                            @Html.DisplayNameFor(model => model.solef_EsApertura)
-                        </dt>
-                        <dd>
-                            @Html.DisplayFor(model => model.solef_EsApertura)
-                        </dd>
+                      
                     </dl>
                     @if (Model.solef_FechaEntrega == null)
                     {
@@ -116,7 +111,7 @@
                     }
                     <div class="ibox-content">
                         <div class="table table-responsive">
-                            <table class="table table-bordered" id="TBDetalleSolicitud">
+                            <table class="table table-striped table-bordered" id="TBDetalleSolicitud">
                                 <thead>
                                     <tr>
                                         <th>
@@ -142,30 +137,35 @@
                     </div>
                 </div>
             </div>
-            <div class="ibox-content">
-                <table class="table table-striped">
-                    <tr>
-                        <th>Acción</th>
-                        <th>Usuario</th>
-                        <th>Fecha</th>
-                    </tr>
-                    <tr>
-                        <td>Creado</td>
-                        <td>
-                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
-                        </td>
-                        <td>@Html.DisplayFor(model => model.solef_FechaCrea)</td>
-                    </tr>
-                    <tr>
-                        <td>Modificado</td>
-                        <td>
-                            @Html.DisplayFor(model => model.tbUsuario2.usu_Nombres)
-                            @Html.DisplayFor(model => model.tbUsuario2.usu_Apellidos)
-                        </td>
-                        <td>@Html.DisplayFor(model => model.solef_FechaModifica)</td>
-                    </tr>
-                </table>
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Auditoría</h5>
+                </div>
+                <div class="ibox-content">
+                    <table class="table table-striped table-bordered">
+                        <tr>
+                            <th>Acción</th>
+                            <th>Usuario</th>
+                            <th>Fecha</th>
+                        </tr>
+                        <tr>
+                            <td>Creado</td>
+                            <td>
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                            </td>
+                            <td>@Html.DisplayFor(model => model.solef_FechaCrea)</td>
+                        </tr>
+                        <tr>
+                            <td>Modificado</td>
+                            <td>
+                                @Html.DisplayFor(model => model.tbUsuario2.usu_Nombres)
+                                @Html.DisplayFor(model => model.tbUsuario2.usu_Apellidos)
+                            </td>
+                            <td>@Html.DisplayFor(model => model.solef_FechaModifica)</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

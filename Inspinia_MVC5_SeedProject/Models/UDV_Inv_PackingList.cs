@@ -28,5 +28,6 @@ namespace ERP_GMEDINA.Models
         public int sal_BodDestino { get; set; }
         public string Usuario { get; set; }
         public System.DateTime box_FechaCrea { get; set; }
+        public string Nombre_Bodega { get; set; }
     }
 }

@@ -112,7 +112,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.cdto_FechaEmision, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.cdto_FechaEmision, new { htmlAttributes = new { @readonly = "readonly" } })
+                                    @Html.EditorFor(model => model.cdto_FechaEmision, new { htmlAttributes = new { @class= "form-control", @readonly = "readonly" } })
                                     @Html.ValidationMessageFor(model => model.cdto_FechaEmision)
                                 </div>
                             </div>
@@ -120,18 +120,18 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.cdto_FechaVencimiento, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.cdto_FechaVencimiento, new { htmlAttributes = new { @readonly = "readonly" } })
+                                    @Html.EditorFor(model => model.cdto_FechaVencimiento, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     @Html.ValidationMessageFor(model => model.cdto_FechaVencimiento)
                                 </div>
                             </div>
 
-                            <div class="form-group">
+                            @*<div class="form-group">
                                 @Html.LabelFor(model => model.cdto_FechaRedencion, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.cdto_FechaRedencion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     @Html.ValidationMessageFor(model => model.cdto_FechaRedencion)
                                 </div>
-                            </div>
+                            </div>*@
 
 
                             @*-----Anular oculto-----*@
@@ -143,15 +143,16 @@
 
                             @*---------------Botones---------------------*@
                             <div class="form-group">
-                                <div class="col-md-12 text-center">
+                                <div class="col-md-offset-2 col-md-10">
                                     @if (Model.cdto_Anulado == false)
                                     {
                                         <input type="submit" value="Guardar" class="btn btn-primary" />
                                         @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                        @Html.ActionLink("Imprimir", "ExportReport", new { id = Model.cdto_ID }, new { @class = "btn btn-primary", @onclick = "CuponDescuentoEsImpreso()" })
                                         <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-danger" data-toggle="modal" data-target="#Anular2">
                                             @*boton Anular Cupon Descuento*@
-                                        Anular
-                                    </button>
+                                            Anular
+                                        </button>
                                     }
                                     else
                                     {
@@ -203,10 +204,15 @@
                 </button>
             </div>
             <div class="modal-body">
-                ¿Está seguro de Anular este Cupón Descuento?
+                Razones por las cuales desea realizar la Anulación:
+                <div class="group">
+                    <textarea class="form-control" id="cdto_RazonAnulado" name="cdto_RazonAnulado" style = "text-transform:uppercase;"></textarea>
+                    <p id="smsRazonAnular" style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.cdto_RazonAnulado)</span></p>
+                </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" onclick="AnularCuponDescuento();" data-dismiss="modal">Si</button>
+                <button class="btn btn-primary btn-sm" type="button" id="Inactivar">Guardar</button>
+                @*<button type="button" id="Anular" class="btn btn-danger" onclick="AnularCuponDescuento();" data-dismiss="modal">Si</button>*@
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
             </div>
         </div>
@@ -221,6 +227,30 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script>
+
+        //-----------------caracteres especiales-----------------------
+        $('#cdto_RazonAnulado').on('input', function (e) {
+            if (!/^[0-9 .a-z-áéíóúüñ]*$/i.test(this.value)) {
+                this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
+            }
+        });
+        $('#cdto_RazonAnulado').on('input', function (e) {
+            if (!/^[0-9. a-z-áéíóúüñ]*$/i.test(this.value)) {
+                this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
+            }
+        });
+        //----------------------razon anular---------------------------
+        $('#cdto_RazonAnulado').blur(function () {
+            valido = document.getElementById('smsRazonAnular');
+            var RazonAnular = $('#cdto_RazonAnulado').val();
+            if (RazonAnular == "") {
+                $('#cdto_RazonAnulado').val('').focus();
+                valido.innerText = "Debe colocar la razón de Anular.";
+            } else {
+                valido.innerText = "";
+            }
+        });
+
         //------------------------CantidadMinima > MontoDescuento------------------
         $('#cdto_CantidadCompraMinima').blur(function () {
             valido = document.getElementById('smsCantidadMinima1');
@@ -401,18 +431,6 @@
                 return parseInt(num * e + r) / e;
             } else {
                 return num;
-            }
-        }
-
-        //------------------validar solo numeros---------------------------
-        onload = function () {
-            var ele = document.querySelectorAll('.validanumericos')[0];
-            ele.onkeypress = function (e) {
-                if (isNaN(this.value + String.fromCharCode(e.charCode)))
-                    return false;
-            }
-            ele.onpaste = function (e) {
-                e.preventDefault();
             }
         }
 </script>

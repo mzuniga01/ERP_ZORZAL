@@ -26,6 +26,7 @@
                 <div class="ibox-content">
 
                     @using (Html.BeginForm("Create", "Pedido", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        @Html.ActionLink("Buscar Reporte de Pedido", "", null, new { @class = "btn btn-primary " })
                     {
                         @Html.AntiForgeryToken()
                         @Html.HiddenFor(model => model.clte_Id)
@@ -35,7 +36,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.suc_Id, new { @class = "control-label col-md-2" })
                                 <div class="col-md-3">
-                                    @Html.EditorFor(model => model.tbSucursal.suc_Descripcion, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly" ,Value = ViewBag.Sucursal} })
+                                    @Html.EditorFor(model => model.tbSucursal.suc_Descripcion, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @readonly = "readonly", Value = ViewBag.Sucursal } })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.suc_Id)</p>
                                 </div>
 

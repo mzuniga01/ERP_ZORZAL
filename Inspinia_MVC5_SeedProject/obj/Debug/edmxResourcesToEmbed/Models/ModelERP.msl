@@ -3158,6 +3158,7 @@
     <EntitySetMapping Name="UDV_Inv_PackingList">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Inv_PackingList">
         <MappingFragment StoreEntitySet="UDV_Inv_PackingList">
+          <ScalarProperty Name="Nombre_Bodega" ColumnName="Nombre_Bodega" />
           <ScalarProperty Name="box_FechaCrea" ColumnName="box_FechaCrea" />
           <ScalarProperty Name="Usuario" ColumnName="Usuario" />
           <ScalarProperty Name="sal_BodDestino" ColumnName="sal_BodDestino" />

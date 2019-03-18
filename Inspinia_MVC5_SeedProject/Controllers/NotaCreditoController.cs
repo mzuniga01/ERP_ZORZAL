@@ -341,9 +341,9 @@ namespace ERP_GMEDINA.Controllers
         }
 
         [HttpPost]
-        public JsonResult AnularNotaCredito(Int16 nocreId, bool Anulado)
+        public JsonResult AnularNotaCredito(Int16 nocreId, bool Anulado, string RazonAnular)
         {
-            var list = db.UDP_Vent_tbNotaCredito_Anulado(nocreId, Anulado).ToList();
+            var list = db.UDP_Vent_tbNotaCredito_Anulado(nocreId, Anulado, RazonAnular).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 

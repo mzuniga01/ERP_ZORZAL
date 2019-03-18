@@ -1059,6 +1059,7 @@
     <FunctionImport Name="UDP_Vent_tbCuponDescuento_Anulado" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbCuponDescuento_Anulado_Result)">
       <Parameter Name="cdto_ID" Mode="In" Type="Int32" />
       <Parameter Name="cdto_Anulado" Mode="In" Type="Boolean" />
+      <Parameter Name="cdto_RazonAnulado" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbCuponDescuento_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbCuponDescuento_Insert_Result)">
       <Parameter Name="suc_Id" Mode="In" Type="Int32" />
@@ -1097,6 +1098,7 @@
     <FunctionImport Name="UDP_Vent_tbNotaCredito_Anulado" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbNotaCredito_Anulado_Result)">
       <Parameter Name="nocre_Id" Mode="In" Type="Int16" />
       <Parameter Name="nocre_Anulado" Mode="In" Type="Boolean" />
+      <Parameter Name="nocre_RazonAnulado" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbNotaCredito_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbNotaCredito_Insert_Result)">
       <Parameter Name="nocre_Codigo" Mode="In" Type="String" />
@@ -6073,6 +6075,7 @@
     <Property Name="sal_BodDestino" Type="Int32" Nullable="false" />
     <Property Name="Usuario" Type="String" MaxLength="301" FixedLength="false" Unicode="false" />
     <Property Name="box_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Nombre_Bodega" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="UDV_Inv_PackingList_Caja">
     <Key>
@@ -6554,7 +6557,7 @@
     <Property Name="Nombres" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="true" />
     <Property Name="Tipo_Factura" Type="String" Nullable="false" MaxLength="7" FixedLength="false" Unicode="false" />
     <Property Name="TIPO_DE_CLIENTE" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
-    <Property Name="TIPO_DESCUENTO" Type="String" Nullable="false" MaxLength="29" FixedLength="false" Unicode="false" />
+    <Property Name="TIPO_DESCUENTO" Type="String" Nullable="false" MaxLength="22" FixedLength="false" Unicode="false" />
     <Property Name="Descuento" Type="Decimal" Precision="18" Scale="2" />
     <Property Name="TotalFactura" Type="Decimal" Precision="18" Scale="2" />
   </EntityType>

@@ -220,6 +220,10 @@ namespace ERP_GMEDINA.Controllers
                 {
                     if (Function.GetUserRols("Denominacion/Edit"))
                     {
+                        if (db.tbDenominacion.Any(a => a.mnda_Id == tbDenominacion.mnda_Id && a.deno_valor == tbDenominacion.deno_valor && a.deno_Id != tbDenominacion.deno_Id))
+                        {
+                            ModelState.AddModelError("", "Este valor ya esta registrado para esta moneda.");
+                        }
                         if (ModelState.IsValid)
                         {
                             try

@@ -16,7 +16,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Lista Cupón Descuento</h5>
+                    <h5>Listado de Cupón Descuento</h5>
                     <div class="ibox-tools">
 
                         @Html.ActionLink("Registrar Cupón Descuento", "Create", null, new { @class = "btn btn-primary" })
@@ -24,7 +24,7 @@
                 </div>
                 <div class="ibox-content">
 
-                    <table class="table table-striped table-bordered table-hover" id="DataTable">
+                    <table class="table table-striped table-responsive table-bordered table-hover" id="DataTable">
                         <thead>
                             <tr>
                                 <th>
@@ -99,7 +99,7 @@
                                             @Html.ActionLink("Detalles", "Details", new { id = item.cdto_ID }, new { @class = "btn btn-primary btn-xs" })
                                             @Html.ActionLink("Editar", "Edit", new { id = item.cdto_ID }, new { @id = "btnEditar", @class = "btn btn-white btn-xs" })
 
-                                            @Html.ActionLink("Imprimir", "ExportReport", new { id = item.cdto_ID }, new { @class = "btn btn-info btn-xs", @onclick = "CuponDescuentoEsImpreso()" })
+                                            @*@Html.ActionLink("Imprimir", "ExportReport", new { id = item.cdto_ID }, new { @class = "btn btn-info btn-xs", @onclick = "CuponDescuentoEsImpreso()" })*@
                                         </td>
                                       
                                     }
@@ -113,9 +113,9 @@
                                                 <button class="btn btn-white btn-xs" style="pointer-events: none;" type="button" disabled>Editar</button>
                                             </span>
 
-                                            <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="No se puede Imprimir">
+                                            @*<span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="No se puede Imprimir">
                                                 <button id="bottonImprimir" class="btn btn-info btn-xs" style="pointer-events: none;" type="button" disabled>Imprimir</button>
-                                            </span>
+                                            </span>*@
                                         </td>
                                     }
                                 </tr>

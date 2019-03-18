@@ -1504,6 +1504,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_PackingList' does not have
           <Property Name="uni_Descripcion" Type="varchar" MaxLength="150" />
           <Property Name="sald_Cantidad" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="bod_Nombre" Type="varchar" MaxLength="100" />
+          <Property Name="Nombre_Bodega" Type="varchar" MaxLength="100" />
           <Property Name="sal_BodDestino" Type="int" Nullable="false" />
           <Property Name="Usuario" Type="varchar" MaxLength="301" />
           <Property Name="box_FechaCrea" Type="datetime" Nullable="false" />
@@ -2020,7 +2021,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_DescuentosporFecha' does
           <Property Name="Nombres" Type="nvarchar" MaxLength="101" Nullable="false" />
           <Property Name="Tipo_Factura" Type="varchar" MaxLength="7" Nullable="false" />
           <Property Name="TIPO_DE_CLIENTE" Type="varchar" MaxLength="8" Nullable="false" />
-          <Property Name="TIPO_DESCUENTO" Type="varchar" MaxLength="29" Nullable="false" />
+          <Property Name="TIPO_DESCUENTO" Type="varchar" MaxLength="22" Nullable="false" />
           <Property Name="Descuento" Type="decimal" Precision="18" Scale="2" />
           <Property Name="TotalFactura" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
@@ -6357,6 +6358,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
         <Function Name="UDP_Vent_tbCuponDescuento_Anulado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="cdto_ID" Type="int" Mode="In" />
           <Parameter Name="cdto_Anulado" Type="bit" Mode="In" />
+          <Parameter Name="cdto_RazonAnulado" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="UDP_Vent_tbCuponDescuento_EsImpreso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="cdto_ID" Type="int" Mode="In" />
@@ -6779,6 +6781,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
         <Function Name="UDP_Vent_tbNotaCredito_Anulado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="nocre_Id" Type="smallint" Mode="In" />
           <Parameter Name="nocre_Anulado" Type="bit" Mode="In" />
+          <Parameter Name="nocre_RazonAnulado" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="UDP_Vent_tbNotaCredito_Caja" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="CodUsuario" Type="int" Mode="In" />
@@ -7548,6 +7551,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
     [UDV_Inv_PackingList].[uni_Descripcion] AS [uni_Descripcion], 
     [UDV_Inv_PackingList].[sald_Cantidad] AS [sald_Cantidad], 
     [UDV_Inv_PackingList].[bod_Nombre] AS [bod_Nombre], 
+    [UDV_Inv_PackingList].[Nombre_Bodega] AS [Nombre_Bodega], 
     [UDV_Inv_PackingList].[sal_BodDestino] AS [sal_BodDestino], 
     [UDV_Inv_PackingList].[Usuario] AS [Usuario], 
     [UDV_Inv_PackingList].[box_FechaCrea] AS [box_FechaCrea]
@@ -10130,6 +10134,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <FunctionImport Name="UDP_Vent_tbCuponDescuento_Anulado" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbCuponDescuento_Anulado_Result)">
             <Parameter Name="cdto_ID" Mode="In" Type="Int32" />
             <Parameter Name="cdto_Anulado" Mode="In" Type="Boolean" />
+            <Parameter Name="cdto_RazonAnulado" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbCuponDescuento_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbCuponDescuento_Insert_Result)">
             <Parameter Name="suc_Id" Mode="In" Type="Int32" />
@@ -10168,6 +10173,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <FunctionImport Name="UDP_Vent_tbNotaCredito_Anulado" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbNotaCredito_Anulado_Result)">
             <Parameter Name="nocre_Id" Mode="In" Type="Int16" />
             <Parameter Name="nocre_Anulado" Mode="In" Type="Boolean" />
+            <Parameter Name="nocre_RazonAnulado" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbNotaCredito_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbNotaCredito_Insert_Result)">
             <Parameter Name="nocre_Codigo" Mode="In" Type="String" />
@@ -15144,6 +15150,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <Property Name="sal_BodDestino" Type="Int32" Nullable="false" />
           <Property Name="Usuario" Type="String" MaxLength="301" FixedLength="false" Unicode="false" />
           <Property Name="box_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Nombre_Bodega" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="UDV_Inv_PackingList_Caja">
           <Key>
@@ -15625,7 +15632,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <Property Name="Nombres" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="true" />
           <Property Name="Tipo_Factura" Type="String" Nullable="false" MaxLength="7" FixedLength="false" Unicode="false" />
           <Property Name="TIPO_DE_CLIENTE" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
-          <Property Name="TIPO_DESCUENTO" Type="String" Nullable="false" MaxLength="29" FixedLength="false" Unicode="false" />
+          <Property Name="TIPO_DESCUENTO" Type="String" Nullable="false" MaxLength="22" FixedLength="false" Unicode="false" />
           <Property Name="Descuento" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="TotalFactura" Type="Decimal" Precision="18" Scale="2" />
         </EntityType>
@@ -22024,6 +22031,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <EntitySetMapping Name="UDV_Inv_PackingList">
             <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Inv_PackingList">
               <MappingFragment StoreEntitySet="UDV_Inv_PackingList">
+                <ScalarProperty Name="Nombre_Bodega" ColumnName="Nombre_Bodega" />
                 <ScalarProperty Name="box_FechaCrea" ColumnName="box_FechaCrea" />
                 <ScalarProperty Name="Usuario" ColumnName="Usuario" />
                 <ScalarProperty Name="sal_BodDestino" ColumnName="sal_BodDestino" />

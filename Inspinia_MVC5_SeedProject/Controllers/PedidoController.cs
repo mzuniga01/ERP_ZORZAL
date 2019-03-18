@@ -8,6 +8,11 @@ using System.Web;
 using System.Web.Mvc;
 using ERP_GMEDINA.Models;
 using System.Transactions;
+using CrystalDecisions.CrystalReports.Engine;
+using ERP_GMEDINA.Dataset;
+using System.IO;
+using ERP_GMEDINA.Reports;
+using ERP_GMEDINA.Dataset.ReportesTableAdapters;
 
 namespace ERP_GMEDINA.Controllers
 {
@@ -18,6 +23,7 @@ namespace ERP_GMEDINA.Controllers
         public ActionResult Index()
         {
             var tbpedido = db.tbPedido.Include(t => t.tbUsuario).Include(t => t.tbUsuario1).Include(t => t.tbCliente).Include(t => t.tbEstadoPedido).Include(t => t.tbSucursal);
+
             return View(tbpedido.ToList());
         }
 
@@ -681,10 +687,68 @@ namespace ERP_GMEDINA.Controllers
             }
             base.Dispose(disposing);
         }
+        
+
+        public int GetUsuarioMetodo()
+        {
+            int idUser = 0;
+            try
+            {
+                List<tbUsuario> User = Function.getUserInformation();
+                foreach (tbUsuario Usuario in User)
+                {
+                    idUser = Convert.ToInt32(Usuario.usu_Id);
+                }
+                return idUser;
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                return 0;
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Reporte(tbObjeto Objeto/*, int clte_Id, bool clte_EsPersonaNatural*/)
+        {
+
+            int clte_Id = 4;
+            bool clte_EsPersonaNatural = true;
+            int iTipoReporte = Objeto.obj_Id;
+            var list = db.SDP_Acce_GetReportes().ToList();
+            var GetUsuario = GetUsuarioMetodo();
+            var UsuarioName = db.tbUsuario.Where(x => x.usu_Id == GetUsuario).Select(i => new { i.usu_Nombres, i.usu_Apellidos }).FirstOrDefault();
+            ReportDocument rd = new ReportDocument();
+            Stream stream = null;
+            rptPedidoEntreFechas rptPedido = new rptPedidoEntreFechas();
+            Reportes ReportePedido = new Reportes();
+
+            var ReportePedidoTableAdapter = new UDV_Vent_Pedido_EntreFechasTableAdapter();
+
+            try
+            {
+                ReportePedidoTableAdapter.FillFiltros(ReportePedido.UDV_Vent_Pedido_EntreFechas, clte_Id, clte_EsPersonaNatural);
+
+                rptPedido.SetDataSource(ReportePedido);
+                rptPedido.SetParameterValue("usuario", UsuarioName.usu_Nombres + " " + UsuarioName.usu_Apellidos);
+
+                stream = rptPedido.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+                stream.Seek(0, SeekOrigin.Begin);
+
+                rptPedido.Close();
+                rptPedido.Dispose();
 
 
-
-
+                string fileName = "Reporte_PedidoEntreFechas.pdf";
+                Response.AppendHeader("Content-Disposition", "inline; filename=" + fileName);
+                return File(stream, "application/pdf");
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                throw;
+            }
+        }
 
 
 

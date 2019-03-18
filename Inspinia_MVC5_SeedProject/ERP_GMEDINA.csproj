@@ -1492,10 +1492,10 @@
       <DependentUpon>VentasConsumidorFinal.rpt</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="Reports\VentasExoneradas.cs">
+    <Compile Include="Reports\rptVentasExoneradas.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>VentasExoneradas.rpt</DependentUpon>
+      <DependentUpon>rptVentasExoneradas.rpt</DependentUpon>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
@@ -2443,9 +2443,9 @@
       <LastGenOutput>VentasConsumidorFinal.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\VentasExoneradas.rpt">
+    <EmbeddedResource Include="Reports\rptVentasExoneradas.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>VentasExoneradas.cs</LastGenOutput>
+      <LastGenOutput>rptVentasExoneradas.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Ventas_entre_Fechas.rpt">

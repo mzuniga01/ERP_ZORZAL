@@ -21,6 +21,10 @@
                     <h5>Listado Exoneración</h5>
 					<div class="ibox-tools">
 						@Html.ActionLink("Registrar Exoneración", "Create", null, new { @class = "btn btn-primary"})
+                        @using (Html.BeginForm("Reporte", "Exoneracion", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            <button id="Reporte" type="submit" class="btn btn-primary btn-sm">Reporte</button>
+                        }
 					</div>
                 </div>
                 <div class="ibox-content">
