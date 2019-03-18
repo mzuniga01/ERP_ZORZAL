@@ -64,7 +64,6 @@ $('#AgregarInvFisicoDetalle').click(function () {
                         var idcontador = $(this).closest('tr').data('id');
                         var cantfisica_anterior = $(this).closest("tr").find("td:eq(4)").text();
                         var sumacantidades = parseInt(cantfisica_nueva) + parseInt(cantfisica_anterior);
-                        console.log(sumacantidades);
                         $(this).closest('tr').remove();
                         copiar = "<tr data-id=" + idcontador + ">";
                         copiar += "<td id = 'data_producto' hidden='hidden'>" + $('#prod_Codigo').val() + "</td>";
@@ -594,15 +593,15 @@ $('#invf_Descripcion').keypress(function (e) {
     tecla_final = String.fromCharCode(tecla);
     return patron.test(tecla_final);
 })
-$('#prod_CodigoBarras').keypress(function (e) {
-    tecla = (document.all) ? e.keyCode : e.which;
 
-    //Tecla de retroceso para borrar, siempre la permite
-    if (tecla == 8) {
-        return true;
-    }
-    // Patron de entrada, en este caso solo acepta numeros y letras
-    patron = /[A-Za-z0-9]/;
-    tecla_final = String.fromCharCode(tecla);
-    return patron.test(tecla_final);
-})
+//solo letras y numeros
+function NumText(string) {
+    var out = '';
+    //Se añaden las letras validas
+    var filtro = 'abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ1234567890';//Caracteres validos
+
+    for (var i = 0; i < string.length; i++)
+        if (filtro.indexOf(string.charAt(i)) != -1)
+            out += string.charAt(i);
+    return out;
+}

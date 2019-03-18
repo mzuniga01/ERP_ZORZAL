@@ -21,7 +21,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.tbProducto.prod_CodigoBarras, "Producto", new { @class = "control-label col-md-2" })
                         <div class="col-md-8">
-                            <input type="text" id="prod_CodigoBarras" placeholder="" class="form-control" />
+                            <input type="text" id="prod_CodigoBarras" placeholder="" class="form-control" onkeyup="this.value = NumText(this.value)" />
                             <div id="ErrorBarras_Create">
                                 @Html.ValidationMessageFor(model => model.tbProducto.prod_CodigoBarras)
                             </div>
@@ -78,7 +78,7 @@
 
 
                 </div>
-
+                @* Tabla del detalle *@
                 <table class="table table-striped table-responsive table-bordered table-hover" style="width:100%" id="detalle">
                     <thead>
                         <tr>
@@ -102,29 +102,6 @@
                     </thead>
                     <tbody>
                     </tbody>
-                </table>
-                @* Tabla del detalle *@
-                <table class="table table-striped table-responsive table-bordered table-hover" style="width:100%" id="detalle">
-                    <thead>
-                        <tr>
-                            <th>
-                                Codigo de Barras
-                            </th>
-                            <th>
-                                Descripcion del Producto
-                            </th>
-                            <th>
-                                Unidad de Medida
-                            </th>
-                            <th>
-                                Cantidad Fisica
-                            </th>
-                            <th>
-                                Cantidad de Sistema
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
                 </table>
 
             </div>

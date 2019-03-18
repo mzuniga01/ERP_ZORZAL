@@ -90,7 +90,7 @@ namespace ERP_GMEDINA.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_sal_FechaElaboracion {
+        public CrystalDecisions.Shared.IParameterField Parameter_Usuario {
             get {
                 return this.DataDefinition.ParameterFields[0];
             }
@@ -98,9 +98,17 @@ namespace ERP_GMEDINA.Reports {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_sal_FechaElaboracion2 {
+        public CrystalDecisions.Shared.IParameterField Parameter_FechaElaboracion1 {
             get {
                 return this.DataDefinition.ParameterFields[1];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_FechaElaboracion2 {
+            get {
+                return this.DataDefinition.ParameterFields[2];
             }
         }
     }

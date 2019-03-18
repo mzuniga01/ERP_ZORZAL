@@ -218,16 +218,6 @@
     <Compile Include="Controllers\TipoSalidaController.cs" />
     <Compile Include="Controllers\UnidadMedidaController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
-    <Compile Include="Dataset\dsPackingList.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dsPackingList.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Dataset\InventarioFisico.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>InventarioFisico.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Dataset\Reportes.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1114,7 +1104,10 @@
       <DependentUpon>InventarioHistorico.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\ListadoProveedores.cs">
+    <Compile Include="Reports\ListadoProveedores1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ListadoProveedores.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Movimiento_Entre_Fechas.cs">
@@ -1530,28 +1523,6 @@
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
     <Fakes Include="Fakes\SimpleCrypto.fakes" />
-    <Content Include="Dataset\InventarioFisico.xsc">
-      <DependentUpon>InventarioFisico.xsd</DependentUpon>
-    </Content>
-    <Content Include="Dataset\dsPackingList.xsc">
-      <DependentUpon>dsPackingList.xsd</DependentUpon>
-    </Content>
-    <None Include="Dataset\dsPackingList.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>dsPackingList.Designer.cs</LastGenOutput>
-    </None>
-    <Content Include="Dataset\dsPackingList.xss">
-      <DependentUpon>dsPackingList.xsd</DependentUpon>
-    </Content>
-    <None Include="Dataset\InventarioFisico.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>InventarioFisico.Designer.cs</LastGenOutput>
-    </None>
-    <Content Include="Dataset\InventarioFisico.xss">
-      <DependentUpon>InventarioFisico.xsd</DependentUpon>
-    </Content>
     <Content Include="Dataset\Reportes.xsc">
       <DependentUpon>Reportes.xsd</DependentUpon>
     </Content>

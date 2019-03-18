@@ -12,6 +12,9 @@ using CrystalDecisions.CrystalReports.Engine;
 using System.IO;
 using System.Net.Mime;
 using ERP_GMEDINA.Attribute;
+using ERP_GMEDINA.Reports;
+using ERP_GMEDINA.Dataset;
+using ERP_GMEDINA.Dataset.ReportesTableAdapters;
 
 namespace ERP_GMEDINA.Controllers
 {
@@ -105,51 +108,33 @@ namespace ERP_GMEDINA.Controllers
 
         public ActionResult ExportReport(int? id)
         {
+            var idInvf = Convert.ToInt32(id);
             ReportDocument rd = new ReportDocument();
-            rd.Load(Path.Combine(Server.MapPath("~/Reports"), "ImprimirConciliacion.rpt"));
-            var tbInventarioFisico = db.tbInventarioFisico.ToList();
-            var tbEmpleado = db.tbEmpleado.ToList();
-            var tbestadoinventariofisico = db.tbEstadoInventarioFisico.ToList();
-            var tbInventarioFisicoDetalle = db.tbInventarioFisicoDetalle.ToList();
-            var tbProducto = db.tbProducto.ToList();
-            var tbBodega = db.tbBodega.ToList();
-            var tbUnidadMedida = db.tbUnidadMedida.ToList();
-            var todo = (from inv in tbInventarioFisico
-                        join  e in tbestadoinventariofisico on inv.estif_Id equals e.estif_Id
-                        join b in tbBodega on inv.bod_Id equals b.bod_Id
-                        join emp in tbEmpleado on b.bod_ResponsableBodega equals emp.emp_Id
-                        join invd in tbInventarioFisicoDetalle on inv.invf_Id equals invd.invf_Id
-                        join p in tbProducto on invd.prod_Codigo equals p.prod_Codigo
-                        join u in tbUnidadMedida on p.uni_Id equals u.uni_Id
-                        where inv.invf_Id == id
-                        select new
-                        {
-                            invf_Descripcion = inv.invf_Descripcion,
-                            invf_FechaInventario = inv.invf_FechaInventario,
-                            estif_Descripcion = e.estif_Descripcion,
-                            bod_Nombre = b.bod_Nombre,
-                            emp_Nombres = emp.emp_Nombres,
-                            emp_Apellidos = emp.emp_Apellidos,
-                            prod_CodigoBarras = p.prod_CodigoBarras,
-                            prod_Descripcion = p.prod_Descripcion,
-                            prod_Marca = p.prod_Marca,
-                            prod_Modelo = p.prod_Modelo,
-                            uni_Descripcion = u.uni_Descripcion,
-                            invfd_CantidadSistema = invd.invfd_CantidadSistema,
-                            invfd_Cantidad = invd.invfd_Cantidad
-                        }).ToList();
+            Stream stream = null;
+            ImprimirConciliacion FaltantesRP = new ImprimirConciliacion();
+            Reportes faltantes = new Reportes();
 
-            rd.SetDataSource(todo);
-            Response.Buffer = false;
-            Response.ClearContent();
-            Response.ClearHeaders();
+            var InventarioTableAdapter = new UDV_TBInventarioFisico_ImprimirConciliacionTableAdapter();
+
             try
             {
-                Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+                InventarioTableAdapter.Fill(faltantes.UDV_TBInventarioFisico_ImprimirConciliacion, idInvf);
+
+                FaltantesRP.SetDataSource(faltantes);
+                stream = FaltantesRP.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+                stream.Seek(0, SeekOrigin.Begin);
+
+                FaltantesRP.Close();
+                FaltantesRP.Dispose();
+
+                string fileName = "ImprimirConciliacion.pdf";
+                Response.AppendHeader("Content-Disposition", "inline; filename=" + fileName);
                 return File(stream, "application/pdf");
             }
-            catch
+
+            catch (Exception Ex)
             {
+                Ex.Message.ToString();
                 throw;
             }
         }
