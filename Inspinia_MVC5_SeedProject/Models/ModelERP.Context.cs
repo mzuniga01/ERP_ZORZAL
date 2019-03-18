@@ -145,6 +145,7 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<UDV_Vent_VentasConsumidorFinal> UDV_Vent_VentasConsumidorFinal { get; set; }
         public virtual DbSet<UDV_Vent_VentasExoneradas> UDV_Vent_VentasExoneradas { get; set; }
         public virtual DbSet<UDV_Vent_VentasPorCaja_EntreFechas> UDV_Vent_VentasPorCaja_EntreFechas { get; set; }
+        public virtual DbSet<UDV_Vent_MovimientoCaja_Apertura_Detalles> UDV_Vent_MovimientoCaja_Apertura_Detalles { get; set; }
     
         public virtual ObjectResult<Nullable<short>> UDP_Vent_tbPedido_Select(Nullable<int> ped_Id)
         {
@@ -6079,13 +6080,13 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbMovimientoCaja_Insert_Result>("UDP_Vent_tbMovimientoCaja_Insert", cja_IdParameter, usu_IdParameter, mocja_UsuarioAperturaParameter, mocja_FechaArqueoParameter, mocja_UsuarioArqueaParameter, mocja_FechaAceptacionParameter, mocja_UsuarioAceptacionParameter, mocja_UsuarioCreaParameter, mocja_FechaCreaParameter);
         }
     
-        public virtual ObjectResult<UPD_Vent_tbUsuario_Rol_Result> UPD_Vent_tbUsuario_Rol(Nullable<int> suc_Id)
+        public virtual int UPD_Vent_tbUsuario_Rol(Nullable<int> suc_Id)
         {
             var suc_IdParameter = suc_Id.HasValue ?
                 new ObjectParameter("suc_Id", suc_Id) :
                 new ObjectParameter("suc_Id", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UPD_Vent_tbUsuario_Rol_Result>("UPD_Vent_tbUsuario_Rol", suc_IdParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UPD_Vent_tbUsuario_Rol", suc_IdParameter);
         }
     
         public virtual ObjectResult<spGetCaja_Result> spGetCaja(Nullable<int> codUsuario)

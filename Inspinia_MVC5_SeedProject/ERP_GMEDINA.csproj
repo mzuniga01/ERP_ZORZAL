@@ -1273,6 +1273,9 @@
     <Compile Include="Models\UDV_Vent_MovimientoCaja_Apertura.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UDV_Vent_MovimientoCaja_Apertura_Detalles.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UDV_Vent_NotaCreditoPorFecha.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -1301,9 +1304,6 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UnidadesMedida.cs" />
-    <Compile Include="Models\UPD_Vent_tbUsuario_Rol_Result.cs">
-      <DependentUpon>ModelERP.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\VistaInventarioHistorico.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -2298,6 +2298,7 @@
     <Content Include="Views\EstadoPedido\Details.cshtml" />
     <Content Include="Views\EstadoPedido\Edit.cshtml" />
     <Content Include="Views\EstadoPedido\Index.cshtml" />
+    <Content Include="Views\MovimientoCaja\DetailsApertura.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

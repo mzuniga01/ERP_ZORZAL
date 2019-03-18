@@ -29,6 +29,20 @@ namespace ERP_GMEDINA.Controllers
         /////////INICIO APERTURA/////////
         // GET: /MovimientoCaja/
 
+        public ActionResult DetailsApertura(short? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction("IndexApertura");
+            }
+            tbMovimientoCaja tbMovimientoCaja = db.tbMovimientoCaja.Find(id);
+            if (tbMovimientoCaja == null)
+            {
+                return RedirectToAction("NotFound", "Login");
+            }
+            return View(tbMovimientoCaja);
+        }
+
         public ActionResult IndexApertura()
         {
             if (Function.GetUserLogin())
@@ -136,7 +150,8 @@ namespace ERP_GMEDINA.Controllers
                     {
                         try
                         {
-                            if (db.tbMovimientoCaja.Any(a => a.usu_Id == tbMovimientoCaja.usu_Id))
+                            var fecha = DateTime.Now;
+                            if (db.tbMovimientoCaja.Any(a => tbMovimientoCaja.mocja_FechaApertura == fecha))
                             {
                                 ModelState.AddModelError("", "Este usuario ya aperturo una caja el día de hoy.");
                                 //return View(tbMovimientoCaja);

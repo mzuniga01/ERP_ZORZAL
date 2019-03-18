@@ -58,6 +58,7 @@
                                         @Html.DisplayFor(modelItem => item.solef_Id)
                                     </td>
                                     <td>
+                                        @Html.ActionLink("Detalles", "DetailsApertura", new { id = item.mocja_Id }, new { @class = "btn btn-primary btn-xs" })
                                         @Html.ActionLink("Imprimir", "ExportReportApertura", new { id = item.solef_Id }, new { @class = "btn btn-primary btn-xs", target = "_blank" })
                                     </td>
                                 </tr>

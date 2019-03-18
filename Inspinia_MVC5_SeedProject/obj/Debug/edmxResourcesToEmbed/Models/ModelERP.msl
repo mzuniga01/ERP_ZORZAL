@@ -3811,9 +3811,24 @@
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbUsuario_Rol_Apertura_Result">
           <ScalarProperty Name="usu_Id" ColumnName="usu_Id" />
           <ScalarProperty Name="usu_NombreUsuario" ColumnName="usu_NombreUsuario" />
-          <ScalarProperty Name="mocja_FechaApertura" ColumnName="mocja_FechaApertura" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <EntitySetMapping Name="UDV_Vent_MovimientoCaja_Apertura_Detalles">
+      <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Vent_MovimientoCaja_Apertura_Detalles">
+        <MappingFragment StoreEntitySet="UDV_Vent_MovimientoCaja_Apertura_Detalles">
+          <ScalarProperty Name="NOMBRES" ColumnName="NOMBRES" />
+          <ScalarProperty Name="cja_Id" ColumnName="cja_Id" />
+          <ScalarProperty Name="soled_MontoEntregado" ColumnName="soled_MontoEntregado" />
+          <ScalarProperty Name="soled_CantidadSolicitada" ColumnName="soled_CantidadSolicitada" />
+          <ScalarProperty Name="soled_CantidadEntregada" ColumnName="soled_CantidadEntregada" />
+          <ScalarProperty Name="mnda_Nombre" ColumnName="mnda_Nombre" />
+          <ScalarProperty Name="mnda_Abreviatura" ColumnName="mnda_Abreviatura" />
+          <ScalarProperty Name="mocja_UsuarioApertura" ColumnName="mocja_UsuarioApertura" />
+          <ScalarProperty Name="mocja_FechaApertura" ColumnName="mocja_FechaApertura" />
+          <ScalarProperty Name="mocja_Id" ColumnName="mocja_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

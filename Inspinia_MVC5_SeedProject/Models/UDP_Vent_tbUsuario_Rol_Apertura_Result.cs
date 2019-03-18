@@ -15,6 +15,5 @@ namespace ERP_GMEDINA.Models
     {
         public int usu_Id { get; set; }
         public string usu_NombreUsuario { get; set; }
-        public Nullable<System.DateTime> mocja_FechaApertura { get; set; }
     }
 }

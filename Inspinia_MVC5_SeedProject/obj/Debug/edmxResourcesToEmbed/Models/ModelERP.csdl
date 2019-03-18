@@ -1651,7 +1651,7 @@
       <Parameter Name="mocja_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="mocja_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
-    <FunctionImport Name="UPD_Vent_tbUsuario_Rol" ReturnType="Collection(ERP_ZORZALModel.UPD_Vent_tbUsuario_Rol_Result)">
+    <FunctionImport Name="UPD_Vent_tbUsuario_Rol">
       <Parameter Name="suc_Id" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="spGetCaja" ReturnType="Collection(ERP_ZORZALModel.spGetCaja_Result)">
@@ -2980,6 +2980,7 @@
     <FunctionImport Name="UDP_Vent_tbUsuario_Rol_Apertura" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbUsuario_Rol_Apertura_Result)">
       <Parameter Name="suc_Id" Mode="In" Type="Int32" />
     </FunctionImport>
+    <EntitySet Name="UDV_Vent_MovimientoCaja_Apertura_Detalles" EntityType="ERP_ZORZALModel.UDV_Vent_MovimientoCaja_Apertura_Detalles" />
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -3769,16 +3770,9 @@
     <Property Type="String" Name="suc_Direccion" Nullable="false" MaxLength="100" />
     <Property Type="String" Name="suc_Telefono" Nullable="false" MaxLength="9" />
   </ComplexType>
-  <ComplexType Name="UPD_Vent_tbUsuario_Rol_Result">
-    <Property Type="Int32" Name="usu_Id" Nullable="false" />
-    <Property Type="String" Name="usu_NombreUsuario" Nullable="false" MaxLength="100" />
-  </ComplexType>
   <ComplexType Name="spGetCaja_Result">
     <Property Type="Int16" Name="cja_Id" Nullable="false" />
     <Property Type="String" Name="cja_Descripcion" Nullable="false" MaxLength="10" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbTipoPago_Update_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbTipoPago_Insert_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
@@ -9767,6 +9761,31 @@
   <ComplexType Name="UDP_Vent_tbUsuario_Rol_Apertura_Result">
     <Property Type="Int32" Name="usu_Id" Nullable="false" />
     <Property Type="String" Name="usu_NombreUsuario" Nullable="false" MaxLength="100" />
-    <Property Type="DateTime" Name="mocja_FechaApertura" Nullable="true" />
   </ComplexType>
+  <ComplexType Name="UDP_Vent_tbTipoPago_Update_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <EntityType Name="UDV_Vent_MovimientoCaja_Apertura_Detalles">
+    <Key>
+      <PropertyRef Name="mocja_Id" />
+      <PropertyRef Name="mocja_UsuarioApertura" />
+      <PropertyRef Name="mnda_Abreviatura" />
+      <PropertyRef Name="mnda_Nombre" />
+      <PropertyRef Name="soled_CantidadEntregada" />
+      <PropertyRef Name="soled_CantidadSolicitada" />
+      <PropertyRef Name="soled_MontoEntregado" />
+      <PropertyRef Name="cja_Id" />
+      <PropertyRef Name="NOMBRES" />
+    </Key>
+    <Property Name="mocja_Id" Type="Int32" Nullable="false" />
+    <Property Name="mocja_FechaApertura" Type="DateTime" Precision="3" />
+    <Property Name="mocja_UsuarioApertura" Type="Int32" Nullable="false" />
+    <Property Name="mnda_Abreviatura" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="mnda_Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="soled_CantidadEntregada" Type="Int16" Nullable="false" />
+    <Property Name="soled_CantidadSolicitada" Type="Int16" Nullable="false" />
+    <Property Name="soled_MontoEntregado" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="cja_Id" Type="Int16" Nullable="false" />
+    <Property Name="NOMBRES" Type="String" Nullable="false" MaxLength="301" FixedLength="false" Unicode="false" />
+  </EntityType>
 </Schema>

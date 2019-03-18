@@ -15,7 +15,7 @@ namespace ERP_GMEDINA.Models
     public class MovimientoCajasMetaData
     {   
 
-        [Display(Name = "Número Movimiento")]
+        [Display(Name = "Número")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]
         public int mocja_Id { get; set; }
 

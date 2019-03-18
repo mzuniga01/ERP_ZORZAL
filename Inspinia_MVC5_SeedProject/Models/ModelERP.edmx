@@ -2248,6 +2248,31 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_MovimientoCaja_Apertura'
           <Property Name="suc_Descripcion" Type="nvarchar" MaxLength="40" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_MovimientoCaja_Apertura_Detalles' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="UDV_Vent_MovimientoCaja_Apertura_Detalles">
+          <Key>
+            <PropertyRef Name="mocja_Id" />
+            <PropertyRef Name="mocja_UsuarioApertura" />
+            <PropertyRef Name="mnda_Abreviatura" />
+            <PropertyRef Name="mnda_Nombre" />
+            <PropertyRef Name="soled_CantidadEntregada" />
+            <PropertyRef Name="soled_CantidadSolicitada" />
+            <PropertyRef Name="soled_MontoEntregado" />
+            <PropertyRef Name="cja_Id" />
+            <PropertyRef Name="NOMBRES" />
+          </Key>
+          <Property Name="mocja_Id" Type="int" Nullable="false" />
+          <Property Name="mocja_FechaApertura" Type="datetime" />
+          <Property Name="mocja_UsuarioApertura" Type="int" Nullable="false" />
+          <Property Name="mnda_Abreviatura" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="mnda_Nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="soled_CantidadEntregada" Type="smallint" Nullable="false" />
+          <Property Name="soled_CantidadSolicitada" Type="smallint" Nullable="false" />
+          <Property Name="soled_MontoEntregado" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="cja_Id" Type="smallint" Nullable="false" />
+          <Property Name="NOMBRES" Type="varchar" MaxLength="301" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_NotaCreditoPorFecha' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="UDV_Vent_NotaCreditoPorFecha">
           <Key>
@@ -7964,6 +7989,20 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
     [UDV_Vent_MovimientoCaja_Apertura].[suc_Descripcion] AS [suc_Descripcion]
     FROM [Vent].[UDV_Vent_MovimientoCaja_Apertura] AS [UDV_Vent_MovimientoCaja_Apertura]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="UDV_Vent_MovimientoCaja_Apertura_Detalles" EntityType="Self.UDV_Vent_MovimientoCaja_Apertura_Detalles" store:Type="Views" store:Schema="Vent">
+            <DefiningQuery>SELECT 
+    [UDV_Vent_MovimientoCaja_Apertura_Detalles].[mocja_Id] AS [mocja_Id], 
+    [UDV_Vent_MovimientoCaja_Apertura_Detalles].[mocja_FechaApertura] AS [mocja_FechaApertura], 
+    [UDV_Vent_MovimientoCaja_Apertura_Detalles].[mocja_UsuarioApertura] AS [mocja_UsuarioApertura], 
+    [UDV_Vent_MovimientoCaja_Apertura_Detalles].[mnda_Abreviatura] AS [mnda_Abreviatura], 
+    [UDV_Vent_MovimientoCaja_Apertura_Detalles].[mnda_Nombre] AS [mnda_Nombre], 
+    [UDV_Vent_MovimientoCaja_Apertura_Detalles].[soled_CantidadEntregada] AS [soled_CantidadEntregada], 
+    [UDV_Vent_MovimientoCaja_Apertura_Detalles].[soled_CantidadSolicitada] AS [soled_CantidadSolicitada], 
+    [UDV_Vent_MovimientoCaja_Apertura_Detalles].[soled_MontoEntregado] AS [soled_MontoEntregado], 
+    [UDV_Vent_MovimientoCaja_Apertura_Detalles].[cja_Id] AS [cja_Id], 
+    [UDV_Vent_MovimientoCaja_Apertura_Detalles].[NOMBRES] AS [NOMBRES]
+    FROM [Vent].[UDV_Vent_MovimientoCaja_Apertura_Detalles] AS [UDV_Vent_MovimientoCaja_Apertura_Detalles]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="UDV_Vent_NotaCreditoPorFecha" EntityType="Self.UDV_Vent_NotaCreditoPorFecha" store:Type="Views" store:Schema="Vent">
             <DefiningQuery>SELECT 
     [UDV_Vent_NotaCreditoPorFecha].[N°] AS [N°], 
@@ -10683,7 +10722,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
             <Parameter Name="mocja_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="mocja_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="UPD_Vent_tbUsuario_Rol" ReturnType="Collection(ERP_ZORZALModel.UPD_Vent_tbUsuario_Rol_Result)">
+          <FunctionImport Name="UPD_Vent_tbUsuario_Rol">
           <Parameter Name="suc_Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="spGetCaja" ReturnType="Collection(ERP_ZORZALModel.spGetCaja_Result)">
@@ -12010,8 +12049,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
             <End Role="tbSolicitudEfectivoDetalle" EntitySet="tbSolicitudEfectivoDetalle" />
           </AssociationSet>
           <FunctionImport Name="UDP_Vent_tbUsuario_Rol_Apertura" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbUsuario_Rol_Apertura_Result)">
-            <Parameter Name="suc_Id" Mode="In" Type="Int32" />
+          <Parameter Name="suc_Id" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="UDV_Vent_MovimientoCaja_Apertura_Detalles" EntityType="ERP_ZORZALModel.UDV_Vent_MovimientoCaja_Apertura_Detalles" />
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
           <Key>
@@ -12801,16 +12841,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <Property Type="String" Name="suc_Direccion" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="suc_Telefono" Nullable="false" MaxLength="9" />
         </ComplexType>
-        <ComplexType Name="UPD_Vent_tbUsuario_Rol_Result">
-          <Property Type="Int32" Name="usu_Id" Nullable="false" />
-          <Property Type="String" Name="usu_NombreUsuario" Nullable="false" MaxLength="100" />
-        </ComplexType>
         <ComplexType Name="spGetCaja_Result">
           <Property Type="Int16" Name="cja_Id" Nullable="false" />
           <Property Type="String" Name="cja_Descripcion" Nullable="false" MaxLength="10" />
-        </ComplexType>
-        <ComplexType Name="UDP_Vent_tbTipoPago_Update_Result">
-          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
         <ComplexType Name="UDP_Vent_tbTipoPago_Insert_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
@@ -18799,8 +18832,33 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
         <ComplexType Name="UDP_Vent_tbUsuario_Rol_Apertura_Result">
           <Property Type="Int32" Name="usu_Id" Nullable="false" />
           <Property Type="String" Name="usu_NombreUsuario" Nullable="false" MaxLength="100" />
-          <Property Type="DateTime" Name="mocja_FechaApertura" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="UDP_Vent_tbTipoPago_Update_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <EntityType Name="UDV_Vent_MovimientoCaja_Apertura_Detalles">
+          <Key>
+            <PropertyRef Name="mocja_Id" />
+            <PropertyRef Name="mocja_UsuarioApertura" />
+            <PropertyRef Name="mnda_Abreviatura" />
+            <PropertyRef Name="mnda_Nombre" />
+            <PropertyRef Name="soled_CantidadEntregada" />
+            <PropertyRef Name="soled_CantidadSolicitada" />
+            <PropertyRef Name="soled_MontoEntregado" />
+            <PropertyRef Name="cja_Id" />
+            <PropertyRef Name="NOMBRES" />
+          </Key>
+          <Property Name="mocja_Id" Type="Int32" Nullable="false" />
+          <Property Name="mocja_FechaApertura" Type="DateTime" Precision="3" />
+          <Property Name="mocja_UsuarioApertura" Type="Int32" Nullable="false" />
+          <Property Name="mnda_Abreviatura" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="mnda_Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="soled_CantidadEntregada" Type="Int16" Nullable="false" />
+          <Property Name="soled_CantidadSolicitada" Type="Int16" Nullable="false" />
+          <Property Name="soled_MontoEntregado" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="cja_Id" Type="Int16" Nullable="false" />
+          <Property Name="NOMBRES" Type="String" Nullable="false" MaxLength="301" FixedLength="false" Unicode="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -22619,10 +22677,25 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbUsuario_Rol_Apertura_Result">
                 <ScalarProperty Name="usu_Id" ColumnName="usu_Id" />
                 <ScalarProperty Name="usu_NombreUsuario" ColumnName="usu_NombreUsuario" />
-                <ScalarProperty Name="mocja_FechaApertura" ColumnName="mocja_FechaApertura" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="UDV_Vent_MovimientoCaja_Apertura_Detalles">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Vent_MovimientoCaja_Apertura_Detalles">
+              <MappingFragment StoreEntitySet="UDV_Vent_MovimientoCaja_Apertura_Detalles">
+                <ScalarProperty Name="NOMBRES" ColumnName="NOMBRES" />
+                <ScalarProperty Name="cja_Id" ColumnName="cja_Id" />
+                <ScalarProperty Name="soled_MontoEntregado" ColumnName="soled_MontoEntregado" />
+                <ScalarProperty Name="soled_CantidadSolicitada" ColumnName="soled_CantidadSolicitada" />
+                <ScalarProperty Name="soled_CantidadEntregada" ColumnName="soled_CantidadEntregada" />
+                <ScalarProperty Name="mnda_Nombre" ColumnName="mnda_Nombre" />
+                <ScalarProperty Name="mnda_Abreviatura" ColumnName="mnda_Abreviatura" />
+                <ScalarProperty Name="mocja_UsuarioApertura" ColumnName="mocja_UsuarioApertura" />
+                <ScalarProperty Name="mocja_FechaApertura" ColumnName="mocja_FechaApertura" />
+                <ScalarProperty Name="mocja_Id" ColumnName="mocja_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
