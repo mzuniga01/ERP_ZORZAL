@@ -26,7 +26,7 @@
                 <div class="ibox-content">
 
                     @using (Html.BeginForm("Create", "Pedido", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                        @Html.ActionLink("Buscar Reporte de Pedido", "", null, new { @class = "btn btn-primary " })
+                     
                     {
                         @Html.AntiForgeryToken()
                         @Html.HiddenFor(model => model.clte_Id)
