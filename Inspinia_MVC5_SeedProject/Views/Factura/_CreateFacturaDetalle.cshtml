@@ -27,7 +27,6 @@
                         </div>
 
                         <div class="form-group">
-
                             @Html.LabelFor(model => model.prod_Codigo, new { @class = "control-label required col-md-1" })
                             <div class="col-md-3">
                                 @Html.EditorFor(model => model.prod_Codigo, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", onkeypress = "return validar(event)", @readonly = "readonly" } })
@@ -93,8 +92,12 @@
         </div>
     </div>
 </div>
-<div class="alert alert-danger text-center text-uppercase" id="alerta" style="display:none;">...Por favor ingrese productos a la factura...</div>
-
+<div class="alert alert-danger text-center text-uppercase" id="msjSinPrecio" style="display:none;">Este producto no tiene precio</div>
+<div class="alert alert-danger text-center text-uppercase" id="alerta" style="display:none;">Por favor ingrese productos a la factura</div>
+<div class="alert alert-danger text-center text-uppercase" id="SinCantidad" style="display:none;">Cantidad solicitada no disponible</div>
+<div class="alert alert-danger text-center text-uppercase" id="CantidadNoDisponible" style="display:none;">No hay productos en existencia</div>
+<div class="alert alert-danger text-center text-uppercase" id="NoExiste" style="display:none;">Este producto no existe</div>
+<div class="alert alert-danger text-center text-uppercase" id="CantidadDistinta" style="display:none;">Ingrese una cantidad distinta de 0 ó vacío</div>
 
 <table id="tblDetalleFactura" class="table table-striped table-bordered table-hover dataTables-example">
     <thead>
@@ -109,50 +112,8 @@
             <th></th>
         </tr>
     </thead>
-    <tbody></tbody>
-    <tfoot>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>Descuento</td>
-            <td><p id="TotalDescuento" style="text-align:right"></p></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>Sub-Total</td>
-            <td><p id="Subtotal" style="text-align:right"></p></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>ISV</td>
-            <td><p id="isv" style="text-align:right"></p></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>Total a Pagar</td>
-            <td><p id="total" style="text-align:right"></p></td>
-            <th></th>
-        </tr>
-        
-</table>
+        <tbody></tbody>
+    </table>
 <div id="validationSummary">
     <p style="color:red"></p>
 </div>
@@ -201,23 +162,7 @@
         </div>
     </div>
 </div>
-<div>
-    <div class="modal fade" id="ModalAgregarProducto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel">Agregar Producto</h4>
-                </div>
-                <div class="modal-body" id="frmListaProducto">
-                    @Html.Partial("_IndexProducto", (List<tbProducto>)ViewBag.Producto)
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 
 
