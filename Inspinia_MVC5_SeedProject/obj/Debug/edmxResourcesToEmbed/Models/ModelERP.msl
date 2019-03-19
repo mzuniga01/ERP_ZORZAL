@@ -2184,6 +2184,7 @@
     <EntitySetMapping Name="tbProducto">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbProducto">
         <MappingFragment StoreEntitySet="tbProducto">
+          <ScalarProperty Name="prov_Id" ColumnName="prov_Id" />
           <ScalarProperty Name="prod_Correlativo" ColumnName="prod_Correlativo" />
           <ScalarProperty Name="prod_CodigoBarras" ColumnName="prod_CodigoBarras" />
           <ScalarProperty Name="prod_Razon_Inactivacion" ColumnName="prod_Razon_Inactivacion" />
@@ -2779,6 +2780,7 @@
     <EntitySetMapping Name="tbSolicitudEfectivo">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbSolicitudEfectivo">
         <MappingFragment StoreEntitySet="tbSolicitudEfectivo">
+          <ScalarProperty Name="solef_EsImpresa" ColumnName="solef_EsImpresa" />
           <ScalarProperty Name="solef_FechaModifica" ColumnName="solef_FechaModifica" />
           <ScalarProperty Name="solef_UsuarioModifica" ColumnName="solef_UsuarioModifica" />
           <ScalarProperty Name="solef_FechaCrea" ColumnName="solef_FechaCrea" />
@@ -3828,6 +3830,17 @@
           <ScalarProperty Name="PRECIOUNITARIO" ColumnName="PRECIOUNITARIO" />
           <ScalarProperty Name="DESCUENTOCAJERO" ColumnName="DESCUENTOCAJERO" />
           <ScalarProperty Name="EXISTE" ColumnName="EXISTE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbMovimientoCaja_GetUsuarioApertura" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbMovimientoCaja_GetUsuarioApertura">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_GetUsuarioApertura_Result">
+          <ScalarProperty Name="mocja_Id" ColumnName="mocja_Id" />
+          <ScalarProperty Name="mocja_FechaApertura" ColumnName="mocja_FechaApertura" />
+          <ScalarProperty Name="mocja_UsuarioApertura" ColumnName="mocja_UsuarioApertura" />
+          <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+          <ScalarProperty Name="mocja_FechaAceptacion" ColumnName="mocja_FechaAceptacion" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

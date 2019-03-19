@@ -27,7 +27,7 @@
                     <div class="form-group">
                         <label class="control-label col-md-2">Rango Inicial<span style="color:red"> *</span></label>
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.pemid_RangoInicio, new { htmlAttributes = new { @onkeypress = "return validar(event)", @id = "txtRangoInicial" } })
+                            @Html.EditorFor(model => model.pemid_RangoInicio, new { htmlAttributes = new { @onkeypress = "return validar(event)", @id = "txtRangoInicial",@autocomplete = "off" } })
                             <div id="validacionRangoInicioCreate">
                                 <p style="color:red">@Html.ValidationMessageFor(model => model.pemid_RangoInicio)</p>
                             </div>
@@ -37,7 +37,7 @@
                     <div class="form-group">
                         <label class="control-label col-md-2">Rango Final<span style="color:red"> *</span></label>
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.pemid_RangoFinal, new { htmlAttributes = new { @onkeypress = "return validar(event)", @id = "txtRangoFinal" } })
+                            @Html.EditorFor(model => model.pemid_RangoFinal, new { htmlAttributes = new { @onkeypress = "return validar(event)", @id = "txtRangoFinal", @autocomplete = "off" } })
                             <div id="validacionRangoFinalCreate">
                                 <p style="color:red">@Html.ValidationMessageFor(model => model.pemid_RangoFinal)</p>
                             </div>

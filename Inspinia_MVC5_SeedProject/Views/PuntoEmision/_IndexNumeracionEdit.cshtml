@@ -83,10 +83,7 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.pemid_FechaLimite)
                                 </th>
-                                <th>Status</th>
-                                <th hidden>
-                                    @Html.DisplayNameFor(model => model.tbUsuario.usu_Nombres)
-                                </th>
+                                <th>Estado</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -94,7 +91,7 @@
                            
                             @foreach (var item in Model)
                             {
-                                <tr data-usuariocrea="@item.tbUsuario.usu_Nombres">
+                                <tr>
                                     <td hidden>
                                         @Html.DisplayFor(modelItem => item.pemid_Id)
                                     </td>
@@ -122,16 +119,15 @@
                                     <td>
                                         <span id="Circulos_@item.pemid_Id" data-toggle="tooltip">&nbsp;</span>
                                     </td>
-                                    <td hidden>
-                                        @Html.DisplayFor(modelItem => item.tbUsuario.usu_Nombres)
-                                    </td>
                                     <td>
                                         <button type="button" id="btnModalDetallesEdit_@item.pemid_Id" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#Detalle_@item.pemid_Id">
                                             Detalles
                                         </button>
-                                        <button type="button" id="btnModalEditarEdit_@item.pemid_Id" class="btn btn-white btn-xs" data-toggle="modal" data-target="#Editar_@item.pemid_Id" onclick="FechaLimite(@item.pemid_Id);">
-                                            Editar
-                                        </button>
+                                        <span id="ToolTip_@item.pemid_Id">
+                                            <button type="button" id="btnModalEditarEdit_@item.pemid_Id" class="btn btn-white btn-xs" data-toggle="modal" data-target="#Editar_@item.pemid_Id" onclick="FechaLimite(@item.pemid_Id);">
+                                                Editar
+                                            </button>
+                                        </span>
                                     </td>
                                 </tr>
                                 <div class="modal fade" id="Editar_@item.pemid_Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

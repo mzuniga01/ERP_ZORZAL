@@ -19,10 +19,12 @@ $("#PuntoEmision tbody tr").each(function () {
     if (i <= d) {
         $("#btnModalEditarEdit_" + parseInt(ID)).prop("disabled", true);
         $("#Circulos_" + parseInt(ID)).removeClass().addClass("red").attr('title', 'No vigente');
+        $("#ToolTip_" + parseInt(ID)).attr('title', 'No se puede editar porque ya no está vigente');
     }
     else if (NumeroActualCasteado == RangoFinalCasteado) {
         $("#btnModalEditarEdit_" + parseInt(ID)).prop("disabled", true);
         $("#Circulos_" + parseInt(ID)).removeClass().addClass("red").attr('title', 'No vigente');
+        $("#ToolTip_" + parseInt(ID)).attr('title', 'No se puede editar porque ya no está vigente');
     }
     else {
         $("#btnModalEditarEdit_" + parseInt(ID)).prop("disabled", false);

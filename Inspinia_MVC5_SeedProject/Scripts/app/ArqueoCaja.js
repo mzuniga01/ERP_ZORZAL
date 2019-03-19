@@ -17,11 +17,12 @@
 //});
 
 
-/////GET CAJA DE DEVOLUCION 
+
 
 $(document).ready(function () {
+ 
+    /////GET CAJA DE DEVOLUCION 
     var CodUsuario = $("#usu_Id").val();
-    console.log(CodUsuario, 'consolelog')
     $.ajax({
         url: "/MovimientoCaja/GetCaja",
         method: "POST",
@@ -37,5 +38,32 @@ $(document).ready(function () {
             });
         }
     });
-});
 
+    ///GET USUARIO APERTURA --------------------
+    var CodUsuario = $("#usu_Id").val();
+    $.ajax({
+        url: "/MovimientoCaja/UsuarioApertura",
+        method: "POST",
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({ CodUsuario: CodUsuario }),
+    })
+    .done(function (list) {
+        if (list.length > 0) {
+            $.each(list, function (key, val) {
+
+                var fechaString = val.mocja_FechaApertura.substr(6);
+                var fechaActual = new Date(parseInt(fechaString));
+                var mes = fechaActual.getMonth();
+                var dia = fechaActual.getDate();
+                var anio = fechaActual.getFullYear();
+                var FechaApertura = dia + "/" + mes + "/" + anio;
+
+                $("#mocja_UsuarioApertura").val(val.mocja_UsuarioApertura);
+                $("#UsuarioApertura").val(val.Nombres);
+                $("#mocja_FechaApertura").val(val.mocja_FechaApertura);
+                $("#mocja_UsuarioAceptacion").val(val.Nombres);
+            });
+        }
+    });
+});

@@ -395,6 +395,16 @@ namespace ERP_GMEDINA.Controllers
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
+
+
+        ///Trae el Usuario Apertura para realizar el arqueo de caja
+        [HttpPost]
+
+        public JsonResult UsuarioApertura(int CodUsuario)
+        {
+            var list = db.UDP_Vent_tbMovimientoCaja_GetUsuarioApertura(CodUsuario).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
         // GET: /MovimientoCaja/Details/5
         public ActionResult Details(int? id)
         {
@@ -416,7 +426,7 @@ namespace ERP_GMEDINA.Controllers
             //ViewBag.mocja_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             //ViewBag.mocja_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
 
-            ViewBag.cja_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion");           
+            ViewBag.cja_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion");
             ViewBag.DenominacionArqueo = db.tbDenominacionArqueo.ToList();
 
             int idUser = 0;
@@ -427,16 +437,80 @@ namespace ERP_GMEDINA.Controllers
                 idUser = Convert.ToInt32(Usuario.usu_Id);
             }
 
-            //var suc_Id = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.tbSucursal.suc_Id).SingleOrDefault();
-            ViewBag.UsuarioApertura = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.usu_Nombres + " " + x.usu_Apellidos).SingleOrDefault();
-            ViewBag.mocja_UsuarioApertura = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.usu_Id).SingleOrDefault();
-
             ViewBag.UsuarioArquea = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.usu_Nombres + " " + x.usu_Apellidos).SingleOrDefault();
             ViewBag.mocja_UsuarioArquea = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.usu_Id).SingleOrDefault();
 
-            ViewBag.UsuarioAceptacion = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.usu_Nombres + " " + x.usu_Apellidos).SingleOrDefault();
-            ViewBag.mocja_UsuarioAceptacion = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.usu_Id).SingleOrDefault();
+           
+            var PagoEfectivo = db.tbPago.Where(x => x.tpa_Id == 1).ToList();
+            if (PagoEfectivo.Count() > 0)
+            {
+                ViewBag.PagoEfectivo = db.tbPago.Where(x => x.tpa_Id == 1).Select(x => x.pago_TotalPago).Sum();
+            }
+            else
+            {
+                ViewBag.PagoEfectivo = 00.0;
+            }
 
+            var PagoTC = db.tbPago.Where(x => x.tpa_Id == 2).ToList();
+            if (PagoTC.Count() > 0)
+            {
+                ViewBag.PagoTC = db.tbPago.Where(x => x.tpa_Id == 2).Select(x => x.pago_TotalPago).Sum();
+            }
+            else
+            {
+                ViewBag.PagoTC = 00.0;
+            }
+
+            var  PagoCheque = db.tbPago.Where(x => x.tpa_Id == 3).ToList();
+            if (PagoCheque.Count() > 0)
+            {
+                ViewBag.PagoCheque = db.tbPago.Where(x => x.tpa_Id == 3).Select(x => x.pago_TotalPago).Sum();
+            }
+            else
+            {
+                ViewBag.PagoCheque = 00.0;
+            }
+
+            var PagoNotaCredito = db.tbPago.Where(x => x.tpa_Id == 4).ToList();
+            if (PagoNotaCredito.Count() > 0)
+            {
+                ViewBag.PagoNotaCredito = db.tbPago.Where(x => x.tpa_Id == 4).Select(x => x.pago_TotalPago).Sum();
+            }
+            else
+            {
+                ViewBag.PagoNotaCredito = 00.0;
+            }
+
+            var PagoCuponDesc = db.tbPago.Where(x => x.tpa_Id == 5).ToList();
+            if (PagoCuponDesc.Count() > 0)
+            {
+                ViewBag.PagoCuponDesc = db.tbPago.Where(x => x.tpa_Id == 5).Select(x => x.pago_TotalPago).Sum();
+            }
+            else
+            {
+                ViewBag.PagoCuponDesc = 00.0;
+            }
+
+            var PagoDeposito = db.tbPago.Where(x => x.tpa_Id == 6).ToList();
+            if (PagoDeposito.Count() > 0)
+            {
+                ViewBag.PagoDeposito = db.tbPago.Where(x => x.tpa_Id == 6).Select(x => x.pago_TotalPago).Sum();
+            }
+            else
+            {
+                ViewBag.PagoDeposito = 00.0;
+            }
+
+            var PagoTranferencia = db.tbPago.Where(x => x.tpa_Id == 7).ToList();
+            if (PagoTranferencia.Count() > 0)
+            {
+                ViewBag.PagoTranferencia = db.tbPago.Where(x => x.tpa_Id == 7).Select(x => x.pago_TotalPago).Sum();
+            }
+            else
+            {
+                ViewBag.PagoTranferencia = 00.0;
+            }
+           
             ViewBag.Cajero = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.usu_Nombres + " " + x.usu_Apellidos).SingleOrDefault();
             ViewBag.usu_Id = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.usu_Id).SingleOrDefault();
 

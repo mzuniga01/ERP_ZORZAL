@@ -561,6 +561,7 @@
       <Parameter Name="uni_Id" Mode="In" Type="Int32" />
       <Parameter Name="prod_EsActivo" Mode="In" Type="Boolean" />
       <Parameter Name="prod_CodigoBarras" Mode="In" Type="String" />
+      <Parameter Name="prov_Id" Mode="In" Type="Int32" />
       <Parameter Name="prod_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="prod_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
@@ -575,6 +576,7 @@
       <Parameter Name="uni_Id" Mode="In" Type="Int32" />
       <Parameter Name="prod_Razon_Inactivacion" Mode="In" Type="String" />
       <Parameter Name="prod_CodigoBarras" Mode="In" Type="String" />
+      <Parameter Name="prov_Id" Mode="In" Type="Int32" />
       <Parameter Name="prod_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="prod_FechaCrea" Mode="In" Type="DateTime" />
       <Parameter Name="prod_UsuarioModifica" Mode="In" Type="Int32" />
@@ -2983,6 +2985,13 @@
       <Parameter Name="CODIGOBARRAS" Mode="In" Type="String" />
       <Parameter Name="IDCLIENTE" Mode="In" Type="Int32" />
     </FunctionImport>
+    <AssociationSet Name="FK_Inv_tbProducto_tbProveedor_prov_Id" Association="ERP_ZORZALModel.FK_Inv_tbProducto_tbProveedor_prov_Id">
+      <End Role="tbProveedor" EntitySet="tbProveedor" />
+      <End Role="tbProducto" EntitySet="tbProducto" />
+    </AssociationSet>
+    <FunctionImport Name="UDP_Vent_tbMovimientoCaja_GetUsuarioApertura" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_GetUsuarioApertura_Result)">
+      <Parameter Name="UsuarioApertura" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -4826,6 +4835,8 @@
     <NavigationProperty Name="tbFacturaDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbFacturaDetalle_tbProducto_prod_Codigo" FromRole="tbProducto" ToRole="tbFacturaDetalle" />
     <NavigationProperty Name="tbListadoPrecioDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbListado_tbProducto_prod_Codigo" FromRole="tbProducto" ToRole="tbListadoPrecioDetalle" />
     <NavigationProperty Name="tbPedidoDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbPedidoDetalle_tbProducto_prod_Codigo" FromRole="tbProducto" ToRole="tbPedidoDetalle" />
+    <Property Name="prov_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tbProveedor" Relationship="ERP_ZORZALModel.FK_Inv_tbProducto_tbProveedor_prov_Id" FromRole="tbProducto" ToRole="tbProveedor" />
   </EntityType>
   <EntityType Name="tbProductoCategoria">
     <Key>
@@ -4881,6 +4892,7 @@
     <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Inv_tbProveedor_prov_UsuarioModifica" FromRole="tbProveedor" ToRole="tbUsuario" />
     <NavigationProperty Name="tbActividadEconomica" Relationship="ERP_ZORZALModel.FK_Gral_tbActividadEconomica_tbProveedor_acte_Id" FromRole="tbProveedor" ToRole="tbActividadEconomica" />
     <NavigationProperty Name="tbEntrada" Relationship="ERP_ZORZALModel.FK_Inv_tbEntrada_tbProveedor_prov_Id" FromRole="tbProveedor" ToRole="tbEntrada" />
+    <NavigationProperty Name="tbProducto" Relationship="ERP_ZORZALModel.FK_Inv_tbProducto_tbProveedor_prov_Id" FromRole="tbProveedor" ToRole="tbProducto" />
   </EntityType>
   <EntityType Name="tbSalida">
     <Key>
@@ -5553,6 +5565,7 @@
     <NavigationProperty Name="tbMoneda" Relationship="ERP_ZORZALModel.FK_Gral_tbMoneda_tbSolicitudEfectivo_mnda_Id" FromRole="tbSolicitudEfectivo" ToRole="tbMoneda" />
     <NavigationProperty Name="tbMovimientoCaja" Relationship="ERP_ZORZALModel.FK_Vent_tbMovimientoCaja_tbSolicitudEfectivo_mocja_Id" FromRole="tbSolicitudEfectivo" ToRole="tbMovimientoCaja" />
     <NavigationProperty Name="tbSolicitudEfectivoDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbSolicitudEfectivo_tbSolicitudEfectivoDetalle_solef_Id" FromRole="tbSolicitudEfectivo" ToRole="tbSolicitudEfectivoDetalle" />
+    <Property Name="solef_EsImpresa" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="tbSolicitudEfectivoDetalle">
     <Key>
@@ -9789,5 +9802,24 @@
     <Property Type="Decimal" Name="PRECIOUNITARIO" Nullable="true" Precision="10" Scale="2" />
     <Property Type="Decimal" Name="DESCUENTOCAJERO" Nullable="true" Precision="10" Scale="2" />
     <Property Type="Boolean" Name="EXISTE" Nullable="true" />
+  </ComplexType>
+  <Association Name="FK_Inv_tbProducto_tbProveedor_prov_Id">
+    <End Type="ERP_ZORZALModel.tbProveedor" Role="tbProveedor" Multiplicity="1" />
+    <End Type="ERP_ZORZALModel.tbProducto" Role="tbProducto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbProveedor">
+        <PropertyRef Name="prov_Id" />
+      </Principal>
+      <Dependent Role="tbProducto">
+        <PropertyRef Name="prov_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="UDP_Vent_tbMovimientoCaja_GetUsuarioApertura_Result">
+    <Property Type="Int32" Name="mocja_Id" Nullable="false" />
+    <Property Type="DateTime" Name="mocja_FechaApertura" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="mocja_UsuarioApertura" Nullable="false" />
+    <Property Type="String" Name="Nombres" Nullable="false" MaxLength="301" />
+    <Property Type="DateTime" Name="mocja_FechaAceptacion" Nullable="true" Precision="23" />
   </ComplexType>
 </Schema>

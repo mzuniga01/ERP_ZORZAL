@@ -32,6 +32,7 @@ $('#AgregarPuntoEmisionDetalle').click(function () {
         $('#ErrorDocumentoFiscalCreate').text('');
         $('#ErrorRangoInicioCreate').text('');
         $('#ErrorRangoInicioLengthCreate').text('');
+        $('#ErrorRangoInicioCorrelativo').text('');
         $('#ErrorRangoFinalCreate').text('');
         $('#ErrorRangoFinalSplitCreate').text('');
         $('#ErrorRangoFinalLengthCreate').text('');
@@ -44,6 +45,7 @@ $('#AgregarPuntoEmisionDetalle').click(function () {
         $('#ErrorDocumentoFiscalCreate').text('');
         $('#ErrorRangoInicioCreate').text('');
         $('#ErrorRangoInicioLengthCreate').text('');
+        $('#ErrorRangoInicioCorrelativo').text('');
         $('#ErrorRangoFinalCreate').text('');
         $('#ErrorRangoFinalSplitCreate').text('');
         $('#ErrorRangoFinalLengthCreate').text('');
@@ -55,18 +57,32 @@ $('#AgregarPuntoEmisionDetalle').click(function () {
         $('#ErrorDocumentoFiscalCreate').text('');
         $('#ErrorRangoInicioCreate').text('');
         $('#ErrorRangoInicioLengthCreate').text('');
+        $('#ErrorRangoInicioCorrelativo').text('');
         $('#ErrorRangoFinalCreate').text('');
         $('#ErrorRangoFinalSplitCreate').text('');
         $('#ErrorRangoFinalLengthCreate').text('');
         $('#ErrorFechaLimiteCreate').text('');
         $('#ErrorFechaLimiteMenorCreate').text('');
-        $('#validacionRangoInicioCreate').after('<p id="ErrorRangoInicioLengthCreate" style="color:red">Campo Rango Inicial debe  tener 19 caracteres</p>');
+        $('#validacionRangoInicioCreate').after('<p id="ErrorRangoInicioLengthCreate" style="color:red">Campo Rango Inicial debe tener 19 caracteres</p>');
+    }
+    else if (rango == 0) {
+        $('#ErrorDocumentoFiscalCreate').text('');
+        $('#ErrorRangoInicioCreate').text('');
+        $('#ErrorRangoInicioLengthCreate').text('');
+        $('#ErrorRangoInicioCorrelativo').text('');
+        $('#ErrorRangoFinalCreate').text('');
+        $('#ErrorRangoFinalSplitCreate').text('');
+        $('#ErrorRangoFinalLengthCreate').text('');
+        $('#ErrorFechaLimiteCreate').text('');
+        $('#ErrorFechaLimiteMenorCreate').text('');
+        $('#validacionRangoInicioCreate').after('<p id="ErrorRangoInicioCorrelativo" style="color:red">El número correlativo debe ser mayor a 0</p>');
     }
     else if (RangoFinal == '')
     {
         $('#ErrorDocumentoFiscalCreate').text('');
         $('#ErrorRangoInicioCreate').text('');
         $('#ErrorRangoInicioLengthCreate').text('');
+        $('#ErrorRangoInicioCorrelativo').text('');
         $('#ErrorRangoFinalCreate').text('');
         $('#ErrorRangoFinalSplitCreate').text('');
         $('#ErrorRangoFinalLengthCreate').text('');
@@ -78,6 +94,7 @@ $('#AgregarPuntoEmisionDetalle').click(function () {
         $('#ErrorDocumentoFiscalCreate').text('');
         $('#ErrorRangoInicioCreate').text('');
         $('#ErrorRangoInicioLengthCreate').text('');
+        $('#ErrorRangoInicioCorrelativo').text('');
         $('#ErrorRangoFinalCreate').text('');
         $('#ErrorRangoFinalSplitCreate').text('');
         $('#ErrorRangoFinalLengthCreate').text('');
@@ -89,6 +106,7 @@ $('#AgregarPuntoEmisionDetalle').click(function () {
         $('#ErrorDocumentoFiscalCreate').text('');
         $('#ErrorRangoInicioCreate').text('');
         $('#ErrorRangoInicioLengthCreate').text('');
+        $('#ErrorRangoInicioCorrelativo').text('');
         $('#ErrorRangoFinalCreate').text('');
         $('#ErrorRangoFinalSplitCreate').text('');
         $('#ErrorRangoFinalLengthCreate').text('');
@@ -100,6 +118,7 @@ $('#AgregarPuntoEmisionDetalle').click(function () {
         $('#ErrorDocumentoFiscalCreate').text('');
         $('#ErrorRangoInicioCreate').text('');
         $('#ErrorRangoInicioLengthCreate').text('');
+        $('#ErrorRangoInicioCorrelativo').text('');
         $('#ErrorRangoFinalCreate').text('');
         $('#ErrorRangoFinalSplitCreate').text('');
         $('#ErrorRangoFinalLengthCreate').text('');
@@ -111,6 +130,7 @@ $('#AgregarPuntoEmisionDetalle').click(function () {
         $('#ErrorDocumentoFiscalCreate').text('');
         $('#ErrorRangoInicioCreate').text('');
         $('#ErrorRangoInicioLengthCreate').text('');
+        $('#ErrorRangoInicioCorrelativo').text('');
         $('#ErrorRangoFinalCreate').text('');
         $('#ErrorRangoFinalSplitCreate').text('');
         $('#ErrorRangoFinalLengthCreate').text('');
@@ -216,6 +236,7 @@ $("#dfisc_Id").change(function () {
 $("#pemid_RangoInicio").keyup(function () {
     $('#ErrorRangoInicioCreate').text('');
     $('#ErrorRangoInicioLengthCreate').text('');
+    $('#ErrorRangoInicioCorrelativo').text('');
 });
 
 $("#pemid_RangoFinal").keyup(function () {

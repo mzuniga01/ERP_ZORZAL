@@ -173,7 +173,7 @@
             var i = new Date(FechaLimiteEmsion);
 
             if (i <= d) {
-                $("#btnModalEditarEdit_" + parseInt(ID)).prop("disabled", true);
+                $("#btnModalEditarEdit_" + parseInt(ID)).prop("disabled", true).attr('title', 'No se puede editar porque ya no está vigente');
                 $("#Circulos_" + parseInt(ID)).removeClass().addClass("red").attr('title', 'No vigente');
             }
             else if (NumeroActualCasteado == RangoFinalCasteado) {

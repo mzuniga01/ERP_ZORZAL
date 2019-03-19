@@ -68,6 +68,18 @@
         $('#ErrorFechaLimiteMenorEdit_' + IdPuntoEmisionDetalle).text('');
         $('#ValidacionRangoInicioEdit_' + IdPuntoEmisionDetalle).after('<p id="ErrorRangoInicioLengthEdit_' + IdPuntoEmisionDetalle + '" style="color:red">Campo Rango Inicio debe  tener 19 caracteres</p>');
     }
+    else if (rangoi == 0) {
+        $('#ErrorDocumentoFiscalEdit_' + IdPuntoEmisionDetalle).text('');
+        $('#ErrorRangoInicioEdit_' + IdPuntoEmisionDetalle).text('');
+        $('#ErrorRangoInicioLengthEdit_' + IdPuntoEmisionDetalle).text('');
+        $('#ErrorRangoInicioCorrelativoEdit_' + IdPuntoEmisionDetalle).text('');
+        $('#ErrorRangoFinalEdit_' + IdPuntoEmisionDetalle).text('');
+        $('#ErrorRangoFinalSplitEdit_' + IdPuntoEmisionDetalle).text('');
+        $('#ErrorRangoFinalLengthEdit_' + IdPuntoEmisionDetalle).text('');
+        $('#ErrorFechaLimiteVacioEdit_' + IdPuntoEmisionDetalle).text('');
+        $('#ErrorFechaLimiteMenorEdit_' + IdPuntoEmisionDetalle).text('');
+        $('#ValidacionRangoInicioEdit_' + IdPuntoEmisionDetalle).after('<p id="ErrorRangoInicioCorrelativoEdit_' + IdPuntoEmisionDetalle + '" style="color:red">El número correlativo debe ser mayor a 0</p>');
+    }
     else if (RangoFinal == '')
     {
         $('#ErrorDocumentoFiscalEdit_' + IdPuntoEmisionDetalle).text('');
@@ -189,6 +201,7 @@ function myFunction(IdPuntoEmisionDetalle) {
     if (RangoInicial != '') {
         $('#ErrorRangoInicioEdit_' + IdPuntoEmisionDetalle).text('');
         $('#ErrorRangoInicioLengthEdit_' + IdPuntoEmisionDetalle).text('');
+        $('#ErrorRangoInicioCorrelativoEdit_' + IdPuntoEmisionDetalle).text('');
     }
 }
 
@@ -202,4 +215,5 @@ function RangoFinal(IdPuntoEmisionDetalle) {
 function BorrarMensaje(IdPuntoEmisionDetalle) {
     $('#ErrorRangoInicioEdit_' + IdPuntoEmisionDetalle).text('');
     $('#ErrorRangoInicioLengthEdit_' + IdPuntoEmisionDetalle).text('');
+    $('#ErrorRangoInicioCorrelativoEdit_' + IdPuntoEmisionDetalle).text('');
 }
