@@ -1865,11 +1865,6 @@
     <FunctionImport Name="UDP_Vent_tbSolicitudEfectivo_Imprimir" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivo_Imprimir_Result)">
       <Parameter Name="SOLEF_ID" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente_Result)">
-      <Parameter Name="IDSUCURSAL" Mode="In" Type="Int32" />
-      <Parameter Name="CODIGOBARRAS" Mode="In" Type="String" />
-      <Parameter Name="IDCLIENTE" Mode="In" Type="Int32" />
-    </FunctionImport>
     <FunctionImport Name="UDP_Vent_tbFacturaDetalle_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFacturaDetalle_Update_Result)">
       <Parameter Name="factd_Id" Mode="In" Type="Int16" />
       <Parameter Name="prod_Codigo" Mode="In" Type="String" />
@@ -2011,7 +2006,6 @@
     <EntitySet Name="UDV_Inv_PackingList" EntityType="ERP_ZORZALModel.UDV_Inv_PackingList" />
     <EntitySet Name="UDV_Inv_PackingList_Caja" EntityType="ERP_ZORZALModel.UDV_Inv_PackingList_Caja" />
     <EntitySet Name="UDV_Inv_ProductosSolicitadosPorEntregar" EntityType="ERP_ZORZALModel.UDV_Inv_ProductosSolicitadosPorEntregar" />
-    <EntitySet Name="UDV_Inv_Proyeccion_de_Movimiento_de_Producto" EntityType="ERP_ZORZALModel.UDV_Inv_Proyeccion_de_Movimiento_de_Producto" />
     <EntitySet Name="UDV_Inv_Salida_Imprimir_Reporte" EntityType="ERP_ZORZALModel.UDV_Inv_Salida_Imprimir_Reporte" />
     <EntitySet Name="UDV_inv_tbinventariofisico_reporteFaltantes" EntityType="ERP_ZORZALModel.UDV_inv_tbinventariofisico_reporteFaltantes" />
     <EntitySet Name="UDV_Inv_TipoEntrada" EntityType="ERP_ZORZALModel.UDV_Inv_TipoEntrada" />
@@ -2983,6 +2977,12 @@
       <Parameter Name="suc_Id" Mode="In" Type="Int32" />
     </FunctionImport>
     <EntitySet Name="UDV_Vent_MovimientoCaja_Apertura_Detalles" EntityType="ERP_ZORZALModel.UDV_Vent_MovimientoCaja_Apertura_Detalles" />
+    <EntitySet Name="UDV_Inv_Proyeccion_de_Movimiento_de_Producto" EntityType="ERP_ZORZALModel.UDV_Inv_Proyeccion_de_Movimiento_de_Producto" />
+    <FunctionImport Name="UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente_Result)">
+      <Parameter Name="IDSUCURSAL" Mode="In" Type="Int32" />
+      <Parameter Name="CODIGOBARRAS" Mode="In" Type="String" />
+      <Parameter Name="IDCLIENTE" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -4063,13 +4063,6 @@
     <Property Type="Decimal" Name="MontoSolicitado" Nullable="true" Precision="16" Scale="2" />
     <Property Type="Int16" Name="soled_CantidadEntregada" Nullable="false" />
     <Property Type="Decimal" Name="MontoEntregado" Nullable="true" Precision="16" Scale="2" />
-  </ComplexType>
-  <ComplexType Name="UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente_Result">
-    <Property Type="String" Name="DESCRIPCIONPRODUCTO" Nullable="true" MaxLength="100" />
-    <Property Type="String" Name="CODIGOPRODUCTO" Nullable="true" MaxLength="15" />
-    <Property Type="Decimal" Name="IMPUESTOPRODUCTO" Nullable="true" Precision="5" Scale="2" />
-    <Property Type="Decimal" Name="PRECIOUNITARIO" Nullable="true" Precision="10" Scale="2" />
-    <Property Type="Boolean" Name="EXISTE" Nullable="true" />
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbFacturaDetalle_Update_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
@@ -6147,33 +6140,6 @@
     <Property Name="prod_Talla" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
     <Property Name="uni_Id" Type="Int32" Nullable="false" />
     <Property Name="uni_Descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
-  </EntityType>
-  <EntityType Name="UDV_Inv_Proyeccion_de_Movimiento_de_Producto">
-    <Key>
-      <PropertyRef Name="bod_Id" />
-      <PropertyRef Name="bod_ResponsableBodega" />
-      <PropertyRef Name="prod_CodigoBarras" />
-      <PropertyRef Name="prod_Descripcion" />
-      <PropertyRef Name="prod_Marca" />
-      <PropertyRef Name="prod_Modelo" />
-      <PropertyRef Name="uni_Descripcion" />
-      <PropertyRef Name="prod_Talla" />
-      <PropertyRef Name="bodd_CantidadExistente" />
-      <PropertyRef Name="factd_Cantidad" />
-    </Key>
-    <Property Name="bod_Id" Type="Int32" Nullable="false" />
-    <Property Name="bod_Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="bod_ResponsableBodega" Type="Int16" Nullable="false" />
-    <Property Name="bod_Telefono" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
-    <Property Name="prod_CodigoBarras" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
-    <Property Name="prod_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="prod_Marca" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="prod_Modelo" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
-    <Property Name="uni_Descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
-    <Property Name="prod_Talla" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
-    <Property Name="bodd_CantidadExistente" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-    <Property Name="factd_Cantidad" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
-    <Property Name="Proyección_Días" Type="Decimal" Precision="38" Scale="0" />
   </EntityType>
   <EntityType Name="UDV_Inv_Salida_Imprimir_Reporte">
     <Key>
@@ -9791,4 +9757,37 @@
     <Property Name="cja_Id" Type="Int16" Nullable="false" />
     <Property Name="NOMBRES" Type="String" Nullable="false" MaxLength="301" FixedLength="false" Unicode="false" />
   </EntityType>
+  <EntityType Name="UDV_Inv_Proyeccion_de_Movimiento_de_Producto">
+    <Key>
+      <PropertyRef Name="bod_Id" />
+      <PropertyRef Name="bod_ResponsableBodega" />
+      <PropertyRef Name="prod_CodigoBarras" />
+      <PropertyRef Name="prod_Descripcion" />
+      <PropertyRef Name="prod_Marca" />
+      <PropertyRef Name="prod_Modelo" />
+      <PropertyRef Name="uni_Descripcion" />
+      <PropertyRef Name="prod_Talla" />
+      <PropertyRef Name="bodd_CantidadExistente" />
+    </Key>
+    <Property Name="bod_Id" Type="Int32" Nullable="false" />
+    <Property Name="bod_Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="bod_ResponsableBodega" Type="Int16" Nullable="false" />
+    <Property Name="bod_Telefono" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Name="prod_CodigoBarras" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Marca" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Modelo" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="uni_Descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="prod_Talla" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="bodd_CantidadExistente" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="Proyección_Días" Type="Decimal" Precision="38" Scale="0" />
+  </EntityType>
+  <ComplexType Name="UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente_Result">
+    <Property Type="String" Name="DESCRIPCIONPRODUCTO" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="CODIGOPRODUCTO" Nullable="true" MaxLength="15" />
+    <Property Type="Decimal" Name="IMPUESTOPRODUCTO" Nullable="true" Precision="5" Scale="2" />
+    <Property Type="Decimal" Name="PRECIOUNITARIO" Nullable="true" Precision="10" Scale="2" />
+    <Property Type="Decimal" Name="DESCUENTOCAJERO" Nullable="true" Precision="10" Scale="2" />
+    <Property Type="Boolean" Name="EXISTE" Nullable="true" />
+  </ComplexType>
 </Schema>
