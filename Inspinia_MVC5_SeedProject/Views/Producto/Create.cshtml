@@ -140,6 +140,16 @@
                                     </div> 
                                 </div> 
                             </div>
+                        <div class="form-group">                      
+                            @Html.LabelFor(model => model.tbProveedor.prov_Nombre, new { @class = "control-label col-md-2 , required" })
+                            <div class="col-md-4">
+                                @Html.DropDownList("prov_Id", (IEnumerable<SelectListItem>)ViewBag.prov_Id, "Seleccione una Proveedor", new { @class = "form-control" })
+                                @*<p style="color:red">@Html.ValidationMessageFor(model => model.uni_Id)</p>*@
+                                <div id="validationproveedor">
+                                    <p style="color:red"></p>
+                                </div>
+                            </div>
+                        </div>
                       
                         <div class="form-group">
                             
@@ -222,9 +232,11 @@
         $("#errorActividad").remove();
         $("#errorActividada").remove();
         $("#errorcategoria").remove();
+        $("#errorproveedor").remove();
         var unidad = $("#uni_Id").find('option:selected').val();
         var subcategoria = $("#pscat_Id").find('option:selected').val();
         var categoria = $("#pcat_Id").find('option:selected').val();
+        var proveedor = $("#prov_Id").find('option:selected').val();
         if (unidad == '') {
             $('#unidad').text('');
             $('#errorActividad').text('');
@@ -239,6 +251,11 @@
             $('#categoria').text('');
             $('#errorcategoria').text('');
             $('#validationCategoria').after('<ul id="errorcategoria" class="validation-summary-errors text-danger">Campo Categoria Requerido</ul>');
+        }
+        if (proveedor==''){
+            $('#proveedor').text('');
+            $('#errorproveedor').text('');
+            $('#validationproveedor').after('<ul id="errorproveedor" class="validation-summary-errors text-danger">Campo Proveedor Requerido</ul>');
         }
     });
 </script>

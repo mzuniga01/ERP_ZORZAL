@@ -979,6 +979,9 @@
     <Compile Include="Models\UDV_Vent_AnalisisDeMora.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UDV_Vent_ArqueoCaja_Select.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UDV_Vent_Busqueda_Clientes.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -1016,9 +1019,6 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDV_Vent_ListadodePrecios.cs">
-      <DependentUpon>ModelERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\UDV_Vent_MovimientoCaja_Select.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDV_Vent_NotaCreditoPorFecha.cs">

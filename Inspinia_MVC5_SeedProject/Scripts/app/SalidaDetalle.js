@@ -165,6 +165,167 @@ function validateMyForm() {
         return true
     }
 } 
+function GetSalidaDetalleBox() {
+    var SalidaDetalle = {
+        prod_Codigo: $('#prod_Codigo').val(),
+        sald_Cantidad: $('#sald_Cantidad').val(),
+        sald_UsuarioCrea: contador
+    };
+    return SalidaDetalle;
+}
+
+
+$(document).on("click", "#tblBusquedaGenericaBox tbody tr td button#seleccionarBox", function () {
+    var table = $('#tblSalidaDetalle').DataTable();
+    var box_Codigo = this.value;
+    $(this).after('<button class="btn btn-danger btn-xs" id="RemoveBox" data-dismiss="modal" value="' + box_Codigo + '">Quitar</button>');
+    this.remove()
+    //var prod_CodigoTabla = table.rows("td:eq(0)").text();
+    //var rows = $('tr')
+    //var box_Codigo = table.rows(':eq(0)').data()[0][0];
+    console.log(box_Codigo)
+    //$(this.value).append('<button class="btn btn-danger btn-xs" id="RemoveBox" data-dismiss="modal">Quitar</button>');
+    //$(box_Codigo).$(this.remove());
+    //var button = '<button class="btn btn-danger btn-xs" id="RemoveBox" data-dismiss="modal">Quitar</button>';
+    var bod_Id = $('#bod_Id').val();
+    $.ajax({
+        url: "/Salida/GetBox",
+        method: "POST",
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({
+            bod_Id: bod_Id,
+            box_Codigo: box_Codigo
+        }),
+        success: function (data) {
+            $.each(data, function (key, value) {
+                SalidaDetalle = null;
+                var SalidaDetalle = {
+                    prod_Codigo: value.prod_Codigo,
+                    sald_Cantidad: value.boxd_Cantidad,
+                            sald_UsuarioCrea: contador
+                        };
+                console.log(SalidaDetalle)
+                $.ajax({
+                            url: "/Salida/SaveSalidaDetalle",
+                            method: "POST",
+                            dataType: 'json',
+                            contentType: "application/json; charset=utf-8",
+                            data: JSON.stringify({ SalidaDetalle: SalidaDetalle, data_producto: value.prod_Codigo }),
+                }).done(function (datos) {
+
+
+                    table.row.add([
+                        value.prod_Codigo,
+                        value.prod_Descripcion,
+                        value.prod_Marca,
+                        value.prod_Modelo,
+                        value.prod_Talla,
+                        value.pcat_Nombre,
+                        value.uni_Descripcion,
+                        value.boxd_Cantidad,
+                        '<p id="' + value.box_Codigo + '">En Caja: ' + value.box_Codigo + '</p>'
+                    ]).draw(false).node().id = '' + value.box_Codigo+'';
+                        })
+            })
+           
+        }
+        })
+})
+
+
+
+
+
+
+
+
+$(document).on("click", "#tblBusquedaGenericaBox tbody tr td button#RemoveBox", function () {
+    var table = $('#tblSalidaDetalle').DataTable();
+    var box_Codigo = this.value;
+    $(this).after('<button class="btn btn-primary btn-xs" value="' + box_Codigo + '" id="seleccionarBox" data-dismiss="modal">Seleccionar</button>');
+    this.remove()
+    //var prod_CodigoTabla = table.rows("td:eq(0)").text();
+    //var rows = $('tr')
+    //var box_Codigo = table.rows(':eq(0)').data()[0][0];
+    console.log(box_Codigo)
+    //$(this.value).append('<button class="btn btn-danger btn-xs" id="RemoveBox" data-dismiss="modal">Quitar</button>');
+    //$(box_Codigo).$(this.remove());
+    //var button = '<button class="btn btn-danger btn-xs" id="RemoveBox" data-dismiss="modal">Quitar</button>';
+    var bod_Id = $('#bod_Id').val();
+    $.ajax({
+        url: "/Salida/GetBox",
+        method: "POST",
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({
+            bod_Id: bod_Id,
+            box_Codigo: box_Codigo
+        }),
+        success: function (data) {
+            $.each(data, function (key, value) {
+                table.row("#" + box_Codigo).remove().draw(false);
+                SalidaDetalle = null;
+                var SalidaDetalle = {
+                    prod_Codigo: value.prod_Codigo,
+                    sald_Cantidad: value.boxd_Cantidad,
+                    box_Codigo: value.box_Codigo,
+                    sald_UsuarioCrea: contador
+                };
+                $.ajax({
+                    url: "/Salida/RemoveSalidaDetalle",
+                    method: "POST",
+                    dataType: 'json',
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify({ SalidaDetalle: SalidaDetalle }),
+                });
+                //table
+                //.column(8)
+                //.data()
+                //.each(function (value, index) {
+                //    var box_Codigo = value.replace("En Caja: ", "")
+                //    //$("#tblSalidaDetalle").find('tr:contains("' + value.replace("En Caja: ", "") + '")').remove();
+                //    //$("#tblSalidaDetalle").find('tr:contains("' + value.replace("En Caja: ", "") + '")').remove();
+                //    //table.row($(this).parents('tr(' + index + ')')).remove().draw();
+                //    //value.replace("En Caja: ", "");
+                //})
+                
+              
+               
+                //table
+                //    .row($(this).parents('tr td:eq'))
+                //    .remove()
+                //    .draw();
+
+                //$.ajax({
+                //    url: "/Salida/RemoveSalidaDetalle",
+                //    method: "POST",
+                //    dataType: 'json',
+                //    contentType: "application/json; charset=utf-8",
+                //    data: JSON.stringify({ SalidaDetalle: tbSalidaDetalle }),
+                //});
+              
+            })
+
+        }
+    })
+})
+
+    //$.data.each(function () {
+    //    var SalidaDetalle = {
+    //        prod_Codigo: $('#prod_Codigo').val(),
+    //        sald_Cantidad: $('#sald_Cantidad').val(),
+    //        sald_UsuarioCrea: contador
+    //    };
+    //    $.ajax({
+    //        url: "/Salida/SaveSalidaDetalle",
+    //        method: "POST",
+    //        dataType: 'json',
+    //        contentType: "application/json; charset=utf-8",
+    //        data: JSON.stringify({ SalidaDetalle: SalidaDetalle, data_producto: data_producto }),
+    //    }).done(function (datos) {
+    //    })
+    //})
 
 // Copiar y Pegar///
 $(document).ready(function () {

@@ -36,7 +36,10 @@
                                     @Html.DisplayNameFor(model => model.box_Descripcion)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.tbBodega.bod_Nombre)
+                                    @Html.DisplayNameFor(model => model.bod_Id)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.box_Estado)
                                 </th>
                                 <th>Acciones</th>
                             </tr>
@@ -55,8 +58,29 @@
                                         @Html.DisplayFor(modelItem => item.tbBodega.bod_Nombre)
                                     </td>
                                     <td>
+                                        @{
+                                            if (item.box_Estado == Helpers.vbox_Abrierta)
+                                            {
+                                                <p>@Helpers.box_Abrierta</p>
+                                            }
+                                            else
+                                            {
+                                                <p>@Helpers.box_Abrierta</p>
+                                            }
+                                        }
+                                    </td>
+                                    <td>
                                         @Html.ActionLink("Detalles", "Details", new { id = item.box_Codigo }, new { @class = "btn btn-primary btn-xs" })
-                                        @Html.ActionLink("Editar", "Edit", new { id = item.box_Codigo }, new { @class = "btn btn-white btn-xs" })
+                                        @{
+                                            if (item.box_Estado == Helpers.vbox_Abrierta)
+                                            {
+                                                @Html.ActionLink("Editar", "Edit", new { id = item.box_Codigo }, new { @class = "btn btn-white btn-xs" })
+                                            }
+                                            else
+                                            {
+                                                @Html.ActionLink("Editar", "Edit", new { id = item.box_Codigo }, new { @class = "btn btn-white btn-xs", @disabled = "disabled" })
+                                            }
+                                        }
 
                                     </td>
                                 </tr>

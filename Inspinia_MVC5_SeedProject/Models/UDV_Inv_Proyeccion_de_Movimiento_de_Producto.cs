@@ -25,7 +25,6 @@ namespace ERP_GMEDINA.Models
         public string uni_Descripcion { get; set; }
         public string prod_Talla { get; set; }
         public decimal bodd_CantidadExistente { get; set; }
-        public decimal factd_Cantidad { get; set; }
         public Nullable<decimal> Proyección_Días { get; set; }
     }
 }

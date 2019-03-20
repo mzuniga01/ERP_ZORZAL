@@ -82,7 +82,7 @@
                                     @Html.EditorFor(model => model.box_Codigo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     @Html.ValidationMessageFor(model => model.box_Codigo)
                                 </div>
-                           
+
                                 @Html.LabelFor(model => model.box_Descripcion, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.box_Descripcion, new { htmlAttributes = new { @class = "form-control", @onKeyPress = "return controlCaracteres(event)" } })
@@ -95,10 +95,10 @@
                                     @Html.DropDownList("bod_Id", (IEnumerable<SelectListItem>)ViewBag.bod_Id, new { @class = "form-control" })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Id)</p>
                                 </div>
-                           
+
                                 @Html.LabelFor(model => model.box_Estado, "Estado", new { @class = "control-label col-md-2 required" })
                                 <div style="display:block" class="col-md-4">
-                                    @if (Model.box_Estado == Helpers.box_Abrierta)
+                                    @if (Model.box_Estado == Helpers.vbox_Abrierta)
                                     {
                                         @Html.EditorFor(model => model.box_Descripcion, new { htmlAttributes = new { @class = "form-control", Value = "Abierta", @readonly = "readonly" } })
                                         <p style="color:red">@Html.ValidationMessageFor(model => model.bod_Id)</p>
@@ -130,11 +130,17 @@
                                 <div class="col-md-offset-5 col-md-10">
                                     <input type="submit" value="Guardar" class="btn btn-primary" />
                                     @Html.ActionLink("Imprimir", "PackingList", new { id = Model.box_Codigo }, new { @class = "btn btn-primary", @Id = "Imprimir" })
+                                    @{
+                                        if (Model.box_Estado == Helpers.vbox_Abrierta)
+                                        {
+                                            <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalClose" value="Cerrar" />
+                                        }
+                                    }
                                     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                                 </div>
                             </div>
                         </div>
-                    }
+                                        }
                 </div>
 
             </div>
@@ -166,6 +172,30 @@
                             <td>@Html.DisplayFor(model => model.box_FechaModifica)</td>
                         </tr>
                     </table>
+                </div>
+            </div>
+            <div class="modal fade" id="ModalClose" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel">Cerrar Caja</h4>
+                        </div>
+                        <div class="modal-body" id="frmBuscarProducto">
+                            ¿Esta seguro de cerrar esta caja?. No prodras editarla.
+                        </div>
+                        <div class="modal-body">
+                            <p style="color:maroon"></p>
+                            <div class="col-md-4">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            @Html.ActionLink("Cerrar", "Close", new { box_Codigo = Model.box_Codigo }, new { @class = "btn btn-danger" })
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

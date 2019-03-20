@@ -51,14 +51,16 @@ $(document).ready(function () {
         });
     });
 
-$(document).on("click", "#Table_BuscarProducto tbody tr td button#seleccionar", function () {
+    $(document).on("click", "#Table_BuscarProducto tbody tr td button#seleccionar", function () {
+        var currentRowDT = $('Table_BuscarProducto').DataTable();
     var currentRow = $(this).closest("tr");
     prod_CodigoBarrasItem = currentRow.find("td:eq(0)").text();
     idItem = currentRow.find("td:eq(1)").text();
     contentItem = currentRow.find("td:eq(2)").text();
     pcatItem = currentRow.find("td:eq(3)").text();
     psubctItem = currentRow.find("td:eq(4)").text();
-    uni_IdtItem = currentRow.find("td:eq(5)").text();
+    uni_IdtItem = currentRowDT.rows().data()[4];
+    //uni_IdtItem = currentRow.find("td:eq(4)").text();
 
     //prod_CodigoBarrasItem = $(this).closest('tr').data('html');
     //idItem = $(this).closest('tr').data('id');
@@ -226,9 +228,9 @@ function ProductoCantidad(bod_Id, prod_Codigo) {
             var CantidadAceptada = data.CantidadAceptada
             var CantidadMinima = data.CantidadMinima
             var prod_CodigoCampo = $('#prod_Codigo').val();
-            var currentRow = $("#tblSalidaDetalle tbody tr");
-            //var DataTable = $("#tblSalidaDetalle >tbody >tr").DataTable();
-            //$("#tblSalidaDetalle td").each(function () {
+            var currentRow = $("#tblBoxDetalle tbody tr");
+            //var DataTable = $("#tblBoxDetalle >tbody >tr").DataTable();
+            //$("#tblBoxDetalle td").each(function () {
             var prod_CodigoTabla = currentRow.find("td:eq(0)").text();
             var idcontador = $(this).closest('tr').data('id');
             var cantfisica_anterior = $(this).closest("tr").find("td:eq(7)").text();
@@ -403,10 +405,6 @@ $('#AgregarBoxDetalle').click(function () {
                                 table.row.add([
                                     $('#prod_Codigo').val(),
                                     $('#prod_Descripcion').val(),
-                                    $('#prod_Marca').val(),
-                                    $('#prod_Modelo').val(),
-                                    $('#prod_Talla').val(),
-                                    $('#pcat_Id').val(),
                                     $('#uni_Id').val(),
                                     sumacantidades,
                                     '<button id = "removeBoxDetalle" class= "btn btn-danger btn-xs eliminar" type = "button">-</button>'
@@ -418,10 +416,6 @@ $('#AgregarBoxDetalle').click(function () {
                         table.row.add([
                             $('#prod_Codigo').val(),
                             $('#prod_Descripcion').val(),
-                            $('#prod_Marca').val(),
-                            $('#prod_Modelo').val(),
-                            $('#prod_Talla').val(),
-                            $('#pcat_Id').val(),
                             $('#uni_Id').val(),
                             $('#boxd_Cantidad').val(),
                             '<button id = "removesBoxDetalle" class= "btn btn-danger btn-xs eliminar" type = "button">-</button>'
@@ -682,6 +676,9 @@ function ListaProductos() {
     var table = $('#Table_BuscarProducto').dataTable({
         destroy: true,
         resposive: true,
+        "columnDefs": [
+            { "visible": false, "targets": 4 }
+        ],
         ajax: {
             method: "POST",
             url: url,
@@ -695,7 +692,7 @@ function ListaProductos() {
             //{ "data": "prod_Descripcion" },
             { "data": "prod_Marca" },
             { "data": "prod_Modelo" },
-            //{ "data": "uni_Descripcion" },
+            { "data": "uni_Descripcion"},
 
             { "defaultContent": "<button class='btn btn-primary btn-xs'  id='seleccionar' data-dismiss='modal'>Seleccionar</button>" }
         ],
@@ -707,7 +704,6 @@ function ListaProductos() {
             "sProcessing": "Procesando...",
             "sLengthMenu": "Mostrar _MENU_ registros",
             "sZeroRecords": "No se encontraron resultados",
-            "sEmptyTable": "Ningún dato disponible en esta tabla",
             "sEmptyTable": "No hay registros",
             "sInfoEmpty": "Mostrando 0 de 0 Entradas",
             "sSearch": "Buscar",

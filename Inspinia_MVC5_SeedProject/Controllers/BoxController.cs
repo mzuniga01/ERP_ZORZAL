@@ -31,6 +31,39 @@ namespace ERP_ZORZAL.Controllers
             return View(db.tbBox.ToList());
         }
 
+
+        public ActionResult Close(string box_Codigo)
+        {
+            try
+            {
+                tbBox vBox = db.tbBox.Find(box_Codigo);
+                IEnumerable<object> List = null;
+                string MsjError = "";
+                List = db.UDP_Inv_tbBox_Update(box_Codigo, vBox.box_Descripcion, vBox.bod_Id, Helpers.vbox_Cerrada, vBox.box_UsuarioCrea, vBox.box_FechaCrea, Function.GetUser(), Function.DatetimeNow());
+
+                foreach (UDP_Inv_tbBox_Update_Result Box in List)
+                    MsjError = Box.MensajeError;
+                if (MsjError.StartsWith("-1"))
+                {
+                    LlenarListas();
+                    Function.InsertBitacoraErrores("Box/Edit", MsjError, "Edit");
+                    ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception Ex)
+            {
+                LlenarListas();
+                Function.InsertBitacoraErrores("Box/Edit", Ex.Message.ToString(), "Edit");
+                ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                return RedirectToAction("Index");
+            }
+        }
+
         // GET: /Box/Details/5
         [SessionManager("Box/Details")]
         public ActionResult Details(string id)
@@ -106,6 +139,56 @@ namespace ERP_ZORZAL.Controllers
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
+
+        [HttpPost]
+        public JsonResult Cantidad(int bod_Id, string prod_Codigo)
+        {
+            try
+            {
+                var CantidadExistente = db.tbBodegaDetalle.Where(x =>
+                x.bod_Id == bod_Id
+                &&
+                x.prod_Codigo == prod_Codigo).Select(c => c.bodd_CantidadExistente).FirstOrDefault();
+
+                var CantidadMinima = db.tbBodegaDetalle.Where(x =>
+                 x.bod_Id == bod_Id
+                 &&
+                 x.prod_Codigo == prod_Codigo).Select(c => c.bodd_CantidadMinima).FirstOrDefault();
+
+                //var CantidadSalida = db.tbSalida.Where(x => x.sal_EsAnulada == false && x.estm_Id == Helpers.sal_Emitida).Select(p => p.sal_Id).ToList();
+                var CantidadSalidaDetalle = db.SDP_Inv_Cantidad_Salida_Emitida(prod_Codigo).Select(x => x.sald_Cantidad).SingleOrDefault();
+                object CantidadPermitida = null;
+                var vCantidad = CantidadExistente - CantidadMinima;
+                if (CantidadSalidaDetalle == null)
+                {
+                    var CantidadAceptada = vCantidad;
+                    CantidadPermitida = new { CantidadAceptada, CantidadMinima };
+                }
+                else
+                {
+                    var CantidadAceptada = vCantidad - CantidadSalidaDetalle;
+                    CantidadPermitida = new { CantidadAceptada, CantidadMinima };
+                }
+
+                //if (CantidadPermitida == 0 && CantidadMinima > 0)
+                //{
+                //    var CantidadMinimaA = "Cantidad Minima Alcanzada solo hay en existencia: "+ CantidadMinima+" de este producto";
+                //    return Json(CantidadMinimaA, JsonRequestBehavior.AllowGet);
+                //}
+                //else
+                //{
+                //    return Json(CantidadPermitida, JsonRequestBehavior.AllowGet);
+                //}
+
+                return Json(CantidadPermitida, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                return Json(ModelState, JsonRequestBehavior.AllowGet);
+            }
+        }
         // POST: /Box/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.

@@ -233,3 +233,78 @@ $('#usu_Apellidos').on("keypress", function () {
 
 });
 
+$('#Inactivar').click(function () {
+    var usu_id = $('#usu_Id').val();
+    var Activo = 0
+    var Razon_Inactivacion = $('#Razon_Inactivacion').val();
+    console.log(usu_id)
+    console.log(Activo)
+    console.log(Razon_Inactivacion)
+    if (Razon_Inactivacion == "") {
+        valido = document.getElementById('Mensaje');
+        valido.innerText = "La razón inactivación es requerida";
+    }
+
+    else {
+        $.ajax({
+            url: "/Usuario/EstadoInactivar",
+            method: "POST",
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ usu_id: usu_id, Activo: Activo, Razon_Inactivacion: Razon_Inactivacion }),
+
+        })
+    .done(function (data) {
+        if (data.length > 0) {
+            var url = $("#RedirectTo").val();
+            location.href = url;
+        }
+        else {
+            alert("Registro No Actualizado");
+        }
+    });
+    }
+
+})
+
+$('#Activar').click(function () {
+    var usu_id = $('#usu_Id').val();
+    var Activo = 1
+    var Razon_Inactivacion = null;
+    $.ajax({
+        url: "/Usuario/Estadoactivar",
+        method: "POST",
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({ usu_id: usu_id, Activo: Activo, Razon_Inactivacion: Razon_Inactivacion }),
+
+    })
+    .done(function (data) {
+        if (data.length > 0) {
+            var url = $("#RedirectTo").val();
+            location.href = url;
+        }
+        else {
+            alert("Registro No Actualizado");
+        }
+    });
+})
+
+////Validacion De solo letras 
+function CaracteresNombre(e) {
+    tecla = (document.all) ? e.keyCode : e.which;
+    tecla = String.fromCharCode(tecla)
+    return /^[a-zA-ZáéíóúñÁÉÍÓÚÑ ]+$/.test(tecla);
+
+}
+function NumText(string) {//solo letras y numeros
+    var out = '';
+    //Se añaden las letras validas
+    var filtro = 'abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ1234567890áéíóúÁÉÍÓÚ ,.';//Caracteres validos
+
+    for (var i = 0; i < string.length; i++)
+        if (filtro.indexOf(string.charAt(i)) != -1)
+            out += string.charAt(i);
+
+    return out;
+}

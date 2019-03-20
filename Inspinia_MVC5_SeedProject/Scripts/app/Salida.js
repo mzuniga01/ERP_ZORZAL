@@ -109,6 +109,29 @@ $('#fact_Codigo').keypress(function () {
 $("#sal_FechaElaboracion").click(function () {
 });
 
+$(document).ready(function () {
+    $('#tblBusquedaGenericaBox').DataTable(
+        {
+            "searching": true,
+            "lengthChange": true,
+            "responsive": true,
+            "oLanguage": {
+                "oPaginate": {
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior",
+                },
+                "sProcessing": "Procesando...",
+                "sLengthMenu": "Mostrar _MENU_ registros",
+                "sZeroRecords": "No se encontraron resultados",
+                "sEmptyTable": "No hay registros",
+                "sInfoEmpty": "Mostrando 0 de 0 Entradas",
+                "sSearch": "Buscar",
+                "sInfo": "Mostrando _START_ a _END_ Entradas",
+                "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+
+            }
+        });
+});
 
 $(document).ready(function () {
     $('#tblBusquedaGenerica').DataTable(

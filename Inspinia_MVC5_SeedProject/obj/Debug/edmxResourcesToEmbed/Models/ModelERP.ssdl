@@ -428,6 +428,7 @@
     <Property Name="prod_Razon_Inactivacion" Type="varchar" MaxLength="150" />
     <Property Name="prod_CodigoBarras" Type="varchar" MaxLength="15" Nullable="false" />
     <Property Name="prod_Correlativo" Type="int" />
+    <Property Name="prov_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="tbProductoCategoria">
     <Key>
@@ -980,6 +981,7 @@
     <Property Name="mnda_Id" Type="smallint" Nullable="false" />
     <Property Name="solef_EsAnulada" Type="bit" Nullable="false" />
     <Property Name="RazonAnulado" Type="nvarchar" MaxLength="100" />
+    <Property Name="solef_EsImpresa" Type="bit" Nullable="false" />
     <Property Name="solef_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="solef_FechaCrea" Type="datetime" Nullable="false" />
     <Property Name="solef_UsuarioModifica" Type="int" />
@@ -1468,6 +1470,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_PackingList' does not have
     <Property Name="uni_Descripcion" Type="varchar" MaxLength="150" />
     <Property Name="sald_Cantidad" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="bod_Nombre" Type="varchar" MaxLength="100" />
+    <Property Name="Nombre_Bodega" Type="varchar" MaxLength="100" />
     <Property Name="sal_BodDestino" Type="int" Nullable="false" />
     <Property Name="Usuario" Type="varchar" MaxLength="301" />
     <Property Name="box_FechaCrea" Type="datetime" Nullable="false" />
@@ -1560,7 +1563,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Proyeccion_de_Movimiento_d
       <PropertyRef Name="uni_Descripcion" />
       <PropertyRef Name="prod_Talla" />
       <PropertyRef Name="bodd_CantidadExistente" />
-      <PropertyRef Name="factd_Cantidad" />
     </Key>
     <Property Name="bod_Id" Type="int" Nullable="false" />
     <Property Name="bod_Nombre" Type="varchar" MaxLength="100" />
@@ -1573,7 +1575,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_Proyeccion_de_Movimiento_d
     <Property Name="uni_Descripcion" Type="varchar" MaxLength="150" Nullable="false" />
     <Property Name="prod_Talla" Type="varchar" MaxLength="15" Nullable="false" />
     <Property Name="bodd_CantidadExistente" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-    <Property Name="factd_Cantidad" Type="decimal" Precision="5" Scale="2" Nullable="false" />
     <Property Name="Proyección Días" Type="decimal" Precision="38" Scale="0" />
   </EntityType>
   <!--Errors Found During Generation:
@@ -1838,6 +1839,23 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_AnalisisDeMora' does not
     <Property Name="MORADE90" Type="decimal" Precision="18" Scale="2" />
   </EntityType>
   <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_ArqueoCaja_Select' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="UDV_Vent_ArqueoCaja_Select">
+    <Key>
+      <PropertyRef Name="mocja_Id" />
+      <PropertyRef Name="suc_Descripcion" />
+      <PropertyRef Name="cja_Id" />
+      <PropertyRef Name="cja_Descripcion" />
+    </Key>
+    <Property Name="mocja_Id" Type="int" Nullable="false" />
+    <Property Name="suc_Descripcion" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="cja_Id" Type="smallint" Nullable="false" />
+    <Property Name="cja_Descripcion" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="mocja_FechaApertura" Type="datetime" />
+    <Property Name="mocja_FechaArqueo" Type="datetime" />
+    <Property Name="mocja_FechaAceptacion" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
 warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_Busqueda_Clientes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="UDV_Vent_Busqueda_Clientes">
     <Key>
@@ -1985,7 +2003,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_DescuentosporFecha' does
     <Property Name="Nombres" Type="nvarchar" MaxLength="101" Nullable="false" />
     <Property Name="Tipo_Factura" Type="varchar" MaxLength="7" Nullable="false" />
     <Property Name="TIPO_DE_CLIENTE" Type="varchar" MaxLength="8" Nullable="false" />
-    <Property Name="TIPO_DESCUENTO" Type="varchar" MaxLength="29" Nullable="false" />
+    <Property Name="TIPO_DESCUENTO" Type="varchar" MaxLength="22" Nullable="false" />
     <Property Name="Descuento" Type="decimal" Precision="18" Scale="2" />
     <Property Name="TotalFactura" Type="decimal" Precision="18" Scale="2" />
   </EntityType>
@@ -2195,20 +2213,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_ListadodePrecios' does n
     <Property Name="uni_Id" Type="int" Nullable="false" />
     <Property Name="lispd_PrecioMayorista" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="lispd_PrecioMinorista" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-  </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_MovimientoCaja_Select' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-  <EntityType Name="UDV_Vent_MovimientoCaja_Select">
-    <Key>
-      <PropertyRef Name="mocja_Id" />
-      <PropertyRef Name="solef_Id" />
-      <PropertyRef Name="cja_Id" />
-      <PropertyRef Name="cja_Descripcion" />
-    </Key>
-    <Property Name="mocja_Id" Type="int" Nullable="false" />
-    <Property Name="solef_Id" Type="int" Nullable="false" />
-    <Property Name="cja_Id" Type="smallint" Nullable="false" />
-    <Property Name="cja_Descripcion" Type="nvarchar" MaxLength="10" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_NotaCreditoPorFecha' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -4179,6 +4183,18 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Inv_tbProducto_tbProveedor_prov_Id">
+    <End Role="tbProveedor" Type="Self.tbProveedor" Multiplicity="1" />
+    <End Role="tbProducto" Type="Self.tbProducto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbProveedor">
+        <PropertyRef Name="prov_Id" />
+      </Principal>
+      <Dependent Role="tbProducto">
+        <PropertyRef Name="prov_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Inv_tbProducto_tbUnidadesMedida_pscat_Id">
     <End Role="tbProductoSubcategoria" Type="Self.tbProductoSubcategoria" Multiplicity="1" />
     <End Role="tbProducto" Type="Self.tbProducto" Multiplicity="*" />
@@ -5877,6 +5893,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
     <Parameter Name="uni_Id" Type="int" Mode="In" />
     <Parameter Name="prod_EsActivo" Type="bit" Mode="In" />
     <Parameter Name="prod_CodigoBarras" Type="varchar" Mode="In" />
+    <Parameter Name="prov_Id" Type="int" Mode="In" />
     <Parameter Name="prod_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="prod_FechaCrea" Type="datetime" Mode="In" />
   </Function>
@@ -5891,6 +5908,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
     <Parameter Name="uni_Id" Type="int" Mode="In" />
     <Parameter Name="prod_Razon_Inactivacion" Type="varchar" Mode="In" />
     <Parameter Name="prod_CodigoBarras" Type="varchar" Mode="In" />
+    <Parameter Name="prov_Id" Type="int" Mode="In" />
     <Parameter Name="prod_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="prod_FechaCrea" Type="datetime" Mode="In" />
     <Parameter Name="prod_UsuarioModifica" Type="int" Mode="In" />
@@ -6423,6 +6441,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
     [UDV_Inv_PackingList].[uni_Descripcion] AS [uni_Descripcion], 
     [UDV_Inv_PackingList].[sald_Cantidad] AS [sald_Cantidad], 
     [UDV_Inv_PackingList].[bod_Nombre] AS [bod_Nombre], 
+    [UDV_Inv_PackingList].[Nombre_Bodega] AS [Nombre_Bodega], 
     [UDV_Inv_PackingList].[sal_BodDestino] AS [sal_BodDestino], 
     [UDV_Inv_PackingList].[Usuario] AS [Usuario], 
     [UDV_Inv_PackingList].[box_FechaCrea] AS [box_FechaCrea]
@@ -6481,7 +6500,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
     [UDV_Inv_Proyeccion_de_Movimiento_de_Producto].[uni_Descripcion] AS [uni_Descripcion], 
     [UDV_Inv_Proyeccion_de_Movimiento_de_Producto].[prod_Talla] AS [prod_Talla], 
     [UDV_Inv_Proyeccion_de_Movimiento_de_Producto].[bodd_CantidadExistente] AS [bodd_CantidadExistente], 
-    [UDV_Inv_Proyeccion_de_Movimiento_de_Producto].[factd_Cantidad] AS [factd_Cantidad], 
     [UDV_Inv_Proyeccion_de_Movimiento_de_Producto].[Proyección Días] AS [Proyección Días]
     FROM [Inv].[UDV_Inv_Proyeccion_de_Movimiento_de_Producto] AS [UDV_Inv_Proyeccion_de_Movimiento_de_Producto]</DefiningQuery>
     </EntitySet>
@@ -6638,6 +6656,17 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
     [UDV_Vent_AnalisisDeMora].[MORADE60] AS [MORADE60], 
     [UDV_Vent_AnalisisDeMora].[MORADE90] AS [MORADE90]
     FROM [Vent].[UDV_Vent_AnalisisDeMora] AS [UDV_Vent_AnalisisDeMora]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="UDV_Vent_ArqueoCaja_Select" EntityType="Self.UDV_Vent_ArqueoCaja_Select" store:Type="Views" store:Schema="Vent">
+      <DefiningQuery>SELECT 
+    [UDV_Vent_ArqueoCaja_Select].[mocja_Id] AS [mocja_Id], 
+    [UDV_Vent_ArqueoCaja_Select].[suc_Descripcion] AS [suc_Descripcion], 
+    [UDV_Vent_ArqueoCaja_Select].[cja_Id] AS [cja_Id], 
+    [UDV_Vent_ArqueoCaja_Select].[cja_Descripcion] AS [cja_Descripcion], 
+    [UDV_Vent_ArqueoCaja_Select].[mocja_FechaApertura] AS [mocja_FechaApertura], 
+    [UDV_Vent_ArqueoCaja_Select].[mocja_FechaArqueo] AS [mocja_FechaArqueo], 
+    [UDV_Vent_ArqueoCaja_Select].[mocja_FechaAceptacion] AS [mocja_FechaAceptacion]
+    FROM [Vent].[UDV_Vent_ArqueoCaja_Select] AS [UDV_Vent_ArqueoCaja_Select]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="UDV_Vent_Busqueda_Clientes" EntityType="Self.UDV_Vent_Busqueda_Clientes" store:Type="Views" store:Schema="Vent">
       <DefiningQuery>SELECT 
@@ -6853,14 +6882,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
     [UDV_Vent_ListadodePrecios].[lispd_PrecioMayorista] AS [lispd_PrecioMayorista], 
     [UDV_Vent_ListadodePrecios].[lispd_PrecioMinorista] AS [lispd_PrecioMinorista]
     FROM [Vent].[UDV_Vent_ListadodePrecios] AS [UDV_Vent_ListadodePrecios]</DefiningQuery>
-    </EntitySet>
-    <EntitySet Name="UDV_Vent_MovimientoCaja_Select" EntityType="Self.UDV_Vent_MovimientoCaja_Select" store:Type="Views" store:Schema="Vent">
-      <DefiningQuery>SELECT 
-    [UDV_Vent_MovimientoCaja_Select].[mocja_Id] AS [mocja_Id], 
-    [UDV_Vent_MovimientoCaja_Select].[solef_Id] AS [solef_Id], 
-    [UDV_Vent_MovimientoCaja_Select].[cja_Id] AS [cja_Id], 
-    [UDV_Vent_MovimientoCaja_Select].[cja_Descripcion] AS [cja_Descripcion]
-    FROM [Vent].[UDV_Vent_MovimientoCaja_Select] AS [UDV_Vent_MovimientoCaja_Select]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="UDV_Vent_NotaCreditoPorFecha" EntityType="Self.UDV_Vent_NotaCreditoPorFecha" store:Type="Views" store:Schema="Vent">
       <DefiningQuery>SELECT 
@@ -7576,6 +7597,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
     <AssociationSet Name="FK_Inv_tbProducto_tbDevolucionDetalle_prod_Codigo" Association="Self.FK_Inv_tbProducto_tbDevolucionDetalle_prod_Codigo">
       <End Role="tbProducto" EntitySet="tbProducto" />
       <End Role="tbDevolucionDetalle" EntitySet="tbDevolucionDetalle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inv_tbProducto_tbProveedor_prov_Id" Association="Self.FK_Inv_tbProducto_tbProveedor_prov_Id">
+      <End Role="tbProveedor" EntitySet="tbProveedor" />
+      <End Role="tbProducto" EntitySet="tbProducto" />
     </AssociationSet>
     <AssociationSet Name="FK_Inv_tbProducto_tbUnidadesMedida_pscat_Id" Association="Self.FK_Inv_tbProducto_tbUnidadesMedida_pscat_Id">
       <End Role="tbProductoSubcategoria" EntitySet="tbProductoSubcategoria" />

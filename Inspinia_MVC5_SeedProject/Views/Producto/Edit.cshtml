@@ -143,6 +143,12 @@
                         </div>    
 
                         <div class="form-group" id="">
+                            @Html.LabelFor(model => model.tbProveedor.prov_Nombre, "Proveedor", new { @class = "control-label col-md-2 , required" })
+                            <div class="col-md-4">
+                                @Html.DropDownList("prov_Id", null, new { @class = "form-control" })
+                                <p style="color:red">@Html.ValidationMessageFor(model => model.prov_Id)</p>
+                            </div>
+
                             @Html.LabelFor(model => model.prod_EsActivo, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
                                @if (Model.prod_EsActivo == true)
@@ -153,11 +159,11 @@
                                {
                                 <p>Inactivo</p>
                                }
+                                <p style="color:red">  @Html.ValidationMessageFor(model => model.prod_EsActivo)</p>
+                            </div>              
+                        </div>
 
-                            </div>
-                            <p style="color:red">  @Html.ValidationMessageFor(model => model.prod_EsActivo)</p>
-
-
+                        <div class="form-group" id="">
                             @if (Model.prod_EsActivo == Helpers.ProductoInactivo)
                             {
                                 <div class="form-group" id="RazonInactivo">
@@ -169,33 +175,30 @@
                                 </div>
 
                             }
-
                         </div>
-                        @*<div class="form-group" id="nuevocodigo" >
-                            <input class="form-control" name="CodigoNuevo" id="CodigoNuevo" />
-                        </div>*@  
-                                                                       
-                           
+                   
+
+
 
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="Guardar" class="btn btn-primary" id="btnGuardar"/>
-                                   @if (Model.prod_EsActivo == Helpers.ProductoActivo)
-                                   {
-                                    <button type="button" id="inactivar" name="inactivar" class="btn btn-danger" data-toggle="modal" data-target="#ModalAnular">
-                                        Inactivar
-                                    </button>
-                                   }
-                                   else
-                                   {
-                                    @Html.ActionLink("Activar", "Estadoactivar", new { prod_Codigo = Model.prod_Codigo }, new { @class = "btn btn-primary" })
-                                   }                                                   
+                                    <input type="submit" value="Guardar" class="btn btn-primary" id="btnGuardar" />
+                                    @if (Model.prod_EsActivo == Helpers.ProductoActivo)
+                                    {
+                                        <button type="button" id="inactivar" name="inactivar" class="btn btn-danger" data-toggle="modal" data-target="#ModalAnular">
+                                            Inactivar
+                                        </button>
+                                    }
+                                    else
+                                    {
+                                        @Html.ActionLink("Activar", "Estadoactivar", new { prod_Codigo = Model.prod_Codigo }, new { @class = "btn btn-primary" })
+                                    }
                                     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
 
 
                                 </div>
                             </div>
-                        
+
                         </div>                      
                 }
                 </div>

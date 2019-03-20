@@ -74,7 +74,7 @@
                                         @Html.DisplayFor(modelItem => item.boxd_Cantidad)
                                     </td>
                                     <td>
-                                        @if (item.tbBox.box_Estado == Helpers.box_Abrierta)
+                                        @if (item.tbBox.box_Estado == Helpers.vbox_Abrierta)
                                         {
                                             <button type="button" class="btn btn-white btn-xs" onclick="EditBoxDetalles('@item.boxd_Id')">Editar</button>
                                             <input type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#ModalEliminarDetalle" value="Quitar" />

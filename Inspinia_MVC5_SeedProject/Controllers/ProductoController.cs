@@ -57,6 +57,7 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.prod_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario");
             ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion");
             ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion");
+            ViewBag.prov_Id = new SelectList(db.tbProveedor,"prov_Id","prov_Nombre");
             return View();
         }
 
@@ -84,7 +85,7 @@ namespace ERP_GMEDINA.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [SessionManager("Producto/Create")]
-        public ActionResult Create([Bind(Include = "prod_Codigo,prod_Descripcion,prod_Marca,prod_Modelo,prod_Talla,prod_Color,pscat_Id,uni_Id,prod_CodigoBarras,prod_UsiuarioCrea,prod_FechaCrea,pcat_Id")] tbProducto tbProducto, int pcat_Id)
+        public ActionResult Create([Bind(Include = "prod_Codigo,prod_Descripcion,prod_Marca,prod_Modelo,prod_Talla,prod_Color,pscat_Id,uni_Id,prod_CodigoBarras,prod_UsiuarioCrea,prod_FechaCrea,prov_Id,pcat_Id")] tbProducto tbProducto, int pcat_Id)
         {
             if (db.tbProducto.Any(a => a.prod_CodigoBarras == tbProducto.prod_CodigoBarras))
             {
@@ -106,6 +107,7 @@ namespace ERP_GMEDINA.Controllers
                                                             tbProducto.uni_Id,
                                                             Helpers.ProductoActivo,
                                                             tbProducto.prod_CodigoBarras,
+                                                            tbProducto.prov_Id,
                                                             Function.GetUser(),
                                                             Function.DatetimeNow()
                                                             );
@@ -118,6 +120,7 @@ namespace ERP_GMEDINA.Controllers
                         ViewBag.pcat_Id = new SelectList(db.tbProductoCategoria, "pcat_Id", "pcat_Nombre");
                         ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion");
                         ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion");
+                        ViewBag.prov_Id = new SelectList(db.tbProveedor, "prov_Id", "prov_Nombre");
                         Function.InsertBitacoraErrores("Producto/Create", MsjError, "Create");
                         ModelState.AddModelError("", "No se Pudo Insertar el Registro, Favor Contacte al Administrador.");
                         return View(tbProducto);
@@ -134,6 +137,7 @@ namespace ERP_GMEDINA.Controllers
                     ViewBag.pcat_Id = new SelectList(db.tbProductoCategoria, "pcat_Id", "pcat_Nombre");
                     ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion");
                     ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion");
+                    ViewBag.prov_Id = new SelectList(db.tbProveedor, "prov_Id", "prov_Nombre");
                     return View(tbProducto);
                 }
             }
@@ -142,6 +146,7 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.pcat_Id = new SelectList(db.tbProductoCategoria, "pcat_Id", "pcat_Nombre");
             ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion");
             ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion");
+            ViewBag.prov_Id = new SelectList(db.tbProveedor, "prov_Id", "prov_Nombre");
 
             return View(tbProducto);
         }
@@ -164,6 +169,7 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.prod_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbProducto.prod_UsuarioModifica);
             ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion", tbProducto.uni_Id);
             ViewBag.pcat_Id = new SelectList(db.tbProductoCategoria.Where(x => x.pcat_EsActivo == 1), "pcat_Id", "pcat_Nombre", tbProducto.tbProductoSubcategoria.tbProductoCategoria.pcat_Id);
+            ViewBag.prov_Id = new SelectList(db.tbProveedor, "prov_Id", "prov_Nombre",tbProducto.prov_Id);
             var Categoria = tbProducto.tbProductoSubcategoria.tbProductoCategoria.pcat_Id; ;
             var Sucategoria = db.tbProductoSubcategoria.Select(s => new
             {
@@ -188,7 +194,7 @@ namespace ERP_GMEDINA.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [SessionManager("Producto/Edit")]
-        public ActionResult Edit(string id, [Bind(Include = "prod_Codigo,prod_Descripcion,prod_Marca,prod_Modelo,prod_Talla,prod_Color,pscat_Id,uni_Id,prod_EsActivo,prod_Razon_Inactivacion,prod_UsuarioCrea,prod_FechaCrea,prod_UsuarioModifica,prod_FechaModifica,prod_CodigoBarras,pcat_Id")] tbProducto tbProducto, int pcat_Id)
+        public ActionResult Edit(string id, [Bind(Include = "prod_Codigo,prod_Descripcion,prod_Marca,prod_Modelo,prod_Talla,prod_Color,pscat_Id,uni_Id,prod_EsActivo,prod_Razon_Inactivacion,prod_UsuarioCrea,prod_FechaCrea,prod_UsuarioModifica,prod_FechaModifica,prod_CodigoBarras,prov_Id,pcat_Id")] tbProducto tbProducto, int pcat_Id)
         {
             if (ModelState.IsValid)
             {
@@ -207,6 +213,7 @@ namespace ERP_GMEDINA.Controllers
                                                         tbProducto.uni_Id,
                                                         tbProducto.prod_Razon_Inactivacion,
                                                         tbProducto.prod_CodigoBarras,
+                                                        tbProducto.prov_Id,
                                                         vtbProducto.prod_UsuarioCrea,
                                                         vtbProducto.prod_FechaCrea,
                                                         Function.GetUser(),
@@ -219,6 +226,7 @@ namespace ERP_GMEDINA.Controllers
                     {
                         ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion", tbProducto.uni_Id);
                         ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion ", tbProducto.pscat_Id);
+                        ViewBag.prov_Id = new SelectList(db.tbProveedor, "prov_Id", "prov_Nombre", tbProducto.prov_Id);
                         Function.InsertBitacoraErrores("Producto/Edit", MsjError, "Edit");
                         ModelState.AddModelError("", "No se Pudo Actualizar el registro, Favor Contacte al Administrador.");
                         return View(tbProducto);
@@ -232,6 +240,7 @@ namespace ERP_GMEDINA.Controllers
                 {
                     ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion", tbProducto.uni_Id);
                     ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion ", tbProducto.pscat_Id);
+                    ViewBag.prov_Id = new SelectList(db.tbProveedor, "prov_Id", "prov_Nombre", tbProducto.prov_Id);
                     Function.InsertBitacoraErrores("Producto/Edit", Ex.Message.ToString(), "Edit");
                     ModelState.AddModelError("", "No se Pudo Actualizar el registro, Favor Contacte al Administrador.");
                     return View(tbProducto);
@@ -245,6 +254,7 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.prod_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbProducto.prod_UsuarioCrea);
             ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion", tbProducto.uni_Id);
             ViewBag.pscat_Id = new SelectList(db.tbProductoSubcategoria, "pscat_Id", "pscat_Descripcion ", tbProducto.pscat_Id);
+            ViewBag.prov_Id = new SelectList(db.tbProveedor, "prov_Id", "prov_Nombre", tbProducto.prov_Id);
             return View(tbProducto);
         }
 

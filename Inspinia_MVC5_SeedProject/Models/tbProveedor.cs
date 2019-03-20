@@ -18,6 +18,7 @@ namespace ERP_GMEDINA.Models
         public tbProveedor()
         {
             this.tbEntrada = new HashSet<tbEntrada>();
+            this.tbProducto = new HashSet<tbProducto>();
         }
     
         public int prov_Id { get; set; }
@@ -38,5 +39,7 @@ namespace ERP_GMEDINA.Models
         public virtual tbActividadEconomica tbActividadEconomica { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbEntrada> tbEntrada { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbProducto> tbProducto { get; set; }
     }
 }

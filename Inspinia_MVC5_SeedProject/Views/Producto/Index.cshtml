@@ -100,7 +100,8 @@
                                            @{  
 
                                            }
-                                             @Html.ActionLink("Detalles", "Details", new { id = item.prod_Codigo }, new { @class = "btn btn-primary btn-xs" })                                           
+                                             @Html.ActionLink("Detalles", "Details", new { id = item.prod_Codigo }, new { @class = "btn btn-primary btn-xs" }) 
+                                             @*@Html.ActionLink("Editar", "Edit", new { id = item.prod_Codigo }, new { @class = "btn btn-white btn-xs" })*@                                         
                                             @{                                             
 
                                                 FuctionIndexP Function = new FuctionIndexP();
@@ -159,6 +160,8 @@
                 "sLengthMenu": "Mostrar _MENU_ registros por página",
                 "sZeroRecords": "No se encontraron resultados",
                 "sInfo": "Mostrando _START_ a _END_ Entradas",
+                "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                "sEmptyTable": "No hay registros",
             }
         });
     });

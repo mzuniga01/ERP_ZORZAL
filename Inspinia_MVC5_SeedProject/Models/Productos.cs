@@ -29,6 +29,10 @@ namespace ERP_GMEDINA.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int pscat_Descripcion { get; set; }
 
+        [NotMapped]
+        [Display(Name = "Proveedor")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        public int pro_Nombre { get; set; }
     }
 
     public class ProductosMetadata
@@ -98,7 +102,11 @@ namespace ERP_GMEDINA.Models
 
         [Display(Name = "Carrelativo")]
         public Nullable<int> prod_Correlativo { get; set; }
-       
+
+        [Display(Name = "Proveedor")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]      
+        public int prov_Id { get; set; }
+
         [NotMapped]
         [Display(Name = "Categoría")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
@@ -113,5 +121,10 @@ namespace ERP_GMEDINA.Models
         [Display(Name = "SubCategoría")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         public int pscat_Descripcion { get; set; }
+
+        [NotMapped]
+        [Display(Name = "Proveedor")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
+        public int pro_Nombre { get; set; }
     }
 }

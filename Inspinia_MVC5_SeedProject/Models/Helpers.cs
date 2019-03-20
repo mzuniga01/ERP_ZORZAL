@@ -107,8 +107,14 @@ namespace ERP_GMEDINA.Models
         public const int SubcategoriaInactivo = 2;
 
         //Estado Box
-        public const int box_Abrierta = 1;
+        public const int vbox_Abrierta = 1;
+        
+        public const int vbox_Cerrada = 2;
+        
+        public const string box_Abrierta = "Abrierta";
+        
+        public const string box_Cerrada = "Cerrada";
 
-        public const int box_Cerrada = 2;
+
     }
 }

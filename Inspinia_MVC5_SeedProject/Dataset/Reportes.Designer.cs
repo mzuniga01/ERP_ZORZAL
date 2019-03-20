@@ -15934,8 +15934,8 @@ WHERE        (box_Codigo = @box_Codigo)";
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = @"SELECT        ent_NumeroFormato, bod_Nombre, ent_FechaElaboracion, bod_id, estm_id, tent_id, prov_Nombre, estm_Descripcion, tent_Descripcion, ent_FacturaCompra, ent_FechaCompra, tdev_descripcion, fact_Id, 
                          ent_BodegaDestino
-FROM            Inv.UDV_Inv_TipoEntrada
-WHERE        (tent_id = @TipoEntrada) AND (estm_id = @estado) AND (bod_id = @bodega) AND (ent_FechaElaboracion = @FechaElaboracion)";
+FROM            Inv.UDV_Inv_TipoEntrada AS ent
+WHERE        (tent_id = @TipoEntrada) AND (estm_id = @estado) AND (bod_id = @bodega) AND (ent_FechaElaboracion BETWEEN @FechaElaboracion AND GETDATE())";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TipoEntrada", global::System.Data.SqlDbType.TinyInt, 1, global::System.Data.ParameterDirection.Input, 0, 0, "tent_id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@estado", global::System.Data.SqlDbType.TinyInt, 1, global::System.Data.ParameterDirection.Input, 0, 0, "estm_id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));

@@ -72,19 +72,19 @@
                                         @Html.DisplayFor(modelItem => item.tbTipoSalida.tsal_Descripcion)
                                     </td>
                                     <td>
-                                        @if (item.estm_Id == Helpers.EntradaEmitida)
+                                        @if (item.estm_Id == Helpers.sal_Aplicada)
                                         {
                                             <p>@Html.DisplayFor(modelItem => item.tbEstadoMovimiento.estm_Descripcion)</p>
                                         }
-                                        else if (item.estm_Id == Helpers.EntradaInactivada)
+                                        else if (item.estm_Id == Helpers.sal_Inactiva)
                                         {
                                             <p>@Html.DisplayFor(modelItem => item.tbEstadoMovimiento.estm_Descripcion)</p>
                                         }
-                                        else if (item.estm_Id == Helpers.EntradaAplicada)
+                                        else if (item.estm_Id == Helpers.sal_Aplicada)
                                         {
                                             <p style="">@Html.DisplayFor(modelItem => item.tbEstadoMovimiento.estm_Descripcion)</p>
                                         }
-                                        else if (item.estm_Id == Helpers.EntradaEstadoAnulada)
+                                        else if (item.estm_Id == Helpers.sal_Anulada)
                                         {
                                             <p style="">@Html.DisplayFor(modelItem => item.tbEstadoMovimiento.estm_Descripcion)</p>
                                         }

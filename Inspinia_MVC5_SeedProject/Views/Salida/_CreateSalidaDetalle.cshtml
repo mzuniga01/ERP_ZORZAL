@@ -69,6 +69,9 @@
                             </div>
                         </div>
                         <div class="form-group col-md-1">
+                            <div class="col-md-1">
+                                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalAgregarBox"><span class="glyphicon glyphicon-search"></span></button>
+                            </div>
                             <button class="btn btn-primary btn-sm" type="button" id="AgregarSalidaDetalle">Agregar</button>
                         </div>
                     </div>
@@ -125,7 +128,19 @@
         </div>
     </div>
 </div>
-
+<div class="modal fade" id="ModalAgregarBox" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="frmBuscarProducto">Buscar Productos</h4>
+                @Html.Partial("_SeleccionaBox", (List<ERP_GMEDINA.Models.tbBox>)ViewBag.Box)
+            </div>
+        </div>
+    </div>
+</div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

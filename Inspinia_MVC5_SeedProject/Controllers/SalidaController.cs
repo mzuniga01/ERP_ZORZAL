@@ -218,6 +218,8 @@ namespace ERP_GMEDINA.Controllers
                 ViewBag.tsal_Id = new SelectList(db.tbTipoSalida, "tsal_Id", "tsal_Descripcion");
                 ViewBag.Factura = db.tbFactura.Where(x => x.fact_EsAnulada != Helpers.fact_EsAnulada && x.esfac_Id == Helpers.esfac_Pagada || x.esfac_Id == Helpers.esfac_PagoPendiente).ToList();
                 ViewBag.Producto = db.tbBodegaDetalle.Where(x => x.bod_Id == vbod_Id.bodId && x.bodd_CantidadExistente > x.bodd_CantidadMinima).ToList();
+                //ViewBag.Box = (from Box in db.tbBox where !db.tbSalidaDetalle.Any(es => (es.box_Codigo == Box.box_Codigo))).ToList();
+                ViewBag.Box = db.tbBox.Where(s => !db.tbSalidaDetalle.Where(es => es.box_Codigo == s.box_Codigo).Any()).ToList();
                 ViewBag.tdev_Id = new SelectList(db.tbTipoDevolucion, "tdev_Id", "tdev_Descripcion");
                 return View();
             }
@@ -337,6 +339,39 @@ namespace ERP_GMEDINA.Controllers
             try
             {
                 list = db.SDP_tbBodega_Listado(id).ToList();
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+            }
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult GetBox(string box_Codigo,int? bod_Id)
+        {
+            IEnumerable<object> list = null;
+            try
+            {
+                list = (from Box in db.tbBox
+                        join Boxd in db.tbBoxDetalle on Box.box_Codigo equals Boxd.box_Codigo
+                        join Producto in db.tbProducto on Boxd.prod_Codigo equals Producto.prod_Codigo
+                        join Subcategoria in db.tbProductoSubcategoria on Producto.pscat_Id equals Subcategoria.pscat_Id
+                        join Categoria in db.tbProductoCategoria on Subcategoria.pcat_Id equals Categoria.pcat_Id
+                        join UniMedida in db.tbUnidadMedida on Producto.uni_Id equals UniMedida.uni_Id
+                        where Box.box_Codigo == box_Codigo && Box.bod_Id == bod_Id 
+                        select new {
+                            prod_Codigo = Boxd.prod_Codigo,
+                            prod_Descripcion = Producto.prod_Descripcion,
+                            prod_Color = Producto.prod_Color,
+                            prod_Marca=Producto.prod_Marca,
+                            prod_Modelo=Producto.prod_Modelo,
+                            prod_Talla=Producto.prod_Talla,
+                            prod_CodigoBarras= Producto.prod_CodigoBarras,
+                            pcat_Nombre=Categoria.pcat_Nombre,
+                            pscat_Descripcion = Subcategoria.pscat_Descripcion,
+                            uni_Descripcion=UniMedida.uni_Descripcion,
+                            boxd_Cantidad = Boxd.boxd_Cantidad,
+                            box_Codigo = Box.box_Codigo
+                        }).ToList();
             }
             catch (Exception Ex)
             {
