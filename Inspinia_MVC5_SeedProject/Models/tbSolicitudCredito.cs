@@ -20,6 +20,7 @@ namespace ERP_GMEDINA.Models
         public System.DateTime cred_FechaSolicitud { get; set; }
         public Nullable<System.DateTime> cred_FechaAprobacion { get; set; }
         public Nullable<System.DateTime> cred_FechaDenegacion { get; set; }
+        public string cred_RazonDenegacion { get; set; }
         public decimal cred_MontoSolicitado { get; set; }
         public decimal cred_MontoAprobado { get; set; }
         public int cred_DiasSolicitado { get; set; }
@@ -28,7 +29,6 @@ namespace ERP_GMEDINA.Models
         public System.DateTime cred_FechaCrea { get; set; }
         public Nullable<int> cred_UsuarioModifica { get; set; }
         public Nullable<System.DateTime> cred_FechaModifica { get; set; }
-        public string cred_RazonDenegacion { get; set; }
     
         public virtual tbUsuario tbUsuario { get; set; }
         public virtual tbUsuario tbUsuario1 { get; set; }

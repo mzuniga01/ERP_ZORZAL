@@ -182,6 +182,38 @@
                                             @Html.DropDownListFor(model => model.ent_BodegaDestino, (SelectList)ViewBag.bbod_Id, new { @class = "form-control", @readonly = "readonly" })
                                         </div>
                                     </div>
+                                    <div class="col-md-4">
+                                        @{if (Model.estm_Id == Helpers.EntradaEmitida)
+                                            {
+                                                <label class="control-label col-md-4">Quiere agregar caja?</label>
+                                                <div class="col-md-1">
+                                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalAgregarBox"><span class="glyphicon glyphicon-search"></span></button>
+                                                </div>
+                                            }
+                                            else if (Model.estm_Id == Helpers.EntradaInactivada)
+                                            {
+                                                <label class="control-label col-md-4">Quiere agregar caja?</label>
+                                                <div class="col-md-1">
+                                                    <button type="button" title="No Puede Agregas caja Porque Esta Inactiva"  class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-search"></span></button>
+                                                </div>
+                                            }
+                                            else if (Model.estm_Id == Helpers.EntradaEstadoAnulada)
+                                            {
+                                                <label class="control-label col-md-4">Quiere agregar caja?</label>
+                                                <div class="col-md-1">
+                                                    <button type="button" title="No Puede Agregas caja Porque Esta Anulada" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-search"></span></button>
+                                                </div>
+                                            }
+                                            else if (Model.estm_Id == Helpers.EntradaAplicada)
+                                            {
+                                                <label class="control-label col-md-4">Quiere agregar caja?</label>
+                                                <div class="col-md-1">
+                                                    <button type="button" title="No Puede Agregas caja Porque Esta Aplicada" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-search"></span></button>
+                                                </div>
+                                            }
+                                        }
+                                        
+                                    </div>
                                 </div>
                             </div>
                             @*Botoness*@
@@ -349,7 +381,19 @@
 @**********************************************************************************MODALES*****************************************************************************@
 @**********************************************************************************MODALES*****************************************************************************@
 @**********************************************************************************MODALES*****************************************************************************@
-
+<div class="modal fade" id="ModalAgregarBox" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="frmBuscarProducto">Buscar Productos</h4>
+                @Html.Partial("_SeleccionaBox", (List<ERP_GMEDINA.Models.tbBox>)ViewBag.BoxD)
+            </div>
+        </div>
+    </div>
+</div>
 
 @*modal para inactivar*@
     <div class="modal fade" id="ModalEstado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -31,6 +31,44 @@ namespace ERP_ZORZAL.Controllers
             var tbentrada = db.tbEntrada.Include(t => t.tbBodega).Include(t => t.tbEstadoMovimiento).Include(t => t.tbProveedor).Include(t => t.tbTipoEntrada);
             return View(tbentrada.ToList());
         }
+        //para caja
+        public JsonResult GetBox(string box_Codigo, int? bod_Id)
+        {
+            IEnumerable<object> list = null;
+            try
+            {
+                list = (from Box in db.tbBox
+                        join Boxd in db.tbBoxDetalle on Box.box_Codigo equals Boxd.box_Codigo
+                        join Producto in db.tbProducto on Boxd.prod_Codigo equals Producto.prod_Codigo
+                        join Subcategoria in db.tbProductoSubcategoria on Producto.pscat_Id equals Subcategoria.pscat_Id
+                        join Categoria in db.tbProductoCategoria on Subcategoria.pcat_Id equals Categoria.pcat_Id
+                        join UniMedida in db.tbUnidadMedida on Producto.uni_Id equals UniMedida.uni_Id
+                        where Box.box_Codigo == box_Codigo && Box.bod_Id == bod_Id
+                        select new
+                        {
+                            prod_Codigo = Boxd.prod_Codigo,
+                            prod_Descripcion = Producto.prod_Descripcion,
+                            prod_Color = Producto.prod_Color,
+                            prod_Marca = Producto.prod_Marca,
+                            prod_Modelo = Producto.prod_Modelo,
+                            prod_Talla = Producto.prod_Talla,
+                            prod_CodigoBarras = Producto.prod_CodigoBarras,
+                            pcat_Nombre = Categoria.pcat_Nombre,
+                            pscat_Descripcion = Subcategoria.pscat_Descripcion,
+                            uni_Descripcion = UniMedida.uni_Descripcion,
+                            boxd_Cantidad = Boxd.boxd_Cantidad,
+                            box_Codigo = Box.box_Codigo
+                        }).ToList();
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+            }
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+
+
 
         // GET: /Entrada/Details/5
         [SessionManager("Entrada/Details")]
@@ -194,6 +232,7 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion");
             ViewBag.bod_Idd = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
             ViewBag.Producto = db.SDP_Inv_tbProducto_Select().ToList();
+            ViewBag.BoxD = db.tbBox.Where(s => db.tbSalidaDetalle.Where(es => es.box_Codigo == s.box_Codigo && db.tbSalida.Where(sd => sd.sal_Id == es.sal_Id && sd.estm_Id == Helpers.sal_Aplicada).Any()).Any()).ToList();
             Session["_CrearDetalleEntrada"] =null;
             return View();
         }
@@ -229,7 +268,7 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.prod_Codigo = new SelectList(db.tbProducto, "prod_Codigo", "prod_Descripcion");
             ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion");
             ViewBag.bod_Idd = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
-
+            ViewBag.BoxD = db.tbBox.Where(s => db.tbSalidaDetalle.Where(es => es.box_Codigo == s.box_Codigo && db.tbSalida.Where(sd => sd.sal_Id == es.sal_Id && sd.estm_Id == Helpers.sal_Aplicada).Any()).Any()).ToList();
             ViewBag.Producto = db.SDP_Inv_tbProducto_Select().ToList();
             Session["_CrearDetalleEntrada"] =null;
             return View(tbEntrada);
@@ -364,6 +403,7 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.prov_Id = new SelectList(db.tbProveedor, "prov_Id", "prov_Nombre", tbEntrada.prov_Id);
             ViewBag.tent_Id = new SelectList(db.tbTipoEntrada, "tent_Id", "tent_Descripcion", tbEntrada.tent_Id);
             ViewBag.ent_BodegaDestino = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbEntrada.ent_BodegaDestino);
+            ViewBag.BoxD = db.tbBox.Where(s => db.tbSalidaDetalle.Where(es => es.box_Codigo == s.box_Codigo && db.tbSalida.Where(sd => sd.sal_Id == es.sal_Id && sd.estm_Id == Helpers.sal_Aplicada).Any()).Any()).ToList();
             ViewBag.Producto = db.SDP_Inv_tbProducto_Select().ToList();
             
             if (ModelState.IsValid)
@@ -467,7 +507,7 @@ namespace ERP_ZORZAL.Controllers
             ViewBag.prod_Codigo = new SelectList(db.tbProducto, "prod_Codigo", "prod_Descripcion");
             ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion");
             ViewBag.Producto = db.SDP_Inv_tbProducto_Select().ToList();
-
+            ViewBag.BoxD = db.tbBox.Where(s => db.tbSalidaDetalle.Where(es => es.box_Codigo == s.box_Codigo && db.tbSalida.Where(sd => sd.sal_Id == es.sal_Id && sd.estm_Id == Helpers.sal_Aplicada).Any()).Any()).ToList();
             if (ModelState.IsValid)
             {
                 using (TransactionScope _Tran = new TransactionScope())

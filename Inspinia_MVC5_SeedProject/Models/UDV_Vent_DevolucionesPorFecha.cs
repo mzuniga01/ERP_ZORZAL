@@ -16,7 +16,7 @@ namespace ERP_GMEDINA.Models
     {
         public int dev_Id { get; set; }
         public int devd_Id { get; set; }
-        public string Cajero { get; set; }
+        public int Cajero { get; set; }
         public Nullable<System.DateTime> FechaDevolucion { get; set; }
         public Nullable<System.DateTime> FechaFactura { get; set; }
         public long Numero_Factura { get; set; }

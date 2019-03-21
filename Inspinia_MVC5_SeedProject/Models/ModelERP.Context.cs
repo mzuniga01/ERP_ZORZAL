@@ -34,7 +34,6 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbRol> tbRol { get; set; }
         public virtual DbSet<tbRolesUsuario> tbRolesUsuario { get; set; }
         public virtual DbSet<tbUsuario> tbUsuario { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<tbActividadEconomica> tbActividadEconomica { get; set; }
         public virtual DbSet<tbBanco> tbBanco { get; set; }
         public virtual DbSet<tbCuentasBanco> tbCuentasBanco { get; set; }
@@ -52,12 +51,15 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<tbBox> tbBox { get; set; }
         public virtual DbSet<tbBoxDetalle> tbBoxDetalle { get; set; }
         public virtual DbSet<tbEntrada> tbEntrada { get; set; }
+        public virtual DbSet<tbEntradaDetalle> tbEntradaDetalle { get; set; }
         public virtual DbSet<tbEstadoInventarioFisico> tbEstadoInventarioFisico { get; set; }
         public virtual DbSet<tbEstadoMovimiento> tbEstadoMovimiento { get; set; }
         public virtual DbSet<tbInventarioFisicoDetalle> tbInventarioFisicoDetalle { get; set; }
+        public virtual DbSet<tbProducto> tbProducto { get; set; }
         public virtual DbSet<tbProductoCategoria> tbProductoCategoria { get; set; }
         public virtual DbSet<tbProductoSubcategoria> tbProductoSubcategoria { get; set; }
         public virtual DbSet<tbProveedor> tbProveedor { get; set; }
+        public virtual DbSet<tbSalida> tbSalida { get; set; }
         public virtual DbSet<tbSalidaDetalle> tbSalidaDetalle { get; set; }
         public virtual DbSet<tbTipoDevolucion> tbTipoDevolucion { get; set; }
         public virtual DbSet<tbTipoEntrada> tbTipoEntrada { get; set; }
@@ -95,6 +97,7 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<UDV_Acce_Usuario_Roles> UDV_Acce_Usuario_Roles { get; set; }
         public virtual DbSet<V_Objetos> V_Objetos { get; set; }
         public virtual DbSet<UDP_Vent_PagosPorFechas> UDP_Vent_PagosPorFechas { get; set; }
+        public virtual DbSet<UDV_Inv_tbProducto> UDV_Inv_tbProducto { get; set; }
         public virtual DbSet<UDV_TBInventarioFisico_ImprimirConciliacion> UDV_TBInventarioFisico_ImprimirConciliacion { get; set; }
         public virtual DbSet<UDV_Vent_FacturaPuntoEmision> UDV_Vent_FacturaPuntoEmision { get; set; }
         public virtual DbSet<UDV_Inv_Nombre_Empleado> UDV_Inv_Nombre_Empleado { get; set; }
@@ -110,15 +113,16 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<UDV_Inv_PackingList> UDV_Inv_PackingList { get; set; }
         public virtual DbSet<UDV_Inv_PackingList_Caja> UDV_Inv_PackingList_Caja { get; set; }
         public virtual DbSet<UDV_Inv_ProductosSolicitadosPorEntregar> UDV_Inv_ProductosSolicitadosPorEntregar { get; set; }
+        public virtual DbSet<UDV_Inv_Proyeccion_de_Movimiento_de_Producto> UDV_Inv_Proyeccion_de_Movimiento_de_Producto { get; set; }
         public virtual DbSet<UDV_Inv_Salida_Imprimir_Reporte> UDV_Inv_Salida_Imprimir_Reporte { get; set; }
         public virtual DbSet<UDV_inv_tbinventariofisico_reporteFaltantes> UDV_inv_tbinventariofisico_reporteFaltantes { get; set; }
         public virtual DbSet<UDV_Inv_TipoEntrada> UDV_Inv_TipoEntrada { get; set; }
         public virtual DbSet<UDV_InventarioActual> UDV_InventarioActual { get; set; }
         public virtual DbSet<VistaInventarioHistorico> VistaInventarioHistorico { get; set; }
-        public virtual DbSet<database_firewall_rules> database_firewall_rules { get; set; }
         public virtual DbSet<UDP_Vent_listExoneracion_Select> UDP_Vent_listExoneracion_Select { get; set; }
         public virtual DbSet<UDP_Vent_SolicituEfectivo_Select> UDP_Vent_SolicituEfectivo_Select { get; set; }
         public virtual DbSet<UDV_Vent_AnalisisDeMora> UDV_Vent_AnalisisDeMora { get; set; }
+        public virtual DbSet<UDV_Vent_ArqueoCaja_Select> UDV_Vent_ArqueoCaja_Select { get; set; }
         public virtual DbSet<UDV_Vent_Busqueda_Clientes> UDV_Vent_Busqueda_Clientes { get; set; }
         public virtual DbSet<UDV_Vent_Busqueda_Factura> UDV_Vent_Busqueda_Factura { get; set; }
         public virtual DbSet<UDV_Vent_CuponDescuentoPorFecha> UDV_Vent_CuponDescuentoPorFecha { get; set; }
@@ -131,20 +135,18 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<UDV_Vent_FacturasPendientesDePago> UDV_Vent_FacturasPendientesDePago { get; set; }
         public virtual DbSet<UDV_Vent_InventarioNumeraciones> UDV_Vent_InventarioNumeraciones { get; set; }
         public virtual DbSet<UDV_Vent_ListadodePrecios> UDV_Vent_ListadodePrecios { get; set; }
+        public virtual DbSet<UDV_Vent_MovimientoCaja_Apertura> UDV_Vent_MovimientoCaja_Apertura { get; set; }
+        public virtual DbSet<UDV_Vent_MovimientoCaja_Apertura_Detalles> UDV_Vent_MovimientoCaja_Apertura_Detalles { get; set; }
         public virtual DbSet<UDV_Vent_NotaCreditoPorFecha> UDV_Vent_NotaCreditoPorFecha { get; set; }
         public virtual DbSet<UDV_Vent_PagosPorFechas> UDV_Vent_PagosPorFechas { get; set; }
         public virtual DbSet<UDV_Vent_Pedido_EntreFechas> UDV_Vent_Pedido_EntreFechas { get; set; }
         public virtual DbSet<UDV_Vent_prueba> UDV_Vent_prueba { get; set; }
         public virtual DbSet<UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporte> UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporte { get; set; }
+        public virtual DbSet<UDV_Vent_SolicituEfectivo_Index> UDV_Vent_SolicituEfectivo_Index { get; set; }
         public virtual DbSet<UDV_Vent_tbSolicituEfectivo_EntreFechas> UDV_Vent_tbSolicituEfectivo_EntreFechas { get; set; }
         public virtual DbSet<UDV_Vent_VentasConsumidorFinal> UDV_Vent_VentasConsumidorFinal { get; set; }
         public virtual DbSet<UDV_Vent_VentasExoneradas> UDV_Vent_VentasExoneradas { get; set; }
         public virtual DbSet<UDV_Vent_VentasPorCaja_EntreFechas> UDV_Vent_VentasPorCaja_EntreFechas { get; set; }
-        public virtual DbSet<tbEntradaDetalle> tbEntradaDetalle { get; set; }
-        public virtual DbSet<tbSalida> tbSalida { get; set; }
-        public virtual DbSet<tbProducto> tbProducto { get; set; }
-        public virtual DbSet<UDV_Inv_Proyeccion_de_Movimiento_de_Producto> UDV_Inv_Proyeccion_de_Movimiento_de_Producto { get; set; }
-        public virtual DbSet<UDV_Vent_ArqueoCaja_Select> UDV_Vent_ArqueoCaja_Select { get; set; }
     
         public virtual ObjectResult<UDP_Acce_tbRolesUsuario_Update_Result> UDP_Acce_tbRolesUsuario_Update(Nullable<int> rolu_Id, Nullable<int> rol_Id, Nullable<int> usu_Id, Nullable<int> rolu_UsuarioCrea, Nullable<System.DateTime> rolu_FechaCrea)
         {

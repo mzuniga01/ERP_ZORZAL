@@ -15,6 +15,8 @@ namespace ERP_GMEDINA.Models
     public partial class UDV_Vent_VentasPorCaja_EntreFechas
     {
         public System.DateTime fact_Fecha { get; set; }
+        public string fact_Codigo { get; set; }
+        public string clte_Nombres { get; set; }
         public string suc_Descripcion { get; set; }
         public string cja_Descripcion { get; set; }
         public string Cajero { get; set; }

@@ -1,4 +1,264 @@
 ﻿var contador = 0;
+//para  eliminar caja en el detalle de la entrada(edit)
+$(document).on("click", "#tblBusquedaGenericaBox tbody tr td button#RemoveBox", function () {
+    var table = $('#tbEntradaDetalle').DataTable();
+    var box_Codigo = this.value;
+    $(this).after('<button class="btn btn-primary btn-xs" value="' + box_Codigo + '" id="seleccionarBox" data-dismiss="modal">Seleccionar</button>');
+    this.remove()
+    //var prod_CodigoTabla = table.rows("td:eq(0)").text();
+    //var rows = $('tr')
+    //var box_Codigo = table.rows(':eq(0)').data()[0][0];
+    console.log(box_Codigo)
+    //$(this.value).append('<button class="btn btn-danger btn-xs" id="RemoveBox" data-dismiss="modal">Quitar</button>');
+    //$(box_Codigo).$(this.remove());
+    //var button = '<button class="btn btn-danger btn-xs" id="RemoveBox" data-dismiss="modal">Quitar</button>';
+    var bod_Id = $('#bod_Id').val();
+    $.ajax({
+        url: "/Entrada/GetBox",
+        method: "POST",
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({
+            bod_Id: bod_Id,
+            box_Codigo: box_Codigo
+        }),
+        success: function (data) {
+            $.each(data, function (key, value) {
+                table.row("#" + box_Codigo).remove().draw(false);
+                EntradaDetalled = null;
+                var EntradaDetalled = {
+                    prod_Codigo: value.prod_Codigo,
+                    entd_Cantidad: value.boxd_Cantidad,
+                    box_Codigo: value.box_Codigo,
+                    sald_UsuarioCrea: contador
+                };
+                $.ajax({
+                    url: "/Entrada/Eliminardetalleentrada",
+                    method: "POST",
+                    dataType: 'json',
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify({ EntradaDetalle: EntradaDetalled }),
+                });
+                //table
+                //.column(8)
+                //.data()
+                //.each(function (value, index) {
+                //    var box_Codigo = value.replace("En Caja: ", "")
+                //    //$("#tblSalidaDetalle").find('tr:contains("' + value.replace("En Caja: ", "") + '")').remove();
+                //    //$("#tblSalidaDetalle").find('tr:contains("' + value.replace("En Caja: ", "") + '")').remove();
+                //    //table.row($(this).parents('tr(' + index + ')')).remove().draw();
+                //    //value.replace("En Caja: ", "");
+                //})
+
+
+
+                //table
+                //    .row($(this).parents('tr td:eq'))
+                //    .remove()
+                //    .draw();
+
+                //$.ajax({
+                //    url: "/Salida/RemoveSalidaDetalle",
+                //    method: "POST",
+                //    dataType: 'json',
+                //    contentType: "application/json; charset=utf-8",
+                //    data: JSON.stringify({ SalidaDetalle: tbSalidaDetalle }),
+                //});
+
+            })
+
+        }
+    })
+})
+//para  agregar caja en el detalle de la entrada(edit)
+
+$(document).on("click", "#tblBusquedaGenericaBox tbody tr td button#seleccionarBox", function () {
+    var table = $('#tbEntradaDetalle').DataTable();
+    var box_Codigo = this.value;
+    $(this).after('<button class="btn btn-danger btn-xs" id="RemoveBox" data-dismiss="modal" value="' + box_Codigo + '">Quitar</button>');
+    this.remove()
+    //var prod_CodigoTabla = table.rows("td:eq(0)").text();
+    //var rows = $('tr')
+    //var box_Codigo = table.rows(':eq(0)').data()[0][0];
+    console.log(box_Codigo)
+    //$(this.value).append('<button class="btn btn-danger btn-xs" id="RemoveBox" data-dismiss="modal">Quitar</button>');
+    //$(box_Codigo).$(this.remove());
+    //var button = '<button class="btn btn-danger btn-xs" id="RemoveBox" data-dismiss="modal">Quitar</button>';
+    var bod_Id = $('#bod_Id').val();
+    $.ajax({
+        url: "/Entrada/GetBox",
+        method: "POST",
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({
+            bod_Id: bod_Id,
+            box_Codigo: box_Codigo
+        }),
+        success: function (data) {
+            $.each(data, function (key, value) {
+                EntradaDetalle = null;
+                var EntradaDetalle = {
+                    prod_Codigo: value.prod_Codigo,
+                    entd_Cantidad: value.boxd_Cantidad,
+                    box_Codigo: value.box_Codigo,
+                    sald_UsuarioCrea: contador
+                };
+                console.log(EntradaDetalle)
+                $.ajax({
+                    url: "/Entrada/Guardardetalleentrada",
+                    method: "POST",
+                    dataType: 'json',
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify({ EntradaDetalle: EntradaDetalle, data_producto: value.prod_Codigo }),
+                }).done(function (datos) {
+
+
+                    table.row.add([
+                        value.prod_Codigo,
+                        value.prod_Descripcion,
+                        value.prod_CodigoBarras,
+                        value.boxd_Cantidad,
+                        '<p id="' + value.box_Codigo + '">En Caja: ' + value.box_Codigo + '</p>'
+                    ]).draw(false).node().id = '' + value.box_Codigo + '';
+                })
+            })
+
+        }
+    })
+})
+
+//para  eliminar caja en el detalle de la entrada(create)
+$(document).on("click", "#tblBusquedaGenericaBox tbody tr td button#RemoveBox", function () {
+    var table = $('#tbentrada').DataTable();
+    var box_Codigo = this.value;
+    $(this).after('<button class="btn btn-primary btn-xs" value="' + box_Codigo + '" id="seleccionarBox" data-dismiss="modal">Seleccionar</button>');
+    this.remove()
+    //var prod_CodigoTabla = table.rows("td:eq(0)").text();
+    //var rows = $('tr')
+    //var box_Codigo = table.rows(':eq(0)').data()[0][0];
+    console.log(box_Codigo)
+    //$(this.value).append('<button class="btn btn-danger btn-xs" id="RemoveBox" data-dismiss="modal">Quitar</button>');
+    //$(box_Codigo).$(this.remove());
+    //var button = '<button class="btn btn-danger btn-xs" id="RemoveBox" data-dismiss="modal">Quitar</button>';
+    var bod_Id = $('#bod_Id').val();
+    $.ajax({
+        url: "/Entrada/GetBox",
+        method: "POST",
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({
+            bod_Id: bod_Id,
+            box_Codigo: box_Codigo
+        }),
+        success: function (data) {
+            $.each(data, function (key, value) {
+                table.row("#" + box_Codigo).remove().draw(false);
+                EntradaDetalled = null;
+                var EntradaDetalled = {
+                    prod_Codigo: value.prod_Codigo,
+                    entd_Cantidad: value.boxd_Cantidad,
+                    box_Codigo: value.box_Codigo,
+                    sald_UsuarioCrea: contador
+                };
+                $.ajax({
+                    url: "/Entrada/Eliminardetalleentrada",
+                    method: "POST",
+                    dataType: 'json',
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify({ EntradaDetalle: EntradaDetalled }),
+                });
+                //table
+                //.column(8)
+                //.data()
+                //.each(function (value, index) {
+                //    var box_Codigo = value.replace("En Caja: ", "")
+                //    //$("#tblSalidaDetalle").find('tr:contains("' + value.replace("En Caja: ", "") + '")').remove();
+                //    //$("#tblSalidaDetalle").find('tr:contains("' + value.replace("En Caja: ", "") + '")').remove();
+                //    //table.row($(this).parents('tr(' + index + ')')).remove().draw();
+                //    //value.replace("En Caja: ", "");
+                //})
+                
+              
+               
+                //table
+                //    .row($(this).parents('tr td:eq'))
+                //    .remove()
+                //    .draw();
+ 
+                //$.ajax({
+                //    url: "/Salida/RemoveSalidaDetalle",
+                //    method: "POST",
+                //    dataType: 'json',
+                //    contentType: "application/json; charset=utf-8",
+                //    data: JSON.stringify({ SalidaDetalle: tbSalidaDetalle }),
+                //});
+              
+            })
+ 
+        }
+    })
+})
+//para  agregar caja en el detalle de la entrada(create)
+
+$(document).on("click", "#tblBusquedaGenericaBox tbody tr td button#seleccionarBox", function () {
+    var table = $('#tbentrada').DataTable();
+    var box_Codigo = this.value;
+    $(this).after('<button class="btn btn-danger btn-xs" id="RemoveBox" data-dismiss="modal" value="' + box_Codigo + '">Quitar</button>');
+    this.remove()
+    //var prod_CodigoTabla = table.rows("td:eq(0)").text();
+    //var rows = $('tr')
+    //var box_Codigo = table.rows(':eq(0)').data()[0][0];
+    console.log(box_Codigo)
+    //$(this.value).append('<button class="btn btn-danger btn-xs" id="RemoveBox" data-dismiss="modal">Quitar</button>');
+    //$(box_Codigo).$(this.remove());
+    //var button = '<button class="btn btn-danger btn-xs" id="RemoveBox" data-dismiss="modal">Quitar</button>';
+    var bod_Id = $('#bod_Id').val();
+    $.ajax({
+        url: "/Entrada/GetBox",
+        method: "POST",
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({
+            bod_Id: bod_Id,
+            box_Codigo: box_Codigo
+        }),
+        success: function (data) {
+            $.each(data, function (key, value) {
+               EntradaDetalle = null;
+               var EntradaDetalle = {
+                    prod_Codigo: value.prod_Codigo,
+                    entd_Cantidad: value.boxd_Cantidad,
+                    box_Codigo: value.box_Codigo,
+                            sald_UsuarioCrea: contador
+                        };
+               console.log(EntradaDetalle)
+                $.ajax({
+                    url: "/Entrada/Guardardetalleentrada",
+                            method: "POST",
+                            dataType: 'json',
+                            contentType: "application/json; charset=utf-8",
+                            data: JSON.stringify({ EntradaDetalle: EntradaDetalle, data_producto: value.prod_Codigo }),
+                }).done(function (datos) {
+ 
+
+                    table.row.add([
+                        value.prod_Codigo,
+                        value.prod_Descripcion,
+                        value.prod_CodigoBarras,
+                        value.boxd_Cantidad,
+                        '<p id="' + value.box_Codigo + '">En Caja: ' + value.box_Codigo + '</p>'
+                    ]).draw(false).node().id = '' + value.box_Codigo+'';
+                        })
+            })
+           
+        }
+        })
+})
+
+
+
+
+
 //para q solo acepte letras(todo)
 function soloLetras(e) {
     tecla = (document.all) ? e.keyCode : e.which;

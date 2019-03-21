@@ -237,9 +237,6 @@
     <Compile Include="Models\ConteoParametro_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\database_firewall_rules.cs">
-      <DependentUpon>ModelERP.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\DatosConsumidorFinal.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -403,9 +400,6 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SP_tbInventariofisico_ProductosRepetidos_Result1.cs">
-      <DependentUpon>ModelERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbAccesoRol.cs">
@@ -970,6 +964,9 @@
     <Compile Include="Models\UDV_inv_tbinventariofisico_reporteFaltantes.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UDV_Inv_tbProducto.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UDV_Inv_TipoEntrada.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -1021,6 +1018,12 @@
     <Compile Include="Models\UDV_Vent_ListadodePrecios.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UDV_Vent_MovimientoCaja_Apertura.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDV_Vent_MovimientoCaja_Apertura_Detalles.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UDV_Vent_NotaCreditoPorFecha.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -1034,6 +1037,9 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporte.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDV_Vent_SolicituEfectivo_Index.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDV_Vent_tbSolicituEfectivo_EntreFechas.cs">
