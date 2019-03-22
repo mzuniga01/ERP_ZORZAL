@@ -155,7 +155,7 @@ $('#AgregarPuntoEmisionDetalle').click(function () {
             }
             else if (data == 'Ya existe este Rango Final') {
                  $('#MensajeNumeracionRangoFinal').text('');
-                 $('#validacionRangoInicioCreate').after('<p id="MensajeNumeracionRangoFinal" style="color:red">Ya existe este Rango Final</p>');
+                 $('#validacionRangoFinalCreate').after('<p id="MensajeNumeracionRangoFinal" style="color:red">Ya existe este Rango Final</p>');
             }
             else {
                 contador = contador + 1;
@@ -250,12 +250,14 @@ $("#pemid_RangoInicio").keyup(function () {
     $('#ErrorRangoInicioCreate').text('');
     $('#ErrorRangoInicioLengthCreate').text('');
     $('#ErrorRangoInicioCorrelativo').text('');
+    $('#MensajeNumeracionRangoInicial').text('');
 });
 
 $("#pemid_RangoFinal").keyup(function () {
     $('#ErrorRangoFinalCreate').text('');
     $('#ErrorRangoFinalSplitCreate').text('');
     $('#ErrorRangoFinalLengthCreate').text('');
+    $('#MensajeNumeracionRangoFinal').text('');
 });
 
 $("#pemid_FechaLimite").keyup(function () {

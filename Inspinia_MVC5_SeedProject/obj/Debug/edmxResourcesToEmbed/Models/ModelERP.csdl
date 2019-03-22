@@ -208,6 +208,7 @@
       <Parameter Name="usu_Correo" Mode="In" Type="String" />
       <Parameter Name="suc_Id" Mode="In" Type="Int32" />
       <Parameter Name="emp_Id" Mode="In" Type="Int16" />
+      <Parameter Name="usu_EsAdministrador" Mode="In" Type="Boolean" />
     </FunctionImport>
     <FunctionImport Name="UDP_Acce_tbUsuario_PasswordUpdate" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbUsuario_PasswordUpdate_Result)">
       <Parameter Name="usu_Id" Mode="In" Type="Int32" />
@@ -485,6 +486,7 @@
       <Parameter Name="ent_Id" Mode="In" Type="Int32" />
       <Parameter Name="prod_Codigo" Mode="In" Type="String" />
       <Parameter Name="entd_Cantidad" Mode="In" Type="Decimal" />
+      <Parameter Name="box_Codigo" Mode="In" Type="String" />
       <Parameter Name="ent_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="ent_FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
@@ -493,6 +495,7 @@
       <Parameter Name="ent_Id" Mode="In" Type="Int32" />
       <Parameter Name="prod_Codigo" Mode="In" Type="String" />
       <Parameter Name="entd_Cantidad" Mode="In" Type="Decimal" />
+      <Parameter Name="box_Codigo" Mode="In" Type="String" />
       <Parameter Name="entd_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="entd_FechaCrea" Mode="In" Type="DateTime" />
       <Parameter Name="entd_UsuarioModifica" Mode="In" Type="Int32" />
@@ -3001,6 +3004,9 @@
       <Parameter Name="escre_FechaAgrego" Mode="In" Type="DateTime" />
       <Parameter Name="escre_FechaModifica" Mode="In" Type="DateTime" />
     </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbDenominacionArqueo_Edit" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDenominacionArqueo_Edit_Result)">
+      <Parameter Name="ArqueoID" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -4514,7 +4520,7 @@
     <Property Name="emp_Identificacion" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="true" />
     <Property Name="emp_Telefono" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
     <Property Name="emp_Correoelectronico" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="emp_TipoSangre" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Name="emp_TipoSangre" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
     <Property Name="emp_Puesto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="emp_FechaIngreso" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="emp_Direccion" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
@@ -9864,5 +9870,16 @@
   </ComplexType>
   <ComplexType Name="UDP_Vent_tbEstadoSolicitudCredito_Update_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbDenominacionArqueo_Edit_Result">
+    <Property Type="Int32" Name="arqde_Id" Nullable="false" />
+    <Property Type="Int32" Name="mocja_Id" Nullable="false" />
+    <Property Type="String" Name="mnda_Abreviatura" Nullable="false" MaxLength="4" />
+    <Property Type="String" Name="mnda_Nombre" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="TipoDenominacion" Nullable="true" MaxLength="8000" />
+    <Property Type="String" Name="deno_Descripcion" Nullable="false" MaxLength="50" />
+    <Property Type="Decimal" Name="deno_valor" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Int16" Name="arqde_CantidadDenominacion" Nullable="false" />
+    <Property Type="Decimal" Name="arqde_MontoDenominacion" Nullable="false" Precision="10" Scale="2" />
   </ComplexType>
 </Schema>

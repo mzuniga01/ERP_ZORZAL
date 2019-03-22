@@ -848,7 +848,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Acce_tbRolesUsuario_Update", rolu_IdParameter, rol_IdParameter, usu_IdParameter, rolu_UsuarioCreaParameter, rolu_FechaCreaParameter);
         }
     
-        public virtual ObjectResult<UDP_Acce_tbUsuario_Insert_Result> UDP_Acce_tbUsuario_Insert(string usu_NombreUsuario, string usu_Password, string usu_Nombres, string usu_Apellidos, string usu_Correo, Nullable<int> suc_Id, Nullable<short> emp_Id)
+        public virtual ObjectResult<UDP_Acce_tbUsuario_Insert_Result> UDP_Acce_tbUsuario_Insert(string usu_NombreUsuario, string usu_Password, string usu_Nombres, string usu_Apellidos, string usu_Correo, Nullable<int> suc_Id, Nullable<short> emp_Id, Nullable<bool> usu_EsAdministrador)
         {
             var usu_NombreUsuarioParameter = usu_NombreUsuario != null ?
                 new ObjectParameter("usu_NombreUsuario", usu_NombreUsuario) :
@@ -878,7 +878,11 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("emp_Id", emp_Id) :
                 new ObjectParameter("emp_Id", typeof(short));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Acce_tbUsuario_Insert_Result>("UDP_Acce_tbUsuario_Insert", usu_NombreUsuarioParameter, usu_PasswordParameter, usu_NombresParameter, usu_ApellidosParameter, usu_CorreoParameter, suc_IdParameter, emp_IdParameter);
+            var usu_EsAdministradorParameter = usu_EsAdministrador.HasValue ?
+                new ObjectParameter("usu_EsAdministrador", usu_EsAdministrador) :
+                new ObjectParameter("usu_EsAdministrador", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Acce_tbUsuario_Insert_Result>("UDP_Acce_tbUsuario_Insert", usu_NombreUsuarioParameter, usu_PasswordParameter, usu_NombresParameter, usu_ApellidosParameter, usu_CorreoParameter, suc_IdParameter, emp_IdParameter, usu_EsAdministradorParameter);
         }
     
         public virtual ObjectResult<UDP_Acce_tbUsuario_PasswordUpdate_Result> UDP_Acce_tbUsuario_PasswordUpdate(Nullable<int> usu_Id, string usu_Password)
@@ -1887,7 +1891,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Inv_tbEntrada_Update_Estado", ent_IdParameter, estm_IdParameter, entd_UsuarioModificaParameter, entd_FechaModificaParameter);
         }
     
-        public virtual ObjectResult<string> UDP_Inv_tbEntradaDetalle_Insert(Nullable<int> ent_Id, string prod_Codigo, Nullable<decimal> entd_Cantidad, Nullable<int> ent_UsuarioCrea, Nullable<System.DateTime> ent_FechaCrea)
+        public virtual ObjectResult<string> UDP_Inv_tbEntradaDetalle_Insert(Nullable<int> ent_Id, string prod_Codigo, Nullable<decimal> entd_Cantidad, string box_Codigo, Nullable<int> ent_UsuarioCrea, Nullable<System.DateTime> ent_FechaCrea)
         {
             var ent_IdParameter = ent_Id.HasValue ?
                 new ObjectParameter("ent_Id", ent_Id) :
@@ -1901,6 +1905,10 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("entd_Cantidad", entd_Cantidad) :
                 new ObjectParameter("entd_Cantidad", typeof(decimal));
     
+            var box_CodigoParameter = box_Codigo != null ?
+                new ObjectParameter("box_Codigo", box_Codigo) :
+                new ObjectParameter("box_Codigo", typeof(string));
+    
             var ent_UsuarioCreaParameter = ent_UsuarioCrea.HasValue ?
                 new ObjectParameter("ent_UsuarioCrea", ent_UsuarioCrea) :
                 new ObjectParameter("ent_UsuarioCrea", typeof(int));
@@ -1909,10 +1917,10 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("ent_FechaCrea", ent_FechaCrea) :
                 new ObjectParameter("ent_FechaCrea", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Inv_tbEntradaDetalle_Insert", ent_IdParameter, prod_CodigoParameter, entd_CantidadParameter, ent_UsuarioCreaParameter, ent_FechaCreaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Inv_tbEntradaDetalle_Insert", ent_IdParameter, prod_CodigoParameter, entd_CantidadParameter, box_CodigoParameter, ent_UsuarioCreaParameter, ent_FechaCreaParameter);
         }
     
-        public virtual ObjectResult<string> UDP_Inv_tbEntradaDetalle_Update(Nullable<int> entd_Id, Nullable<int> ent_Id, string prod_Codigo, Nullable<decimal> entd_Cantidad, Nullable<int> entd_UsuarioCrea, Nullable<System.DateTime> entd_FechaCrea, Nullable<int> entd_UsuarioModifica, Nullable<System.DateTime> entd_FechaModifica)
+        public virtual ObjectResult<string> UDP_Inv_tbEntradaDetalle_Update(Nullable<int> entd_Id, Nullable<int> ent_Id, string prod_Codigo, Nullable<decimal> entd_Cantidad, string box_Codigo, Nullable<int> entd_UsuarioCrea, Nullable<System.DateTime> entd_FechaCrea, Nullable<int> entd_UsuarioModifica, Nullable<System.DateTime> entd_FechaModifica)
         {
             var entd_IdParameter = entd_Id.HasValue ?
                 new ObjectParameter("entd_Id", entd_Id) :
@@ -1930,6 +1938,10 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("entd_Cantidad", entd_Cantidad) :
                 new ObjectParameter("entd_Cantidad", typeof(decimal));
     
+            var box_CodigoParameter = box_Codigo != null ?
+                new ObjectParameter("box_Codigo", box_Codigo) :
+                new ObjectParameter("box_Codigo", typeof(string));
+    
             var entd_UsuarioCreaParameter = entd_UsuarioCrea.HasValue ?
                 new ObjectParameter("entd_UsuarioCrea", entd_UsuarioCrea) :
                 new ObjectParameter("entd_UsuarioCrea", typeof(int));
@@ -1946,7 +1958,7 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("entd_FechaModifica", entd_FechaModifica) :
                 new ObjectParameter("entd_FechaModifica", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Inv_tbEntradaDetalle_Update", entd_IdParameter, ent_IdParameter, prod_CodigoParameter, entd_CantidadParameter, entd_UsuarioCreaParameter, entd_FechaCreaParameter, entd_UsuarioModificaParameter, entd_FechaModificaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Inv_tbEntradaDetalle_Update", entd_IdParameter, ent_IdParameter, prod_CodigoParameter, entd_CantidadParameter, box_CodigoParameter, entd_UsuarioCreaParameter, entd_FechaCreaParameter, entd_UsuarioModificaParameter, entd_FechaModificaParameter);
         }
     
         public virtual ObjectResult<string> UDP_Inv_tbEstadoMovimiento_Insert(Nullable<byte> estm_Id, string estm_Descripcion, Nullable<int> estm_UsuarioCrea, Nullable<System.DateTime> estm_FechaCrea)
@@ -7099,6 +7111,15 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("escre_FechaModifica", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbEstadoSolicitudCredito_Update_Result>("UDP_Vent_tbEstadoSolicitudCredito_Update", escre_IdParameter, escre_DescripcionParameter, escre_UsuarioCreaParameter, escre_UsuarioModificaParameter, escre_FechaAgregoParameter, escre_FechaModificaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbDenominacionArqueo_Edit_Result> UDP_Vent_tbDenominacionArqueo_Edit(Nullable<int> arqueoID)
+        {
+            var arqueoIDParameter = arqueoID.HasValue ?
+                new ObjectParameter("ArqueoID", arqueoID) :
+                new ObjectParameter("ArqueoID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbDenominacionArqueo_Edit_Result>("UDP_Vent_tbDenominacionArqueo_Edit", arqueoIDParameter);
         }
     }
 }

@@ -214,12 +214,14 @@ $("#txtRangoInicial").keyup(function () {
     $('#ErrorRangoInicioCreate').text('');
     $('#ErrorRangoInicioLengthCreate').text('');
     $('#ErrorRangoInicioCorrelativoCreate').text('');
+    $('#MensajeRangoInicialExist').text('');
 });
 
 $("#txtRangoFinal").keyup(function () {
     $('#ErrorRangoFinalCreate').text('');
     $('#ErrorRangoFinalSplitCreate').text('');
     $('#ErrorRangoFinalLengthCreate').text('');
+    $('#MensajeRangoFinalExist').text('');
 });
 
 $("#txtFechalimite").keyup(function () {

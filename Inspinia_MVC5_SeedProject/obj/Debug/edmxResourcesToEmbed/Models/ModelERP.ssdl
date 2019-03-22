@@ -156,7 +156,7 @@
     <Property Name="emp_Identificacion" Type="nvarchar" MaxLength="14" Nullable="false" />
     <Property Name="emp_Telefono" Type="nvarchar" MaxLength="25" Nullable="false" />
     <Property Name="emp_Correoelectronico" Type="nvarchar" MaxLength="50" />
-    <Property Name="emp_TipoSangre" Type="char" MaxLength="2" Nullable="false" />
+    <Property Name="emp_TipoSangre" Type="nvarchar" MaxLength="3" />
     <Property Name="emp_Puesto" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="emp_FechaIngreso" Type="date" Nullable="false" />
     <Property Name="emp_Direccion" Type="nvarchar" MaxLength="250" Nullable="false" />
@@ -5446,6 +5446,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
     <Parameter Name="usu_Correo" Type="varchar" Mode="In" />
     <Parameter Name="suc_Id" Type="int" Mode="In" />
     <Parameter Name="emp_Id" Type="smallint" Mode="In" />
+    <Parameter Name="usu_EsAdministrador" Type="bit" Mode="In" />
   </Function>
   <Function Name="UDP_Acce_tbUsuario_PasswordRestore" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
     <Parameter Name="usu_Id" Type="int" Mode="In" />
@@ -5944,6 +5945,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
     <Parameter Name="ent_Id" Type="int" Mode="In" />
     <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
     <Parameter Name="entd_Cantidad" Type="decimal" Mode="In" />
+    <Parameter Name="box_Codigo" Type="varchar" Mode="In" />
     <Parameter Name="ent_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="ent_FechaCrea" Type="datetime" Mode="In" />
   </Function>
@@ -5952,6 +5954,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
     <Parameter Name="ent_Id" Type="int" Mode="In" />
     <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
     <Parameter Name="entd_Cantidad" Type="decimal" Mode="In" />
+    <Parameter Name="box_Codigo" Type="varchar" Mode="In" />
     <Parameter Name="entd_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="entd_FechaCrea" Type="datetime" Mode="In" />
     <Parameter Name="entd_UsuarioModifica" Type="int" Mode="In" />
@@ -6451,6 +6454,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
   <Function Name="UDP_Vent_tbCuponDescuentoSelectGet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="cdto_ID" Type="int" Mode="In" />
   </Function>
+  <Function Name="UDP_Vent_tbDenominacionArqueo_Edit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="ArqueoID" Type="int" Mode="In" />
+  </Function>
   <Function Name="UDP_Vent_tbDenominacionArqueo_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="mocja_Id" Type="int" Mode="In" />
     <Parameter Name="deno_Id" Type="smallint" Mode="In" />
@@ -6471,16 +6477,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
     <Parameter Name="arqde_UsuarioModifica" Type="int" Mode="In" />
     <Parameter Name="arqde_FechaModifica" Type="datetime" Mode="In" />
   </Function>
-  <Function Name="UDP_Vent_tbDevolucion_Caja" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
-    <Parameter Name="CodUsuario" Type="int" Mode="In" />
-  </Function>
   <Function Name="UDP_Vent_tbDevolucion_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="dev_Id" Type="int" Mode="In" />
     <Parameter Name="dev_Estado" Type="bit" Mode="In" />
-  </Function>
-  <Function Name="UDP_Vent_tbDevolucion_Filtrado_CodProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
-    <Parameter Name="IDFACTURA" Type="int" Mode="In" />
-    <Parameter Name="CODIGOPRODUCTO" Type="varchar" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbDevolucion_GetDetalle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="DEVOLUCION_ID" Type="bigint" Mode="In" />
@@ -6495,10 +6494,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
     <Parameter Name="dev_Estado" Type="bit" Mode="In" />
     <Parameter Name="dev_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="dev_FechaCrea" Type="datetime" Mode="In" />
-  </Function>
-  <Function Name="UDP_Vent_tbDevolucion_NotaCredito" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
-    <Parameter Name="dev_Id" Type="int" Mode="In" />
-    <Parameter Name="nocre_Codigo" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbDevolucion_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="dev_Id" Type="int" Mode="In" />

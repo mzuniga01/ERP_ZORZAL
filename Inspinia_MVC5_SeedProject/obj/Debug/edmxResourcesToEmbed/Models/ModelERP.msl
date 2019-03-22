@@ -709,19 +709,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Vent_tbDevolucion_Filtrado_CodProducto" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbDevolucion_Filtrado_CodProducto">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbDevolucion_Filtrado_CodProducto_Result">
-          <ScalarProperty Name="DESCRIPCIONPRODUCTO" ColumnName="DESCRIPCIONPRODUCTO" />
-          <ScalarProperty Name="DESCUENTOPRODUCTO" ColumnName="DESCUENTOPRODUCTO" />
-          <ScalarProperty Name="CODIGOPRODUCTO" ColumnName="CODIGOPRODUCTO" />
-          <ScalarProperty Name="IMPUESTOPRODUCTO" ColumnName="IMPUESTOPRODUCTO" />
-          <ScalarProperty Name="PRECIOUNITARIO" ColumnName="PRECIOUNITARIO" />
-          <ScalarProperty Name="CANTIDADFACTURA" ColumnName="CANTIDADFACTURA" />
-          <ScalarProperty Name="EXISTE" ColumnName="EXISTE" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="UDP_Gral_tbMoneda_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbMoneda_Insert">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbMoneda_Insert_Result">
@@ -997,13 +984,6 @@
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbListaPrecio_UltimaFechaVigente_Result">
           <ScalarProperty Name="FECHAVIGENCIAFINAL" ColumnName="FECHAVIGENCIAFINAL" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Vent_tbDevolucion_NotaCredito" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbDevolucion_NotaCredito">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbDevolucion_NotaCredito_Result">
-          <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -1426,14 +1406,6 @@
           <ScalarProperty Name="pedd_FechaCrea" ColumnName="pedd_FechaCrea" />
           <ScalarProperty Name="pedd_UsuarioModifica" ColumnName="pedd_UsuarioModifica" />
           <ScalarProperty Name="pedd_FechaModifica" ColumnName="pedd_FechaModifica" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Vent_tbDevolucion_Caja" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbDevolucion_Caja">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbDevolucion_Caja_Result">
-          <ScalarProperty Name="cja_Id" ColumnName="cja_Id" />
-          <ScalarProperty Name="cja_Descripcion" ColumnName="cja_Descripcion" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -3858,6 +3830,21 @@
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbEstadoSolicitudCredito_Update_Result">
           <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbDenominacionArqueo_Edit" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbDenominacionArqueo_Edit">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbDenominacionArqueo_Edit_Result">
+          <ScalarProperty Name="arqde_Id" ColumnName="arqde_Id" />
+          <ScalarProperty Name="mocja_Id" ColumnName="mocja_Id" />
+          <ScalarProperty Name="mnda_Abreviatura" ColumnName="mnda_Abreviatura" />
+          <ScalarProperty Name="mnda_Nombre" ColumnName="mnda_Nombre" />
+          <ScalarProperty Name="TipoDenominacion" ColumnName="TipoDenominacion" />
+          <ScalarProperty Name="deno_Descripcion" ColumnName="deno_Descripcion" />
+          <ScalarProperty Name="deno_valor" ColumnName="deno_valor" />
+          <ScalarProperty Name="arqde_CantidadDenominacion" ColumnName="arqde_CantidadDenominacion" />
+          <ScalarProperty Name="arqde_MontoDenominacion" ColumnName="arqde_MontoDenominacion" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

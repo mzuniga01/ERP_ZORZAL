@@ -161,7 +161,7 @@
           <Property Name="emp_Identificacion" Type="nvarchar" MaxLength="14" Nullable="false" />
           <Property Name="emp_Telefono" Type="nvarchar" MaxLength="25" Nullable="false" />
           <Property Name="emp_Correoelectronico" Type="nvarchar" MaxLength="50" />
-          <Property Name="emp_TipoSangre" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="emp_TipoSangre" Type="nvarchar" MaxLength="3" />
           <Property Name="emp_Puesto" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="emp_FechaIngreso" Type="date" Nullable="false" />
           <Property Name="emp_Direccion" Type="nvarchar" MaxLength="250" Nullable="false" />
@@ -5451,6 +5451,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <Parameter Name="usu_Correo" Type="varchar" Mode="In" />
           <Parameter Name="suc_Id" Type="int" Mode="In" />
           <Parameter Name="emp_Id" Type="smallint" Mode="In" />
+          <Parameter Name="usu_EsAdministrador" Type="bit" Mode="In" />
         </Function>
         <Function Name="UDP_Acce_tbUsuario_PasswordRestore" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
           <Parameter Name="usu_Id" Type="int" Mode="In" />
@@ -5949,6 +5950,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <Parameter Name="ent_Id" Type="int" Mode="In" />
           <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
           <Parameter Name="entd_Cantidad" Type="decimal" Mode="In" />
+          <Parameter Name="box_Codigo" Type="varchar" Mode="In" />
           <Parameter Name="ent_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="ent_FechaCrea" Type="datetime" Mode="In" />
         </Function>
@@ -5957,6 +5959,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <Parameter Name="ent_Id" Type="int" Mode="In" />
           <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
           <Parameter Name="entd_Cantidad" Type="decimal" Mode="In" />
+          <Parameter Name="box_Codigo" Type="varchar" Mode="In" />
           <Parameter Name="entd_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="entd_FechaCrea" Type="datetime" Mode="In" />
           <Parameter Name="entd_UsuarioModifica" Type="int" Mode="In" />
@@ -6456,6 +6459,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
         <Function Name="UDP_Vent_tbCuponDescuentoSelectGet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="cdto_ID" Type="int" Mode="In" />
         </Function>
+        <Function Name="UDP_Vent_tbDenominacionArqueo_Edit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="ArqueoID" Type="int" Mode="In" />
+        </Function>
         <Function Name="UDP_Vent_tbDenominacionArqueo_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="mocja_Id" Type="int" Mode="In" />
           <Parameter Name="deno_Id" Type="smallint" Mode="In" />
@@ -6476,16 +6482,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <Parameter Name="arqde_UsuarioModifica" Type="int" Mode="In" />
           <Parameter Name="arqde_FechaModifica" Type="datetime" Mode="In" />
         </Function>
-        <Function Name="UDP_Vent_tbDevolucion_Caja" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
-          <Parameter Name="CodUsuario" Type="int" Mode="In" />
-        </Function>
         <Function Name="UDP_Vent_tbDevolucion_Estado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="dev_Id" Type="int" Mode="In" />
           <Parameter Name="dev_Estado" Type="bit" Mode="In" />
-        </Function>
-        <Function Name="UDP_Vent_tbDevolucion_Filtrado_CodProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
-          <Parameter Name="IDFACTURA" Type="int" Mode="In" />
-          <Parameter Name="CODIGOPRODUCTO" Type="varchar" Mode="In" />
         </Function>
         <Function Name="UDP_Vent_tbDevolucion_GetDetalle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="DEVOLUCION_ID" Type="bigint" Mode="In" />
@@ -6500,10 +6499,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <Parameter Name="dev_Estado" Type="bit" Mode="In" />
           <Parameter Name="dev_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="dev_FechaCrea" Type="datetime" Mode="In" />
-        </Function>
-        <Function Name="UDP_Vent_tbDevolucion_NotaCredito" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
-          <Parameter Name="dev_Id" Type="int" Mode="In" />
-          <Parameter Name="nocre_Codigo" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="UDP_Vent_tbDevolucion_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="dev_Id" Type="int" Mode="In" />
@@ -9359,6 +9354,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
             <Parameter Name="usu_Correo" Mode="In" Type="String" />
             <Parameter Name="suc_Id" Mode="In" Type="Int32" />
             <Parameter Name="emp_Id" Mode="In" Type="Int16" />
+            <Parameter Name="usu_EsAdministrador" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="UDP_Acce_tbUsuario_PasswordUpdate" ReturnType="Collection(ERP_ZORZALModel.UDP_Acce_tbUsuario_PasswordUpdate_Result)">
             <Parameter Name="usu_Id" Mode="In" Type="Int32" />
@@ -9636,6 +9632,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
             <Parameter Name="ent_Id" Mode="In" Type="Int32" />
             <Parameter Name="prod_Codigo" Mode="In" Type="String" />
             <Parameter Name="entd_Cantidad" Mode="In" Type="Decimal" />
+            <Parameter Name="box_Codigo" Mode="In" Type="String" />
             <Parameter Name="ent_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="ent_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
@@ -9644,6 +9641,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
             <Parameter Name="ent_Id" Mode="In" Type="Int32" />
             <Parameter Name="prod_Codigo" Mode="In" Type="String" />
             <Parameter Name="entd_Cantidad" Mode="In" Type="Decimal" />
+            <Parameter Name="box_Codigo" Mode="In" Type="String" />
             <Parameter Name="entd_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="entd_FechaCrea" Mode="In" Type="DateTime" />
             <Parameter Name="entd_UsuarioModifica" Mode="In" Type="Int32" />
@@ -12152,6 +12150,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
             <Parameter Name="escre_FechaAgrego" Mode="In" Type="DateTime" />
             <Parameter Name="escre_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbDenominacionArqueo_Edit" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDenominacionArqueo_Edit_Result)">
+            <Parameter Name="ArqueoID" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
           <Key>
@@ -13665,7 +13666,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <Property Name="emp_Identificacion" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="true" />
           <Property Name="emp_Telefono" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
           <Property Name="emp_Correoelectronico" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="emp_TipoSangre" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="emp_TipoSangre" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
           <Property Name="emp_Puesto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="emp_FechaIngreso" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="emp_Direccion" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
@@ -19016,6 +19017,17 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
         <ComplexType Name="UDP_Vent_tbEstadoSolicitudCredito_Update_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
+        <ComplexType Name="UDP_Vent_tbDenominacionArqueo_Edit_Result">
+          <Property Type="Int32" Name="arqde_Id" Nullable="false" />
+          <Property Type="Int32" Name="mocja_Id" Nullable="false" />
+          <Property Type="String" Name="mnda_Abreviatura" Nullable="false" MaxLength="4" />
+          <Property Type="String" Name="mnda_Nombre" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="TipoDenominacion" Nullable="true" MaxLength="8000" />
+          <Property Type="String" Name="deno_Descripcion" Nullable="false" MaxLength="50" />
+          <Property Type="Decimal" Name="deno_valor" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Int16" Name="arqde_CantidadDenominacion" Nullable="false" />
+          <Property Type="Decimal" Name="arqde_MontoDenominacion" Nullable="false" Precision="10" Scale="2" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -19732,19 +19744,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbDevolucion_Filtrado_CodProducto" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbDevolucion_Filtrado_CodProducto" >
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbDevolucion_Filtrado_CodProducto_Result">
-                <ScalarProperty Name="DESCRIPCIONPRODUCTO" ColumnName="DESCRIPCIONPRODUCTO" />
-                <ScalarProperty Name="DESCUENTOPRODUCTO" ColumnName="DESCUENTOPRODUCTO" />
-                <ScalarProperty Name="CODIGOPRODUCTO" ColumnName="CODIGOPRODUCTO" />
-                <ScalarProperty Name="IMPUESTOPRODUCTO" ColumnName="IMPUESTOPRODUCTO" />
-                <ScalarProperty Name="PRECIOUNITARIO" ColumnName="PRECIOUNITARIO" />
-                <ScalarProperty Name="CANTIDADFACTURA" ColumnName="CANTIDADFACTURA" />
-                <ScalarProperty Name="EXISTE" ColumnName="EXISTE" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UDP_Gral_tbMoneda_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbMoneda_Insert" >
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbMoneda_Insert_Result">
@@ -20020,13 +20019,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbListaPrecio_UltimaFechaVigente_Result">
                 <ScalarProperty Name="FECHAVIGENCIAFINAL" ColumnName="FECHAVIGENCIAFINAL" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbDevolucion_NotaCredito" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbDevolucion_NotaCredito" >
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbDevolucion_NotaCredito_Result">
-                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -20449,14 +20441,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
                 <ScalarProperty Name="pedd_FechaCrea" ColumnName="pedd_FechaCrea" />
                 <ScalarProperty Name="pedd_UsuarioModifica" ColumnName="pedd_UsuarioModifica" />
                 <ScalarProperty Name="pedd_FechaModifica" ColumnName="pedd_FechaModifica" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbDevolucion_Caja" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbDevolucion_Caja">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbDevolucion_Caja_Result">
-                <ScalarProperty Name="cja_Id" ColumnName="cja_Id" />
-                <ScalarProperty Name="cja_Descripcion" ColumnName="cja_Descripcion" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -22881,6 +22865,21 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbEstadoSolicitudCredito_Update_Result">
                 <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbDenominacionArqueo_Edit" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbDenominacionArqueo_Edit">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbDenominacionArqueo_Edit_Result">
+                <ScalarProperty Name="arqde_Id" ColumnName="arqde_Id" />
+                <ScalarProperty Name="mocja_Id" ColumnName="mocja_Id" />
+                <ScalarProperty Name="mnda_Abreviatura" ColumnName="mnda_Abreviatura" />
+                <ScalarProperty Name="mnda_Nombre" ColumnName="mnda_Nombre" />
+                <ScalarProperty Name="TipoDenominacion" ColumnName="TipoDenominacion" />
+                <ScalarProperty Name="deno_Descripcion" ColumnName="deno_Descripcion" />
+                <ScalarProperty Name="deno_valor" ColumnName="deno_valor" />
+                <ScalarProperty Name="arqde_CantidadDenominacion" ColumnName="arqde_CantidadDenominacion" />
+                <ScalarProperty Name="arqde_MontoDenominacion" ColumnName="arqde_MontoDenominacion" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
