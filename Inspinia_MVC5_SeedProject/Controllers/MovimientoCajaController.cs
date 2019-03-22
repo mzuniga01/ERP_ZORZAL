@@ -165,7 +165,7 @@ namespace ERP_GMEDINA.Controllers
                                 {
                                     listMovimientoCaja = db.UDP_Vent_tbMovimientoCaja_Apertura_Insert(
                                     tbMovimientoCaja.cja_Id,
-                                    tbMovimientoCaja.mocja_FechaApertura,
+                                    fecha,
                                     tbMovimientoCaja.mocja_UsuarioApertura,
                                     tbMovimientoCaja.usu_Id,
                                     tbMovimientoCaja.mocja_FechaArqueo,
