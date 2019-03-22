@@ -30,35 +30,34 @@
                         <dt>
                             @Html.DisplayNameFor(model => model.tbSucursal.suc_Descripcion)
                         </dt>
-
                         <dd>
                             @Html.DisplayFor(model => model.tbSucursal.suc_Descripcion)
                         </dd>
+
                         <dt>
                             @Html.DisplayNameFor(model => model.cdto_ID)
                         </dt>
-
                         <dd>
                             @Html.DisplayFor(model => model.cdto_ID)
                         </dd>
+
                         <dt>
                             @Html.DisplayNameFor(model => model.cdto_PorcentajeDescuento)
                         </dt>
-
                         <dd>
                             @Html.DisplayFor(model => model.cdto_PorcentajeDescuento)
                         </dd>
+
                         <dt>
                             Máximo Descuento
                         </dt>
-
                         <dd>
                             @Html.DisplayFor(model => model.cdto_MaximoMontoDescuento)
                         </dd>
+
                         <dt>
                             @Html.DisplayNameFor(model => model.cdto_MontoDescuento)
                         </dt>
-
                         <dd>
                             @Html.DisplayFor(model => model.cdto_MontoDescuento)
                         </dd>
@@ -66,61 +65,59 @@
                         <dt>
                             @Html.DisplayNameFor(model => model.cdto_CantidadCompraMinima)
                         </dt>
-
                         <dd>
                             @Html.DisplayFor(model => model.cdto_CantidadCompraMinima)
                         </dd>
 
-                        <dt>
-                            @Html.DisplayNameFor(model => model.cdto_Anulado)
-                        </dt>
                         @if (Model.cdto_Anulado == true)
                         {
+                            <dt>
+                                @Html.DisplayNameFor(model => model.cdto_Anulado)
+                            </dt>
                             <dd>Si</dd>
-                        }
-                        else
-                        {
-                            <dd>No</dd>
-                        }
-                        <dt>
-                            @Html.DisplayNameFor(model => model.cdto_RazonAnulado)
-                        </dt>
-                        <dd>
-                            @Html.DisplayFor(model => model.cdto_RazonAnulado)
-                        </dd>
-                        <dt>
-                            @Html.DisplayNameFor(model => model.cdto_Redimido)
-                        </dt>
-                        @if(Model.cdto_Redimido == true)
-                        {
-                            <dd>Si</dd>
-                        }
-                        else
-                        {
-                            <dd> No</dd>
-                        }
-                        <dt>
-                            @Html.DisplayNameFor(model => model.cdto_FechaRedencion)
-                        </dt>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.cdto_FechaRedencion)
-                        </dd>
-                        <dt>
-                            Es Impreso
-                        </dt>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.cdto_RazonAnulado)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.cdto_RazonAnulado)
+                            </dd>
+                        }
+                        else
+                        {
+                        }
+
+                        @if (Model.cdto_Redimido == true)
+                        {
+                            <dt>
+                                @Html.DisplayNameFor(model => model.cdto_Redimido)
+                            </dt>
+                            <dd>Si</dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.cdto_FechaRedencion)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.cdto_FechaRedencion)
+                            </dd>
+                        }
+                        else
+                        {
+                        }
+
                         @if (Model.cdto_EsImpreso)
                         {
+                            <dt>
+                                Documento Impreso
+                            </dt>
                             <dd>Sí</dd>
                         }
                         else
                         {
-                            <dd>No</dd>
                         }
                         <dt>
                             @Html.DisplayNameFor(model => model.cdto_FechaEmision)
                         </dt>
-
                         <dd>
                             @Html.DisplayFor(model => model.cdto_FechaEmision)
                         </dd>
@@ -128,11 +125,9 @@
                         <dt>
                             @Html.DisplayNameFor(model => model.cdto_FechaVencimiento)
                         </dt>
-
                         <dd>
                             @Html.DisplayFor(model => model.cdto_FechaVencimiento)
                         </dd>
-                        
                     </dl>
                     @if (Model.cdto_Anulado == false && Model.cdto_Redimido == false && Model.cdto_EsImpreso == false)
                     {

@@ -106,7 +106,7 @@ namespace ERP_GMEDINA.Controllers
                     {
                         idUser = Convert.ToInt32(Usuario.usu_Id);
                     }
-                    return View(db.UDP_Vent_SolicituEfectivo_Select.Where(a => a.usuariocrea == idUser).OrderByDescending(a => a.IdSolicitud).ToList());
+                    return View(db.UDV_Vent_SolicituEfectivo_Index.Where(a => a.usuariocrea == idUser).OrderByDescending(a => a.IdSolicitud).ToList());
                     //return View(db.UDP_Vent_SolicituEfectivo_Select.Where(a => a.Anulada == false && a.usuariocrea == idUser).ToList());
                 }
                 else
@@ -844,6 +844,8 @@ namespace ERP_GMEDINA.Controllers
             ReportDocument rd = new ReportDocument();
             rd.Load(Path.Combine(Server.MapPath("~/Reports"), "SolicitudEfectivo.rpt"));
             var tbSolicitudEfectivo = db.UDP_Vent_tbSolicitudEfectivo_Imprimir(id).ToList();
+            bool Impresa = true;
+            bool NoImpresa = false;
             var todo = (from r in tbSolicitudEfectivo
                         where r.solef_Id == id
                         select new
@@ -870,12 +872,15 @@ namespace ERP_GMEDINA.Controllers
             Response.ClearContent();
             Response.ClearHeaders();
             try
-            {
+            {                 
+                var list = db.UDP_Vent_tbSolicitudEfectivo_EsImpresa(id, Impresa).ToList();
                 Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
-                return File(stream, "application/pdf");
+                return File(stream, "application/pdf"); 
             }
             catch
             {
+                var list = db.UDP_Vent_tbSolicitudEfectivo_EsImpresa(id, NoImpresa).ToList();               
+                return RedirectToAction("Index");
                 throw;
             }
         }

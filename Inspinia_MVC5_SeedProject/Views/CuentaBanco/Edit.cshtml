@@ -84,7 +84,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.bcta_Numero, new { @class = "required  control-label col-md-2" })
                                 <div class="col-md-5">
-                                    @Html.EditorFor(model => model.bcta_Numero, new { htmlAttributes = new { @autocomplete = "off", maxlength = 50, @onkeypress = "return validarNumero(event)" } })
+                                    @Html.EditorFor(model => model.bcta_Numero, new { htmlAttributes = new { @autocomplete = "off", maxlength = 50, @onkeypress = "return validarNumero(event)", @style = "text-transform:uppercase;", @onkeyup = "this.value=Copy(this.value)" } })
                                     <span class="validation-error">@Html.ValidationMessageFor(model => model.bcta_Numero)</span>
                                 </div>
                             </div>
@@ -191,30 +191,6 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script>
-        $.datepicker.regional['es'] = {
-            closeText: 'Cerrar',
-            prevText: '< Ant',
-            nextText: 'Sig >',
-            currentText: 'Hoy',
-            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-            monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
-            dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
-            dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
-            dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
-            weekHeader: 'Sm',
-            dateFormat: 'dd/mm/yy',
-            firstDay: 1,
-            isRTL: false,
-            showMonthAfterYear: false,
-            yearSuffix: ''
-        };
-        $.datepicker.setDefaults($.datepicker.regional['es']);
-
-        $(function () {
-            $("#bcta_FechaApertura").datepicker({ dateFormat: 'dd/mm/yy' }).datepicker('setDate', new Date()).datepicker("destroy");
-
-        });
-
 
 
         //Número CAI
@@ -224,10 +200,10 @@
             return /^[a-z0-9A-Z\-]+$/.test(tecla);
         }
 
+        $("#bcta_Numero").attr("autocomplete", "randomString");
     </script>
 
 }
 <script src="~/Scripts/jquery-3.3.1.js"></script>
-<script src="~/Scripts/app/Datepicker.js"></script>
 <script src="~/Scripts/app/FuncionResta.js"></script>
 <script src="~/Scripts/app/ComandoGuardar.js"></script>

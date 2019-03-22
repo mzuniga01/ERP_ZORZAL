@@ -63,7 +63,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.cdto_PorcentajeDescuento, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                     @Html.EditorFor(model => model.cdto_PorcentajeDescuento, new { htmlAttributes = new { @type="number", @class = "form-control", @style = "text-align:right", @min = "0", @onkeypress = "if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" } })
+                                    @Html.EditorFor(model => model.cdto_PorcentajeDescuento, new { htmlAttributes = new { @type = "number", @class = "form-control", @style = "text-align:right", @min = "0", @onkeypress = "if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" } })
                                     <p id="smsCantidad" style="color:red">@Html.ValidationMessageFor(model => model.cdto_PorcentajeDescuento)</p>
                                 </div>
                             </div>
@@ -87,8 +87,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.cdto_CantidadCompraMinima, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.cdto_CantidadCompraMinima, new { htmlAttributes = new {@type = "number", @class = "form-control", @style = "text-align:right", @min = "0"@*, @onchange = "MASK(this,this.value,'-##,###,##0.00',1)", @onkeypres = "MASK(this,this.value,'-##,###,##0.00',1)"*@ }
-                               })
+                                    @Html.EditorFor(model => model.cdto_CantidadCompraMinima, new { htmlAttributes = new { @type = "number", @class = "form-control", @style = "text-align:right", @min = "0" } })
                                     <p id="smsCantidadMinima1" style="color:red">@Html.ValidationMessageFor(model => model.cdto_CantidadCompraMinima)</p>
                                 </div>
                             </div>
@@ -112,7 +111,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.cdto_FechaEmision, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.cdto_FechaEmision, new { htmlAttributes = new { @class= "form-control", @readonly = "readonly" } })
+                                    @Html.EditorFor(model => model.cdto_FechaEmision, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     @Html.ValidationMessageFor(model => model.cdto_FechaEmision)
                                 </div>
                             </div>
@@ -125,15 +124,6 @@
                                 </div>
                             </div>
 
-                            @*<div class="form-group">
-                                @Html.LabelFor(model => model.cdto_FechaRedencion, new { @class = "control-label col-md-2" })
-                                <div class="col-md-4">
-                                    @Html.EditorFor(model => model.cdto_FechaRedencion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                    @Html.ValidationMessageFor(model => model.cdto_FechaRedencion)
-                                </div>
-                            </div>*@
-
-
                             @*-----Anular oculto-----*@
                             <input type="hidden" id="cdto_Redimido" name="cdto_Redimido" value="false" />
                             <input type="hidden" id="cdto_Anulado" name="cdto_Anulado" value="false" />
@@ -144,7 +134,7 @@
                             @*---------------Botones---------------------*@
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
-                                    @if (Model.cdto_Anulado == false)
+                                    @if (Model.cdto_Anulado == false && Model.cdto_EsImpreso == false && Model.cdto_Redimido == false)
                                     {
                                         <input type="submit" value="Guardar" class="btn btn-primary" />
                                         @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
@@ -162,37 +152,37 @@
                             </div>
                             @*---------------FIN Botones---------------------*@
                         </div>
-                        }
-                    </div>
+                    }
                 </div>
-                <div class="ibox-content">
-                    <table class="table table-striped">
-                        <tr>
-                            <th>Acción</th>
-                            <th>Usuario</th>
-                            <th>Fecha</th>
-                        </tr>
-                        <tr>
-                            <td>Creado</td>
-                            <td>
-                                @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
-                                @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
-                            </td>
-                            <td>@Html.DisplayFor(model => model.cdto_FechaCrea)</td>
-                        </tr>
-                        <tr>
-                            <td>Modificado</td>
-                            <td>
-                                @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                                @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
-                            </td>
-                            <td>@Html.DisplayFor(model => model.cdto_FechaModifica)</td>
-                        </tr>
-                    </table>
-                </div>
+            </div>
+            <div class="ibox-content">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Acción</th>
+                        <th>Usuario</th>
+                        <th>Fecha</th>
+                    </tr>
+                    <tr>
+                        <td>Creado</td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                        </td>
+                        <td>@Html.DisplayFor(model => model.cdto_FechaCrea)</td>
+                    </tr>
+                    <tr>
+                        <td>Modificado</td>
+                        <td>
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                        </td>
+                        <td>@Html.DisplayFor(model => model.cdto_FechaModifica)</td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
+</div>
 @* -------------------Modal Anular---------------- *@
 <div class="modal fade" id="Anular2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -206,13 +196,12 @@
             <div class="modal-body">
                 Razones por las cuales desea realizar la Anulación:
                 <div class="group">
-                    <textarea class="form-control" id="cdto_RazonAnulado" name="cdto_RazonAnulado" style = "text-transform:uppercase;"></textarea>
-                    <p id="smsRazonAnular" style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.cdto_RazonAnulado)</span></p>
+                    <textarea class="form-control" id="cdto_RazonAnulado" name="cdto_RazonAnulado" style="text-transform:uppercase;"></textarea>
+                    <p id="smsRazonAnular1" style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.cdto_RazonAnulado)</span></p>
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-primary btn-sm" type="button" id="Inactivar">Guardar</button>
-                @*<button type="button" id="Anular" class="btn btn-danger" onclick="AnularCuponDescuento();" data-dismiss="modal">Si</button>*@
+                <button type="button" class="btn btn-primary" onclick="AnularCuponDescuento();" data-dismiss="modal">Si</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
             </div>
         </div>
@@ -221,8 +210,6 @@
 
 <script src="~/Scripts/app/CuponDescuentoAnulado.js"></script>
 @* -------------------Fin Modal Anular---------------- *@
-
-
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
@@ -241,7 +228,7 @@
         });
         //----------------------razon anular---------------------------
         $('#cdto_RazonAnulado').blur(function () {
-            valido = document.getElementById('smsRazonAnular');
+            valido = document.getElementById('smsRazonAnular1');
             var RazonAnular = $('#cdto_RazonAnulado').val();
             if (RazonAnular == "") {
                 $('#cdto_RazonAnulado').val('').focus();
@@ -265,7 +252,7 @@
             } else
                 valido.innerText = "";
         });
-        
+
         //--------------------Digitar Datos--------------------------------
         $(document).ready(function () {
             $('#cdto_MaximoMontoDescuento').attr('readonly', 'readonly');
@@ -284,13 +271,13 @@
                 $('#cdto_MaximoMontoDescuento').focusout(function () {
                     $('#cdto_FechaEmision').focus();
                 });
-               
+
             } else if (Porcentaje <= 0) {
                 $('#cdto_PorcentajeDescuento').val('0.00');
                 $('#cdto_MaximoMontoDescuento').attr('readonly', 'readonly').val('0.00');
                 $("#cdto_MontoDescuento").removeAttr("readonly").focus().val();
                 $('#cdto_CantidadCompraMinima').removeAttr("readonly").val();
-            } 
+            }
         });
 
         $("#cdto_PorcentajeDescuento").blur(function () {
@@ -318,16 +305,16 @@
         });
 
         $('#cdto_MontoDescuento').blur(function () {
-                valido1 = document.getElementById('msjMonto');
-                var monto = $('#cdto_MontoDescuento').val();
-                console.log(monto)
-                if (parseFloat(monto) <= 0 || $('#cdto_MontoDescuento').val() == "") {
-                    $('#cdto_MontoDescuento').val('').focus();
-                    valido1.innerText = "El valor debe ser Mayor a 0.";
-                } else
-                    valido1.innerText = "";
-            });
-        
+            valido1 = document.getElementById('msjMonto');
+            var monto = $('#cdto_MontoDescuento').val();
+            console.log(monto)
+            if (parseFloat(monto) <= 0 || $('#cdto_MontoDescuento').val() == "") {
+                $('#cdto_MontoDescuento').val('').focus();
+                valido1.innerText = "El valor debe ser Mayor a 0.";
+            } else
+                valido1.innerText = "";
+        });
+
         $('#cdto_CantidadCompraMinima').blur(function () {
             valido1 = document.getElementById('smsCantidadMinima1');
             var monto = $('#cdto_CantidadCompraMinima').val();
@@ -433,5 +420,5 @@
                 return num;
             }
         }
-</script>
+    </script>
 }

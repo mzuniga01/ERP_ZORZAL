@@ -642,7 +642,9 @@ namespace ERP_GMEDINA.Controllers
                             EditPedidoDetalle.pedd_Cantidad,
                             EditPedidoDetalle.pedd_CantidadFacturada,
                             EditPedidoDetalle.pedd_UsuarioCrea,
-                            PedidoDetails.pedd_FechaCrea);
+                            PedidoDetails.pedd_FechaCrea,
+                            EditPedidoDetalle.pedd_UsuarioModifica,
+                            EditPedidoDetalle.pedd_FechaModifica);
 
                 foreach (UDP_Vent_tbPedidoDetalle_Update_Result PedidoDetalle in list)
                     MensajeError = PedidoDetalle.MensajeError;

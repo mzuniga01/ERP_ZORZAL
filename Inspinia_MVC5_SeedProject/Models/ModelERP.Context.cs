@@ -113,6 +113,7 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<UDV_Inv_PackingList> UDV_Inv_PackingList { get; set; }
         public virtual DbSet<UDV_Inv_PackingList_Caja> UDV_Inv_PackingList_Caja { get; set; }
         public virtual DbSet<UDV_Inv_ProductosSolicitadosPorEntregar> UDV_Inv_ProductosSolicitadosPorEntregar { get; set; }
+        public virtual DbSet<UDV_Inv_Proyeccion_de_Movimiento_de_Producto> UDV_Inv_Proyeccion_de_Movimiento_de_Producto { get; set; }
         public virtual DbSet<UDV_Inv_Salida_Imprimir_Reporte> UDV_Inv_Salida_Imprimir_Reporte { get; set; }
         public virtual DbSet<UDV_inv_tbinventariofisico_reporteFaltantes> UDV_inv_tbinventariofisico_reporteFaltantes { get; set; }
         public virtual DbSet<UDV_Inv_TipoEntrada> UDV_Inv_TipoEntrada { get; set; }
@@ -135,17 +136,17 @@ namespace ERP_GMEDINA.Models
         public virtual DbSet<UDV_Vent_InventarioNumeraciones> UDV_Vent_InventarioNumeraciones { get; set; }
         public virtual DbSet<UDV_Vent_ListadodePrecios> UDV_Vent_ListadodePrecios { get; set; }
         public virtual DbSet<UDV_Vent_MovimientoCaja_Apertura> UDV_Vent_MovimientoCaja_Apertura { get; set; }
+        public virtual DbSet<UDV_Vent_MovimientoCaja_Apertura_Detalles> UDV_Vent_MovimientoCaja_Apertura_Detalles { get; set; }
         public virtual DbSet<UDV_Vent_NotaCreditoPorFecha> UDV_Vent_NotaCreditoPorFecha { get; set; }
         public virtual DbSet<UDV_Vent_PagosPorFechas> UDV_Vent_PagosPorFechas { get; set; }
         public virtual DbSet<UDV_Vent_Pedido_EntreFechas> UDV_Vent_Pedido_EntreFechas { get; set; }
         public virtual DbSet<UDV_Vent_prueba> UDV_Vent_prueba { get; set; }
         public virtual DbSet<UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporte> UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporte { get; set; }
+        public virtual DbSet<UDV_Vent_SolicituEfectivo_Index> UDV_Vent_SolicituEfectivo_Index { get; set; }
         public virtual DbSet<UDV_Vent_tbSolicituEfectivo_EntreFechas> UDV_Vent_tbSolicituEfectivo_EntreFechas { get; set; }
         public virtual DbSet<UDV_Vent_VentasConsumidorFinal> UDV_Vent_VentasConsumidorFinal { get; set; }
         public virtual DbSet<UDV_Vent_VentasExoneradas> UDV_Vent_VentasExoneradas { get; set; }
         public virtual DbSet<UDV_Vent_VentasPorCaja_EntreFechas> UDV_Vent_VentasPorCaja_EntreFechas { get; set; }
-        public virtual DbSet<UDV_Vent_MovimientoCaja_Apertura_Detalles> UDV_Vent_MovimientoCaja_Apertura_Detalles { get; set; }
-        public virtual DbSet<UDV_Inv_Proyeccion_de_Movimiento_de_Producto> UDV_Inv_Proyeccion_de_Movimiento_de_Producto { get; set; }
     
         public virtual ObjectResult<Nullable<short>> UDP_Vent_tbPedido_Select(Nullable<int> ped_Id)
         {
@@ -4585,7 +4586,7 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_tbPedidoDetalle_Select_Result>("SDP_tbPedidoDetalle_Select", pedd_IdParameter);
         }
     
-        public virtual ObjectResult<UDP_Vent_tbPedidoDetalle_Update_Result> UDP_Vent_tbPedidoDetalle_Update(Nullable<int> pedd_Id, string prod_Codigo, Nullable<decimal> pedd_Cantidad, Nullable<decimal> pedd_CantidadFacturada, Nullable<int> pedd_UsuarioCrea, Nullable<System.DateTime> pedd_FechaCrea)
+        public virtual ObjectResult<UDP_Vent_tbPedidoDetalle_Update_Result> UDP_Vent_tbPedidoDetalle_Update(Nullable<int> pedd_Id, string prod_Codigo, Nullable<decimal> pedd_Cantidad, Nullable<decimal> pedd_CantidadFacturada, Nullable<int> pedd_UsuarioCrea, Nullable<System.DateTime> pedd_FechaCrea, Nullable<int> pedd_UsuarioModifica, Nullable<System.DateTime> pedd_FechaModifica)
         {
             var pedd_IdParameter = pedd_Id.HasValue ?
                 new ObjectParameter("pedd_Id", pedd_Id) :
@@ -4611,7 +4612,15 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("pedd_FechaCrea", pedd_FechaCrea) :
                 new ObjectParameter("pedd_FechaCrea", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbPedidoDetalle_Update_Result>("UDP_Vent_tbPedidoDetalle_Update", pedd_IdParameter, prod_CodigoParameter, pedd_CantidadParameter, pedd_CantidadFacturadaParameter, pedd_UsuarioCreaParameter, pedd_FechaCreaParameter);
+            var pedd_UsuarioModificaParameter = pedd_UsuarioModifica.HasValue ?
+                new ObjectParameter("pedd_UsuarioModifica", pedd_UsuarioModifica) :
+                new ObjectParameter("pedd_UsuarioModifica", typeof(int));
+    
+            var pedd_FechaModificaParameter = pedd_FechaModifica.HasValue ?
+                new ObjectParameter("pedd_FechaModifica", pedd_FechaModifica) :
+                new ObjectParameter("pedd_FechaModifica", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbPedidoDetalle_Update_Result>("UDP_Vent_tbPedidoDetalle_Update", pedd_IdParameter, prod_CodigoParameter, pedd_CantidadParameter, pedd_CantidadFacturadaParameter, pedd_UsuarioCreaParameter, pedd_FechaCreaParameter, pedd_UsuarioModificaParameter, pedd_FechaModificaParameter);
         }
     
         public virtual ObjectResult<UDP_Vent_tbSolicitudCredito_Aprobar_Result> UDP_Vent_tbSolicitudCredito_Aprobar(Nullable<int> cred_Id, Nullable<byte> escre_Id, Nullable<System.DateTime> cred_FechaAprobacion, Nullable<decimal> cred_MontoSolicitado, Nullable<decimal> cred_MontoAprobado, Nullable<int> cred_DiasSolicitado, Nullable<int> cred_DiasAprobado, Nullable<int> cred_UsuarioCrea, Nullable<System.DateTime> cred_FechaCrea, Nullable<int> cred_UsuarioModifica, Nullable<System.DateTime> cred_FechaModifica)
@@ -5620,52 +5629,6 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("bcta_FechaModifica", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Gral_tbCuentasBanco_Update_Result>("UDP_Gral_tbCuentasBanco_Update", bcta_IdParameter, ban_IdParameter, mnda_IdParameter, bcta_TipoCuentaParameter, bcta_TotalCreditoParameter, bcta_TotalDebitoParameter, bcta_FechaAperturaParameter, bcta_NumeroParameter, bcta_UsuarioCreaParameter, bcta_FechaCreaParameter, bcta_UsuarioModificaParameter, bcta_FechaModificaParameter);
-        }
-    
-        public virtual ObjectResult<UDP_Vent_tbEstadoSolicitudCredito_Insert_Result> UDP_Vent_tbEstadoSolicitudCredito_Insert(string escre_Descripcion, Nullable<int> escre_UsuarioCrea, Nullable<System.DateTime> escre_FechaCrea)
-        {
-            var escre_DescripcionParameter = escre_Descripcion != null ?
-                new ObjectParameter("escre_Descripcion", escre_Descripcion) :
-                new ObjectParameter("escre_Descripcion", typeof(string));
-    
-            var escre_UsuarioCreaParameter = escre_UsuarioCrea.HasValue ?
-                new ObjectParameter("escre_UsuarioCrea", escre_UsuarioCrea) :
-                new ObjectParameter("escre_UsuarioCrea", typeof(int));
-    
-            var escre_FechaCreaParameter = escre_FechaCrea.HasValue ?
-                new ObjectParameter("escre_FechaCrea", escre_FechaCrea) :
-                new ObjectParameter("escre_FechaCrea", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbEstadoSolicitudCredito_Insert_Result>("UDP_Vent_tbEstadoSolicitudCredito_Insert", escre_DescripcionParameter, escre_UsuarioCreaParameter, escre_FechaCreaParameter);
-        }
-    
-        public virtual ObjectResult<UDP_Vent_tbEstadoSolicitudCredito_Update_Result> UDP_Vent_tbEstadoSolicitudCredito_Update(Nullable<byte> escre_Id, string escre_Descripcion, Nullable<int> escre_UsuarioCrea, Nullable<int> escre_UsuarioModifica, Nullable<System.DateTime> escre_FechaAgrego, Nullable<System.DateTime> escre_FechaModifica)
-        {
-            var escre_IdParameter = escre_Id.HasValue ?
-                new ObjectParameter("escre_Id", escre_Id) :
-                new ObjectParameter("escre_Id", typeof(byte));
-    
-            var escre_DescripcionParameter = escre_Descripcion != null ?
-                new ObjectParameter("escre_Descripcion", escre_Descripcion) :
-                new ObjectParameter("escre_Descripcion", typeof(string));
-    
-            var escre_UsuarioCreaParameter = escre_UsuarioCrea.HasValue ?
-                new ObjectParameter("escre_UsuarioCrea", escre_UsuarioCrea) :
-                new ObjectParameter("escre_UsuarioCrea", typeof(int));
-    
-            var escre_UsuarioModificaParameter = escre_UsuarioModifica.HasValue ?
-                new ObjectParameter("escre_UsuarioModifica", escre_UsuarioModifica) :
-                new ObjectParameter("escre_UsuarioModifica", typeof(int));
-    
-            var escre_FechaAgregoParameter = escre_FechaAgrego.HasValue ?
-                new ObjectParameter("escre_FechaAgrego", escre_FechaAgrego) :
-                new ObjectParameter("escre_FechaAgrego", typeof(System.DateTime));
-    
-            var escre_FechaModificaParameter = escre_FechaModifica.HasValue ?
-                new ObjectParameter("escre_FechaModifica", escre_FechaModifica) :
-                new ObjectParameter("escre_FechaModifica", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbEstadoSolicitudCredito_Update_Result>("UDP_Vent_tbEstadoSolicitudCredito_Update", escre_IdParameter, escre_DescripcionParameter, escre_UsuarioCreaParameter, escre_UsuarioModificaParameter, escre_FechaAgregoParameter, escre_FechaModificaParameter);
         }
     
         public virtual ObjectResult<UDP_Vent_tbExoneracion_Estado_Result1> UDP_Vent_tbExoneracion_Estado(Nullable<int> exo_Id, Nullable<bool> exo_ExoneracionActiva, Nullable<int> exo_UsuarioModifa, Nullable<System.DateTime> exo_FechaModifica)
@@ -6972,6 +6935,80 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbFactura_Estado_Result>("UDP_Vent_tbFactura_Estado", fact_IdParameter, fact_EsAnuladaParameter, fact_RazonAnuladoParameter);
         }
     
+        public virtual ObjectResult<string> UDP_Vent_tbSolicitudCredito_Denegar1(Nullable<int> cred_Id, Nullable<byte> escre_Id, string cred_RazonDenegacion)
+        {
+            var cred_IdParameter = cred_Id.HasValue ?
+                new ObjectParameter("cred_Id", cred_Id) :
+                new ObjectParameter("cred_Id", typeof(int));
+    
+            var escre_IdParameter = escre_Id.HasValue ?
+                new ObjectParameter("escre_Id", escre_Id) :
+                new ObjectParameter("escre_Id", typeof(byte));
+    
+            var cred_RazonDenegacionParameter = cred_RazonDenegacion != null ?
+                new ObjectParameter("cred_RazonDenegacion", cred_RazonDenegacion) :
+                new ObjectParameter("cred_RazonDenegacion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Vent_tbSolicitudCredito_Denegar1", cred_IdParameter, escre_IdParameter, cred_RazonDenegacionParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente_Result> UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente(Nullable<int> iDSUCURSAL, string cODIGOBARRAS, Nullable<int> iDCLIENTE)
+        {
+            var iDSUCURSALParameter = iDSUCURSAL.HasValue ?
+                new ObjectParameter("IDSUCURSAL", iDSUCURSAL) :
+                new ObjectParameter("IDSUCURSAL", typeof(int));
+    
+            var cODIGOBARRASParameter = cODIGOBARRAS != null ?
+                new ObjectParameter("CODIGOBARRAS", cODIGOBARRAS) :
+                new ObjectParameter("CODIGOBARRAS", typeof(string));
+    
+            var iDCLIENTEParameter = iDCLIENTE.HasValue ?
+                new ObjectParameter("IDCLIENTE", iDCLIENTE) :
+                new ObjectParameter("IDCLIENTE", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente_Result>("UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente", iDSUCURSALParameter, cODIGOBARRASParameter, iDCLIENTEParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbMovimientoCaja_GetUsuarioApertura_Result> UDP_Vent_tbMovimientoCaja_GetUsuarioApertura(Nullable<int> usuarioApertura)
+        {
+            var usuarioAperturaParameter = usuarioApertura.HasValue ?
+                new ObjectParameter("UsuarioApertura", usuarioApertura) :
+                new ObjectParameter("UsuarioApertura", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbMovimientoCaja_GetUsuarioApertura_Result>("UDP_Vent_tbMovimientoCaja_GetUsuarioApertura", usuarioAperturaParameter);
+        }
+    
+        public virtual ObjectResult<Listado_CAI_Result> Listado_CAI()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Listado_CAI_Result>("Listado_CAI");
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbUsuario_Rol_Apertura_Result> UDP_Vent_tbUsuario_Rol_Apertura(Nullable<int> suc_Id, Nullable<int> cAJERO)
+        {
+            var suc_IdParameter = suc_Id.HasValue ?
+                new ObjectParameter("suc_Id", suc_Id) :
+                new ObjectParameter("suc_Id", typeof(int));
+    
+            var cAJEROParameter = cAJERO.HasValue ?
+                new ObjectParameter("CAJERO", cAJERO) :
+                new ObjectParameter("CAJERO", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbUsuario_Rol_Apertura_Result>("UDP_Vent_tbUsuario_Rol_Apertura", suc_IdParameter, cAJEROParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> UDP_Vent_tbSolicitudEfectivo_EsImpresa(Nullable<int> solef_Id, Nullable<bool> solef_EsImpresa)
+        {
+            var solef_IdParameter = solef_Id.HasValue ?
+                new ObjectParameter("solef_Id", solef_Id) :
+                new ObjectParameter("solef_Id", typeof(int));
+    
+            var solef_EsImpresaParameter = solef_EsImpresa.HasValue ?
+                new ObjectParameter("solef_EsImpresa", solef_EsImpresa) :
+                new ObjectParameter("solef_EsImpresa", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("UDP_Vent_tbSolicitudEfectivo_EsImpresa", solef_IdParameter, solef_EsImpresaParameter);
+        }
+    
         public virtual ObjectResult<UDP_Vent_tbEstadoPedido_Insert_Result> UDP_Vent_tbEstadoPedido_Insert(string esped_Descripcion, Nullable<int> esped_UsuarioCrea, Nullable<System.DateTime> esped_FechaCrea)
         {
             var esped_DescripcionParameter = esped_Descripcion != null ?
@@ -7018,56 +7055,50 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbEstadoPedido_Update_Result>("UDP_Vent_tbEstadoPedido_Update", esped_IdParameter, esped_DescripcionParameter, esped_UsuarioCreaParameter, esped_UsuarioModificaParameter, esped_FechaAgregoParameter, esped_FechaModificaParameter);
         }
     
-        public virtual ObjectResult<string> UDP_Vent_tbSolicitudCredito_Denegar1(Nullable<int> cred_Id, Nullable<byte> escre_Id, string cred_RazonDenegacion)
+        public virtual ObjectResult<UDP_Vent_tbEstadoSolicitudCredito_Insert_Result> UDP_Vent_tbEstadoSolicitudCredito_Insert(string escre_Descripcion, Nullable<int> escre_UsuarioCrea, Nullable<System.DateTime> escre_FechaCrea)
         {
-            var cred_IdParameter = cred_Id.HasValue ?
-                new ObjectParameter("cred_Id", cred_Id) :
-                new ObjectParameter("cred_Id", typeof(int));
+            var escre_DescripcionParameter = escre_Descripcion != null ?
+                new ObjectParameter("escre_Descripcion", escre_Descripcion) :
+                new ObjectParameter("escre_Descripcion", typeof(string));
     
+            var escre_UsuarioCreaParameter = escre_UsuarioCrea.HasValue ?
+                new ObjectParameter("escre_UsuarioCrea", escre_UsuarioCrea) :
+                new ObjectParameter("escre_UsuarioCrea", typeof(int));
+    
+            var escre_FechaCreaParameter = escre_FechaCrea.HasValue ?
+                new ObjectParameter("escre_FechaCrea", escre_FechaCrea) :
+                new ObjectParameter("escre_FechaCrea", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbEstadoSolicitudCredito_Insert_Result>("UDP_Vent_tbEstadoSolicitudCredito_Insert", escre_DescripcionParameter, escre_UsuarioCreaParameter, escre_FechaCreaParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbEstadoSolicitudCredito_Update_Result> UDP_Vent_tbEstadoSolicitudCredito_Update(Nullable<byte> escre_Id, string escre_Descripcion, Nullable<int> escre_UsuarioCrea, Nullable<int> escre_UsuarioModifica, Nullable<System.DateTime> escre_FechaAgrego, Nullable<System.DateTime> escre_FechaModifica)
+        {
             var escre_IdParameter = escre_Id.HasValue ?
                 new ObjectParameter("escre_Id", escre_Id) :
                 new ObjectParameter("escre_Id", typeof(byte));
     
-            var cred_RazonDenegacionParameter = cred_RazonDenegacion != null ?
-                new ObjectParameter("cred_RazonDenegacion", cred_RazonDenegacion) :
-                new ObjectParameter("cred_RazonDenegacion", typeof(string));
+            var escre_DescripcionParameter = escre_Descripcion != null ?
+                new ObjectParameter("escre_Descripcion", escre_Descripcion) :
+                new ObjectParameter("escre_Descripcion", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Vent_tbSolicitudCredito_Denegar1", cred_IdParameter, escre_IdParameter, cred_RazonDenegacionParameter);
-        }
+            var escre_UsuarioCreaParameter = escre_UsuarioCrea.HasValue ?
+                new ObjectParameter("escre_UsuarioCrea", escre_UsuarioCrea) :
+                new ObjectParameter("escre_UsuarioCrea", typeof(int));
     
-        public virtual ObjectResult<UDP_Vent_tbUsuario_Rol_Apertura_Result> UDP_Vent_tbUsuario_Rol_Apertura(Nullable<int> suc_Id)
-        {
-            var suc_IdParameter = suc_Id.HasValue ?
-                new ObjectParameter("suc_Id", suc_Id) :
-                new ObjectParameter("suc_Id", typeof(int));
+            var escre_UsuarioModificaParameter = escre_UsuarioModifica.HasValue ?
+                new ObjectParameter("escre_UsuarioModifica", escre_UsuarioModifica) :
+                new ObjectParameter("escre_UsuarioModifica", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbUsuario_Rol_Apertura_Result>("UDP_Vent_tbUsuario_Rol_Apertura", suc_IdParameter);
-        }
+            var escre_FechaAgregoParameter = escre_FechaAgrego.HasValue ?
+                new ObjectParameter("escre_FechaAgrego", escre_FechaAgrego) :
+                new ObjectParameter("escre_FechaAgrego", typeof(System.DateTime));
     
-        public virtual ObjectResult<UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente_Result> UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente(Nullable<int> iDSUCURSAL, string cODIGOBARRAS, Nullable<int> iDCLIENTE)
-        {
-            var iDSUCURSALParameter = iDSUCURSAL.HasValue ?
-                new ObjectParameter("IDSUCURSAL", iDSUCURSAL) :
-                new ObjectParameter("IDSUCURSAL", typeof(int));
+            var escre_FechaModificaParameter = escre_FechaModifica.HasValue ?
+                new ObjectParameter("escre_FechaModifica", escre_FechaModifica) :
+                new ObjectParameter("escre_FechaModifica", typeof(System.DateTime));
     
-            var cODIGOBARRASParameter = cODIGOBARRAS != null ?
-                new ObjectParameter("CODIGOBARRAS", cODIGOBARRAS) :
-                new ObjectParameter("CODIGOBARRAS", typeof(string));
-    
-            var iDCLIENTEParameter = iDCLIENTE.HasValue ?
-                new ObjectParameter("IDCLIENTE", iDCLIENTE) :
-                new ObjectParameter("IDCLIENTE", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente_Result>("UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente", iDSUCURSALParameter, cODIGOBARRASParameter, iDCLIENTEParameter);
-        }
-    
-        public virtual ObjectResult<UDP_Vent_tbMovimientoCaja_GetUsuarioApertura_Result> UDP_Vent_tbMovimientoCaja_GetUsuarioApertura(Nullable<int> usuarioApertura)
-        {
-            var usuarioAperturaParameter = usuarioApertura.HasValue ?
-                new ObjectParameter("UsuarioApertura", usuarioApertura) :
-                new ObjectParameter("UsuarioApertura", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbMovimientoCaja_GetUsuarioApertura_Result>("UDP_Vent_tbMovimientoCaja_GetUsuarioApertura", usuarioAperturaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbEstadoSolicitudCredito_Update_Result>("UDP_Vent_tbEstadoSolicitudCredito_Update", escre_IdParameter, escre_DescripcionParameter, escre_UsuarioCreaParameter, escre_UsuarioModificaParameter, escre_FechaAgregoParameter, escre_FechaModificaParameter);
         }
     }
 }

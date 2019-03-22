@@ -5,6 +5,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@{
+    var DenominacionArqueo = new ERP_GMEDINA.Models.tbDenominacionArqueo();
+    var PagosArqueo = new ERP_GMEDINA.Models.tbPagosArqueo();
+}
+
 <link href="~/Content/css/Auditoria.css" rel="stylesheet" />
 
 <div class="row wrapper border-bottom white-bg page-heading">
@@ -20,8 +25,6 @@
 </div>
 
 
-
-
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
@@ -32,196 +35,241 @@
                 <div class="ibox-content">
 
 
-				    <dl class="dl-horizontal">
-        @Html.ValidationSummary(true)
-        @Html.HiddenFor(model => model.mocja_Id)
-        @Html.HiddenFor(model => model.mocja_UsuarioCrea)
-        @Html.HiddenFor(model => model.mocja_FechaCrea)
-        @Html.HiddenFor(model => model.mocja_UsuarioModifica)
-        @Html.HiddenFor(model => model.mocja_FechaModifica)
-        @Html.HiddenFor(model => model.tbUsuario.usu_Nombres)
-        @Html.HiddenFor(model => model.tbUsuario.usu_Apellidos)
-        @Html.HiddenFor(model => model.tbUsuario1.usu_Nombres)
-        @Html.HiddenFor(model => model.tbUsuario1.usu_Apellidos)
+                    <dl class="dl-horizontal">
+                        @Html.ValidationSummary(true)
+                        @Html.HiddenFor(model => model.mocja_Id)
+                        @Html.HiddenFor(model => model.mocja_UsuarioCrea)
+                        @Html.HiddenFor(model => model.mocja_FechaCrea)
+                        @Html.HiddenFor(model => model.mocja_UsuarioModifica)
+                        @Html.HiddenFor(model => model.mocja_FechaModifica)
+                        @Html.HiddenFor(model => model.tbUsuario.usu_Nombres)
+                        @Html.HiddenFor(model => model.tbUsuario.usu_Apellidos)
+                        @Html.HiddenFor(model => model.tbUsuario1.usu_Nombres)
+                        @Html.HiddenFor(model => model.tbUsuario1.usu_Apellidos)
 
-        <dt>
-            @Html.DisplayNameFor(model => model.mocja_Id)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.mocja_Id)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.cja_Id)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.mocja_Id)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.tbCaja.cja_Descripcion)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.mocja_Id)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.mocja_FechaApertura)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.cja_Id)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.mocja_FechaApertura)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.tbCaja.cja_Descripcion)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.mocja_UsuarioApertura)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.mocja_FechaApertura)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.mocja_FechaApertura)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.mocja_FechaArqueo)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.mocja_UsuarioApertura)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.mocja_FechaArqueo)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.mocja_UsuarioArquea)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.mocja_FechaArqueo)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.mocja_FechaArqueo)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.mocja_FechaAceptacion)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.mocja_UsuarioArquea)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.mocja_FechaAceptacion)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.mocja_UsuarioAceptacion)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.mocja_FechaAceptacion)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.mocja_FechaAceptacion)
+                        </dd>
 
-        <dt>
-            <div class="ibox-title">
-                <h5>Control Efectivo</h5>
-            </div>
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.mocja_UsuarioAceptacion)
+                        </dt>
 
-        <dd>
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                        </dd>
+                        <br />
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="tabs-container">
+                                    <ul class="nav nav-tabs">
+                                        <li class="active"><a data-toggle="tab" href="#tab-1">Control de Efectivo</a></li>
+                                        <li class=""><a data-toggle="tab" href="#tab-2">Control de Pagos</a></li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div id="tab-1" class="tab-pane active">
+                                            <div class="panel-body">
+                                                <div class="col-md-4">
+                                                    <dt>
+                                                        Efectivo Inicial:
+                                                    </dt>
 
-        <dt>
-            Efectivo Inicial
-        </dt>
+                                                    <dd>
+                                                        200,0000
+                                                        @ViewBag.EfectivoIncial
+                                                    </dd>
+                                                    <br />
 
-        <dd>  
-                                      
-        </dd>
-           
-        <dt>
-            Efectivo Recibido
-        </dt>
+                                                    <dt>
+                                                        Efectivo Recibido:
+                                                    </dt>
 
-        <dd>
-                                      
-        </dd>
+                                                    <dd>
+                                                        200,0000
+                                                        @ViewBag.EfectivoIncial
+                                                    </dd>
+                                                    <br />
+                                                    <dt>
+                                                       Total:
+                                                    </dt>
 
-        <dt>
-            Efectivo Pagos
-        </dt>
+                                                    <dd>
+                                                        200,0000
+                                                        @ViewBag.EfectivoIncial
+                                                    </dd>
 
-        <dd>  
-                                      
-        </dd>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <dt>
+                                                        Efectivo Pagos:
+                                                    </dt>
 
-        <dt>
-            Efectivo Entregad
-        </dt>
+                                                    <dd>
+                                                        200,0000
+                                                        @ViewBag.EfectivoIncial
+                                                    </dd>
+                                                    <br />
 
-        <dd>
-                                        
-        </dd>
+                                                    <dt>
+                                                        Efectivo Entregado:
+                                                    </dt>
 
-        <dt>
-            Total Efectivo
-        </dt>
+                                                    <dd>
+                                                        200,0000
+                                                        @ViewBag.EfectivoIncial
+                                                    </dd>
 
-        <dd>
-            
-        </dd>
+                                                </div>
+                                               
+                                            </div>
+                                        </div>
+                                        <div id="tab-2" class="tab-pane">
+                                            <div class="panel-body">
+                                                <div class="col-md-4">
+                                                    <dt>
+                                                       Pagos Efectivo:
+                                                    </dt>
 
-        <dt>
-            <div class="ibox-title">
-                <h5>Control de Pagos</h5>
-            </div>
-        </dt>
+                                                    <dd>
+                                                        200,0000
+                                                        @ViewBag.EfectivoIncial
+                                                    </dd>
+                                                    <br />
 
-        <dd>
-        </dd>
+                                                    <dt>
+                                                        Pagos Cheque:
+                                                    </dt>
 
-        <dt>
-            Pagos Efectivo
-        </dt>
+                                                    <dd>
+                                                        200,0000
+                                                        @ViewBag.EfectivoIncial
+                                                    </dd>
+                                                    <br />
+                                                    <dt>
+                                                        Pagos Déposito:
+                                                    </dt>
 
-        <dd> 
-                                      
-        </dd>
+                                                    <dd>
+                                                        200,0000
+                                                        @ViewBag.EfectivoIncial
+                                                    </dd>
+                                                    <br />
+                                                    <dt>
+                                                        Pagos Cupón:
+                                                    </dt>
 
-        <dt>
-            Pagos TC o TD
-        </dt>
+                                                    <dd>
+                                                        200,0000
+                                                        @ViewBag.EfectivoIncial
+                                                    </dd>
 
-        <dd>     
-                                  
-        </dd>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <dt>
+                                                        Pagos TC o TD:
+                                                    </dt>
 
-        <dt>
-            Pagos Cheque
-        </dt>
+                                                    <dd>
+                                                        200,0000
+                                                        @ViewBag.EfectivoIncial
+                                                    </dd>
+                                                    <br />
 
-        <dd>
-            
-        </dd>
+                                                    <dt>
+                                                        Pagos Nota de Crédito:
+                                                    </dt>
 
-        <dt>
-            Pagos Nota de Credito
-        </dt>
+                                                    <dd>
+                                                        200,0000
+                                                        @ViewBag.EfectivoIncial
+                                                    </dd>
+                                                    <br />
+                                                    <dt>
+                                                        Pagos Transferencia ACH:
+                                                    </dt>
 
-        <dd>
-          
-        </dd>
+                                                    <dd>
+                                                        200,0000
+                                                        @ViewBag.EfectivoIncial
+                                                    </dd>
+                                                    <br />
+                                                    <dt>
+                                                        Total Pagos:
+                                                    </dt>
 
-        <dt>
-            Pagos Cupón
-        </dt>
+                                                    <dd>
+                                                        200,0000
+                                                        @ViewBag.EfectivoIncial
+                                                    </dd>
 
-        <dd>
-            
-        </dd>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-        <dt>
-            Total Pagos
-        </dt>
-
-        <dd>
-            
-        </dd>
-
-    </dl>
-
-      
-	    @*@Html.ActionLink("Edit", "Edit", new { id = Model.mocja_Id }, new { @class = "btn btn-primary"})*@
-    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-primary" })
+                        <br />
+                        @*@Html.ActionLink("Edit", "Edit", new { id = Model.mocja_Id }, new { @class = "btn btn-primary"})*@
+                        @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-primary" })
 
                 </div>
             </div>
@@ -257,7 +305,7 @@
             </div>
         </div>
     </div>
- </div>
+</div>
 
 
 

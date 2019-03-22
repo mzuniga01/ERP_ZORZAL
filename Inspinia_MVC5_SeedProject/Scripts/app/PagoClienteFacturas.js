@@ -193,7 +193,7 @@ $(document).ready(function () {
     })
 });
 
-//Factura Seleccionar Cliente
+//SELECCIONAR CUPON
 $(document).on("click", "#spCupon tbody tr td button#seleccionar", function () {
     idItem = $(this).closest('tr').data('idcd');
     fechavenceItem = $(this).closest('tr').data('fechavence');
@@ -206,7 +206,7 @@ $(document).on("click", "#spCupon tbody tr td button#seleccionar", function () {
    
     $("#cc").val(idItem);
     $("#FechaVence").val(fechavenceItem);
-    $('porcentaje').val(porcentajedescItem);
+    $("#porcentaje").val(porcentajedescItem);
     $("#monto").val(montodesc);
     $("#montomax").val(maxmonto);
     $("#cantmin").val(compramin);
@@ -219,16 +219,46 @@ $(document).on("click", "#spCupon tbody tr td button#seleccionar", function () {
     porcent = $("#pago_SaldoAnterior").val();
     porcent = $("#pago_SaldoAnterior").val();
 
-    
-    if (idItem != '') {
-        document.getElementById("Factura").disabled = false;
-        document.getElementById("tbFactura_fact_Codigo").disabled = false;
-        GetIDCliente(idItem)
-        GetIDClienteNC(idItem)
-    }
+
     console.log(idItem);
     console.log(fechavenceItem);
     console.log(porcentajedescItem);
+
+    $("#FechaVence").change(function () {
+        var hoy = $('#pago_FechaElaboracion').val();
+        var fechaVence = $('#FechaVence').val();
+       
+
+        if (hoy < fechaVence) {
+                //$('#ccc').html("");
+                valido = document.getElementById('ccc');
+                valido.innerText = "";
+                return true;
+            } else {
+                //$('#ccc').html("La fecha final debe ser mayor a la fecha inicial");
+                valido = document.getElementById('ccc');
+                valido.innerText = "La fecha final debe ser mayor a la fecha inicial";
+                return false;
+            }
+        });
+   
+
+    $(document).ready(function () {
+        $("#btnGuardar").click(function () {
+            var hoy = $('#exo_FechaInicialVigencia').val();
+            var fecha = $('#exo_FechaIFinalVigencia').val();
+            if (hoy < fecha) {
+                valido = document.getElementById('ccc');
+                valido.innerText = "";
+            }
+            else {
+                valido = document.getElementById('ccc');
+                valido.innerText = "La fecha final debe ser mayor a la fecha inicial";
+                return false;
+            }
+
+        });
+    });
     //console.log(idItem)
     //if (idItem != '') {
     //    document.getElementById("Factura").disabled = false;

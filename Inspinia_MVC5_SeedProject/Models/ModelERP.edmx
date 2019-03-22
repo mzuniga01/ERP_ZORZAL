@@ -1339,7 +1339,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_EntradaPorId' does not hav
           <Property Name="ent_FacturaCompra" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="ent_FechaCompra" Type="datetime" Nullable="false" />
           <Property Name="tdev_descripcion" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="fact_Id" Type="int" Nullable="false" />
+          <Property Name="fact_Id" Type="nvarchar" MaxLength="19" Nullable="false" />
           <Property Name="ent_BodegaDestino" Type="int" Nullable="false" />
           <Property Name="entd_Cantidad" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="prod_Codigo" Type="nvarchar" MaxLength="15" Nullable="false" />
@@ -1715,7 +1715,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_TipoEntrada' does not have
           <Property Name="ent_FacturaCompra" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="ent_FechaCompra" Type="datetime" Nullable="false" />
           <Property Name="tdev_descripcion" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="fact_Id" Type="int" Nullable="false" />
+          <Property Name="fact_Id" Type="nvarchar" MaxLength="19" Nullable="false" />
           <Property Name="ent_BodegaDestino" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
@@ -2048,7 +2048,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_DevolucionesPorFecha' do
           </Key>
           <Property Name="dev_Id" Type="int" Nullable="false" />
           <Property Name="devd_Id" Type="int" Nullable="false" />
-          <Property Name="Cajero" Type="varchar" MaxLength="301" Nullable="false" />
+          <Property Name="Cajero" Type="int" Nullable="false" />
           <Property Name="FechaDevolucion" Type="date" />
           <Property Name="FechaFactura" Type="date" />
           <Property Name="Numero Factura" Type="bigint" Nullable="false" />
@@ -2304,6 +2304,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_PagosPorFechas' does not
             <PropertyRef Name="RTN Cliente" />
             <PropertyRef Name="Nombre" />
             <PropertyRef Name="Código Factura" />
+            <PropertyRef Name="tpa_Id" />
             <PropertyRef Name="tpa_Descripcion" />
             <PropertyRef Name="Cajero" />
             <PropertyRef Name="Saldo Anterior" />
@@ -2313,8 +2314,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_PagosPorFechas' does not
           <Property Name="RTN Cliente" Type="nvarchar" MaxLength="26" Nullable="false" />
           <Property Name="Nombre" Type="nvarchar" MaxLength="101" Nullable="false" />
           <Property Name="Código Factura" Type="nvarchar" MaxLength="19" Nullable="false" />
+          <Property Name="tpa_Id" Type="smallint" Nullable="false" />
           <Property Name="tpa_Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Cajero" Type="varchar" MaxLength="301" Nullable="false" />
+          <Property Name="Cajero" Type="int" Nullable="false" />
           <Property Name="Saldo Anterior" Type="decimal" Precision="10" Scale="0" Nullable="false" />
           <Property Name="Total Pago" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="pago_FechaElaboracion" Type="date" />
@@ -2386,6 +2388,30 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_SolicitudCredito_Solicit
           <Property Name="MONTO_SOLICITADO" Type="decimal" Precision="10" Scale="2" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_SolicituEfectivo_Index' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="UDV_Vent_SolicituEfectivo_Index">
+          <Key>
+            <PropertyRef Name="IdSolicitud" />
+            <PropertyRef Name="FechaSolicitud" />
+            <PropertyRef Name="Moneda" />
+            <PropertyRef Name="Apertura" />
+            <PropertyRef Name="Anulada" />
+            <PropertyRef Name="usuariocrea" />
+            <PropertyRef Name="Impresa" />
+          </Key>
+          <Property Name="IdSolicitud" Type="int" Nullable="false" />
+          <Property Name="FechaSolicitud" Type="datetime" Nullable="false" />
+          <Property Name="Sucursal" Type="nvarchar" MaxLength="40" />
+          <Property Name="Caja" Type="nvarchar" MaxLength="10" />
+          <Property Name="Moneda" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="MontoSolicitado" Type="decimal" Precision="38" Scale="2" />
+          <Property Name="MontoEntregado" Type="decimal" Precision="38" Scale="2" />
+          <Property Name="Apertura" Type="bit" Nullable="false" />
+          <Property Name="Anulada" Type="bit" Nullable="false" />
+          <Property Name="usuariocrea" Type="int" Nullable="false" />
+          <Property Name="Impresa" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_tbSolicituEfectivo_EntreFechas' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="UDV_Vent_tbSolicituEfectivo_EntreFechas">
           <Key>
@@ -2442,6 +2468,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasExoneradas' does n
             <PropertyRef Name="prod_Codigo" />
             <PropertyRef Name="clte_Identificacion" />
             <PropertyRef Name="clte_NombreComercial" />
+            <PropertyRef Name="clte_EsPersonaNatural" />
             <PropertyRef Name="fact_Codigo" />
             <PropertyRef Name="prod_Descripcion" />
           </Key>
@@ -2450,6 +2477,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasExoneradas' does n
           <Property Name="prod_Codigo" Type="nvarchar" MaxLength="15" Nullable="false" />
           <Property Name="clte_Identificacion" Type="nvarchar" MaxLength="26" Nullable="false" />
           <Property Name="clte_NombreComercial" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="clte_EsPersonaNatural" Type="bit" Nullable="false" />
           <Property Name="fact_Codigo" Type="nvarchar" MaxLength="19" Nullable="false" />
           <Property Name="prod_Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Monto Facturado" Type="decimal" Precision="18" Scale="2" />
@@ -2460,6 +2488,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
         <EntityType Name="UDV_Vent_VentasPorCaja_EntreFechas">
           <Key>
             <PropertyRef Name="fact_Fecha" />
+            <PropertyRef Name="fact_Codigo" />
+            <PropertyRef Name="clte_Nombres" />
             <PropertyRef Name="suc_Descripcion" />
             <PropertyRef Name="cja_Descripcion" />
             <PropertyRef Name="Cajero" />
@@ -2469,6 +2499,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
             <PropertyRef Name="suc_Id" />
           </Key>
           <Property Name="fact_Fecha" Type="datetime" Nullable="false" />
+          <Property Name="fact_Codigo" Type="nvarchar" MaxLength="19" Nullable="false" />
+          <Property Name="clte_Nombres" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="suc_Descripcion" Type="nvarchar" MaxLength="40" Nullable="false" />
           <Property Name="cja_Descripcion" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="Cajero" Type="varchar" MaxLength="301" Nullable="false" />
@@ -2478,7 +2510,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <Property Name="fact_UsuarioCrea" Type="int" Nullable="false" />
           <Property Name="suc_Id" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK__DatosCons__fact___4DAB2CE2">
+        <Association Name="FK__DatosCons__fact___2D7CBDC4">
           <End Role="tbFactura" Type="Self.tbFactura" Multiplicity="1" />
           <End Role="DatosConsumidorFinal" Type="Self.DatosConsumidorFinal" Multiplicity="*" />
           <ReferentialConstraint>
@@ -6229,6 +6261,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <Parameter Name="fecha" Type="varchar" Mode="In" />
           <Parameter Name="Caja" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="Listado_CAI" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent" />
         <Function Name="SDP_tbPedidoDetalle_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="pedd_Id" Type="int" Mode="In" />
         </Function>
@@ -6983,6 +7016,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <Parameter Name="pedd_CantidadFacturada" Type="decimal" Mode="In" />
           <Parameter Name="pedd_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="pedd_FechaCrea" Type="datetime" Mode="In" />
+          <Parameter Name="pedd_UsuarioModifica" Type="int" Mode="In" />
+          <Parameter Name="pedd_FechaModifica" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UDP_Vent_tbPuntoEmision_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="pemi_NumeroCAI" Type="nvarchar" Mode="In" />
@@ -7090,6 +7125,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <Parameter Name="solef_EsAnulada" Type="bit" Mode="In" />
           <Parameter Name="Motivo" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="UDP_Vent_tbSolicitudEfectivo_EsImpresa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="solef_Id" Type="int" Mode="In" />
+          <Parameter Name="solef_EsImpresa" Type="bit" Mode="In" />
+        </Function>
         <Function Name="UDP_Vent_tbSolicitudEfectivo_Imprimir" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="SOLEF_ID" Type="int" Mode="In" />
         </Function>
@@ -7160,9 +7199,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <Parameter Name="soled_UsuarioModifica" Type="int" Mode="In" />
           <Parameter Name="soled_FechaModifica" Type="datetime" Mode="In" />
         </Function>
-        <Function Name="UDP_Vent_tbSolicitudEfectivoDetalle_Update_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
-          <Parameter Name="IDSOLICITUD" Type="int" Mode="In" />
-        </Function>
         <Function Name="UDP_Vent_tbSucursal_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="mun_Codigo" Type="char" Mode="In" />
           <Parameter Name="bod_Id" Type="int" Mode="In" />
@@ -7215,6 +7251,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
         </Function>
         <Function Name="UDP_Vent_tbUsuario_Rol_Apertura" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="suc_Id" Type="int" Mode="In" />
+          <Parameter Name="CAJERO" Type="int" Mode="In" />
         </Function>
         <Function Name="UDP_Vent_vFacturaPago" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="clte_Id" Type="int" Mode="In" />
@@ -8046,6 +8083,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
     [UDV_Vent_PagosPorFechas].[RTN Cliente] AS [RTN Cliente], 
     [UDV_Vent_PagosPorFechas].[Nombre] AS [Nombre], 
     [UDV_Vent_PagosPorFechas].[Código Factura] AS [Código Factura], 
+    [UDV_Vent_PagosPorFechas].[tpa_Id] AS [tpa_Id], 
     [UDV_Vent_PagosPorFechas].[tpa_Descripcion] AS [tpa_Descripcion], 
     [UDV_Vent_PagosPorFechas].[Cajero] AS [Cajero], 
     [UDV_Vent_PagosPorFechas].[Saldo Anterior] AS [Saldo Anterior], 
@@ -8094,6 +8132,21 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
     [UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporte].[MONTO_SOLICITADO] AS [MONTO_SOLICITADO]
     FROM [Vent].[UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporte] AS [UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporte]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="UDV_Vent_SolicituEfectivo_Index" EntityType="Self.UDV_Vent_SolicituEfectivo_Index" store:Type="Views" store:Schema="Vent">
+            <DefiningQuery>SELECT 
+    [UDV_Vent_SolicituEfectivo_Index].[IdSolicitud] AS [IdSolicitud], 
+    [UDV_Vent_SolicituEfectivo_Index].[FechaSolicitud] AS [FechaSolicitud], 
+    [UDV_Vent_SolicituEfectivo_Index].[Sucursal] AS [Sucursal], 
+    [UDV_Vent_SolicituEfectivo_Index].[Caja] AS [Caja], 
+    [UDV_Vent_SolicituEfectivo_Index].[Moneda] AS [Moneda], 
+    [UDV_Vent_SolicituEfectivo_Index].[MontoSolicitado] AS [MontoSolicitado], 
+    [UDV_Vent_SolicituEfectivo_Index].[MontoEntregado] AS [MontoEntregado], 
+    [UDV_Vent_SolicituEfectivo_Index].[Apertura] AS [Apertura], 
+    [UDV_Vent_SolicituEfectivo_Index].[Anulada] AS [Anulada], 
+    [UDV_Vent_SolicituEfectivo_Index].[usuariocrea] AS [usuariocrea], 
+    [UDV_Vent_SolicituEfectivo_Index].[Impresa] AS [Impresa]
+    FROM [Vent].[UDV_Vent_SolicituEfectivo_Index] AS [UDV_Vent_SolicituEfectivo_Index]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="UDV_Vent_tbSolicituEfectivo_EntreFechas" EntityType="Self.UDV_Vent_tbSolicituEfectivo_EntreFechas" store:Type="Views" store:Schema="Vent">
             <DefiningQuery>SELECT 
     [UDV_Vent_tbSolicituEfectivo_EntreFechas].[solef_Id] AS [solef_Id], 
@@ -8131,6 +8184,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
     [UDV_Vent_VentasExoneradas].[prod_Codigo] AS [prod_Codigo], 
     [UDV_Vent_VentasExoneradas].[clte_Identificacion] AS [clte_Identificacion], 
     [UDV_Vent_VentasExoneradas].[clte_NombreComercial] AS [clte_NombreComercial], 
+    [UDV_Vent_VentasExoneradas].[clte_EsPersonaNatural] AS [clte_EsPersonaNatural], 
     [UDV_Vent_VentasExoneradas].[fact_Codigo] AS [fact_Codigo], 
     [UDV_Vent_VentasExoneradas].[prod_Descripcion] AS [prod_Descripcion], 
     [UDV_Vent_VentasExoneradas].[Monto Facturado] AS [Monto Facturado], 
@@ -8140,6 +8194,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <EntitySet Name="UDV_Vent_VentasPorCaja_EntreFechas" EntityType="Self.UDV_Vent_VentasPorCaja_EntreFechas" store:Type="Views" store:Schema="Vent">
             <DefiningQuery>SELECT 
     [UDV_Vent_VentasPorCaja_EntreFechas].[fact_Fecha] AS [fact_Fecha], 
+    [UDV_Vent_VentasPorCaja_EntreFechas].[fact_Codigo] AS [fact_Codigo], 
+    [UDV_Vent_VentasPorCaja_EntreFechas].[clte_Nombres] AS [clte_Nombres], 
     [UDV_Vent_VentasPorCaja_EntreFechas].[suc_Descripcion] AS [suc_Descripcion], 
     [UDV_Vent_VentasPorCaja_EntreFechas].[cja_Descripcion] AS [cja_Descripcion], 
     [UDV_Vent_VentasPorCaja_EntreFechas].[Cajero] AS [Cajero], 
@@ -8150,7 +8206,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
     [UDV_Vent_VentasPorCaja_EntreFechas].[suc_Id] AS [suc_Id]
     FROM [Vent].[UDV_Vent_VentasPorCaja_EntreFechas] AS [UDV_Vent_VentasPorCaja_EntreFechas]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK__DatosCons__fact___4DAB2CE2" Association="Self.FK__DatosCons__fact___4DAB2CE2">
+          <AssociationSet Name="FK__DatosCons__fact___2D7CBDC4" Association="Self.FK__DatosCons__fact___2D7CBDC4">
             <End Role="tbFactura" EntitySet="tbFactura" />
             <End Role="DatosConsumidorFinal" EntitySet="DatosConsumidorFinal" />
           </AssociationSet>
@@ -10339,6 +10395,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
             <Parameter Name="pedd_CantidadFacturada" Mode="In" Type="Decimal" />
             <Parameter Name="pedd_UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="pedd_FechaCrea" Mode="In" Type="DateTime" />
+            <Parameter Name="pedd_UsuarioModifica" Mode="In" Type="Int32" />
+            <Parameter Name="pedd_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbSolicitudCredito_Aprobar" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbSolicitudCredito_Aprobar_Result)">
             <Parameter Name="cred_Id" Mode="In" Type="Int32" />
@@ -10618,19 +10676,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
             <Parameter Name="bcta_FechaCrea" Mode="In" Type="DateTime" />
             <Parameter Name="bcta_UsuarioModifica" Mode="In" Type="Int32" />
             <Parameter Name="bcta_FechaModifica" Mode="In" Type="DateTime" />
-          </FunctionImport>
-          <FunctionImport Name="UDP_Vent_tbEstadoSolicitudCredito_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbEstadoSolicitudCredito_Insert_Result)">
-            <Parameter Name="escre_Descripcion" Mode="In" Type="String" />
-            <Parameter Name="escre_UsuarioCrea" Mode="In" Type="Int32" />
-            <Parameter Name="escre_FechaCrea" Mode="In" Type="DateTime" />
-          </FunctionImport>
-          <FunctionImport Name="UDP_Vent_tbEstadoSolicitudCredito_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbEstadoSolicitudCredito_Update_Result)">
-            <Parameter Name="escre_Id" Mode="In" Type="Byte" />
-            <Parameter Name="escre_Descripcion" Mode="In" Type="String" />
-            <Parameter Name="escre_UsuarioCrea" Mode="In" Type="Int32" />
-            <Parameter Name="escre_UsuarioModifica" Mode="In" Type="Int32" />
-            <Parameter Name="escre_FechaAgrego" Mode="In" Type="DateTime" />
-            <Parameter Name="escre_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbExoneracion_Estado" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbExoneracion_Estado_Result1)">
             <Parameter Name="exo_Id" Mode="In" Type="Int32" />
@@ -11000,23 +11045,27 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
             <Parameter Name="fact_EsAnulada" Mode="In" Type="Boolean" />
             <Parameter Name="fact_RazonAnulado" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Vent_tbEstadoPedido_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbEstadoPedido_Insert_Result)">
-            <Parameter Name="esped_Descripcion" Mode="In" Type="String" />
-            <Parameter Name="esped_UsuarioCrea" Mode="In" Type="Int32" />
-            <Parameter Name="esped_FechaCrea" Mode="In" Type="DateTime" />
-          </FunctionImport>
-          <FunctionImport Name="UDP_Vent_tbEstadoPedido_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbEstadoPedido_Update_Result)">
-            <Parameter Name="esped_Id" Mode="In" Type="Byte" />
-            <Parameter Name="esped_Descripcion" Mode="In" Type="String" />
-            <Parameter Name="esped_UsuarioCrea" Mode="In" Type="Int32" />
-            <Parameter Name="esped_UsuarioModifica" Mode="In" Type="Int32" />
-            <Parameter Name="esped_FechaAgrego" Mode="In" Type="DateTime" />
-            <Parameter Name="esped_FechaModifica" Mode="In" Type="DateTime" />
-          </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbSolicitudCredito_Denegar1" ReturnType="Collection(String)">
             <Parameter Name="cred_Id" Mode="In" Type="Int32" />
             <Parameter Name="escre_Id" Mode="In" Type="Byte" />
             <Parameter Name="cred_RazonDenegacion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente_Result)">
+            <Parameter Name="IDSUCURSAL" Mode="In" Type="Int32" />
+            <Parameter Name="CODIGOBARRAS" Mode="In" Type="String" />
+            <Parameter Name="IDCLIENTE" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbMovimientoCaja_GetUsuarioApertura" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_GetUsuarioApertura_Result)">
+          <Parameter Name="UsuarioApertura" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Listado_CAI" ReturnType="Collection(ERP_ZORZALModel.Listado_CAI_Result)" />
+          <FunctionImport Name="UDP_Vent_tbUsuario_Rol_Apertura" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbUsuario_Rol_Apertura_Result)">
+            <Parameter Name="suc_Id" Mode="In" Type="Int32" />
+            <Parameter Name="CAJERO" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbSolicitudEfectivo_EsImpresa" ReturnType="Collection(Int32)">
+            <Parameter Name="solef_Id" Mode="In" Type="Int32" />
+            <Parameter Name="solef_EsImpresa" Mode="In" Type="Boolean" />
           </FunctionImport>
           <EntitySet Name="tbAccesoRol" EntityType="ERP_ZORZALModel.tbAccesoRol" />
           <EntitySet Name="tbBitacoraErrores" EntityType="ERP_ZORZALModel.tbBitacoraErrores" />
@@ -11103,6 +11152,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <EntitySet Name="UDV_Inv_PackingList" EntityType="ERP_ZORZALModel.UDV_Inv_PackingList" />
           <EntitySet Name="UDV_Inv_PackingList_Caja" EntityType="ERP_ZORZALModel.UDV_Inv_PackingList_Caja" />
           <EntitySet Name="UDV_Inv_ProductosSolicitadosPorEntregar" EntityType="ERP_ZORZALModel.UDV_Inv_ProductosSolicitadosPorEntregar" />
+          <EntitySet Name="UDV_Inv_Proyeccion_de_Movimiento_de_Producto" EntityType="ERP_ZORZALModel.UDV_Inv_Proyeccion_de_Movimiento_de_Producto" />
           <EntitySet Name="UDV_Inv_Salida_Imprimir_Reporte" EntityType="ERP_ZORZALModel.UDV_Inv_Salida_Imprimir_Reporte" />
           <EntitySet Name="UDV_inv_tbinventariofisico_reporteFaltantes" EntityType="ERP_ZORZALModel.UDV_inv_tbinventariofisico_reporteFaltantes" />
           <EntitySet Name="UDV_Inv_TipoEntrada" EntityType="ERP_ZORZALModel.UDV_Inv_TipoEntrada" />
@@ -11125,11 +11175,13 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <EntitySet Name="UDV_Vent_InventarioNumeraciones" EntityType="ERP_ZORZALModel.UDV_Vent_InventarioNumeraciones" />
           <EntitySet Name="UDV_Vent_ListadodePrecios" EntityType="ERP_ZORZALModel.UDV_Vent_ListadodePrecios" />
           <EntitySet Name="UDV_Vent_MovimientoCaja_Apertura" EntityType="ERP_ZORZALModel.UDV_Vent_MovimientoCaja_Apertura" />
+          <EntitySet Name="UDV_Vent_MovimientoCaja_Apertura_Detalles" EntityType="ERP_ZORZALModel.UDV_Vent_MovimientoCaja_Apertura_Detalles" />
           <EntitySet Name="UDV_Vent_NotaCreditoPorFecha" EntityType="ERP_ZORZALModel.UDV_Vent_NotaCreditoPorFecha" />
           <EntitySet Name="UDV_Vent_PagosPorFechas" EntityType="ERP_ZORZALModel.UDV_Vent_PagosPorFechas" />
           <EntitySet Name="UDV_Vent_Pedido_EntreFechas" EntityType="ERP_ZORZALModel.UDV_Vent_Pedido_EntreFechas" />
           <EntitySet Name="UDV_Vent_prueba" EntityType="ERP_ZORZALModel.UDV_Vent_prueba" />
           <EntitySet Name="UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporte" EntityType="ERP_ZORZALModel.UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporte" />
+          <EntitySet Name="UDV_Vent_SolicituEfectivo_Index" EntityType="ERP_ZORZALModel.UDV_Vent_SolicituEfectivo_Index" />
           <EntitySet Name="UDV_Vent_tbSolicituEfectivo_EntreFechas" EntityType="ERP_ZORZALModel.UDV_Vent_tbSolicituEfectivo_EntreFechas" />
           <EntitySet Name="UDV_Vent_VentasConsumidorFinal" EntityType="ERP_ZORZALModel.UDV_Vent_VentasConsumidorFinal" />
           <EntitySet Name="UDV_Vent_VentasExoneradas" EntityType="ERP_ZORZALModel.UDV_Vent_VentasExoneradas" />
@@ -11878,6 +11930,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
             <End Role="tbProducto" EntitySet="tbProducto" />
             <End Role="tbDevolucionDetalle" EntitySet="tbDevolucionDetalle" />
           </AssociationSet>
+          <AssociationSet Name="FK_Inv_tbProducto_tbProveedor_prov_Id" Association="ERP_ZORZALModel.FK_Inv_tbProducto_tbProveedor_prov_Id">
+            <End Role="tbProveedor" EntitySet="tbProveedor" />
+            <End Role="tbProducto" EntitySet="tbProducto" />
+          </AssociationSet>
           <AssociationSet Name="FK_Inv_tbProducto_tbUnidadesMedida_pscat_Id" Association="ERP_ZORZALModel.FK_Inv_tbProducto_tbUnidadesMedida_pscat_Id">
             <End Role="tbProductoSubcategoria" EntitySet="tbProductoSubcategoria" />
             <End Role="tbProducto" EntitySet="tbProducto" />
@@ -11918,7 +11974,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
             <End Role="tbSalida" EntitySet="tbSalida" />
             <End Role="tbSalidaDetalle" EntitySet="tbSalidaDetalle" />
           </AssociationSet>
-          <AssociationSet Name="FK__DatosCons__fact___4DAB2CE2" Association="ERP_ZORZALModel.FK__DatosCons__fact___4DAB2CE2">
+          <AssociationSet Name="FK__DatosCons__fact___2D7CBDC4" Association="ERP_ZORZALModel.FK__DatosCons__fact___2D7CBDC4">
             <End Role="tbFactura" EntitySet="tbFactura" />
             <End Role="DatosConsumidorFinal" EntitySet="DatosConsumidorFinal" />
           </AssociationSet>
@@ -12070,22 +12126,31 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
             <End Role="tbSolicitudEfectivo" EntitySet="tbSolicitudEfectivo" />
             <End Role="tbSolicitudEfectivoDetalle" EntitySet="tbSolicitudEfectivoDetalle" />
           </AssociationSet>
-          <FunctionImport Name="UDP_Vent_tbUsuario_Rol_Apertura" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbUsuario_Rol_Apertura_Result)">
-          <Parameter Name="suc_Id" Mode="In" Type="Int32" />
+          <FunctionImport Name="UDP_Vent_tbEstadoPedido_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbEstadoPedido_Insert_Result)">
+            <Parameter Name="esped_Descripcion" Mode="In" Type="String" />
+            <Parameter Name="esped_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="esped_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <EntitySet Name="UDV_Vent_MovimientoCaja_Apertura_Detalles" EntityType="ERP_ZORZALModel.UDV_Vent_MovimientoCaja_Apertura_Detalles" />
-          <EntitySet Name="UDV_Inv_Proyeccion_de_Movimiento_de_Producto" EntityType="ERP_ZORZALModel.UDV_Inv_Proyeccion_de_Movimiento_de_Producto" />
-          <FunctionImport Name="UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente_Result)">
-            <Parameter Name="IDSUCURSAL" Mode="In" Type="Int32" />
-            <Parameter Name="CODIGOBARRAS" Mode="In" Type="String" />
-            <Parameter Name="IDCLIENTE" Mode="In" Type="Int32" />
+          <FunctionImport Name="UDP_Vent_tbEstadoPedido_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbEstadoPedido_Update_Result)">
+            <Parameter Name="esped_Id" Mode="In" Type="Byte" />
+            <Parameter Name="esped_Descripcion" Mode="In" Type="String" />
+            <Parameter Name="esped_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="esped_UsuarioModifica" Mode="In" Type="Int32" />
+            <Parameter Name="esped_FechaAgrego" Mode="In" Type="DateTime" />
+            <Parameter Name="esped_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <AssociationSet Name="FK_Inv_tbProducto_tbProveedor_prov_Id" Association="ERP_ZORZALModel.FK_Inv_tbProducto_tbProveedor_prov_Id">
-            <End Role="tbProveedor" EntitySet="tbProveedor" />
-            <End Role="tbProducto" EntitySet="tbProducto" />
-          </AssociationSet>
-          <FunctionImport Name="UDP_Vent_tbMovimientoCaja_GetUsuarioApertura" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_GetUsuarioApertura_Result)">
-          <Parameter Name="UsuarioApertura" Mode="In" Type="Int32" />
+          <FunctionImport Name="UDP_Vent_tbEstadoSolicitudCredito_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbEstadoSolicitudCredito_Insert_Result)">
+            <Parameter Name="escre_Descripcion" Mode="In" Type="String" />
+            <Parameter Name="escre_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="escre_FechaCrea" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbEstadoSolicitudCredito_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbEstadoSolicitudCredito_Update_Result)">
+            <Parameter Name="escre_Id" Mode="In" Type="Byte" />
+            <Parameter Name="escre_Descripcion" Mode="In" Type="String" />
+            <Parameter Name="escre_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="escre_UsuarioModifica" Mode="In" Type="Int32" />
+            <Parameter Name="escre_FechaAgrego" Mode="In" Type="DateTime" />
+            <Parameter Name="escre_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
@@ -12763,12 +12828,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
         <ComplexType Name="UDP_Gral_tbCuentasBanco_Insert_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="Max" />
         </ComplexType>
-        <ComplexType Name="UDP_Vent_tbEstadoSolicitudCredito_Insert_Result">
-          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="Max" />
-        </ComplexType>
-        <ComplexType Name="UDP_Vent_tbEstadoSolicitudCredito_Update_Result">
-          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="Max" />
-        </ComplexType>
         <ComplexType Name="UDP_Vent_tbCliente_Estado_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
@@ -13250,11 +13309,31 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
         <ComplexType Name="UDP_Vent_tbPedido_Update_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
-        <ComplexType Name="UDP_Vent_tbEstadoPedido_Insert_Result">
+        <ComplexType Name="UDP_Vent_tbTipoPago_Update_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
-        <ComplexType Name="UDP_Vent_tbEstadoPedido_Update_Result">
-          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        <ComplexType Name="UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente_Result">
+          <Property Type="String" Name="DESCRIPCIONPRODUCTO" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="CODIGOPRODUCTO" Nullable="true" MaxLength="15" />
+          <Property Type="Decimal" Name="IMPUESTOPRODUCTO" Nullable="true" Precision="5" Scale="2" />
+          <Property Type="Decimal" Name="PRECIOUNITARIO" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="DESCUENTOCAJERO" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Boolean" Name="EXISTE" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbMovimientoCaja_GetUsuarioApertura_Result">
+          <Property Type="Int32" Name="mocja_Id" Nullable="false" />
+          <Property Type="DateTime" Name="mocja_FechaApertura" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="mocja_UsuarioApertura" Nullable="false" />
+          <Property Type="String" Name="Nombres" Nullable="false" MaxLength="301" />
+          <Property Type="DateTime" Name="mocja_FechaAceptacion" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="Listado_CAI_Result">
+          <Property Type="Int32" Name="pemi_Id" Nullable="false" />
+          <Property Type="String" Name="pemi_NumeroCAI" Nullable="false" MaxLength="40" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbUsuario_Rol_Apertura_Result">
+          <Property Type="Int32" Name="usu_Id" Nullable="false" />
+          <Property Type="String" Name="usu_NombreUsuario" Nullable="false" MaxLength="100" />
         </ComplexType>
         <EntityType Name="tbAccesoRol">
           <Key>
@@ -13917,6 +13996,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <Property Name="prod_Razon_Inactivacion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="prod_CodigoBarras" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="prod_Correlativo" Type="Int32" />
+          <Property Name="prov_Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="tbUsuario" Relationship="ERP_ZORZALModel.FK_Inv_tbProducto_prod_UsuarioModifica" FromRole="tbProducto" ToRole="tbUsuario" />
           <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Inv_tbProducto_tbUsuario_prod_UsuarioCrea" FromRole="tbProducto" ToRole="tbUsuario" />
           <NavigationProperty Name="tbUnidadMedida" Relationship="ERP_ZORZALModel.FK_Inv_tbProducto_Gral_tbUnidadesMedida_uni_Id" FromRole="tbProducto" ToRole="tbUnidadMedida" />
@@ -13925,13 +14005,12 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <NavigationProperty Name="tbEntradaDetalle" Relationship="ERP_ZORZALModel.FK_Inv_tbEntradaDetalle_tbProducto_prod_Codigo" FromRole="tbProducto" ToRole="tbEntradaDetalle" />
           <NavigationProperty Name="tbInventarioFisicoDetalle" Relationship="ERP_ZORZALModel.FK_Inv_tbInventarioFisicoDetalle_tbProducto_prod_Codigo" FromRole="tbProducto" ToRole="tbInventarioFisicoDetalle" />
           <NavigationProperty Name="tbDevolucionDetalle" Relationship="ERP_ZORZALModel.FK_Inv_tbProducto_tbDevolucionDetalle_prod_Codigo" FromRole="tbProducto" ToRole="tbDevolucionDetalle" />
+          <NavigationProperty Name="tbProveedor" Relationship="ERP_ZORZALModel.FK_Inv_tbProducto_tbProveedor_prov_Id" FromRole="tbProducto" ToRole="tbProveedor" />
           <NavigationProperty Name="tbProductoSubcategoria" Relationship="ERP_ZORZALModel.FK_Inv_tbProducto_tbUnidadesMedida_pscat_Id" FromRole="tbProducto" ToRole="tbProductoSubcategoria" />
           <NavigationProperty Name="tbSalidaDetalle" Relationship="ERP_ZORZALModel.FK_Inv_tbSalidaDetalle_tbProducto_prod_Codigo" FromRole="tbProducto" ToRole="tbSalidaDetalle" />
           <NavigationProperty Name="tbFacturaDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbFacturaDetalle_tbProducto_prod_Codigo" FromRole="tbProducto" ToRole="tbFacturaDetalle" />
           <NavigationProperty Name="tbListadoPrecioDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbListado_tbProducto_prod_Codigo" FromRole="tbProducto" ToRole="tbListadoPrecioDetalle" />
           <NavigationProperty Name="tbPedidoDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbPedidoDetalle_tbProducto_prod_Codigo" FromRole="tbProducto" ToRole="tbPedidoDetalle" />
-          <Property Name="prov_Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="tbProveedor" Relationship="ERP_ZORZALModel.FK_Inv_tbProducto_tbProveedor_prov_Id" FromRole="tbProducto" ToRole="tbProveedor" />
         </EntityType>
         <EntityType Name="tbProductoCategoria">
           <Key>
@@ -14088,7 +14167,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <Property Name="confi_Nombres" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="confi_Telefono" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
           <Property Name="confi_Correo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="tbFactura" Relationship="ERP_ZORZALModel.FK__DatosCons__fact___4DAB2CE2" FromRole="DatosConsumidorFinal" ToRole="tbFactura" />
+          <NavigationProperty Name="tbFactura" Relationship="ERP_ZORZALModel.FK__DatosCons__fact___2D7CBDC4" FromRole="DatosConsumidorFinal" ToRole="tbFactura" />
         </EntityType>
         <EntityType Name="tbCaja">
           <Key>
@@ -14346,7 +14425,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <NavigationProperty Name="tbUsuario1" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbUsuario_usu_Id_Crea" FromRole="tbFactura" ToRole="tbUsuario" />
           <NavigationProperty Name="tbUsuario2" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbUsuario_usu_Id_Modifica" FromRole="tbFactura" ToRole="tbUsuario" />
           <NavigationProperty Name="tbSalida" Relationship="ERP_ZORZALModel.FK_Inv_tbSalida_tbFactura_fact_Id" FromRole="tbFactura" ToRole="tbSalida" />
-          <NavigationProperty Name="DatosConsumidorFinal" Relationship="ERP_ZORZALModel.FK__DatosCons__fact___4DAB2CE2" FromRole="tbFactura" ToRole="DatosConsumidorFinal" />
+          <NavigationProperty Name="DatosConsumidorFinal" Relationship="ERP_ZORZALModel.FK__DatosCons__fact___2D7CBDC4" FromRole="tbFactura" ToRole="DatosConsumidorFinal" />
           <NavigationProperty Name="tbCaja" Relationship="ERP_ZORZALModel.FK_Vent_tbCaja_tbFactura_cja_Id" FromRole="tbFactura" ToRole="tbCaja" />
           <NavigationProperty Name="tbCliente" Relationship="ERP_ZORZALModel.FK_Vent_tbCliente_tbFactura_clte_Id" FromRole="tbFactura" ToRole="tbCliente" />
           <NavigationProperty Name="tbDevolucion" Relationship="ERP_ZORZALModel.FK_Vent_tbFactura_tbDevolucion_fact_Id" FromRole="tbFactura" ToRole="tbDevolucion" />
@@ -14650,6 +14729,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <Property Name="mnda_Id" Type="Int16" Nullable="false" />
           <Property Name="solef_EsAnulada" Type="Boolean" Nullable="false" />
           <Property Name="RazonAnulado" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="solef_EsImpresa" Type="Boolean" Nullable="false" />
           <Property Name="solef_UsuarioCrea" Type="Int32" Nullable="false" />
           <Property Name="solef_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="solef_UsuarioModifica" Type="Int32" />
@@ -14660,7 +14740,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <NavigationProperty Name="tbMoneda" Relationship="ERP_ZORZALModel.FK_Gral_tbMoneda_tbSolicitudEfectivo_mnda_Id" FromRole="tbSolicitudEfectivo" ToRole="tbMoneda" />
           <NavigationProperty Name="tbMovimientoCaja" Relationship="ERP_ZORZALModel.FK_Vent_tbMovimientoCaja_tbSolicitudEfectivo_mocja_Id" FromRole="tbSolicitudEfectivo" ToRole="tbMovimientoCaja" />
           <NavigationProperty Name="tbSolicitudEfectivoDetalle" Relationship="ERP_ZORZALModel.FK_Vent_tbSolicitudEfectivo_tbSolicitudEfectivoDetalle_solef_Id" FromRole="tbSolicitudEfectivo" ToRole="tbSolicitudEfectivoDetalle" />
-          <Property Name="solef_EsImpresa" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="tbSolicitudEfectivoDetalle">
           <Key>
@@ -15016,7 +15095,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <Property Name="ent_FacturaCompra" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="ent_FechaCompra" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="tdev_descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="fact_Id" Type="Int32" Nullable="false" />
+          <Property Name="fact_Id" Type="String" Nullable="false" MaxLength="19" FixedLength="false" Unicode="true" />
           <Property Name="ent_BodegaDestino" Type="Int32" Nullable="false" />
           <Property Name="entd_Cantidad" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
           <Property Name="prod_Codigo" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
@@ -15173,10 +15252,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <Property Name="uni_Descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="sald_Cantidad" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
           <Property Name="bod_Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre_Bodega" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="sal_BodDestino" Type="Int32" Nullable="false" />
           <Property Name="Usuario" Type="String" MaxLength="301" FixedLength="false" Unicode="false" />
           <Property Name="box_FechaCrea" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Nombre_Bodega" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="UDV_Inv_PackingList_Caja">
           <Key>
@@ -15248,6 +15327,31 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <Property Name="prod_Talla" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="uni_Id" Type="Int32" Nullable="false" />
           <Property Name="uni_Descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="UDV_Inv_Proyeccion_de_Movimiento_de_Producto">
+          <Key>
+            <PropertyRef Name="bod_Id" />
+            <PropertyRef Name="bod_ResponsableBodega" />
+            <PropertyRef Name="prod_CodigoBarras" />
+            <PropertyRef Name="prod_Descripcion" />
+            <PropertyRef Name="prod_Marca" />
+            <PropertyRef Name="prod_Modelo" />
+            <PropertyRef Name="uni_Descripcion" />
+            <PropertyRef Name="prod_Talla" />
+            <PropertyRef Name="bodd_CantidadExistente" />
+          </Key>
+          <Property Name="bod_Id" Type="Int32" Nullable="false" />
+          <Property Name="bod_Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="bod_ResponsableBodega" Type="Int16" Nullable="false" />
+          <Property Name="bod_Telefono" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="prod_CodigoBarras" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="prod_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="prod_Marca" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="prod_Modelo" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="uni_Descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="prod_Talla" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="bodd_CantidadExistente" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Proyección_Días" Type="Decimal" Precision="38" Scale="0" />
         </EntityType>
         <EntityType Name="UDV_Inv_Salida_Imprimir_Reporte">
           <Key>
@@ -15345,7 +15449,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <Property Name="ent_FacturaCompra" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="ent_FechaCompra" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="tdev_descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="fact_Id" Type="Int32" Nullable="false" />
+          <Property Name="fact_Id" Type="String" Nullable="false" MaxLength="19" FixedLength="false" Unicode="true" />
           <Property Name="ent_BodegaDestino" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="UDV_InventarioActual">
@@ -15656,7 +15760,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           </Key>
           <Property Name="dev_Id" Type="Int32" Nullable="false" />
           <Property Name="devd_Id" Type="Int32" Nullable="false" />
-          <Property Name="Cajero" Type="String" Nullable="false" MaxLength="301" FixedLength="false" Unicode="false" />
+          <Property Name="Cajero" Type="Int32" Nullable="false" />
           <Property Name="FechaDevolucion" Type="DateTime" Precision="0" />
           <Property Name="FechaFactura" Type="DateTime" Precision="0" />
           <Property Name="Numero_Factura" Type="Int64" Nullable="false" />
@@ -15840,6 +15944,29 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <Property Name="cja_Descripcion" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="suc_Descripcion" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="UDV_Vent_MovimientoCaja_Apertura_Detalles">
+          <Key>
+            <PropertyRef Name="mocja_Id" />
+            <PropertyRef Name="mocja_UsuarioApertura" />
+            <PropertyRef Name="mnda_Abreviatura" />
+            <PropertyRef Name="mnda_Nombre" />
+            <PropertyRef Name="soled_CantidadEntregada" />
+            <PropertyRef Name="soled_CantidadSolicitada" />
+            <PropertyRef Name="soled_MontoEntregado" />
+            <PropertyRef Name="cja_Id" />
+            <PropertyRef Name="NOMBRES" />
+          </Key>
+          <Property Name="mocja_Id" Type="Int32" Nullable="false" />
+          <Property Name="mocja_FechaApertura" Type="DateTime" Precision="3" />
+          <Property Name="mocja_UsuarioApertura" Type="Int32" Nullable="false" />
+          <Property Name="mnda_Abreviatura" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="mnda_Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="soled_CantidadEntregada" Type="Int16" Nullable="false" />
+          <Property Name="soled_CantidadSolicitada" Type="Int16" Nullable="false" />
+          <Property Name="soled_MontoEntregado" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="cja_Id" Type="Int16" Nullable="false" />
+          <Property Name="NOMBRES" Type="String" Nullable="false" MaxLength="301" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="UDV_Vent_NotaCreditoPorFecha">
           <Key>
             <PropertyRef Name="Código_Nota_Crédito" />
@@ -15867,6 +15994,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
             <PropertyRef Name="RTN_Cliente" />
             <PropertyRef Name="Nombre" />
             <PropertyRef Name="Código_Factura" />
+            <PropertyRef Name="tpa_Id" />
             <PropertyRef Name="tpa_Descripcion" />
             <PropertyRef Name="Cajero" />
             <PropertyRef Name="Saldo_Anterior" />
@@ -15876,8 +16004,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <Property Name="RTN_Cliente" Type="String" Nullable="false" MaxLength="26" FixedLength="false" Unicode="true" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="true" />
           <Property Name="Código_Factura" Type="String" Nullable="false" MaxLength="19" FixedLength="false" Unicode="true" />
+          <Property Name="tpa_Id" Type="Int16" Nullable="false" />
           <Property Name="tpa_Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Cajero" Type="String" Nullable="false" MaxLength="301" FixedLength="false" Unicode="false" />
+          <Property Name="Cajero" Type="Int32" Nullable="false" />
           <Property Name="Saldo_Anterior" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
           <Property Name="Total_Pago" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
           <Property Name="pago_FechaElaboracion" Type="DateTime" Precision="0" />
@@ -15942,6 +16071,28 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <Property Name="DÍAS_SOLICITADOS" Type="Int32" Nullable="false" />
           <Property Name="MONTO_SOLICITADO" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
         </EntityType>
+        <EntityType Name="UDV_Vent_SolicituEfectivo_Index">
+          <Key>
+            <PropertyRef Name="IdSolicitud" />
+            <PropertyRef Name="FechaSolicitud" />
+            <PropertyRef Name="Moneda" />
+            <PropertyRef Name="Apertura" />
+            <PropertyRef Name="Anulada" />
+            <PropertyRef Name="usuariocrea" />
+            <PropertyRef Name="Impresa" />
+          </Key>
+          <Property Name="IdSolicitud" Type="Int32" Nullable="false" />
+          <Property Name="FechaSolicitud" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Sucursal" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="Caja" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Moneda" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MontoSolicitado" Type="Decimal" Precision="38" Scale="2" />
+          <Property Name="MontoEntregado" Type="Decimal" Precision="38" Scale="2" />
+          <Property Name="Apertura" Type="Boolean" Nullable="false" />
+          <Property Name="Anulada" Type="Boolean" Nullable="false" />
+          <Property Name="usuariocrea" Type="Int32" Nullable="false" />
+          <Property Name="Impresa" Type="Boolean" Nullable="false" />
+        </EntityType>
         <EntityType Name="UDV_Vent_tbSolicituEfectivo_EntreFechas">
           <Key>
             <PropertyRef Name="solef_Id" />
@@ -15993,6 +16144,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
             <PropertyRef Name="prod_Codigo" />
             <PropertyRef Name="clte_Identificacion" />
             <PropertyRef Name="clte_NombreComercial" />
+            <PropertyRef Name="clte_EsPersonaNatural" />
             <PropertyRef Name="fact_Codigo" />
             <PropertyRef Name="prod_Descripcion" />
           </Key>
@@ -16001,6 +16153,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <Property Name="prod_Codigo" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="clte_Identificacion" Type="String" Nullable="false" MaxLength="26" FixedLength="false" Unicode="true" />
           <Property Name="clte_NombreComercial" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="clte_EsPersonaNatural" Type="Boolean" Nullable="false" />
           <Property Name="fact_Codigo" Type="String" Nullable="false" MaxLength="19" FixedLength="false" Unicode="true" />
           <Property Name="prod_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Monto_Facturado" Type="Decimal" Precision="18" Scale="2" />
@@ -16009,6 +16162,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
         <EntityType Name="UDV_Vent_VentasPorCaja_EntreFechas">
           <Key>
             <PropertyRef Name="fact_Fecha" />
+            <PropertyRef Name="fact_Codigo" />
+            <PropertyRef Name="clte_Nombres" />
             <PropertyRef Name="suc_Descripcion" />
             <PropertyRef Name="cja_Descripcion" />
             <PropertyRef Name="Cajero" />
@@ -16018,6 +16173,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
             <PropertyRef Name="suc_Id" />
           </Key>
           <Property Name="fact_Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fact_Codigo" Type="String" Nullable="false" MaxLength="19" FixedLength="false" Unicode="true" />
+          <Property Name="clte_Nombres" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="suc_Descripcion" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
           <Property Name="cja_Descripcion" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="Cajero" Type="String" Nullable="false" MaxLength="301" FixedLength="false" Unicode="false" />
@@ -18259,6 +18416,18 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Inv_tbProducto_tbProveedor_prov_Id">
+          <End Type="ERP_ZORZALModel.tbProveedor" Role="tbProveedor" Multiplicity="1" />
+          <End Type="ERP_ZORZALModel.tbProducto" Role="tbProducto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbProveedor">
+              <PropertyRef Name="prov_Id" />
+            </Principal>
+            <Dependent Role="tbProducto">
+              <PropertyRef Name="prov_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Inv_tbProducto_tbUnidadesMedida_pscat_Id">
           <End Type="ERP_ZORZALModel.tbProductoSubcategoria" Role="tbProductoSubcategoria" Multiplicity="1" />
           <End Type="ERP_ZORZALModel.tbProducto" Role="tbProducto" Multiplicity="*" />
@@ -18379,7 +18548,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DatosCons__fact___4DAB2CE2">
+        <Association Name="FK__DatosCons__fact___2D7CBDC4">
           <End Type="ERP_ZORZALModel.tbFactura" Role="tbFactura" Multiplicity="1" />
           <End Type="ERP_ZORZALModel.DatosConsumidorFinal" Role="DatosConsumidorFinal" Multiplicity="*" />
           <ReferentialConstraint>
@@ -18835,87 +19004,17 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <ComplexType Name="UDP_Vent_tbUsuario_Rol_Apertura_Result">
-          <Property Type="Int32" Name="usu_Id" Nullable="false" />
-          <Property Type="String" Name="usu_NombreUsuario" Nullable="false" MaxLength="100" />
-        </ComplexType>
-        <ComplexType Name="UDP_Vent_tbTipoPago_Update_Result">
+        <ComplexType Name="UDP_Vent_tbEstadoPedido_Insert_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
-        <EntityType Name="UDV_Vent_MovimientoCaja_Apertura_Detalles">
-          <Key>
-            <PropertyRef Name="mocja_Id" />
-            <PropertyRef Name="mocja_UsuarioApertura" />
-            <PropertyRef Name="mnda_Abreviatura" />
-            <PropertyRef Name="mnda_Nombre" />
-            <PropertyRef Name="soled_CantidadEntregada" />
-            <PropertyRef Name="soled_CantidadSolicitada" />
-            <PropertyRef Name="soled_MontoEntregado" />
-            <PropertyRef Name="cja_Id" />
-            <PropertyRef Name="NOMBRES" />
-          </Key>
-          <Property Name="mocja_Id" Type="Int32" Nullable="false" />
-          <Property Name="mocja_FechaApertura" Type="DateTime" Precision="3" />
-          <Property Name="mocja_UsuarioApertura" Type="Int32" Nullable="false" />
-          <Property Name="mnda_Abreviatura" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Name="mnda_Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="soled_CantidadEntregada" Type="Int16" Nullable="false" />
-          <Property Name="soled_CantidadSolicitada" Type="Int16" Nullable="false" />
-          <Property Name="soled_MontoEntregado" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <Property Name="cja_Id" Type="Int16" Nullable="false" />
-          <Property Name="NOMBRES" Type="String" Nullable="false" MaxLength="301" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="UDV_Inv_Proyeccion_de_Movimiento_de_Producto">
-          <Key>
-            <PropertyRef Name="bod_Id" />
-            <PropertyRef Name="bod_ResponsableBodega" />
-            <PropertyRef Name="prod_CodigoBarras" />
-            <PropertyRef Name="prod_Descripcion" />
-            <PropertyRef Name="prod_Marca" />
-            <PropertyRef Name="prod_Modelo" />
-            <PropertyRef Name="uni_Descripcion" />
-            <PropertyRef Name="prod_Talla" />
-            <PropertyRef Name="bodd_CantidadExistente" />
-          </Key>
-          <Property Name="bod_Id" Type="Int32" Nullable="false" />
-          <Property Name="bod_Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="bod_ResponsableBodega" Type="Int16" Nullable="false" />
-          <Property Name="bod_Telefono" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
-          <Property Name="prod_CodigoBarras" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="prod_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="prod_Marca" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="prod_Modelo" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
-          <Property Name="uni_Descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="prod_Talla" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="bodd_CantidadExistente" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <Property Name="Proyección_Días" Type="Decimal" Precision="38" Scale="0" />
-        </EntityType>
-        <ComplexType Name="UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente_Result">
-          <Property Type="String" Name="DESCRIPCIONPRODUCTO" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="CODIGOPRODUCTO" Nullable="true" MaxLength="15" />
-          <Property Type="Decimal" Name="IMPUESTOPRODUCTO" Nullable="true" Precision="5" Scale="2" />
-          <Property Type="Decimal" Name="PRECIOUNITARIO" Nullable="true" Precision="10" Scale="2" />
-          <Property Type="Decimal" Name="DESCUENTOCAJERO" Nullable="true" Precision="10" Scale="2" />
-          <Property Type="Boolean" Name="EXISTE" Nullable="true" />
+        <ComplexType Name="UDP_Vent_tbEstadoPedido_Update_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
-        <Association Name="FK_Inv_tbProducto_tbProveedor_prov_Id">
-          <End Type="ERP_ZORZALModel.tbProveedor" Role="tbProveedor" Multiplicity="1" />
-          <End Type="ERP_ZORZALModel.tbProducto" Role="tbProducto" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbProveedor">
-              <PropertyRef Name="prov_Id" />
-            </Principal>
-            <Dependent Role="tbProducto">
-              <PropertyRef Name="prov_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <ComplexType Name="UDP_Vent_tbMovimientoCaja_GetUsuarioApertura_Result">
-          <Property Type="Int32" Name="mocja_Id" Nullable="false" />
-          <Property Type="DateTime" Name="mocja_FechaApertura" Nullable="true" Precision="23" />
-          <Property Type="Int32" Name="mocja_UsuarioApertura" Nullable="false" />
-          <Property Type="String" Name="Nombres" Nullable="false" MaxLength="301" />
-          <Property Type="DateTime" Name="mocja_FechaAceptacion" Nullable="true" Precision="23" />
+        <ComplexType Name="UDP_Vent_tbEstadoSolicitudCredito_Insert_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbEstadoSolicitudCredito_Update_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
@@ -20043,20 +20142,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbEstadoSolicitudCredito_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbEstadoSolicitudCredito_Insert" >
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbEstadoSolicitudCredito_Insert_Result">
-                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbEstadoSolicitudCredito_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbEstadoSolicitudCredito_Update" >
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbEstadoSolicitudCredito_Update_Result">
-                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbExoneracion_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbExoneracion_Estado" >
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbExoneracion_Estado_Result1">
@@ -20395,19 +20480,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbPago_ImprimirEstaImpreso" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbPago_ImprimirEstaImpreso" />
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudEfectivoDetalle_Update_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudEfectivoDetalle_Update_Insert">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbSolicitudEfectivoDetalle_Update_Insert_Result">
-                <ScalarProperty Name="denoId" ColumnName="denoId" />
-                <ScalarProperty Name="DenoDescripcion" ColumnName="DenoDescripcion" />
-                <ScalarProperty Name="valor" ColumnName="valor" />
-                <ScalarProperty Name="CantidadSolicitada" ColumnName="CantidadSolicitada" />
-                <ScalarProperty Name="MONTO" ColumnName="MONTO" />
-                <ScalarProperty Name="iddetalle" ColumnName="iddetalle" />
-                <ScalarProperty Name="solef_Id" ColumnName="solef_Id" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbTipoTaller_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbTipoTaller_Estado" />
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudCredito_RolGerenteCreditosCobranza" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudCredito_RolGerenteCreditosCobranza" />
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_RolSupervisorCaja" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_RolSupervisorCaja" />
@@ -20681,21 +20753,47 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbEstadoPedido_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbEstadoPedido_Insert" >
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbEstadoPedido_Insert_Result">
-                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbEstadoPedido_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbEstadoPedido_Update" >
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbEstadoPedido_Update_Result">
-                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudCredito_Denegar1" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudCredito_Denegar" />
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente_Result">
+                <ScalarProperty Name="DESCRIPCIONPRODUCTO" ColumnName="DESCRIPCIONPRODUCTO" />
+                <ScalarProperty Name="CODIGOPRODUCTO" ColumnName="CODIGOPRODUCTO" />
+                <ScalarProperty Name="IMPUESTOPRODUCTO" ColumnName="IMPUESTOPRODUCTO" />
+                <ScalarProperty Name="PRECIOUNITARIO" ColumnName="PRECIOUNITARIO" />
+                <ScalarProperty Name="DESCUENTOCAJERO" ColumnName="DESCUENTOCAJERO" />
+                <ScalarProperty Name="EXISTE" ColumnName="EXISTE" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbMovimientoCaja_GetUsuarioApertura" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbMovimientoCaja_GetUsuarioApertura">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_GetUsuarioApertura_Result">
+                <ScalarProperty Name="mocja_Id" ColumnName="mocja_Id" />
+                <ScalarProperty Name="mocja_FechaApertura" ColumnName="mocja_FechaApertura" />
+                <ScalarProperty Name="mocja_UsuarioApertura" ColumnName="mocja_UsuarioApertura" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="mocja_FechaAceptacion" ColumnName="mocja_FechaAceptacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Listado_CAI" FunctionName="ERP_ZORZALModel.Store.Listado_CAI">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.Listado_CAI_Result">
+                <ScalarProperty Name="pemi_Id" ColumnName="pemi_Id" />
+                <ScalarProperty Name="pemi_NumeroCAI" ColumnName="pemi_NumeroCAI" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbUsuario_Rol_Apertura" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbUsuario_Rol_Apertura">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbUsuario_Rol_Apertura_Result">
+                <ScalarProperty Name="usu_Id" ColumnName="usu_Id" />
+                <ScalarProperty Name="usu_NombreUsuario" ColumnName="usu_NombreUsuario" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudEfectivo_EsImpresa" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudEfectivo_EsImpresa" />
           <EntitySetMapping Name="tbAccesoRol">
             <EntityTypeMapping TypeName="ERP_ZORZALModel.tbAccesoRol">
               <MappingFragment StoreEntitySet="tbAccesoRol">
@@ -21704,11 +21802,11 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <EntitySetMapping Name="tbSolicitudEfectivo">
             <EntityTypeMapping TypeName="ERP_ZORZALModel.tbSolicitudEfectivo">
               <MappingFragment StoreEntitySet="tbSolicitudEfectivo">
-                <ScalarProperty Name="solef_EsImpresa" ColumnName="solef_EsImpresa" />
                 <ScalarProperty Name="solef_FechaModifica" ColumnName="solef_FechaModifica" />
                 <ScalarProperty Name="solef_UsuarioModifica" ColumnName="solef_UsuarioModifica" />
                 <ScalarProperty Name="solef_FechaCrea" ColumnName="solef_FechaCrea" />
                 <ScalarProperty Name="solef_UsuarioCrea" ColumnName="solef_UsuarioCrea" />
+                <ScalarProperty Name="solef_EsImpresa" ColumnName="solef_EsImpresa" />
                 <ScalarProperty Name="RazonAnulado" ColumnName="RazonAnulado" />
                 <ScalarProperty Name="solef_EsAnulada" ColumnName="solef_EsAnulada" />
                 <ScalarProperty Name="mnda_Id" ColumnName="mnda_Id" />
@@ -22073,10 +22171,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <EntitySetMapping Name="UDV_Inv_PackingList">
             <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Inv_PackingList">
               <MappingFragment StoreEntitySet="UDV_Inv_PackingList">
-                <ScalarProperty Name="Nombre_Bodega" ColumnName="Nombre_Bodega" />
                 <ScalarProperty Name="box_FechaCrea" ColumnName="box_FechaCrea" />
                 <ScalarProperty Name="Usuario" ColumnName="Usuario" />
                 <ScalarProperty Name="sal_BodDestino" ColumnName="sal_BodDestino" />
+                <ScalarProperty Name="Nombre_Bodega" ColumnName="Nombre_Bodega" />
                 <ScalarProperty Name="bod_Nombre" ColumnName="bod_Nombre" />
                 <ScalarProperty Name="sald_Cantidad" ColumnName="sald_Cantidad" />
                 <ScalarProperty Name="uni_Descripcion" ColumnName="uni_Descripcion" />
@@ -22132,6 +22230,24 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
                 <ScalarProperty Name="BodegaOrigen" ColumnName="BodegaOrigen" />
                 <ScalarProperty Name="bod_Id" ColumnName="bod_Id" />
                 <ScalarProperty Name="sal_Id" ColumnName="sal_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UDV_Inv_Proyeccion_de_Movimiento_de_Producto">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Inv_Proyeccion_de_Movimiento_de_Producto">
+              <MappingFragment StoreEntitySet="UDV_Inv_Proyeccion_de_Movimiento_de_Producto">
+                <ScalarProperty Name="Proyección_Días" ColumnName="Proyección Días" />
+                <ScalarProperty Name="bodd_CantidadExistente" ColumnName="bodd_CantidadExistente" />
+                <ScalarProperty Name="prod_Talla" ColumnName="prod_Talla" />
+                <ScalarProperty Name="uni_Descripcion" ColumnName="uni_Descripcion" />
+                <ScalarProperty Name="prod_Modelo" ColumnName="prod_Modelo" />
+                <ScalarProperty Name="prod_Marca" ColumnName="prod_Marca" />
+                <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
+                <ScalarProperty Name="prod_CodigoBarras" ColumnName="prod_CodigoBarras" />
+                <ScalarProperty Name="bod_Telefono" ColumnName="bod_Telefono" />
+                <ScalarProperty Name="bod_ResponsableBodega" ColumnName="bod_ResponsableBodega" />
+                <ScalarProperty Name="bod_Nombre" ColumnName="bod_Nombre" />
+                <ScalarProperty Name="bod_Id" ColumnName="bod_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -22558,6 +22674,22 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="UDV_Vent_MovimientoCaja_Apertura_Detalles">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Vent_MovimientoCaja_Apertura_Detalles">
+              <MappingFragment StoreEntitySet="UDV_Vent_MovimientoCaja_Apertura_Detalles">
+                <ScalarProperty Name="NOMBRES" ColumnName="NOMBRES" />
+                <ScalarProperty Name="cja_Id" ColumnName="cja_Id" />
+                <ScalarProperty Name="soled_MontoEntregado" ColumnName="soled_MontoEntregado" />
+                <ScalarProperty Name="soled_CantidadSolicitada" ColumnName="soled_CantidadSolicitada" />
+                <ScalarProperty Name="soled_CantidadEntregada" ColumnName="soled_CantidadEntregada" />
+                <ScalarProperty Name="mnda_Nombre" ColumnName="mnda_Nombre" />
+                <ScalarProperty Name="mnda_Abreviatura" ColumnName="mnda_Abreviatura" />
+                <ScalarProperty Name="mocja_UsuarioApertura" ColumnName="mocja_UsuarioApertura" />
+                <ScalarProperty Name="mocja_FechaApertura" ColumnName="mocja_FechaApertura" />
+                <ScalarProperty Name="mocja_Id" ColumnName="mocja_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="UDV_Vent_NotaCreditoPorFecha">
             <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Vent_NotaCreditoPorFecha">
               <MappingFragment StoreEntitySet="UDV_Vent_NotaCreditoPorFecha">
@@ -22586,6 +22718,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
                 <ScalarProperty Name="Saldo_Anterior" ColumnName="Saldo Anterior" />
                 <ScalarProperty Name="Cajero" ColumnName="Cajero" />
                 <ScalarProperty Name="tpa_Descripcion" ColumnName="tpa_Descripcion" />
+                <ScalarProperty Name="tpa_Id" ColumnName="tpa_Id" />
                 <ScalarProperty Name="Código_Factura" ColumnName="Código Factura" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="RTN_Cliente" ColumnName="RTN Cliente" />
@@ -22639,6 +22772,23 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="UDV_Vent_SolicituEfectivo_Index">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Vent_SolicituEfectivo_Index">
+              <MappingFragment StoreEntitySet="UDV_Vent_SolicituEfectivo_Index">
+                <ScalarProperty Name="Impresa" ColumnName="Impresa" />
+                <ScalarProperty Name="usuariocrea" ColumnName="usuariocrea" />
+                <ScalarProperty Name="Anulada" ColumnName="Anulada" />
+                <ScalarProperty Name="Apertura" ColumnName="Apertura" />
+                <ScalarProperty Name="MontoEntregado" ColumnName="MontoEntregado" />
+                <ScalarProperty Name="MontoSolicitado" ColumnName="MontoSolicitado" />
+                <ScalarProperty Name="Moneda" ColumnName="Moneda" />
+                <ScalarProperty Name="Caja" ColumnName="Caja" />
+                <ScalarProperty Name="Sucursal" ColumnName="Sucursal" />
+                <ScalarProperty Name="FechaSolicitud" ColumnName="FechaSolicitud" />
+                <ScalarProperty Name="IdSolicitud" ColumnName="IdSolicitud" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="UDV_Vent_tbSolicituEfectivo_EntreFechas">
             <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Vent_tbSolicituEfectivo_EntreFechas">
               <MappingFragment StoreEntitySet="UDV_Vent_tbSolicituEfectivo_EntreFechas">
@@ -22680,6 +22830,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
                 <ScalarProperty Name="Monto_Facturado" ColumnName="Monto Facturado" />
                 <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
                 <ScalarProperty Name="fact_Codigo" ColumnName="fact_Codigo" />
+                <ScalarProperty Name="clte_EsPersonaNatural" ColumnName="clte_EsPersonaNatural" />
                 <ScalarProperty Name="clte_NombreComercial" ColumnName="clte_NombreComercial" />
                 <ScalarProperty Name="clte_Identificacion" ColumnName="clte_Identificacion" />
                 <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
@@ -22699,72 +22850,37 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
                 <ScalarProperty Name="Cajero" ColumnName="Cajero" />
                 <ScalarProperty Name="cja_Descripcion" ColumnName="cja_Descripcion" />
                 <ScalarProperty Name="suc_Descripcion" ColumnName="suc_Descripcion" />
+                <ScalarProperty Name="clte_Nombres" ColumnName="clte_Nombres" />
+                <ScalarProperty Name="fact_Codigo" ColumnName="fact_Codigo" />
                 <ScalarProperty Name="fact_Fecha" ColumnName="fact_Fecha" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbUsuario_Rol_Apertura" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbUsuario_Rol_Apertura">
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbEstadoPedido_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbEstadoPedido_Insert" >
             <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbUsuario_Rol_Apertura_Result">
-                <ScalarProperty Name="usu_Id" ColumnName="usu_Id" />
-                <ScalarProperty Name="usu_NombreUsuario" ColumnName="usu_NombreUsuario" />
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbEstadoPedido_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <EntitySetMapping Name="UDV_Vent_MovimientoCaja_Apertura_Detalles">
-            <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Vent_MovimientoCaja_Apertura_Detalles">
-              <MappingFragment StoreEntitySet="UDV_Vent_MovimientoCaja_Apertura_Detalles">
-                <ScalarProperty Name="NOMBRES" ColumnName="NOMBRES" />
-                <ScalarProperty Name="cja_Id" ColumnName="cja_Id" />
-                <ScalarProperty Name="soled_MontoEntregado" ColumnName="soled_MontoEntregado" />
-                <ScalarProperty Name="soled_CantidadSolicitada" ColumnName="soled_CantidadSolicitada" />
-                <ScalarProperty Name="soled_CantidadEntregada" ColumnName="soled_CantidadEntregada" />
-                <ScalarProperty Name="mnda_Nombre" ColumnName="mnda_Nombre" />
-                <ScalarProperty Name="mnda_Abreviatura" ColumnName="mnda_Abreviatura" />
-                <ScalarProperty Name="mocja_UsuarioApertura" ColumnName="mocja_UsuarioApertura" />
-                <ScalarProperty Name="mocja_FechaApertura" ColumnName="mocja_FechaApertura" />
-                <ScalarProperty Name="mocja_Id" ColumnName="mocja_Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UDV_Inv_Proyeccion_de_Movimiento_de_Producto">
-            <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Inv_Proyeccion_de_Movimiento_de_Producto">
-              <MappingFragment StoreEntitySet="UDV_Inv_Proyeccion_de_Movimiento_de_Producto">
-                <ScalarProperty Name="Proyección_Días" ColumnName="Proyección Días" />
-                <ScalarProperty Name="bodd_CantidadExistente" ColumnName="bodd_CantidadExistente" />
-                <ScalarProperty Name="prod_Talla" ColumnName="prod_Talla" />
-                <ScalarProperty Name="uni_Descripcion" ColumnName="uni_Descripcion" />
-                <ScalarProperty Name="prod_Modelo" ColumnName="prod_Modelo" />
-                <ScalarProperty Name="prod_Marca" ColumnName="prod_Marca" />
-                <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
-                <ScalarProperty Name="prod_CodigoBarras" ColumnName="prod_CodigoBarras" />
-                <ScalarProperty Name="bod_Telefono" ColumnName="bod_Telefono" />
-                <ScalarProperty Name="bod_ResponsableBodega" ColumnName="bod_ResponsableBodega" />
-                <ScalarProperty Name="bod_Nombre" ColumnName="bod_Nombre" />
-                <ScalarProperty Name="bod_Id" ColumnName="bod_Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente">
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbEstadoPedido_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbEstadoPedido_Update" >
             <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbFactura_Filtrado_CodBarra_Sucursal_Cliente_Result">
-                <ScalarProperty Name="DESCRIPCIONPRODUCTO" ColumnName="DESCRIPCIONPRODUCTO" />
-                <ScalarProperty Name="CODIGOPRODUCTO" ColumnName="CODIGOPRODUCTO" />
-                <ScalarProperty Name="IMPUESTOPRODUCTO" ColumnName="IMPUESTOPRODUCTO" />
-                <ScalarProperty Name="PRECIOUNITARIO" ColumnName="PRECIOUNITARIO" />
-                <ScalarProperty Name="DESCUENTOCAJERO" ColumnName="DESCUENTOCAJERO" />
-                <ScalarProperty Name="EXISTE" ColumnName="EXISTE" />
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbEstadoPedido_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbMovimientoCaja_GetUsuarioApertura" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbMovimientoCaja_GetUsuarioApertura">
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbEstadoSolicitudCredito_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbEstadoSolicitudCredito_Insert" >
             <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_GetUsuarioApertura_Result">
-                <ScalarProperty Name="mocja_Id" ColumnName="mocja_Id" />
-                <ScalarProperty Name="mocja_FechaApertura" ColumnName="mocja_FechaApertura" />
-                <ScalarProperty Name="mocja_UsuarioApertura" ColumnName="mocja_UsuarioApertura" />
-                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
-                <ScalarProperty Name="mocja_FechaAceptacion" ColumnName="mocja_FechaAceptacion" />
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbEstadoSolicitudCredito_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbEstadoSolicitudCredito_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbEstadoSolicitudCredito_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbEstadoSolicitudCredito_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

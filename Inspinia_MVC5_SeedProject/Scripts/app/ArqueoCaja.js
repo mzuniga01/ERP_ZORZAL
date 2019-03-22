@@ -67,3 +67,17 @@ $(document).ready(function () {
         }
     });
 });
+
+////Efectivo Recibido
+var EfectivoPagos = $('#EfectivoPagos').val();
+var EfectivoEntregado = $('#EfectivoEntregado').val();
+
+var EfectivoRecibido =(parseFloat(EfectivoPagos) + parseFloat(EfectivoEntregado));
+$("#EfectivoRecibido").val(EfectivoRecibido);
+
+////Control efectivo Total
+var EfectivoInicial = $('#EfectivoInicial').val();
+var EfectivoPagos = $('#EfectivoPagos').val();
+
+var Total = (parseFloat(EfectivoInicial) + parseFloat(EfectivoPagos));
+$("#TotalEfectivo").val(Total);

@@ -64,11 +64,10 @@
                             </div>
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.tbDevolucion.tbCaja.cja_Descripcion, "Caja", new { @class = "control-label col-md-2", @readonly="readonly" })
+                                @Html.LabelFor(model => model.tbDevolucion.tbCaja.cja_Descripcion, "Caja", new { @class = "control-label col-md-2", @readonly = "readonly" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.tbCaja.cja_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @type = "text" } })
                                     @Html.EditorFor(model => model.cja_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @type = "hidden" } })
-                                    @*@Html.EditorFor(model => model.cja_Id)*@
                                 </div>
                             </div>
 
@@ -104,12 +103,9 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.tbCliente.clte_Identificacion, "Identificación Cliente", new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.EditorFor(model => model.tbCliente.clte_Identificacion, new { htmlAttributes = new { @class = "form-control",  @readonly = "readonly" } })
+                                        @Html.EditorFor(model => model.tbCliente.clte_Identificacion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                         <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.tbCliente.clte_Identificacion)</span></p>
                                     </div>
-                                    @*<div class="col-md-">
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarCliente" disabled><span class="glyphicon glyphicon-search"></span></button>
-                                    </div>*@
                                 </div>
 
                                 <div class="form-group">
@@ -117,7 +113,7 @@
                                     <div class="col-md-4">
                                         @if (Model.tbCliente.clte_EsPersonaNatural)
                                         {
-                                            @Html.EditorFor(model => model.tbDevolucion.tbFactura.clte_Nombres, new { htmlAttributes = new { @class = "form-control",  @readonly = "readonly" } })
+                                            @Html.EditorFor(model => model.tbDevolucion.tbFactura.clte_Nombres, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                             <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.tbCliente.clte_Nombres)</span></p>
                                         }
                                         else
@@ -166,7 +162,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.tbCliente.clte_Identificacion, "Identificación Cliente", new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.EditorFor(model => model.tbCliente.clte_Identificacion, new { htmlAttributes = new { @class= "form-control", @readonly = "readonly" } })
+                                        @Html.EditorFor(model => model.tbCliente.clte_Identificacion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                         <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.tbCliente.clte_Identificacion)</span></p>
                                     </div>
                                     <div class="col-md-">
@@ -224,39 +220,39 @@
                             @*---------------Botones---------------------*@
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
-                                   
+
 
                                     @if (Model.nocre_Anulado == false && Model.nocre_Redimido == false && Model.nocre_EsImpreso == false)
                                     {
                                         <input type="submit" value="Guardar" class="btn btn-primary" />
                                         @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
 
-                                            if (Model.tbCliente.clte_EsPersonaNatural == true && Model.dev_Id != null)
-                                            {
-                                                @Html.ActionLink("Imprimir", "ExportReportclteNaturalxDEV", new { id = Model.nocre_Id }, new { @class = "btn btn-primary" })
-                                            }
-                                            else if (Model.tbCliente.clte_EsPersonaNatural == true && Model.dev_Id == null)
-                                            {
-                                                @Html.ActionLink("Imprimir", "ExportReportclteNaturalxOtros", new { id = Model.nocre_Id }, new { @class = "btn btn-primary" })
-                                            }
-                                            else if (Model.tbCliente.clte_EsPersonaNatural == false && Model.dev_Id != null)
-                                            {
-                                                @Html.ActionLink("Imprimir", "ExportReportclteJuridicoxDEV", new { id = Model.nocre_Id }, new { @class = "btn btn-primary" })
-                                            }
-                                            else if (Model.tbCliente.clte_EsPersonaNatural == false && Model.dev_Id == null)
-                                            {
-                                                @Html.ActionLink("Imprimir", "ExportReportclteJuridicoxOtros", new { id = Model.nocre_Id }, new { @class = "btn btn-primary" })
-                                            }
-                                            <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-danger" data-toggle="modal" data-target="#AnularNC">
-                                                @*boton Anular Cupon Descuento*@
-                                                Anular
-                                            </button>
+                                        if (Model.tbCliente.clte_EsPersonaNatural == true && Model.dev_Id != null)
+                                        {
+                                            @Html.ActionLink("Imprimir", "ExportReportclteNaturalxDEV", new { id = Model.nocre_Id }, new { @class = "btn btn-primary" })
+                                        }
+                                        else if (Model.tbCliente.clte_EsPersonaNatural == true && Model.dev_Id == null)
+                                        {
+                                            @Html.ActionLink("Imprimir", "ExportReportclteNaturalxOtros", new { id = Model.nocre_Id }, new { @class = "btn btn-primary" })
+                                        }
+                                        else if (Model.tbCliente.clte_EsPersonaNatural == false && Model.dev_Id != null)
+                                        {
+                                            @Html.ActionLink("Imprimir", "ExportReportclteJuridicoxDEV", new { id = Model.nocre_Id }, new { @class = "btn btn-primary" })
+                                        }
+                                        else if (Model.tbCliente.clte_EsPersonaNatural == false && Model.dev_Id == null)
+                                        {
+                                            @Html.ActionLink("Imprimir", "ExportReportclteJuridicoxOtros", new { id = Model.nocre_Id }, new { @class = "btn btn-primary" })
+                                        }
+                                        <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-danger" data-toggle="modal" data-target="#AnularNC">
+                                            @*boton Anular Cupon Descuento*@
+                                            Anular
+                                        </button>
                                     }
                                     else
                                     {
 
                                     }
-                                    
+
                                 </div>
                             </div>
                             @*---------------FIN Botones---------------------*@
@@ -293,6 +289,7 @@
     </div>
 </div>
 
+@* -------------------Modal Agregar Cliente---------------- *@
 <div>
     <div class="modal fade" id="ModalAgregarCliente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
@@ -311,6 +308,7 @@
     </div>
 </div>
 
+@* -------------------Modal Agregar Devolucin---------------- *@
 <div>
     <div class="modal fade" id="ModalAgregarDevolucion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
@@ -342,21 +340,45 @@
             <div class="modal-body">
                 Razones por las cuales desea realizar la Anulación:
                 <div class="group">
-                    <textarea class="form-control" id="cdto_RazonAnulado" name="cdto_RazonAnulado"></textarea>
+                    <textarea class="form-control" id="nocre_RazonAnulado" name="nocre_RazonAnulado" style="text-transform:uppercase;"></textarea>
+                    <p id="smsRazonAnular" style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.nocre_RazonAnulado)</span></p>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" onclick="AnularNotaCredito();" data-dismiss="modal">Si</button>
+                <button type="button" class="btn btn-primary" onclick="AnularNotaCredito();" data-dismiss="modal">Si</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
             </div>
         </div>
     </div>
 </div>
-
 <script src="~/Scripts/app/NotaCreditoAnulado.js"></script>
 @* -------------------Fin Modal Anular---------------- *@
 
 <script>
+    //----------------------razon anular---------------------------
+    $('#nocre_RazonAnulado').blur(function () {
+        valido = document.getElementById('smsRazonAnular');
+        var RazonAnular = $('#nocre_RazonAnulado').val();
+        if (RazonAnular == "") {
+            $('#nocre_RazonAnulado').val('').focus();
+            valido.innerText = "Debe colocar la razón de Anular.";
+        } else {
+            valido.innerText = "";
+        }
+    });
+
+    //VALIDAR SOLO LETRAS
+    $('#nocre_RazonAnulado').on('input', function (e) {
+        if (!/^[0-9 .a-z-áéíóúüñ]*$/i.test(this.value)) {
+            this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
+        }
+    });
+    $('#nocre_RazonAnulado').on('input', function (e) {
+        if (!/^[0-9. a-z-áéíóúüñ]*$/i.test(this.value)) {
+            this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
+        }
+    });
+
     $(document).on("click", "#tbCliente tbody tr td button#seleccionar", function () {
         clteItem = $(this).closest('tr').data('clte');
         idItem = $(this).closest('tr').data('id');
@@ -419,7 +441,6 @@
     }
 
     function filterFloat(evt, input) {
-        // Backspace = 8, Enter = 13, ‘0′ = 48, ‘9′ = 57, ‘.’ = 46, ‘-’ = 43
         var key = window.Event ? evt.which : evt.keyCode;
         var chark = String.fromCharCode(key);
         var tempValue = input.value + chark;
@@ -451,6 +472,7 @@
             return false;
         }
     }
+
     //------------solo letras-----------------------
     //Validacion de letras//
     function soloLetras(e) {
@@ -458,8 +480,8 @@
         tecla = String.fromCharCode(tecla)
         return /^[a-zA-ZáéíóúñÁÉÍÓÚÑ ]+$/.test(tecla);
     }
-    //VALIDAR SOLO LETRAS
 
+    //VALIDAR SOLO LETRAS
     $('#nocre_MotivoEmision').on('input', function (e) {
         if (!/^[0-9 .a-z-áéíóúüñ]*$/i.test(this.value)) {
             this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
@@ -470,5 +492,4 @@
             this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
         }
     });
-
 </script>

@@ -28,29 +28,26 @@
                         <dt>
                             @Html.DisplayNameFor(model => model.suc_Id)
                         </dt>
-
                         <dd>
                             @Html.DisplayFor(model => model.tbSucursal.suc_Descripcion)
                         </dd>
-                        <dt>
-                            @Html.DisplayNameFor(model => model.tbDevolucion.dev_Id)
-                        </dt>
+
                         @if (Model.dev_Id == null)
                         {
-                            <dd>
-                                ----
-                            </dd>
                         }
                         else
                         {
+                            <dt>
+                                @Html.DisplayNameFor(model => model.tbDevolucion.dev_Id)
+                            </dt>
                             <dd>
                                 @Html.DisplayFor(model => model.tbDevolucion.dev_Id)
                             </dd>
                         }
+
                         <dt>
                             @Html.DisplayNameFor(model => model.nocre_Codigo)
                         </dt>
-
                         <dd>
                             @Html.DisplayFor(model => model.nocre_Codigo)
                         </dd>
@@ -73,16 +70,8 @@
                         }
 
                         <dt>
-                            @Html.DisplayNameFor(model => model.nocre_FechaEmision)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.nocre_FechaEmision)
-                        </dd>
-                        <dt>
                             @Html.DisplayNameFor(model => model.nocre_Monto)
                         </dt>
-
                         <dd>
                             @Html.DisplayFor(model => model.nocre_Monto)
                         </dd>
@@ -90,49 +79,49 @@
                         <dt>
                             @Html.DisplayNameFor(model => model.nocre_MotivoEmision)
                         </dt>
-
                         <dd>
                             @Html.DisplayFor(model => model.nocre_MotivoEmision)
                         </dd>
+
                         <dt>
-                            @Html.DisplayNameFor(model => model.nocre_Redimido)
+                            @Html.DisplayNameFor(model => model.nocre_FechaEmision)
                         </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.nocre_FechaEmision)
+                        </dd>
+
                         @if (Model.nocre_Redimido == true)
                         {
-                            <dd>
-                                Si
-                            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.nocre_Redimido)
+                            </dt>
+                            <dd>Si</dd>
+
+                            <dt>Fecha Redimido</dt>
+                            <dd>@Html.DisplayFor(model => model.nocre_FechaRedimido)</dd>
                         }
                         else
                         {
-                            <dd>
-                                No
-                            </dd>
                         }
-                        <dt>
-                            @Html.DisplayNameFor(model => model.nocre_Anulado)
-                        </dt>
                         @if (Model.nocre_Anulado == true)
                         {
+                            <dt>@Html.DisplayNameFor(model => model.nocre_Anulado)</dt>
                             <dd>Si</dd>
+
+                            <dt>Razón Anulada</dt>
+                            <dd>@Html.DisplayFor(model => model.nocre_RazonAnulado)</dd>
                         }
                         else
                         {
-                            <dd>No</dd>
                         }
-                        <dt>
-                            Razón Anulada
-                        </dt>
-                        @if(Model.nocre_RazonAnulado == null)
+                        @if (Model.nocre_EsImpreso)
                         {
-                            <dd>----</dd>
-                        }
-                        else
-                        {
-                            @Html.DisplayFor(model => model.nocre_RazonAnulado)
+                            <dt>Documento Impreso</dt>
+                            <dd>Sí</dd>
                         }
                     </dl>
-                    @if (Model.nocre_Anulado == false && Model.nocre_Redimido == false && Model.nocre_Redimido == false)
+
+                    @if (Model.nocre_Anulado == false && Model.nocre_Redimido == false && Model.nocre_EsImpreso == false)
                     {
                         @Html.ActionLink("Editar", "Edit", new { id = Model.nocre_Id }, new { @class = "btn btn-primary" })
                     }
@@ -172,25 +161,6 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="btnAnuladoNC" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Nota Crédito</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                La Nota Crédito no puede ser Editada porque fue Anulada.
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="AnularNotaCredito();" data-dismiss="modal">Ok</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script type="text/javascript">
     $(function () {

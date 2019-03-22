@@ -25,9 +25,9 @@ namespace ERP_GMEDINA.Models
         public string uni_Descripcion { get; set; }
         public decimal sald_Cantidad { get; set; }
         public string bod_Nombre { get; set; }
+        public string Nombre_Bodega { get; set; }
         public int sal_BodDestino { get; set; }
         public string Usuario { get; set; }
         public System.DateTime box_FechaCrea { get; set; }
-        public string Nombre_Bodega { get; set; }
     }
 }

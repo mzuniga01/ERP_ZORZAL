@@ -1334,7 +1334,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_EntradaPorId' does not hav
     <Property Name="ent_FacturaCompra" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="ent_FechaCompra" Type="datetime" Nullable="false" />
     <Property Name="tdev_descripcion" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="fact_Id" Type="int" Nullable="false" />
+    <Property Name="fact_Id" Type="nvarchar" MaxLength="19" Nullable="false" />
     <Property Name="ent_BodegaDestino" Type="int" Nullable="false" />
     <Property Name="entd_Cantidad" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="prod_Codigo" Type="nvarchar" MaxLength="15" Nullable="false" />
@@ -1710,7 +1710,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_TipoEntrada' does not have
     <Property Name="ent_FacturaCompra" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="ent_FechaCompra" Type="datetime" Nullable="false" />
     <Property Name="tdev_descripcion" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="fact_Id" Type="int" Nullable="false" />
+    <Property Name="fact_Id" Type="nvarchar" MaxLength="19" Nullable="false" />
     <Property Name="ent_BodegaDestino" Type="int" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
@@ -2043,7 +2043,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_DevolucionesPorFecha' do
     </Key>
     <Property Name="dev_Id" Type="int" Nullable="false" />
     <Property Name="devd_Id" Type="int" Nullable="false" />
-    <Property Name="Cajero" Type="varchar" MaxLength="301" Nullable="false" />
+    <Property Name="Cajero" Type="int" Nullable="false" />
     <Property Name="FechaDevolucion" Type="date" />
     <Property Name="FechaFactura" Type="date" />
     <Property Name="Numero Factura" Type="bigint" Nullable="false" />
@@ -2299,6 +2299,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_PagosPorFechas' does not
       <PropertyRef Name="RTN Cliente" />
       <PropertyRef Name="Nombre" />
       <PropertyRef Name="Código Factura" />
+      <PropertyRef Name="tpa_Id" />
       <PropertyRef Name="tpa_Descripcion" />
       <PropertyRef Name="Cajero" />
       <PropertyRef Name="Saldo Anterior" />
@@ -2308,8 +2309,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_PagosPorFechas' does not
     <Property Name="RTN Cliente" Type="nvarchar" MaxLength="26" Nullable="false" />
     <Property Name="Nombre" Type="nvarchar" MaxLength="101" Nullable="false" />
     <Property Name="Código Factura" Type="nvarchar" MaxLength="19" Nullable="false" />
+    <Property Name="tpa_Id" Type="smallint" Nullable="false" />
     <Property Name="tpa_Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="Cajero" Type="varchar" MaxLength="301" Nullable="false" />
+    <Property Name="Cajero" Type="int" Nullable="false" />
     <Property Name="Saldo Anterior" Type="decimal" Precision="10" Scale="0" Nullable="false" />
     <Property Name="Total Pago" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="pago_FechaElaboracion" Type="date" />
@@ -2381,6 +2383,30 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_SolicitudCredito_Solicit
     <Property Name="MONTO_SOLICITADO" Type="decimal" Precision="10" Scale="2" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
+warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_SolicituEfectivo_Index' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="UDV_Vent_SolicituEfectivo_Index">
+    <Key>
+      <PropertyRef Name="IdSolicitud" />
+      <PropertyRef Name="FechaSolicitud" />
+      <PropertyRef Name="Moneda" />
+      <PropertyRef Name="Apertura" />
+      <PropertyRef Name="Anulada" />
+      <PropertyRef Name="usuariocrea" />
+      <PropertyRef Name="Impresa" />
+    </Key>
+    <Property Name="IdSolicitud" Type="int" Nullable="false" />
+    <Property Name="FechaSolicitud" Type="datetime" Nullable="false" />
+    <Property Name="Sucursal" Type="nvarchar" MaxLength="40" />
+    <Property Name="Caja" Type="nvarchar" MaxLength="10" />
+    <Property Name="Moneda" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="MontoSolicitado" Type="decimal" Precision="38" Scale="2" />
+    <Property Name="MontoEntregado" Type="decimal" Precision="38" Scale="2" />
+    <Property Name="Apertura" Type="bit" Nullable="false" />
+    <Property Name="Anulada" Type="bit" Nullable="false" />
+    <Property Name="usuariocrea" Type="int" Nullable="false" />
+    <Property Name="Impresa" Type="bit" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
 warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_tbSolicituEfectivo_EntreFechas' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="UDV_Vent_tbSolicituEfectivo_EntreFechas">
     <Key>
@@ -2437,6 +2463,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasExoneradas' does n
       <PropertyRef Name="prod_Codigo" />
       <PropertyRef Name="clte_Identificacion" />
       <PropertyRef Name="clte_NombreComercial" />
+      <PropertyRef Name="clte_EsPersonaNatural" />
       <PropertyRef Name="fact_Codigo" />
       <PropertyRef Name="prod_Descripcion" />
     </Key>
@@ -2445,6 +2472,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasExoneradas' does n
     <Property Name="prod_Codigo" Type="nvarchar" MaxLength="15" Nullable="false" />
     <Property Name="clte_Identificacion" Type="nvarchar" MaxLength="26" Nullable="false" />
     <Property Name="clte_NombreComercial" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="clte_EsPersonaNatural" Type="bit" Nullable="false" />
     <Property Name="fact_Codigo" Type="nvarchar" MaxLength="19" Nullable="false" />
     <Property Name="prod_Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="Monto Facturado" Type="decimal" Precision="18" Scale="2" />
@@ -2455,6 +2483,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
   <EntityType Name="UDV_Vent_VentasPorCaja_EntreFechas">
     <Key>
       <PropertyRef Name="fact_Fecha" />
+      <PropertyRef Name="fact_Codigo" />
+      <PropertyRef Name="clte_Nombres" />
       <PropertyRef Name="suc_Descripcion" />
       <PropertyRef Name="cja_Descripcion" />
       <PropertyRef Name="Cajero" />
@@ -2464,6 +2494,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
       <PropertyRef Name="suc_Id" />
     </Key>
     <Property Name="fact_Fecha" Type="datetime" Nullable="false" />
+    <Property Name="fact_Codigo" Type="nvarchar" MaxLength="19" Nullable="false" />
+    <Property Name="clte_Nombres" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="suc_Descripcion" Type="nvarchar" MaxLength="40" Nullable="false" />
     <Property Name="cja_Descripcion" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="Cajero" Type="varchar" MaxLength="301" Nullable="false" />
@@ -2473,7 +2505,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
     <Property Name="fact_UsuarioCrea" Type="int" Nullable="false" />
     <Property Name="suc_Id" Type="int" Nullable="false" />
   </EntityType>
-  <Association Name="FK__DatosCons__fact___4DAB2CE2">
+  <Association Name="FK__DatosCons__fact___2D7CBDC4">
     <End Role="tbFactura" Type="Self.tbFactura" Multiplicity="1" />
     <End Role="DatosConsumidorFinal" Type="Self.DatosConsumidorFinal" Multiplicity="*" />
     <ReferentialConstraint>
@@ -6224,6 +6256,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
     <Parameter Name="fecha" Type="varchar" Mode="In" />
     <Parameter Name="Caja" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="Listado_CAI" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent" />
   <Function Name="SDP_tbPedidoDetalle_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="pedd_Id" Type="int" Mode="In" />
   </Function>
@@ -6978,6 +7011,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
     <Parameter Name="pedd_CantidadFacturada" Type="decimal" Mode="In" />
     <Parameter Name="pedd_UsuarioCrea" Type="int" Mode="In" />
     <Parameter Name="pedd_FechaCrea" Type="datetime" Mode="In" />
+    <Parameter Name="pedd_UsuarioModifica" Type="int" Mode="In" />
+    <Parameter Name="pedd_FechaModifica" Type="datetime" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_tbPuntoEmision_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="pemi_NumeroCAI" Type="nvarchar" Mode="In" />
@@ -7085,6 +7120,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
     <Parameter Name="solef_EsAnulada" Type="bit" Mode="In" />
     <Parameter Name="Motivo" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="UDP_Vent_tbSolicitudEfectivo_EsImpresa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="solef_Id" Type="int" Mode="In" />
+    <Parameter Name="solef_EsImpresa" Type="bit" Mode="In" />
+  </Function>
   <Function Name="UDP_Vent_tbSolicitudEfectivo_Imprimir" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="SOLEF_ID" Type="int" Mode="In" />
   </Function>
@@ -7155,9 +7194,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
     <Parameter Name="soled_UsuarioModifica" Type="int" Mode="In" />
     <Parameter Name="soled_FechaModifica" Type="datetime" Mode="In" />
   </Function>
-  <Function Name="UDP_Vent_tbSolicitudEfectivoDetalle_Update_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
-    <Parameter Name="IDSOLICITUD" Type="int" Mode="In" />
-  </Function>
   <Function Name="UDP_Vent_tbSucursal_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="mun_Codigo" Type="char" Mode="In" />
     <Parameter Name="bod_Id" Type="int" Mode="In" />
@@ -7210,6 +7246,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
   </Function>
   <Function Name="UDP_Vent_tbUsuario_Rol_Apertura" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="suc_Id" Type="int" Mode="In" />
+    <Parameter Name="CAJERO" Type="int" Mode="In" />
   </Function>
   <Function Name="UDP_Vent_vFacturaPago" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="clte_Id" Type="int" Mode="In" />
@@ -8041,6 +8078,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
     [UDV_Vent_PagosPorFechas].[RTN Cliente] AS [RTN Cliente], 
     [UDV_Vent_PagosPorFechas].[Nombre] AS [Nombre], 
     [UDV_Vent_PagosPorFechas].[Código Factura] AS [Código Factura], 
+    [UDV_Vent_PagosPorFechas].[tpa_Id] AS [tpa_Id], 
     [UDV_Vent_PagosPorFechas].[tpa_Descripcion] AS [tpa_Descripcion], 
     [UDV_Vent_PagosPorFechas].[Cajero] AS [Cajero], 
     [UDV_Vent_PagosPorFechas].[Saldo Anterior] AS [Saldo Anterior], 
@@ -8089,6 +8127,21 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
     [UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporte].[MONTO_SOLICITADO] AS [MONTO_SOLICITADO]
     FROM [Vent].[UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporte] AS [UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporte]</DefiningQuery>
     </EntitySet>
+    <EntitySet Name="UDV_Vent_SolicituEfectivo_Index" EntityType="Self.UDV_Vent_SolicituEfectivo_Index" store:Type="Views" store:Schema="Vent">
+      <DefiningQuery>SELECT 
+    [UDV_Vent_SolicituEfectivo_Index].[IdSolicitud] AS [IdSolicitud], 
+    [UDV_Vent_SolicituEfectivo_Index].[FechaSolicitud] AS [FechaSolicitud], 
+    [UDV_Vent_SolicituEfectivo_Index].[Sucursal] AS [Sucursal], 
+    [UDV_Vent_SolicituEfectivo_Index].[Caja] AS [Caja], 
+    [UDV_Vent_SolicituEfectivo_Index].[Moneda] AS [Moneda], 
+    [UDV_Vent_SolicituEfectivo_Index].[MontoSolicitado] AS [MontoSolicitado], 
+    [UDV_Vent_SolicituEfectivo_Index].[MontoEntregado] AS [MontoEntregado], 
+    [UDV_Vent_SolicituEfectivo_Index].[Apertura] AS [Apertura], 
+    [UDV_Vent_SolicituEfectivo_Index].[Anulada] AS [Anulada], 
+    [UDV_Vent_SolicituEfectivo_Index].[usuariocrea] AS [usuariocrea], 
+    [UDV_Vent_SolicituEfectivo_Index].[Impresa] AS [Impresa]
+    FROM [Vent].[UDV_Vent_SolicituEfectivo_Index] AS [UDV_Vent_SolicituEfectivo_Index]</DefiningQuery>
+    </EntitySet>
     <EntitySet Name="UDV_Vent_tbSolicituEfectivo_EntreFechas" EntityType="Self.UDV_Vent_tbSolicituEfectivo_EntreFechas" store:Type="Views" store:Schema="Vent">
       <DefiningQuery>SELECT 
     [UDV_Vent_tbSolicituEfectivo_EntreFechas].[solef_Id] AS [solef_Id], 
@@ -8126,6 +8179,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
     [UDV_Vent_VentasExoneradas].[prod_Codigo] AS [prod_Codigo], 
     [UDV_Vent_VentasExoneradas].[clte_Identificacion] AS [clte_Identificacion], 
     [UDV_Vent_VentasExoneradas].[clte_NombreComercial] AS [clte_NombreComercial], 
+    [UDV_Vent_VentasExoneradas].[clte_EsPersonaNatural] AS [clte_EsPersonaNatural], 
     [UDV_Vent_VentasExoneradas].[fact_Codigo] AS [fact_Codigo], 
     [UDV_Vent_VentasExoneradas].[prod_Descripcion] AS [prod_Descripcion], 
     [UDV_Vent_VentasExoneradas].[Monto Facturado] AS [Monto Facturado], 
@@ -8135,6 +8189,8 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
     <EntitySet Name="UDV_Vent_VentasPorCaja_EntreFechas" EntityType="Self.UDV_Vent_VentasPorCaja_EntreFechas" store:Type="Views" store:Schema="Vent">
       <DefiningQuery>SELECT 
     [UDV_Vent_VentasPorCaja_EntreFechas].[fact_Fecha] AS [fact_Fecha], 
+    [UDV_Vent_VentasPorCaja_EntreFechas].[fact_Codigo] AS [fact_Codigo], 
+    [UDV_Vent_VentasPorCaja_EntreFechas].[clte_Nombres] AS [clte_Nombres], 
     [UDV_Vent_VentasPorCaja_EntreFechas].[suc_Descripcion] AS [suc_Descripcion], 
     [UDV_Vent_VentasPorCaja_EntreFechas].[cja_Descripcion] AS [cja_Descripcion], 
     [UDV_Vent_VentasPorCaja_EntreFechas].[Cajero] AS [Cajero], 
@@ -8145,7 +8201,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
     [UDV_Vent_VentasPorCaja_EntreFechas].[suc_Id] AS [suc_Id]
     FROM [Vent].[UDV_Vent_VentasPorCaja_EntreFechas] AS [UDV_Vent_VentasPorCaja_EntreFechas]</DefiningQuery>
     </EntitySet>
-    <AssociationSet Name="FK__DatosCons__fact___4DAB2CE2" Association="Self.FK__DatosCons__fact___4DAB2CE2">
+    <AssociationSet Name="FK__DatosCons__fact___2D7CBDC4" Association="Self.FK__DatosCons__fact___2D7CBDC4">
       <End Role="tbFactura" EntitySet="tbFactura" />
       <End Role="DatosConsumidorFinal" EntitySet="DatosConsumidorFinal" />
     </AssociationSet>

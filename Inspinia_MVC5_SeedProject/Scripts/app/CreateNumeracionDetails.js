@@ -148,17 +148,17 @@
             }
         })
         .done(function (data) {
-            if (data == 'No se pudo guardar el registro') {
-                location.reload();
-                swal("El registro  no se guardó!","", "error");
-            }
-            else if (data == 'Ya existe esta numeración') {
+            if (data == 'Ya existe esta numeración') {
                 $('#MostrarMensajeNumeracion').text('');
                 $('#MensajeNumeracion').after('<p id="MostrarMensajeNumeracion" style="color:red">Ya existe esta numeración</p>');
             }
+            else if (data == 'No se pudo guardar el registro') {
+                location.reload();
+                swal("El registro  no se guardó!","", "error");
+            } 
             else {
                 location.reload();
-                swal("El registro se guardó exitosamente!", "", "success");
+                swal("El registro se guardó exitosamente!","", "success");
             }
         });
     }
@@ -252,4 +252,5 @@ $('#btnCancelarModalCreateNumeracion').click(function () {
     $('#ErrorRangoFinalLengthCreate').text('');
     $('#ErrorFechaLimiteCreate').text('');
     $('#ErrorFechaLimiteMenorCreate').text('');
+    $('#MostrarMensajeNumeracion').text('');
 });

@@ -278,23 +278,26 @@ namespace ERP_ZORZAL.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }       
+        }
 
         [HttpPost]
         public JsonResult SavePuntoEmisionDetalle(tbPuntoEmisionDetalle PuntoEmisionDet)
         {
             List<tbPuntoEmisionDetalle> sessionPuntoEmisionDetalle = new List<tbPuntoEmisionDetalle>();
             var list = (List<tbPuntoEmisionDetalle>)Session["PuntoEmision"];
-            if (list == null)
-            {
-                sessionPuntoEmisionDetalle.Add(PuntoEmisionDet);
-                Session["PuntoEmision"] = sessionPuntoEmisionDetalle;
-            }
-            else
-            {
-                list.Add(PuntoEmisionDet);
-                Session["PuntoEmision"] = list;
-            }
+
+           if (list == null)
+           {
+               sessionPuntoEmisionDetalle.Add(PuntoEmisionDet);
+               Session["PuntoEmision"] = sessionPuntoEmisionDetalle;
+       
+           }
+           else
+           {
+               list.Add(PuntoEmisionDet);
+               Session["PuntoEmision"] = list;
+           }
+            
             return Json("Exito", JsonRequestBehavior.AllowGet);
         }
 
@@ -336,7 +339,7 @@ namespace ERP_ZORZAL.Controllers
                             MensajeError = puntoemisiondetalle.MensajeError;
                 if (MensajeError.StartsWith("-1"))
                 {
-                    MensajeEdit = "No se pudo actualizar el registro, favor contacte al administrador.";
+                    MensajeEdit = "No se pudo actualizar el registro";
                     ModelState.AddModelError("", MensajeEdit);
                 }
                 else
@@ -360,33 +363,35 @@ namespace ERP_ZORZAL.Controllers
 
             try
             {
-                string MensajeError = "";
-                IEnumerable<object> list = null;
-                list = db.UDP_Vent_tbPuntoEmisionDetalle_Insert(
-                            CreatePuntoEmisionDetalle.pemi_Id,
-                            CreatePuntoEmisionDetalle.dfisc_Id,
-                            CreatePuntoEmisionDetalle.pemid_RangoInicio,
-                            CreatePuntoEmisionDetalle.pemid_RangoFinal,
-                            CreatePuntoEmisionDetalle.pemid_NumeroActual,
-                            CreatePuntoEmisionDetalle.pemid_FechaLimite,
-                            Function.GetUser(),
-                            Function.DatetimeNow());
-                foreach (UDP_Vent_tbPuntoEmisionDetalle_Insert_Result puntoemisiondetalle in list)
-                    MensajeError = puntoemisiondetalle.MensajeError;
-                if (MensajeError.StartsWith("-1"))
-                {
-                    Msj = "No se pudo guardar el registro, favor contacte al administrador.";
-                    ModelState.AddModelError("", Msj);
-                }
-                else if (db.tbPuntoEmisionDetalle.Any(a => a.pemid_RangoInicio == CreatePuntoEmisionDetalle.pemid_RangoInicio && a.pemid_RangoFinal == CreatePuntoEmisionDetalle.pemid_RangoFinal))
+                if (db.tbPuntoEmisionDetalle.Any(a => a.pemid_RangoInicio == CreatePuntoEmisionDetalle.pemid_RangoInicio && a.pemid_RangoFinal == CreatePuntoEmisionDetalle.pemid_RangoFinal))
                 {
                     Msj = "Ya existe esta numeración";
-                    //ModelState.AddModelError("dfisc_Id", Msj);
                 }
-                else
-                {
-                    Msj = "El registro se guardó exitosamente";
+                else {
+                    string MensajeError = "";
+                    IEnumerable<object> list = null;
+                    list = db.UDP_Vent_tbPuntoEmisionDetalle_Insert(
+                                CreatePuntoEmisionDetalle.pemi_Id,
+                                CreatePuntoEmisionDetalle.dfisc_Id,
+                                CreatePuntoEmisionDetalle.pemid_RangoInicio,
+                                CreatePuntoEmisionDetalle.pemid_RangoFinal,
+                                CreatePuntoEmisionDetalle.pemid_NumeroActual,
+                                CreatePuntoEmisionDetalle.pemid_FechaLimite,
+                                Function.GetUser(),
+                                Function.DatetimeNow());
+                    foreach (UDP_Vent_tbPuntoEmisionDetalle_Insert_Result puntoemisiondetalle in list)
+                        MensajeError = puntoemisiondetalle.MensajeError;
+                    if (MensajeError.StartsWith("-1"))
+                    {
+                        Msj = "No se pudo guardar el registro";
+                        ModelState.AddModelError("", Msj);
+                    }
+                    else
+                    {
+                        Msj = "El registro se guardó exitosamente";
+                    }
                 }
+                
             }
             catch (Exception Ex)
             {

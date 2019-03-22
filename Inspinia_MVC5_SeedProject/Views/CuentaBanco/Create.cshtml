@@ -46,7 +46,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.bcta_Numero, new { @class = "control-label col-md-2" })
                                 <div class="col-md-5">
-                                    @Html.EditorFor(model => model.bcta_Numero, new { htmlAttributes = new { @autocomplete = "off", maxlength = 50, @onkeypress = "return validar(event)" } })
+                                    @Html.EditorFor(model => model.bcta_Numero, new { htmlAttributes = new { @autocomplete = "off", maxlength = 50, @style = "text-transform:uppercase;", @onkeyup = "this.value=Copy(this.value)",  @onkeypress = "return validar(event)" } })
                                     <p style="color:red"> @Html.ValidationMessageFor(model => model.bcta_Numero)</p>
                                 </div>
                             </div>
@@ -90,7 +90,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.bcta_FechaApertura, new { @class = "control-label col-md-2" })
                                 <div class="col-md-5">
-                                    @Html.EditorFor(model => model.bcta_FechaApertura, "{0:mm-dd-yyyy}", new { @autocomplete = "off", htmlAttributes = new { maxlength = 10,  @readonly = "readonly" } })
+                                    @Html.EditorFor(model => model.bcta_FechaApertura, "{0:mm-dd-yyyy}", new { @autocomplete = "off", htmlAttributes = new { maxlength = 10 } })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.bcta_FechaApertura)</p>
                                 </div>
                             </div>
@@ -118,29 +118,7 @@
     @Scripts.Render("~/bundles/jqueryval")
 
     <script>
-        $.datepicker.regional['es'] = {
-            closeText: 'Cerrar',
-            prevText: 'Ant',
-            nextText: 'Sig',
-            currentText: 'Hoy',
-            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-            monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
-            dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
-            dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
-            dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
-            weekHeader: 'Sm',
-            dateFormat: 'mm/dd/yy',
-            firstDay: 1,
-            isRTL: false,
-            showMonthAfterYear: false,
-            yearSuffix: ''
-        };
-        $.datepicker.setDefaults($.datepicker.regional['es']);
-
-        $(function () {
-            $("#bcta_FechaApertura").datepicker({ dateFormat: 'mm/dd/yy' }).datepicker('setDate', new Date());
-
-        });
+  
 
 ////Asterisco
 

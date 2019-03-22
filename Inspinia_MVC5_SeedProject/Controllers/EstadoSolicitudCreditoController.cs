@@ -108,6 +108,12 @@ namespace ERP_GMEDINA.Controllers
                     {
                         try
                         {
+                            //
+                            if (db.tbEstadoSolicitudCredito.Any(a => a.escre_Descripcion == tbEstadoSolicitudCredito.escre_Descripcion && a.escre_Descripcion == tbEstadoSolicitudCredito.escre_Descripcion))
+                            { 
+                                ModelState.AddModelError("", "Ya Existe Un Estado Solicitud Crédito con esa Descripción.");
+                            }
+                            //
                             if (ModelState.IsValid)
                             {
                                 string MensajeError = "";
@@ -200,6 +206,15 @@ namespace ERP_GMEDINA.Controllers
                     {
                         try
                         {
+                            //
+                            if (db.tbEstadoSolicitudCredito.Any(a => a.escre_Descripcion == tbEstadoSolicitudCredito.escre_Descripcion && a.escre_Descripcion == tbEstadoSolicitudCredito.escre_Descripcion && a.escre_Descripcion != tbEstadoSolicitudCredito.escre_Descripcion))
+
+                            {
+
+                                ModelState.AddModelError("", "Esta Descripción ya esta registrada.");
+
+                            }
+                            //
                             if (ModelState.IsValid)
                             {
                                 //////////Aqui va la lista//////////////

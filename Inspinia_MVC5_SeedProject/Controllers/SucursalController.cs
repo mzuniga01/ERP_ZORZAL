@@ -36,6 +36,24 @@ namespace ERP_GMEDINA.Controllers
             return View(tbSucursal);
         }
 
+
+
+
+        public JsonResult Listado_CAI()
+        {
+            IEnumerable<object> list = null;
+            try
+            {
+                list = db.Listado_CAI().ToList();
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToList();
+                list = null;
+            }
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
         // GET: /Sucursal/Create
         public ActionResult Create()
         {
@@ -44,6 +62,7 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre");
             ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre");
             ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
+            var D = db.tbSucursal.Select(x => x.pemi_Id).ToList();
             ViewBag.pemi_Id = new SelectList(db.tbPuntoEmision, "pemi_Id", "pemi_NumeroCAI");
             var Bodegas = db.tbBodega.Select(s => new
             {
@@ -140,7 +159,8 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.dep_Codigo = new SelectList(db.tbDepartamento, "dep_Codigo", "dep_Nombre", tbSucursal.tbMunicipio.tbDepartamento.dep_Codigo);
             ViewBag.mun_Codigo = new SelectList(db.tbMunicipio, "mun_Codigo", "mun_Nombre", tbSucursal.mun_Codigo);
             ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbSucursal.bod_Id);
-            ViewBag.pemi_Id = new SelectList(db.tbPuntoEmision, "pemi_Id", "pemi_NumeroCAI", tbSucursal.pemi_Id);
+            var D = db.tbSucursal.Select(x => x.pemi_Id).ToList();
+            ViewBag.pemi_Id = new SelectList(db.tbPuntoEmision, "pemi_Id", "pemi_NumeroCAI");
             var Bodegas = db.tbBodega.Select(s => new
             {
                 bod_Id = s.bod_Id,

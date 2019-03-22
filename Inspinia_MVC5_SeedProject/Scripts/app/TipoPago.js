@@ -58,8 +58,10 @@ $(document).ready(function () {
         $('#bcta_Id').show();
         $('#pago_Emisor').show();
         $('#pago_FechaVencimiento').hide();
-        $('#nocre_Codigo_cdto_Id').hide();
+        $('#nocre_Codigo_cdto_Id').show();
 
+        $('#btnnota').hide();
+        $('#btnCupon').hide();
         $('#Descuento').hide();
         $('#MontoDesc').hide();
         $('#mNotaCredito').hide();
@@ -69,7 +71,7 @@ $(document).ready(function () {
     else if ($("#TipoPago").val() == 4) {
         $('#Efectivo').hide();
         $('#pago_TotalCambio').hide();
-        $('#pago_Titular').show();
+        $('#pago_Titular').hide();
         $('#bcta_Id').hide();
         $('#pago_Emisor').hide();
         $('#pago_FechaVencimiento').hide();
@@ -77,7 +79,7 @@ $(document).ready(function () {
 
         $('#Descuento').hide();
         $('#MontoDesc').hide();
-        $('#mNotaCredito').show();
+        $('#mNotaCredito').hide();
         $('#mCuponDesc').hide();
     }
     else if ($("#TipoPago").val() == 5) {
@@ -89,10 +91,10 @@ $(document).ready(function () {
         $('#pago_FechaVencimiento').show();
         $('#nocre_Codigo_cdto_Id').show();
 
-        $('#Descuento').show();
-        $('#MontoDesc').show();
+        $('#Descuento').hide();
+        $('#MontoDesc').hide();
         $('#mNotaCredito').hide();
-        $('#mCuponDesc').show();
+        $('#mCuponDesc').hide();
     }
     else if ($("#TipoPago").val() == 6) {
         $('#Efectivo').hide();
@@ -103,6 +105,8 @@ $(document).ready(function () {
         $('#pago_FechaVencimiento').hide();
         $('#nocre_Codigo_cdto_Id').show();
 
+        $('#btnnota').hide();
+        $('#btnCupon').hide();
         $('#Descuento').hide();
         $('#MontoDesc').hide();
         $('#mNotaCredito').hide();
@@ -117,6 +121,8 @@ $(document).ready(function () {
         $('#pago_FechaVencimiento').hide();
         $('#nocre_Codigo_cdto_Id').show();
 
+        $('#btnnota').hide();
+        $('#btnCupon').hide();
         $('#Descuento').hide();
         $('#MontoDesc').hide();
         $('#mNotaCredito').hide();
@@ -163,7 +169,7 @@ $(document).ready(function () {
             $('#bcta_Id').show();
             $('#pago_Emisor').show();
             $('#pago_FechaVencimiento').hide();
-            $('#nocre_Codigo_cdto_Id').hide();
+            $('#nocre_Codigo_cdto_Id').show();
 
             $('#Descuento').hide();
             $('#MontoDesc').hide();
@@ -174,14 +180,14 @@ $(document).ready(function () {
         else if ($("#TipoPago").val() == 4) {
             $('#Efectivo').hide();
             $('#pago_TotalCambio').hide();
-            $('#pago_Titular').show();
+            $('#pago_Titular').hide();
             $('#bcta_Id').hide();
-            $('#pago_Emisor').show();
+            $('#pago_Emisor').hide();
             $('#pago_FechaVencimiento').hide();
             $('#nocre_Codigo_cdto_Id').show();
             $('#Descuento').hide();
             $('#MontoDesc').hide();
-            $('#mNotaCredito').show();
+            $('#mNotaCredito').hide();
             $('#mCuponDesc').hide();
         }
         else if ($("#TipoPago").val() == 5) {
@@ -193,10 +199,10 @@ $(document).ready(function () {
             $('#pago_FechaVencimiento').show();
             $('#nocre_Codigo_cdto_Id').show();
 
-            $('#Descuento').show();
-            $('#MontoDesc').show();
+            $('#Descuento').hide();
+            $('#MontoDesc').hide();
             $('#mNotaCredito').hide();
-            $('#mCuponDesc').show();
+            $('#mCuponDesc').hide();
         }
         else if ($("#TipoPago").val() == 6) {
             $('#Efectivo').hide();

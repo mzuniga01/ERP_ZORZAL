@@ -12,6 +12,7 @@ namespace ERP_GMEDINA.Models
         public const int EstadoImpreso = 2;
         public const int RTN = 3;
         public const int ID = 2;
+        public const int rol_Id = 2;
 
         //Estados Cliente 
         public const bool ClienteActivo = true;

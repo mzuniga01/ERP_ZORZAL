@@ -6,13 +6,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<style>
-    .AsteriscoRojo:after {
-        content: "*";
-        color: red;
-    }
-</style>
-
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Pago</h2>
@@ -60,7 +53,7 @@
 
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.tbFactura.clte_Identificacion, new { @class = "control-label col-md-2 AsteriscoRojo" })
+                                @Html.LabelFor(model => model.tbFactura.clte_Identificacion, new { @class = "control-label col-md-2" })
                                 <div class="col-md-3">
                                     @Html.EditorFor(model => model.tbFactura.clte_Identificacion)
                                     @Html.ValidationMessageFor(model => model.tbFactura.clte_Identificacion, "", new { @style = "color:red" })
@@ -90,7 +83,7 @@
                             </div>
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.tbFactura.fact_Codigo, new { @class = "control-label col-md-2 AsteriscoRojo" })
+                                @Html.LabelFor(model => model.tbFactura.fact_Codigo, new { @class = "control-label col-md-2" })
                                 <div class="col-md-3">
                                     @Html.EditorFor(model => model.tbFactura.fact_Codigo)
                                     @Html.ValidationMessageFor(model => model.tbFactura.fact_Codigo, "", new { @style = "color:red" })
@@ -141,7 +134,7 @@
                                     <tr>
                                         <td>
                                             <div class="form-group">
-                                                @Html.LabelFor(model => model.pago_TotalPago, "Monto Pagar", new { @class = "control-label col-md-2 AsteriscoRojo" })
+                                                @Html.LabelFor(model => model.pago_TotalPago, "Monto Pagar", new { @class = "control-label col-md-2" })
                                                 <div class="col-md-2">
                                                     @Html.EditorFor(model => model.pago_TotalPago, String.Empty, new { htmlAttributes = new { @class = "form-control" } })
                                                     @Html.ValidationMessageFor(model => model.pago_TotalPago, "", new { @style = "color:red", @id = "msgMontoPagar" })
@@ -183,7 +176,7 @@
                             @*Pago en Efectivo*@
                             <div class="form-group">
                                 <div id="Efectivo">
-                                    @Html.Label("Total Efectivo", new { @class = "control-label col-md-2 AsteriscoRojo" })
+                                    @Html.Label("Total Efectivo", new { @class = "control-label col-md-2" })
                                     <div class="col-md-2">
 
                                         @Html.Editor("Efectivo", String.Empty, new { htmlAttributes = new { @class = "form-control", @id = "efectivo", @value = "number", @onkeyup = "format(this)", @autocomplete = "off" } })
@@ -203,14 +196,14 @@
                             @*Inicio*@
                             <div class="form-group">
                                 <div id="bcta_Id" class="">
-                                    @Html.LabelFor(model => model.bcta_Id, "Cuenta Banco", new { @class = "control-label col-md-2 AsteriscoRojo" })
+                                    @Html.LabelFor(model => model.bcta_Id, "Cuenta Banco", new { @class = "control-label col-md-2" })
                                     <div class="col-md-3">
                                         @Html.DropDownList("bcta_Id", null, "Seleccionar Cuenta Banco", new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.bcta_Id)
                                     </div>
                                 </div>
                                 <div id="pago_Titular" class="">
-                                    @Html.LabelFor(model => model.pago_Titular, new { @class = "control-label col-md-2 " })
+                                    @Html.LabelFor(model => model.pago_Titular, new { @class = "control-label col-md-2" })
                                     <div class="col-md-3">
                                         @Html.EditorFor(model => model.pago_Titular)
                                         @Html.ValidationMessageFor(model => model.pago_Titular)
@@ -237,7 +230,7 @@
                             @*Inicio *@
                             <div class="form-group">
                                 <div id="pago_Emisor">
-                                    @Html.LabelFor(model => model.pago_Emisor, new { @class = "control-label col-md-2 AsteriscoRojo" })
+                                    @Html.LabelFor(model => model.pago_Emisor, new { @class = "control-label col-md-2" })
                                     <div class="col-md-3">
                                         @Html.EditorFor(model => model.pago_Emisor)
                                         @Html.ValidationMessageFor(model => model.pago_Emisor, "", new { @style = "color:red" })
@@ -245,23 +238,23 @@
                                 </div>
 
                                 <div id="pago_FechaVencimiento">
-                                    @Html.LabelFor(model => model.pago_FechaVencimiento, new { @class = "control-label col-md-2 AsteriscoRojo" })
+                                    @Html.LabelFor(model => model.pago_FechaVencimiento, new { @class = "control-label col-md-2" })
                                     <div class="col-md-3">
                                         @Html.EditorFor(model => model.pago_FechaVencimiento, new{ htmlAttributes = new { @autocomplete = "off", @id = "FechaVence" }})
                                         @Html.ValidationMessageFor(model => model.pago_FechaVencimiento)
                                     </div>
                                 </div>
                                 <div id="nocre_Codigo_cdto_Id" class="form-group">
-                                    @Html.Label("Código/ID ", new { @class = "control-label col-md-2 AsteriscoRojo" })
+                                    @Html.Label("Código/ID ", new { @class = "control-label col-md-2" })
                                     <div class="col-md-2">
                                         @Html.EditorFor(model => model.nocre_Codigo_cdto_Id, new { htmlAttributes = new { @id = "cc" } })
                                         @Html.ValidationMessageFor(model => model.nocre_Codigo_cdto_Id)
                                     </div>
                                     <div class="col-md-1" id="mNotaCredito">
-                                        <button type="button" id="" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarNotaCredito"><span class="glyphicon glyphicon-search"></span></button>
+                                        <button type="button" id="btnnota" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarNotaCredito"><span class="glyphicon glyphicon-search"></span></button>
                                     </div>
                                     <div class="col-md-1" id="mCuponDesc">
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarCuponDescuento" title="Seleccione un Cupón" data-placement="bottom"><span class="glyphicon glyphicon-search"></span></button>
+                                        <button type="button"  id="btnCupon"class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarCuponDescuento" title="Seleccione un Cupón" data-placement="bottom"><span class="glyphicon glyphicon-search"></span></button>
                                     </div>
                                 </div>
                             </div>
@@ -392,7 +385,6 @@
 <script src="~/Scripts/app/PagoClienteFacturas.js"></script>
 <script src="~/Scripts/app/PagoTransacciones.js"></script>
 <script src="~/Scripts/app/PagoCampoNumerico.js"></script>
-<script src="~/Scripts/app/ComandoGuardar.js"></script>
 <script src="~/Scripts/app/DataTable.js"></script>
 
 @section Scripts {
@@ -417,5 +409,15 @@
             })
         });
         //////////////////////////////////////////////////////////////////////////////////////////////
+        jQuery('input,select').each(function () {
+            var req = jQuery(this).attr('data-val-required');
+            if (undefined != req) {
+                var label = jQuery('label[for="' + jQuery(this).attr('id') + '"]');
+                var text = label.text();
+                if (text.length > 0) {
+                    label.append('<span style="color:red"> *</span>');
+                }
+            }
+        });
     </script>
 }

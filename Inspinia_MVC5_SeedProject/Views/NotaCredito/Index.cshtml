@@ -42,7 +42,6 @@
                                 </th>
                                 <th>
                                     Código Devolución
-                                    @*@Html.DisplayNameFor(model => model.dev_Id)*@
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.nocre_FechaEmision)
@@ -99,7 +98,6 @@
                                     @if (item.nocre_Anulado == false && item.nocre_Redimido == false && item.nocre_EsImpreso == false)
                                     {
                                         <td>
-
                                             @Html.ActionLink("Detalles", "Details", new { id = item.nocre_Id }, new { @class = "btn btn-primary btn-xs" })
                                             @Html.ActionLink("Editar", "Edit", new { id = item.nocre_Id }, new { @class = "btn btn-white btn-xs" })
                                         </td>
@@ -107,7 +105,6 @@
                                     else
                                     {
                                         <td>
-
                                             @Html.ActionLink("Detalles", "Details", new { id = item.nocre_Id }, new { @class = "btn btn-primary btn-xs" })
                                             <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="No se puede Editar">
                                                 <button class="btn btn-white btn-xs" style="pointer-events: none;" type="button" disabled>Editar</button>
@@ -123,26 +120,8 @@
             </div>
         </div>
     </div>
-</div>@* -------------------Modal Imprimir---------------- *@
-<div class="modal fade" id="ImprimirNC" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Imprimir Nota Crédito</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                ¿Deseas Imprimir Nota Crédito?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" @*onclick="AnularCuponDescuento();"*@ data-dismiss="modal">Si</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-            </div>
-        </div>
-    </div>
 </div>
+
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/DataTable.js"></script>
 <script>

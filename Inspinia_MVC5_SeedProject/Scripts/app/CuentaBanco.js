@@ -1,5 +1,6 @@
 ﻿$(document).ready(function () {
     $("#bcta_Numero")[0].maxLength = 50;
+    $("#bcta_Numero").attr("autocomplete", "randomString");
 })
 
 

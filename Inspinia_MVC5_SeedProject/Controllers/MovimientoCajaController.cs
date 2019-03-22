@@ -1,4 +1,5 @@
-﻿using System;
+﻿///ORIGINAL///   
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -10,7 +11,9 @@ using ERP_GMEDINA.Models;
 using System.Transactions;
 using CrystalDecisions.CrystalReports.Engine;
 using System.IO;
-//ESTE es//
+/// <summary>
+/// //
+/// </summary>
 namespace ERP_GMEDINA.Controllers
 {
     public class MovimientoCajaController : Controller
@@ -150,7 +153,7 @@ namespace ERP_GMEDINA.Controllers
                     {
                         try
                         {
-                            var fecha = DateTime.Now;
+                            var fecha = DateTime.Today;
                             if (db.tbMovimientoCaja.Any(a => tbMovimientoCaja.mocja_FechaApertura == fecha))
                             {
                                 ModelState.AddModelError("", "Este usuario ya aperturo una caja el día de hoy.");
@@ -185,7 +188,7 @@ namespace ERP_GMEDINA.Controllers
                                         listSolicitudEfectivo = db.UDP_Vent_tbSolicitudEfectivo_Apertura_Insert(
                                                 Convert.ToInt32(MensajeError),
                                                 solef_EsApertura,
-                                                Function.DatetimeNow(),
+                                                fecha,
                                                 Function.GetUser(),
                                                 moneda,
                                                 solef_EsAnulada,
@@ -338,7 +341,7 @@ namespace ERP_GMEDINA.Controllers
         [HttpPost]
         public JsonResult GetRol(int Sucursal)
         {
-            var list = db.UDP_Vent_tbUsuario_Rol_Apertura(Sucursal).ToList();
+            var list = db.UDP_Vent_tbUsuario_Rol_Apertura(Sucursal,Helpers.rol_Id).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
@@ -386,10 +389,6 @@ namespace ERP_GMEDINA.Controllers
 
 
         ////////////TERMINO APERTURA////////////
-
-
-
-
 
         ///Trae el Usuario Apertura para realizar el arqueo de caja
         [HttpPost]
@@ -533,7 +532,7 @@ namespace ERP_GMEDINA.Controllers
                 //// Aqui termina-----------------------------------------------------------------------------------------------------------
 
                 ////Efectivo Inicial
-                var solef_Id = db.tbSolicitudEfectivo.Where(x => x.solef_EsApertura == true && x.solef_FechaEntrega == Date && x.solef_EsAnulada == false).Select(x => x.solef_Id).SingleOrDefault();
+                var solef_Id = db.tbSolicitudEfectivo.Where(x => x.solef_EsApertura == true && x.solef_FechaEntrega == Date).Select(x => x.solef_Id).SingleOrDefault();
                 if (solef_Id > 0)
                 {
                     ViewBag.EfectivoInicial = db.tbSolicitudEfectivoDetalle.Where(x => x.solef_Id == solef_Id).Select(x => x.soled_MontoEntregado).Sum();
@@ -553,7 +552,7 @@ namespace ERP_GMEDINA.Controllers
                 {
                     ViewBag.EfectivoEntregado = 0.00;
                 }
-                
+
 
             }
             ViewBag.Cajero = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.usu_Nombres + " " + x.usu_Apellidos).SingleOrDefault();
@@ -647,6 +646,28 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.mocja_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbMovimientoCaja.mocja_UsuarioModifica);
             ViewBag.cja_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion", tbMovimientoCaja.cja_Id);
             return View(tbMovimientoCaja);
+
+            //////Efectivo Inicial
+            //var solef_Id = db.tbSolicitudEfectivo.Where(x => x.solef_EsApertura == true && x.solef_FechaEntrega == Date && x.solef_EsAnulada == false).Select(x => x.solef_Id).SingleOrDefault();
+            //if (solef_Id > 0)
+            //{
+            //    ViewBag.EfectivoInicial = db.tbSolicitudEfectivoDetalle.Where(x => x.solef_Id == solef_Id).Select(x => x.soled_MontoEntregado).Sum();
+            //}
+            //else
+            //{
+            //    ViewBag.EfectivoInicial = 0.00;
+            //}
+
+            //////Efectivo Entregado
+            //var EfectivoEntregado = db.tbPago.ToList();
+            //if (EfectivoEntregado.Count() > 0)
+            //{
+            //    ViewBag.EfectivoEntregado = db.tbPago.Where(x => x.pago_FechaElaboracion == Date).Select(x => x.pago_TotalCambio).Sum();
+            //}
+            //else
+            //{
+            //    ViewBag.EfectivoEntregado = 0.00;
+            //}
         }
 
         // POST: /MovimientoCaja/Edit/5

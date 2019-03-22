@@ -42,7 +42,6 @@ namespace ERP_GMEDINA.Models
         [Display(Name = "Fecha Emisión")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "*El campo {0} es requerido")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}", HtmlEncode = false)]
-        //[DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public System.DateTime nocre_FechaEmision { get; set; }
 
         [Display(Name = "Motivo Emisión")]
@@ -57,6 +56,7 @@ namespace ERP_GMEDINA.Models
         public bool nocre_Redimido { get; set; }
 
         [Display(Name = "Fecha Redención")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}", HtmlEncode = false)]
         public Nullable<DateTime> nocre_FechaRedimido { get; set; }
 
         [Display(Name = "Impreso")]

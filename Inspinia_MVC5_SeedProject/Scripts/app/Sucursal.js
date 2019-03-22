@@ -57,7 +57,48 @@ function GetMunicipios() {
 //Fin
 
 
-    
+$(document).ready(function () {
+    NUMERO_CAI();
+    $('#Sucursal').DataTable(
+    {
+        "searching": true,
+
+        "oLanguage": {
+            "oPaginate": {
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior",
+            },
+            "sEmptyTable": "No hay registros",
+            "sInfoEmpty": "Mostrando 0 de 0 Entradas",
+            "sSearch": "Buscar",
+            "sLengthMenu": "Mostrar _MENU_ registros por página",
+            "sInfo": "Mostrando _START_ a _END_ Entradas",
+        }
+    });
+});
+
+
+
+function NUMERO_CAI() {
+    $.ajax({
+        method: "GET",
+        url: "/Sucursal/Listado_CAI",
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
+    }).done(function (data) {
+        data: JSON.stringify({ id: $('#bod_Id').val() }),
+        console.log(data)
+        $("#pemi_Id").empty();
+        $("#pemi_Id").append("<option placeholder='Seleccione Punto Emision'>Seleccione Punto Emision</option>")
+        $.each(data, function (index, row) {
+            $("#pemi_Id").append("<option value ='" + row.pemi_Id + "'>" + row.pemi_NumeroCAI + "</option>")
+        });
+    })
+};
+
+
+
+
 $(document).ready(function () {
 
     var depto = $('#dep_Codigo').val();

@@ -1,10 +1,9 @@
-﻿
-$('#Inactivar').click(function () {
+﻿function AnularCuponDescuento() {
     var RazonAnular = $('#cdto_RazonAnulado').val();
     var cdtoId = $('#cdto_ID').val();
     var Anulada = 1
     if (RazonAnular == "") {
-        valido = document.getElementById('smsRazonAnular');
+        valido = document.getElementById('smsRazonAnular1');
         valido.innerText = "La razón anulación es requerida";
     }
     else {
@@ -25,6 +24,5 @@ $('#Inactivar').click(function () {
                 alert("Registro No Anulado");
             }
         });
-        
-    } 
-})
+    }
+}

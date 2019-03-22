@@ -71,7 +71,7 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.escre_Descripcion, new { @class = "control-label required col-md-2" })
                             <div class="col-md-4">
-                                @Html.EditorFor(model => model.escre_Descripcion)
+                                @Html.EditorFor(model => model.escre_Descripcion, new { htmlAttributes = new { @autocomplete = "off", @style = "text-transform:uppercase;" } })
                                 <p style="color:red"> @Html.ValidationMessageFor(model => model.escre_Descripcion)</p>
 </div>
                         </div>
@@ -131,4 +131,26 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+
+<script>
+    $(document).ready(function () {
+
+
+        //VALIDAR SOLO LETRAS
+        $('#escre_Descripcion').on('input', function (e) {
+            if (!/^[ a-z-áéíóúüñ]*$/i.test(this.value)) {
+                this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
+            }
+        });
+        $('#escre_Descripcion').on('input', function (e) {
+            if (!/^[ a-z-áéíóúüñ]*$/i.test(this.value)) {
+                this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
+            }
+        });
+
+
+    });
+</script>
+
 }

@@ -362,6 +362,9 @@
     <Compile Include="Models\Helpers.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ListadoPrecioDetalle.cs" />
+    <Compile Include="Models\Listado_CAI_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ListaPrecioDetalle.cs" />
     <Compile Include="Models\ListasPrecios.cs" />
     <Compile Include="Models\ModelERP.Context.cs">
@@ -1292,6 +1295,9 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDV_Vent_SolicitudCredito_SolicitudesPorAprobarReporte.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UDV_Vent_SolicituEfectivo_Index.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDV_Vent_tbSolicituEfectivo_EntreFechas.cs">

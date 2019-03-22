@@ -80,7 +80,7 @@
                                     <div class="form-group ">
                                         <label class="control-label col-md-2">Fecha Apertura</label>
                                         <div class="col-md-3">
-                                            <input class="form-control" readonly id="mocja_FechaApertura" name="mocja_FechaApertura"/>
+                                            <input class="form-control" value="@ViewBag.FechaApertura" readonly id="mocja_FechaApertura" name="mocja_FechaApertura"/>
                                             <p id="MensajeErrorDenominacion" style="color:red"> @Html.ValidationMessageFor(model => model.mocja_FechaApertura)</p>
                                         </div>
                                     </div>
@@ -121,12 +121,12 @@
                                                         <div class="form-group">
                                                             <label class="control-label col-md-2">Efectivo Inicial</label>
                                                             <div class="col-md-3">
-                                                                <input class="form-control" readonly value="@ViewBag.EfectivoInicial" type="text" />
+                                                                <input class="form-control" id="EfectivoInicial" readonly value="@ViewBag.EfectivoInicial" type="text" />
                                                             </div>
                                                             <div class="form-group">
                                                                 <label class="control-label col-md-2">Efectivo Recibido</label>
                                                                 <div class="col-md-3">
-                                                                    <input type="text" value="" class="form-control" readonly />
+                                                                    <input type="text" value="" class="form-control" id="EfectivoRecibido" readonly />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -134,19 +134,19 @@
                                                         <div class="form-group">
                                                             <label class="control-label col-md-2">Efectivo Pagos</label>
                                                             <div class="col-md-3">
-                                                                <input type="text" class="form-control" readonly />
+                                                                <input type="text" class="form-control" id="EfectivoPagos" value="@ViewBag.PagoEfectivo" readonly />
                                                             </div>
                                                             <div class="form-group ">
                                                                 <label class="control-label col-md-2">Efectivo Entregado</label>
                                                                 <div class="col-md-3">
-                                                                    <input type="text" class="form-control" readonly />
+                                                                    <input type="text" class="form-control" id="EfectivoEntregado" value="@ViewBag.EfectivoEntregado" readonly />
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="control-label col-md-2">Total</label>
                                                             <div class="col-md-3">
-                                                                <input type="text" class="form-control" readonly />
+                                                                <input type="text" class="form-control" id="TotalEfectivo" readonly />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -199,7 +199,7 @@
                                                             <div class="form-group">
                                                                 <label class="control-label col-md-2">Total Pagos</label>
                                                                 <div class="col-md-3">
-                                                                    <input type="text" value="" class="form-control" readonly />
+                                                                    <input type="text" value="@ViewBag.TotalPagos" class="form-control" readonly />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -242,7 +242,9 @@
                                             <td></td>
                                             <td></td>
                                             <th class="success">Total</th>
-                                            <td></td>
+                                            <td>
+                                                <p id="Grantotal" style="text-align:left"></p>
+                                            </td>
 
                                             @*<td></td>*@
                                         </tr>
@@ -267,9 +269,7 @@
         </div>
     </div>
 </div>
-<script src="~/Scripts/jquery-3.3.1.js"></script>
-<script src="~/Scripts/app/Datepicker.js"></script>
-<script src="~/Scripts/app/ArqueoCaja.js"></script>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
@@ -296,7 +296,7 @@
                                          "<td>" + item.deno_valor + "</td>" +
                                         // "<td>" + item.mnda_Nombre + "</td>" +
                         "<td>" + '<input type="text" id="cantidad" name="name" onKeyPress="return soloNumeros(event)" onKeyUp="pierdeFoco(this)" autocomplete="off" class="form-control" ize="3">' + "</td>" +
-                                          "<td>" + 0 + "</td>" +
+                                          "<td class='sumTotal'>" + 0 + "</td>" +
 
 
                                         "</tr>";
@@ -339,11 +339,10 @@
             var sub = parseFloat(Cantidad * deno_valor);
             var suma = 0;
             var data = [];
-
             SubTotal = 0;
 
             $(this).parents("tr").find("td")[6].innerHTML = sub;
-            if (sub != 0) {
+            if (sub != 0 || sub=="") {
                 SubTotal += sub;
 
                 //Calculo Total
@@ -354,22 +353,62 @@
                 var suma = data.reduce(function (a, b) { return a + b; }, 0);
 
 
-                $("#Total").val(suma);
-            
+               // $("#Grantotal").val(suma);
+                var TotalFinal = document.getElementById("Grantotal").innerHTML = parseFloat(suma);
+                console.log(data);
+                console.log(suma);
                 //---------------------------------------------
+              }
+            });
+
+    </script>
 
 
+
+    <script>
+        $('#guardar').click(function () {
+            var idmovimiento
+            var Detail = [];
+            var monedas = $('#mnda_Id').val();
+            if (monedas <= 0) {
+                valido = document.getElementById('mone');
+                valido.innerText = "El Campo Moneda es Requerido";
+                return false;
             }
+            else if (monedas > 0) {
+                $('#example1 > tbody  > tr').each(function () {
+                    idItem = $(this).data('id');
+                    var soledCantidadSolicitada = $(this).find("td:eq(2)").find("input").val();
+                    if (soledCantidadSolicitada != '' && soledCantidadSolicitada != 0) {
+                        console.log('idItem', idItem);
+                        console.log('soledCantidadSolicitada', soledCantidadSolicitada);
+                        var item = {
+                            deno_Id: idItem,
+                            soled_CantidadSolicitada: parseInt(soledCantidadSolicitada),
+                        }
+                        Detail.push(item);
+                    }
+                });
+                console.log(Detail);
+                $.ajax({
+                    url: "/SolicitudEfectivo/InsertDetalleSolicitudDetalle",
+                    method: 'POST',
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify({ procesoData: Detail }),
+                })
+                .done(function (data) {
+                    if (data == 'Error') {
+                        alert('No Enviado');
+                    }
+                    else {
+                        console.log(procesoData);
+                        console.log(cantisoli);
+                    }
 
-
-
-
+                });
+            }
         });
-
-
-
-
-
     </script>
 
 
@@ -378,4 +417,6 @@
 
 
 
-
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/Datepicker.js"></script>
+<script src="~/Scripts/app/ArqueoCaja.js"></script>

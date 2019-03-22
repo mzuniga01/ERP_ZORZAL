@@ -14,7 +14,6 @@
                     </div>
                 </div>
                 <div class="ibox-content">
-
                     <table id="tbClientes" class="table table table-striped  table-bordered">
                         <thead>
                             <tr>
@@ -31,32 +30,30 @@
                             </tr>
                         </thead>
                         <tbody>
-
                             @foreach (var item in Model)
                             {
                                 if (item.clte_Id == 1)
                                 {
-
                                 }
                                 else
                                 {
                                     var name = (!item.clte_EsPersonaNatural) ? item.clte_NombreComercial : item.clte_Nombres + ' ' + @item.clte_Apellidos;
-                                <tr data-clte="@item.clte_Id"
-                                    data-id="@item.clte_Identificacion"
-                                    data-nombre="@name">
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.clte_Id)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.clte_Identificacion)
-                                    </td>
-                                    <td>
-                                        @name
-                                    </td>
-                                    <td>
-                                        <button id="seleccionar" class="btn btn-primary btn-xs">Agregar</button>
-                                    </td>
-                                </tr>
+                                    <tr data-clte="@item.clte_Id"
+                                        data-id="@item.clte_Identificacion"
+                                        data-nombre="@name">
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.clte_Id)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.clte_Identificacion)
+                                        </td>
+                                        <td>
+                                            @name
+                                        </td>
+                                        <td>
+                                            <button id="seleccionar" class="btn btn-primary btn-xs">Agregar</button>
+                                        </td>
+                                    </tr>
                                 }
                             }
                         </tbody>
@@ -105,7 +102,7 @@
         clteItem = $(this).closest('tr').data('clte');
         idItem = $(this).closest('tr').data('id');
         nombreItem = $(this).closest('tr').data('nombre');
-      
+
         $("#clte_Id").val(clteItem);
         $("#tbCliente_clte_Identificacion").val(idItem);
         $("#tbCliente_clte_Nombres").val(nombreItem);
