@@ -40,7 +40,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-2 AsteriscoRojo">Precio Mayorista</label>
                             <div class="col-md-4">
-                                @Html.EditorFor(model => model.lispd_PrecioMayorista, new { htmlAttributes = new { @type = "number", @value = "0" } })
+                                @Html.EditorFor(model => model.lispd_PrecioMayorista, new { htmlAttributes = new { @type = "number", @value = "0", @autocomplete = "off" } })
                                 <div id="validacionPrecioMayoristaCreate">
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.lispd_PrecioMayorista)</p>
                                 </div>
@@ -48,7 +48,7 @@
                             </div>
                                 <label class="control-label col-md-2 AsteriscoRojo">Precio Minorista</label>
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.lispd_PrecioMinorista, new { htmlAttributes = new { @type = "number", @value = "0" } })
+                                    @Html.EditorFor(model => model.lispd_PrecioMinorista, new { htmlAttributes = new { @type = "number", @value = "0", @autocomplete = "off" } })
                                     <div id="validacionPrecioMinoristaCreate">
                                         <p id="validacionPreciosMM" style="color:red">@Html.ValidationMessageFor(model => model.lispd_PrecioMinorista)</p>
                                     </div>
@@ -58,7 +58,7 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.lispd_DescCaja, "Descuento Caja (%)", new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                @Html.EditorFor(model => model.lispd_DescCaja, new { htmlAttributes = new { @type = "number", @min = "0", @max = 100, @value = "0" } })
+                                @Html.EditorFor(model => model.lispd_DescCaja, new { htmlAttributes = new { @type = "number", @min = "0", @max = 100, @value = "0", @autocomplete = "off" } })
                                 <div id="validacionDescuentoCajaCreate">
                                     <p id="smsCantidad" style="color:red"> @Html.ValidationMessageFor(model => model.lispd_DescCaja)</p>
                                 </div>
@@ -66,7 +66,7 @@
 
                             @Html.LabelFor(model => model.lispd_DescGerente, "Descuento Gerente (%)", new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
-                                @Html.EditorFor(model => model.lispd_DescGerente, new { htmlAttributes = new { @type = "number", @value = "0" } })
+                                @Html.EditorFor(model => model.lispd_DescGerente, new { htmlAttributes = new { @type = "number", @value = "0", @autocomplete = "off" } })
                                 <div id="validacionDescuentoGerenteCreate">
                                     <p id="desccaja" style="color:red">@Html.ValidationMessageFor(model => model.lispd_DescGerente)</p>
                                 </div>
@@ -118,8 +118,8 @@
 </div>
 <script type="text/javascript">
         $(document).ready(function () {
-            $('#lispd_DescGerente').val('')
-            $('#lispd_DescCaja').val('')
+            $('#lispd_DescGerente').val('0.00')
+            $('#lispd_DescCaja').val('0.00')
             $('#lispd_PrecioMinorista').val('')
             $('#lispd_PrecioMayorista').val('')
         })

@@ -15,7 +15,7 @@ $('#AgregarListaPrecioDetalle').click(function () {
     //Minorista
     var minorista = parseInt(PrecioMinorista);
     01
-    if (PrecioMayorista == '' || PrecioMayorista == "0.00") {
+    if (PrecioMayorista == '' || PrecioMayorista == "") {
         $('#ErrorProductoCreate').text('');
         $('#ErrorPrecioMayoristaCreate').text('');
         $('#ErrorPrecioMinoristaCreate').text('');
@@ -24,7 +24,7 @@ $('#AgregarListaPrecioDetalle').click(function () {
         $('#validacionPrecioMayoristaCreate').after('<ul id="ErrorPrecioMayoristaCreate" class="validation-summary-errors text-danger">Campo Precio Mayorista requerido</ul>');
 
     }
-    else if (PrecioMinorista == '' || PrecioMinorista == "0.00") {
+    else if (PrecioMinorista == '' || PrecioMinorista == "") {
         $('#ErrorProductoCreate').text('');
         $('#ErrorPrecioMayoristaCreate').text('');
         $('#ErrorPrecioMinoristaCreate').text('');
@@ -103,8 +103,8 @@ $('#AgregarListaPrecioDetalle').click(function () {
             $('#prod_Codigo').val('');
             $('#tbProducto_prod_CodigoBarras').val('');
             $('#tbProducto_prod_Descripcion').val('');
-            $('#lispd_PrecioMayorista').val('0.00');
-            $('#lispd_PrecioMinorista').val('0.00');
+            $('#lispd_PrecioMayorista').val('');
+            $('#lispd_PrecioMinorista').val('');
             $('#lispd_DescCaja').val('0.00');
             $('#lispd_DescGerente').val('0.00');
 

@@ -30,18 +30,18 @@ function Validar() {
                                 Subtotal = ((val.pedd_Cantidad * val.lispd_PrecioMayorista) + ImpuestoTotal);
                                 GranSubtotal = (val.pedd_Cantidad * val.lispd_PrecioMayorista);
                                 Total = (GranSubtotal + ImpuestoTotal) - Descuento;
-                                contador = contador + 1;
-                                copiar = "<tr data-id=" + contador + ">";
-                                copiar += "<td id = 'prod_CodigoCreate'>" + val.prod_Codigo + "</td>";
-                                copiar += "<td id = 'tbProducto_prod_DescripcionCreate'>" + val.prod_Descripcion + "</td>";
-                                copiar += "<td id = 'factd_CantidadCreate' align='right'>" + val.pedd_Cantidad + "</td>";
-                                copiar += "<td id = 'Precio_UnitarioCreate' align='right'>" + val.lispd_PrecioMayorista + "</td>";
-                                copiar += "<td id = 'ImpuestoCreate' align='right'>" + val.pscat_ISV + "</td>";
-                                copiar += "<td id = 'factd_MontoDescuentoCreate' align='right'>" + Descuento + "</td>";
-                                copiar += "<td id = 'TotalProductoCreate' align='right'>" + Subtotal + "</td>";
-                                copiar += "<td>" + '<button id="removeFacturaDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
-                                copiar += "</tr>";
-                                $('#tblDetalleFactura').append(copiar);
+                                var table = $('#tblDetalleFactura').DataTable();
+                                table.row.add([
+                                val.prod_Codigo,
+                                val.prod_Descripcion,
+                                val.pedd_Cantidad,
+                                val.lispd_PrecioMayorista,
+                                val.pscat_ISV,
+                                Descuento,
+                                Subtotal,
+                                '<button id = "removeFacturaDetalle" class= "btn btn-danger btn-xs eliminar" type = "button">-</button>'
+                                ]).draw(false);
+
                                 total_col1 = 0
                                 SubtotalD = 0;
                                 GranImpuesto = 0;

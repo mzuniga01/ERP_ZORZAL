@@ -27,7 +27,9 @@
                 <div class="ibox-content">
                     <dl class="dl-horizontal">
                         <dt>
-                            @Html.DisplayNameFor(model => model.deno_Id)
+                            @Html.TextBoxFor(model => model.deno_Id,new {@class = "hidden" })
+                                @Html.DisplayNameFor(model => model.deno_Id)
+                            
                         </dt>
 
                         <dd>
@@ -71,10 +73,12 @@
                             @Html.DisplayFor(model => model.deno_valor)
                         </dd>
                     </dl>
-
-
-                    @Html.ActionLink("Editar", "Edit", new { id = Model.deno_Id }, new { @class = "btn btn-primary" })
-
+                    @{
+                        string Editar = "btnEditar";}
+                    <div class="alert alert-danger text-center text-uppercase" id="alerta" style="display:none;">... Esta denominación esta en uso no la puedes editar...</div>
+                    <div id="carlos">
+                        @Html.ActionLink("Editar", "Edit", new { id = Model.deno_Id }, new { @class = "btn btn-primary", id = Editar })
+                    </div>
 
                 </div>
             </div>
@@ -111,3 +115,45 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+<script type="text/javascript">
+        $(document).ready(function () {
+            GetDenominacions()
+        });
+
+        function GetDenominacions() {
+            var usos = $('#deno_Id').val();
+            console.log(usos)
+            var uso = usos;
+            $.ajax({
+                type: 'GET',
+                url: '/Denominacion/GDatosEncabezado',
+                datatype: 'JSON',
+                data: { 'uso': uso },
+                success: function (data) {
+                    if (data.length > 0) {
+                        // alert('no puedes')
+                        console.log(data)
+                        $("#deno_Tipo").prop("disabled", true);
+                        $("#mnda_Id").prop("disabled", true);
+                        $("#deno_Descripcion").prop("disabled", true);
+                        $("#deno_valor").prop("disabled", true);
+                        $("#guardar").prop("disabled", true);
+                        $('#alerta').show();                       
+                        document.getElementById('carlos').style.display = 'none';                       
+                    }
+                    else {
+                        //alert('si')
+                        console.log(data)
+                        // $('#alerta').hidden()
+                    }
+                },
+                error: function (data) { alert(data.responseText); }
+            });
+        };
+</script>
+
+}
+

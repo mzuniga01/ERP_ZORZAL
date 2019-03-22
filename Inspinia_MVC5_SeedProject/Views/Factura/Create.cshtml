@@ -43,12 +43,15 @@
                     {
                         @Html.AntiForgeryToken()
                         @Html.Hidden("RedirectTo", Url.Action("Index", "Factura"))
+                        <div class="alert alert-danger text-center text-uppercase" id="alertaCaja" style="display:none;">Debe realizar una Apertura de Caja</div>
                         <div class="form-horizontal">
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             <input id="clte_Id" name="clte_Id" type="hidden" class="form-control" value="@ViewBag.Iden" />
                             <input id="ped_Id" name="ped_Id" type="hidden" class="form-control" />
                             <input id="fact_Id" name="fact_Id" type="hidden" class="form-control" value="@ViewBag.fact_Id" />
                             <input id="usu_Id" name="usu_Id" type="hidden" class="form-control" value="@ViewBag.usu_Id" />
+                            <input id="Descuento" name="Descuento" type="hidden" class="form-control"/>
+                            <input id="DescuentoDetalle" name="DescuentoDetalle" type="hidden" class="form-control" />
                             <div class="form-group">
                                 @Html.LabelFor(model => model.suc_Id, new { @class = "control-label required col-md-2" })
                                 <div class="col-md-4">
@@ -92,7 +95,7 @@
                                 </div>
                                 @Html.LabelFor(model => model.clte_Nombres, new { @class = "control-label col-md-2", style = "width: 12.499999995%" })
                                 <div class="col-md-4">
-                                    <input name="clte_Nombres" id="cliente_Nombresxx" type="text" class="form-control" value="@ViewBag.Nombres" readonly />
+                                    <input name="clte_Nombres" id="cliente_Nombresxx" type="text" class="form-control" value="@ViewBag.Nombres" readonly style = "text-transform:uppercase;"/>
                                     <span class="validation-error">@Html.ValidationMessageFor(model => model.clte_Nombres)</span>
                                 </div>
                             </div>
@@ -140,15 +143,15 @@
 
                                 @Html.LabelFor(model => model.fact_Vendedor, new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.fact_Vendedor, new { htmlAttributes = new { @autocomplete = "off", @onkeyup = "format(this)", @onkeypress = "return soloLetras(event)" } })
+                                    @Html.EditorFor(model => model.fact_Vendedor, new { htmlAttributes = new { @autocomplete = "off", @onkeyup = "format(this)", @onkeypress = "return Validar(event)", @style="text-transform:uppercase" } })
                                     <span class="validation-error">@Html.ValidationMessageFor(model => model.fact_Vendedor)</span>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <div class="col-md-12 text-center">
-                                    <input type="button" value="Descuento Tercera Edad" class="btn btn-primary btn-sm" id="guardar" />
-                                    <input type="button" value="Descuento General" class="btn btn-primary btn-sm" id="guardar" />
+                                    <input type="button" value="Descuento Tercera Edad" class="btn btn-primary btn-sm" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#DescTerceraEdad" id="guardardescuentoterceraedad" />
+                                    <input type="button" value="Descuento General" class="btn btn-primary btn-sm" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#AutorizarDescuentoGeneral" id="guardarDescuentoGeneral" />
                                 </div>
                             </div>
 
@@ -190,7 +193,7 @@
 </div>
 
 <div>
-    <div class="modal fade" id="AutorizarDescuentoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal fade" id="AutorizarDescuentoGeneral" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -218,13 +221,13 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-4">Porcentaje de Descuento</label>
                                     <div class="col-md-6">
-                                        <input id="PorcentajeDescuento" type="text" class="form-control" onKeyPress="return soloNumeros(event)" , onKeyUp="pierdeFoco(this)" autocomplete="off" />
+                                        <input id="PorcentajeDescuento" type="number" class="form-control" onKeyPress="return soloNumeros(event)" , onKeyUp="pierdeFoco(this)" autocomplete="off" min="1" max="100" />
                                     </div>
                                 </div>
                                 <div><p id="mensajerror" style="color:red"></p></div>
                                 <div class="modal-footer">
-                                    <button class="btn btn-primary btn-sm" type="button" id="Autorizar" onclick="ValidarAutorizacion()">Guardar</button>
-                                    <button type="button" class="btn btn-white btn-sm" data-dismiss="modal" onclick="uncheck3()">Cancelar</button>
+                                    <button class="btn btn-primary btn-sm" type="button" id="Autorizar" onclick="ValidarAutorizacionGeneral()">Guardar</button>
+                                    <button type="button" class="btn btn-white btn-sm" data-dismiss="modal">Cancelar</button>
                                 </div>
                             </form>
                         </div>
@@ -240,7 +243,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="uncheck2()">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                     <h4 class="modal-title" id="myModalLabel">Registrar Tercera Edad</h4>
@@ -252,7 +255,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.fact_IdentidadTE, new { @class = "control-label col-md-3" })
                                     <div class="col-md-7">
-                                        @Html.EditorFor(model => model.fact_IdentidadTE, new { htmlAttributes = new { @autocomplete = "off", onKeyPress = "return soloNumeros(event)" } })
+                                        @Html.EditorFor(model => model.fact_IdentidadTE, new { htmlAttributes = new { @autocomplete = "off",  onKeyPress = "return format(event)", @style = "text-transform:uppercase;" } })
                                         <div id="validationfact_IdentidadTECreate">
                                             <span class="validation-error">@Html.ValidationMessageFor(model => model.fact_IdentidadTE)</span>
                                         </div>
@@ -261,7 +264,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.fact_NombresTE, new { @class = "control-label col-md-3" })
                                     <div class="col-md-7">
-                                        @Html.EditorFor(model => model.fact_NombresTE, new { htmlAttributes = new { @autocomplete = "off", @onkeyup = "format(this)", @style = "text-transform:capitalize;", @onkeypress = "return soloLetras(event)" } })
+                                        @Html.EditorFor(model => model.fact_NombresTE, new { htmlAttributes = new { @autocomplete = "off", onKeyPress = "return validar(event)", @style = "text-transform:uppercase;" } })
                                         <div id="validationNombreTECreate">
                                             <span class="validation-error">@Html.ValidationMessageFor(model => model.fact_NombresTE)</span>
                                         </div>
@@ -278,7 +281,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button class="btn btn-primary btn-sm" type="button" id="AgregarTerceraEdad">Guardar</button>
-                                    <button type="button" class="btn btn-white btn-sm" data-dismiss="modal" onclick="uncheck2()">Cancelar</button>
+                                    <button type="button" class="btn btn-white btn-sm" data-dismiss="modal">Cancelar</button>
                                 </div>
                             </form>
                         </div>
@@ -310,12 +313,19 @@
 <script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
 <script src="~/Scripts/app/Datepicker.js"></script>
 <script src="~/Scripts/app/Factura.js"></script>
-@*<script src="~/Scripts/app/FacturaDetalle.js"></script>
+<script src="~/Scripts/app/CaracteresEspeciales.js"></script>
 <script src="~/Scripts/app/ValidarPedido.js"></script>
+@*<script src="~/Scripts/app/FacturaDetalle.js"></script>
 <script src="~/Scripts/app/FacturaPedido.js"></script>
 <script src="~/Scripts/app/CaracteresEspeciales.js"></script>*@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+<script>
+    $("#fact_Vendedor").autocomplete({
+            source: "/Factura/GetEmpleados",
+            minLength: 3
+        });
+</script>
 }
 
 

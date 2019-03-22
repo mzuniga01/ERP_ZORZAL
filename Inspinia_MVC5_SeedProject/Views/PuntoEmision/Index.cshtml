@@ -19,10 +19,6 @@
                 <div class="ibox-title">
                     <h5>Listado de Punto Emisión</h5>
 					<div class="ibox-tools">
-                        @*<a href="~/ReportViewer/PuntoEmision.aspx" class = "btn btn-primary">Generar Reporte</a>*@
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                            Generar Reporte
-                        </button>
                         @Html.ActionLink("Registrar Punto Emisión", "Create", null, new { @class = "btn btn-primary" })
 					</div>
                 </div>
@@ -64,21 +60,5 @@
         </div>
     </div>
  </div>
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Generar Reporte</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body" id="GenerarReporteSucursal">
-                @Html.Partial("_GenerarReporte", new ERP_GMEDINA.Models.tbSucursal())
-            </div>
-        </div>
-    </div>
-</div>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/DataTable.js"></script>

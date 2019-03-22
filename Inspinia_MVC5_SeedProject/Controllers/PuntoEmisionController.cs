@@ -378,6 +378,11 @@ namespace ERP_ZORZAL.Controllers
                     Msj = "No se pudo guardar el registro, favor contacte al administrador.";
                     ModelState.AddModelError("", Msj);
                 }
+                else if (db.tbPuntoEmisionDetalle.Any(a => a.pemid_RangoInicio == CreatePuntoEmisionDetalle.pemid_RangoInicio && a.pemid_RangoFinal == CreatePuntoEmisionDetalle.pemid_RangoFinal))
+                {
+                    Msj = "Ya existe esta numeración";
+                    //ModelState.AddModelError("dfisc_Id", Msj);
+                }
                 else
                 {
                     Msj = "El registro se guardó exitosamente";
@@ -392,63 +397,5 @@ namespace ERP_ZORZAL.Controllers
             return Json(Msj, JsonRequestBehavior.AllowGet);
         }
 
-        public int Usuario()
-        {
-            int idUser = 0;
-            try
-            {
-                List<tbUsuario> User = Function.getUserInformation();
-                foreach (tbUsuario Usuario in User)
-                {
-                    idUser = Convert.ToInt32(Usuario.usu_Id);
-                }
-                return idUser;
-            }
-            catch (Exception Ex)
-            {
-                Ex.Message.ToString();
-                return 0;
-            }
-        }
-
-        [HttpPost]
-        public ActionResult Reporte(tbObjeto Objeto,int suc_Id)
-        {
-
-            int iTipoReporte = Objeto.obj_Id;
-            var list = db.SDP_Acce_GetReportes().ToList();
-            var GetUsuario = Usuario();
-            var UsuarioName = db.tbUsuario.Where(x => x.usu_Id == GetUsuario).Select(i => new { i.usu_Nombres, i.usu_Apellidos }).FirstOrDefault();
-            ReportDocument rd = new ReportDocument();
-            Stream stream = null;
-            rptInventarioNumeraciones rptNumeracion = new rptInventarioNumeraciones();
-            Reportes ReporteNumeracion = new Reportes();
-
-            var InventarioNumeracionTableAdapter = new UDV_Vent_InventarioNumeracionesTableAdapter();
-
-            try
-            {
-                InventarioNumeracionTableAdapter.FillFiltros(ReporteNumeracion.UDV_Vent_InventarioNumeraciones, suc_Id);
-
-                rptNumeracion.SetDataSource(ReporteNumeracion);
-                rptNumeracion.SetParameterValue("usuario", UsuarioName.usu_Nombres + " " + UsuarioName.usu_Apellidos);
-
-                stream = rptNumeracion.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
-                stream.Seek(0, SeekOrigin.Begin);
-
-                rptNumeracion.Close();
-                rptNumeracion.Dispose();
-               
-
-                string fileName = "Reporte_InventarioNumeraciones.pdf";
-                Response.AppendHeader("Content-Disposition", "inline; filename=" + fileName);
-                return File(stream, "application/pdf");
-            }
-            catch (Exception Ex)
-            {
-                Ex.Message.ToString();
-                throw;
-            }
-        }
     }
 }

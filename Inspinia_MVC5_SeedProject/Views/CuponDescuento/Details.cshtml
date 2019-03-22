@@ -99,7 +99,24 @@
                         {
                             <dd> No</dd>
                         }
-                        
+                        <dt>
+                            @Html.DisplayNameFor(model => model.cdto_FechaRedencion)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.cdto_FechaRedencion)
+                        </dd>
+                        <dt>
+                            Es Impreso
+                        </dt>
+                        @if (Model.cdto_EsImpreso)
+                        {
+                            <dd>Sí</dd>
+                        }
+                        else
+                        {
+                            <dd>No</dd>
+                        }
                         <dt>
                             @Html.DisplayNameFor(model => model.cdto_FechaEmision)
                         </dt>
@@ -115,13 +132,7 @@
                         <dd>
                             @Html.DisplayFor(model => model.cdto_FechaVencimiento)
                         </dd>
-                        <dt>
-                            @Html.DisplayNameFor(model => model.cdto_FechaRedencion)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.cdto_FechaRedencion)
-                        </dd>
+                        
                     </dl>
                     @if (Model.cdto_Anulado == false && Model.cdto_Redimido == false && Model.cdto_EsImpreso == false)
                     {

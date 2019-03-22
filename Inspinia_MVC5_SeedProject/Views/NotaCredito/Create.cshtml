@@ -98,26 +98,27 @@
 
                             @*FIN Check box*@
 
-                            <div class="form-group" id="divDevolucion">
-                                @Html.LabelFor(model => model.dev_Id, new { @class = "control-label col-md-2 AsteriscoRojo" })
-                                <div class="col-md-3">
-                                    @Html.EditorFor(model => model.dev_Id, new { htmlAttributes = new { @readonly = "readonly" } })
-                                    <p id="valido" style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.dev_Id)</span></p>
-                                </div>
-                                <div class="col-md-">
-                                    <button type="button" id="buscarDev" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarDevolucion"><span class="glyphicon glyphicon-search"></span></button>
+                            <div class="form-group" >
+                                <div id="divDevolucion">
+                                    @Html.LabelFor(model => model.dev_Id, new { @class = "control-label col-md-2 AsteriscoRojo" })
+                                    <div class="col-md-2">
+                                        @Html.EditorFor(model => model.dev_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                        <p id="valido" style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.dev_Id)</span></p>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <button type="button" id="buscarDev" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarDevolucion"><span class="glyphicon glyphicon-search"></span></button>
+                                    </div>
                                 </div>
                                 @*</div>*@
-
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.tbCliente.clte_Identificacion, "Identificación", new { @class = "control-label col-md-2" })
                                     <div class="col-md-3">
-                                        @Html.EditorFor(model => model.tbCliente.clte_Identificacion, new { htmlAttributes = new { @readonly = "readonly" } })
+                                        @Html.EditorFor(model => model.tbCliente.clte_Identificacion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                         <p id="valido" style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.tbCliente.clte_Identificacion)</span></p>
                                     </div>
 
-                                    <div class="col-md-">
-                                        <button type="button" disabled id="cltesearch" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarCliente"><span class="glyphicon glyphicon-search"></span></button>
+                                    <div class="col-md-1">
+                                        <button type="button" disabled id="cltesearch" name="cltesearch" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarCliente"><span class="glyphicon glyphicon-search"></span></button>
                                     </div>
                                 </div>
                             </div>
@@ -125,7 +126,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.tbCliente.clte_Nombres, "Cliente", new { @class = "control-label col-md-2" })
                                 <div class="col-md-3">
-                                    @Html.EditorFor(model => model.tbCliente.clte_Nombres, new { htmlAttributes = new { @readonly = "readonly" } })
+                                    @Html.EditorFor(model => model.tbCliente.clte_Nombres, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     <p id="valido" style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.tbCliente.clte_Nombres)</span></p>
                                 </div>
                                 @*</div>*@
@@ -133,7 +134,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.nocre_Monto, new { @class = "control-label col-md-2" })
                                     <div class="col-md-3">
-                                        @Html.EditorFor(model => model.nocre_Monto, new { htmlAttributes = new { @style = "text-align:right", @type = "number", @min = "0", @step = "0.01", @value = "0", @readonly = "readonly", @onkeypress = "return filterFloat(event,this);" } })
+                                        @Html.EditorFor(model => model.nocre_Monto, new { htmlAttributes = new { @class = "form-control", @style = "text-align:right", @type = "number", @min = "0", @step = "0.01", @value = "0", @readonly = "readonly", @onkeypress = "return filterFloat(event,this);" } })
                                         <p id="smsMontoNC" style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.nocre_Monto)</span></p>
                                     </div>
                                 </div>
@@ -152,7 +153,7 @@
                                 <div class="form-group" id="divFechaDev">
                                     @Html.LabelFor(model => model.tbDevolucion.dev_Fecha, new { @class = "control-label col-md-2" })
                                     <div class="col-md-3">
-                                        @Html.EditorFor(model => model.tbDevolucion.dev_Fecha, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @readonly = "readonly" } })
+                                        @Html.EditorFor(model => model.tbDevolucion.dev_Fecha, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                         <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.tbDevolucion.dev_Fecha)</span></p>
                                     </div>
                                 </div>
@@ -172,7 +173,7 @@
                             </div>
                             @*clte_Id NotaCredito fin*@
                             <div class="form-group">
-                                <div class="col-md-12 text-center">
+                                <div class="col-md-offset-2 col-md-10">
                                     <input type="submit" value="Guardar" id="guardar" class="btn btn-primary" />
                                     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                                 </div>
@@ -268,7 +269,7 @@
                                 </div>
                                 <div><p id="mensajerror" style="color:red"></p></div>
                                 <div class="modal-footer">
-                                    <button class="btn btn-primary btn-sm" type="button" id="Autorizar"  onclick="AprobarCredito()">Autorizar</button>
+                                    <button class="btn btn-primary btn-sm" type="button" id="Autorizar" onclick="otros()" @*onclick="AprobarCredito()"*@>Autorizar</button>
                                     <button type="button" class="btn btn-white btn-sm" data-dismiss="modal" onclick="devolucionNC()">Cancelar</button>
                                 </div>
                             </form>
@@ -400,8 +401,8 @@
             $('#cltesearch').hide();         //prop("disabled", true);
             $('#dev_Id').val('');
             $("#divFechaDev").show();
-            document.getElementById("#Username1").value = "";
-            document.getElementById("#txtPassword1").value = "";
+            //document.getElementById("#Username1").value = "";
+            //document.getElementById("#txtPassword1").value = "";
             $('#Username1').val("");
             $('#txtPassword1').val("");
             $('#mensajerror').val("");

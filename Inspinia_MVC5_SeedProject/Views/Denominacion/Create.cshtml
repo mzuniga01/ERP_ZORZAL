@@ -56,7 +56,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-2" id="descr">Descripción</label>
                                 <div class="col-md-5">
-                                    @Html.EditorFor(model => model.deno_Descripcion, new { htmlAttributes = new { @maxlength = "50", @autocomplete = "off", placeholder = "ejm: 100 Lempiras", @onkeyup = "format(this)", @style = "text-transform:capitalize;", onkeypress = "return validar(event)", Title = "si escribe decimales porfavor separelos con un '.' " } })
+                                    @Html.EditorFor(model => model.deno_Descripcion, new { htmlAttributes = new { @maxlength = "50", @autocomplete = "off", @onkeyup = "format(this),pierdeFoco(this)", @style = "text-transform:capitalize;", onkeypress = "return validar(event)", Title = "si escribe decimales porfavor separelos con un '.' " } })
                                     <p id="descriptions" style="color:red">@Html.ValidationMessageFor(model => model.deno_Descripcion, "", new { @style = "color:red" })</p>
                                 </div>
                             </div>
@@ -88,10 +88,29 @@
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script>        
+    function pierdeFoco(e) {
+        var valor = e.value.replace(/^ */, '');
+        e.value = valor;
+    }
+    </script>
     <script>
+        $("#mnda_Id").click(function () {
+            var cabo = $('select[name="mnda_Id"] option:selected').text();
+            $("#deno_Descripcion").attr('placeholder', 'ejm: 100  '+ cabo);
+        });
+    </script>
+    <script>
+       
+        $("#deno_Descripcion").attr('placeholder', 'ejm: 100 Lempiras');
+        //, placeholder = "ejm: 100 Lempiras"
+        //Posicion focus
+        $("#deno_Tipo").focus();
         //Ateriscos
         $('#moneda').append('<span style="color:red"> *</span>');
         $('#descr').append('<span style="color:red"> *</span>');
+        var valordenominacion = "";
+        $('#deno_valor').val(valordenominacion);
         // campos requerido *
         jQuery('input,select').each(function () {
             var req = jQuery(this).attr('data-val-required');
@@ -207,7 +226,7 @@
             tecla = (document.all) ? e.keyCode : e.which;
             tecla = String.fromCharCode(tecla)
             return /^[[A-Za-z0-9 .]+]*$/i.test(tecla);
-            /^([0-9]+\.?[0-9]{0,2})$/
+           
 
         }//_______________________________
     </script>
@@ -248,4 +267,17 @@
             }
         }
     </script>
+
+<script>
+        $(document).keydown(function (e) {
+            if ((e.key == 'g' || e.key == 'G') && (e.ctrlKey || e.metaKey)) {
+                e.preventDefault();
+                //alert("Ctrl-g pressed");
+                $("#guardar").click();
+                return false;
+            }
+            return true;
+        });
+</script>
+
 }

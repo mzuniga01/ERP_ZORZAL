@@ -29,7 +29,6 @@
 				@using (Html.BeginForm())
                 {
                     @Html.AntiForgeryToken()
-    
                     <div class="form-horizontal">
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         @Html.HiddenFor(model => model.pemi_Id)
@@ -82,8 +81,6 @@
                                 </div>
                             </div>
                         }
-                   
-
                 </div>
                 }
                     <div class="row">
@@ -110,8 +107,6 @@
                     </div>
                 </div>
             </div>
-            
-           
         </div>
     </div>
  </div>
@@ -120,7 +115,6 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
-               
                     <div class="ibox-title">
                         <h5>Auditoría</h5>
                     </div>
@@ -161,16 +155,12 @@
 <script src="~/Scripts/app/EditNumeracion.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="~/Scripts/app/IndexNumeracion.js"></script>
+<script src="~/Scripts/app/ComandoGuardar.js"></script>
 <script>
     //Get Número CAI
     $('#btnModalGuardarNumeracion').click(function () {
         var GetNumeroCAI = $('#pemi_NumeroCAI').val();
         $("#tbPuntoEmision_pemi_NumeroCAI").val(GetNumeroCAI);
-    });
-
-    //Get Usuario Crea
-    $(document).on("click", "#PuntoEmision tbody tr td button#btnModalDetallesEdit", function () {
-        UsuarioCreaItem = $(this).closest('tr').data('usuariocrea');
     });
 
     //Validación-Sólo número y guiones
@@ -187,11 +177,3 @@
         return /^[a-z0-9A-Z\-]+$/.test(tecla);
     }
 </script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-
-}

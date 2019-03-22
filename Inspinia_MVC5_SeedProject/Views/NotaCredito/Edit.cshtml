@@ -93,7 +93,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.dev_Id, "Devolución", new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.EditorFor(model => model.dev_Id)
+                                        @Html.EditorFor(model => model.dev_Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                         <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.dev_Id)</span></p>
                                     </div>
                                     <div class="col-md-">
@@ -132,7 +132,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.nocre_Monto, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.EditorFor(model => model.nocre_Monto, new { htmlAttributes = new { @style = "text-align:right", @readonly = "readonly", @type = "number", @min = "0", @step = "0.01", @value = "0", maxlength = "4" } })
+                                        @Html.EditorFor(model => model.nocre_Monto, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @type = "number", @min = "0", @step = "0.01", @value = "0", maxlength = "4" } })
                                         <p id="smsMontoNC" style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.nocre_Monto)</span></p>
                                     </div>
                                 </div>
@@ -140,7 +140,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.nocre_MotivoEmision, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.TextAreaFor(model => model.nocre_MotivoEmision, new { @class = "form-control",  @onkeypress = "return soloLetras(event)", @onblur = "limpia()" })
+                                        @Html.TextAreaFor(model => model.nocre_MotivoEmision, new { @class = "form-control", @style = "text-transform:uppercase;", @onkeypress = "return soloLetras(event)", @onblur = "limpia()" })
                                         <p id="smsMotivoNC" style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.nocre_MotivoEmision)</span></p>
                                     </div>
                                 </div>
@@ -156,7 +156,7 @@
                                 <div class="form-group" id="divFechaDev">
                                     @Html.LabelFor(model => model.tbDevolucion.dev_Fecha, new { @class = "control-label col-md-2" })
                                     <div class="col-md-4">
-                                        @Html.EditorFor(model => model.tbDevolucion.dev_Fecha, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @readonly = "readonly" } })
+                                        @Html.EditorFor(model => model.tbDevolucion.dev_Fecha, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                         <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.tbDevolucion.dev_Fecha)</span></p>
                                     </div>
                                 </div>
@@ -224,12 +224,39 @@
                             @*---------------Botones---------------------*@
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="Guardar" class="btn btn-primary" />
-                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
-                                    <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-danger" data-toggle="modal" data-target="#AnularNC">
-                                        @*boton Anular Cupon Descuento*@
-                                        Anular
-                                    </button>
+                                   
+
+                                    @if (Model.nocre_Anulado == false && Model.nocre_Redimido == false && Model.nocre_EsImpreso == false)
+                                    {
+                                        <input type="submit" value="Guardar" class="btn btn-primary" />
+                                        @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+
+                                            if (Model.tbCliente.clte_EsPersonaNatural == true && Model.dev_Id != null)
+                                            {
+                                                @Html.ActionLink("Imprimir", "ExportReportclteNaturalxDEV", new { id = Model.nocre_Id }, new { @class = "btn btn-primary" })
+                                            }
+                                            else if (Model.tbCliente.clte_EsPersonaNatural == true && Model.dev_Id == null)
+                                            {
+                                                @Html.ActionLink("Imprimir", "ExportReportclteNaturalxOtros", new { id = Model.nocre_Id }, new { @class = "btn btn-primary" })
+                                            }
+                                            else if (Model.tbCliente.clte_EsPersonaNatural == false && Model.dev_Id != null)
+                                            {
+                                                @Html.ActionLink("Imprimir", "ExportReportclteJuridicoxDEV", new { id = Model.nocre_Id }, new { @class = "btn btn-primary" })
+                                            }
+                                            else if (Model.tbCliente.clte_EsPersonaNatural == false && Model.dev_Id == null)
+                                            {
+                                                @Html.ActionLink("Imprimir", "ExportReportclteJuridicoxOtros", new { id = Model.nocre_Id }, new { @class = "btn btn-primary" })
+                                            }
+                                            <button id="bottonAnular" name="bottonAnular" type="button" class="btn btn-danger" data-toggle="modal" data-target="#AnularNC">
+                                                @*boton Anular Cupon Descuento*@
+                                                Anular
+                                            </button>
+                                    }
+                                    else
+                                    {
+
+                                    }
+                                    
                                 </div>
                             </div>
                             @*---------------FIN Botones---------------------*@
@@ -431,4 +458,17 @@
         tecla = String.fromCharCode(tecla)
         return /^[a-zA-ZáéíóúñÁÉÍÓÚÑ ]+$/.test(tecla);
     }
+    //VALIDAR SOLO LETRAS
+
+    $('#nocre_MotivoEmision').on('input', function (e) {
+        if (!/^[0-9 .a-z-áéíóúüñ]*$/i.test(this.value)) {
+            this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
+        }
+    });
+    $('#nocre_MotivoEmision').on('input', function (e) {
+        if (!/^[0-9. a-z-áéíóúüñ]*$/i.test(this.value)) {
+            this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
+        }
+    });
+
 </script>

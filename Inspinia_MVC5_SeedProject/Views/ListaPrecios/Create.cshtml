@@ -10,6 +10,7 @@
         color: red;
     }
 </style>
+
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Lista Precio</h2>
@@ -36,7 +37,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-2 AsteriscoRojo">Nombre Lista</label>                       
                             <div class="col-md-5">
-                                @Html.EditorFor(model => model.listp_Nombre, new { htmlAttributes = new { @autocomplete = "off", @style = "text-transform:Capitalize;" } })
+                                @Html.EditorFor(model => model.listp_Nombre, new { htmlAttributes = new { @autocomplete = "off", @style = "text-transform:uppercase;" } })
                                 @Html.ValidationMessageFor(model => model.listp_Nombre)
                             </div>
                             <br /><br /><br />
@@ -94,7 +95,11 @@
                                 </div>
                             </div>
                         </div>
+
+
+
                     }
+                  
 
                 </div>
             </div>
@@ -157,6 +162,11 @@ $(document).keydown(function (e) {
 @section Scripts {
         @Scripts.Render("~/bundles/jqueryval")
 <script>
+    /// FOCUS
+
+
+
+
     $(document).ready(function () {
 
 

@@ -7,6 +7,9 @@
  
                 <input name="pemi_Id" id="txtpemi_Id" type="hidden" value="@ViewBag.IdPuntoEmisionEdit">
                 <div class="form-horizontal">
+                    <div id="MensajeNumeracion">
+                        @*<p style="color:red">@Html.ValidationMessageFor(model => model.dfisc_Id)</p>*@
+                    </div>
                     <div class="form-group">
                         <label class="control-label col-md-2">Número CAI</label>
                         <div class="col-md-10">
@@ -19,7 +22,6 @@
                             @{ string Vie = "dfisc_IdList_";}
                             @Html.DropDownList("dfisc_Id", (IEnumerable<SelectListItem>)Context.Items[Vie], "Seleccione", new { @class = "form-control" })
                             <div id="validacionDocumentoFiscalCreate">
-                                <p style="color:red">@Html.ValidationMessageFor(model => model.dfisc_Id)</p>
                             </div>
                         </div>
                     </div>
@@ -29,7 +31,6 @@
                         <div class="col-md-10">
                             @Html.EditorFor(model => model.pemid_RangoInicio, new { htmlAttributes = new { @onkeypress = "return validar(event)", @id = "txtRangoInicial",@autocomplete = "off" } })
                             <div id="validacionRangoInicioCreate">
-                                <p style="color:red">@Html.ValidationMessageFor(model => model.pemid_RangoInicio)</p>
                             </div>
                         </div>
                     </div>
@@ -39,7 +40,6 @@
                         <div class="col-md-10">
                             @Html.EditorFor(model => model.pemid_RangoFinal, new { htmlAttributes = new { @onkeypress = "return validar(event)", @id = "txtRangoFinal", @autocomplete = "off" } })
                             <div id="validacionRangoFinalCreate">
-                                <p style="color:red">@Html.ValidationMessageFor(model => model.pemid_RangoFinal)</p>
                             </div>
                         </div>
 
@@ -49,7 +49,6 @@
                         <div class="col-md-10">
                             @Html.EditorFor(model => model.pemid_NumeroActual, new { htmlAttributes = new {@id="txtNumeroActual", @class = "form-control", @readonly = "readonly" } })
                             <div id="validacionNumeroActualCreate">
-                                <p style="color:red">@Html.ValidationMessageFor(model => model.pemid_NumeroActual)</p>
                             </div>
                         </div>
                     </div>
@@ -58,7 +57,6 @@
                         <div class="col-md-10">
                             @Html.EditorFor(model => model.pemid_FechaLimite, "{0:MM/dd/yyyy}", new { htmlAttributes = new { @autocomplete = "off", @id = "txtFechalimite"} })
                             <div id="validacionFechaLimiteCreate">
-                                <p style="color:red">@Html.ValidationMessageFor(model => model.pemid_FechaLimite)</p>
                             </div>
                         </div>
                     </div>

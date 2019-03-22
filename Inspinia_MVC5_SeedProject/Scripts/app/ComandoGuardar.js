@@ -7,3 +7,12 @@
     }
     return true;
 });
+
+//Focus
+$("#ban_Nombre").focus();
+$("#bcta_Numero").focus();
+$("#pemi_NumeroCAI").focus();
+$("#clte_Nombres").focus(); 
+$("#clte_NombreComercial").focus();
+$("#esfac_Descripcion").focus();
+$("#mnda_Abreviatura").focus();

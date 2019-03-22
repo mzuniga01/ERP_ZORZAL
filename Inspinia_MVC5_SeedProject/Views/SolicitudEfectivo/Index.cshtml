@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ERP_GMEDINA.Models.UDP_Vent_SolicituEfectivo_Select>
+﻿@model IEnumerable<ERP_GMEDINA.Models.UDV_Vent_SolicituEfectivo_Index>
 
 
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -6,8 +6,8 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Listado de Solicitudes de Efectivo</h5>
-                    <div class="ibox-tools">
+                    <h5>Listado de Solicitudes de Efectivo</h5>                  
+                    <div class="ibox-tools">                        
                         @*@using (Html.BeginForm("ReporteGeneral", "SolicitudEfectivo", FormMethod.Post, new { enctype = "multipart/form-data" , target = "_blank" }))
                         {
 
@@ -47,14 +47,7 @@
                                     </th>
                                     <th>
                                         Monto Entregado
-                                    </th>
-
-                                    <th class="hide">
-                                        Apertura
-                                    </th>
-                                    <th class="hide">
-                                        Cajero
-                                    </th>
+                                    </th>                                    
                                     <th>
                                         Acciones
                                     </th>
@@ -79,9 +72,7 @@
                                         <td>
                                             @Html.DisplayFor(modelItem => item.Moneda)
                                         </td>
-                                        <th class="hide">
-                                            @Html.DisplayFor(modelItem => item.usuariocrea)
-                                        </th>  
+                                         
                                         @{ if (Convert.ToString(item.MontoSolicitado) == "")
                                             {
                                                 <td>
@@ -108,25 +99,27 @@
                                                 </td>
                                             }
                                         }
-                                        <td class="hidden">
-                                            @Html.DisplayFor(modelItem => item.Apertura)
-                                        </td>
-                                        @{
-                                            string Editar = "btnEditar";}
-                                        @{
-                                             if (Convert.ToString(item.MontoSolicitado) == "")
+                                       
+                                       
+                                        @if (Convert.ToString(item.MontoSolicitado) == "")
                                             {
                                                 <td>
                                                     @Html.ActionLink("Detalle", "Details", new { id = item.IdSolicitud }, new { @class = "btn btn-primary btn-xs" })
-                                                    @Html.ActionLink("Editar", "Edit", new { id = item.IdSolicitud }, new { @class = "btn btn-white btn-xs", id = Editar })
+                                                    @Html.ActionLink("Editar", "Edit", new { id = item.IdSolicitud }, new { @class = "btn btn-white btn-xs" })
                                                 </td>
-                                            }
-                                            else if (item.MontoEntregado == 0)
-                                            {
+                                        }
+                                        else if (item.Impresa == true)
+                                        {
+                                            <td>
+                                                @Html.ActionLink("Detalle", "Details", new { id = item.IdSolicitud }, new { @class = "btn btn-primary btn-xs" })
+                                              
+                                            </td>
+                                        }
+                                        else if (item.MontoEntregado == 0)
+                                        {
                                                 <td>
                                                     @Html.ActionLink("Detalle", "Details", new { id = item.IdSolicitud }, new { @class = "btn btn-primary btn-xs" })
-                                                    @Html.ActionLink("Editar", "Edit", new { id = item.IdSolicitud }, new { @class = "btn btn-white btn-xs", id = Editar })
-                                                    @Html.ActionLink("Entregar Efectivo", "EditEntregaEfectivo", new { id = item.IdSolicitud }, new { @class = "btn btn-danger btn-xs" })
+                                                    @Html.ActionLink("Editar", "Edit", new { id = item.IdSolicitud }, new { @class = "btn btn-white btn-xs" })                                                 
                                                 </td>
                                             }
 
@@ -140,13 +133,10 @@
                                             else
                                             {
                                                 <td>
-                                                    @Html.ActionLink("Detalle", "Details", new { id = item.IdSolicitud }, new { @class = "btn btn-primary btn-xs" })
-                                                    @Html.ActionLink("Editar", "Edit", new { id = item.IdSolicitud }, new { @class = "btn btn-white btn-xs", id = Editar })
-                                                    @Html.ActionLink("Entregar Efectivo", "EditEntregaEfectivo", new { id = item.IdSolicitud }, new { @class = "btn btn-danger btn-xs" })
-                                                    @Html.ActionLink("Imprimir", "ExportReport", new { id = item.IdSolicitud }, new { @class = "btn btn-primary btn-xs", target = "_blank" })
+                                                    @Html.ActionLink("Detalle", "Details", new { id = item.IdSolicitud }, new { @class = "btn btn-primary btn-xs" })                                                   
                                                 </td>
                                             }
-                                        }
+                                        
                                     </tr>
                                    }
                             </tbody>

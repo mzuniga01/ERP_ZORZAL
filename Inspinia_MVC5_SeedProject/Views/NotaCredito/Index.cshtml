@@ -102,23 +102,6 @@
 
                                             @Html.ActionLink("Detalles", "Details", new { id = item.nocre_Id }, new { @class = "btn btn-primary btn-xs" })
                                             @Html.ActionLink("Editar", "Edit", new { id = item.nocre_Id }, new { @class = "btn btn-white btn-xs" })
-
-                                            @if (item.tbCliente.clte_EsPersonaNatural == true && item.dev_Id != null)
-                                            {
-                                                @Html.ActionLink("Imprimir", "ExportReportclteNaturalxDEV", new { id = item.nocre_Id }, new { @class = "btn btn-primary btn-xs" })
-                                            }
-                                            else if (item.tbCliente.clte_EsPersonaNatural == true && item.dev_Id == null)
-                                            {
-                                                @Html.ActionLink("Imprimir", "ExportReportclteNaturalxOtros", new { id = item.nocre_Id }, new { @class = "btn btn-primary btn-xs" })
-                                            }
-                                            else if (item.tbCliente.clte_EsPersonaNatural == false && item.dev_Id != null)
-                                            {
-                                                @Html.ActionLink("Imprimir", "ExportReportclteJuridicoxDEV", new { id = item.nocre_Id }, new { @class = "btn btn-primary btn-xs" })
-                                            }
-                                            else if (item.tbCliente.clte_EsPersonaNatural == false && item.dev_Id == null)
-                                            {
-                                                @Html.ActionLink("Imprimir", "ExportReportclteJuridicoxOtros", new { id = item.nocre_Id }, new { @class = "btn btn-primary btn-xs" })
-                                            }
                                         </td>
                                     }
                                     else
@@ -129,11 +112,6 @@
                                             <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="No se puede Editar">
                                                 <button class="btn btn-white btn-xs" style="pointer-events: none;" type="button" disabled>Editar</button>
                                             </span>
-
-                                            <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="No se puede Imprimir">
-                                                <button class="btn btn-primary btn-xs" style="pointer-events: none;" type="button" disabled>Imprimir</button>
-                                            </span>
-
                                         </td>
                                     }
                                 </tr>

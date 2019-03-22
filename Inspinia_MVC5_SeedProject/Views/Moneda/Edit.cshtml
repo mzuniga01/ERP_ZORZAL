@@ -54,7 +54,8 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label col-md-2">Abreviatura</label>
+                                <label class="control-label col-md-2 AsteriscoRojo">Abreviatura</label>
+                            
 
                                 <div class="col-md-5">
                                     @Html.EditorFor(model => model.mnda_Abreviatura, new { htmlAttributes = new { @autocomplete = "off", @style = "text-transform:uppercase;", onkeypress = "return validar(event)" } })
@@ -63,7 +64,8 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label col-md-2">Nombre</label>
+                                <label class="control-label col-md-2 AsteriscoRojo">Nombre</label>
+                                @*<label class="control-label col-md-2">Nombre</label>*@
                                 <div class="col-md-5">
                                     @Html.EditorFor(model => model.mnda_Nombre, new { htmlAttributes = new { @autocomplete = "off", @style = "text-transform:uppercase;", onkeypress = "return validar(event)" } })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.mnda_Nombre)</p>

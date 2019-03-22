@@ -22,7 +22,7 @@
                                 </div>
                             </div>
                             <div class="col-md-1">
-                                <button id="btnAutorizarDescuentoDetalle" type="button" class="btn btn-primary btn-sm" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#AutorizarDescuentoDetalle">Descuento</button>
+                                <button id="guardarAutorizarDescuentoDetalle" type="button" class="btn btn-primary btn-sm" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#AutorizarDescuentoDetalle">Descuento</button>
                             </div>
                         </div>
 
@@ -109,7 +109,7 @@
             <th>% Impuesto</th>
             <th>Descuento</th>
             <th>Total</th>
-            <th></th>
+            <th>-</th>
         </tr>
     </thead>
     <tbody></tbody>
@@ -121,17 +121,7 @@
             <td></td>
             <td></td>
             <td>Descuento</td>
-            <td><p id="TotalDescuento" style="text-align:right"></p></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>Sub-Total</td>
-            <td><p id="Subtotal" style="text-align:right"></p></td>
+            <td><p id="TotalDescuento" style="text-align:left"></p></td>
             <td></td>
         </tr>
         <tr>
@@ -141,7 +131,17 @@
             <td></td>
             <td></td>
             <td>ISV</td>
-            <td><p id="isv" style="text-align:right"></p></td>
+            <td><p id="isv" style="text-align:left"></p></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Sub-Total</td>
+            <td><p id="Subtotal" style="text-align:left"></p></td>
             <td></td>
         </tr>
         <tr>
@@ -151,7 +151,7 @@
             <td></td>
             <td></td>
             <td>Total a Pagar</td>
-            <td><p id="total" style="text-align:right"></p></td>
+            <td><p id="total" style="text-align:left"></p></td>
             <th></th>
         </tr>
 </table>
@@ -184,58 +184,56 @@
                     <div class="col-md-2">
                         <input id="SubTotalGeneral" type="text" class="form-control" readonly />
                     </div>
+                </div>               
+            </div>
+        </div>
+    </div>
+</div>*@
+<div>
+    <div class="modal fade" id="AutorizarDescuentoDetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="CloseAutorizarDetalle">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Porcentaje de Descuento</h4>
                 </div>
-
-
-                <div>
-                    <div class="modal fade" id="AutorizarDescuentoDetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="CloseAutorizarDetalle">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                    <h4 class="modal-title" id="myModalLabel">Porcentaje de Descuento</h4>
-                                </div>
-                                <div class="modal-body" id="frmAutorizarDescuento">
-                                    <div class="ibox-content">
-                                        <div class="form-horizontal">
-                                            <form method="post">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-4">Usuario</label>
-                                                    <div class="col-md-6">
-                                                        <input id="UsernameDetalle" type="text" name="UsernameDetalle" class="form-control" autocomplete="off" , onkeypress="return correo(event)">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-4">Contraseña</label>
-                                                    <div class="col-md-6">
-                                                        <input id="txtPasswordDetalle" name="txtPasswordDetalle" type="password" class="form-control" autocomplete="on" placeholder="Password">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-4">Porcentaje de Descuento</label>
-                                                    <div class="col-md-6">
-                                                        <input id="PorcentajeDescuentoDetalle" type="text" class="form-control" />
-                                                    </div>
-                                                </div>
-                                                <div><p id="mensajerrorDetalle" style="color:red"></p></div>
-                                                <div class="modal-footer">
-                                                    <button class="btn btn-primary btn-sm" type="button" id="AutorizarDetalle" onclick="ValidarAutorizacionDetalle()">Guardar</button>
-                                                    <button type="button" class="btn btn-white btn-sm" data-dismiss="modal" onclick="uncheck3()">Cancelar</button>
-                                                </div>
-                                            </form>
-                                        </div>
+                <div class="modal-body" id="frmAutorizarDescuento">
+                    <div class="ibox-content">
+                        <div class="form-horizontal">
+                            <form method="post">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">Usuario</label>
+                                    <div class="col-md-6">
+                                        <input id="UsernameDetalle" type="text" name="UsernameDetalle" class="form-control" autocomplete="off" , onkeypress="return correo(event)">
                                     </div>
                                 </div>
-                            </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">Contraseña</label>
+                                    <div class="col-md-6">
+                                        <input id="txtPasswordDetalle" name="txtPasswordDetalle" type="password" class="form-control" autocomplete="on" placeholder="Password">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">Porcentaje de Descuento</label>
+                                    <div class="col-md-6">
+                                        <input id="PorcentajeDescuentoDetalle" type="number" class="form-control" onKeyPress="return soloNumeros(event)" , onKeyUp="pierdeFoco(this)" autocomplete="off" min="1" max="100" />
+                                    </div>
+                                </div>
+                                <div><p id="mensajerrorDetalle" style="color:red"></p></div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-primary btn-sm" type="button" id="AutorizarDetalle" onclick="ValidarAutorizacionDetalle()">Guardar</button>
+                                    <button type="button" class="btn btn-white btn-sm" data-dismiss="modal">Cancelar</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>*@
+</div>
 
 
 

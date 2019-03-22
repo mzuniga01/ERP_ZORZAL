@@ -260,17 +260,32 @@
 <script src="~/Scripts/app/Activo.js"></script>
 <script src="~/Scripts/app/Departamento.js"></script>
 <script src="~/Scripts/app/Identificacion.js"></script>
-<script src="~/Scripts/app/MessageError.js"></script>
 <script src="~/Scripts/app/ComandoGuardar.js"></script>
 <script src="~/Scripts/app/PersonaNatural.js"></script>
 <script src="~/Scripts/app/CaracteresEspeciales.js"></script>
 <script>
+    $('#guardar').click(function () {
+        Telefono = $('#clte_Telefono').val();
+        if (Telefono == '')
+            $('#clte_Telefono').val('NA');
+        clte_ContactoTelefono = $('#clte_ContactoTelefono').val();
+        if (clte_ContactoTelefono == '')
+            $('#clte_ContactoTelefono').val('NA');
+        clte_Nacionalidad = $('#clte_Nacionalidad').val();
+        if (clte_Nacionalidad == '')
+            $('#clte_Nacionalidad').val('NA');
+        mun_Codigo = $('#mun_Codigo').val();
+        if (mun_Codigo == '')
+            $('#mun_Codigo').val('0502');
+    })
+
+
 
     $('#clte_EsActivo').attr('checked', true);
     $('#clte_EsMinorista').attr('checked', true);
     $(document).ready(function () {
         GetIdentificacion();
-
+        $('#mun_Codigo').val('0502');
         var x = document.getElementById("mun_Codigo").disabled;
         if (x == true) {
             document.getElementById("mun_Codigo").title = "Seleccione primero un departamento";
@@ -285,6 +300,36 @@
         }
         else {
             document.getElementById("mun_Codigo").title = "";
+        }
+    });
+
+
+    $("#tpi_Id").change(function () {
+        var tpi_Id = $("#tpi_Id").val();
+        if (tpi_Id != '') {
+            valido = document.getElementById('Identificacion');
+            valido.innerText = "";
+        }
+    });
+
+    $("#clte_Identificacion").change(function () {
+        var clte_Identificacion = $("#clte_Identificacion").val();
+        if (clte_Identificacion != '') {
+            valido = document.getElementById('CIdentificacion');
+            valido.innerText = "";
+        }
+
+
+        if (tpi_Id == 'RTN' && Identificacion.length == 14) {
+            valido = document.getElementById('CIdentificacion');
+            valido.innerText = "RTN debe tener 14 dígitos";
+            document.getElementById("clte_Identificacion").focus();
+
+        }
+        else if (tpi_Id == 'IDENTIDAD' && Identificacion.length == 13) {
+            valido = document.getElementById('CIdentificacion');
+            valido.innerText = "Identidad debe tener 13 dígitos";
+            document.getElementById("#clte_Identificacion").focus();
         }
     });
 </script>

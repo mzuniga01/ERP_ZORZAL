@@ -1,4 +1,8 @@
 ﻿$(document).ready(function () {
+    var caja = $("#cja_Id").val();
+    if (caja == '') {
+        $('#alertaCaja').show();
+    }
     $('#prod_CodigoBarras').focus();
     $('#Alcredito').hide();
     $('#factd_Cantidad').prop('disabled', true);
@@ -40,6 +44,157 @@ function soloNumeros(e) {
 
 function pierdeFoco(e) {
 }
+
+//Autorizar Descuento General
+function ValidarAutorizacionGeneral() {
+    var User = $("#Username").val();
+    var Password = $("#txtPassword").val();
+    $.ajax({
+        url: "/Factura/AutorizarDescuento",
+        method: "POST",
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({ User: User, Password: Password }),
+    })
+    .done(function (data) {
+        console.log()
+        if (data == true) {
+
+            var Porcentaje = $("#PorcentajeDescuento").val();
+            $("#factd_PorcentajeDescuento").val(Porcentaje);
+            $('#Descuento').val(Porcentaje);
+            $('#prod_CodigoBarras').focus();
+            $('#AutorizarDescuentoGeneral').modal('hide');
+            document.getElementById("guardardescuentoterceraedad").disabled = true;
+            document.getElementById("guardarAutorizarDescuentoDetalle").disabled = true;
+        }
+        else {
+
+            valido = document.getElementById('mensajerror');
+            valido.innerText = "Usuario o contraseña incorrectos";
+        }
+    });
+}
+//Autorizar Descuento Detalle
+function ValidarAutorizacionDetalle() {
+    var User = $("#UsernameDetalle").val();
+    var Password = $("#txtPasswordDetalle").val();
+    $.ajax({
+        url: "/Factura/AutorizarDescuentoDetalle",
+        method: "POST",
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({ User: User, Password: Password }),
+    })
+    .done(function (data) {
+        console.log()
+        if (data == true) {
+            var Porcentaje = $("#PorcentajeDescuentoDetalle").val();
+            var PorcentajeAnt = $("#factd_PorcentajeDescuento").val();
+            var PorcentajeTotal = parseFloat(PorcentajeAnt) + parseFloat(Porcentaje);
+            $("#factd_PorcentajeDescuento").val(PorcentajeTotal);
+            Cantidad = $('#factd_Cantidad').val();
+            data_precio = $('#factd_PrecioUnitario').val();
+            data_impuesto = $('#factd_Impuesto').val();
+            descuento = $('#factd_PorcentajeDescuento').val();
+            PrecioSubtotal = parseFloat(Cantidad) * parseFloat(data_precio);
+            $('#SubtotalProducto').val((PrecioSubtotal).toFixed(2));
+            MontoDescuento = (PrecioSubtotal * (parseFloat(descuento) / 100));
+            PrecioSubtotal = PrecioSubtotal - MontoDescuento;
+            Impuesto = ((PrecioSubtotal) * (parseFloat(data_impuesto) / 100));
+            $('#factd_MontoDescuento').val(MontoDescuento.toFixed(2));
+            $('#Impuesto').val(Impuesto.toFixed(2));
+            total = parseFloat((PrecioSubtotal) + Impuesto);
+            $('#TotalProducto').val((total).toFixed(2));
+            $('#AutorizarDescuentoDetalle').modal('hide');
+            document.getElementById("guardardescuentoterceraedad").disabled = true;
+            document.getElementById("guardarDescuentoGeneral").disabled = true;
+        }
+        else {
+            valido = document.getElementById('mensajerrorDetalle');
+            valido.innerText = "Usuario o contraseña incorrectos";
+        }
+    });
+}
+//Tercera Edad
+$('#AgregarTerceraEdad').click(function () {
+    var IdentidadTE = $('#fact_IdentidadTE').val();
+    var Nombre = $('#fact_NombresTE').val();
+    var FechaNacimiento = $('#fact_FechaNacimientoTE').val();
+
+    if (IdentidadTE == '') {
+        $('#ErrorIdentidadTECreate').text('');
+        $('#ErrorNombreCreate').text('');
+        $('#ErrorFechaNacimientoCreate').text('');
+        $('#validationfact_IdentidadTECreate').after('<ul id="ErrorIdentidadTECreate" class="validation-summary-errors text-danger">Campo requerido</ul>');
+    }
+    else if (Nombre == '') {
+        $('#ErrorIdentidadTECreate').text('');
+        $('#ErrorNombreCreate').text('');
+        $('#ErrorFechaNacimientoCreate').text('');
+        $('#validationNombreTECreate').after('<ul id="ErrorNombreCreate" class="validation-summary-errors text-danger">Campo requerido</ul>');
+    }
+    else if (FechaNacimiento == '') {
+        $('#ErrorIdentidadTECreate').text('');
+        $('#ErrorNombreCreate').text('');
+        $('#ErrorFechaNacimientoCreate').text('');
+        $('#validationFechaNacimientoTECreate').after('<ul id="ErrorFechaNacimientoCreate" class="validation-summary-errors text-danger">Campo requerido</ul>');
+    }
+    else {
+        var TerceraEdad = GetTerceraEdad();
+        $.ajax({
+            url: "/Factura/SaveTerceraEdad",
+            method: "POST",
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ TerceraEdadC: TerceraEdad }),
+        })
+        .done(function (data) {
+            $('#ErrorIdentidadTECreate').text('');
+            $('#ErrorNombreCreate').text('');
+            $('#ErrorFechaNacimientoCreate').text('');
+            //Input
+            $('#fact_IdentidadTE').val();
+            $('#fact_NombresTE').val();
+            $('#fact_FechaNacimientoTE').val();
+            $('#DescTerceraEdad').modal('hide');
+            $("#MostrarTerceraEdad").prop("checked", true);
+            $("#fact_AutorizarDescuento").prop("checked", true);
+            $('#Cred2').show();
+            GetParametro();
+            function GetParametro() {
+                $.ajax({
+                    url: "/Factura/GetParametro",
+                    method: "POST",
+                    dataType: 'json',
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify({}),
+                })
+                .done(function (data) {
+                    $.each(data, function (key, val) {
+                        $('#fact_PorcentajeDescuento').val(val.par_PorcentajeDescuentoTE);
+                        $('#Descuento').val(val.par_PorcentajeDescuentoTE);
+                        //$('#factd_PorcentajeDescuento').val(val.par_PorcentajeDescuentoTE);
+                        document.getElementById("guardarDescuentoGeneral").disabled = true;
+                        document.getElementById("guardarAutorizarDescuentoDetalle").disabled = true;
+                    });
+
+                    console.log(data)
+                });
+            }
+
+        });
+    }
+});
+function GetTerceraEdad() {
+
+    var TerceraEdad = {
+        fact_IdentidadTE: $('#fact_IdentidadTE').val(),
+        fact_NombresTE: $('#fact_NombresTE').val(),
+        fact_FechaNacimientoTE: $('#fact_FechaNacimientoTE').val(),
+    }
+    return TerceraEdad
+};
 
 //Factura Buscar Cliente
 $("#searchCliente").keyup(function () {
@@ -219,6 +374,8 @@ $(document).on("click", "#tbProductoFactura tbody tr td button#seleccionar", fun
 
 function SeleccionProducto() {
     var CodBarra = $('#prod_CodigoBarras').val();
+    var DescFactura = $('#Descuento').val();
+    var PorcentajeDescuentoDet = $('#factd_PorcentajeDescuento').val();
     var IDSucursal = $('#suc_Id').val();
     var IDCliente = $('#clte_Id').val();
     $.ajax({
@@ -235,7 +392,7 @@ function SeleccionProducto() {
                         data_descripcion = val.DESCRIPCIONPRODUCTO;
                         data_impuesto = val.IMPUESTOPRODUCTO;
                         data_precio = val.PRECIOUNITARIO;
-                        descuento = val.DESCUENTOCAJERO;
+                        descuento = parseFloat(val.DESCUENTOCAJERO) + parseFloat(PorcentajeDescuentoDet);
                         if (data_precio == null) {
                             $('#factd_Impuesto').val((0).toFixed(2));
                             $('#factd_PrecioUnitario').val((0).toFixed(2));
@@ -266,12 +423,12 @@ function SeleccionProducto() {
                             $('#factd_Cantidad').focus();
                             Cantidad = $('#factd_Cantidad').val();
                             PrecioSubtotal = (parseFloat(data_precio) * parseFloat(Cantidad));
+                            $('#SubtotalProducto').val((PrecioSubtotal).toFixed(2));
                             MontoDescuento = (PrecioSubtotal * (parseFloat(descuento) / 100));
                             $('#factd_MontoDescuento').val(MontoDescuento.toFixed(2));
                             Impuesto = ((PrecioSubtotal - MontoDescuento) * (parseFloat(data_impuesto) / 100));
                             $('#Impuesto').val(Impuesto.toFixed(2));
                             total = parseFloat((PrecioSubtotal - MontoDescuento) + Impuesto);
-                            $('#SubtotalProducto').val((PrecioSubtotal).toFixed(2));
                             $('#TotalProducto').val((total).toFixed(2));
                             $('#msjSinPrecio').hide();
                             $('#alerta').hide();
@@ -279,6 +436,7 @@ function SeleccionProducto() {
                             $('#CantidadNoDisponible').hide();
                             $('#NoExiste').hide();
                             $('#CantidadDistinta').hide();
+                            GetCantidad(1);
                         }
                     }
                 })
@@ -286,6 +444,7 @@ function SeleccionProducto() {
         }
     });
 }
+
 
 //Enter Codigo de barras
 $("#prod_CodigoBarras").keyup(function (e) {
@@ -304,7 +463,7 @@ $("#prod_CodigoBarras").keyup(function (e) {
 
 //Enter cantidad
 $("#factd_Cantidad").keyup(function (e) {
-    GetCantidad();//Validar que cuando no haya cantidad no permita ingresar el detalle.
+    GetCantidad(1);//Validar que cuando no haya cantidad no permita ingresar el detalle.
     
     var code = e.which;
     if (code == 13) e.preventDefault();
@@ -326,7 +485,7 @@ $("#factd_Cantidad").keyup(function (e) {
     }
 });
 
-function GetCantidad() {
+function GetCantidad(Cantidad1) {
     var CodSucursal = $('#suc_Id').val();
     var CodProducto = $('#prod_Codigo').val();
     var CantidadIngresada = $('#factd_Cantidad').val();
@@ -352,6 +511,15 @@ function GetCantidad() {
                     if (MENSAJE) {
                         var can = data[0]['CANTIDAD'];
                         var CANTIDAD = parseFloat(can);
+                        if (CANTIDAD < Cantidad1) {
+                            $('#SinCantidad').show();
+                            $('#msjSinPrecio').hide();
+                            $('#alerta').hide();
+                            $('#CantidadNoDisponible').hide();
+                            $('#NoExiste').hide();
+                            $('#CantidadDistinta').hide();
+                            $('#factd_Cantidad').prop('disabled', false);
+                        }
                         if (CANTIDAD < CantidadIngresada) {
                             $('#SinCantidad').show();
                             $('#msjSinPrecio').hide();
@@ -371,13 +539,13 @@ function GetCantidad() {
                             //Calcular
                             Cantidad = $('#factd_Cantidad').val();
                             PrecioSubtotal = (parseFloat(data_precio) * parseFloat(Cantidad));
+                            $('#SubtotalProducto').val((PrecioSubtotal).toFixed(2));
                             MontoDescuento = (PrecioSubtotal * (parseFloat(descuento) / 100));
-                            Impuesto = ((PrecioSubtotal) * (parseFloat(data_impuesto) / 100));
                             PrecioSubtotal = PrecioSubtotal - MontoDescuento;
+                            Impuesto = ((PrecioSubtotal) * (parseFloat(data_impuesto) / 100));
                             $('#factd_MontoDescuento').val(MontoDescuento.toFixed(2));
                             $('#Impuesto').val(Impuesto.toFixed(2));
                             total = parseFloat((PrecioSubtotal) + Impuesto);
-                            $('#SubtotalProducto').val((PrecioSubtotal).toFixed(2));
                             $('#TotalProducto').val((total).toFixed(2));
                             $('#factd_Cantidad').prop('disabled', false);
                         }
@@ -422,8 +590,8 @@ function addtable(cantfisica_nueva) {
                     var impuesto = parseFloat(document.getElementById("factd_Impuesto").value.replace(',', '.'));
                     var SubTotal = (parseFloat(PrecioSum) * parseFloat(CantidadSum));
                     var MontoDescuento = (SubTotal * (parseFloat(Descuento) / 100));
-                    var Impuesto = ((SubTotal) * (parseFloat(data_impuesto) / 100));
                     SubTotal = SubTotal - MontoDescuento;
+                    var Impuesto = ((SubTotal) * (parseFloat(data_impuesto) / 100));
                     var Total = parseFloat((SubTotal) + Impuesto);
                     $(this).closest('tr').remove();
                     table.row($(this).parents('tr')).remove().draw();
@@ -437,6 +605,7 @@ function addtable(cantfisica_nueva) {
                     parseFloat(Total).toFixed(2),
                     '<button id = "removeFacturaDetalle" class= "btn btn-danger btn-xs eliminar" type = "button">-</button>'
                     ]).draw(false);
+                    CalculoDetalle();
                     LimpiarControles();
                 }
             });
@@ -456,10 +625,60 @@ function addtable(cantfisica_nueva) {
                         parseFloat(Total).toFixed(2),
                         '<button id = "removeFacturaDetalle" class= "btn btn-danger btn-xs eliminar" type = "button">-</button>'
             ]).draw(false);
+            CalculoDetalle();
             LimpiarControles();
         }
     })
 }
+
+function CalculoDetalle() {
+    //Subtotal 
+    var totalProducto = $('#SubtotalProducto').val();
+    var subtotal = parseFloat(document.getElementById("Subtotal").innerHTML);
+
+    if (document.getElementById("Subtotal").innerHTML == '') {
+        totalProducto = $('#SubtotalProducto').val();
+        document.getElementById("Subtotal").innerHTML = parseFloat(totalProducto);
+    }
+    else {
+        document.getElementById("Subtotal").innerHTML = parseFloat(subtotal) + parseFloat(totalProducto);
+    }
+
+    //Descuento 
+    var Descuento = $('#factd_MontoDescuento').val();
+    var TotalDescuento = parseFloat(document.getElementById("TotalDescuento").innerHTML);
+    if (document.getElementById("TotalDescuento").innerHTML == '') {
+        document.getElementById("TotalDescuento").innerHTML = parseFloat(Descuento).toFixed(2);
+
+    }
+    else {
+        document.getElementById("TotalDescuento").innerHTML = (parseFloat(TotalDescuento) + parseFloat(Descuento)).toFixed(2);
+    }
+    //Impuesto
+    var Cantidad = $('#factd_Cantidad').val();
+    var Precio = $('#factd_PrecioUnitario').val();
+    var impuesto = parseFloat(document.getElementById("factd_Impuesto").value.replace(',', '.'));
+    var impuestotal = parseFloat(document.getElementById("isv").innerHTML);
+    var porcentaje = parseFloat(impuesto / 100);
+    var impuestos = ((Cantidad * Precio) - Descuento) * porcentaje;
+    if (document.getElementById("isv").innerHTML == '') {
+        impuesto = document.getElementById("factd_Impuesto").value;
+        document.getElementById("isv").innerHTML = (parseFloat(impuestos)).toFixed(2);
+    }
+    else {
+        document.getElementById("isv").innerHTML = (parseFloat(impuestotal) + parseFloat(impuestos)).toFixed(2);
+    }
+
+    //Grantotal
+    if (document.getElementById("total").innerHTML == '') {
+        var TotalEncabezado = document.getElementById("total").innerHTML = (parseFloat(totalProducto) + parseFloat(impuestos) - parseFloat(Descuento)).toFixed(2);
+        $("#TotalProductoEncabezado").val(TotalEncabezado);
+    }
+    else {
+        var TotalEncabezado = document.getElementById("total").innerHTML = (parseFloat(subtotal) + parseFloat(totalProducto) + parseFloat(impuestotal) + parseFloat(impuestos) - parseFloat(TotalDescuento) - parseFloat(Descuento)).toFixed(2);
+        $("#TotalProductoEncabezado").val(TotalEncabezado);
+    }
+};
 
 function GetFacturaDetalle() {
     var FacturaDetalle = {
@@ -484,7 +703,11 @@ function LimpiarControles()
     $('#factd_Impuesto').val((0).toFixed(2));
     $('#factd_PrecioUnitario').val((0).toFixed(2));
     $('#factd_Cantidad').val((0).toFixed(2));
-    $('#factd_PorcentajeDescuento').val((0).toFixed(2));
+    var Descuento = $('#Descuento').val();
+    if (Descuento == '') {
+        Descuento = 0.00;
+    }
+    $('#factd_PorcentajeDescuento').val(parseFloat(Descuento).toFixed(2));
     $('#factd_MontoDescuento').val((0).toFixed(2));
     $('#Impuesto').val((0).toFixed(2));
     $('#SubtotalProducto').val((0).toFixed(2));
@@ -496,6 +719,8 @@ function LimpiarControles()
 function BuscarCodigoBarras()
 {
     var CodBarra = $('#prod_CodigoBarras').val();
+    var DescFactura = $('#Descuento').val();
+    var PorcentajeDescuentoDet = $('#factd_PorcentajeDescuento').val();
     var IDSucursal = $('#suc_Id').val();
     var IDCliente = $('#clte_Id').val();
     $.ajax({
@@ -512,7 +737,7 @@ function BuscarCodigoBarras()
                         data_descripcion = val.DESCRIPCIONPRODUCTO;
                         data_impuesto = val.IMPUESTOPRODUCTO;
                         data_precio = val.PRECIOUNITARIO;
-                        descuento = val.DESCUENTOCAJERO;
+                        descuento = parseFloat(val.DESCUENTOCAJERO) + parseFloat(PorcentajeDescuentoDet);
                         if (data_precio == null) {
                             $('#factd_Impuesto').val((0).toFixed(2));
                             $('#factd_PrecioUnitario').val((0).toFixed(2));
@@ -542,19 +767,20 @@ function BuscarCodigoBarras()
                             $('#factd_Cantidad').focus();
                             Cantidad = $('#factd_Cantidad').val();
                             PrecioSubtotal = (parseFloat(data_precio) * parseFloat(Cantidad));
+                            $('#SubtotalProducto').val((PrecioSubtotal).toFixed(2));
                             MontoDescuento = (PrecioSubtotal * (parseFloat(descuento) / 100));
-                            Impuesto = ((PrecioSubtotal) * (parseFloat(data_impuesto) / 100));
                             PrecioSubtotal = PrecioSubtotal - MontoDescuento;
+                            Impuesto = ((PrecioSubtotal) * (parseFloat(data_impuesto) / 100));
                             $('#factd_MontoDescuento').val(MontoDescuento.toFixed(2));
                             $('#Impuesto').val(Impuesto.toFixed(2));
                             total = parseFloat((PrecioSubtotal) + Impuesto);
-                            $('#SubtotalProducto').val((PrecioSubtotal).toFixed(2));
                             $('#TotalProducto').val((total).toFixed(2));
                             $('#msjSinPrecio').hide();
                             $('#alerta').hide();
                             $('#SinCantidad').hide();
                             $('#CantidadNoDisponible').hide();
                             $('#NoExiste').hide();
+                            GetCantidad(1);
                         }
                     }
                     else {
@@ -582,6 +808,32 @@ function BuscarCodigoBarras()
 }
 
 $(document).on("click", "#tblDetalleFactura tbody tr td button#removeFacturaDetalle", function () {
+
+    var Cantidad = $(this).parents("tr").find("td")[2].innerHTML;
+    var PrecioUni = $(this).parents("tr").find("td")[3].innerHTML;
+
+    ////Descuento
+    var Descuento = $(this).parents("tr").find("td")[5].innerHTML;
+    Descuento = (parseFloat(Cantidad) * parseFloat(PrecioUni)) * (parseFloat(Descuento) / 100)
+    var TotalDescuento = parseFloat(document.getElementById("TotalDescuento").innerHTML);
+    document.getElementById("TotalDescuento").innerHTML = (parseFloat(TotalDescuento) - parseFloat(Descuento)).toFixed(2);
+
+    //Impuesto
+    var impuesto = $(this).parents("tr").find("td")[4].innerHTML;
+    var porcentaje = parseFloat(impuesto.replace(',', '.') / 100);
+    ImpuestoT = ((parseFloat(Cantidad) * parseFloat(PrecioUni)-Descuento) * (parseFloat(porcentaje))).toFixed(2)
+    var impuestotal = parseFloat(document.getElementById("isv").innerHTML);
+    document.getElementById("isv").innerHTML = (parseFloat(impuestotal) - parseFloat(ImpuestoT)).toFixed(2);
+
+    //Subtotal
+    var SubtotalProducto = Cantidad * PrecioUni;
+    var subtotal = parseFloat(document.getElementById("Subtotal").innerHTML);
+    document.getElementById("Subtotal").innerHTML = (parseFloat(subtotal) - parseFloat(SubtotalProducto)).toFixed(2);
+
+    //GranTotal
+    var Total = parseFloat(document.getElementById("total").innerHTML);
+    document.getElementById("total").innerHTML = (parseFloat(Total) - parseFloat(SubtotalProducto)+parseFloat(Descuento)-parseFloat(ImpuestoT)).toFixed(2);
+
     var FacturaDetalle = {
         prod_Codigo: $(this).parents("tr").find("td")[0].innerHTML,
     };
@@ -605,5 +857,6 @@ $(document).on("click", "#tblDetalleFactura tbody tr td button#removeFacturaDeta
     .done(function (data) {
     });   
 });
+
 
 

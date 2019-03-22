@@ -148,9 +148,13 @@
             }
         })
         .done(function (data) {
-            if (data == 'No se pudo guardar el registro, favor contacte al administrador.') {
+            if (data == 'No se pudo guardar el registro') {
                 location.reload();
-                swal("El registro  no se guardó!", "", "error");
+                swal("El registro  no se guardó!","", "error");
+            }
+            else if (data == 'Ya existe esta numeración') {
+                $('#MostrarMensajeNumeracion').text('');
+                $('#MensajeNumeracion').after('<p id="MostrarMensajeNumeracion" style="color:red">Ya existe esta numeración</p>');
             }
             else {
                 location.reload();

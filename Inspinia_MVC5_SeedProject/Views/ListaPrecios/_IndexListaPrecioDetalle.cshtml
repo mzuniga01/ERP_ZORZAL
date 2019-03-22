@@ -6,14 +6,7 @@
 
 
     <div class="row">
-        <p align="right">
-            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#Crear">Añadir Detalle</button>
-        </p>
-        <div class="col-lg-12">
-            <div class="ibox-content collapse" id="Crear">
-                @Html.Partial("_CreateListaPrecioDetalleEdit", new tbListadoPrecioDetalle())
-            </div>
-        </div>
+     
 
         <table class="table table-striped table-bordered table-hover" id="DataTable">
             <thead>
@@ -140,14 +133,14 @@
                                 @Html.LabelFor(m => ListDetalle.lispd_PrecioMayorista, new { @class = "control-label col-sm-2" })
                                 <div class="col-sm-10">
                                     <input type="text" id="lispd_PrecioMayorista_lisd" name="lispd_PrecioMayorista" class="form-control" onkeypress='return solonum(event)' />
-                                    <p id="lispd_PrecioMayorista_lisd">@Html.ValidationMessageFor(m => ListDetalle.lispd_PrecioMayorista)</p>
+                                    <p style="color:red" id="lispd_PrecioMayorista_lisd">@Html.ValidationMessageFor(m => ListDetalle.lispd_PrecioMayorista)</p>
                                 </div>
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(m => ListDetalle.lispd_PrecioMinorista, new { @class = "control-label col-sm-2" })
                                 <div class="col-sm-10">
                                     <input type="text" id="lispd_PrecioMinorista_lisd" name="lispd_PrecioMinorista" class="form-control" onkeypress='return solonum(event)' />
-                                    <p style="color:red" id="preciomino">@Html.ValidationMessageFor(m => ListDetalle.lispd_PrecioMinorista)</p>
+                                    <p style="color:red" id="validacionPreciosMM">@Html.ValidationMessageFor(m => ListDetalle.lispd_PrecioMinorista)</p>
                                 </div>
                             </div>
 
@@ -156,7 +149,7 @@
                                 <div class="col-sm-10">
                                     <input type="text" id="lispd_DescCaja_lisd" name="lispd_DescCaja" class="form-control" onkeypress='return solonum(event)' />
                                     @Html.ValidationMessageFor(m => ListDetalle.lispd_DescCaja)
-                                    <p id="smsCantidad" style="color:red"> @Html.ValidationMessageFor(model => ListDetalle.lispd_DescCaja)</p>
+                                    <p style="color:red" id="smsCantidad" > @Html.ValidationMessageFor(model => ListDetalle.lispd_DescCaja)</p>
                                 </div>
                             </div>
 
@@ -166,7 +159,7 @@
                                 <div class="col-sm-10">
                                     <input type="text" id="lispd_DescGerente_lisd" name="lispd_DescGerente" class="form-control" onkeypress='return solonum(event)' />
                                     @Html.ValidationMessageFor(m => ListDetalle.lispd_DescGerente)
-                                    <p id="desccaja" style="color:red">@Html.ValidationMessageFor(model => ListDetalle.lispd_DescGerente)</p>
+                                    <p style="color:red" id="desccaja" >@Html.ValidationMessageFor(model => ListDetalle.lispd_DescGerente)</p>
                                 </div>
                             </div>
 
@@ -174,7 +167,7 @@
                             <input type="hidden" id="lispd_FechaCrea_lisd" name="lispd_FechaCrea" />
                             <div class="form-group">
                                 <div class="col-md-12 text-center">
-                                    <button class="btn btn-primary" type="button" id="BtnsubmitMunicipio" tabindex="10"> Guardarsiii </button>
+                                    <button class="btn btn-primary" type="button" id="BtnsubmitMunicipio" tabindex="10"> Guardar </button>
                                     <button type="button" class="btn btn-white" data-dismiss="modal" aria-label="Close">Cancelar</button>
                                 </div>
                             </div>
@@ -275,14 +268,14 @@
         });
 
 
-        $("#lispd_DescGerente").blur(function () {
+        $("#lispd_DescGerente_lisd").blur(function () {
             valido = document.getElementById('desccaja');
-            var DescuentoGerente = $('#lispd_DescGerente').val();
-            var DescuentoCaja = $('#lispd_DescCaja').val();
+            var DescuentoGerente = $('#lispd_DescGerente_lisd').val();
+            var DescuentoCaja = $('#lispd_DescCaja_lisd').val();
             if (parseFloat(DescuentoGerente) < parseFloat(DescuentoCaja)) {
                 valido.innerText = "Descuento Gerente debe ser mayor a Descuento Caja";
-                $('#lispd_DescGerente').val("");
-                $('#lispd_DescGerente').focus();
+                $('#lispd_DescGerente_lisd').val("");
+                $('#lispd_DescGerente_lisd').focus();
             }
             else if (parseFloat(DescuentoGerente) < 0 || parseFloat(DescuentoGerente) > 100) {
                 valido = document.getElementById('desccaja');
@@ -299,20 +292,20 @@
 </script>
 
 <script>
-    $("#lispd_PrecioMinorista").blur(function () {
+    $("#lispd_PrecioMinorista_lisd").blur(function () {
         valido = document.getElementById('validacionPreciosMM');
 
 
-        var PrecioMinorista = $('#lispd_PrecioMinorista').val();
-        var PrecioMayorista = $('#lispd_PrecioMayorista').val();
+        var PrecioMinorista = $('#lispd_PrecioMinorista_lisd').val();
+        var PrecioMayorista = $('#lispd_PrecioMayorista_lisd').val();
 
 
 
         if (parseFloat(PrecioMinorista) < parseFloat(PrecioMayorista)) {
 
             valido.innerText = "El precio minorista debe ser mayor a precio mayorista.";
-            $('#lispd_PrecioMinorista').val("");
-            $('#lispd_PrecioMinorista').focus();
+            $('#lispd_PrecioMinorista_lisd').val("");
+            $('#lispd_PrecioMinorista_lisd').focus();
 
         }
         else {

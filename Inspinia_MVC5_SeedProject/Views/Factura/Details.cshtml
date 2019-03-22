@@ -211,7 +211,7 @@
                                 <th>Cantidad</th>
                                 <th>Valor Unit</th>
                                 <th>% Impuesto</th>
-                                <th>Descuento</th>
+                                <th>Monto Descuento</th>
                                 <th>Total</th>
                             </tr>
                         </thead>
@@ -279,16 +279,16 @@
                     <tr>
                         <td>Creado</td>
                         <td>
-                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                           @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                           @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
                         </td>
                         <td>@Html.DisplayFor(model => model.fact_FechaCrea)</td>
                     </tr>
                     <tr>
                         <td>Modificado</td>
                         <td>
-                            @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
-                            @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
                         </td>
                         <td>@Html.DisplayFor(model => model.fact_FechaModifica)</td>
                     </tr>
@@ -301,8 +301,26 @@
 <script>
     $(document).ready(function () {
         GetDetalle()
+        $('#tblDetalleFactura').DataTable({
+            "searching": false,
+            "lengthChange": false,
+            "responsive": true,
+            "oLanguage": {
+                "oPaginate": {
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior",
+                },
+                "sZeroRecords": "No se encontraron resultados",
+                "sEmptyTable": "No hay registros",
+                "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                "sInfoEmpty": "Mostrando 0 de 0 Entradas",
+                "sSearch": "Buscar",
+                "sLengthMenu": "Mostrar _MENU_ registros por página",
+                "sInfo": "Mostrando _START_ a _END_ Entradas"
+            }
+        });
     });
-    var contador = 0;
+    
     function GetDetalle() {
         var factID = $("#fact_Id").val();
         $.ajax({
@@ -316,20 +334,20 @@
               $.each(data, function (key, val) {
                   Descuento = (val.factd_MontoDescuento * val.factd_Cantidad);
                   ImpuestoTotal = ((val.factd_Impuesto / 100) * val.factd_PrecioUnitario) * val.factd_Cantidad;
-                  Subtotal = ((val.factd_Cantidad * val.factd_PrecioUnitario) + ImpuestoTotal);
-                  GranSubtotal = (val.factd_Cantidad * val.factd_PrecioUnitario);
-                  Total = (GranSubtotal + ImpuestoTotal) - Descuento;
-                  contador = contador + 1;
-                  copiar = "<tr data-id=" + contador + ">";
-                  copiar += "<td id = 'prod_CodigoCreate'>" + val.prod_Codigo + "</td>";
-                  copiar += "<td id = 'tbProducto_prod_DescripcionCreate'>" + val.prod_Descripcion + "</td>";
-                  copiar += "<td id = 'factd_CantidadCreate' align='right'>" + val.factd_Cantidad + "</td>";
-                  copiar += "<td id = 'Precio_UnitarioCreate' align='right'>" + val.factd_PrecioUnitario + "</td>";
-                  copiar += "<td id = 'ImpuestoCreate' align='right'>" + val.factd_Impuesto + "</td>";
-                  copiar += "<td id = 'factd_MontoDescuentoCreate' align='right'>" + val.factd_MontoDescuento + "</td>";
-                  copiar += "<td id = 'TotalProductoCreate' align='right'>" + Subtotal + "</td>";
-                  copiar += "</tr>";
-                  $('#tblDetalleFactura').append(copiar);
+                  Subtotal = ((val.factd_Cantidad * val.factd_PrecioUnitario) - Descuento);
+                  Total = (Subtotal + ImpuestoTotal);
+                  $(this).closest('tr').remove();
+                  var table = $('#tblDetalleFactura').DataTable();
+                  table.row($(this).parents('tr')).remove().draw();
+                  table.row.add([
+                        val.prod_Codigo,
+                        val.prod_Descripcion,
+                        val.factd_Cantidad.toFixed(2),
+                        val.factd_PrecioUnitario.toFixed(2),
+                        val.factd_Impuesto.toFixed(2),
+                        val.factd_MontoDescuento.toFixed(2),
+                        Total.toFixed(2),
+                  ]).draw(false);
                   total_col1 = 0
                   SubtotalD = 0;
                   GranImpuesto = 0;
@@ -343,15 +361,15 @@
                       if (ValorUnitario != '') {
                           total_col1 += parseFloat($(this).find('td').eq(5).text());
                           ValorUnitario = parseFloat(ValorUnitario);
-                          SubtotalD += Cantidad * ValorUnitario;
+                          SubtotalD += Cantidad * ValorUnitario - DescuentoDD ;
                           GranImpuesto += (Cantidad * ValorUnitario) * PorcentajeImpuesto;
                           GranTotal += Cantidad * ValorUnitario + (Cantidad * ValorUnitario) * PorcentajeImpuesto;
                       }
                   });
-                  document.getElementById("TotalDescuento").innerHTML = parseFloat(total_col1);
-                  document.getElementById("Subtotal").innerHTML = parseFloat(SubtotalD);
-                  document.getElementById("isv").innerHTML = parseFloat(GranImpuesto);
-                  document.getElementById("total").innerHTML = parseFloat(GranTotal - DescuentoDD);
+                  document.getElementById("TotalDescuento").innerHTML = parseFloat(total_col1).toFixed(2);
+                  document.getElementById("Subtotal").innerHTML = parseFloat(SubtotalD).toFixed(2);
+                  document.getElementById("isv").innerHTML = parseFloat(GranImpuesto).toFixed(2);
+                  document.getElementById("total").innerHTML = parseFloat(GranTotal - DescuentoDD).toFixed(2);
               });
 
           })

@@ -107,8 +107,8 @@ $('#AgregarListaPrecioDetalle').click(function () {
             $('#prod_Codigo').val('');
             $('#tbProducto_prod_CodigoBarras').val('');
             $('#tbProducto_prod_Descripcion').val('');
-            $('#lispd_PrecioMayorista').val('0.00');
-            $('#lispd_PrecioMinorista').val('0.00');
+            $('#lispd_PrecioMayorista').val('');
+            $('#lispd_PrecioMinorista').val('');
             $('#lispd_DescCaja').val('0.00');
             $('#lispd_DescGerente').val('0.00');
           

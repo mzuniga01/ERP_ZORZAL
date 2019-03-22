@@ -46,7 +46,7 @@
                             @Html.HiddenFor(model => model.tbUsuario1.usu_Nombres)
                             @Html.HiddenFor(model => model.tbUsuario1.usu_Apellidos)
 
-                            <div class="alert alert-success text-center text-uppercase" id="alerta" style="display:none;">... Esta denominación esta en uso no la puedes editar...</div>
+                            <div class="alert alert-danger text-center text-uppercase" id="alerta" style="display:none;">... Esta denominación esta en uso no la puedes editar...</div>
 
                             <div class="form-group">
                                 <label class="control-label col-md-2" id="ìdeno">Número</label>
@@ -80,7 +80,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-2" id="descr">Descripción</label>
                                 <div class="col-md-5">
-                                    @Html.EditorFor(model => model.deno_Descripcion, new { htmlAttributes = new { @maxlength = "50", @autocomplete = "off", placeholder = "ejm: 100 Lempiras", @onkeyup = "format(this)", @style = "text-transform:capitalize;", onkeypress = "return validar(event)", Title = "si escribe decimales porfavor separelos con un '.' " } })
+                                    @Html.EditorFor(model => model.deno_Descripcion, new { htmlAttributes = new { @maxlength = "50", @autocomplete = "off", @onkeyup = "format(this),pierdeFoco(this)", @style = "text-transform:capitalize;", onkeypress = "return validar(event)", Title = "si escribe decimales porfavor separelos con un '.' " } })
                                     <p id="descriptions" style="color:red">@Html.ValidationMessageFor(model => model.deno_Descripcion, "", new { @style = "color:red" })</p>
                                 </div>
                             </div>
@@ -140,6 +140,18 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+<script>
+    function pierdeFoco(e) {
+        var valor = e.value.replace(/^ */, '');
+        e.value = valor;
+    }
+</script>
+<script>
+        $("#mnda_Id").click(function () {
+            var cabo = $('select[name="mnda_Id"] option:selected').text();
+            $("#deno_Descripcion").attr('placeholder', 'ejm: 100  '+ cabo);
+        });
+</script>
     <script type="text/javascript">
         $(document).ready(function () {
             GetDenominacions()
@@ -165,7 +177,8 @@
                         $("#deno_valor").prop("disabled", true);
                         $("#guardar").prop("disabled", true);
                         $('#alerta').show();
-
+                        document.getElementById('deno_Descripcion').style.backgroundColor = '#F2F0F0';
+                        document.getElementById('deno_valor').style.backgroundColor = '#F2F0F0';
                     }
                     else {
                         //alert('si')
@@ -262,6 +275,8 @@
             }
         });
         //_________________________________________
+        var cabo = $('select[name="mnda_Id"] option:selected').text();
+        $("#deno_Descripcion").attr('placeholder', 'ejm: 100  ' + cabo);
         //Ateriscos
         $('#moneda').append('<span style="color:red"> *</span>');
         $('#descr').append('<span style="color:red"> *</span>');
@@ -300,7 +315,8 @@
         }//_______________________________
     </script>
     <script type="text/javascript">
-        //validar 2  decimales
+        
+       // validar 2  decimales
         function filterFloat(evt, input) {
             // Backspace = 8, Enter = 13, ‘0′ = 48, ‘9′ = 57, ‘.’ = 46, ‘-’ = 43
             var key = window.Event ? evt.which : evt.keyCode;
@@ -335,4 +351,15 @@
             }
         }
     </script>
+<script>
+        $(document).keydown(function (e) {
+            if ((e.key == 'g' || e.key == 'G') && (e.ctrlKey || e.metaKey)) {
+                e.preventDefault();
+                //alert("Ctrl-g pressed");
+                $("#guardar").click();
+                return false;
+            }
+            return true;
+        });
+</script>
 }

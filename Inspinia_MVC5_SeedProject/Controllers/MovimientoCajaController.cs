@@ -120,6 +120,7 @@ namespace ERP_GMEDINA.Controllers
             }
 
             tbSolicitudEfectivo tbSolicitudEfectivo = new tbSolicitudEfectivo();
+            tbMovimientoCaja MovimientoCaja = new tbMovimientoCaja();
             /////////REMOVE////////
             ModelState.Remove("mocja_UsuarioApertura");
             ModelState.Remove("mocja_UsuarioArquea");
@@ -150,12 +151,12 @@ namespace ERP_GMEDINA.Controllers
                     {
                         try
                         {
-                            var fecha = DateTime.Now;
-                            if (db.tbMovimientoCaja.Any(a => tbMovimientoCaja.mocja_FechaApertura == fecha))
+                            DateTime Date = DateTime.Today;
+                            if (db.tbMovimientoCaja.Any(a => a.usu_Id == idUser && a.mocja_FechaApertura == Date))
                             {
                                 ModelState.AddModelError("", "Este usuario ya aperturo una caja el día de hoy.");
-                                //return View(tbMovimientoCaja);
-                            }
+                                //return View(tbMovimientoCaja);
+                            }
                             else
                             {
                                 using (TransactionScope Tran = new TransactionScope())
@@ -278,8 +279,7 @@ namespace ERP_GMEDINA.Controllers
                     ViewBag.suc_Descripcion = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.tbSucursal.suc_Descripcion).SingleOrDefault();
                     var suc_ID = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.tbSucursal.suc_Id).SingleOrDefault();
                     ViewBag.UsuarioApertura = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.usu_NombreUsuario).SingleOrDefault();
-                    ViewBag.mocja_UsuarioApertura = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.usu_Id).SingleOrDefault();
-
+                    ViewBag.mocja_UsuarioApertura = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.usu_Id).SingleOrDefault();         
                     //Usuario
                     ViewBag.usu_Id = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbMovimientoCaja.usu_Id);
                     ///Sucursal

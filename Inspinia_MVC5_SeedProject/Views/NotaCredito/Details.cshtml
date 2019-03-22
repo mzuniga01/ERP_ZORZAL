@@ -33,6 +33,21 @@
                             @Html.DisplayFor(model => model.tbSucursal.suc_Descripcion)
                         </dd>
                         <dt>
+                            @Html.DisplayNameFor(model => model.tbDevolucion.dev_Id)
+                        </dt>
+                        @if (Model.dev_Id == null)
+                        {
+                            <dd>
+                                ----
+                            </dd>
+                        }
+                        else
+                        {
+                            <dd>
+                                @Html.DisplayFor(model => model.tbDevolucion.dev_Id)
+                            </dd>
+                        }
+                        <dt>
                             @Html.DisplayNameFor(model => model.nocre_Codigo)
                         </dt>
 
@@ -79,23 +94,6 @@
                         <dd>
                             @Html.DisplayFor(model => model.nocre_MotivoEmision)
                         </dd>
-
-                        <dt>
-                            @Html.DisplayNameFor(model => model.tbDevolucion.dev_Id)
-                        </dt>
-                        @if (Model.dev_Id == null)
-                        {
-                            <dd>
-                                ----
-                            </dd>
-                        }
-                        else
-                        {
-                            <dd>
-                                @Html.DisplayFor(model => model.tbDevolucion.dev_Id)
-                            </dd>
-                        }
-
                         <dt>
                             @Html.DisplayNameFor(model => model.nocre_Redimido)
                         </dt>
@@ -121,6 +119,17 @@
                         else
                         {
                             <dd>No</dd>
+                        }
+                        <dt>
+                            Razón Anulada
+                        </dt>
+                        @if(Model.nocre_RazonAnulado == null)
+                        {
+                            <dd>----</dd>
+                        }
+                        else
+                        {
+                            @Html.DisplayFor(model => model.nocre_RazonAnulado)
                         }
                     </dl>
                     @if (Model.nocre_Anulado == false && Model.nocre_Redimido == false && Model.nocre_Redimido == false)

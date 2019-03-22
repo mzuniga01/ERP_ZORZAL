@@ -81,7 +81,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.cdto_FechaEmision, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.cdto_FechaEmision, new { htmlAttributes = new { @readonly = "readonly" } })
+                                    @Html.EditorFor(model => model.cdto_FechaEmision, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_FechaEmision)</p>
                                 </div>
                             </div>
@@ -89,7 +89,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.cdto_FechaVencimiento, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.cdto_FechaVencimiento, new { htmlAttributes = new { @readonly = "readonly" } })
+                                    @Html.EditorFor(model => model.cdto_FechaVencimiento, new { htmlAttributes = new { @class= "form-control", @readonly = "readonly" } })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.cdto_FechaVencimiento)</p>
                                 </div>
                             </div>
