@@ -99,6 +99,24 @@
         var res = str.toUpperCase();
         $("#miInput").val(res);
     });
+
+
+    $(document).keydown(function (e) {
+
+        if ((e.key == 'g' || e.key == 'G') && (e.ctrlKey || e.metaKey)) {
+            e.preventDefault();
+            //alert("Ctrl-g pressed");
+            $("form").submit();
+            return false;
+        }
+        return true;
+    });
+
+    
+    //Focus
+
+    $("#miInput").focus();
+
 </script>
  
 

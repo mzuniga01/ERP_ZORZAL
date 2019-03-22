@@ -513,16 +513,40 @@ namespace ERP_GMEDINA.Controllers
             }
         }
 
-        public ActionResult Reconteo(int? id,string User_NombreUsuario,string User_Password)
+        public JsonResult Reconteo(int id,string User_NombreUsuario,string User_Password)
         {
             try
             {
-                tbUsuario usuario = new tbUsuario();
+                var incorrecto = "";
+                var rol = 0;
+                var usuid = 0;
+                var idparametro = 0;
+                var parametro = db.tbParametro.ToList();
+                foreach (tbParametro idpara in parametro)
+                    idparametro = idpara.par_RolAuditor;
                 var credenciales = db.UDP_Acce_Login(User_NombreUsuario, User_Password).ToList();
+                foreach (UDP_Acce_Login_Result usuario in credenciales)
+                    usuid = usuario.usu_Id;
                 if (credenciales.Count > 0)
                 {
+                    var lista = db.SDP_Acce_GetRolesAsignados(usuid).ToList();
+                    foreach (SDP_Acce_GetRolesAsignados_Result roles in lista)
+                        rol = roles.rol_Id;
+                    if (rol == idparametro)
+                    {
 
+                    }
+                    else
+                    {
+                        incorrecto = "incorrecto";
+                        return Json(incorrecto);
+                    }
                 }
+                else
+                {
+                    return Json(incorrecto);
+                }
+               
                     tbInventarioFisico obj = db.tbInventarioFisico.Find(id);
                 IEnumerable<object> list = null;
                 var MsjError = "";
@@ -533,20 +557,21 @@ namespace ERP_GMEDINA.Controllers
                 if (MsjError == "-1")
                 {
                     ModelState.AddModelError("", "No se Actualizo el registro");
-                    return RedirectToAction("Edit/" + id);
+                    return Json("Edit/" + id);
                 }
                 else
                 {
-                    return RedirectToAction("Edit");
+                    return Json("Edit/"+ id);
                 }
             }
             catch (Exception Ex)
             {
                 Ex.Message.ToString();
                 ModelState.AddModelError("", "No se Actualizo el registro");
-                return RedirectToAction("Edit/" + id);
+                return Json("Edit/" + id);
             }
         }
+
     }
 }
 

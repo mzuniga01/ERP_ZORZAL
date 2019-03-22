@@ -7,6 +7,7 @@
 }
 
 
+
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Inventario Fisico</h2>
@@ -75,13 +76,14 @@
                                 <div class="form-group">
                                     <div class="col-md-offset-2 col-md-10">
                                         <input type="submit" value="Guardar" class="btn btn-primary" id="aceptar" />
+                                        @Html.ActionLink("Guardar", "Conciliar", new { id = Model.invf_Id }, new { @class = "btn btn-primary", @Id = "aceptarReconteo" })
                                         @{if (Model.estif_Id == 1)
                                             {
                                                 <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalConciliar" value="Conciliar" />
                                             }
                                             else if (Model.estif_Id == 2)
                                             {
-                                                <input type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalReconteo" value="Reconteo" />
+                                                <input type="button" class="btn btn-danger" data-toggle="modal" id="reconteo" data-target="#ModalReconteo" value="Reconteo" />
                                             }
                                         }
                                         @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })   
@@ -116,6 +118,16 @@
                                     <div class="form-group">
                                         <div class="col-md-12" id="IndexDetalleConciliado">
                                             @Html.Partial("_ListadoInventarioFisicoDetalleConciliado", Model.tbInventarioFisicoDetalle, new ViewDataDictionary { { "invf_Id", Model.invf_Id } })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <div class="col-md-12" id="IndexDetallereconteo">
+                                            @Html.Partial("_ListadoInventarioFisicoDetalleReconteo", Model.tbInventarioFisicoDetalle, new ViewDataDictionary { { "invf_Id", Model.invf_Id } })
                                         </div>
                                     </div>
                                 </div>
@@ -192,12 +204,15 @@
                 <div class="modal-body">
                     @Html.LabelFor(model => model.tbUsuario.usu_NombreUsuario, new { @class = "control-label col-md-2" })
                     <input type="text" id="User_NombreUsuario" name="User_NombreUsuario" class="form-control"  />
+                    <div id="error_nombreusuario"></div>
                     @Html.LabelFor(model => model.tbUsuario.usu_Password, new { @class = "control-label col-md-2" })
-                    <input type="text" id="User_Password" name="User_Password" class="form-control" />
+                    <input type="password" id="User_Password" name="User_Password" class="form-control" />
+                    <div id="error_password"></div>
+                    <div id="error_rol"></div>
                 </div>
                 <div class="modal-footer">
-                    @Html.ActionLink("Aceptar", "Reconteo", new { id = Model.invf_Id }, new { @class = "btn btn-primary" })
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                   <input type="submit" value="Aceptar" class="btn btn-primary" id="aceptar_reconteo" />
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                 </div>
             </div>
         </div>
@@ -218,17 +233,33 @@
             if (valorid == 1) {
                 document.getElementById("Imprimir").style.display = 'none';
                 document.getElementById("IndexDetalleConciliado").style.display = 'none';
+                document.getElementById("IndexDetallereconteo").style.display = 'none';
+                document.getElementById("aceptarReconteo").style.display = 'none';
                 $("#bod_Ids").prop("disabled", true);
             }
-            else
+            else if (valorid == 2)
+            {
+                $("#bod_Ids").prop("disabled", true);
+                document.getElementById("invf_Descripcion").setAttribute("readonly", true);
+                document.getElementById("aceptar").style.display = 'none';
+                document.getElementById("aceptarReconteo").style.display = 'none';
+                document.getElementById("Crear").style.display = 'none';
+                document.getElementById("IndexdetalleBotones").style.display = 'none';
+                document.getElementById("IndexDetalleConciliado").style.display = 'display';
+                document.getElementById("IndexDetallereconteo").style.display = 'none';
+                document.getElementById("Detalle").style.display = 'none';
+            }
+            else if (valorid == 3)
             {
                 $("#bod_Ids").prop("disabled", true);
                 document.getElementById("invf_Descripcion").setAttribute("readonly", true);
                 document.getElementById("aceptar").style.display = 'none';
                 document.getElementById("Crear").style.display = 'none';
                 document.getElementById("IndexdetalleBotones").style.display = 'none';
-                document.getElementById("IndexDetalleConciliado").style.display = 'display';
                 document.getElementById("Detalle").style.display = 'none';
+                document.getElementById("Imprimir").style.display = 'none';
+                document.getElementById("IndexDetalleConciliado").style.display = 'none';
+
             }
 
     };

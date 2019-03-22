@@ -605,3 +605,65 @@ function NumText(string) {
             out += string.charAt(i);
     return out;
 }
+
+
+//reconteo
+$('#aceptar_reconteo').click(function () {
+    $('#errorol').hide();
+    var id = $('#invf_Id').val();
+    var User_NombreUsuario = $('#User_NombreUsuario').val();
+    var User_Password = $('#User_Password').val();
+    if (User_NombreUsuario == '') {
+        $('#error_nombreusuario').after('<ul id="errorusuario" class="validation-summary-errors text-danger">Campo Usuario Requerido</ul>');
+    }
+    else if (User_Password == '') {
+        $('#error_password').after('<ul id="errorcontra" class="validation-summary-errors text-danger">Campo Contraseña Requerido</ul>');
+    } else {
+        $.ajax({
+            url: "/InventarioFisico/Reconteo",
+            method: "POST",
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ id: id, User_NombreUsuario: User_NombreUsuario, User_Password: User_Password }),
+        }).done(function (incorrecto) {
+            if (incorrecto == "incorrecto")
+            {
+                $('#error_rol').after('<ul id="errorol" class="validation-summary-errors text-danger">Usuario incorrecto o roles sin acceso.</ul>');
+        }
+        });
+    }
+})
+
+$("#User_NombreUsuario").on('keyup', function () {
+    $('#errorusuario').hide();
+}).keyup();
+
+$("#error_password").on('keyup', function () {
+    $('#errorcontra').hide();
+}).keyup();
+
+
+
+//teclas rapidas 
+
+$(document).keydown(function (e) {
+
+    if ((e.key == 'g' || e.key == 'G') && (e.ctrlKey || e.metaKey)) {
+
+        e.preventDefault();
+
+        $("form").submit();
+
+        return false;
+
+    }
+
+    return true;
+
+});
+
+//limpiar
+$('#reconteo').click(function () {
+    $('#User_NombreUsuario').val("");
+    $('#User_Password').val("");
+})

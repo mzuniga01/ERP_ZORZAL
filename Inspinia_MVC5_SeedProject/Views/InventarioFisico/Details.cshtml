@@ -76,7 +76,7 @@
                             <div class="col-lg-12">
                                 <div class="form-group">
                                     <div class="col-md-12" id="IndexDetalle">
-                                        @Html.Partial("_ListadoInventarioFisicoDetalle", Model.tbInventarioFisicoDetalle, new ViewDataDictionary { { "invf_Id", Model.invf_Id } })
+                                        @Html.Partial("_IndexInvFisicoDetalle", Model.tbInventarioFisicoDetalle, new ViewDataDictionary { { "invf_Id", Model.invf_Id } })
                                     </div>
                                 </div>
                             </div>
@@ -137,13 +137,17 @@
                 document.getElementById("IndexDetalle").style.display = 'display';
                 document.getElementById("IndexDetalleConciliado").style.display = 'none';
             }
-            else
+        else if (valorid == 2)
             {
                 document.getElementById("IndexDetalle").style.display = 'none';
                 document.getElementById("IndexDetalleConciliado").style.display = 'display';
 
-            }
+        }
+        else if (valorid == 3) {
+            document.getElementById("IndexDetalle").style.display = 'display';
+            document.getElementById("IndexDetalleConciliado").style.display = 'none';
 
+        }
     };
 
 </script>

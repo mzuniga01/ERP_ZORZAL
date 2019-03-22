@@ -149,6 +149,23 @@
         var res = str.toUpperCase();
         $("#tent_Descripcion").val(res);
     });
+
+    $(document).keydown(function (e) {
+
+        if ((e.key == 'g' || e.key == 'G') && (e.ctrlKey || e.metaKey)) {
+            e.preventDefault();
+            //alert("Ctrl-g pressed");
+            $("form").submit();
+            return false;
+        }
+        return true;
+    });
+
+
+    //Focus
+
+    $("#tent_Descripcion").focus();
+
 </script>
 
 
