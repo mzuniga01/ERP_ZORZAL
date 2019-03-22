@@ -58,7 +58,7 @@
                                     @Html.LabelFor(model => model.tsal_Descripcion, new { @class = "control-label col-md-2 , required " })
                                     <div class="col-md-5">
                                         @*@Html.EditorFor(model => model.tsal_Descripcion , new { @class = "text-danger", id = "TipoSalida_Descripcion" })*@
-                                        <input type="text" id="tsal_Descripcion" name="tsal_Descripcion" onblur="limpia()" class="form-control " Value="" onKeyPress="return soloLetras(event),Mayús(this)" autocomplete="off" />
+                                        <input type="text" id="tsal_Descripcion" name="tsal_Descripcion" onblur="limpia()" class="form-control " Value="" onKeyPress="return soloLetras(event)" autocomplete="off" />
                                         <span style="color:red">@Html.ValidationSummary(true)</span>
                                         <p style="color:red">@Html.ValidationMessageFor(model => model.tsal_Descripcion)</p>
 
@@ -82,10 +82,13 @@
             </div>
         </div>
     </div>
- <script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 <script src="~/Scripts/app/DataTable.js"></script>
-<script src="~/Scripts/app/Tipo_Salida.js"></script>
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 
@@ -100,10 +103,56 @@
                 }
             }
         });
+
         $("#tsal_Descripcion").change(function () {
             var str = $("#tsal_Descripcion").val();
             var res = str.toUpperCase();
             $("#tsal_Descripcion").val(res);
         });
+
+        document.getElementById("tsal_Descripcion").addEventListener("keydown", teclear);
+        var teclaAnterior = "";
+        function teclear(event) {
+            teclaAnterior = teclaAnterior + " " + event.keyCode;
+            var arregloTA = teclaAnterior.split(" ");
+            if (event.keyCode == 32 && arregloTA[arregloTA.length - 2] == 32) {
+                event.preventDefault();
+            }
+        }
+
+        function ponleFocus() {
+            document.getElementById("tsal_Descripcion").focus();
+        }
+
+        ponleFocus();
+        function soloLetras(e) {
+            tecla = (document.all) ? e.keyCode : e.which;
+            tecla = String.fromCharCode(tecla)
+            return /^[a-zA-ZÑ ]+$/.test(tecla);
+
+        };
+        //Limpiar campo de campos copiados y no permitidos por el campo de nombre
+        function limpia() {
+            var val = document.getElementById("tsal_Descripcion").value;
+            var tam = val.length;
+            for (i = 0; i < tam; i++) {
+                if (!isNaN(val[i]))
+                    document.getElementById("tsal_Descripcion").value = '';
+            }
+        };
+        ///validar not copy paste///
+        window.onload =
+            function () {
+                var myInput = document.getElementById('tsal_Descripcion');
+                myInput.onpaste = function (e) {
+                    e.preventDefault();
+                    //alert("esta acción está prohibida");
+                }
+
+                myInput.oncopy = function (e) {
+                    e.preventDefault();
+                    //alert("esta acción está prohibida");
+                }
+            };
     </script>
 }

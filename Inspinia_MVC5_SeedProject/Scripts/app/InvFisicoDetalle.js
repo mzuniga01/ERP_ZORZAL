@@ -582,16 +582,11 @@ $("#invfd_Cantidad").on('keyup', function () {
 
 //Validar campos Especiales
 $('#invf_Descripcion').keypress(function (e) {
-    tecla = (document.all) ? e.keyCode : e.which;
+    if (e.key.match(/[a-z0-9ñçáéíóú\s]/i) === null) {
 
-    //Tecla de retroceso para borrar, siempre la permite
-    if (tecla == 8) {
-        return true;
+        // Si la tecla pulsada no es la correcta, eliminado la pulsación
+        e.preventDefault();
     }
-    // Patron de entrada, en este caso solo acepta numeros y letras
-    patron = /[A-Za-z0-9]/;
-    tecla_final = String.fromCharCode(tecla);
-    return patron.test(tecla_final);
 })
 
 //solo letras y numeros

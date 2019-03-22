@@ -58,7 +58,7 @@
 
                         }
                     </dl>
-                        @Html.ActionLink("Editar", "Edit", new { id = Model.rol_Id}, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Editar", "Edit", new { id = Model.rol_Id}, new { @class = "btn btn-primary", @id = "EditarRol" })
                 </div>
             </div>
             <div class="ibox float-e-margins">
@@ -110,8 +110,23 @@
     </div>
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script src="~/Scripts/app/PartialViewGetObjectos.js"></script>
-    
+<script>
+    //$(document).keydown(function (e) {
 
+    //    if ((e.key == 'e' || e.key == 'E') && (e.ctrlKey || e.metaKey)) {
+
+    //        e.preventDefault();
+
+    //        $('#EditarRol').click();
+
+    //        return false;
+
+    //    }
+
+    //    return true;
+
+    //});
+</script>
 
 
 

@@ -86,7 +86,8 @@
                         <div class="form-group">
                             <div class="col-md-12 text-center">
                                 <input type="submit" value="Guardar" class="btn btn-primary" />
-                                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                @Html.ActionLink("Cancelar", "Index", null,  new { @class = "btn btn-white", onclick = "return ConfirmationDialog()" })
+
                             </div> 
                         </div>
                     </div>
@@ -103,4 +104,16 @@
 
 @section Scripts {
 @Scripts.Render("~/bundles/jqueryval")
+<script type="text/javascript">
+function ConfirmationDialog() {
+    if (confirm("¿Está seguro que desea cancelar, se perderán todos los cambios?"))
+return true;
+else
+return false;
+}
+
+</script>
+
+
+
 }

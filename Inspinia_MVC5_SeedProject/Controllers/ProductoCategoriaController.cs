@@ -305,7 +305,7 @@ namespace ERP_GMEDINA.Controllers
 
                 if (MsjError.StartsWith("-2"))
                 {
-                    TempData["smserror"] = " No se puede eliminar el dato porque tiene dependencia.";
+                    TempData["smserror"] = "No se puede Eliminar el dato porque está en uso.";
                     ViewBag.smserror = TempData["smserror"];
 
                     ModelState.AddModelError("", "No se puede borrar el registro");
@@ -344,7 +344,7 @@ namespace ERP_GMEDINA.Controllers
 
                 if (MsjError.StartsWith ("-2"))
                 {
-                    TempData["smserror"] = " No se puede eliminar el dato porque tiene dependencia.";
+                    TempData["smserror"] = " No se puede Eliminar del dato porque está en uso.";
                     ViewBag.smserror = TempData["smserror"];
 
                     ModelState.AddModelError("", "No se puede borrar el registro");
@@ -380,7 +380,7 @@ namespace ERP_GMEDINA.Controllers
 
                 if (MsjError.StartsWith("-2"))
                 {
-                    TempData["smserror"] = " No se puede eliminar el dato porque tiene dependencia.";
+                    TempData["smserror"] = "No se puede cambiar el estado del dato porque está en uso.";
                     ViewBag.smserror = TempData["smserror"];
 
                     ModelState.AddModelError("", "No se Actualizo el registro");
@@ -407,6 +407,8 @@ namespace ERP_GMEDINA.Controllers
 
             try
             {
+                tbProductoCategoria objeto = db.tbProductoCategoria.Find(id);
+                var idcate = objeto.pcat_Id;
                 tbProductoSubcategoria obj = db.tbProductoSubcategoria.Find(id);
                 IEnumerable<object> list = null;
                 var MsjError = "";
@@ -417,11 +419,11 @@ namespace ERP_GMEDINA.Controllers
                 if (MsjError == "-1")
                 {
                     ModelState.AddModelError("", "No se Actualizo el registro");
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Edit/" + idcate);
                 }
                 else
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Edit/" + idcate);
                 }
             }
             catch (Exception Ex)
@@ -437,6 +439,8 @@ namespace ERP_GMEDINA.Controllers
 
             try
             {
+                tbProductoCategoria objeto = db.tbProductoCategoria.Find(id);
+                var idcate = objeto.pcat_Id;
                 tbProductoSubcategoria obj = db.tbProductoSubcategoria.Find(id);
                 IEnumerable<object> list = null;
                 var MsjError = "";
@@ -446,14 +450,14 @@ namespace ERP_GMEDINA.Controllers
 
                 if (MsjError.StartsWith("-2"))
                 {
-                    TempData["smserror"] = " No se puede cambiar el estado del dato porque tiene dependencia.";
+                    TempData["smserror"] = "No se puede cambiar el estado del dato porque está en uso.";
                     ViewBag.smserror = TempData["smserror"];
                     ModelState.AddModelError("", "No se Actualizo el registro");
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Edit/" + idcate);
                 }
                 else
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Edit/" + idcate);
                 }
             }
             catch (Exception Ex)
@@ -479,7 +483,7 @@ namespace ERP_GMEDINA.Controllers
 
                 if (MsjError.StartsWith("-2"))
                 {
-                    TempData["smserror"] = " No se puede cambiar el estado del dato porque tiene dependencia.";
+                    TempData["smserror"] = "No se puede cambiar el estado del dato porque está en uso.";
                     ViewBag.smserror = TempData["smserror"];
 
                     ModelState.AddModelError("", "No se Actualizo el registro");

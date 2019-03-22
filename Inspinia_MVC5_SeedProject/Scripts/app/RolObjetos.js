@@ -1,5 +1,26 @@
 ﻿$(document).ready(function () {
+    $('#rol_Descripcion').focus();
+    $(document).keydown(function (e) {
+        if ((e.key == 'g' || e.key == 'G') && (e.ctrlKey || e.metaKey)) {
+            e.preventDefault();
+            $("#btnGuardarRol").click();
+            return false;
+        }
+        if ((e.key == 'l' || e.key == 'L') && (e.ctrlKey || e.metaKey)) {
+            e.preventDefault();
+            $("#CancelarCreate").click();
+            return false;
+        }
+    });
     $("#rol_Descripcion")[0].maxLength = 100;
+    $("#rol_Descripcion").keypress(function (e) {
+        if (e.which == 13) {
+            // Acciones a realizar, por ej: enviar formulario.
+            $('#btnGuardarRol').click();
+
+        }
+    });
+    
     $.ajax({
         url: "/Rol/GetObjetos",
         method: "POST",
@@ -116,7 +137,19 @@ $('#rol_Descripcion').on('input', function (e) {
     }
 });
 
-$('#btnGuardarRol').click(function () {
+$("#CancelarCreate").click(function () {
+    var DescripcionRol = $("#rol_Descripcion").val();
+    var TableLeght = $("#Asignados tr").length;
+    if (DescripcionRol.length > 0 || TableLeght > 1)
+    {
+        $("#ModalCancelar").modal("show");
+    }
+    else {
+        window.location.href = '/Rol/Index';
+    }
+});
+
+$('#btnGuardarRol').click(function GuardarRol() {
     var DescripcionRol = $("#rol_Descripcion").val();
     if (DescripcionRol == '') {
         $('#DescripcionRol').text('');

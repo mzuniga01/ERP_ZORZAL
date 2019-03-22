@@ -83,7 +83,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.tsal_Descripcion, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.tsal_Descripcion, new { htmlAttributes = new { @autocomplete = "off", @onKeyPress = "return soloLetras(event), return ValidarNumero(event,this)" } })
+                                    @Html.EditorFor(model => model.tsal_Descripcion, new { htmlAttributes = new { @autocomplete = "off", @onKeyPress = "return soloLetras(event)" } })
                                     @*<p style="color:red">@Html.ValidationMessageFor(model => model.tsal_Descripcion)</p>*@
                                     <span style="color:red">@Html.ValidationSummary(true)</span>
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.tsal_Descripcion)</p>
@@ -134,28 +134,41 @@
         </div>
     </div>
 </div>
-<script src="~/Scripts/app/TipoSalida.js"></script>
-@*<script>
-    //Validar Los campos Stringg
-    //Validar Los campos Stringg
-    function soloLetras(e) {
-        tecla = (document.all) ? e.keyCode : e.which;
-        tecla = String.fromCharCode(tecla)
-        return /^[a-zA-ZÑ ]+$/.test(tecla);
-    };
-    ///validar not copy paste///
-    window.onload =
-        function () {
-            var myInput = document.getElementById('tsal_Descripcion');
-            myInput.onpaste = function (e) {
-                e.preventDefault();
-            }
-
-            myInput.oncopy = function (e) {
-                e.preventDefault();
-            }
-        };
-</script>*@
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+@*<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>*@
+<script src="~/Scripts/app/DataTable.js"></script>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+<script>
+    document.getElementById("tsal_Descripcion").addEventListener("keydown", teclear);
+       var teclaAnterior = "";
+       function teclear(event) {
+           teclaAnterior = teclaAnterior + " " + event.keyCode;
+           var arregloTA = teclaAnterior.split(" ");
+           if (event.keyCode == 32 && arregloTA[arregloTA.length - 2] == 32) {
+               event.preventDefault();
+           }
+}
+function soloLetras(e) {
+    tecla = (document.all) ? e.keyCode : e.which;
+    tecla = String.fromCharCode(tecla)
+    return /^[a-zA-ZÑ ]+$/.test(tecla);
+};
+///validar not copy paste///
+window.onload =
+    function () {
+        var myInput = document.getElementById('tsal_Descripcion');
+        myInput.onpaste = function (e) {
+            e.preventDefault();
+        }
+
+        myInput.oncopy = function (e) {
+            e.preventDefault();
+        }
+    };
+</script>
 }

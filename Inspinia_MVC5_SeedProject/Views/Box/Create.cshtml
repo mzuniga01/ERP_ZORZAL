@@ -96,7 +96,7 @@
                             <div class="form-group">
                                 <div class="col-md-offset-5 col-md-10">
                                     <input type="submit" value="Registrar" class="btn btn-primary" />
-                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                   @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white", onclick = "return ConfirmationDialog()" })
                                 </div>
                             </div>
                         </div>
@@ -116,7 +116,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                @*<button type="button" class="btn btn-primary">Save changes</button>*@
+                              
                             </div>
                         </div>
                     </div>
@@ -132,6 +132,23 @@
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/Datepicker.js"></script>
 <script src="~/Scripts/app/DetalleBox.js"></script>
+
+<script type="text/javascript">
+
+function ConfirmationDialog() {
+
+    if (confirm("Esta Seguro de Cancelar, se perderán los Cambios."))
+
+return true;
+
+else
+
+return false;
+
+}
+
+</script>
+
 
 @*<script type="text/javascript">
     jQuery('input,select').each(function() {

@@ -70,6 +70,11 @@ namespace ERP_GMEDINA.Controllers
             string MensajeError = "";
             string MsjError = "";
             var listMunicipios = (List<tbMunicipio>)Session["tbMunicipio"];
+
+            if (db.tbDepartamento.Any(a => a.dep_Nombre == tbDepartamento.dep_Nombre))
+            {
+                ModelState.AddModelError("", "Ya existe un Departamento con ese Nombre, agregue otro.");
+            }
             if (ModelState.IsValid)
             {
                 using (TransactionScope _Tran = new TransactionScope())
@@ -82,7 +87,7 @@ namespace ERP_GMEDINA.Controllers
                         if (MsjError.StartsWith("-1"))
                         {
                             Function.InsertBitacoraErrores("Departamento/Create", MsjError, "Create");
-                            ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
+                            ModelState.AddModelError("", "Ya existe un Departamento con ese Código, agregue otro.");
                             return View(tbDepartamento);
                         }
                         else

@@ -25,7 +25,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.pscat_Descripcion, new { @class = "control-label col-md-2 , required" })
         <div class="col-md-4">
-            <input type="text" id="pscat_Descripcion" onkeypress="return soloLetras(event)" placeholder="" class="form-control" maxlength="150" autocomplete = "off"/>
+            <input type="text" id="pscat_Descripcion" onkeypress="return soloLetras(event)" placeholder="" class="form-control" maxlength="150" autocomplete = "off" style = "text-transform:uppercase;"/>
             <div id="DescripcionError">
                 <p style="color:red">
                     @Html.ValidationMessageFor(model => model.pscat_Descripcion)

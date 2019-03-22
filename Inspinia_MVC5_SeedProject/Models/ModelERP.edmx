@@ -161,7 +161,7 @@
           <Property Name="emp_Identificacion" Type="nvarchar" MaxLength="14" Nullable="false" />
           <Property Name="emp_Telefono" Type="nvarchar" MaxLength="25" Nullable="false" />
           <Property Name="emp_Correoelectronico" Type="nvarchar" MaxLength="50" />
-          <Property Name="emp_TipoSangre" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="emp_TipoSangre" Type="nvarchar" MaxLength="3" />
           <Property Name="emp_Puesto" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="emp_FechaIngreso" Type="date" Nullable="false" />
           <Property Name="emp_Direccion" Type="nvarchar" MaxLength="250" Nullable="false" />
@@ -1339,7 +1339,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_EntradaPorId' does not hav
           <Property Name="ent_FacturaCompra" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="ent_FechaCompra" Type="datetime" Nullable="false" />
           <Property Name="tdev_descripcion" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="fact_Id" Type="int" Nullable="false" />
+          <Property Name="fact_Id" Type="nvarchar" MaxLength="19" Nullable="false" />
           <Property Name="ent_BodegaDestino" Type="int" Nullable="false" />
           <Property Name="entd_Cantidad" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="prod_Codigo" Type="nvarchar" MaxLength="15" Nullable="false" />
@@ -1715,7 +1715,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Inv.UDV_Inv_TipoEntrada' does not have
           <Property Name="ent_FacturaCompra" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="ent_FechaCompra" Type="datetime" Nullable="false" />
           <Property Name="tdev_descripcion" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="fact_Id" Type="int" Nullable="false" />
+          <Property Name="fact_Id" Type="nvarchar" MaxLength="19" Nullable="false" />
           <Property Name="ent_BodegaDestino" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
@@ -2510,7 +2510,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <Property Name="fact_UsuarioCrea" Type="int" Nullable="false" />
           <Property Name="suc_Id" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK__DatosCons__fact___4DAB2CE2">
+        <Association Name="FK__DatosCons__fact___2D7CBDC4">
           <End Role="tbFactura" Type="Self.tbFactura" Multiplicity="1" />
           <End Role="DatosConsumidorFinal" Type="Self.DatosConsumidorFinal" Multiplicity="*" />
           <ReferentialConstraint>
@@ -5450,6 +5450,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <Parameter Name="usu_Correo" Type="varchar" Mode="In" />
           <Parameter Name="suc_Id" Type="int" Mode="In" />
           <Parameter Name="emp_Id" Type="smallint" Mode="In" />
+          <Parameter Name="usu_EsAdministrador" Type="bit" Mode="In" />
         </Function>
         <Function Name="UDP_Acce_tbUsuario_PasswordRestore" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Acce">
           <Parameter Name="usu_Id" Type="int" Mode="In" />
@@ -5870,6 +5871,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <Parameter Name="ent_Id" Type="int" Mode="In" />
           <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
           <Parameter Name="entd_Cantidad" Type="decimal" Mode="In" />
+          <Parameter Name="box_Codigo" Type="varchar" Mode="In" />
           <Parameter Name="ent_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="ent_FechaCrea" Type="datetime" Mode="In" />
         </Function>
@@ -5878,6 +5880,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <Parameter Name="ent_Id" Type="int" Mode="In" />
           <Parameter Name="prod_Codigo" Type="nvarchar" Mode="In" />
           <Parameter Name="entd_Cantidad" Type="decimal" Mode="In" />
+          <Parameter Name="box_Codigo" Type="varchar" Mode="In" />
           <Parameter Name="entd_UsuarioCrea" Type="int" Mode="In" />
           <Parameter Name="entd_FechaCrea" Type="datetime" Mode="In" />
           <Parameter Name="entd_UsuarioModifica" Type="int" Mode="In" />
@@ -7156,7 +7159,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
     [UDV_Vent_VentasPorCaja_EntreFechas].[suc_Id] AS [suc_Id]
     FROM [Vent].[UDV_Vent_VentasPorCaja_EntreFechas] AS [UDV_Vent_VentasPorCaja_EntreFechas]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK__DatosCons__fact___4DAB2CE2" Association="Self.FK__DatosCons__fact___4DAB2CE2">
+          <AssociationSet Name="FK__DatosCons__fact___2D7CBDC4" Association="Self.FK__DatosCons__fact___2D7CBDC4">
             <End Role="tbFactura" EntitySet="tbFactura" />
             <End Role="DatosConsumidorFinal" EntitySet="DatosConsumidorFinal" />
           </AssociationSet>
@@ -8234,6 +8237,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
             <Parameter Name="usu_Correo" Mode="In" Type="String" />
             <Parameter Name="suc_Id" Mode="In" Type="Int32" />
             <Parameter Name="emp_Id" Mode="In" Type="Int16" />
+            <Parameter Name="usu_EsAdministrador" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="UDP_Inv_CantidadExistente" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_CantidadExistente_Result)">
             <Parameter Name="bod_Id" Mode="In" Type="Int32" />
@@ -8300,23 +8304,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <FunctionImport Name="UDP_Inv_tbEntrada_Update_Estado" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEntrada_Update_Estado_Result)">
             <Parameter Name="ent_Id" Mode="In" Type="Int32" />
             <Parameter Name="estm_Id" Mode="In" Type="Byte" />
-            <Parameter Name="entd_UsuarioModifica" Mode="In" Type="Int32" />
-            <Parameter Name="entd_FechaModifica" Mode="In" Type="DateTime" />
-          </FunctionImport>
-          <FunctionImport Name="UDP_Inv_tbEntradaDetalle_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEntradaDetalle_Insert_Result)">
-            <Parameter Name="ent_Id" Mode="In" Type="Int32" />
-            <Parameter Name="prod_Codigo" Mode="In" Type="String" />
-            <Parameter Name="entd_Cantidad" Mode="In" Type="Decimal" />
-            <Parameter Name="ent_UsuarioCrea" Mode="In" Type="Int32" />
-            <Parameter Name="ent_FechaCrea" Mode="In" Type="DateTime" />
-          </FunctionImport>
-          <FunctionImport Name="UDP_Inv_tbEntradaDetalle_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEntradaDetalle_Update_Result)">
-            <Parameter Name="entd_Id" Mode="In" Type="Int32" />
-            <Parameter Name="ent_Id" Mode="In" Type="Int32" />
-            <Parameter Name="prod_Codigo" Mode="In" Type="String" />
-            <Parameter Name="entd_Cantidad" Mode="In" Type="Decimal" />
-            <Parameter Name="entd_UsuarioCrea" Mode="In" Type="Int32" />
-            <Parameter Name="entd_FechaCrea" Mode="In" Type="DateTime" />
             <Parameter Name="entd_UsuarioModifica" Mode="In" Type="Int32" />
             <Parameter Name="entd_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
@@ -8777,18 +8764,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
             <Parameter Name="estado" Mode="In" Type="Byte" />
             <Parameter Name="bodega" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Inv_tbEstadoInventarioFisico_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEstadoInventarioFisico_Insert_Result)">
-            <Parameter Name="estif_Id" Mode="In" Type="Byte" />
-            <Parameter Name="estif_Descripcion" Mode="In" Type="String" />
-            <Parameter Name="estif_UsuarioCrea" Mode="In" Type="Int32" />
-            <Parameter Name="estif_FechaCrea" Mode="In" Type="DateTime" />
-          </FunctionImport>
-          <FunctionImport Name="UDP_Inv_tbEstadoInventarioFisico_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEstadoInventarioFisico_Update_Result)">
-            <Parameter Name="estif_Id" Mode="In" Type="Byte" />
-            <Parameter Name="estif_Descripcion" Mode="In" Type="String" />
-            <Parameter Name="estif_UsuarioCrea" Mode="In" Type="Int32" />
-            <Parameter Name="estif_FechaCrea" Mode="In" Type="DateTime" />
-          </FunctionImport>
           <FunctionImport Name="SDP_Acce_GetRoles" ReturnType="Collection(ERP_ZORZALModel.SDP_Acce_GetRoles_Result)" />
           <FunctionImport Name="SDP_Acce_GetRolesDisponibles" ReturnType="Collection(ERP_ZORZALModel.SDP_Acce_GetRolesDisponibles_Result)">
           <Parameter Name="usu_Id" Mode="In" Type="Int32" />
@@ -9063,7 +9038,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <EntitySet Name="UDV_Inv_CatalogoProductos" EntityType="ERP_ZORZALModel.UDV_Inv_CatalogoProductos" />
           <EntitySet Name="UDV_Inv_Consultar_Existencias_Productos" EntityType="ERP_ZORZALModel.UDV_Inv_Consultar_Existencias_Productos" />
           <EntitySet Name="UDV_Inv_ConsultarInventarioFisicoSobrantes" EntityType="ERP_ZORZALModel.UDV_Inv_ConsultarInventarioFisicoSobrantes" />
-          <EntitySet Name="UDV_Inv_EntradaPorId" EntityType="ERP_ZORZALModel.UDV_Inv_EntradaPorId" />
           <EntitySet Name="UDV_INV_Frecuencia_Movimiento_Productos" EntityType="ERP_ZORZALModel.UDV_INV_Frecuencia_Movimiento_Productos" />
           <EntitySet Name="UDV_INV_Frecuencia_Movimiento_Productos_Prueba" EntityType="ERP_ZORZALModel.UDV_INV_Frecuencia_Movimiento_Productos_Prueba" />
           <EntitySet Name="UDV_Inv_Inventario_Historico_Por_Fechas" EntityType="ERP_ZORZALModel.UDV_Inv_Inventario_Historico_Por_Fechas" />
@@ -9074,7 +9048,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <EntitySet Name="UDV_Inv_Proyeccion_de_Movimiento_de_Producto" EntityType="ERP_ZORZALModel.UDV_Inv_Proyeccion_de_Movimiento_de_Producto" />
           <EntitySet Name="UDV_Inv_Salida_Imprimir_Reporte" EntityType="ERP_ZORZALModel.UDV_Inv_Salida_Imprimir_Reporte" />
           <EntitySet Name="UDV_inv_tbinventariofisico_reporteFaltantes" EntityType="ERP_ZORZALModel.UDV_inv_tbinventariofisico_reporteFaltantes" />
-          <EntitySet Name="UDV_Inv_TipoEntrada" EntityType="ERP_ZORZALModel.UDV_Inv_TipoEntrada" />
           <EntitySet Name="UDV_InventarioActual" EntityType="ERP_ZORZALModel.UDV_InventarioActual" />
           <EntitySet Name="VistaInventarioHistorico" EntityType="ERP_ZORZALModel.VistaInventarioHistorico" />
           <EntitySet Name="UDP_Vent_listExoneracion_Select" EntityType="ERP_ZORZALModel.UDP_Vent_listExoneracion_Select" />
@@ -10045,6 +10018,39 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
             <End Role="tbSolicitudEfectivo" EntitySet="tbSolicitudEfectivo" />
             <End Role="tbSolicitudEfectivoDetalle" EntitySet="tbSolicitudEfectivoDetalle" />
           </AssociationSet>
+          <FunctionImport Name="UDP_Inv_tbEstadoInventarioFisico_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEstadoInventarioFisico_Insert_Result)">
+            <Parameter Name="estif_Id" Mode="In" Type="Byte" />
+            <Parameter Name="estif_Descripcion" Mode="In" Type="String" />
+            <Parameter Name="estif_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="estif_FechaCrea" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Inv_tbEstadoInventarioFisico_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEstadoInventarioFisico_Update_Result)">
+            <Parameter Name="estif_Id" Mode="In" Type="Byte" />
+            <Parameter Name="estif_Descripcion" Mode="In" Type="String" />
+            <Parameter Name="estif_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="estif_FechaCrea" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <EntitySet Name="UDV_Inv_EntradaPorId" EntityType="ERP_ZORZALModel.UDV_Inv_EntradaPorId" />
+          <EntitySet Name="UDV_Inv_TipoEntrada" EntityType="ERP_ZORZALModel.UDV_Inv_TipoEntrada" />
+          <FunctionImport Name="UDP_Inv_tbEntradaDetalle_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEntradaDetalle_Insert_Result)">
+            <Parameter Name="ent_Id" Mode="In" Type="Int32" />
+            <Parameter Name="prod_Codigo" Mode="In" Type="String" />
+            <Parameter Name="entd_Cantidad" Mode="In" Type="Decimal" />
+            <Parameter Name="box_Codigo" Mode="In" Type="String" />
+            <Parameter Name="ent_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="ent_FechaCrea" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Inv_tbEntradaDetalle_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEntradaDetalle_Update_Result)">
+            <Parameter Name="entd_Id" Mode="In" Type="Int32" />
+            <Parameter Name="ent_Id" Mode="In" Type="Int32" />
+            <Parameter Name="prod_Codigo" Mode="In" Type="String" />
+            <Parameter Name="entd_Cantidad" Mode="In" Type="Decimal" />
+            <Parameter Name="box_Codigo" Mode="In" Type="String" />
+            <Parameter Name="entd_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="entd_FechaCrea" Mode="In" Type="DateTime" />
+            <Parameter Name="entd_UsuarioModifica" Mode="In" Type="Int32" />
+            <Parameter Name="entd_FechaModifica" Mode="In" Type="DateTime" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
           <Key>
@@ -10246,12 +10252,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <Property Type="DateTime" Name="entd_FechaCrea" Nullable="false" Precision="23" />
           <Property Type="Int32" Name="entd_UsuarioModifica" Nullable="true" />
           <Property Type="DateTime" Name="entd_FechaModifica" Nullable="true" Precision="23" />
-        </ComplexType>
-        <ComplexType Name="UDP_Inv_tbEntradaDetalle_Update_Result">
-          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-        </ComplexType>
-        <ComplexType Name="UDP_Inv_tbEntradaDetalle_Insert_Result">
-          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
         <ComplexType Name="UDP_Inv_tbEntrada_Update_Estado_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
@@ -10701,12 +10701,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <Property Type="DateTime" Name="rol_FechaModifica" Nullable="true" Precision="23" />
           <Property Type="Boolean" Name="rol_Estado" Nullable="true" />
         </ComplexType>
-        <ComplexType Name="UDP_Inv_tbEstadoInventarioFisico_Insert_Result">
-          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-        </ComplexType>
-        <ComplexType Name="UDP_Inv_tbEstadoInventarioFisico_Update_Result">
-          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-        </ComplexType>
         <ComplexType Name="UDP_Inv_tbBox_Delete_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
@@ -11127,7 +11121,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <Property Name="emp_Identificacion" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="true" />
           <Property Name="emp_Telefono" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
           <Property Name="emp_Correoelectronico" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="emp_TipoSangre" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="emp_TipoSangre" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
           <Property Name="emp_Puesto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="emp_FechaIngreso" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="emp_Direccion" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
@@ -12527,43 +12521,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <Property Name="invfd_CantidadSistema" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
           <Property Name="Sobrante_Faltante" Type="Decimal" Precision="11" Scale="2" />
         </EntityType>
-        <EntityType Name="UDV_Inv_EntradaPorId">
-          <Key>
-            <PropertyRef Name="ent_Id" />
-            <PropertyRef Name="ent_NumeroFormato" />
-            <PropertyRef Name="ent_FechaElaboracion" />
-            <PropertyRef Name="prov_Nombre" />
-            <PropertyRef Name="tent_id" />
-            <PropertyRef Name="estm_Descripcion" />
-            <PropertyRef Name="tent_Descripcion" />
-            <PropertyRef Name="ent_FacturaCompra" />
-            <PropertyRef Name="ent_FechaCompra" />
-            <PropertyRef Name="tdev_descripcion" />
-            <PropertyRef Name="fact_Id" />
-            <PropertyRef Name="ent_BodegaDestino" />
-            <PropertyRef Name="entd_Cantidad" />
-            <PropertyRef Name="prod_Codigo" />
-            <PropertyRef Name="prod_Descripcion" />
-            <PropertyRef Name="uni_Descripcion" />
-          </Key>
-          <Property Name="ent_Id" Type="Int32" Nullable="false" />
-          <Property Name="ent_NumeroFormato" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="bod_Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="ent_FechaElaboracion" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="prov_Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="tent_id" Type="Byte" Nullable="false" />
-          <Property Name="estm_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="tent_Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ent_FacturaCompra" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="ent_FechaCompra" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="tdev_descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="fact_Id" Type="Int32" Nullable="false" />
-          <Property Name="ent_BodegaDestino" Type="Int32" Nullable="false" />
-          <Property Name="entd_Cantidad" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <Property Name="prod_Codigo" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
-          <Property Name="prod_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="uni_Descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="UDV_INV_Frecuencia_Movimiento_Productos">
           <Key>
             <PropertyRef Name="bod_Id" />
@@ -12882,37 +12839,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <Property Name="Sobrante_Faltante" Type="Decimal" Precision="11" Scale="2" />
           <Property Name="bod_Id" Type="Int32" Nullable="false" />
           <Property Name="uni_Id" Type="Int32" Nullable="false" />
-        </EntityType>
-        <EntityType Name="UDV_Inv_TipoEntrada">
-          <Key>
-            <PropertyRef Name="ent_NumeroFormato" />
-            <PropertyRef Name="ent_FechaElaboracion" />
-            <PropertyRef Name="bod_id" />
-            <PropertyRef Name="estm_id" />
-            <PropertyRef Name="tent_id" />
-            <PropertyRef Name="prov_Nombre" />
-            <PropertyRef Name="estm_Descripcion" />
-            <PropertyRef Name="tent_Descripcion" />
-            <PropertyRef Name="ent_FacturaCompra" />
-            <PropertyRef Name="ent_FechaCompra" />
-            <PropertyRef Name="tdev_descripcion" />
-            <PropertyRef Name="fact_Id" />
-            <PropertyRef Name="ent_BodegaDestino" />
-          </Key>
-          <Property Name="ent_NumeroFormato" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="bod_Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="ent_FechaElaboracion" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="bod_id" Type="Int32" Nullable="false" />
-          <Property Name="estm_id" Type="Byte" Nullable="false" />
-          <Property Name="tent_id" Type="Byte" Nullable="false" />
-          <Property Name="prov_Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="estm_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="tent_Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ent_FacturaCompra" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="ent_FechaCompra" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="tdev_descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="fact_Id" Type="Int32" Nullable="false" />
-          <Property Name="ent_BodegaDestino" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="UDV_InventarioActual">
           <Key>
@@ -16466,6 +16392,86 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="UDP_Inv_tbEstadoInventarioFisico_Update_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbEstadoInventarioFisico_Insert_Result">
+          <Property Type="String" Name="MensajeError" Nullable="false" MaxLength="51" />
+        </ComplexType>
+        <EntityType Name="UDV_Inv_EntradaPorId">
+          <Key>
+            <PropertyRef Name="ent_Id" />
+            <PropertyRef Name="ent_NumeroFormato" />
+            <PropertyRef Name="ent_FechaElaboracion" />
+            <PropertyRef Name="prov_Nombre" />
+            <PropertyRef Name="tent_id" />
+            <PropertyRef Name="estm_Descripcion" />
+            <PropertyRef Name="tent_Descripcion" />
+            <PropertyRef Name="ent_FacturaCompra" />
+            <PropertyRef Name="ent_FechaCompra" />
+            <PropertyRef Name="tdev_descripcion" />
+            <PropertyRef Name="fact_Id" />
+            <PropertyRef Name="ent_BodegaDestino" />
+            <PropertyRef Name="entd_Cantidad" />
+            <PropertyRef Name="prod_Codigo" />
+            <PropertyRef Name="prod_Descripcion" />
+            <PropertyRef Name="uni_Descripcion" />
+          </Key>
+          <Property Name="ent_Id" Type="Int32" Nullable="false" />
+          <Property Name="ent_NumeroFormato" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="bod_Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ent_FechaElaboracion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="prov_Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="tent_id" Type="Byte" Nullable="false" />
+          <Property Name="estm_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="tent_Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ent_FacturaCompra" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ent_FechaCompra" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="tdev_descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fact_Id" Type="String" Nullable="false" MaxLength="19" FixedLength="false" Unicode="true" />
+          <Property Name="ent_BodegaDestino" Type="Int32" Nullable="false" />
+          <Property Name="entd_Cantidad" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="prod_Codigo" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="prod_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="uni_Descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="UDV_Inv_TipoEntrada">
+          <Key>
+            <PropertyRef Name="ent_NumeroFormato" />
+            <PropertyRef Name="ent_FechaElaboracion" />
+            <PropertyRef Name="bod_id" />
+            <PropertyRef Name="estm_id" />
+            <PropertyRef Name="tent_id" />
+            <PropertyRef Name="prov_Nombre" />
+            <PropertyRef Name="estm_Descripcion" />
+            <PropertyRef Name="tent_Descripcion" />
+            <PropertyRef Name="ent_FacturaCompra" />
+            <PropertyRef Name="ent_FechaCompra" />
+            <PropertyRef Name="tdev_descripcion" />
+            <PropertyRef Name="fact_Id" />
+            <PropertyRef Name="ent_BodegaDestino" />
+          </Key>
+          <Property Name="ent_NumeroFormato" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="bod_Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ent_FechaElaboracion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="bod_id" Type="Int32" Nullable="false" />
+          <Property Name="estm_id" Type="Byte" Nullable="false" />
+          <Property Name="tent_id" Type="Byte" Nullable="false" />
+          <Property Name="prov_Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="estm_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="tent_Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ent_FacturaCompra" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ent_FechaCompra" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="tdev_descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fact_Id" Type="String" Nullable="false" MaxLength="19" FixedLength="false" Unicode="true" />
+          <Property Name="ent_BodegaDestino" Type="Int32" Nullable="false" />
+        </EntityType>
+        <ComplexType Name="UDP_Inv_tbEntradaDetalle_Update_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Inv_tbEntradaDetalle_Insert_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -16797,20 +16803,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <FunctionImportMapping FunctionImportName="UDP_Inv_tbEntrada_Update_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEntrada_Update_Estado" >
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbEntrada_Update_Estado_Result">
-                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Inv_tbEntradaDetalle_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEntradaDetalle_Insert" >
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbEntradaDetalle_Insert_Result">
-                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Inv_tbEntradaDetalle_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEntradaDetalle_Update" >
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbEntradaDetalle_Update_Result">
                 <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
               </ComplexTypeMapping>
             </ResultMapping>
@@ -17468,20 +17460,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
                 <ScalarProperty Name="tdev_descripcion" ColumnName="tdev_descripcion" />
                 <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
                 <ScalarProperty Name="ent_BodegaDestino" ColumnName="ent_BodegaDestino" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Inv_tbEstadoInventarioFisico_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEstadoInventarioFisico_Insert" >
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbEstadoInventarioFisico_Insert_Result">
-                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Inv_tbEstadoInventarioFisico_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEstadoInventarioFisico_Update" >
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbEstadoInventarioFisico_Update_Result">
-                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -18949,29 +18927,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="UDV_Inv_EntradaPorId">
-            <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Inv_EntradaPorId">
-              <MappingFragment StoreEntitySet="UDV_Inv_EntradaPorId">
-                <ScalarProperty Name="uni_Descripcion" ColumnName="uni_Descripcion" />
-                <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
-                <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
-                <ScalarProperty Name="entd_Cantidad" ColumnName="entd_Cantidad" />
-                <ScalarProperty Name="ent_BodegaDestino" ColumnName="ent_BodegaDestino" />
-                <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
-                <ScalarProperty Name="tdev_descripcion" ColumnName="tdev_descripcion" />
-                <ScalarProperty Name="ent_FechaCompra" ColumnName="ent_FechaCompra" />
-                <ScalarProperty Name="ent_FacturaCompra" ColumnName="ent_FacturaCompra" />
-                <ScalarProperty Name="tent_Descripcion" ColumnName="tent_Descripcion" />
-                <ScalarProperty Name="estm_Descripcion" ColumnName="estm_Descripcion" />
-                <ScalarProperty Name="tent_id" ColumnName="tent_id" />
-                <ScalarProperty Name="prov_Nombre" ColumnName="prov_Nombre" />
-                <ScalarProperty Name="ent_FechaElaboracion" ColumnName="ent_FechaElaboracion" />
-                <ScalarProperty Name="bod_Nombre" ColumnName="bod_Nombre" />
-                <ScalarProperty Name="ent_NumeroFormato" ColumnName="ent_NumeroFormato" />
-                <ScalarProperty Name="ent_Id" ColumnName="ent_Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="UDV_INV_Frecuencia_Movimiento_Productos">
             <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_INV_Frecuencia_Movimiento_Productos">
               <MappingFragment StoreEntitySet="UDV_INV_Frecuencia_Movimiento_Productos">
@@ -19191,26 +19146,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
                 <ScalarProperty Name="bod_Nombre" ColumnName="bod_Nombre" />
                 <ScalarProperty Name="invf_Descripcion" ColumnName="invf_Descripcion" />
                 <ScalarProperty Name="invf_FechaInventario" ColumnName="invf_FechaInventario" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UDV_Inv_TipoEntrada">
-            <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Inv_TipoEntrada">
-              <MappingFragment StoreEntitySet="UDV_Inv_TipoEntrada">
-                <ScalarProperty Name="ent_BodegaDestino" ColumnName="ent_BodegaDestino" />
-                <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
-                <ScalarProperty Name="tdev_descripcion" ColumnName="tdev_descripcion" />
-                <ScalarProperty Name="ent_FechaCompra" ColumnName="ent_FechaCompra" />
-                <ScalarProperty Name="ent_FacturaCompra" ColumnName="ent_FacturaCompra" />
-                <ScalarProperty Name="tent_Descripcion" ColumnName="tent_Descripcion" />
-                <ScalarProperty Name="estm_Descripcion" ColumnName="estm_Descripcion" />
-                <ScalarProperty Name="prov_Nombre" ColumnName="prov_Nombre" />
-                <ScalarProperty Name="tent_id" ColumnName="tent_id" />
-                <ScalarProperty Name="estm_id" ColumnName="estm_id" />
-                <ScalarProperty Name="bod_id" ColumnName="bod_id" />
-                <ScalarProperty Name="ent_FechaElaboracion" ColumnName="ent_FechaElaboracion" />
-                <ScalarProperty Name="bod_Nombre" ColumnName="bod_Nombre" />
-                <ScalarProperty Name="ent_NumeroFormato" ColumnName="ent_NumeroFormato" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -19751,6 +19686,77 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbEstadoInventarioFisico_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEstadoInventarioFisico_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbEstadoInventarioFisico_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbEstadoInventarioFisico_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEstadoInventarioFisico_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbEstadoInventarioFisico_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="UDV_Inv_EntradaPorId">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Inv_EntradaPorId">
+              <MappingFragment StoreEntitySet="UDV_Inv_EntradaPorId">
+                <ScalarProperty Name="uni_Descripcion" ColumnName="uni_Descripcion" />
+                <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
+                <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+                <ScalarProperty Name="entd_Cantidad" ColumnName="entd_Cantidad" />
+                <ScalarProperty Name="ent_BodegaDestino" ColumnName="ent_BodegaDestino" />
+                <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
+                <ScalarProperty Name="tdev_descripcion" ColumnName="tdev_descripcion" />
+                <ScalarProperty Name="ent_FechaCompra" ColumnName="ent_FechaCompra" />
+                <ScalarProperty Name="ent_FacturaCompra" ColumnName="ent_FacturaCompra" />
+                <ScalarProperty Name="tent_Descripcion" ColumnName="tent_Descripcion" />
+                <ScalarProperty Name="estm_Descripcion" ColumnName="estm_Descripcion" />
+                <ScalarProperty Name="tent_id" ColumnName="tent_id" />
+                <ScalarProperty Name="prov_Nombre" ColumnName="prov_Nombre" />
+                <ScalarProperty Name="ent_FechaElaboracion" ColumnName="ent_FechaElaboracion" />
+                <ScalarProperty Name="bod_Nombre" ColumnName="bod_Nombre" />
+                <ScalarProperty Name="ent_NumeroFormato" ColumnName="ent_NumeroFormato" />
+                <ScalarProperty Name="ent_Id" ColumnName="ent_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UDV_Inv_TipoEntrada">
+            <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Inv_TipoEntrada">
+              <MappingFragment StoreEntitySet="UDV_Inv_TipoEntrada">
+                <ScalarProperty Name="ent_BodegaDestino" ColumnName="ent_BodegaDestino" />
+                <ScalarProperty Name="fact_Id" ColumnName="fact_Id" />
+                <ScalarProperty Name="tdev_descripcion" ColumnName="tdev_descripcion" />
+                <ScalarProperty Name="ent_FechaCompra" ColumnName="ent_FechaCompra" />
+                <ScalarProperty Name="ent_FacturaCompra" ColumnName="ent_FacturaCompra" />
+                <ScalarProperty Name="tent_Descripcion" ColumnName="tent_Descripcion" />
+                <ScalarProperty Name="estm_Descripcion" ColumnName="estm_Descripcion" />
+                <ScalarProperty Name="prov_Nombre" ColumnName="prov_Nombre" />
+                <ScalarProperty Name="tent_id" ColumnName="tent_id" />
+                <ScalarProperty Name="estm_id" ColumnName="estm_id" />
+                <ScalarProperty Name="bod_id" ColumnName="bod_id" />
+                <ScalarProperty Name="ent_FechaElaboracion" ColumnName="ent_FechaElaboracion" />
+                <ScalarProperty Name="bod_Nombre" ColumnName="bod_Nombre" />
+                <ScalarProperty Name="ent_NumeroFormato" ColumnName="ent_NumeroFormato" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbEntradaDetalle_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEntradaDetalle_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbEntradaDetalle_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Inv_tbEntradaDetalle_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEntradaDetalle_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbEntradaDetalle_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -76,7 +76,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" value="Guardar" class="btn btn-primary" />
+                                <input type="submit" value="Guardar" class="btn btn-primary" id="btnGuardar" />
                                 @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                             </div>
                         </div>
@@ -104,6 +104,18 @@
         var res = str.toUpperCase();
         $("#obj_Pantalla").val(res);
 
+
+    });
+
+    $("#obj_Referencia").keypress(function (e) {
+
+        if (e.which == 13) {
+
+            // Acciones a realizar, por ej: enviar formulario.
+
+            $('#btnGuardar').click();
+
+        }
 
     });
 </script>

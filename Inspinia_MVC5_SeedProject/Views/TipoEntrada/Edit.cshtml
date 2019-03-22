@@ -92,7 +92,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                                    <input type="submit" value="Guardar" class="btn btn-primary" id="btnGuardar" />
                                     @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                                 </div>
                             </div>
@@ -136,7 +136,7 @@
 </div>
 <script src="~/Scripts/jquery-3.1.1.min.js"></script>
 <script>
-
+    $("#tent_Descripcion").focus();
     //Validar Los campos Stringg
     //Validar Los campos Stringg
     function soloLetras(e) {
@@ -150,21 +150,20 @@
         $("#tent_Descripcion").val(res);
     });
 
-    $(document).keydown(function (e) {
-
-        if ((e.key == 'g' || e.key == 'G') && (e.ctrlKey || e.metaKey)) {
-            e.preventDefault();
-            //alert("Ctrl-g pressed");
-            $("form").submit();
-            return false;
-        }
-        return true;
-    });
-
-
-    //Focus
-
+    ////Focus
     $("#tent_Descripcion").focus();
+
+    $("#tent_Descripcion").keypress(function (e) {
+
+        if (e.which == 13) {
+
+            // Acciones a realizar, por ej: enviar formulario.
+
+            $('#btnGuardar').click();
+
+        }
+
+    });
 
 </script>
 

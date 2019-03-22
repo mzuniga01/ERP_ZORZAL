@@ -1,4 +1,21 @@
 ﻿$(document).ready(function () {
+    $(document).keydown(function (e) {
+        if ((e.key == 'g' || e.key == 'G') && (e.ctrlKey || e.metaKey)) {
+            e.preventDefault();
+            $("#btnGuardarSalida").click();
+            return false;
+        }
+        if ((e.key == 'l' || e.key == 'L') && (e.ctrlKey || e.metaKey)) {
+            e.preventDefault();
+            $("#btnCerrar").click();
+            return false;
+        }
+    })
+    $("#txt5").keypress(function (e) {
+        if (e.which == 13) {
+            $('#btnGuardarSalida').click();
+        }
+    });
     if (localStorage.getItem("MensajeExito")) {
         $('#msj_success').show();
         //console.log("Hola");

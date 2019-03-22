@@ -65,7 +65,7 @@
 
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" value="Guardar" class="btn btn-primary" />
+                                <input type="submit" id="btnGuardar" value="Guardar" class="btn btn-primary" />
                                 @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
                             </div>
                         </div>
@@ -79,6 +79,7 @@
  </div>
 <script src="~/Scripts/jquery-3.1.1.min.js"></script>
 <script>
+    $("#miInput").focus();
     //Validar Los campos Stringg
     function soloLetras(e) {
         tecla = (document.all) ? e.keyCode : e.which;
@@ -99,23 +100,17 @@
         var res = str.toUpperCase();
         $("#miInput").val(res);
     });
+    $("#miInput").keypress(function (e) {
 
+        if (e.which == 13) {
 
-    $(document).keydown(function (e) {
+            // Acciones a realizar, por ej: enviar formulario.
 
-        if ((e.key == 'g' || e.key == 'G') && (e.ctrlKey || e.metaKey)) {
-            e.preventDefault();
-            //alert("Ctrl-g pressed");
-            $("form").submit();
-            return false;
+            $('#btnGuardar').click();
+
         }
-        return true;
+
     });
-
-    
-    //Focus
-
-    $("#miInput").focus();
 
 </script>
  

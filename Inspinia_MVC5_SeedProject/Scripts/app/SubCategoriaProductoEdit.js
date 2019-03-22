@@ -68,8 +68,8 @@ function GetSubCategoriaProducto() {
 //Validacion de solo letras
 function soloLetras(e) {
     key = e.keyCode || e.which;
-    tecla = String.fromCharCode(key).toUpperCase();
-    letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-+()$.";
+    tecla = String.fromCharCode(key).toLowerCase();
+    letras = "áéíóúabcdefghijklmnñopqrstuvwxyz1234567890-+()$.";
     especiales = "8-37-39-46";
 
 
@@ -91,8 +91,27 @@ function soloLetras(e) {
 
 //    $('#CodigoNuevo').hide();
 
-
 //});
+
+$(document).keydown(function (e) {
+
+    if ((e.key == 'g' || e.key == 'G') && (e.ctrlKey || e.metaKey)) {
+
+        e.preventDefault();
+
+        //alert("Ctrl-g pressed");
+
+        $("form").submit();
+
+        return false;
+
+    }
+
+    return true;
+
+});
+
+$("#prod_Descripcion").focus();
 
 $('#prod_Descripcion').on("keypress", function () {
     $input = $(this);

@@ -20,3 +20,16 @@
         return false;
     }
 }
+
+
+
+//guardar 
+$(document).keydown(function (e) {
+    if ((e.key == 'g' || e.key == 'G') && (e.ctrlKey || e.metaKey)) {
+        e.preventDefault();
+        $("form").submit();
+        return false;
+    }
+    return true;
+
+});

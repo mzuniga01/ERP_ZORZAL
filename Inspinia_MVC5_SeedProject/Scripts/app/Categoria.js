@@ -323,12 +323,12 @@ $(document).on("click", "#TablaSub tbody tr td button#removerSubCategoria", func
     });
 })
 
-$('#pscat_Descripcion').blur(function () {
-    if ($.trim($('#pscat_Descripcion').val()) == 0) {
-        $('#errorDescripcion').text('');
-        $('#validationDescripcion').after('<ul id="errorDescripcion" class="validation-summary-errors text-danger">Campo Descripcion Requerido</ul>');
-    }
-});
+//$('#pscat_Descripcion').blur(function () {
+//    if ($.trim($('#pscat_Descripcion').val()) == 0) {
+//        $('#errorDescripcion').text('');
+//        $('#validationDescripcion').after('<ul id="errorDescripcion" class="validation-summary-errors text-danger">Campo Descripcion Requerido</ul>');
+//    }
+//});
 
 
 $('#pscat_Descripcion_edit').blur(function () {
@@ -354,4 +354,23 @@ $("#pscat_Descripcion_edit").change(function () {
     var str = $("#pscat_Descripcion_edit").val();
     var res = str.toUpperCase();
     $("#pscat_Descripcion_edit").val(res);
+});
+
+$(document).keydown(function (e) {
+
+    if ((e.key == 'g' || e.key == 'G') && (e.ctrlKey || e.metaKey)) {
+
+        e.preventDefault();
+        $("form").submit();
+        return false;
+    }
+    return true;
+
+});
+
+$("#bton").keypress(function (e) {
+    if (e.which == 13) {
+     
+        $("form").submit();
+    }
 });

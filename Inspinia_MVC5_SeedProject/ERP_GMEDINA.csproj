@@ -1473,6 +1473,7 @@
     <Content Include="Scripts\app\SolicitarProducto.js" />
     <Content Include="Scripts\app\SubCategoriaProducto.js" />
     <Content Include="Scripts\app\SubCategoriaProductoEdit.js" />
+    <Content Include="Scripts\app\TeclasEspeciales.js" />
     <Content Include="Scripts\app\TipoDevolucion.js" />
     <Content Include="Scripts\app\Tipo_Salida.js" />
     <Content Include="Scripts\app\Unidad_Medida.js" />

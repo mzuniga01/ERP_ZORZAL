@@ -458,6 +458,26 @@ $('#BtnRazon').click(function () {
 
 })
 
+document.getElementById("emp_Telefono").addEventListener("keydown", teclear);
+
+var teclaAnterior = "";
+
+function teclear(event) {
+
+    teclaAnterior = teclaAnterior + " " + event.keyCode;
+
+    var arregloTA = teclaAnterior.split(" ");
+
+    if (event.keyCode == 32 && arregloTA[arregloTA.length - 3] == 32) {
+
+        event.preventDefault();
+
+    }
+
+}
+
+
+
 //$("#BtnRazon").click(function () {
 //    var data = $("#DatosRazon").serializeArray();
 

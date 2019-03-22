@@ -344,7 +344,8 @@ namespace ERP_ZORZAL.Controllers
                                                             , Editardetalle.ent_Id
                                                            , Editardetalle.prod_Codigo
                                                            , Editardetalle.entd_Cantidad
-                                                           ,Editardetalle.entd_UsuarioCrea,
+                                                           , Editardetalle.box_Codigo
+                                                           , Editardetalle.entd_UsuarioCrea,
                                                            entr.entd_FechaCrea,
                                                            Function.GetUser(), Function.DatetimeNow()
                                     );
@@ -455,9 +456,14 @@ namespace ERP_ZORZAL.Controllers
                                     {
                                         foreach (tbEntradaDetalle entd in listaDetalle)
                                         {
+                                            if(entd.box_Codigo == null)
+                                            {
+                                                entd.box_Codigo = "0";
+                                            }
                                             DETALLE = db.UDP_Inv_tbEntradaDetalle_Insert(Convert.ToInt16(MsjError)
                                                                                         , entd.prod_Codigo
-                                                                                        , entd.entd_Cantidad,
+                                                                                        , entd.entd_Cantidad
+                                                                                        , entd.box_Codigo,
                                                                                         Function.GetUser(), Function.DatetimeNow());
                                             foreach (UDP_Inv_tbEntradaDetalle_Insert_Result B_detalle in DETALLE)
                                                 MensajeError = B_detalle.MensajeError;
@@ -552,6 +558,7 @@ namespace ERP_ZORZAL.Controllers
                                         DETALLE = db.UDP_Inv_tbEntradaDetalle_Insert(Convert.ToInt16(MsjError)
                                                                                     , entd.prod_Codigo
                                                                                     , entd.entd_Cantidad,
+                                                                                    entd.box_Codigo,
                                                                                     Function.GetUser(), Function.DatetimeNow());
                                         foreach (UDP_Inv_tbEntradaDetalle_Insert_Result B_detalle in DETALLE)
                                             MensajeError = B_detalle.MensajeError;

@@ -241,7 +241,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(m => subcategoria.pscat_Descripcion, new { @class = "control-label col-sm-2 , required" })
                                 <div class="col-sm-10">
-                                    <input type="text" onkeypress="return soloLetras(event)" id="pscat_Descripcion_edit" name="pscat_Descripcion" class="form-control" maxlength="150" autocomplete = "off" />
+                                    <input type="text" onkeypress="return soloLetras(event)" id="pscat_Descripcion_edit" name="pscat_Descripcion" class="form-control" maxlength="150" autocomplete = "off" style = "text-transform:uppercase;" />
                                     <p style="color:red" id="DescripcionErrorEdit">@Html.ValidationMessageFor(m => subcategoria.pscat_Descripcion)</p>
                                     <div id="validationDescripcionEdit">
                                         <p style="color:red"></p>

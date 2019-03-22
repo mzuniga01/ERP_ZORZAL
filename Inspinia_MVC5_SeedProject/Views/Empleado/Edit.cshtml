@@ -96,22 +96,20 @@
                                 </div>
 
                             </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.emp_Identificacion, new { @class = "control-label col-md-2 , required" })
-                                <div class="col-md-4">
-                                    @Html.EditorFor(model => model.emp_Identificacion, new { htmlAttributes = new { MaxLength = 14 } })
-                                    <div id="ValidacionIdentificacion">
-                                        <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_Identificacion)</p>
-                                    </div>
-
-                                </div>
-
+                            <div class="form-group">                               
                                 @Html.LabelFor(model => model.tpi_Id, "Tipo Identificación", new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
                                     @Html.DropDownList("tpi_Id", (IEnumerable<SelectListItem>)ViewBag.TipoIList, "seleccione", new { @class = "form-control" })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.tpi_Id)</p>
                                 </div>
 
+                                @Html.LabelFor(model => model.emp_Identificacion, new { @class = "control-label col-md-2 , required" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.emp_Identificacion, new { htmlAttributes = new { MaxLength = 14 } })
+                                    <div id="ValidacionIdentificacion">
+                                        <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_Identificacion)</p>
+                                    </div>
+                                </div>
 
                             </div>
                             <div class="form-group">
@@ -138,7 +136,100 @@
 
                                 @Html.LabelFor(model => model.emp_TipoSangre, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.emp_TipoSangre, new { htmlAttributes = new { @class = "MayusText", @onkeypress = "return TipoSangre(event)", onblur = "limpiaTipoSangre()", id = "emp_TipoSangre", MaxLength = 2 } })
+                                    <select class="form-control" id="emp_TipoSangre" name="emp_TipoSangre">
+                                        @if (Model.emp_TipoSangre == "O+")
+                                        {
+                                            <option value="O+">O+</option>
+                                            <option value="AB+">AB+</option>
+                                            <option value="AB-">AB-</option>
+                                            <option value="A+">A+</option>
+                                            <option value="A-">A-</option>
+                                            <option value="B+">B+</option>
+                                            <option value="B-">B-</option>
+                                            <option value="O-">O-</option>
+                                        }
+                                        else if (Model.emp_TipoSangre == "O-")
+                                        {
+                                            <option value="O-">O-</option>
+                                            <option value="AB+">AB+</option>
+                                            <option value="AB-">AB-</option>
+                                            <option value="A+">A+</option>
+                                            <option value="A-">A-</option>
+                                            <option value="B+">B+</option>
+                                            <option value="B-">B-</option>
+                                            <option value="O+">O+</option>
+
+                                        }
+                                        else if (Model.emp_TipoSangre == "B-")
+                                        {
+                                            <option value="B-">B-</option>
+                                            <option value="AB+">AB+</option>
+                                            <option value="AB-">AB-</option>
+                                            <option value="A+">A+</option>
+                                            <option value="A-">A-</option>
+                                            <option value="B+">B+</option>                                            
+                                            <option value="O+">O+</option>
+                                            <option value="O-">O-</option>
+                                        }
+                                        else if (Model.emp_TipoSangre == "B+")
+                                        {
+                                            <option value="B+">B+</option>
+                                            <option value="AB+">AB+</option>
+                                            <option value="AB-">AB-</option>
+                                            <option value="A+">A+</option>
+                                            <option value="A-">A-</option>                                           
+                                            <option value="B-">B-</option>
+                                            <option value="O+">O+</option>
+                                            <option value="O-">O-</option>
+                                        }
+                                        else if (Model.emp_TipoSangre == "A-")
+                                        {
+                                            <option value="A-">A-</option>
+                                            <option value="AB+">AB+</option>
+                                            <option value="AB-">AB-</option>
+                                            <option value="A+">A+</option>                                            
+                                            <option value="B+">B+</option>
+                                            <option value="B-">B-</option>
+                                            <option value="O+">O+</option>
+                                            <option value="O-">O-</option>
+                                        }
+                                        else if (Model.emp_TipoSangre == "A+")
+                                        {
+                                            <option value="A+">A+</option>
+                                            <option value="AB+">AB+</option>
+                                            <option value="AB-">AB-</option>                                            
+                                            <option value="A-">A-</option>
+                                            <option value="B+">B+</option>
+                                            <option value="B-">B-</option>
+                                            <option value="O+">O+</option>
+                                            <option value="O-">O-</option>
+                                        }
+                                        else if (Model.emp_TipoSangre == "AB-")
+                                        {
+                                            <option value="AB-">AB-</option>
+                                            <option value="AB+">AB+</option>
+                                            <option value="A+">A+</option>
+                                            <option value="A-">A-</option>
+                                            <option value="B+">B+</option>
+                                            <option value="B-">B-</option>
+                                            <option value="O+">O+</option>
+                                            <option value="O-">O-</option>
+                                        }
+                                        else 
+                                        {
+                                            <option value="AB+">AB+</option>
+                                            <option value="AB-">AB-</option>
+                                            <option value="A+">A+</option>
+                                            <option value="A-">A-</option>
+                                            <option value="B+">B+</option>
+                                            <option value="B-">B-</option>
+                                            <option value="O+">O+</option>
+                                            <option value="O-">O-</option>
+                                        }
+                                        
+                                        
+                                    </select>
+                                    @*@Html.EditorFor(model => model.emp_TipoSangre, new { htmlAttributes = new { @class = "MayusText", @onkeypress = "return TipoSangre(event)", onblur = "limpiaTipoSangre()", id = "emp_TipoSangre", MaxLength = 2 } })*@
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.emp_TipoSangre)</p>
                                 </div>
 
@@ -173,7 +264,7 @@
                                             </button>
 
                                             <button type="button" id="EditarModal" class="btn btn-danger" onclick='RazonSalida(@Model.emp_Id)'>
-                                                Razones de Salida
+                                                Cesar Empleado
                                             </button>
                                         }
                                         else
@@ -226,7 +317,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <div class="col-md-offset-10 col-md-10">
+                                                        <div class="col-md-12 text-center">
                                                             @*@Html.ActionLink("Sí", "EstadoEmpleadoRazon", new { id = Model.emp_Id }, new { @class = "btn btn-danger" })*@
                                                             <button class="btn btn-primary" type="button" id="Btnsubmit" tabindex="10"> Guardar </button>
                                                             <button type="button" class="btn btn-white" data-dismiss="modal" aria-label="Close">Cancelar</button>

@@ -108,7 +108,8 @@
                             <div class="form-group">
                                 <div class="col-md-12 text-center">
                                     <button type="button" id="btnGuardarRol" class="btn btn-primary">Guardar</button>
-                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                    <button type="button" id="CancelarCreate" class="btn btn-white">Cancelar</button>
+                                        @*@Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white", @id = "CancelarCreate" })*@
                                 </div>
                             </div>
                         </div>
@@ -119,6 +120,24 @@
         </div>
     </div>
 </div>
-
+<div class="modal fade" id="ModalCancelar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">¿Seguro de salir?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Está seguro que desea salir de esta pantalla? Se perderan los datos ingresados.
+            </div>
+            <div class="modal-footer">
+                @Html.ActionLink("Sí", "Index", null ,new { @class = "btn btn-danger" })
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script src="~/Scripts/app/RolObjetos.js"></script>

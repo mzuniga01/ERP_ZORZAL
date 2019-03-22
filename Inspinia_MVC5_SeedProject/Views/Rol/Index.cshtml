@@ -20,7 +20,7 @@
                 <div class="ibox-title">
                     <h5>Listado de Rol</h5>
                     <div class="ibox-tools">
-                        @Html.ActionLink("Registrar Rol", "Create", null, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Registrar Rol", "Create", null, new { @class = "btn btn-primary", @id = "NuevoRol" })
                         @*@Html.ActionLink("Generar Reporte", "ExportReport", null, new { @class = "btn btn-primary" })*@
                     </div>
                 </div>
@@ -96,4 +96,13 @@
 
     });
     });
+
+    //$(document).keydown(function (e) {
+    //    if ((e.key == 'r' || e.key == 'R') && (e.ctrlKey || e.metaKey)) {
+    //        e.preventDefault();
+    //        $("#NuevoRol").click();
+    //        return false;
+    //    }
+
+    //});
 </script>

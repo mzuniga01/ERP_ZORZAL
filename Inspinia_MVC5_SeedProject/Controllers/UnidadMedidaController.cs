@@ -53,6 +53,7 @@ namespace ERP_GMEDINA.Controllers
             if (db.tbUnidadMedida.Any(a => a.uni_Descripcion == tbUnidadMedida.uni_Descripcion))
             {
                 ModelState.AddModelError("", "La Unidad de Medida ya Existe, Agregue otra Unidad.");
+                return View(tbUnidadMedida);
 
             }
             if (ModelState.IsValid)
@@ -109,7 +110,7 @@ namespace ERP_GMEDINA.Controllers
         [SessionManager("UnidadMedida/Edit")]
         public ActionResult Edit(int? id, [Bind(Include = "uni_Id,uni_Descripcion,uni_Abreviatura,uni_UsuarioCrea, uni_FechaCrea,uni_UsuarioModifica,uni_FechaModifica")] tbUnidadMedida tbUnidadMedida)
         {
-            if (db.tbUnidadMedida.Any(a => a.uni_Descripcion == tbUnidadMedida.uni_Descripcion))
+            if (db.tbUnidadMedida.Any(a => a.uni_Descripcion == tbUnidadMedida.uni_Descripcion && a.uni_Id != tbUnidadMedida.uni_Id && a.uni_Abreviatura == tbUnidadMedida.uni_Abreviatura))
             {
                 ModelState.AddModelError("", "La Descripcion ya Existe , Agregue otra Unidad.");
 

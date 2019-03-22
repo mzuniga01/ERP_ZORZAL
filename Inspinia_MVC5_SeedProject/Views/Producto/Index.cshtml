@@ -10,6 +10,11 @@
     <div class="col-sm-4">
         <h2>Producto</h2>
     </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            <a href="@Url.Action("Index","Home")">Inicio</a>
+        </div>
+    </div>
 </div>
 
 
@@ -34,8 +39,8 @@
                                         @Html.DisplayNameFor(model => model.prod_Codigo)
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.prod_Descripcion)-
-                                        @Html.DisplayNameFor(model => model.prod_Marca)-
+                                        @Html.DisplayNameFor(model => model.prod_Descripcion) -
+                                        @Html.DisplayNameFor(model => model.prod_Marca) -
                                         @Html.DisplayNameFor(model => model.prod_Modelo)
                                     </th>
                                    
@@ -67,13 +72,13 @@
                                             @Html.DisplayFor(modelItem => item.prod_Codigo)
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.prod_Descripcion)-
-                                            @Html.DisplayFor(modelItem => item.prod_Marca)-
+                                            @Html.DisplayFor(modelItem => item.prod_Descripcion) -
+                                            @Html.DisplayFor(modelItem => item.prod_Marca) -
                                             @Html.DisplayFor(modelItem => item.prod_Modelo)
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => item.tbProductoSubcategoria.tbProductoCategoria.pcat_Nombre)
-                                            
+                                            -
                                             @Html.DisplayFor(modelItem => item.tbProductoSubcategoria.pscat_Descripcion)                                                  
                                         </td>
                                         <td>
@@ -101,7 +106,7 @@
 
                                            }
                                              @Html.ActionLink("Detalles", "Details", new { id = item.prod_Codigo }, new { @class = "btn btn-primary btn-xs" }) 
-                                             @*@Html.ActionLink("Editar", "Edit", new { id = item.prod_Codigo }, new { @class = "btn btn-white btn-xs" })*@                                         
+                                             @*@Html.ActionLink("Editar", "Edit", new { id = item.prod_Codigo }, new { @class = "btn btn-white btn-xs" })*@                                       
                                             @{                                             
 
                                                 FuctionIndexP Function = new FuctionIndexP();

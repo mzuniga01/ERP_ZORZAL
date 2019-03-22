@@ -102,7 +102,7 @@
 
         <div class="form-group ">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
+                <input type="submit" value="Guardar" class="btn btn-primary" id="btnGuardar"/>
                 @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
 
             </div>
@@ -157,10 +157,21 @@
 <script src="~/Scripts/app/TipoDevolucion.js"></script>
 
 <script>
-
+    $("#tdev_Descripcion").focus();
     $("#tdev_Descripcion").change(function () {
         var str = $("#tdev_Descripcion").val();
         var res = str.toUpperCase();
         $("#tdev_Descripcion").val(res);
+    });
+    $("#tdev_Descripcion").keypress(function (e) {
+
+        if (e.which == 13) {
+
+            // Acciones a realizar, por ej: enviar formulario.
+
+            $('#btnGuardar').click();
+
+        }
+
     });
 </script>

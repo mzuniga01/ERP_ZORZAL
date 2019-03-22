@@ -82,7 +82,6 @@
         <EntityTypeShape EntityType="ERP_ZORZALModel.UDV_Inv_CatalogoProductos" Width="1.5" PointX="8.75" PointY="0.75" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.UDV_Inv_Consultar_Existencias_Productos" Width="1.5" PointX="8.75" PointY="4.75" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.UDV_Inv_ConsultarInventarioFisicoSobrantes" Width="1.5" PointX="6.75" PointY="8.75" />
-        <EntityTypeShape EntityType="ERP_ZORZALModel.UDV_Inv_EntradaPorId" Width="1.5" PointX="8.75" PointY="8.75" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.UDV_INV_Frecuencia_Movimiento_Productos" Width="1.5" PointX="10.75" PointY="0.75" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.UDV_INV_Frecuencia_Movimiento_Productos_Prueba" Width="1.5" PointX="0.75" PointY="10.75" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.UDV_Inv_Inventario_Historico_Por_Fechas" Width="1.5" PointX="2.75" PointY="10.75" />
@@ -93,7 +92,6 @@
         <EntityTypeShape EntityType="ERP_ZORZALModel.UDV_Inv_Proyeccion_de_Movimiento_de_Producto" Width="1.5" PointX="12.75" PointY="11.75" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.UDV_Inv_Salida_Imprimir_Reporte" Width="1.5" PointX="4.75" PointY="13.75" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.UDV_inv_tbinventariofisico_reporteFaltantes" Width="1.5" PointX="14.75" PointY="0.75" />
-        <EntityTypeShape EntityType="ERP_ZORZALModel.UDV_Inv_TipoEntrada" Width="1.5" PointX="14.75" PointY="5.75" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.UDV_InventarioActual" Width="1.5" PointX="6.75" PointY="14.75" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.VistaInventarioHistorico" Width="1.5" PointX="14.75" PointY="10.75" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.UDP_Vent_listExoneracion_Select" Width="1.5" PointX="8.75" PointY="15.75" />
@@ -354,6 +352,8 @@
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbPuntoEmision_tbSucursal_pemi_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbPuntoEmisionDetalle_tbPuntoEmision_pemi_Id" />
         <AssociationConnector Association="ERP_ZORZALModel.FK_Vent_tbSolicitudEfectivo_tbSolicitudEfectivoDetalle_solef_Id" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.UDV_Inv_EntradaPorId" Width="1.5" PointX="0.75" PointY="23.75" />
+        <EntityTypeShape EntityType="ERP_ZORZALModel.UDV_Inv_TipoEntrada" Width="1.5" PointX="2.75" PointY="23.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

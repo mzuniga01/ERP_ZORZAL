@@ -133,6 +133,7 @@
       <Parameter Name="usu_Correo" Mode="In" Type="String" />
       <Parameter Name="suc_Id" Mode="In" Type="Int32" />
       <Parameter Name="emp_Id" Mode="In" Type="Int16" />
+      <Parameter Name="usu_EsAdministrador" Mode="In" Type="Boolean" />
     </FunctionImport>
     <FunctionImport Name="UDP_Inv_CantidadExistente" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_CantidadExistente_Result)">
       <Parameter Name="bod_Id" Mode="In" Type="Int32" />
@@ -199,23 +200,6 @@
     <FunctionImport Name="UDP_Inv_tbEntrada_Update_Estado" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEntrada_Update_Estado_Result)">
       <Parameter Name="ent_Id" Mode="In" Type="Int32" />
       <Parameter Name="estm_Id" Mode="In" Type="Byte" />
-      <Parameter Name="entd_UsuarioModifica" Mode="In" Type="Int32" />
-      <Parameter Name="entd_FechaModifica" Mode="In" Type="DateTime" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Inv_tbEntradaDetalle_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEntradaDetalle_Insert_Result)">
-      <Parameter Name="ent_Id" Mode="In" Type="Int32" />
-      <Parameter Name="prod_Codigo" Mode="In" Type="String" />
-      <Parameter Name="entd_Cantidad" Mode="In" Type="Decimal" />
-      <Parameter Name="ent_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="ent_FechaCrea" Mode="In" Type="DateTime" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Inv_tbEntradaDetalle_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEntradaDetalle_Update_Result)">
-      <Parameter Name="entd_Id" Mode="In" Type="Int32" />
-      <Parameter Name="ent_Id" Mode="In" Type="Int32" />
-      <Parameter Name="prod_Codigo" Mode="In" Type="String" />
-      <Parameter Name="entd_Cantidad" Mode="In" Type="Decimal" />
-      <Parameter Name="entd_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="entd_FechaCrea" Mode="In" Type="DateTime" />
       <Parameter Name="entd_UsuarioModifica" Mode="In" Type="Int32" />
       <Parameter Name="entd_FechaModifica" Mode="In" Type="DateTime" />
     </FunctionImport>
@@ -676,18 +660,6 @@
       <Parameter Name="estado" Mode="In" Type="Byte" />
       <Parameter Name="bodega" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Inv_tbEstadoInventarioFisico_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEstadoInventarioFisico_Insert_Result)">
-      <Parameter Name="estif_Id" Mode="In" Type="Byte" />
-      <Parameter Name="estif_Descripcion" Mode="In" Type="String" />
-      <Parameter Name="estif_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="estif_FechaCrea" Mode="In" Type="DateTime" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Inv_tbEstadoInventarioFisico_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEstadoInventarioFisico_Update_Result)">
-      <Parameter Name="estif_Id" Mode="In" Type="Byte" />
-      <Parameter Name="estif_Descripcion" Mode="In" Type="String" />
-      <Parameter Name="estif_UsuarioCrea" Mode="In" Type="Int32" />
-      <Parameter Name="estif_FechaCrea" Mode="In" Type="DateTime" />
-    </FunctionImport>
     <FunctionImport Name="SDP_Acce_GetRoles" ReturnType="Collection(ERP_ZORZALModel.SDP_Acce_GetRoles_Result)" />
     <FunctionImport Name="SDP_Acce_GetRolesDisponibles" ReturnType="Collection(ERP_ZORZALModel.SDP_Acce_GetRolesDisponibles_Result)">
       <Parameter Name="usu_Id" Mode="In" Type="Int32" />
@@ -962,7 +934,6 @@
     <EntitySet Name="UDV_Inv_CatalogoProductos" EntityType="ERP_ZORZALModel.UDV_Inv_CatalogoProductos" />
     <EntitySet Name="UDV_Inv_Consultar_Existencias_Productos" EntityType="ERP_ZORZALModel.UDV_Inv_Consultar_Existencias_Productos" />
     <EntitySet Name="UDV_Inv_ConsultarInventarioFisicoSobrantes" EntityType="ERP_ZORZALModel.UDV_Inv_ConsultarInventarioFisicoSobrantes" />
-    <EntitySet Name="UDV_Inv_EntradaPorId" EntityType="ERP_ZORZALModel.UDV_Inv_EntradaPorId" />
     <EntitySet Name="UDV_INV_Frecuencia_Movimiento_Productos" EntityType="ERP_ZORZALModel.UDV_INV_Frecuencia_Movimiento_Productos" />
     <EntitySet Name="UDV_INV_Frecuencia_Movimiento_Productos_Prueba" EntityType="ERP_ZORZALModel.UDV_INV_Frecuencia_Movimiento_Productos_Prueba" />
     <EntitySet Name="UDV_Inv_Inventario_Historico_Por_Fechas" EntityType="ERP_ZORZALModel.UDV_Inv_Inventario_Historico_Por_Fechas" />
@@ -973,7 +944,6 @@
     <EntitySet Name="UDV_Inv_Proyeccion_de_Movimiento_de_Producto" EntityType="ERP_ZORZALModel.UDV_Inv_Proyeccion_de_Movimiento_de_Producto" />
     <EntitySet Name="UDV_Inv_Salida_Imprimir_Reporte" EntityType="ERP_ZORZALModel.UDV_Inv_Salida_Imprimir_Reporte" />
     <EntitySet Name="UDV_inv_tbinventariofisico_reporteFaltantes" EntityType="ERP_ZORZALModel.UDV_inv_tbinventariofisico_reporteFaltantes" />
-    <EntitySet Name="UDV_Inv_TipoEntrada" EntityType="ERP_ZORZALModel.UDV_Inv_TipoEntrada" />
     <EntitySet Name="UDV_InventarioActual" EntityType="ERP_ZORZALModel.UDV_InventarioActual" />
     <EntitySet Name="VistaInventarioHistorico" EntityType="ERP_ZORZALModel.VistaInventarioHistorico" />
     <EntitySet Name="UDP_Vent_listExoneracion_Select" EntityType="ERP_ZORZALModel.UDP_Vent_listExoneracion_Select" />
@@ -1944,6 +1914,39 @@
       <End Role="tbSolicitudEfectivo" EntitySet="tbSolicitudEfectivo" />
       <End Role="tbSolicitudEfectivoDetalle" EntitySet="tbSolicitudEfectivoDetalle" />
     </AssociationSet>
+    <FunctionImport Name="UDP_Inv_tbEstadoInventarioFisico_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEstadoInventarioFisico_Insert_Result)">
+      <Parameter Name="estif_Id" Mode="In" Type="Byte" />
+      <Parameter Name="estif_Descripcion" Mode="In" Type="String" />
+      <Parameter Name="estif_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="estif_FechaCrea" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Inv_tbEstadoInventarioFisico_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEstadoInventarioFisico_Update_Result)">
+      <Parameter Name="estif_Id" Mode="In" Type="Byte" />
+      <Parameter Name="estif_Descripcion" Mode="In" Type="String" />
+      <Parameter Name="estif_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="estif_FechaCrea" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <EntitySet Name="UDV_Inv_EntradaPorId" EntityType="ERP_ZORZALModel.UDV_Inv_EntradaPorId" />
+    <EntitySet Name="UDV_Inv_TipoEntrada" EntityType="ERP_ZORZALModel.UDV_Inv_TipoEntrada" />
+    <FunctionImport Name="UDP_Inv_tbEntradaDetalle_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEntradaDetalle_Insert_Result)">
+      <Parameter Name="ent_Id" Mode="In" Type="Int32" />
+      <Parameter Name="prod_Codigo" Mode="In" Type="String" />
+      <Parameter Name="entd_Cantidad" Mode="In" Type="Decimal" />
+      <Parameter Name="box_Codigo" Mode="In" Type="String" />
+      <Parameter Name="ent_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="ent_FechaCrea" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Inv_tbEntradaDetalle_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbEntradaDetalle_Update_Result)">
+      <Parameter Name="entd_Id" Mode="In" Type="Int32" />
+      <Parameter Name="ent_Id" Mode="In" Type="Int32" />
+      <Parameter Name="prod_Codigo" Mode="In" Type="String" />
+      <Parameter Name="entd_Cantidad" Mode="In" Type="Decimal" />
+      <Parameter Name="box_Codigo" Mode="In" Type="String" />
+      <Parameter Name="entd_UsuarioCrea" Mode="In" Type="Int32" />
+      <Parameter Name="entd_FechaCrea" Mode="In" Type="DateTime" />
+      <Parameter Name="entd_UsuarioModifica" Mode="In" Type="Int32" />
+      <Parameter Name="entd_FechaModifica" Mode="In" Type="DateTime" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -2145,12 +2148,6 @@
     <Property Type="DateTime" Name="entd_FechaCrea" Nullable="false" Precision="23" />
     <Property Type="Int32" Name="entd_UsuarioModifica" Nullable="true" />
     <Property Type="DateTime" Name="entd_FechaModifica" Nullable="true" Precision="23" />
-  </ComplexType>
-  <ComplexType Name="UDP_Inv_tbEntradaDetalle_Update_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="UDP_Inv_tbEntradaDetalle_Insert_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
   <ComplexType Name="UDP_Inv_tbEntrada_Update_Estado_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
@@ -2600,12 +2597,6 @@
     <Property Type="DateTime" Name="rol_FechaModifica" Nullable="true" Precision="23" />
     <Property Type="Boolean" Name="rol_Estado" Nullable="true" />
   </ComplexType>
-  <ComplexType Name="UDP_Inv_tbEstadoInventarioFisico_Insert_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="UDP_Inv_tbEstadoInventarioFisico_Update_Result">
-    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
   <ComplexType Name="UDP_Inv_tbBox_Delete_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
   </ComplexType>
@@ -3026,7 +3017,7 @@
     <Property Name="emp_Identificacion" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="true" />
     <Property Name="emp_Telefono" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
     <Property Name="emp_Correoelectronico" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="emp_TipoSangre" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Name="emp_TipoSangre" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
     <Property Name="emp_Puesto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="emp_FechaIngreso" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="emp_Direccion" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
@@ -4426,43 +4417,6 @@
     <Property Name="invfd_CantidadSistema" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
     <Property Name="Sobrante_Faltante" Type="Decimal" Precision="11" Scale="2" />
   </EntityType>
-  <EntityType Name="UDV_Inv_EntradaPorId">
-    <Key>
-      <PropertyRef Name="ent_Id" />
-      <PropertyRef Name="ent_NumeroFormato" />
-      <PropertyRef Name="ent_FechaElaboracion" />
-      <PropertyRef Name="prov_Nombre" />
-      <PropertyRef Name="tent_id" />
-      <PropertyRef Name="estm_Descripcion" />
-      <PropertyRef Name="tent_Descripcion" />
-      <PropertyRef Name="ent_FacturaCompra" />
-      <PropertyRef Name="ent_FechaCompra" />
-      <PropertyRef Name="tdev_descripcion" />
-      <PropertyRef Name="fact_Id" />
-      <PropertyRef Name="ent_BodegaDestino" />
-      <PropertyRef Name="entd_Cantidad" />
-      <PropertyRef Name="prod_Codigo" />
-      <PropertyRef Name="prod_Descripcion" />
-      <PropertyRef Name="uni_Descripcion" />
-    </Key>
-    <Property Name="ent_Id" Type="Int32" Nullable="false" />
-    <Property Name="ent_NumeroFormato" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="bod_Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="ent_FechaElaboracion" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="prov_Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="tent_id" Type="Byte" Nullable="false" />
-    <Property Name="estm_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="tent_Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="ent_FacturaCompra" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="ent_FechaCompra" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="tdev_descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="fact_Id" Type="Int32" Nullable="false" />
-    <Property Name="ent_BodegaDestino" Type="Int32" Nullable="false" />
-    <Property Name="entd_Cantidad" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-    <Property Name="prod_Codigo" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
-    <Property Name="prod_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="uni_Descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
-  </EntityType>
   <EntityType Name="UDV_INV_Frecuencia_Movimiento_Productos">
     <Key>
       <PropertyRef Name="bod_Id" />
@@ -4781,37 +4735,6 @@
     <Property Name="Sobrante_Faltante" Type="Decimal" Precision="11" Scale="2" />
     <Property Name="bod_Id" Type="Int32" Nullable="false" />
     <Property Name="uni_Id" Type="Int32" Nullable="false" />
-  </EntityType>
-  <EntityType Name="UDV_Inv_TipoEntrada">
-    <Key>
-      <PropertyRef Name="ent_NumeroFormato" />
-      <PropertyRef Name="ent_FechaElaboracion" />
-      <PropertyRef Name="bod_id" />
-      <PropertyRef Name="estm_id" />
-      <PropertyRef Name="tent_id" />
-      <PropertyRef Name="prov_Nombre" />
-      <PropertyRef Name="estm_Descripcion" />
-      <PropertyRef Name="tent_Descripcion" />
-      <PropertyRef Name="ent_FacturaCompra" />
-      <PropertyRef Name="ent_FechaCompra" />
-      <PropertyRef Name="tdev_descripcion" />
-      <PropertyRef Name="fact_Id" />
-      <PropertyRef Name="ent_BodegaDestino" />
-    </Key>
-    <Property Name="ent_NumeroFormato" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="bod_Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="ent_FechaElaboracion" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="bod_id" Type="Int32" Nullable="false" />
-    <Property Name="estm_id" Type="Byte" Nullable="false" />
-    <Property Name="tent_id" Type="Byte" Nullable="false" />
-    <Property Name="prov_Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="estm_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="tent_Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="ent_FacturaCompra" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="ent_FechaCompra" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="tdev_descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="fact_Id" Type="Int32" Nullable="false" />
-    <Property Name="ent_BodegaDestino" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="UDV_InventarioActual">
     <Key>
@@ -8365,4 +8288,84 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <ComplexType Name="UDP_Inv_tbEstadoInventarioFisico_Update_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Inv_tbEstadoInventarioFisico_Insert_Result">
+    <Property Type="String" Name="MensajeError" Nullable="false" MaxLength="51" />
+  </ComplexType>
+  <EntityType Name="UDV_Inv_EntradaPorId">
+    <Key>
+      <PropertyRef Name="ent_Id" />
+      <PropertyRef Name="ent_NumeroFormato" />
+      <PropertyRef Name="ent_FechaElaboracion" />
+      <PropertyRef Name="prov_Nombre" />
+      <PropertyRef Name="tent_id" />
+      <PropertyRef Name="estm_Descripcion" />
+      <PropertyRef Name="tent_Descripcion" />
+      <PropertyRef Name="ent_FacturaCompra" />
+      <PropertyRef Name="ent_FechaCompra" />
+      <PropertyRef Name="tdev_descripcion" />
+      <PropertyRef Name="fact_Id" />
+      <PropertyRef Name="ent_BodegaDestino" />
+      <PropertyRef Name="entd_Cantidad" />
+      <PropertyRef Name="prod_Codigo" />
+      <PropertyRef Name="prod_Descripcion" />
+      <PropertyRef Name="uni_Descripcion" />
+    </Key>
+    <Property Name="ent_Id" Type="Int32" Nullable="false" />
+    <Property Name="ent_NumeroFormato" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="bod_Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ent_FechaElaboracion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="prov_Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="tent_id" Type="Byte" Nullable="false" />
+    <Property Name="estm_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="tent_Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ent_FacturaCompra" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ent_FechaCompra" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="tdev_descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="fact_Id" Type="String" Nullable="false" MaxLength="19" FixedLength="false" Unicode="true" />
+    <Property Name="ent_BodegaDestino" Type="Int32" Nullable="false" />
+    <Property Name="entd_Cantidad" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="prod_Codigo" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="prod_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="uni_Descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="UDV_Inv_TipoEntrada">
+    <Key>
+      <PropertyRef Name="ent_NumeroFormato" />
+      <PropertyRef Name="ent_FechaElaboracion" />
+      <PropertyRef Name="bod_id" />
+      <PropertyRef Name="estm_id" />
+      <PropertyRef Name="tent_id" />
+      <PropertyRef Name="prov_Nombre" />
+      <PropertyRef Name="estm_Descripcion" />
+      <PropertyRef Name="tent_Descripcion" />
+      <PropertyRef Name="ent_FacturaCompra" />
+      <PropertyRef Name="ent_FechaCompra" />
+      <PropertyRef Name="tdev_descripcion" />
+      <PropertyRef Name="fact_Id" />
+      <PropertyRef Name="ent_BodegaDestino" />
+    </Key>
+    <Property Name="ent_NumeroFormato" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="bod_Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ent_FechaElaboracion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="bod_id" Type="Int32" Nullable="false" />
+    <Property Name="estm_id" Type="Byte" Nullable="false" />
+    <Property Name="tent_id" Type="Byte" Nullable="false" />
+    <Property Name="prov_Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="estm_Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="tent_Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ent_FacturaCompra" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ent_FechaCompra" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="tdev_descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="fact_Id" Type="String" Nullable="false" MaxLength="19" FixedLength="false" Unicode="true" />
+    <Property Name="ent_BodegaDestino" Type="Int32" Nullable="false" />
+  </EntityType>
+  <ComplexType Name="UDP_Inv_tbEntradaDetalle_Update_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="UDP_Inv_tbEntradaDetalle_Insert_Result">
+    <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+  </ComplexType>
 </Schema>

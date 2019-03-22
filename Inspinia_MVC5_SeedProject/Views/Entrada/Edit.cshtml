@@ -504,27 +504,54 @@
 
 <script>
     window.onload = function () {
-        console.log('hola');
-        var valorid = document.getElementById("tent_Id").value;
-        console.log(valorid);
-            if (valorid == 1) {
-                document.getElementById("CamposCompra").style.display = 'block';
-                document.getElementById("CamposDevoluciones").style.display = 'none';
-                document.getElementById("CamposTraslado").style.display = 'none';
+        var normalize = (function () {
+            var from = "ÃÀÁÄÂÈÉËÊÌÍÏÎÒÓÖÔÙÚÜÛãàáäâèéëêìíïîòóöôùúüûÑñÇç",
+                to = "AAAAAEEEEIIIIOOOOUUUUaaaaaeeeeiiiioooouuuunncc",
+                mapping = {};
+
+            for (var i = 0, j = from.length; i < j; i++)
+                mapping[from.charAt(i)] = to.charAt(i);
+
+            return function (str) {
+                var ret = [];
+                for (var i = 0, j = str.length; i < j; i++) {
+                    var c = str.charAt(i);
+                    if (mapping.hasOwnProperty(str.charAt(i)))
+                        ret.push(mapping[c]);
+                    else
+                        ret.push(c);
+                }
+                return ret.join('');
             }
-            else if (valorid == 2) {
-                document.getElementById("CamposDevoluciones").style.display = 'block';
-                document.getElementById("CamposCompra").style.display = 'none';
-                document.getElementById("CamposTraslado").style.display = 'none';
+
+        })();
+        $("#tent_Id").click(function () {
+            var valorid1 = document.getElementById('tent_Id').value;
+            var valoridt = $(this).find('option:selected').text();
+            var valorid = normalize(valoridt.toUpperCase());
+            if (valorid == 0) {
+                console.log('hola 0');
+
+            } else if (valorid == 'COMPRA') {
+                document.getElementById("compra").style.display = 'block';
+                document.getElementById("Devolucion").style.display = 'none';
+                document.getElementById("traslado").style.display = 'none';
+            } else if (valorid == "DEVOLUCION") {
+                document.getElementById("Devolucion").style.display = 'block';
+                document.getElementById("compra").style.display = 'none';
+                document.getElementById("traslado").style.display = 'none';
             }
-            else if (valorid == 3) {
-                document.getElementById("CamposTraslado").style.display = 'block';
-                document.getElementById("CamposDevoluciones").style.display = 'none';
-                document.getElementById("CamposCompra").style.display = 'none';
+            else if (valorid == "TRASLADO") {
+                document.getElementById("traslado").style.display = 'block';
+                document.getElementById("Devolucion").style.display = 'none';
+                document.getElementById("compra").style.display = 'none';
             }
-            //else if (valorid => 4) {
-            //    alert("Entrada Seeccionada no Disponible");
-            //}
+            else {
+                document.getElementById("traslado").style.display = 'none';
+                document.getElementById("Devolucion").style.display = 'none';
+                document.getElementById("compra").style.display = 'none';
+            }
+        });
     };
     //para inprimir
     $('#Imprimir').click(function () {

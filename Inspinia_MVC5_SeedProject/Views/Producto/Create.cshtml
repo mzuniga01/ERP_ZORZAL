@@ -82,7 +82,7 @@
                                @Html.LabelFor(model => model.prod_Codigo, new { @class = "control-label col-md-2 , required" })
                                    
                                     <div class="col-md-4">                                     
-                                        @Html.EditorFor(model => model.prod_Codigo, new { htmlAttributes = new { @id = "CodigoPro", @class = "form-control", @readonly = "readonly", @autocomplete = "off" } })
+                                        @Html.EditorFor(model => model.prod_Codigo, new { htmlAttributes = new { @id = "CodigoPro", @class = "form-control", @readonly = "readonly", @autocomplete = "off" ,@title="Seleccioone Categoria y Subcategoria" } })
                                         <p style="color:red">@Html.ValidationMessageFor(model => model.prod_Codigo)</p>
                                     </div>
 
@@ -98,8 +98,8 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.prod_Descripcion, new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.prod_Descripcion, new { htmlAttributes = new { @class = "MayusText", @onkeypress = "return soloLetras(event)", @maxlength = "40", @autocomplete = "off" } })
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.prod_Descripcion)</p>
+                                    @Html.EditorFor(model => model.prod_Descripcion, new { htmlAttributes = new { @class = "MayusText", @onkeypress = "return soloLetras(event)", @maxlength = "40", @autocomplete = "off" } })                           
+                                     <p style="color:red">@Html.ValidationMessageFor(model => model.prod_Descripcion)</p>
                                 </div>
 
                                 @Html.LabelFor(model => model.prod_Marca, new { @class = "control-label col-md-2" })

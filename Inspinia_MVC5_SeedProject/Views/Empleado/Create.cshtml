@@ -133,7 +133,18 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.emp_TipoSangre, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.emp_TipoSangre, new { htmlAttributes = new { @class = "MayusText", @onkeypress = "return TipoSangre(event)", onblur = "limpiaTipoSangre()", id = "emp_TipoSangre",MaxLength =2 } })
+                                    <select class="form-control" id="emp_TipoSangre" name="emp_TipoSangre">
+                                        <option value="">Seleccione tipo de sangre</option>
+                                        <option value="AB+">AB+</option>
+                                        <option value="AB-">AB-</option>
+                                        <option value="A+">A+</option>
+                                        <option value="A-">A-</option>
+                                        <option value="B+">B+</option>
+                                        <option value="B-">B-</option>
+                                        <option value="O+">O+</option>
+                                        <option value="O-">O-</option>
+                                    </select>
+                                    @*@Html.EditorFor(model => model.emp_TipoSangre, new { htmlAttributes = new { @class = "MayusText", @onkeypress = "return TipoSangre(event)", onblur = "limpiaTipoSangre()", id = "emp_TipoSangre",MaxLength =2 } })*@
                                     <p style="color:red">
                                         @Html.ValidationMessageFor(model => model.emp_TipoSangre)
                                     </p>

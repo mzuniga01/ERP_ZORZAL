@@ -82,6 +82,27 @@
                         <dd>
                             @Html.DisplayFor(model => model.emp_Id)
                         </dd>
+                        @if (Model.usu_EsAdministrador == true)
+                        {
+                            <dt>
+                                @Html.DisplayNameFor(model => model.usu_EsAdministrador)
+                            </dt>
+
+                            <dd>
+                                Si
+                            </dd>
+                        }
+
+                        else
+                        {
+                            <dt>
+                                @Html.DisplayNameFor(model => model.usu_EsAdministrador)
+                            </dt>
+
+                            <dd>
+                                No
+                            </dd>
+                        }
 
                         <dt>
                           Estado
@@ -118,6 +139,7 @@
                                 @Html.DisplayFor(model => model.usu_RazonInactivo)
                             </dd> 
                         }
+                  
 
                     </dl>
                         @Html.ActionLink("Editar", "Edit", new { id = Model.usu_Id }, new { @class = "btn btn-primary" })

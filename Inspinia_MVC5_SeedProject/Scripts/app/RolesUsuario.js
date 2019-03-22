@@ -105,7 +105,7 @@ $(document).on('keyup', '#usu_Password, #confirmar-pass', function () {
             valido.innerText = "Longitud debe ser mínimo de 8 caracteres";
             $('#AgregarRol').prop('disabled', false);
             $('#QuitarRol').prop('disabled', false);
-            $('#btnGuardarUsuario').prop('disabled', false);
+            $('#btnGuardarUsuario').prop('disabled', true);
         }
         else {
             if (!usu_Password || !bar || usu_Password == '' || bar == '') {

@@ -142,7 +142,7 @@ namespace ERP_GMEDINA.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [SessionManager("Usuario/Create")]
-        public ActionResult Create([Bind(Include = "usu_NombreUsuario,usu_Nombres,usu_Apellidos,usu_Correo,ConfirmarPassword,suc_Id, emp_Id")] tbUsuario tbUsuario, string usu_Password)
+        public ActionResult Create([Bind(Include = "usu_NombreUsuario,usu_Nombres,usu_Apellidos,usu_Correo,ConfirmarPassword,suc_Id, emp_Id,usu_EsAdministrador")] tbUsuario tbUsuario, string usu_Password)
         {
             if (db.tbUsuario.Any(a => a.usu_NombreUsuario == tbUsuario.usu_NombreUsuario))
             {
@@ -161,7 +161,7 @@ namespace ERP_GMEDINA.Controllers
                 {
                     try
                     {
-                        List = db.UDP_Acce_tbUsuario_Insert(tbUsuario.usu_NombreUsuario, usu_Password, tbUsuario.usu_Nombres, tbUsuario.usu_Apellidos, tbUsuario.usu_Correo, tbUsuario.suc_Id, tbUsuario.emp_Id);
+                        List = db.UDP_Acce_tbUsuario_Insert(tbUsuario.usu_NombreUsuario, usu_Password, tbUsuario.usu_Nombres, tbUsuario.usu_Apellidos, tbUsuario.usu_Correo, tbUsuario.suc_Id, tbUsuario.emp_Id, tbUsuario.usu_EsAdministrador);
                         foreach (UDP_Acce_tbUsuario_Insert_Result Usuario in List)
                             MsjError = Usuario.MensajeError;
                         if (MsjError.StartsWith("-1"))

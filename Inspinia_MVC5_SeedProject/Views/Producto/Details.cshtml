@@ -117,11 +117,11 @@
                         <dd>
                             @if (Model.prod_EsActivo == true)
                             {
-                                <p> Activo</p>
+                                <p>ACTIVO</p>
                             }
                             else
                             {
-                                <p>Inactivo</p>
+                                <p>INACTIVO</p>
                             }
                         </dd>
 
@@ -164,30 +164,6 @@
 
                     }
 
-
-                    @*<div class="ibox-content">
-                    <table class="table table-striped">
-                        <tr>
-                            <th>Acción</th>
-                            <th>Usuario</th>
-                            <th>Fecha</th>
-                        </tr>
-                        <tr>
-                            <td>Creado</td>
-                            <td>@Html.DisplayFor(model => model.tbUsuario1.usu_Nombres) @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)</td>
-                            <td>@Html.DisplayFor(model => model.prod_FechaCrea)</td>
-                        </tr>
-                        <tr>
-                            <td>Modificado</td>
-                            <td> @Html.DisplayFor(model => model.tbUsuario.usu_Nombres) @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)</td>
-                            <td>@Html.DisplayFor(model => model.prod_FechaModifica)</td>
-                        </tr>
-                    </table>
-                </div>*@
-
-
-
-
                 </div>
             </div>
             <div class="ibox float-e-margins">
@@ -195,7 +171,7 @@
                     <h5>Auditoría</h5>
                 </div>
                 <div class="ibox-content">
-                    <table class="table table-striped">
+                    <table class="table table-striped  table-bordered">
                         <tr>
                             <th>Acción</th>
                             <th>Usuario</th>

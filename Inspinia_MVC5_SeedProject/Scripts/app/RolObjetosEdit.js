@@ -1,5 +1,24 @@
-﻿$(document).ready(function () {
+﻿var Descripcion_global = $('#rol_Descripcion').val();;
+$(document).ready(function () {
+    $(document).keydown(function (e) {
+        if ((e.key == 'g' || e.key == 'G') && (e.ctrlKey || e.metaKey)) {
+            e.preventDefault();
+            $("#btnActualizarRol").click();
+            return false;
+        }
+        if ((e.key == 'l' || e.key == 'L') && (e.ctrlKey || e.metaKey)) {
+            e.preventDefault();
+            $("#CancelarEdit").click();
+            return false;
+        }
+    });
+    $('#rol_Descripcion').focus();
     $("#rol_Descripcion")[0].maxLength = 100;
+    $("#rol_Descripcion").keypress(function (e) {
+        if (e.which == 13) {
+            $('#btnActualizarRol').click();
+        }
+    });
     $.ajax({
         url: "/Rol/GetObjetosDisponibles",
         method: "POST",
@@ -195,6 +214,16 @@ $('#Add').click(function () {
         
 
     })
+
+    $("#CancelarEdit").click(function () {
+        var DescripcionRol = $("#rol_Descripcion").val();
+        if (DescripcionRol != Descripcion_global) {
+            $("#ModalCancelar").modal("show");
+        }
+        else {
+            window.location.href = '/Rol/Index';
+        }
+    });
 
     $('#rol_Descripcion').on('input', function (e) {
         if (!/^[ a-z-áéíóúüñ]*$/i.test(this.value)) {

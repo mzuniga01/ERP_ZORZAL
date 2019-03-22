@@ -236,7 +236,7 @@ $('#usu_Apellidos').on("keypress", function () {
 $('#Inactivar').click(function () {
     var usu_id = $('#usu_Id').val();
     var Activo = 0
-    var Razon_Inactivacion = $('#Razon_Inactivacion').val();
+    var Razon_Inactivacion = $('#razonInac').val();
     console.log(usu_id)
     console.log(Activo)
     console.log(Razon_Inactivacion)
