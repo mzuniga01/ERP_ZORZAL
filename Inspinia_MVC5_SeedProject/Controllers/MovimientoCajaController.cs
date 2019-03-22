@@ -398,6 +398,31 @@ namespace ERP_GMEDINA.Controllers
             var list = db.UDP_Vent_tbMovimientoCaja_GetUsuarioApertura(CodUsuario).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
+        /////Denominaciones Arqueo////////////////////////////
+        [HttpPost]
+        public JsonResult DenominacionArqueo(int ArqueoCajaId)
+        {
+            var list = db.UDP_Vent_tbDenominacionArqueo_Edit(ArqueoCajaId).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+
+        /////Pagos Arqueo////////////////////////////
+        [HttpPost]
+        public JsonResult PagosArqueo(int ArqueoCajaId)
+        {
+
+            var list = ViewBag.ArqueoCaja = db.tbPagosArqueo.Where(a => a.mocja_Id == ArqueoCajaId)
+           .Select(a => new
+           {
+               TipoPago = a.tpa_Id,
+               CantidadPago = a.arqpg_PagosSistema
+           });
+
+            return Json(list, JsonRequestBehavior.AllowGet);
+
+            //return Json(list);
+        }
         // GET: /MovimientoCaja/Details/5
         public ActionResult Details(int? id)
         {
@@ -531,8 +556,10 @@ namespace ERP_GMEDINA.Controllers
 
                 //// Aqui termina-----------------------------------------------------------------------------------------------------------
 
+
                 ////Efectivo Inicial
-                var solef_Id = db.tbSolicitudEfectivo.Where(x => x.solef_EsApertura == true && x.solef_FechaEntrega == Date).Select(x => x.solef_Id).SingleOrDefault();
+                var mocja_Id = db.tbMovimientoCaja.Where(x => x.usu_Id == idUser && x.mocja_FechaApertura == Date).Select(x => x.mocja_Id).SingleOrDefault();
+                var solef_Id = db.tbSolicitudEfectivo.Where(x => x.solef_EsApertura == true && x.solef_FechaEntrega == Date && x.mocja_Id == mocja_Id).Select(x => x.solef_Id).SingleOrDefault();
                 if (solef_Id > 0)
                 {
                     ViewBag.EfectivoInicial = db.tbSolicitudEfectivoDetalle.Where(x => x.solef_Id == solef_Id).Select(x => x.soled_MontoEntregado).Sum();

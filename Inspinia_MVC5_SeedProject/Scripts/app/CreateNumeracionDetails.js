@@ -148,9 +148,13 @@
             }
         })
         .done(function (data) {
-            if (data == 'Ya existe esta numeración') {
-                $('#MostrarMensajeNumeracion').text('');
-                $('#MensajeNumeracion').after('<p id="MostrarMensajeNumeracion" style="color:red">Ya existe esta numeración</p>');
+            if (data == 'Ya existe este Rango Inicial') {
+                $('#MensajeRangoInicialExist').text('');
+                $('#validacionRangoInicioCreate').after('<p id="MensajeRangoInicialExist" style="color:red">Ya existe este Rango Inicial</p>');
+            }
+            else if (data == 'Ya existe este Rango Final') {
+                $('#MensajeRangoFinalExist').text('');
+                $('#validacionRangoFinalCreate').after('<p id="MensajeRangoFinalExist" style="color:red">Ya existe este Rango Final</p>');
             }
             else if (data == 'No se pudo guardar el registro') {
                 location.reload();
@@ -252,5 +256,6 @@ $('#btnCancelarModalCreateNumeracion').click(function () {
     $('#ErrorRangoFinalLengthCreate').text('');
     $('#ErrorFechaLimiteCreate').text('');
     $('#ErrorFechaLimiteMenorCreate').text('');
-    $('#MostrarMensajeNumeracion').text('');
+    $('#MensajeRangoInicialExist').text('');
+    $('#MensajeRangoFinalExist').text('');
 });

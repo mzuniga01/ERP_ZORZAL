@@ -227,10 +227,7 @@
             }
         });
 
-
-    });
-    $(document).ready(function () {
-
+        
 
         //VALIDAR SOLO LETRAS
         $('#lispd_PrecioMinorista').on('input', function (e) {
@@ -243,10 +240,6 @@
                 this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
             }
         });
-
-
-    });
-    $(document).ready(function () {
 
 
         //VALIDAR SOLO LETRAS
@@ -261,9 +254,6 @@
             }
         });
 
-
-    });
-    $(document).ready(function () {
         //VALIDAR SOLO LETRAS
         $('#lispd_DescGerente').on('input', function (e) {
             if (!/^[0-9. a-z-áéíóúüñ]*$/i.test(this.value)) {
@@ -275,5 +265,8 @@
                 this.value = this.value.replace(/[^ a-z-áéíóúüñ]+/ig, "");
             }
         });
+
     });
+
+ 
 </script>

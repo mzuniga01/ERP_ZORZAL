@@ -1,6 +1,5 @@
 ﻿var contador = 0;
 $('#AgregarPuntoEmisionDetalle').click(function () {
-
     var DocumentoFiscal = $('#dfisc_Id').val();
     var RangoInicio = $('#pemid_RangoInicio').val();
     var RangoFinal = $('#pemid_RangoFinal').val();
@@ -139,18 +138,6 @@ $('#AgregarPuntoEmisionDetalle').click(function () {
         $('#validacionFechaLimiteCreate').after('<p id="ErrorFechaLimiteMenorCreate" style="color:red">El campo Fecha Límite Emisión debe ser mayor a la actual</p>');
     }
     else {
-        contador = contador + 1;
-        copiar = "<tr data-id=" + contador + ">";
-        copiar += "<td>" + $('#dfisc_Id option:selected').text() + "</td>";
-        copiar += "<td hidden id='dfisc_IdCreate'>" + $('#dfisc_Id option:selected').val() + "</td>";
-        copiar += "<td id = 'pemid_RangoInicioCreate'>" + $('#pemid_RangoInicio').val() + "</td>";
-        copiar += "<td id = 'pemid_RangoFinalCreate'>" + $('#pemid_RangoFinal').val() + "</td>";
-        copiar += "<td id = 'pemid_NumeroActualCreate'>" + $('#pemid_NumeroActual').val() + "</td>";
-        copiar += "<td id = 'pemid_FechaLimiteCreate'>" + $('#pemid_FechaLimite').val() + "</td>";
-        copiar += "<td>" + '<button id="removePuntoEmisionDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
-        copiar += "</tr>";
-        $('#tblPuntoEmisionDetalle').append(copiar);
-
         var PuntoEmisionDetalle = GetPuntoEmisionDetalle();
         $.ajax({
             url: "/PuntoEmision/SavePuntoEmisionDetalle",
@@ -158,27 +145,52 @@ $('#AgregarPuntoEmisionDetalle').click(function () {
             dataType: 'json',
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify({ PuntoEmisionDet: PuntoEmisionDetalle }),
+            success: function (data) {
+            }
         })
         .done(function (data) {
-            //Limpiar mensajes
-            $('#ErrorDocumentoFiscalCreate').text('');
-            $('#ErrorRangoInicioCreate').text('');
-            $('#ErrorRangoInicioLengthCreate').text('');
-            $('#ErrorRangoFinalCreate').text('');
-            $('#ErrorRangoFinalSplitCreate').text('');
-            $('#ErrorRangoFinalLengthCreate').text('');
-            $('#ErrorFechaLimiteCreate').text('');
-            $('#ErrorFechaLimiteMenorCreate').text('');
-            //Limpiar input
-            $('#dfisc_Id').val('');
-            $('#pemid_RangoInicio').val('');
-            $('#pemid_RangoFinal').val('');
-            $('#pemid_NumeroActual').val('');
-            $('#pemid_FechaLimite').val('');
+            if (data == 'Ya existe este Rango Inicial') {
+                $('#MensajeNumeracionRangoInicial').text('');
+                $('#validacionRangoInicioCreate').after('<p id="MensajeNumeracionRangoInicial" style="color:red">Ya existe este Rango Inicial</p>');
+            }
+            else if (data == 'Ya existe este Rango Final') {
+                 $('#MensajeNumeracionRangoFinal').text('');
+                 $('#validacionRangoInicioCreate').after('<p id="MensajeNumeracionRangoFinal" style="color:red">Ya existe este Rango Final</p>');
+            }
+            else {
+                contador = contador + 1;
+                copiar = "<tr data-id=" + contador + ">";
+                copiar += "<td>" + $('#dfisc_Id option:selected').text() + "</td>";
+                copiar += "<td hidden id='dfisc_IdCreate'>" + $('#dfisc_Id option:selected').val() + "</td>";
+                copiar += "<td id = 'pemid_RangoInicioCreate'>" + $('#pemid_RangoInicio').val() + "</td>";
+                copiar += "<td id = 'pemid_RangoFinalCreate'>" + $('#pemid_RangoFinal').val() + "</td>";
+                copiar += "<td id = 'pemid_NumeroActualCreate'>" + $('#pemid_NumeroActual').val() + "</td>";
+                copiar += "<td id = 'pemid_FechaLimiteCreate'>" + $('#pemid_FechaLimite').val() + "</td>";
+                copiar += "<td>" + '<button id="removePuntoEmisionDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>' + "</td>";
+                copiar += "</tr>";
+                $('#tblPuntoEmisionDetalle').append(copiar);
 
+                //Limpiar mensajes
+                $('#ErrorDocumentoFiscalCreate').text('');
+                $('#ErrorRangoInicioCreate').text('');
+                $('#ErrorRangoInicioLengthCreate').text('');
+                $('#ErrorRangoFinalCreate').text('');
+                $('#ErrorRangoFinalSplitCreate').text('');
+                $('#ErrorRangoFinalLengthCreate').text('');
+                $('#ErrorFechaLimiteCreate').text('');
+                $('#ErrorFechaLimiteMenorCreate').text('');
+                $('#MensajeNumeracionRangoInicial').text('');
+                $('#MensajeNumeracionRangoFinal').text('');
+                //Limpiar input
+                $('#dfisc_Id').val('');
+                $('#pemid_RangoInicio').val('');
+                $('#pemid_RangoFinal').val('');
+                $('#pemid_NumeroActual').val('');
+                $('#pemid_FechaLimite').val('');
+            }
+                
         });
     }
-    
 });
 
 function GetPuntoEmisionDetalle() {    
@@ -233,6 +245,7 @@ $("#dfisc_Id").change(function () {
     }
 });
 
+//borrar mensajes en tiempo real
 $("#pemid_RangoInicio").keyup(function () {
     $('#ErrorRangoInicioCreate').text('');
     $('#ErrorRangoInicioLengthCreate').text('');

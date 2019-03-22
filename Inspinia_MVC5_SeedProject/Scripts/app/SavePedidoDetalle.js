@@ -1,4 +1,9 @@
-﻿$(document).on("click", "#tblPedidoDetalle tbody tr td button#QuitarDetalle", function () {
+﻿$(document).on("click", "#PedidoDetalle tbody tr td button#QuitarDetalle", function () {
+    var table = $('#PedidoDetalle').DataTable();
+    table
+        .row($(this).parents('tr'))
+        .remove()
+        .draw();
     $(this).closest('tr').remove();
     idItem = $(this).closest('tr').data('id');
     prod_codigo = $(this).closest('tr').data('prod_codigo');

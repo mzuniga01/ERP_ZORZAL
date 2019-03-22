@@ -445,7 +445,6 @@ function SeleccionProducto() {
     });
 }
 
-
 //Enter Codigo de barras
 $("#prod_CodigoBarras").keyup(function (e) {
     var prodCodigoBarrar = $("#prod_CodigoBarras").val();
@@ -570,6 +569,7 @@ function addtable(cantfisica_nueva) {
     var IDCliente = $('#clte_Id').val();
     var table = $('#tblDetalleFactura').DataTable();
     var FacturaDetalle = GetFacturaDetalle();
+    console.log('FacturaDetalle',FacturaDetalle);
     $.ajax({
         url: "/Factura/SaveFacturaDetalle",
         method: "POST",
@@ -631,6 +631,22 @@ function addtable(cantfisica_nueva) {
     })
 }
 
+function GetFacturaDetalle() {
+
+    var FacturaDetalle = {
+        prod_Codigo:$('#prod_Codigo').val(),
+        factd_PorcentajeDescuento: parseFloat($('#factd_PorcentajeDescuento').val()),
+        factd_MontoDescuento: parseFloat($('#factd_MontoDescuento').val()),
+        tbProducto_prod_Descripcion: $('#tbProducto_prod_Descripcion').val(),
+        factd_Cantidad: parseFloat($('#factd_Cantidad').val()),
+        SubtotalProducto: parseFloat($('#SubtotalProducto').val()),
+        factd_PrecioUnitario: parseFloat($('#factd_PrecioUnitario').val()),
+        factd_Impuesto: parseFloat($('#factd_Impuesto').val()),
+        TotalProducto: $('#TotalProducto').val()
+    }
+    return FacturaDetalle
+};
+
 function CalculoDetalle() {
     //Subtotal 
     var totalProducto = $('#SubtotalProducto').val();
@@ -678,21 +694,6 @@ function CalculoDetalle() {
         var TotalEncabezado = document.getElementById("total").innerHTML = (parseFloat(subtotal) + parseFloat(totalProducto) + parseFloat(impuestotal) + parseFloat(impuestos) - parseFloat(TotalDescuento) - parseFloat(Descuento)).toFixed(2);
         $("#TotalProductoEncabezado").val(TotalEncabezado);
     }
-};
-
-function GetFacturaDetalle() {
-    var FacturaDetalle = {
-        prod_Codigo: $('#prod_Codigo').val(),
-        factd_PorcentajeDescuento: $('#factd_PorcentajeDescuento').val(),
-        factd_MontoDescuento: $('#factd_MontoDescuento').val(),
-        tbProducto_prod_Descripcion: $('#tbProducto_prod_Descripcion').val(),
-        factd_Cantidad: $('#factd_Cantidad').val(),
-        SubtotalProducto: $('#SubtotalProducto').val(),
-        factd_PrecioUnitario: $('#factd_PrecioUnitario').val(),
-        factd_Impuesto: $('#factd_Impuesto').val(),
-        TotalProducto: $('#TotalProducto').val(),
-    }
-    return FacturaDetalle
 };
 
 function LimpiarControles()

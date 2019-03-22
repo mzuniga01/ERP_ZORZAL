@@ -208,6 +208,7 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.listp_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbListaPrecio.listp_UsuarioCrea);
             ViewBag.listp_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbListaPrecio.listp_UsuarioModifica);
             ViewBag.listp_Id = new SelectList(db.tbListadoPrecioDetalle, "listp_Id", "prod_Codigo", tbListaPrecio.listp_Id);
+            Session["IdListadoDetalles"] = id;
             ViewBag.Producto = db.tbProducto.ToList();
             Session["listaEdit"] = null;
             return View(tbListaPrecio);
@@ -357,12 +358,30 @@ namespace ERP_GMEDINA.Controllers
             var list = db.UDP_Vent_tbListaPrecio_UltimaFechaVigente(Prioridad).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
             
-        } 
+        }
+
+
+        [HttpPost]
+        public JsonResult Validar()
+        {
+            int? listpreId = (int)Session["IdListadoDetalles"];
+            return Json(listpreId);
+        }
 
         [HttpPost]
         public ActionResult GetListadoDetalleEdit(int listp_Id)
         {
-            var list = db.UDP_Vent_tbListadoPrecioDetalle_Select(listp_Id).ToList();
+            
+            var list = db.tbListadoPrecioDetalle.Select(s => new
+            {
+                Id=s.listp_Id,
+                prod_Codigo= s.prod_Codigo,
+                prod_Descripcion = s.tbProducto.prod_Descripcion,
+                lispd_PrecioMayorista = s.lispd_PrecioMayorista,
+                lispd_PrecioMinorista= s.lispd_PrecioMinorista,
+                lispd_DescCaja= s.lispd_DescCaja,
+                lispd_DescGerente= s.lispd_DescGerente,
+            }).Where(x => x.Id == listp_Id).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 

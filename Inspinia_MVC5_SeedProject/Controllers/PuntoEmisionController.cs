@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -285,20 +285,31 @@ namespace ERP_ZORZAL.Controllers
         {
             List<tbPuntoEmisionDetalle> sessionPuntoEmisionDetalle = new List<tbPuntoEmisionDetalle>();
             var list = (List<tbPuntoEmisionDetalle>)Session["PuntoEmision"];
+            string Msj = "";
+            if (db.tbPuntoEmisionDetalle.Any(a => a.pemid_RangoInicio == PuntoEmisionDet.pemid_RangoInicio))
+            {
+                Msj = "Ya existe este Rango Inicial";
+            }
+            else if (db.tbPuntoEmisionDetalle.Any(a => a.pemid_RangoFinal == PuntoEmisionDet.pemid_RangoFinal)) {
+                Msj = "Ya existe este Rango Final";
+            }
+            else {
+                if (list == null)
+                {
+                    sessionPuntoEmisionDetalle.Add(PuntoEmisionDet);
+                    Session["PuntoEmision"] = sessionPuntoEmisionDetalle;
+                    Msj = "Exito";
+                }
+                else
+                {
+                    list.Add(PuntoEmisionDet);
+                    Session["PuntoEmision"] = list;
+                    Msj = "Exito";
+                }
+            }
+          
 
-           if (list == null)
-           {
-               sessionPuntoEmisionDetalle.Add(PuntoEmisionDet);
-               Session["PuntoEmision"] = sessionPuntoEmisionDetalle;
-       
-           }
-           else
-           {
-               list.Add(PuntoEmisionDet);
-               Session["PuntoEmision"] = list;
-           }
-            
-            return Json("Exito", JsonRequestBehavior.AllowGet);
+            return Json(Msj, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -363,9 +374,12 @@ namespace ERP_ZORZAL.Controllers
 
             try
             {
-                if (db.tbPuntoEmisionDetalle.Any(a => a.pemid_RangoInicio == CreatePuntoEmisionDetalle.pemid_RangoInicio && a.pemid_RangoFinal == CreatePuntoEmisionDetalle.pemid_RangoFinal))
+                if (db.tbPuntoEmisionDetalle.Any(a => a.pemid_RangoInicio == CreatePuntoEmisionDetalle.pemid_RangoInicio))
                 {
-                    Msj = "Ya existe esta numeración";
+                    Msj = "Ya existe este Rango Inicial";
+                }
+                else if (db.tbPuntoEmisionDetalle.Any(a => a.pemid_RangoFinal == CreatePuntoEmisionDetalle.pemid_RangoFinal)) {
+                    Msj = "Ya existe este Rango Final";
                 }
                 else {
                     string MensajeError = "";
