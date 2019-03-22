@@ -197,20 +197,17 @@
                 </div>
             </div>
             <div id="nocre_Codigo_cdto_Id" class="form-group">
-                @Html.Label("Código/ID ", new { @class = "control-label col-md-2" })
+                @Html.Label("Código/ID ", new { @class = "control-label col-md-2 AsteriscoRojo" })
                 <div class="col-md-2">
-                    @Html.EditorFor(model => model.nocre_Codigo_cdto_Id)
+                    @Html.EditorFor(model => model.nocre_Codigo_cdto_Id, new { htmlAttributes = new { @id = "cc" } })
                     @Html.ValidationMessageFor(model => model.nocre_Codigo_cdto_Id)
                 </div>
                 <div class="col-md-1" id="mNotaCredito">
                     <button type="button" id="" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarNotaCredito"><span class="glyphicon glyphicon-search"></span></button>
                 </div>
                 <div class="col-md-1" id="mCuponDesc">
-
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarCuponDescuento" title="Seleccione un Cupón" data-placement="bottom"><span class="glyphicon glyphicon-search"></span></button>
-
                 </div>
-
             </div>
 
 
@@ -350,7 +347,10 @@
 
 <script src="~/Scripts/app/PagoClienteFacturas.js"></script>
 <script src="~/Scripts/app/PagoCampoNumerico.js"></script>
-<script src="~/Scripts/app/Datepicker.js"></script>
+
+<script src="~/Scripts/app/ComandoGuardar.js"></script>
+<script src="~/Scripts/app/DataTable.js"></script>
+<script src="~/Scripts/app/PagoAnulado.js"></script>
 
 <script>
     $(document).ready(function () {
@@ -435,7 +435,7 @@
 
 </script>
 
-<script>
+@*<script>
 $('#Anular').click(function () {
     var pago_Id = $('#pago_Id').val();
     var PagoAnulado = 1
@@ -446,7 +446,7 @@ $('#Anular').click(function () {
     }else
     {
         $.ajax({
-            url: "/Factura/AnularPago",
+            url: "/Pago/AnularPago",
             method: "POST",
             dataType: 'json',
             contentType: "application/json; charset=utf-8",
@@ -465,4 +465,4 @@ $('#Anular').click(function () {
     }
 
 })
-</script>
+</script>*@

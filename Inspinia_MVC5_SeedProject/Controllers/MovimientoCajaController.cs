@@ -48,7 +48,7 @@ namespace ERP_GMEDINA.Controllers
             if (Function.GetUserLogin())
             {
                 if (Function.GetUserRols("MovimientoCaja/IndexApertura"))
-                {      
+                {
                     return View(db.UDV_Vent_MovimientoCaja_Apertura.ToList());
                 }
                 else
@@ -83,11 +83,11 @@ namespace ERP_GMEDINA.Controllers
 
                     ViewBag.suc_Descripcion = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.tbSucursal.suc_Descripcion).SingleOrDefault();
                     ViewBag.suc_Id = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.tbSucursal.suc_Id).SingleOrDefault();
-                 
+
                     var suc_Id = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.tbSucursal.suc_Id).SingleOrDefault();
                     ViewBag.UsuarioApertura = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.usu_NombreUsuario).SingleOrDefault();
                     ViewBag.mocja_UsuarioApertura = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.usu_Id).SingleOrDefault();
-                    var Cajas = db.tbCaja.Select(s => new { cja_Id = s.cja_Id, cja_Descripcion = s.cja_Descripcion, suc_Id = s.suc_Id}).Where(x => x.suc_Id == suc_Id).ToList();                
+                    var Cajas = db.tbCaja.Select(s => new { cja_Id = s.cja_Id, cja_Descripcion = s.cja_Descripcion, suc_Id = s.suc_Id }).Where(x => x.suc_Id == suc_Id).ToList();
                     ViewBag.cja_Id = new SelectList(Cajas, "cja_Id", "cja_Descripcion", MovimientoCaja.cja_Id);
                     /////Vistas Parciales
                     ViewBag.SolicitudEfectivo = db.tbSolicitudEfectivo.ToList();
@@ -120,7 +120,6 @@ namespace ERP_GMEDINA.Controllers
             }
 
             tbSolicitudEfectivo tbSolicitudEfectivo = new tbSolicitudEfectivo();
-            tbMovimientoCaja MovimientoCaja = new tbMovimientoCaja();
             /////////REMOVE////////
             ModelState.Remove("mocja_UsuarioApertura");
             ModelState.Remove("mocja_UsuarioArquea");
@@ -151,12 +150,12 @@ namespace ERP_GMEDINA.Controllers
                     {
                         try
                         {
-                            DateTime Date = DateTime.Today;
-                            if (db.tbMovimientoCaja.Any(a => a.usu_Id == idUser && a.mocja_FechaApertura == Date))
+                            var fecha = DateTime.Now;
+                            if (db.tbMovimientoCaja.Any(a => tbMovimientoCaja.mocja_FechaApertura == fecha))
                             {
                                 ModelState.AddModelError("", "Este usuario ya aperturo una caja el día de hoy.");
-                                //return View(tbMovimientoCaja);
-                            }
+                                //return View(tbMovimientoCaja);
+                            }
                             else
                             {
                                 using (TransactionScope Tran = new TransactionScope())
@@ -248,7 +247,7 @@ namespace ERP_GMEDINA.Controllers
                                     }
                                 }
                             }
-                           
+
                         }
                         catch (Exception Ex)
                         {
@@ -279,7 +278,8 @@ namespace ERP_GMEDINA.Controllers
                     ViewBag.suc_Descripcion = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.tbSucursal.suc_Descripcion).SingleOrDefault();
                     var suc_ID = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.tbSucursal.suc_Id).SingleOrDefault();
                     ViewBag.UsuarioApertura = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.usu_NombreUsuario).SingleOrDefault();
-                    ViewBag.mocja_UsuarioApertura = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.usu_Id).SingleOrDefault();         
+                    ViewBag.mocja_UsuarioApertura = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.usu_Id).SingleOrDefault();
+
                     //Usuario
                     ViewBag.usu_Id = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbMovimientoCaja.usu_Id);
                     ///Sucursal
@@ -327,7 +327,7 @@ namespace ERP_GMEDINA.Controllers
             return Json("Exito", JsonRequestBehavior.AllowGet);
         }
 
-        
+
         [HttpPost]
         public JsonResult GetDenominacion(int CodMoneda)
         {
@@ -387,13 +387,7 @@ namespace ERP_GMEDINA.Controllers
 
         ////////////TERMINO APERTURA////////////
 
-        ///traer la caja que este arqueada
-        [HttpPost]
-        public JsonResult GetCaja(int CodUsuario)
-        {
-            var list = db.spGetCaja(CodUsuario).ToList();
-            return Json(list, JsonRequestBehavior.AllowGet);
-        }
+
 
 
 
@@ -420,6 +414,15 @@ namespace ERP_GMEDINA.Controllers
             return View(tbMovimientoCaja);
         }
 
+        ///traer la caja que este arqueada
+        [HttpPost]
+        public JsonResult GetCaja(int CodUsuario)
+        {
+            var list = db.spGetCaja(CodUsuario).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+
         // GET: /MovimientoCaja/Create
         public ActionResult Create()
         {
@@ -440,84 +443,126 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.UsuarioArquea = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.usu_Nombres + " " + x.usu_Apellidos).SingleOrDefault();
             ViewBag.mocja_UsuarioArquea = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.usu_Id).SingleOrDefault();
 
-           
-            var PagoEfectivo = db.tbPago.Where(x => x.tpa_Id == 1).ToList();
-            if (PagoEfectivo.Count() > 0)
-            {
-                ViewBag.PagoEfectivo = db.tbPago.Where(x => x.tpa_Id == 1).Select(x => x.pago_TotalPago).Sum();
-            }
-            else
-            {
-                ViewBag.PagoEfectivo = 00.0;
-            }
 
-            var PagoTC = db.tbPago.Where(x => x.tpa_Id == 2).ToList();
-            if (PagoTC.Count() > 0)
-            {
-                ViewBag.PagoTC = db.tbPago.Where(x => x.tpa_Id == 2).Select(x => x.pago_TotalPago).Sum();
-            }
-            else
-            {
-                ViewBag.PagoTC = 00.0;
-            }
+            DateTime Date = DateTime.Today;
+            ViewBag.FechaApertura = db.tbMovimientoCaja.Where(x => x.usu_Id == idUser && x.mocja_FechaApertura == Date).Select(x => x.mocja_FechaApertura).SingleOrDefault();
 
-            var  PagoCheque = db.tbPago.Where(x => x.tpa_Id == 3).ToList();
-            if (PagoCheque.Count() > 0)
+            var CajaAperturada = db.tbMovimientoCaja.Where(x => x.usu_Id == idUser && x.mocja_FechaApertura == Date).ToList();
+            if (CajaAperturada.Count() > 0)
             {
-                ViewBag.PagoCheque = db.tbPago.Where(x => x.tpa_Id == 3).Select(x => x.pago_TotalPago).Sum();
-            }
-            else
-            {
-                ViewBag.PagoCheque = 00.0;
-            }
+                ///Cantidad para cada tipo de pago registrado en el dia
+                var PagoEfectivo = db.tbPago.Where(x => x.tpa_Id == 1).ToList();
+                if (PagoEfectivo.Count() > 0)
+                {
+                    ViewBag.PagoEfectivo = db.tbPago.Where(x => x.tpa_Id == 1 && x.pago_FechaElaboracion == Date).Select(x => x.pago_TotalPago).Sum();
+                }
+                else
+                {
+                    ViewBag.PagoEfectivo = 00.0;
+                }
+                var PagoTC = db.tbPago.Where(x => x.tpa_Id == 2).ToList();
+                if (PagoTC.Count() > 0)
+                {
+                    ViewBag.PagoTC = db.tbPago.Where(x => x.tpa_Id == 2 && x.pago_FechaElaboracion == Date && x.pago_EstaAnulado == false).Select(x => x.pago_TotalPago).Sum();
+                }
+                else
+                {
+                    ViewBag.PagoTC = 00.0;
+                }
 
-            var PagoNotaCredito = db.tbPago.Where(x => x.tpa_Id == 4).ToList();
-            if (PagoNotaCredito.Count() > 0)
-            {
-                ViewBag.PagoNotaCredito = db.tbPago.Where(x => x.tpa_Id == 4).Select(x => x.pago_TotalPago).Sum();
-            }
-            else
-            {
-                ViewBag.PagoNotaCredito = 00.0;
-            }
+                var PagoCheque = db.tbPago.Where(x => x.tpa_Id == 3).ToList();
+                if (PagoCheque.Count() > 0)
+                {
+                    ViewBag.PagoCheque = db.tbPago.Where(x => x.tpa_Id == 3 && x.pago_FechaElaboracion == Date && x.pago_EstaAnulado == false).Select(x => x.pago_TotalPago).Sum();
+                }
+                else
+                {
+                    ViewBag.PagoCheque = 00.0;
+                }
 
-            var PagoCuponDesc = db.tbPago.Where(x => x.tpa_Id == 5).ToList();
-            if (PagoCuponDesc.Count() > 0)
-            {
-                ViewBag.PagoCuponDesc = db.tbPago.Where(x => x.tpa_Id == 5).Select(x => x.pago_TotalPago).Sum();
-            }
-            else
-            {
-                ViewBag.PagoCuponDesc = 00.0;
-            }
+                var PagoNotaCredito = db.tbPago.Where(x => x.tpa_Id == 4).ToList();
+                if (PagoNotaCredito.Count() > 0)
+                {
+                    ViewBag.PagoNotaCredito = db.tbPago.Where(x => x.tpa_Id == 4 && x.pago_FechaElaboracion == Date && x.pago_EstaAnulado == false).Select(x => x.pago_TotalPago).Sum();
+                }
+                else
+                {
+                    ViewBag.PagoNotaCredito = 00.0;
+                }
 
-            var PagoDeposito = db.tbPago.Where(x => x.tpa_Id == 6).ToList();
-            if (PagoDeposito.Count() > 0)
-            {
-                ViewBag.PagoDeposito = db.tbPago.Where(x => x.tpa_Id == 6).Select(x => x.pago_TotalPago).Sum();
-            }
-            else
-            {
-                ViewBag.PagoDeposito = 00.0;
-            }
+                var PagoCuponDesc = db.tbPago.Where(x => x.tpa_Id == 5).ToList();
+                if (PagoCuponDesc.Count() > 0)
+                {
+                    ViewBag.PagoCuponDesc = db.tbPago.Where(x => x.tpa_Id == 5 && x.pago_FechaElaboracion == Date && x.pago_EstaAnulado == false).Select(x => x.pago_TotalPago).Sum();
+                }
+                else
+                {
+                    ViewBag.PagoCuponDesc = 00.0;
+                }
 
-            var PagoTranferencia = db.tbPago.Where(x => x.tpa_Id == 7).ToList();
-            if (PagoTranferencia.Count() > 0)
-            {
-                ViewBag.PagoTranferencia = db.tbPago.Where(x => x.tpa_Id == 7).Select(x => x.pago_TotalPago).Sum();
+                var PagoDeposito = db.tbPago.Where(x => x.tpa_Id == 6).ToList();
+                if (PagoDeposito.Count() > 0)
+                {
+                    ViewBag.PagoDeposito = db.tbPago.Where(x => x.tpa_Id == 6 && x.pago_FechaElaboracion == Date).Select(x => x.pago_TotalPago).Sum();
+                }
+                else
+                {
+                    ViewBag.PagoDeposito = 00.0;
+                }
+
+                var PagoTranferencia = db.tbPago.Where(x => x.tpa_Id == 7).ToList();
+                if (PagoTranferencia.Count() > 0)
+                {
+                    ViewBag.PagoTranferencia = db.tbPago.Where(x => x.tpa_Id == 7 && x.pago_FechaElaboracion == Date && x.pago_EstaAnulado == false).Select(x => x.pago_TotalPago).Sum();
+                }
+                else
+                {
+                    ViewBag.PagoTranferencia = 0.00;
+                }
+
+                var TotalPagos = db.tbPago.ToList();
+                if (TotalPagos.Count() > 0)
+                {
+                    ViewBag.TotalPagos = db.tbPago.Where(x => x.pago_FechaElaboracion == Date).Select(x => x.pago_TotalPago).Sum();
+                }
+                else
+                {
+                    ViewBag.TotalPagos = 0.00;
+                }
+
+                //// Aqui termina-----------------------------------------------------------------------------------------------------------
+
+                ////Efectivo Inicial
+                var solef_Id = db.tbSolicitudEfectivo.Where(x => x.solef_EsApertura == true && x.solef_FechaEntrega == Date && x.solef_EsAnulada == false).Select(x => x.solef_Id).SingleOrDefault();
+                if (solef_Id > 0)
+                {
+                    ViewBag.EfectivoInicial = db.tbSolicitudEfectivoDetalle.Where(x => x.solef_Id == solef_Id).Select(x => x.soled_MontoEntregado).Sum();
+                }
+                else
+                {
+                    ViewBag.EfectivoInicial = 0.00;
+                }
+
+                ////Efectivo Entregado
+                var EfectivoEntregado = db.tbPago.ToList();
+                if (EfectivoEntregado.Count() > 0)
+                {
+                    ViewBag.EfectivoEntregado = db.tbPago.Where(x => x.pago_FechaElaboracion == Date).Select(x => x.pago_TotalCambio).Sum();
+                }
+                else
+                {
+                    ViewBag.EfectivoEntregado = 0.00;
+                }
+                
+
             }
-            else
-            {
-                ViewBag.PagoTranferencia = 00.0;
-            }
-           
             ViewBag.Cajero = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.usu_Nombres + " " + x.usu_Apellidos).SingleOrDefault();
             ViewBag.usu_Id = db.tbUsuario.Where(x => x.usu_Id == idUser).Select(x => x.usu_Id).SingleOrDefault();
 
 
             return View();
 
-            
+
         }
 
         // POST: /MovimientoCaja/Create
@@ -525,7 +570,7 @@ namespace ERP_GMEDINA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="mocja_Id,cja_Id,mocja_FechaApetura,mocja_UsuarioApertura,usu_Id,mocja_FechaArqueo,mocja_UsuarioArquea,mocja_FechaAceptacion,mocja_UsuarioAceptacion,mocja_UsuarioCrea,mocja_FechaCrea,mocja_UsuarioModifica,mocja_FechaModifica")] tbMovimientoCaja tbMovimientoCaja)
+        public ActionResult Create([Bind(Include = "mocja_Id,cja_Id,mocja_FechaApetura,mocja_UsuarioApertura,usu_Id,mocja_FechaArqueo,mocja_UsuarioArquea,mocja_FechaAceptacion,mocja_UsuarioAceptacion,mocja_UsuarioCrea,mocja_FechaCrea,mocja_UsuarioModifica,mocja_FechaModifica")] tbMovimientoCaja tbMovimientoCaja)
         {
             ViewBag.cja_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion", tbMovimientoCaja.cja_Id);
             ViewBag.deno_Id = new SelectList(db.tbDenominacionArqueo, "deno_Id", "deno_Descripcion", tbMovimientoCaja.cja_Id);
@@ -536,12 +581,12 @@ namespace ERP_GMEDINA.Controllers
                     //////////Aqui va la lista//////////////
                     var MensajeError = string.Empty;
                     IEnumerable<object> list = null;
-                    list = db.UDP_Vent_tbMovimientoCaja_Insert(tbMovimientoCaja.cja_Id, 
+                    list = db.UDP_Vent_tbMovimientoCaja_Insert(tbMovimientoCaja.cja_Id,
                         tbMovimientoCaja.usu_Id,
-                        tbMovimientoCaja.mocja_UsuarioApertura, 
+                        tbMovimientoCaja.mocja_UsuarioApertura,
                         tbMovimientoCaja.mocja_FechaArqueo,
-                        tbMovimientoCaja.mocja_UsuarioArquea, 
-                        tbMovimientoCaja.mocja_FechaAceptacion, 
+                        tbMovimientoCaja.mocja_UsuarioArquea,
+                        tbMovimientoCaja.mocja_FechaAceptacion,
                         tbMovimientoCaja.mocja_UsuarioAceptacion,
                         Function.GetUser(),
                         Function.DatetimeNow());
@@ -609,7 +654,7 @@ namespace ERP_GMEDINA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="mocja_Id,cja_Id,mocja_FechaApetura,mocja_UsuarioApertura,mocja_FechaArqueo,mocja_UsuarioArquea,mocja_FechaAceptacion,mocja_UsuarioAceptacion,mocja_UsuarioCrea,mocja_FechaCrea,mocja_UsuarioModifica,mocja_FechaModifica")] tbMovimientoCaja tbMovimientoCaja)
+        public ActionResult Edit([Bind(Include = "mocja_Id,cja_Id,mocja_FechaApetura,mocja_UsuarioApertura,mocja_FechaArqueo,mocja_UsuarioArquea,mocja_FechaAceptacion,mocja_UsuarioAceptacion,mocja_UsuarioCrea,mocja_FechaCrea,mocja_UsuarioModifica,mocja_FechaModifica")] tbMovimientoCaja tbMovimientoCaja)
         {
 
             ViewBag.cja_Id = new SelectList(db.tbCaja, "cja_Id", "cja_Descripcion", tbMovimientoCaja.cja_Id);
@@ -621,7 +666,7 @@ namespace ERP_GMEDINA.Controllers
                     //////////Aqui va la lista//////////////
                     var MensajeError = string.Empty;
                     IEnumerable<object> list = null;
-                    list = db.UDP_Vent_tbMovimientoCaja_Update(tbMovimientoCaja.mocja_Id, tbMovimientoCaja.mocja_UsuarioCrea, tbMovimientoCaja.mocja_FechaCrea, 
+                    list = db.UDP_Vent_tbMovimientoCaja_Update(tbMovimientoCaja.mocja_Id, tbMovimientoCaja.mocja_UsuarioCrea, tbMovimientoCaja.mocja_FechaCrea,
                         Function.GetUser(),
                                     Function.DatetimeNow());
                     foreach (UDP_Vent_tbMovimientoCaja_Update_Result denoarq in list)

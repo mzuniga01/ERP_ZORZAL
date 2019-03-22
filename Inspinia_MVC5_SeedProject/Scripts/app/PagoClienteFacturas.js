@@ -130,14 +130,7 @@ function GetIDCliente(CodCliente, idItem) {
 
 
 
-//Añadir una nota de credito
-$(document).on("click", "#DataTable tbody tr td button#AgregarNotaCredito", function () {
-    CodigoNC = $(this).closest('tr').data('codigonc');
-    Monto = $(this).closest('tr').data('montonc');
-    $("#nocre_Codigo_cdto_Id").val(CodigoNC);
-    $("#pago_TotalPago").val(Monto);
-    $('#ModalAgregarNotaCredito').modal('hide');
-});
+
 
 
 //Añadir una Factura
@@ -159,3 +152,92 @@ $(document).on("click", "#FacturasPagos tbody tr td button#AgregarFactura", func
     $("#tbFactura_fact_AlCredito").val(credito);
     $('#ModalAgregaFacturaPago').modal('hide');
 });
+
+
+
+
+//Añadir una nota de credito
+$(document).on("click", "#DataTable tbody tr td button#AgregarNotaCredito", function () {
+    CodigoNC = $(this).closest('tr').data('codigonc');
+    Monto = $(this).closest('tr').data('montonc');
+    Saldo = $("#pago_SaldoAnterior").val();
+    pagado = $("#TotalPagado").val();
+    $("#cc").val(CodigoNC);
+    $("#pago_TotalPago").val(parseFloat(Monto));
+    $("#pago_SaldoAnterior").val(parseFloat(Saldo) - parseFloat(Monto));
+    $("#TotalPagado").val(parseFloat(pagado) + parseFloat(Monto));
+   
+    $('#ModalAgregarNotaCredito').modal('hide');
+});
+
+
+
+/////TODO CUPON 
+
+//BUSCAR CUPON  
+$(document).ready(function () {
+    var $rows = $('#BodyCD tr');
+    $("#searchCD").keyup(function () {
+        var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+        console.log('val', val.length);
+        if (val.length >= 3) {
+            $rows.show().filter(function () {
+                var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+                return !~text.indexOf(val);
+            }).hide();
+        }
+        else if (val.length >= 1) {
+            $rows.show().filter(function () {
+            }).hide();
+        }
+    })
+});
+
+//Factura Seleccionar Cliente
+$(document).on("click", "#spCupon tbody tr td button#seleccionar", function () {
+    idItem = $(this).closest('tr').data('idcd');
+    fechavenceItem = $(this).closest('tr').data('fechavence');
+    porcentajedescItem = $(this).closest('tr').data('porcentajedesc');
+    montodesc = $(this).closest('tr').data('motodesc');
+    maxmonto = $(this).closest('tr').data('maxmontodesc');
+    compramin = $(this).closest('tr').data('cantcompramin');
+    redimido = $(this).closest('tr').data('redimido');
+
+   
+    $("#cc").val(idItem);
+    $("#FechaVence").val(fechavenceItem);
+    $('porcentaje').val(porcentajedescItem);
+    $("#monto").val(montodesc);
+    $("#montomax").val(maxmonto);
+    $("#cantmin").val(compramin);
+    $("#redimido").val(redimido);
+    $('#ModalAgregarCuponDescuento').modal('hide');
+
+
+    Saldo = $("#pago_SaldoAnterior").val();
+    porcent = $("#pago_SaldoAnterior").val
+    porcent = $("#pago_SaldoAnterior").val();
+    porcent = $("#pago_SaldoAnterior").val();
+
+    
+    if (idItem != '') {
+        document.getElementById("Factura").disabled = false;
+        document.getElementById("tbFactura_fact_Codigo").disabled = false;
+        GetIDCliente(idItem)
+        GetIDClienteNC(idItem)
+    }
+    console.log(idItem);
+    console.log(fechavenceItem);
+    console.log(porcentajedescItem);
+    //console.log(idItem)
+    //if (idItem != '') {
+    //    document.getElementById("Factura").disabled = false;
+    //    document.getElementById("tbFactura_fact_Codigo").disabled = false;
+    //    GetIDCliente(idItem)
+    //    GetIDClienteNC(idItem)
+    //}
+
+});
+
+
+//Facturar RowSeleccionar Cliente

@@ -5,6 +5,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    .AsteriscoRojo:after {
+        content: "*";
+        color: red;
+    }
+</style>
+
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
         <h2>Tipo de Pago </h2>
@@ -38,7 +45,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.tpa_Descripcion, new { @class = "control-label col-md-2 AsteriscoRojo" })
             <div class="col-md-5">
-                @Html.EditorFor(model => model.tpa_Descripcion)
+                @Html.EditorFor(model => model.tpa_Descripcion, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @style = "text-transform:uppercase;", onkeypress = "return validar(event)" }}))
                 @Html.ValidationMessageFor(model => model.tpa_Descripcion, "", new { @style = "color:red" })
             </div>
         </div>
@@ -96,6 +103,9 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/app/CaracteresEspeciales.js"></script>
+<script src="~/Scripts/app/TipoPagoDescripcionSoloLetras.js"></script>
+<script src="~/Scripts/app/ComandoGuardar.js"></script>
 }
 
-<script src="~/Scripts/app/Datepicker.js"></script>
