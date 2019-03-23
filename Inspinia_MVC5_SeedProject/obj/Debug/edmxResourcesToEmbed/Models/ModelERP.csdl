@@ -3007,6 +3007,9 @@
     <FunctionImport Name="UDP_Vent_tbDenominacionArqueo_Edit" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDenominacionArqueo_Edit_Result)">
       <Parameter Name="ArqueoID" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="UDP_Vent_tbMovimientoCaja_Apertura_Details" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_Apertura_Details_Result)">
+      <Parameter Name="IdMovimiento" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -9881,5 +9884,17 @@
     <Property Type="Decimal" Name="deno_valor" Nullable="false" Precision="10" Scale="2" />
     <Property Type="Int16" Name="arqde_CantidadDenominacion" Nullable="false" />
     <Property Type="Decimal" Name="arqde_MontoDenominacion" Nullable="false" Precision="10" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="UDP_Vent_tbMovimientoCaja_Apertura_Details_Result">
+    <Property Type="Int32" Name="mocja_Id" Nullable="false" />
+    <Property Type="Int32" Name="solef_Id" Nullable="false" />
+    <Property Type="Int32" Name="soled_Id" Nullable="false" />
+    <Property Type="DateTime" Name="mocja_FechaApertura" Nullable="true" Precision="23" />
+    <Property Type="String" Name="CAJERO" Nullable="true" MaxLength="301" />
+    <Property Type="String" Name="mnda_Abreviatura" Nullable="false" MaxLength="4" />
+    <Property Type="String" Name="mnda_Nombre" Nullable="false" MaxLength="100" />
+    <Property Type="Int16" Name="soled_CantidadEntregada" Nullable="false" />
+    <Property Type="Int16" Name="soled_CantidadSolicitada" Nullable="false" />
+    <Property Type="Decimal" Name="soled_MontoEntregado" Nullable="false" Precision="10" Scale="2" />
   </ComplexType>
 </Schema>

@@ -132,7 +132,7 @@ namespace ERP_GMEDINA.Controllers
             /////////VAR//////////;
             bool solef_EsApertura = true;
             bool solef_EsAnulada = false;
-            tbMovimientoCaja.mocja_FechaApertura = Function.DatetimeNow();
+            tbMovimientoCaja.mocja_FechaApertura = DateTime.Today;
             tbMovimientoCaja.mocja_FechaCrea = Function.DatetimeNow();
             ///////////VAR SESSION//////////
             var list = (List<tbSolicitudEfectivoDetalle>)Session["SolicitudEfectivo"];
@@ -154,7 +154,7 @@ namespace ERP_GMEDINA.Controllers
                         try
                         {
                             var fecha = DateTime.Today;
-                            if (db.tbMovimientoCaja.Any(a => tbMovimientoCaja.mocja_FechaApertura == fecha))
+                            if (db.tbMovimientoCaja.Any(a =>a.usu_Id ==tbMovimientoCaja.usu_Id && a.mocja_FechaApertura == fecha))
                             {
                                 ModelState.AddModelError("", "Este usuario ya aperturo una caja el día de hoy.");
                                 //return View(tbMovimientoCaja);
@@ -346,6 +346,16 @@ namespace ERP_GMEDINA.Controllers
         }
 
 
+        //Detalles
+        [HttpGet]
+        public ActionResult GetDetalle(short Solictud)
+        {
+            var list = db.UDP_Vent_tbMovimientoCaja_Apertura_Details(Solictud).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+
+
         public ActionResult ExportReportApertura(int? id)
         {
             ReportDocument rd = new ReportDocument();
@@ -397,31 +407,6 @@ namespace ERP_GMEDINA.Controllers
         {
             var list = db.UDP_Vent_tbMovimientoCaja_GetUsuarioApertura(CodUsuario).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
-        }
-        /////Denominaciones Arqueo////////////////////////////
-        [HttpPost]
-        public JsonResult DenominacionArqueo(int ArqueoCajaId)
-        {
-            var list = db.UDP_Vent_tbDenominacionArqueo_Edit(ArqueoCajaId).ToList();
-            return Json(list, JsonRequestBehavior.AllowGet);
-        }
-
-
-        /////Pagos Arqueo////////////////////////////
-        [HttpPost]
-        public JsonResult PagosArqueo(int ArqueoCajaId)
-        {
-
-            var list = ViewBag.ArqueoCaja = db.tbPagosArqueo.Where(a => a.mocja_Id == ArqueoCajaId)
-           .Select(a => new
-           {
-               TipoPago = a.tpa_Id,
-               CantidadPago = a.arqpg_PagosSistema
-           });
-
-            return Json(list, JsonRequestBehavior.AllowGet);
-
-            //return Json(list);
         }
         // GET: /MovimientoCaja/Details/5
         public ActionResult Details(int? id)
@@ -556,10 +541,8 @@ namespace ERP_GMEDINA.Controllers
 
                 //// Aqui termina-----------------------------------------------------------------------------------------------------------
 
-
                 ////Efectivo Inicial
-                var mocja_Id = db.tbMovimientoCaja.Where(x => x.usu_Id == idUser && x.mocja_FechaApertura == Date).Select(x => x.mocja_Id).SingleOrDefault();
-                var solef_Id = db.tbSolicitudEfectivo.Where(x => x.solef_EsApertura == true && x.solef_FechaEntrega == Date && x.mocja_Id == mocja_Id).Select(x => x.solef_Id).SingleOrDefault();
+                var solef_Id = db.tbSolicitudEfectivo.Where(x => x.solef_EsApertura == true && x.solef_FechaEntrega == Date).Select(x => x.solef_Id).SingleOrDefault();
                 if (solef_Id > 0)
                 {
                     ViewBag.EfectivoInicial = db.tbSolicitudEfectivoDetalle.Where(x => x.solef_Id == solef_Id).Select(x => x.soled_MontoEntregado).Sum();

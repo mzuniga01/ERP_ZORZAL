@@ -3848,5 +3848,21 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbMovimientoCaja_Apertura_Details" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbMovimientoCaja_Apertura_Details">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_Apertura_Details_Result">
+          <ScalarProperty Name="mocja_Id" ColumnName="mocja_Id" />
+          <ScalarProperty Name="solef_Id" ColumnName="solef_Id" />
+          <ScalarProperty Name="soled_Id" ColumnName="soled_Id" />
+          <ScalarProperty Name="mocja_FechaApertura" ColumnName="mocja_FechaApertura" />
+          <ScalarProperty Name="CAJERO" ColumnName="CAJERO" />
+          <ScalarProperty Name="mnda_Abreviatura" ColumnName="mnda_Abreviatura" />
+          <ScalarProperty Name="mnda_Nombre" ColumnName="mnda_Nombre" />
+          <ScalarProperty Name="soled_CantidadEntregada" ColumnName="soled_CantidadEntregada" />
+          <ScalarProperty Name="soled_CantidadSolicitada" ColumnName="soled_CantidadSolicitada" />
+          <ScalarProperty Name="soled_MontoEntregado" ColumnName="soled_MontoEntregado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

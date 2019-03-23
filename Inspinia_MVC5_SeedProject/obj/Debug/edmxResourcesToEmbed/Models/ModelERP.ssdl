@@ -6782,6 +6782,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
     <Parameter Name="listp_FechaFinalVigencia" Type="date" Mode="In" />
     <Parameter Name="listp_Prioridad" Type="smallint" Mode="In" />
   </Function>
+  <Function Name="UDP_Vent_tbMovimientoCaja_Apertura_Details" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+    <Parameter Name="IdMovimiento" Type="int" Mode="In" />
+  </Function>
   <Function Name="UDP_Vent_tbMovimientoCaja_Apertura_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
     <Parameter Name="cja_Id" Type="smallint" Mode="In" />
     <Parameter Name="mocja_FechaApertura" Type="datetime" Mode="In" />

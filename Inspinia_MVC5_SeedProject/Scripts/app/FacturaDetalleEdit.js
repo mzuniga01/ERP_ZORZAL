@@ -197,65 +197,6 @@ $('#Anular').click(function () {
     }
 
 })
-//Muestra un mensaje de Si hay productos en exitencias.
-$("#factd_Cantidad").on("blur", function (event) {
-    GetCantidad();
-});
-function GetCantidad() {
-    var CodSucursal = $('#suc_Id').val();
-    var CodProducto = $('#prod_Codigo').val();
-    var CantidadIngresada = $('#factd_Cantidad').val();
-
-    $.ajax({
-        url: "/Factura/GetCantidad",
-        method: "POST",
-        dataType: 'json',
-        contentType: "application/json; charset=utf-8",
-        data: JSON.stringify({ CodSucursal: CodSucursal, CodProducto: CodProducto }),
-    })
-    .done(function (data) {
-
-        if (data.length > 0) {
-            $.each(data, function (key, val) {
-                var MENSAJE = data[0]['MENSAJE'];
-                if (MENSAJE) {
-                    var can = data[0]['CANTIDAD'];
-                    var CANTIDAD = parseFloat(can)
-                    if (CANTIDAD < CantidadIngresada) {
-                        alert('La cantidad de productos no esta disponible, Cantidad disponible: ' + CANTIDAD)
-                        $('#factd_Impuesto').val(0.00);y
-                        $('#factd_Cantidad').val(''),
-                        $("#SubtotalProducto").val(0.00),
-                        $("#factd_PorcentajeDescuento").val(0.00),
-                        $("#TotalProducto").val(0.00)
-                        $('#Impuesto').val(0.00);
-                        $('#factd_Cantidad').val('');
-                    }
-                    else if (CANTIDAD == 10) {
-                        alert('Pocos productos en exitencia, cantidad existente: ' + CANTIDAD)
-                    } else {
-                        document.getElementById("AgregarDetalleFactura").disabled = false;
-                    }
-
-                }
-                else {
-                    var can = data[0]['CANTIDAD'];
-                    var CANTIDAD = parseFloat(can)
-                    alert('No hay productos en existencia')
-                    $('#factd_Cantidad').val('');
-                    $('#factd_MontoDescuento').val('');
-                    $('#factd_Cantidad').val('');
-                    $('#SubtotalProducto').val('');
-                    $('#Impuesto').val('');
-                    $('#TotalProducto').val('');
-                }
-            });
-        }
-        else {
-
-        }
-    });
-}
 //Factura Buscar Producto
 $(document).ready(function () {
     var $rows = $('#ProductoTbody tr');
@@ -288,8 +229,6 @@ $(document).on("click", "#tbProductoFactura tbody tr td button#seleccionar", fun
     $('#ModalAgregarProducto').modal('hide');
     SeleccionProducto();
 });
-
-
 $(function () {
     $("#CantidadEdit").keyup(function (e) {
         var Cantidad = document.getElementById("CantidadEdit").value;
@@ -425,7 +364,6 @@ function SeleccionProducto() {
         }
     });
 }
-
 //Enter Codigo de barras
 $("#prod_CodigoBarras").keyup(function (e) {
     var prodCodigoBarrar = $("#prod_CodigoBarras").val();
@@ -440,7 +378,6 @@ $("#prod_CodigoBarras").keyup(function (e) {
         }
     }
 })
-
 //Enter cantidad
 $("#factd_Cantidad").keyup(function (e) {
     GetCantidad(1);//Validar que cuando no haya cantidad no permita ingresar el detalle.

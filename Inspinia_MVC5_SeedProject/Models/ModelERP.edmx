@@ -6787,6 +6787,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <Parameter Name="listp_FechaFinalVigencia" Type="date" Mode="In" />
           <Parameter Name="listp_Prioridad" Type="smallint" Mode="In" />
         </Function>
+        <Function Name="UDP_Vent_tbMovimientoCaja_Apertura_Details" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
+          <Parameter Name="IdMovimiento" Type="int" Mode="In" />
+        </Function>
         <Function Name="UDP_Vent_tbMovimientoCaja_Apertura_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vent">
           <Parameter Name="cja_Id" Type="smallint" Mode="In" />
           <Parameter Name="mocja_FechaApertura" Type="datetime" Mode="In" />
@@ -12151,7 +12154,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
             <Parameter Name="escre_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbDenominacionArqueo_Edit" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbDenominacionArqueo_Edit_Result)">
-            <Parameter Name="ArqueoID" Mode="In" Type="Int32" />
+          <Parameter Name="ArqueoID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbMovimientoCaja_Apertura_Details" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_Apertura_Details_Result)">
+            <Parameter Name="IdMovimiento" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
@@ -19028,6 +19034,18 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <Property Type="Int16" Name="arqde_CantidadDenominacion" Nullable="false" />
           <Property Type="Decimal" Name="arqde_MontoDenominacion" Nullable="false" Precision="10" Scale="2" />
         </ComplexType>
+        <ComplexType Name="UDP_Vent_tbMovimientoCaja_Apertura_Details_Result">
+          <Property Type="Int32" Name="mocja_Id" Nullable="false" />
+          <Property Type="Int32" Name="solef_Id" Nullable="false" />
+          <Property Type="Int32" Name="soled_Id" Nullable="false" />
+          <Property Type="DateTime" Name="mocja_FechaApertura" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CAJERO" Nullable="true" MaxLength="301" />
+          <Property Type="String" Name="mnda_Abreviatura" Nullable="false" MaxLength="4" />
+          <Property Type="String" Name="mnda_Nombre" Nullable="false" MaxLength="100" />
+          <Property Type="Int16" Name="soled_CantidadEntregada" Nullable="false" />
+          <Property Type="Int16" Name="soled_CantidadSolicitada" Nullable="false" />
+          <Property Type="Decimal" Name="soled_MontoEntregado" Nullable="false" Precision="10" Scale="2" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -22880,6 +22898,22 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
                 <ScalarProperty Name="deno_valor" ColumnName="deno_valor" />
                 <ScalarProperty Name="arqde_CantidadDenominacion" ColumnName="arqde_CantidadDenominacion" />
                 <ScalarProperty Name="arqde_MontoDenominacion" ColumnName="arqde_MontoDenominacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbMovimientoCaja_Apertura_Details" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbMovimientoCaja_Apertura_Details">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_Apertura_Details_Result">
+                <ScalarProperty Name="mocja_Id" ColumnName="mocja_Id" />
+                <ScalarProperty Name="solef_Id" ColumnName="solef_Id" />
+                <ScalarProperty Name="soled_Id" ColumnName="soled_Id" />
+                <ScalarProperty Name="mocja_FechaApertura" ColumnName="mocja_FechaApertura" />
+                <ScalarProperty Name="CAJERO" ColumnName="CAJERO" />
+                <ScalarProperty Name="mnda_Abreviatura" ColumnName="mnda_Abreviatura" />
+                <ScalarProperty Name="mnda_Nombre" ColumnName="mnda_Nombre" />
+                <ScalarProperty Name="soled_CantidadEntregada" ColumnName="soled_CantidadEntregada" />
+                <ScalarProperty Name="soled_CantidadSolicitada" ColumnName="soled_CantidadSolicitada" />
+                <ScalarProperty Name="soled_MontoEntregado" ColumnName="soled_MontoEntregado" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

@@ -7121,5 +7121,14 @@ namespace ERP_GMEDINA.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbDenominacionArqueo_Edit_Result>("UDP_Vent_tbDenominacionArqueo_Edit", arqueoIDParameter);
         }
+    
+        public virtual ObjectResult<UDP_Vent_tbMovimientoCaja_Apertura_Details_Result> UDP_Vent_tbMovimientoCaja_Apertura_Details(Nullable<int> idMovimiento)
+        {
+            var idMovimientoParameter = idMovimiento.HasValue ?
+                new ObjectParameter("IdMovimiento", idMovimiento) :
+                new ObjectParameter("IdMovimiento", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbMovimientoCaja_Apertura_Details_Result>("UDP_Vent_tbMovimientoCaja_Apertura_Details", idMovimientoParameter);
+        }
     }
 }

@@ -58,6 +58,7 @@
                                 <div class="col-md-5">
                                     @Html.EditorFor(model => model.deno_Descripcion, new { htmlAttributes = new { @maxlength = "50", @autocomplete = "off", @onkeyup = "format(this),pierdeFoco(this)", @style = "text-transform:capitalize;", onkeypress = "return validar(event)", Title = "si escribe decimales porfavor separelos con un '.' " } })
                                     <p id="descriptions" style="color:red">@Html.ValidationMessageFor(model => model.deno_Descripcion, "", new { @style = "color:red" })</p>
+                                    <p id="Sugierecambio" style="color:red">@Html.ValidationMessageFor(model => model.deno_Descripcion, "", new { @style = "color:red" })</p>
                                 </div>
                             </div>
 
@@ -88,7 +89,8 @@
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    <script>        
+    <script>
+
     function pierdeFoco(e) {
         var valor = e.value.replace(/^ */, '');
         e.value = valor;
@@ -97,11 +99,18 @@
     <script>
         $("#mnda_Id").click(function () {
             var cabo = $('select[name="mnda_Id"] option:selected').text();
-            $("#deno_Descripcion").attr('placeholder', 'ejm: 100  '+ cabo);
+            $("#deno_Descripcion").attr('placeholder', 'ejm: 100  ' + cabo);
+
+            var description = $('#deno_Descripcion').val();
+            if (description !== "") {
+                valido = document.getElementById('Sugierecambio');
+                valido.innerText = "Por favor Modifique la descripción";
+            }
         });
     </script>
+
     <script>
-       
+
         $("#deno_Descripcion").attr('placeholder', 'ejm: 100 Lempiras');
         //, placeholder = "ejm: 100 Lempiras"
         //Posicion focus
@@ -151,6 +160,11 @@
             }
         });
 
+        $('#deno_Descripcion').click(function () {
+            valido = document.getElementById('Sugierecambio');
+            valido.innerText = "";
+        });
+
         $('#deno_valor').click(function () {
             var valores = $('#deno_valor').val();
             if (valores < ! "") {
@@ -158,6 +172,12 @@
                 valido.innerText = "";
                 return false;
             }
+        });
+
+        $('#deno_valor').click(function () {
+            var str = $('#deno_Descripcion').val();
+            var res = str.split(" ", 1);
+            $('#deno_valor').val(res);
         });
 
         $('#guardar').click(function () {
@@ -226,7 +246,7 @@
             tecla = (document.all) ? e.keyCode : e.which;
             tecla = String.fromCharCode(tecla)
             return /^[[A-Za-z0-9 .]+]*$/i.test(tecla);
-           
+
 
         }//_______________________________
     </script>
@@ -268,7 +288,7 @@
         }
     </script>
 
-<script>
+    <script>
         $(document).keydown(function (e) {
             if ((e.key == 'g' || e.key == 'G') && (e.ctrlKey || e.metaKey)) {
                 e.preventDefault();
@@ -278,6 +298,6 @@
             }
             return true;
         });
-</script>
+    </script>
 
 }

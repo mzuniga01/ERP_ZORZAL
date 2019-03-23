@@ -30,6 +30,9 @@
                                     Número
                                 </th>
                                 <th>
+                                    Número Caja
+                                </th>
+                                <th>
                                     Descripción
                                 </th>
                                 <th>
@@ -45,6 +48,9 @@
                             @foreach (var item in Model)
                             {
                                 <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.mocja_Id)
+                                    </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.cja_Id)
                                     </td>
