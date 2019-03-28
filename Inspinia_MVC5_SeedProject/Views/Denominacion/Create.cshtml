@@ -65,7 +65,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.deno_valor, new { @class = "control-label col-md-2" })
                                 <div class="col-md-5">
-                                    @Html.EditorFor(model => model.deno_valor, new { htmlAttributes = new { @maxlength = "10", @autocomplete = "off", @onkeyup = "format(this)", onkeypress = "return  filterFloat(event,this);", Title = "Separe los decimales con una '.' " } })
+                                    @Html.EditorFor(model => model.deno_valor, new { htmlAttributes = new {@Class = "validanumericos", @maxlength = "10", @autocomplete = "off", @onkeyup = "format(this)", onkeypress = "return  filterFloat(event,this);", Title = "Separe los decimales con una '.' " } })
                                     <p id="valoress" style="color:red"> @Html.ValidationMessageFor(model => model.deno_valor, "", new { @style = "color:red" })</p>
 
                                 </div>
@@ -89,8 +89,36 @@
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    <script>
+<script>
+        onload = function () {
+            var ele = document.querySelectorAll('.validanumericos')[0];
+            ele.onkeypress = function (e) {
+                if (isNaN(this.value + String.fromCharCode(e.charCode)))
+                    return false;
+            }
+            ele.onpaste = function (e) {
+                e.preventDefault();
+            }
+        }
 
+
+        ////------------------campo valor ---------------------------
+        //function validarNumeros(e) {
+        //    tecla = (document.all) ? e.keyCode : e.which;
+        //    tecla = String.fromCharCode(tecla)
+        //    return /^[[0-9.]+]*$/i.test(tecla);
+
+        //}
+
+        $('#deno_valor').on('blur', function () {
+            var amount = $('#deno_valor').val().replace(/^\s+|\s+$/g, '');
+            if (($('#deno_valor').val() >= 1) && (!amount.match(/^$/))) {
+                $('#deno_valor').val(parseInt(amount).toFixed(2));
+            }
+        });
+</script>
+    
+    <script>
     function pierdeFoco(e) {
         var valor = e.value.replace(/^ */, '');
         e.value = valor;

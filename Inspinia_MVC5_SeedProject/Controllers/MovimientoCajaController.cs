@@ -460,7 +460,7 @@ namespace ERP_GMEDINA.Controllers
             if (CajaAperturada.Count() > 0)
             {
                 ///Cantidad para cada tipo de pago registrado en el dia
-                var PagoEfectivo = db.tbPago.Where(x => x.tpa_Id == 1).ToList();
+                var PagoEfectivo = db.tbPago.Where(x => x.tpa_Id == 1 && x.pago_FechaElaboracion == Date).ToList();
                 if (PagoEfectivo.Count() > 0)
                 {
                     ViewBag.PagoEfectivo = db.tbPago.Where(x => x.tpa_Id == 1 && x.pago_FechaElaboracion == Date).Select(x => x.pago_TotalPago).Sum();
@@ -469,7 +469,7 @@ namespace ERP_GMEDINA.Controllers
                 {
                     ViewBag.PagoEfectivo = 00.0;
                 }
-                var PagoTC = db.tbPago.Where(x => x.tpa_Id == 2).ToList();
+                var PagoTC = db.tbPago.Where(x => x.tpa_Id == 2  && x.pago_FechaElaboracion == Date).ToList();
                 if (PagoTC.Count() > 0)
                 {
                     ViewBag.PagoTC = db.tbPago.Where(x => x.tpa_Id == 2 && x.pago_FechaElaboracion == Date && x.pago_EstaAnulado == false).Select(x => x.pago_TotalPago).Sum();
@@ -479,7 +479,7 @@ namespace ERP_GMEDINA.Controllers
                     ViewBag.PagoTC = 00.0;
                 }
 
-                var PagoCheque = db.tbPago.Where(x => x.tpa_Id == 3).ToList();
+                var PagoCheque = db.tbPago.Where(x => x.tpa_Id == 3 &&x.pago_FechaElaboracion == Date).ToList();
                 if (PagoCheque.Count() > 0)
                 {
                     ViewBag.PagoCheque = db.tbPago.Where(x => x.tpa_Id == 3 && x.pago_FechaElaboracion == Date && x.pago_EstaAnulado == false).Select(x => x.pago_TotalPago).Sum();
@@ -489,7 +489,7 @@ namespace ERP_GMEDINA.Controllers
                     ViewBag.PagoCheque = 00.0;
                 }
 
-                var PagoNotaCredito = db.tbPago.Where(x => x.tpa_Id == 4).ToList();
+                var PagoNotaCredito = db.tbPago.Where(x => x.tpa_Id == 4 && x.pago_FechaElaboracion == Date).ToList();
                 if (PagoNotaCredito.Count() > 0)
                 {
                     ViewBag.PagoNotaCredito = db.tbPago.Where(x => x.tpa_Id == 4 && x.pago_FechaElaboracion == Date && x.pago_EstaAnulado == false).Select(x => x.pago_TotalPago).Sum();
@@ -499,7 +499,7 @@ namespace ERP_GMEDINA.Controllers
                     ViewBag.PagoNotaCredito = 00.0;
                 }
 
-                var PagoCuponDesc = db.tbPago.Where(x => x.tpa_Id == 5).ToList();
+                var PagoCuponDesc = db.tbPago.Where(x => x.tpa_Id == 5 && x.pago_FechaElaboracion == Date).ToList();
                 if (PagoCuponDesc.Count() > 0)
                 {
                     ViewBag.PagoCuponDesc = db.tbPago.Where(x => x.tpa_Id == 5 && x.pago_FechaElaboracion == Date && x.pago_EstaAnulado == false).Select(x => x.pago_TotalPago).Sum();
@@ -509,7 +509,7 @@ namespace ERP_GMEDINA.Controllers
                     ViewBag.PagoCuponDesc = 00.0;
                 }
 
-                var PagoDeposito = db.tbPago.Where(x => x.tpa_Id == 6).ToList();
+                var PagoDeposito = db.tbPago.Where(x => x.tpa_Id == 6 && x.pago_FechaElaboracion == Date).ToList();
                 if (PagoDeposito.Count() > 0)
                 {
                     ViewBag.PagoDeposito = db.tbPago.Where(x => x.tpa_Id == 6 && x.pago_FechaElaboracion == Date).Select(x => x.pago_TotalPago).Sum();
@@ -519,7 +519,7 @@ namespace ERP_GMEDINA.Controllers
                     ViewBag.PagoDeposito = 00.0;
                 }
 
-                var PagoTranferencia = db.tbPago.Where(x => x.tpa_Id == 7).ToList();
+                var PagoTranferencia = db.tbPago.Where(x => x.tpa_Id == 7 && x.pago_FechaElaboracion == Date).ToList();
                 if (PagoTranferencia.Count() > 0)
                 {
                     ViewBag.PagoTranferencia = db.tbPago.Where(x => x.tpa_Id == 7 && x.pago_FechaElaboracion == Date && x.pago_EstaAnulado == false).Select(x => x.pago_TotalPago).Sum();
@@ -529,8 +529,8 @@ namespace ERP_GMEDINA.Controllers
                     ViewBag.PagoTranferencia = 0.00;
                 }
 
-                var TotalPagos = db.tbPago.ToList();
-                if (TotalPagos.Count() > 0)
+                var TotalPagos = db.tbPago.Where(x => x.pago_FechaElaboracion == Date).ToList();
+                if (TotalPagos.Count() > 0 )
                 {
                     ViewBag.TotalPagos = db.tbPago.Where(x => x.pago_FechaElaboracion == Date).Select(x => x.pago_TotalPago).Sum();
                 }

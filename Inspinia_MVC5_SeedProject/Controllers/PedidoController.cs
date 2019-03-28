@@ -419,6 +419,7 @@ namespace ERP_GMEDINA.Controllers
             {
                 return RedirectToAction("NotFound", "Login");
             }
+            Session["tbPedidoDetalle"] = null;
             ViewBag.ped_UsuarioCrea = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPedido.ped_UsuarioCrea);
             ViewBag.ped_UsuarioModifica = new SelectList(db.tbUsuario, "usu_Id", "usu_NombreUsuario", tbPedido.ped_UsuarioModifica);
             ViewBag.clte_Id = new SelectList(db.tbCliente, "clte_Id", "clte_RTN_Identidad_Pasaporte", tbPedido.clte_Id);
@@ -474,9 +475,11 @@ namespace ERP_GMEDINA.Controllers
 
                                 ViewBag.Producto = db.tbProducto.ToList();
                                 ViewBag.Cliente = db.tbCliente.ToList();
-
+                                var MensajeErrorDetalle = "";
                                 var MensajeError = "";
                                 IEnumerable<object> list = null;
+                                IEnumerable<object> listEdit = null;
+                                var listPedidoDetalle = (List<tbPedidoDetalle>)Session["tbPedidoDetalle"];
                                 list = db.UDP_Vent_tbPedido_Update(tbPedido.ped_Id,
                                                                     tbPedido.esped_Id = 1,
                                                                     tbPedido.ped_FechaElaboracion,
@@ -493,12 +496,76 @@ namespace ERP_GMEDINA.Controllers
 
                                 foreach (UDP_Vent_tbPedido_Update_Result PedidoDetalle1 in list)
                                     MensajeError = PedidoDetalle1.MensajeError;
-                                if (MensajeError == "-1")
+                                if (MensajeError.StartsWith("-1"))
                                 {
 
                                 }
                                 else
                                 {
+                                    if (MensajeError != "-1")
+                                    {
+                                        if (listPedidoDetalle != null)
+                                        {
+                                            if (listPedidoDetalle.Count != 0)
+                                            {
+                                                foreach (tbPedidoDetalle Detalle in listPedidoDetalle)
+                                                {
+                                                    var Exits = db.tbPedidoDetalle.Where(
+                                                        x => x.prod_Codigo == Detalle.prod_Codigo
+                                                        &&
+                                                        x.ped_Id == tbPedido.ped_Id).FirstOrDefault();
+
+                                                    if (Exits != null)
+                                                    {
+                                                        var Cantidad = db.tbPedidoDetalle.Where(
+                                                        x => x.prod_Codigo == Detalle.prod_Codigo
+                                                        &&
+                                                        x.ped_Id == tbPedido.ped_Id).Select(c => c.pedd_Cantidad).FirstOrDefault();
+
+                                                        tbPedidoDetalle vPedidoDetalle = db.tbPedidoDetalle.Find(tbPedido.ped_Id);
+
+                                                        decimal CantidadNew = Convert.ToDecimal(Exits.pedd_Cantidad) + Convert.ToDecimal(Detalle.pedd_Cantidad);
+                                                        listEdit = db.UDP_Vent_tbPedidoDetalle_Update(
+                                                                            Exits.pedd_Id,
+                                                                            Exits.prod_Codigo,
+                                                                            CantidadNew,
+                                                                            Detalle.pedd_CantidadFacturada,
+                                                                            Exits.pedd_UsuarioCrea,
+                                                                            Exits.pedd_FechaCrea,
+                                                                            Function.GetUser(),
+                                                                            Function.DatetimeNow());
+                                                        foreach (UDP_Vent_tbPedidoDetalle_Update_Result RSSalidaDetalle in listEdit)
+                                                            MensajeErrorDetalle = RSSalidaDetalle.MensajeError;
+                                                        if (MensajeErrorDetalle.StartsWith("-1"))
+                                                        {
+                                                            ModelState.AddModelError("", "No se pudo actualizar el registro, favor contacte al administrador.");
+                                                            return Json(ModelState, JsonRequestBehavior.AllowGet);
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        var DetallesD = Convert.ToInt32(MensajeError);
+                                                        Detalle.ped_Id = DetallesD;
+                                                        listEdit = db.UDP_Vent_tbPedidoDetalle_Insert(
+                                                        tbPedido.ped_Id,
+                                                        Detalle.prod_Codigo,
+                                                        Detalle.pedd_Cantidad,
+                                                        0, Function.GetUser(),
+                                                        Function.DatetimeNow());
+                                                        foreach (UDP_Vent_tbPedidoDetalle_Insert_Result PedidoDetalleD in listEdit)
+                                                            MensajeErrorDetalle = PedidoDetalleD.MensajeError;
+                                                        if (MensajeErrorDetalle.StartsWith("-1"))
+                                                        {
+                                                            MensajeErrorDetalle = "No se pudo actualizar el registro, favor contacte al administrador.";
+                                                            ModelState.AddModelError("", MensajeErrorDetalle);
+                                                        }
+                                                    }
+
+                                                }
+                                            }
+                                        }
+
+                                    }
                                     return RedirectToAction("Index");
                                 }
                             }

@@ -52,7 +52,7 @@
 
                                 @Html.LabelFor(model => model.pedd_Cantidad, new { @class = "control-label col-md-3" })
                                 <div class="col-md-3">
-                                    @Html.EditorFor(model => model.pedd_Cantidad, new { @onkeyup = "soloNumeros(e)" })
+                                    @Html.EditorFor(model => model.pedd_Cantidad, new { @onkeyup = "soloNumeros(e)" , @onkeypress = "return filterFloat(event,this);"})
                                     @Html.ValidationMessageFor(model => model.pedd_Cantidad)
                                 </div>
 
@@ -74,10 +74,6 @@
                             <br />
                             <div class="alert alert-danger text-center text-uppercase" id="alerta" style="display:none;">...Por favor ingrese productos al Pedido...</div>
                                     
-                   
-
-
-
                         </div>
                     </div>
                   
@@ -91,10 +87,3 @@
 </div>
 
 
-<script src="~/Scripts/jquery.mask.min.js"></script>
-<script src="~/Scripts/jquery.mask.js"></script>
-<script src="~/Scripts/app/SaveDetallePedido.js"></script>
-
-<script>
-        $('#pedd_CantidadFacturada').val('');
-</script>

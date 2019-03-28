@@ -82,13 +82,14 @@
                                 <div class="col-md-5">
                                     @Html.EditorFor(model => model.deno_Descripcion, new { htmlAttributes = new { @maxlength = "50", @autocomplete = "off", @onkeyup = "format(this),pierdeFoco(this)", @style = "text-transform:capitalize;", onkeypress = "return validar(event)", Title = "si escribe decimales porfavor separelos con un '.' " } })
                                     <p id="descriptions" style="color:red">@Html.ValidationMessageFor(model => model.deno_Descripcion, "", new { @style = "color:red" })</p>
+                                    <p id="Sugierecambio" style="color:red">@Html.ValidationMessageFor(model => model.deno_Descripcion, "", new { @style = "color:red" })</p>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.deno_valor, new { @class = "control-label col-md-2" })
                                 <div class="col-md-5">
-                                    @Html.EditorFor(model => model.deno_valor, new { htmlAttributes = new { @maxlength = "10", @autocomplete = "off", @onkeyup = "format(this)", onkeypress = "return  filterFloat(event,this);", Title = "Separe los decimales con una ',' " } })
+                                    @Html.EditorFor(model => model.deno_valor, new { htmlAttributes = new {@Class = "validanumericos", @maxlength = "10", @autocomplete = "off", @onkeyup = "format(this)", onkeypress = "return  filterFloat(event,this);", Title = "Separe los decimales con una ',' " } })
                                     <p id="valoress" style="color:red"> @Html.ValidationMessageFor(model => model.deno_valor, "", new { @style = "color:red" })</p>
                                 </div>
                             </div>
@@ -141,6 +142,41 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 <script>
+  
+        onload = function () {
+            var ele = document.querySelectorAll('.validanumericos')[0];
+            ele.onkeypress = function (e) {
+                if (isNaN(this.value + String.fromCharCode(e.charCode)))
+                    return false;
+            }
+            ele.onpaste = function (e) {
+                e.preventDefault();
+            }
+        }
+    
+        $('#deno_valor').on('blur', function () {
+            var amount = $('#deno_valor').val().replace(/^\s+|\s+$/g, '');
+            if (($('#deno_valor').val() >= 1) && (!amount.match(/^$/))) {
+                $('#deno_valor').val(parseInt(amount).toFixed(2));
+            }
+        });
+
+        //Posicion focus
+        $("#deno_Tipo").focus();
+
+        $('#deno_Descripcion').click(function () {
+            valido = document.getElementById('Sugierecambio');
+            valido.innerText = "";
+        });
+        $('#deno_valor').click(function () {
+            var str = $('#deno_Descripcion').val();
+            var res = str.split(" ", 1);
+            $('#deno_valor').val(res);
+        });
+
+</script>
+   
+<script>
     function pierdeFoco(e) {
         var valor = e.value.replace(/^ */, '');
         e.value = valor;
@@ -149,7 +185,13 @@
 <script>
         $("#mnda_Id").click(function () {
             var cabo = $('select[name="mnda_Id"] option:selected').text();
-            $("#deno_Descripcion").attr('placeholder', 'ejm: 100  '+ cabo);
+            $("#deno_Descripcion").attr('placeholder', 'ejm: 100  ' + cabo);
+
+            var description = $('#deno_Descripcion').val();
+            if (description !== "") {
+                valido = document.getElementById('Sugierecambio');
+                valido.innerText = "Por favor Modifique la descripción";
+            }
         });
 </script>
     <script type="text/javascript">

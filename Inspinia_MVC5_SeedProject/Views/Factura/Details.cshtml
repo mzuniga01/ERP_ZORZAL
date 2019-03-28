@@ -224,16 +224,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>Descuento</td>
-                                <td><p id="TotalDescuento" style="text-align:right"></p></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>Sub-Total</td>
-                                <td><p id="Subtotal" style="text-align:right"></p></td>
+                                <td><p id="TotalDescuento" style="text-align:left"></p></td>
                             </tr>
                             <tr>
                                 <td></td>
@@ -242,7 +233,16 @@
                                 <td></td>
                                 <td></td>
                                 <td>ISV</td>
-                                <td><p id="isv" style="text-align:right"></p></td>
+                                <td><p id="isv" style="text-align:left"></p></td>                                
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>Sub-Total</td>
+                                <td><p id="Subtotal" style="text-align:left"></p></td>
                             </tr>
                             <tr>
                                 <td></td>
@@ -251,7 +251,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>Total a Pagar</td>
-                                <td><p id="total" style="text-align:right"></p></td>
+                                <td><p id="total" style="text-align:left"></p></td>
                             </tr>
                     </table>
 
@@ -339,9 +339,9 @@
         })
           .done(function (data) {
               $.each(data, function (key, val) {
-                  Descuento = (val.factd_MontoDescuento * val.factd_Cantidad);
-                  ImpuestoTotal = ((val.factd_Impuesto / 100) * val.factd_PrecioUnitario) * val.factd_Cantidad;
-                  Subtotal = ((val.factd_Cantidad * val.factd_PrecioUnitario) - Descuento);
+                  Descuento = (val.factd_MontoDescuento);
+                  Subtotal = (val.factd_Cantidad * val.factd_PrecioUnitario - Descuento);
+                  ImpuestoTotal = (Subtotal * (val.factd_Impuesto / 100));
                   Total = (Subtotal + ImpuestoTotal);
                   $(this).closest('tr').remove();
                   var table = $('#tblDetalleFactura').DataTable();
@@ -357,6 +357,7 @@
                   ]).draw(false);
                   total_col1 = 0
                   SubtotalD = 0;
+                  SubtotalDD = 0;
                   GranImpuesto = 0;
                   GranTotal = 0;
                   $("#tblDetalleFactura tbody tr").each(function (index) {
@@ -368,15 +369,16 @@
                       if (ValorUnitario != '') {
                           total_col1 += parseFloat($(this).find('td').eq(5).text());
                           ValorUnitario = parseFloat(ValorUnitario);
-                          SubtotalD += Cantidad * ValorUnitario - DescuentoDD;
-                          GranImpuesto += (Cantidad * ValorUnitario) * PorcentajeImpuesto;
-                          GranTotal += Cantidad * ValorUnitario + (Cantidad * ValorUnitario) * PorcentajeImpuesto;
+                          SubtotalD += (Cantidad * ValorUnitario);
+                          SubtotalDD += (Cantidad * ValorUnitario - DescuentoDD);
+                          GranImpuesto += ((Cantidad * ValorUnitario - DescuentoDD) * PorcentajeImpuesto);
+                          GranTotal = SubtotalDD + GranImpuesto;
                       }
                   });
                   document.getElementById("TotalDescuento").innerHTML = parseFloat(total_col1).toFixed(2);
-                  document.getElementById("Subtotal").innerHTML = parseFloat(SubtotalD).toFixed(2);
                   document.getElementById("isv").innerHTML = parseFloat(GranImpuesto).toFixed(2);
-                  document.getElementById("total").innerHTML = parseFloat(GranTotal - DescuentoDD).toFixed(2);
+                  document.getElementById("Subtotal").innerHTML = parseFloat(SubtotalD).toFixed(2);
+                  document.getElementById("total").innerHTML = parseFloat(GranTotal).toFixed(2);
               });
 
           })

@@ -64,9 +64,9 @@ function GetDetalle() {
     })
       .done(function (data) {
           $.each(data, function (key, val) {
-              Descuento = (val.factd_MontoDescuento * val.factd_Cantidad);
-              ImpuestoTotal = ((val.factd_Impuesto / 100) * val.factd_PrecioUnitario) * val.factd_Cantidad;
-              Subtotal = ((val.factd_Cantidad * val.factd_PrecioUnitario) - Descuento);
+              Descuento = (val.factd_MontoDescuento);
+              Subtotal = (val.factd_Cantidad * val.factd_PrecioUnitario - Descuento);
+              ImpuestoTotal = (Subtotal * (val.factd_Impuesto / 100));
               Total = (Subtotal + ImpuestoTotal);
               StudentId = val.factd_Id;
               var table = $('#tblDetalleFactura').DataTable();
@@ -77,13 +77,14 @@ function GetDetalle() {
               val.prod_Descripcion,
               parseFloat(val.factd_Cantidad).toFixed(2),
               val.factd_PrecioUnitario,
-              val.factd_Impuesto,
-              val.factd_MontoDescuento,
-              parseFloat(Subtotal).toFixed(2),
+              parseFloat(val.factd_Impuesto).toFixed(2),
+              parseFloat(val.factd_MontoDescuento).toFixed(2),
+              parseFloat(Total).toFixed(2),
               "<a href='#' onclick='EditStudentRecord(" + StudentId + ")' ><span class='btn btn-warning glyphicon glyphicon-edit btn-xs'></span></a>" + "</td>"
               ]).draw(false);
               total_col1 = 0
               SubtotalD = 0;
+              SubtotalDD = 0;
               GranImpuesto = 0;
               GranTotal = 0;
               $("#tblDetalleFactura tbody tr").each(function (index) {
@@ -95,15 +96,16 @@ function GetDetalle() {
                   if (ValorUnitario != '') {
                       total_col1 += parseFloat($(this).find('td').eq(5).text());
                       ValorUnitario = parseFloat(ValorUnitario);
-                      SubtotalD += Cantidad * ValorUnitario - DescuentoDD;
-                      GranImpuesto += (Cantidad * ValorUnitario) * PorcentajeImpuesto;
-                      GranTotal += Cantidad * ValorUnitario + (Cantidad * ValorUnitario) * PorcentajeImpuesto;
+                      SubtotalD += (Cantidad * ValorUnitario);
+                      SubtotalDD += (Cantidad * ValorUnitario - DescuentoDD);
+                      GranImpuesto += ((Cantidad * ValorUnitario - DescuentoDD) * PorcentajeImpuesto);
+                      GranTotal = SubtotalDD + GranImpuesto;
                   }
               });
               document.getElementById("TotalDescuento").innerHTML = parseFloat(total_col1).toFixed(2);
-              document.getElementById("Subtotal").innerHTML = parseFloat(SubtotalD).toFixed(2);
               document.getElementById("isv").innerHTML = parseFloat(GranImpuesto).toFixed(2);
-              document.getElementById("total").innerHTML = parseFloat(GranTotal - DescuentoDD).toFixed(2);
+              document.getElementById("Subtotal").innerHTML = parseFloat(SubtotalD).toFixed(2);              
+              document.getElementById("total").innerHTML = parseFloat(GranTotal).toFixed(2);
           });
 
       })
@@ -129,9 +131,9 @@ function EditStudentRecord(StudentId) {
                 $("#factdd").val(arn.factd_Id);
                 $("#IDProducto").val(arn.prod_Codigo);
                 $("#DescProducto").val(arn.prod_Descripcion);
-                $("#MontoDescuentoEdit").val(arn.factd_MontoDescuento);
+                $("#MontoDescuentoEdit").val(parseInt(arn.factd_MontoDescuento));
                 $("#CantidadEdit").val(arn.factd_Cantidad);
-                $("#ImpuestoEdit").val(arn.factd_Impuesto);
+                $("#ImpuestoEdit").val(parseInt(arn.factd_Impuesto));
                 $("#PrecioUnitarioEdit").val(arn.factd_PrecioUnitario);
                 $("#UsuCrea").val(arn.factd_UsuarioCrea);
                 $("#FechaCrea").val(FechaCrea);
@@ -144,8 +146,8 @@ function EditStudentRecord(StudentId) {
                 result = "";
                 result1 = "";
                 if (Cantidad && Precio > 0) {
-                    result += Cantidad * Precio - Descuento;
-                    result1 += ((Cantidad * Precio) + ImpuestoTotal)
+                    result += (Cantidad * Precio - Descuento).toFixed(2);
+                    result1 += ((Cantidad * Precio) + ImpuestoTotal).toFixed(2)
                 }
                 $("#SubtotalEdit").val(result);
                 $("#TotalEdit").val(result1);

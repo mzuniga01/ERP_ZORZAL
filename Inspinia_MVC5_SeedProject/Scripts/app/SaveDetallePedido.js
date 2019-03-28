@@ -1,4 +1,13 @@
 ﻿var contador = 0;
+//var PedidoDetalle = {
+//    prod_Codigo: "",
+//    CodigoBarra: "",
+//    prod_Descripcion: "",
+//    pedd_Cantidad: "",
+//    pedd_CantidadFacturada: "",
+//    pedd_UsuarioCrea: 0
+//};
+//var tbPedidoDetalle = PedidoDetalle;
 $('#AñadirPedidoDetalle').click(function () {
     var prod_Codigo = $('#prod_Codigo').val();
     var prod_Descripcion = $('#tbProducto_prod_Descripcion').val();
@@ -38,11 +47,11 @@ $('#AñadirPedidoDetalle').click(function () {
         }).done(function (datos) {
             if (datos == prod_Codigo) {
                 console.log('Repetido');
-                var cantfisica_nueva = $('#pedd_Cantidad').val();
+             var cantfisica_nueva = $('#pedd_Cantidad').val();
                 $("#PedidoDetalle td").each(function () {
                     //var prueba = $(this).closest("tr").find("td:eq(0)").text();
-                    var prueba = $(this).text();
-                    console.log(prueba)
+                    var prueba = $(this).text().trim();
+                   
                     //var prueba = prueba.replace(/^/n*/, '')
                     if (prueba == prod_Codigo) {
                         var idcontador = $(this).closest('tr').data('id');
@@ -53,11 +62,11 @@ $('#AñadirPedidoDetalle').click(function () {
                         table.row($(this).parents('tr')).remove().draw();
 
                         table.row.add([
-                               $('#prod_Codigo').val(),
-                               $('#tbProducto_prod_Descripcion').val(),
-                               sumacantidades,
-                               $('#pedd_CantidadFacturada').val(),
-                               '<button id="QuitarDetalle" class="btn btn-danger btn-xs eliminar" type="button">-</button>'
+                            $('#prod_Codigo').val(),
+                            $('#tbProducto_prod_Descripcion').val(),
+                            sumacantidades,
+                            $('#pedd_CantidadFacturada').val(),
+                            '<button id="QuitarDetalle" class="btn btn-danger btn-xs eliminar" type="button">Quitar</button>'
                         ]).draw(false);
 
                         //copiar += "</tr>";
@@ -333,7 +342,6 @@ function EditPedidoDetalleM(pedd_Id) {
             prod_Codigo: $('#prod_Codigo').val(),
             CodigoBarra: $('#tbProducto_prod_CodigoBarras').val(),
             prod_Descripcion: $('#tbProducto_prod_Descripcion').val(),
-            pedd_Descripcion: $('#pedd_Descripcion').val(),
             pedd_Cantidad: $('#pedd_Cantidad').val(),
             pedd_CantidadFacturada: $('#pedd_CantidadFacturada').val(),
             pedd_UsuarioCrea: contador

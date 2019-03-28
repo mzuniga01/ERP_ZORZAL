@@ -3,7 +3,7 @@
 @{
     GeneralFunctions Funtions = new GeneralFunctions();
 }
-  
+
 
 
 
@@ -30,225 +30,227 @@
 
 
 
-<div class="wrapper wrapper-content animated fadeInRight">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <h5>Editar Pedidos</h5>
-                </div>
-                <div class="ibox-content">
-
-        @Html.AntiForgeryToken()
-
-        <div class="form-horizontal">
-
-            @Html.ValidationSummary(true)
-            @Html.HiddenFor(model => model.ped_Id)
-            @Html.HiddenFor(model => model.suc_Id)
-            @Html.HiddenFor(model => model.clte_Id)
-           
-            @Html.Hidden("RedirectTo", Url.Action("Index", "Pedido"))
-            
-            
-
-            @*Auditoria*@
-            @Html.HiddenFor(model => model.ped_UsuarioCrea)
-            @Html.HiddenFor(model => model.ped_FechaCrea)
-            @Html.HiddenFor(model => model.ped_UsuarioModifica)
-            @Html.HiddenFor(model => model.ped_FechaModifica)
-            @Html.HiddenFor(model => model.tbUsuario.usu_Nombres)
-            @Html.HiddenFor(model => model.tbUsuario.usu_Apellidos)
-            @Html.HiddenFor(model => model.tbUsuario1.usu_Nombres)
-            @Html.HiddenFor(model => model.tbUsuario1.usu_Apellidos)
-            @Html.HiddenFor(model => model.tbCliente.clte_Nombres)
-
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.suc_Id, new { @class = "control-label col-md-2" })
-
-                <div class="col-md-3">
-                    @Html.EditorFor(model => model.tbSucursal.suc_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                    <span class="validation-error">@Html.ValidationMessageFor(model => model.suc_Id)</span>
-                </div>
-                <label class="control-label col-md-3">Departamento</label>
-                <div class="col-md-3">
-                    @Html.EditorFor(model => model.tbSucursal.tbMunicipio.tbDepartamento.dep_Nombre, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                    @Html.ValidationMessageFor(model => model.suc_Id)
-                </div>
-            </div>
-
-
-
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.tbCliente.clte_Identificacion, new { @class = "control-label col-md-2" })
-                <div class="col-md-3">
-                    @Html.EditorFor(model => model.tbCliente.clte_Identificacion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                    @Html.ValidationMessageFor(model => model.tbCliente.clte_Identificacion)
-                </div>
-                <div class="col-md-1">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarClientes"><span class="glyphicon glyphicon-search"></span></button>
-                </div>
-
-                @Html.LabelFor(model => model.tbCliente.clte_Nombres, new { @class = "control-label col-md-2" })
-                <div class="col-md-3">
-                    @{int Clte_Id = Model.clte_Id;
-                        if (Funtions.EsPersonaNatural(Clte_Id))
-                        {
-                                @Html.EditorFor(model => model.tbCliente.clte_Nombres, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                @Html.ValidationMessageFor(model => model.tbCliente.clte_Nombres)
-                                @Html.ValidationMessageFor(model => model.tbCliente.clte_Apellidos)
-                            @Html.HiddenFor(model => model.tbCliente.clte_NombreComercial)
-                        }
-                            else
-                            {
-                                @Html.EditorFor(model => model.tbCliente.clte_NombreComercial, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.tbCliente.clte_NombreComercial)</span></p>
-                      
-                            }
-                        }
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.ped_FechaElaboracion, new { @class = "control-label col-md-2" })
-                <div class="col-md-3">
-                    @Html.EditorFor(model => model.ped_FechaElaboracion, "{0:MM-dd-yyyy}", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                    @Html.ValidationMessageFor(model => model.ped_FechaElaboracion)
-                </div>
-
-
-                @Html.LabelFor(model => model.ped_FechaEntrega, new { @class = "control-label col-md-3" })
-                <div class="col-md-3">
-                    @Html.EditorFor(model => model.ped_FechaEntrega)
-                    @Html.ValidationMessageFor(model => model.ped_FechaEntrega)
-                </div>
-            </div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
             <div class="col-lg-12">
-                <div class="ibox-title">
-                    <div class="title-action">
-                        <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#Crear">Registrar Nuevo</button>
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Editar Pedidos</h5>
+                    </div>
+                    <div class="ibox-content">
+
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+
+                            @Html.ValidationSummary(true)
+                            @Html.HiddenFor(model => model.ped_Id)
+                            @Html.HiddenFor(model => model.suc_Id)
+                            @Html.HiddenFor(model => model.clte_Id)
+
+                            @Html.Hidden("RedirectTo", Url.Action("Index", "Pedido"))
+
+
+
+                            @*Auditoria*@
+                            @Html.HiddenFor(model => model.ped_UsuarioCrea)
+                            @Html.HiddenFor(model => model.ped_FechaCrea)
+                            @Html.HiddenFor(model => model.ped_UsuarioModifica)
+                            @Html.HiddenFor(model => model.ped_FechaModifica)
+                            @Html.HiddenFor(model => model.tbUsuario.usu_Nombres)
+                            @Html.HiddenFor(model => model.tbUsuario.usu_Apellidos)
+                            @Html.HiddenFor(model => model.tbUsuario1.usu_Nombres)
+                            @Html.HiddenFor(model => model.tbUsuario1.usu_Apellidos)
+                            @Html.HiddenFor(model => model.tbCliente.clte_Nombres)
+
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.suc_Id, new { @class = "control-label col-md-2" })
+
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.tbSucursal.suc_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    <span class="validation-error">@Html.ValidationMessageFor(model => model.suc_Id)</span>
+                                </div>
+                                <label class="control-label col-md-3">Departamento</label>
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.tbSucursal.tbMunicipio.tbDepartamento.dep_Nombre, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.suc_Id)
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.tbCliente.clte_Identificacion, new { @class = "control-label col-md-2" })
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.tbCliente.clte_Identificacion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.tbCliente.clte_Identificacion)
+                                </div>
+                                <div class="col-md-1">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAgregarClientes"><span class="glyphicon glyphicon-search"></span></button>
+                                </div>
+
+                                @Html.LabelFor(model => model.tbCliente.clte_Nombres, new { @class = "control-label col-md-2" })
+                                <div class="col-md-3">
+                                    @{int Clte_Id = Model.clte_Id;
+                                        if (Funtions.EsPersonaNatural(Clte_Id))
+                                        {
+                                            @Html.EditorFor(model => model.tbCliente.clte_Nombres, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                            @Html.ValidationMessageFor(model => model.tbCliente.clte_Nombres)
+                                            @Html.ValidationMessageFor(model => model.tbCliente.clte_Apellidos)
+                                            @Html.HiddenFor(model => model.tbCliente.clte_NombreComercial)
+                                        }
+                                        else
+                                        {
+                                            @Html.EditorFor(model => model.tbCliente.clte_NombreComercial, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                            <p style="color:red"><span class="validation-error">@Html.ValidationMessageFor(model => model.tbCliente.clte_NombreComercial)</span></p>
+
+                                        }
+                                    }
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ped_FechaElaboracion, new { @class = "control-label col-md-2" })
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.ped_FechaElaboracion, "{0:MM-dd-yyyy}", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.ped_FechaElaboracion)
+                                </div>
+
+
+                                @Html.LabelFor(model => model.ped_FechaEntrega, new { @class = "control-label col-md-3" })
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.ped_FechaEntrega)
+                                    @Html.ValidationMessageFor(model => model.ped_FechaEntrega)
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="ibox-title">
+                                    <div class="title-action">
+                                        <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#Crear">Registrar Nuevo</button>
+                                    </div>
+                                </div>
+                                <div class="ibox-content collapse" id="Crear">
+                                    @Html.Partial("_CreateDetalleDelPedido", new tbPedidoDetalle())
+                                </div>
+                            </div>
+                            <div class="ibox-title">
+                                <h5>Pedido Detalle</h5>
+                            </div>
+
+
+                            <div class="ibox-content">
+                                @Html.Partial("_IndexPedidoDetalle", Model.tbPedidoDetalle)
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="col-md-offset-5 col-md-10">
+                                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                    <button type="button" id="inactivar" name="inactivar" class="btn btn-danger" data-toggle="modal" data-target="#ModalAnular">
+                                        Anular
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
                     </div>
                 </div>
-                <div class="ibox-content collapse" id="Crear">
-                    @Html.Partial("_CreateDetalleDelPedido", new tbPedidoDetalle())
+
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Auditoría</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <table class="table table table-striped  table-bordered">
+                            <tr>
+                                <th>Acción</th>
+                                <th>Usuario</th>
+                                <th>Fecha</th>
+                            </tr>
+                            <tr>
+                                <td>Creado</td>
+                                <td>
+                                    @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                                    @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                                </td>
+                                <td>@Html.DisplayFor(model => model.ped_FechaCrea)</td>
+                            </tr>
+                            <tr>
+                                <td>Modificado</td>
+                                <td>
+                                    @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                                    @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                                </td>
+                                <td>@Html.DisplayFor(model => model.ped_FechaModifica)</td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
             </div>
-            <div class="ibox-title">
-                <h5>Pedido Detalle</h5>
+        </div>
+
+        <div>
+            <div class="modal fade" id="ModalAgregarClientes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel">Agregar Cliente</h4>
+                        </div>
+                        <div class="modal-body" id="frmEditarMunicipios">
+                            @Html.Partial("_IndexCliente", (List<tbCliente>)ViewBag.Cliente)
+                        </div>
+                    </div>
+                </div>
             </div>
+        </div>
+    </div>
 
 
-            <div class="ibox-content">
-                @Html.Partial("_IndexPedidoDetalle", Model.tbPedidoDetalle)
-            </div>
-
-            
-            <div class="form-group">
-                <div class="col-md-offset-5 col-md-10">
-                    <input type="submit" value="Guardar" class="btn btn-primary" />
-                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
-                    <button type="button" id="inactivar" name="inactivar" class="btn btn-danger" data-toggle="modal" data-target="#ModalAnular">
-                        Anular
+    <div class="modal fade" id="ModalAnular" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
                     </button>
+                    <h5 class="modal-title" id="exampleModalLabel">Anular Pedido</h5>
                 </div>
-            </div>
-        </div>
-
- 
-
-
+                <div class="modal-body">
+                    <p>¿Está seguro de anular este Pedido?</p>
+                    <textarea rows="4" cols="50" placeholder="Ingrese la razon de anulación" id="razonInac" name="razonInac"></textarea>
+                    <p id="Mensaje" style="color:red"></p>
                 </div>
-            </div>
 
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <h5>Auditoría</h5>
-                </div>
-                <div class="ibox-content">
-                    <table class="table table table-striped  table-bordered">
-                        <tr>
-                            <th>Acción</th>
-                            <th>Usuario</th>
-                            <th>Fecha</th>
-                        </tr>
-                        <tr>
-                            <td>Creado</td>
-                            <td>
-                                @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                                @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
-                            </td>
-                            <td>@Html.DisplayFor(model => model.ped_FechaCrea)</td>
-                        </tr>
-                        <tr>
-                            <td>Modificado</td>
-                            <td>
-                                @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
-                                @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
-                            </td>
-                            <td>@Html.DisplayFor(model => model.ped_FechaModifica)</td>
-                        </tr>
-                    </table>
+                <div class="modal-footer">
+                    <button class="btn btn-primary btn-sm" type="button" onclick="AnularPedido();">Guardar</button>
+
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
                 </div>
             </div>
         </div>
     </div>
-
-    <div>
-        <div class="modal fade" id="ModalAgregarClientes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <h4 class="modal-title" id="myModalLabel">Agregar Cliente</h4>
-                    </div>
-                    <div class="modal-body" id="frmEditarMunicipios">
-                        @Html.Partial("_IndexCliente", (List<tbCliente>)ViewBag.Cliente)
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
- </div>
-
-
-<div class="modal fade" id="ModalAnular" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h5 class="modal-title" id="exampleModalLabel">Anular Pedido</h5>
-            </div>
-            <div class="modal-body">
-                <p>¿Está seguro de anular este Pedido?</p>
-                <textarea rows="4" cols="50" placeholder="Ingrese la razon de anulación" id="razonInac" name="razonInac"></textarea>
-                <p id="Mensaje" style="color:red"></p>
-            </div>
-
-            <div class="modal-footer">
-                <button class="btn btn-primary btn-sm" type="button"  onclick="AnularPedido();">Guardar</button>
-   
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-            </div>
-        </div>
-    </div>
-</div>
 }
 
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-<script src="~/Scripts/app/GuardarDetalleEdit.js"></script>
 <script src="~/Scripts/app/Clientes-Pedido-Credito.js"></script>
 <script src="~/Scripts/app/SaveDetallePedido.js"></script>
+<script src="~/Scripts/app/SavePedidoDetalle.js"></script>
 <script src="~/Scripts/app/AnularPedido.js"></script>
 
+
 @section Scripts {
+
     @Scripts.Render("~/bundles/jqueryval")
-<script>
+    <script>
         $.datepicker.regional['en'] = {
             closeText: 'Cerrar',
             prevText: '< Ant',
@@ -269,7 +271,7 @@
         $.datepicker.setDefaults($.datepicker.regional['es']);
 
         $(function () {
-           
+
             $("#ped_FechaEntrega").datepicker({ dateFormat: 'mm/dd/yy', minDate: 0 }).datepicker();
 
         });
@@ -324,5 +326,69 @@
         });
 
     </script>
+    <script src="~/Scripts/jquery.mask.js"></script>
+    <script src="~/Scripts/jquery.mask.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#pedd_Cantidad").val('');
+        });
+    </script>
+    <script>
+        $("#pedd_Cantidad").mask(
+            'PN',
+            {
+                translation:
+                {
+                    P: { pattern: /[1-9]/ },
+                    N: { pattern: /\d/, recursive: true }
+                }
+            }
+        );
+    </script>
+
+
+
+
+ 
+    <script>
+        function filterFloat(evt, input) {
+            // Backspace = 8, Enter = 13, ‘0′ = 48, ‘9′ = 57, ‘.’ = 46, ‘-’ = 43
+            var key = window.Event ? evt.which : evt.keyCode;
+            var chark = String.fromCharCode(key);
+            var tempValue = input.value + chark;
+            if (key >= 48 && key <= 57) {
+                if (filter(tempValue) === false) {
+                  return false;
+                } else {
+                    return true;
+                }
+            } else {
+                if (key == 8 || key == 13 || key == 0) {
+                    return true;
+                } else if (key == 46) {
+                    if (filter(tempValue) === false) {
+                       return false;
+                    } else {
+                        return true;
+                    }
+                } else {
+                    return false;
+                }
+            }
+        }
+    </script>
+    <script>
+        function filter(__val__) {
+        var preg = /^([0-9]+\.?[0-9]{0,2})$/;
+        if (preg.test(__val__) === true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    </script>
+
+
 
 }
+
