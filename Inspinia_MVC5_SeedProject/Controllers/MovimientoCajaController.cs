@@ -1,5 +1,4 @@
-﻿///ORIGINAL///   
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -29,14 +28,15 @@ namespace ERP_GMEDINA.Controllers
         }
 
 
+
         /////////INICIO APERTURA/////////
         // GET: /MovimientoCaja/
 
-        public ActionResult DetailsApertura(short? id)
+        public ActionResult DetailsApertura(int? id)
         {
             if (id == null)
             {
-                return RedirectToAction("IndexApertura");
+                return RedirectToAction("Index");
             }
             tbMovimientoCaja tbMovimientoCaja = db.tbMovimientoCaja.Find(id);
             if (tbMovimientoCaja == null)
@@ -132,7 +132,7 @@ namespace ERP_GMEDINA.Controllers
             /////////VAR//////////;
             bool solef_EsApertura = true;
             bool solef_EsAnulada = false;
-            tbMovimientoCaja.mocja_FechaApertura = DateTime.Today;
+            //tbMovimientoCaja.mocja_FechaApertura = DateTime.Today;
             tbMovimientoCaja.mocja_FechaCrea = Function.DatetimeNow();
             ///////////VAR SESSION//////////
             var list = (List<tbSolicitudEfectivoDetalle>)Session["SolicitudEfectivo"];
@@ -154,7 +154,7 @@ namespace ERP_GMEDINA.Controllers
                         try
                         {
                             var fecha = DateTime.Today;
-                            if (db.tbMovimientoCaja.Any(a =>a.usu_Id ==tbMovimientoCaja.usu_Id && a.mocja_FechaApertura == fecha))
+                            if (db.tbMovimientoCaja.Any(a => a.usu_Id == tbMovimientoCaja.usu_Id && a.mocja_FechaApertura == fecha))
                             {
                                 ModelState.AddModelError("", "Este usuario ya aperturo una caja el día de hoy.");
                                 //return View(tbMovimientoCaja);
@@ -341,20 +341,18 @@ namespace ERP_GMEDINA.Controllers
         [HttpPost]
         public JsonResult GetRol(int Sucursal)
         {
-            var list = db.UDP_Vent_tbUsuario_Rol_Apertura(Sucursal,Helpers.rol_Id).ToList();
+            var list = db.UDP_Vent_tbUsuario_Rol_Apertura(Sucursal, Helpers.rol_Id).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
 
         //Detalles
         [HttpGet]
-        public ActionResult GetDetalle(short Solictud)
+        public ActionResult GetDetalle(short CodSolicitud)
         {
-            var list = db.UDP_Vent_tbMovimientoCaja_Apertura_Details(Solictud).ToList();
+            var list = db.UDP_Vent_tbMovimientoCaja_Apertura_Details(CodSolicitud).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
-
-
 
         public ActionResult ExportReportApertura(int? id)
         {
@@ -399,7 +397,6 @@ namespace ERP_GMEDINA.Controllers
 
 
         ////////////TERMINO APERTURA////////////
-
         ///Trae el Usuario Apertura para realizar el arqueo de caja
         [HttpPost]
 

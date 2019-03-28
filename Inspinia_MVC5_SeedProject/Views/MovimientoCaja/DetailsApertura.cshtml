@@ -1,9 +1,30 @@
 ﻿@model ERP_GMEDINA.Models.tbMovimientoCaja
+@using ERP_GMEDINA.Models
 
 @{
-    var solicitudD = new ERP_GMEDINA.Models.tbSolicitudEfectivoDetalle();
-    var solicitud = new ERP_GMEDINA.Models.tbSolicitudEfectivo();
+    ViewBag.Title = "DetailsApertura";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var moneda = new ERP_GMEDINA.Models.tbMoneda();
 }
+
+<style>
+    .myInput {
+        border-style: none;
+        outline: 0 none;
+    }
+
+        .myInput:hover {
+            border-style: none;
+        }
+
+        .myInput:focus {
+            border-style: none;
+        }
+
+    .single-line {
+        padding: 0;
+    }
+</style>
 <link href="~/Content/css/Auditoria.css" rel="stylesheet" />
 
 <div class="row wrapper border-bottom white-bg page-heading">
@@ -28,8 +49,9 @@
                 </div>
                 <div class="ibox-content">
 
-
-	    <dl class="dl-horizontal">
+         @Html.HiddenFor(model => model.mocja_Id)
+       
+        <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.mocja_Id)
         </dt>
@@ -50,7 +72,7 @@
             @Html.DisplayFor(model => model.mocja_FechaApertura)
         </dd>
             <dt>
-               Usuario Apertura
+                @Html.DisplayNameFor(model => model.mocja_UsuarioApertura)
             </dt>
 
             <dd>
@@ -58,19 +80,30 @@
                 @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
             </dd>           
             <dt>
-                Abreviatura Moneda
+                Sucursal
             </dt>
             <dd>
-                @Html.DisplayFor(model => solicitud.tbMoneda.mnda_Abreviatura)
+                @Html.DisplayFor(model => model.tbCaja.tbSucursal.suc_Descripcion)
+            </dd>         
+                <dt>
+                    @Html.DisplayNameFor(model => model.usu_Id)
+                </dt>
+                <dd>
+                    <input type="text" class="myInput" id="cajero" readonly size="50">
+                </dd>
+            <dt>
+                Moneda
+            </dt>
+            <dd>
+                <input type="text" class="myInput" id="moneda" readonly size="50">
             </dd>
             <dt>
-               Nombre Moneda
+                Monto Inicial
             </dt>
             <dd>
-                @Html.DisplayFor(model => solicitud.tbMoneda.mnda_Nombre)
-            </dd>       
-    </dl>
-
+                <input type="text" class="myInput" id="montoEntregado" readonly size="50">
+            </dd>
+         </dl>
                     @*MI TABLA*@
                     <div class="ibox-content">
                         <div class="table table-responsive">
@@ -95,10 +128,9 @@
                             </table>
                         </div>
                     </div>
-   </div>
-</div>
-
-            <div class="ibox float-e-margins">
+              </div>
+         </div>
+        <div class="ibox float-e-margins">
                 <div class="ibox-title">
                     <h5>Auditoría</h5>
                 </div>
@@ -124,20 +156,21 @@
     </div>
  </div>
 
+
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-      
-<script type="text/javascript">
+    <script type="text/javascript">
         $(document).ready(function () {
-            GetDenominacions()
+            GetDetallePrueba()
         });
-        function GetDenominacions() {
-            var Solictud = $("#mocja_Id").val();
+        function GetDetallePrueba() {
+            var CodSolicitud = $("#mocja_Id").val();
             $.ajax({
                 type: 'GET',
                 url: '/MovimientoCaja/GetDetalle',
                 datatype: 'JSON',
-                data: { 'Solictud': Solictud },
+                data: { 'CodSolicitud': CodSolicitud },
                 success: function (data) {
                     $('#tbDetalle tbody').empty();
                     $.each(data, function (i, item) {
@@ -146,17 +179,59 @@
                             "<td>" + item.deno_Descripcion + "</td>" +
                             "<td>" + item.soled_CantidadEntregada + "</td>" +
                             "<td>" + item.soled_CantidadSolicitada + "</td>" +
-                            "<td>" + item.soled_MontoEntregado + "</td>" +
+                            "<td class='sumTotal'>" + item.soled_MontoEntregado + "</td>" +
+                            //"<td class='MontoEntregado'>" + item.MontoEntregado + "</td>" +
                             "<td hidden>" + item.deno_Id + "</td>" +
+                            "<td hidden>" + item.mnda_Nombre + "</td>" +
+                             "<td hidden>" + item.CAJERO + "</td>" +
                             "</tr>";
-                        $('#tbDetalle tbody').append(rows);                      
-                        console.log(data);
+                        $('#tbDetalle tbody').append(rows);
+                        //----------------------------------------------------------
+                        $("#moneda").val(item.mnda_Nombre);
+                        $("#cajero").val(item.CAJERO);
+                        var suma = 0;
+                        var data = [];
+                        //Calculo Total solicitado
+                        $("td.sumTotal").each(function () {
+                            data.push(parseFloat($(this).text()));
+                        });
+                        var suma = data.reduce(function (a, b) { return a + b; }, 0)
+                        $("#montoEntregado").val(suma);
                     });
                 },
             });
         };
 </script>
+<script>
+    $(document).ready(function () {
+        $("#montoEntregado").css("border", "none");
+    });
+</script>
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

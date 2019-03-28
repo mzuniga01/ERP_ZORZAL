@@ -1734,14 +1734,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Vent_tbUsuario_Rol_Apertura" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbUsuario_Rol_Apertura">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbUsuario_Rol_Apertura_Result">
-          <ScalarProperty Name="usu_Id" ColumnName="usu_Id" />
-          <ScalarProperty Name="usu_NombreUsuario" ColumnName="usu_NombreUsuario" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbSolicitudEfectivo_EsImpresa" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbSolicitudEfectivo_EsImpresa" />
     <EntitySetMapping Name="tbAccesoRol">
       <EntityTypeMapping TypeName="ERP_ZORZALModel.tbAccesoRol">
@@ -3851,7 +3843,6 @@
     <FunctionImportMapping FunctionImportName="UDP_Vent_tbMovimientoCaja_Apertura_Details" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbMovimientoCaja_Apertura_Details">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_Apertura_Details_Result">
-          <ScalarProperty Name="mocja_Id" ColumnName="mocja_Id" />
           <ScalarProperty Name="solef_Id" ColumnName="solef_Id" />
           <ScalarProperty Name="soled_Id" ColumnName="soled_Id" />
           <ScalarProperty Name="mocja_FechaApertura" ColumnName="mocja_FechaApertura" />
@@ -3861,6 +3852,17 @@
           <ScalarProperty Name="soled_CantidadEntregada" ColumnName="soled_CantidadEntregada" />
           <ScalarProperty Name="soled_CantidadSolicitada" ColumnName="soled_CantidadSolicitada" />
           <ScalarProperty Name="soled_MontoEntregado" ColumnName="soled_MontoEntregado" />
+          <ScalarProperty Name="deno_valor" ColumnName="deno_valor" />
+          <ScalarProperty Name="deno_Id" ColumnName="deno_Id" />
+          <ScalarProperty Name="deno_Descripcion" ColumnName="deno_Descripcion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Vent_tbUsuario_Rol_Apertura" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbUsuario_Rol_Apertura">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbUsuario_Rol_Apertura_Result">
+          <ScalarProperty Name="usu_Id" ColumnName="usu_Id" />
+          <ScalarProperty Name="usu_NombreUsuario" ColumnName="usu_NombreUsuario" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

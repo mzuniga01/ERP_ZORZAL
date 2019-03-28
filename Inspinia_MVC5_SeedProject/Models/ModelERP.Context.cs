@@ -6995,19 +6995,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Listado_CAI_Result>("Listado_CAI");
         }
     
-        public virtual ObjectResult<UDP_Vent_tbUsuario_Rol_Apertura_Result> UDP_Vent_tbUsuario_Rol_Apertura(Nullable<int> suc_Id, Nullable<int> cAJERO)
-        {
-            var suc_IdParameter = suc_Id.HasValue ?
-                new ObjectParameter("suc_Id", suc_Id) :
-                new ObjectParameter("suc_Id", typeof(int));
-    
-            var cAJEROParameter = cAJERO.HasValue ?
-                new ObjectParameter("CAJERO", cAJERO) :
-                new ObjectParameter("CAJERO", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbUsuario_Rol_Apertura_Result>("UDP_Vent_tbUsuario_Rol_Apertura", suc_IdParameter, cAJEROParameter);
-        }
-    
         public virtual ObjectResult<Nullable<int>> UDP_Vent_tbSolicitudEfectivo_EsImpresa(Nullable<int> solef_Id, Nullable<bool> solef_EsImpresa)
         {
             var solef_IdParameter = solef_Id.HasValue ?
@@ -7129,6 +7116,19 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("IdMovimiento", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbMovimientoCaja_Apertura_Details_Result>("UDP_Vent_tbMovimientoCaja_Apertura_Details", idMovimientoParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbUsuario_Rol_Apertura_Result> UDP_Vent_tbUsuario_Rol_Apertura(Nullable<int> suc_Id, Nullable<int> cAJERO)
+        {
+            var suc_IdParameter = suc_Id.HasValue ?
+                new ObjectParameter("suc_Id", suc_Id) :
+                new ObjectParameter("suc_Id", typeof(int));
+    
+            var cAJEROParameter = cAJERO.HasValue ?
+                new ObjectParameter("CAJERO", cAJERO) :
+                new ObjectParameter("CAJERO", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbUsuario_Rol_Apertura_Result>("UDP_Vent_tbUsuario_Rol_Apertura", suc_IdParameter, cAJEROParameter);
         }
     }
 }

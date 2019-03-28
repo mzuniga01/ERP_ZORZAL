@@ -11060,10 +11060,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <Parameter Name="UsuarioApertura" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Listado_CAI" ReturnType="Collection(ERP_ZORZALModel.Listado_CAI_Result)" />
-          <FunctionImport Name="UDP_Vent_tbUsuario_Rol_Apertura" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbUsuario_Rol_Apertura_Result)">
-            <Parameter Name="suc_Id" Mode="In" Type="Int32" />
-            <Parameter Name="CAJERO" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbSolicitudEfectivo_EsImpresa" ReturnType="Collection(Int32)">
             <Parameter Name="solef_Id" Mode="In" Type="Int32" />
             <Parameter Name="solef_EsImpresa" Mode="In" Type="Boolean" />
@@ -12158,6 +12154,10 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbMovimientoCaja_Apertura_Details" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_Apertura_Details_Result)">
             <Parameter Name="IdMovimiento" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Vent_tbUsuario_Rol_Apertura" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbUsuario_Rol_Apertura_Result)">
+            <Parameter Name="suc_Id" Mode="In" Type="Int32" />
+            <Parameter Name="CAJERO" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
@@ -13337,10 +13337,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
         <ComplexType Name="Listado_CAI_Result">
           <Property Type="Int32" Name="pemi_Id" Nullable="false" />
           <Property Type="String" Name="pemi_NumeroCAI" Nullable="false" MaxLength="40" />
-        </ComplexType>
-        <ComplexType Name="UDP_Vent_tbUsuario_Rol_Apertura_Result">
-          <Property Type="Int32" Name="usu_Id" Nullable="false" />
-          <Property Type="String" Name="usu_NombreUsuario" Nullable="false" MaxLength="100" />
         </ComplexType>
         <EntityType Name="tbAccesoRol">
           <Key>
@@ -19035,7 +19031,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <Property Type="Decimal" Name="arqde_MontoDenominacion" Nullable="false" Precision="10" Scale="2" />
         </ComplexType>
         <ComplexType Name="UDP_Vent_tbMovimientoCaja_Apertura_Details_Result">
-          <Property Type="Int32" Name="mocja_Id" Nullable="false" />
           <Property Type="Int32" Name="solef_Id" Nullable="false" />
           <Property Type="Int32" Name="soled_Id" Nullable="false" />
           <Property Type="DateTime" Name="mocja_FechaApertura" Nullable="true" Precision="23" />
@@ -19045,6 +19040,13 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <Property Type="Int16" Name="soled_CantidadEntregada" Nullable="false" />
           <Property Type="Int16" Name="soled_CantidadSolicitada" Nullable="false" />
           <Property Type="Decimal" Name="soled_MontoEntregado" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="deno_valor" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Int16" Name="deno_Id" Nullable="false" />
+          <Property Type="String" Name="deno_Descripcion" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="UDP_Vent_tbUsuario_Rol_Apertura_Result">
+          <Property Type="Int32" Name="usu_Id" Nullable="false" />
+          <Property Type="String" Name="usu_NombreUsuario" Nullable="false" MaxLength="100" />
         </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
@@ -20784,14 +20786,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.Listado_CAI_Result">
                 <ScalarProperty Name="pemi_Id" ColumnName="pemi_Id" />
                 <ScalarProperty Name="pemi_NumeroCAI" ColumnName="pemi_NumeroCAI" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbUsuario_Rol_Apertura" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbUsuario_Rol_Apertura">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbUsuario_Rol_Apertura_Result">
-                <ScalarProperty Name="usu_Id" ColumnName="usu_Id" />
-                <ScalarProperty Name="usu_NombreUsuario" ColumnName="usu_NombreUsuario" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -22904,7 +22898,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbMovimientoCaja_Apertura_Details" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbMovimientoCaja_Apertura_Details">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbMovimientoCaja_Apertura_Details_Result">
-                <ScalarProperty Name="mocja_Id" ColumnName="mocja_Id" />
                 <ScalarProperty Name="solef_Id" ColumnName="solef_Id" />
                 <ScalarProperty Name="soled_Id" ColumnName="soled_Id" />
                 <ScalarProperty Name="mocja_FechaApertura" ColumnName="mocja_FechaApertura" />
@@ -22914,6 +22907,17 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
                 <ScalarProperty Name="soled_CantidadEntregada" ColumnName="soled_CantidadEntregada" />
                 <ScalarProperty Name="soled_CantidadSolicitada" ColumnName="soled_CantidadSolicitada" />
                 <ScalarProperty Name="soled_MontoEntregado" ColumnName="soled_MontoEntregado" />
+                <ScalarProperty Name="deno_valor" ColumnName="deno_valor" />
+                <ScalarProperty Name="deno_Id" ColumnName="deno_Id" />
+                <ScalarProperty Name="deno_Descripcion" ColumnName="deno_Descripcion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbUsuario_Rol_Apertura" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbUsuario_Rol_Apertura">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbUsuario_Rol_Apertura_Result">
+                <ScalarProperty Name="usu_Id" ColumnName="usu_Id" />
+                <ScalarProperty Name="usu_NombreUsuario" ColumnName="usu_NombreUsuario" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
