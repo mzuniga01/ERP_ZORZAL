@@ -81,7 +81,7 @@
                 $('#AsignadosEdit tbody').append(newTr)
             })
             $('#AsignadosEdit').DataTable({
-                "searching": false,
+                "searching": true,
                 "scrollY": "300px",
                 "scrollCollapse": true,
                 "paging": false,

@@ -1,4 +1,7 @@
-﻿//// Show an element
+﻿
+
+
+//// Show an element
 //var show = function (elem) {
 
 //    // Get the natural height of the element
@@ -128,7 +131,6 @@ $(document).ready(function () {
                 "sSearch": "Buscar",
                 "sInfo": "Mostrando _START_ a _END_ Entradas",
                 "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-
             }
         });
 });
@@ -152,7 +154,6 @@ $(document).ready(function () {
                 "sSearch": "Buscar",
                 "sInfo": "Mostrando _START_ a _END_ Entradas",
                 "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-
             }
         });
 });
@@ -277,6 +278,8 @@ function GetAnularSalida() {
 }
 
 function FaturaExist() {
+    $('#FacturaCodigoError').text('');
+    $('#CodigoError').text('');
     $.ajax({
         url: "/Salida/FacturaExist",
         method: "POST",
@@ -351,7 +354,7 @@ function TipodeSalida() {
     var lblTipoSalida = txtTipoSalida.options[txtTipoSalida.selectedIndex].text;
     var valTipoSalida = normalize(lblTipoSalida.toUpperCase());
     var TipoSal = $("#tsal_Id").val()
-    if (valTipoSalida == "PRESTAMO") {
+    if (valTipoSalida == "PRESTAMO" || valTipoSalida== "PRESTAMOS" || valTipoSalida == "TRANSLADOS") {
         //var elemento = document.getElementById("Prestamo");
         //var reelemento = document.getElementById("Prestamo");
         $('#fact_Codigo').val('***-***-**-********');
@@ -372,7 +375,7 @@ function TipodeSalida() {
         $("#Prestamo").css("display", "none");
         $("#Devolucion").css("display", "none");
         FaturaExist()
-        if (valTipoSalida == "VENTA") {
+        if (valTipoSalida == "VENTA"|| valTipoSalida == "VENTAS") {
             var fact_Codigo = $('#fact_Codigo').val();
             if (fact_Codigo == '***-***-**-********') {
                 $('#fact_Codigo').val('')
@@ -392,7 +395,7 @@ function TipodeSalida() {
             $("#Venta").css("display", "none");
             $("#Prestamo").css("display", "none");
 
-            if (valTipoSalida == "DEVOLUCION" ) {
+            if (valTipoSalida == "DEVOLUCION" || valTipoSalida == "DEVOLUCIONES") {
                 $('#fact_Codigo').val('');
                 $('#sal_RazonDevolucion').val('');
                 $("#sal_BodDestino").empty();
@@ -533,7 +536,8 @@ $(document).on("click", "#tblBusquedaGenerica tbody tr td button#seleccionar", f
     $("#prod_CodigoBarras").attr("readonly","true")
     //$('#CodigoError').text('')
     $('#sald_CantidadExedError').text('')
-   
+    $('#ValidationCodigoBarrasCreateError').text('')
+    $('#sald_CantidadError').text('')
     console.log(prod_CodigoBarrasItem)
     Producto(bod_Id, prod_CodigoBarrasItem)
 });
@@ -549,11 +553,14 @@ $(document).keypress(function (e) {
             var bod_Id = $('#bod_Id').val()
             var prod_CodigoBarras = $('#prod_CodigoBarras').val()
             if (prod_CodigoBarras == '') {
-                    $('#ValidationCodigoBarrasCreateError').text('');
-                    $('#validationprod_CodigoBarras').after('<ul id="ValidationCodigoBarrasCreateError" class="validation-summary-errors text-danger">Codigo de Barras Requerido</ul>');
+                $('#ValidationCodigoBarrasCreateError').text('');
+                $('#Error_Barras').text('');
+                $('#validationprod_CodigoBarras').after('<ul id="ValidationCodigoBarrasCreateError" class="validation-summary-errors text-danger">Codigo de Barras Requerido</ul>');
             }
             else {
                 $('#ValidationCodigoBarrasCreateError').text('');
+                $('#Error_Barras').text('');
+                $('#sald_CantidadError').text('');
                 Producto(bod_Id, prod_CodigoBarras);
             }
             // var Productos = $('#prod_Codigo').val();
@@ -595,6 +602,12 @@ $(document).on("click", "#tblSalidaDetalle tbody tr td button#removeSalidaDetall
         dataType: 'json',
         contentType: "application/json; charset=utf-8",
         data: JSON.stringify({ SalidaDetalle: tbSalidaDetalle }),
+        success: function (data)
+        {
+           contador = contador - 1
+           console.log("Contador: " + contador)
+           RejectUnload()
+        }
     });
 });
 
@@ -602,3 +615,161 @@ $(document).on("click", "#tblSalidaDetalle tbody tr td button#removeSalidaDetall
 
 //$('#example tbody').on('click', 'img.icon-delete', function () {
 //})
+
+
+
+
+
+
+
+//$('#AgregarSalidaDetalle').click(function () {
+//    if (StillAjax) {
+
+//    }
+//    else {
+
+//    }
+//    var table = $('#tblSalidaDetalle').DataTable();
+//    var counter = 0;
+//    var bod_Id = $('#bod_Id').val();
+//    var Cod_Producto = $('#prod_Codigo').val();
+//    var Producto = $('#prod_Descripcion').val();
+//    var Unidad_Medida = $('#pscat_Id').val();
+//    var Cantidad = $('#sald_Cantidad').val();
+//    var data_producto = $("#prod_Codigo").val();
+//    var CodBarra_Producto = $('#prod_CodigoBarras').val();
+//    $('#sald_CantidadError').text();
+//    var vCodBarra_Producto = true;
+//    var vCantidad = true;
+
+//    if (CodBarra_Producto == "") {
+//        $('#ValidationCodigoBarrasCreateError').text('');
+//        $('#Error_Barras').text('');
+//        $('#validationprod_CodigoBarras').after('<ul id="ValidationCodigoBarrasCreateError" class="validation-summary-errors text-danger">Campo de Barras Requerido</ul>');
+//        vCodBarra_Producto = false;
+//    }
+//    if (Cantidad == "") {
+//        $('#MessageError').text('');
+//        $('#sald_CantidadExedError').text('');
+//        $('#sald_CantidadError').text('');
+//        $('#Error_Barras').text('');
+//        $('#sald_Cantidad').after('<ul id="sald_CantidadError" class="validation-summary-errors text-danger">Cantidad Requerida</ul>');
+//        vCantidad = false;
+//    }
+//    if (!vCantidad || !vCodBarra_Producto) {
+//        return false;
+//    }
+//    else {
+//        $('#ValidationCodigoBarrasCreateError').text('');
+//        $('#Error_Barras').text('');
+//        $('#sald_CantidadError').text('');
+//        ProductoCantidad(bod_Id, Cod_Producto).done(function (data) {
+//            var CantidadAceptada = data.CantidadAceptada
+//            var CantidadMinima = data.CantidadMinima
+//            if ($('#tblSalidaDetalle >tbody >tr').length > 0) {
+//                $('#tblSalidaDetalle >tbody >tr').each(function () {
+//                    var prod_CodigoTabla = $(this).find("td:eq(0)").text()
+//                    if (Cod_Producto == prod_CodigoTabla) {
+//                        var CantidadTabla = $(this).find("td:eq(7)").text();
+//                        CantidadExit = parseFloat(CantidadAceptada) - parseFloat(CantidadTabla);
+//                    }
+//                    else {
+//                        CantidadExit = CantidadAceptada
+//                    }
+//                })
+//            }
+//            else {
+//                CantidadExit = CantidadAceptada
+//            }
+//            console.log(CantidadExit)
+//            if (Producto == '') {
+//                $('#MessageError').text('');
+//                $('#CodigoError').text('');
+//                $('#ValidationCodigoCreateError').text('');
+//                $('#ValidationCodigoCreate').after('<ul id="ValidationCodigoCreateError" class="validation-summary-errors text-danger">Campo Producto Requerido</ul>');
+//            }
+//            else if (Cantidad == '' || Cantidad < 0.25) {
+//                $('#MessageError').text('');
+//                $('#sald_CantidadExedError').text('');
+//                $('#sald_CantidadError').text('');
+//                $('#sald_Cantidad').after('<ul id="sald_CantidadError" class="validation-summary-errors text-danger">Cantidad Requerido</ul>');
+//            }
+//            else if (Cantidad > CantidadExit) {
+//                $('#MessageError').text('');
+//                $('#sald_CantidadError').text('');
+//                $('#sald_CantidadExedError').text('');
+//                $('#sald_Cantidad').after('<ul id="sald_CantidadExedError" class="validation-summary-errors text-danger">Cantidad Superada</ul>');
+//            }
+//            else {
+//                $('#ValidationCodigoCreateError').text('');
+//                $('#sald_CantidadError').text('');
+//                $('#sald_CantidadExedError').text('');
+//                $('#CantidaExistenteProd').text('');
+//                var tbSalidaDetalle = GetSalidaDetalle();
+//                $.ajax({
+//                    url: "/Salida/SaveSalidaDetalle",
+//                    method: "POST",
+//                    dataType: 'json',
+//                    contentType: "application/json; charset=utf-8",
+//                    data: JSON.stringify({ SalidaDetalle: tbSalidaDetalle, data_producto: data_producto }),
+//                }).done(function (datos) {
+//                    $("#prod_CodigoBarras").removeAttr("readonly");
+//                    if (datos == data_producto) {
+//                        console.log('Repetido');
+//                        var cantfisica_nueva = $('#sald_Cantidad').val();
+//                        $("#tblSalidaDetalle td").each(function () {
+//                            var prueba = $(this).text()
+//                            if (prueba == data_producto) {
+//                                table.row($(this).parents('tr')).remove().draw();
+//                                var idcontador = $(this).closest('tr').data('id');
+//                                var cantfisica_anterior = $(this).closest("tr").find("td:eq(7)").text();
+//                                var sumacantidades = parseInt(cantfisica_nueva) + parseInt(cantfisica_anterior);
+//                                contador = contador + 1
+//                                table.row.add([
+//                                    $('#prod_Codigo').val(),
+//                                    $('#prod_Descripcion').val(),
+//                                    $('#prod_Marca').val(),
+//                                    $('#prod_Modelo').val(),
+//                                    $('#prod_Talla').val(),
+//                                    $('#pcat_Id').val(),
+//                                    $('#uni_Id').val(),
+//                                    sumacantidades,
+//                                    '<button id = "removeSalidaDetalle" class= "btn btn-danger btn-xs eliminar" type = "button">Quitar</button>',
+//                                    contador
+//                                ]).draw(false);
+//                            }
+//                        });
+//                    } else {
+//                        contador = contador + 1
+//                        table.row.add([
+//                            $('#prod_Codigo').val(),
+//                            $('#prod_Descripcion').val(),
+//                            $('#prod_Marca').val(),
+//                            $('#prod_Modelo').val(),
+//                            $('#prod_Talla').val(),
+//                            $('#pcat_Id').val(),
+//                            $('#uni_Id').val(),
+//                            $('#sald_Cantidad').val(),
+//                            '<button id = "removeSalidaDetalle" class= "btn btn-danger btn-xs eliminar" type = "button">Quitar</button>',
+//                            contador
+//                        ]).draw(false);
+//                    }
+//                }).done(function (data) {
+//                    $('#prod_Codigo').val('');
+//                    $('#prod_Descripcion').val('');
+//                    $('#pscat_Id').val('');
+//                    $('#uni_Id').val('');
+//                    $('#pcat_Id').val('');
+//                    $("#prod_CodigoBarras").val('');
+//                    $('#sald_Cantidad').val('');
+//                    $('#Error_Barras').text('');
+//                    $('#NombreError').text('');
+//                    $('#sald_CantidadError').text('');
+//                    $('#CantidaExistenteProd').text('');
+//                    $('#prod_CodigoBarras').focus();
+//                    console.log('Hola');
+//                });
+//            }
+//        });
+//    }
+//});

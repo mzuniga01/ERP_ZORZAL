@@ -15,7 +15,8 @@ $(document).ready(function () {
         {
             "searching": true,
             "lengthChange": true,
-
+            "columnDefs": [{ "targets": [9], "visible": false, "searchable": false }],
+             "order": [[9, 'desc']],
             "oLanguage": {
                 "oPaginate": {
                     "sNext": "Siguiente",

@@ -111,7 +111,6 @@
         <EntityTypeShape EntityType="ERP_ZORZALModel.UDV_Vent_InventarioNumeraciones" Width="1.5" PointX="6.75" PointY="19.75" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.UDV_Vent_ListadodePrecios" Width="1.5" PointX="14.75" PointY="19.75" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.UDV_Vent_MovimientoCaja_Apertura" Width="1.5" PointX="16.75" PointY="19.75" />
-        <EntityTypeShape EntityType="ERP_ZORZALModel.UDV_Vent_MovimientoCaja_Apertura_Detalles" Width="1.5" PointX="18.75" PointY="19.75" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.UDV_Vent_NotaCreditoPorFecha" Width="1.5" PointX="20.75" PointY="0.75" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.UDV_Vent_PagosPorFechas" Width="1.5" PointX="20.75" PointY="5.75" />
         <EntityTypeShape EntityType="ERP_ZORZALModel.UDV_Vent_Pedido_EntreFechas" Width="1.5" PointX="20.75" PointY="9.75" />

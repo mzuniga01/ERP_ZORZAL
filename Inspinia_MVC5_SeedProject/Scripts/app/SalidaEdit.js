@@ -1,4 +1,6 @@
-﻿var contador = 0;
+﻿var contadorinit = 0;
+var contador = 0;
+var CantidadTable_VAR = 0
 //var CantidadExit = 0.00;
 //var CantidadAceptada = 0;
 //var CantidadMinima = 0;
@@ -9,6 +11,54 @@
 //    $('#CantidaExistenteProd').text('');
 //    $(this).off('hidden.bs.modal');
 //});
+
+function RejectUnload() {
+    if (contador != contadorinit) {
+        $(window).on("beforeunload", function (e) {
+            console.log(e);
+        return "Hay pendientes";
+  });
+    }
+    else {
+         $(window).off("beforeunload");
+    }
+
+}
+//$(window).on("beforeunload", function (e) {
+//    //table = $('#tblSalidaDetalle').DataTable();
+//    //var CantidadTable_VARCHECHK = table.rows().data().length;
+//    //console.log(CantidadTable_VARCHECHK)
+    
+//  });
+$(document).ready(function () {
+     table = $('#tblSalidaDetalle').DataTable();
+    contadorinit = table.rows().data().length;
+    contador = contadorinit;
+    console.log(window.location.pathname)
+    //console.log(CantidadTable_VAR)
+
+    // $(window).on("beforeunload", function(e) {
+    //return "Hay pendientes";
+    //});
+
+    ////var table = $('#tblSalidaDetalle').DataTable();
+
+    ////var table = $().dataTable();
+    //if ( $.fn.dataTable.isDataTable( '#tblSalidaDetalle' ) ) {
+    //   )
+    //}
+    //else {
+    //    table = $('#tblSalidaDetalle').DataTable( {
+    //        paging: false
+    //    } );
+    //}
+    //// table = $('#tblSalidaDetalle').DataTable();
+    ////var CantidadTable_VAR = table.rows().data().length;
+    ////console.log(CantidadTable_VAR)
+
+})
+
+
 
 function FaturaExist() {
     $.ajax({
@@ -45,21 +95,48 @@ $(document).ready(function () {
     TipodeSalida()
 });
 
-function TipodeSalida() {
-    var valTipoSalida = $('#tbTipoSalida_tsal_Descripcion').val()
-    console.log(valTipoSalida);
-    //var txtTipoSalida = document.getElementById("tbTipoSalida_tsal_Descripcion");
-    //var valTipoSalida = txtTipoSalida.options[txtTipoSalida.selectedIndex].text;
+var normalize = (function () {
+    var from = "ÃÀÁÄÂÈÉËÊÌÍÏÎÒÓÖÔÙÚÜÛãàáäâèéëêìíïîòóöôùúüûÑñÇç",
+        to = "AAAAAEEEEIIIIOOOOUUUUaaaaaeeeeiiiioooouuuunncc",
+        mapping = {};
 
-    //var TipoSal = $("#tsal_Id").val()
+    for (var i = 0, j = from.length; i < j; i++)
+        mapping[from.charAt(i)] = to.charAt(i);
+
+    return function (str) {
+        var ret = [];
+        for (var i = 0, j = str.length; i < j; i++) {
+            var c = str.charAt(i);
+            if (mapping.hasOwnProperty(str.charAt(i)))
+                ret.push(mapping[c]);
+            else
+                ret.push(c);
+        }
+        return ret.join('');
+    }
+
+})();
+function TipodeSalida() {
+
+    $('#NombreError').text("");
+    var txtTipoSalida = document.getElementById("tsal_Id");
+    var lblTipoSalida = txtTipoSalida.options[txtTipoSalida.selectedIndex].text;
+    var valTipoSalida = normalize(lblTipoSalida.toUpperCase());
+    var TipoSal = $("#tsal_Id").val()
     if (valTipoSalida == "PRESTAMO") {
+        //var elemento = document.getElementById("Prestamo");
+        //var reelemento = document.getElementById("Prestamo");
         $('#fact_Codigo').val('***-***-**-********');
         $('#tbFactura_fact_Codigo').val('***-***-**-********');
+        //elemento.classList.remove('toggle-content');
+        document.getElementById("tdev_Id").value = "0";
 
-        $('#sal_RazonDevolucion').val('*****');
+        //$('#sal_RazonDevolucion').val('*****'); 
         ///////////////////////////////////////
+        //elemento.classList.add('toggle-content.is-visible')
         $("#Prestamo").css("display", "block");
         ///////////////////////////////////////
+        //reelemento.classList.add('toggle-content')
         $("#VentaoDevolucion").css("display", "none");
         //BodegaDestino()
     }
@@ -72,7 +149,7 @@ function TipodeSalida() {
             if (fact_Codigo == '***-***-**-********') {
                 $('#fact_Codigo').val('')
             }
-            $('#sal_RazonDevolucion').val('*****');
+            document.getElementById("tdev_Id").value = "0";
             ///////////////////////////////////////
             $("#sal_BodDestino").empty();
             $("#VentaoDevolucion").css("display", "block");
@@ -88,7 +165,10 @@ function TipodeSalida() {
             $("#Prestamo").css("display", "none");
 
             if (valTipoSalida == "DEVOLUCION") {
-                $('#fact_Codigo').val('');
+                var fact_Codigo = $('#fact_Codigo').val();
+                if (fact_Codigo == '***-***-**-********') {
+                    $('#fact_Codigo').val('')
+                }
                 $('#sal_RazonDevolucion').val('');
                 $("#sal_BodDestino").empty();
                 $("#VentaoDevolucion").css("display", "block");
@@ -114,18 +194,19 @@ function validateMyFormEdit() {
 
     /////////
     //TipoSalida
-    var TSal = document.getElementById("tsal_Id");
-    var TipoSalida = TSal.options[TSal.selectedIndex].text;
+    var txtTipoSalida = document.getElementById("tsal_Id");
+    var lblTipoSalida = txtTipoSalida.options[txtTipoSalida.selectedIndex].text;
+    var TipoSalida = normalize(lblTipoSalida.toUpperCase());
     /////////
     var Fecha = $('#sal_FechaElaboracion').val();
 
     var BodDestino = $("#sal_BodDestino").val()
     var validacionFactura = $("#CodigoError").text()
-    var sal_RazonDevolucion = $("#sal_RazonDevolucion").val()
+    FacturaCodigoError = $("#FacturaCodigoError").text()
 
     var currentRow = $("#tblSalidaDetalle tbody tr");
     var Tabla = currentRow.find("td:eq(0)").text();
-    if (TipoSalida.startsWith("Seleccionar")) {
+    if (TipoSalida.startsWith("SELECCIONAR")) {
         $('#NombreError').text('');
         $('#validationtsal_Id').after('<ul id="NombreError" class="validation-summary-errors text-danger">Seleccione un tipo de salida</ul>');
         vTipoSalida = false;
@@ -133,7 +214,7 @@ function validateMyFormEdit() {
     else {
         $('#NombreError').text('');
         vTipoSalida = true;
-        if (TipoSalida == "Prestamo") {
+         if (TipoSalida == "PRESTAMO" || TipoSalida == "PRESTAMOS" || TipoSalida == "TRANSLADOS") {
             if (BodDestino == 'Seleccione una Bodega de Destino' || BodDestino == "") {
                 $('#sal_BodDestinoError').text('');
                 $('#validationsal_BodDestino').after('<ul id="sal_BodDestinoError" class="validation-summary-errors text-danger">Seleccione una bodega de Destino</ul>');
@@ -153,9 +234,9 @@ function validateMyFormEdit() {
             }
         }
         else {
-            if (TipoSalida == "Venta") {
-                validacionFactura = $("#CodigoError").text()
-                if (validacionFactura !== '') {
+             if (TipoSalida == "VENTA" || TipoSalida == "VENTAS") {
+
+                if (validacionFactura != "" || FacturaCodigoError != '') {
                     vFactura = false;
                     $('#fact_Codigo').focus()
 
@@ -171,8 +252,12 @@ function validateMyFormEdit() {
                 }
             }
             else {
-                if (TipoSalida == "DEVOLUCION") {
-                    if (validacionFactura !== 'Factura Disponible') {
+                if (TipoSalida == "DEVOLUCION" || TipoSalida == "DEVOLUCIONES") {
+                    //TipoSalida>Devolucion
+                    var tdev = document.getElementById("tdev_Id");
+                    var TipoSalida_tdev = tdev.options[tdev.selectedIndex].text;
+                    /////////
+                    if (validacionFactura != "" || FacturaCodigoError != '') {
                         $('#validationFactura').text('');
                         vDFactura = false;
                         $('#fact_Codigo').focus()
@@ -180,10 +265,10 @@ function validateMyFormEdit() {
                     else {
                         vDFactura = true;
                     }
-                    if (sal_RazonDevolucion == '') {
+                    if (TipoSalida_tdev.startsWith("Seleccionar")) {
                         $('#sal_RazonDevolucionError').text('');
                         $('#validationsal_RazonDevolucion').after('<ul id="sal_RazonDevolucionError" class="validation-summary-errors text-danger">Campo Requerido</ul>');
-                        $('#sal_RazonDevolucion').focus()
+                        $('#tdev_Id').focus()
                         vRazonDevolucion = false;
                     }
                     else {
@@ -262,6 +347,29 @@ $(document).ready(function () {
         });
 });
 
+
+$(document).ready(function () {
+    $('#tblBusquedaGenericaBox').DataTable(
+        {
+            "searching": true,
+            "lengthChange": true,
+            "responsive": true,
+            "oLanguage": {
+                "oPaginate": {
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior",
+                },
+                "sProcessing": "Procesando...",
+                "sLengthMenu": "Mostrar _MENU_ registros",
+                "sZeroRecords": "No se encontraron resultados",
+                "sEmptyTable": "No hay registros",
+                "sInfoEmpty": "Mostrando 0 de 0 Entradas",
+                "sSearch": "Buscar",
+                "sInfo": "Mostrando _START_ a _END_ Entradas",
+                "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+            }
+        });
+});
 
 
 function EditSalidaDetalles(sald_Id) {
@@ -447,6 +555,7 @@ function SeleccionProducto() {
                                 var idcontador = $(this).closest('tr').data('id');
                                 var cantfisica_anterior = $(this).closest("tr").find("td:eq(7)").text();
                                 var sumacantidades = parseInt(cantfisica_nueva) + parseInt(cantfisica_anterior);
+                                contador = contador + 1
 
                                 table.row.add([
                                     $('#prod_Codigo').val(),
@@ -457,12 +566,14 @@ function SeleccionProducto() {
                                     $('#pcat_Id').val(),
                                     $('#uni_Id').val(),
                                     sumacantidades,
-                                    '<button id = "removeSalidaDetalle" class= "btn btn-danger btn-xs eliminar" type = "button">Quitar</button>'
-
+                                    '<button id = "removeSalidaDetalle" class= "btn btn-danger btn-xs eliminar" type = "button">Quitar</button>',
+                                    contador
                                 ]).draw(false);
                             }
                         });
                     } else {
+                        contador = contador + 1
+
                         table.row.add([
                             $('#prod_Codigo').val(),
                             $('#prod_Descripcion').val(),
@@ -472,11 +583,13 @@ function SeleccionProducto() {
                             $('#pcat_Id').val(),
                             $('#uni_Id').val(),
                             $('#sald_Cantidad').val(),
-                            '<button id = "removeSalidaDetalle" class= "btn btn-danger btn-xs eliminar" type = "button">Quitar</button>'
-
+                            '<button id = "removeSalidaDetalle" class= "btn btn-danger btn-xs eliminar" type = "button">Quitar</button>',
+                            contador
                         ]).draw(false);
                     }
-                }).done(function (data) {
+                    }).done(function (data) {
+                        RejectUnload()
+                        console.log("Contador: "+contador)
                     $('#prod_Codigo').val('');
                     $('#prod_Descripcion').val('');
                     $('#pscat_Id').val('');
@@ -490,6 +603,7 @@ function SeleccionProducto() {
                     $('#CantidaExistenteProd').text('');
                     $('#prod_CodigoBarras').focus();
                     console.log('Hola');
+
                 });
             }
         });
@@ -679,7 +793,7 @@ function ProductoCantidad(bod_Id, prod_Codigo) {
             var currentRow = $("#tblSalidaDetalle tbody tr");
             //var DataTable = $("#tblSalidaDetalle >tbody >tr").DataTable();
             //$("#tblSalidaDetalle td").each(function () {
-            var prod_CodigoTabla = currentRow.find("td:eq(0)").text();
+            var prod_CodigoTabla = currentRow.find("td:eq(0)").text().trim();
             var idcontador = $(this).closest('tr').data('id');
             var cantfisica_anterior = $(this).closest("tr").find("td:eq(7)").text();
             console.log(prod_CodigoTabla)
@@ -736,6 +850,34 @@ function ProductoCantidad(bod_Id, prod_Codigo) {
 
 
 
+$(document).on("click", "#tblSalidaDetalle tbody tr td button#removeSalidaDetalle", function () {
+    
+    idItem = $(this).closest('tr').data('id');
+    var vprod_Codigo = $(this).closest("tr").find("td:eq(0)").text();
+    var tbSalidaDetalle = {
+        prod_Codigo: vprod_Codigo,
+        sald_UsuarioCrea: vprod_Codigo
+    };
+    var table = $('#tblSalidaDetalle').DataTable();
+    table
+        .row($(this).parents('tr'))
+        .remove()
+        .draw();
+    $.ajax({
+        url: "/Salida/RemoveSalidaDetalle",
+        method: "POST",
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({ SalidaDetalle: tbSalidaDetalle }),
+        success: function (data)
+        {
+           contador = contador - 1
+           console.log("Contador: " + contador)
+           RejectUnload()
+        }
+    });
+
+});
 
 
 

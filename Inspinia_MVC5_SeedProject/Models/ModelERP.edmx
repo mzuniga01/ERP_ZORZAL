@@ -2241,37 +2241,14 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_MovimientoCaja_Apertura'
             <PropertyRef Name="cja_Id" />
             <PropertyRef Name="cja_Descripcion" />
             <PropertyRef Name="suc_Descripcion" />
+            <PropertyRef Name="suc_Id" />
           </Key>
           <Property Name="mocja_Id" Type="int" Nullable="false" />
           <Property Name="solef_Id" Type="int" Nullable="false" />
           <Property Name="cja_Id" Type="smallint" Nullable="false" />
           <Property Name="cja_Descripcion" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="suc_Descripcion" Type="nvarchar" MaxLength="40" Nullable="false" />
-        </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_MovimientoCaja_Apertura_Detalles' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="UDV_Vent_MovimientoCaja_Apertura_Detalles">
-          <Key>
-            <PropertyRef Name="mocja_Id" />
-            <PropertyRef Name="mocja_UsuarioApertura" />
-            <PropertyRef Name="mnda_Abreviatura" />
-            <PropertyRef Name="mnda_Nombre" />
-            <PropertyRef Name="soled_CantidadEntregada" />
-            <PropertyRef Name="soled_CantidadSolicitada" />
-            <PropertyRef Name="soled_MontoEntregado" />
-            <PropertyRef Name="cja_Id" />
-            <PropertyRef Name="NOMBRES" />
-          </Key>
-          <Property Name="mocja_Id" Type="int" Nullable="false" />
-          <Property Name="mocja_FechaApertura" Type="datetime" />
-          <Property Name="mocja_UsuarioApertura" Type="int" Nullable="false" />
-          <Property Name="mnda_Abreviatura" Type="varchar" MaxLength="4" Nullable="false" />
-          <Property Name="mnda_Nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="soled_CantidadEntregada" Type="smallint" Nullable="false" />
-          <Property Name="soled_CantidadSolicitada" Type="smallint" Nullable="false" />
-          <Property Name="soled_MontoEntregado" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="cja_Id" Type="smallint" Nullable="false" />
-          <Property Name="NOMBRES" Type="varchar" MaxLength="301" Nullable="false" />
+          <Property Name="suc_Id" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_NotaCreditoPorFecha' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -5539,7 +5516,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <Parameter Name="emp_Identificacion" Type="nvarchar" Mode="In" />
           <Parameter Name="emp_Telefono" Type="nvarchar" Mode="In" />
           <Parameter Name="emp_Correoelectronico" Type="nvarchar" Mode="In" />
-          <Parameter Name="emp_TipoSangre" Type="char" Mode="In" />
+          <Parameter Name="emp_TipoSangre" Type="nvarchar" Mode="In" />
           <Parameter Name="emp_Puesto" Type="nvarchar" Mode="In" />
           <Parameter Name="emp_FechaIngreso" Type="date" Mode="In" />
           <Parameter Name="emp_Direccion" Type="nvarchar" Mode="In" />
@@ -5556,7 +5533,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <Parameter Name="emp_Identificacion" Type="nvarchar" Mode="In" />
           <Parameter Name="emp_Telefono" Type="nvarchar" Mode="In" />
           <Parameter Name="emp_Correoelectronico" Type="nvarchar" Mode="In" />
-          <Parameter Name="emp_TipoSangre" Type="char" Mode="In" />
+          <Parameter Name="emp_TipoSangre" Type="nvarchar" Mode="In" />
           <Parameter Name="emp_Puesto" Type="nvarchar" Mode="In" />
           <Parameter Name="emp_FechaIngreso" Type="date" Mode="In" />
           <Parameter Name="emp_Direccion" Type="nvarchar" Mode="In" />
@@ -6996,22 +6973,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
     [UDV_Vent_MovimientoCaja_Apertura].[solef_Id] AS [solef_Id], 
     [UDV_Vent_MovimientoCaja_Apertura].[cja_Id] AS [cja_Id], 
     [UDV_Vent_MovimientoCaja_Apertura].[cja_Descripcion] AS [cja_Descripcion], 
-    [UDV_Vent_MovimientoCaja_Apertura].[suc_Descripcion] AS [suc_Descripcion]
+    [UDV_Vent_MovimientoCaja_Apertura].[suc_Descripcion] AS [suc_Descripcion], 
+    [UDV_Vent_MovimientoCaja_Apertura].[suc_Id] AS [suc_Id]
     FROM [Vent].[UDV_Vent_MovimientoCaja_Apertura] AS [UDV_Vent_MovimientoCaja_Apertura]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="UDV_Vent_MovimientoCaja_Apertura_Detalles" EntityType="Self.UDV_Vent_MovimientoCaja_Apertura_Detalles" store:Type="Views" store:Schema="Vent">
-            <DefiningQuery>SELECT 
-    [UDV_Vent_MovimientoCaja_Apertura_Detalles].[mocja_Id] AS [mocja_Id], 
-    [UDV_Vent_MovimientoCaja_Apertura_Detalles].[mocja_FechaApertura] AS [mocja_FechaApertura], 
-    [UDV_Vent_MovimientoCaja_Apertura_Detalles].[mocja_UsuarioApertura] AS [mocja_UsuarioApertura], 
-    [UDV_Vent_MovimientoCaja_Apertura_Detalles].[mnda_Abreviatura] AS [mnda_Abreviatura], 
-    [UDV_Vent_MovimientoCaja_Apertura_Detalles].[mnda_Nombre] AS [mnda_Nombre], 
-    [UDV_Vent_MovimientoCaja_Apertura_Detalles].[soled_CantidadEntregada] AS [soled_CantidadEntregada], 
-    [UDV_Vent_MovimientoCaja_Apertura_Detalles].[soled_CantidadSolicitada] AS [soled_CantidadSolicitada], 
-    [UDV_Vent_MovimientoCaja_Apertura_Detalles].[soled_MontoEntregado] AS [soled_MontoEntregado], 
-    [UDV_Vent_MovimientoCaja_Apertura_Detalles].[cja_Id] AS [cja_Id], 
-    [UDV_Vent_MovimientoCaja_Apertura_Detalles].[NOMBRES] AS [NOMBRES]
-    FROM [Vent].[UDV_Vent_MovimientoCaja_Apertura_Detalles] AS [UDV_Vent_MovimientoCaja_Apertura_Detalles]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="UDV_Vent_NotaCreditoPorFecha" EntityType="Self.UDV_Vent_NotaCreditoPorFecha" store:Type="Views" store:Schema="Vent">
             <DefiningQuery>SELECT 
@@ -8522,28 +8486,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
             <Parameter Name="tent_UsuarioModifica" Mode="In" Type="Int32" />
             <Parameter Name="tent_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="UDP_Gral_tbEmpleados_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbEmpleados_Update_Result)">
-            <Parameter Name="emp_Id" Mode="In" Type="Int16" />
-            <Parameter Name="emp_Nombres" Mode="In" Type="String" />
-            <Parameter Name="emp_Apellidos" Mode="In" Type="String" />
-            <Parameter Name="emp_Sexo" Mode="In" Type="String" />
-            <Parameter Name="emp_FechaNacimiento" Mode="In" Type="DateTime" />
-            <Parameter Name="tpi_Id" Mode="In" Type="Byte" />
-            <Parameter Name="emp_Identificacion" Mode="In" Type="String" />
-            <Parameter Name="emp_Telefono" Mode="In" Type="String" />
-            <Parameter Name="emp_Correoelectronico" Mode="In" Type="String" />
-            <Parameter Name="emp_TipoSangre" Mode="In" Type="String" />
-            <Parameter Name="emp_Puesto" Mode="In" Type="String" />
-            <Parameter Name="emp_FechaIngreso" Mode="In" Type="DateTime" />
-            <Parameter Name="emp_Direccion" Mode="In" Type="String" />
-            <Parameter Name="emp_RazonInactivacion" Mode="In" Type="String" />
-            <Parameter Name="emp_UsuarioCrea" Mode="In" Type="Int32" />
-            <Parameter Name="emp_FechaCrea" Mode="In" Type="DateTime" />
-            <Parameter Name="emp_RazonSalida" Mode="In" Type="String" />
-            <Parameter Name="emp_fechaSalida" Mode="In" Type="DateTime" />
-            <Parameter Name="emp_UsuarioModifica" Mode="In" Type="Int32" />
-            <Parameter Name="emp_FechaModifica" Mode="In" Type="DateTime" />
-          </FunctionImport>
           <FunctionImport Name="SDP_tbEmpleado_Select" ReturnType="Collection(ERP_ZORZALModel.SDP_tbEmpleado_Select_Result)" />
           <FunctionImport Name="UDP_Inv_tbBodega_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbBodega_Insert_Result)">
             <Parameter Name="bod_Nombre" Mode="In" Type="String" />
@@ -8572,22 +8514,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
             <Parameter Name="pcat_FechaCrea" Mode="In" Type="DateTime" />
             <Parameter Name="pcat_UsuarioModifica" Mode="In" Type="Int32" />
             <Parameter Name="pcat_FechaModifica" Mode="In" Type="DateTime" />
-          </FunctionImport>
-          <FunctionImport Name="UDP_Gral_tbEmpleados_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbEmpleados_Insert_Result)">
-            <Parameter Name="emp_Nombres" Mode="In" Type="String" />
-            <Parameter Name="emp_Apellidos" Mode="In" Type="String" />
-            <Parameter Name="emp_Sexo" Mode="In" Type="String" />
-            <Parameter Name="emp_FechaNacimiento" Mode="In" Type="DateTime" />
-            <Parameter Name="tpi_Id" Mode="In" Type="Byte" />
-            <Parameter Name="emp_Identificacion" Mode="In" Type="String" />
-            <Parameter Name="emp_Telefono" Mode="In" Type="String" />
-            <Parameter Name="emp_Correoelectronico" Mode="In" Type="String" />
-            <Parameter Name="emp_TipoSangre" Mode="In" Type="String" />
-            <Parameter Name="emp_Puesto" Mode="In" Type="String" />
-            <Parameter Name="emp_FechaIngreso" Mode="In" Type="DateTime" />
-            <Parameter Name="emp_Direccion" Mode="In" Type="String" />
-            <Parameter Name="emp_UsuarioCrea" Mode="In" Type="Int32" />
-            <Parameter Name="emp_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="UDP_Gral_tbUnidadMedida_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbUnidadMedida_Insert_Result)">
             <Parameter Name="uni_Descripcion" Mode="In" Type="String" />
@@ -9067,7 +8993,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <EntitySet Name="UDV_Vent_InventarioNumeraciones" EntityType="ERP_ZORZALModel.UDV_Vent_InventarioNumeraciones" />
           <EntitySet Name="UDV_Vent_ListadodePrecios" EntityType="ERP_ZORZALModel.UDV_Vent_ListadodePrecios" />
           <EntitySet Name="UDV_Vent_MovimientoCaja_Apertura" EntityType="ERP_ZORZALModel.UDV_Vent_MovimientoCaja_Apertura" />
-          <EntitySet Name="UDV_Vent_MovimientoCaja_Apertura_Detalles" EntityType="ERP_ZORZALModel.UDV_Vent_MovimientoCaja_Apertura_Detalles" />
           <EntitySet Name="UDV_Vent_NotaCreditoPorFecha" EntityType="ERP_ZORZALModel.UDV_Vent_NotaCreditoPorFecha" />
           <EntitySet Name="UDV_Vent_PagosPorFechas" EntityType="ERP_ZORZALModel.UDV_Vent_PagosPorFechas" />
           <EntitySet Name="UDV_Vent_Pedido_EntreFechas" EntityType="ERP_ZORZALModel.UDV_Vent_Pedido_EntreFechas" />
@@ -10051,6 +9976,44 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
             <Parameter Name="entd_UsuarioModifica" Mode="In" Type="Int32" />
             <Parameter Name="entd_FechaModifica" Mode="In" Type="DateTime" />
           </FunctionImport>
+          <FunctionImport Name="UDP_Gral_tbEmpleados_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbEmpleados_Insert_Result)">
+            <Parameter Name="emp_Nombres" Mode="In" Type="String" />
+            <Parameter Name="emp_Apellidos" Mode="In" Type="String" />
+            <Parameter Name="emp_Sexo" Mode="In" Type="String" />
+            <Parameter Name="emp_FechaNacimiento" Mode="In" Type="DateTime" />
+            <Parameter Name="tpi_Id" Mode="In" Type="Byte" />
+            <Parameter Name="emp_Identificacion" Mode="In" Type="String" />
+            <Parameter Name="emp_Telefono" Mode="In" Type="String" />
+            <Parameter Name="emp_Correoelectronico" Mode="In" Type="String" />
+            <Parameter Name="emp_TipoSangre" Mode="In" Type="String" />
+            <Parameter Name="emp_Puesto" Mode="In" Type="String" />
+            <Parameter Name="emp_FechaIngreso" Mode="In" Type="DateTime" />
+            <Parameter Name="emp_Direccion" Mode="In" Type="String" />
+            <Parameter Name="emp_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="emp_FechaCrea" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="UDP_Gral_tbEmpleados_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Gral_tbEmpleados_Update_Result)">
+            <Parameter Name="emp_Id" Mode="In" Type="Int16" />
+            <Parameter Name="emp_Nombres" Mode="In" Type="String" />
+            <Parameter Name="emp_Apellidos" Mode="In" Type="String" />
+            <Parameter Name="emp_Sexo" Mode="In" Type="String" />
+            <Parameter Name="emp_FechaNacimiento" Mode="In" Type="DateTime" />
+            <Parameter Name="tpi_Id" Mode="In" Type="Byte" />
+            <Parameter Name="emp_Identificacion" Mode="In" Type="String" />
+            <Parameter Name="emp_Telefono" Mode="In" Type="String" />
+            <Parameter Name="emp_Correoelectronico" Mode="In" Type="String" />
+            <Parameter Name="emp_TipoSangre" Mode="In" Type="String" />
+            <Parameter Name="emp_Puesto" Mode="In" Type="String" />
+            <Parameter Name="emp_FechaIngreso" Mode="In" Type="DateTime" />
+            <Parameter Name="emp_Direccion" Mode="In" Type="String" />
+            <Parameter Name="emp_RazonInactivacion" Mode="In" Type="String" />
+            <Parameter Name="emp_UsuarioCrea" Mode="In" Type="Int32" />
+            <Parameter Name="emp_FechaCrea" Mode="In" Type="DateTime" />
+            <Parameter Name="emp_RazonSalida" Mode="In" Type="String" />
+            <Parameter Name="emp_fechaSalida" Mode="In" Type="DateTime" />
+            <Parameter Name="emp_UsuarioModifica" Mode="In" Type="Int32" />
+            <Parameter Name="emp_FechaModifica" Mode="In" Type="DateTime" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
           <Key>
@@ -10473,9 +10436,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
         <ComplexType Name="UDP_Inv_tbTipoEntrada_Update_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
-        <ComplexType Name="UDP_Gral_tbEmpleados_Update_Result">
-          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-        </ComplexType>
         <ComplexType Name="SDP_tbEmpleado_Select_Result">
           <Property Type="Int16" Name="emp_Id" Nullable="false" />
           <Property Type="String" Name="emp_Nombres" Nullable="false" MaxLength="100" />
@@ -10509,9 +10469,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
         <ComplexType Name="UDP_Inv_tbProductoCategoria_Update_Result">
-          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-        </ComplexType>
-        <ComplexType Name="UDP_Gral_tbEmpleados_Insert_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
         <ComplexType Name="UDP_Gral_tbUnidadMedida_Insert_Result">
@@ -13325,35 +13282,14 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
             <PropertyRef Name="cja_Id" />
             <PropertyRef Name="cja_Descripcion" />
             <PropertyRef Name="suc_Descripcion" />
+            <PropertyRef Name="suc_Id" />
           </Key>
           <Property Name="mocja_Id" Type="Int32" Nullable="false" />
           <Property Name="solef_Id" Type="Int32" Nullable="false" />
           <Property Name="cja_Id" Type="Int16" Nullable="false" />
           <Property Name="cja_Descripcion" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="suc_Descripcion" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="UDV_Vent_MovimientoCaja_Apertura_Detalles">
-          <Key>
-            <PropertyRef Name="mocja_Id" />
-            <PropertyRef Name="mocja_UsuarioApertura" />
-            <PropertyRef Name="mnda_Abreviatura" />
-            <PropertyRef Name="mnda_Nombre" />
-            <PropertyRef Name="soled_CantidadEntregada" />
-            <PropertyRef Name="soled_CantidadSolicitada" />
-            <PropertyRef Name="soled_MontoEntregado" />
-            <PropertyRef Name="cja_Id" />
-            <PropertyRef Name="NOMBRES" />
-          </Key>
-          <Property Name="mocja_Id" Type="Int32" Nullable="false" />
-          <Property Name="mocja_FechaApertura" Type="DateTime" Precision="3" />
-          <Property Name="mocja_UsuarioApertura" Type="Int32" Nullable="false" />
-          <Property Name="mnda_Abreviatura" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Name="mnda_Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="soled_CantidadEntregada" Type="Int16" Nullable="false" />
-          <Property Name="soled_CantidadSolicitada" Type="Int16" Nullable="false" />
-          <Property Name="soled_MontoEntregado" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <Property Name="cja_Id" Type="Int16" Nullable="false" />
-          <Property Name="NOMBRES" Type="String" Nullable="false" MaxLength="301" FixedLength="false" Unicode="false" />
+          <Property Name="suc_Id" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="UDV_Vent_NotaCreditoPorFecha">
           <Key>
@@ -16472,6 +16408,12 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
         <ComplexType Name="UDP_Inv_tbEntradaDetalle_Insert_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
         </ComplexType>
+        <ComplexType Name="UDP_Gral_tbEmpleados_Insert_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="UDP_Gral_tbEmpleados_Update_Result">
+          <Property Type="String" Name="MensajeError" Nullable="false" MaxLength="2" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -17129,13 +17071,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Gral_tbEmpleados_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbEmpleados_Update" >
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbEmpleados_Update_Result">
-                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SDP_tbEmpleado_Select" FunctionName="ERP_ZORZALModel.Store.SDP_tbEmpleado_Select">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.SDP_tbEmpleado_Select_Result">
@@ -17187,13 +17122,6 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <FunctionImportMapping FunctionImportName="UDP_Inv_tbProductoCategoria_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProductoCategoria_Update" >
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbProductoCategoria_Update_Result">
-                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Gral_tbEmpleados_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbEmpleados_Insert" >
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbEmpleados_Insert_Result">
                 <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
               </ComplexTypeMapping>
             </ResultMapping>
@@ -19496,26 +19424,11 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <EntitySetMapping Name="UDV_Vent_MovimientoCaja_Apertura">
             <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Vent_MovimientoCaja_Apertura">
               <MappingFragment StoreEntitySet="UDV_Vent_MovimientoCaja_Apertura">
+                <ScalarProperty Name="suc_Id" ColumnName="suc_Id" />
                 <ScalarProperty Name="suc_Descripcion" ColumnName="suc_Descripcion" />
                 <ScalarProperty Name="cja_Descripcion" ColumnName="cja_Descripcion" />
                 <ScalarProperty Name="cja_Id" ColumnName="cja_Id" />
                 <ScalarProperty Name="solef_Id" ColumnName="solef_Id" />
-                <ScalarProperty Name="mocja_Id" ColumnName="mocja_Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UDV_Vent_MovimientoCaja_Apertura_Detalles">
-            <EntityTypeMapping TypeName="ERP_ZORZALModel.UDV_Vent_MovimientoCaja_Apertura_Detalles">
-              <MappingFragment StoreEntitySet="UDV_Vent_MovimientoCaja_Apertura_Detalles">
-                <ScalarProperty Name="NOMBRES" ColumnName="NOMBRES" />
-                <ScalarProperty Name="cja_Id" ColumnName="cja_Id" />
-                <ScalarProperty Name="soled_MontoEntregado" ColumnName="soled_MontoEntregado" />
-                <ScalarProperty Name="soled_CantidadSolicitada" ColumnName="soled_CantidadSolicitada" />
-                <ScalarProperty Name="soled_CantidadEntregada" ColumnName="soled_CantidadEntregada" />
-                <ScalarProperty Name="mnda_Nombre" ColumnName="mnda_Nombre" />
-                <ScalarProperty Name="mnda_Abreviatura" ColumnName="mnda_Abreviatura" />
-                <ScalarProperty Name="mocja_UsuarioApertura" ColumnName="mocja_UsuarioApertura" />
-                <ScalarProperty Name="mocja_FechaApertura" ColumnName="mocja_FechaApertura" />
                 <ScalarProperty Name="mocja_Id" ColumnName="mocja_Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -19753,6 +19666,20 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
           <FunctionImportMapping FunctionImportName="UDP_Inv_tbEntradaDetalle_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbEntradaDetalle_Update" >
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_tbEntradaDetalle_Update_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Gral_tbEmpleados_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbEmpleados_Insert" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbEmpleados_Insert_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Gral_tbEmpleados_Update" FunctionName="ERP_ZORZALModel.Store.UDP_Gral_tbEmpleados_Update" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Gral_tbEmpleados_Update_Result">
                 <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
               </ComplexTypeMapping>
             </ResultMapping>

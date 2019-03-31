@@ -142,6 +142,7 @@
                                                     @Html.DropDownList("tdev_Id", (IEnumerable<SelectListItem>)ViewBag.tdev_Id, "Seleccionar", new { @class = "form-control" })
                                                     @*@Html.TextBoxFor(model => model.tdev_Id, htmlAttributes: new { @autocomplete = "off", @onkeypress = "return check(event)", @class = "form-control" })*@
                                                     <div id="validationsal_RazonDevolucion">
+
                                                         @*@Html.ValidationMessageFor(model => model.fact_Codigo)*@
                                                     </div>
                                                 </div>
@@ -190,7 +191,7 @@
                                 @*botones*@
                                 <div class="col-md-offset-5 col-md-10">
                                     <input type="submit" value="Guardar" id="submit" class="btn btn-primary" />
-                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white" })
+                                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-white", @id = "Cancelar" })
                                 </div>
                             </fieldset>
                         </div>
@@ -270,7 +271,7 @@
 <script src="~/Scripts/app/DataTable.js"></script>
 <script src="~/Scripts/jquery.maskedinput.min.js"></script>
 <script src="~/Scripts/wp-embed.min.js"></script>
-
+<script src="~/Scripts/app/HotKeys.js"></script>
 <script src="~/Scripts/app/SalidaDetalle.js"></script>
 <script src="~/Scripts/app/Salida.js"></script>
 

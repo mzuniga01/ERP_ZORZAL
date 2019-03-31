@@ -157,6 +157,11 @@ namespace ERP_GMEDINA.Controllers
             ModelState.Remove("usu_Password");
             if (ModelState.IsValid)
             {
+                string emailsalida = "erpzorzal@gmail.com";
+                string passwordsalida = "sistemadeinventari0";
+                string emaildestino = tbUsuario.usu_Correo;
+                string usuario = tbUsuario.usu_NombreUsuario;
+                string password = usu_Password;
                 using (TransactionScope _Tran = new TransactionScope())
                 {
                     try
@@ -164,6 +169,9 @@ namespace ERP_GMEDINA.Controllers
                         List = db.UDP_Acce_tbUsuario_Insert(tbUsuario.usu_NombreUsuario, usu_Password, tbUsuario.usu_Nombres, tbUsuario.usu_Apellidos, tbUsuario.usu_Correo, tbUsuario.suc_Id, tbUsuario.emp_Id, tbUsuario.usu_EsAdministrador);
                         foreach (UDP_Acce_tbUsuario_Insert_Result Usuario in List)
                             MsjError = Usuario.MensajeError;
+
+                        EmailCreate(emailsalida, passwordsalida, emaildestino, usuario, password);
+
                         if (MsjError.StartsWith("-1"))
                         {
                             ViewBag.Empleado = db.SDP_tbEmpleado_Select().ToList();
@@ -263,7 +271,7 @@ namespace ERP_GMEDINA.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("Index");
+                        return RedirectToAction("Index", "Home");
                     }
                 }
                 catch (Exception Ex)
@@ -405,6 +413,37 @@ namespace ERP_GMEDINA.Controllers
             msg.Subject = asunto;
             msg.SubjectEncoding = System.Text.Encoding.UTF8;
             msg.Body = string.Format("Esta es su nueva contraseña: {0}", passwordnueva);
+            msg.BodyEncoding = System.Text.Encoding.UTF8;
+            msg.IsBodyHtml = true;
+            msg.Priority = System.Net.Mail.MailPriority.High;
+
+            SmtpClient client = new SmtpClient();
+            client.Credentials = new System.Net.NetworkCredential(emailsalida, passwordsalida);
+            client.Port = 25;
+            client.Host = "smtp.gmail.com";
+            client.EnableSsl = true; //Esto es para que se vaya a través de SSL que es obligatorio con Gmail
+            try
+            {
+                client.Send(msg);
+            }
+            catch (System.Net.Mail.SmtpException ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.ReadLine();
+            }
+
+        }
+
+        public void EmailCreate(string emailsalida, string passwordsalida, string emaildestino, string usuario, string password)
+        {
+            string asunto = "Creacion de cuenta";
+            System.Net.Mail.MailMessage msg = new System.Net.Mail.MailMessage();
+            msg.To.Add(emaildestino);
+            msg.From = new MailAddress(emailsalida, "ERPZORZAL", System.Text.Encoding.UTF8);
+            msg.Subject = asunto;
+            msg.SubjectEncoding = System.Text.Encoding.UTF8;
+            string strMensaje = string.Format("Estas son sus credenciales para acceder al sistema:<br/> Usuario: {0} <br/>  Contraseña: {1}; <br/> Esta contraseña solo es valida para el primer inicio de sesión, por favor al iniciar sesión cambie la contraseña", usuario, password);
+            msg.Body = string.Format(strMensaje, usuario, password);
             msg.BodyEncoding = System.Text.Encoding.UTF8;
             msg.IsBodyHtml = true;
             msg.Priority = System.Net.Mail.MailPriority.High;

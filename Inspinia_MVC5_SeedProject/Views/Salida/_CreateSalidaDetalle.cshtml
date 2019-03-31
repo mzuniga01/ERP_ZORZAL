@@ -20,22 +20,27 @@
 
                         </div>
                         @*<div class="col-md-1">
-            <button type="button" id="Productos" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
-        </div>*@
+                                <button type="button" id="Productos" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+                            </div>*@
                         <div class="col-md-1">
-                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalAgregarProducto"><span class="glyphicon glyphicon-search"></span></button>
+                            <button id="SelectProduct" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalAgregarProducto"><span class="glyphicon glyphicon-search"></span></button>
                         </div>
-                        @Html.LabelFor(model => model.prod_Codigo, "Producto", new { @class = "control-label col-md-1" })
+                        @Html.LabelFor(model => model.tbProducto.prod_Codigo, "Producto", new { @class = "control-label col-md-1" })
                         <div class="col-md-3">
                             <input type="text" id="prod_Codigo" placeholder="" class="form-control" readonly />
                             <div id="validationcodigoproducto">
                                 @Html.ValidationMessageFor(model => model.prod_Codigo)
                             </div>
+                           
+
                         </div>
-                        <div class="col-md-1">
-                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalAgregarBox"><span class="glyphicon glyphicon-search"></span></button>
+                         <div class="col-md-1">
+
+                                <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Agregar Caja.">
+                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalAgregarBox"><span class="glyphicon glyphicon-search"></span></button>
+                                </span>
+                            </div>
                         </div>
-                    </div>
                     <div class="form-group">
                         @Html.LabelFor(model => model.tbProducto.prod_Descripcion, "Descripcion", new { @class = "control-label col-md-2" })
                         <div class="col-md-4">
@@ -72,7 +77,7 @@
                             </div>
                         </div>
                         <div class="form-group col-md-1">
-                           
+                            
                             <button class="btn btn-primary btn-sm" type="button" id="AgregarSalidaDetalle">Agregar</button>
                         </div>
                     </div>
@@ -105,6 +110,9 @@
                                     @Html.DisplayNameFor(model => model.sald_Cantidad)
                                 </th>
                                 <th>Acciones</th>
+                                <th>
+                                   Contador
+                                </th>
                             </tr>
                         </thead>
                         <tbody></tbody>
@@ -136,7 +144,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title" id="frmBuscarProducto">Buscar Productos</h4>
+                <h4 class="modal-title" id="frmBuscarProducto">Seleccione una Caja</h4>
                 @Html.Partial("_SeleccionaBox", (List<ERP_GMEDINA.Models.tbBox>)ViewBag.Box)
             </div>
         </div>

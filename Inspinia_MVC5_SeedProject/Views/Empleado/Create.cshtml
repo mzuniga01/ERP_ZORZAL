@@ -82,7 +82,7 @@
 
                                 @Html.LabelFor(model => model.emp_FechaNacimiento, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.emp_FechaNacimiento, "{0:yyyy-mm-dd }", new { HtmlAttribute = new { @id = "emp_FechaNacimiento" } })
+                                    @Html.EditorFor(model => model.emp_FechaNacimiento,  "{0:yyyy-mm-dd }", new { HtmlAttribute = new { @id = "emp_FechaNacimiento", @autocomplete = "off" } })
                                     <p style="color:red">@Html.ValidationMessageFor(model => model.emp_FechaNacimiento)</p>
                                 </div>
                             </div>
@@ -99,7 +99,7 @@
 
                                 @Html.LabelFor(model => model.emp_Identificacion, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    @Html.TextBoxFor(model => model.emp_Identificacion,  new { @class = "form-control", onblur = "limpiaIdentificacion()", id = "emp_Identificacion", MaxLength = 14 })
+                                    @Html.TextBoxFor(model => model.emp_Identificacion,  new { @class = "form-control", onblur = "limpiaIdentificacion()", id = "emp_Identificacion", MaxLength = 14, @autocomplete = "off" })
                                     <div id="ValidacionIdentificacion">
                                         <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_Identificacion)</p>
                                     </div>
@@ -111,7 +111,8 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.emp_Telefono, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    <input type="text" class="form-control" placeholder="(Código área) 9999 9999" name="emp_Telefono" id="emp_Telefono" onkeypress="telefonoValidacion(event) " maxlength="25"/>                                      
+                                    @*<input type="text" class="form-control" placeholder="(Código área) 9999 9999" name="emp_Telefono" id="emp_Telefono" onkeypress="telefonoValidacion(event) " maxlength="25" autocomplete="off"/>*@
+                                    @Html.EditorFor(model => model.emp_Telefono,new {HtmlAttribute = new { @onkeypress= "return telefonoValidacion(event)" , @maxlength = 25 , @Placeholder = "(Codigo Areá) Telefono", @autocomplete = "off" } })
                                     <div id="ValidacionTelefono" style="color:red">
                                          @Html.ValidationMessageFor(model => model.emp_Telefono)
                                     </div>
@@ -120,7 +121,7 @@
 
                                 @Html.LabelFor(model => model.emp_Correoelectronico, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    @Html.TextBoxFor(model => model.emp_Correoelectronico, new { @class = "form-control", maxlength = 50 })
+                                    @Html.TextBoxFor(model => model.emp_Correoelectronico, new { @class = "form-control", maxlength = 50, @autocomplete = "off" })
                                     <div id="MessageForCorreo">
                                         <p style="color:red"> @Html.ValidationMessageFor(model => model.emp_Correoelectronico)</p>
                                     </div>
@@ -152,26 +153,26 @@
 
                                 @Html.LabelFor(model => model.emp_Puesto, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.emp_Puesto, new { htmlAttributes = new { @class = "MayusText", @onkeypress = "return soloLetras(event)" ,  MaxLength = 50 } })
+                                    @Html.EditorFor(model => model.emp_Puesto, new { htmlAttributes = new { @class = "MayusText", @onkeypress = "return soloLetras(event)" ,  MaxLength = 50, @autocomplete = "off" } })
                                     <p style="color:red">
                                         @Html.ValidationMessageFor(model => model.emp_Puesto)
                                     </p>
                                 </div>
                             </div>
                             <div class="form-group">
-                                @Html.LabelFor(model => model.emp_FechaIngreso, new { @class = "control-label col-md-2 , required" })
-                                <div class="col-md-4">
-                                    @Html.EditorFor(model => model.emp_FechaIngreso, "{0:yyyy-mm-dd}", new { HtmlAttribute = new { @id = "emp_FechaIngreso", @readonly = "readonly" } })
-                                    <p style="color:red">@Html.ValidationMessageFor(model => model.emp_FechaIngreso)</p>
-                                </div>
+                               @Html.LabelFor(model => model.emp_FechaIngreso, new { @class = "control-label col-md-2 , required" })
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.emp_FechaIngreso, "{0:yyyy-mm-dd }", new { HtmlAttribute = new { @id = "emp_FechaIngreso", @autocomplete = "off" } })
+                                <p style="color:red">@Html.ValidationMessageFor(model => model.emp_FechaIngreso)</p>
+                            </div>
 
                                 @Html.LabelFor(model => model.emp_Direccion, new { @class = "control-label col-md-2 , required" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.emp_Direccion, new { htmlAttributes = new { @onkeypress = "return Direccion(event)", MaxLength = 250 } })
+                                    @Html.EditorFor(model => model.emp_Direccion, new { htmlAttributes = new { @onkeypress = "return Direccion(event)", MaxLength = 250, @autocomplete = "off"  } })
                                     <p style="color:red">
                                         @Html.ValidationMessageFor(model => model.emp_Direccion)
                                     </p>
-                                </div>
+                                </div>                                
                             </div>
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">

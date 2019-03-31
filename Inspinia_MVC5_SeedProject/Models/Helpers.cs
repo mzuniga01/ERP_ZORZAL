@@ -108,12 +108,13 @@ namespace ERP_GMEDINA.Models
 
         //Estado Box
         public const int vbox_Abrierta = 1;
-        
+
         public const int vbox_Cerrada = 2;
-        
+
         public const string box_Abrierta = "Abrierta";
-        
+
         public const string box_Cerrada = "Cerrada";
+
 
 
     }

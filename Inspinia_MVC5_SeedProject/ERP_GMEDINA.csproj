@@ -1021,9 +1021,6 @@
     <Compile Include="Models\UDV_Vent_MovimientoCaja_Apertura.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\UDV_Vent_MovimientoCaja_Apertura_Detalles.cs">
-      <DependentUpon>ModelERP.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\UDV_Vent_NotaCreditoPorFecha.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>

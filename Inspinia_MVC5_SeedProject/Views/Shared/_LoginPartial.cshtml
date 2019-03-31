@@ -2,11 +2,13 @@
 @using ERP_GMEDINA.Models
 @{
     string UserName = "";
+    int UserId = 0;
     GeneralFunctions Login = new GeneralFunctions();
     List<tbUsuario> User = Login.getUserInformation();
     foreach (tbUsuario Usuario in User)
     {
         UserName = Usuario.usu_Nombres + " " + Usuario.usu_Apellidos;
+        UserId = Usuario.usu_Id;
     }
 }
 
@@ -28,7 +30,21 @@
 else
 {
     <ul class="nav navbar-top-links navbar-right">
-        <li>@Html.ActionLink(@UserName, "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink"})</li>
-        <li>@Html.ActionLink("Cerrar Sesión", "CerrarSesion", "Login", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        <li class="dropdown">
+          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            @UserName
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <li>
+                  @Html.ActionLink("Modificar Cuenta", "ModificarCuenta", "Usuario", routeValues: new { id = UserId }, htmlAttributes: new { id = "ModAccountLink" })
+              </li>
+              <li>
+                  @Html.ActionLink("Modificar Contraseña", "ModificarPass", "Usuario", routeValues: new { id = UserId }, htmlAttributes: new { id = "ModPass" })
+              </li>
+          </ul>
+        </li>
+
+    <li>@Html.ActionLink("Cerrar Sesión", "CerrarSesion", "Login", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
     </ul>
 }

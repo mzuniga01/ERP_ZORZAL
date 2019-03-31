@@ -23,15 +23,25 @@ namespace ERP_GMEDINA.Controllers
         [SessionManager("Salida/Index")]
         public ActionResult Index()
         {
+            //IEnumerable<int, string> TipoSalida = new IEnumerable<int, string>();
             ViewBag.tsal_Id = new SelectList(db.tbTipoSalida, "tsal_Id", "tsal_Descripcion");
+            ViewBag.tsal_Id = new { DataValueField = 0, DataTextField = "Todas" };
             ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
 
             ViewBag.estm_Id = new SelectList(db.tbEstadoMovimiento, "estm_Id", "estm_Descripcion");
             ViewBag.tsal_Id = new SelectList(db.tbTipoSalida, "tsal_Id", "tsal_Descripcion");
-            var tbsalida = db.tbSalida;
-            return View(tbsalida.ToList());
+            var User = Usuario();
+            var tbSalida = db.tbSalida.Where(x => x.sal_UsuarioCrea == User);
+            return View(tbSalida.ToList());
         }
 
+
+        public JsonResult GetLastRecord()
+        {
+            //var lastRecord = db.Set<tbSalida>().OrderByDescending(x => x.sal_Id).First().sal_Id;
+            var lastRecord = db.tbSalida.OrderByDescending(x => x.sal_Id).First().sal_Id;
+            return Json(lastRecord, JsonRequestBehavior.AllowGet);
+        }
         //[WebMethod]
         //public static object GetProductoList(int bod_Id)
         //{
@@ -81,7 +91,7 @@ namespace ERP_GMEDINA.Controllers
                 List<tbUsuario> User = Function.getUserInformation();
                 foreach (tbUsuario Usuario in User)
                 {
-                    idUser = Convert.ToInt32(Usuario.emp_Id);
+                    idUser = Convert.ToInt32(Usuario.usu_Id);
 
                 }
                 return idUser;
@@ -93,6 +103,25 @@ namespace ERP_GMEDINA.Controllers
             }
         }
 
+        public int Empleado()
+        {
+            int idEmp = 0;
+            try
+            {
+                List<tbUsuario> User = Function.getUserInformation();
+                foreach (tbUsuario Usuario in User)
+                {
+                    idEmp = Convert.ToInt32(Usuario.emp_Id);
+
+                }
+                return idEmp;
+            }
+            catch (Exception Ex)
+            {
+                Ex.Message.ToString();
+                return 0;
+            }
+        }
         //public ActionResult GenerarReporte(tbSalida tbSalida, string FechaElaboracion)
         //{
         //    ReportDocument rd = new ReportDocument();
@@ -207,7 +236,7 @@ namespace ERP_GMEDINA.Controllers
             try
             {
                 Session["SalidaDetalle"] = null;
-                int idUser = Usuario();
+                int idUser = Empleado();
                 var vbod_Id = (from bodega in db.tbBodega where bodega.bod_ResponsableBodega == idUser select new { bodId = bodega.bod_Id, bod_Nombre = bodega.bod_Nombre }).FirstOrDefault();
                 ViewBag.BodegaSelec = vbod_Id.bod_Nombre;
                 ViewBag.bod_Id = vbod_Id.bodId;
@@ -219,7 +248,9 @@ namespace ERP_GMEDINA.Controllers
                 ViewBag.Factura = db.tbFactura.Where(x => x.fact_EsAnulada != Helpers.fact_EsAnulada && x.esfac_Id == Helpers.esfac_Pagada || x.esfac_Id == Helpers.esfac_PagoPendiente).ToList();
                 ViewBag.Producto = db.tbBodegaDetalle.Where(x => x.bod_Id == vbod_Id.bodId && x.bodd_CantidadExistente > x.bodd_CantidadMinima).ToList();
                 //ViewBag.Box = (from Box in db.tbBox where !db.tbSalidaDetalle.Any(es => (es.box_Codigo == Box.box_Codigo))).ToList();
-                ViewBag.Box = db.tbBox.Where(s => !db.tbSalidaDetalle.Where(es => es.box_Codigo == s.box_Codigo).Any()).ToList();
+                ViewBag.Box = db.tbBox.Where(s => !db.tbSalidaDetalle.Where(es => es.box_Codigo == s.box_Codigo && db.tbSalida.Where(sd => sd.sal_Id == es.sal_Id && sd.estm_Id == Helpers.sal_Aplicada).Any()).Any()).ToList();
+                //ViewBag.BoxD = db.tbBox.Where(s => db.tbSalidaDetalle.Where(es => es.box_Codigo == s.box_Codigo && db.tbSalida.Where(sd => sd.sal_Id == es.sal_Id && sd.estm_Id == Helpers.sal_Aplicada).Any()).Any()).ToList();
+
                 ViewBag.tdev_Id = new SelectList(db.tbTipoDevolucion, "tdev_Id", "tdev_Descripcion");
                 return View();
             }
@@ -236,9 +267,9 @@ namespace ERP_GMEDINA.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [SessionManager("Salida/Create")]
-        public ActionResult Create([Bind(Include = "bod_Id,fact_Id,fact_Codigo,sal_FechaElaboracion,estm_Id,tsal_Id,tdev_Id, sal_BodDestino, sal_EsAnulada, sal_RazonAnulada")] tbSalida tbSalida)
+        public ActionResult Create([Bind(Include = "bod_Id,fact_Id,fact_Codigo,sal_FechaElaboracion,estm_Id,tsal_Id,tdev_Id, sal_BodDestino, sal_EsAnulada, sal_RazonAnulada,vSalidaDetalle")] tbSalida tbSalida)
         {
-            int idUser = Usuario();
+            int idUser = Empleado();
             var vbod_Id = (from bodega in db.tbBodega where bodega.bod_ResponsableBodega == idUser select new { bodId = bodega.bod_Id, bod_Nombre = bodega.bod_Nombre }).FirstOrDefault();
             try
             {
@@ -251,9 +282,9 @@ namespace ERP_GMEDINA.Controllers
                 ViewBag.prod_Codigo = new SelectList(db.tbProducto, "prod_Codigo", "prod_Descripcion");
                 ViewBag.sal_BodDestino = new SelectList(db.tbBodega.Where(x => x.bod_Id != vbod_Id.bodId), "bod_Id", "bod_Nombre");
                 ViewBag.tdev_Id = new SelectList(db.tbTipoDevolucion, "tdev_Id", "tdev_Descripcion");
-
+                ViewBag.Box = db.tbBox.Where(s => !db.tbSalidaDetalle.Where(es => es.box_Codigo == s.box_Codigo).Any()).ToList();
                 var list = (List<tbSalidaDetalle>)Session["SalidaDetalle"];
-
+                tbSalida.vSalidaDetalle = list;
                 var MensajeError = "0";
                 var MensajeErrorDetalle = "0";
                 IEnumerable<object> listSalida = null;
@@ -524,16 +555,18 @@ namespace ERP_GMEDINA.Controllers
             {
                 return RedirectToAction("NotFound", "Login");
             }
-            int idUser = Usuario();
+            int idUser = Empleado();
 
             ViewBag.IdSal = id;
-            if (tbSalida.tsal_Id == Helpers.sal_Venta)
+            if (tbSalida.tsal_Id != Helpers.sal_Prestamo)
             {
-                ViewBag.vbfact_Codigo = db.tbFactura.Find(tbSalida.fact_Id).fact_Codigo.ToString();
+               var vbfact_Codigo = db.tbFactura.Find(tbSalida.fact_Id).fact_Codigo.ToString();
+
+                tbSalida.fact_Codigo = vbfact_Codigo;
             }
             else
             {
-                ViewBag.fact_Codigo = "0";
+                tbSalida.fact_Codigo = "0";
             }
 
             ViewBag.bod_Id = new SelectList(db.tbBodega.Where(x => x.bod_ResponsableBodega == idUser).ToList(), "bod_Id", "bod_Nombre");
@@ -548,6 +581,7 @@ namespace ERP_GMEDINA.Controllers
             ViewBag.tsal_Id = new SelectList(db.tbTipoSalida, "tsal_Id", "tsal_Descripcion", tbSalida.tsal_Id);
             ViewBag.fact_Id = new SelectList(db.tbFactura, "fact_Id", "fact_Codigo", tbSalida.fact_Id);
             ViewBag.box_Codigo = new SelectList(db.tbSalidaDetalle, "sald_Id", "box_Codigo", tbSalida.estm_Id);
+            ViewBag.Box = db.tbBox.Where(s => !db.tbSalidaDetalle.Where(es => es.box_Codigo == s.box_Codigo && db.tbSalida.Where(sd => sd.sal_Id == es.sal_Id && sd.estm_Id == Helpers.sal_Aplicada).Any()).Any()).ToList();
 
             ViewBag.sal_Id = new SelectList(db.tbProductoSubcategoria, "sal_Id", "sal_Id", tbSalida.sal_Id);
             ViewBag.Producto = db.tbBodegaDetalle.Where(x => x.bod_Id == tbSalida.bod_Id && x.bodd_CantidadExistente > x.bodd_CantidadMinima).ToList();
@@ -682,7 +716,7 @@ namespace ERP_GMEDINA.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [SessionManager("Salida/Edit")]
-        public ActionResult Edit(int? id, [Bind(Include = "sal_Id, bod_Id,fact_Id,fact_Codigo,sal_FechaElaboracion,estm_Id,tsal_Id,  sal_RazonDevolucion, sal_UsuarioCrea, sal_FechaCrea,tbFactura_fact_Codigo, sal_BodDestino")] tbSalida tbSalida)
+        public ActionResult Edit(int? id, [Bind(Include = "sal_Id, bod_Id,fact_Id,fact_Codigo,sal_FechaElaboracion,estm_Id,tsal_Id,  sal_RazonDevolucion, sal_UsuarioCrea, sal_FechaCrea,tbFactura_fact_Codigo, sal_BodDestino,tdev_Id")] tbSalida tbSalida)
         {
             using (TransactionScope _Tran = new TransactionScope())
             {
@@ -697,7 +731,6 @@ namespace ERP_GMEDINA.Controllers
                         IEnumerable<object> listSalidaDetalle = null;
                         IEnumerable<object> listSalida = null;
                         ViewBag.tdev_Id = new SelectList(db.tbTipoDevolucion, "tdev_Id", "tdev_Descripcion", tbSalida.tdev_Id);
-
                         ViewBag.sal_BodDestino = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbSalida.sal_BodDestino);
                         ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion");
                         ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_ResponsableBodega", tbSalida.bod_Id);
@@ -707,9 +740,8 @@ namespace ERP_GMEDINA.Controllers
                         ViewBag.tsal_Id = new SelectList(db.tbTipoSalida, "tsal_Id", "tsal_Descripcion", tbSalida.tsal_Id);
                         ViewBag.Producto = db.tbBodegaDetalle.ToList();
                         ViewBag.Cliente = db.tbCliente.ToList();
-
+                        ViewBag.Box = db.tbBox.Where(s => !db.tbSalidaDetalle.Where(es => es.box_Codigo == s.box_Codigo).Any()).ToList();
                         tbSalida pSalida = db.tbSalida.Find(id);
-
                         listSalida = db.UDP_Inv_tbSalida_Update(tbSalida.sal_Id,
                                                         tbSalida.bod_Id,
                                                         tbSalida.fact_Id,
@@ -817,6 +849,7 @@ namespace ERP_GMEDINA.Controllers
                         ViewBag.Producto = db.tbBodegaDetalle.ToList();
                         var errors = ModelState.Values.SelectMany(v => v.Errors);
                     }
+                    ViewBag.tdev_Id = new SelectList(db.tbTipoDevolucion, "tdev_Id", "tdev_Descripcion", tbSalida.tdev_Id);
                     ViewBag.uni_Id = new SelectList(db.tbUnidadMedida, "uni_Id", "uni_Descripcion");
                     ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_ResponsableBodega", tbSalida.bod_Id);
                     ViewBag.bod_Nombre = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");

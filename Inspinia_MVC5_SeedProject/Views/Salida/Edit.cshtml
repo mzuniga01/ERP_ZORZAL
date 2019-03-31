@@ -52,7 +52,7 @@
 
                         @Html.HiddenFor(model => model.sal_Id)
                         @Html.HiddenFor(model => model.fact_Id)
-                        @Html.HiddenFor(model => model.fact_Codigo, new { Value = ViewBag.vbfact_Codigo })
+                        @Html.HiddenFor(model => model.fact_Codigo)
 
                         <div class="form-horizontal">
 
@@ -125,9 +125,9 @@
                                     </div>
 
                                     <div id="div_sal_RazonDevolucion">
-                                        @Html.LabelFor(model => model.tbTipoDevolucion.tdev_Id, new { @class = "control-label col-md-2 required" })
+                                        @Html.LabelFor(model => model.tdev_Id, new { @class = "control-label col-md-2 required" })
                                         <div class="col-md-4">
-                                            @Html.EditorFor(model => model.tbTipoDevolucion.tdev_Descripcion)
+                                            @Html.DropDownList("tdev_Id", null, htmlAttributes: new { @class = "form-control" })
                                             <p style="color:red">
                                                 @Html.ValidationMessageFor(model => model.tdev_Id)
                                             </p>
@@ -250,7 +250,7 @@
                     </table>
                 </div>
             </div>
-          
+
         </div>
     </div>
 </div>
@@ -263,8 +263,10 @@
 <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
 <script src="~/Scripts/jquery.maskedinput.min.js"></script>
 <script src="~/Scripts/wp-embed.min.js"></script>
-<script src="~/Scripts/app/SalidaEdit.js"></script>
 <script src="~/Scripts/app/DataTable.js"></script>>
+
+<script src="~/Scripts/app/HotKeys.js"></script>
+<script src="~/Scripts/app/SalidaEdit.js"></script>
 <script type="text/javascript">
 
     $("#Anular").click(function () {
@@ -291,8 +293,8 @@
 </script>
 
 <script>
-    
- 
+
+
     var value = $(selector).cleanVal();
     //Mask will be removed on next line
 
@@ -312,7 +314,7 @@
     function check(e) {
         tecla = (document.all) ? e.keyCode : e.which;
         //Tecla de retroceso para borrar, siempre la permite
-        if (tecla == 8) {
+        if (tecla == 8 || tecla == 32) {
             return true;
         }
         // Patron de entrada, en este caso solo acepta numeros y letras

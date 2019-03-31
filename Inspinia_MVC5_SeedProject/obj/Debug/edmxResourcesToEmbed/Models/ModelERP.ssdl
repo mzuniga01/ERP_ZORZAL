@@ -2236,37 +2236,14 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_MovimientoCaja_Apertura'
       <PropertyRef Name="cja_Id" />
       <PropertyRef Name="cja_Descripcion" />
       <PropertyRef Name="suc_Descripcion" />
+      <PropertyRef Name="suc_Id" />
     </Key>
     <Property Name="mocja_Id" Type="int" Nullable="false" />
     <Property Name="solef_Id" Type="int" Nullable="false" />
     <Property Name="cja_Id" Type="smallint" Nullable="false" />
     <Property Name="cja_Descripcion" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="suc_Descripcion" Type="nvarchar" MaxLength="40" Nullable="false" />
-  </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_MovimientoCaja_Apertura_Detalles' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-  <EntityType Name="UDV_Vent_MovimientoCaja_Apertura_Detalles">
-    <Key>
-      <PropertyRef Name="mocja_Id" />
-      <PropertyRef Name="mocja_UsuarioApertura" />
-      <PropertyRef Name="mnda_Abreviatura" />
-      <PropertyRef Name="mnda_Nombre" />
-      <PropertyRef Name="soled_CantidadEntregada" />
-      <PropertyRef Name="soled_CantidadSolicitada" />
-      <PropertyRef Name="soled_MontoEntregado" />
-      <PropertyRef Name="cja_Id" />
-      <PropertyRef Name="NOMBRES" />
-    </Key>
-    <Property Name="mocja_Id" Type="int" Nullable="false" />
-    <Property Name="mocja_FechaApertura" Type="datetime" />
-    <Property Name="mocja_UsuarioApertura" Type="int" Nullable="false" />
-    <Property Name="mnda_Abreviatura" Type="varchar" MaxLength="4" Nullable="false" />
-    <Property Name="mnda_Nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
-    <Property Name="soled_CantidadEntregada" Type="smallint" Nullable="false" />
-    <Property Name="soled_CantidadSolicitada" Type="smallint" Nullable="false" />
-    <Property Name="soled_MontoEntregado" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-    <Property Name="cja_Id" Type="smallint" Nullable="false" />
-    <Property Name="NOMBRES" Type="varchar" MaxLength="301" Nullable="false" />
+    <Property Name="suc_Id" Type="int" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_NotaCreditoPorFecha' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -5534,7 +5511,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
     <Parameter Name="emp_Identificacion" Type="nvarchar" Mode="In" />
     <Parameter Name="emp_Telefono" Type="nvarchar" Mode="In" />
     <Parameter Name="emp_Correoelectronico" Type="nvarchar" Mode="In" />
-    <Parameter Name="emp_TipoSangre" Type="char" Mode="In" />
+    <Parameter Name="emp_TipoSangre" Type="nvarchar" Mode="In" />
     <Parameter Name="emp_Puesto" Type="nvarchar" Mode="In" />
     <Parameter Name="emp_FechaIngreso" Type="date" Mode="In" />
     <Parameter Name="emp_Direccion" Type="nvarchar" Mode="In" />
@@ -5551,7 +5528,7 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
     <Parameter Name="emp_Identificacion" Type="nvarchar" Mode="In" />
     <Parameter Name="emp_Telefono" Type="nvarchar" Mode="In" />
     <Parameter Name="emp_Correoelectronico" Type="nvarchar" Mode="In" />
-    <Parameter Name="emp_TipoSangre" Type="char" Mode="In" />
+    <Parameter Name="emp_TipoSangre" Type="nvarchar" Mode="In" />
     <Parameter Name="emp_Puesto" Type="nvarchar" Mode="In" />
     <Parameter Name="emp_FechaIngreso" Type="date" Mode="In" />
     <Parameter Name="emp_Direccion" Type="nvarchar" Mode="In" />
@@ -6991,22 +6968,9 @@ warning 6002: The table/view 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_EntreFecha
     [UDV_Vent_MovimientoCaja_Apertura].[solef_Id] AS [solef_Id], 
     [UDV_Vent_MovimientoCaja_Apertura].[cja_Id] AS [cja_Id], 
     [UDV_Vent_MovimientoCaja_Apertura].[cja_Descripcion] AS [cja_Descripcion], 
-    [UDV_Vent_MovimientoCaja_Apertura].[suc_Descripcion] AS [suc_Descripcion]
+    [UDV_Vent_MovimientoCaja_Apertura].[suc_Descripcion] AS [suc_Descripcion], 
+    [UDV_Vent_MovimientoCaja_Apertura].[suc_Id] AS [suc_Id]
     FROM [Vent].[UDV_Vent_MovimientoCaja_Apertura] AS [UDV_Vent_MovimientoCaja_Apertura]</DefiningQuery>
-    </EntitySet>
-    <EntitySet Name="UDV_Vent_MovimientoCaja_Apertura_Detalles" EntityType="Self.UDV_Vent_MovimientoCaja_Apertura_Detalles" store:Type="Views" store:Schema="Vent">
-      <DefiningQuery>SELECT 
-    [UDV_Vent_MovimientoCaja_Apertura_Detalles].[mocja_Id] AS [mocja_Id], 
-    [UDV_Vent_MovimientoCaja_Apertura_Detalles].[mocja_FechaApertura] AS [mocja_FechaApertura], 
-    [UDV_Vent_MovimientoCaja_Apertura_Detalles].[mocja_UsuarioApertura] AS [mocja_UsuarioApertura], 
-    [UDV_Vent_MovimientoCaja_Apertura_Detalles].[mnda_Abreviatura] AS [mnda_Abreviatura], 
-    [UDV_Vent_MovimientoCaja_Apertura_Detalles].[mnda_Nombre] AS [mnda_Nombre], 
-    [UDV_Vent_MovimientoCaja_Apertura_Detalles].[soled_CantidadEntregada] AS [soled_CantidadEntregada], 
-    [UDV_Vent_MovimientoCaja_Apertura_Detalles].[soled_CantidadSolicitada] AS [soled_CantidadSolicitada], 
-    [UDV_Vent_MovimientoCaja_Apertura_Detalles].[soled_MontoEntregado] AS [soled_MontoEntregado], 
-    [UDV_Vent_MovimientoCaja_Apertura_Detalles].[cja_Id] AS [cja_Id], 
-    [UDV_Vent_MovimientoCaja_Apertura_Detalles].[NOMBRES] AS [NOMBRES]
-    FROM [Vent].[UDV_Vent_MovimientoCaja_Apertura_Detalles] AS [UDV_Vent_MovimientoCaja_Apertura_Detalles]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="UDV_Vent_NotaCreditoPorFecha" EntityType="Self.UDV_Vent_NotaCreditoPorFecha" store:Type="Views" store:Schema="Vent">
       <DefiningQuery>SELECT 

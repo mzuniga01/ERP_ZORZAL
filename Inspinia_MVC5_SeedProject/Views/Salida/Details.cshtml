@@ -24,7 +24,7 @@
                     <h5>Salida</h5>
                 </div>
                 <div class="ibox-content">
-
+                    @Html.HiddenFor(model => model.sal_Id)
                     <dl class="dl-horizontal">
                         <dt>
                             @Html.DisplayNameFor(model => model.sal_FechaElaboracion)
@@ -41,7 +41,7 @@
                         <dd>
                             @Html.DisplayFor(model => model.tbBodega.bod_Nombre)
                         </dd>
-                        @if (Model.tsal_Id == 1)
+                        @if (Model.tsal_Id == Helpers.sal_Prestamo)
                         {
                             <dt>
                                 @Html.DisplayNameFor(model => model.sal_BodDestino)
@@ -52,7 +52,7 @@
                             </dd>
                         }
 
-                        @if (Model.tsal_Id == 2)
+                        @if (Model.tsal_Id == Helpers.sal_Venta)
                         {
                             <dt>
                                 @Html.DisplayNameFor(model => model.fact_Codigo)
@@ -62,7 +62,7 @@
                                 @Html.DisplayFor(model => model.tbFactura.fact_Codigo)
                             </dd>
                         }
-                        else if (Model.tsal_Id == 3)
+                        else if (Model.tsal_Id == Helpers.sal_Devolucion)
                         {
                             <dt>
                                 @Html.DisplayNameFor(model => model.fact_Codigo)
@@ -72,11 +72,11 @@
                                 @Html.DisplayFor(model => model.tbFactura.fact_Codigo)
                             </dd>
                             <dt>
-                                @Html.DisplayNameFor(model => model.sal_RazonDevolucion)
+                                @Html.DisplayNameFor(model => model.tdev_Id)
                             </dt>
 
                             <dd>
-                                @Html.DisplayFor(model => model.sal_RazonDevolucion)
+                                @Html.DisplayFor(model => model.tbTipoDevolucion.tdev_Descripcion)
                             </dd>
                         }
 
@@ -151,48 +151,57 @@
                         <tr>
                             <td>Creado</td>
                             <td>
-                                @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
-                                @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
+                                @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
+                                @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+
                             </td>
                             <td>@Html.DisplayFor(model => model.sal_FechaCrea)</td>
                         </tr>
                         <tr>
                             <td>Modificado</td>
                             <td>
-                                @Html.DisplayFor(model => model.tbUsuario1.usu_Nombres)
-                                @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Nombres)
+                                @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)
                             </td>
                             <td>@Html.DisplayFor(model => model.sal_FechaModifica)</td>
                         </tr>
                     </table>
                 </div>
             </div>
-            @*<div class="ibox-content">
-                <fieldset class="box-border">
-                    <legend class="box-border">Datos Auditoria</legend>
-                    <table class="table table-responsive" style="width:100%">
-                        <tr>
-                            <th>Acciones</th>
-                            <th>Usuario</th>
-                            <th>Fecha</th>
-                        </tr>
-                        <tr>
-                            <td>Creado</td>
-                            <td>@Html.DisplayFor(model => model.tbUsuario1.usu_Nombres) @Html.DisplayFor(model => model.tbUsuario1.usu_Apellidos)</td>
-                            <td>@Html.DisplayFor(model => model.sal_FechaCrea)</td>
-                        </tr>
-                        <tr>
-                            <td>Modificado</td>
-                            <td>@Html.DisplayFor(model => model.tbUsuario.usu_Nombres) @Html.DisplayFor(model => model.tbUsuario.usu_Apellidos)</td>
-                            <td>@Html.DisplayFor(model => model.sal_FechaModifica)</td>
-                        </tr>
-                    </table>
-                </fieldset>
-            </div>*@
+
         </div>
     </div>
 </div>
 
+
 <script src="~/Scripts/jquery-3.1.1.min.js"></script>
-<script src="~/Scripts/app/DataTable.js"></script>>
-<script src="~/Scripts/app/SalidaDetalle.js"></script>
+<script src="~/Scripts/app/HotKeys.js"></script>
+<script type="text/javascript">
+    $(function () {
+     $('#tblSalidaDetalle').DataTable(
+            {
+                "searching": true,
+                "lengthChange": true,
+                "columnDefs": [{ "targets": [7], "visible": false, "searchable": false }],
+                 "order": [[7, 'desc']],
+                "oLanguage": {
+                    "oPaginate": {
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior",
+                    },
+                    "sProcessing": "Procesando...",
+                    "sLengthMenu": "Mostrar _MENU_ registros",
+                    "sZeroRecords": "No se encontraron resultados",
+                    "sEmptyTable": "Ningún dato disponible en esta tabla",
+                    "sEmptyTable": "No hay registros",
+                    "sInfoEmpty": "Mostrando 0 de 0 Entradas",
+                    "sSearch": "Buscar",
+                    "sInfo": "Mostrando _START_ a _END_ Entradas",
+                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                }
+            });
+    })
+       
+
+</script>
+

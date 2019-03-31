@@ -165,22 +165,7 @@ $("#ModalAgregarProducto").ready('hidden.bs.modal', function () {
     $('#bodd_CantidadMinima').focus();
 });
 ///Fin
-//Remover Detalle Ventana Create
-$(document).on("click", "#tbBodega tbody tr td button#removeBodegaDetalle", function () {
-    $(this).closest('tr').remove();
-    idItem = $(this).closest('tr').data('id');
-    var BorrarItems = {
-        bodd_Id : idItem,
-    };
-    $.ajax({
-        url: "/Bodega/removeBodegaDetalle",
-        method: "POST",
-        dataType: 'json',
-        contentType: "application/json; charset=utf-8",
-        data: JSON.stringify({ BorrarItem: BorrarItems }),
-    });
-});
-//Fin
+
 function formateo(input) {
     $(input).change(function () {
         var str = $(input).val();
@@ -558,172 +543,21 @@ function Getbodegadetalle() {
     return BODEGADETALLE;
 }
 
-//pruebaa
-$('#AgregarBodegaDetalle_Prueba').click(function () {
-    var Producto = $('#prod_Codigo').val();
-    var Cminima = $('#bodd_CantidadMinima').val();
-    var Preorden = $('#bodd_PuntoReorden').val();
-    var Cmaxima = $('#bodd_CantidadMaxima').val();
-    var Costo = $('#bodd_Costo').val();
-    var Cpromedio = $('#bodd_CostoPromedio').val();
-    var Cbarras = $('#prod_CodigoBarras').val();
 
-    if (Producto == '') {
-        $('#MessageError').text('');
-        $('#Error_Producto').text('');
-        $('#Error_PuntoReorden').text('');
-        $('#Error_CantidadMinima').text('');
-        $('#Error_CantidadMaxima').text('');
-        $('#Error_Costo').text('');
-        $('#Error_CostoPromedioo').text('');
-        $('#ErrorProducto_Create').after('<ul id="Error_Producto" class="validation-summary-errors text-danger">*Codigo De Barra Requerido</ul>');
-
-    }
-    else if (Cbarras == '') {
-
-        $('#MessageError').text('');
-        $('#Error_Producto').text('');
-        $('#Error_PuntoReorden').text('');
-        $('#Error_CantidadMinima').text('');
-        $('#Error_CantidadMaxima').text('');
-        $('#Error_Costo').text('');
-        $('#Error_CostoPromedioo').text('');
-        $('#Error_Barras').text('');
-        $('#ErrorBarras_Create').after('<ul id="Error_Barras" class="validation-summary-errors text-danger">*Codigo De Barras Requerido</ul>');
-    }
-    else if (Cminima == '') {
-
-        $('#MessageError').text('');
-        $('#Error_Producto').text('');
-        $('#Error_PuntoReorden').text('');
-        $('#Error_CantidadMinima').text('');
-        $('#Error_CantidadMaxima').text('');
-        $('#Error_Costo').text('');
-        $('#Error_CostoPromedioo').text('');
-        $('#ErrorCantidadMinima_Create').after('<ul id="Error_CantidadMinima" class="validation-summary-errors text-danger">*Cantidad Miníma Requerido</ul>');
-    }
-
-    else if (Preorden == '') {
-        $('#MessageError').text('');
-        $('#Error_Producto').text('');
-        $('#Error_PuntoReorden').text('');
-        $('#Error_CantidadMinima').text('');
-        $('#Error_CantidadMaxima').text('');
-        $('#Error_Costo').text('');
-        $('#Error_CostoPromedioo').text('');
-        $('#ErrorPuntoReorden_Create').after('<ul id="Error_PuntoReorden" class="validation-summary-errors text-danger">*Campo Punto Reorden Requerido</ul>');
-    }
-
-
-    else if (Cmaxima == '') {
-        $('#MessageError').text('');
-        $('#Error_Producto').text('');
-        $('#Error_PuntoReorden').text('');
-        $('#Error_CantidadMinima').text('');
-        $('#Error_CantidadMaxima').text('');
-        $('#Error_Costo').text('');
-        $('#Error_CostoPromedioo').text('');
-        $('#ErrorCantidadMaxima_Create').after('<ul id="Error_CantidadMaxima" class="validation-summary-errors text-danger">*Cantidad Máxima Requerido</ul>');
-
-    }
-
-    else if (Costo == '') {
-        $('#MessageError').text('');
-        $('#Error_Producto').text('');
-        $('#Error_PuntoReorden').text('');
-        $('#Error_CantidadMinima').text('');
-        $('#Error_CantidadMaxima').text('');
-        $('#Error_Costo').text('');
-        $('#Error_CostoPromedioo').text('');
-        $('#ErrorCosto_Create').after('<ul id="Error_Costo" class="validation-summary-errors text-danger">*Campo Costo Requerido</ul>');
-
-    }
-    else if (Cpromedio == '') {
-
-        $('#MessageError').text('');
-        $('#Error_Producto').text('');
-        $('#Error_PuntoReorden').text('');
-        $('#Error_CantidadMinima').text('');
-        $('#Error_CantidadMaxima').text('');
-        $('#Error_Costo').text('');
-        $('#Error_CostoPromedioo').text('');
-        $('#ErrorCostoPromedio_Create').after('<ul id="Error_CostoPromedioo" class="validation-summary-errors text-danger">*Campo Costo Promedio Requerido</ul>');
-    }
-
-    else {
-        //Aqui importa el orden
-        contador = contador + 1;
-        copiar = "<tr data-id=" + contador + ">";
-        copiar += "<td id = 'Barras'>" + $('#prod_CodigoBarras').val() + "</td>";
-        copiar += "<td id = 'Producto'>" + $('#prod_Codigo').val() + "</td>";
-        copiar += "<td id = 'Descripcion_P'>" + $('#prod_Descripcion').val() + "</td>";
-        copiar += "<td id = 'Costo'>" + $('#bodd_Costo').val() + "</td>";
-        copiar += "<td id = 'Cpromedio'>" + $('#bodd_CostoPromedio').val() + "</td>";
-        //copiar += "<td id = ''></td>";
-        copiar += "<td id = 'Preorden'>" + $('#bodd_PuntoReorden').val() + "</td>";// aqui va el campo y luego se llena con el id del mismo, que ya ha capturado el valor
-        copiar += "<td id = 'Cminima'>" + $('#bodd_CantidadMinima').val() + "</td>";
-        copiar += "<td id = 'Cmaxima'>" + $('#bodd_CantidadMaxima').val() + "</td>";
-        copiar += "<td>" + '<button id="removeBodegaDetalle" class="btn btn-danger btn-xs eliminar" type="button">Quitar</button>' + "</td>";
-        copiar += "</tr>";
-        $('#tblBodega').append(copiar);
-
-        var tbBodegaDetalle = Getbodegadetalle();
-        $.ajax({
-            url: "/Bodega/SaveBodegaDetalle",
-            method: "POST",
-            dataType: 'json',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ BODEGADETALLE: tbBodegaDetalle }),
-        })
-            .done(function (data) {
-                $('#prod_Codigo').val('');
-                $('#prod_CodigoBarras').val('');
-                $('#prod_Descripcion').val('');
-                $('#pcat_Id').val('');
-                $('#pscat_Id').val('');
-                $('#uni_Id').val('');
-                $('#bodd_PuntoReorden').val('');
-                $('#bodd_CantidadMinima').val('');
-                $('#bodd_CantidadMaxima').val('');
-                $('#bodd_Costo').val('');
-                $('#bodd_CostoPromedio').val('');
-
-                $('#MessageError').text('');
-                $('#Error_Producto').text('');
-                $('#Error_PuntoReorden').text('');
-                $('#Error_CantidadMinima').text('');
-                $('#Error_CantidadMaxima').text('');
-                $('#Error_Costo').text('');
-                $('#Error_CostoPromedioo').text('');
-
-            });
-    }
-});
-function Getbodegadetalle() {
-    var BODEGADETALLE = {
-        prod_Codigo: $('#prod_Codigo').val(),
-        bodd_puntoReorden: $('#bodd_PuntoReorden').val(),
-        bodd_cantidadMinima: $('#bodd_CantidadMinima').val(),
-        bodd_cantidadMaxima: $('#bodd_CantidadMaxima').val(),
-        bodd_costo: $('#bodd_Costo').val(),
-        bodd_costoPromedio: $('#bodd_CostoPromedio').val(),
-        bodd_UsuarioCrea: contador,
-        bodd_Id: contador,
-    };
-    return BODEGADETALLE;
-}
 
 
 
 //Remover Detalle Ventana Edit
 $(document).on("click", "#tbBodega tbody tr td button#removeBodegaDetalle", function () {
-    $(this).closest('tr').remove();
+    //$(this).closest('tr').remove();
+    //idItem = $(this).closest('tr').data('id');
+    //var prod_Codigo = currentRow.find("td:eq(0)").text();
     idItem = $(this).closest('tr').data('id');
-    var prod_Codigo = currentRow.find("td:eq(0)").text();
+    var vprod_Codigo = $(this).closest("tr").find("td:eq(0)").text();
     var BorrarItems = {
-        prod_Codigo: idItem,
+        prod_Codigo: vprod_Codigo,
     };
-    var table = $('#tblSalidaDetalle').DataTable();
+    var table = $('#tbBodega').DataTable();
     table.row($(this).parents('tr'))
         .remove()
         .draw();

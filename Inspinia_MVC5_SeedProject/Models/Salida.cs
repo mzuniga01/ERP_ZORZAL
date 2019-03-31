@@ -14,6 +14,9 @@ namespace ERP_GMEDINA.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]
         [Display(Name = "Codigo de Factura")]
         public string fact_Codigo { get; set; }
+
+        [NotMapped]
+        public List<tbSalidaDetalle> vSalidaDetalle { get; set; }
     }
 
     public class SalidaMetaData
@@ -28,7 +31,7 @@ namespace ERP_GMEDINA.Models
         [Display(Name = "N# de Factura")]
         public long fact_Id { get; set; }
 
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         [Display(Name = "Fecha de Salida")]
         public System.DateTime sal_FechaElaboracion { get; set; }
 

@@ -36,109 +36,121 @@
                                     <th>
                                         Acciones
                                     </th>
+                                    <th>
+                                        Contador
+                                    </th>
                                 </tr>
                             </thead>
 
                             <tbody>
                                 @foreach (var item in Model)
                                 {
-                                <tr tr data-id="@item.prod_Codigo" , tr data-content="@item.tbProducto.prod_Descripcion" , tr data-container="@item.tbProducto.tbProductoSubcategoria.pscat_Descripcion" , tr data-keyboard="@item.tbProducto.tbUnidadMedida.uni_Descripcion" , tr data-pcat="@item.tbProducto.tbProductoSubcategoria.tbProductoCategoria.pcat_Nombre" , tr data-sal_Id="@item.sal_Id" , tr data-sal_cant="@item.sald_Cantidad">
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.prod_Codigo)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.tbProducto.prod_Marca)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.tbProducto.prod_Modelo)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.tbProducto.prod_Talla)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.tbProducto.tbProductoSubcategoria.tbProductoCategoria.pcat_Nombre)  @Html.DisplayFor(modelItem => item.tbProducto.tbProductoSubcategoria.pscat_Descripcion)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.tbProducto.tbUnidadMedida.uni_Descripcion)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.sald_Cantidad)
-                                    </td>
-                                    <td>
-                                        @if (!item.tbSalida.sal_EsAnulada && item.tbSalida.estm_Id == Helpers.sal_Emitida)
-                                        {
-                                            <button type="button" class="btn btn-white btn-xs" id="Editar" onclick="EditSalidaDetalles('@item.sald_Id')">Editar</button>
-                                            <input type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#ModalEliminarDetalle" value="Eliminar" />
-                                        }
-                                        else
-                                        {
-                                            <label class="danger">No se Puede Modificar</label>
-                                        }
-                                    </td>
+                                    <tr tr data-id="@item.prod_Codigo" , tr data-content="@item.tbProducto.prod_Descripcion" , tr data-container="@item.tbProducto.tbProductoSubcategoria.pscat_Descripcion" , tr data-keyboard="@item.tbProducto.tbUnidadMedida.uni_Descripcion" , tr data-pcat="@item.tbProducto.tbProductoSubcategoria.tbProductoCategoria.pcat_Nombre" , tr data-sal_Id="@item.sal_Id" , tr data-sal_cant="@item.sald_Cantidad">
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.prod_Codigo)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.tbProducto.prod_Descripcion)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.tbProducto.prod_Marca)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.tbProducto.prod_Modelo)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.tbProducto.prod_Talla)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.tbProducto.tbProductoSubcategoria.tbProductoCategoria.pcat_Nombre)  @Html.DisplayFor(modelItem => item.tbProducto.tbProductoSubcategoria.pscat_Descripcion)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.tbProducto.tbUnidadMedida.uni_Descripcion)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.sald_Cantidad)
+                                        </td>
+                                        <td>
+                                            @if (!item.tbSalida.sal_EsAnulada && item.tbSalida.estm_Id == Helpers.sal_Emitida)
+                                            {
+                                                if (item.box_Codigo != null && item.box_Codigo != "0")
+                                                {
+                                                    <p>En Caja: @item.box_Codigo</p>
+                                                }
+                                                else
+                                                {
+                                                    <button type="button" class="btn btn-white btn-xs" id="Editar" onclick="EditSalidaDetalles('@item.sald_Id')">Editar</button>
+                                                    <input type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#ModalEliminarDetalle" value="Eliminar" />
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <label class="danger">No se Puede Modificar</label>
+                                            }
+                                        </td>
+                                        <th>
+                                            @Html.DisplayFor(modelItem => item.sald_Id)
+                                        </th>
 
-                               
 
-                                    <div class="modal fade" id="ModalEliminarDetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                    <h4 class="modal-title" id="myModalLabel">Desea Eliminar Este Elemento la Salida</h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <div class="form-horizontal">
-                                                        <div class="form-group">
-                                                            @Html.LabelFor(m => SalidaDetalle.prod_Codigo, new { @class = "control-label col-sm-2" })
-                                                            <div class="col-sm-10">
-                                                                @Html.EditorFor(model => item.prod_Codigo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                        <div class="modal fade" id="ModalEliminarDetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                        <h4 class="modal-title" id="myModalLabel">Desea Eliminar Este Elemento la Salida</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="form-horizontal">
+                                                            <div class="form-group">
+                                                                @Html.LabelFor(m => SalidaDetalle.prod_Codigo, new { @class = "control-label col-sm-2" })
+                                                                <div class="col-sm-10">
+                                                                    @Html.EditorFor(model => item.prod_Codigo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                                </div>
                                                             </div>
-                                                        </div>
 
-                                                        <div class="form-group">
-                                                            @Html.LabelFor(m => SalidaDetalle.tbProducto.prod_Descripcion, new { @class = "control-label col-sm-2" })
-                                                            <div class="col-sm-10">
-                                                                @Html.EditorFor(model => item.tbProducto.prod_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                            <div class="form-group">
+                                                                @Html.LabelFor(m => SalidaDetalle.tbProducto.prod_Descripcion, new { @class = "control-label col-sm-2" })
+                                                                <div class="col-sm-10">
+                                                                    @Html.EditorFor(model => item.tbProducto.prod_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            @Html.LabelFor(m => SalidaDetalle.tbProducto.pcat_Id, new { @class = "control-label col-sm-2" })
-                                                            <div class="col-sm-10">
-                                                                @Html.EditorFor(model => item.tbProducto.tbProductoSubcategoria.tbProductoCategoria.pcat_Nombre, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                            <div class="form-group">
+                                                                @Html.LabelFor(m => SalidaDetalle.tbProducto.pcat_Id, new { @class = "control-label col-sm-2" })
+                                                                <div class="col-sm-10">
+                                                                    @Html.EditorFor(model => item.tbProducto.tbProductoSubcategoria.tbProductoCategoria.pcat_Nombre, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            @Html.LabelFor(m => SalidaDetalle.tbProducto.pscat_Id, new { @class = "control-label col-sm-2" })
-                                                            <div class="col-sm-10">
-                                                                @Html.EditorFor(model => item.tbProducto.tbProductoSubcategoria.pscat_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                            <div class="form-group">
+                                                                @Html.LabelFor(m => SalidaDetalle.tbProducto.pscat_Id, new { @class = "control-label col-sm-2" })
+                                                                <div class="col-sm-10">
+                                                                    @Html.EditorFor(model => item.tbProducto.tbProductoSubcategoria.pscat_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            @Html.LabelFor(m => SalidaDetalle.tbProducto.uni_Id, new { @class = "control-label col-sm-2" })
-                                                            <div class="col-sm-10">
-                                                                @Html.EditorFor(model => item.tbProducto.tbUnidadMedida.uni_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                            <div class="form-group">
+                                                                @Html.LabelFor(m => SalidaDetalle.tbProducto.uni_Id, new { @class = "control-label col-sm-2" })
+                                                                <div class="col-sm-10">
+                                                                    @Html.EditorFor(model => item.tbProducto.tbUnidadMedida.uni_Descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            @Html.LabelFor(m => SalidaDetalle.sald_Cantidad, new { @class = "control-label col-sm-2" })
-                                                            <div class="col-sm-10">
-                                                                @Html.EditorFor(model => item.sald_Cantidad, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                            <div class="form-group">
+                                                                @Html.LabelFor(m => SalidaDetalle.sald_Cantidad, new { @class = "control-label col-sm-2" })
+                                                                <div class="col-sm-10">
+                                                                    @Html.EditorFor(model => item.sald_Cantidad, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-danger" onclick="DeleteSalidaDetalle('@item.sald_Id')">Eliminar</button>
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-danger" onclick="DeleteSalidaDetalle('@item.sald_Id')">Eliminar</button>
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </tr>
+                                    </tr>
 
                                 }
                             </tbody>

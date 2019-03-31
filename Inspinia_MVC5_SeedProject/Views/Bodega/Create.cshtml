@@ -429,13 +429,14 @@
                     dataType: 'json',
                     contentType: "application/json; charset=utf-8",
                     data: JSON.stringify({ BODEGADETALLE: tbBodegaDetalle }),
-                })
-                    .done(function (data) {
+                }).done(function (data) {
+                    $("#prod_CodigoBarras").removeAttr("readonly");
                         if (data == prod_Codigo)
                         {
                             $("#tbBodega td").each(function () {
                                 var prueba = $(this).text()
                                 if (prueba == prod_Codigo) {
+                                    alert(prod_Codigo)
                                     table.row($(this).parents('tr')).remove().draw();
                                     var trPro = parseInt(cantfisica_nueva) + parseInt(cantfisica_anterior);
                                     table.row.add([
@@ -447,7 +448,7 @@
                                         $('#bodd_CantidadMaxima').val(),
                                         $('#bodd_Costo').val(),
                                         $('#bodd_CostoPromedio').val(),
-                                        '<button id = "removeSalidaDetalle" class= "btn btn-danger btn-xs eliminar" type = "button">Quitar</button>'
+                                        '<button id = "removeBodegaDetalle" class= "btn btn-danger btn-xs eliminar" type = "button">Quitar</button>'
 
                                     ]).draw(false);
                                 }
@@ -468,6 +469,8 @@
 
                             ]).draw(false);
                         }
+                        
+                    }).done(function (data) {
                         $('#prod_Codigo').val('');
                         $('#prod_CodigoBarras').val('');
                         $('#prod_Descripcion').val('');
@@ -489,9 +492,6 @@
                         $('#Error_Costo').text('');
                         $('#Error_CostoPromedioo').text('');
                     });
-
-
-
             }
         });
         function Getbodegadetalle() {

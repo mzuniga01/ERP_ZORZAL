@@ -24,7 +24,7 @@
                     <h5>Listado de Salida</h5>
                     <div class="ibox-tools">
                         <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalGenReporte" value="Generar Reporte" />
-                        @Html.ActionLink("Registrar Salida", "Create", null, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Registrar Salida", "Create", null, new { @class = "btn btn-primary", @id = "Registrar" })
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -72,22 +72,23 @@
                                         @Html.DisplayFor(modelItem => item.tbTipoSalida.tsal_Descripcion)
                                     </td>
                                     <td>
-                                        @if (item.estm_Id == Helpers.sal_Aplicada)
-                                        {
-                                            <p>@Html.DisplayFor(modelItem => item.tbEstadoMovimiento.estm_Descripcion)</p>
-                                        }
-                                        else if (item.estm_Id == Helpers.sal_Inactiva)
-                                        {
-                                            <p>@Html.DisplayFor(modelItem => item.tbEstadoMovimiento.estm_Descripcion)</p>
-                                        }
-                                        else if (item.estm_Id == Helpers.sal_Aplicada)
-                                        {
-                                            <p style="">@Html.DisplayFor(modelItem => item.tbEstadoMovimiento.estm_Descripcion)</p>
-                                        }
-                                        else if (item.estm_Id == Helpers.sal_Anulada)
-                                        {
-                                            <p style="">@Html.DisplayFor(modelItem => item.tbEstadoMovimiento.estm_Descripcion)</p>
-                                        }
+                                        @Html.DisplayFor(modelItem => item.tbEstadoMovimiento.estm_Descripcion)
+                                        @*@if (item.estm_Id == Helpers.sal_Aplicada)
+                                            {
+                                                <p></p>
+                                            }
+                                            else if (item.estm_Id == Helpers.sal_Inactiva)
+                                            {
+                                                <p>@Html.DisplayFor(modelItem => item.tbEstadoMovimiento.estm_Descripcion)</p>
+                                            }
+                                            else if (item.estm_Id == Helpers.sal_Aplicada)
+                                            {
+                                                <p style="">@Html.DisplayFor(modelItem => item.tbEstadoMovimiento.estm_Descripcion)</p>
+                                            }
+                                            else if (item.estm_Id == Helpers.sal_Anulada)
+                                            {
+                                                <p style="">@Html.DisplayFor(modelItem => item.tbEstadoMovimiento.estm_Descripcion)</p>
+                                            }*@
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.tbBodega.tbEmpleado.emp_Nombres) @Html.DisplayFor(modelItem => item.tbBodega.tbEmpleado.emp_Apellidos)
@@ -146,6 +147,7 @@
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/app/SalidaDetalle.js"></script>
+<script src="~/Scripts/app/HotKeys.js"></script>
 <script type="text/javascript">
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
