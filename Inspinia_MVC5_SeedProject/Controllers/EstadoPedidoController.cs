@@ -17,14 +17,14 @@ namespace ERP_GMEDINA.Controllers
         GeneralFunctions Function = new GeneralFunctions();
 
         // GET: /EstadoPedido/
-        [SessionManager("EstdadoPedido/Index")]
+        [SessionManager("EstadoPedido/Index")]
         public ActionResult Index()
         {
 
             return View(db.tbEstadoPedido.ToList());
         }
 
-        [SessionManager("EstdadoPedido/Details")]
+        [SessionManager("EstadoPedido/Details")]
         // GET: /EstadoPedido/Details/5
         public ActionResult Details(byte? id)
         {
@@ -40,7 +40,7 @@ namespace ERP_GMEDINA.Controllers
             return View(tbEstadoPedido);
         }
 
-        [SessionManager("EstdadoPedido/Create")]
+        [SessionManager("EstadoPedido/Create")]
         // GET: /EstadoPedido/Create
         public ActionResult Create()
         {
@@ -53,7 +53,7 @@ namespace ERP_GMEDINA.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [SessionManager("EstdadoPedido/Create")]
+        [SessionManager("EstadoPedido/Create")]
         public ActionResult Create([Bind(Include = "esped_Id,esped_Descripcion,esped_UsuarioCrea,esped_FechaCrea,esped_UsuarioModifica,esped_FechaModifica")] tbEstadoPedido tbEstadoPedido)
         {
             try
@@ -93,10 +93,7 @@ namespace ERP_GMEDINA.Controllers
             return View(tbEstadoPedido);
         }
 
-
-
-
-        [SessionManager("EstdadoPedido/Edit")]
+        [SessionManager("EstadoPedido/Edit")]
         // GET: /EstadoPedido/Edit/5
         public ActionResult Edit(byte? id)
         {
@@ -118,7 +115,7 @@ namespace ERP_GMEDINA.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [SessionManager("EstdadoPedido/Edit")]
+        [SessionManager("EstadoPedido/Edit")]
         public ActionResult Edit([Bind(Include = "esped_Id,esped_Descripcion,esped_UsuarioCrea,esped_FechaCrea,esped_UsuarioModifica,esped_FechaModifica")] tbEstadoPedido tbEstadoPedido)
         {
             try
@@ -165,32 +162,6 @@ namespace ERP_GMEDINA.Controllers
             }
                 return View(tbEstadoPedido);
             }
-
-        // GET: /EstadoPedido/Delete/5
-        public ActionResult Delete(byte? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            tbEstadoPedido tbEstadoPedido = db.tbEstadoPedido.Find(id);
-            if (tbEstadoPedido == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tbEstadoPedido);
-        }
-
-        // POST: /EstadoPedido/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(byte id)
-        {
-            tbEstadoPedido tbEstadoPedido = db.tbEstadoPedido.Find(id);
-            db.tbEstadoPedido.Remove(tbEstadoPedido);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
 
         protected override void Dispose(bool disposing)
         {
