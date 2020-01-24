@@ -303,6 +303,9 @@
     </Compile>
     <Compile Include="Helpers\HMTLHelperExtensions.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\UDP_Vent_tbFactura_EstadoImpreso_Result.cs">
+      <DependentUpon>ModelERP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Ventas\Catalogos\ActividadEconomica.cs" />
     <Compile Include="Models\Ventas\Caja\ArqueoCaja.cs" />
     <Compile Include="Models\Ventas\Catalogos\Banco.cs" />

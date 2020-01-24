@@ -11267,10 +11267,6 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_Entr
             <Parameter Name="pedd_FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="spGetParametro" ReturnType="Collection(ERP_ZORZALModel.spGetParametro_Result)" />
-          <FunctionImport Name="UDP_Vent_tbFactura_EstadoImpreso" ReturnType="Collection(Int64)">
-            <Parameter Name="fact_Id" Mode="In" Type="Int64" />
-            <Parameter Name="esfac_Id" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="UDP_Vent_tbFactura_Estado" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFactura_Estado_Result)">
             <Parameter Name="fact_Id" Mode="In" Type="Int32" />
             <Parameter Name="fact_EsAnulada" Mode="In" Type="Boolean" />
@@ -12726,6 +12722,10 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_Entr
           <Parameter Name="fact_Codigo" Mode="In" Type="String" />
           </FunctionImport>
           <EntitySet Name="tbBitacoraErrores" EntityType="ERP_ZORZALModel.tbBitacoraErrores" />
+          <FunctionImport Name="UDP_Vent_tbFactura_EstadoImpreso" ReturnType="Collection(ERP_ZORZALModel.UDP_Vent_tbFactura_EstadoImpreso_Result)">
+            <Parameter Name="fact_Id" Mode="In" Type="Int64" />
+            <Parameter Name="esfac_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
           <Key>
@@ -20020,6 +20020,9 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_Entr
           <Property Name="bite_MensajeError" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="bite_Accion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
+        <ComplexType Name="UDP_Vent_tbFactura_EstadoImpreso_Result">
+          <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -21704,7 +21707,6 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_Entr
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_EstadoImpreso" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_EstadoImpreso" />
           <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_Estado" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_Estado" >
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbFactura_Estado_Result">
@@ -24510,6 +24512,13 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_Entr
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="UDP_Vent_tbFactura_EstadoImpreso" FunctionName="ERP_ZORZALModel.Store.UDP_Vent_tbFactura_EstadoImpreso" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Vent_tbFactura_EstadoImpreso_Result">
+                <ScalarProperty Name="MensajeError" ColumnName="MensajeError" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

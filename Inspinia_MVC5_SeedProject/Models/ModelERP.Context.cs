@@ -6914,19 +6914,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetParametro_Result>("spGetParametro");
         }
     
-        public virtual ObjectResult<Nullable<long>> UDP_Vent_tbFactura_EstadoImpreso(Nullable<long> fact_Id, Nullable<int> esfac_Id)
-        {
-            var fact_IdParameter = fact_Id.HasValue ?
-                new ObjectParameter("fact_Id", fact_Id) :
-                new ObjectParameter("fact_Id", typeof(long));
-    
-            var esfac_IdParameter = esfac_Id.HasValue ?
-                new ObjectParameter("esfac_Id", esfac_Id) :
-                new ObjectParameter("esfac_Id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<long>>("UDP_Vent_tbFactura_EstadoImpreso", fact_IdParameter, esfac_IdParameter);
-        }
-    
         public virtual ObjectResult<UDP_Vent_tbFactura_Estado_Result> UDP_Vent_tbFactura_Estado(Nullable<int> fact_Id, Nullable<bool> fact_EsAnulada, string fact_RazonAnulado)
         {
             var fact_IdParameter = fact_Id.HasValue ?
@@ -8295,6 +8282,19 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("fact_Codigo", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_VentasExoneradas1_Result>("UDP_Vent_VentasExoneradas1", fact_CodigoParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Vent_tbFactura_EstadoImpreso_Result> UDP_Vent_tbFactura_EstadoImpreso(Nullable<long> fact_Id, Nullable<int> esfac_Id)
+        {
+            var fact_IdParameter = fact_Id.HasValue ?
+                new ObjectParameter("fact_Id", fact_Id) :
+                new ObjectParameter("fact_Id", typeof(long));
+    
+            var esfac_IdParameter = esfac_Id.HasValue ?
+                new ObjectParameter("esfac_Id", esfac_Id) :
+                new ObjectParameter("esfac_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_tbFactura_EstadoImpreso_Result>("UDP_Vent_tbFactura_EstadoImpreso", fact_IdParameter, esfac_IdParameter);
         }
     }
 }

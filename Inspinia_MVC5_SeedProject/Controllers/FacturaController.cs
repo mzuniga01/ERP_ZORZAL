@@ -210,8 +210,9 @@ namespace ERP_GMEDINA.Controllers
                 Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
                 return File(stream, "application/pdf");
             }
-            catch
+            catch(Exception Ex)
             {
+                Ex.Message.ToString();
                 throw;
             }
         }
