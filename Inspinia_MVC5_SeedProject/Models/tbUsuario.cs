@@ -19,7 +19,6 @@ namespace ERP_GMEDINA.Models
         {
             this.tbAccesoRol = new HashSet<tbAccesoRol>();
             this.tbAccesoRol1 = new HashSet<tbAccesoRol>();
-            this.tbBitacoraErrores = new HashSet<tbBitacoraErrores>();
             this.tbObjeto = new HashSet<tbObjeto>();
             this.tbObjeto1 = new HashSet<tbObjeto>();
             this.tbRol = new HashSet<tbRol>();
@@ -165,8 +164,6 @@ namespace ERP_GMEDINA.Models
         public virtual ICollection<tbAccesoRol> tbAccesoRol { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbAccesoRol> tbAccesoRol1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbBitacoraErrores> tbBitacoraErrores { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbObjeto> tbObjeto { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

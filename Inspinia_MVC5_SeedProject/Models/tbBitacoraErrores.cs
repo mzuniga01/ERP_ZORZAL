@@ -15,13 +15,10 @@ namespace ERP_GMEDINA.Models
     public partial class tbBitacoraErrores
     {
         public int bite_Id { get; set; }
-        public Nullable<int> obj_Id { get; set; }
-        public Nullable<int> bite_Usuario { get; set; }
+        public string bite_Pantalla { get; set; }
+        public string bite_Usuario { get; set; }
         public Nullable<System.DateTime> bite_Fecha { get; set; }
         public string bite_MensajeError { get; set; }
         public string bite_Accion { get; set; }
-    
-        public virtual tbUsuario tbUsuario { get; set; }
-        public virtual tbObjeto tbObjeto { get; set; }
     }
 }
