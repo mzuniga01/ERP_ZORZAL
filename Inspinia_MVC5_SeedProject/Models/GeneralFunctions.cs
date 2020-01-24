@@ -140,7 +140,7 @@ namespace ERP_GMEDINA.Models
                 var BuscarList = db.tbObjeto.Where(x => x.obj_Referencia == sPantalla);
                 foreach (tbObjeto Obj in BuscarList)
                     objID = Obj.obj_Id;
-                List = db.UDP_Acce_tbBitacoraErrores_Insert(objID, GetUser(), DatetimeNow(), biteMensajeError, biteAccion);
+                List = db.UDP_Acce_tbBitacoraErrores_Insert(sPantalla, "", DatetimeNow(), biteMensajeError, biteAccion);
                 foreach (UDP_Acce_tbBitacoraErrores_Insert_Result Res in List)
                     msj = Res.MensajeError;
             }
