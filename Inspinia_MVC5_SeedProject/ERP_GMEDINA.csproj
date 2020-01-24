@@ -301,17 +301,17 @@
     </Compile>
     <Compile Include="Helpers\HMTLHelperExtensions.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\ActividadEconomicas.cs" />
-    <Compile Include="Models\ArqueoCajas.cs" />
-    <Compile Include="Models\Banco.cs" />
+    <Compile Include="Models\Ventas\Catalogos\ActividadEconomica.cs" />
+    <Compile Include="Models\Ventas\Caja\ArqueoCaja.cs" />
+    <Compile Include="Models\Ventas\Catalogos\Banco.cs" />
     <Compile Include="Models\cActivo.cs" />
     <Compile Include="Models\Cajas.cs" />
     <Compile Include="Models\cCuponDescuento.cs" />
-    <Compile Include="Models\cDenominacion.cs" />
+    <Compile Include="Models\Ventas\Catalogos\DenominacionList.cs" />
     <Compile Include="Models\cDepartamento.cs" />
     <Compile Include="Models\cDetalleDevolucion.cs" />
     <Compile Include="Models\cDevolucion.cs" />
-    <Compile Include="Models\cDocumentoFiscal.cs" />
+    <Compile Include="Models\Ventas\Catalogos\DocumentoFiscal.cs" />
     <Compile Include="Models\cExoneracion.cs" />
     <Compile Include="Models\cGenero.cs" />
     <Compile Include="Models\Clientes.cs" />
@@ -324,18 +324,18 @@
     <Compile Include="Models\cTest.cs" />
     <Compile Include="Models\cTipoCuenta.cs" />
     <Compile Include="Models\cTP.cs" />
-    <Compile Include="Models\CuentaBanco.cs" />
+    <Compile Include="Models\Ventas\Catalogos\CuentaBanco.cs" />
     <Compile Include="Models\cUtilities.cs" />
     <Compile Include="Models\cVistaClientes.cs" />
     <Compile Include="Models\cVistaFactura.cs" />
     <Compile Include="Models\DatosConsumidorFinal.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Denominacion.cs" />
-    <Compile Include="Models\DenominacionArqueos.cs" />
-    <Compile Include="Models\EstadoFactura.cs" />
-    <Compile Include="Models\EstadoPedido.cs" />
-    <Compile Include="Models\EstadosSolicitudCreditos.cs" />
+    <Compile Include="Models\Ventas\Catalogos\Denominacion.cs" />
+    <Compile Include="Models\Ventas\Caja\DenominacionArqueo.cs" />
+    <Compile Include="Models\Ventas\Catalogos\EstadoFactura.cs" />
+    <Compile Include="Models\Ventas\Catalogos\EstadoPedido.cs" />
+    <Compile Include="Models\Ventas\Catalogos\EstadosSolicitudCredito.cs" />
     <Compile Include="Models\Factura.cs" />
     <Compile Include="Models\FacturaDetalle.cs" />
     <Compile Include="Models\FacturaHistorica.cs" />
@@ -369,13 +369,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelERP.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Monedas.cs" />
+    <Compile Include="Models\Ventas\Catalogos\Moneda.cs" />
     <Compile Include="Models\MovimientoCajas.cs" />
     <Compile Include="Models\ObtenerRol_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Pagos.cs" />
-    <Compile Include="Models\PagosArqueos.cs" />
+    <Compile Include="Models\Ventas\Caja\PagosArqueo.cs" />
     <Compile Include="Models\PedidoDetalle.cs" />
     <Compile Include="Models\Pedidos.cs" />
     <Compile Include="Models\Producto.cs" />
@@ -496,8 +496,8 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SolicitudCreditos.cs" />
-    <Compile Include="Models\SolicitudEfectivo.cs" />
-    <Compile Include="Models\SolicitudEfectivoDetalle.cs" />
+    <Compile Include="Models\Ventas\Caja\SolicitudEfectivo.cs" />
+    <Compile Include="Models\Ventas\Caja\SolicitudEfectivoDetalle.cs" />
     <Compile Include="Models\spGetActividadEconomica_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -766,8 +766,8 @@
     <Compile Include="Models\tbUsuario.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TipoPagos.cs" />
-    <Compile Include="Models\TiposIdenticacion.cs" />
+    <Compile Include="Models\Ventas\Catalogos\TipoPago.cs" />
+    <Compile Include="Models\Ventas\Catalogos\TiposIdenticacion.cs" />
     <Compile Include="Models\UDP_Acce_Login_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -1913,7 +1913,6 @@
     <Content Include="Scripts\app\EntregaEfectivo.js" />
     <Content Include="Scripts\app\EntregaEfectivoDetalle.js" />
     <Content Include="Scripts\app\Factura.js" />
-    <Content Include="Scripts\app\FacturaDetalle.js" />
     <Content Include="Scripts\app\FacturaDetalleEdit.js" />
     <Content Include="Scripts\app\FacturaDevolucion.js" />
     <Content Include="Scripts\app\FacturaPagar.js" />

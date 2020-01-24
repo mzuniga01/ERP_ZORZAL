@@ -6,14 +6,14 @@ using System.Web;
 
 namespace ERP_GMEDINA.Models
 {
-    [MetadataType(typeof(ArqueoCajasMetaData))]
+    [MetadataType(typeof(ArqueoCajaMetaData))]
 
     public partial class tbArqueoCaja
     {
           
     }
 
-    public class ArqueoCajasMetaData
+    public class ArqueoCajaMetaData
     {
         [Display(Name = "Arqueo")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Campo {0} requerido")]

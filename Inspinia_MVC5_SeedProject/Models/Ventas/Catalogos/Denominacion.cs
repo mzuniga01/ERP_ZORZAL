@@ -11,7 +11,7 @@ namespace ERP_GMEDINA.Models
     public partial class tbDenominacion
     {
         [NotMapped]
-        public List<cDenominacion> DenominacionList { get; set; }    
+        public List<DenominacionList> DenominacionList { get; set; }    
     }
 
     public class DenominacionMetaData

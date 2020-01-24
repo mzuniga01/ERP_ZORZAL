@@ -6,7 +6,7 @@ using System.Web;
 
 namespace ERP_GMEDINA.Models
 {
-    [MetadataType(typeof(MonedasMetaData))]
+    [MetadataType(typeof(MonedaMetaData))]
 
     public partial class tbMoneda
     {
@@ -14,7 +14,7 @@ namespace ERP_GMEDINA.Models
     }
 
 
-    public class MonedasMetaData
+    public class MonedaMetaData
     {
         [Display (Name ="Número")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo {0} es requerido")]

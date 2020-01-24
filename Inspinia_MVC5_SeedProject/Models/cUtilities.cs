@@ -122,16 +122,16 @@ namespace ERP_GMEDINA.Models
 
             return list;
         }
-        public static List<cDenominacion> DenominacionList()
+        public static List<DenominacionList> DenominacionList()
         {
-            List<cDenominacion> list = new List<cDenominacion>();
+            List<DenominacionList> list = new List<DenominacionList>();
 
-            list.Add(new cDenominacion()
+            list.Add(new DenominacionList()
             {
                 ID_TipoDenominacion = 1,
                 Tipo_Denominacion = "Billete"
             });
-            list.Add(new cDenominacion()
+            list.Add(new DenominacionList()
             {
                 ID_TipoDenominacion = 2,
                 Tipo_Denominacion = "Moneda"
