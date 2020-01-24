@@ -1505,15 +1505,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_ValidacionCantidadExistente_Result>("UDP_Inv_ValidacionCantidadExistente", cantidadSolicitadadParameter, iDBodegaParameter, iDProductoParameter, fechaElaboracionParameter, bodegaDestinoParameter, cantidadDisponibleParameter, usuarioCreaParameter, fechaCreaParameter);
         }
     
-        public virtual ObjectResult<SPGetRTNproveedor_Result> SPGetRTNproveedor(Nullable<int> prov_Id)
-        {
-            var prov_IdParameter = prov_Id.HasValue ?
-                new ObjectParameter("prov_Id", prov_Id) :
-                new ObjectParameter("prov_Id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPGetRTNproveedor_Result>("SPGetRTNproveedor", prov_IdParameter);
-        }
-    
         public virtual ObjectResult<UDP_Inv_tbBodega_Update_Result> UDP_Inv_tbBodega_Update(Nullable<int> bod_Id, string bod_Nombre, Nullable<short> bod_ResponsableBodega, string bod_Direccion, string bod_Correo, string bod_Telefono, string mun_Codigo, Nullable<int> bod_UsuarioCrea, Nullable<System.DateTime> bod_Fechacrea, Nullable<int> bod_UsuarioModifica, Nullable<System.DateTime> bod_FechaModifica)
         {
             var bod_IdParameter = bod_Id.HasValue ?
@@ -3824,24 +3815,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SDP_tbProductoCategoria_tbProductoSubCategoria_Select_Result>("SDP_tbProductoCategoria_tbProductoSubCategoria_Select", pcat_IdParameter);
         }
     
-        public virtual ObjectResult<SPGetResponsableBodega1_Result> SPGetResponsableBodega1(Nullable<int> bod_id)
-        {
-            var bod_idParameter = bod_id.HasValue ?
-                new ObjectParameter("bod_id", bod_id) :
-                new ObjectParameter("bod_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPGetResponsableBodega1_Result>("SPGetResponsableBodega1", bod_idParameter);
-        }
-    
-        public virtual ObjectResult<string> SPGetRTNproveedor1(Nullable<int> prov_Id)
-        {
-            var prov_IdParameter = prov_Id.HasValue ?
-                new ObjectParameter("prov_Id", prov_Id) :
-                new ObjectParameter("prov_Id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("SPGetRTNproveedor1", prov_IdParameter);
-        }
-    
         public virtual ObjectResult<spGetSuCategoria_Result> spGetSuCategoria(Nullable<int> pscat_Id)
         {
             var pscat_IdParameter = pscat_Id.HasValue ?
@@ -3858,19 +3831,6 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("invf_Id", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<tbInventarioFisico_ImprimirConciliacion_Result>("tbInventarioFisico_ImprimirConciliacion", invf_IdParameter);
-        }
-    
-        public virtual ObjectResult<UDP_Inv_CantidadExistente1_Result> UDP_Inv_CantidadExistente1(Nullable<int> bod_Id, string prod_Codigo)
-        {
-            var bod_IdParameter = bod_Id.HasValue ?
-                new ObjectParameter("bod_Id", bod_Id) :
-                new ObjectParameter("bod_Id", typeof(int));
-    
-            var prod_CodigoParameter = prod_Codigo != null ?
-                new ObjectParameter("prod_Codigo", prod_Codigo) :
-                new ObjectParameter("prod_Codigo", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_CantidadExistente1_Result>("UDP_Inv_CantidadExistente1", bod_IdParameter, prod_CodigoParameter);
         }
     
         public virtual ObjectResult<UDP_Inv_Consultar_Existencias_Productos_Result> UDP_Inv_Consultar_Existencias_Productos(Nullable<int> bod_Id, Nullable<int> suc_Id)
@@ -3962,19 +3922,6 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("prod_FechaModifica", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_INV_tbProducto_Update_EstadoActivar", prod_CodigoParameter, prod_EsActivoParameter, prod_UsuarioModificaParameter, prod_FechaModificaParameter);
-        }
-    
-        public virtual ObjectResult<string> UDP_Inv_tbProducto_ValorCodigo1(Nullable<int> pcat_Id, Nullable<int> pscat_Id, ObjectParameter prod_Codigo)
-        {
-            var pcat_IdParameter = pcat_Id.HasValue ?
-                new ObjectParameter("pcat_Id", pcat_Id) :
-                new ObjectParameter("pcat_Id", typeof(int));
-    
-            var pscat_IdParameter = pscat_Id.HasValue ?
-                new ObjectParameter("pscat_Id", pscat_Id) :
-                new ObjectParameter("pscat_Id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UDP_Inv_tbProducto_ValorCodigo1", pcat_IdParameter, pscat_IdParameter, prod_Codigo);
         }
     
         public virtual ObjectResult<string> UDP_Inv_tbsalida_InsertarEntradaPorPrestamo(Nullable<int> bod_Id, Nullable<byte> estm_Id, string prod_Codigo, Nullable<decimal> entd_Cantidad)
@@ -4251,27 +4198,9 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("spGetDenominacion", idDenominacionParameter);
         }
     
-        public virtual ObjectResult<spGetMunicipios1_Result> spGetMunicipios1(string codDepartamento)
-        {
-            var codDepartamentoParameter = codDepartamento != null ?
-                new ObjectParameter("CodDepartamento", codDepartamento) :
-                new ObjectParameter("CodDepartamento", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetMunicipios1_Result>("spGetMunicipios1", codDepartamentoParameter);
-        }
-    
         public virtual ObjectResult<spGetParametro_Result> spGetParametro()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetParametro_Result>("spGetParametro");
-        }
-    
-        public virtual ObjectResult<string> spGetProducto1(string prod_Codigo)
-        {
-            var prod_CodigoParameter = prod_Codigo != null ?
-                new ObjectParameter("prod_Codigo", prod_Codigo) :
-                new ObjectParameter("prod_Codigo", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("spGetProducto1", prod_CodigoParameter);
         }
     
         public virtual ObjectResult<spGetTipoIdentificacion_Result> spGetTipoIdentificacion(Nullable<bool> personaNatural)
@@ -8006,6 +7935,33 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("clte_Id", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Vent_vFacturaPago_Result>("UDP_Vent_vFacturaPago", clte_IdParameter);
+        }
+    
+        public virtual ObjectResult<SPGetRTNproveedor_Result> SPGetRTNproveedor(Nullable<int> prov_Id)
+        {
+            var prov_IdParameter = prov_Id.HasValue ?
+                new ObjectParameter("prov_Id", prov_Id) :
+                new ObjectParameter("prov_Id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPGetRTNproveedor_Result>("SPGetRTNproveedor", prov_IdParameter);
+        }
+    
+        public virtual ObjectResult<spGetMunicipios1_Result2> spGetMunicipios1(string codDepartamento)
+        {
+            var codDepartamentoParameter = codDepartamento != null ?
+                new ObjectParameter("CodDepartamento", codDepartamento) :
+                new ObjectParameter("CodDepartamento", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetMunicipios1_Result2>("spGetMunicipios1", codDepartamentoParameter);
+        }
+    
+        public virtual ObjectResult<spGetProducto1_Result> spGetProducto1(string prod_Codigo)
+        {
+            var prod_CodigoParameter = prod_Codigo != null ?
+                new ObjectParameter("prod_Codigo", prod_Codigo) :
+                new ObjectParameter("prod_Codigo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetProducto1_Result>("spGetProducto1", prod_CodigoParameter);
         }
     }
 }

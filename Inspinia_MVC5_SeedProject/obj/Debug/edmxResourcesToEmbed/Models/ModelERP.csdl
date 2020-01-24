@@ -394,9 +394,6 @@
       <Parameter Name="UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="FechaCrea" Mode="In" Type="DateTime" />
     </FunctionImport>
-    <FunctionImport Name="SPGetRTNproveedor" ReturnType="Collection(ERP_ZORZALModel.SPGetRTNproveedor_Result)">
-      <Parameter Name="prov_Id" Mode="In" Type="Int32" />
-    </FunctionImport>
     <FunctionImport Name="UDP_Inv_tbBodega_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbBodega_Update_Result)">
       <Parameter Name="bod_Id" Mode="In" Type="Int32" />
       <Parameter Name="bod_Nombre" Mode="In" Type="String" />
@@ -2085,21 +2082,11 @@
     <FunctionImport Name="SDP_tbProductoCategoria_tbProductoSubCategoria_Select" ReturnType="Collection(ERP_ZORZALModel.SDP_tbProductoCategoria_tbProductoSubCategoria_Select_Result)">
       <Parameter Name="pcat_Id" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="SPGetResponsableBodega1" ReturnType="Collection(ERP_ZORZALModel.SPGetResponsableBodega1_Result)">
-      <Parameter Name="bod_id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="SPGetRTNproveedor1" ReturnType="Collection(String)">
-      <Parameter Name="prov_Id" Mode="In" Type="Int32" />
-    </FunctionImport>
     <FunctionImport Name="spGetSuCategoria" ReturnType="Collection(ERP_ZORZALModel.spGetSuCategoria_Result)">
       <Parameter Name="pscat_Id" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="tbInventarioFisico_ImprimirConciliacion" ReturnType="Collection(ERP_ZORZALModel.tbInventarioFisico_ImprimirConciliacion_Result)">
       <Parameter Name="invf_Id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Inv_CantidadExistente1" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_CantidadExistente1_Result)">
-      <Parameter Name="bod_Id" Mode="In" Type="Int32" />
-      <Parameter Name="prod_Codigo" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="UDP_Inv_Consultar_Existencias_Productos" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_Consultar_Existencias_Productos_Result)">
       <Parameter Name="bod_Id" Mode="In" Type="Int32" />
@@ -2128,11 +2115,6 @@
       <Parameter Name="prod_EsActivo" Mode="In" Type="Boolean" />
       <Parameter Name="prod_UsuarioModifica" Mode="In" Type="Int32" />
       <Parameter Name="prod_FechaModifica" Mode="In" Type="DateTime" />
-    </FunctionImport>
-    <FunctionImport Name="UDP_Inv_tbProducto_ValorCodigo1" ReturnType="Collection(String)">
-      <Parameter Name="pcat_Id" Mode="In" Type="Int32" />
-      <Parameter Name="pscat_Id" Mode="In" Type="Int32" />
-      <Parameter Name="prod_Codigo" Mode="InOut" Type="String" />
     </FunctionImport>
     <FunctionImport Name="UDP_Inv_tbsalida_InsertarEntradaPorPrestamo" ReturnType="Collection(String)">
       <Parameter Name="bod_Id" Mode="In" Type="Int32" />
@@ -2213,13 +2195,7 @@
     <FunctionImport Name="spGetDenominacion" ReturnType="Collection(Decimal)">
       <Parameter Name="IdDenominacion" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="spGetMunicipios1" ReturnType="Collection(ERP_ZORZALModel.spGetMunicipios1_Result)">
-      <Parameter Name="CodDepartamento" Mode="In" Type="String" />
-    </FunctionImport>
     <FunctionImport Name="spGetParametro" ReturnType="Collection(ERP_ZORZALModel.spGetParametro_Result)" />
-    <FunctionImport Name="spGetProducto1" ReturnType="Collection(String)">
-      <Parameter Name="prod_Codigo" Mode="In" Type="String" />
-    </FunctionImport>
     <FunctionImport Name="spGetTipoIdentificacion" ReturnType="Collection(ERP_ZORZALModel.spGetTipoIdentificacion_Result)">
       <Parameter Name="PersonaNatural" Mode="In" Type="Boolean" />
     </FunctionImport>
@@ -3258,6 +3234,15 @@
     <EntitySet Name="UDV_Inv_Nombre_Empleado" EntityType="ERP_ZORZALModel.UDV_Inv_Nombre_Empleado" />
     <EntitySet Name="UDV_Inv_CatalogoProductos" EntityType="ERP_ZORZALModel.UDV_Inv_CatalogoProductos" />
     <EntitySet Name="UDV_Inv_ConsultarInventarioFisicoSobrantes" EntityType="ERP_ZORZALModel.UDV_Inv_ConsultarInventarioFisicoSobrantes" />
+    <FunctionImport Name="SPGetRTNproveedor" ReturnType="Collection(ERP_ZORZALModel.SPGetRTNproveedor_Result)">
+      <Parameter Name="prov_Id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spGetMunicipios1" ReturnType="Collection(ERP_ZORZALModel.spGetMunicipios1_Result2)">
+      <Parameter Name="CodDepartamento" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spGetProducto1" ReturnType="Collection(ERP_ZORZALModel.spGetProducto1_Result)">
+      <Parameter Name="prod_Codigo" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -3670,9 +3655,6 @@
   </ComplexType>
   <ComplexType Name="UDP_Inv_ValidacionCantidadExistente_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="SPGetRTNproveedor_Result">
-    <Property Type="String" Name="prov_RTN" Nullable="true" MaxLength="14" />
   </ComplexType>
   <ComplexType Name="UDP_Inv_tbBodega_Update_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
@@ -10430,4 +10412,18 @@
     <Property Name="invfd_CantidadSistema" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
     <Property Name="Sobrante_Faltante" Type="Decimal" Precision="11" Scale="2" />
   </EntityType>
+  <ComplexType Name="spGetMunicipios1_Result1">
+    <Property Type="String" Name="mun_Codigo" Nullable="false" MaxLength="4" />
+    <Property Type="String" Name="mun_Nombre" Nullable="false" MaxLength="150" />
+  </ComplexType>
+  <ComplexType Name="spGetMunicipios1_Result2">
+    <Property Type="String" Name="mun_Codigo" Nullable="false" MaxLength="4" />
+    <Property Type="String" Name="mun_Nombre" Nullable="false" MaxLength="150" />
+  </ComplexType>
+  <ComplexType Name="SPGetRTNproveedor_Result">
+    <Property Type="String" Name="prov_RTN" Nullable="true" MaxLength="14" />
+  </ComplexType>
+  <ComplexType Name="spGetProducto1_Result">
+    <Property Type="String" Name="prod_Descripcion" Nullable="false" MaxLength="100" />
+  </ComplexType>
 </Schema>

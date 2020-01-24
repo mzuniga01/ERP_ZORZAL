@@ -3358,17 +3358,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SPGetResponsableBodega1" FunctionName="ERP_ZORZALModel.Store.SPGetResponsableBodega">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SPGetResponsableBodega1_Result">
-          <ScalarProperty Name="bod_Id" ColumnName="bod_Id" />
-          <ScalarProperty Name="bod_ResponsableBodega" ColumnName="bod_ResponsableBodega" />
-          <ScalarProperty Name="emp_Nombres" ColumnName="emp_Nombres" />
-          <ScalarProperty Name="emp_Apellidos" ColumnName="emp_Apellidos" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SPGetRTNproveedor1" FunctionName="ERP_ZORZALModel.Store.SPGetRTNproveedor" />
     <FunctionImportMapping FunctionImportName="spGetSuCategoria" FunctionName="ERP_ZORZALModel.Store.spGetSuCategoria">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.spGetSuCategoria_Result">
@@ -3395,15 +3384,6 @@
           <ScalarProperty Name="uni_Descripcion" ColumnName="uni_Descripcion" />
           <ScalarProperty Name="invfd_CantidadSistema" ColumnName="invfd_CantidadSistema" />
           <ScalarProperty Name="invfd_Cantidad" ColumnName="invfd_Cantidad" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="UDP_Inv_CantidadExistente1" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_CantidadExistente">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_CantidadExistente1_Result">
-          <ScalarProperty Name="bod_Id" ColumnName="bod_Id" />
-          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
-          <ScalarProperty Name="bodd_CantidadExistente" ColumnName="bodd_CantidadExistente" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -3497,7 +3477,6 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="UDP_INV_tbProducto_Update_EstadoActivar" FunctionName="ERP_ZORZALModel.Store.UDP_INV_tbProducto_Update_EstadoActivar" />
-    <FunctionImportMapping FunctionImportName="UDP_Inv_tbProducto_ValorCodigo1" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProducto_ValorCodigo1" />
     <FunctionImportMapping FunctionImportName="UDP_Inv_tbsalida_InsertarEntradaPorPrestamo" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbsalida_InsertarEntradaPorPrestamo" />
     <FunctionImportMapping FunctionImportName="UDP_Inv_tbSalida_InsertEntradaDetallePorPrestamo" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbSalida_InsertEntradaDetallePorPrestamo" />
     <FunctionImportMapping FunctionImportName="UDP_Inv_tbSalidaBodegaDestino_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbSalidaBodegaDestino_Insert" />
@@ -3603,14 +3582,6 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="spGetDenominacion" FunctionName="ERP_ZORZALModel.Store.spGetDenominacion" />
-    <FunctionImportMapping FunctionImportName="spGetMunicipios1" FunctionName="ERP_ZORZALModel.Store.spGetMunicipios1">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ERP_ZORZALModel.spGetMunicipios1_Result">
-          <ScalarProperty Name="mun_Codigo" ColumnName="mun_Codigo" />
-          <ScalarProperty Name="mun_Nombre" ColumnName="mun_Nombre" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="spGetParametro" FunctionName="ERP_ZORZALModel.Store.spGetParametro">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.spGetParametro_Result">
@@ -3635,7 +3606,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="spGetProducto1" FunctionName="ERP_ZORZALModel.Store.spGetProducto1" />
     <FunctionImportMapping FunctionImportName="spGetTipoIdentificacion" FunctionName="ERP_ZORZALModel.Store.spGetTipoIdentificacion">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ERP_ZORZALModel.spGetTipoIdentificacion_Result">
@@ -4489,5 +4459,27 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SPGetRTNproveedor" FunctionName="ERP_ZORZALModel.Store.SPGetRTNproveedor">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SPGetRTNproveedor_Result">
+          <ScalarProperty Name="prov_RTN" ColumnName="prov_RTN" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetMunicipios1" FunctionName="ERP_ZORZALModel.Store.spGetMunicipios1">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.spGetMunicipios1_Result2">
+          <ScalarProperty Name="mun_Codigo" ColumnName="mun_Codigo" />
+          <ScalarProperty Name="mun_Nombre" ColumnName="mun_Nombre" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetProducto1" FunctionName="ERP_ZORZALModel.Store.spGetProducto1">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.spGetProducto1_Result">
+          <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

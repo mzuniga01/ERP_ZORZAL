@@ -9738,9 +9738,6 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_Entr
             <Parameter Name="UsuarioCrea" Mode="In" Type="Int32" />
             <Parameter Name="FechaCrea" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="SPGetRTNproveedor" ReturnType="Collection(ERP_ZORZALModel.SPGetRTNproveedor_Result)">
-          <Parameter Name="prov_Id" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="UDP_Inv_tbBodega_Update" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbBodega_Update_Result)">
             <Parameter Name="bod_Id" Mode="In" Type="Int32" />
             <Parameter Name="bod_Nombre" Mode="In" Type="String" />
@@ -11429,21 +11426,11 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_Entr
           <FunctionImport Name="SDP_tbProductoCategoria_tbProductoSubCategoria_Select" ReturnType="Collection(ERP_ZORZALModel.SDP_tbProductoCategoria_tbProductoSubCategoria_Select_Result)">
           <Parameter Name="pcat_Id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="SPGetResponsableBodega1" ReturnType="Collection(ERP_ZORZALModel.SPGetResponsableBodega1_Result)">
-          <Parameter Name="bod_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="SPGetRTNproveedor1" ReturnType="Collection(String)">
-          <Parameter Name="prov_Id" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="spGetSuCategoria" ReturnType="Collection(ERP_ZORZALModel.spGetSuCategoria_Result)">
           <Parameter Name="pscat_Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="tbInventarioFisico_ImprimirConciliacion" ReturnType="Collection(ERP_ZORZALModel.tbInventarioFisico_ImprimirConciliacion_Result)">
           <Parameter Name="invf_Id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="UDP_Inv_CantidadExistente1" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_CantidadExistente1_Result)">
-            <Parameter Name="bod_Id" Mode="In" Type="Int32" />
-            <Parameter Name="prod_Codigo" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="UDP_Inv_Consultar_Existencias_Productos" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_Consultar_Existencias_Productos_Result)">
             <Parameter Name="bod_Id" Mode="In" Type="Int32" />
@@ -11472,11 +11459,6 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_Entr
             <Parameter Name="prod_EsActivo" Mode="In" Type="Boolean" />
             <Parameter Name="prod_UsuarioModifica" Mode="In" Type="Int32" />
             <Parameter Name="prod_FechaModifica" Mode="In" Type="DateTime" />
-          </FunctionImport>
-          <FunctionImport Name="UDP_Inv_tbProducto_ValorCodigo1" ReturnType="Collection(String)">
-            <Parameter Name="pcat_Id" Mode="In" Type="Int32" />
-            <Parameter Name="pscat_Id" Mode="In" Type="Int32" />
-            <Parameter Name="prod_Codigo" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="UDP_Inv_tbsalida_InsertarEntradaPorPrestamo" ReturnType="Collection(String)">
             <Parameter Name="bod_Id" Mode="In" Type="Int32" />
@@ -11557,13 +11539,7 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_Entr
           <FunctionImport Name="spGetDenominacion" ReturnType="Collection(Decimal)">
           <Parameter Name="IdDenominacion" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="spGetMunicipios1" ReturnType="Collection(ERP_ZORZALModel.spGetMunicipios1_Result)">
-          <Parameter Name="CodDepartamento" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="spGetParametro" ReturnType="Collection(ERP_ZORZALModel.spGetParametro_Result)" />
-          <FunctionImport Name="spGetProducto1" ReturnType="Collection(String)">
-          <Parameter Name="prod_Codigo" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="spGetTipoIdentificacion" ReturnType="Collection(ERP_ZORZALModel.spGetTipoIdentificacion_Result)">
           <Parameter Name="PersonaNatural" Mode="In" Type="Boolean" />
           </FunctionImport>
@@ -12602,6 +12578,15 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_Entr
           <EntitySet Name="UDV_Inv_Nombre_Empleado" EntityType="ERP_ZORZALModel.UDV_Inv_Nombre_Empleado" />
           <EntitySet Name="UDV_Inv_CatalogoProductos" EntityType="ERP_ZORZALModel.UDV_Inv_CatalogoProductos" />
           <EntitySet Name="UDV_Inv_ConsultarInventarioFisicoSobrantes" EntityType="ERP_ZORZALModel.UDV_Inv_ConsultarInventarioFisicoSobrantes" />
+          <FunctionImport Name="SPGetRTNproveedor" ReturnType="Collection(ERP_ZORZALModel.SPGetRTNproveedor_Result)">
+            <Parameter Name="prov_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spGetMunicipios1" ReturnType="Collection(ERP_ZORZALModel.spGetMunicipios1_Result2)">
+            <Parameter Name="CodDepartamento" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spGetProducto1" ReturnType="Collection(ERP_ZORZALModel.spGetProducto1_Result)">
+            <Parameter Name="prod_Codigo" Mode="In" Type="String" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="tbInventarioFisico">
           <Key>
@@ -13014,9 +12999,6 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_Entr
         </ComplexType>
         <ComplexType Name="UDP_Inv_ValidacionCantidadExistente_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-        </ComplexType>
-        <ComplexType Name="SPGetRTNproveedor_Result">
-          <Property Type="String" Name="prov_RTN" Nullable="true" MaxLength="14" />
         </ComplexType>
         <ComplexType Name="UDP_Inv_tbBodega_Update_Result">
           <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
@@ -19774,6 +19756,20 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_Entr
           <Property Name="invfd_CantidadSistema" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
           <Property Name="Sobrante_Faltante" Type="Decimal" Precision="11" Scale="2" />
         </EntityType>
+        <ComplexType Name="spGetMunicipios1_Result1">
+          <Property Type="String" Name="mun_Codigo" Nullable="false" MaxLength="4" />
+          <Property Type="String" Name="mun_Nombre" Nullable="false" MaxLength="150" />
+        </ComplexType>
+        <ComplexType Name="spGetMunicipios1_Result2">
+          <Property Type="String" Name="mun_Codigo" Nullable="false" MaxLength="4" />
+          <Property Type="String" Name="mun_Nombre" Nullable="false" MaxLength="150" />
+        </ComplexType>
+        <ComplexType Name="SPGetRTNproveedor_Result">
+          <Property Type="String" Name="prov_RTN" Nullable="true" MaxLength="14" />
+        </ComplexType>
+        <ComplexType Name="spGetProducto1_Result">
+          <Property Type="String" Name="prod_Descripcion" Nullable="false" MaxLength="100" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -23137,17 +23133,6 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_Entr
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SPGetResponsableBodega1" FunctionName="ERP_ZORZALModel.Store.SPGetResponsableBodega">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.SPGetResponsableBodega1_Result">
-                <ScalarProperty Name="bod_Id" ColumnName="bod_Id" />
-                <ScalarProperty Name="bod_ResponsableBodega" ColumnName="bod_ResponsableBodega" />
-                <ScalarProperty Name="emp_Nombres" ColumnName="emp_Nombres" />
-                <ScalarProperty Name="emp_Apellidos" ColumnName="emp_Apellidos" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SPGetRTNproveedor1" FunctionName="ERP_ZORZALModel.Store.SPGetRTNproveedor" />
           <FunctionImportMapping FunctionImportName="spGetSuCategoria" FunctionName="ERP_ZORZALModel.Store.spGetSuCategoria">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.spGetSuCategoria_Result">
@@ -23174,15 +23159,6 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_Entr
                 <ScalarProperty Name="uni_Descripcion" ColumnName="uni_Descripcion" />
                 <ScalarProperty Name="invfd_CantidadSistema" ColumnName="invfd_CantidadSistema" />
                 <ScalarProperty Name="invfd_Cantidad" ColumnName="invfd_Cantidad" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UDP_Inv_CantidadExistente1" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_CantidadExistente">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_CantidadExistente1_Result">
-                <ScalarProperty Name="bod_Id" ColumnName="bod_Id" />
-                <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
-                <ScalarProperty Name="bodd_CantidadExistente" ColumnName="bodd_CantidadExistente" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -23276,7 +23252,6 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_Entr
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UDP_INV_tbProducto_Update_EstadoActivar" FunctionName="ERP_ZORZALModel.Store.UDP_INV_tbProducto_Update_EstadoActivar" />
-          <FunctionImportMapping FunctionImportName="UDP_Inv_tbProducto_ValorCodigo1" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbProducto_ValorCodigo1" />
           <FunctionImportMapping FunctionImportName="UDP_Inv_tbsalida_InsertarEntradaPorPrestamo" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbsalida_InsertarEntradaPorPrestamo" />
           <FunctionImportMapping FunctionImportName="UDP_Inv_tbSalida_InsertEntradaDetallePorPrestamo" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbSalida_InsertEntradaDetallePorPrestamo" />
           <FunctionImportMapping FunctionImportName="UDP_Inv_tbSalidaBodegaDestino_Insert" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_tbSalidaBodegaDestino_Insert" />
@@ -23382,14 +23357,6 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_Entr
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="spGetDenominacion" FunctionName="ERP_ZORZALModel.Store.spGetDenominacion" />
-          <FunctionImportMapping FunctionImportName="spGetMunicipios1" FunctionName="ERP_ZORZALModel.Store.spGetMunicipios1">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ERP_ZORZALModel.spGetMunicipios1_Result">
-                <ScalarProperty Name="mun_Codigo" ColumnName="mun_Codigo" />
-                <ScalarProperty Name="mun_Nombre" ColumnName="mun_Nombre" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="spGetParametro" FunctionName="ERP_ZORZALModel.Store.spGetParametro">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.spGetParametro_Result">
@@ -23414,7 +23381,6 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_Entr
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="spGetProducto1" FunctionName="ERP_ZORZALModel.Store.spGetProducto1" />
           <FunctionImportMapping FunctionImportName="spGetTipoIdentificacion" FunctionName="ERP_ZORZALModel.Store.spGetTipoIdentificacion">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ERP_ZORZALModel.spGetTipoIdentificacion_Result">
@@ -24268,6 +24234,28 @@ advertencia 6002: La tabla o vista 'ERP_GMEDINA.Vent.UDV_Vent_VentasPorCaja_Entr
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SPGetRTNproveedor" FunctionName="ERP_ZORZALModel.Store.SPGetRTNproveedor" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.SPGetRTNproveedor_Result">
+                <ScalarProperty Name="prov_RTN" ColumnName="prov_RTN" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGetMunicipios1" FunctionName="ERP_ZORZALModel.Store.spGetMunicipios1">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.spGetMunicipios1_Result2">
+                <ScalarProperty Name="mun_Codigo" ColumnName="mun_Codigo" />
+                <ScalarProperty Name="mun_Nombre" ColumnName="mun_Nombre" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGetProducto1" FunctionName="ERP_ZORZALModel.Store.spGetProducto1" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ERP_ZORZALModel.spGetProducto1_Result">
+                <ScalarProperty Name="prod_Descripcion" ColumnName="prod_Descripcion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
