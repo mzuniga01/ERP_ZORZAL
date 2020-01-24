@@ -169,6 +169,7 @@ $(document).ready(function () {
             }
         });
 });
+
 $(document).on("click", "#BuscarProducto tbody tr td button#seleccionar", function () {
     id = $(this).closest('tr').data('id');
     descripcion = $(this).closest('tr').data('content');

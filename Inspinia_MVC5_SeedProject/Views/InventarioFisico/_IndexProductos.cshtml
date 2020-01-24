@@ -33,7 +33,7 @@
                                 <tbody>
                                     @foreach (var item in Model)
                                     {
-                                        <tr tr data-id="@item.prod_Codigo" , tr data-content="@item.prod_Descripcion", tr data-delay="@item.prod_CodigoBarras" , tr data-keyboard="@item.tbUnidadMedida.uni_Descripcion" , tr data-container="@item.tbUnidadMedida.uni_Id" >
+                                        <tr data-id="@item.prod_Codigo"  data-content="@item.prod_Descripcion" data-delay="@item.prod_CodigoBarras"  data-keyboard="@item.tbUnidadMedida.uni_Descripcion" data-container="@item.tbUnidadMedida.uni_Id" >
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.prod_Descripcion)
                                             </td>

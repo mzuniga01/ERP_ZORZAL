@@ -186,16 +186,18 @@ namespace ERP_GMEDINA.Controllers
                         try
                         {
                             INVENTARIOFISICO = db.UDP_Inv_tbInventarioFisico_Insert(tbInventarioFisico.invf_Descripcion
-                                                                                    , tbInventarioFisico.invf_ResponsableBodega
-                                                                                    , tbInventarioFisico.bod_Id
-                                                                                    , tbInventarioFisico.estif_Id
-                                                                                    , tbInventarioFisico.invf_FechaInventario,
-                                                                                    Function.GetUser(), Function.DatetimeNow());
+                                                                                    ,tbInventarioFisico.invf_ResponsableBodega
+                                                                                    ,tbInventarioFisico.bod_Id
+                                                                                    ,Helpers.InvFisicoActivo
+                                                                                    ,tbInventarioFisico.invf_FechaInventario
+                                                                                    ,Function.GetUser()
+                                                                                    ,Function.DatetimeNow());
                             foreach (UDP_Inv_tbInventarioFisico_Insert_Result InventarioFisico in INVENTARIOFISICO)
                                 MsjError = InventarioFisico.MensajeError;
                             if (MsjError.StartsWith("-1"))
                             {
                                 this.listas();
+                                ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbInventarioFisico.bod_Id);
                                 Function.InsertBitacoraErrores("InventarioFisico/Create", MsjError, "Create");
                                 ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
                                 return View(tbInventarioFisico);
@@ -217,7 +219,7 @@ namespace ERP_GMEDINA.Controllers
                                                 MensajeError = invfdetalle.MensajeError;
                                             if (MensajeError.StartsWith("-1"))
                                             {
-                                                ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
+                                                ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbInventarioFisico.bod_Id);
                                                 this.listas();
                                                 Function.InsertBitacoraErrores("InventarioFisico/Create", MsjError, "Create");
                                                 ModelState.AddModelError("", "No se pudo insertar el registro detalle, favor contacte al administrador.");
@@ -231,7 +233,7 @@ namespace ERP_GMEDINA.Controllers
                         }
                         catch (Exception Ex)
                         {
-                            ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
+                            ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbInventarioFisico.bod_Id);
                             this.listas();
                             Function.InsertBitacoraErrores("InventarioFisico/Create", Ex.Message.ToString(), "Create");
                             ModelState.AddModelError("", "No se pudo insertar el registro, favor contacte al administrador.");
@@ -241,7 +243,7 @@ namespace ERP_GMEDINA.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre");
+            ViewBag.bod_Id = new SelectList(db.tbBodega, "bod_Id", "bod_Nombre", tbInventarioFisico.bod_Id);
             this.listas();
             return View(tbInventarioFisico);
         }

@@ -598,19 +598,6 @@ namespace ERP_GMEDINA.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Acce_tbUsuario_Insert_Result>("UDP_Acce_tbUsuario_Insert", usu_NombreUsuarioParameter, usu_PasswordParameter, usu_NombresParameter, usu_ApellidosParameter, usu_CorreoParameter, suc_IdParameter, emp_IdParameter, usu_EsAdministradorParameter);
         }
     
-        public virtual ObjectResult<UDP_Inv_CantidadExistente_Result> UDP_Inv_CantidadExistente(Nullable<int> bod_Id, string prod_Codigo)
-        {
-            var bod_IdParameter = bod_Id.HasValue ?
-                new ObjectParameter("bod_Id", bod_Id) :
-                new ObjectParameter("bod_Id", typeof(int));
-    
-            var prod_CodigoParameter = prod_Codigo != null ?
-                new ObjectParameter("prod_Codigo", prod_Codigo) :
-                new ObjectParameter("prod_Codigo", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_CantidadExistente_Result>("UDP_Inv_CantidadExistente", bod_IdParameter, prod_CodigoParameter);
-        }
-    
         public virtual ObjectResult<UDP_Inv_tbInventarioFisico_Insert_Result> UDP_Inv_tbInventarioFisico_Insert(string invf_Descripcion, string invf_ResponsableBodega, Nullable<int> bod_Id, Nullable<byte> estif_Id, Nullable<System.DateTime> invf_FechaInventario, Nullable<int> invf_UsuarioCrea, Nullable<System.DateTime> invf_FechaCrea)
         {
             var invf_DescripcionParameter = invf_Descripcion != null ?
@@ -1811,15 +1798,6 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("pscat_ISV", typeof(decimal));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_tbProductoSubcategoria_Insert_Result>("UDP_Inv_tbProductoSubcategoria_Insert", pscat_DescripcionParameter, pcat_IdParameter, pscat_UsuarioCreaParameter, pscat_FechaCreaParameter, pscat_ISVParameter);
-        }
-    
-        public virtual ObjectResult<SPGetResponsableBodega_Result> SPGetResponsableBodega(Nullable<int> bod_id)
-        {
-            var bod_idParameter = bod_id.HasValue ?
-                new ObjectParameter("bod_id", bod_id) :
-                new ObjectParameter("bod_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPGetResponsableBodega_Result>("SPGetResponsableBodega", bod_idParameter);
         }
     
         public virtual ObjectResult<UDP_Inv_tbProducto_Estado_Result> UDP_Inv_tbProducto_Estado(string prod_Codigo, Nullable<bool> prod_EsActivo, string prod_Razon_Inactivacion, Nullable<int> prod_UsuarioModifica, Nullable<System.DateTime> prod_FechaModifica)
@@ -7962,6 +7940,28 @@ namespace ERP_GMEDINA.Models
                 new ObjectParameter("prod_Codigo", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetProducto1_Result>("spGetProducto1", prod_CodigoParameter);
+        }
+    
+        public virtual ObjectResult<SPGetResponsableBodega_Result> SPGetResponsableBodega(Nullable<int> bod_id)
+        {
+            var bod_idParameter = bod_id.HasValue ?
+                new ObjectParameter("bod_id", bod_id) :
+                new ObjectParameter("bod_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPGetResponsableBodega_Result>("SPGetResponsableBodega", bod_idParameter);
+        }
+    
+        public virtual ObjectResult<UDP_Inv_CantidadExistente_Result> UDP_Inv_CantidadExistente(Nullable<int> bod_Id, string prod_Codigo)
+        {
+            var bod_IdParameter = bod_Id.HasValue ?
+                new ObjectParameter("bod_Id", bod_Id) :
+                new ObjectParameter("bod_Id", typeof(int));
+    
+            var prod_CodigoParameter = prod_Codigo != null ?
+                new ObjectParameter("prod_Codigo", prod_Codigo) :
+                new ObjectParameter("prod_Codigo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UDP_Inv_CantidadExistente_Result>("UDP_Inv_CantidadExistente", bod_IdParameter, prod_CodigoParameter);
         }
     }
 }

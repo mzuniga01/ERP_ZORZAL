@@ -4481,5 +4481,24 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SPGetResponsableBodega" FunctionName="ERP_ZORZALModel.Store.SPGetResponsableBodega">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.SPGetResponsableBodega_Result">
+          <ScalarProperty Name="bod_Id" ColumnName="bod_Id" />
+          <ScalarProperty Name="bod_ResponsableBodega" ColumnName="bod_ResponsableBodega" />
+          <ScalarProperty Name="emp_Nombres" ColumnName="emp_Nombres" />
+          <ScalarProperty Name="emp_Apellidos" ColumnName="emp_Apellidos" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UDP_Inv_CantidadExistente" FunctionName="ERP_ZORZALModel.Store.UDP_Inv_CantidadExistente">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ERP_ZORZALModel.UDP_Inv_CantidadExistente_Result">
+          <ScalarProperty Name="bod_Id" ColumnName="bod_Id" />
+          <ScalarProperty Name="prod_Codigo" ColumnName="prod_Codigo" />
+          <ScalarProperty Name="bodd_CantidadExistente" ColumnName="bodd_CantidadExistente" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

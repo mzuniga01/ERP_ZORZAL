@@ -135,10 +135,6 @@
       <Parameter Name="emp_Id" Mode="In" Type="Int16" />
       <Parameter Name="usu_EsAdministrador" Mode="In" Type="Boolean" />
     </FunctionImport>
-    <FunctionImport Name="UDP_Inv_CantidadExistente" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_CantidadExistente_Result)">
-      <Parameter Name="bod_Id" Mode="In" Type="Int32" />
-      <Parameter Name="prod_Codigo" Mode="In" Type="String" />
-    </FunctionImport>
     <FunctionImport Name="UDP_Inv_tbInventarioFisico_Insert" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbInventarioFisico_Insert_Result)">
       <Parameter Name="invf_Descripcion" Mode="In" Type="String" />
       <Parameter Name="invf_ResponsableBodega" Mode="In" Type="String" />
@@ -478,9 +474,6 @@
       <Parameter Name="pscat_UsuarioCrea" Mode="In" Type="Int32" />
       <Parameter Name="pscat_FechaCrea" Mode="In" Type="DateTime" />
       <Parameter Name="pscat_ISV" Mode="In" Type="Decimal" />
-    </FunctionImport>
-    <FunctionImport Name="SPGetResponsableBodega" ReturnType="Collection(ERP_ZORZALModel.SPGetResponsableBodega_Result)">
-      <Parameter Name="bod_id" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="UDP_Inv_tbProducto_Estado" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_tbProducto_Estado_Result)">
       <Parameter Name="prod_Codigo" Mode="In" Type="String" />
@@ -3243,6 +3236,13 @@
     <FunctionImport Name="spGetProducto1" ReturnType="Collection(ERP_ZORZALModel.spGetProducto1_Result)">
       <Parameter Name="prod_Codigo" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="SPGetResponsableBodega" ReturnType="Collection(ERP_ZORZALModel.SPGetResponsableBodega_Result)">
+      <Parameter Name="bod_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UDP_Inv_CantidadExistente" ReturnType="Collection(ERP_ZORZALModel.UDP_Inv_CantidadExistente_Result)">
+      <Parameter Name="bod_Id" Mode="In" Type="Int32" />
+      <Parameter Name="prod_Codigo" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tbInventarioFisico">
     <Key>
@@ -3412,10 +3412,6 @@
     <Property Type="String" Name="box_Codigo" Nullable="true" MaxLength="20" />
     <Property Type="String" Name="prod_CodigoBarras" Nullable="false" MaxLength="15" />
     <Property Type="Decimal" Name="sald_Cantidad" Nullable="false" Precision="10" Scale="2" />
-  </ComplexType>
-  <ComplexType Name="UDP_Inv_CantidadExistente_Result">
-    <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
-    <Property Type="Decimal" Name="bodd_CantidadExistente" Nullable="false" Precision="10" Scale="2" />
   </ComplexType>
   <ComplexType Name="UDP_Inv_tbInventarioFisico_Insert_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
@@ -3711,12 +3707,6 @@
   </ComplexType>
   <ComplexType Name="UDP_Inv_tbProductoSubcategoria_Insert_Result">
     <Property Type="String" Name="MensajeError" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="SPGetResponsableBodega_Result">
-    <Property Type="Int32" Name="bod_Id" Nullable="false" />
-    <Property Type="Int16" Name="bod_ResponsableBodega" Nullable="false" />
-    <Property Type="String" Name="emp_Nombres" Nullable="false" MaxLength="100" />
-    <Property Type="String" Name="emp_Apellidos" Nullable="false" MaxLength="100" />
   </ComplexType>
   <ComplexType Name="UDP_Inv_tbProducto_Estado_Result">
     <Property Type="String" Name="MensajeError" Nullable="false" MaxLength="15" />
@@ -9643,12 +9633,6 @@
     <Property Type="DateTime" Name="pscat_FechaModifica" Nullable="true" Precision="23" />
     <Property Type="Decimal" Name="pscat_ISV" Nullable="false" Precision="5" Scale="2" />
   </ComplexType>
-  <ComplexType Name="SPGetResponsableBodega1_Result">
-    <Property Type="Int32" Name="bod_Id" Nullable="false" />
-    <Property Type="Int16" Name="bod_ResponsableBodega" Nullable="false" />
-    <Property Type="String" Name="emp_Nombres" Nullable="false" MaxLength="100" />
-    <Property Type="String" Name="emp_Apellidos" Nullable="false" MaxLength="100" />
-  </ComplexType>
   <ComplexType Name="spGetSuCategoria_Result">
     <Property Type="Int32" Name="pcat_Id" Nullable="false" />
     <Property Type="String" Name="pcat_Nombre" Nullable="false" MaxLength="50" />
@@ -9669,11 +9653,6 @@
     <Property Type="String" Name="uni_Descripcion" Nullable="false" MaxLength="150" />
     <Property Type="Decimal" Name="invfd_CantidadSistema" Nullable="false" Precision="10" Scale="2" />
     <Property Type="Decimal" Name="invfd_Cantidad" Nullable="false" Precision="10" Scale="2" />
-  </ComplexType>
-  <ComplexType Name="UDP_Inv_CantidadExistente1_Result">
-    <Property Type="Int32" Name="bod_Id" Nullable="false" />
-    <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
-    <Property Type="Decimal" Name="bodd_CantidadExistente" Nullable="false" Precision="10" Scale="2" />
   </ComplexType>
   <ComplexType Name="UDP_Inv_Consultar_Existencias_Productos_Result">
     <Property Type="String" Name="suc_Descripcion" Nullable="true" MaxLength="40" />
@@ -10425,5 +10404,16 @@
   </ComplexType>
   <ComplexType Name="spGetProducto1_Result">
     <Property Type="String" Name="prod_Descripcion" Nullable="false" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="SPGetResponsableBodega_Result">
+    <Property Type="Int32" Name="bod_Id" Nullable="false" />
+    <Property Type="Int16" Name="bod_ResponsableBodega" Nullable="false" />
+    <Property Type="String" Name="emp_Nombres" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="emp_Apellidos" Nullable="false" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="UDP_Inv_CantidadExistente_Result">
+    <Property Type="Int32" Name="bod_Id" Nullable="false" />
+    <Property Type="String" Name="prod_Codigo" Nullable="false" MaxLength="15" />
+    <Property Type="Decimal" Name="bodd_CantidadExistente" Nullable="false" Precision="10" Scale="2" />
   </ComplexType>
 </Schema>

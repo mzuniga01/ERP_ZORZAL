@@ -453,9 +453,6 @@
     <Compile Include="Models\spGetProducto_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\SPGetResponsableBodega1_Result.cs">
-      <DependentUpon>ModelERP.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\SPGetResponsableBodega_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -787,9 +784,6 @@
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Gral_tbUnidadMedida_Update_Result.cs">
-      <DependentUpon>ModelERP.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\UDP_Inv_CantidadExistente1_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UDP_Inv_CantidadExistente_Result.cs">
@@ -1903,8 +1897,6 @@
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Shared\_Navigation.cshtml" />
     <Content Include="Views\Shared\_TopNavbar.cshtml" />
-    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.3.1.min.map" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Departamento\Create.cshtml" />
     <Content Include="Views\Departamento\Delete.cshtml" />
