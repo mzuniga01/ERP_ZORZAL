@@ -275,7 +275,7 @@ namespace ERP_GMEDINA.Controllers
             {
                 ViewBag.pemi_NumeroCAI = Resultado.CAI;
             }
-            
+            var prod = db.tbProducto.ToList();
             ViewBag.Producto = db.tbProducto.ToList();
             ViewBag.Cliente = db.tbCliente.ToList();
             Session["Factura"] = null;
@@ -1029,7 +1029,7 @@ namespace ERP_GMEDINA.Controllers
                 var SucId = db.tbUsuario.Where(x => x.usu_Id == UserId).Select(p => p.suc_Id).FirstOrDefault();
                 var bod_Id = db.tbSucursal.Where(x => x.suc_Id == SucId).Select(p => p.bod_Id).FirstOrDefault();
                 Lista = db.SDP_Inv_tbBodegaDetalle_Select_Producto(bod_Id).ToList();
-
+                Lista = db.tbProducto.ToList();
             }
             catch (Exception Ex)
             {

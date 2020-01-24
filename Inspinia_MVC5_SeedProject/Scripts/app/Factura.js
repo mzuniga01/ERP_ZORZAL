@@ -291,8 +291,8 @@ $(document).on("click", "#tbCliente tbody tr td button#seleccionar", function ()
     }
     else {
         $('#TerceraEdad').hide();
-        document.getElementById("MostrarTerceraEdad").disabled = false;
-        document.getElementById("fact_AutorizarDescuento").disabled = false;
+        //document.getElementById("MostrarTerceraEdad").disabled = false;
+        //document.getElementById("fact_AutorizarDescuento").disabled = false;
         $('#Cred2').hide();
     }
 });
@@ -300,43 +300,43 @@ $(document).on("click", "#tbCliente tbody tr td button#seleccionar", function ()
 //Modal Producto
 $("#Producto").click(function () {
     ListaProductos();
-})
+});
 
 function ListaProductos() {
     url = "/Factura/ListaProductos";
     var table = $('#tbProductoFactura').dataTable({
         destroy: true,
         resposive: true,
-        ajax: {
-            method: "POST",
-            url: url,
-            contentType: "application/json; charset=utf-8",
-            dataType: 'json',
-            "dataSrc": ""
-        },
-        "columns": [
-            { "data": "prod_Codigo" },
-            { "data": "prod_Descripcion" },
-            { "data": "prod_CodigoBarras" },
-            { "defaultContent": "<button class='btn btn-primary btn-xs'  id='seleccionar' data-dismiss='modal'>Seleccionar</button>" }
-        ],
-        "searching": false,
-        "lengthChange": false,
-        "oLanguage": {
-            "oPaginate": {
-                "sNext": "Siguiente",
-                "sPrevious": "Anterior",
-            },
-            "sProcessing": "Procesando...",
-            "sLengthMenu": "Mostrar _MENU_ registros",
-            "sZeroRecords": "No se encontraron resultados",
-            "sEmptyTable": "Ningún dato disponible en esta tabla",
-            "sEmptyTable": "No hay registros",
-            "sInfoEmpty": "Mostrando 0 de 0 Entradas",
-            "sSearch": "Buscar",
-            "sInfo": "Mostrando _START_ a _END_ Entradas",
-            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-        }
+    //    ajax: {
+    //        method: "POST",
+    //        url: url,
+    //        contentType: "application/json; charset=utf-8",
+    //        dataType: 'json',
+    //        "dataSrc": ""
+    //    },
+    //    "columns": [
+    //        { "data": "prod_Codigo" },
+    //        { "data": "prod_Descripcion" },
+    //        { "data": "prod_CodigoBarras" },
+    //        { "defaultContent": "<button class='btn btn-primary btn-xs'  id='seleccionar' data-dismiss='modal'>Seleccionar</button>" }
+    //    ],
+    //    "searching": false,
+    //    "lengthChange": false,
+    //    "oLanguage": {
+    //        "oPaginate": {
+    //            "sNext": "Siguiente",
+    //            "sPrevious": "Anterior",
+    //        },
+    //        "sProcessing": "Procesando...",
+    //        "sLengthMenu": "Mostrar _MENU_ registros",
+    //        "sZeroRecords": "No se encontraron resultados",
+    //        "sEmptyTable": "Ningún dato disponible en esta tabla",
+    //        "sEmptyTable": "No hay registros",
+    //        "sInfoEmpty": "Mostrando 0 de 0 Entradas",
+    //        "sSearch": "Buscar",
+    //        "sInfo": "Mostrando _START_ a _END_ Entradas",
+    //        "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+    //    }
     });
     $('#ModalAgregarProducto').modal('show');
 }
@@ -358,7 +358,7 @@ var $rows = $('#ProductoTbody tr');
 });
 
 // Factura Seleccionar Producto
-$(document).on("click", "#tbProductoFactura tbody tr td button#seleccionar", function () {
+    $(document).on("click", "#tbProductoFactura tbody tr td button#seleccionarProducto", function () {
     var currentRow = $(this).closest("tr");
     var prod_CodigoBarrasItem = currentRow.find("td:eq(2)").text();
     var prod_DescripcionItem = currentRow.find("td:eq(1)").text();

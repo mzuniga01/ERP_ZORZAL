@@ -23,8 +23,18 @@
                             <th>Acción</th>
                         </tr>
                     </thead>
-                    <tbody id="ProductoTbody"></tbody>
-                </table>
+                    @foreach (var item in Model)
+                    {
+                        <tbody id="ProductoTbody1">
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.prod_Codigo)</td>
+                                <td>@Html.DisplayFor(modelItem => item.prod_Descripcion)</td>
+                                <td>@Html.DisplayFor(modelItem => item.prod_CodigoBarras)</td>
+                                <td><button class='btn btn-primary btn-xs' id='seleccionarProducto' data-dismiss='modal'>Seleccionar</button></td>
+                            </tr>
+                        </tbody>
+                    }
+                    </table>
             </div>
         </div>
     </div>
