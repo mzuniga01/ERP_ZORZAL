@@ -1,4 +1,4 @@
-C:\Users\MágdalyZúniga\Desktop\ERP_ZORZAL_Inventario\Inspinia_MVC5_SeedProject\Fakes\SimpleCrypto.fakes : warning : No se puede generar stub para SimpleCrypto.PasswordGroup: el tipo es un tipo de valor.
-C:\Users\MágdalyZúniga\Desktop\ERP_ZORZAL_Inventario\Inspinia_MVC5_SeedProject\Fakes\SimpleCrypto.fakes : warning : No se puede generar shim para SimpleCrypto.ICryptoService: el tipo es una interfaz.
-C:\Users\MágdalyZúniga\Desktop\ERP_ZORZAL_Inventario\Inspinia_MVC5_SeedProject\Fakes\SimpleCrypto.fakes : warning : No se puede generar shim para SimpleCrypto.PasswordGroup: el tipo es una enumeración.
-C:\Users\MágdalyZúniga\Desktop\ERP_ZORZAL_Inventario\Inspinia_MVC5_SeedProject\Fakes\SimpleCrypto.fakes : warning : No se puede generar shim para SimpleCrypto.RandomPassword+<>c__DisplayClass7: no se admite el tipo debido a limitaciones internas.
+C:\Users\MágdalyZúniga\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\Fakes\SimpleCrypto.fakes : warning : Cannot generate stub for SimpleCrypto.PasswordGroup: type is a value type.
+C:\Users\MágdalyZúniga\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\Fakes\SimpleCrypto.fakes : warning : Cannot generate shim for SimpleCrypto.ICryptoService: type is an interface.
+C:\Users\MágdalyZúniga\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\Fakes\SimpleCrypto.fakes : warning : Cannot generate shim for SimpleCrypto.PasswordGroup: type is an enum.
+C:\Users\MágdalyZúniga\Documents\GitHub\ERP_ZORZAL\Inspinia_MVC5_SeedProject\Fakes\SimpleCrypto.fakes : warning : Cannot generate shim for SimpleCrypto.RandomPassword+<>c__DisplayClass7: type is not supported because of internal limitations.
