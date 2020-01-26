@@ -2,7 +2,7 @@
 @using ERP_GMEDINA.Models
 @{
     string UserName = "";
-    GeneralFunctions Login = new GeneralFunctions();
+    Helpers Login = new Helpers();
     List<tbUsuario> User = Login.getUserInformation();
     foreach (tbUsuario Usuario in User)
     {

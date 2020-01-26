@@ -95,7 +95,7 @@ namespace ERP_GMEDINA.Controllers
         public ActionResult SinAcceso()
         {
             //Validar Inicio de Sesión
-            GeneralFunctions Function = new GeneralFunctions();
+            Helpers Function = new Helpers();
             if (Function.GetUserLogin())
                 return View();
             else
@@ -105,7 +105,7 @@ namespace ERP_GMEDINA.Controllers
         public ActionResult NotFound()
         {
             //Validar Inicio de Sesión
-            GeneralFunctions Function = new GeneralFunctions();
+            Helpers Function = new Helpers();
             if (Function.GetUserLogin())
                 return View();
             else
@@ -115,7 +115,7 @@ namespace ERP_GMEDINA.Controllers
         public ActionResult SinRol()
         {
             //Validar Inicio de Sesión
-            GeneralFunctions Function = new GeneralFunctions();
+            Helpers Function = new Helpers();
             if (Function.GetUserLogin())
                 return View();
             else

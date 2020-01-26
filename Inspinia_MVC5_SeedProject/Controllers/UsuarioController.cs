@@ -18,7 +18,7 @@ namespace ERP_GMEDINA.Controllers
     public class UsuarioController : Controller
     {
         private ERP_ZORZALEntities db = new ERP_ZORZALEntities();
-        GeneralFunctions Function = new GeneralFunctions();
+        Helpers Function = new Helpers();
         // GET: /Usuario/
         [SessionManager("Usuario/Index")]
         public ActionResult Index()

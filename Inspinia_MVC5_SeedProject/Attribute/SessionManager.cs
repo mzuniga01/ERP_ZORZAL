@@ -11,7 +11,7 @@ namespace ERP_GMEDINA.Attribute
     public class SessionManager : ActionFilterAttribute
     {
         private readonly string _screenId;
-        GeneralFunctions Function = new GeneralFunctions();
+        Helpers Function = new Helpers();
         public SessionManager()
         {
         }

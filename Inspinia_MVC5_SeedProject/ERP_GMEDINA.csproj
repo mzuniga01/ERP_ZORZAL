@@ -223,37 +223,37 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Attribute\SessionManager.cs" />
-    <Compile Include="Controllers\ActividadEconomicaController.cs" />
-    <Compile Include="Controllers\BancoController.cs" />
-    <Compile Include="Controllers\CajaController.cs" />
-    <Compile Include="Controllers\ClienteController.cs" />
-    <Compile Include="Controllers\CuentaBancoController.cs" />
-    <Compile Include="Controllers\CuponDescuentoController.cs" />
-    <Compile Include="Controllers\DenominacionArqueoController.cs" />
-    <Compile Include="Controllers\DenominacionController.cs" />
-    <Compile Include="Controllers\DevolucionController.cs" />
-    <Compile Include="Controllers\DocumentoFiscalController.cs" />
-    <Compile Include="Controllers\EstadoFacturaController.cs" />
-    <Compile Include="Controllers\EstadoPedidoController.cs" />
-    <Compile Include="Controllers\EstadoSolicitudCreditoController.cs" />
-    <Compile Include="Controllers\ExoneracionController.cs" />
-    <Compile Include="Controllers\FacturaController.cs" />
+    <Compile Include="Controllers\Facturacion\Catalogos\ActividadEconomicaController.cs" />
+    <Compile Include="Controllers\Facturacion\Catalogos\BancoController.cs" />
+    <Compile Include="Controllers\Facturacion\Configuracion\CajaController.cs" />
+    <Compile Include="Controllers\Facturacion\Ventas\ClienteController.cs" />
+    <Compile Include="Controllers\Facturacion\Catalogos\CuentaBancoController.cs" />
+    <Compile Include="Controllers\Facturacion\Ventas\CuponDescuentoController.cs" />
+    <Compile Include="Controllers\Facturacion\Caja\DenominacionArqueoController.cs" />
+    <Compile Include="Controllers\Facturacion\Caja\DenominacionController.cs" />
+    <Compile Include="Controllers\Facturacion\Ventas\DevolucionController.cs" />
+    <Compile Include="Controllers\Facturacion\Catalogos\DocumentoFiscalController.cs" />
+    <Compile Include="Controllers\Facturacion\Catalogos\EstadoFacturaController.cs" />
+    <Compile Include="Controllers\Facturacion\Catalogos\EstadoPedidoController.cs" />
+    <Compile Include="Controllers\Facturacion\Catalogos\EstadoSolicitudCreditoController.cs" />
+    <Compile Include="Controllers\Facturacion\Ventas\ExoneracionController.cs" />
+    <Compile Include="Controllers\Facturacion\Ventas\FacturaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ListaPreciosController.cs" />
+    <Compile Include="Controllers\Facturacion\Ventas\ListaPreciosController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\MonedaController.cs" />
-    <Compile Include="Controllers\MovimientoCajaController.cs" />
-    <Compile Include="Controllers\NotaCreditoController.cs" />
-    <Compile Include="Controllers\PagoController.cs" />
-    <Compile Include="Controllers\PagosArqueoController.cs" />
-    <Compile Include="Controllers\PedidoController.cs" />
-    <Compile Include="Controllers\PuntoEmisionController.cs" />
+    <Compile Include="Controllers\Facturacion\Catalogos\MonedaController.cs" />
+    <Compile Include="Controllers\Facturacion\Caja\MovimientoCajaController.cs" />
+    <Compile Include="Controllers\Facturacion\Ventas\NotaCreditoController.cs" />
+    <Compile Include="Controllers\Facturacion\Ventas\PagoController.cs" />
+    <Compile Include="Controllers\Facturacion\Ventas\PagosArqueoController.cs" />
+    <Compile Include="Controllers\Facturacion\Ventas\PedidoController.cs" />
+    <Compile Include="Controllers\Facturacion\Configuracion\PuntoEmisionController.cs" />
     <Compile Include="Controllers\ReportesController.cs" />
-    <Compile Include="Controllers\SolicitudCreditoController.cs" />
-    <Compile Include="Controllers\SolicitudEfectivoController.cs" />
-    <Compile Include="Controllers\SucursalController.cs" />
-    <Compile Include="Controllers\TipoIdentificacionController.cs" />
-    <Compile Include="Controllers\TipoPagoController.cs" />
+    <Compile Include="Controllers\Facturacion\Ventas\SolicitudCreditoController.cs" />
+    <Compile Include="Controllers\Facturacion\Ventas\SolicitudEfectivoController.cs" />
+    <Compile Include="Controllers\Facturacion\Configuracion\SucursalController.cs" />
+    <Compile Include="Controllers\Facturacion\Catalogos\TipoIdentificacionController.cs" />
+    <Compile Include="Controllers\Facturacion\Catalogos\TipoPagoController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Dataset\ArqueoCaja.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -306,59 +306,57 @@
     <Compile Include="Models\UDP_Vent_tbFactura_EstadoImpreso_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Ventas\Catalogos\ActividadEconomica.cs" />
-    <Compile Include="Models\Ventas\Caja\ArqueoCaja.cs" />
-    <Compile Include="Models\Ventas\Catalogos\Banco.cs" />
+    <Compile Include="Models\Facturacion\Catalogos\ActividadEconomica.cs" />
+    <Compile Include="Models\Facturacion\Caja\ArqueoCaja.cs" />
+    <Compile Include="Models\Facturacion\Catalogos\Banco.cs" />
     <Compile Include="Models\cActivo.cs" />
-    <Compile Include="Models\Cajas.cs" />
-    <Compile Include="Models\cCuponDescuento.cs" />
-    <Compile Include="Models\Ventas\Catalogos\DenominacionList.cs" />
+    <Compile Include="Models\Facturacion\Configuracion\Caja.cs" />
+    <Compile Include="Models\Facturacion\Ventas\CuponDescuento.cs" />
+    <Compile Include="Models\Facturacion\Catalogos\DenominacionList.cs" />
     <Compile Include="Models\cDepartamento.cs" />
-    <Compile Include="Models\cDetalleDevolucion.cs" />
-    <Compile Include="Models\cDevolucion.cs" />
-    <Compile Include="Models\Ventas\Catalogos\DocumentoFiscal.cs" />
-    <Compile Include="Models\cExoneracion.cs" />
-    <Compile Include="Models\cGenero.cs" />
-    <Compile Include="Models\Clientes.cs" />
+    <Compile Include="Models\Facturacion\Ventas\DetalleDevolucion.cs" />
+    <Compile Include="Models\Facturacion\Ventas\Devolucion.cs" />
+    <Compile Include="Models\Facturacion\Catalogos\DocumentoFiscal.cs" />
+    <Compile Include="Models\Facturacion\Ventas\Exoneracion.cs" />
+    <Compile Include="Models\General\Catalogos\Genero.cs" />
+    <Compile Include="Models\Facturacion\Ventas\Cliente.cs" />
     <Compile Include="Models\cMinorista.cs" />
-    <Compile Include="Models\cNacionalidad.cs" />
-    <Compile Include="Models\cNotaCredito.cs" />
+    <Compile Include="Models\General\Catalogos\Nacionalidad.cs" />
+    <Compile Include="Models\Facturacion\Ventas\NotaCredito.cs" />
     <Compile Include="Models\crud_tbProductoSelect_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\cTest.cs" />
-    <Compile Include="Models\cTipoCuenta.cs" />
-    <Compile Include="Models\cTP.cs" />
-    <Compile Include="Models\Ventas\Catalogos\CuentaBanco.cs" />
-    <Compile Include="Models\cUtilities.cs" />
-    <Compile Include="Models\cVistaClientes.cs" />
-    <Compile Include="Models\cVistaFactura.cs" />
+    <Compile Include="Models\Test.cs" />
+    <Compile Include="Models\Facturacion\Catalogos\TipoCuenta.cs" />
+    <Compile Include="Models\Facturacion\Catalogos\TipoPagos.cs" />
+    <Compile Include="Models\Facturacion\Catalogos\CuentaBanco.cs" />
+    <Compile Include="Models\Facturacion\Ventas\VistaCliente.cs" />
+    <Compile Include="Models\Facturacion\Ventas\VistaFactura.cs" />
     <Compile Include="Models\DatosConsumidorFinal.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Ventas\Catalogos\Denominacion.cs" />
-    <Compile Include="Models\Ventas\Caja\DenominacionArqueo.cs" />
-    <Compile Include="Models\Ventas\Catalogos\EstadoFactura.cs" />
-    <Compile Include="Models\Ventas\Catalogos\EstadoPedido.cs" />
-    <Compile Include="Models\Ventas\Catalogos\EstadosSolicitudCredito.cs" />
-    <Compile Include="Models\Factura.cs" />
-    <Compile Include="Models\FacturaDetalle.cs" />
-    <Compile Include="Models\FacturaHistorica.cs" />
+    <Compile Include="Models\Facturacion\Catalogos\Denominacion.cs" />
+    <Compile Include="Models\Facturacion\Caja\DenominacionArqueo.cs" />
+    <Compile Include="Models\Facturacion\Catalogos\EstadoFactura.cs" />
+    <Compile Include="Models\Facturacion\Catalogos\EstadoPedido.cs" />
+    <Compile Include="Models\Facturacion\Catalogos\EstadosSolicitudCredito.cs" />
+    <Compile Include="Models\Facturacion\Ventas\Factura.cs" />
+    <Compile Include="Models\Facturacion\Ventas\FacturaDetalle.cs" />
+    <Compile Include="Models\Facturacion\Ventas\FacturaHistorica.cs" />
     <Compile Include="Models\fn_GetFacturaPago_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\GeneralFunctions.cs" />
     <Compile Include="Models\GetPrecioUnitario_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Helpers.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\ListadoPrecioDetalle.cs" />
+    <Compile Include="Models\Facturacion\Ventas\ListadoPrecioDetalle.cs" />
     <Compile Include="Models\Listado_CAI_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ListaPrecioDetalle.cs" />
-    <Compile Include="Models\ListasPrecios.cs" />
+    <Compile Include="Models\Facturacion\Ventas\ListaPrecioDetalle.cs" />
+    <Compile Include="Models\Facturacion\Ventas\ListaPrecio.cs" />
     <Compile Include="Models\ModelERP.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -374,15 +372,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelERP.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Ventas\Catalogos\Moneda.cs" />
-    <Compile Include="Models\MovimientoCajas.cs" />
+    <Compile Include="Models\Facturacion\Catalogos\Moneda.cs" />
+    <Compile Include="Models\Facturacion\Caja\MovimientoCaja.cs" />
     <Compile Include="Models\ObtenerRol_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Pagos.cs" />
-    <Compile Include="Models\Ventas\Caja\PagosArqueo.cs" />
-    <Compile Include="Models\PedidoDetalle.cs" />
-    <Compile Include="Models\Pedidos.cs" />
+    <Compile Include="Models\Facturacion\Ventas\Pago.cs" />
+    <Compile Include="Models\Facturacion\Caja\PagosArqueo.cs" />
+    <Compile Include="Models\Facturacion\Ventas\PedidoDetalle.cs" />
+    <Compile Include="Models\Facturacion\Ventas\Pedido.cs" />
     <Compile Include="Models\Producto.cs" />
     <Compile Include="Models\Prueba1_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
@@ -390,8 +388,8 @@
     <Compile Include="Models\Prueba_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\PuntoEmision.cs" />
-    <Compile Include="Models\PuntoEmisionDetalle.cs" />
+    <Compile Include="Models\Facturacion\Configuracion\PuntoEmision.cs" />
+    <Compile Include="Models\Facturacion\Configuracion\PuntoEmisionDetalle.cs" />
     <Compile Include="Models\SDP_Acce_GetObjetosAsignados_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -500,9 +498,9 @@
     <Compile Include="Models\SDP_Vent_tbPedidoDetalle_tbPedido_Select_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\SolicitudCreditos.cs" />
-    <Compile Include="Models\Ventas\Caja\SolicitudEfectivo.cs" />
-    <Compile Include="Models\Ventas\Caja\SolicitudEfectivoDetalle.cs" />
+    <Compile Include="Models\Facturacion\Ventas\SolicitudCredito.cs" />
+    <Compile Include="Models\Facturacion\Caja\SolicitudEfectivo.cs" />
+    <Compile Include="Models\Facturacion\Caja\SolicitudEfectivoDetalle.cs" />
     <Compile Include="Models\spGetActividadEconomica_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -569,7 +567,7 @@
     <Compile Include="Models\SP_tbInventariofisico_ProductosRepetidos_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Sucursal.cs" />
+    <Compile Include="Models\Facturacion\Configuracion\Sucursal.cs" />
     <Compile Include="Models\tbAccesoRol.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
@@ -771,8 +769,8 @@
     <Compile Include="Models\tbUsuario.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Ventas\Catalogos\TipoPago.cs" />
-    <Compile Include="Models\Ventas\Catalogos\TiposIdenticacion.cs" />
+    <Compile Include="Models\Facturacion\Catalogos\TipoPago.cs" />
+    <Compile Include="Models\Facturacion\Catalogos\TiposIdenticacion.cs" />
     <Compile Include="Models\UDP_Acce_Login_Result.cs">
       <DependentUpon>ModelERP.tt</DependentUpon>
     </Compile>
